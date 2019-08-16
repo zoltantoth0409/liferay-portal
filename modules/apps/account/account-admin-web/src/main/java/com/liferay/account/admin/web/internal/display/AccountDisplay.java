@@ -29,52 +29,38 @@ import java.util.List;
 public class AccountDisplay {
 
 	public static AccountDisplay of(AccountEntry accountEntry) {
-		AccountDisplay.Builder builder = new AccountDisplay.Builder();
-
-		return builder.accountId(
-			accountEntry.getAccountEntryId()
-		).description(
-			accountEntry.getDescription()
-		).name(
-			accountEntry.getName()
-		).parentAccountName(
-			_getParentAccountName(accountEntry)
-		).statusLabel(
-			_getStatusLabel(accountEntry)
-		).website(
-			_getWebsite(accountEntry)
-		).build();
+		return new AccountDisplay(accountEntry);
 	}
 
 	public long getAccountId() {
-		return _builder._accountId;
+		return _accountId;
 	}
 
 	public String getAccountOwner() {
-		return _builder._accountOwner;
+		return _accountOwner;
 	}
 
 	public String getDescription() {
-		return _builder._description;
+		return _description;
 	}
 
 	public String getName() {
-		return _builder._name;
+		return _name;
 	}
 
 	public String getParentAccountName() {
-		return _builder._parentAccountName;
+		return _parentAccountName;
 	}
 
 	public String getStatusLabel() {
-		return _builder._statusLabel;
+		return _statusLabel;
 	}
 
 	public String getWebsite() {
-		return _builder._website;
+		return _website;
 	}
 
-	private static String _getParentAccountName(AccountEntry accountEntry) {
+	private String _getParentAccountName(AccountEntry accountEntry) {
 		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
 
 		if (parentAccountEntryId == 0) {
@@ -92,7 +78,7 @@ public class AccountDisplay {
 		return StringPool.BLANK;
 	}
 
-	private static String _getStatusLabel(AccountEntry accountEntry) {
+	private String _getStatusLabel(AccountEntry accountEntry) {
 		int status = accountEntry.getStatus();
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
@@ -106,7 +92,7 @@ public class AccountDisplay {
 		return StringPool.BLANK;
 	}
 
-	private static String _getWebsite(AccountEntry accountEntry) {
+	private String _getWebsite(AccountEntry accountEntry) {
 		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
 			accountEntry.getCompanyId(), AccountEntry.class.getName(),
 			accountEntry.getAccountEntryId());
@@ -120,68 +106,21 @@ public class AccountDisplay {
 		return website.getUrl();
 	}
 
-	private AccountDisplay(Builder builder) {
-		_builder = builder;
+	private AccountDisplay(AccountEntry accountEntry) {
+		_accountId = accountEntry.getAccountEntryId();
+		_description = accountEntry.getDescription();
+		_name = accountEntry.getName();
+		_parentAccountName= _getParentAccountName(accountEntry);
+		_statusLabel = _getStatusLabel(accountEntry);
+		_website = _getWebsite(accountEntry);
 	}
 
-	private final Builder _builder;
-
-	private static class Builder {
-
-		public Builder accountId(long accountId) {
-			_accountId = accountId;
-
-			return this;
-		}
-
-		public Builder accountOwner(String accountOwner) {
-			_accountOwner = accountOwner;
-
-			return this;
-		}
-
-		public AccountDisplay build() {
-			return new AccountDisplay(this);
-		}
-
-		public Builder description(String description) {
-			_description = description;
-
-			return this;
-		}
-
-		public Builder name(String name) {
-			_name = name;
-
-			return this;
-		}
-
-		public Builder parentAccountName(String parentAccountName) {
-			_parentAccountName = parentAccountName;
-
-			return this;
-		}
-
-		public Builder statusLabel(String statusLabel) {
-			_statusLabel = statusLabel;
-
-			return this;
-		}
-
-		public Builder website(String website) {
-			_website = website;
-
-			return this;
-		}
-
-		private long _accountId;
-		private String _accountOwner = StringPool.BLANK;
-		private String _description = StringPool.BLANK;
-		private String _name = StringPool.BLANK;
-		private String _parentAccountName = StringPool.BLANK;
-		private String _statusLabel = StringPool.BLANK;
-		private String _website = StringPool.BLANK;
-
-	}
+	private long _accountId;
+	private String _accountOwner = StringPool.BLANK;
+	private String _description = StringPool.BLANK;
+	private String _name = StringPool.BLANK;
+	private String _parentAccountName = StringPool.BLANK;
+	private String _statusLabel = StringPool.BLANK;
+	private String _website = StringPool.BLANK;
 
 }
