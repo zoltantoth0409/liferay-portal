@@ -14,8 +14,6 @@
 
 package com.liferay.account.admin.web.internal.display;
 
-import com.liferay.petra.string.StringPool;
-import com.liferay.account.admin.web.internal.display.AccountDisplay;
 import com.liferay.account.model.AccountEntry;
 import com.liferay.account.service.AccountEntryLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
@@ -46,52 +44,6 @@ public class AccountDisplay {
 		).website(
 			_getWebsite(accountEntry)
 		).build();
-	}
-
-	private static String _getParentAccountName(AccountEntry accountEntry) {
-		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
-
-		if (parentAccountEntryId == 0) {
-			return StringPool.BLANK;
-		}
-
-		AccountEntry parentAccountEntry =
-			AccountEntryLocalServiceUtil.fetchAccountEntry(
-				parentAccountEntryId);
-
-		if (parentAccountEntry != null) {
-			return parentAccountEntry.getName();
-		}
-
-		return StringPool.BLANK;
-	}
-
-	private static String _getStatusLabel(AccountEntry accountEntry) {
-		int status = accountEntry.getStatus();
-
-		if (status == WorkflowConstants.STATUS_APPROVED) {
-			return "active";
-		}
-
-		if (status == WorkflowConstants.STATUS_INACTIVE) {
-			return "inactive";
-		}
-
-		return StringPool.BLANK;
-	}
-
-	private static String _getWebsite(AccountEntry accountEntry) {
-		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
-			accountEntry.getCompanyId(), AccountEntry.class.getName(),
-			accountEntry.getAccountEntryId());
-
-		if (websites.isEmpty()) {
-			return StringPool.BLANK;
-		}
-
-		Website website = websites.get(0);
-
-		return website.getUrl();
 	}
 
 	public long getAccountId() {
@@ -178,6 +130,52 @@ public class AccountDisplay {
 		private String _statusLabel = StringPool.BLANK;
 		private String _website = StringPool.BLANK;
 
+	}
+
+	private static String _getParentAccountName(AccountEntry accountEntry) {
+		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
+
+		if (parentAccountEntryId == 0) {
+			return StringPool.BLANK;
+		}
+
+		AccountEntry parentAccountEntry =
+			AccountEntryLocalServiceUtil.fetchAccountEntry(
+				parentAccountEntryId);
+
+		if (parentAccountEntry != null) {
+			return parentAccountEntry.getName();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getStatusLabel(AccountEntry accountEntry) {
+		int status = accountEntry.getStatus();
+
+		if (status == WorkflowConstants.STATUS_APPROVED) {
+			return "active";
+		}
+
+		if (status == WorkflowConstants.STATUS_INACTIVE) {
+			return "inactive";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getWebsite(AccountEntry accountEntry) {
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			accountEntry.getCompanyId(), AccountEntry.class.getName(),
+			accountEntry.getAccountEntryId());
+
+		if (websites.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
+		Website website = websites.get(0);
+
+		return website.getUrl();
 	}
 
 	private AccountDisplay(Builder builder) {
