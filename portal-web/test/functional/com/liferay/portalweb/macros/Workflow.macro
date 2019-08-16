@@ -129,7 +129,9 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Approve");
 
-		Alert.viewSuccessMessage();
+		Workflow.confirmWorkflowAction();
+
+		Pause(locator1 = "1000");
 
 		Workflow.viewCompletedTask(
 			ddlDataDefinitionName = "${ddlDataDefinitionName}",
@@ -445,7 +447,9 @@ definition {
 				value1 = "${workflowActivityComment}");
 		}
 
-		Alert.viewSuccessMessage();
+		Workflow.confirmWorkflowAction();
+
+		Pause(locator1 = "1000");
 
 		Workflow.viewCompletedTask(
 			ddlDataDefinitionName = "${ddlDataDefinitionName}",
@@ -469,7 +473,9 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Reject");
 
-		Alert.viewSuccessMessage();
+		Workflow.confirmWorkflowAction();
+
+		Pause(locator1 = "1000");
 
 		Workflow.viewCompletedTask(
 			ddlDataDefinitionName = "${ddlDataDefinitionName}",
@@ -695,7 +701,9 @@ definition {
 				value1 = "${workflowActivityComment}");
 		}
 
-		Alert.viewSuccessMessage();
+		Workflow.confirmWorkflowAction();
+
+		Pause(locator1 = "1000");
 
 		Workflow.viewTaskAssignedToMyRoles(
 			ddlDataDefinitionName = "${ddlDataDefinitionName}",
