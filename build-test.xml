@@ -6492,8 +6492,18 @@ go]]></replacevalue>
 		<if>
 			<equals arg1="${add.new.properties}" arg2="true" />
 			<then>
-				<echo append="true" file="portal-impl/src/portal-ext.properties">
+				<if>
+					<equals arg1="${add.cluster.link.properties}" arg2="true" />
+					<then>
+						<echo append="true" file="portal-impl/src/portal-ext.properties">
+cluster.link.bind.addr["cluster-link-control"]=${cluster.node.ip.address}
+cluster.link.bind.addr["cluster-link-udp"]=${cluster.node.ip.address}</echo>
+					</then>
+					<else>
+						<echo append="true" file="portal-impl/src/portal-ext.properties">
 ${update.properties}</echo>
+					</else>
+				</if>
 			</then>
 			<else>
 				<replace
