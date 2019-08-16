@@ -1077,15 +1077,19 @@ public class CalendarBookingLocalServiceImpl
 
 			calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
-		else if (oldStartTime != calendarBooking.getStartTime() || oldEndTime != calendarBooking.getEndTime()) {
+		else if ((oldStartTime != calendarBooking.getStartTime()) ||
+				 (oldEndTime != calendarBooking.getEndTime())) {
+
 			if (hasExclusiveCalendarBooking(calendar, startTime, endTime)) {
 				calendarBooking.setStatus(WorkflowConstants.STATUS_DENIED);
 			}
 			else if (isStagingCalendarBooking(calendarBooking)) {
-				calendarBooking.setStatus(CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING);
+				calendarBooking.setStatus(
+					CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING);
 			}
 			else if (isMasterPending(calendarBooking)) {
-				calendarBooking.setStatus(CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING);
+				calendarBooking.setStatus(
+					CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING);
 			}
 			else {
 				calendarBooking.setStatus(WorkflowConstants.STATUS_PENDING);
@@ -1338,9 +1342,11 @@ public class CalendarBookingLocalServiceImpl
 					continue;
 				}
 
-				if (DateUtil.equals(childCalendarBooking.getCreateDate(),calendarBooking.getModifiedDate())) {
-					notificationTemplateType =
-						NotificationTemplateType.INVITE;
+				if (DateUtil.equals(
+						childCalendarBooking.getCreateDate(),
+						calendarBooking.getModifiedDate())) {
+
+					notificationTemplateType = NotificationTemplateType.INVITE;
 				}
 
 				if (calendarBooking.isApproved()) {
@@ -1748,9 +1754,12 @@ public class CalendarBookingLocalServiceImpl
 				continue;
 			}
 
-			CalendarBooking oldChildCalendarBooking = childCalendarBookingMap.get(calendarId);
+			CalendarBooking oldChildCalendarBooking =
+				childCalendarBookingMap.get(calendarId);
 
-			if (oldChildCalendarBooking != null && oldChildCalendarBooking.isMasterBooking()) {
+			if ((oldChildCalendarBooking != null) &&
+				oldChildCalendarBooking.isMasterBooking()) {
+
 				continue;
 			}
 
