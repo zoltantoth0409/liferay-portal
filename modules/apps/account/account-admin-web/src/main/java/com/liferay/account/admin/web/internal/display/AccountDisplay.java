@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class AccountDisplay {
 
-	public static AccountDisplay getAccountDisplay(AccountEntry accountEntry) {
+	public static AccountDisplay of(AccountEntry accountEntry) {
 		AccountDisplay.Builder builder = new AccountDisplay.Builder();
 
 		return builder.accountId(
