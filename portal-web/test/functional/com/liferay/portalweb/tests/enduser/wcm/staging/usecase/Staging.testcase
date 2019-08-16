@@ -2383,10 +2383,9 @@ definition {
 			panel = "Control Panel",
 			portlet = "System Settings");
 
-		SystemSettings.gotoConfiguration(
-			configurationCategory = "Web Content",
-			configurationName = "Administration",
-			configurationScope = "System Scope");
+		SystemSettings.gotoCategory(category = "Web Experience");
+
+		SystemSettings.editConfiguration(configurationName = "Web Content Administration");
 
 		FormFields.disableCheckbox(fieldName = "journalArticleForceAutogenerateId");
 
