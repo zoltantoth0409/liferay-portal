@@ -231,7 +231,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.commerce.cart.taglib.jar!jackson-databind.jar</file-name>
-				<version>2.9.8</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -267,7 +267,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.commerce.frontend.impl.jar!jackson-databind.jar</file-name>
-				<version>2.9.8</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -374,7 +374,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.commerce.payment.method.mercanet.jar!jackson-databind.jar</file-name>
-				<version>2.9.8</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -444,7 +444,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.configuration.admin.web.jar!org.apache.felix.fileinstall.jar</file-name>
-				<version>3.6.4.LIFERAY-PATCHED-1</version>
+				<version>3.6.4.LIFERAY-PATCHED-6</version>
 				<project-name>Apache Felix File Install</project-name>
 				<project-url>http://felix.apache.org/site/apache-felix-file-install.html</project-url>
 				<licenses>
@@ -1591,7 +1591,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.petra.json.web.service.client.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -1684,7 +1684,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -1755,7 +1755,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.osgi.web.servlet.jsp.compiler.jar!javax.servlet.jsp.jar</file-name>
-				<version>2.3.3-b02.LIFERAY-PATCHED-8</version>
+				<version>2.3.3-b02.LIFERAY-PATCHED-9</version>
 				<project-name>JSP implementation</project-name>
 				<project-url>http://glassfish.org</project-url>
 				<licenses>
@@ -1779,7 +1779,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.osgi.web.wab.extender.jar!javax.servlet.jsp.jar</file-name>
-				<version>2.3.3-b02.LIFERAY-PATCHED-8</version>
+				<version>2.3.3-b02.LIFERAY-PATCHED-9</version>
 				<project-name>JSP implementation</project-name>
 				<project-url>http://glassfish.org</project-url>
 				<licenses>
@@ -1797,6 +1797,18 @@
 					<license>
 						<license-name>LGPL 2.1</license-name>
 						<license-url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.remote.jaxrs.whiteboard.jar!cxf-core.jar</file-name>
+				<version>3.2.5</version>
+				<project-name>Apache CXF Core</project-name>
+				<project-url>http://cxf.apache.org</project-url>
+				<licenses>
+					<license>
+						<license-name>The Apache Software License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -3377,7 +3389,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.store.s3.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -3738,18 +3750,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.portal.vulcan.impl.jar!aalto-xml.jar</file-name>
-				<version>0.9.10</version>
-				<project-name>aalto-xml</project-name>
-				<project-url>http://github.com/FasterXML/aalto-xml/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.portal.vulcan.impl.jar!antlr4-runtime.jar</file-name>
 				<version>4.7.1</version>
 				<project-name>ANTLR 4 Runtime</project-name>
@@ -3811,7 +3811,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.vulcan.impl.jar!graphql-java-annotations.jar</file-name>
-				<version>7.0</version>
+				<version>7.0.1</version>
 				<project-name>graphql-java-annotations</project-name>
 				<project-url>https://github.com/graphql-java/graphql-java-annotations</project-url>
 				<licenses>
@@ -4094,7 +4094,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.push.notifications.sender.apple.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
