@@ -94,6 +94,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Pending (Review)");
 
@@ -114,6 +115,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Pending (Review)");
 
@@ -145,6 +147,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Pending (Update)");
 
@@ -161,6 +164,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Pending (Update)");
 	}
@@ -193,6 +197,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Pending (Review)");
 
@@ -218,6 +223,7 @@ definition {
 			siteName = "${siteName}");
 
 		Page.viewWithWorkflowPG(
+			livePage = "true",
 			pageName = "${pageName}",
 			workflowStatus = "Ready for Publication");
 

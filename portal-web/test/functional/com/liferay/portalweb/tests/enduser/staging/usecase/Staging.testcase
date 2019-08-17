@@ -828,9 +828,7 @@ definition {
 
 		Workflow.gotoPreviewView();
 
-		Page.viewWithWorkflowPG(
-			pageName = "Page Revision Page",
-			workflowStatus = "Pending (Review)");
+		Page.viewWithWorkflowPG(workflowStatus = "Pending (Review)");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Page Revision Page",
@@ -861,17 +859,13 @@ definition {
 
 		Workflow.gotoPreviewView();
 
-		Page.viewWithWorkflowPG(
-			pageName = "Page Revision Page",
-			workflowStatus = "Pending (Review)");
+		Page.viewWithWorkflowPG(workflowStatus = "Pending (Review)");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Page Revision Page",
 			siteName = "Site Name");
 
-		Page.viewWithWorkflowPG(
-			pageName = "Page Revision Page",
-			workflowStatus = "Pending (Review)");
+		Page.viewWithWorkflowPG(workflowStatus = "Pending (Review)");
 
 		Navigator.openURL();
 
@@ -901,9 +895,7 @@ definition {
 
 		Workflow.gotoPreviewView();
 
-		Page.viewWithWorkflowPG(
-			pageName = "Page Revision Page",
-			workflowStatus = "Ready for Publication");
+		Page.viewWithWorkflowPG(workflowStatus = "Ready for Publication");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Page Revision Page",
