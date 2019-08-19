@@ -112,3 +112,8 @@ c0577e6daf35e1ca5a6f6e18ef8e8028dec15468^..206d7f991703c7638cb0cad8b5f9a8a8bb8f7
 # Bundle Version 2.0.23
 #
 27ced004f214add98e8f4e4cc5ec0e07fe5dc654^..5127a23955b2bee3ad2c6e21a32c35eb5e2bd5ad=LPS-98442 LRCI-156
+
+#
+# Bundle Version 2.0.24
+#
+5127a23955b2bee3ad2c6e21a32c35eb5e2bd5ad^..fe04fe97e3a2f529bbc8e02fa28169080dbab78a=LPS-84119
