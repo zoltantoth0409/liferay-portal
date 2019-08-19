@@ -6374,8 +6374,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
 		subscriptionSender.setCompanyId(user.getCompanyId());
-		subscriptionSender.setContextAttributes("[$PASSWORD_SETUP_URL$]", passwordResetURL,
-			"[$USER_ID$]", user.getUserId(), "[$USER_PASSWORD$]", password,
+		subscriptionSender.setContextAttributes(
+			"[$PASSWORD_SETUP_URL$]", passwordResetURL, "[$USER_ID$]",
+			user.getUserId(), "[$USER_PASSWORD$]", password,
 			"[$USER_SCREENNAME$]", user.getScreenName());
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
