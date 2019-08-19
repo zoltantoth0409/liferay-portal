@@ -282,7 +282,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site B Name");
 
 		Page.add(
-			pageName = "Staging B Test Page",
+			pageName = "Site B Test Page",
 			siteName = "Site B Name");
 
 		Navigator.gotoSitePage(
