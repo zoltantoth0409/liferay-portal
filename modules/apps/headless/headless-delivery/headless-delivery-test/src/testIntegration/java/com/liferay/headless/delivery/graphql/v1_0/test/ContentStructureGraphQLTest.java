@@ -15,10 +15,7 @@
 package com.liferay.headless.delivery.graphql.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializer;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeRequest;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeResponse;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerTracker;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -65,18 +62,8 @@ public class ContentStructureGraphQLTest
 				DDMStructureConstants.TYPE_DEFAULT));
 	}
 
-	private DDMForm _deserialize(String content) {
-		DDMFormDeserializer ddmFormDeserializer =
-			_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
-
-		DDMFormDeserializerDeserializeRequest.Builder builder =
-			DDMFormDeserializerDeserializeRequest.Builder.newBuilder(content);
-
-		DDMFormDeserializerDeserializeResponse
-			ddmFormDeserializerDeserializeResponse =
-				ddmFormDeserializer.deserialize(builder.build());
-
-		return ddmFormDeserializerDeserializeResponse.getDDMForm();
+	private DDMForm _deserialize(String content) throws Exception {
+		return _ddmFormJSONDeserializer.deserialize(content);
 	}
 
 	private String _read(String fileName) throws Exception {
@@ -101,6 +88,6 @@ public class ContentStructureGraphQLTest
 	}
 
 	@Inject
-	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
+	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
 
 }

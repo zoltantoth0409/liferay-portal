@@ -15,24 +15,23 @@
 package com.liferay.headless.delivery.graphql.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializer;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeRequest;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeResponse;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerTracker;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
+import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.storage.StorageType;
 import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestHelper;
+import com.liferay.dynamic.data.mapping.test.util.DDMTemplateTestUtil;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContent;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.registry.Registry;
-import com.liferay.registry.RegistryUtil;
-import com.liferay.registry.ServiceReference;
+import com.liferay.portal.test.rule.Inject;
 
 import java.io.InputStream;
 
@@ -53,14 +52,8 @@ public class StructuredContentGraphQLTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		Registry registry = RegistryUtil.getRegistry();
-
-		_serviceReference = registry.getServiceReference(
-			DDMFormDeserializerTracker.class);
-
-		_ddmFormDeserializerTracker = registry.getService(_serviceReference);
-
 		_ddmStructure = _addDDMStructure(testGroup);
+		_ddmTemplate = _addDDMTemplate(_ddmStructure);
 	}
 
 	@Ignore
@@ -101,18 +94,18 @@ public class StructuredContentGraphQLTest
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 	}
 
-	private DDMForm _deserialize(String content) {
-		DDMFormDeserializer ddmFormDeserializer =
-			_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
+	private DDMTemplate _addDDMTemplate(DDMStructure ddmStructure)
+		throws Exception {
 
-		DDMFormDeserializerDeserializeRequest.Builder builder =
-			DDMFormDeserializerDeserializeRequest.Builder.newBuilder(content);
+		return DDMTemplateTestUtil.addTemplate(
+			ddmStructure.getGroupId(), ddmStructure.getStructureId(),
+			PortalUtil.getClassNameId(JournalArticle.class),
+			TemplateConstants.LANG_TYPE_VM,
+			_read("test-structured-content-template.xsl"), LocaleUtil.US);
+	}
 
-		DDMFormDeserializerDeserializeResponse
-			ddmFormDeserializerDeserializeResponse =
-				ddmFormDeserializer.deserialize(builder.build());
-
-		return ddmFormDeserializerDeserializeResponse.getDDMForm();
+	private DDMForm _deserialize(String content) throws Exception {
+		return _ddmFormJSONDeserializer.deserialize(content);
 	}
 
 	private String _read(String fileName) throws Exception {
@@ -124,8 +117,10 @@ public class StructuredContentGraphQLTest
 		return StringUtil.read(inputStream);
 	}
 
-	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
+	@Inject
+	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
+
 	private DDMStructure _ddmStructure;
-	private ServiceReference<DDMFormDeserializerTracker> _serviceReference;
+	private DDMTemplate _ddmTemplate;
 
 }
