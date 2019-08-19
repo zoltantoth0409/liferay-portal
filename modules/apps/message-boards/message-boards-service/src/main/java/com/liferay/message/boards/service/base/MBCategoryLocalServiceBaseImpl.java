@@ -768,6 +768,49 @@ public abstract class MBCategoryLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the trash entry local service.
+	 *
+	 * @return the trash entry local service
+	 */
+	public com.liferay.trash.kernel.service.TrashEntryLocalService
+		getTrashEntryLocalService() {
+
+		return trashEntryLocalService;
+	}
+
+	/**
+	 * Sets the trash entry local service.
+	 *
+	 * @param trashEntryLocalService the trash entry local service
+	 */
+	public void setTrashEntryLocalService(
+		com.liferay.trash.kernel.service.TrashEntryLocalService
+			trashEntryLocalService) {
+
+		this.trashEntryLocalService = trashEntryLocalService;
+	}
+
+	/**
+	 * Returns the trash entry persistence.
+	 *
+	 * @return the trash entry persistence
+	 */
+	public TrashEntryPersistence getTrashEntryPersistence() {
+		return trashEntryPersistence;
+	}
+
+	/**
+	 * Sets the trash entry persistence.
+	 *
+	 * @param trashEntryPersistence the trash entry persistence
+	 */
+	public void setTrashEntryPersistence(
+		TrashEntryPersistence trashEntryPersistence) {
+
+		this.trashEntryPersistence = trashEntryPersistence;
+	}
+
+	/**
 	 * Returns the trash version local service.
 	 *
 	 * @return the trash version local service
@@ -932,49 +975,6 @@ public abstract class MBCategoryLocalServiceBaseImpl
 		this.mbThreadFinder = mbThreadFinder;
 	}
 
-	/**
-	 * Returns the trash entry local service.
-	 *
-	 * @return the trash entry local service
-	 */
-	public com.liferay.trash.kernel.service.TrashEntryLocalService
-		getTrashEntryLocalService() {
-
-		return trashEntryLocalService;
-	}
-
-	/**
-	 * Sets the trash entry local service.
-	 *
-	 * @param trashEntryLocalService the trash entry local service
-	 */
-	public void setTrashEntryLocalService(
-		com.liferay.trash.kernel.service.TrashEntryLocalService
-			trashEntryLocalService) {
-
-		this.trashEntryLocalService = trashEntryLocalService;
-	}
-
-	/**
-	 * Returns the trash entry persistence.
-	 *
-	 * @return the trash entry persistence
-	 */
-	public TrashEntryPersistence getTrashEntryPersistence() {
-		return trashEntryPersistence;
-	}
-
-	/**
-	 * Sets the trash entry persistence.
-	 *
-	 * @param trashEntryPersistence the trash entry persistence
-	 */
-	public void setTrashEntryPersistence(
-		TrashEntryPersistence trashEntryPersistence) {
-
-		this.trashEntryPersistence = trashEntryPersistence;
-	}
-
 	public void afterPropertiesSet() {
 		persistedModelLocalServiceRegistry.register(
 			"com.liferay.message.boards.model.MBCategory",
@@ -1077,6 +1077,15 @@ public abstract class MBCategoryLocalServiceBaseImpl
 	protected RatingsStatsPersistence ratingsStatsPersistence;
 
 	@ServiceReference(
+		type = com.liferay.trash.kernel.service.TrashEntryLocalService.class
+	)
+	protected com.liferay.trash.kernel.service.TrashEntryLocalService
+		trashEntryLocalService;
+
+	@ServiceReference(type = TrashEntryPersistence.class)
+	protected TrashEntryPersistence trashEntryPersistence;
+
+	@ServiceReference(
 		type = com.liferay.trash.kernel.service.TrashVersionLocalService.class
 	)
 	protected com.liferay.trash.kernel.service.TrashVersionLocalService
@@ -1108,15 +1117,6 @@ public abstract class MBCategoryLocalServiceBaseImpl
 
 	@BeanReference(type = MBThreadFinder.class)
 	protected MBThreadFinder mbThreadFinder;
-
-	@ServiceReference(
-		type = com.liferay.trash.kernel.service.TrashEntryLocalService.class
-	)
-	protected com.liferay.trash.kernel.service.TrashEntryLocalService
-		trashEntryLocalService;
-
-	@ServiceReference(type = TrashEntryPersistence.class)
-	protected TrashEntryPersistence trashEntryPersistence;
 
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
 	protected PersistedModelLocalServiceRegistry
