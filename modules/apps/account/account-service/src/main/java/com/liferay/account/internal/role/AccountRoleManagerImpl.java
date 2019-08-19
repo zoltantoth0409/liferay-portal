@@ -65,7 +65,7 @@ public class AccountRoleManagerImpl implements AccountRoleManager {
 
 	private static final String _ACCOUNT_ROLE_NAMESPACE = "lfr-account-";
 
-	private static final int _TYPE_ACCOUNT = 501;
+	private static final int _TYPE_ACCOUNT = 910212835;
 
 	@Reference
 	private RoleLocalService _roleLocalService;
