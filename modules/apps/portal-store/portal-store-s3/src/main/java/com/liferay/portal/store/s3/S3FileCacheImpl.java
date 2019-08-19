@@ -145,16 +145,27 @@ public class S3FileCacheImpl implements S3FileCache {
 			return;
 		}
 
+		long fileLastModified = file.lastModified();
 		String[] fileNames = FileUtil.listDirs(file);
 
 		if (fileNames.length == 0) {
-			if (file.lastModified() < lastModified) {
+			if (fileLastModified < lastModified) {
 				FileUtil.deltree(file);
 			}
 		}
 
 		for (String fileName : fileNames) {
 			cleanUpCacheFiles(new File(file, fileName), lastModified);
+		}
+
+		fileNames = FileUtil.listDirs(file);
+
+		if (fileNames.length == 0) {
+			if (fileLastModified < lastModified) {
+				FileUtil.deltree(file);
+
+				return;
+			}
 		}
 
 		String[] subfileNames = file.list();
