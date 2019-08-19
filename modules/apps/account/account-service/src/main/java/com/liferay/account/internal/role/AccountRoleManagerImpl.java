@@ -42,9 +42,8 @@ public class AccountRoleManagerImpl implements AccountRoleManager {
 		throws PortalException {
 
 		Role role = _roleLocalService.addRole(
-			userId, AccountEntry.class.getName(), 0,
-			_NAME_NAMESPACE + name, titleMap, descriptionMap,
-			_TYPE_ACCOUNT, null, null);
+			userId, AccountEntry.class.getName(), 0, _NAME_NAMESPACE + name,
+			titleMap, descriptionMap, _TYPE_ACCOUNT, null, null);
 
 		return new AccountRoleImpl(role);
 	}
