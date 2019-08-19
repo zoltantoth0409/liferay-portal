@@ -242,33 +242,6 @@
 			"visibilityExpression": "true"
 		},
 		{
-
-			"dataType": "number",
-			"fieldNamespace": "ddm",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "Number",
-				"pt_BR": "Numero"
-			},
-			"localizable": true,
-			"multiple": false,
-			"name": "Number5460",
-			"predefinedValue": {
-				"en_US": "",
-				"pt_BR": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"tip": {
-				"en_US": "",
-				"pt_BR": ""
-			},
-			"type": "ddm-number",
-			"visibilityExpression": "true"
-		},
-		{
 			"dataType": "string",
 			"indexType": "keyword",
 			"label": {
@@ -548,6 +521,33 @@
 				"pt_BR": ""
 			},
 			"type": "ddm-separator",
+			"visibilityExpression": "true"
+		},
+		{
+
+			"dataType": "number",
+			"fieldNamespace": "ddm",
+			"indexType": "keyword",
+			"label": {
+				"en_US": "Number",
+				"pt_BR": "Numero"
+			},
+			"localizable": true,
+			"multiple": false,
+			"name": "Number5460",
+			"predefinedValue": {
+				"en_US": "",
+				"pt_BR": ""
+			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
+			"tip": {
+				"en_US": "",
+				"pt_BR": ""
+			},
+			"type": "ddm-number",
 			"visibilityExpression": "true"
 		}
 	],
