@@ -380,6 +380,16 @@ AUI.add(
 						arguments
 					);
 
+					if (field.name === 'ddm-image' && field.get('required')) {
+						var requiredNode = field
+							._getFieldNode()
+							.one('.glyphicon-asterisk');
+
+						if (requiredNode) {
+							requiredNode.toggle(true);
+						}
+					}
+
 					// Dynamically updates field toolbar items to produce lexicon svg markup instead of default glyphicon
 
 					field.set(
@@ -412,16 +422,6 @@ AUI.add(
 							})
 						);
 					};
-
-					if (field.name === 'ddm-image' && field.get('required')) {
-						var requiredNode = field
-							._getFieldNode()
-							.one('.glyphicon-asterisk');
-
-						if (requiredNode) {
-							requiredNode.toggle(true);
-						}
-					}
 
 					field.set('strings', instance.get('strings'));
 
