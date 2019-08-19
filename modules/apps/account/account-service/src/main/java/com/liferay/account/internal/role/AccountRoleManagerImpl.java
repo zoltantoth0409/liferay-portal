@@ -43,7 +43,7 @@ public class AccountRoleManagerImpl implements AccountRoleManager {
 
 		Role role = _roleLocalService.addRole(
 			userId, AccountEntry.class.getName(), 0,
-			_ACCOUNT_ROLE_NAMESPACE + name, titleMap, descriptionMap,
+			_NAME_NAMESPACE + name, titleMap, descriptionMap,
 			_TYPE_ACCOUNT, null, null);
 
 		return new AccountRoleImpl(role);
@@ -63,7 +63,7 @@ public class AccountRoleManagerImpl implements AccountRoleManager {
 		return accountRoles;
 	}
 
-	private static final String _ACCOUNT_ROLE_NAMESPACE = "lfr-account-";
+	private static final String _NAME_NAMESPACE = "lfr-account-";
 
 	private static final int _TYPE_ACCOUNT = 910212835;
 
