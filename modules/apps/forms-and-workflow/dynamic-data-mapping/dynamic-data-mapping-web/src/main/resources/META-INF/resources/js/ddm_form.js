@@ -460,18 +460,29 @@ AUI.add(
 
 						var definition = instance.get('definition');
 
+						var field;
+
 						var fields = [];
 
 						if (definition && definition.fields) {
 							fields = definition.fields;
 						}
 
-						return AArray.find(
-							fields,
+						var getFieldByName = function(array,name) {AArray.find(
+							array,
 							function(item) {
-								return item.name === name;
+								if (item.name != name && item.nestedFields) {
+									getFieldByName(item.nestedFields, name)
+								}
+								else if (item.name === name) {
+									field = item
+								}
 							}
-						);
+						)};
+
+						getFieldByName(fields, name);
+
+						return field;
 					},
 
 					getFieldDefinition: function() {
