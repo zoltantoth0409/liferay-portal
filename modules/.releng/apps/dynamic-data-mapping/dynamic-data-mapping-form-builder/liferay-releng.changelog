@@ -242,3 +242,8 @@ f523a3aa10671f0b5c6489b0c06feee135fc31fe^..92d38fbd3d5de54564dd9d0f11562bceabae9
 # Bundle Version 1.0.50
 #
 92d38fbd3d5de54564dd9d0f11562bceabae947b^..cdf5d8022175a3aaf1f37b7ddb0acf8534ce5816=LPS-98442 LPS-98514 LRCI-156
+
+#
+# Bundle Version 1.0.51
+#
+cdf5d8022175a3aaf1f37b7ddb0acf8534ce5816^..1f51c7bed3a6b2e7e959567afccf26bb1a16f90b=LPS-84119 LPS-98519 LPS-99316
