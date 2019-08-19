@@ -11,6 +11,6 @@ dependencies {
 }
 
 replaceSoyTranslation {
-	dependsOn npmRunBuild
+	dependsOn packageRunBuild
 	enabled = true
 }
