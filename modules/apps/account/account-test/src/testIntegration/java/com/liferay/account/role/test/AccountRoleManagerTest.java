@@ -47,9 +47,9 @@ public class AccountRoleManagerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		for (String accountRoleName : _accountRoleNames) {
+		for (String name : _names) {
 			Role role = _roleLocalService.fetchRole(
-				TestPropsValues.getCompanyId(), accountRoleName);
+				TestPropsValues.getCompanyId(), name);
 
 			if (role != null) {
 				_roleLocalService.deleteRole(role);
@@ -99,7 +99,7 @@ public class AccountRoleManagerTest {
 		AccountRole accountRole = _accountRoleManager.addAccountRole(
 			TestPropsValues.getUserId(), name, null, null);
 
-		_accountRoleNames.add(accountRole.getName());
+		_names.add(accountRole.getName());
 
 		return accountRole;
 	}
@@ -112,7 +112,7 @@ public class AccountRoleManagerTest {
 	@Inject
 	private AccountRoleManager _accountRoleManager;
 
-	private final List<String> _accountRoleNames = new ArrayList<>();
+	private final List<String> _names = new ArrayList<>();
 
 	@Inject
 	private RoleLocalService _roleLocalService;
