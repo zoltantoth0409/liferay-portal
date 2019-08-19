@@ -110,7 +110,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 			if (cause instanceof ConnectException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(cause);
+					_log.warn(cause, cause);
 				}
 
 				return DDMDataProviderResponse.error(
