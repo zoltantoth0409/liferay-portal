@@ -152,16 +152,15 @@ public class S3FileCacheImpl implements S3FileCache {
 				FileUtil.deltree(file);
 			}
 		}
-		else {
-			for (String fileName : fileNames) {
-				cleanUpCacheFiles(new File(file, fileName), lastModified);
-			}
 
-			String[] subfileNames = file.list();
+		for (String fileName : fileNames) {
+			cleanUpCacheFiles(new File(file, fileName), lastModified);
+		}
 
-			if (subfileNames.length == 0) {
-				FileUtil.deltree(file);
-			}
+		String[] subfileNames = file.list();
+
+		if (subfileNames.length == 0) {
+			FileUtil.deltree(file);
 		}
 	}
 
