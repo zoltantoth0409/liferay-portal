@@ -1,7 +1,7 @@
 {
-    "ignore": [
-        "**/config.js",
-        "**/*_field*.js",
-        "**/select_search_support.js"
-    ]
+	"ignore": [
+		"**/*_field*.js",
+		"**/config.js",
+		"**/select_search_support.js"
+	]
 }

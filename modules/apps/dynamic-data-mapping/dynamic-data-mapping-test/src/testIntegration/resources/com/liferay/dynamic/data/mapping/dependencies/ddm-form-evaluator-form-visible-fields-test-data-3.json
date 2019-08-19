@@ -17,17 +17,17 @@
 			"options": [
 				{
 					"label": {
-						"en_US": "Male",
-						"pt_BR": "Masculino"
-					},
-					"value": "Male"
-				},
-				{
-					"label": {
 						"en_US": "Female",
 						"pt_BR": "Feminino"
 					},
 					"value": "Female"
+				},
+				{
+					"label": {
+						"en_US": "Male",
+						"pt_BR": "Masculino"
+					},
+					"value": "Male"
 				}
 			],
 			"predefinedValue": {

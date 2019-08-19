@@ -5,28 +5,6 @@
 	"defaultLanguageId": "en_US",
 	"fields": [
 		{
-			"dataType": "string",
-			"fieldNamespace": "",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "What's your first name?"
-			},
-			"localizable": false,
-			"name": "FirstName",
-			"predefinedValue": {
-				"en_US": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"tip": {
-				"en_US": ""
-			},
-			"type": "text",
-			"visibilityExpression": "TRUE"
-		},
-		{
 			"dataType": "boolean",
 			"fieldNamespace": "",
 			"indexType": "keyword",
@@ -47,6 +25,28 @@
 			},
 			"type": "checkbox",
 			"visibilityExpression": "equals(FirstName, \"Nina\")"
+		},
+		{
+			"dataType": "string",
+			"fieldNamespace": "",
+			"indexType": "keyword",
+			"label": {
+				"en_US": "What's your first name?"
+			},
+			"localizable": false,
+			"name": "FirstName",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
+			"tip": {
+				"en_US": ""
+			},
+			"type": "text",
+			"visibilityExpression": "TRUE"
 		}
 	]
 }

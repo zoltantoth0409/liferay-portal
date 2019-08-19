@@ -1,29 +1,29 @@
 {
-    "config": {
+	"config": {
 		"imports": {
 			"frontend-js-node-shims": {
 				"buffer": ">=5.0.7",
 				"string_decoder": ">=1.0.3"
 			}
 		}
-    },
-    "exclude": {
-        "clay-charts": [
-        	"src/jsx/**/*",
-        	"src/__tests__/**/*"
+	},
+	"exclude": {
+		"clay-charts": [
+			"src/__tests__/**/*",
+			"src/jsx/**/*"
 		],
 		"commander": true,
 		"d3": [
 			"rollup.*.js"
 		],
 		"iconv-lite": [
-		    "lib/extend-node.js",
-            "lib/streams.js"
+			"lib/extend-node.js",
+			"lib/streams.js"
 		],
 		"rw": true,
 		"safer-buffer": [
 			"tests.js"
 		]
-    },
-    "output": "classes/META-INF/resources"
+	},
+	"output": "classes/META-INF/resources"
 }

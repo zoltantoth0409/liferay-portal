@@ -21,33 +21,17 @@
 			}
 		},
 		{
-			"instanceId": "xucq",
-			"name": "Text",
-			"nestedFieldValues": [
-				{
-					"instanceId": "uvwn",
-					"name": "Integer",
-					"value": {
-						"en_US": "1"
-					}
-				},
-				{
-					"instanceId": "lsky",
-					"name": "Integer",
-					"value": {
-						"en_US": "2"
-					}
-				}
-			],
-			"value": {
-				"en_US": "OneTwo"
-			}
-		},
-		{
 			"instanceId": "mnst",
 			"name": "Boolean",
 			"value": {
 				"en_US": "true"
+			}
+		},
+		{
+			"instanceId": "nahi",
+			"name": "Text3",
+			"value": {
+				"en_US": "Bloggs"
 			}
 		},
 		{
@@ -58,10 +42,26 @@
 			}
 		},
 		{
-			"instanceId": "nahi",
-			"name": "Text3",
+			"instanceId": "xucq",
+			"name": "Text",
+			"nestedFieldValues": [
+				{
+					"instanceId": "lsky",
+					"name": "Integer",
+					"value": {
+						"en_US": "2"
+					}
+				},
+				{
+					"instanceId": "uvwn",
+					"name": "Integer",
+					"value": {
+						"en_US": "1"
+					}
+				}
+			],
 			"value": {
-				"en_US": "Bloggs"
+				"en_US": "OneTwo"
 			}
 		}
 	]

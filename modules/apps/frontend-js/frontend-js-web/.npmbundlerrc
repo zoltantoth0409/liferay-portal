@@ -24,9 +24,9 @@
 		"*": true
 	},
 	"ignore": [
-		"**/*.js",
 		"!**/*.es.js",
-		"!**/*.soy.js"
+		"!**/*.soy.js",
+		"**/*.js"
 	],
 	"output": "classes/META-INF/resources/"
 }

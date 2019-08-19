@@ -5,6 +5,32 @@
 	"defaultLanguageId": "en_US",
 	"fields": [
 		{
+			"dataType": "boolean",
+			"fieldNamespace": "",
+			"indexType": "keyword",
+			"label": {
+				"en_US": "Boolean"
+			},
+			"localizable": true,
+			"name": "Boolean",
+			"predefinedValue": {
+				"en_US": "false"
+			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
+			"tip": {
+				"en_US": ""
+			},
+			"type": "checkbox",
+			"validation": {
+				"errorMessage": "This field must be checked.",
+				"expression": "Boolean"
+			},
+			"visibilityExpression": "NOT(Boolean)"
+		},
+		{
 			"dataType": "string",
 			"fieldNamespace": "",
 			"indexType": "keyword",
@@ -57,32 +83,6 @@
 				"expression": "FALSE"
 			},
 			"visibilityExpression": "TRUE"
-		},
-		{
-			"dataType": "boolean",
-			"fieldNamespace": "",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "Boolean"
-			},
-			"localizable": true,
-			"name": "Boolean",
-			"predefinedValue": {
-				"en_US": "false"
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"tip": {
-				"en_US": ""
-			},
-			"type": "checkbox",
-			"validation": {
-				"errorMessage": "This field must be checked.",
-				"expression": "Boolean"
-			},
-			"visibilityExpression": "NOT(Boolean)"
 		},
 		{
 			"dataType": "string",
