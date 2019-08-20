@@ -56,6 +56,7 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDMFormFactory;
 import com.liferay.dynamic.data.mapping.util.DDMFormLayoutFactory;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -786,25 +787,18 @@ public class DataLayoutTaglibUtil {
 		}
 
 		private void _populateDDMFormFieldSettingsContext(
-			Map<String, DDMFormField> ddmFormFieldsMap,
-			Map<String, Object> ddmFormTemplateContext) {
+				Map<String, DDMFormField> ddmFormFieldsMap,
+				Map<String, Object> ddmFormTemplateContext)
+			throws Exception {
 
-			Consumer<Map<String, Object>> fieldConsumer =
-				fieldContext -> {
-					String fieldName = MapUtil.getString(
-						fieldContext, "fieldName");
+			UnsafeConsumer<Map<String, Object>, Exception> unsafeConsumer =
+				field -> {
+					String fieldName = MapUtil.getString(field, "fieldName");
 
-					try {
-						fieldContext.put(
-							"settingsContext",
-							_createDDMFormFieldSettingContext(
-								ddmFormFieldsMap.get(fieldName)));
-					}
-					catch (Exception e) {
-						_log.error(
-							"Unable to create field settings context",
-							e);
-					}
+					field.put(
+						"settingsContext",
+						_createDDMFormFieldSettingContext(
+							ddmFormFieldsMap.get(fieldName)));
 				};
 
 			List<Map<String, Object>> pages =
@@ -823,7 +817,7 @@ public class DataLayoutTaglibUtil {
 							(List<Map<String, Object>>)column.get("fields");
 
 						for (Map<String, Object> field : fields) {
-							fieldConsumer.accept(field);
+							unsafeConsumer.accept(field);
 						}
 					}
 				}
