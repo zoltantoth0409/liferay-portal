@@ -545,18 +545,17 @@ public class DataLayoutTaglibUtil {
 				DDMForm ddmForm, DDMFormLayout ddmFormLayout)
 			throws Exception {
 
-			DDMFormRenderingContext ddmFormRenderingContext =
-				new DDMFormRenderingContext();
-
-			ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
-			ddmFormRenderingContext.setHttpServletResponse(
-				_httpServletResponse);
-			ddmFormRenderingContext.setLocale(_httpServletRequest.getLocale());
-			ddmFormRenderingContext.setPortletNamespace(StringPool.BLANK);
-
 			Map<String, Object> ddmFormTemplateContext =
 				_ddmFormTemplateContextFactory.create(
-					ddmForm, ddmFormLayout, ddmFormRenderingContext);
+					ddmForm, ddmFormLayout,
+					new DDMFormRenderingContext() {
+						{
+							setHttpServletRequest(_httpServletRequest);
+							setHttpServletResponse(_httpServletResponse);
+							setLocale(_httpServletRequest.getLocale());
+							setPortletNamespace(StringPool.BLANK);
+						}
+					});
 
 			_populateDDMFormFieldSettingsContext(
 				ddmForm.getDDMFormFieldsMap(true), ddmFormTemplateContext);
