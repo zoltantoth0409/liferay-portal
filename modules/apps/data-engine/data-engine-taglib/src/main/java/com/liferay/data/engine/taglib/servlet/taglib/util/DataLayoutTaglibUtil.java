@@ -58,8 +58,6 @@ import com.liferay.dynamic.data.mapping.util.DDMFormLayoutFactory;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -77,6 +75,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collection;
@@ -90,7 +89,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -673,10 +671,12 @@ public class DataLayoutTaglibUtil {
 						ddmFormFieldOptions.getOptionsValues(),
 						optionValue -> {
 							LocalizedValue localizedValue =
-								ddmFormFieldOptions.getOptionLabels(optionValue);
+								ddmFormFieldOptions.getOptionLabels(
+									optionValue);
 
 							return JSONUtil.put(
-								"label", localizedValue.getString(availableLocale)
+								"label",
+								localizedValue.getString(availableLocale)
 							).put(
 								"value", optionValue
 							);
@@ -733,9 +733,9 @@ public class DataLayoutTaglibUtil {
 			jsonObject = jsonObject.put(
 				"availableLanguageIds",
 				JSONUtil.toJSONArray(
-				_availableLocales,
-					availableLocale ->
-						LanguageUtil.getLanguageId(availableLocale))
+					_availableLocales,
+					availableLocale -> LanguageUtil.getLanguageId(
+						availableLocale))
 			).put(
 				"defaultLanguageId", ddmStructure.getDefaultLanguageId()
 			);
@@ -854,13 +854,11 @@ public class DataLayoutTaglibUtil {
 						key,
 						JSONUtil.toJSONArray(
 							options.entrySet(),
-							entry -> {
-								return JSONUtil.put(
-									"label", entry.getValue()
-								).put(
-									"value", entry.getKey()
-								);
-							}));
+							entry -> JSONUtil.put(
+								"label", entry.getValue()
+							).put(
+								"value", entry.getKey()
+							)));
 				}
 			}
 		}
