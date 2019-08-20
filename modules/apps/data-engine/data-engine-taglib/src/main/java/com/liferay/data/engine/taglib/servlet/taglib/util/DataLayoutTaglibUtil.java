@@ -251,14 +251,14 @@ public class DataLayoutTaglibUtil {
 
 		DataDefinitionResource dataDefinitionResource =
 			DataDefinitionResource.builder(
-			).header(
-				"Cookie", "JSESSIONID=" + cookie
-			).parameter(
-				"p_auth", AuthTokenUtil.getToken(httpServletRequest)
 			).endpoint(
 				_portal.getHost(httpServletRequest),
 				httpServletRequest.getServerPort(),
 				httpServletRequest.getScheme()
+			).header(
+				"Cookie", "JSESSIONID=" + cookie
+			).parameter(
+				"p_auth", AuthTokenUtil.getToken(httpServletRequest)
 			).build();
 
 		return dataDefinitionResource.getDataDefinition(dataDefinitionId);
@@ -269,15 +269,15 @@ public class DataLayoutTaglibUtil {
 		throws Exception {
 
 		DataLayoutResource dataLayoutResource = DataLayoutResource.builder(
+		).endpoint(
+			_portal.getHost(httpServletRequest),
+			httpServletRequest.getServerPort(), httpServletRequest.getScheme()
 		).header(
 			"Cookie",
 			"JSESSIONID=" +
 				CookieKeys.getCookie(httpServletRequest, CookieKeys.JSESSIONID)
 		).parameter(
 			"p_auth", AuthTokenUtil.getToken(httpServletRequest)
-		).endpoint(
-			_portal.getHost(httpServletRequest),
-			httpServletRequest.getServerPort(), httpServletRequest.getScheme()
 		).build();
 
 		return dataLayoutResource.getDataLayout(dataLayoutId);
@@ -325,15 +325,15 @@ public class DataLayoutTaglibUtil {
 		}
 
 		DataRecordResource dataRecordResource = DataRecordResource.builder(
+		).endpoint(
+			_portal.getHost(httpServletRequest),
+			httpServletRequest.getServerPort(), httpServletRequest.getScheme()
 		).header(
 			"Cookie",
 			"JSESSIONID=" +
 				CookieKeys.getCookie(httpServletRequest, CookieKeys.JSESSIONID)
 		).parameter(
 			"p_auth", AuthTokenUtil.getToken(httpServletRequest)
-		).endpoint(
-			_portal.getHost(httpServletRequest),
-			httpServletRequest.getServerPort(), httpServletRequest.getScheme()
 		).build();
 
 		DataRecord dataRecord = dataRecordResource.getDataRecord(dataRecordId);
