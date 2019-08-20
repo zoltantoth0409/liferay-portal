@@ -36,8 +36,8 @@
 			"dist/Recompose.umd.js"
 		],
 		"redux": [
-			"es/**/*",
 			"lib/**/*",
+			"es/**/*",
 			"src/**/*"
 		],
 		"regenerator-runtime": true,

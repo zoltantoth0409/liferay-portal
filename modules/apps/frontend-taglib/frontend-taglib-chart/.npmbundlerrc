@@ -17,174 +17,174 @@
 		}
 	},
 	"exclude": {
-		"billboard.js": [
-			"dist/*.min.js",
-			"dist/*.pkgd.js",
-			"src/**/*"
-		],
 		"clay-charts": [
-			"src/__tests__/**/*",
-			"src/jsx/**/*"
+			"src/jsx/**/*",
+			"src/__tests__/**/*"
+		],
+		"billboard.js": [
+			"src/**/*",
+			"dist/*.min.js",
+			"dist/*.pkgd.js"
 		],
 		"commander": true,
-		"d3": [
-			"dist/d3.js",
-			"rollup.config.js"
-		],
 		"d3-array": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-axis": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-brush": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-chord": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-collection": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-color": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-contour": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-dispatch": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-drag": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-dsv": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-ease": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-fetch": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-force": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-format": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-geo": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-hierarchy": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-interpolate": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-path": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-polygon": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-quadtree": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-random": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
-			"src/**/*"
-		],
-		"d3-scale": [
 			"dist/**/*.min.js",
-			"rollup.config.js",
 			"src/**/*"
 		],
 		"d3-scale-chromatic": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
+			"src/**/*"
+		],
+		"d3-scale": [
+			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-selection": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-shape": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
-			"src/**/*"
-		],
-		"d3-time": [
 			"dist/**/*.min.js",
-			"rollup.config.js",
 			"src/**/*"
 		],
 		"d3-time-format": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
+			"src/**/*"
+		],
+		"d3-time": [
+			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-timer": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-transition": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-voronoi": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
 		],
 		"d3-zoom": [
-			"dist/**/*.min.js",
 			"rollup.config.js",
+			"dist/**/*.min.js",
 			"src/**/*"
+		],
+		"d3": [
+			"rollup.config.js",
+			"dist/d3.js"
 		],
 		"iconv-lite": true,
 		"rw": true,

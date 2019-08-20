@@ -3,6 +3,13 @@
 		{
 			"fields": [
 				{
+					"defaultValue": false,
+					"description": "hide-body",
+					"label": "Hide Body",
+					"name": "hideBody",
+					"type": "checkbox"
+				},
+				{
 					"dataType": "int",
 					"defaultValue": "3",
 					"description": "number-of-features",
@@ -22,33 +29,9 @@
 							}
 						]
 					}
-				},
-				{
-					"defaultValue": false,
-					"description": "hide-body",
-					"label": "Hide Body",
-					"name": "hideBody",
-					"type": "checkbox"
 				}
 			],
 			"label": "Checkbox"
-		},
-		{
-			"fields": [
-				{
-					"dataType": "object",
-					"label": "Background color",
-					"name": "backgroundColor",
-					"type": "colorPalette"
-				},
-				{
-					"dataType": "object",
-					"label": "Text color",
-					"name": "textColor",
-					"type": "colorPalette"
-				}
-			],
-			"label": "Colors"
 		},
 		{
 			"fields": [
@@ -83,6 +66,23 @@
 				}
 			],
 			"label": "Button"
+		},
+		{
+			"fields": [
+				{
+					"dataType": "object",
+					"label": "Text color",
+					"name": "textColor",
+					"type": "colorPalette"
+				},
+				{
+					"dataType": "object",
+					"label": "Background color",
+					"name": "backgroundColor",
+					"type": "colorPalette"
+				}
+			],
+			"label": "Colors"
 		}
 	]
 }
