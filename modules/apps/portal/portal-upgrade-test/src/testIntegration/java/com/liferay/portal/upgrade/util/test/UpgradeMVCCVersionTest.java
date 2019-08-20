@@ -84,7 +84,7 @@ public class UpgradeMVCCVersionTest extends UpgradeMVCCVersion {
 		ClassLoader classLoader = currentThread.getContextClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
-			"META-INF/portal-hbm-test.xml");
+			"META-INF/test-portal-hbm.xml");
 
 		Document document = UnsecureSAXReaderUtil.read(inputStream);
 
