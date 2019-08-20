@@ -533,21 +533,11 @@ public class DataLayoutTaglibUtil {
 				return _jsonFactory.createJSONObject();
 			}
 
-			Map<String, Object> ddmFormTemplateContext =
-				_createDDMFormTemplateContext(
-					_getDDMForm(), _getDDMFormLayout());
-
-			return _jsonFactory.createJSONObject(
-				_jsonFactory.looseSerializeDeep(ddmFormTemplateContext));
-		}
-
-		private Map<String, Object> _createDDMFormTemplateContext(
-				DDMForm ddmForm, DDMFormLayout ddmFormLayout)
-			throws Exception {
+			DDMForm ddmForm = _getDDMForm();
 
 			Map<String, Object> ddmFormTemplateContext =
 				_ddmFormTemplateContextFactory.create(
-					ddmForm, ddmFormLayout,
+					ddmForm, _getDDMFormLayout(),
 					new DDMFormRenderingContext() {
 						{
 							setHttpServletRequest(_httpServletRequest);
@@ -560,7 +550,8 @@ public class DataLayoutTaglibUtil {
 			_populateDDMFormFieldSettingsContext(
 				ddmForm.getDDMFormFieldsMap(true), ddmFormTemplateContext);
 
-			return ddmFormTemplateContext;
+			return _jsonFactory.createJSONObject(
+				_jsonFactory.looseSerializeDeep(ddmFormTemplateContext));
 		}
 
 		private Map<String, Object> _createDDMFormFieldSettingContext(
