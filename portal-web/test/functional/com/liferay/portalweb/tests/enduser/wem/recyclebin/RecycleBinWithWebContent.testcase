@@ -86,6 +86,8 @@ definition {
 
 	@priority = "3"
 	test MoveFolderWithWebContentToRecycleBin {
+		property test.name.skip.portal.instance = "RecycleBinWithWebContent#MoveFolderWithWebContentToRecycleBin";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		Navigator.openSiteURL(siteName = "${siteName}");
@@ -324,6 +326,8 @@ definition {
 
 	@priority = "3"
 	test ViewDuplicateAssetNamesInRecycleBin {
+		property test.name.skip.portal.instance = "RecycleBinWithWebContent#ViewDuplicateAssetNamesInRecycleBin";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		Navigator.openSiteURL(siteName = "${siteName}");

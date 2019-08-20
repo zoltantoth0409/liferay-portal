@@ -1145,6 +1145,8 @@ definition {
 
 	@priority = "4"
 	test AssetPublisherTogglingBetweenSites {
+		property test.name.skip.portal.instance = "AssetPublisherUseCase#AssetPublisherTogglingBetweenSites";
+
 		var siteName = TestCase.getSiteViaEnvironment(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
