@@ -185,7 +185,7 @@ public class DataLayoutResourceImpl
 	}
 
 	@Override
-	public Page<DataLayout> getSiteDataLayoutPage(
+	public Page<DataLayout> getSiteDataLayoutsPage(
 			Long siteId, String keywords, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
