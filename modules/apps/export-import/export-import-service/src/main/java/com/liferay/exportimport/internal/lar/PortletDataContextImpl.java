@@ -2957,7 +2957,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 						we);
 				}
 
-				return;
+				continue;
 			}
 
 			long typePK = GetterUtil.getLong(
