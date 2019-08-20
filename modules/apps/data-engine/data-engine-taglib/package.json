@@ -40,8 +40,8 @@
 						"AlloyEditor": true,
 						"CKEDITOR": true,
 						"LayoutBuilder": true,
-						"main": true,
-						"MODULE_PATH": true
+						"MODULE_PATH": true,
+						"main": true
 					}
 				}
 			}
