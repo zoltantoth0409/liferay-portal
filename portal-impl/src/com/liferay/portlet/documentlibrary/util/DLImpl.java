@@ -525,7 +525,7 @@ public class DLImpl implements DL {
 
 		long dlFileVersionPreviewId = _dlPreviewHelper.getDLFileVersionPreviewId(
 			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-			DLFileEntryPreviewType.FAIL.toInteger());
+			DLFileVersionPreviewType.FAIL.toInteger());
 
 		if (dlFileVersionPreviewId > 0) {
 			return StringPool.BLANK;
@@ -762,7 +762,7 @@ public class DLImpl implements DL {
 
 		long dlFileVersionPreviewId = _dlPreviewHelper.getDLFileVersionPreviewId(
 			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-			DLFileEntryPreviewType.FAIL.toInteger());
+			DLFileVersionPreviewType.FAIL.toInteger());
 
 		if (dlFileVersionPreviewId > 0) {
 			return StringPool.BLANK;
@@ -1344,14 +1344,14 @@ public class DLImpl implements DL {
 			PortletLayoutFinder.class,
 			"(model.class.name=" + FileEntry.class.getName() + ")");
 
-	private enum DLFileEntryPreviewType {
+	private enum DLFileVersionPreviewType {
 
 		FAIL(0), NOT_GENERATED(1), SUCCESS(2);
 
-		public static DLFileEntryPreviewType fromInteger(int value) {
-			for (DLFileEntryPreviewType dlFileEntryPreviewType : values()) {
-				if (dlFileEntryPreviewType.toInteger() == value) {
-					return dlFileEntryPreviewType;
+		public static DLFileVersionPreviewType fromInteger(int value) {
+			for (DLFileVersionPreviewType dlFileVersionPreviewType : values()) {
+				if (dlFileVersionPreviewType.toInteger() == value) {
+					return dlFileVersionPreviewType;
 				}
 			}
 
@@ -1363,7 +1363,7 @@ public class DLImpl implements DL {
 			return _value;
 		}
 
-		private DLFileEntryPreviewType(int value) {
+		private DLFileVersionPreviewType(int value) {
 			_value = value;
 		}
 

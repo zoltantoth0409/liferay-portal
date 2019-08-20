@@ -20,6 +20,6 @@ package com.liferay.portlet.preview;
 public interface DLPreviewHelper {
 
 	public long getDLFileVersionPreviewId(
-		long fileEntryId, long fileVersionId, int fileVersionPreviewStatus);
+		long fileEntryId, long fileVersionId, int previewStatus);
 
 }
