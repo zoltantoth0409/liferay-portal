@@ -823,7 +823,7 @@ public class DataLayoutTaglibUtil {
 
 				Iterator<String> keys = optionsJSONObject.keys();
 
-				Map<String, JSONObject> options = new TreeMap<>();
+				Map<String, JSONObject> optionLabelsJSONObjects = new TreeMap<>();
 
 				while (keys.hasNext()) {
 					String languageId = keys.next();
@@ -838,7 +838,7 @@ public class DataLayoutTaglibUtil {
 							localizedOptionsJSONArray.getJSONObject(j);
 
 						JSONObject optionLabelsJSONObject =
-							options.getOrDefault(
+							optionLabelsJSONObjects.getOrDefault(
 								localizedOptionJSONObject.getString("value"),
 								_jsonFactory.createJSONObject());
 
@@ -846,7 +846,7 @@ public class DataLayoutTaglibUtil {
 							languageId,
 							localizedOptionJSONObject.getString("label"));
 
-						options.putIfAbsent(
+						optionLabelsJSONObjects.putIfAbsent(
 							localizedOptionJSONObject.getString("value"),
 							optionLabelsJSONObject);
 					}
@@ -855,7 +855,7 @@ public class DataLayoutTaglibUtil {
 				fieldJSONObject.put(
 					key,
 					JSONUtil.toJSONArray(
-						options.entrySet(),
+						optionLabelsJSONObjects.entrySet(),
 						entry -> JSONUtil.put(
 							"label", entry.getValue()
 						).put(
