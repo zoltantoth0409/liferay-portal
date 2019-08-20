@@ -58,6 +58,7 @@ import com.liferay.dynamic.data.mapping.util.DDMFormLayoutFactory;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
@@ -756,16 +757,14 @@ public class DataLayoutTaglibUtil {
 				_ddmStructureLayoutLocalService.getStructureLayout(
 					_dataLayout.getId());
 
-			String dataLayoutJSON = ddmStructureLayout.getDefinition();
-
-			dataLayoutJSON = dataLayoutJSON.replace("columnSize", "size");
-			dataLayoutJSON = dataLayoutJSON.replace(
-				"dataLayoutColumns", "columns");
-			dataLayoutJSON = dataLayoutJSON.replace("dataLayoutPages", "pages");
-			dataLayoutJSON = dataLayoutJSON.replace("dataLayoutRows", "rows");
-
 			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				dataLayoutJSON);
+				StringUtil.replace(
+					ddmStructureLayout.getDefinition(),
+					new String[] {
+						"columnSize", "dataLayoutColumns", "dataLayoutPages",
+						"dataLayoutRows"
+					},
+					new String[] {"size", "columns", "pages", "rows"}));
 
 			return _deserializeDDMFormLayout(jsonObject.toJSONString());
 		}
