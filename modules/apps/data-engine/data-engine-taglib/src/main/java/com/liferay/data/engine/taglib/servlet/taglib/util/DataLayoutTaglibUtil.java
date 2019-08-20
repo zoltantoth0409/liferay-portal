@@ -533,14 +533,15 @@ public class DataLayoutTaglibUtil {
 				return _jsonFactory.createJSONObject();
 			}
 
-			Map<String, Object> ddmFormContext = _createDDMFormContext(
-				_getDDMForm(), _getDDMFormLayout());
+			Map<String, Object> ddmFormTemplateContext =
+				_createDDMFormTemplateContext(
+					_getDDMForm(), _getDDMFormLayout());
 
 			return _jsonFactory.createJSONObject(
-				_jsonFactory.looseSerializeDeep(ddmFormContext));
+				_jsonFactory.looseSerializeDeep(ddmFormTemplateContext));
 		}
 
-		private Map<String, Object> _createDDMFormContext(
+		private Map<String, Object> _createDDMFormTemplateContext(
 				DDMForm ddmForm, DDMFormLayout ddmFormLayout)
 			throws Exception {
 
