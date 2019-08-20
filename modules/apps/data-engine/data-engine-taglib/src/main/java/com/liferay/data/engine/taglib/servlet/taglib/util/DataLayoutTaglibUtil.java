@@ -921,32 +921,32 @@ public class DataLayoutTaglibUtil {
 		}
 
 		public void visit() {
-			_traversePages(
+			_visitPages(
 				(List<Map<String, Object>>)_ddmFormBuilderContext.get("pages"));
 		}
 
-		private void _traverseColumns(List<Map<String, Object>> columns) {
+		private void _visitColumns(List<Map<String, Object>> columns) {
 			for (Map<String, Object> column : columns) {
-				_traverseFields(
+				_visitFields(
 					(List<Map<String, Object>>)column.get("fields"));
 			}
 		}
 
-		private void _traverseFields(List<Map<String, Object>> fields) {
+		private void _visitFields(List<Map<String, Object>> fields) {
 			for (Map<String, Object> field : fields) {
 				_fieldConsumer.accept(field);
 			}
 		}
 
-		private void _traversePages(List<Map<String, Object>> pages) {
+		private void _visitPages(List<Map<String, Object>> pages) {
 			for (Map<String, Object> page : pages) {
-				_traverseRows((List<Map<String, Object>>)page.get("rows"));
+				_visitRows((List<Map<String, Object>>)page.get("rows"));
 			}
 		}
 
-		private void _traverseRows(List<Map<String, Object>> rows) {
+		private void _visitRows(List<Map<String, Object>> rows) {
 			for (Map<String, Object> row : rows) {
-				_traverseColumns((List<Map<String, Object>>)row.get("columns"));
+				_visitColumns((List<Map<String, Object>>)row.get("columns"));
 			}
 		}
 
