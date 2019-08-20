@@ -567,27 +567,22 @@ public class DataLayoutTaglibUtil {
 			DDMForm ddmForm = DDMFormFactory.create(
 				ddmFormFieldType.getDDMFormFieldTypeSettings());
 
-			DDMFormLayout ddmFormLayout = DDMFormLayoutFactory.create(
-				ddmFormFieldType.getDDMFormFieldTypeSettings());
-
-			DDMFormRenderingContext ddmFormRenderingContext =
-				new DDMFormRenderingContext();
-
-			ddmFormRenderingContext.setContainerId("settings");
-			ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
-			ddmFormRenderingContext.setHttpServletResponse(
-				_httpServletResponse);
-			ddmFormRenderingContext.setLocale(_httpServletRequest.getLocale());
-			ddmFormRenderingContext.setPortletNamespace(StringPool.BLANK);
-
-			DDMFormValues ddmFormValues =
-				_createDDMFormFieldSettingContextDDMFormValues(
-					ddmFormField, ddmForm);
-
-			ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
-
 			return _ddmFormTemplateContextFactory.create(
-				ddmForm, ddmFormLayout, ddmFormRenderingContext);
+				ddmForm,
+				DDMFormLayoutFactory.create(
+					ddmFormFieldType.getDDMFormFieldTypeSettings()),
+				new DDMFormRenderingContext() {
+					{
+						setContainerId("settings");
+						setDDMFormValues(
+							_createDDMFormFieldSettingContextDDMFormValues(
+								ddmFormField, ddmForm));
+						setHttpServletRequest(_httpServletRequest);
+						setHttpServletResponse(_httpServletResponse);
+						setLocale(_httpServletRequest.getLocale());
+						setPortletNamespace(StringPool.BLANK);
+					}
+				});
 		}
 
 		private DDMFormValues _createDDMFormFieldSettingContextDDMFormValues(
