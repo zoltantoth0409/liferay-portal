@@ -298,12 +298,8 @@ public class DataLayoutTaglibUtil {
 
 			DataLayoutDDMFormAdapter dataLayoutDDMFormAdapter =
 				new DataLayoutDDMFormAdapter(
-					availableLocales, dataLayout, _ddmFormDeserializerTracker,
-					_ddmFormFieldTypeServicesTracker,
-					_ddmFormLayoutDeserializerTracker,
-					_ddmFormTemplateContextFactory,
-					_ddmStructureLayoutLocalService, _ddmStructureLocalService,
-					httpServletRequest, httpServletResponse, _jsonFactory);
+					availableLocales, dataLayout, httpServletRequest,
+					httpServletResponse);
 
 			return dataLayoutDDMFormAdapter.toJSONObject();
 		}
@@ -523,27 +519,13 @@ public class DataLayoutTaglibUtil {
 
 		public DataLayoutDDMFormAdapter(
 			Set<Locale> availableLocales, DataLayout dataLayout,
-			DDMFormDeserializerTracker ddmFormDeserializerTracker,
-			DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker,
-			DDMFormLayoutDeserializerTracker ddmFormLayoutDeserializerTracker,
-			DDMFormTemplateContextFactory ddmFormTemplateContextFactory,
-			DDMStructureLayoutLocalService ddmStructureLayoutLocalService,
-			DDMStructureLocalService ddmStructureLocalService,
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse, JSONFactory jsonFactory) {
+			HttpServletResponse httpServletResponse) {
 
 			_availableLocales = availableLocales;
 			_dataLayout = dataLayout;
-			_ddmFormDeserializerTracker = ddmFormDeserializerTracker;
-			_ddmFormFieldTypeServicesTracker = ddmFormFieldTypeServicesTracker;
-			_ddmFormLayoutDeserializerTracker =
-				ddmFormLayoutDeserializerTracker;
-			_ddmFormTemplateContextFactory = ddmFormTemplateContextFactory;
-			_ddmStructureLayoutLocalService = ddmStructureLayoutLocalService;
-			_ddmStructureLocalService = ddmStructureLocalService;
 			_httpServletRequest = httpServletRequest;
 			_httpServletResponse = httpServletResponse;
-			_jsonFactory = jsonFactory;
 		}
 
 		public JSONObject toJSONObject() throws Exception {
@@ -923,19 +905,8 @@ public class DataLayoutTaglibUtil {
 
 		private final Set<Locale> _availableLocales;
 		private final DataLayout _dataLayout;
-		private final DDMFormDeserializerTracker _ddmFormDeserializerTracker;
-		private final DDMFormFieldTypeServicesTracker
-			_ddmFormFieldTypeServicesTracker;
-		private final DDMFormLayoutDeserializerTracker
-			_ddmFormLayoutDeserializerTracker;
-		private final DDMFormTemplateContextFactory
-			_ddmFormTemplateContextFactory;
-		private final DDMStructureLayoutLocalService
-			_ddmStructureLayoutLocalService;
-		private final DDMStructureLocalService _ddmStructureLocalService;
 		private final HttpServletRequest _httpServletRequest;
 		private final HttpServletResponse _httpServletResponse;
-		private final JSONFactory _jsonFactory;
 
 	}
 
