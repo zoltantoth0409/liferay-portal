@@ -818,12 +818,12 @@ public class DataLayoutTaglibUtil {
 					continue;
 				}
 
+				Map<String, JSONObject> optionLabelsJSONObjects = new TreeMap<>();
+
 				JSONObject optionsJSONObject = fieldJSONObject.getJSONObject(
 					key);
 
 				Iterator<String> keys = optionsJSONObject.keys();
-
-				Map<String, JSONObject> optionLabelsJSONObjects = new TreeMap<>();
 
 				while (keys.hasNext()) {
 					String languageId = keys.next();
