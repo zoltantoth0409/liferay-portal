@@ -246,7 +246,7 @@ public class DataLayoutTaglibUtil {
 			long dataDefinitionId, HttpServletRequest httpServletRequest)
 		throws Exception {
 
-		String cookie = CookieKeys.getCookie(
+		String sessionId = CookieKeys.getCookie(
 			httpServletRequest, CookieKeys.JSESSIONID);
 
 		DataDefinitionResource dataDefinitionResource =
@@ -256,7 +256,7 @@ public class DataLayoutTaglibUtil {
 				httpServletRequest.getServerPort(),
 				httpServletRequest.getScheme()
 			).header(
-				"Cookie", "JSESSIONID=" + cookie
+				"Cookie", "JSESSIONID=" + sessionId
 			).parameter(
 				"p_auth", AuthTokenUtil.getToken(httpServletRequest)
 			).build();
