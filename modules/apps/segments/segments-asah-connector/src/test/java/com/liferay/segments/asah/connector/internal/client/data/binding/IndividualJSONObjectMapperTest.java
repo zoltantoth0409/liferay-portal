@@ -63,11 +63,11 @@ public class IndividualJSONObjectMapperTest {
 
 		Assert.assertEquals(individualPKs.toString(), 4, individualPKs.size());
 		Assert.assertEquals(
-			"b44ed31a-baad-bb17-b0e2-c9baaa7ab65e", individualPKs.get(2));
+			"b44ed31a-baad-bb17-b0e2-c9baaa7ab65e", individualPKs.get(0));
 		Assert.assertEquals(
-			"2724f980-6a85-11e9-8b49-890d26f7ce31", individualPKs.get(0));
+			"2724f980-6a85-11e9-8b49-890d26f7ce31", individualPKs.get(1));
 		Assert.assertEquals(
-			"91918ae0-6a85-11e9-b959-a7d2bf7a2eec", individualPKs.get(1));
+			"91918ae0-6a85-11e9-b959-a7d2bf7a2eec", individualPKs.get(2));
 		Assert.assertEquals(
 			"ba91b030-6a87-11e9-b8af-c12bc5a9fb8e", individualPKs.get(3));
 
@@ -96,7 +96,7 @@ public class IndividualJSONObjectMapperTest {
 
 		List<Individual> individuals = results.getItems();
 
-		Individual individual = individuals.get(1);
+		Individual individual = individuals.get(0);
 
 		Assert.assertEquals("337338657439093764", individual.getId());
 
@@ -111,16 +111,16 @@ public class IndividualJSONObjectMapperTest {
 			dataSourceIndividualPKs.get(0);
 
 		Assert.assertEquals(
-			"346826100957927660", dataSourceIndividualPK.getDataSourceId());
+			"335470356976861111", dataSourceIndividualPK.getDataSourceId());
 		Assert.assertEquals(
 			"LIFERAY", dataSourceIndividualPK.getDataSourceType());
 
 		List<String> individualPKs = dataSourceIndividualPK.getIndividualPKs();
 
-		Assert.assertEquals(individualPKs.toString(), 8, individualPKs.size());
+		Assert.assertEquals(individualPKs.toString(), 13, individualPKs.size());
 
 		Assert.assertTrue(
-			individualPKs.contains("3b94a790-6057-11e9-ae03-53ae91f61164"));
+			individualPKs.contains("bd537758-b907-f00f-91c2-b18dd46e3b32"));
 
 		List<String> individualSegmentIds =
 			individual.getIndividualSegmentIds();
