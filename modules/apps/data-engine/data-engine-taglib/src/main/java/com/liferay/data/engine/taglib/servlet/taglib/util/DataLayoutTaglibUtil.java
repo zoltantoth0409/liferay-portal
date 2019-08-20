@@ -556,7 +556,7 @@ public class DataLayoutTaglibUtil {
 
 		private Map<String, Object> _createDDMFormFieldSettingContext(
 				DDMFormField ddmFormField)
-			throws PortalException {
+			throws Exception {
 
 			DDMFormFieldType ddmFormFieldType =
 				_ddmFormFieldTypeServicesTracker.getDDMFormFieldType(
@@ -589,8 +589,9 @@ public class DataLayoutTaglibUtil {
 		}
 
 		private DDMFormValues _createDDMFormFieldSettingContextDDMFormValues(
-			DDMFormField ddmFormField,
-			DDMForm ddmFormFieldTypeSettingsDDMForm) {
+				DDMFormField ddmFormField,
+				DDMForm ddmFormFieldTypeSettingsDDMForm)
+			throws Exception {
 
 			Map<String, Object> ddmFormFieldProperties =
 				ddmFormField.getProperties();
@@ -640,8 +641,9 @@ public class DataLayoutTaglibUtil {
 		}
 
 		private Value _createDDMFormFieldValue(
-			Set<Locale> availableLocales, DDMFormField ddmFormFieldTypeSetting,
-			Object propertyValue) {
+				Set<Locale> availableLocales,
+				DDMFormField ddmFormFieldTypeSetting, Object propertyValue)
+			throws Exception {
 
 			if (ddmFormFieldTypeSetting.isLocalizable()) {
 				return (LocalizedValue)propertyValue;
@@ -664,8 +666,9 @@ public class DataLayoutTaglibUtil {
 		}
 
 		private Value _createDDMFormFieldValue(
-			Set<Locale> availableLocales,
-			DDMFormFieldOptions ddmFormFieldOptions) {
+				Set<Locale> availableLocales,
+				DDMFormFieldOptions ddmFormFieldOptions)
+			throws Exception {
 
 			JSONObject jsonObject = _jsonFactory.createJSONObject();
 
@@ -680,26 +683,21 @@ public class DataLayoutTaglibUtil {
 		}
 
 		private JSONArray _createOptionsJSONArray(
-			DDMFormFieldOptions ddmFormFieldOptions, Locale locale) {
+				DDMFormFieldOptions ddmFormFieldOptions, Locale locale)
+			throws Exception {
 
-			JSONArray jsonArray = _jsonFactory.createJSONArray();
+			return JSONUtil.toJSONArray(
+				ddmFormFieldOptions.getOptionsValues(),
+				optionValue -> {
+					LocalizedValue localizedValue =
+						ddmFormFieldOptions.getOptionLabels(optionValue);
 
-			for (String optionValue : ddmFormFieldOptions.getOptionsValues()) {
-				JSONObject jsonObject = _jsonFactory.createJSONObject();
-
-				LocalizedValue label = ddmFormFieldOptions.getOptionLabels(
-					optionValue);
-
-				jsonObject.put(
-					"label", label.getString(locale)
-				).put(
-					"value", optionValue
-				);
-
-				jsonArray.put(jsonObject);
-			}
-
-			return jsonArray;
+					return JSONUtil.put(
+						"label", localizedValue.getString(locale)
+					).put(
+						"value", optionValue
+					);
+				});
 		}
 
 		private JSONArray _createOptionsJSONArray(
@@ -833,10 +831,10 @@ public class DataLayoutTaglibUtil {
 									_createDDMFormFieldSettingContext(
 										ddmFormFieldsMap.get(fieldName)));
 							}
-							catch (PortalException pe) {
+							catch (Exception e) {
 								_log.error(
 									"Unable to create field settings context",
-									pe);
+									e);
 							}
 						});
 
