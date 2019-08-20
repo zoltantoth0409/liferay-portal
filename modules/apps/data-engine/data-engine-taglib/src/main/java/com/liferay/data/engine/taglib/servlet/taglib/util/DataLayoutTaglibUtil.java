@@ -675,29 +675,21 @@ public class DataLayoutTaglibUtil {
 			for (Locale availableLocale : availableLocales) {
 				jsonObject.put(
 					LocaleUtil.toLanguageId(availableLocale),
-					_createOptionsJSONArray(
-						ddmFormFieldOptions, availableLocale));
+					JSONUtil.toJSONArray(
+						ddmFormFieldOptions.getOptionsValues(),
+						optionValue -> {
+							LocalizedValue localizedValue =
+								ddmFormFieldOptions.getOptionLabels(optionValue);
+
+							return JSONUtil.put(
+								"label", localizedValue.getString(availableLocale)
+							).put(
+								"value", optionValue
+							);
+						}));
 			}
 
 			return new UnlocalizedValue(jsonObject.toString());
-		}
-
-		private JSONArray _createOptionsJSONArray(
-				DDMFormFieldOptions ddmFormFieldOptions, Locale locale)
-			throws Exception {
-
-			return JSONUtil.toJSONArray(
-				ddmFormFieldOptions.getOptionsValues(),
-				optionValue -> {
-					LocalizedValue localizedValue =
-						ddmFormFieldOptions.getOptionLabels(optionValue);
-
-					return JSONUtil.put(
-						"label", localizedValue.getString(locale)
-					).put(
-						"value", optionValue
-					);
-				});
 		}
 
 		private JSONArray _createOptionsJSONArray(
