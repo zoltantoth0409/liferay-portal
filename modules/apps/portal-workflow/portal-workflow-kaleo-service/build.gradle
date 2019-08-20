@@ -8,7 +8,6 @@ dependencies {
 	compileInclude group: "org.json", name: "json", version: "20180813"
 
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api", version: "1.0.0"
