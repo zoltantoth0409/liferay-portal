@@ -37,12 +37,12 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 		setNamespacedAttribute(
 			request, "availableLocales",
 			availableLocales.toArray(new Locale[0]));
-
 		setNamespacedAttribute(
 			request, "dataLayout",
 			DataLayoutTaglibUtil.getDataLayoutJSONObject(
 				availableLocales, getDataLayoutId(), request,
 				(HttpServletResponse)pageContext.getResponse()));
+
 		setNamespacedAttribute(
 			request, "dataLayoutBuilderModule",
 			DataLayoutTaglibUtil.resolveModule(
