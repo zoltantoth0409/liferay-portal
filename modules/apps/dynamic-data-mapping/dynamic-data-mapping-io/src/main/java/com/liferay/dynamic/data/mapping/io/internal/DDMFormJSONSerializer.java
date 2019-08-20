@@ -294,8 +294,7 @@ public class DDMFormJSONSerializer implements DDMFormSerializer {
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		jsonObject.put(
-			"errorMessage",
-			toJSONObject(ddmFormFieldValidation.getErrorMessage())
+			"errorMessage", ddmFormFieldValidation.getErrorMessage()
 		).put(
 			"expression", ddmFormFieldValidation.getExpression()
 		);
