@@ -456,10 +456,12 @@ AUI.add(
 							if ((selectedValue !== undefined) && (selectedValue.length > 0)) {
 								options = [];
 
-								options.push({
-									label: instance.get('selectedValue'),
-									value: instance.get('selectedValue')
-								});
+								for (var index in selectedValue) {
+									options.push({
+										label: selectedValue[index],
+										value: selectedValue[index]
+									});
+								}
 							}
 
 							return options;
