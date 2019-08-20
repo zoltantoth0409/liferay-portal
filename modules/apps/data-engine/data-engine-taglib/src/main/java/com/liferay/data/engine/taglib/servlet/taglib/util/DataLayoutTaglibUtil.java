@@ -699,13 +699,14 @@ public class DataLayoutTaglibUtil {
 			for (Locale availableLocale : availableLocales) {
 				jsonObject.put(
 					LocaleUtil.toLanguageId(availableLocale),
-					_createOptions(ddmFormFieldOptions, availableLocale));
+					_createOptionsJSONArray(
+						ddmFormFieldOptions, availableLocale));
 			}
 
 			return new UnlocalizedValue(jsonObject.toString());
 		}
 
-		private JSONArray _createOptions(
+		private JSONArray _createOptionsJSONArray(
 			DDMFormFieldOptions ddmFormFieldOptions, Locale locale) {
 
 			JSONArray jsonArray = _jsonFactory.createJSONArray();
