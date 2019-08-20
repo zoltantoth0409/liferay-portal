@@ -1043,7 +1043,10 @@ public class JournalFolderLocalServiceImpl
 	public void validateFolderDDMStructures(long folderId, long parentFolderId)
 		throws PortalException {
 
-		_getModelValidator().validateFolderDDMStructures(
+		JournalFolderModelValidator journalFolderModelValidator =
+			_getJournalFolderModelValidator();
+
+		journalFolderModelValidator.validateFolderDDMStructures(
 			folderId, parentFolderId);
 	}
 
@@ -1454,7 +1457,10 @@ public class JournalFolderLocalServiceImpl
 			long folderId, long[] ddmStructureIds)
 		throws PortalException {
 
-		_getModelValidator().validateArticleDDMStructures(
+		JournalFolderModelValidator journalFolderModelValidator =
+			_getJournalFolderModelValidator();
+
+		journalFolderModelValidator.validateArticleDDMStructures(
 			folderId, ddmStructureIds);
 	}
 
@@ -1462,7 +1468,10 @@ public class JournalFolderLocalServiceImpl
 			long folderId, long groupId, long parentFolderId, String name)
 		throws PortalException {
 
-		_getModelValidator().validateFolder(
+		JournalFolderModelValidator journalFolderModelValidator =
+			_getJournalFolderModelValidator();
+
+		journalFolderModelValidator.validateFolder(
 			folderId, groupId, parentFolderId, name);
 	}
 
@@ -1470,7 +1479,11 @@ public class JournalFolderLocalServiceImpl
 			JournalFolder folder, long parentFolderId)
 		throws PortalException {
 
-		_getModelValidator().validateParentFolder(folder, parentFolderId);
+		JournalFolderModelValidator journalFolderModelValidator =
+			_getJournalFolderModelValidator();
+
+		journalFolderModelValidator.validateParentFolder(
+			folder, parentFolderId);
 	}
 
 	/**
@@ -1481,7 +1494,7 @@ public class JournalFolderLocalServiceImpl
 	protected com.liferay.portal.kernel.service.SubscriptionLocalService
 		subscriptionLocalService;
 
-	private JournalFolderModelValidator _getModelValidator() {
+	private JournalFolderModelValidator _getJournalFolderModelValidator() {
 		ModelValidator<JournalFolder> modelValidator =
 			ModelValidatorRegistryUtil.getModelValidator(JournalFolder.class);
 
