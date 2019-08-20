@@ -1269,6 +1269,24 @@ public class JournalArticleStagedModelDataHandler
 		}
 	}
 
+	private void _deleteConflictingAssetDisplayPageEntryAndRetry(
+		AssetDisplayPageEntry assetDisplayPageEntry) {
+
+		AssetDisplayPageEntryUtil.clearCache(assetDisplayPageEntry);
+
+		AssetDisplayPageEntry conflictingAssetDisplayPageEntry =
+			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
+				assetDisplayPageEntry.getGroupId(),
+				assetDisplayPageEntry.getClassNameId(),
+				assetDisplayPageEntry.getClassPK());
+
+		_assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
+			conflictingAssetDisplayPageEntry);
+
+		_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
+			assetDisplayPageEntry);
+	}
+
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, JournalArticle article)
 		throws PortletDataException {
@@ -1351,29 +1369,11 @@ public class JournalArticleStagedModelDataHandler
 						_log.warn(cve, cve);
 					}
 
-					_replaceConflictingAssetDisplayPageEntry(
+					_deleteConflictingAssetDisplayPageEntryAndRetry(
 						existingAssetDisplayPageEntry);
 				}
 			}
 		}
-	}
-
-	private void _replaceConflictingAssetDisplayPageEntry(
-		AssetDisplayPageEntry assetDisplayPageEntry) {
-
-		AssetDisplayPageEntryUtil.clearCache(assetDisplayPageEntry);
-
-		AssetDisplayPageEntry conflictingAssetDisplayPageEntry =
-			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
-				assetDisplayPageEntry.getGroupId(),
-				assetDisplayPageEntry.getClassNameId(),
-				assetDisplayPageEntry.getClassPK());
-
-		_assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
-			conflictingAssetDisplayPageEntry);
-
-		_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
-			assetDisplayPageEntry);
 	}
 
 	/**
