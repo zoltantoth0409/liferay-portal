@@ -789,28 +789,45 @@ public class DataLayoutTaglibUtil {
 			Map<String, DDMFormField> ddmFormFieldsMap,
 			Map<String, Object> ddmFormTemplateContext) {
 
-			DDMFormBuilderContextFieldVisitor
-				ddmFormBuilderContextFieldVisitor =
-					new DDMFormBuilderContextFieldVisitor(
-						ddmFormTemplateContext,
-						fieldContext -> {
-							String fieldName = MapUtil.getString(
-								fieldContext, "fieldName");
+			Consumer<Map<String, Object>> fieldConsumer =
+				fieldContext -> {
+					String fieldName = MapUtil.getString(
+						fieldContext, "fieldName");
 
-							try {
-								fieldContext.put(
-									"settingsContext",
-									_createDDMFormFieldSettingContext(
-										ddmFormFieldsMap.get(fieldName)));
-							}
-							catch (Exception e) {
-								_log.error(
-									"Unable to create field settings context",
-									e);
-							}
-						});
+					try {
+						fieldContext.put(
+							"settingsContext",
+							_createDDMFormFieldSettingContext(
+								ddmFormFieldsMap.get(fieldName)));
+					}
+					catch (Exception e) {
+						_log.error(
+							"Unable to create field settings context",
+							e);
+					}
+				};
 
-			ddmFormBuilderContextFieldVisitor.visit();
+			List<Map<String, Object>> pages =
+				(List<Map<String, Object>>)ddmFormTemplateContext.get("pages");
+
+			for (Map<String, Object> page : pages) {
+				List<Map<String, Object>> rows =
+					(List<Map<String, Object>>)page.get("rows");
+
+				for (Map<String, Object> row : rows) {
+					List<Map<String, Object>> columns =
+						(List<Map<String, Object>>)row.get("columns");
+
+					for (Map<String, Object> column : columns) {
+						List<Map<String, Object>> fields =
+							(List<Map<String, Object>>)column.get("fields");
+
+						for (Map<String, Object> field : fields) {
+							fieldConsumer.accept(field);
+						}
+					}
+				}
+			}
 		}
 
 		private void _transformOptions(JSONObject jsonObject, String key)
@@ -880,45 +897,6 @@ public class DataLayoutTaglibUtil {
 		private final DataLayout _dataLayout;
 		private final HttpServletRequest _httpServletRequest;
 		private final HttpServletResponse _httpServletResponse;
-
-	}
-
-	private class DDMFormBuilderContextFieldVisitor {
-
-		public DDMFormBuilderContextFieldVisitor(
-			Map<String, Object> ddmFormBuilderContext,
-			Consumer<Map<String, Object>> fieldConsumer) {
-
-			_ddmFormBuilderContext = ddmFormBuilderContext;
-			_fieldConsumer = fieldConsumer;
-		}
-
-		public void visit() {
-			List<Map<String, Object>> pages =
-				(List<Map<String, Object>>)_ddmFormBuilderContext.get("pages");
-
-			for (Map<String, Object> page : pages) {
-				List<Map<String, Object>> rows =
-					(List<Map<String, Object>>)page.get("rows");
-
-				for (Map<String, Object> row : rows) {
-					List<Map<String, Object>> columns =
-						(List<Map<String, Object>>)row.get("columns");
-
-					for (Map<String, Object> column : columns) {
-						List<Map<String, Object>> fields =
-							(List<Map<String, Object>>)column.get("fields");
-
-						for (Map<String, Object> field : fields) {
-							_fieldConsumer.accept(field);
-						}
-					}
-				}
-			}
-		}
-
-		private final Map<String, Object> _ddmFormBuilderContext;
-		private final Consumer<Map<String, Object>> _fieldConsumer;
 
 	}
 
