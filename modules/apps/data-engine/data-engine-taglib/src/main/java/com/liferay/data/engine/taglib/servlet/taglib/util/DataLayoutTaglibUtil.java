@@ -814,52 +814,53 @@ public class DataLayoutTaglibUtil {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject fieldJSONObject = jsonArray.getJSONObject(i);
 
-				if (fieldJSONObject.has(key)) {
-					JSONObject optionsJSONObject =
-						fieldJSONObject.getJSONObject(key);
-
-					Iterator<String> keys = optionsJSONObject.keys();
-
-					Map<String, JSONObject> options = new TreeMap<>();
-
-					while (keys.hasNext()) {
-						String languageId = keys.next();
-
-						JSONArray localizedOptionsJSONArray =
-							optionsJSONObject.getJSONArray(languageId);
-
-						for (int j = 0; j < localizedOptionsJSONArray.length();
-							 j++) {
-
-							JSONObject localizedOptionJSONObject =
-								localizedOptionsJSONArray.getJSONObject(j);
-
-							JSONObject optionLabelsJSONObject =
-								options.getOrDefault(
-									localizedOptionJSONObject.getString(
-										"value"),
-									_jsonFactory.createJSONObject());
-
-							optionLabelsJSONObject.put(
-								languageId,
-								localizedOptionJSONObject.getString("label"));
-
-							options.putIfAbsent(
-								localizedOptionJSONObject.getString("value"),
-								optionLabelsJSONObject);
-						}
-					}
-
-					fieldJSONObject.put(
-						key,
-						JSONUtil.toJSONArray(
-							options.entrySet(),
-							entry -> JSONUtil.put(
-								"label", entry.getValue()
-							).put(
-								"value", entry.getKey()
-							)));
+				if (!fieldJSONObject.has(key)) {
+					continue;
 				}
+
+				JSONObject optionsJSONObject = fieldJSONObject.getJSONObject(
+					key);
+
+				Iterator<String> keys = optionsJSONObject.keys();
+
+				Map<String, JSONObject> options = new TreeMap<>();
+
+				while (keys.hasNext()) {
+					String languageId = keys.next();
+
+					JSONArray localizedOptionsJSONArray =
+						optionsJSONObject.getJSONArray(languageId);
+
+					for (int j = 0; j < localizedOptionsJSONArray.length();
+						 j++) {
+
+						JSONObject localizedOptionJSONObject =
+							localizedOptionsJSONArray.getJSONObject(j);
+
+						JSONObject optionLabelsJSONObject =
+							options.getOrDefault(
+								localizedOptionJSONObject.getString("value"),
+								_jsonFactory.createJSONObject());
+
+						optionLabelsJSONObject.put(
+							languageId,
+							localizedOptionJSONObject.getString("label"));
+
+						options.putIfAbsent(
+							localizedOptionJSONObject.getString("value"),
+							optionLabelsJSONObject);
+					}
+				}
+
+				fieldJSONObject.put(
+					key,
+					JSONUtil.toJSONArray(
+						options.entrySet(),
+						entry -> JSONUtil.put(
+							"label", entry.getValue()
+						).put(
+							"value", entry.getKey()
+						)));
 			}
 		}
 
