@@ -43,7 +43,6 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 			DataLayoutTaglibUtil.getDataLayoutJSONObject(
 				availableLocales, getDataLayoutId(), request,
 				(HttpServletResponse)pageContext.getResponse()));
-
 		setNamespacedAttribute(
 			request, "dataLayoutBuilderModule",
 			DataLayoutTaglibUtil.resolveModule(
