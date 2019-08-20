@@ -4,6 +4,9 @@ Bundle-Version: 2.0.13
 Import-Package:\
 	!javax.cache.*,\
 	\
+	!net.sf.ehcache,\
+	!net.sf.ehcache.config,\
+	\
 	!org.apache.abdera.*,\
 	!org.apache.avalon.*,\
 	!org.apache.cxf.aegis.*,\
