@@ -10,6 +10,18 @@
 					"if": {
 						"properties": {
 							"type": {
+								"const": "select"
+							}
+						}
+					},
+					"then": {
+						"$ref": "#/definitions/fieldSelect"
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": {
 								"const": "checkbox"
 							}
 						}
@@ -40,18 +52,6 @@
 					},
 					"then": {
 						"$ref": "#/definitions/fieldItemSelector"
-					}
-				},
-				{
-					"if": {
-						"properties": {
-							"type": {
-								"const": "select"
-							}
-						}
-					},
-					"then": {
-						"$ref": "#/definitions/fieldSelect"
 					}
 				}
 			],

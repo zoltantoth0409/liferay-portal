@@ -4,12 +4,6 @@
 		{
 			"fields": [
 				{
-					"dataType": "object",
-					"label": "border-color",
-					"name": "borderColor",
-					"type": "colorPalette"
-				},
-				{
 					"dataType": "string",
 					"defaultValue": "3",
 					"label": "vertical-space",
@@ -18,19 +12,25 @@
 					"typeOptions": {
 						"validValues": [
 							{
-								"label": "large",
-								"value": "5"
+								"label": "small",
+								"value": "3"
 							},
 							{
 								"label": "medium",
 								"value": "4"
 							},
 							{
-								"label": "small",
-								"value": "3"
+								"label": "large",
+								"value": "5"
 							}
 						]
 					}
+				},
+				{
+					"dataType": "object",
+					"label": "border-color",
+					"name": "borderColor",
+					"type": "colorPalette"
 				}
 			]
 		}

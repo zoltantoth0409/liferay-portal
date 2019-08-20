@@ -1,5 +1,3 @@
 {
-	"ignore": [
-		"**/config.js"
-	]
+	"ignore": ["**/config.js"]
 }
