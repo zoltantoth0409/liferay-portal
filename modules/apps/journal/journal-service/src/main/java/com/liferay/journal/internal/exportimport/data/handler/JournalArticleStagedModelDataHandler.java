@@ -16,7 +16,6 @@ package com.liferay.journal.internal.exportimport.data.handler;
 
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
-import com.liferay.asset.display.page.service.persistence.AssetDisplayPageEntryUtil;
 import com.liferay.changeset.model.ChangesetCollection;
 import com.liferay.changeset.service.ChangesetCollectionLocalService;
 import com.liferay.changeset.service.ChangesetEntryLocalService;
@@ -93,8 +92,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
-import org.hibernate.exception.ConstraintViolationException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -1269,24 +1266,6 @@ public class JournalArticleStagedModelDataHandler
 		}
 	}
 
-	private void _deleteConflictingAssetDisplayPageEntryAndRetry(
-		AssetDisplayPageEntry assetDisplayPageEntry) {
-
-		AssetDisplayPageEntryUtil.clearCache(assetDisplayPageEntry);
-
-		AssetDisplayPageEntry conflictingAssetDisplayPageEntry =
-			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
-				assetDisplayPageEntry.getGroupId(),
-				assetDisplayPageEntry.getClassNameId(),
-				assetDisplayPageEntry.getClassPK());
-
-		_assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
-			conflictingAssetDisplayPageEntry);
-
-		_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
-			assetDisplayPageEntry);
-	}
-
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, JournalArticle article)
 		throws PortletDataException {
@@ -1359,19 +1338,8 @@ public class JournalArticleStagedModelDataHandler
 				existingAssetDisplayPageEntry.setClassPK(
 					importedArticle.getResourcePrimKey());
 
-				try {
-					_assetDisplayPageEntryLocalService.
-						updateAssetDisplayPageEntry(
-							existingAssetDisplayPageEntry);
-				}
-				catch (ConstraintViolationException cve) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(cve, cve);
-					}
-
-					_deleteConflictingAssetDisplayPageEntryAndRetry(
-						existingAssetDisplayPageEntry);
-				}
+				_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
+					existingAssetDisplayPageEntry);
 			}
 		}
 	}
