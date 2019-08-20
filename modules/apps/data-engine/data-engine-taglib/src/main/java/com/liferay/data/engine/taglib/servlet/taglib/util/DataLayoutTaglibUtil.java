@@ -631,15 +631,12 @@ public class DataLayoutTaglibUtil {
 				return new UnlocalizedValue(StringPool.BLANK);
 			}
 
-			JSONObject jsonObject = _jsonFactory.createJSONObject();
-
-			jsonObject.put(
-				"errorMessage", ddmFormFieldValidation.getErrorMessage()
-			).put(
-				"expression", ddmFormFieldValidation.getExpression()
-			);
-
-			return new UnlocalizedValue(jsonObject.toString());
+			return new UnlocalizedValue(
+				JSONUtil.put(
+					"errorMessage", ddmFormFieldValidation.getErrorMessage()
+				).put(
+					"expression", ddmFormFieldValidation.getExpression()
+				).toString());
 		}
 
 		private Value _createDDMFormFieldValue(
