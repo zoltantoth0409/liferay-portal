@@ -12,11 +12,8 @@ buildCSS {
 
 buildFontAwesome {
 	eachFile new StripPathSegmentsAction(2)
-
 	from npmInstall.nodeModulesDir
-
 	include "liferay-font-awesome/font/*"
-
 	includeEmptyDirs = false
 	into fontAwesomeDestinationDir
 }
