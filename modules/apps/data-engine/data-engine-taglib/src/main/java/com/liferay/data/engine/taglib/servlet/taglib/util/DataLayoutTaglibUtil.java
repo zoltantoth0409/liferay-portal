@@ -894,32 +894,26 @@ public class DataLayoutTaglibUtil {
 		}
 
 		public void visit() {
-			_visitPages(
-				(List<Map<String, Object>>)_ddmFormBuilderContext.get("pages"));
-		}
+			List<Map<String, Object>> pages =
+				(List<Map<String, Object>>)_ddmFormBuilderContext.get("pages");
 
-		private void _visitColumns(List<Map<String, Object>> columns) {
-			for (Map<String, Object> column : columns) {
-				_visitFields(
-					(List<Map<String, Object>>)column.get("fields"));
-			}
-		}
-
-		private void _visitFields(List<Map<String, Object>> fields) {
-			for (Map<String, Object> field : fields) {
-				_fieldConsumer.accept(field);
-			}
-		}
-
-		private void _visitPages(List<Map<String, Object>> pages) {
 			for (Map<String, Object> page : pages) {
-				_visitRows((List<Map<String, Object>>)page.get("rows"));
-			}
-		}
+				List<Map<String, Object>> rows =
+					(List<Map<String, Object>>)page.get("rows");
 
-		private void _visitRows(List<Map<String, Object>> rows) {
-			for (Map<String, Object> row : rows) {
-				_visitColumns((List<Map<String, Object>>)row.get("columns"));
+				for (Map<String, Object> row : rows) {
+					List<Map<String, Object>> columns =
+						(List<Map<String, Object>>)row.get("columns");
+
+					for (Map<String, Object> column : columns) {
+						List<Map<String, Object>> fields =
+							(List<Map<String, Object>>)column.get("fields");
+
+						for (Map<String, Object> field : fields) {
+							_fieldConsumer.accept(field);
+						}
+					}
+				}
 			}
 		}
 
