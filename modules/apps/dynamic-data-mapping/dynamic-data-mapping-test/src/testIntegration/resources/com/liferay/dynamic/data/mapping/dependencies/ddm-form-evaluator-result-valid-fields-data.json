@@ -12,25 +12,14 @@
 			"visible": false
 		},
 		{
-			"errorMessage": "",
-			"instanceId": "lroa",
+			"errorMessage": "Integer must be equal to zero.",
+			"instanceId": "uvwn",
 			"name": "Integer",
 			"nestedFields": [],
 			"readOnly": false,
 			"required": false,
-			"valid": true,
-			"value": 0,
-			"visible": false
-		},
-		{
-			"errorMessage": "",
-			"instanceId": "mnst",
-			"name": "Boolean",
-			"nestedFields": [],
-			"readOnly": false,
-			"required": false,
-			"valid": true,
-			"value": true,
+			"valid": false,
+			"value": 1,
 			"visible": false
 		},
 		{
@@ -45,37 +34,15 @@
 			"visible": false
 		},
 		{
-			"errorMessage": "Integer must be equal to zero.",
-			"instanceId": "lsky",
-			"name": "Integer",
+			"errorMessage": "This field should contain 'Joe'.",
+			"instanceId": "nahi",
+			"name": "Text3",
 			"nestedFields": [],
 			"readOnly": false,
-			"required": false,
+			"required": true,
 			"valid": false,
-			"value": 2,
-			"visible": false
-		},
-		{
-			"errorMessage": "Integer must be equal to zero.",
-			"instanceId": "uvwn",
-			"name": "Integer",
-			"nestedFields": [],
-			"readOnly": false,
-			"required": false,
-			"valid": false,
-			"value": 1,
-			"visible": false
-		},
-		{
-			"errorMessage": "Integer must be equal to zero.",
-			"instanceId": "uvwn",
-			"name": "Integer",
-			"nestedFields": [],
-			"readOnly": false,
-			"required": false,
-			"valid": false,
-			"value": 1,
-			"visible": false
+			"value": "Bloggs",
+			"visible": true
 		},
 		{
 			"errorMessage": "This field is never valid.",
@@ -89,6 +56,17 @@
 			"visible": true
 		},
 		{
+			"errorMessage": "",
+			"instanceId": "lroa",
+			"name": "Integer",
+			"nestedFields": [],
+			"readOnly": false,
+			"required": false,
+			"valid": true,
+			"value": 0,
+			"visible": false
+		},
+		{
 			"errorMessage": "This field is never valid.",
 			"instanceId": "xucq",
 			"name": "Text",
@@ -98,6 +76,28 @@
 			"valid": false,
 			"value": "OneTwo",
 			"visible": true
+		},
+		{
+			"errorMessage": "Integer must be equal to zero.",
+			"instanceId": "uvwn",
+			"name": "Integer",
+			"nestedFields": [],
+			"readOnly": false,
+			"required": false,
+			"valid": false,
+			"value": 1,
+			"visible": false
+		},
+		{
+			"errorMessage": "Integer must be equal to zero.",
+			"instanceId": "lsky",
+			"name": "Integer",
+			"nestedFields": [],
+			"readOnly": false,
+			"required": false,
+			"valid": false,
+			"value": 2,
+			"visible": false
 		},
 		{
 			"errorMessage": "This field is required.",
@@ -111,15 +111,15 @@
 			"visible": true
 		},
 		{
-			"errorMessage": "This field should contain 'Joe'.",
-			"instanceId": "nahi",
-			"name": "Text3",
+			"errorMessage": "",
+			"instanceId": "mnst",
+			"name": "Boolean",
 			"nestedFields": [],
 			"readOnly": false,
-			"required": true,
-			"valid": false,
-			"value": "Bloggs",
-			"visible": true
+			"required": false,
+			"valid": true,
+			"value": true,
+			"visible": false
 		}
 	]
 }

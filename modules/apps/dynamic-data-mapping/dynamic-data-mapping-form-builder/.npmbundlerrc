@@ -1,6 +1,6 @@
 {
-	"ignore": [
-		"**/form_builder/*",
-		"**/js/*"
-	]
+    "ignore": [
+        "**/form_builder/*",
+        "**/js/*",
+    ]
 }

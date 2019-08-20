@@ -2,17 +2,6 @@
 	"fields": [
 		{
 			"errorMessage": "",
-			"instanceId": "abdc",
-			"name": "Text1",
-			"nestedFields": [],
-			"readOnly": false,
-			"required": false,
-			"valid": true,
-			"value": 20,
-			"visible": true
-		},
-		{
-			"errorMessage": "",
 			"instanceId": "gfkm",
 			"name": "Text0",
 			"nestedFields": [],
@@ -20,6 +9,17 @@
 			"required": false,
 			"valid": true,
 			"value": 5,
+			"visible": true
+		},
+		{
+			"errorMessage": "",
+			"instanceId": "wrtf",
+			"name": "Text0",
+			"nestedFields": [],
+			"readOnly": false,
+			"required": false,
+			"valid": true,
+			"value": 7,
 			"visible": true
 		},
 		{
@@ -35,13 +35,13 @@
 		},
 		{
 			"errorMessage": "",
-			"instanceId": "wrtf",
-			"name": "Text0",
+			"instanceId": "abdc",
+			"name": "Text1",
 			"nestedFields": [],
 			"readOnly": false,
 			"required": false,
 			"valid": true,
-			"value": 7,
+			"value": 20,
 			"visible": true
 		}
 	]

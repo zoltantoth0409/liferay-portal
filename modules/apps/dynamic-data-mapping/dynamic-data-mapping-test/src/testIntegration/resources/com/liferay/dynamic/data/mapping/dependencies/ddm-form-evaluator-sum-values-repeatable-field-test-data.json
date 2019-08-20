@@ -5,17 +5,17 @@
 	"defaultLanguageId": "en_US",
 	"fieldValues": [
 		{
-			"instanceId": "abdc",
-			"name": "Text1",
-			"value": {
-				"en_US": ""
-			}
-		},
-		{
 			"instanceId": "gfkm",
 			"name": "Text0",
 			"value": {
 				"en_US": "5"
+			}
+		},
+		{
+			"instanceId": "wrtf",
+			"name": "Text0",
+			"value": {
+				"en_US": "7"
 			}
 		},
 		{
@@ -26,10 +26,10 @@
 			}
 		},
 		{
-			"instanceId": "wrtf",
-			"name": "Text0",
+			"instanceId": "abdc",
+			"name": "Text1",
 			"value": {
-				"en_US": "7"
+				"en_US": ""
 			}
 		}
 	]
