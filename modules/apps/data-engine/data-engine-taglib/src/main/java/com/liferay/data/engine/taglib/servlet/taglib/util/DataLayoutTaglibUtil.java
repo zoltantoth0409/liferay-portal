@@ -692,26 +692,6 @@ public class DataLayoutTaglibUtil {
 			return new UnlocalizedValue(jsonObject.toString());
 		}
 
-		private JSONArray _createOptionsJSONArray(
-			Map<String, JSONObject> options) {
-
-			JSONArray jsonArray = _jsonFactory.createJSONArray();
-
-			for (Map.Entry<String, JSONObject> entry : options.entrySet()) {
-				JSONObject jsonObject = _jsonFactory.createJSONObject();
-
-				jsonObject.put(
-					"label", entry.getValue()
-				).put(
-					"value", entry.getKey()
-				);
-
-				jsonArray.put(jsonObject);
-			}
-
-			return jsonArray;
-		}
-
 		private DDMForm _deserializeDDMForm(String content) {
 			DDMFormDeserializer ddmFormDeserializer =
 				_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
@@ -833,7 +813,9 @@ public class DataLayoutTaglibUtil {
 			ddmFormBuilderContextFieldVisitor.visit();
 		}
 
-		private void _transformOptions(JSONObject jsonObject, String key) {
+		private void _transformOptions(JSONObject jsonObject, String key)
+			throws Exception {
+
 			JSONArray jsonArray = jsonObject.getJSONArray("fields");
 
 			if (jsonArray == null) {
@@ -879,7 +861,17 @@ public class DataLayoutTaglibUtil {
 						}
 					}
 
-					fieldJSONObject.put(key, _createOptionsJSONArray(options));
+					fieldJSONObject.put(
+						key,
+						JSONUtil.toJSONArray(
+							options.entrySet(),
+							entry -> {
+								return JSONUtil.put(
+									"label", entry.getValue()
+								).put(
+									"value", entry.getKey()
+								);
+							}));
 				}
 			}
 		}
