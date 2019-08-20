@@ -740,7 +740,10 @@ public class DataLayoutTaglibUtil {
 
 			jsonObject = jsonObject.put(
 				"availableLanguageIds",
-				_getLanguageIdJSONArray(_availableLocales)
+				JSONUtil.toJSONArray(
+				_availableLocales,
+					availableLocale ->
+						LanguageUtil.getLanguageId(availableLocale))
 			).put(
 				"defaultLanguageId", ddmStructure.getDefaultLanguageId()
 			);
@@ -767,22 +770,6 @@ public class DataLayoutTaglibUtil {
 					new String[] {"size", "columns", "pages", "rows"}));
 
 			return _deserializeDDMFormLayout(jsonObject.toJSONString());
-		}
-
-		private JSONArray _getLanguageIdJSONArray(
-			Set<Locale> availableLocales) {
-
-			JSONArray jsonArray = _jsonFactory.createJSONArray();
-
-			Stream<Locale> stream = availableLocales.stream();
-
-			stream.map(
-				LanguageUtil::getLanguageId
-			).forEach(
-				jsonArray::put
-			);
-
-			return jsonArray;
 		}
 
 		private void _populateDDMFormFieldSettingsContext(
