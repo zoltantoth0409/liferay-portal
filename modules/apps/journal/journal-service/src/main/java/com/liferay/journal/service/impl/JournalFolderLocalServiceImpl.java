@@ -572,6 +572,8 @@ public class JournalFolderLocalServiceImpl
 		JournalFolder folder = journalFolderPersistence.findByPrimaryKey(
 			folderId);
 
+		validateParentFolder(folder, parentFolderId);
+
 		parentFolderId = getParentFolderId(folder, parentFolderId);
 
 		if (folder.getParentFolderId() == parentFolderId) {
@@ -1482,6 +1484,13 @@ public class JournalFolderLocalServiceImpl
 
 		_getModelValidator().validateFolder(
 			folderId, groupId, parentFolderId, name);
+	}
+
+	protected void validateParentFolder(
+			JournalFolder folder, long parentFolderId)
+		throws PortalException {
+
+		_getModelValidator().validateParentFolder(folder, parentFolderId);
 	}
 
 	@ServiceReference(type = DDMStructureLinkLocalService.class)
