@@ -3,16 +3,38 @@
 		"date_detection": false,
 		"dynamic_templates": [
 			{
-				"template_ar": {
+				"template_long_sortable": {
 					"mapping": {
-						"analyzer": "arabic",
 						"store": true,
-						"term_vector": "with_positions_offsets",
-						"type": "text"
+						"type": "long"
 					},
-					"match": "\\w+_ar\\b|\\w+_ar_[A-Z]{2}\\b",
-					"match_mapping_type": "string",
-					"match_pattern": "regex"
+					"match": "*_sortable",
+					"match_mapping_type": "long"
+				}
+			},
+			{
+				"template_string_sortable": {
+					"mapping": {
+						"store": true,
+						"type": "keyword"
+					},
+					"match": "*_sortable",
+					"match_mapping_type": "string"
+				}
+			},
+			{
+				"template_geolocation": {
+					"mapping": {
+						"fields": {
+							"geopoint" : {
+								"store": true,
+								"type": "keyword"
+							}
+						},
+						"store": true,
+						"type": "geo_point"
+					},
+					"match": "*_geolocation"
 				}
 			},
 			{
@@ -24,6 +46,40 @@
 					},
 					"match": "assetCategoryTitles*",
 					"match_mapping_type": "string"
+				}
+			},
+			{
+				"template_ddm_keyword": {
+					"mapping": {
+						"store": true,
+						"type": "keyword"
+					},
+					"match": "ddm__keyword__*",
+					"match_mapping_type": "string"
+				}
+			},
+			{
+				"template_expando_keyword": {
+					"mapping": {
+						"analyzer" : "keyword_lowercase",
+						"store": true,
+						"type": "text"
+					},
+					"match": "expando__keyword__*",
+					"match_mapping_type": "string"
+				}
+			},
+			{
+				"template_ar": {
+					"mapping": {
+						"analyzer": "arabic",
+						"store": true,
+						"term_vector": "with_positions_offsets",
+						"type": "text"
+					},
+					"match": "\\w+_ar\\b|\\w+_ar_[A-Z]{2}\\b",
+					"match_mapping_type": "string",
+					"match_pattern": "regex"
 				}
 			},
 			{
@@ -76,26 +132,6 @@
 					"match": "\\w+_da\\b|\\w+_da_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
 					"match_pattern": "regex"
-				}
-			},
-			{
-				"template_ddm": {
-					"mapping": {
-						"store": true,
-						"type": "text"
-					},
-					"match": "ddm__*",
-					"match_mapping_type": "string"
-				}
-			},
-			{
-				"template_ddm_keyword": {
-					"mapping": {
-						"store": true,
-						"type": "keyword"
-					},
-					"match": "ddm__keyword__*",
-					"match_mapping_type": "string"
 				}
 			},
 			{
@@ -164,27 +200,6 @@
 				}
 			},
 			{
-				"template_expando": {
-					"mapping": {
-						"store": true,
-						"type": "text"
-					},
-					"match": "expando__*",
-					"match_mapping_type": "string"
-				}
-			},
-			{
-				"template_expando_keyword": {
-					"mapping": {
-						"analyzer" : "keyword_lowercase",
-						"store": true,
-						"type": "text"
-					},
-					"match": "expando__keyword__*",
-					"match_mapping_type": "string"
-				}
-			},
-			{
 				"template_fi": {
 					"mapping": {
 						"analyzer": "finnish",
@@ -208,21 +223,6 @@
 					"match": "\\w+_fr\\b|\\w+_fr_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
 					"match_pattern": "regex"
-				}
-			},
-			{
-				"template_geolocation": {
-					"mapping": {
-						"fields": {
-							"geopoint" : {
-								"store": true,
-								"type": "keyword"
-							}
-						},
-						"store": true,
-						"type": "geo_point"
-					},
-					"match": "*_geolocation"
 				}
 			},
 			{
@@ -317,16 +317,6 @@
 				}
 			},
 			{
-				"template_long_sortable": {
-					"mapping": {
-						"store": true,
-						"type": "long"
-					},
-					"match": "*_sortable",
-					"match_mapping_type": "long"
-				}
-			},
-			{
 				"template_nl": {
 					"mapping": {
 						"analyzer": "dutch",
@@ -417,16 +407,6 @@
 				}
 			},
 			{
-				"template_string_sortable": {
-					"mapping": {
-						"store": true,
-						"type": "keyword"
-					},
-					"match": "*_sortable",
-					"match_mapping_type": "string"
-				}
-			},
-			{
 				"template_sv": {
 					"mapping": {
 						"analyzer": "swedish",
@@ -476,6 +456,26 @@
 					"match": "\\w+_zh\\b|\\w+_zh_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
 					"match_pattern": "regex"
+				}
+			},
+			{
+				"template_ddm": {
+					"mapping": {
+						"store": true,
+						"type": "text"
+					},
+					"match": "ddm__*",
+					"match_mapping_type": "string"
+				}
+			},
+			{
+				"template_expando": {
+					"mapping": {
+						"store": true,
+						"type": "text"
+					},
+					"match": "expando__*",
+					"match_mapping_type": "string"
 				}
 			}
 		],
