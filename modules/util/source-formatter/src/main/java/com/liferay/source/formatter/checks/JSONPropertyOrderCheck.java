@@ -16,11 +16,10 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -108,8 +107,7 @@ public class JSONPropertyOrderCheck extends BaseFileCheck {
 				}
 
 				if (!properties.isEmpty()) {
-					Collections.sort(
-						properties, new NaturalOrderStringComparator());
+					properties = ListUtil.sort(properties);
 
 					content = StringUtil.replace(
 						content, sb.toString(), _mergeProperties(properties));
