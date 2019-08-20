@@ -588,30 +588,28 @@ public class DataLayoutTaglibUtil {
 				DDMForm ddmFormFieldTypeSettingsDDMForm)
 			throws Exception {
 
-			Map<String, Object> ddmFormFieldProperties =
-				ddmFormField.getProperties();
-
 			DDMFormValues ddmFormValues = new DDMFormValues(
 				ddmFormFieldTypeSettingsDDMForm);
+
+			DDMForm ddmForm = ddmFormField.getDDMForm();
+			Map<String, Object> ddmFormFieldProperties =
+				ddmFormField.getProperties();
 
 			for (DDMFormField ddmFormFieldTypeSetting :
 					ddmFormFieldTypeSettingsDDMForm.getDDMFormFields()) {
 
-				DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-				String propertyName = ddmFormFieldTypeSetting.getName();
-
-				ddmFormFieldValue.setName(propertyName);
-
-				DDMForm ddmForm = ddmFormField.getDDMForm();
-
-				Value value = _createDDMFormFieldValue(
-					ddmForm.getAvailableLocales(), ddmFormFieldTypeSetting,
-					ddmFormFieldProperties.get(propertyName));
-
-				ddmFormFieldValue.setValue(value);
-
-				ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
+				ddmFormValues.addDDMFormFieldValue(
+					new DDMFormFieldValue() {
+						{
+							setName(ddmFormFieldTypeSetting.getName());
+							setValue(
+								_createDDMFormFieldValue(
+									ddmForm.getAvailableLocales(),
+									ddmFormFieldTypeSetting,
+									ddmFormFieldProperties.get(
+										ddmFormFieldTypeSetting.getName())));
+						}
+					});
 			}
 
 			return ddmFormValues;
@@ -818,7 +816,8 @@ public class DataLayoutTaglibUtil {
 					continue;
 				}
 
-				Map<String, JSONObject> optionLabelsJSONObjects = new TreeMap<>();
+				Map<String, JSONObject> optionLabelsJSONObjects =
+					new TreeMap<>();
 
 				JSONObject optionsJSONObject = fieldJSONObject.getJSONObject(
 					key);
