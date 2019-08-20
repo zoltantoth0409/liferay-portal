@@ -17,11 +17,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-SearchContainer accountDisplaySearchContainer = AccountDisplaySearchContainerFactory.getAccountDisplaySearchContainer(liferayPortletRequest, liferayPortletResponse);
+SearchContainer accountDisplaySearchContainer = AccountDisplaySearchContainerFactory.create(liferayPortletRequest, liferayPortletResponse);
 %>
 
 <clay:management-toolbar
-	displayContext="<%= new ViewAccountsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, accountDisplaySearchContainer) %>"
+	displayContext="<%= new ViewAccountsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountDisplaySearchContainer) %>"
 />
 
 <div class="container-fluid container-fluid-max-xl">

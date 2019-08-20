@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.util;
+package com.liferay.account.admin.web.internal.dao.search;
 
 import com.liferay.account.admin.web.internal.display.AccountDisplay;
 import com.liferay.account.model.AccountEntry;
@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AccountDisplaySearchContainerFactory {
 
-	public static SearchContainer getAccountDisplaySearchContainer(
+	public static SearchContainer create(
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
