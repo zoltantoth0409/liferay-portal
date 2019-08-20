@@ -38,13 +38,9 @@
 					"type": "COMMON"
 				}
 			],
-			"metadata": {
-			},
 			"name": "deal",
 			"salience": 0.037637815,
-			"type": "EVENT",
-			"versions": [
-			]
+			"type": "EVENT"
 		}
 	],
 	"ignore": [
