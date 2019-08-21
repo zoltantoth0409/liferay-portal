@@ -22,8 +22,8 @@ import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.security.permission.UserBag;
-import com.liferay.portal.kernel.security.permission.UserBagFactoryUtil;
-import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.security.permission.UserBagFactory;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.ArrayList;
@@ -114,16 +115,16 @@ public class UserBagFactoryTest {
 	public void testGetRoles() throws Exception {
 		Role regularRole = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
-		UserLocalServiceUtil.addRoleUser(regularRole.getRoleId(), _user);
+		_userLocalService.addRoleUser(regularRole.getRoleId(), _user);
 
 		long groupRoleId = RoleTestUtil.addGroupRole(_childGroup.getGroupId());
 
-		UserLocalServiceUtil.addRoleUser(groupRoleId, _user);
+		_userLocalService.addRoleUser(groupRoleId, _user);
 
 		long organizationRoleId = RoleTestUtil.addOrganizationRole(
 			_childOrganization.getGroupId());
 
-		UserLocalServiceUtil.addRoleUser(organizationRoleId, _user);
+		_userLocalService.addRoleUser(organizationRoleId, _user);
 
 		UserBag userBag = getUserBag();
 
@@ -194,11 +195,11 @@ public class UserBagFactoryTest {
 	}
 
 	protected UserBag getUserBag() throws Exception {
-		return UserBagFactoryUtil.create(_user.getUserId());
+		return _userBagFactory.create(_user.getUserId());
 	}
 
 	protected Collection<Group> getUserGroups() throws Exception {
-		UserLocalServiceUtil.addGroupUser(_childGroup.getGroupId(), _user);
+		_userLocalService.addGroupUser(_childGroup.getGroupId(), _user);
 
 		UserBag userBag = getUserBag();
 
@@ -206,7 +207,7 @@ public class UserBagFactoryTest {
 	}
 
 	protected Collection<Group> getUserOrgGroups() throws Exception {
-		UserLocalServiceUtil.addOrganizationUser(
+		_userLocalService.addOrganizationUser(
 			_childOrganization.getOrganizationId(), _user.getUserId());
 
 		UserBag userBag = getUserBag();
@@ -215,7 +216,7 @@ public class UserBagFactoryTest {
 	}
 
 	protected Collection<Organization> getUserOrgs() throws Exception {
-		UserLocalServiceUtil.addOrganizationUser(
+		_userLocalService.addOrganizationUser(
 			_childOrganization.getOrganizationId(), _user.getUserId());
 
 		UserBag userBag = getUserBag();
@@ -224,7 +225,7 @@ public class UserBagFactoryTest {
 	}
 
 	protected Collection<Group> getUserUserGroupGroups() throws Exception {
-		UserLocalServiceUtil.addUserGroupUser(
+		_userLocalService.addUserGroupUser(
 			_userGroup.getUserGroupId(), _user.getUserId());
 
 		UserBag userBag = getUserBag();
@@ -247,7 +248,13 @@ public class UserBagFactoryTest {
 	@DeleteAfterTestRun
 	private User _user;
 
+	@Inject
+	private UserBagFactory _userBagFactory;
+
 	@DeleteAfterTestRun
 	private UserGroup _userGroup;
+
+	@Inject
+	private UserLocalService _userLocalService;
 
 }
