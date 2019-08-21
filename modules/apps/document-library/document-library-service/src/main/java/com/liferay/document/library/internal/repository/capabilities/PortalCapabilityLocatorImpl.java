@@ -171,6 +171,10 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 
 	@Activate
 	protected void activate() {
+	}
+
+	@Activate
+	protected void activate() {
 		_alwaysGeneratingProcessorCapability = new LiferayProcessorCapability(
 			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE,
 			_inputStreamSanitizer);
