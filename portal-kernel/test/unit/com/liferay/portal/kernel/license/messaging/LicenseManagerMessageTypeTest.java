@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.license.messaging;
 import com.liferay.portal.kernel.messaging.Message;
 
 import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author Igor Beslic

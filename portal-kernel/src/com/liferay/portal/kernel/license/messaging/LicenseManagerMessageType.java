@@ -31,13 +31,7 @@ public enum LicenseManagerMessageType {
 	public static String MESSAGE_BUS_DESTINATION_STATUS = "liferay/lcs_status";
 
 	/**
-	 * Gets message payload as json object.
-	 *
-	 * @param      message
-	 * @return     JSONObject if message payload is valid json string,
-	 *             <code>null</code> otherwise
-	 * @deprecated As of Mueller (7.2.x), will be removed in next version
-	 *             without replacement
+	 * @deprecated As of Wilberforce (7.0.x), ), with no direct replacement
 	 */
 	@Deprecated
 	public static JSONObject getMessagePayload(Message message) {
@@ -45,13 +39,7 @@ public enum LicenseManagerMessageType {
 	}
 
 	/**
-	 * Gets message payload as json object.
-	 *
-	 * @param      object
-	 * @return     JSONObject if message payload is valid json string,
-	 *             <code>null</code> otherwise
-	 * @deprecated As of Mueller (7.2.x), will be removed in next version
-	 *             without replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	public static JSONObject getMessagePayload(Object object) {
@@ -63,12 +51,7 @@ public enum LicenseManagerMessageType {
 	}
 
 	/**
-	 * Gets message payload as json object.
-	 *
-	 * @param      json
-	 * @return     JSONObject is
-	 * @deprecated As of Mueller (7.2.x), will be removed in next version
-	 *             without replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	public static JSONObject getMessagePayload(String json) {
@@ -94,9 +77,7 @@ public enum LicenseManagerMessageType {
 		Message message = new Message();
 
 		message.setDestinationName(getDestinationName());
-
-		message.setPayload(
-			String.format(_MESSAGE_PAYLOAD_BASE_JSON_PATTERN, name()));
+		message.setPayload(String.format("{\"type\": \"%s\"}", name()));
 
 		return message;
 	}
@@ -108,7 +89,7 @@ public enum LicenseManagerMessageType {
 
 		message.setPayload(
 			String.format(
-				_MESSAGE_PAYLOAD_JSON_PATTERN, lcsPortletState.intValue(),
+				"{\"state\": %d, \"type\": \"%s\"}", lcsPortletState.intValue(),
 				name()));
 
 		return message;
@@ -124,11 +105,5 @@ public enum LicenseManagerMessageType {
 
 		return null;
 	}
-
-	private static final String _MESSAGE_PAYLOAD_BASE_JSON_PATTERN =
-		"{\"type\": \"%s\"}";
-
-	private static final String _MESSAGE_PAYLOAD_JSON_PATTERN =
-		"{\"state\": %d, \"type\": \"%s\"}";
 
 }
