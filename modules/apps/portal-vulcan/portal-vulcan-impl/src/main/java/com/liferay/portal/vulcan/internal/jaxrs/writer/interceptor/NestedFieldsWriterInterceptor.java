@@ -139,9 +139,9 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			value = Array.newInstance(
 				fieldType.getComponentType(), collection.size());
 
-			Iterator iterator = collection.iterator();
-
 			int i = 0;
+
+			Iterator iterator = collection.iterator();
 
 			while (iterator.hasNext()) {
 				Array.set(value, i++, iterator.next());
@@ -358,8 +358,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private Object[] _getMethodArgs(
-			String fieldName, Object item, Class<?> resourceClass,
-			Method method, NestedFieldsContext nestedFieldsContext)
+			String fieldName, Object item, Method method,
+			NestedFieldsContext nestedFieldsContext, Class<?> resourceClass)
 		throws Exception {
 
 		Object[] args = new Object[method.getParameterCount()];
@@ -378,8 +378,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				resourceBaseClassParameters, i);
 
 			args[i] = _getMethodArgValueFromRequest(
-				fieldName, resourceBaseClassParameter, pathParameters,
-				queryParameters, nestedFieldsContext);
+				fieldName, nestedFieldsContext, pathParameters, queryParameters,
+				resourceBaseClassParameter);
 
 			if (args[i] == null) {
 				args[i] = _getMethodArgValueFromItem(
@@ -430,16 +430,16 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private Object _getMethodArgValueFromRequest(
-		String fieldName, Parameter parameter,
+		String fieldName, NestedFieldsContext nestedFieldsContext,
 		MultivaluedMap<String, String> pathParameters,
 		MultivaluedMap<String, String> queryParameters,
-		NestedFieldsContext nestedFieldsContext) {
+		Parameter resourceBaseClassParameter) {
 
-		if (parameter == null) {
+		if (resourceBaseClassParameter == null) {
 			return null;
 		}
 
-		Annotation[] annotations = parameter.getAnnotations();
+		Annotation[] annotations = resourceBaseClassParameter.getAnnotations();
 
 		if (annotations.length == 0) {
 			return null;
@@ -452,7 +452,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				Message message = _getNestedFieldsAwareMessage(
 					fieldName, nestedFieldsContext.getMessage());
 
-				argValue = _getContext(parameter.getType(), message);
+				argValue = _getContext(
+					resourceBaseClassParameter.getType(), message);
 
 				_resetNestedAwareMessage(message);
 
@@ -463,7 +464,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 				argValue = _convert(
 					pathParameters.getFirst(pathParam.value()),
-					parameter.getType());
+					resourceBaseClassParameter.getType());
 
 				break;
 			}
@@ -473,7 +474,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				argValue = _convert(
 					queryParameters.getFirst(
 						fieldName + "." + queryParam.value()),
-					parameter.getType());
+					resourceBaseClassParameter.getType());
 
 				break;
 			}
@@ -512,7 +513,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			_setResourceContexts(resource, nestedFieldsContext.getMessage());
 
 			Object[] args = _getMethodArgs(
-				fieldName, item, resourceClass, method, nestedFieldsContext);
+				fieldName, item, method, nestedFieldsContext, resourceClass);
 
 			return method.invoke(resource, args);
 		}
