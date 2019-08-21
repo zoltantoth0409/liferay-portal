@@ -331,6 +331,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			}
 
 			portletLocalService.deployRemotePortlet(portlet, _WSRP_CATEGORY);
+
+			portlet.setReady(true);
 		}
 		catch (PortalException pe) {
 			initializationFailed = true;
