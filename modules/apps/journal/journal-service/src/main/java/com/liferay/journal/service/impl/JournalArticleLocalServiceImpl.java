@@ -7638,7 +7638,7 @@ public class JournalArticleLocalServiceImpl
 						PortalUtil.getSiteGroupId(article.getGroupId()),
 						classNameLocalService.getClassNameId(
 							DDMStructure.class),
-						defaultDDMTemplateKey);
+						defaultDDMTemplateKey, true);
 				}
 			}
 
