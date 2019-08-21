@@ -246,8 +246,8 @@ public class DLOpenerGoogleDriveManagerImpl
 		return _backgroundTaskManager.addBackgroundTask(
 			userId, CompanyConstants.SYSTEM,
 			StringBundler.concat(
-				DLOpenerGoogleDriveManager.class.getName(), StringPool.POUND,
-				fileEntry.getFileEntryId()),
+				DLOpenerGoogleDriveManagerImpl.class.getName(),
+				StringPool.POUND, fileEntry.getFileEntryId()),
 			UploadGoogleDriveDocumentBackgroundTaskExecutor.class.getName(),
 			taskContextMap, new ServiceContext());
 	}
