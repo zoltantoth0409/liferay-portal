@@ -1717,9 +1717,23 @@ artifact.url=${remote.repository.url}/com/liferay/portal/com.liferay.${processed
 
 	<macrodef name="setup-yarn">
 		<sequential>
-			<gradle-execute dir="${project.dir}/modules" task="setUpYarn">
-				<arg value="--build-file=${project.dir}/modules/util.gradle" />
-			</gradle-execute>
+			<if>
+				<not>
+					<and>
+						<equals arg1="${os.name}" arg2="SunOS" />
+						<isset property="env.JENKINS_HOME" />
+					</and>
+				</not>
+				<then>
+					<gradle-execute dir="${project.dir}/modules" task="setUpYarnOfflineCache">
+						<arg value="--build-file=${project.dir}/modules/util.gradle" />
+					</gradle-execute>
+
+					<retry retrycount="5" retrydelay="10000">
+						<gradle-execute dir="${project.dir}/modules" task=":yarnInstall" />
+					</retry>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
