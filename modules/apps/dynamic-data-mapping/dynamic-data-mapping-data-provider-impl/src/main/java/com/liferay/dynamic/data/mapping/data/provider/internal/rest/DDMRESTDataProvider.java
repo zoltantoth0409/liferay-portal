@@ -109,6 +109,10 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 			Throwable cause = he.getCause();
 
 			if (cause instanceof ConnectException) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(cause);
+				}
+
 				return DDMDataProviderResponse.error(
 					DDMDataProviderResponse.Status.SERVICE_UNAVAILABLE);
 			}
