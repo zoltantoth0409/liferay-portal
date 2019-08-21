@@ -239,7 +239,7 @@ public class SegmentsExperimentDisplayContext {
 			return _segmentsExperienceId;
 		}
 
-		_segmentsExperienceId = _getSegmentsExperienceIdFromRequest();
+		_segmentsExperienceId = _getRequestSegmentsExperienceId();
 
 		if (_segmentsExperienceId == -1) {
 			_segmentsExperienceId = SegmentsExperienceConstants.ID_DEFAULT;
@@ -275,7 +275,7 @@ public class SegmentsExperimentDisplayContext {
 		return Optional.ofNullable(segmentsExperiment);
 	}
 
-	private long _getSegmentsExperienceIdFromRequest() {
+	private long _getRequestSegmentsExperienceId() {
 		HttpServletRequest originalHttpServletRequest =
 			_portal.getOriginalServletRequest(_httpServletRequest);
 
@@ -283,15 +283,22 @@ public class SegmentsExperimentDisplayContext {
 			originalHttpServletRequest, "segmentsExperienceId", -1);
 	}
 
+	private String _getRequestSegmentsExperimentKey() {
+		HttpServletRequest originalHttpServletRequest =
+			_portal.getOriginalServletRequest(_httpServletRequest);
+
+		return ParamUtil.getString(
+			originalHttpServletRequest, "segmentsExperimentKey");
+	}
+
 	private SegmentsExperiment _getSegmentsExperiment() throws PortalException {
 		if (_segmentsExperiment != null) {
 			return _segmentsExperiment;
 		}
 
-		long segmentsExperienceIdFromRequest =
-			_getSegmentsExperienceIdFromRequest();
+		long requestSegmentsExperienceId = _getRequestSegmentsExperienceId();
 
-		if (segmentsExperienceIdFromRequest != -1) {
+		if (requestSegmentsExperienceId != -1) {
 			_segmentsExperiment = _getDraftSegmentsExperimentOptional(
 				getSelectedSegmentsExperienceId()
 			).orElse(
@@ -301,14 +308,14 @@ public class SegmentsExperimentDisplayContext {
 			return _segmentsExperiment;
 		}
 
-		String segmentsExperimentKeyFromRequest =
-			_getSegmentsExperimentKeyFromRequest();
+		String requestSegmentsExperimentKey =
+			_getRequestSegmentsExperimentKey();
 
-		if (Validator.isNotNull(segmentsExperimentKeyFromRequest)) {
+		if (Validator.isNotNull(requestSegmentsExperimentKey)) {
 			SegmentsExperiment segmentsExperiment =
 				_segmentsExperimentService.fetchSegmentsExperiment(
 					_themeDisplay.getScopeGroupId(),
-					segmentsExperimentKeyFromRequest);
+					requestSegmentsExperimentKey);
 
 			if (segmentsExperiment != null) {
 				_segmentsExperiment = segmentsExperiment;
@@ -333,14 +340,6 @@ public class SegmentsExperimentDisplayContext {
 
 		return HttpUtil.addParameter(
 			actionURL.toString(), "p_l_mode", Constants.VIEW);
-	}
-
-	private String _getSegmentsExperimentKeyFromRequest() {
-		HttpServletRequest originalHttpServletRequest =
-			_portal.getOriginalServletRequest(_httpServletRequest);
-
-		return ParamUtil.getString(
-			originalHttpServletRequest, "segmentsExperimentKey");
 	}
 
 	private final HttpServletRequest _httpServletRequest;
