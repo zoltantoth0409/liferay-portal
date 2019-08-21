@@ -61,7 +61,7 @@ public interface KaleoDefinitionVersion
 			};
 
 	/**
-	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
 	@Deprecated
 	public KaleoDefinition fetchKaleoDefinition();
