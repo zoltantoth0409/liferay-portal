@@ -247,7 +247,7 @@ public class DLOpenerGoogleDriveManagerImpl
 			userId, CompanyConstants.SYSTEM,
 			StringBundler.concat(
 				DLOpenerGoogleDriveManager.class.getName(), StringPool.POUND,
-				"googleDrive", fileEntry.getFileEntryId()),
+				fileEntry.getFileEntryId()),
 			UploadGoogleDriveDocumentBackgroundTaskExecutor.class.getName(),
 			taskContextMap, new ServiceContext());
 	}
