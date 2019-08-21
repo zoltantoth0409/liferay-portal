@@ -2575,4 +2575,13 @@ public class KaleoNotificationRecipientPersistenceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoNotificationRecipientPersistenceImpl.class);
 
+	static {
+		try {
+			Class.forName(KaleoPersistenceConstants.class.getName());
+		}
+		catch (ClassNotFoundException cnfe) {
+			throw new ExceptionInInitializerError(cnfe);
+		}
+	}
+
 }

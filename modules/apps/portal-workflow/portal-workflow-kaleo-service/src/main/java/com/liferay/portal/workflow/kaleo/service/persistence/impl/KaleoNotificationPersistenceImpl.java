@@ -3340,4 +3340,13 @@ public class KaleoNotificationPersistenceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoNotificationPersistenceImpl.class);
 
+	static {
+		try {
+			Class.forName(KaleoPersistenceConstants.class.getName());
+		}
+		catch (ClassNotFoundException cnfe) {
+			throw new ExceptionInInitializerError(cnfe);
+		}
+	}
+
 }
