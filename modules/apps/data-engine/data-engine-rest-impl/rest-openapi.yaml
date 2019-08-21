@@ -565,36 +565,6 @@ paths:
                                 $ref: "#/components/schemas/DataRecord"
                     description: ""
             tags: ["DataRecord"]
-    "/data-layouts/{dataLayoutId}/data-layout-permissions":
-        post:
-            operationId: postDataLayoutDataLayoutPermission
-            parameters:
-                - in: path
-                  name: dataLayoutId
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: query
-                  name: operation
-                  required: true
-                  schema:
-                      type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/DataLayoutPermission"
-                    application/xml:
-                        schema:
-                            $ref: "#/components/schemas/DataLayoutPermission"
-                description: ""
-            responses:
-                204:
-                    content:
-                        application/json: {}
-                    description: ""
-            tags: ["DataLayout"]
     "/data-layouts/{dataLayoutId}":
         delete:
             operationId: deleteDataLayout
@@ -657,6 +627,36 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/DataLayout"
+                    description: ""
+            tags: ["DataLayout"]
+    "/data-layouts/{dataLayoutId}/data-layout-permissions":
+        post:
+            operationId: postDataLayoutDataLayoutPermission
+            parameters:
+                - in: path
+                  name: dataLayoutId
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+                - in: query
+                  name: operation
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/DataLayoutPermission"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/DataLayoutPermission"
+                description: ""
+            responses:
+                204:
+                    content:
+                        application/json: {}
                     description: ""
             tags: ["DataLayout"]
     "/data-record-collections/{dataRecordCollectionId}":
@@ -1029,6 +1029,35 @@ paths:
                                 $ref: "#/components/schemas/DataDefinition"
                     description: ""
             tags: ["DataDefinition"]
+    "/sites/{siteId}/data-layout-permissions":
+        post:
+            operationId: postSiteDataLayoutPermission
+            parameters:
+                - in: path
+                  name: siteId
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+                - in: query
+                  name: operation
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/DataLayoutPermission"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/DataLayoutPermission"
+            responses:
+                204:
+                    content:
+                        application/json: {}
+                    description: ""
+            tags: ["DataLayout"]
     "/sites/{siteId}/data-layouts":
         get:
             operationId: getSiteDataLayoutPage
@@ -1069,35 +1098,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/DataLayout"
                                 type: array
-                    description: ""
-            tags: ["DataLayout"]
-    "/sites/{siteId}/data-layout-permissions":
-        post:
-            operationId: postSiteDataLayoutPermission
-            parameters:
-                - in: path
-                  name: siteId
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: query
-                  name: operation
-                  required: true
-                  schema:
-                      type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/DataLayoutPermission"
-                    application/xml:
-                        schema:
-                            $ref: "#/components/schemas/DataLayoutPermission"
-            responses:
-                204:
-                    content:
-                        application/json: {}
                     description: ""
             tags: ["DataLayout"]
     "/sites/{siteId}/data-layouts/{dataLayoutKey}":
