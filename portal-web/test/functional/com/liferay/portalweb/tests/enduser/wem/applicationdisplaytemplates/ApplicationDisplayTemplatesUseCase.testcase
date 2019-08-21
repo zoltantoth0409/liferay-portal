@@ -745,9 +745,9 @@ definition {
 			siteName = "Test Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Site Builder",
+			category = "Build",
 			panel = "Site Administration",
-			portlet = "Widget Templates");
+			portlet = "Application Display Templates");
 
 		ApplicationDisplayTemplates.addCP(
 			adtFile = "adt_asset_publisher_rich_summary.ftl",
@@ -764,9 +764,9 @@ definition {
 		ProductMenu.gotoLiveSite();
 
 		ProductMenu.gotoPortlet(
-			category = "Site Builder",
+			category = "Build",
 			panel = "Site Administration",
-			portlet = "Widget Templates");
+			portlet = "Application Display Templates");
 
 		ApplicationDisplayTemplates.viewTemplate(adtType = "Asset Publisher");
 	}
