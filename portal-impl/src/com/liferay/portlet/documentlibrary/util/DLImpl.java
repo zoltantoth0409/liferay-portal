@@ -523,11 +523,10 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion, ThemeDisplay themeDisplay,
 		String queryString, boolean appendVersion, boolean absoluteURL) {
 
-		long dlFileVersionPreviewId = _dlPreviewHelper.getDLFileVersionPreviewId(
-			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-			DLFileVersionPreviewType.FAIL.toInteger());
+		if (_dlPreviewHelper.hasDLFileVersionPreview(
+				fileEntry.getFileEntryId(), fileVersion.getFileVersionId(),
+				_DL_FILE_VERSION_PREVIEW_STATUS_FAILURE)) {
 
-		if (dlFileVersionPreviewId > 0) {
 			return StringPool.BLANK;
 		}
 
@@ -760,11 +759,10 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion,
 		ThemeDisplay themeDisplay) {
 
-		long dlFileVersionPreviewId = _dlPreviewHelper.getDLFileVersionPreviewId(
-			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-			DLFileVersionPreviewType.FAIL.toInteger());
+		if (_dlPreviewHelper.hasDLFileVersionPreview(
+				fileEntry.getFileEntryId(), fileVersion.getFileVersionId(),
+				_DL_FILE_VERSION_PREVIEW_STATUS_FAILURE)) {
 
-		if (dlFileVersionPreviewId > 0) {
 			return StringPool.BLANK;
 		}
 
@@ -1253,6 +1251,8 @@ public class DLImpl implements DL {
 
 	private static final long _DIVISOR = 256;
 
+	private static final int _DL_FILE_VERSION_PREVIEW_STATUS_FAILURE = 1;
+
 	private static final String[] _MICROSOFT_OFFICE_EXTENSIONS = {
 		"accda", "accdb", "accdc", "accde", "accdp", "accdr", "accdt", "accdu",
 		"acl", "ade", "adp", "asd", "cnv", "crtx", "doc", "docm", "docx", "dot",
@@ -1343,32 +1343,5 @@ public class DLImpl implements DL {
 		ServiceTrackerCollections.openList(
 			PortletLayoutFinder.class,
 			"(model.class.name=" + FileEntry.class.getName() + ")");
-
-	private enum DLFileVersionPreviewType {
-
-		FAIL(0), NOT_GENERATED(1), SUCCESS(2);
-
-		public static DLFileVersionPreviewType fromInteger(int value) {
-			for (DLFileVersionPreviewType dlFileVersionPreviewType : values()) {
-				if (dlFileVersionPreviewType.toInteger() == value) {
-					return dlFileVersionPreviewType;
-				}
-			}
-
-			throw new IllegalArgumentException(
-				"No DLFileEntryPreviewType exists with value " + value);
-		}
-
-		public int toInteger() {
-			return _value;
-		}
-
-		private DLFileVersionPreviewType(int value) {
-			_value = value;
-		}
-
-		private final int _value;
-
-	}
 
 }
