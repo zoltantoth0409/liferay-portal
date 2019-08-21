@@ -508,7 +508,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				continue;
 			}
 
-			_setResourceContexts(resource, nestedFieldsContext.getMessage());
+			_setResourceContexts(nestedFieldsContext.getMessage(), resource);
 
 			Object[] args = _getMethodArgs(
 				fieldName, item, method, nestedFieldsContext,
@@ -607,21 +607,21 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 	}
 
-	private void _setResourceContexts(Object resource, Message message)
+	private void _setResourceContexts(Message message, Object resource)
 		throws Exception {
 
 		Class<?> resourceClass = resource.getClass();
 
 		_setResourceFields(
-			resource, message, resourceClass.getDeclaredFields());
+			resourceClass.getDeclaredFields(), message, resource);
 
 		Class<?> superClass = resourceClass.getSuperclass();
 
-		_setResourceFields(resource, message, superClass.getDeclaredFields());
+		_setResourceFields(superClass.getDeclaredFields(), message, resource);
 	}
 
 	private void _setResourceFields(
-			Object resource, Message message, Field[] fields)
+			Field[] fields, Message message, Object resource)
 		throws IllegalAccessException {
 
 		for (Field field : fields) {
