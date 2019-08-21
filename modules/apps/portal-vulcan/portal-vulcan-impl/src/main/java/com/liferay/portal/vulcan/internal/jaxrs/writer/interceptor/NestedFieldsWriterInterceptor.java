@@ -375,7 +375,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 		for (int i = 0; i < method.getParameterCount(); i++) {
 			Parameter resourceBaseClassParameter = _getParameter(
-				resourceBaseClassParameters, i);
+				i, resourceBaseClassParameters);
 
 			args[i] = _getMethodArgValueFromRequest(
 				fieldName, nestedFieldsContext, pathParameters, queryParameters,
@@ -521,7 +521,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private Parameter _getParameter(
-		Parameter[] resourceBaseClassParameters, int index) {
+		int index, Parameter[] resourceBaseClassParameters) {
 
 		Parameter parameter = null;
 
