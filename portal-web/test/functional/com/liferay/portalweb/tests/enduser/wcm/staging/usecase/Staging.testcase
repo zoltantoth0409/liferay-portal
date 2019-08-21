@@ -255,6 +255,50 @@ definition {
 		Staging.deletePublishTemplate(publishTemplateName = "Publish Template Name");
 	}
 
+	@description = "This is a use case for LPS-89546"
+	@priority = "3"
+	test EditPageCreatedBasedOnPageTemplateWithPageVersioning {
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(
+			pageVersioningEnabled = "true",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Page Templates");
+
+		PageTemplate.addCP(
+			pageTemplateActive = "Yes",
+			pageTemplateName = "Page Template Name");
+
+		Navigator.openStagingSiteURL(siteName = "Site Name");
+
+		Page.add(
+			pageName = "Test Page Name",
+			pageTemplateName = "Page Template Name");
+
+		Navigator.openStagingSiteURL(siteName = "Site Name");
+
+		SitePageNavigator.gotoEditPage(page = "Test Page Name");
+
+		Page.editName(pageNameEdit = "Test Page Edit");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Edit",
+			siteName = "Site Name");
+
+		Page.view(
+			pageName = "Test Page Edit",
+			privacy = "Public Pages");
+	}
+
 	@priority = "4"
 	test EnableStagingWithWebContentReferencedFromDeletedSite {
 		Navigator.openSiteURL(siteName = "Site Name");
