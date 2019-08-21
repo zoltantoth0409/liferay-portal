@@ -575,12 +575,12 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		for (String fieldName : fieldNames) {
 			String nestedField = null;
 
-			int pointIndex = fieldName.indexOf(".");
+			int index = fieldName.indexOf(".");
 
-			if (pointIndex != -1) {
-				nestedField = fieldName.substring(pointIndex + 1);
+			if (index != -1) {
+				nestedField = fieldName.substring(index + 1);
 
-				fieldName = fieldName.substring(0, pointIndex);
+				fieldName = fieldName.substring(0, index);
 			}
 
 			for (Object item : items) {
