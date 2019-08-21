@@ -152,8 +152,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private boolean _checkNestedFieldsMethod(
-		Object item, Class<?> resourceClass, Method method,
-		NestedFieldsContext nestedFieldsContext) {
+		Object item, Method method, NestedFieldsContext nestedFieldsContext,
+		Class<?> resourceClass) {
 
 		if (method == null) {
 			return false;
@@ -500,12 +500,10 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		throws Exception {
 
 		for (Object resource : getResources()) {
-			Class<?> resourceClass = resource.getClass();
-
-			Method method = _getAnnotatedMethod(resourceClass, fieldName);
+			Method method = _getAnnotatedMethod(resource.getClass(), fieldName);
 
 			if (!_checkNestedFieldsMethod(
-					item, resourceClass, method, nestedFieldsContext)) {
+					item, method, nestedFieldsContext, resource.getClass())) {
 
 				continue;
 			}
@@ -513,7 +511,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			_setResourceContexts(resource, nestedFieldsContext.getMessage());
 
 			Object[] args = _getMethodArgs(
-				fieldName, item, method, nestedFieldsContext, resourceClass);
+				fieldName, item, method, nestedFieldsContext,
+				resource.getClass());
 
 			return method.invoke(resource, args);
 		}
