@@ -2157,4 +2157,13 @@ public class KaleoTaskPersistenceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoTaskPersistenceImpl.class);
 
+	static {
+		try {
+			Class.forName(KaleoPersistenceConstants.class.getName());
+		}
+		catch (ClassNotFoundException cnfe) {
+			throw new ExceptionInInitializerError(cnfe);
+		}
+	}
+
 }
