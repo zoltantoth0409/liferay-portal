@@ -262,6 +262,8 @@ String modelName = (String)request.getAttribute("liferay-ui:input-permissions:mo
 				$('#<%= uniqueNamespace %>guestPermissions_VIEW').prop('checked', checkGuestViewPermissions);
 				$('#<%= uniqueNamespace %>groupPermissions_VIEW').prop('checked', checkGroupViewPermissions);
 			}
+
+			<%= uniqueNamespace %>updatePermissionsView();
 		</aui:script>
 	</c:when>
 	<c:otherwise>
