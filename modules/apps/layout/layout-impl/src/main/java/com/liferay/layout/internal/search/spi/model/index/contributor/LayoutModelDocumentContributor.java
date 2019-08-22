@@ -113,7 +113,6 @@ public class LayoutModelDocumentContributor
 			httpServletRequest = DynamicServletRequest.addQueryString(
 				serviceContext.getRequest(), "p_l_id=" + layout.getPlid(),
 				false);
-
 			httpServletResponse = serviceContext.getResponse();
 		}
 
@@ -178,6 +177,12 @@ public class LayoutModelDocumentContributor
 
 		SearchContext searchContext = new SearchContext();
 
+		BooleanClause booleanClause = BooleanClauseFactoryUtil.create(
+			Field.ENTRY_CLASS_PK, String.valueOf(stagingLayout.getPlid()),
+			BooleanClauseOccur.MUST.getName());
+
+		searchContext.setBooleanClauses(new BooleanClause[] {booleanClause});
+
 		if ((CompanyThreadLocal.getCompanyId() == 0) ||
 			ExportImportThreadLocal.isStagingInProcess()) {
 
@@ -185,14 +190,7 @@ public class LayoutModelDocumentContributor
 		}
 
 		searchContext.setGroupIds(new long[] {stagingGroup.getGroupId()});
-
 		searchContext.setEntryClassNames(new String[] {Layout.class.getName()});
-
-		BooleanClause booleanClause = BooleanClauseFactoryUtil.create(
-			Field.ENTRY_CLASS_PK, String.valueOf(stagingLayout.getPlid()),
-			BooleanClauseOccur.MUST.getName());
-
-		searchContext.setBooleanClauses(new BooleanClause[] {booleanClause});
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
