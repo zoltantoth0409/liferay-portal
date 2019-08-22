@@ -148,14 +148,14 @@ public class DLFileVersionPreviewPersistenceImpl
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
 	@Override
 	public List<DLFileVersionPreview> findByFileEntryId(
 		long fileEntryId, int start, int end,
 		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -165,10 +165,13 @@ public class DLFileVersionPreviewPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByFileEntryId;
-			finderArgs = new Object[] {fileEntryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByFileEntryId;
+				finderArgs = new Object[] {fileEntryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByFileEntryId;
 			finderArgs = new Object[] {
 				fileEntryId, start, end, orderByComparator
@@ -177,7 +180,7 @@ public class DLFileVersionPreviewPersistenceImpl
 
 		List<DLFileVersionPreview> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFileVersionPreview>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -245,10 +248,14 @@ public class DLFileVersionPreviewPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -669,14 +676,14 @@ public class DLFileVersionPreviewPersistenceImpl
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
 	@Override
 	public List<DLFileVersionPreview> findByFileVersionId(
 		long fileVersionId, int start, int end,
 		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -686,10 +693,13 @@ public class DLFileVersionPreviewPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByFileVersionId;
-			finderArgs = new Object[] {fileVersionId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByFileVersionId;
+				finderArgs = new Object[] {fileVersionId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByFileVersionId;
 			finderArgs = new Object[] {
 				fileVersionId, start, end, orderByComparator
@@ -698,7 +708,7 @@ public class DLFileVersionPreviewPersistenceImpl
 
 		List<DLFileVersionPreview> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFileVersionPreview>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -766,10 +776,14 @@ public class DLFileVersionPreviewPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1183,18 +1197,22 @@ public class DLFileVersionPreviewPersistenceImpl
 	 *
 	 * @param fileEntryId the file entry ID
 	 * @param fileVersionId the file version ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
 	@Override
 	public DLFileVersionPreview fetchByF_F(
-		long fileEntryId, long fileVersionId, boolean retrieveFromCache) {
+		long fileEntryId, long fileVersionId, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {fileEntryId, fileVersionId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {fileEntryId, fileVersionId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByF_F, finderArgs, this);
 		}
@@ -1237,8 +1255,10 @@ public class DLFileVersionPreviewPersistenceImpl
 				List<DLFileVersionPreview> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByF_F, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByF_F, finderArgs, list);
+					}
 				}
 				else {
 					DLFileVersionPreview dlFileVersionPreview = list.get(0);
@@ -1249,7 +1269,9 @@ public class DLFileVersionPreviewPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByF_F, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByF_F, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1413,21 +1435,25 @@ public class DLFileVersionPreviewPersistenceImpl
 	 * @param fileEntryId the file entry ID
 	 * @param fileVersionId the file version ID
 	 * @param previewStatus the preview status
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
 	@Override
 	public DLFileVersionPreview fetchByF_F_P(
 		long fileEntryId, long fileVersionId, int previewStatus,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {
-			fileEntryId, fileVersionId, previewStatus
-		};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {
+				fileEntryId, fileVersionId, previewStatus
+			};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByF_F_P, finderArgs, this);
 		}
@@ -1475,8 +1501,10 @@ public class DLFileVersionPreviewPersistenceImpl
 				List<DLFileVersionPreview> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByF_F_P, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByF_F_P, finderArgs, list);
+					}
 				}
 				else {
 					DLFileVersionPreview dlFileVersionPreview = list.get(0);
@@ -1487,7 +1515,10 @@ public class DLFileVersionPreviewPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByF_F_P, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByF_F_P, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2288,14 +2319,14 @@ public class DLFileVersionPreviewPersistenceImpl
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of dl file version previews
 	 */
 	@Override
 	public List<DLFileVersionPreview> findAll(
 		int start, int end,
 		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2305,17 +2336,20 @@ public class DLFileVersionPreviewPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DLFileVersionPreview> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFileVersionPreview>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2366,10 +2400,14 @@ public class DLFileVersionPreviewPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
