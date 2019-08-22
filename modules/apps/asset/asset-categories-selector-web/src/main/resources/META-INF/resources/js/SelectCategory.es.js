@@ -88,7 +88,7 @@ class SelectCategory extends PortletBase {
 
 			newVal.forEach(
 				(node) => {
-					data[node.name] = {
+					data[node.id] = {
 						categoryId: node.vocabulary ? 0 : node.id,
 						value: node.name,
 						vocabularyId: node.vocabulary ? node.id : 0
@@ -99,7 +99,7 @@ class SelectCategory extends PortletBase {
 			selectedNodes.forEach(
 				(node) => {
 					if (newVal.indexOf(node) === -1) {
-						data[node.name] = {
+						data[node.id] = {
 							categoryId: node.vocabulary ? 0 : node.id,
 							unchecked: true,
 							value: node.name,
