@@ -912,7 +912,10 @@ public class DDMFormEvaluatorHelperTest {
 		DDMFormFieldValidation ddmFormFieldValidation =
 			new DDMFormFieldValidation();
 
-		ddmFormFieldValidation.setErrorMessage("This field should be zero.");
+		ddmFormFieldValidation.setErrorMessageLocalizedValue(
+			DDMFormValuesTestUtil.createLocalizedValue(
+				"This field should be zero.", LocaleUtil.US));
+
 		ddmFormFieldValidation.setExpression("field0 == 0");
 
 		ddmFormField.setDDMFormFieldValidation(ddmFormFieldValidation);
