@@ -392,6 +392,16 @@ definition {
 			Check.checkToggleSwitch(locator1 = "StagingPublishToLive#CONTENT_CHOOSE_CONTENT_DELETION_CHECKBOX");
 		}
 
+		if ("${pageDeletion}" == "true") {
+			Click(locator1 = "StagingPublishToLive#CONTENT_CHOOSE_CONTENT_DELETION_HEADER");
+
+			Check.checkToggleSwitch(locator1 = "StagingPublishToLive#CONTENT_CHOOSE_CONTENT_DELETION_CHECKBOX");
+
+			AssertElementPresent(locator1 = "StagingPublishToLive#PAGES_CHOOSE_PAGE_DELETION_CHECKBOX");
+
+			Click(locator1 = "StagingPublishToLive#PAGES_CHOOSE_PAGE_DELETION_CHECKBOX");
+		}
+
 		if ("${checkAllContent}" == "true") {
 			Check(locator1 = "Select#CONTENT_ALL_CONTENT");
 		}

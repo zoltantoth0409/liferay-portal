@@ -71,6 +71,11 @@
 </tr>
 <!--PAGES-->
 <tr>
+	<td>PAGES_CHOOSE_PAGE_DELETION_CHECKBOX</td>
+	<td>//label[contains(.,'Publish Page Deletions')]//span[contains(@class,'deletions')]/../input</td>
+	<td></td>
+</tr>
+<tr>
 	<td>PAGES_CHANGE_LINK</td>
 	<td>//div/a[contains(@id,'pagesLink')]</td>
 	<td></td>
