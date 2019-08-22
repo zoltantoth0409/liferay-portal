@@ -23,7 +23,6 @@ import com.liferay.app.builder.web.internal.portlet.WidgetAppPortlet;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 
-import java.util.Dictionary;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.portlet.Portlet;
@@ -88,7 +87,8 @@ public class WidgetAppDeployer implements AppDeployer {
 	private ServiceRegistration<?> _deployAppPortlet(
 		String appName, String portletName) {
 
-		Dictionary<String, Object> properties =
+		return _bundleContext.registerService(
+			Portlet.class, new WidgetAppPortlet(),
 			new HashMapDictionary<String, Object>() {
 				{
 					put("com.liferay.portlet.add-default-resource", true);
@@ -107,10 +107,7 @@ public class WidgetAppDeployer implements AppDeployer {
 						"administrator,guest,power-user,user ");
 					put("javax.portlet.supports.mime-type", "text/html ");
 				}
-			};
-
-		return _bundleContext.registerService(
-			Portlet.class, new WidgetAppPortlet(), properties);
+			});
 	}
 
 	@Reference
