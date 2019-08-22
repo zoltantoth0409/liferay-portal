@@ -1,3 +1,9 @@
+buildCSS {
+	imports=[
+		new File(npmInstall.nodeModulesDir, "clay-css/src/scss")
+	]
+}
+
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.url.builder.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "5.0.0"
