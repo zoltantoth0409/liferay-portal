@@ -339,6 +339,11 @@ definition {
 			otherSiteName = "Site Name",
 			webContentTitle = "WC Title");
 
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
 		Site.deleteCP(siteName = "Site Name");
 
 		Navigator.openSiteURL(siteName = "Site B Name");
