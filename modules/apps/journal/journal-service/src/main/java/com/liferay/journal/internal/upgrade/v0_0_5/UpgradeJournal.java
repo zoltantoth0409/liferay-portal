@@ -252,7 +252,7 @@ public class UpgradeJournal extends UpgradeProcess {
 		return false;
 	}
 
-	protected String convertStaticContentToDynamic(String content)
+	protected String convertStaticContentToDynamic(String content, long groupId)
 		throws Exception {
 
 		Document document = SAXReaderUtil.read(content);
@@ -261,12 +261,12 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		Element rootElement = document.getRootElement();
 
+		String defaultLanguageId = _getDefaultLanguageId(groupId);
+
 		String availableLocales = GetterUtil.getString(
-			rootElement.attributeValue("available-locales"),
-			_getDefaultLanguageId());
+			rootElement.attributeValue("available-locales"), defaultLanguageId);
 		String defaultLocale = GetterUtil.getString(
-			rootElement.attributeValue("default-locale"),
-			_getDefaultLanguageId());
+			rootElement.attributeValue("default-locale"), defaultLanguageId);
 
 		Element newRootElement = SAXReaderUtil.createElement("root");
 
@@ -291,7 +291,7 @@ public class UpgradeJournal extends UpgradeProcess {
 		for (Element staticContentElement : staticContentElements) {
 			String languageId = GetterUtil.getString(
 				staticContentElement.attributeValue("language-id"),
-				_getDefaultLanguageId());
+				defaultLanguageId);
 			String text = staticContentElement.getText();
 
 			Element dynamicContentElement = SAXReaderUtil.createElement(
@@ -570,19 +570,20 @@ public class UpgradeJournal extends UpgradeProcess {
 
 	protected void updateJournalArticles(long companyId) throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
-				"select id_, content, DDMStructureKey from JournalArticle " +
-					"where companyId = " + companyId);
+				"select id_, groupId, content, DDMStructureKey from " +
+					"JournalArticle where companyId = " + companyId);
 			ResultSet rs = ps.executeQuery()) {
 
 			String name = addBasicWebContentStructureAndTemplate(companyId);
 
 			while (rs.next()) {
 				long id = rs.getLong("id_");
+				long groupId = rs.getLong("groupId");
 				String content = rs.getString("content");
 				String ddmStructureKey = rs.getString("DDMStructureKey");
 
 				if (Validator.isNull(ddmStructureKey)) {
-					content = convertStaticContentToDynamic(content);
+					content = convertStaticContentToDynamic(content, groupId);
 
 					updateJournalArticle(id, name, name, content);
 
@@ -600,10 +601,18 @@ public class UpgradeJournal extends UpgradeProcess {
 		}
 	}
 
-	private String _getDefaultLanguageId() {
-		Locale defaultLocale = LocaleUtil.getSiteDefault();
+	private String _getDefaultLanguageId(long groupId) throws Exception {
+		String defaultLanguageId = _defaultLanguageIds.get(groupId);
 
-		return LanguageUtil.getLanguageId(defaultLocale);
+		if (defaultLanguageId == null) {
+			Locale defaultLocale = PortalUtil.getSiteDefaultLocale(groupId);
+
+			defaultLanguageId = LanguageUtil.getLanguageId(defaultLocale);
+
+			_defaultLanguageIds.put(groupId, defaultLanguageId);
+		}
+
+		return defaultLanguageId;
 	}
 
 	private static final String _BASIC_WEB_CONTENT_STRUCTURE;
@@ -635,6 +644,7 @@ public class UpgradeJournal extends UpgradeProcess {
 	private final DDMStructureLocalService _ddmStructureLocalService;
 	private final DDMTemplateLinkLocalService _ddmTemplateLinkLocalService;
 	private final DefaultDDMStructureHelper _defaultDDMStructureHelper;
+	private final Map<Long, String> _defaultLanguageIds = new HashMap<>();
 	private final GroupLocalService _groupLocalService;
 	private final ResourceActionLocalService _resourceActionLocalService;
 	private final ResourceActions _resourceActions;
