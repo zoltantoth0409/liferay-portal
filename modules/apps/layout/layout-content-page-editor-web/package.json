@@ -1,11 +1,13 @@
 {
 	"dependencies": {
-		"@clayui/button": "^3.0.0-milestone.2",
-		"@clayui/drop-down": "^3.0.0-milestone.2",
+		"@clayui/alert": "^3.0.0-milestone.2",
+		"@clayui/button": "3.0.0-milestone.2",
+		"@clayui/drop-down": "3.0.0-milestone.2",
 		"@clayui/form": "^3.0.0-milestone.2",
-		"@clayui/icon": "^3.0.0-milestone.2",
-		"@clayui/modal": "^3.0.0-milestone.2",
-		"@clayui/sticker": "^3.0.0-milestone.2",
+		"@clayui/icon": "3.0.0-milestone.2",
+		"@clayui/label": "^3.0.0-milestone.2",
+		"@clayui/modal": "3.0.0-milestone.2",
+		"@clayui/sticker": "3.0.0-milestone.2",
 		"clay-checkbox": "2.17.0",
 		"clay-dropdown": "2.17.0",
 		"frontend-js-web": "^3.0.0",
@@ -18,7 +20,7 @@
 		"metal-soy": "2.16.8",
 		"metal-state": "2.16.8",
 		"metal-throttle": "3.0.1",
-		"prop-types": "^15.7.2",
+		"prop-types": "15.7.2",
 		"react": "16.9.0",
 		"react-dom": "16.9.0"
 	},
@@ -35,7 +37,7 @@
 		"build": "liferay-npm-scripts build",
 		"checkFormat": "liferay-npm-scripts check",
 		"format": "liferay-npm-scripts fix",
-		"test_DISABLED": "liferay-npm-scripts test"
+		"test": "liferay-npm-scripts test"
 	},
 	"version": "1.0.41"
 }
