@@ -39,6 +39,7 @@ import java.net.NetworkInterface;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutorService;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -62,12 +63,14 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 
 	@Override
 	public ClusterChannel createClusterChannel(
-		String channleLogicName, String channelProperties, String clusterName,
+		ExecutorService executorService, String channleLogicName,
+		String channelProperties, String clusterName,
 		ClusterReceiver clusterReceiver) {
 
 		return new JGroupsClusterChannel(
-			channleLogicName, channelProperties, clusterName, clusterReceiver,
-			_bindInetAddress, _clusterExecutorConfiguration, _classLoaders);
+			executorService, channleLogicName, channelProperties, clusterName,
+			clusterReceiver, _bindInetAddress, _clusterExecutorConfiguration,
+			_classLoaders);
 	}
 
 	@Override
