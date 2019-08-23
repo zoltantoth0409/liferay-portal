@@ -14,7 +14,8 @@
 
 import {
 	FRAGMENTS_EDITOR_ITEM_BORDERS,
-	FRAGMENTS_EDITOR_ITEM_TYPES
+	FRAGMENTS_EDITOR_ITEM_TYPES,
+	MAPPING_SOURCE_TYPE_IDS
 } from '../utils/constants';
 
 const ARROW_DOWN_KEYCODE = 40;
@@ -46,6 +47,35 @@ function deepClone(objectToClone) {
 	}
 
 	return cloned;
+}
+
+/**
+ * Checks if the given editable is mapped
+ * @param {object} editableValues
+ * @private
+ * @return {boolean}
+ * @review
+ */
+function editableIsMapped(editableValues) {
+	return Boolean(
+		editableValues.mappedField ||
+			editableIsMappedToAssetEntry(editableValues)
+	);
+}
+
+/**
+ * Checks if the given editable is mapped to an asset entry
+ * @param {object} editableValues
+ * @private
+ * @return {boolean}
+ * @review
+ */
+function editableIsMappedToAssetEntry(editableValues) {
+	return Boolean(
+		editableValues.classNameId &&
+			editableValues.classPK &&
+			editableValues.fieldId
+	);
 }
 
 /**
@@ -253,6 +283,28 @@ function getItemPath(itemId, itemType, structure) {
 }
 
 /**
+ * @param {string} subtypeLabel
+ * @return {Array<{id: string, label: string}>} Source types
+ * @private
+ * @review
+ */
+function getMappingSourceTypes(subtypeLabel) {
+	return [
+		{
+			id: MAPPING_SOURCE_TYPE_IDS.structure,
+			label: Liferay.Util.sub(
+				Liferay.Language.get('x-default'),
+				subtypeLabel
+			)
+		},
+		{
+			id: MAPPING_SOURCE_TYPE_IDS.content,
+			label: Liferay.Language.get('specific-content')
+		}
+	];
+}
+
+/**
  * Get the fragmentEntryLinkIds of the fragments inside the given row
  * @param {{columns: Array<{fragmentEntryLinkIds: Array<string>}>}} row
  * @return {string[]}
@@ -389,6 +441,8 @@ function itemIsInPath(path, itemId, itemType) {
 
 export {
 	deepClone,
+	editableIsMapped,
+	editableIsMappedToAssetEntry,
 	editableShouldBeHighlighted,
 	getColumn,
 	getDropRowPosition,
@@ -396,6 +450,7 @@ export {
 	getFragmentColumn,
 	getFragmentRowIndex,
 	getItemMoveDirection,
+	getMappingSourceTypes,
 	getRowFragmentEntryLinkIds,
 	getRowIndex,
 	getTargetBorder,

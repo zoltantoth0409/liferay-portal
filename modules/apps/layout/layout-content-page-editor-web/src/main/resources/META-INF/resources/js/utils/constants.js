@@ -40,6 +40,17 @@ export const COMPATIBLE_TYPES = {
 
 	image: ['ddm-image', 'image'],
 
+	link: [
+		'ddm-date',
+		'ddm-decimal',
+		'ddm-integer',
+		'ddm-number',
+		'ddm-text-html',
+		'text',
+		'textarea',
+		'url'
+	],
+
 	'rich-text': [
 		'ddm-date',
 		'ddm-decimal',
@@ -108,18 +119,10 @@ export const FLOATING_TOOLBAR_BUTTONS = {
 	},
 
 	fragmentConfiguration: {
-		icon: '',
+		icon: 'cog',
 		id: 'fragment_configuration',
 		panelId: 'fragment_configuration',
-		title: '',
-		type: 'panel'
-	},
-
-	imageLink: {
-		icon: 'link',
-		id: 'image_properties',
-		panelId: 'image_properties',
-		title: Liferay.Language.get('image-properties'),
+		title: Liferay.Language.get('fragment-configuration'),
 		type: 'panel'
 	},
 
@@ -161,14 +164,6 @@ export const FLOATING_TOOLBAR_BUTTONS = {
 		panelId: 'spacing',
 		title: Liferay.Language.get('spacing'),
 		type: 'panel'
-	},
-
-	textProperties: {
-		icon: 'pencil',
-		id: 'text_properties',
-		panelId: 'text_properties',
-		title: Liferay.Language.get('text-properties'),
-		type: 'panel'
 	}
 };
 
@@ -206,6 +201,7 @@ export const FRAGMENTS_EDITOR_ITEM_TYPES = {
 	editable: 'fragments-editor-editable-field',
 	fragment: 'fragments-editor-fragment',
 	fragmentList: 'fragments-editor-fragment-list',
+	mappedItem: 'fragments-editor-mapped-item',
 	row: 'fragments-editor-row'
 };
 
@@ -224,6 +220,14 @@ export const FRAGMENTS_EDITOR_ROW_TYPES = {
  */
 export const FREEMARKER_FRAGMENT_ENTRY_PROCESSOR =
 	'com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor';
+
+/**
+ * Available mapping source type ids
+ */
+export const MAPPING_SOURCE_TYPE_IDS = {
+	content: 'specific_content',
+	structure: 'structure'
+};
 
 /**
  * Available attributes for target config key

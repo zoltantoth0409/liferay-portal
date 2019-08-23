@@ -14,6 +14,7 @@
 
 package com.liferay.exportimport.internal.staging;
 
+import com.liferay.change.tracking.engine.CTEngineManager;
 import com.liferay.changeset.model.ChangesetCollection;
 import com.liferay.changeset.model.ChangesetEntry;
 import com.liferay.changeset.service.ChangesetCollectionLocalService;
@@ -2105,9 +2106,8 @@ public class StagingImpl implements Staging {
 		return false;
 	}
 
-	@Override
 	public boolean isChangeTrackingEnabled(long companyId) {
-		return false;
+		return _ctEngineManager.isChangeTrackingEnabled(companyId);
 	}
 
 	@Override
@@ -4204,6 +4204,9 @@ public class StagingImpl implements Staging {
 
 	@Reference
 	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private CTEngineManager _ctEngineManager;
 
 	@Reference
 	private DLValidator _dlValidator;

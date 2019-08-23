@@ -205,14 +205,10 @@ function remove(array, position) {
  * @param {!Object} removeItemPayload Data that is passed to the reducer
  * @review
  */
-function removeItem(store, removeItemAction, removeItemPayload) {
+function removeItem(store, removeAction) {
 	store
 		.dispatch(enableSavingChangesStatusAction())
-		.dispatch(
-			Object.assign({}, removeItemPayload, {
-				type: removeItemAction
-			})
-		)
+		.dispatch(removeAction)
 		.dispatch(updateLastSaveDateAction())
 		.dispatch(disableSavingChangesStatusAction());
 }
@@ -330,28 +326,65 @@ function updateRow(store, updateAction, payload) {
 }
 
 /**
+ * Sets used widgets based on the portletIds array
+ * @param {!Array} widgets
+ * @param {{!Array} portletIds
+ * @return {Array}
+ * @review
+ */
+function updateUsedWidgets(widgets, portletIds) {
+	const filteredWidgets = [...widgets];
+
+	filteredWidgets.forEach(widgetCategory => {
+		const {categories = [], portlets = []} = widgetCategory;
+
+		widgetCategory.categories = updateUsedWidgets(categories, portletIds);
+		widgetCategory.portlets = portlets.map(portlet => {
+			if (
+				portletIds.indexOf(portlet.portletId) !== -1 &&
+				!portlet.instanceable
+			) {
+				portlet.used = true;
+			} else {
+				portlet.used = false;
+			}
+
+			return portlet;
+		});
+	});
+
+	return filteredWidgets;
+}
+
+/**
  * @param {Object} state
  * @param {Object[]} state.fragmentEntryLinks
  * @param {Object[]} state.widgets
  * @param {string} fragmentEntryLinkId
- * @return {Object} Next state
+ * @return {Object}
  */
-function updateWidgets(state, fragmentEntryLinkId) {
-	const fragmentEntryLink = state.fragmentEntryLinks[fragmentEntryLinkId];
+function updateWidgets(state, fragmentEntryLinkIds = []) {
 	let nextState = state;
 
-	if (fragmentEntryLink.portletId) {
-		const widget = getWidget(state.widgets, fragmentEntryLink.portletId);
+	fragmentEntryLinkIds.forEach(fragmentEntryLinkId => {
+		const fragmentEntryLink = state.fragmentEntryLinks[fragmentEntryLinkId];
 
-		if (!widget.instanceable && widget.used) {
-			const widgetPath = getWidgetPath(
+		if (fragmentEntryLink.portletId) {
+			const widget = getWidget(
 				state.widgets,
 				fragmentEntryLink.portletId
 			);
 
-			nextState = setIn(state, [...widgetPath, 'used'], false);
+			if (!widget.instanceable && widget.used) {
+				const widgetPath = getWidgetPath(
+					state.widgets,
+					fragmentEntryLink.portletId
+				);
+
+				nextState = setIn(state, [...widgetPath, 'used'], false);
+			}
 		}
-	}
+	});
 
 	return nextState;
 }
@@ -368,5 +401,6 @@ export {
 	setIn,
 	updateIn,
 	updateRow,
+	updateUsedWidgets,
 	updateWidgets
 };

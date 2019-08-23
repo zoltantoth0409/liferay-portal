@@ -19,7 +19,6 @@ import Soy from 'metal-soy';
 import '../floating_toolbar/image_properties/FloatingToolbarImagePropertiesPanel.es';
 import '../floating_toolbar/link/FloatingToolbarLinkPanel.es';
 import '../floating_toolbar/mapping/FloatingToolbarMappingPanel.es';
-import '../floating_toolbar/text_properties/FloatingToolbarTextPropertiesPanel.es';
 import './FragmentEditableFieldTooltip.es';
 
 import {
@@ -41,7 +40,11 @@ import {
 	enableSavingChangesStatusAction,
 	updateLastSaveDateAction
 } from '../../actions/saveChanges.es';
-import {editableShouldBeHighlighted} from '../../utils/FragmentsEditorGetUtils.es';
+import {
+	editableIsMapped,
+	editableIsMappedToAssetEntry,
+	editableShouldBeHighlighted
+} from '../../utils/FragmentsEditorGetUtils.es';
 import {getConnectedComponent} from '../../store/ConnectedComponent.es';
 import {prefixSegmentsExperienceId} from '../../utils/prefixSegmentsExperienceId.es';
 import {setIn} from '../../utils/FragmentsEditorUpdateUtils.es';
@@ -58,37 +61,6 @@ import templates from './FragmentEditableField.soy';
  * FragmentEditableField
  */
 class FragmentEditableField extends PortletBase {
-	/**
-	 * Checks if the given editable is mapped
-	 * @param {object} editableValues
-	 * @private
-	 * @return {boolean}
-	 * @review
-	 */
-	static _isMapped(editableValues) {
-		return Boolean(
-			editableValues.mappedField ||
-				(editableValues.classNameId &&
-					editableValues.classPK &&
-					editableValues.fieldId)
-		);
-	}
-
-	/**
-	 * Checks if the given editable is mapped to an asset entry
-	 * @param {object} editableValues
-	 * @private
-	 * @return {boolean}
-	 * @review
-	 */
-	static _isMappedToAssetEntry(editableValues) {
-		return Boolean(
-			editableValues.classNameId &&
-				editableValues.classPK &&
-				editableValues.fieldId
-		);
-	}
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -134,7 +106,7 @@ class FragmentEditableField extends PortletBase {
 			segmentedValue[this.languageId] ||
 			segmentedValue[this.defaultLanguageId];
 
-		const mapped = FragmentEditableField._isMapped(this.editableValues);
+		const mapped = editableIsMapped(this.editableValues);
 
 		const value = mapped
 			? this._mappedFieldValue || this.editableValues.defaultValue
@@ -156,6 +128,7 @@ class FragmentEditableField extends PortletBase {
 			state.layoutData.structure
 		);
 		const itemId = this._getItemId();
+
 		const translated = !mapped && Boolean(segmentedValue[this.languageId]);
 
 		let nextState = state;
@@ -244,6 +217,23 @@ class FragmentEditableField extends PortletBase {
 	}
 
 	/**
+	 * Handle hoveredItemId changed
+	 * @inheritDoc
+	 * @review
+	 */
+	syncHoveredItemId() {
+		if (this.hoveredItemType === FRAGMENTS_EDITOR_ITEM_TYPES.mappedItem) {
+			const [classNameId, classPK] = this.hoveredItemId.split('-');
+
+			this._mappedItemHovered =
+				this.editableValues.classNameId === classNameId &&
+				this.editableValues.classPK === classPK;
+		} else {
+			this._mappedItemHovered = false;
+		}
+	}
+
+	/**
 	 * Clears the corresponding editor
 	 * @private
 	 * @review
@@ -252,7 +242,8 @@ class FragmentEditableField extends PortletBase {
 		this._handleEditableChanged('');
 
 		this.store.dispatch({
-			type: CLEAR_FRAGMENT_EDITOR
+			type: CLEAR_FRAGMENT_EDITOR,
+			value: ''
 		});
 	}
 
@@ -271,10 +262,6 @@ class FragmentEditableField extends PortletBase {
 				this.selectedItems.length > 1
 					? []
 					: processor.getFloatingToolbarButtons(this.editableValues),
-			classes:
-				this.editableValues.mappedField || this.editableValues.fieldId
-					? 'fragments-editor__floating-toolbar--mapped-field'
-					: '',
 			events: {
 				buttonClicked: this._handleFloatingToolbarButtonClicked
 			},
@@ -512,7 +499,7 @@ class FragmentEditableField extends PortletBase {
 	_updateMappedFieldValue() {
 		if (
 			this.getAssetFieldValueURL &&
-			FragmentEditableField._isMappedToAssetEntry(this.editableValues)
+			editableIsMappedToAssetEntry(this.editableValues)
 		) {
 			this.fetch(this.getAssetFieldValueURL, {
 				classNameId: this.editableValues.classNameId,
@@ -571,6 +558,18 @@ FragmentEditableField.STATE = {
 	 * @type {string}
 	 */
 	_mappedFieldValue: Config.internal().string(),
+
+	/**
+	 * Mapped content hovered
+	 * @instance
+	 * @memberOf FragmentEditableField
+	 * @private
+	 * @review
+	 * @type {boolean}
+	 */
+	_mappedItemHovered: Config.internal()
+		.bool()
+		.value(false),
 
 	/**
 	 * Prevent editable click effect

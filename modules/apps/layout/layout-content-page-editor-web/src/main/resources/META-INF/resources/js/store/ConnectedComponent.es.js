@@ -14,7 +14,6 @@
 
 import React, {useContext, useEffect, useState} from 'react';
 import {Config} from 'metal-state';
-
 import {connect, disconnect, Store} from './store.es';
 import INITIAL_STATE from './state.es';
 import StoreContext from './StoreContext.es';

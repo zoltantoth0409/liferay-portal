@@ -47,6 +47,7 @@ import com.liferay.journal.web.internal.servlet.taglib.util.JournalArticleAction
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalFolderActionDropdownItems;
 import com.liferay.journal.web.internal.util.JournalArticleTranslation;
 import com.liferay.journal.web.internal.util.JournalArticleTranslationRowChecker;
+import com.liferay.journal.web.internal.util.JournalChangeTrackingHelperUtil;
 import com.liferay.journal.web.internal.util.JournalPortletUtil;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
@@ -318,6 +319,19 @@ public class JournalDisplayContext {
 
 		return articleActionDropdownItemsProvider.
 			getArticleVersionActionDropdownItems();
+	}
+
+	public String getChangeListName(JournalArticle journalArticle) {
+		return JournalChangeTrackingHelperUtil.
+			getJournalArticleCTCollectionName(
+				_themeDisplay.getCompanyId(), _themeDisplay.getUserId(),
+				journalArticle.getId());
+	}
+
+	public PortletURL getChangeListURL(JournalArticle journalArticle) {
+		return JournalChangeTrackingHelperUtil.getJournalArticleCTCollectionURL(
+			_liferayPortletRequest, _themeDisplay.getCompanyId(),
+			_themeDisplay.getUserId(), journalArticle.getId());
 	}
 
 	public String[] getCharactersBlacklist() throws PortalException {
@@ -1028,6 +1042,7 @@ public class JournalDisplayContext {
 
 				if (className.equals(JournalArticle.class.getName())) {
 					JournalArticle article = null;
+					boolean visible = true;
 
 					if (!showVersions) {
 						article =
@@ -1043,9 +1058,17 @@ public class JournalDisplayContext {
 
 						article = JournalArticleLocalServiceUtil.fetchArticle(
 							groupId, articleId, version);
+
+						visible =
+							JournalChangeTrackingHelperUtil.
+								isJournalArticleInChangeList(
+									_themeDisplay.getCompanyId(),
+									_themeDisplay.getUserId(), article.getId());
 					}
 
-					results.add(article);
+					if (visible) {
+						results.add(article);
+					}
 				}
 				else if (className.equals(JournalFolder.class.getName())) {
 					results.add(
@@ -1154,6 +1177,17 @@ public class JournalDisplayContext {
 		}
 
 		return false;
+	}
+
+	public boolean isChangeListColumnVisible() {
+		return JournalChangeTrackingHelperUtil.hasActiveCTCollection(
+			_themeDisplay.getCompanyId(), _themeDisplay.getUserId());
+	}
+
+	public boolean isJournalArticleInChangeList(JournalArticle journalArticle) {
+		return JournalChangeTrackingHelperUtil.isJournalArticleInChangeList(
+			_themeDisplay.getCompanyId(), _themeDisplay.getUserId(),
+			journalArticle.getId());
 	}
 
 	public boolean isNavigationHome() {

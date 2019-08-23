@@ -20,17 +20,11 @@ import {
 	updateIn,
 	updateWidgets
 } from '../utils/FragmentsEditorUpdateUtils.es';
-import {containsFragmentEntryLinkId} from '../utils/LayoutDataList.es';
 import {
 	getDropRowPosition,
-	getRowFragmentEntryLinkIds,
 	getRowIndex
 } from '../utils/FragmentsEditorGetUtils.es';
-import {
-	removeExperience,
-	removeFragmentEntryLinks,
-	updatePageEditorLayoutData
-} from '../utils/FragmentsEditorFetchUtils.es';
+import {updatePageEditorLayoutData} from '../utils/FragmentsEditorFetchUtils.es';
 
 /**
  * @param {object} state
@@ -112,72 +106,14 @@ function moveRowReducer(state, action) {
 function removeRowReducer(state, action) {
 	let nextState = state;
 
-	return new Promise(resolve => {
-		nextState = updateIn(
-			nextState,
-			['layoutData', 'structure'],
-			structure =>
-				remove(structure, getRowIndex(structure, action.rowId)),
-			[]
-		);
+	nextState = updateIn(
+		nextState,
+		['layoutData', 'structure'],
+		structure => remove(structure, getRowIndex(structure, action.rowId)),
+		[]
+	);
 
-		const fragmentEntryLinkIds = getRowFragmentEntryLinkIds(
-			state.layoutData.structure[
-				getRowIndex(state.layoutData.structure, action.rowId)
-			]
-		);
-
-		const fragmentEntryLinkIdsToRemove = fragmentEntryLinkIds.filter(
-			fragmentEntryLinkId =>
-				!containsFragmentEntryLinkId(
-					nextState.layoutDataList,
-					fragmentEntryLinkId,
-					nextState.segmentsExperienceId ||
-						nextState.defaultSegmentsExperienceId
-				)
-		);
-
-		const fragmentEntryLinkIdsToRemoveExperience = fragmentEntryLinkIds.filter(
-			fragmentEntryLinkId =>
-				containsFragmentEntryLinkId(
-					nextState.layoutDataList,
-					fragmentEntryLinkId,
-					nextState.segmentsExperienceId ||
-						nextState.defaultSegmentsExperienceId
-				)
-		);
-
-		if (fragmentEntryLinkIdsToRemoveExperience.length > 0) {
-			removeExperience(
-				nextState.segmentsExperienceId ||
-					nextState.defaultSegmentsExperienceId,
-				fragmentEntryLinkIdsToRemoveExperience,
-				false
-			);
-		}
-
-		fragmentEntryLinkIdsToRemove.forEach(fragmentEntryLinkId => {
-			nextState = updateWidgets(nextState, fragmentEntryLinkId);
-		});
-
-		updatePageEditorLayoutData(
-			nextState.layoutData,
-			nextState.segmentsExperienceId
-		)
-			.then(() =>
-				removeFragmentEntryLinks(
-					nextState.layoutData,
-					fragmentEntryLinkIdsToRemove,
-					nextState.segmentsExperienceId
-				)
-			)
-			.then(() => {
-				resolve(nextState);
-			})
-			.catch(() => {
-				resolve(state);
-			});
-	});
+	return nextState;
 }
 
 /**
@@ -194,9 +130,7 @@ function updateRowColumnsNumberReducer(state, action) {
 
 	nextState = setIn(nextState, ['layoutData'], action.layoutData);
 
-	action.fragmentEntryLinkIdsToRemove.forEach(fragmentEntryLinkId => {
-		nextState = updateWidgets(nextState, fragmentEntryLinkId);
-	});
+	nextState = updateWidgets(nextState, action.fragmentEntryLinkIdsToRemove);
 
 	return nextState;
 }

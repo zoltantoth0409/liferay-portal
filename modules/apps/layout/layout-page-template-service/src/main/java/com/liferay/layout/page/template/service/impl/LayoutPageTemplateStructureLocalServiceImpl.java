@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.segments.constants.SegmentsConstants;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 
 import java.util.Date;
 import java.util.List;
@@ -101,7 +101,7 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 			_layoutPageTemplateStructureRelLocalService.
 				addLayoutPageTemplateStructureRel(
 					userId, groupId, layoutPageTemplateStructureId,
-					SegmentsConstants.SEGMENTS_EXPERIENCE_ID_DEFAULT, data,
+					SegmentsExperienceConstants.ID_DEFAULT, data,
 					serviceContext);
 		}
 
@@ -260,7 +260,7 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 		return layoutPageTemplateStructureLocalService.
 			updateLayoutPageTemplateStructure(
 				groupId, classNameId, classPK,
-				SegmentsConstants.SEGMENTS_EXPERIENCE_ID_DEFAULT, data);
+				SegmentsExperienceConstants.ID_DEFAULT, data);
 	}
 
 	private void _updateClassedModel(long classNameId, long classPK)

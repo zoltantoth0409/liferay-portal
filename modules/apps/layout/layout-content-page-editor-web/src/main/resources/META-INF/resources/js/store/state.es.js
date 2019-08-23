@@ -105,9 +105,15 @@ const INITIAL_STATE = {
 
 	availableAssets: Config.arrayOf(
 		Config.shapeOf({
-			assetBrowserURL: Config.string(),
+			availableTemplates: Config.arrayOf(
+				Config.shapeOf({
+					key: Config.string(),
+					label: Config.string()
+				})
+			),
 			className: Config.string(),
 			classNameId: Config.string(),
+			href: Config.string(),
 			name: Config.string()
 		})
 	).value([]),
@@ -169,6 +175,14 @@ const INITIAL_STATE = {
 	 * @type {string}
 	 */
 	classPK: Config.string().value(''),
+
+	/**
+	 * Flag indicating if the Create Content dialog should be shown
+	 * @default false
+	 * @review
+	 * @type {boolean}
+	 */
+	createContentDialogVisible: Config.bool().value(false),
 
 	/**
 	 * Default configurations for AlloyEditor instances.
@@ -278,6 +292,16 @@ const INITIAL_STATE = {
 	 * @type {string}
 	 */
 	editFragmentEntryLinkURL: Config.string().value(''),
+
+	/**
+	 * URL for updating a distinct fragment entries of the editor.
+	 * @default ''
+	 * @instance
+	 * @review
+	 * @type {string}
+	 */
+	editFragmentEntryLinksURL: Config.string().value(''),
+
 	/**
 	 * Available elements that can be dragged inside the existing Page Template,
 	 * organized by fragment categories.
@@ -288,6 +312,7 @@ const INITIAL_STATE = {
 	 *   fragmentEntries: Array<{
 	 *     fragmentEntryKey: !string,
 	 *     imagePreviewURL: string,
+	 *     groupId: string,
 	 *     name: !string
 	 *   }>,
 	 *   name: !string
@@ -299,6 +324,7 @@ const INITIAL_STATE = {
 			fragmentEntries: Config.arrayOf(
 				Config.shapeOf({
 					fragmentEntryKey: Config.string().required(),
+					groupId: Config.string().value(''),
 					imagePreviewURL: Config.string(),
 					name: Config.string().required()
 				})
@@ -380,6 +406,23 @@ const INITIAL_STATE = {
 	getAssetMappingFieldsURL: Config.string().value(''),
 
 	/**
+	 * URL for obtaining the content structures
+	 * created.
+	 * @default '''
+	 * @review
+	 * @type {string}
+	 */
+	getContentStructuresURL: Config.string().value(''),
+
+	/**
+	 * Get portlets used in a particular experience
+	 * @default undefined
+	 * @review
+	 * @type {string}
+	 */
+	getExperienceUsedPortletsURL: Config.string().value(''),
+
+	/**
 	 * URL for obtaining the asset types for which info display pages can be
 	 * created.
 	 * @default '''
@@ -396,6 +439,14 @@ const INITIAL_STATE = {
 	 * @type {string}
 	 */
 	getInfoDisplayContributorsURL: Config.string().value(''),
+
+	/**
+	 * Get mapped content url
+	 * @default undefined
+	 * @review
+	 * @type {string}
+	 */
+	getMappedContentsURL: Config.string().value(''),
 
 	/**
 	 * Id of the last element that was hovered
@@ -474,6 +525,23 @@ const INITIAL_STATE = {
 	mappedAssetEntries: Config.array().value([]),
 
 	/**
+	 * @default []
+	 * @review
+	 * @type {Array<{name: string, status: { label: string, style: string }, title: string, usagesCount: number}>}
+	 */
+	mappedContents: Config.arrayOf(
+		Config.shapeOf({
+			name: Config.string(),
+			status: Config.shapeOf({
+				label: Config.string(),
+				style: Config.string()
+			}),
+			title: Config.string(),
+			usagesCount: Config.number()
+		})
+	).value([]),
+
+	/**
 	 * URL for getting the list of mapping fields
 	 * @default ''
 	 * @review
@@ -529,6 +597,7 @@ const INITIAL_STATE = {
 	 *   fragmentEntries: Array<{
 	 *     fragmentEntryKey: !string,
 	 *     imagePreviewURL: string,
+	 *     groupId: string,
 	 *     name: !string
 	 *   }>,
 	 *   name: !string
@@ -540,6 +609,7 @@ const INITIAL_STATE = {
 			fragmentEntries: Config.arrayOf(
 				Config.shapeOf({
 					fragmentEntryKey: Config.string().required(),
+					groupId: Config.string().value(''),
 					imagePreviewURL: Config.string(),
 					name: Config.string().required()
 				}).required()

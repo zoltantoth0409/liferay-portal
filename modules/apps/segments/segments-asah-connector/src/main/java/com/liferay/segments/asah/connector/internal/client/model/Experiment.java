@@ -57,6 +57,11 @@ public final class Experiment {
 		return _dxpExperienceName;
 	}
 
+	@JsonProperty("dxpLayoutId")
+	public String getDXPLayoutId() {
+		return _dxpLayoutId;
+	}
+
 	@JsonProperty("dxpSegmentId")
 	public String getDXPSegmentId() {
 		return _dxpSegmentId;
@@ -106,6 +111,10 @@ public final class Experiment {
 		return _name;
 	}
 
+	public String getPageRelativePath() {
+		return _pageRelativePath;
+	}
+
 	public String getPageTitle() {
 		return _pageTitle;
 	}
@@ -148,6 +157,10 @@ public final class Experiment {
 		_dxpExperienceName = dxpExperienceName;
 	}
 
+	public void setDXPLayoutId(String dxpLayoutId) {
+		_dxpLayoutId = dxpLayoutId;
+	}
+
 	public void setDXPSegmentId(String dxpSegmentId) {
 		_dxpSegmentId = dxpSegmentId;
 	}
@@ -186,6 +199,10 @@ public final class Experiment {
 		_name = name;
 	}
 
+	public void setPageRelativePath(String pageRelativePath) {
+		_pageRelativePath = pageRelativePath;
+	}
+
 	public void setPageTitle(String pageTitle) {
 		_pageTitle = pageTitle;
 	}
@@ -205,6 +222,7 @@ public final class Experiment {
 	private String _description;
 	private String _dxpExperienceId;
 	private String _dxpExperienceName;
+	private String _dxpLayoutId;
 	private String _dxpSegmentId;
 	private String _dxpSegmentName;
 	private List<DXPVariant> _dxpVariants;
@@ -214,6 +232,7 @@ public final class Experiment {
 	private String _id;
 	private Date _modifiedDate;
 	private String _name;
+	private String _pageRelativePath;
 	private String _pageTitle;
 	private String _pageURL;
 	private Date _startedDate;

@@ -17,10 +17,12 @@ package com.liferay.data.engine.rest.internal.graphql.query.v1_0;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
+import com.liferay.data.engine.rest.dto.v1_0.DataListView;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
+import com.liferay.data.engine.rest.resource.v1_0.DataListViewResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.function.UnsafeConsumer;
@@ -68,6 +70,14 @@ public class Query {
 
 		_dataLayoutResourceComponentServiceObjects =
 			dataLayoutResourceComponentServiceObjects;
+	}
+
+	public static void setDataListViewResourceComponentServiceObjects(
+		ComponentServiceObjects<DataListViewResource>
+			dataListViewResourceComponentServiceObjects) {
+
+		_dataListViewResourceComponentServiceObjects =
+			dataListViewResourceComponentServiceObjects;
 	}
 
 	public static void setDataRecordResourceComponentServiceObjects(
@@ -224,6 +234,47 @@ public class Query {
 			this::_populateResourceContext,
 			dataLayoutResource -> dataLayoutResource.getSiteDataLayout(
 				siteId, dataLayoutKey));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataDefinitionDataListViews(dataDefinitionId: ___, keywords: ___, page: ___, pageSize: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField
+	public DataListViewPage dataDefinitionDataListViews(
+			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
+			@GraphQLName("keywords") String keywords,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page,
+			@GraphQLName("sort") String sortsString)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataListViewResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataListViewResource -> new DataListViewPage(
+				dataListViewResource.getDataDefinitionDataListViewsPage(
+					dataDefinitionId, keywords, Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(
+						dataListViewResource, sortsString))));
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataListView(dataListViewId: ___){appliedFilters, dataDefinitionId, dateCreated, dateModified, fieldNames, id, name, siteId, sortField, userId}}"}' -u 'test@liferay.com:test'
+	 */
+	@GraphQLField
+	public DataListView dataListView(
+			@GraphQLName("dataListViewId") Long dataListViewId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataListViewResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataListViewResource -> dataListViewResource.getDataListView(
+				dataListViewId));
 	}
 
 	/**
@@ -404,6 +455,38 @@ public class Query {
 		}
 
 		private DataRecordCollection _dataRecordCollection;
+
+	}
+
+	@GraphQLTypeExtension(DataDefinition.class)
+	public class GetDataDefinitionDataListViewsPageTypeExtension {
+
+		public GetDataDefinitionDataListViewsPageTypeExtension(
+			DataDefinition dataDefinition) {
+
+			_dataDefinition = dataDefinition;
+		}
+
+		@GraphQLField
+		public DataListViewPage dataListViews(
+				@GraphQLName("keywords") String keywords,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_dataListViewResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				dataListViewResource -> new DataListViewPage(
+					dataListViewResource.getDataDefinitionDataListViewsPage(
+						_dataDefinition.getId(), keywords,
+						Pagination.of(page, pageSize),
+						_sortsBiFunction.apply(
+							dataListViewResource, sortsString))));
+		}
+
+		private DataDefinition _dataDefinition;
 
 	}
 
@@ -622,6 +705,30 @@ public class Query {
 
 	}
 
+	@GraphQLName("DataListViewPage")
+	public class DataListViewPage {
+
+		public DataListViewPage(Page dataListViewPage) {
+			items = dataListViewPage.getItems();
+			page = dataListViewPage.getPage();
+			pageSize = dataListViewPage.getPageSize();
+			totalCount = dataListViewPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<DataListView> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
 	@GraphQLName("DataRecordPage")
 	public class DataRecordPage {
 
@@ -714,6 +821,19 @@ public class Query {
 		dataLayoutResource.setContextUser(_user);
 	}
 
+	private void _populateResourceContext(
+			DataListViewResource dataListViewResource)
+		throws Exception {
+
+		dataListViewResource.setContextAcceptLanguage(_acceptLanguage);
+		dataListViewResource.setContextCompany(_company);
+		dataListViewResource.setContextHttpServletRequest(_httpServletRequest);
+		dataListViewResource.setContextHttpServletResponse(
+			_httpServletResponse);
+		dataListViewResource.setContextUriInfo(_uriInfo);
+		dataListViewResource.setContextUser(_user);
+	}
+
 	private void _populateResourceContext(DataRecordResource dataRecordResource)
 		throws Exception {
 
@@ -743,6 +863,8 @@ public class Query {
 		_dataDefinitionResourceComponentServiceObjects;
 	private static ComponentServiceObjects<DataLayoutResource>
 		_dataLayoutResourceComponentServiceObjects;
+	private static ComponentServiceObjects<DataListViewResource>
+		_dataListViewResourceComponentServiceObjects;
 	private static ComponentServiceObjects<DataRecordResource>
 		_dataRecordResourceComponentServiceObjects;
 	private static ComponentServiceObjects<DataRecordCollectionResource>

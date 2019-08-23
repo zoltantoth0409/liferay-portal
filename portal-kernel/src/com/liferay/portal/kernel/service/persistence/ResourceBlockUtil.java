@@ -189,16 +189,16 @@ public class ResourceBlockUtil {
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	public static List<ResourceBlock> findByC_N(
 		long companyId, String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByC_N(
-			companyId, name, start, end, orderByComparator, useFinderCache);
+			companyId, name, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -383,17 +383,17 @@ public class ResourceBlockUtil {
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	public static List<ResourceBlock> findByC_G_N(
 		long companyId, long groupId, String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByC_G_N(
 			companyId, groupId, name, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -558,15 +558,15 @@ public class ResourceBlockUtil {
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param permissionsHash the permissions hash
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	public static ResourceBlock fetchByC_G_N_P(
 		long companyId, long groupId, String name, String permissionsHash,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().fetchByC_G_N_P(
-			companyId, groupId, name, permissionsHash, useFinderCache);
+			companyId, groupId, name, permissionsHash, retrieveFromCache);
 	}
 
 	/**
@@ -726,15 +726,15 @@ public class ResourceBlockUtil {
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of resource blocks
 	 */
 	public static List<ResourceBlock> findAll(
 		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+			start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

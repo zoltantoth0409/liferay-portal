@@ -17,8 +17,8 @@ package com.liferay.journal.internal.util;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.service.JournalArticleService;
-import com.liferay.layouts.admin.kernel.util.SitemapURLProvider;
-import com.liferay.layouts.admin.kernel.util.SitemapUtil;
+import com.liferay.layout.admin.kernel.util.Sitemap;
+import com.liferay.layout.admin.kernel.util.SitemapURLProvider;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
@@ -74,27 +74,6 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		visitArticles(element, layoutSet, themeDisplay, journalArticles);
 	}
 
-	@Reference(unbind = "-")
-	protected void setJournalArticleService(
-		JournalArticleService journalArticleService) {
-
-		_journalArticleService = journalArticleService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setLayoutLocalService(
-		LayoutLocalService layoutLocalService) {
-
-		_layoutLocalService = layoutLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setLayoutSetLocalService(
-		LayoutSetLocalService layoutSetLocalService) {
-
-		_layoutSetLocalService = layoutSetLocalService;
-	}
-
 	protected void visitArticles(
 			Element element, LayoutSet layoutSet, ThemeDisplay themeDisplay,
 			List<JournalArticle> journalArticles)
@@ -143,11 +122,11 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 			String articleURL = _portal.getCanonicalURL(
 				sb.toString(), themeDisplay, layout);
 
-			Map<Locale, String> alternateURLs = SitemapUtil.getAlternateURLs(
+			Map<Locale, String> alternateURLs = _sitemap.getAlternateURLs(
 				articleURL, themeDisplay, layout);
 
 			for (String alternateURL : alternateURLs.values()) {
-				SitemapUtil.addURLElement(
+				_sitemap.addURLElement(
 					element, alternateURL, null,
 					journalArticle.getModifiedDate(), articleURL,
 					alternateURLs);
@@ -157,11 +136,19 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		}
 	}
 
+	@Reference
 	private JournalArticleService _journalArticleService;
+
+	@Reference
 	private LayoutLocalService _layoutLocalService;
+
+	@Reference
 	private LayoutSetLocalService _layoutSetLocalService;
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private Sitemap _sitemap;
 
 }

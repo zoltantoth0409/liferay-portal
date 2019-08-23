@@ -16,6 +16,7 @@ package com.liferay.asset.info.display.contributor.util;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
+import com.liferay.info.display.contributor.field.ExpandoInfoDisplayContributorField;
 import com.liferay.info.display.contributor.field.InfoDisplayContributorField;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 
@@ -25,7 +26,10 @@ import java.util.List;
 
 /**
  * @author Pavel Savinov
+ * @deprecated As of Mueller (7.2.x), replaced by {@link
+ *             com.liferay.info.display.field.ExpandoInfoDisplayFieldProvider
  */
+@Deprecated
 public class ExpandoInfoDisplayContributorFieldUtil {
 
 	public static List<InfoDisplayContributorField>

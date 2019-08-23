@@ -183,16 +183,16 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByLayoutSetId(
 		long layoutSetId, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByLayoutSetId(
-			layoutSetId, start, end, orderByComparator, useFinderCache);
+			layoutSetId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -334,14 +334,14 @@ public class LayoutSetVersionUtil {
 	 *
 	 * @param layoutSetId the layout set ID
 	 * @param version the version
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching layout set version, or <code>null</code> if a matching layout set version could not be found
 	 */
 	public static LayoutSetVersion fetchByLayoutSetId_Version(
-		long layoutSetId, int version, boolean useFinderCache) {
+		long layoutSetId, int version, boolean retrieveFromCache) {
 
 		return getPersistence().fetchByLayoutSetId_Version(
-			layoutSetId, version, useFinderCache);
+			layoutSetId, version, retrieveFromCache);
 	}
 
 	/**
@@ -434,16 +434,16 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, useFinderCache);
+			groupId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -610,16 +610,16 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByGroupId_Version(
 		long groupId, int version, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByGroupId_Version(
-			groupId, version, start, end, orderByComparator, useFinderCache);
+			groupId, version, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -797,17 +797,17 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByLayoutSetPrototypeUuid(
 		String layoutSetPrototypeUuid, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByLayoutSetPrototypeUuid(
 			layoutSetPrototypeUuid, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -987,17 +987,17 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByLayoutSetPrototypeUuid_Version(
 		String layoutSetPrototypeUuid, int version, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByLayoutSetPrototypeUuid_Version(
 			layoutSetPrototypeUuid, version, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -1187,17 +1187,17 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByG_P(
 			groupId, privateLayout, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -1350,15 +1350,15 @@ public class LayoutSetVersionUtil {
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param version the version
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching layout set version, or <code>null</code> if a matching layout set version could not be found
 	 */
 	public static LayoutSetVersion fetchByG_P_Version(
 		long groupId, boolean privateLayout, int version,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().fetchByG_P_Version(
-			groupId, privateLayout, version, useFinderCache);
+			groupId, privateLayout, version, retrieveFromCache);
 	}
 
 	/**
@@ -1459,17 +1459,17 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByP_L(
 		boolean privateLayout, long logoId, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByP_L(
 			privateLayout, logoId, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -1655,17 +1655,17 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching layout set versions
 	 */
 	public static List<LayoutSetVersion> findByP_L_Version(
 		boolean privateLayout, long logoId, int version, int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findByP_L_Version(
 			privateLayout, logoId, version, start, end, orderByComparator,
-			useFinderCache);
+			retrieveFromCache);
 	}
 
 	/**
@@ -1917,16 +1917,16 @@ public class LayoutSetVersionUtil {
 	 * @param start the lower bound of the range of layout set versions
 	 * @param end the upper bound of the range of layout set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of layout set versions
 	 */
 	public static List<LayoutSetVersion> findAll(
 		int start, int end,
 		OrderByComparator<LayoutSetVersion> orderByComparator,
-		boolean useFinderCache) {
+		boolean retrieveFromCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+			start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

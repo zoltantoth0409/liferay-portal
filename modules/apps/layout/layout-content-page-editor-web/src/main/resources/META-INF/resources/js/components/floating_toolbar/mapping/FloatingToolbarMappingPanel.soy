@@ -47,7 +47,7 @@
 		{if $mappingFieldsURL}
 			<div class="form-group">
 				{call .sourceTypeSelect}
-					{param handleSourceOptionChange: $_handleSourceTypeChange /}
+					{param handleSourceTypeChange: $_handleSourceTypeChange /}
 					{param sourceTypes: $_sourceTypes /}
 					{param selectedSourceTypeId: $_selectedSourceTypeId /}
 				{/call}
@@ -110,7 +110,7 @@
 		{call .selectOption}
 			{param optionId: '' /}
 			{param optionLabel: $unmappedLabel /}
-			{param selectedId: $mappedFieldId or $unmappedLabel /}
+			{param selectedId: $mappedFieldId ?: '' /}
 		{/call}
 
 		{foreach $field in $fields}
@@ -149,7 +149,7 @@
  * Source select
  */
 {template .sourceTypeSelect}
-	{@param? handleSourceOptionChange: any}
+	{@param? handleSourceTypeChange: any}
 	{@param? sourceTypes: ?}
 	{@param? selectedSourceTypeId: string}
 
@@ -159,7 +159,7 @@
 
 	<select
 		class="form-control form-control-sm"
-		data-onchange="{$handleSourceOptionChange}"
+		data-onchange="{$handleSourceTypeChange}"
 		id="floatingToolbarMappingPanelSourceTypeSelect"
 	>
 		{foreach $sourceType in $sourceTypes}

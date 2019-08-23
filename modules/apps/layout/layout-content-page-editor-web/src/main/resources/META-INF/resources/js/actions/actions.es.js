@@ -14,6 +14,8 @@
 
 export const ADD_MAPPED_ASSET_ENTRY = 'addMappedAssetEntry';
 
+export const UPDATE_MAPPED_CONTENTS = 'updateMappedContents';
+
 export const HIDE_MAPPING_TYPE_DIALOG = 'hideMappingTypeDialog';
 export const OPEN_ASSET_TYPE_DIALOG = 'openAssetTypeDialog';
 export const OPEN_MAPPING_FIELDS_DIALOG = 'openMappingFieldsDialog';
@@ -80,3 +82,5 @@ export const UPDATE_HOVERED_ITEM = 'updateHoveredItem';
 export const CLEAR_FRAGMENT_EDITOR = 'clearFragmentEditor';
 export const DISABLE_FRAGMENT_EDITOR = 'disableFragmentEditor';
 export const ENABLE_FRAGMENT_EDITOR = 'enableFragmentEditor';
+
+export const UPDATE_WIDGETS = 'updateWidgets';
