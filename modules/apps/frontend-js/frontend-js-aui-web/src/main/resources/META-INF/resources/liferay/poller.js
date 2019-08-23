@@ -165,6 +165,9 @@ AUI.add(
 				data.append('pollerRequest', requestStr);
 
 				Liferay.Util.fetch(_getReceiveUrl(), {
+					body: JSON.stringify({
+						pollerRequest: requestStr
+					}),
 					body: data,
 					method: 'POST'
 				})
