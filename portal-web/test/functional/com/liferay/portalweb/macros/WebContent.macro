@@ -498,9 +498,13 @@ definition {
 				value1 = "${siteName}");
 		}
 
-		Click(locator1 = "Icon#DISPLAY_STYLE_ICON");
+		if (!(IsElementPresent(locator1 = "ItemSelector#SELECT_FILE_IMAGE_PREVIEW"))) {
+			Click(locator1 = "Icon#DISPLAY_STYLE_DESCRIPTIVE");
 
-		AssertElementPresent(locator1 = "Icon#DISPLAY_STYLE_ICON_ACTIVE");
+			Click(locator1 = "Icon#DISPLAY_STYLE_ICON");
+
+			AssertElementPresent(locator1 = "Icon#DISPLAY_STYLE_ICON_ACTIVE");
+		}
 
 		Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_PREVIEW");
 
