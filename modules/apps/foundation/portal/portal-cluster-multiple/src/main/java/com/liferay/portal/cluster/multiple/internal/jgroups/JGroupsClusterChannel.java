@@ -177,7 +177,7 @@ public class JGroupsClusterChannel implements ClusterChannel {
 
 		if (message == null) {
 			throw new IllegalArgumentException(
-				"Message sent to address " + address + " can not be null");
+				"Message sent to address " + address + " cannot be null");
 		}
 
 		try {
