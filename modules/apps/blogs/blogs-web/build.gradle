@@ -3,7 +3,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api", version: "5.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.asset.info.display.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "5.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.item.selector.api", version: "3.0.0"
@@ -21,7 +20,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "4.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.taglib", version: "3.0.0"
@@ -50,4 +48,7 @@ dependencies {
 	compileOnly group: "javax.servlet.jsp", name: "javax.servlet.jsp-api", version: "2.3.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly project(":apps:asset:asset-info-display-api")
+	compileOnly project(":apps:info:info-api")
+	compileOnly project(":apps:sharing:sharing-api")
 }
