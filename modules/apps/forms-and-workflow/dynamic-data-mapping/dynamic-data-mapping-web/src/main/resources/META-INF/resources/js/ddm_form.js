@@ -399,10 +399,15 @@ AUI.add(
 								localizationMap[locale] = predefinedValue;
 							}
 							else {
+								var defaultInstanceLocale = themeDisplay.getLanguageId();
+
 								var defaultLocale = instance.getDefaultLocale();
 
 								if (defaultLocale && localizationMap[defaultLocale]) {
 									localizationMap[locale] = localizationMap[defaultLocale];
+								}
+								else if (defaultInstanceLocale && localizationMap[defaultInstanceLocale]) {
+									localizationMap[locale] = localizationMap[defaultInstanceLocale];
 								}
 								else {
 									localizationMap[locale] = '';
