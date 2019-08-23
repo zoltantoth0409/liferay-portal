@@ -640,7 +640,8 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 	@Override
 	public List<Layout> getLayouts(long groupId, boolean privateLayout) {
-		return layoutPersistence.filterFindByG_P(groupId, privateLayout);
+		return layoutPersistence.filterFindByG_P_Head(
+			groupId, privateLayout, false);
 	}
 
 	@Override
@@ -679,27 +680,29 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 	@Override
 	public List<Layout> getLayouts(long groupId, String type) {
-		return layoutPersistence.filterFindByG_T(groupId, type);
+		return layoutPersistence.filterFindByG_T_Head(groupId, type, false);
 	}
 
 	@Override
 	public List<Layout> getLayouts(
 		long groupId, String type, int start, int end) {
 
-		return layoutPersistence.filterFindByG_T(groupId, type, start, end);
+		return layoutPersistence.filterFindByG_T_Head(
+			groupId, type, false, start, end);
 	}
 
 	@Override
 	public int getLayoutsCount(long groupId, boolean privateLayout) {
-		return layoutPersistence.filterCountByG_P(groupId, privateLayout);
+		return layoutPersistence.filterCountByG_P_Head(
+			groupId, privateLayout, false);
 	}
 
 	@Override
 	public int getLayoutsCount(
 		long groupId, boolean privateLayout, long parentLayoutId) {
 
-		return layoutPersistence.filterCountByG_P_P(
-			groupId, privateLayout, parentLayoutId);
+		return layoutPersistence.filterCountByG_P_P_Head(
+			groupId, privateLayout, parentLayoutId, false);
 	}
 
 	@Override
@@ -707,13 +710,13 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 		long groupId, boolean privateLayout, long parentLayoutId,
 		int priority) {
 
-		return layoutPersistence.filterCountByG_P_P_LtP(
-			groupId, privateLayout, parentLayoutId, priority);
+		return layoutPersistence.filterCountByG_P_P_LtP_Head(
+			groupId, privateLayout, parentLayoutId, priority, false);
 	}
 
 	@Override
 	public int getLayoutsCount(long groupId, String type) {
-		return layoutPersistence.filterCountByG_T(groupId, type);
+		return layoutPersistence.filterCountByG_T_Head(groupId, type, false);
 	}
 
 	@Override

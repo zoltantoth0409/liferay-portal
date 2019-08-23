@@ -27,7 +27,9 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.admin.util.OmniadminUtil;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +50,17 @@ public abstract class BasePermissionChecker implements PermissionChecker {
 		return PermissionChecker.DEFAULT_ROLE_IDS;
 	}
 
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	@Override
+	public List<Long> getOwnerResourceBlockIds(
+		long companyId, long groupId, String name, String actionId) {
+
+		return Collections.emptyList();
+	}
+
 	@Override
 	public long getOwnerRoleId() {
 		return ownerRole.getRoleId();
@@ -56,6 +69,18 @@ public abstract class BasePermissionChecker implements PermissionChecker {
 	@Override
 	public Map<Object, Object> getPermissionChecksMap() {
 		return _permissionChecksMap;
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	@Override
+	public List<Long> getResourceBlockIds(
+		long companyId, long groupId, long userId, String name,
+		String actionId) {
+
+		return Collections.emptyList();
 	}
 
 	@Override

@@ -79,12 +79,14 @@ public class LayoutCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(71);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("{mvccVersion=");
 		sb.append(mvccVersion);
 		sb.append(", uuid=");
 		sb.append(uuid);
+		sb.append(", headId=");
+		sb.append(headId);
 		sb.append(", plid=");
 		sb.append(plid);
 		sb.append(", groupId=");
@@ -169,6 +171,8 @@ public class LayoutCacheModel
 			layoutImpl.setUuid(uuid);
 		}
 
+		layoutImpl.setHeadId(headId);
+		layoutImpl.setHead(head);
 		layoutImpl.setPlid(plid);
 		layoutImpl.setGroupId(groupId);
 		layoutImpl.setCompanyId(companyId);
@@ -326,6 +330,10 @@ public class LayoutCacheModel
 		mvccVersion = objectInput.readLong();
 		uuid = objectInput.readUTF();
 
+		headId = objectInput.readLong();
+
+		head = objectInput.readBoolean();
+
 		plid = objectInput.readLong();
 
 		groupId = objectInput.readLong();
@@ -385,6 +393,10 @@ public class LayoutCacheModel
 		else {
 			objectOutput.writeUTF(uuid);
 		}
+
+		objectOutput.writeLong(headId);
+
+		objectOutput.writeBoolean(head);
 
 		objectOutput.writeLong(plid);
 
@@ -523,6 +535,8 @@ public class LayoutCacheModel
 
 	public long mvccVersion;
 	public String uuid;
+	public long headId;
+	public boolean head;
 	public long plid;
 	public long groupId;
 	public long companyId;

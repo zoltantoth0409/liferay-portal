@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.UserBag;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,6 +44,13 @@ public class DummyPermissionChecker implements PermissionChecker {
 	}
 
 	@Override
+	public List<Long> getOwnerResourceBlockIds(
+		long companyId, long groupId, String name, String actionId) {
+
+		return null;
+	}
+
+	@Override
 	public long getOwnerRoleId() {
 		return 0;
 	}
@@ -50,6 +58,14 @@ public class DummyPermissionChecker implements PermissionChecker {
 	@Override
 	public Map<Object, Object> getPermissionChecksMap() {
 		return _permissionChecksMap;
+	}
+
+	@Override
+	public List<Long> getResourceBlockIds(
+		long companyId, long groupId, long userId, String name,
+		String actionId) {
+
+		return null;
 	}
 
 	@Override

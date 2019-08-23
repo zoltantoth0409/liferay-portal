@@ -12,25 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.upgrade.v7_3_x;
+package com.liferay.portal.kernel.service.persistence;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.v7_3_x.util.LayoutTable;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * @author Preston Crary
+ * @author Brian Wing Shun Chan
+ * @deprecated As of Judson (7.1.x), with no direct replacement
+ * @generated
  */
-public class UpgradeLayout extends UpgradeProcess {
+@Deprecated
+@ProviderType
+public interface ResourceBlockFinder {
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		if (hasColumn("Layout", "headId") || hasColumn("Layout", "head")) {
-			alter(
-				LayoutTable.class, new AlterTableDropColumn("headId"),
-				new AlterTableDropColumn("head"));
-		}
-
-		runSQL("DROP_TABLE_IF_EXISTS(LayoutVersion)");
-	}
+	public com.liferay.portal.kernel.security.permission.ResourceBlockIdsBag
+		findByC_G_N_R(
+			long companyId, long groupId, String name, long[] roleIds);
 
 }

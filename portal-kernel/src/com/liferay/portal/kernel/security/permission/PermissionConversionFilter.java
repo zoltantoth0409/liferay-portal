@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.security.permission;
 
 import com.liferay.portal.kernel.model.ResourcePermission;
+import com.liferay.portal.kernel.model.ResourceTypePermission;
 import com.liferay.portal.kernel.model.Role;
 
 /**
@@ -23,5 +24,7 @@ import com.liferay.portal.kernel.model.Role;
 public interface PermissionConversionFilter {
 
 	public boolean accept(Role role, ResourcePermission resourcePermission);
+
+	public boolean accept(Role role, ResourceTypePermission resourcePermission);
 
 }

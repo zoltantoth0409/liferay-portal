@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.portal.upgrade.v7_3_x;
-
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.v7_3_x.util.LayoutSetTable;
+package com.liferay.portal.kernel.exception;
 
 /**
- * @author Preston Crary
+ * @author Connor McKay
  */
-public class UpgradeLayoutSet extends UpgradeProcess {
+public class ResourceBlocksNotSupportedException extends SystemException {
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		if (hasColumn("LayoutSet", "headId") ||
-			hasColumn("LayoutSet", "head")) {
+	public ResourceBlocksNotSupportedException() {
+	}
 
-			alter(
-				LayoutSetTable.class, new AlterTableDropColumn("headId"),
-				new AlterTableDropColumn("head"));
-		}
+	public ResourceBlocksNotSupportedException(String msg) {
+		super(msg);
+	}
 
-		runSQL("DROP_TABLE_IF_EXISTS(LayoutSetVersion)");
+	public ResourceBlocksNotSupportedException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public ResourceBlocksNotSupportedException(Throwable cause) {
+		super(cause);
 	}
 
 }

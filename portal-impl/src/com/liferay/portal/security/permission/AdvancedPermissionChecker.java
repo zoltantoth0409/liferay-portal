@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
+import com.liferay.portal.kernel.security.permission.ResourceBlockIdsBag;
 import com.liferay.portal.kernel.security.permission.UserBag;
 import com.liferay.portal.kernel.security.permission.UserBagFactoryUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -59,6 +60,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -76,6 +78,17 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 	@Override
 	public AdvancedPermissionChecker clone() {
 		return new AdvancedPermissionChecker();
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	public ResourceBlockIdsBag getGuestResourceBlockIdsBag(
+			long companyId, long groupId, String name)
+		throws Exception {
+
+		return null;
 	}
 
 	@Override
@@ -111,6 +124,50 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 		}
 
 		return roleIds;
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	@Override
+	public List<Long> getOwnerResourceBlockIds(
+		long companyId, long groupId, String name, String actionId) {
+
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	public ResourceBlockIdsBag getOwnerResourceBlockIdsBag(
+		long companyId, long groupId, String name) {
+
+		return null;
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	@Override
+	public List<Long> getResourceBlockIds(
+		long companyId, long groupId, long userId, String name,
+		String actionId) {
+
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
+	@Deprecated
+	public ResourceBlockIdsBag getResourceBlockIdsBag(
+			long companyId, long groupId, String name, long[] roleIds)
+		throws Exception {
+
+		return null;
 	}
 
 	@Override

@@ -124,6 +124,7 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 		_assertTableAndColumn(dbInspector, "Counter", "name");
 		_assertTableAndColumn(dbInspector, "Lock_", "className");
 		_assertTableAndColumn(dbInspector, "ResourceAction", "name");
+		_assertTableAndColumn(dbInspector, "ResourceBlock", "name");
 		_assertTableAndColumn(dbInspector, "ResourcePermission", "name");
 		_assertTableAndColumn(dbInspector, "ListType", "type_");
 		_assertTableAndColumn(
