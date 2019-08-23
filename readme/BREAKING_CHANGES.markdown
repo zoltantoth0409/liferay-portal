@@ -643,3 +643,28 @@ References to Hong Kong and Macau should be done with their corresponding
 
 After the handover of Hong Kong in 1997 and of Macau in 1999, Hong Kong and
 Macau are now the special administrative regions of China.
+
+---------------------------------------
+
+### Upgrade JGroups from 3.6.16 to 4.1.1
+- **Date:** 2019-Aug-15
+- **JIRA Ticket:** [LPS-97897](https://issues.liferay.com/browse/LPS-97897)
+
+#### What changed?
+
+Upgrad JGroups from 3.6.16 to 4.1.1
+
+#### Who is affected?
+
+This affects anyone who is using cluster.
+
+#### How should I update my code?
+
+`cluster.link.channel.properties.*` (in portal.properties) no longer accepts connection
+string as a value, now requires a file path to a configuration xml file. Some of the
+protocol properties from 3.6.16 are removed and no long parsed by 4.1.1, you should
+update the protocol properties accordingly.
+
+#### Why was this change made?
+
+The upgrade is needed to fix a security issue.
