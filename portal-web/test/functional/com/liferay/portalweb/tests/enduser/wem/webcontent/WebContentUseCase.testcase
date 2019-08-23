@@ -1041,6 +1041,7 @@ definition {
 	@description = "This is a use case for LPS-82492."
 	@priority = "5"
 	test AddWebContentFromImportedStructureAndTemplate {
+		property test.name.skip.portal.instance = "WebContentUseCase#AddWebContentFromImportedStructureAndTemplate ";
 		property testray.component.names = "Training";
 
 		ProductMenu.gotoPortlet(
