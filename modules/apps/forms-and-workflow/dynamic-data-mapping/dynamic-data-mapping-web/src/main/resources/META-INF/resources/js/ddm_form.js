@@ -2954,7 +2954,7 @@ AUI.add(
 
 						radioNodes.set('checked', false);
 
-						if (Lang.isString(value)) {
+						if (Lang.isString(value) && value != '') {
 							value = JSON.parse(value);
 						}
 
@@ -3029,7 +3029,7 @@ AUI.add(
 					setValue: function(value) {
 						var instance = this;
 
-						if (Lang.isString(value)) {
+						if (Lang.isString(value) && value != '') {
 							value = JSON.parse(value);
 						}
 
