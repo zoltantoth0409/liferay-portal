@@ -15,6 +15,7 @@
 package com.liferay.adaptive.media.document.library.thumbnails.internal.service;
 
 import com.liferay.adaptive.media.document.library.thumbnails.internal.util.AMCompanyThumbnailConfigurationInitializer;
+import com.liferay.adaptive.media.exception.AMImageConfigurationException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -22,6 +23,8 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalServiceWrapper;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+
+import java.io.IOException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -56,7 +59,7 @@ public class AMThumbnailsCompanyLocalServiceWrapper
 			_amCompanyThumbnailConfigurationInitializer.initializeCompany(
 				company);
 		}
-		catch (Exception e) {
+		catch (AMImageConfigurationException | IOException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to automatically create Adaptive Media thumbnail " +
