@@ -157,7 +157,12 @@ function getExperienceUsedPortletIds(segmentsExperienceId) {
 
 function getMappedContents() {
 	const state = _store.getState();
-	const {classNameId, classPK, getMappedContentsURL} = state;
+	const {
+		classNameId,
+		classPK,
+		getMappedContentsURL,
+		segmentsExperienceId
+	} = state;
 
 	const url = new URL(window.location.href);
 
@@ -170,7 +175,8 @@ function getMappedContents() {
 	return _fetch(getMappedContentsURL, {
 		backURL,
 		classNameId,
-		classPK
+		classPK,
+		segmentsExperienceId
 	}).then(response => response.json());
 }
 
