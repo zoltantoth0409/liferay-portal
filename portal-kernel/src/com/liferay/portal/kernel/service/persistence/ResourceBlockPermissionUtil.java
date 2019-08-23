@@ -193,16 +193,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
 		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByResourceBlockId(
-			resourceBlockId, start, end, orderByComparator, retrieveFromCache);
+			resourceBlockId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -369,16 +369,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findByRoleId(
 		long roleId, int start, int end,
 		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByRoleId(
-			roleId, start, end, orderByComparator, retrieveFromCache);
+			roleId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -515,14 +515,14 @@ public class ResourceBlockPermissionUtil {
 	 *
 	 * @param resourceBlockId the resource block ID
 	 * @param roleId the role ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching resource block permission, or <code>null</code> if a matching resource block permission could not be found
 	 */
 	public static ResourceBlockPermission fetchByR_R(
-		long resourceBlockId, long roleId, boolean retrieveFromCache) {
+		long resourceBlockId, long roleId, boolean useFinderCache) {
 
 		return getPersistence().fetchByR_R(
-			resourceBlockId, roleId, retrieveFromCache);
+			resourceBlockId, roleId, useFinderCache);
 	}
 
 	/**
@@ -685,16 +685,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findAll(
 		int start, int end,
 		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
