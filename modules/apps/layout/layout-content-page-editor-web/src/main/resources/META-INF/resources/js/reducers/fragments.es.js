@@ -164,6 +164,16 @@ function updateFragmentEntryLinkCommentReducer(state, action) {
 		[]
 	);
 
+	const hasResolvedComments = Object.values(
+		nextState.fragmentEntryLinks
+	).some(fragmentEntryLink =>
+		fragmentEntryLink.comments.some(comment => comment.resolved)
+	);
+
+	if (!hasResolvedComments) {
+		nextState = setIn(nextState, ['showResolvedComments'], false);
+	}
+
 	return nextState;
 }
 
