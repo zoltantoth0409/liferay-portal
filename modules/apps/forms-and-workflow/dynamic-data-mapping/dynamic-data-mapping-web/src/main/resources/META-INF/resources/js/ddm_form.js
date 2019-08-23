@@ -556,7 +556,7 @@ AUI.add(
 							}
 
 							if ((type === 'select' || type === 'radio') && (predefinedValue == '[""]')) {
-								predefinedValue = '';
+								predefinedValue = undefined;
 							}
 						}
 
