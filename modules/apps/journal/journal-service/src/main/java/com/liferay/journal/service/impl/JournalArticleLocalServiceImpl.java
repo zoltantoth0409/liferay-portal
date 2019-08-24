@@ -8322,6 +8322,7 @@ public class JournalArticleLocalServiceImpl
 
 			LiferayPortletRequest liferayPortletRequest =
 				serviceContext.getLiferayPortletRequest();
+
 			LiferayPortletResponse liferayPortletResponse =
 				serviceContext.getLiferayPortletResponse();
 
