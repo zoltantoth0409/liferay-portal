@@ -12,17 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.model.impl;
+package com.liferay.portal.upgrade.v7_3_x;
 
-import org.osgi.annotation.versioning.ProviderType;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.version.Version;
+import com.liferay.portal.upgrade.util.PortalUpgradeProcessRegistry;
+
+import java.util.TreeMap;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Alicia García
  */
-@ProviderType
-public class LayoutVersionImpl extends LayoutVersionBaseImpl {
+public class PortalUpgradeProcessRegistryImpl
+	implements PortalUpgradeProcessRegistry {
 
-	public LayoutVersionImpl() {
+	@Override
+	public void registerUpgradeProcesses(
+		TreeMap<Version, UpgradeProcess> upgradeProcesses) {
+
+		upgradeProcesses.put(new Version(6, 0, 0), new UpgradeLayout());
+
+		upgradeProcesses.put(new Version(6, 0, 1), new UpgradeLayoutSet());
 	}
 
 }

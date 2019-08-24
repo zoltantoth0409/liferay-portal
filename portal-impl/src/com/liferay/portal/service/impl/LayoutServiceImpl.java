@@ -640,8 +640,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 	@Override
 	public List<Layout> getLayouts(long groupId, boolean privateLayout) {
-		return layoutPersistence.filterFindByG_P_Head(
-			groupId, privateLayout, false);
+		return layoutPersistence.filterFindByG_P(groupId, privateLayout);
 	}
 
 	@Override
@@ -680,29 +679,27 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 	@Override
 	public List<Layout> getLayouts(long groupId, String type) {
-		return layoutPersistence.filterFindByG_T_Head(groupId, type, false);
+		return layoutPersistence.filterFindByG_T(groupId, type);
 	}
 
 	@Override
 	public List<Layout> getLayouts(
 		long groupId, String type, int start, int end) {
 
-		return layoutPersistence.filterFindByG_T_Head(
-			groupId, type, false, start, end);
+		return layoutPersistence.filterFindByG_T(groupId, type, start, end);
 	}
 
 	@Override
 	public int getLayoutsCount(long groupId, boolean privateLayout) {
-		return layoutPersistence.filterCountByG_P_Head(
-			groupId, privateLayout, false);
+		return layoutPersistence.filterCountByG_P(groupId, privateLayout);
 	}
 
 	@Override
 	public int getLayoutsCount(
 		long groupId, boolean privateLayout, long parentLayoutId) {
 
-		return layoutPersistence.filterCountByG_P_P_Head(
-			groupId, privateLayout, parentLayoutId, false);
+		return layoutPersistence.filterCountByG_P_P(
+			groupId, privateLayout, parentLayoutId);
 	}
 
 	@Override
@@ -710,13 +707,13 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 		long groupId, boolean privateLayout, long parentLayoutId,
 		int priority) {
 
-		return layoutPersistence.filterCountByG_P_P_LtP_Head(
-			groupId, privateLayout, parentLayoutId, priority, false);
+		return layoutPersistence.filterCountByG_P_P_LtP(
+			groupId, privateLayout, parentLayoutId, priority);
 	}
 
 	@Override
 	public int getLayoutsCount(long groupId, String type) {
-		return layoutPersistence.filterCountByG_T_Head(groupId, type, false);
+		return layoutPersistence.filterCountByG_T(groupId, type);
 	}
 
 	@Override

@@ -129,9 +129,8 @@ public class LayoutPrototypeLocalServiceImpl
 		// Group
 
 		if (!CompanyThreadLocal.isDeleteInProcess()) {
-			int count = layoutPersistence.countByC_L_Head(
-				layoutPrototype.getCompanyId(), layoutPrototype.getUuid(),
-				false);
+			int count = layoutPersistence.countByC_L(
+				layoutPrototype.getCompanyId(), layoutPrototype.getUuid());
 
 			if (count > 0) {
 				StringBundler sb = new StringBundler(5);
