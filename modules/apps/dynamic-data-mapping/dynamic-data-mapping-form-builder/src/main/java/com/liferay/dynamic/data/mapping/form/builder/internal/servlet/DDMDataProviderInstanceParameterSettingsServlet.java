@@ -234,11 +234,7 @@ public class DDMDataProviderInstanceParameterSettingsServlet
 				outputJSONObject.put("name", path);
 			}
 
-			outputJSONObject.put(
-				"id", ddmDataProviderOutputParameterSetting.outputParameterId()
-			).put(
-				"type", type
-			);
+			outputJSONObject.put("type", type);
 
 			outputsJSONArray.put(outputJSONObject);
 		}
