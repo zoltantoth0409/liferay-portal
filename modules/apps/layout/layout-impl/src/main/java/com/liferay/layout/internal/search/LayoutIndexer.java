@@ -315,6 +315,12 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 
 		SearchContext searchContext = new SearchContext();
 
+		BooleanClause booleanClause = BooleanClauseFactoryUtil.create(
+			Field.ENTRY_CLASS_PK, String.valueOf(stagingLayout.getPlid()),
+			BooleanClauseOccur.MUST.getName());
+
+		searchContext.setBooleanClauses(new BooleanClause[] {booleanClause});
+
 		if ((CompanyThreadLocal.getCompanyId() == 0) ||
 			ExportImportThreadLocal.isStagingInProcess()) {
 
@@ -324,12 +330,6 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		searchContext.setGroupIds(new long[] {stagingGroup.getGroupId()});
 
 		searchContext.setEntryClassNames(new String[] {Layout.class.getName()});
-
-		BooleanClause booleanClause = BooleanClauseFactoryUtil.create(
-			Field.ENTRY_CLASS_PK, String.valueOf(stagingLayout.getPlid()),
-			BooleanClauseOccur.MUST.getName());
-
-		searchContext.setBooleanClauses(new BooleanClause[] {booleanClause});
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
