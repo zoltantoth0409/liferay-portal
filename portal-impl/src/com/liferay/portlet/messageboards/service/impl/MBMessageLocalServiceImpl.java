@@ -65,14 +65,13 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
-import com.liferay.portal.kernel.service.persistence.GroupPersistence;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.social.SocialActivityManagerUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.Function;
+import com.liferay.portal.kernel.util.EscapableLocalizableFunction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -2077,14 +2076,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	protected MBSubscriptionSender getSubscriptionSender(
-		long userId, MBCategory category, MBMessage message, String messageURL,
-		String entryTitle, boolean htmlFormat, String messageBody,
-		String messageSubject, String messageSubjectPrefix, String inReplyTo,
-		String fromName, String fromAddress, String replyToAddress,
-		String emailAddress, String fullName,
-		LocalizedValuesMap subjectLocalizedValuesMap,
-		LocalizedValuesMap bodyLocalizedValuesMap,
-		ServiceContext serviceContext) {
+			long userId, MBCategory category, MBMessage message,
+			String messageURL, String entryTitle, boolean htmlFormat,
+			String messageBody, String messageSubject,
+			String messageSubjectPrefix, String inReplyTo, String fromName,
+			String fromAddress, String replyToAddress, String emailAddress,
+			String fullName, LocalizedValuesMap subjectLocalizedValuesMap,
+			LocalizedValuesMap bodyLocalizedValuesMap,
+			ServiceContext serviceContext)
+		throws PortalException {
 
 		MBSubscriptionSender subscriptionSender = new MBSubscriptionSender(
 			MBPermission.RESOURCE_NAME);
@@ -2099,10 +2099,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		long groupId = message.getGroupId();
 
-		GroupDescriptiveNameSerializableFunction
-			groupDescriptiveNameSerializableFunction =
-				new GroupDescriptiveNameSerializableFunction(
-					groupId, groupPersistence);
+		Group group = groupLocalService.getGroup(groupId);
 
 		if (category.getCategoryId() !=
 				MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
@@ -2112,7 +2109,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 		else {
 			subscriptionSender.setLocalizedContextAttribute(
-				"[$CATEGORY_NAME$]", groupDescriptiveNameSerializableFunction);
+				"[$CATEGORY_NAME$]",
+				new EscapableLocalizableFunction(
+					locale -> _getLocalizedRootCategoryName(group, locale)));
 		}
 
 		subscriptionSender.setContextAttributes(
@@ -2129,7 +2128,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		subscriptionSender.setHtmlFormat(htmlFormat);
 		subscriptionSender.setInReplyTo(inReplyTo);
 		subscriptionSender.setLocalizedContextAttribute(
-			"[$SITE_NAME$]", groupDescriptiveNameSerializableFunction);
+			"[$SITE_NAME$]",
+			new EscapableLocalizableFunction(
+				locale -> _getGroupDescriptiveName(group, locale)));
 
 		if (bodyLocalizedValuesMap != null) {
 			subscriptionSender.setLocalizedBodyMap(
@@ -2644,38 +2645,38 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 	}
 
+	private static String _getLocalizedRootCategoryName(
+		Group group, Locale locale) {
+
+		try {
+			return LanguageUtil.get(locale, "home") + " - " +
+				group.getDescriptiveName(locale);
+		}
+		catch (PortalException pe) {
+			_log.error(
+				"Unable to get descriptive name for group " +
+					group.getGroupId(),
+				pe);
+
+			return LanguageUtil.get(locale, "home");
+		}
+	}
+
+	private String _getGroupDescriptiveName(Group group, Locale locale) {
+		try {
+			return group.getDescriptiveName(locale);
+		}
+		catch (PortalException pe) {
+			_log.error(
+				"Unable to get descriptive name for group " +
+					group.getGroupId(),
+				pe);
+		}
+
+		return StringPool.BLANK;
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		MBMessageLocalServiceImpl.class);
-
-	private static class GroupDescriptiveNameSerializableFunction
-		implements Function<Locale, String>, Serializable {
-
-		public GroupDescriptiveNameSerializableFunction(
-			long groupId, GroupPersistence groupPersistence) {
-
-			_groupId = groupId;
-			_groupPersistence = groupPersistence;
-		}
-
-		@Override
-		public String apply(Locale locale) {
-			try {
-				Group group = _groupPersistence.findByPrimaryKey(_groupId);
-
-				return LanguageUtil.get(locale, "message-boards-home") + " - " +
-					group.getDescriptiveName(locale);
-			}
-			catch (PortalException pe) {
-				_log.error(
-					"Unable to get descriptive name for group " + _groupId, pe);
-
-				return LanguageUtil.get(locale, "message-boards-home");
-			}
-		}
-
-		private final long _groupId;
-		private final GroupPersistence _groupPersistence;
-
-	}
 
 }
