@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -49,6 +51,18 @@ public class MessageBoardMessageResourceTest
 			new ServiceContext());
 
 		_mbThread = mbMessage.getThread();
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGraphQLDeleteMessageBoardMessage() {
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGraphQLGetMessageBoardMessage() {
 	}
 
 	@Override
