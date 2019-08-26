@@ -250,7 +250,7 @@ public class UpgradeJournal extends UpgradeProcess {
 		return false;
 	}
 
-	protected String convertStaticContentToDynamic(String content, long groupId)
+	protected String convertStaticContentToDynamic(long groupId, String content)
 		throws Exception {
 
 		Document document = SAXReaderUtil.read(content);
@@ -579,7 +579,7 @@ public class UpgradeJournal extends UpgradeProcess {
 				String ddmStructureKey = rs.getString("DDMStructureKey");
 
 				if (Validator.isNull(ddmStructureKey)) {
-					content = convertStaticContentToDynamic(content, groupId);
+					content = convertStaticContentToDynamic(groupId, content);
 
 					updateJournalArticle(id, name, name, content);
 
