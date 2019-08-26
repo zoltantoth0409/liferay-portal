@@ -154,7 +154,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 		for (DDMDataProviderOutputParametersSettings outputParameterSettings :
 				outputParameterSettingsArray) {
 
-			String id = outputParameterSettings.outputParameterId();
+			String name = outputParameterSettings.outputParameterName();
 			String type = outputParameterSettings.outputParameterType();
 			String path = outputParameterSettings.outputParameterPath();
 
@@ -162,13 +162,13 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 				String value = documentContext.read(
 					normalizePath(path), String.class);
 
-				builder = builder.withOutput(id, value);
+				builder = builder.withOutput(name, value);
 			}
 			else if (Objects.equals(type, "number")) {
 				Number value = documentContext.read(
 					normalizePath(path), Number.class);
 
-				builder = builder.withOutput(id, value);
+				builder = builder.withOutput(name, value);
 			}
 			else if (Objects.equals(type, "list")) {
 				String[] paths = StringUtil.split(path, CharPool.SEMICOLON);
@@ -218,11 +218,11 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 						List<KeyValuePair> sublist = ListUtil.subList(
 							keyValuePairs, start, end);
 
-						builder = builder.withOutput(id, sublist);
+						builder = builder.withOutput(name, sublist);
 					}
 				}
 				else {
-					builder = builder.withOutput(id, keyValuePairs);
+					builder = builder.withOutput(name, keyValuePairs);
 				}
 			}
 		}

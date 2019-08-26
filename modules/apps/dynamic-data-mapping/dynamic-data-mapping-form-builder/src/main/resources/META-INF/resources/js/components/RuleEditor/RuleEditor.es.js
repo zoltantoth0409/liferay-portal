@@ -91,7 +91,7 @@ class RuleEditor extends Component {
 		});
 	}
 
-	formatDataProviderInputParameter(actionParameters, parameters) {
+	formatDataProviderParameter(actionParameters, parameters) {
 		return parameters.reduce(
 			(result, {name, value}) => ({
 				...result,
@@ -99,19 +99,6 @@ class RuleEditor extends Component {
 					Object.keys(actionParameters).indexOf(name) !== -1
 						? actionParameters[name]
 						: value
-			}),
-			{}
-		);
-	}
-
-	formatDataProviderOutputParameter(actionParameters, parameters) {
-		return parameters.reduce(
-			(result, {id}) => ({
-				...result,
-				[id]:
-					Object.keys(actionParameters).indexOf(id) !== -1
-						? actionParameters[id]
-						: undefined
 			}),
 			{}
 		);
@@ -138,12 +125,12 @@ class RuleEditor extends Component {
 										hasRequiredInputs: inputs.some(
 											input => input.required
 										),
-										inputs: this.formatDataProviderInputParameter(
+										inputs: this.formatDataProviderParameter(
 											action.inputs,
 											inputs
 										),
 										inputsData: inputs,
-										outputs: this.formatDataProviderOutputParameter(
+										outputs: this.formatDataProviderParameter(
 											action.outputs,
 											outputs
 										),
