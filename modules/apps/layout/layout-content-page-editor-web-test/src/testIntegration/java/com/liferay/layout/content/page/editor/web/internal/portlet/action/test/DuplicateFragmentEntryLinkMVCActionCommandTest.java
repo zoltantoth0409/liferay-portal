@@ -109,6 +109,7 @@ public class DuplicateFragmentEntryLinkMVCActionCommandTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
+
 		_company = _companyLocalService.getCompany(_group.getCompanyId());
 		_layout = LayoutTestUtil.addLayout(_group);
 
