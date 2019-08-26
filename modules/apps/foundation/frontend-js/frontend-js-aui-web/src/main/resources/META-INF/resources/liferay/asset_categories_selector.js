@@ -721,6 +721,19 @@ AUI.add(
 							type: 'io'
 						};
 
+						if (!_.isEmpty(instance.TREEVIEWS)) {
+							for (var vocabId in instance.TREEVIEWS) {
+								var tree = instance.TREEVIEWS[vocabId];
+								var children = tree.get('children');
+
+								if (!children || !children.length || children[0].hasChildNodes()) {
+									tree.destroy();
+
+									delete instance.TREEVIEWS[vocabId];
+								}
+							}
+						}
+
 						instance.TREEVIEWS[vocabularyId] = new A.TreeView(
 							{
 								children: [vocabularyRootNode],
