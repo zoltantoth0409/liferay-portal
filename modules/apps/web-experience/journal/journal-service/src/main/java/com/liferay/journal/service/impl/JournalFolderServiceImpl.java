@@ -22,6 +22,7 @@ import com.liferay.journal.service.base.JournalFolderServiceBaseImpl;
 import com.liferay.journal.service.permission.JournalFolderPermission;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -351,8 +352,7 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 
 	@Override
 	public void subscribe(long groupId, long folderId) throws PortalException {
-		JournalFolderPermission.check(
-			getPermissionChecker(), groupId, folderId, ActionKeys.SUBSCRIBE);
+		_checkSubscriptionPermission(groupId, folderId);
 
 		journalFolderLocalService.subscribe(getUserId(), groupId, folderId);
 	}
@@ -361,8 +361,7 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	public void unsubscribe(long groupId, long folderId)
 		throws PortalException {
 
-		JournalFolderPermission.check(
-			getPermissionChecker(), groupId, folderId, ActionKeys.SUBSCRIBE);
+		_checkSubscriptionPermission(groupId, folderId);
 
 		journalFolderLocalService.unsubscribe(getUserId(), groupId, folderId);
 	}
@@ -421,6 +420,44 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 		}
 
 		return ddmStructures;
+	}
+
+	private void _checkSubscriptionPermission(long groupId, long folderId)
+		throws PortalException {
+
+		try {
+			JournalFolderPermission.check(
+				getPermissionChecker(), groupId, folderId,
+				ActionKeys.SUBSCRIBE);
+		}
+		catch (PortalException pe) {
+			Group group = groupLocalService.fetchGroup(groupId);
+
+			if ((group != null) && group.isStaged() &&
+				!group.isStagingGroup()) {
+
+				group = group.getStagingGroup();
+
+				if (folderId != 0) {
+					JournalFolder folder = journalFolderLocalService.getFolder(
+						folderId);
+
+					folder =
+						journalFolderLocalService.
+							fetchJournalFolderByUuidAndGroupId(
+								folder.getUuid(), group.getGroupId());
+
+					folderId = folder.getFolderId();
+				}
+
+				JournalFolderPermission.check(
+					getPermissionChecker(), group.getGroupId(), folderId,
+					ActionKeys.SUBSCRIBE);
+			}
+			else {
+				throw pe;
+			}
+		}
 	}
 
 }

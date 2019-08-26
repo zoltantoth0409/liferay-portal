@@ -36,10 +36,19 @@ if (Validator.isNotNull(ddmStructureKey)) {
 		ddmStructureId = ddmStructure.getStructureId();
 	}
 }
+
+long groupId = scopeGroupId;
+
+Group group = themeDisplay.getScopeGroup();
+
+if (group.isStaged() && !group.isStagingGroup()) {
+	group = group.getStagingGroup();
+	groupId = group.getGroupId();
+}
 %>
 
 <div class="subscribe-action">
-	<c:if test="<%= JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) && JournalUtil.getEmailArticleAnyEventEnabled(journalGroupServiceConfiguration) %>">
+	<c:if test="<%= JournalPermission.contains(permissionChecker, groupId, ActionKeys.SUBSCRIBE) && JournalUtil.getEmailArticleAnyEventEnabled(journalGroupServiceConfiguration) %>">
 
 		<%
 		boolean subscribed = false;

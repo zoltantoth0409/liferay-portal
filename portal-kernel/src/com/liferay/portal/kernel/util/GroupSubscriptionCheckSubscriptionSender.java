@@ -51,9 +51,26 @@ public class GroupSubscriptionCheckSubscriptionSender
 				return true;
 			}
 
-			return ResourcePermissionCheckerUtil.containsResourcePermission(
-				permissionChecker, _resourceName, subscription.getClassPK(),
-				ActionKeys.SUBSCRIBE);
+			if (ResourcePermissionCheckerUtil.containsResourcePermission(
+					permissionChecker, _resourceName, subscription.getClassPK(),
+					ActionKeys.SUBSCRIBE)) {
+
+				return true;
+			}
+
+			String className = subscription.getClassName();
+
+			if (className.equals("com.liferay.journal.model.JournalFolder") &&
+				group.isStaged() && !group.isStagingGroup()) {
+
+				group = group.getStagingGroup();
+
+				return ResourcePermissionCheckerUtil.containsResourcePermission(
+					permissionChecker, _resourceName, group.getGroupId(),
+					ActionKeys.SUBSCRIBE);
+			}
+
+			return false;
 		}
 
 		return super.hasSubscribePermission(permissionChecker, subscription);
