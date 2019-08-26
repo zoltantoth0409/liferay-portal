@@ -652,7 +652,7 @@ Macau are now the special administrative regions of China.
 
 #### What changed?
 
-Upgrad JGroups from 3.6.16 to 4.1.1
+Upgrade JGroups from 3.6.16 to 4.1.1
 
 #### Who is affected?
 
