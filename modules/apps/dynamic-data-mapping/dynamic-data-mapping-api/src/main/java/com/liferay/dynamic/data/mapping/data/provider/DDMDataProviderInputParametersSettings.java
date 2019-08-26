@@ -17,13 +17,10 @@ package com.liferay.dynamic.data.mapping.data.provider;
 import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormField;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * @author Leonardo Barros
  */
 @DDMForm
-@ProviderType
 public interface DDMDataProviderInputParametersSettings {
 
 	@DDMFormField(label = "%label", properties = "placeholder=%enter-a-label")
