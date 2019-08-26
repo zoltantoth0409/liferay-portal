@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,12 +148,6 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", "[\"number\"]"));
 
-		String countryIdOutputParameterId = StringUtil.randomString();
-
-		outputParamaters.addNestedDDMFormFieldValue(
-			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"outputParameterId", countryIdOutputParameterId));
-
 		outputParamaters =
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameters", StringPool.BLANK);
@@ -172,12 +165,6 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 		outputParamaters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", "[\"string\"]"));
-
-		String countryNameOutputParameterId = StringUtil.randomString();
-
-		outputParamaters.addNestedDDMFormFieldValue(
-			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"outputParameterId", countryNameOutputParameterId));
 
 		DDMFormValuesDeserializerDeserializeResponse
 			ddmFormValuesDeserializerDeserializeResponse =
@@ -204,10 +191,8 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 
 		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
-				add(new KeyValuePair(countryIdOutputParameterId, "Country Id"));
-				add(
-					new KeyValuePair(
-						countryNameOutputParameterId, "Country Name"));
+				add(new KeyValuePair("Country Id", "Country Id"));
+				add(new KeyValuePair("Country Name", "Country Name"));
 			}
 		};
 

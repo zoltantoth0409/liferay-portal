@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.HtmlImpl;
 
 import java.io.Serializable;
@@ -558,11 +557,9 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		DDMDataProviderRequest ddmDataProviderRequest = builder.build();
 
-		String outputParameterId = StringUtil.randomString();
-
 		DDMRESTDataProviderSettings ddmRESTDataProviderSettings =
 			_createSettingsWithOutputParameter(
-				outputParameterId, "list output", "value;key", "list", false);
+				"list output", "value;key", "list", false);
 
 		when(
 			documentContext.read(".value", List.class)
@@ -599,7 +596,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		Optional<List<KeyValuePair>> optional =
 			ddmDataProviderResponse.getOutputOptional(
-				outputParameterId, List.class);
+				"list output", List.class);
 
 		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
@@ -628,11 +625,9 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 			"paginationEnd", "3"
 		).build();
 
-		String outputParameterId = StringUtil.randomString();
-
 		DDMRESTDataProviderSettings ddmRESTDataProviderSettings =
 			_createSettingsWithOutputParameter(
-				outputParameterId, "list output", "value;key", "list", true);
+				"list output", "value;key", "list", true);
 
 		when(
 			documentContext.read(".value", List.class)
@@ -667,7 +662,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		Optional<List<KeyValuePair>> optional =
 			ddmDataProviderResponse.getOutputOptional(
-				outputParameterId, List.class);
+				"list output", List.class);
 
 		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
@@ -711,12 +706,9 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		DDMDataProviderRequest ddmDataProviderRequest = builder.build();
 
-		String outputParameterId = StringUtil.randomString();
-
 		DDMRESTDataProviderSettings ddmRESTDataProviderSettings =
 			_createSettingsWithOutputParameter(
-				outputParameterId, "number output", "numberProp", "number",
-				false);
+				"number output", "numberProp", "number", false);
 
 		when(
 			documentContext.read(".numberProp", Number.class)
@@ -730,7 +722,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 				ddmRESTDataProviderSettings);
 
 		Optional<Number> optional = ddmDataProviderResponse.getOutputOptional(
-			outputParameterId, Number.class);
+			"number output", Number.class);
 
 		Assert.assertEquals(1, optional.get());
 	}
@@ -860,11 +852,9 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		DDMDataProviderRequest ddmDataProviderRequest = builder.build();
 
-		String outputParameterId = StringUtil.randomString();
-
 		DDMRESTDataProviderSettings ddmRESTDataProviderSettings =
 			_createSettingsWithOutputParameter(
-				outputParameterId, "text output", "textProp", "text", false);
+				"text output", "textProp", "text", false);
 
 		when(
 			documentContext.read(".textProp", String.class)
@@ -878,7 +868,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 				ddmRESTDataProviderSettings);
 
 		Optional<String> optional = ddmDataProviderResponse.getOutputOptional(
-			outputParameterId, String.class);
+			"text output", String.class);
 
 		Assert.assertEquals("brazil", optional.get());
 	}
@@ -962,7 +952,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 	}
 
 	private DDMRESTDataProviderSettings _createSettingsWithOutputParameter(
-		String id, String name, String path, String type, boolean pagination) {
+		String name, String path, String type, boolean pagination) {
 
 		DDMForm ddmForm = DDMFormFactory.create(
 			DDMRESTDataProviderSettings.class);
@@ -995,10 +985,6 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		outputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", String.format("[\"%s\"]", type)));
-
-		outputParameters.addNestedDDMFormFieldValue(
-			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"outputParameterId", id));
 
 		return DDMFormInstanceFactory.create(
 			DDMRESTDataProviderSettings.class, ddmFormValues);

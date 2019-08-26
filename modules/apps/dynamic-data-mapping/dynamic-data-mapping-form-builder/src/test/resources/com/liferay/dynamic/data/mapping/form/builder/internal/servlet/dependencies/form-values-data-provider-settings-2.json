@@ -72,11 +72,6 @@
 			"name": "outputParameters",
 			"nestedFieldValues": [
 				{
-					"instanceId": "0kzl",
-					"name": "outputParameterId",
-					"value": "QLGlfZSY"
-				},
-				{
 					"instanceId": "weaq",
 					"name": "outputParameterPath",
 					"value": "d"
@@ -92,11 +87,6 @@
 			"instanceId": "asffa",
 			"name": "outputParameters",
 			"nestedFieldValues": [
-				{
-					"instanceId": "0kzl",
-					"name": "outputParameterId",
-					"value": "MuhsceEF"
-				},
 				{
 					"instanceId": "weaq",
 					"name": "outputParameterPath",
