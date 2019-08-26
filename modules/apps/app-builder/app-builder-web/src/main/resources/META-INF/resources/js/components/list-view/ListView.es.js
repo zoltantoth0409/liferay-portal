@@ -103,7 +103,6 @@ export default ({
 				items={formattedItems}
 				keywords={state.query.keywords}
 				totalCount={totalCount}
-				totalPages={totalPages}
 			/>
 		</SearchContext.Provider>
 	);
