@@ -43,6 +43,7 @@ String segmentsExperimentRootId = renderResponse.getNamespace() + "-segments-exp
 				editSegmentsExperimentStatusURL: '<%= segmentsExperimentDisplayContext.getEditSegmentsExperimentStatusURL() %>',
 				editSegmentsExperimentURL: '<%= segmentsExperimentDisplayContext.getEditSegmentsExperimentURL() %>',
 				editSegmentsVariantLayoutURL: '<%= segmentsExperimentDisplayContext.getEditSegmentsVariantLayoutURL() %>',
+				editSegmentsVariantSplitURL: '<%= segmentsExperimentDisplayContext.getEditSegmentsVariantSplitURL() %>',
 				editSegmentsVariantURL: '<%= segmentsExperimentDisplayContext.getEditSegmentsVariantURL() %>'
 			},
 			namespace: '<portlet:namespace />',
