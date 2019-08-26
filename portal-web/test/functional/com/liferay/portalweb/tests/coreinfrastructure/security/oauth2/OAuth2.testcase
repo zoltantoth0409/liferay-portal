@@ -255,6 +255,8 @@ definition {
 
  		Button.click(button = "Obtain OAuth2 Access");
 
+		Pause(locator1 = "3000");
+
  		Button.click(button = "Launch Request");
 
  		AssertTextEquals.assertPartialText(
