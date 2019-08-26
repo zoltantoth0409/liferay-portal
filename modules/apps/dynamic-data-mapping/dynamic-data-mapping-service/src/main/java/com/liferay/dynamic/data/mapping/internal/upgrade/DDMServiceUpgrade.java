@@ -272,7 +272,8 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 			});
 
 		registry.register(
-			"3.1.2", "3.1.3", new UpgradeDDMDataProviderInstance(_jsonFactory));
+			"3.1.2", "3.1.3",
+			new UpgradeDDMDataProviderInstance(_jsonFactory));
 	}
 
 	protected DDMFormDeserializer getDDMFormJSONDeserializer() {
