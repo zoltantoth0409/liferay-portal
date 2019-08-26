@@ -56,64 +56,64 @@ public class ViewAccountsManagementToolbarDisplayContext
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (!Objects.equals(getNavigation(), "inactive")) {
-					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deactivateAccounts");
-
-							PortletURL deactivateAccountsURL =
-								liferayPortletResponse.createActionURL();
-
-							deactivateAccountsURL.setParameter(
-								ActionRequest.ACTION_NAME,
-								"/account_admin/update_account_status");
-							deactivateAccountsURL.setParameter(
-								Constants.CMD, Constants.DEACTIVATE);
-							deactivateAccountsURL.setParameter(
-								"navigation", getNavigation());
-
-							dropdownItem.putData(
-								"deactivateAccountsURL",
-								deactivateAccountsURL.toString());
-
-							dropdownItem.setIcon("hidden");
-							dropdownItem.setLabel(
-								LanguageUtil.get(request, "deactivate"));
-							dropdownItem.setQuickAction(true);
-						});
+		return DropdownItemList.of(
+			() -> {
+				if (Objects.equals(getNavigation(), "inactive")) {
+					return null;
 				}
 
-				if (!Objects.equals(getNavigation(), "active")) {
-					add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "activateAccounts");
+				DropdownItem dropdownItem = new DropdownItem();
 
-							PortletURL activateAccountsURL =
-								liferayPortletResponse.createActionURL();
+				dropdownItem.putData("action", "deactivateAccounts");
 
-							activateAccountsURL.setParameter(
-								ActionRequest.ACTION_NAME,
-								"/account_admin/update_account_status");
-							activateAccountsURL.setParameter(
-								Constants.CMD, Constants.RESTORE);
-							activateAccountsURL.setParameter(
-								"navigation", getNavigation());
+				PortletURL deactivateAccountsURL =
+					liferayPortletResponse.createActionURL();
 
-							dropdownItem.putData(
-								"activateAccountsURL",
-								activateAccountsURL.toString());
+				deactivateAccountsURL.setParameter(
+					ActionRequest.ACTION_NAME,
+					"/account_admin/update_account_status");
+				deactivateAccountsURL.setParameter(
+					Constants.CMD, Constants.DEACTIVATE);
+				deactivateAccountsURL.setParameter(
+					"navigation", getNavigation());
 
-							dropdownItem.setIcon("undo");
-							dropdownItem.setLabel(
-								LanguageUtil.get(request, "activate"));
-							dropdownItem.setQuickAction(true);
-						});
+				dropdownItem.putData(
+					"deactivateAccountsURL", deactivateAccountsURL.toString());
+
+				dropdownItem.setIcon("hidden");
+				dropdownItem.setLabel(LanguageUtil.get(request, "deactivate"));
+				dropdownItem.setQuickAction(true);
+
+				return dropdownItem;
+			},
+			() -> {
+				if (Objects.equals(getNavigation(), "active")) {
+					return null;
 				}
-			}
-		};
+
+				DropdownItem dropdownItem = new DropdownItem();
+
+				dropdownItem.putData("action", "activateAccounts");
+
+				PortletURL activateAccountsURL =
+					liferayPortletResponse.createActionURL();
+
+				activateAccountsURL.setParameter(
+					ActionRequest.ACTION_NAME,
+					"/account_admin/update_account_status");
+				activateAccountsURL.setParameter(
+					Constants.CMD, Constants.RESTORE);
+				activateAccountsURL.setParameter("navigation", getNavigation());
+
+				dropdownItem.putData(
+					"activateAccountsURL", activateAccountsURL.toString());
+
+				dropdownItem.setIcon("undo");
+				dropdownItem.setLabel(LanguageUtil.get(request, "activate"));
+				dropdownItem.setQuickAction(true);
+
+				return dropdownItem;
+			});
 	}
 
 	public List<String> getAvailableActions(AccountDisplay accountDisplay) {
