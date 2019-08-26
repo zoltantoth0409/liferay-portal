@@ -258,6 +258,11 @@ AUI.add(
 
 								actionName = null;
 							}
+							else {
+								var hideDefaultSuccessMessageInput = instance._getByName(form, 'hideDefaultSuccessMessage');
+
+								hideDefaultSuccessMessageInput.val('false');
+							}
 
 							if (!actionName) {
 								actionName = articleId ? STR_UPDATE_ARTICLE : STR_ADD_ARTICLE;
