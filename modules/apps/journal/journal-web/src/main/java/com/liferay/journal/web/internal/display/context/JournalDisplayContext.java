@@ -1689,7 +1689,6 @@ public class JournalDisplayContext {
 							dropdownItem.setHref(
 								getPortletURL(), "status",
 								String.valueOf(status));
-
 							dropdownItem.setLabel(_getStatusLabel(status));
 						});
 				}
