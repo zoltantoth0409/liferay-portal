@@ -66,7 +66,7 @@ public class AccountDisplay {
 
 	private AccountDisplay(AccountEntry accountEntry) {
 		_accountId = accountEntry.getAccountEntryId();
-		_active = _getActive(accountEntry);
+		_active = _isActive(accountEntry);
 		_description = accountEntry.getDescription();
 		_name = accountEntry.getName();
 		_parentAccountName = _getParentAccountName(accountEntry);
@@ -75,7 +75,7 @@ public class AccountDisplay {
 		_website = _getWebsite(accountEntry);
 	}
 
-	private boolean _getActive(AccountEntry accountEntry) {
+	private boolean _isActive(AccountEntry accountEntry) {
 		int status = accountEntry.getStatus();
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
