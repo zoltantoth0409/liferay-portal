@@ -75,16 +75,6 @@ public class AccountDisplay {
 		_website = _getWebsite(accountEntry);
 	}
 
-	private boolean _isActive(AccountEntry accountEntry) {
-		int status = accountEntry.getStatus();
-
-		if (status == WorkflowConstants.STATUS_APPROVED) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private String _getParentAccountName(AccountEntry accountEntry) {
 		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
 
@@ -143,6 +133,16 @@ public class AccountDisplay {
 		Website website = websites.get(0);
 
 		return website.getUrl();
+	}
+
+	private boolean _isActive(AccountEntry accountEntry) {
+		int status = accountEntry.getStatus();
+
+		if (status == WorkflowConstants.STATUS_APPROVED) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private final long _accountId;

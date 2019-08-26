@@ -36,8 +36,8 @@ long accountEntryId = accountDisplay.getAccountId();
 	<c:if test='<%= Objects.equals(accountDisplay.getStatusLabel(), "active") %>'>
 		<portlet:actionURL name="/account_admin/update_account_status" var="deactivateAccountURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DEACTIVATE %>" />
-			<portlet:param name="accountEntryIds" value="<%= String.valueOf(accountEntryId) %>" />
 			<portlet:param name="navigation" value="<%= navigation %>" />
+			<portlet:param name="accountEntryIds" value="<%= String.valueOf(accountEntryId) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon-deactivate
@@ -48,8 +48,8 @@ long accountEntryId = accountDisplay.getAccountId();
 	<c:if test='<%= Objects.equals(accountDisplay.getStatusLabel(), "inactive") %>'>
 		<portlet:actionURL name="/account_admin/update_account_status" var="activateAccountURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RESTORE %>" />
-			<portlet:param name="accountEntryIds" value="<%= String.valueOf(accountEntryId) %>" />
 			<portlet:param name="navigation" value="<%= navigation %>" />
+			<portlet:param name="accountEntryIds" value="<%= String.valueOf(accountEntryId) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon
