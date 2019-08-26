@@ -6771,9 +6771,12 @@ public class JournalArticleLocalServiceImpl
 
 				imageLocalService.updateImage(imageId, oldImage.getTextObj());
 
+				String imageTitle = dynamicContentEl.attributeValue("title");
+
 				String elContent = StringBundler.concat(
 					"/image/journal/article?img_id=", String.valueOf(imageId),
-					"&t=", WebServerServletTokenUtil.getToken(imageId));
+					"&t=", WebServerServletTokenUtil.getToken(imageId),
+					"&fileName=", imageTitle);
 
 				dynamicContentEl.setText(elContent);
 
@@ -7127,9 +7130,12 @@ public class JournalArticleLocalServiceImpl
 				continue;
 			}
 
+			String imageTitle = dynamicContent.attributeValue("title");
+
 			String elContent = StringBundler.concat(
 				"/image/journal/article?img_id=", String.valueOf(imageId),
-				"&t=", WebServerServletTokenUtil.getToken(imageId));
+				"&t=", WebServerServletTokenUtil.getToken(imageId),
+				"&fileName=", imageTitle);
 
 			byte[] bytes = null;
 
