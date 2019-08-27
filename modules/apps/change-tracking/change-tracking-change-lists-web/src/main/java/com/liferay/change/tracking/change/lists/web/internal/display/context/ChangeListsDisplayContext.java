@@ -75,20 +75,20 @@ import javax.servlet.http.HttpServletRequest;
 public class ChangeListsDisplayContext {
 
 	public ChangeListsDisplayContext(
-		HttpServletRequest httpServletRequest, RenderRequest renderRequest,
-		RenderResponse renderResponse,
 		CTCollectionLocalService ctCollectionLocalService,
 		CTEntryLocalService ctEntryLocalService,
 		CTEngineManager ctEngineManager,
-		CTPreferencesLocalService ctPreferencesLocalService) {
+		CTPreferencesLocalService ctPreferencesLocalService,
+		HttpServletRequest httpServletRequest, RenderRequest renderRequest,
+		RenderResponse renderResponse) {
 
-		_httpServletRequest = httpServletRequest;
-		_renderRequest = renderRequest;
-		_renderResponse = renderResponse;
 		_ctCollectionLocalService = ctCollectionLocalService;
 		_ctEntryLocalService = ctEntryLocalService;
 		_ctEngineManager = ctEngineManager;
 		_ctPreferencesLocalService = ctPreferencesLocalService;
+		_httpServletRequest = httpServletRequest;
+		_renderRequest = renderRequest;
+		_renderResponse = renderResponse;
 
 		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
