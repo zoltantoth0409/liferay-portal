@@ -59,8 +59,10 @@ public class GetContentMappingFieldsMVCResourceCommand
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long ddmStructureId = ParamUtil.getLong(
-			resourceRequest, "ddmStructureId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
@@ -69,10 +71,8 @@ public class GetContentMappingFieldsMVCResourceCommand
 		ClassTypeReader classTypeReader =
 			assetRendererFactory.getClassTypeReader();
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		long ddmStructureId = ParamUtil.getLong(
+			resourceRequest, "ddmStructureId");
 
 		List<InfoDisplayField> infoDisplayFields =
 			_classTypesInfoDisplayFieldProvider.getClassTypeInfoDisplayFields(
