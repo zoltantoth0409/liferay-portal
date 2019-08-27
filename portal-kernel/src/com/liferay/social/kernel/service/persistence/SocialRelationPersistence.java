@@ -17,6 +17,7 @@ package com.liferay.social.kernel.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.social.kernel.exception.NoSuchRelationException;
 import com.liferay.social.kernel.model.SocialRelation;
 
@@ -79,16 +80,19 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where uuid = &#63;.
@@ -101,14 +105,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where uuid = &#63;.
@@ -119,9 +120,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			String uuid, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -132,9 +131,7 @@ public interface SocialRelationPersistence
 	 * @return the first matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		String uuid, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where uuid = &#63;.
@@ -145,9 +142,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			String uuid, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -158,9 +153,7 @@ public interface SocialRelationPersistence
 	 * @return the last matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		String uuid, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where uuid = &#63;.
@@ -173,8 +166,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByUuid_PrevAndNext(
 			long relationId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -225,17 +217,20 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where uuid = &#63; and companyId = &#63;.
@@ -249,14 +244,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -269,8 +261,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -283,8 +274,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -297,8 +287,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -311,8 +300,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -326,8 +314,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByUuid_C_PrevAndNext(
 			long relationId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -377,16 +364,19 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where companyId = &#63;.
@@ -399,14 +389,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where companyId = &#63;.
@@ -417,9 +404,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long companyId, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -430,9 +415,7 @@ public interface SocialRelationPersistence
 	 * @return the first matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long companyId, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where companyId = &#63;.
@@ -443,9 +426,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long companyId, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -456,9 +437,7 @@ public interface SocialRelationPersistence
 	 * @return the last matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long companyId, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where companyId = &#63;.
@@ -471,8 +450,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByCompanyId_PrevAndNext(
 			long relationId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -520,16 +498,19 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId1(long, int, int, OrderByComparator)}
 	 * @param userId1 the user id1
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByUserId1(
 		long userId1, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where userId1 = &#63;.
@@ -542,14 +523,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUserId1(
 		long userId1, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63;.
@@ -560,9 +538,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUserId1_First(
-			long userId1,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long userId1, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -573,9 +549,7 @@ public interface SocialRelationPersistence
 	 * @return the first matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUserId1_First(
-		long userId1,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long userId1, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where userId1 = &#63;.
@@ -586,9 +560,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUserId1_Last(
-			long userId1,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long userId1, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -599,9 +571,7 @@ public interface SocialRelationPersistence
 	 * @return the last matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUserId1_Last(
-		long userId1,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long userId1, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where userId1 = &#63;.
@@ -614,8 +584,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByUserId1_PrevAndNext(
 			long relationId, long userId1,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -663,16 +632,19 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId2(long, int, int, OrderByComparator)}
 	 * @param userId2 the user id2
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByUserId2(
 		long userId2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where userId2 = &#63;.
@@ -685,14 +657,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUserId2(
 		long userId2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId2 = &#63;.
@@ -703,9 +672,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUserId2_First(
-			long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long userId2, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -716,9 +683,7 @@ public interface SocialRelationPersistence
 	 * @return the first matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUserId2_First(
-		long userId2,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long userId2, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where userId2 = &#63;.
@@ -729,9 +694,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByUserId2_Last(
-			long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			long userId2, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -742,9 +705,7 @@ public interface SocialRelationPersistence
 	 * @return the last matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByUserId2_Last(
-		long userId2,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		long userId2, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where userId2 = &#63;.
@@ -757,8 +718,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByUserId2_PrevAndNext(
 			long relationId, long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -806,16 +766,19 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByType(int, int, int, OrderByComparator)}
 	 * @param type the type
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByType(
 		int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where type = &#63;.
@@ -828,14 +791,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByType(
 		int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where type = &#63;.
@@ -846,9 +806,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByType_First(
-			int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			int type, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -859,9 +817,7 @@ public interface SocialRelationPersistence
 	 * @return the first matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByType_First(
-		int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		int type, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where type = &#63;.
@@ -872,9 +828,7 @@ public interface SocialRelationPersistence
 	 * @throws NoSuchRelationException if a matching social relation could not be found
 	 */
 	public SocialRelation findByType_Last(
-			int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			int type, OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -885,9 +839,7 @@ public interface SocialRelationPersistence
 	 * @return the last matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByType_Last(
-		int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		int type, OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where type = &#63;.
@@ -900,8 +852,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByType_PrevAndNext(
 			long relationId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -951,17 +902,20 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_T(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param type the type
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByC_T(
 		long companyId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where companyId = &#63; and type = &#63;.
@@ -975,14 +929,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByC_T(
 		long companyId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where companyId = &#63; and type = &#63;.
@@ -995,8 +946,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByC_T_First(
 			long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1009,8 +959,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByC_T_First(
 		long companyId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where companyId = &#63; and type = &#63;.
@@ -1023,8 +972,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByC_T_Last(
 			long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1037,8 +985,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByC_T_Last(
 		long companyId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where companyId = &#63; and type = &#63;.
@@ -1052,8 +999,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByC_T_PrevAndNext(
 			long relationId, long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1106,17 +1052,20 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU1_U2(long,long, int, int, OrderByComparator)}
 	 * @param userId1 the user id1
 	 * @param userId2 the user id2
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByU1_U2(
 		long userId1, long userId2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where userId1 = &#63; and userId2 = &#63;.
@@ -1130,14 +1079,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU1_U2(
 		long userId1, long userId2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63; and userId2 = &#63;.
@@ -1150,8 +1096,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU1_U2_First(
 			long userId1, long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1164,8 +1109,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU1_U2_First(
 		long userId1, long userId2,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where userId1 = &#63; and userId2 = &#63;.
@@ -1178,8 +1122,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU1_U2_Last(
 			long userId1, long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1192,8 +1135,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU1_U2_Last(
 		long userId1, long userId2,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where userId1 = &#63; and userId2 = &#63;.
@@ -1207,8 +1149,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByU1_U2_PrevAndNext(
 			long relationId, long userId1, long userId2,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1260,17 +1201,20 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU1_T(long,int, int, int, OrderByComparator)}
 	 * @param userId1 the user id1
 	 * @param type the type
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByU1_T(
 		long userId1, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where userId1 = &#63; and type = &#63;.
@@ -1284,14 +1228,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU1_T(
 		long userId1, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63; and type = &#63;.
@@ -1304,8 +1245,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU1_T_First(
 			long userId1, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1318,8 +1258,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU1_T_First(
 		long userId1, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where userId1 = &#63; and type = &#63;.
@@ -1332,8 +1271,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU1_T_Last(
 			long userId1, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1346,8 +1284,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU1_T_Last(
 		long userId1, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where userId1 = &#63; and type = &#63;.
@@ -1361,8 +1298,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByU1_T_PrevAndNext(
 			long relationId, long userId1, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1414,17 +1350,20 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU2_T(long,int, int, int, OrderByComparator)}
 	 * @param userId2 the user id2
 	 * @param type the type
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findByU2_T(
 		long userId2, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations where userId2 = &#63; and type = &#63;.
@@ -1438,14 +1377,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU2_T(
 		long userId2, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId2 = &#63; and type = &#63;.
@@ -1458,8 +1394,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU2_T_First(
 			long userId2, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1472,8 +1407,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU2_T_First(
 		long userId2, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the last social relation in the ordered set where userId2 = &#63; and type = &#63;.
@@ -1486,8 +1420,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation findByU2_T_Last(
 			long userId2, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1500,8 +1433,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation fetchByU2_T_Last(
 		long userId2, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Returns the social relations before and after the current social relation in the ordered set where userId2 = &#63; and type = &#63;.
@@ -1515,8 +1447,7 @@ public interface SocialRelationPersistence
 	 */
 	public SocialRelation[] findByU2_T_PrevAndNext(
 			long relationId, long userId2, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-				orderByComparator)
+			OrderByComparator<SocialRelation> orderByComparator)
 		throws NoSuchRelationException;
 
 	/**
@@ -1549,14 +1480,18 @@ public interface SocialRelationPersistence
 		throws NoSuchRelationException;
 
 	/**
-	 * Returns the social relation where userId1 = &#63; and userId2 = &#63; and type = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the social relation where userId1 = &#63; and userId2 = &#63; and type = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU1_U2_T(long,long,int)}
 	 * @param userId1 the user id1
 	 * @param userId2 the user id2
 	 * @param type the type
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
-	public SocialRelation fetchByU1_U2_T(long userId1, long userId2, int type);
+	@Deprecated
+	public SocialRelation fetchByU1_U2_T(
+		long userId1, long userId2, int type, boolean useFinderCache);
 
 	/**
 	 * Returns the social relation where userId1 = &#63; and userId2 = &#63; and type = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1567,8 +1502,7 @@ public interface SocialRelationPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
-	public SocialRelation fetchByU1_U2_T(
-		long userId1, long userId2, int type, boolean useFinderCache);
+	public SocialRelation fetchByU1_U2_T(long userId1, long userId2, int type);
 
 	/**
 	 * Removes the social relation where userId1 = &#63; and userId2 = &#63; and type = &#63; from the database.
@@ -1670,15 +1604,17 @@ public interface SocialRelationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRelationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of social relations
 	 */
+	@Deprecated
 	public java.util.List<SocialRelation> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator);
+		int start, int end, OrderByComparator<SocialRelation> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social relations.
@@ -1690,14 +1626,11 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of social relations
 	 */
 	public java.util.List<SocialRelation> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRelation> orderByComparator);
 
 	/**
 	 * Removes all the social relations from the database.

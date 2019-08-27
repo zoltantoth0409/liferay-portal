@@ -17,6 +17,7 @@ package com.liferay.social.kernel.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.social.kernel.exception.NoSuchRequestException;
 import com.liferay.social.kernel.model.SocialRequest;
 
@@ -79,16 +80,19 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where uuid = &#63;.
@@ -101,14 +105,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where uuid = &#63;.
@@ -119,9 +120,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			String uuid, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -132,9 +131,7 @@ public interface SocialRequestPersistence
 	 * @return the first matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		String uuid, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where uuid = &#63;.
@@ -145,9 +142,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			String uuid, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -158,9 +153,7 @@ public interface SocialRequestPersistence
 	 * @return the last matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		String uuid, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where uuid = &#63;.
@@ -173,8 +166,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByUuid_PrevAndNext(
 			long requestId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -204,13 +196,17 @@ public interface SocialRequestPersistence
 		throws NoSuchRequestException;
 
 	/**
-	 * Returns the social request where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the social request where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
 	 */
-	public SocialRequest fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public SocialRequest fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the social request where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -220,8 +216,7 @@ public interface SocialRequestPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
 	 */
-	public SocialRequest fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public SocialRequest fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the social request where uuid = &#63; and groupId = &#63; from the database.
@@ -275,17 +270,20 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where uuid = &#63; and companyId = &#63;.
@@ -299,14 +297,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -319,8 +314,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -333,8 +327,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -347,8 +340,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -361,8 +353,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -376,8 +367,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByUuid_C_PrevAndNext(
 			long requestId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -427,16 +417,19 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where companyId = &#63;.
@@ -449,14 +442,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where companyId = &#63;.
@@ -467,9 +457,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			long companyId, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -480,9 +468,7 @@ public interface SocialRequestPersistence
 	 * @return the first matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		long companyId, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where companyId = &#63;.
@@ -493,9 +479,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			long companyId, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -506,9 +490,7 @@ public interface SocialRequestPersistence
 	 * @return the last matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		long companyId, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where companyId = &#63;.
@@ -521,8 +503,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByCompanyId_PrevAndNext(
 			long requestId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -570,16 +551,19 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where userId = &#63;.
@@ -592,14 +576,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where userId = &#63;.
@@ -610,9 +591,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByUserId_First(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			long userId, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -623,9 +602,7 @@ public interface SocialRequestPersistence
 	 * @return the first matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByUserId_First(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		long userId, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where userId = &#63;.
@@ -636,9 +613,7 @@ public interface SocialRequestPersistence
 	 * @throws NoSuchRequestException if a matching social request could not be found
 	 */
 	public SocialRequest findByUserId_Last(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			long userId, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -649,9 +624,7 @@ public interface SocialRequestPersistence
 	 * @return the last matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	public SocialRequest fetchByUserId_Last(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		long userId, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where userId = &#63;.
@@ -664,8 +637,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByUserId_PrevAndNext(
 			long requestId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -714,16 +686,19 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByReceiverUserId(long, int, int, OrderByComparator)}
 	 * @param receiverUserId the receiver user ID
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where receiverUserId = &#63;.
@@ -736,14 +711,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where receiverUserId = &#63;.
@@ -755,8 +727,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByReceiverUserId_First(
 			long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -768,8 +739,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where receiverUserId = &#63;.
@@ -781,8 +751,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByReceiverUserId_Last(
 			long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -794,8 +763,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where receiverUserId = &#63;.
@@ -808,8 +776,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByReceiverUserId_PrevAndNext(
 			long requestId, long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -859,17 +826,20 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_S(long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByU_S(
 		long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where userId = &#63; and status = &#63;.
@@ -883,14 +853,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByU_S(
 		long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where userId = &#63; and status = &#63;.
@@ -903,8 +870,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByU_S_First(
 			long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -917,8 +883,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByU_S_First(
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where userId = &#63; and status = &#63;.
@@ -931,8 +896,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByU_S_Last(
 			long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -945,8 +909,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByU_S_Last(
 		long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where userId = &#63; and status = &#63;.
@@ -960,8 +923,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByU_S_PrevAndNext(
 			long requestId, long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1014,17 +976,20 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where classNameId = &#63; and classPK = &#63;.
@@ -1038,14 +1003,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1058,8 +1020,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByC_C_First(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1072,8 +1033,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1086,8 +1046,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByC_C_Last(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1100,8 +1059,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1115,8 +1073,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByC_C_PrevAndNext(
 			long requestId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1169,17 +1126,20 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_S(long,int, int, int, OrderByComparator)}
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where receiverUserId = &#63; and status = &#63;.
@@ -1193,14 +1153,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -1213,8 +1170,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByR_S_First(
 			long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1227,8 +1183,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -1241,8 +1196,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByR_S_Last(
 			long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1255,8 +1209,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -1270,8 +1223,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest[] findByR_S_PrevAndNext(
 			long requestId, long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1308,18 +1260,21 @@ public interface SocialRequestPersistence
 		throws NoSuchRequestException;
 
 	/**
-	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_C_C_T_R(long,long,long,int,long)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
 	 */
+	@Deprecated
 	public SocialRequest fetchByU_C_C_T_R(
 		long userId, long classNameId, long classPK, int type,
-		long receiverUserId);
+		long receiverUserId, boolean useFinderCache);
 
 	/**
 	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1334,7 +1289,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByU_C_C_T_R(
 		long userId, long classNameId, long classPK, int type,
-		long receiverUserId, boolean useFinderCache);
+		long receiverUserId);
 
 	/**
 	 * Removes the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; from the database.
@@ -1405,6 +1360,7 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_C_T_S(long,long,long,int,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
@@ -1413,13 +1369,14 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByU_C_C_T_S(
 		long userId, long classNameId, long classPK, int type, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		int start, int end, OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and status = &#63;.
@@ -1436,15 +1393,11 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByU_C_C_T_S(
 		long userId, long classNameId, long classPK, int type, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and status = &#63;.
@@ -1460,8 +1413,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByU_C_C_T_S_First(
 			long userId, long classNameId, long classPK, int type, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1477,8 +1429,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByU_C_C_T_S_First(
 		long userId, long classNameId, long classPK, int type, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and status = &#63;.
@@ -1494,8 +1445,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByU_C_C_T_S_Last(
 			long userId, long classNameId, long classPK, int type, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1511,8 +1461,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByU_C_C_T_S_Last(
 		long userId, long classNameId, long classPK, int type, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63; and status = &#63;.
@@ -1530,8 +1479,7 @@ public interface SocialRequestPersistence
 	public SocialRequest[] findByU_C_C_T_S_PrevAndNext(
 			long requestId, long userId, long classNameId, long classPK,
 			int type, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1600,6 +1548,7 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_T_R_S(long,long,int,long,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param type the type
@@ -1608,13 +1557,15 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findByC_C_T_R_S(
 		long classNameId, long classPK, int type, long receiverUserId,
 		int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests where classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; and status = &#63;.
@@ -1631,15 +1582,12 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social requests
 	 */
 	public java.util.List<SocialRequest> findByC_C_T_R_S(
 		long classNameId, long classPK, int type, long receiverUserId,
 		int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the first social request in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; and status = &#63;.
@@ -1655,9 +1603,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByC_C_T_R_S_First(
 			long classNameId, long classPK, int type, long receiverUserId,
-			int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			int status, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1673,9 +1619,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByC_C_T_R_S_First(
 		long classNameId, long classPK, int type, long receiverUserId,
-		int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		int status, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the last social request in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; and status = &#63;.
@@ -1691,9 +1635,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest findByC_C_T_R_S_Last(
 			long classNameId, long classPK, int type, long receiverUserId,
-			int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			int status, OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1709,9 +1651,7 @@ public interface SocialRequestPersistence
 	 */
 	public SocialRequest fetchByC_C_T_R_S_Last(
 		long classNameId, long classPK, int type, long receiverUserId,
-		int status,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		int status, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Returns the social requests before and after the current social request in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63; and receiverUserId = &#63; and status = &#63;.
@@ -1729,8 +1669,7 @@ public interface SocialRequestPersistence
 	public SocialRequest[] findByC_C_T_R_S_PrevAndNext(
 			long requestId, long classNameId, long classPK, int type,
 			long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-				orderByComparator)
+			OrderByComparator<SocialRequest> orderByComparator)
 		throws NoSuchRequestException;
 
 	/**
@@ -1838,15 +1777,17 @@ public interface SocialRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SocialRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of social requests
 	 */
+	@Deprecated
 	public java.util.List<SocialRequest> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator);
+		int start, int end, OrderByComparator<SocialRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the social requests.
@@ -1858,14 +1799,10 @@ public interface SocialRequestPersistence
 	 * @param start the lower bound of the range of social requests
 	 * @param end the upper bound of the range of social requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of social requests
 	 */
 	public java.util.List<SocialRequest> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SocialRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<SocialRequest> orderByComparator);
 
 	/**
 	 * Removes all the social requests from the database.

@@ -130,18 +130,22 @@ public class PasswordPolicyPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PasswordPolicyModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
+	@Deprecated
 	@Override
 	public List<PasswordPolicy> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator) {
+		OrderByComparator<PasswordPolicy> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -155,14 +159,12 @@ public class PasswordPolicyPersistenceImpl
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	@Override
 	public List<PasswordPolicy> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -174,30 +176,24 @@ public class PasswordPolicyPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<PasswordPolicy> list = null;
-
-		if (useFinderCache) {
-			list = (List<PasswordPolicy>)FinderCacheUtil.getResult(
+		List<PasswordPolicy> list =
+			(List<PasswordPolicy>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PasswordPolicy passwordPolicy : list) {
-					if (!uuid.equals(passwordPolicy.getUuid())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (PasswordPolicy passwordPolicy : list) {
+				if (!uuid.equals(passwordPolicy.getUuid())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -264,14 +260,10 @@ public class PasswordPolicyPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1109,20 +1101,23 @@ public class PasswordPolicyPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PasswordPolicyModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
+	@Deprecated
 	@Override
 	public List<PasswordPolicy> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator) {
+		OrderByComparator<PasswordPolicy> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1137,14 +1132,12 @@ public class PasswordPolicyPersistenceImpl
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	@Override
 	public List<PasswordPolicy> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1156,34 +1149,28 @@ public class PasswordPolicyPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<PasswordPolicy> list = null;
-
-		if (useFinderCache) {
-			list = (List<PasswordPolicy>)FinderCacheUtil.getResult(
+		List<PasswordPolicy> list =
+			(List<PasswordPolicy>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PasswordPolicy passwordPolicy : list) {
-					if (!uuid.equals(passwordPolicy.getUuid()) ||
-						(companyId != passwordPolicy.getCompanyId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (PasswordPolicy passwordPolicy : list) {
+				if (!uuid.equals(passwordPolicy.getUuid()) ||
+					(companyId != passwordPolicy.getCompanyId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1254,14 +1241,10 @@ public class PasswordPolicyPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2153,18 +2136,22 @@ public class PasswordPolicyPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PasswordPolicyModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
+	@Deprecated
 	@Override
 	public List<PasswordPolicy> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator) {
+		OrderByComparator<PasswordPolicy> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2178,14 +2165,12 @@ public class PasswordPolicyPersistenceImpl
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	@Override
 	public List<PasswordPolicy> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2195,32 +2180,26 @@ public class PasswordPolicyPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<PasswordPolicy> list = null;
-
-		if (useFinderCache) {
-			list = (List<PasswordPolicy>)FinderCacheUtil.getResult(
+		List<PasswordPolicy> list =
+			(List<PasswordPolicy>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PasswordPolicy passwordPolicy : list) {
-					if ((companyId != passwordPolicy.getCompanyId())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (PasswordPolicy passwordPolicy : list) {
+				if ((companyId != passwordPolicy.getCompanyId())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2276,14 +2255,10 @@ public class PasswordPolicyPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3046,15 +3021,20 @@ public class PasswordPolicyPersistenceImpl
 	}
 
 	/**
-	 * Returns the password policy where companyId = &#63; and defaultPolicy = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the password policy where companyId = &#63; and defaultPolicy = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_DP(long,boolean)}
 	 * @param companyId the company ID
 	 * @param defaultPolicy the default policy
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
+	@Deprecated
 	@Override
-	public PasswordPolicy fetchByC_DP(long companyId, boolean defaultPolicy) {
-		return fetchByC_DP(companyId, defaultPolicy, true);
+	public PasswordPolicy fetchByC_DP(
+		long companyId, boolean defaultPolicy, boolean useFinderCache) {
+
+		return fetchByC_DP(companyId, defaultPolicy);
 	}
 
 	/**
@@ -3066,21 +3046,11 @@ public class PasswordPolicyPersistenceImpl
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
 	@Override
-	public PasswordPolicy fetchByC_DP(
-		long companyId, boolean defaultPolicy, boolean useFinderCache) {
+	public PasswordPolicy fetchByC_DP(long companyId, boolean defaultPolicy) {
+		Object[] finderArgs = new Object[] {companyId, defaultPolicy};
 
-		Object[] finderArgs = null;
-
-		if (useFinderCache) {
-			finderArgs = new Object[] {companyId, defaultPolicy};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByC_DP, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByC_DP, finderArgs, this);
 
 		if (result instanceof PasswordPolicy) {
 			PasswordPolicy passwordPolicy = (PasswordPolicy)result;
@@ -3119,22 +3089,14 @@ public class PasswordPolicyPersistenceImpl
 				List<PasswordPolicy> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByC_DP, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_DP, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {
-									companyId, defaultPolicy
-								};
-							}
-
 							_log.warn(
 								"PasswordPolicyPersistenceImpl.fetchByC_DP(long, boolean, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -3150,10 +3112,8 @@ public class PasswordPolicyPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByC_DP, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByC_DP, finderArgs);
 
 				throw processException(e);
 			}
@@ -3290,15 +3250,20 @@ public class PasswordPolicyPersistenceImpl
 	}
 
 	/**
-	 * Returns the password policy where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the password policy where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_N(long,String)}
 	 * @param companyId the company ID
 	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
+	@Deprecated
 	@Override
-	public PasswordPolicy fetchByC_N(long companyId, String name) {
-		return fetchByC_N(companyId, name, true);
+	public PasswordPolicy fetchByC_N(
+		long companyId, String name, boolean useFinderCache) {
+
+		return fetchByC_N(companyId, name);
 	}
 
 	/**
@@ -3310,23 +3275,13 @@ public class PasswordPolicyPersistenceImpl
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
 	@Override
-	public PasswordPolicy fetchByC_N(
-		long companyId, String name, boolean useFinderCache) {
-
+	public PasswordPolicy fetchByC_N(long companyId, String name) {
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {companyId, name};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {companyId, name};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByC_N, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByC_N, finderArgs, this);
 
 		if (result instanceof PasswordPolicy) {
 			PasswordPolicy passwordPolicy = (PasswordPolicy)result;
@@ -3376,10 +3331,8 @@ public class PasswordPolicyPersistenceImpl
 				List<PasswordPolicy> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByC_N, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_N, finderArgs, list);
 				}
 				else {
 					PasswordPolicy passwordPolicy = list.get(0);
@@ -3390,10 +3343,7 @@ public class PasswordPolicyPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByC_N, finderArgs);
-				}
+				FinderCacheUtil.removeResult(_finderPathFetchByC_N, finderArgs);
 
 				throw processException(e);
 			}
@@ -4225,17 +4175,20 @@ public class PasswordPolicyPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PasswordPolicyModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of password policies
 	 */
+	@Deprecated
 	@Override
 	public List<PasswordPolicy> findAll(
-		int start, int end,
-		OrderByComparator<PasswordPolicy> orderByComparator) {
+		int start, int end, OrderByComparator<PasswordPolicy> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -4248,13 +4201,12 @@ public class PasswordPolicyPersistenceImpl
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of password policies
 	 */
 	@Override
 	public List<PasswordPolicy> findAll(
-		int start, int end, OrderByComparator<PasswordPolicy> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4264,23 +4216,17 @@ public class PasswordPolicyPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<PasswordPolicy> list = null;
-
-		if (useFinderCache) {
-			list = (List<PasswordPolicy>)FinderCacheUtil.getResult(
+		List<PasswordPolicy> list =
+			(List<PasswordPolicy>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4327,14 +4273,10 @@ public class PasswordPolicyPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

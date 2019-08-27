@@ -17,6 +17,7 @@ package com.liferay.trash.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.trash.exception.NoSuchEntryException;
 import com.liferay.trash.model.TrashEntry;
 
@@ -79,16 +80,19 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>TrashEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
+	@Deprecated
 	public java.util.List<TrashEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the trash entries where groupId = &#63;.
@@ -101,14 +105,11 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
 	public java.util.List<TrashEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the first trash entry in the ordered set where groupId = &#63;.
@@ -119,9 +120,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @throws NoSuchEntryException if a matching trash entry could not be found
 	 */
 	public TrashEntry findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			long groupId, OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -132,9 +131,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @return the first matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
 	public TrashEntry fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		long groupId, OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the last trash entry in the ordered set where groupId = &#63;.
@@ -145,9 +142,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @throws NoSuchEntryException if a matching trash entry could not be found
 	 */
 	public TrashEntry findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			long groupId, OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -158,9 +153,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @return the last matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
 	public TrashEntry fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		long groupId, OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the trash entries before and after the current trash entry in the ordered set where groupId = &#63;.
@@ -173,8 +166,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry[] findByGroupId_PrevAndNext(
 			long entryId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -222,16 +214,19 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>TrashEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
+	@Deprecated
 	public java.util.List<TrashEntry> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the trash entries where companyId = &#63;.
@@ -244,14 +239,11 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
 	public java.util.List<TrashEntry> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the first trash entry in the ordered set where companyId = &#63;.
@@ -262,9 +254,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @throws NoSuchEntryException if a matching trash entry could not be found
 	 */
 	public TrashEntry findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			long companyId, OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -275,9 +265,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @return the first matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
 	public TrashEntry fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		long companyId, OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the last trash entry in the ordered set where companyId = &#63;.
@@ -288,9 +276,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @throws NoSuchEntryException if a matching trash entry could not be found
 	 */
 	public TrashEntry findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			long companyId, OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -301,9 +287,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @return the last matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
 	public TrashEntry fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		long companyId, OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the trash entries before and after the current trash entry in the ordered set where companyId = &#63;.
@@ -316,8 +300,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry[] findByCompanyId_PrevAndNext(
 			long entryId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -368,17 +351,20 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>TrashEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_LtCD(long,Date, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param createDate the create date
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
+	@Deprecated
 	public java.util.List<TrashEntry> findByG_LtCD(
 		long groupId, Date createDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the trash entries where groupId = &#63; and createDate &lt; &#63;.
@@ -392,14 +378,11 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
 	public java.util.List<TrashEntry> findByG_LtCD(
 		long groupId, Date createDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the first trash entry in the ordered set where groupId = &#63; and createDate &lt; &#63;.
@@ -412,8 +395,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry findByG_LtCD_First(
 			long groupId, Date createDate,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -426,8 +408,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry fetchByG_LtCD_First(
 		long groupId, Date createDate,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the last trash entry in the ordered set where groupId = &#63; and createDate &lt; &#63;.
@@ -440,8 +421,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry findByG_LtCD_Last(
 			long groupId, Date createDate,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -454,8 +434,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry fetchByG_LtCD_Last(
 		long groupId, Date createDate,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the trash entries before and after the current trash entry in the ordered set where groupId = &#63; and createDate &lt; &#63;.
@@ -469,8 +448,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry[] findByG_LtCD_PrevAndNext(
 			long entryId, long groupId, Date createDate,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -522,17 +500,20 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>TrashEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
+	@Deprecated
 	public java.util.List<TrashEntry> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the trash entries where groupId = &#63; and classNameId = &#63;.
@@ -546,14 +527,11 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching trash entries
 	 */
 	public java.util.List<TrashEntry> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the first trash entry in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -566,8 +544,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry findByG_C_First(
 			long groupId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -580,8 +557,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry fetchByG_C_First(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the last trash entry in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -594,8 +570,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry findByG_C_Last(
 			long groupId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -608,8 +583,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry fetchByG_C_Last(
 		long groupId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Returns the trash entries before and after the current trash entry in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -623,8 +597,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 */
 	public TrashEntry[] findByG_C_PrevAndNext(
 			long entryId, long groupId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-				orderByComparator)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws NoSuchEntryException;
 
 	/**
@@ -656,13 +629,17 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 		throws NoSuchEntryException;
 
 	/**
-	 * Returns the trash entry where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the trash entry where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C(long,long)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
-	public TrashEntry fetchByC_C(long classNameId, long classPK);
+	@Deprecated
+	public TrashEntry fetchByC_C(
+		long classNameId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Returns the trash entry where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -672,8 +649,7 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching trash entry, or <code>null</code> if a matching trash entry could not be found
 	 */
-	public TrashEntry fetchByC_C(
-		long classNameId, long classPK, boolean useFinderCache);
+	public TrashEntry fetchByC_C(long classNameId, long classPK);
 
 	/**
 	 * Removes the trash entry where classNameId = &#63; and classPK = &#63; from the database.
@@ -772,15 +748,17 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>TrashEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of trash entries
 	 */
+	@Deprecated
 	public java.util.List<TrashEntry> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator);
+		int start, int end, OrderByComparator<TrashEntry> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the trash entries.
@@ -792,14 +770,10 @@ public interface TrashEntryPersistence extends BasePersistence<TrashEntry> {
 	 * @param start the lower bound of the range of trash entries
 	 * @param end the upper bound of the range of trash entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of trash entries
 	 */
 	public java.util.List<TrashEntry> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<TrashEntry> orderByComparator);
 
 	/**
 	 * Removes all the trash entries from the database.

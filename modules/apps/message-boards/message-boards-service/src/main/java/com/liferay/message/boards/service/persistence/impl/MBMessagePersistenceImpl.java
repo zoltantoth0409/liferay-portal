@@ -139,18 +139,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -164,14 +168,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -183,30 +185,23 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if (!uuid.equals(mbMessage.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if (!uuid.equals(mbMessage.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -273,14 +268,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -689,15 +680,20 @@ public class MBMessagePersistenceImpl
 	}
 
 	/**
-	 * Returns the message-boards message where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the message-boards message where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
+	@Deprecated
 	@Override
-	public MBMessage fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public MBMessage fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -709,23 +705,13 @@ public class MBMessagePersistenceImpl
 	 * @return the matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	@Override
-	public MBMessage fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public MBMessage fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof MBMessage) {
 			MBMessage mbMessage = (MBMessage)result;
@@ -775,10 +761,8 @@ public class MBMessagePersistenceImpl
 				List<MBMessage> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					MBMessage mbMessage = list.get(0);
@@ -789,10 +773,7 @@ public class MBMessagePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -947,20 +928,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -975,14 +959,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -994,34 +976,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if (!uuid.equals(mbMessage.getUuid()) ||
+					(companyId != mbMessage.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if (!uuid.equals(mbMessage.getUuid()) ||
-						(companyId != mbMessage.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1092,14 +1067,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1540,18 +1511,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByGroupId(groupId, start, end, orderByComparator, true);
+		return findByGroupId(groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1565,14 +1540,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1582,30 +1555,23 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByGroupId;
-				finderArgs = new Object[] {groupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByGroupId;
+			finderArgs = new Object[] {groupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1661,14 +1627,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2423,18 +2385,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2448,14 +2414,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2465,32 +2429,25 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((companyId != mbMessage.getCompanyId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((companyId != mbMessage.getCompanyId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2546,14 +2503,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2935,18 +2888,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUserId(userId, start, end, orderByComparator, true);
+		return findByUserId(userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2960,14 +2917,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2977,30 +2932,23 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUserId;
-				finderArgs = new Object[] {userId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUserId;
+			finderArgs = new Object[] {userId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] {userId, start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3056,14 +3004,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3443,18 +3387,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByThreadId(long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByThreadId(
 		long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByThreadId(threadId, start, end, orderByComparator, true);
+		return findByThreadId(threadId, start, end, orderByComparator);
 	}
 
 	/**
@@ -3468,14 +3416,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByThreadId(
 		long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3485,30 +3431,23 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByThreadId;
-				finderArgs = new Object[] {threadId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByThreadId;
+			finderArgs = new Object[] {threadId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByThreadId;
 			finderArgs = new Object[] {threadId, start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3564,14 +3503,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3955,19 +3890,22 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByThreadReplies(long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByThreadReplies(
 		long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByThreadReplies(
-			threadId, start, end, orderByComparator, true);
+		return findByThreadReplies(threadId, start, end, orderByComparator);
 	}
 
 	/**
@@ -3981,14 +3919,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByThreadReplies(
 		long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3998,30 +3934,23 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByThreadReplies;
-				finderArgs = new Object[] {threadId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByThreadReplies;
+			finderArgs = new Object[] {threadId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByThreadReplies;
 			finderArgs = new Object[] {threadId, start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4077,14 +4006,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4471,19 +4396,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_U(groupId, userId, start, end, orderByComparator, true);
+		return findByG_U(groupId, userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -4498,14 +4427,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4515,34 +4442,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_U;
-				finderArgs = new Object[] {groupId, userId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_U;
+			finderArgs = new Object[] {groupId, userId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_U;
 			finderArgs = new Object[] {
 				groupId, userId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(userId != mbMessage.getUserId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(userId != mbMessage.getUserId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4602,14 +4522,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5417,20 +5333,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_C(
-			groupId, categoryId, start, end, orderByComparator, true);
+		return findByG_C(groupId, categoryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -5445,14 +5364,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5462,34 +5379,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C;
-				finderArgs = new Object[] {groupId, categoryId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C;
+			finderArgs = new Object[] {groupId, categoryId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C;
 			finderArgs = new Object[] {
 				groupId, categoryId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(categoryId != mbMessage.getCategoryId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(categoryId != mbMessage.getCategoryId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5549,14 +5459,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6369,19 +6275,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_S(groupId, status, start, end, orderByComparator, true);
+		return findByG_S(groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -6396,14 +6306,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6413,34 +6321,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_S;
-				finderArgs = new Object[] {groupId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_S;
+			finderArgs = new Object[] {groupId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -6500,14 +6401,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7315,20 +7212,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByC_S(
 		long companyId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_S(
-			companyId, status, start, end, orderByComparator, true);
+		return findByC_S(companyId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -7343,14 +7243,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByC_S(
 		long companyId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7360,34 +7258,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_S;
-				finderArgs = new Object[] {companyId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_S;
+			finderArgs = new Object[] {companyId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_S;
 			finderArgs = new Object[] {
 				companyId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((companyId != mbMessage.getCompanyId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((companyId != mbMessage.getCompanyId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -7447,14 +7338,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7872,20 +7759,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C(long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByU_C(
 		long userId, long classNameId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByU_C(
-			userId, classNameId, start, end, orderByComparator, true);
+		return findByU_C(userId, classNameId, start, end, orderByComparator);
 	}
 
 	/**
@@ -7900,14 +7790,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByU_C(
 		long userId, long classNameId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7917,34 +7805,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByU_C;
-				finderArgs = new Object[] {userId, classNameId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByU_C;
+			finderArgs = new Object[] {userId, classNameId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByU_C;
 			finderArgs = new Object[] {
 				userId, classNameId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					(classNameId != mbMessage.getClassNameId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						(classNameId != mbMessage.getClassNameId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -8004,14 +7885,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -8344,6 +8221,32 @@ public class MBMessagePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C(long,long, int, int, OrderByComparator)}
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param start the lower bound of the range of message-boards messages
+	 * @param end the upper bound of the range of message-boards messages (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message-boards messages
+	 */
+	@Deprecated
+	@Override
+	public List<MBMessage> findByU_C(
+		long userId, long[] classNameIds, int start, int end,
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByU_C(userId, classNameIds, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = any &#63;.
 	 *
 	 * <p>
@@ -8361,31 +8264,6 @@ public class MBMessagePersistenceImpl
 	public List<MBMessage> findByU_C(
 		long userId, long[] classNameIds, int start, int end,
 		OrderByComparator<MBMessage> orderByComparator) {
-
-		return findByU_C(
-			userId, classNameIds, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param classNameId the class name ID
-	 * @param start the lower bound of the range of message-boards messages
-	 * @param end the upper bound of the range of message-boards messages (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message-boards messages
-	 */
-	@Override
-	public List<MBMessage> findByU_C(
-		long userId, long[] classNameIds, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
 
 		if (classNameIds == null) {
 			classNameIds = new long[0];
@@ -8408,36 +8286,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					userId, StringUtil.merge(classNameIds)
-				};
-			}
+			finderArgs = new Object[] {userId, StringUtil.merge(classNameIds)};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				userId, StringUtil.merge(classNameIds), start, end,
 				orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			_finderPathWithPaginationFindByU_C, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				_finderPathWithPaginationFindByU_C, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					!ArrayUtil.contains(
+						classNameIds, mbMessage.getClassNameId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						!ArrayUtil.contains(
-							classNameIds, mbMessage.getClassNameId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -8501,16 +8370,12 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByU_C, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByU_C, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByU_C, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByU_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -8728,20 +8593,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_C(
-			classNameId, classPK, start, end, orderByComparator, true);
+		return findByC_C(classNameId, classPK, start, end, orderByComparator);
 	}
 
 	/**
@@ -8756,14 +8624,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8773,34 +8639,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_C;
-				finderArgs = new Object[] {classNameId, classPK};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_C;
+			finderArgs = new Object[] {classNameId, classPK};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
 				classNameId, classPK, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((classNameId != mbMessage.getClassNameId()) ||
+					(classPK != mbMessage.getClassPK())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((classNameId != mbMessage.getClassNameId()) ||
-						(classPK != mbMessage.getClassPK())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -8860,14 +8719,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9286,20 +9141,24 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_P(long,long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param parentMessageId the parent message ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByT_P(
 		long threadId, long parentMessageId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByT_P(
-			threadId, parentMessageId, start, end, orderByComparator, true);
+			threadId, parentMessageId, start, end, orderByComparator);
 	}
 
 	/**
@@ -9314,14 +9173,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByT_P(
 		long threadId, long parentMessageId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9331,34 +9188,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByT_P;
-				finderArgs = new Object[] {threadId, parentMessageId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByT_P;
+			finderArgs = new Object[] {threadId, parentMessageId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByT_P;
 			finderArgs = new Object[] {
 				threadId, parentMessageId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId()) ||
+					(parentMessageId != mbMessage.getParentMessageId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId()) ||
-						(parentMessageId != mbMessage.getParentMessageId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9418,14 +9268,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9844,19 +9690,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_A(long,boolean, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param answer the answer
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByT_A(
 		long threadId, boolean answer, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByT_A(threadId, answer, start, end, orderByComparator, true);
+		return findByT_A(threadId, answer, start, end, orderByComparator);
 	}
 
 	/**
@@ -9871,14 +9721,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByT_A(
 		long threadId, boolean answer, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9888,34 +9736,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByT_A;
-				finderArgs = new Object[] {threadId, answer};
-			}
+			finderPath = _finderPathWithoutPaginationFindByT_A;
+			finderArgs = new Object[] {threadId, answer};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByT_A;
 			finderArgs = new Object[] {
 				threadId, answer, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId()) ||
+					(answer != mbMessage.isAnswer())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId()) ||
-						(answer != mbMessage.isAnswer())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9975,14 +9816,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10398,19 +10235,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_S(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByT_S(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByT_S(threadId, status, start, end, orderByComparator, true);
+		return findByT_S(threadId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -10425,14 +10266,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByT_S(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -10442,34 +10281,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByT_S;
-				finderArgs = new Object[] {threadId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByT_S;
+			finderArgs = new Object[] {threadId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByT_S;
 			finderArgs = new Object[] {
 				threadId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -10529,14 +10361,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10951,20 +10779,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_notS(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByT_notS(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByT_notS(
-			threadId, status, start, end, orderByComparator, true);
+		return findByT_notS(threadId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -10979,14 +10810,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByT_notS(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -10997,21 +10826,17 @@ public class MBMessagePersistenceImpl
 			threadId, status, start, end, orderByComparator
 		};
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId()) ||
+					(status == mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId()) ||
-						(status == mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11071,14 +10896,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -11494,20 +11315,23 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTR_S(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByTR_S(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByTR_S(
-			threadId, status, start, end, orderByComparator, true);
+		return findByTR_S(threadId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -11522,14 +11346,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByTR_S(
 		long threadId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11539,34 +11361,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByTR_S;
-				finderArgs = new Object[] {threadId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByTR_S;
+			finderArgs = new Object[] {threadId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByTR_S;
 			finderArgs = new Object[] {
 				threadId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((threadId != mbMessage.getThreadId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11626,14 +11441,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12050,20 +11861,24 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_S(long,int, int, int, OrderByComparator)}
 	 * @param parentMessageId the parent message ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByP_S(
 		long parentMessageId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByP_S(
-			parentMessageId, status, start, end, orderByComparator, true);
+			parentMessageId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -12078,14 +11893,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByP_S(
 		long parentMessageId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -12095,34 +11908,27 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByP_S;
-				finderArgs = new Object[] {parentMessageId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByP_S;
+			finderArgs = new Object[] {parentMessageId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByP_S;
 			finderArgs = new Object[] {
 				parentMessageId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((parentMessageId != mbMessage.getParentMessageId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((parentMessageId != mbMessage.getParentMessageId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -12182,14 +11988,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12610,21 +12412,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_U_S(
-			groupId, userId, status, start, end, orderByComparator, true);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -12640,14 +12446,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -12657,35 +12461,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_U_S;
-				finderArgs = new Object[] {groupId, userId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_U_S;
+			finderArgs = new Object[] {groupId, userId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_U_S;
 			finderArgs = new Object[] {
 				groupId, userId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(userId != mbMessage.getUserId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(userId != mbMessage.getUserId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -12749,14 +12546,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -13620,21 +13413,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_C_T(
 		long groupId, long categoryId, long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_C_T(
-			groupId, categoryId, threadId, start, end, orderByComparator, true);
+			groupId, categoryId, threadId, start, end, orderByComparator);
 	}
 
 	/**
@@ -13650,14 +13447,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_C_T(
 		long groupId, long categoryId, long threadId, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -13667,35 +13462,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_T;
-				finderArgs = new Object[] {groupId, categoryId, threadId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_T;
+			finderArgs = new Object[] {groupId, categoryId, threadId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_T;
 			finderArgs = new Object[] {
 				groupId, categoryId, threadId, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(categoryId != mbMessage.getCategoryId()) ||
+					(threadId != mbMessage.getThreadId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(categoryId != mbMessage.getCategoryId()) ||
-						(threadId != mbMessage.getThreadId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -13759,14 +13547,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -14633,21 +14417,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_C_S(
-			groupId, categoryId, status, start, end, orderByComparator, true);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -14663,14 +14451,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -14680,35 +14466,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_S;
-				finderArgs = new Object[] {groupId, categoryId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_S;
+			finderArgs = new Object[] {groupId, categoryId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_S;
 			finderArgs = new Object[] {
 				groupId, categoryId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(categoryId != mbMessage.getCategoryId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(categoryId != mbMessage.getCategoryId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -14772,14 +14551,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -15643,21 +15418,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByU_C_C(
 		long userId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByU_C_C(
-			userId, classNameId, classPK, start, end, orderByComparator, true);
+			userId, classNameId, classPK, start, end, orderByComparator);
 	}
 
 	/**
@@ -15673,14 +15452,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByU_C_C(
 		long userId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -15690,35 +15467,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByU_C_C;
-				finderArgs = new Object[] {userId, classNameId, classPK};
-			}
+			finderPath = _finderPathWithoutPaginationFindByU_C_C;
+			finderArgs = new Object[] {userId, classNameId, classPK};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByU_C_C;
 			finderArgs = new Object[] {
 				userId, classNameId, classPK, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					(classNameId != mbMessage.getClassNameId()) ||
+					(classPK != mbMessage.getClassPK())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						(classNameId != mbMessage.getClassNameId()) ||
-						(classPK != mbMessage.getClassPK())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -15782,14 +15552,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -16238,21 +16004,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByU_C_S(
 		long userId, long classNameId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByU_C_S(
-			userId, classNameId, status, start, end, orderByComparator, true);
+			userId, classNameId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -16268,14 +16038,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByU_C_S(
 		long userId, long classNameId, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -16285,35 +16053,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByU_C_S;
-				finderArgs = new Object[] {userId, classNameId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByU_C_S;
+			finderArgs = new Object[] {userId, classNameId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByU_C_S;
 			finderArgs = new Object[] {
 				userId, classNameId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					(classNameId != mbMessage.getClassNameId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						(classNameId != mbMessage.getClassNameId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -16377,14 +16138,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -16738,6 +16495,34 @@ public class MBMessagePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_S(long,long,int, int, int, OrderByComparator)}
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message-boards messages
+	 * @param end the upper bound of the range of message-boards messages (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message-boards messages
+	 */
+	@Deprecated
+	@Override
+	public List<MBMessage> findByU_C_S(
+		long userId, long[] classNameIds, int status, int start, int end,
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByU_C_S(
+			userId, classNameIds, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -16756,32 +16541,6 @@ public class MBMessagePersistenceImpl
 	public List<MBMessage> findByU_C_S(
 		long userId, long[] classNameIds, int status, int start, int end,
 		OrderByComparator<MBMessage> orderByComparator) {
-
-		return findByU_C_S(
-			userId, classNameIds, status, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param classNameId the class name ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message-boards messages
-	 * @param end the upper bound of the range of message-boards messages (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message-boards messages
-	 */
-	@Override
-	public List<MBMessage> findByU_C_S(
-		long userId, long[] classNameIds, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
 
 		if (classNameIds == null) {
 			classNameIds = new long[0];
@@ -16804,37 +16563,30 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					userId, StringUtil.merge(classNameIds), status
-				};
-			}
+			finderArgs = new Object[] {
+				userId, StringUtil.merge(classNameIds), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				userId, StringUtil.merge(classNameIds), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			_finderPathWithPaginationFindByU_C_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				_finderPathWithPaginationFindByU_C_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					!ArrayUtil.contains(
+						classNameIds, mbMessage.getClassNameId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						!ArrayUtil.contains(
-							classNameIds, mbMessage.getClassNameId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -16904,16 +16656,12 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByU_C_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByU_C_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByU_C_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByU_C_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -17152,21 +16900,25 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByC_C_S(
 		long classNameId, long classPK, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator) {
+		OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByC_C_S(
-			classNameId, classPK, status, start, end, orderByComparator, true);
+			classNameId, classPK, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -17182,14 +16934,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByC_C_S(
 		long classNameId, long classPK, int status, int start, int end,
-		OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -17199,35 +16949,28 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_C_S;
-				finderArgs = new Object[] {classNameId, classPK, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_C_S;
+			finderArgs = new Object[] {classNameId, classPK, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_C_S;
 			finderArgs = new Object[] {
 				classNameId, classPK, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((classNameId != mbMessage.getClassNameId()) ||
+					(classPK != mbMessage.getClassPK()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((classNameId != mbMessage.getClassNameId()) ||
-						(classPK != mbMessage.getClassPK()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -17291,14 +17034,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -17750,6 +17489,7 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T_A(long,long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
@@ -17757,16 +17497,19 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_C_T_A(
 		long groupId, long categoryId, long threadId, boolean answer, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator) {
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_C_T_A(
 			groupId, categoryId, threadId, answer, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -17783,14 +17526,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_C_T_A(
 		long groupId, long categoryId, long threadId, boolean answer, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -17800,15 +17541,10 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_T_A;
-				finderArgs = new Object[] {
-					groupId, categoryId, threadId, answer
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_T_A;
+			finderArgs = new Object[] {groupId, categoryId, threadId, answer};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_T_A;
 			finderArgs = new Object[] {
 				groupId, categoryId, threadId, answer, start, end,
@@ -17816,23 +17552,19 @@ public class MBMessagePersistenceImpl
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(categoryId != mbMessage.getCategoryId()) ||
+					(threadId != mbMessage.getThreadId()) ||
+					(answer != mbMessage.isAnswer())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(categoryId != mbMessage.getCategoryId()) ||
-						(threadId != mbMessage.getThreadId()) ||
-						(answer != mbMessage.isAnswer())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -17900,14 +17632,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -18829,6 +18557,7 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T_S(long,long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
@@ -18836,16 +18565,19 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByG_C_T_S(
 		long groupId, long categoryId, long threadId, int status, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator) {
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_C_T_S(
 			groupId, categoryId, threadId, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -18862,14 +18594,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByG_C_T_S(
 		long groupId, long categoryId, long threadId, int status, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -18879,15 +18609,10 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_T_S;
-				finderArgs = new Object[] {
-					groupId, categoryId, threadId, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_T_S;
+			finderArgs = new Object[] {groupId, categoryId, threadId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_T_S;
 			finderArgs = new Object[] {
 				groupId, categoryId, threadId, status, start, end,
@@ -18895,23 +18620,19 @@ public class MBMessagePersistenceImpl
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((groupId != mbMessage.getGroupId()) ||
+					(categoryId != mbMessage.getCategoryId()) ||
+					(threadId != mbMessage.getThreadId()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId()) ||
-						(categoryId != mbMessage.getCategoryId()) ||
-						(threadId != mbMessage.getThreadId()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -18979,14 +18700,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -19908,6 +19625,7 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_C_S(long,long,long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
@@ -19915,16 +19633,19 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findByU_C_C_S(
 		long userId, long classNameId, long classPK, int status, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator) {
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByU_C_C_S(
-			userId, classNameId, classPK, status, start, end, orderByComparator,
-			true);
+			userId, classNameId, classPK, status, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -19941,14 +19662,12 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findByU_C_C_S(
 		long userId, long classNameId, long classPK, int status, int start,
-		int end, OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -19958,15 +19677,10 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByU_C_C_S;
-				finderArgs = new Object[] {
-					userId, classNameId, classPK, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByU_C_C_S;
+			finderArgs = new Object[] {userId, classNameId, classPK, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByU_C_C_S;
 			finderArgs = new Object[] {
 				userId, classNameId, classPK, status, start, end,
@@ -19974,23 +19688,19 @@ public class MBMessagePersistenceImpl
 			};
 		}
 
-		List<MBMessage> list = null;
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBMessage mbMessage : list) {
+				if ((userId != mbMessage.getUserId()) ||
+					(classNameId != mbMessage.getClassNameId()) ||
+					(classPK != mbMessage.getClassPK()) ||
+					(status != mbMessage.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId()) ||
-						(classNameId != mbMessage.getClassNameId()) ||
-						(classPK != mbMessage.getClassPK()) ||
-						(status != mbMessage.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -20058,14 +19768,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -21948,16 +21654,20 @@ public class MBMessagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message-boards messages
 	 */
+	@Deprecated
 	@Override
 	public List<MBMessage> findAll(
-		int start, int end, OrderByComparator<MBMessage> orderByComparator) {
+		int start, int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -21970,13 +21680,11 @@ public class MBMessagePersistenceImpl
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message-boards messages
 	 */
 	@Override
 	public List<MBMessage> findAll(
-		int start, int end, OrderByComparator<MBMessage> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -21986,23 +21694,16 @@ public class MBMessagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<MBMessage> list = null;
-
-		if (useFinderCache) {
-			list = (List<MBMessage>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<MBMessage> list = (List<MBMessage>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -22049,14 +21750,10 @@ public class MBMessagePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.workflow.kaleo.exception.NoSuchNotificationException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
@@ -79,16 +80,19 @@ public interface KaleoNotificationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoNotificationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
+	@Deprecated
 	public java.util.List<KaleoNotification> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo notifications where companyId = &#63;.
@@ -101,14 +105,11 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where companyId = &#63;.
@@ -120,8 +121,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByCompanyId_First(
 			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -132,9 +132,7 @@ public interface KaleoNotificationPersistence
 	 * @return the first matching kaleo notification, or <code>null</code> if a matching kaleo notification could not be found
 	 */
 	public KaleoNotification fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		long companyId, OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the last kaleo notification in the ordered set where companyId = &#63;.
@@ -146,8 +144,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByCompanyId_Last(
 			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -158,9 +155,7 @@ public interface KaleoNotificationPersistence
 	 * @return the last matching kaleo notification, or <code>null</code> if a matching kaleo notification could not be found
 	 */
 	public KaleoNotification fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		long companyId, OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the kaleo notifications before and after the current kaleo notification in the ordered set where companyId = &#63;.
@@ -173,8 +168,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification[] findByCompanyId_PrevAndNext(
 			long kaleoNotificationId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -223,16 +217,19 @@ public interface KaleoNotificationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoNotificationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKaleoDefinitionVersionId(long, int, int, OrderByComparator)}
 	 * @param kaleoDefinitionVersionId the kaleo definition version ID
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
+	@Deprecated
 	public java.util.List<KaleoNotification> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo notifications where kaleoDefinitionVersionId = &#63;.
@@ -245,14 +242,11 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoDefinitionVersionId = &#63;.
@@ -264,8 +258,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKaleoDefinitionVersionId_First(
 			long kaleoDefinitionVersionId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -277,8 +270,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKaleoDefinitionVersionId_First(
 		long kaleoDefinitionVersionId,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the last kaleo notification in the ordered set where kaleoDefinitionVersionId = &#63;.
@@ -290,8 +282,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKaleoDefinitionVersionId_Last(
 			long kaleoDefinitionVersionId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -303,8 +294,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKaleoDefinitionVersionId_Last(
 		long kaleoDefinitionVersionId,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the kaleo notifications before and after the current kaleo notification in the ordered set where kaleoDefinitionVersionId = &#63;.
@@ -317,8 +307,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification[] findByKaleoDefinitionVersionId_PrevAndNext(
 			long kaleoNotificationId, long kaleoDefinitionVersionId,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -369,17 +358,20 @@ public interface KaleoNotificationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoNotificationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKCN_KCPK(String,long, int, int, OrderByComparator)}
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class pk
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
+	@Deprecated
 	public java.util.List<KaleoNotification> findByKCN_KCPK(
 		String kaleoClassName, long kaleoClassPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -393,14 +385,11 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKCN_KCPK(
 		String kaleoClassName, long kaleoClassPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -413,8 +402,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKCN_KCPK_First(
 			String kaleoClassName, long kaleoClassPK,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -427,8 +415,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKCN_KCPK_First(
 		String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the last kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -441,8 +428,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKCN_KCPK_Last(
 			String kaleoClassName, long kaleoClassPK,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -455,8 +441,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKCN_KCPK_Last(
 		String kaleoClassName, long kaleoClassPK,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the kaleo notifications before and after the current kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -470,8 +455,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification[] findByKCN_KCPK_PrevAndNext(
 			long kaleoNotificationId, String kaleoClassName, long kaleoClassPK,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -527,19 +511,22 @@ public interface KaleoNotificationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoNotificationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKCN_KCPK_ET(String,long,String, int, int, OrderByComparator)}
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class pk
 	 * @param executionType the execution type
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
+	@Deprecated
 	public java.util.List<KaleoNotification> findByKCN_KCPK_ET(
 		String kaleoClassName, long kaleoClassPK, String executionType,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -554,15 +541,12 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKCN_KCPK_ET(
 		String kaleoClassName, long kaleoClassPK, String executionType,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -576,8 +560,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKCN_KCPK_ET_First(
 			String kaleoClassName, long kaleoClassPK, String executionType,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -591,8 +574,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKCN_KCPK_ET_First(
 		String kaleoClassName, long kaleoClassPK, String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the last kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -606,8 +588,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification findByKCN_KCPK_ET_Last(
 			String kaleoClassName, long kaleoClassPK, String executionType,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -621,8 +602,7 @@ public interface KaleoNotificationPersistence
 	 */
 	public KaleoNotification fetchByKCN_KCPK_ET_Last(
 		String kaleoClassName, long kaleoClassPK, String executionType,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Returns the kaleo notifications before and after the current kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -638,8 +618,7 @@ public interface KaleoNotificationPersistence
 	public KaleoNotification[] findByKCN_KCPK_ET_PrevAndNext(
 			long kaleoNotificationId, String kaleoClassName, long kaleoClassPK,
 			String executionType,
-			com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-				orderByComparator)
+			OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException;
 
 	/**
@@ -743,15 +722,18 @@ public interface KaleoNotificationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoNotificationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo notifications
 	 */
+	@Deprecated
 	public java.util.List<KaleoNotification> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator);
+		OrderByComparator<KaleoNotification> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo notifications.
@@ -763,14 +745,11 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoNotification> orderByComparator);
 
 	/**
 	 * Removes all the kaleo notifications from the database.

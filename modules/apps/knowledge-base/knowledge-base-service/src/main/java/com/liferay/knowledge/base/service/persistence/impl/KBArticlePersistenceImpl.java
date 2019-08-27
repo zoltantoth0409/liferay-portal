@@ -142,19 +142,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByResourcePrimKey(long, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByResourcePrimKey(
-			resourcePrimKey, start, end, orderByComparator, true);
+			resourcePrimKey, start, end, orderByComparator);
 	}
 
 	/**
@@ -168,14 +172,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -185,32 +187,25 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByResourcePrimKey;
-				finderArgs = new Object[] {resourcePrimKey};
-			}
+			finderPath = _finderPathWithoutPaginationFindByResourcePrimKey;
+			finderArgs = new Object[] {resourcePrimKey};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByResourcePrimKey;
 			finderArgs = new Object[] {
 				resourcePrimKey, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -266,14 +261,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -659,18 +650,22 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -684,14 +679,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -703,30 +696,23 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!uuid.equals(kbArticle.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!uuid.equals(kbArticle.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -793,14 +779,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1209,15 +1191,20 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
-	 * Returns the kb article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kb article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
+	@Deprecated
 	@Override
-	public KBArticle fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public KBArticle fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -1229,23 +1216,13 @@ public class KBArticlePersistenceImpl
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
 	@Override
-	public KBArticle fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public KBArticle fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof KBArticle) {
 			KBArticle kbArticle = (KBArticle)result;
@@ -1295,10 +1272,8 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -1309,10 +1284,7 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -1467,20 +1439,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1495,14 +1470,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1514,34 +1487,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!uuid.equals(kbArticle.getUuid()) ||
+					(companyId != kbArticle.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!uuid.equals(kbArticle.getUuid()) ||
-						(companyId != kbArticle.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1612,14 +1578,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2065,20 +2027,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G(long,long, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_G(
 		long resourcePrimKey, long groupId, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_G(
-			resourcePrimKey, groupId, start, end, orderByComparator, true);
+			resourcePrimKey, groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2093,14 +2059,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G(
 		long resourcePrimKey, long groupId, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2110,34 +2074,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_G;
-				finderArgs = new Object[] {resourcePrimKey, groupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_G;
+			finderArgs = new Object[] {resourcePrimKey, groupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_G;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2197,14 +2154,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3017,15 +2970,20 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
-	 * Returns the kb article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kb article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByR_V(long,int)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
+	@Deprecated
 	@Override
-	public KBArticle fetchByR_V(long resourcePrimKey, int version) {
-		return fetchByR_V(resourcePrimKey, version, true);
+	public KBArticle fetchByR_V(
+		long resourcePrimKey, int version, boolean useFinderCache) {
+
+		return fetchByR_V(resourcePrimKey, version);
 	}
 
 	/**
@@ -3037,21 +2995,11 @@ public class KBArticlePersistenceImpl
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
 	@Override
-	public KBArticle fetchByR_V(
-		long resourcePrimKey, int version, boolean useFinderCache) {
+	public KBArticle fetchByR_V(long resourcePrimKey, int version) {
+		Object[] finderArgs = new Object[] {resourcePrimKey, version};
 
-		Object[] finderArgs = null;
-
-		if (useFinderCache) {
-			finderArgs = new Object[] {resourcePrimKey, version};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByR_V, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByR_V, finderArgs, this);
 
 		if (result instanceof KBArticle) {
 			KBArticle kbArticle = (KBArticle)result;
@@ -3090,10 +3038,8 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByR_V, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByR_V, finderArgs, list);
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -3104,9 +3050,7 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
 
 				throw processException(e);
 			}
@@ -3247,20 +3191,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_L(long,boolean, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_L(
 		long resourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_L(
-			resourcePrimKey, latest, start, end, orderByComparator, true);
+			resourcePrimKey, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -3275,14 +3223,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_L(
 		long resourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3292,34 +3238,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_L;
-				finderArgs = new Object[] {resourcePrimKey, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_L;
+			finderArgs = new Object[] {resourcePrimKey, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_L;
 			finderArgs = new Object[] {
 				resourcePrimKey, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3379,14 +3318,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3721,6 +3656,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_L(long,boolean, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_L(
+		long[] resourcePrimKeies, boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_L(
+			resourcePrimKeies, latest, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
@@ -3738,31 +3700,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_L(
 		long[] resourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_L(
-			resourcePrimKeies, latest, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param latest the latest
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_L(
-		long[] resourcePrimKeies, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -3785,37 +3722,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), latest
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), latest
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), latest, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_L, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_L, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3881,16 +3810,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_L, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_L, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_L, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_L, finderArgs);
 
 				throw processException(e);
 			}
@@ -4111,20 +4036,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_M(long,boolean, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_M(
 		long resourcePrimKey, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByR_M(
-			resourcePrimKey, main, start, end, orderByComparator, true);
+		return findByR_M(resourcePrimKey, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -4139,14 +4067,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_M(
 		long resourcePrimKey, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4156,34 +4082,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_M;
-				finderArgs = new Object[] {resourcePrimKey, main};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_M;
+			finderArgs = new Object[] {resourcePrimKey, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_M;
 			finderArgs = new Object[] {
 				resourcePrimKey, main, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4243,14 +4162,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4585,6 +4500,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_M(long,boolean, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_M(
+		long[] resourcePrimKeies, boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_M(
+			resourcePrimKeies, main, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
@@ -4602,31 +4544,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_M(
 		long[] resourcePrimKeies, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_M(
-			resourcePrimKeies, main, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param main the main
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_M(
-		long[] resourcePrimKeies, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -4649,37 +4566,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), main
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), main
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), main, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_M, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_M, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4745,16 +4654,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_M, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_M, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_M, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -4976,20 +4881,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_S(long,int, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_S(
 		long resourcePrimKey, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_S(
-			resourcePrimKey, status, start, end, orderByComparator, true);
+			resourcePrimKey, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -5004,14 +4913,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_S(
 		long resourcePrimKey, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5021,34 +4928,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_S;
-				finderArgs = new Object[] {resourcePrimKey, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_S;
+			finderArgs = new Object[] {resourcePrimKey, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_S;
 			finderArgs = new Object[] {
 				resourcePrimKey, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5108,14 +5008,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5449,6 +5345,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_S(long,int, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_S(
+		long[] resourcePrimKeies, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_S(
+			resourcePrimKeies, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -5466,31 +5389,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_S(
 		long[] resourcePrimKeies, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_S(
-			resourcePrimKeies, status, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_S(
-		long[] resourcePrimKeies, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -5513,37 +5411,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), status
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5609,16 +5499,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -5838,19 +5724,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_L(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_L(
 		long groupId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_L(groupId, latest, start, end, orderByComparator, true);
+		return findByG_L(groupId, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -5865,14 +5755,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_L(
 		long groupId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5882,34 +5770,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_L;
-				finderArgs = new Object[] {groupId, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_L;
+			finderArgs = new Object[] {groupId, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_L;
 			finderArgs = new Object[] {
 				groupId, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5969,14 +5850,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6784,19 +6661,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_M(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_M(
 		long groupId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_M(groupId, main, start, end, orderByComparator, true);
+		return findByG_M(groupId, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -6811,14 +6692,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_M(
 		long groupId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6828,34 +6707,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_M;
-				finderArgs = new Object[] {groupId, main};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_M;
+			finderArgs = new Object[] {groupId, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_M;
 			finderArgs = new Object[] {
 				groupId, main, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -6915,14 +6787,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7729,19 +7597,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_S(groupId, status, start, end, orderByComparator, true);
+		return findByG_S(groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -7756,14 +7628,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7773,34 +7643,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_S;
-				finderArgs = new Object[] {groupId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_S;
+			finderArgs = new Object[] {groupId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -7860,14 +7723,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -8675,20 +8534,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_L(long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByC_L(
 		long companyId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_L(
-			companyId, latest, start, end, orderByComparator, true);
+		return findByC_L(companyId, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -8703,14 +8565,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_L(
 		long companyId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8720,34 +8580,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_L;
-				finderArgs = new Object[] {companyId, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_L;
+			finderArgs = new Object[] {companyId, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_L;
 			finderArgs = new Object[] {
 				companyId, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((companyId != kbArticle.getCompanyId()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -8807,14 +8660,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9231,19 +9080,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_M(long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByC_M(
 		long companyId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_M(companyId, main, start, end, orderByComparator, true);
+		return findByC_M(companyId, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -9258,14 +9111,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_M(
 		long companyId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9275,34 +9126,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_M;
-				finderArgs = new Object[] {companyId, main};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_M;
+			finderArgs = new Object[] {companyId, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_M;
 			finderArgs = new Object[] {
 				companyId, main, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((companyId != kbArticle.getCompanyId()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9362,14 +9206,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9785,20 +9625,23 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByC_S(
 		long companyId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_S(
-			companyId, status, start, end, orderByComparator, true);
+		return findByC_S(companyId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -9813,14 +9656,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_S(
 		long companyId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9830,34 +9671,27 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_S;
-				finderArgs = new Object[] {companyId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_S;
+			finderArgs = new Object[] {companyId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_S;
 			finderArgs = new Object[] {
 				companyId, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((companyId != kbArticle.getCompanyId()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9917,14 +9751,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10345,20 +10175,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_L(long,boolean, int, int, OrderByComparator)}
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByP_L(
 		long parentResourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByP_L(
-			parentResourcePrimKey, latest, start, end, orderByComparator, true);
+			parentResourcePrimKey, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -10373,14 +10207,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_L(
 		long parentResourcePrimKey, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -10390,35 +10222,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByP_L;
-				finderArgs = new Object[] {parentResourcePrimKey, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByP_L;
+			finderArgs = new Object[] {parentResourcePrimKey, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByP_L;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -10478,14 +10303,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10822,6 +10643,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_L(long,boolean, int, int, OrderByComparator)}
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByP_L(
+		long[] parentResourcePrimKeies, boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByP_L(
+			parentResourcePrimKeies, latest, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
@@ -10839,32 +10687,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByP_L(
 		long[] parentResourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByP_L(
-			parentResourcePrimKeies, latest, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param latest the latest
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByP_L(
-		long[] parentResourcePrimKeies, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -10888,37 +10710,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(parentResourcePrimKeies), latest
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), latest
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), latest, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByP_L, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByP_L, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -10984,16 +10799,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByP_L, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByP_L, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByP_L, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByP_L, finderArgs);
 
 				throw processException(e);
 			}
@@ -11215,20 +11026,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_M(long,boolean, int, int, OrderByComparator)}
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByP_M(
 		long parentResourcePrimKey, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByP_M(
-			parentResourcePrimKey, main, start, end, orderByComparator, true);
+			parentResourcePrimKey, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -11243,14 +11058,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_M(
 		long parentResourcePrimKey, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11260,35 +11073,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByP_M;
-				finderArgs = new Object[] {parentResourcePrimKey, main};
-			}
+			finderPath = _finderPathWithoutPaginationFindByP_M;
+			finderArgs = new Object[] {parentResourcePrimKey, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByP_M;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, main, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11348,14 +11154,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -11692,6 +11494,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_M(long,boolean, int, int, OrderByComparator)}
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByP_M(
+		long[] parentResourcePrimKeies, boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByP_M(
+			parentResourcePrimKeies, main, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
@@ -11709,31 +11538,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByP_M(
 		long[] parentResourcePrimKeies, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByP_M(
-			parentResourcePrimKeies, main, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param main the main
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByP_M(
-		long[] parentResourcePrimKeies, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -11757,37 +11561,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(parentResourcePrimKeies), main
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), main
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), main, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByP_M, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByP_M, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11853,16 +11650,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByP_M, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByP_M, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByP_M, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByP_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -12084,20 +11877,24 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_S(long,int, int, int, OrderByComparator)}
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByP_S(
 		long parentResourcePrimKey, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByP_S(
-			parentResourcePrimKey, status, start, end, orderByComparator, true);
+			parentResourcePrimKey, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -12112,14 +11909,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_S(
 		long parentResourcePrimKey, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -12129,35 +11924,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByP_S;
-				finderArgs = new Object[] {parentResourcePrimKey, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByP_S;
+			finderArgs = new Object[] {parentResourcePrimKey, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByP_S;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -12217,14 +12005,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12561,6 +12345,33 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_S(long,int, int, int, OrderByComparator)}
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByP_S(
+		long[] parentResourcePrimKeies, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByP_S(
+			parentResourcePrimKeies, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -12578,32 +12389,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByP_S(
 		long[] parentResourcePrimKeies, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByP_S(
-			parentResourcePrimKeies, status, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where parentResourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByP_S(
-		long[] parentResourcePrimKeies, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -12627,37 +12412,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(parentResourcePrimKeies), status
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByP_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByP_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -12723,16 +12501,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByP_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByP_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByP_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByP_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -12954,18 +12728,22 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
-	 * Returns the kb article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kb article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByR_G_V(long,long,int)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
+	@Deprecated
 	@Override
 	public KBArticle fetchByR_G_V(
-		long resourcePrimKey, long groupId, int version) {
+		long resourcePrimKey, long groupId, int version,
+		boolean useFinderCache) {
 
-		return fetchByR_G_V(resourcePrimKey, groupId, version, true);
+		return fetchByR_G_V(resourcePrimKey, groupId, version);
 	}
 
 	/**
@@ -12979,21 +12757,12 @@ public class KBArticlePersistenceImpl
 	 */
 	@Override
 	public KBArticle fetchByR_G_V(
-		long resourcePrimKey, long groupId, int version,
-		boolean useFinderCache) {
+		long resourcePrimKey, long groupId, int version) {
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {resourcePrimKey, groupId, version};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {resourcePrimKey, groupId, version};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByR_G_V, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByR_G_V, finderArgs, this);
 
 		if (result instanceof KBArticle) {
 			KBArticle kbArticle = (KBArticle)result;
@@ -13037,10 +12806,8 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByR_G_V, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByR_G_V, finderArgs, list);
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -13051,10 +12818,7 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByR_G_V, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByR_G_V, finderArgs);
 
 				throw processException(e);
 			}
@@ -13210,22 +12974,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_L(long,long,boolean, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_G_L(
 		long resourcePrimKey, long groupId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_G_L(
-			resourcePrimKey, groupId, latest, start, end, orderByComparator,
-			true);
+			resourcePrimKey, groupId, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -13241,14 +13008,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_L(
 		long resourcePrimKey, long groupId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -13258,35 +13023,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_G_L;
-				finderArgs = new Object[] {resourcePrimKey, groupId, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_G_L;
+			finderArgs = new Object[] {resourcePrimKey, groupId, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_G_L;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -13350,14 +13108,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -14241,6 +13995,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_L(long,long,boolean, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_G_L(
+		long[] resourcePrimKeies, long groupId, boolean latest, int start,
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_G_L(
+			resourcePrimKeies, groupId, latest, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
@@ -14259,33 +14041,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_G_L(
 		long[] resourcePrimKeies, long groupId, boolean latest, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_G_L(
-			resourcePrimKeies, groupId, latest, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param groupId the group ID
-	 * @param latest the latest
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_G_L(
-		long[] resourcePrimKeies, long groupId, boolean latest, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -14309,38 +14064,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), groupId, latest
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, latest
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, latest, start,
 				end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_G_L, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_G_L, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -14410,16 +14157,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_G_L, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_G_L, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_G_L, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_G_L, finderArgs);
 
 				throw processException(e);
 			}
@@ -14808,22 +14551,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_M(long,long,boolean, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_G_M(
 		long resourcePrimKey, long groupId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_G_M(
-			resourcePrimKey, groupId, main, start, end, orderByComparator,
-			true);
+			resourcePrimKey, groupId, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -14839,14 +14585,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_M(
 		long resourcePrimKey, long groupId, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -14856,35 +14600,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_G_M;
-				finderArgs = new Object[] {resourcePrimKey, groupId, main};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_G_M;
+			finderArgs = new Object[] {resourcePrimKey, groupId, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_G_M;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, main, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -14948,14 +14685,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -15835,6 +15568,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_M(long,long,boolean, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_G_M(
+		long[] resourcePrimKeies, long groupId, boolean main, int start,
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_G_M(
+			resourcePrimKeies, groupId, main, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
@@ -15853,33 +15614,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_G_M(
 		long[] resourcePrimKeies, long groupId, boolean main, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_G_M(
-			resourcePrimKeies, groupId, main, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param groupId the group ID
-	 * @param main the main
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_G_M(
-		long[] resourcePrimKeies, long groupId, boolean main, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -15903,38 +15637,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), groupId, main
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, main
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, main, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_G_M, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_G_M, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -16004,16 +15730,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_G_M, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_G_M, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_G_M, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_G_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -16400,22 +16122,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_S(long,long,int, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByR_G_S(
 		long resourcePrimKey, long groupId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByR_G_S(
-			resourcePrimKey, groupId, status, start, end, orderByComparator,
-			true);
+			resourcePrimKey, groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -16431,14 +16156,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_S(
 		long resourcePrimKey, long groupId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -16448,35 +16171,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_G_S;
-				finderArgs = new Object[] {resourcePrimKey, groupId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_G_S;
+			finderArgs = new Object[] {resourcePrimKey, groupId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_G_S;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -16540,14 +16256,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -17430,6 +17142,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_G_S(long,long,int, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByR_G_S(
+		long[] resourcePrimKeies, long groupId, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByR_G_S(
+			resourcePrimKeies, groupId, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -17448,33 +17188,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByR_G_S(
 		long[] resourcePrimKeies, long groupId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByR_G_S(
-			resourcePrimKeies, groupId, status, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param groupId the group ID
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByR_G_S(
-		long[] resourcePrimKeies, long groupId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -17498,38 +17211,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					StringUtil.merge(resourcePrimKeies), groupId, status
-				};
-			}
+			finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, status, start,
 				end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByR_G_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByR_G_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(
+						resourcePrimKeies, kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if (!ArrayUtil.contains(
-							resourcePrimKeies,
-							kbArticle.getResourcePrimKey()) ||
-						(groupId != kbArticle.getGroupId()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -17599,16 +17304,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByR_G_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_G_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByR_G_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_G_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -17995,22 +17696,26 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L(long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_P_L(
 		long groupId, long parentResourcePrimKey, boolean latest, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_P_L(
 			groupId, parentResourcePrimKey, latest, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -18026,14 +17731,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_L(
 		long groupId, long parentResourcePrimKey, boolean latest, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -18043,15 +17746,10 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_P_L;
-				finderArgs = new Object[] {
-					groupId, parentResourcePrimKey, latest
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_P_L;
+			finderArgs = new Object[] {groupId, parentResourcePrimKey, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_P_L;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest, start, end,
@@ -18059,23 +17757,19 @@ public class KBArticlePersistenceImpl
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -18139,14 +17833,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -19030,6 +18720,35 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L(long,long,boolean, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, boolean latest, int start,
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_P_L(
+			groupId, parentResourcePrimKeies, latest, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
@@ -19048,33 +18767,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_P_L(
 		long groupId, long[] parentResourcePrimKeies, boolean latest, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_P_L(
-			groupId, parentResourcePrimKeies, latest, start, end,
-			orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param latest the latest
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_P_L(
-		long groupId, long[] parentResourcePrimKeies, boolean latest, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -19098,38 +18790,31 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(parentResourcePrimKeies), latest
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), latest
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
 				start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_P_L, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_P_L, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -19199,16 +18884,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_P_L, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_P_L, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_P_L, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_P_L, finderArgs);
 
 				throw processException(e);
 			}
@@ -19601,22 +19282,26 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_M(long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_P_M(
 		long groupId, long parentResourcePrimKey, boolean main, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_P_M(
-			groupId, parentResourcePrimKey, main, start, end, orderByComparator,
-			true);
+			groupId, parentResourcePrimKey, main, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -19632,14 +19317,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_M(
 		long groupId, long parentResourcePrimKey, boolean main, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -19649,15 +19332,10 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_P_M;
-				finderArgs = new Object[] {
-					groupId, parentResourcePrimKey, main
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_P_M;
+			finderArgs = new Object[] {groupId, parentResourcePrimKey, main};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_P_M;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, main, start, end,
@@ -19665,23 +19343,19 @@ public class KBArticlePersistenceImpl
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -19745,14 +19419,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -20636,6 +20306,35 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_M(long,long,boolean, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_P_M(
+		long groupId, long[] parentResourcePrimKeies, boolean main, int start,
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_P_M(
+			groupId, parentResourcePrimKeies, main, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
@@ -20654,33 +20353,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_P_M(
 		long groupId, long[] parentResourcePrimKeies, boolean main, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_P_M(
-			groupId, parentResourcePrimKeies, main, start, end,
-			orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param main the main
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_P_M(
-		long groupId, long[] parentResourcePrimKeies, boolean main, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -20704,38 +20376,31 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(parentResourcePrimKeies), main
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), main
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), main, start,
 				end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_P_M, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_P_M, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -20805,16 +20470,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_P_M, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_P_M, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_P_M, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_P_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -21207,22 +20868,26 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_P_S(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_P_S(
 			groupId, parentResourcePrimKey, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -21238,14 +20903,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_S(
 		long groupId, long parentResourcePrimKey, int status, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -21255,15 +20918,10 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_P_S;
-				finderArgs = new Object[] {
-					groupId, parentResourcePrimKey, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_P_S;
+			finderArgs = new Object[] {groupId, parentResourcePrimKey, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_P_S;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, status, start, end,
@@ -21271,23 +20929,19 @@ public class KBArticlePersistenceImpl
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -21351,14 +21005,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -22242,6 +21892,35 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_S(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_P_S(
+		long groupId, long[] parentResourcePrimKeies, int status, int start,
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_P_S(
+			groupId, parentResourcePrimKeies, status, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -22260,33 +21939,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_P_S(
 		long groupId, long[] parentResourcePrimKeies, int status, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_P_S(
-			groupId, parentResourcePrimKeies, status, start, end,
-			orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_P_S(
-		long groupId, long[] parentResourcePrimKeies, int status, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -22310,38 +21962,31 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(parentResourcePrimKeies), status
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), status,
 				start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_P_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_P_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -22411,16 +22056,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_P_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_P_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_P_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_P_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -22810,21 +22451,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_KBFI_UT(long,long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param kbFolderId the kb folder ID
 	 * @param urlTitle the url title
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_KBFI_UT(
 		long groupId, long kbFolderId, String urlTitle, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_KBFI_UT(
-			groupId, kbFolderId, urlTitle, start, end, orderByComparator, true);
+			groupId, kbFolderId, urlTitle, start, end, orderByComparator);
 	}
 
 	/**
@@ -22840,14 +22485,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_UT(
 		long groupId, long kbFolderId, String urlTitle, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -22859,35 +22502,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT;
-				finderArgs = new Object[] {groupId, kbFolderId, urlTitle};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT;
+			finderArgs = new Object[] {groupId, kbFolderId, urlTitle};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_UT;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(kbFolderId != kbArticle.getKbFolderId()) ||
+					!urlTitle.equals(kbArticle.getUrlTitle())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(kbFolderId != kbArticle.getKbFolderId()) ||
-						!urlTitle.equals(kbArticle.getUrlTitle())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -22962,14 +22598,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -23908,21 +23540,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_KBFI_L(long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param kbFolderId the kb folder ID
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_KBFI_L(
 		long groupId, long kbFolderId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_KBFI_L(
-			groupId, kbFolderId, latest, start, end, orderByComparator, true);
+			groupId, kbFolderId, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -23938,14 +23574,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_L(
 		long groupId, long kbFolderId, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -23955,35 +23589,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_KBFI_L;
-				finderArgs = new Object[] {groupId, kbFolderId, latest};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_KBFI_L;
+			finderArgs = new Object[] {groupId, kbFolderId, latest};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_L;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, latest, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(kbFolderId != kbArticle.getKbFolderId()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(kbFolderId != kbArticle.getKbFolderId()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -24047,14 +23674,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -24923,21 +24546,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_KBFI_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param kbFolderId the kb folder ID
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_KBFI_S(
 		long groupId, long kbFolderId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_KBFI_S(
-			groupId, kbFolderId, status, start, end, orderByComparator, true);
+			groupId, kbFolderId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -24953,14 +24580,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_S(
 		long groupId, long kbFolderId, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -24970,35 +24595,28 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_KBFI_S;
-				finderArgs = new Object[] {groupId, kbFolderId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_KBFI_S;
+			finderArgs = new Object[] {groupId, kbFolderId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_S;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(kbFolderId != kbArticle.getKbFolderId()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(kbFolderId != kbArticle.getKbFolderId()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -25062,14 +24680,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -25935,21 +25549,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_L(long,String,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param sections the sections
 	 * @param latest the latest
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_S_L(
 		long groupId, String sections, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_S_L(
-			groupId, sections, latest, start, end, orderByComparator, true);
+			groupId, sections, latest, start, end, orderByComparator);
 	}
 
 	/**
@@ -25965,14 +25583,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_L(
 		long groupId, String sections, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		sections = Objects.toString(sections, "");
 
@@ -25985,24 +25601,20 @@ public class KBArticlePersistenceImpl
 			groupId, sections, latest, start, end, orderByComparator
 		};
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!StringUtil.wildcardMatches(
+						kbArticle.getSections(), sections, '_', '%', '\\',
+						true) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!StringUtil.wildcardMatches(
-							kbArticle.getSections(), sections, '_', '%', '\\',
-							true) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -26077,14 +25689,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -27016,6 +26624,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_L(long,String,boolean, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_S_L(
+		long groupId, String[] sectionses, boolean latest, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_S_L(
+			groupId, sectionses, latest, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
 	 *
 	 * <p>
@@ -27034,32 +26670,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_S_L(
 		long groupId, String[] sectionses, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_S_L(
-			groupId, sectionses, latest, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param sections the sections
-	 * @param latest the latest
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_S_L(
-		long groupId, String[] sectionses, boolean latest, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -27086,37 +26696,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(sectionses), latest
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(sectionses), latest
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), latest, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_S_L, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_S_L, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+					(latest != kbArticle.isLatest())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							sectionses, kbArticle.getSections()) ||
-						(latest != kbArticle.isLatest())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -27201,16 +26803,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_S_L, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_S_L, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_S_L, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_S_L, finderArgs);
 
 				throw processException(e);
 			}
@@ -27661,21 +27259,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_M(long,String,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param sections the sections
 	 * @param main the main
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_S_M(
 		long groupId, String sections, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_S_M(
-			groupId, sections, main, start, end, orderByComparator, true);
+			groupId, sections, main, start, end, orderByComparator);
 	}
 
 	/**
@@ -27691,14 +27293,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_M(
 		long groupId, String sections, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		sections = Objects.toString(sections, "");
 
@@ -27711,24 +27311,20 @@ public class KBArticlePersistenceImpl
 			groupId, sections, main, start, end, orderByComparator
 		};
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!StringUtil.wildcardMatches(
+						kbArticle.getSections(), sections, '_', '%', '\\',
+						true) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!StringUtil.wildcardMatches(
-							kbArticle.getSections(), sections, '_', '%', '\\',
-							true) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -27803,14 +27399,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -28742,6 +28334,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and main = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_M(long,String,boolean, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param sections the sections
+	 * @param main the main
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_S_M(
+		long groupId, String[] sectionses, boolean main, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_S_M(
+			groupId, sectionses, main, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
 	 *
 	 * <p>
@@ -28760,32 +28380,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_S_M(
 		long groupId, String[] sectionses, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_S_M(
-			groupId, sectionses, main, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and main = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param sections the sections
-	 * @param main the main
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_S_M(
-		long groupId, String[] sectionses, boolean main, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -28812,37 +28406,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(sectionses), main
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(sectionses), main
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), main, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_S_M, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_S_M, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+					(main != kbArticle.isMain())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							sectionses, kbArticle.getSections()) ||
-						(main != kbArticle.isMain())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -28927,16 +28513,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_S_M, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_S_M, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_S_M, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_S_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -29385,21 +28967,25 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_S(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param sections the sections
 	 * @param status the status
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_S_S(
 		long groupId, String sections, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_S_S(
-			groupId, sections, status, start, end, orderByComparator, true);
+			groupId, sections, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -29415,14 +29001,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_S(
 		long groupId, String sections, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KBArticle> orderByComparator) {
 
 		sections = Objects.toString(sections, "");
 
@@ -29435,24 +29019,20 @@ public class KBArticlePersistenceImpl
 			groupId, sections, status, start, end, orderByComparator
 		};
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!StringUtil.wildcardMatches(
+						kbArticle.getSections(), sections, '_', '%', '\\',
+						true) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!StringUtil.wildcardMatches(
-							kbArticle.getSections(), sections, '_', '%', '\\',
-							true) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -29527,14 +29107,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -30466,6 +30042,34 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S_S(long,String,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param sections the sections
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_S_S(
+		long groupId, String[] sectionses, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_S_S(
+			groupId, sectionses, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -30484,32 +30088,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_S_S(
 		long groupId, String[] sectionses, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_S_S(
-			groupId, sectionses, status, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and sections LIKE &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param sections the sections
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_S_S(
-		long groupId, String[] sectionses, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -30536,37 +30114,29 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(sectionses), status
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(sectionses), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_S_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_S_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							sectionses, kbArticle.getSections()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -30651,16 +30221,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_S_S, finderArgs, list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_S_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_S_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_S_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -31115,6 +30681,7 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L_S(long,long,boolean,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
@@ -31122,16 +30689,19 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_P_L_S(
 		long groupId, long parentResourcePrimKey, boolean latest, int status,
-		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_P_L_S(
 			groupId, parentResourcePrimKey, latest, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -31148,14 +30718,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_L_S(
 		long groupId, long parentResourcePrimKey, boolean latest, int status,
-		int start, int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -31165,15 +30733,12 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_P_L_S;
-				finderArgs = new Object[] {
-					groupId, parentResourcePrimKey, latest, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_P_L_S;
+			finderArgs = new Object[] {
+				groupId, parentResourcePrimKey, latest, status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_P_L_S;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest, status, start, end,
@@ -31181,24 +30746,20 @@ public class KBArticlePersistenceImpl
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(parentResourcePrimKey !=
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(parentResourcePrimKey !=
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -31266,14 +30827,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -32200,6 +31757,37 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L_S(long,long,boolean,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, boolean latest,
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_P_L_S(
+			groupId, parentResourcePrimKeies, latest, status, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -32220,35 +31808,6 @@ public class KBArticlePersistenceImpl
 		long groupId, long[] parentResourcePrimKeies, boolean latest,
 		int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_P_L_S(
-			groupId, parentResourcePrimKeies, latest, status, start, end,
-			orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentResourcePrimKey the parent resource prim key
-	 * @param latest the latest
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_P_L_S(
-		long groupId, long[] parentResourcePrimKeies, boolean latest,
-		int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -32272,40 +31831,33 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(parentResourcePrimKeies), latest,
-					status
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
+				status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
 				status, start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_P_L_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_P_L_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					!ArrayUtil.contains(
+						parentResourcePrimKeies,
+						kbArticle.getParentResourcePrimKey()) ||
+					(latest != kbArticle.isLatest()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						!ArrayUtil.contains(
-							parentResourcePrimKeies,
-							kbArticle.getParentResourcePrimKey()) ||
-						(latest != kbArticle.isLatest()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -32379,17 +31931,12 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_P_L_S, finderArgs,
-						list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_P_L_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_P_L_S, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_P_L_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -32812,6 +32359,7 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_KBFI_UT_ST(long,long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param kbFolderId the kb folder ID
 	 * @param urlTitle the url title
@@ -32819,16 +32367,19 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findByG_KBFI_UT_ST(
 		long groupId, long kbFolderId, String urlTitle, int status, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator) {
+		int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_KBFI_UT_ST(
 			groupId, kbFolderId, urlTitle, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -32845,14 +32396,12 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_UT_ST(
 		long groupId, long kbFolderId, String urlTitle, int status, int start,
-		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -32864,15 +32413,10 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT_ST;
-				finderArgs = new Object[] {
-					groupId, kbFolderId, urlTitle, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT_ST;
+			finderArgs = new Object[] {groupId, kbFolderId, urlTitle, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_UT_ST;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, status, start, end,
@@ -32880,23 +32424,19 @@ public class KBArticlePersistenceImpl
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(kbFolderId != kbArticle.getKbFolderId()) ||
+					!urlTitle.equals(kbArticle.getUrlTitle()) ||
+					(status != kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(kbFolderId != kbArticle.getKbFolderId()) ||
-						!urlTitle.equals(kbArticle.getUrlTitle()) ||
-						(status != kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -32975,14 +32515,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -33952,6 +33488,36 @@ public class KBArticlePersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the kb articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_KBFI_UT_ST(long,long,String,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param urlTitle the url title
+	 * @param status the status
+	 * @param start the lower bound of the range of kb articles
+	 * @param end the upper bound of the range of kb articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching kb articles
+	 */
+	@Deprecated
+	@Override
+	public List<KBArticle> findByG_KBFI_UT_ST(
+		long groupId, long kbFolderId, String urlTitle, int[] statuses,
+		int start, int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
+
+		return findByG_KBFI_UT_ST(
+			groupId, kbFolderId, urlTitle, statuses, start, end,
+			orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the kb articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
 	 *
 	 * <p>
@@ -33971,34 +33537,6 @@ public class KBArticlePersistenceImpl
 	public List<KBArticle> findByG_KBFI_UT_ST(
 		long groupId, long kbFolderId, String urlTitle, int[] statuses,
 		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
-
-		return findByG_KBFI_UT_ST(
-			groupId, kbFolderId, urlTitle, statuses, start, end,
-			orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the kb articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param kbFolderId the kb folder ID
-	 * @param urlTitle the url title
-	 * @param status the status
-	 * @param start the lower bound of the range of kb articles
-	 * @param end the upper bound of the range of kb articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching kb articles
-	 */
-	@Override
-	public List<KBArticle> findByG_KBFI_UT_ST(
-		long groupId, long kbFolderId, String urlTitle, int[] statuses,
-		int start, int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -34024,37 +33562,30 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, kbFolderId, urlTitle, StringUtil.merge(statuses)
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, kbFolderId, urlTitle, StringUtil.merge(statuses)
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, StringUtil.merge(statuses),
 				start, end, orderByComparator
 			};
 		}
 
-		List<KBArticle> list = null;
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+					(kbFolderId != kbArticle.getKbFolderId()) ||
+					!urlTitle.equals(kbArticle.getUrlTitle()) ||
+					!ArrayUtil.contains(statuses, kbArticle.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (KBArticle kbArticle : list) {
-					if ((groupId != kbArticle.getGroupId()) ||
-						(kbFolderId != kbArticle.getKbFolderId()) ||
-						!urlTitle.equals(kbArticle.getUrlTitle()) ||
-						!ArrayUtil.contains(statuses, kbArticle.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -34137,18 +33668,13 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(
-						_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs,
-						list);
-				}
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs,
+					list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathWithPaginationFindByG_KBFI_UT_ST,
-						finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -36131,16 +35657,20 @@ public class KBArticlePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KBArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kb articles
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> findAll(
-		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -36153,13 +35683,11 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kb articles
 	 */
 	@Override
 	public List<KBArticle> findAll(
-		int start, int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<KBArticle> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -36169,23 +35697,16 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<KBArticle> list = null;
-
-		if (useFinderCache) {
-			list = (List<KBArticle>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<KBArticle> list = (List<KBArticle>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -36232,14 +35753,10 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

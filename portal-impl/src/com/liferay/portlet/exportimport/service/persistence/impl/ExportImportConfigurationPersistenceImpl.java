@@ -127,18 +127,22 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByGroupId(groupId, start, end, orderByComparator, true);
+		return findByGroupId(groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -152,14 +156,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -169,32 +171,24 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByGroupId;
-				finderArgs = new Object[] {groupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByGroupId;
+			finderArgs = new Object[] {groupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ExportImportConfiguration exportImportConfiguration :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ExportImportConfiguration exportImportConfiguration : list) {
+				if ((groupId != exportImportConfiguration.getGroupId())) {
+					list = null;
 
-					if ((groupId != exportImportConfiguration.getGroupId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -250,14 +244,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -654,18 +644,22 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -679,14 +673,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -696,36 +688,26 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ExportImportConfiguration exportImportConfiguration :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ExportImportConfiguration exportImportConfiguration : list) {
+				if ((companyId != exportImportConfiguration.getCompanyId())) {
+					list = null;
 
-					if ((companyId !=
-							exportImportConfiguration.getCompanyId())) {
-
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -781,14 +763,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1187,19 +1165,23 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findByG_T(
 		long groupId, int type, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_T(groupId, type, start, end, orderByComparator, true);
+		return findByG_T(groupId, type, start, end, orderByComparator);
 	}
 
 	/**
@@ -1214,14 +1196,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findByG_T(
 		long groupId, int type, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1231,36 +1211,28 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_T;
-				finderArgs = new Object[] {groupId, type};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_T;
+			finderArgs = new Object[] {groupId, type};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_T;
 			finderArgs = new Object[] {
 				groupId, type, start, end, orderByComparator
 			};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ExportImportConfiguration exportImportConfiguration :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ExportImportConfiguration exportImportConfiguration : list) {
+				if ((groupId != exportImportConfiguration.getGroupId()) ||
+					(type != exportImportConfiguration.getType())) {
 
-					if ((groupId != exportImportConfiguration.getGroupId()) ||
-						(type != exportImportConfiguration.getType())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1320,14 +1292,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1751,19 +1719,23 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_S(groupId, status, start, end, orderByComparator, true);
+		return findByG_S(groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -1778,14 +1750,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1795,36 +1765,28 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_S;
-				finderArgs = new Object[] {groupId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_S;
+			finderArgs = new Object[] {groupId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, status, start, end, orderByComparator
 			};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ExportImportConfiguration exportImportConfiguration :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ExportImportConfiguration exportImportConfiguration : list) {
+				if ((groupId != exportImportConfiguration.getGroupId()) ||
+					(status != exportImportConfiguration.getStatus())) {
 
-					if ((groupId != exportImportConfiguration.getGroupId()) ||
-						(status != exportImportConfiguration.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1884,14 +1846,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2319,21 +2277,25 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T_S(long,int,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param status the status
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findByG_T_S(
 		long groupId, int type, int status, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_T_S(
-			groupId, type, status, start, end, orderByComparator, true);
+			groupId, type, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -2349,14 +2311,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findByG_T_S(
 		long groupId, int type, int status, int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2366,37 +2326,29 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_T_S;
-				finderArgs = new Object[] {groupId, type, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_T_S;
+			finderArgs = new Object[] {groupId, type, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_T_S;
 			finderArgs = new Object[] {
 				groupId, type, status, start, end, orderByComparator
 			};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ExportImportConfiguration exportImportConfiguration :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ExportImportConfiguration exportImportConfiguration : list) {
+				if ((groupId != exportImportConfiguration.getGroupId()) ||
+					(type != exportImportConfiguration.getType()) ||
+					(status != exportImportConfiguration.getStatus())) {
 
-					if ((groupId != exportImportConfiguration.getGroupId()) ||
-						(type != exportImportConfiguration.getType()) ||
-						(status != exportImportConfiguration.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2460,14 +2412,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3607,17 +3555,21 @@ public class ExportImportConfigurationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExportImportConfigurationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of export import configurations
 	 */
+	@Deprecated
 	@Override
 	public List<ExportImportConfiguration> findAll(
 		int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -3630,14 +3582,12 @@ public class ExportImportConfigurationPersistenceImpl
 	 * @param start the lower bound of the range of export import configurations
 	 * @param end the upper bound of the range of export import configurations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of export import configurations
 	 */
 	@Override
 	public List<ExportImportConfiguration> findAll(
 		int start, int end,
-		OrderByComparator<ExportImportConfiguration> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ExportImportConfiguration> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3647,23 +3597,17 @@ public class ExportImportConfigurationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<ExportImportConfiguration> list = null;
-
-		if (useFinderCache) {
-			list = (List<ExportImportConfiguration>)FinderCacheUtil.getResult(
+		List<ExportImportConfiguration> list =
+			(List<ExportImportConfiguration>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3711,14 +3655,10 @@ public class ExportImportConfigurationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

@@ -126,19 +126,23 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FriendlyURLEntryLocalizationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFriendlyURLEntryId(long, int, int, OrderByComparator)}
 	 * @param friendlyURLEntryId the friendly url entry ID
 	 * @param start the lower bound of the range of friendly url entry localizations
 	 * @param end the upper bound of the range of friendly url entry localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching friendly url entry localizations
 	 */
+	@Deprecated
 	@Override
 	public List<FriendlyURLEntryLocalization> findByFriendlyURLEntryId(
 		long friendlyURLEntryId, int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator) {
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByFriendlyURLEntryId(
-			friendlyURLEntryId, start, end, orderByComparator, true);
+			friendlyURLEntryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -152,14 +156,12 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 * @param start the lower bound of the range of friendly url entry localizations
 	 * @param end the upper bound of the range of friendly url entry localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching friendly url entry localizations
 	 */
 	@Override
 	public List<FriendlyURLEntryLocalization> findByFriendlyURLEntryId(
 		long friendlyURLEntryId, int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -169,38 +171,30 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath =
-					_finderPathWithoutPaginationFindByFriendlyURLEntryId;
-				finderArgs = new Object[] {friendlyURLEntryId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByFriendlyURLEntryId;
+			finderArgs = new Object[] {friendlyURLEntryId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByFriendlyURLEntryId;
 			finderArgs = new Object[] {
 				friendlyURLEntryId, start, end, orderByComparator
 			};
 		}
 
-		List<FriendlyURLEntryLocalization> list = null;
-
-		if (useFinderCache) {
-			list = (List<FriendlyURLEntryLocalization>)finderCache.getResult(
+		List<FriendlyURLEntryLocalization> list =
+			(List<FriendlyURLEntryLocalization>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FriendlyURLEntryLocalization friendlyURLEntryLocalization :
-						list) {
+		if ((list != null) && !list.isEmpty()) {
+			for (FriendlyURLEntryLocalization friendlyURLEntryLocalization :
+					list) {
 
-					if ((friendlyURLEntryId !=
-							friendlyURLEntryLocalization.
-								getFriendlyURLEntryId())) {
+				if ((friendlyURLEntryId !=
+						friendlyURLEntryLocalization.getFriendlyURLEntryId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -258,14 +252,10 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -670,18 +660,21 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	}
 
 	/**
-	 * Returns the friendly url entry localization where friendlyURLEntryId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the friendly url entry localization where friendlyURLEntryId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByFriendlyURLEntryId_LanguageId(long,String)}
 	 * @param friendlyURLEntryId the friendly url entry ID
 	 * @param languageId the language ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching friendly url entry localization, or <code>null</code> if a matching friendly url entry localization could not be found
 	 */
+	@Deprecated
 	@Override
 	public FriendlyURLEntryLocalization fetchByFriendlyURLEntryId_LanguageId(
-		long friendlyURLEntryId, String languageId) {
+		long friendlyURLEntryId, String languageId, boolean useFinderCache) {
 
 		return fetchByFriendlyURLEntryId_LanguageId(
-			friendlyURLEntryId, languageId, true);
+			friendlyURLEntryId, languageId);
 	}
 
 	/**
@@ -694,23 +687,14 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 */
 	@Override
 	public FriendlyURLEntryLocalization fetchByFriendlyURLEntryId_LanguageId(
-		long friendlyURLEntryId, String languageId, boolean useFinderCache) {
+		long friendlyURLEntryId, String languageId) {
 
 		languageId = Objects.toString(languageId, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {friendlyURLEntryId, languageId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {friendlyURLEntryId, languageId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByFriendlyURLEntryId_LanguageId, finderArgs,
-				this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByFriendlyURLEntryId_LanguageId, finderArgs, this);
 
 		if (result instanceof FriendlyURLEntryLocalization) {
 			FriendlyURLEntryLocalization friendlyURLEntryLocalization =
@@ -766,11 +750,9 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 				List<FriendlyURLEntryLocalization> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByFriendlyURLEntryId_LanguageId,
-							finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByFriendlyURLEntryId_LanguageId,
+						finderArgs, list);
 				}
 				else {
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization =
@@ -782,11 +764,9 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByFriendlyURLEntryId_LanguageId,
-						finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathFetchByFriendlyURLEntryId_LanguageId,
+					finderArgs);
 
 				throw processException(e);
 			}
@@ -955,18 +935,22 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	}
 
 	/**
-	 * Returns the friendly url entry localization where groupId = &#63; and classNameId = &#63; and urlTitle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the friendly url entry localization where groupId = &#63; and classNameId = &#63; and urlTitle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_C_U(long,long,String)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param urlTitle the url title
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching friendly url entry localization, or <code>null</code> if a matching friendly url entry localization could not be found
 	 */
+	@Deprecated
 	@Override
 	public FriendlyURLEntryLocalization fetchByG_C_U(
-		long groupId, long classNameId, String urlTitle) {
+		long groupId, long classNameId, String urlTitle,
+		boolean useFinderCache) {
 
-		return fetchByG_C_U(groupId, classNameId, urlTitle, true);
+		return fetchByG_C_U(groupId, classNameId, urlTitle);
 	}
 
 	/**
@@ -980,23 +964,14 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 */
 	@Override
 	public FriendlyURLEntryLocalization fetchByG_C_U(
-		long groupId, long classNameId, String urlTitle,
-		boolean useFinderCache) {
+		long groupId, long classNameId, String urlTitle) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {groupId, classNameId, urlTitle};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {groupId, classNameId, urlTitle};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByG_C_U, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByG_C_U, finderArgs, this);
 
 		if (result instanceof FriendlyURLEntryLocalization) {
 			FriendlyURLEntryLocalization friendlyURLEntryLocalization =
@@ -1054,10 +1029,8 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 				List<FriendlyURLEntryLocalization> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByG_C_U, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByG_C_U, finderArgs, list);
 				}
 				else {
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization =
@@ -1069,10 +1042,7 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByG_C_U, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByG_C_U, finderArgs);
 
 				throw processException(e);
 			}
@@ -1887,17 +1857,21 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FriendlyURLEntryLocalizationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of friendly url entry localizations
 	 * @param end the upper bound of the range of friendly url entry localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of friendly url entry localizations
 	 */
+	@Deprecated
 	@Override
 	public List<FriendlyURLEntryLocalization> findAll(
 		int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator) {
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1910,14 +1884,12 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 	 * @param start the lower bound of the range of friendly url entry localizations
 	 * @param end the upper bound of the range of friendly url entry localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of friendly url entry localizations
 	 */
 	@Override
 	public List<FriendlyURLEntryLocalization> findAll(
 		int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1927,23 +1899,17 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<FriendlyURLEntryLocalization> list = null;
-
-		if (useFinderCache) {
-			list = (List<FriendlyURLEntryLocalization>)finderCache.getResult(
+		List<FriendlyURLEntryLocalization> list =
+			(List<FriendlyURLEntryLocalization>)finderCache.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1991,14 +1957,10 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

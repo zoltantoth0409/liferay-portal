@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.oauth2.provider.exception.NoSuchOAuth2ScopeGrantException;
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -82,17 +83,20 @@ public interface OAuth2ScopeGrantPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>OAuth2ScopeGrantModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByOAuth2ApplicationScopeAliasesId(long, int, int, OrderByComparator)}
 	 * @param oAuth2ApplicationScopeAliasesId the o auth2 application scope aliases ID
 	 * @param start the lower bound of the range of o auth2 scope grants
 	 * @param end the upper bound of the range of o auth2 scope grants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching o auth2 scope grants
 	 */
+	@Deprecated
 	public java.util.List<OAuth2ScopeGrant>
 		findByOAuth2ApplicationScopeAliasesId(
 			long oAuth2ApplicationScopeAliasesId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-				orderByComparator);
+			OrderByComparator<OAuth2ScopeGrant> orderByComparator,
+			boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the o auth2 scope grants where oAuth2ApplicationScopeAliasesId = &#63;.
@@ -105,15 +109,12 @@ public interface OAuth2ScopeGrantPersistence
 	 * @param start the lower bound of the range of o auth2 scope grants
 	 * @param end the upper bound of the range of o auth2 scope grants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching o auth2 scope grants
 	 */
 	public java.util.List<OAuth2ScopeGrant>
 		findByOAuth2ApplicationScopeAliasesId(
 			long oAuth2ApplicationScopeAliasesId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-				orderByComparator,
-			boolean useFinderCache);
+			OrderByComparator<OAuth2ScopeGrant> orderByComparator);
 
 	/**
 	 * Returns the first o auth2 scope grant in the ordered set where oAuth2ApplicationScopeAliasesId = &#63;.
@@ -125,8 +126,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant findByOAuth2ApplicationScopeAliasesId_First(
 			long oAuth2ApplicationScopeAliasesId,
-			com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-				orderByComparator)
+			OrderByComparator<OAuth2ScopeGrant> orderByComparator)
 		throws NoSuchOAuth2ScopeGrantException;
 
 	/**
@@ -138,8 +138,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant fetchByOAuth2ApplicationScopeAliasesId_First(
 		long oAuth2ApplicationScopeAliasesId,
-		com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-			orderByComparator);
+		OrderByComparator<OAuth2ScopeGrant> orderByComparator);
 
 	/**
 	 * Returns the last o auth2 scope grant in the ordered set where oAuth2ApplicationScopeAliasesId = &#63;.
@@ -151,8 +150,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant findByOAuth2ApplicationScopeAliasesId_Last(
 			long oAuth2ApplicationScopeAliasesId,
-			com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-				orderByComparator)
+			OrderByComparator<OAuth2ScopeGrant> orderByComparator)
 		throws NoSuchOAuth2ScopeGrantException;
 
 	/**
@@ -164,8 +162,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant fetchByOAuth2ApplicationScopeAliasesId_Last(
 		long oAuth2ApplicationScopeAliasesId,
-		com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-			orderByComparator);
+		OrderByComparator<OAuth2ScopeGrant> orderByComparator);
 
 	/**
 	 * Returns the o auth2 scope grants before and after the current o auth2 scope grant in the ordered set where oAuth2ApplicationScopeAliasesId = &#63;.
@@ -178,8 +175,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant[] findByOAuth2ApplicationScopeAliasesId_PrevAndNext(
 			long oAuth2ScopeGrantId, long oAuth2ApplicationScopeAliasesId,
-			com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-				orderByComparator)
+			OrderByComparator<OAuth2ScopeGrant> orderByComparator)
 		throws NoSuchOAuth2ScopeGrantException;
 
 	/**
@@ -216,18 +212,22 @@ public interface OAuth2ScopeGrantPersistence
 		throws NoSuchOAuth2ScopeGrantException;
 
 	/**
-	 * Returns the o auth2 scope grant where companyId = &#63; and oAuth2ApplicationScopeAliasesId = &#63; and applicationName = &#63; and bundleSymbolicName = &#63; and scope = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the o auth2 scope grant where companyId = &#63; and oAuth2ApplicationScopeAliasesId = &#63; and applicationName = &#63; and bundleSymbolicName = &#63; and scope = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_O_A_B_S(long,long,String,String,String)}
 	 * @param companyId the company ID
 	 * @param oAuth2ApplicationScopeAliasesId the o auth2 application scope aliases ID
 	 * @param applicationName the application name
 	 * @param bundleSymbolicName the bundle symbolic name
 	 * @param scope the scope
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching o auth2 scope grant, or <code>null</code> if a matching o auth2 scope grant could not be found
 	 */
+	@Deprecated
 	public OAuth2ScopeGrant fetchByC_O_A_B_S(
 		long companyId, long oAuth2ApplicationScopeAliasesId,
-		String applicationName, String bundleSymbolicName, String scope);
+		String applicationName, String bundleSymbolicName, String scope,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the o auth2 scope grant where companyId = &#63; and oAuth2ApplicationScopeAliasesId = &#63; and applicationName = &#63; and bundleSymbolicName = &#63; and scope = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -242,8 +242,7 @@ public interface OAuth2ScopeGrantPersistence
 	 */
 	public OAuth2ScopeGrant fetchByC_O_A_B_S(
 		long companyId, long oAuth2ApplicationScopeAliasesId,
-		String applicationName, String bundleSymbolicName, String scope,
-		boolean useFinderCache);
+		String applicationName, String bundleSymbolicName, String scope);
 
 	/**
 	 * Removes the o auth2 scope grant where companyId = &#63; and oAuth2ApplicationScopeAliasesId = &#63; and applicationName = &#63; and bundleSymbolicName = &#63; and scope = &#63; from the database.
@@ -353,15 +352,18 @@ public interface OAuth2ScopeGrantPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>OAuth2ScopeGrantModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of o auth2 scope grants
 	 * @param end the upper bound of the range of o auth2 scope grants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of o auth2 scope grants
 	 */
+	@Deprecated
 	public java.util.List<OAuth2ScopeGrant> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-			orderByComparator);
+		OrderByComparator<OAuth2ScopeGrant> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the o auth2 scope grants.
@@ -373,14 +375,11 @@ public interface OAuth2ScopeGrantPersistence
 	 * @param start the lower bound of the range of o auth2 scope grants
 	 * @param end the upper bound of the range of o auth2 scope grants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of o auth2 scope grants
 	 */
 	public java.util.List<OAuth2ScopeGrant> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<OAuth2ScopeGrant>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<OAuth2ScopeGrant> orderByComparator);
 
 	/**
 	 * Removes all the o auth2 scope grants from the database.
@@ -442,7 +441,7 @@ public interface OAuth2ScopeGrantPersistence
 	public java.util.List<com.liferay.oauth2.provider.model.OAuth2Authorization>
 		getOAuth2Authorizations(
 			long pk, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
+			OrderByComparator
 				<com.liferay.oauth2.provider.model.OAuth2Authorization>
 					orderByComparator);
 

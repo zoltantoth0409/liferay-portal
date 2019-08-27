@@ -129,18 +129,22 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -154,14 +158,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -173,30 +175,23 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if (!uuid.equals(fragmentEntry.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if (!uuid.equals(fragmentEntry.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -263,14 +258,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -681,15 +672,20 @@ public class FragmentEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the fragment entry where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the fragment entry where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching fragment entry, or <code>null</code> if a matching fragment entry could not be found
 	 */
+	@Deprecated
 	@Override
-	public FragmentEntry fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public FragmentEntry fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -701,23 +697,13 @@ public class FragmentEntryPersistenceImpl
 	 * @return the matching fragment entry, or <code>null</code> if a matching fragment entry could not be found
 	 */
 	@Override
-	public FragmentEntry fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public FragmentEntry fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof FragmentEntry) {
 			FragmentEntry fragmentEntry = (FragmentEntry)result;
@@ -767,10 +753,8 @@ public class FragmentEntryPersistenceImpl
 				List<FragmentEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					FragmentEntry fragmentEntry = list.get(0);
@@ -781,10 +765,7 @@ public class FragmentEntryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -939,20 +920,23 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -967,14 +951,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -986,34 +968,27 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if (!uuid.equals(fragmentEntry.getUuid()) ||
+					(companyId != fragmentEntry.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if (!uuid.equals(fragmentEntry.getUuid()) ||
-						(companyId != fragmentEntry.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1084,14 +1059,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1536,18 +1507,22 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByGroupId(groupId, start, end, orderByComparator, true);
+		return findByGroupId(groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1561,14 +1536,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1578,30 +1551,23 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByGroupId;
-				finderArgs = new Object[] {groupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByGroupId;
+			finderArgs = new Object[] {groupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((groupId != fragmentEntry.getGroupId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1657,14 +1623,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2053,19 +2015,23 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFragmentCollectionId(long, int, int, OrderByComparator)}
 	 * @param fragmentCollectionId the fragment collection ID
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByFragmentCollectionId(
 		long fragmentCollectionId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByFragmentCollectionId(
-			fragmentCollectionId, start, end, orderByComparator, true);
+			fragmentCollectionId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2079,14 +2045,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByFragmentCollectionId(
 		long fragmentCollectionId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2096,35 +2060,27 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath =
-					_finderPathWithoutPaginationFindByFragmentCollectionId;
-				finderArgs = new Object[] {fragmentCollectionId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByFragmentCollectionId;
+			finderArgs = new Object[] {fragmentCollectionId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByFragmentCollectionId;
 			finderArgs = new Object[] {
 				fragmentCollectionId, start, end, orderByComparator
 			};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((fragmentCollectionId !=
+						fragmentEntry.getFragmentCollectionId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2181,14 +2137,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2589,20 +2541,24 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_FCI(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentCollectionId the fragment collection ID
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByG_FCI(
 		long groupId, long fragmentCollectionId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_FCI(
-			groupId, fragmentCollectionId, start, end, orderByComparator, true);
+			groupId, fragmentCollectionId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2617,14 +2573,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByG_FCI(
 		long groupId, long fragmentCollectionId, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2634,35 +2588,28 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_FCI;
-				finderArgs = new Object[] {groupId, fragmentCollectionId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_FCI;
+			finderArgs = new Object[] {groupId, fragmentCollectionId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_FCI;
 			finderArgs = new Object[] {
 				groupId, fragmentCollectionId, start, end, orderByComparator
 			};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((groupId != fragmentEntry.getGroupId()) ||
+					(fragmentCollectionId !=
+						fragmentEntry.getFragmentCollectionId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId()) ||
-						(fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2722,14 +2669,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3146,15 +3089,20 @@ public class FragmentEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the fragment entry where groupId = &#63; and fragmentEntryKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the fragment entry where groupId = &#63; and fragmentEntryKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_FEK(long,String)}
 	 * @param groupId the group ID
 	 * @param fragmentEntryKey the fragment entry key
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching fragment entry, or <code>null</code> if a matching fragment entry could not be found
 	 */
+	@Deprecated
 	@Override
-	public FragmentEntry fetchByG_FEK(long groupId, String fragmentEntryKey) {
-		return fetchByG_FEK(groupId, fragmentEntryKey, true);
+	public FragmentEntry fetchByG_FEK(
+		long groupId, String fragmentEntryKey, boolean useFinderCache) {
+
+		return fetchByG_FEK(groupId, fragmentEntryKey);
 	}
 
 	/**
@@ -3166,23 +3114,13 @@ public class FragmentEntryPersistenceImpl
 	 * @return the matching fragment entry, or <code>null</code> if a matching fragment entry could not be found
 	 */
 	@Override
-	public FragmentEntry fetchByG_FEK(
-		long groupId, String fragmentEntryKey, boolean useFinderCache) {
-
+	public FragmentEntry fetchByG_FEK(long groupId, String fragmentEntryKey) {
 		fragmentEntryKey = Objects.toString(fragmentEntryKey, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {groupId, fragmentEntryKey};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {groupId, fragmentEntryKey};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByG_FEK, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByG_FEK, finderArgs, this);
 
 		if (result instanceof FragmentEntry) {
 			FragmentEntry fragmentEntry = (FragmentEntry)result;
@@ -3233,10 +3171,8 @@ public class FragmentEntryPersistenceImpl
 				List<FragmentEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByG_FEK, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByG_FEK, finderArgs, list);
 				}
 				else {
 					FragmentEntry fragmentEntry = list.get(0);
@@ -3247,10 +3183,7 @@ public class FragmentEntryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByG_FEK, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByG_FEK, finderArgs);
 
 				throw processException(e);
 			}
@@ -3411,22 +3344,25 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_FCI_LikeN(long,long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentCollectionId the fragment collection ID
 	 * @param name the name
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByG_FCI_LikeN(
 		long groupId, long fragmentCollectionId, String name, int start,
-		int end, OrderByComparator<FragmentEntry> orderByComparator) {
+		int end, OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_FCI_LikeN(
-			groupId, fragmentCollectionId, name, start, end, orderByComparator,
-			true);
+			groupId, fragmentCollectionId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -3442,14 +3378,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByG_FCI_LikeN(
 		long groupId, long fragmentCollectionId, String name, int start,
-		int end, OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<FragmentEntry> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -3462,25 +3396,20 @@ public class FragmentEntryPersistenceImpl
 			groupId, fragmentCollectionId, name, start, end, orderByComparator
 		};
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((groupId != fragmentEntry.getGroupId()) ||
+					(fragmentCollectionId !=
+						fragmentEntry.getFragmentCollectionId()) ||
+					!StringUtil.wildcardMatches(
+						fragmentEntry.getName(), name, '_', '%', '\\', false)) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId()) ||
-						(fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId()) ||
-						!StringUtil.wildcardMatches(
-							fragmentEntry.getName(), name, '_', '%', '\\',
-							false)) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3555,14 +3484,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4050,22 +3975,26 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_FCI_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentCollectionId the fragment collection ID
 	 * @param status the status
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByG_FCI_S(
 		long groupId, long fragmentCollectionId, int status, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_FCI_S(
 			groupId, fragmentCollectionId, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -4081,14 +4010,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByG_FCI_S(
 		long groupId, long fragmentCollectionId, int status, int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4098,15 +4025,10 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_FCI_S;
-				finderArgs = new Object[] {
-					groupId, fragmentCollectionId, status
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_FCI_S;
+			finderArgs = new Object[] {groupId, fragmentCollectionId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_FCI_S;
 			finderArgs = new Object[] {
 				groupId, fragmentCollectionId, status, start, end,
@@ -4114,23 +4036,19 @@ public class FragmentEntryPersistenceImpl
 			};
 		}
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((groupId != fragmentEntry.getGroupId()) ||
+					(fragmentCollectionId !=
+						fragmentEntry.getFragmentCollectionId()) ||
+					(status != fragmentEntry.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId()) ||
-						(fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId()) ||
-						(status != fragmentEntry.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4194,14 +4112,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4660,6 +4574,7 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_FCI_LikeN_S(long,long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentCollectionId the fragment collection ID
 	 * @param name the name
@@ -4667,17 +4582,19 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findByG_FCI_LikeN_S(
 		long groupId, long fragmentCollectionId, String name, int status,
-		int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		int start, int end, OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_FCI_LikeN_S(
 			groupId, fragmentCollectionId, name, status, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -4694,14 +4611,13 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findByG_FCI_LikeN_S(
 		long groupId, long fragmentCollectionId, String name, int status,
-		int start, int end, OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -4715,26 +4631,21 @@ public class FragmentEntryPersistenceImpl
 			orderByComparator
 		};
 
-		List<FragmentEntry> list = null;
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (FragmentEntry fragmentEntry : list) {
+				if ((groupId != fragmentEntry.getGroupId()) ||
+					(fragmentCollectionId !=
+						fragmentEntry.getFragmentCollectionId()) ||
+					!StringUtil.wildcardMatches(
+						fragmentEntry.getName(), name, '_', '%', '\\', false) ||
+					(status != fragmentEntry.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId()) ||
-						(fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId()) ||
-						!StringUtil.wildcardMatches(
-							fragmentEntry.getName(), name, '_', '%', '\\',
-							false) ||
-						(status != fragmentEntry.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4813,14 +4724,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6098,17 +6005,20 @@ public class FragmentEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of fragment entries
 	 */
+	@Deprecated
 	@Override
 	public List<FragmentEntry> findAll(
-		int start, int end,
-		OrderByComparator<FragmentEntry> orderByComparator) {
+		int start, int end, OrderByComparator<FragmentEntry> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -6121,13 +6031,12 @@ public class FragmentEntryPersistenceImpl
 	 * @param start the lower bound of the range of fragment entries
 	 * @param end the upper bound of the range of fragment entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of fragment entries
 	 */
 	@Override
 	public List<FragmentEntry> findAll(
-		int start, int end, OrderByComparator<FragmentEntry> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<FragmentEntry> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6137,23 +6046,16 @@ public class FragmentEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<FragmentEntry> list = null;
-
-		if (useFinderCache) {
-			list = (List<FragmentEntry>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<FragmentEntry> list = (List<FragmentEntry>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -6200,14 +6102,10 @@ public class FragmentEntryPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

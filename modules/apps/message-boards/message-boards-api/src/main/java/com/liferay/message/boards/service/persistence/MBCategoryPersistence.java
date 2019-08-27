@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.message.boards.exception.NoSuchCategoryException;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,16 +79,19 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where uuid = &#63;.
@@ -100,14 +104,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where uuid = &#63;.
@@ -118,9 +119,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			String uuid, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -131,9 +130,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the first matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		String uuid, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where uuid = &#63;.
@@ -144,9 +141,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			String uuid, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -157,9 +152,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the last matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		String uuid, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where uuid = &#63;.
@@ -172,8 +165,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByUuid_PrevAndNext(
 			long categoryId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -203,13 +195,17 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		throws NoSuchCategoryException;
 
 	/**
-	 * Returns the message boards category where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the message boards category where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
-	public MBCategory fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public MBCategory fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the message boards category where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -219,8 +215,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
-	public MBCategory fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public MBCategory fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the message boards category where uuid = &#63; and groupId = &#63; from the database.
@@ -273,17 +268,20 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where uuid = &#63; and companyId = &#63;.
@@ -297,14 +295,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -317,8 +312,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -331,8 +325,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -345,8 +338,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -359,8 +351,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -374,8 +365,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByUuid_C_PrevAndNext(
 			long categoryId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -425,16 +415,19 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63;.
@@ -447,14 +440,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where groupId = &#63;.
@@ -465,9 +455,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			long groupId, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -478,9 +466,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the first matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		long groupId, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where groupId = &#63;.
@@ -491,9 +477,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			long groupId, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -504,9 +488,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the last matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		long groupId, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where groupId = &#63;.
@@ -519,8 +501,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByGroupId_PrevAndNext(
 			long categoryId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -561,8 +542,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set of message boards categories that the user has permission to view where groupId = &#63;.
@@ -575,8 +555,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] filterFindByGroupId_PrevAndNext(
 			long categoryId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -632,16 +611,19 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where companyId = &#63;.
@@ -654,14 +636,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where companyId = &#63;.
@@ -672,9 +651,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			long companyId, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -685,9 +662,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the first matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		long companyId, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where companyId = &#63;.
@@ -698,9 +673,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @throws NoSuchCategoryException if a matching message boards category could not be found
 	 */
 	public MBCategory findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			long companyId, OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -711,9 +684,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @return the last matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	 */
 	public MBCategory fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		long companyId, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where companyId = &#63;.
@@ -726,8 +697,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByCompanyId_PrevAndNext(
 			long categoryId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -778,17 +748,20 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63;.
@@ -802,14 +775,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -822,8 +792,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_First(
 			long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -836,8 +805,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_First(
 		long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -850,8 +818,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_Last(
 			long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -864,8 +831,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_Last(
 		long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -879,8 +845,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByG_P_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -925,8 +890,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set of message boards categories that the user has permission to view where groupId = &#63; and parentCategoryId = &#63;.
@@ -940,8 +904,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] filterFindByG_P_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -986,8 +949,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P(
 		long groupId, long[] parentCategoryIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories where groupId = &#63; and parentCategoryId = any &#63;.
@@ -1020,6 +982,28 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		long groupId, long[] parentCategoryIds, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentCategoryId the parent category ID
+	 * @param start the lower bound of the range of message boards categories
+	 * @param end the upper bound of the range of message boards categories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards categories
+	 */
+	@Deprecated
+	public java.util.List<MBCategory> findByG_P(
+		long groupId, long[] parentCategoryIds, int start, int end,
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = any &#63;.
 	 *
 	 * <p>
@@ -1035,29 +1019,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> findByG_P(
 		long groupId, long[] parentCategoryIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentCategoryId the parent category ID
-	 * @param start the lower bound of the range of message boards categories
-	 * @param end the upper bound of the range of message boards categories (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards categories
-	 */
-	public java.util.List<MBCategory> findByG_P(
-		long groupId, long[] parentCategoryIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories where groupId = &#63; and parentCategoryId = &#63; from the database.
@@ -1135,17 +1097,20 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and status = &#63;.
@@ -1159,14 +1124,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where groupId = &#63; and status = &#63;.
@@ -1179,8 +1141,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_S_First(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1193,8 +1154,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_S_First(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where groupId = &#63; and status = &#63;.
@@ -1207,8 +1167,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_S_Last(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1221,8 +1180,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_S_Last(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where groupId = &#63; and status = &#63;.
@@ -1236,8 +1194,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByG_S_PrevAndNext(
 			long categoryId, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1281,8 +1238,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set of message boards categories that the user has permission to view where groupId = &#63; and status = &#63;.
@@ -1296,8 +1252,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] filterFindByG_S_PrevAndNext(
 			long categoryId, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1358,17 +1313,20 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where companyId = &#63; and status = &#63;.
@@ -1382,14 +1340,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where companyId = &#63; and status = &#63;.
@@ -1402,8 +1357,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByC_S_First(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1416,8 +1370,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where companyId = &#63; and status = &#63;.
@@ -1430,8 +1383,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByC_S_Last(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1444,8 +1396,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where companyId = &#63; and status = &#63;.
@@ -1459,8 +1410,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByC_S_PrevAndNext(
 			long categoryId, long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1516,19 +1466,21 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByNotC_G_P(long,long,long, int, int, OrderByComparator)}
 	 * @param categoryId the category ID
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByNotC_G_P(
 		long categoryId, long groupId, long parentCategoryId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int end, OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;.
@@ -1543,15 +1495,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByNotC_G_P(
 		long categoryId, long groupId, long parentCategoryId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;.
@@ -1565,8 +1513,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByNotC_G_P_First(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1580,8 +1527,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByNotC_G_P_First(
 		long categoryId, long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;.
@@ -1595,8 +1541,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByNotC_G_P_Last(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1610,8 +1555,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByNotC_G_P_Last(
 		long categoryId, long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories that the user has permission to view where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;.
@@ -1659,9 +1603,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByNotC_G_P(
 		long categoryId, long groupId, long parentCategoryId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories that the user has permission to view where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63;.
@@ -1709,9 +1651,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByNotC_G_P(
 		long[] categoryIds, long groupId, long[] parentCategoryIds, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63;.
@@ -1747,6 +1687,29 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		int end);
 
 	/**
+	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByNotC_G_P(long,long,long, int, int, OrderByComparator)}
+	 * @param categoryId the category ID
+	 * @param groupId the group ID
+	 * @param parentCategoryId the parent category ID
+	 * @param start the lower bound of the range of message boards categories
+	 * @param end the upper bound of the range of message boards categories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards categories
+	 */
+	@Deprecated
+	public java.util.List<MBCategory> findByNotC_G_P(
+		long[] categoryIds, long groupId, long[] parentCategoryIds, int start,
+		int end, OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message boards categories where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63;.
 	 *
 	 * <p>
@@ -1763,32 +1726,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> findByNotC_G_P(
 		long[] categoryIds, long groupId, long[] parentCategoryIds, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param categoryId the category ID
-	 * @param groupId the group ID
-	 * @param parentCategoryId the parent category ID
-	 * @param start the lower bound of the range of message boards categories
-	 * @param end the upper bound of the range of message boards categories (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards categories
-	 */
-	public java.util.List<MBCategory> findByNotC_G_P(
-		long[] categoryIds, long groupId, long[] parentCategoryIds, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; from the database.
@@ -1879,18 +1817,21 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByG_P_S(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -1905,14 +1846,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByG_P_S(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -1926,8 +1864,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_S_First(
 			long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1941,8 +1878,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_S_First(
 		long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -1956,8 +1892,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_S_Last(
 			long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -1971,8 +1906,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_S_Last(
 		long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -1987,8 +1921,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByG_P_S_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2036,8 +1969,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P_S(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set of message boards categories that the user has permission to view where groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -2052,8 +1984,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] filterFindByG_P_S_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2101,8 +2032,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P_S(
 		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories where groupId = &#63; and parentCategoryId = any &#63; and status = &#63;.
@@ -2137,6 +2067,29 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		long groupId, long[] parentCategoryIds, int status, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_S(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentCategoryId the parent category ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message boards categories
+	 * @param end the upper bound of the range of message boards categories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards categories
+	 */
+	@Deprecated
+	public java.util.List<MBCategory> findByG_P_S(
+		long groupId, long[] parentCategoryIds, int status, int start, int end,
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -2153,30 +2106,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> findByG_P_S(
 		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentCategoryId the parent category ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message boards categories
-	 * @param end the upper bound of the range of message boards categories (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards categories
-	 */
-	public java.util.List<MBCategory> findByG_P_S(
-		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status = &#63; from the database.
@@ -2264,18 +2194,21 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_NotS(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByG_P_NotS(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;.
@@ -2290,14 +2223,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByG_P_NotS(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;.
@@ -2311,8 +2241,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_NotS_First(
 			long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2326,8 +2255,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_NotS_First(
 		long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;.
@@ -2341,8 +2269,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByG_P_NotS_Last(
 			long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2356,8 +2283,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByG_P_NotS_Last(
 		long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;.
@@ -2372,8 +2298,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] findByG_P_NotS_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2421,8 +2346,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P_NotS(
 		long groupId, long parentCategoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the message boards categories before and after the current message boards category in the ordered set of message boards categories that the user has permission to view where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;.
@@ -2437,8 +2361,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory[] filterFindByG_P_NotS_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2486,8 +2409,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByG_P_NotS(
 		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories where groupId = &#63; and parentCategoryId = any &#63; and status &ne; &#63;.
@@ -2522,6 +2444,29 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		long groupId, long[] parentCategoryIds, int status, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_NotS(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param parentCategoryId the parent category ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message boards categories
+	 * @param end the upper bound of the range of message boards categories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards categories
+	 */
+	@Deprecated
+	public java.util.List<MBCategory> findByG_P_NotS(
+		long groupId, long[] parentCategoryIds, int status, int start, int end,
+		OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = any &#63; and status &ne; &#63;.
 	 *
 	 * <p>
@@ -2538,30 +2483,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> findByG_P_NotS(
 		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param parentCategoryId the parent category ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message boards categories
-	 * @param end the upper bound of the range of message boards categories (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards categories
-	 */
-	public java.util.List<MBCategory> findByG_P_NotS(
-		long groupId, long[] parentCategoryIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories where groupId = &#63; and parentCategoryId = &#63; and status &ne; &#63; from the database.
@@ -2654,6 +2576,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByNotC_G_P_S(long,long,long,int, int, int, OrderByComparator)}
 	 * @param categoryId the category ID
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
@@ -2661,13 +2584,14 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findByNotC_G_P_S(
 		long categoryId, long groupId, long parentCategoryId, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -2683,15 +2607,11 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards categories
 	 */
 	public java.util.List<MBCategory> findByNotC_G_P_S(
 		long categoryId, long groupId, long parentCategoryId, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the first message boards category in the ordered set where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -2706,8 +2626,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByNotC_G_P_S_First(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2722,8 +2641,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByNotC_G_P_S_First(
 		long categoryId, long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns the last message boards category in the ordered set where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -2738,8 +2656,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory findByNotC_G_P_S_Last(
 			long categoryId, long groupId, long parentCategoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-				orderByComparator)
+			OrderByComparator<MBCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -2754,8 +2671,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public MBCategory fetchByNotC_G_P_S_Last(
 		long categoryId, long groupId, long parentCategoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories that the user has permission to view where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;.
@@ -2806,9 +2722,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByNotC_G_P_S(
 		long categoryId, long groupId, long parentCategoryId, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories that the user has permission to view where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63; and status = &#63;.
@@ -2859,9 +2773,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> filterFindByNotC_G_P_S(
 		long[] categoryIds, long groupId, long[] parentCategoryIds, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Returns all the message boards categories where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63; and status = &#63;.
@@ -2899,6 +2811,30 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 		int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByNotC_G_P_S(long,long,long,int, int, int, OrderByComparator)}
+	 * @param categoryId the category ID
+	 * @param groupId the group ID
+	 * @param parentCategoryId the parent category ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message boards categories
+	 * @param end the upper bound of the range of message boards categories (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards categories
+	 */
+	@Deprecated
+	public java.util.List<MBCategory> findByNotC_G_P_S(
+		long[] categoryIds, long groupId, long[] parentCategoryIds, int status,
+		int start, int end, OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message boards categories where categoryId &ne; all &#63; and groupId = &#63; and parentCategoryId = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -2916,33 +2852,7 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 */
 	public java.util.List<MBCategory> findByNotC_G_P_S(
 		long[] categoryIds, long groupId, long[] parentCategoryIds, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param categoryId the category ID
-	 * @param groupId the group ID
-	 * @param parentCategoryId the parent category ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message boards categories
-	 * @param end the upper bound of the range of message boards categories (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards categories
-	 */
-	public java.util.List<MBCategory> findByNotC_G_P_S(
-		long[] categoryIds, long groupId, long[] parentCategoryIds, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories where categoryId &ne; &#63; and groupId = &#63; and parentCategoryId = &#63; and status = &#63; from the database.
@@ -3081,15 +2991,17 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards categories
 	 */
+	@Deprecated
 	public java.util.List<MBCategory> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message boards categories.
@@ -3101,14 +3013,10 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 * @param start the lower bound of the range of message boards categories
 	 * @param end the upper bound of the range of message boards categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards categories
 	 */
 	public java.util.List<MBCategory> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<MBCategory> orderByComparator);
 
 	/**
 	 * Removes all the message boards categories from the database.

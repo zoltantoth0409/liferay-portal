@@ -127,18 +127,22 @@ public class PollsChoicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsChoiceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
+	@Deprecated
 	@Override
 	public List<PollsChoice> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator) {
+		OrderByComparator<PollsChoice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -152,14 +156,12 @@ public class PollsChoicePersistenceImpl
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
 	@Override
 	public List<PollsChoice> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PollsChoice> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -171,30 +173,23 @@ public class PollsChoicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<PollsChoice> list = null;
+		List<PollsChoice> list = (List<PollsChoice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<PollsChoice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (PollsChoice pollsChoice : list) {
+				if (!uuid.equals(pollsChoice.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PollsChoice pollsChoice : list) {
-					if (!uuid.equals(pollsChoice.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -261,14 +256,10 @@ public class PollsChoicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -677,15 +668,20 @@ public class PollsChoicePersistenceImpl
 	}
 
 	/**
-	 * Returns the polls choice where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the polls choice where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching polls choice, or <code>null</code> if a matching polls choice could not be found
 	 */
+	@Deprecated
 	@Override
-	public PollsChoice fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public PollsChoice fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -697,23 +693,13 @@ public class PollsChoicePersistenceImpl
 	 * @return the matching polls choice, or <code>null</code> if a matching polls choice could not be found
 	 */
 	@Override
-	public PollsChoice fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public PollsChoice fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof PollsChoice) {
 			PollsChoice pollsChoice = (PollsChoice)result;
@@ -763,10 +749,8 @@ public class PollsChoicePersistenceImpl
 				List<PollsChoice> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					PollsChoice pollsChoice = list.get(0);
@@ -777,10 +761,7 @@ public class PollsChoicePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -935,20 +916,23 @@ public class PollsChoicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsChoiceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
+	@Deprecated
 	@Override
 	public List<PollsChoice> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator) {
+		OrderByComparator<PollsChoice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -963,14 +947,12 @@ public class PollsChoicePersistenceImpl
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
 	@Override
 	public List<PollsChoice> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PollsChoice> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -982,34 +964,27 @@ public class PollsChoicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<PollsChoice> list = null;
+		List<PollsChoice> list = (List<PollsChoice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<PollsChoice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (PollsChoice pollsChoice : list) {
+				if (!uuid.equals(pollsChoice.getUuid()) ||
+					(companyId != pollsChoice.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PollsChoice pollsChoice : list) {
-					if (!uuid.equals(pollsChoice.getUuid()) ||
-						(companyId != pollsChoice.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1080,14 +1055,10 @@ public class PollsChoicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1531,19 +1502,22 @@ public class PollsChoicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsChoiceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByQuestionId(long, int, int, OrderByComparator)}
 	 * @param questionId the question ID
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
+	@Deprecated
 	@Override
 	public List<PollsChoice> findByQuestionId(
 		long questionId, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator) {
+		OrderByComparator<PollsChoice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByQuestionId(
-			questionId, start, end, orderByComparator, true);
+		return findByQuestionId(questionId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1557,14 +1531,12 @@ public class PollsChoicePersistenceImpl
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls choices
 	 */
 	@Override
 	public List<PollsChoice> findByQuestionId(
 		long questionId, int start, int end,
-		OrderByComparator<PollsChoice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PollsChoice> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1574,32 +1546,25 @@ public class PollsChoicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByQuestionId;
-				finderArgs = new Object[] {questionId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByQuestionId;
+			finderArgs = new Object[] {questionId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByQuestionId;
 			finderArgs = new Object[] {
 				questionId, start, end, orderByComparator
 			};
 		}
 
-		List<PollsChoice> list = null;
+		List<PollsChoice> list = (List<PollsChoice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<PollsChoice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (PollsChoice pollsChoice : list) {
+				if ((questionId != pollsChoice.getQuestionId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (PollsChoice pollsChoice : list) {
-					if ((questionId != pollsChoice.getQuestionId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1655,14 +1620,10 @@ public class PollsChoicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2046,15 +2007,20 @@ public class PollsChoicePersistenceImpl
 	}
 
 	/**
-	 * Returns the polls choice where questionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the polls choice where questionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByQ_N(long,String)}
 	 * @param questionId the question ID
 	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching polls choice, or <code>null</code> if a matching polls choice could not be found
 	 */
+	@Deprecated
 	@Override
-	public PollsChoice fetchByQ_N(long questionId, String name) {
-		return fetchByQ_N(questionId, name, true);
+	public PollsChoice fetchByQ_N(
+		long questionId, String name, boolean useFinderCache) {
+
+		return fetchByQ_N(questionId, name);
 	}
 
 	/**
@@ -2066,23 +2032,13 @@ public class PollsChoicePersistenceImpl
 	 * @return the matching polls choice, or <code>null</code> if a matching polls choice could not be found
 	 */
 	@Override
-	public PollsChoice fetchByQ_N(
-		long questionId, String name, boolean useFinderCache) {
-
+	public PollsChoice fetchByQ_N(long questionId, String name) {
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {questionId, name};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {questionId, name};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByQ_N, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByQ_N, finderArgs, this);
 
 		if (result instanceof PollsChoice) {
 			PollsChoice pollsChoice = (PollsChoice)result;
@@ -2132,10 +2088,8 @@ public class PollsChoicePersistenceImpl
 				List<PollsChoice> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByQ_N, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByQ_N, finderArgs, list);
 				}
 				else {
 					PollsChoice pollsChoice = list.get(0);
@@ -2146,9 +2100,7 @@ public class PollsChoicePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByQ_N, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByQ_N, finderArgs);
 
 				throw processException(e);
 			}
@@ -2962,16 +2914,20 @@ public class PollsChoicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsChoiceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of polls choices
 	 */
+	@Deprecated
 	@Override
 	public List<PollsChoice> findAll(
-		int start, int end, OrderByComparator<PollsChoice> orderByComparator) {
+		int start, int end, OrderByComparator<PollsChoice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -2984,13 +2940,11 @@ public class PollsChoicePersistenceImpl
 	 * @param start the lower bound of the range of polls choices
 	 * @param end the upper bound of the range of polls choices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of polls choices
 	 */
 	@Override
 	public List<PollsChoice> findAll(
-		int start, int end, OrderByComparator<PollsChoice> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<PollsChoice> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3000,23 +2954,16 @@ public class PollsChoicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<PollsChoice> list = null;
-
-		if (useFinderCache) {
-			list = (List<PollsChoice>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<PollsChoice> list = (List<PollsChoice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3063,14 +3010,10 @@ public class PollsChoicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

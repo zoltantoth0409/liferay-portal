@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.blogs.exception.NoSuchStatsUserException;
 import com.liferay.blogs.model.BlogsStatsUser;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -80,16 +81,19 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users where groupId = &#63;.
@@ -102,14 +106,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the first blogs stats user in the ordered set where groupId = &#63;.
@@ -120,9 +121,7 @@ public interface BlogsStatsUserPersistence
 	 * @throws NoSuchStatsUserException if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			long groupId, OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -133,9 +132,7 @@ public interface BlogsStatsUserPersistence
 	 * @return the first matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		long groupId, OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the last blogs stats user in the ordered set where groupId = &#63;.
@@ -146,9 +143,7 @@ public interface BlogsStatsUserPersistence
 	 * @throws NoSuchStatsUserException if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			long groupId, OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -159,9 +154,7 @@ public interface BlogsStatsUserPersistence
 	 * @return the last matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		long groupId, OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the blogs stats users before and after the current blogs stats user in the ordered set where groupId = &#63;.
@@ -174,8 +167,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser[] findByGroupId_PrevAndNext(
 			long statsUserId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -223,16 +215,19 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users where userId = &#63;.
@@ -245,14 +240,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the first blogs stats user in the ordered set where userId = &#63;.
@@ -263,9 +255,7 @@ public interface BlogsStatsUserPersistence
 	 * @throws NoSuchStatsUserException if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser findByUserId_First(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			long userId, OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -276,9 +266,7 @@ public interface BlogsStatsUserPersistence
 	 * @return the first matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser fetchByUserId_First(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		long userId, OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the last blogs stats user in the ordered set where userId = &#63;.
@@ -289,9 +277,7 @@ public interface BlogsStatsUserPersistence
 	 * @throws NoSuchStatsUserException if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser findByUserId_Last(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			long userId, OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -302,9 +288,7 @@ public interface BlogsStatsUserPersistence
 	 * @return the last matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
 	public BlogsStatsUser fetchByUserId_Last(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		long userId, OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the blogs stats users before and after the current blogs stats user in the ordered set where userId = &#63;.
@@ -317,8 +301,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser[] findByUserId_PrevAndNext(
 			long statsUserId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -348,13 +331,17 @@ public interface BlogsStatsUserPersistence
 		throws NoSuchStatsUserException;
 
 	/**
-	 * Returns the blogs stats user where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the blogs stats user where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_U(long,long)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
-	public BlogsStatsUser fetchByG_U(long groupId, long userId);
+	@Deprecated
+	public BlogsStatsUser fetchByG_U(
+		long groupId, long userId, boolean useFinderCache);
 
 	/**
 	 * Returns the blogs stats user where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -364,8 +351,7 @@ public interface BlogsStatsUserPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching blogs stats user, or <code>null</code> if a matching blogs stats user could not be found
 	 */
-	public BlogsStatsUser fetchByG_U(
-		long groupId, long userId, boolean useFinderCache);
+	public BlogsStatsUser fetchByG_U(long groupId, long userId);
 
 	/**
 	 * Removes the blogs stats user where groupId = &#63; and userId = &#63; from the database.
@@ -419,17 +405,20 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotE(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param entryCount the entry count
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findByG_NotE(
 		long groupId, int entryCount, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users where groupId = &#63; and entryCount &ne; &#63;.
@@ -443,14 +432,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findByG_NotE(
 		long groupId, int entryCount, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the first blogs stats user in the ordered set where groupId = &#63; and entryCount &ne; &#63;.
@@ -463,8 +449,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByG_NotE_First(
 			long groupId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -477,8 +462,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByG_NotE_First(
 		long groupId, int entryCount,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the last blogs stats user in the ordered set where groupId = &#63; and entryCount &ne; &#63;.
@@ -491,8 +475,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByG_NotE_Last(
 			long groupId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -505,8 +488,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByG_NotE_Last(
 		long groupId, int entryCount,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the blogs stats users before and after the current blogs stats user in the ordered set where groupId = &#63; and entryCount &ne; &#63;.
@@ -520,8 +502,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser[] findByG_NotE_PrevAndNext(
 			long statsUserId, long groupId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -574,17 +555,20 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_NotE(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param entryCount the entry count
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findByC_NotE(
 		long companyId, int entryCount, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users where companyId = &#63; and entryCount &ne; &#63;.
@@ -598,14 +582,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findByC_NotE(
 		long companyId, int entryCount, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the first blogs stats user in the ordered set where companyId = &#63; and entryCount &ne; &#63;.
@@ -618,8 +599,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByC_NotE_First(
 			long companyId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -632,8 +612,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByC_NotE_First(
 		long companyId, int entryCount,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the last blogs stats user in the ordered set where companyId = &#63; and entryCount &ne; &#63;.
@@ -646,8 +625,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByC_NotE_Last(
 			long companyId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -660,8 +638,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByC_NotE_Last(
 		long companyId, int entryCount,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the blogs stats users before and after the current blogs stats user in the ordered set where companyId = &#63; and entryCount &ne; &#63;.
@@ -675,8 +652,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser[] findByC_NotE_PrevAndNext(
 			long statsUserId, long companyId, int entryCount,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -729,17 +705,20 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_L(long,Date, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param lastPostDate the last post date
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findByU_L(
 		long userId, Date lastPostDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users where userId = &#63; and lastPostDate = &#63;.
@@ -753,14 +732,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findByU_L(
 		long userId, Date lastPostDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the first blogs stats user in the ordered set where userId = &#63; and lastPostDate = &#63;.
@@ -773,8 +749,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByU_L_First(
 			long userId, Date lastPostDate,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -787,8 +762,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByU_L_First(
 		long userId, Date lastPostDate,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the last blogs stats user in the ordered set where userId = &#63; and lastPostDate = &#63;.
@@ -801,8 +775,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser findByU_L_Last(
 			long userId, Date lastPostDate,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -815,8 +788,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser fetchByU_L_Last(
 		long userId, Date lastPostDate,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Returns the blogs stats users before and after the current blogs stats user in the ordered set where userId = &#63; and lastPostDate = &#63;.
@@ -830,8 +802,7 @@ public interface BlogsStatsUserPersistence
 	 */
 	public BlogsStatsUser[] findByU_L_PrevAndNext(
 			long statsUserId, long userId, Date lastPostDate,
-			com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-				orderByComparator)
+			OrderByComparator<BlogsStatsUser> orderByComparator)
 		throws NoSuchStatsUserException;
 
 	/**
@@ -930,15 +901,17 @@ public interface BlogsStatsUserPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BlogsStatsUserModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of blogs stats users
 	 */
+	@Deprecated
 	public java.util.List<BlogsStatsUser> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator);
+		int start, int end, OrderByComparator<BlogsStatsUser> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the blogs stats users.
@@ -950,14 +923,11 @@ public interface BlogsStatsUserPersistence
 	 * @param start the lower bound of the range of blogs stats users
 	 * @param end the upper bound of the range of blogs stats users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of blogs stats users
 	 */
 	public java.util.List<BlogsStatsUser> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<BlogsStatsUser>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	/**
 	 * Removes all the blogs stats users from the database.

@@ -137,18 +137,22 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator) {
+		OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -162,14 +166,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserGroup> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -181,30 +183,23 @@ public class UserGroupPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if (!uuid.equals(userGroup.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if (!uuid.equals(userGroup.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -271,14 +266,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1108,20 +1099,23 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator) {
+		OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1136,14 +1130,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserGroup> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1155,34 +1147,27 @@ public class UserGroupPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if (!uuid.equals(userGroup.getUuid()) ||
+					(companyId != userGroup.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if (!uuid.equals(userGroup.getUuid()) ||
-						(companyId != userGroup.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1253,14 +1238,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2139,18 +2120,22 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator) {
+		OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2164,14 +2149,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserGroup> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2181,32 +2164,25 @@ public class UserGroupPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if ((companyId != userGroup.getCompanyId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if ((companyId != userGroup.getCompanyId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2262,14 +2238,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3033,20 +3005,24 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentUserGroupId the parent user group ID
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByC_P(
 		long companyId, long parentUserGroupId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator) {
+		OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByC_P(
-			companyId, parentUserGroupId, start, end, orderByComparator, true);
+			companyId, parentUserGroupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -3061,14 +3037,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByC_P(
 		long companyId, long parentUserGroupId, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserGroup> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3078,35 +3052,27 @@ public class UserGroupPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_P;
-				finderArgs = new Object[] {companyId, parentUserGroupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_P;
+			finderArgs = new Object[] {companyId, parentUserGroupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_P;
 			finderArgs = new Object[] {
 				companyId, parentUserGroupId, start, end, orderByComparator
 			};
 		}
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if ((companyId != userGroup.getCompanyId()) ||
+					(parentUserGroupId != userGroup.getParentUserGroupId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if ((companyId != userGroup.getCompanyId()) ||
-						(parentUserGroupId !=
-							userGroup.getParentUserGroupId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3166,14 +3132,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3989,15 +3951,20 @@ public class UserGroupPersistenceImpl
 	}
 
 	/**
-	 * Returns the user group where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the user group where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_N(long,String)}
 	 * @param companyId the company ID
 	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user group, or <code>null</code> if a matching user group could not be found
 	 */
+	@Deprecated
 	@Override
-	public UserGroup fetchByC_N(long companyId, String name) {
-		return fetchByC_N(companyId, name, true);
+	public UserGroup fetchByC_N(
+		long companyId, String name, boolean useFinderCache) {
+
+		return fetchByC_N(companyId, name);
 	}
 
 	/**
@@ -4009,23 +3976,13 @@ public class UserGroupPersistenceImpl
 	 * @return the matching user group, or <code>null</code> if a matching user group could not be found
 	 */
 	@Override
-	public UserGroup fetchByC_N(
-		long companyId, String name, boolean useFinderCache) {
-
+	public UserGroup fetchByC_N(long companyId, String name) {
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {companyId, name};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {companyId, name};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByC_N, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByC_N, finderArgs, this);
 
 		if (result instanceof UserGroup) {
 			UserGroup userGroup = (UserGroup)result;
@@ -4075,10 +4032,8 @@ public class UserGroupPersistenceImpl
 				List<UserGroup> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByC_N, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_N, finderArgs, list);
 				}
 				else {
 					UserGroup userGroup = list.get(0);
@@ -4089,10 +4044,7 @@ public class UserGroupPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByC_N, finderArgs);
-				}
+				FinderCacheUtil.removeResult(_finderPathFetchByC_N, finderArgs);
 
 				throw processException(e);
 			}
@@ -4247,20 +4199,23 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_LikeN(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByC_LikeN(
 		long companyId, String name, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator) {
+		OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_LikeN(
-			companyId, name, start, end, orderByComparator, true);
+		return findByC_LikeN(companyId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -4275,14 +4230,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByC_LikeN(
 		long companyId, String name, int start, int end,
-		OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserGroup> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -4295,22 +4248,18 @@ public class UserGroupPersistenceImpl
 			companyId, name, start, end, orderByComparator
 		};
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if ((companyId != userGroup.getCompanyId()) ||
+					!StringUtil.wildcardMatches(
+						userGroup.getName(), name, '_', '%', '\\', false)) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if ((companyId != userGroup.getCompanyId()) ||
-						!StringUtil.wildcardMatches(
-							userGroup.getName(), name, '_', '%', '\\', false)) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4381,14 +4330,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5272,22 +5217,26 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_P(long,long,long, int, int, OrderByComparator)}
 	 * @param userGroupId the user group ID
 	 * @param companyId the company ID
 	 * @param parentUserGroupId the parent user group ID
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findByU_C_P(
 		long userGroupId, long companyId, long parentUserGroupId, int start,
-		int end, OrderByComparator<UserGroup> orderByComparator) {
+		int end, OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByU_C_P(
 			userGroupId, companyId, parentUserGroupId, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -5303,14 +5252,12 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user groups
 	 */
 	@Override
 	public List<UserGroup> findByU_C_P(
 		long userGroupId, long companyId, long parentUserGroupId, int start,
-		int end, OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5322,23 +5269,18 @@ public class UserGroupPersistenceImpl
 			orderByComparator
 		};
 
-		List<UserGroup> list = null;
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (UserGroup userGroup : list) {
+				if ((userGroupId >= userGroup.getUserGroupId()) ||
+					(companyId != userGroup.getCompanyId()) ||
+					(parentUserGroupId != userGroup.getParentUserGroupId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (UserGroup userGroup : list) {
-					if ((userGroupId >= userGroup.getUserGroupId()) ||
-						(companyId != userGroup.getCompanyId()) ||
-						(parentUserGroupId !=
-							userGroup.getParentUserGroupId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5402,14 +5344,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5904,17 +5842,20 @@ public class UserGroupPersistenceImpl
 	}
 
 	/**
-	 * Returns the user group where companyId = &#63; and externalReferenceCode = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the user group where companyId = &#63; and externalReferenceCode = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_ERC(long,String)}
 	 * @param companyId the company ID
 	 * @param externalReferenceCode the external reference code
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user group, or <code>null</code> if a matching user group could not be found
 	 */
+	@Deprecated
 	@Override
 	public UserGroup fetchByC_ERC(
-		long companyId, String externalReferenceCode) {
+		long companyId, String externalReferenceCode, boolean useFinderCache) {
 
-		return fetchByC_ERC(companyId, externalReferenceCode, true);
+		return fetchByC_ERC(companyId, externalReferenceCode);
 	}
 
 	/**
@@ -5927,22 +5868,14 @@ public class UserGroupPersistenceImpl
 	 */
 	@Override
 	public UserGroup fetchByC_ERC(
-		long companyId, String externalReferenceCode, boolean useFinderCache) {
+		long companyId, String externalReferenceCode) {
 
 		externalReferenceCode = Objects.toString(externalReferenceCode, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {companyId, externalReferenceCode};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {companyId, externalReferenceCode};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByC_ERC, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByC_ERC, finderArgs, this);
 
 		if (result instanceof UserGroup) {
 			UserGroup userGroup = (UserGroup)result;
@@ -5994,22 +5927,14 @@ public class UserGroupPersistenceImpl
 				List<UserGroup> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByC_ERC, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_ERC, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {
-									companyId, externalReferenceCode
-								};
-							}
-
 							_log.warn(
 								"UserGroupPersistenceImpl.fetchByC_ERC(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -6025,10 +5950,8 @@ public class UserGroupPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByC_ERC, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByC_ERC, finderArgs);
 
 				throw processException(e);
 			}
@@ -6884,16 +6807,20 @@ public class UserGroupPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserGroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user groups
 	 */
+	@Deprecated
 	@Override
 	public List<UserGroup> findAll(
-		int start, int end, OrderByComparator<UserGroup> orderByComparator) {
+		int start, int end, OrderByComparator<UserGroup> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -6906,13 +6833,11 @@ public class UserGroupPersistenceImpl
 	 * @param start the lower bound of the range of user groups
 	 * @param end the upper bound of the range of user groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user groups
 	 */
 	@Override
 	public List<UserGroup> findAll(
-		int start, int end, OrderByComparator<UserGroup> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6922,23 +6847,16 @@ public class UserGroupPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<UserGroup> list = null;
-
-		if (useFinderCache) {
-			list = (List<UserGroup>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<UserGroup> list = (List<UserGroup>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -6985,14 +6903,10 @@ public class UserGroupPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

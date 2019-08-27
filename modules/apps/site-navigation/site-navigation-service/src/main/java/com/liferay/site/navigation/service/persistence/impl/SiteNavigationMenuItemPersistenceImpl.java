@@ -131,18 +131,22 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -156,14 +160,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -175,30 +177,24 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if (!uuid.equals(siteNavigationMenuItem.getUuid())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if (!uuid.equals(siteNavigationMenuItem.getUuid())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -265,14 +261,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -694,15 +686,20 @@ public class SiteNavigationMenuItemPersistenceImpl
 	}
 
 	/**
-	 * Returns the site navigation menu item where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the site navigation menu item where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site navigation menu item, or <code>null</code> if a matching site navigation menu item could not be found
 	 */
+	@Deprecated
 	@Override
-	public SiteNavigationMenuItem fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public SiteNavigationMenuItem fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -714,23 +711,13 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @return the matching site navigation menu item, or <code>null</code> if a matching site navigation menu item could not be found
 	 */
 	@Override
-	public SiteNavigationMenuItem fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public SiteNavigationMenuItem fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof SiteNavigationMenuItem) {
 			SiteNavigationMenuItem siteNavigationMenuItem =
@@ -781,10 +768,8 @@ public class SiteNavigationMenuItemPersistenceImpl
 				List<SiteNavigationMenuItem> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					SiteNavigationMenuItem siteNavigationMenuItem = list.get(0);
@@ -795,10 +780,7 @@ public class SiteNavigationMenuItemPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -956,20 +938,23 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -984,14 +969,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1003,34 +986,28 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if (!uuid.equals(siteNavigationMenuItem.getUuid()) ||
-						(companyId != siteNavigationMenuItem.getCompanyId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if (!uuid.equals(siteNavigationMenuItem.getUuid()) ||
+					(companyId != siteNavigationMenuItem.getCompanyId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1101,14 +1078,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1560,19 +1533,23 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySiteNavigationMenuId(long, int, int, OrderByComparator)}
 	 * @param siteNavigationMenuId the site navigation menu ID
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findBySiteNavigationMenuId(
 		long siteNavigationMenuId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
 		return findBySiteNavigationMenuId(
-			siteNavigationMenuId, start, end, orderByComparator, true);
+			siteNavigationMenuId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1586,14 +1563,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findBySiteNavigationMenuId(
 		long siteNavigationMenuId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1603,35 +1578,28 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath =
-					_finderPathWithoutPaginationFindBySiteNavigationMenuId;
-				finderArgs = new Object[] {siteNavigationMenuId};
-			}
+			finderPath = _finderPathWithoutPaginationFindBySiteNavigationMenuId;
+			finderArgs = new Object[] {siteNavigationMenuId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindBySiteNavigationMenuId;
 			finderArgs = new Object[] {
 				siteNavigationMenuId, start, end, orderByComparator
 			};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((siteNavigationMenuId !=
-							siteNavigationMenuItem.getSiteNavigationMenuId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if ((siteNavigationMenuId !=
+						siteNavigationMenuItem.getSiteNavigationMenuId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1688,14 +1656,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2102,20 +2066,23 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentSiteNavigationMenuItemId(long, int, int, OrderByComparator)}
 	 * @param parentSiteNavigationMenuItemId the parent site navigation menu item ID
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findByParentSiteNavigationMenuItemId(
 		long parentSiteNavigationMenuItemId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByParentSiteNavigationMenuItemId(
-			parentSiteNavigationMenuItemId, start, end, orderByComparator,
-			true);
+			parentSiteNavigationMenuItemId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2129,14 +2096,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findByParentSiteNavigationMenuItemId(
 		long parentSiteNavigationMenuItemId, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2146,14 +2111,11 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath =
-					_finderPathWithoutPaginationFindByParentSiteNavigationMenuItemId;
-				finderArgs = new Object[] {parentSiteNavigationMenuItemId};
-			}
+			finderPath =
+				_finderPathWithoutPaginationFindByParentSiteNavigationMenuItemId;
+			finderArgs = new Object[] {parentSiteNavigationMenuItemId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath =
 				_finderPathWithPaginationFindByParentSiteNavigationMenuItemId;
 			finderArgs = new Object[] {
@@ -2161,22 +2123,19 @@ public class SiteNavigationMenuItemPersistenceImpl
 			};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((parentSiteNavigationMenuItemId !=
-							siteNavigationMenuItem.
-								getParentSiteNavigationMenuItemId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if ((parentSiteNavigationMenuItemId !=
+						siteNavigationMenuItem.
+							getParentSiteNavigationMenuItemId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2233,14 +2192,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2661,22 +2616,26 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByS_P(long,long, int, int, OrderByComparator)}
 	 * @param siteNavigationMenuId the site navigation menu ID
 	 * @param parentSiteNavigationMenuItemId the parent site navigation menu item ID
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findByS_P(
 		long siteNavigationMenuId, long parentSiteNavigationMenuItemId,
 		int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByS_P(
 			siteNavigationMenuId, parentSiteNavigationMenuItemId, start, end,
-			orderByComparator, true);
+			orderByComparator);
 	}
 
 	/**
@@ -2691,15 +2650,13 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findByS_P(
 		long siteNavigationMenuId, long parentSiteNavigationMenuItemId,
 		int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2709,15 +2666,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByS_P;
-				finderArgs = new Object[] {
-					siteNavigationMenuId, parentSiteNavigationMenuItemId
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByS_P;
+			finderArgs = new Object[] {
+				siteNavigationMenuId, parentSiteNavigationMenuItemId
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByS_P;
 			finderArgs = new Object[] {
 				siteNavigationMenuId, parentSiteNavigationMenuItemId, start,
@@ -2725,24 +2679,21 @@ public class SiteNavigationMenuItemPersistenceImpl
 			};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((siteNavigationMenuId !=
-							siteNavigationMenuItem.getSiteNavigationMenuId()) ||
-						(parentSiteNavigationMenuItemId !=
-							siteNavigationMenuItem.
-								getParentSiteNavigationMenuItemId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if ((siteNavigationMenuId !=
+						siteNavigationMenuItem.getSiteNavigationMenuId()) ||
+					(parentSiteNavigationMenuItemId !=
+						siteNavigationMenuItem.
+							getParentSiteNavigationMenuItemId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2802,14 +2753,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3246,20 +3193,24 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByS_LikeN(long,String, int, int, OrderByComparator)}
 	 * @param siteNavigationMenuId the site navigation menu ID
 	 * @param name the name
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findByS_LikeN(
 		long siteNavigationMenuId, String name, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByS_LikeN(
-			siteNavigationMenuId, name, start, end, orderByComparator, true);
+			siteNavigationMenuId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -3274,14 +3225,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findByS_LikeN(
 		long siteNavigationMenuId, String name, int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -3294,24 +3243,21 @@ public class SiteNavigationMenuItemPersistenceImpl
 			siteNavigationMenuId, name, start, end, orderByComparator
 		};
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((siteNavigationMenuId !=
-							siteNavigationMenuItem.getSiteNavigationMenuId()) ||
-						!StringUtil.wildcardMatches(
-							siteNavigationMenuItem.getName(), name, '_', '%',
-							'\\', false)) {
+		if ((list != null) && !list.isEmpty()) {
+			for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
+				if ((siteNavigationMenuId !=
+						siteNavigationMenuItem.getSiteNavigationMenuId()) ||
+					!StringUtil.wildcardMatches(
+						siteNavigationMenuItem.getName(), name, '_', '%', '\\',
+						false)) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3382,14 +3328,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4599,17 +4541,21 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteNavigationMenuItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site navigation menu items
 	 */
+	@Deprecated
 	@Override
 	public List<SiteNavigationMenuItem> findAll(
 		int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -4622,14 +4568,12 @@ public class SiteNavigationMenuItemPersistenceImpl
 	 * @param start the lower bound of the range of site navigation menu items
 	 * @param end the upper bound of the range of site navigation menu items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site navigation menu items
 	 */
 	@Override
 	public List<SiteNavigationMenuItem> findAll(
 		int start, int end,
-		OrderByComparator<SiteNavigationMenuItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteNavigationMenuItem> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4639,23 +4583,17 @@ public class SiteNavigationMenuItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<SiteNavigationMenuItem> list = null;
-
-		if (useFinderCache) {
-			list = (List<SiteNavigationMenuItem>)finderCache.getResult(
+		List<SiteNavigationMenuItem> list =
+			(List<SiteNavigationMenuItem>)finderCache.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4703,14 +4641,10 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

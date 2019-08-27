@@ -17,6 +17,7 @@ package com.liferay.site.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.site.exception.NoSuchFriendlyURLException;
 import com.liferay.site.model.SiteFriendlyURL;
 
@@ -79,16 +80,19 @@ public interface SiteFriendlyURLPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
+	@Deprecated
 	public java.util.List<SiteFriendlyURL> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the site friendly urls where uuid = &#63;.
@@ -101,14 +105,11 @@ public interface SiteFriendlyURLPersistence
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public java.util.List<SiteFriendlyURL> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the first site friendly url in the ordered set where uuid = &#63;.
@@ -119,9 +120,7 @@ public interface SiteFriendlyURLPersistence
 	 * @throws NoSuchFriendlyURLException if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			String uuid, OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -132,9 +131,7 @@ public interface SiteFriendlyURLPersistence
 	 * @return the first matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		String uuid, OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the last site friendly url in the ordered set where uuid = &#63;.
@@ -145,9 +142,7 @@ public interface SiteFriendlyURLPersistence
 	 * @throws NoSuchFriendlyURLException if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			String uuid, OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -158,9 +153,7 @@ public interface SiteFriendlyURLPersistence
 	 * @return the last matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		String uuid, OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the site friendly urls before and after the current site friendly url in the ordered set where uuid = &#63;.
@@ -173,8 +166,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL[] findByUuid_PrevAndNext(
 			long siteFriendlyURLId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -204,13 +196,17 @@ public interface SiteFriendlyURLPersistence
 		throws NoSuchFriendlyURLException;
 
 	/**
-	 * Returns the site friendly url where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the site friendly url where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	public SiteFriendlyURL fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public SiteFriendlyURL fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the site friendly url where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -220,8 +216,7 @@ public interface SiteFriendlyURLPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	public SiteFriendlyURL fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public SiteFriendlyURL fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the site friendly url where uuid = &#63; and groupId = &#63; from the database.
@@ -275,17 +270,20 @@ public interface SiteFriendlyURLPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
+	@Deprecated
 	public java.util.List<SiteFriendlyURL> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the site friendly urls where uuid = &#63; and companyId = &#63;.
@@ -299,14 +297,11 @@ public interface SiteFriendlyURLPersistence
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public java.util.List<SiteFriendlyURL> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the first site friendly url in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -319,8 +314,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -333,8 +327,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the last site friendly url in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -347,8 +340,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -361,8 +353,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the site friendly urls before and after the current site friendly url in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -376,8 +367,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL[] findByUuid_C_PrevAndNext(
 			long siteFriendlyURLId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -430,17 +420,20 @@ public interface SiteFriendlyURLPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_G(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
+	@Deprecated
 	public java.util.List<SiteFriendlyURL> findByC_G(
 		long companyId, long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the site friendly urls where companyId = &#63; and groupId = &#63;.
@@ -454,14 +447,11 @@ public interface SiteFriendlyURLPersistence
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public java.util.List<SiteFriendlyURL> findByC_G(
 		long companyId, long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the first site friendly url in the ordered set where companyId = &#63; and groupId = &#63;.
@@ -474,8 +464,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL findByC_G_First(
 			long companyId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -488,8 +477,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL fetchByC_G_First(
 		long companyId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the last site friendly url in the ordered set where companyId = &#63; and groupId = &#63;.
@@ -502,8 +490,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL findByC_G_Last(
 			long companyId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -516,8 +503,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL fetchByC_G_Last(
 		long companyId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Returns the site friendly urls before and after the current site friendly url in the ordered set where companyId = &#63; and groupId = &#63;.
@@ -531,8 +517,7 @@ public interface SiteFriendlyURLPersistence
 	 */
 	public SiteFriendlyURL[] findByC_G_PrevAndNext(
 			long siteFriendlyURLId, long companyId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-				orderByComparator)
+			OrderByComparator<SiteFriendlyURL> orderByComparator)
 		throws NoSuchFriendlyURLException;
 
 	/**
@@ -564,13 +549,17 @@ public interface SiteFriendlyURLPersistence
 		throws NoSuchFriendlyURLException;
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F(long,String)}
 	 * @param companyId the company ID
 	 * @param friendlyURL the friendly url
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	public SiteFriendlyURL fetchByC_F(long companyId, String friendlyURL);
+	@Deprecated
+	public SiteFriendlyURL fetchByC_F(
+		long companyId, String friendlyURL, boolean useFinderCache);
 
 	/**
 	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -580,8 +569,7 @@ public interface SiteFriendlyURLPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	public SiteFriendlyURL fetchByC_F(
-		long companyId, String friendlyURL, boolean useFinderCache);
+	public SiteFriendlyURL fetchByC_F(long companyId, String friendlyURL);
 
 	/**
 	 * Removes the site friendly url where companyId = &#63; and friendlyURL = &#63; from the database.
@@ -616,15 +604,19 @@ public interface SiteFriendlyURLPersistence
 		throws NoSuchFriendlyURLException;
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_G_L(long,long,String)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param languageId the language ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
+	@Deprecated
 	public SiteFriendlyURL fetchByC_G_L(
-		long companyId, long groupId, String languageId);
+		long companyId, long groupId, String languageId,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -636,8 +628,7 @@ public interface SiteFriendlyURLPersistence
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL fetchByC_G_L(
-		long companyId, long groupId, String languageId,
-		boolean useFinderCache);
+		long companyId, long groupId, String languageId);
 
 	/**
 	 * Removes the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; from the database.
@@ -675,15 +666,19 @@ public interface SiteFriendlyURLPersistence
 		throws NoSuchFriendlyURLException;
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F_L(long,String,String)}
 	 * @param companyId the company ID
 	 * @param friendlyURL the friendly url
 	 * @param languageId the language ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
+	@Deprecated
 	public SiteFriendlyURL fetchByC_F_L(
-		long companyId, String friendlyURL, String languageId);
+		long companyId, String friendlyURL, String languageId,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -695,8 +690,7 @@ public interface SiteFriendlyURLPersistence
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public SiteFriendlyURL fetchByC_F_L(
-		long companyId, String friendlyURL, String languageId,
-		boolean useFinderCache);
+		long companyId, String friendlyURL, String languageId);
 
 	/**
 	 * Removes the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; from the database.
@@ -800,15 +794,18 @@ public interface SiteFriendlyURLPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site friendly urls
 	 */
+	@Deprecated
 	public java.util.List<SiteFriendlyURL> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator);
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the site friendly urls.
@@ -820,14 +817,11 @@ public interface SiteFriendlyURLPersistence
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site friendly urls
 	 */
 	public java.util.List<SiteFriendlyURL> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<SiteFriendlyURL>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<SiteFriendlyURL> orderByComparator);
 
 	/**
 	 * Removes all the site friendly urls from the database.

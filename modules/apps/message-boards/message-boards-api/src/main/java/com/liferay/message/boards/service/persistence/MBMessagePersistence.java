@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.message.boards.exception.NoSuchMessageException;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,16 +79,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where uuid = &#63;.
@@ -100,14 +103,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where uuid = &#63;.
@@ -118,9 +118,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			String uuid, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -131,9 +129,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		String uuid, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where uuid = &#63;.
@@ -144,9 +140,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			String uuid, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -157,9 +151,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		String uuid, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where uuid = &#63;.
@@ -172,8 +164,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByUuid_PrevAndNext(
 			long messageId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -203,13 +194,17 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 		throws NoSuchMessageException;
 
 	/**
-	 * Returns the message-boards message where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the message-boards message where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
-	public MBMessage fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public MBMessage fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the message-boards message where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -219,8 +214,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
-	public MBMessage fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public MBMessage fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the message-boards message where uuid = &#63; and groupId = &#63; from the database.
@@ -273,17 +267,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where uuid = &#63; and companyId = &#63;.
@@ -297,14 +293,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -317,8 +310,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -331,8 +323,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -345,8 +336,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -359,8 +349,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -374,8 +363,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByUuid_C_PrevAndNext(
 			long messageId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -425,16 +413,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63;.
@@ -447,14 +437,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63;.
@@ -465,9 +452,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long groupId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -478,9 +463,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long groupId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63;.
@@ -491,9 +474,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long groupId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -504,9 +485,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long groupId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63;.
@@ -519,8 +498,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByGroupId_PrevAndNext(
 			long messageId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -561,8 +539,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63;.
@@ -575,8 +552,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByGroupId_PrevAndNext(
 			long messageId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -632,16 +608,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where companyId = &#63;.
@@ -654,14 +632,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where companyId = &#63;.
@@ -672,9 +647,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long companyId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -685,9 +658,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long companyId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where companyId = &#63;.
@@ -698,9 +669,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long companyId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -711,9 +680,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long companyId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where companyId = &#63;.
@@ -726,8 +693,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByCompanyId_PrevAndNext(
 			long messageId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -775,16 +741,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63;.
@@ -797,14 +765,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where userId = &#63;.
@@ -815,9 +780,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByUserId_First(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long userId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -828,9 +791,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByUserId_First(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long userId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where userId = &#63;.
@@ -841,9 +802,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByUserId_Last(
-			long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long userId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -854,9 +813,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByUserId_Last(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long userId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where userId = &#63;.
@@ -869,8 +826,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByUserId_PrevAndNext(
 			long messageId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -918,16 +874,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByThreadId(long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByThreadId(
 		long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63;.
@@ -940,14 +898,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByThreadId(
 		long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63;.
@@ -958,9 +913,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByThreadId_First(
-			long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long threadId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -971,9 +924,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByThreadId_First(
-		long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long threadId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63;.
@@ -984,9 +935,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByThreadId_Last(
-			long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long threadId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -997,9 +946,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByThreadId_Last(
-		long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long threadId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63;.
@@ -1012,8 +959,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByThreadId_PrevAndNext(
 			long messageId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1061,16 +1007,18 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByThreadReplies(long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByThreadReplies(
 		long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63;.
@@ -1083,14 +1031,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByThreadReplies(
 		long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63;.
@@ -1101,9 +1046,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByThreadReplies_First(
-			long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long threadId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1114,9 +1057,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByThreadReplies_First(
-		long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long threadId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63;.
@@ -1127,9 +1068,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
 	public MBMessage findByThreadReplies_Last(
-			long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			long threadId, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1140,9 +1079,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
 	public MBMessage fetchByThreadReplies_Last(
-		long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		long threadId, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63;.
@@ -1155,8 +1092,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByThreadReplies_PrevAndNext(
 			long messageId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1206,17 +1142,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and userId = &#63;.
@@ -1230,14 +1168,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and userId = &#63;.
@@ -1250,8 +1185,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_U_First(
 			long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1264,8 +1198,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and userId = &#63;.
@@ -1278,8 +1211,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_U_Last(
 			long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1292,8 +1224,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and userId = &#63;.
@@ -1307,8 +1238,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_U_PrevAndNext(
 			long messageId, long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1352,8 +1282,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and userId = &#63;.
@@ -1367,8 +1296,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_U_PrevAndNext(
 			long messageId, long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1429,17 +1357,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and categoryId = &#63;.
@@ -1453,14 +1383,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -1473,8 +1400,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_First(
 			long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1487,8 +1413,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_First(
 		long groupId, long categoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -1501,8 +1426,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_Last(
 			long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1515,8 +1439,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_Last(
 		long groupId, long categoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -1530,8 +1453,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_C_PrevAndNext(
 			long messageId, long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1576,8 +1498,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and categoryId = &#63;.
@@ -1591,8 +1512,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_C_PrevAndNext(
 			long messageId, long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1653,17 +1573,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and status = &#63;.
@@ -1677,14 +1599,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and status = &#63;.
@@ -1697,8 +1616,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_S_First(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1711,8 +1629,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_S_First(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and status = &#63;.
@@ -1725,8 +1642,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_S_Last(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1739,8 +1655,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_S_Last(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and status = &#63;.
@@ -1754,8 +1669,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_S_PrevAndNext(
 			long messageId, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1799,8 +1713,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_S(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and status = &#63;.
@@ -1814,8 +1727,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_S_PrevAndNext(
 			long messageId, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1876,17 +1788,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where companyId = &#63; and status = &#63;.
@@ -1900,14 +1814,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where companyId = &#63; and status = &#63;.
@@ -1920,8 +1831,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_S_First(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1934,8 +1844,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where companyId = &#63; and status = &#63;.
@@ -1948,8 +1857,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_S_Last(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -1962,8 +1870,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where companyId = &#63; and status = &#63;.
@@ -1977,8 +1884,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByC_S_PrevAndNext(
 			long messageId, long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2030,17 +1936,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C(long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByU_C(
 		long userId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63;.
@@ -2054,14 +1962,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByU_C(
 		long userId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where userId = &#63; and classNameId = &#63;.
@@ -2074,8 +1979,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_First(
 			long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2088,8 +1992,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_First(
 		long userId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where userId = &#63; and classNameId = &#63;.
@@ -2102,8 +2005,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_Last(
 			long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2116,8 +2018,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_Last(
 		long userId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where userId = &#63; and classNameId = &#63;.
@@ -2131,8 +2032,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByU_C_PrevAndNext(
 			long messageId, long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2166,6 +2066,27 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 		long userId, long[] classNameIds, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C(long,long, int, int, OrderByComparator)}
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param start the lower bound of the range of message-boards messages
+	 * @param end the upper bound of the range of message-boards messages (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message-boards messages
+	 */
+	@Deprecated
+	public java.util.List<MBMessage> findByU_C(
+		long userId, long[] classNameIds, int start, int end,
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = any &#63;.
 	 *
 	 * <p>
@@ -2181,29 +2102,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> findByU_C(
 		long userId, long[] classNameIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param classNameId the class name ID
-	 * @param start the lower bound of the range of message-boards messages
-	 * @param end the upper bound of the range of message-boards messages (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message-boards messages
-	 */
-	public java.util.List<MBMessage> findByU_C(
-		long userId, long[] classNameIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Removes all the message-boards messages where userId = &#63; and classNameId = &#63; from the database.
@@ -2263,17 +2162,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where classNameId = &#63; and classPK = &#63;.
@@ -2287,14 +2188,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -2307,8 +2205,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_C_First(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2321,8 +2218,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -2335,8 +2231,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_C_Last(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2349,8 +2244,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -2364,8 +2258,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByC_C_PrevAndNext(
 			long messageId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2418,17 +2311,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_P(long,long, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param parentMessageId the parent message ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByT_P(
 		long threadId, long parentMessageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63; and parentMessageId = &#63;.
@@ -2442,14 +2337,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByT_P(
 		long threadId, long parentMessageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63; and parentMessageId = &#63;.
@@ -2462,8 +2354,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_P_First(
 			long threadId, long parentMessageId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2476,8 +2367,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_P_First(
 		long threadId, long parentMessageId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63; and parentMessageId = &#63;.
@@ -2490,8 +2380,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_P_Last(
 			long threadId, long parentMessageId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2504,8 +2393,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_P_Last(
 		long threadId, long parentMessageId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63; and parentMessageId = &#63;.
@@ -2519,8 +2407,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByT_P_PrevAndNext(
 			long messageId, long threadId, long parentMessageId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2572,17 +2459,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_A(long,boolean, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param answer the answer
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByT_A(
 		long threadId, boolean answer, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63; and answer = &#63;.
@@ -2596,14 +2485,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByT_A(
 		long threadId, boolean answer, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63; and answer = &#63;.
@@ -2616,8 +2502,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_A_First(
 			long threadId, boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2630,8 +2515,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_A_First(
 		long threadId, boolean answer,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63; and answer = &#63;.
@@ -2644,8 +2528,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_A_Last(
 			long threadId, boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2658,8 +2541,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_A_Last(
 		long threadId, boolean answer,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63; and answer = &#63;.
@@ -2673,8 +2555,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByT_A_PrevAndNext(
 			long messageId, long threadId, boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2726,17 +2607,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_S(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByT_S(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63; and status = &#63;.
@@ -2750,14 +2633,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByT_S(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -2770,8 +2650,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_S_First(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2784,8 +2663,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_S_First(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -2798,8 +2676,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_S_Last(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2812,8 +2689,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_S_Last(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -2827,8 +2703,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByT_S_PrevAndNext(
 			long messageId, long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2880,17 +2755,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_notS(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByT_notS(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63; and status &ne; &#63;.
@@ -2904,14 +2781,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByT_notS(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63; and status &ne; &#63;.
@@ -2924,8 +2798,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_notS_First(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2938,8 +2811,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_notS_First(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63; and status &ne; &#63;.
@@ -2952,8 +2824,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByT_notS_Last(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -2966,8 +2837,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByT_notS_Last(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63; and status &ne; &#63;.
@@ -2981,8 +2851,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByT_notS_PrevAndNext(
 			long messageId, long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3034,17 +2903,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTR_S(long,int, int, int, OrderByComparator)}
 	 * @param threadId the thread ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByTR_S(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where threadId = &#63; and status = &#63;.
@@ -3058,14 +2929,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByTR_S(
 		long threadId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -3078,8 +2946,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByTR_S_First(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3092,8 +2959,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByTR_S_First(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -3106,8 +2972,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByTR_S_Last(
 			long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3120,8 +2985,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByTR_S_Last(
 		long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where threadId = &#63; and status = &#63;.
@@ -3135,8 +2999,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByTR_S_PrevAndNext(
 			long messageId, long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3189,17 +3052,19 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_S(long,int, int, int, OrderByComparator)}
 	 * @param parentMessageId the parent message ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByP_S(
 		long parentMessageId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where parentMessageId = &#63; and status = &#63;.
@@ -3213,14 +3078,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByP_S(
 		long parentMessageId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where parentMessageId = &#63; and status = &#63;.
@@ -3233,8 +3095,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByP_S_First(
 			long parentMessageId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3247,8 +3108,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByP_S_First(
 		long parentMessageId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where parentMessageId = &#63; and status = &#63;.
@@ -3261,8 +3121,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByP_S_Last(
 			long parentMessageId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3275,8 +3134,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByP_S_Last(
 		long parentMessageId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where parentMessageId = &#63; and status = &#63;.
@@ -3290,8 +3148,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByP_S_PrevAndNext(
 			long messageId, long parentMessageId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3346,18 +3203,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -3372,14 +3231,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -3393,8 +3249,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_U_S_First(
 			long groupId, long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3408,8 +3263,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_U_S_First(
 		long groupId, long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -3423,8 +3277,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_U_S_Last(
 			long groupId, long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3438,8 +3291,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_U_S_Last(
 		long groupId, long userId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -3454,8 +3306,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_U_S_PrevAndNext(
 			long messageId, long groupId, long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3503,8 +3354,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_U_S(
 		long groupId, long userId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -3519,8 +3369,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_U_S_PrevAndNext(
 			long messageId, long groupId, long userId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3587,18 +3436,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_C_T(
 		long groupId, long categoryId, long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and categoryId = &#63; and threadId = &#63;.
@@ -3613,14 +3464,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_C_T(
 		long groupId, long categoryId, long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63;.
@@ -3634,8 +3482,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_First(
 			long groupId, long categoryId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3649,8 +3496,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_First(
 		long groupId, long categoryId, long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63;.
@@ -3664,8 +3510,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_Last(
 			long groupId, long categoryId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3679,8 +3524,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_Last(
 		long groupId, long categoryId, long threadId,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63;.
@@ -3695,8 +3539,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_C_T_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3744,8 +3587,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_C_T(
 		long groupId, long categoryId, long threadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and categoryId = &#63; and threadId = &#63;.
@@ -3760,8 +3602,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_C_T_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3828,18 +3669,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and categoryId = &#63; and status = &#63;.
@@ -3854,14 +3697,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and status = &#63;.
@@ -3875,8 +3715,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_S_First(
 			long groupId, long categoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3890,8 +3729,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_S_First(
 		long groupId, long categoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and status = &#63;.
@@ -3905,8 +3743,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_S_Last(
 			long groupId, long categoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3920,8 +3757,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_S_Last(
 		long groupId, long categoryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and status = &#63;.
@@ -3936,8 +3772,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_C_S_PrevAndNext(
 			long messageId, long groupId, long categoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -3985,8 +3820,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and categoryId = &#63; and status = &#63;.
@@ -4001,8 +3835,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_C_S_PrevAndNext(
 			long messageId, long groupId, long categoryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4069,18 +3902,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByU_C_C(
 		long userId, long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -4095,14 +3930,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByU_C_C(
 		long userId, long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -4116,8 +3948,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_C_First(
 			long userId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4131,8 +3962,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_C_First(
 		long userId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -4146,8 +3976,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_C_Last(
 			long userId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4161,8 +3990,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_C_Last(
 		long userId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -4177,8 +4005,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByU_C_C_PrevAndNext(
 			long messageId, long userId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4235,18 +4062,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByU_C_S(
 		long userId, long classNameId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63;.
@@ -4261,14 +4090,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByU_C_S(
 		long userId, long classNameId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and status = &#63;.
@@ -4282,8 +4108,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_S_First(
 			long userId, long classNameId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4297,8 +4122,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_S_First(
 		long userId, long classNameId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and status = &#63;.
@@ -4312,8 +4136,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_S_Last(
 			long userId, long classNameId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4327,8 +4150,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_S_Last(
 		long userId, long classNameId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and status = &#63;.
@@ -4343,8 +4165,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByU_C_S_PrevAndNext(
 			long messageId, long userId, long classNameId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4380,6 +4201,28 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 		long userId, long[] classNameIds, int status, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_S(long,long,int, int, int, OrderByComparator)}
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message-boards messages
+	 * @param end the upper bound of the range of message-boards messages (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message-boards messages
+	 */
+	@Deprecated
+	public java.util.List<MBMessage> findByU_C_S(
+		long userId, long[] classNameIds, int status, int start, int end,
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -4396,30 +4239,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> findByU_C_S(
 		long userId, long[] classNameIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param classNameId the class name ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message-boards messages
-	 * @param end the upper bound of the range of message-boards messages (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message-boards messages
-	 */
-	public java.util.List<MBMessage> findByU_C_S(
-		long userId, long[] classNameIds, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Removes all the message-boards messages where userId = &#63; and classNameId = &#63; and status = &#63; from the database.
@@ -4485,18 +4305,20 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param status the status
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByC_C_S(
 		long classNameId, long classPK, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -4511,14 +4333,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByC_C_S(
 		long classNameId, long classPK, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -4532,8 +4351,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_C_S_First(
 			long classNameId, long classPK, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4547,8 +4365,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_C_S_First(
 		long classNameId, long classPK, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -4562,8 +4379,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByC_C_S_Last(
 			long classNameId, long classPK, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4577,8 +4393,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByC_C_S_Last(
 		long classNameId, long classPK, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -4593,8 +4408,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByC_C_S_PrevAndNext(
 			long messageId, long classNameId, long classPK, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4654,6 +4468,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T_A(long,long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
@@ -4661,13 +4476,14 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_C_T_A(
 		long groupId, long categoryId, long threadId, boolean answer, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and categoryId = &#63; and threadId = &#63; and answer = &#63;.
@@ -4683,15 +4499,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_C_T_A(
 		long groupId, long categoryId, long threadId, boolean answer, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and answer = &#63;.
@@ -4706,8 +4518,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_A_First(
 			long groupId, long categoryId, long threadId, boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4722,8 +4533,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_A_First(
 		long groupId, long categoryId, long threadId, boolean answer,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and answer = &#63;.
@@ -4738,8 +4548,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_A_Last(
 			long groupId, long categoryId, long threadId, boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4754,8 +4563,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_A_Last(
 		long groupId, long categoryId, long threadId, boolean answer,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and answer = &#63;.
@@ -4771,9 +4579,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_C_T_A_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			boolean answer, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4825,9 +4631,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_C_T_A(
 		long groupId, long categoryId, long threadId, boolean answer, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and categoryId = &#63; and threadId = &#63; and answer = &#63;.
@@ -4843,9 +4647,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_C_T_A_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			boolean answer,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			boolean answer, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4921,6 +4723,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_T_S(long,long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param threadId the thread ID
@@ -4928,13 +4731,14 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByG_C_T_S(
 		long groupId, long categoryId, long threadId, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where groupId = &#63; and categoryId = &#63; and threadId = &#63; and status = &#63;.
@@ -4950,15 +4754,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByG_C_T_S(
 		long groupId, long categoryId, long threadId, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and status = &#63;.
@@ -4973,8 +4773,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_S_First(
 			long groupId, long categoryId, long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -4989,8 +4788,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_S_First(
 		long groupId, long categoryId, long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and status = &#63;.
@@ -5005,8 +4803,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByG_C_T_S_Last(
 			long groupId, long categoryId, long threadId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5021,8 +4818,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByG_C_T_S_Last(
 		long groupId, long categoryId, long threadId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where groupId = &#63; and categoryId = &#63; and threadId = &#63; and status = &#63;.
@@ -5038,9 +4834,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByG_C_T_S_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			int status, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5092,9 +4886,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public java.util.List<MBMessage> filterFindByG_C_T_S(
 		long groupId, long categoryId, long threadId, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set of message-boards messages that the user has permission to view where groupId = &#63; and categoryId = &#63; and threadId = &#63; and status = &#63;.
@@ -5110,9 +4902,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] filterFindByG_C_T_S_PrevAndNext(
 			long messageId, long groupId, long categoryId, long threadId,
-			int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			int status, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5188,6 +4978,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_C_C_S(long,long,long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
@@ -5195,13 +4986,14 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findByU_C_C_S(
 		long userId, long classNameId, long classPK, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages where userId = &#63; and classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -5217,15 +5009,11 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
 	public java.util.List<MBMessage> findByU_C_C_S(
 		long userId, long classNameId, long classPK, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the first message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -5240,8 +5028,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_C_S_First(
 			long userId, long classNameId, long classPK, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5256,8 +5043,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_C_S_First(
 		long userId, long classNameId, long classPK, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the last message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -5272,8 +5058,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage findByU_C_C_S_Last(
 			long userId, long classNameId, long classPK, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5288,8 +5073,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage fetchByU_C_C_S_Last(
 		long userId, long classNameId, long classPK, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Returns the message-boards messages before and after the current message-boards message in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -5305,9 +5089,7 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 */
 	public MBMessage[] findByU_C_C_S_PrevAndNext(
 			long messageId, long userId, long classNameId, long classPK,
-			int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-				orderByComparator)
+			int status, OrderByComparator<MBMessage> orderByComparator)
 		throws NoSuchMessageException;
 
 	/**
@@ -5411,15 +5193,17 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBMessageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message-boards messages
 	 */
+	@Deprecated
 	public java.util.List<MBMessage> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator);
+		int start, int end, OrderByComparator<MBMessage> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the message-boards messages.
@@ -5431,14 +5215,10 @@ public interface MBMessagePersistence extends BasePersistence<MBMessage> {
 	 * @param start the lower bound of the range of message-boards messages
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message-boards messages
 	 */
 	public java.util.List<MBMessage> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<MBMessage> orderByComparator);
 
 	/**
 	 * Removes all the message-boards messages from the database.

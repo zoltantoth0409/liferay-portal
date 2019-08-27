@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchRoleException;
 import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -76,16 +77,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where uuid = &#63;.
@@ -98,14 +101,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where uuid = &#63;.
@@ -116,9 +116,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String uuid, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -129,9 +127,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String uuid, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where uuid = &#63;.
@@ -142,9 +138,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String uuid, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -155,9 +149,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String uuid, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where uuid = &#63;.
@@ -169,9 +161,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] findByUuid_PrevAndNext(
-			long roleId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, String uuid, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -212,8 +202,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where uuid = &#63;.
@@ -225,9 +214,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] filterFindByUuid_PrevAndNext(
-			long roleId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, String uuid, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -285,17 +272,19 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where uuid = &#63; and companyId = &#63;.
@@ -309,14 +298,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -329,8 +315,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -342,9 +327,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByUuid_C_First(
-		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String uuid, long companyId, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -357,8 +340,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -370,9 +352,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByUuid_C_Last(
-		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String uuid, long companyId, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -386,8 +366,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] findByUuid_C_PrevAndNext(
 			long roleId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -431,8 +410,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -446,8 +424,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] filterFindByUuid_C_PrevAndNext(
 			long roleId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -506,16 +483,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where companyId = &#63;.
@@ -528,14 +507,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where companyId = &#63;.
@@ -546,9 +522,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long companyId, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -559,9 +533,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		long companyId, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where companyId = &#63;.
@@ -572,9 +544,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long companyId, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -585,9 +555,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		long companyId, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where companyId = &#63;.
@@ -600,8 +568,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] findByCompanyId_PrevAndNext(
 			long roleId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -642,8 +609,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where companyId = &#63;.
@@ -656,8 +622,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] filterFindByCompanyId_PrevAndNext(
 			long roleId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -712,16 +677,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByName(String, int, int, OrderByComparator)}
 	 * @param name the name
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByName(
 		String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where name = &#63;.
@@ -734,14 +701,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByName(
 		String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where name = &#63;.
@@ -752,9 +716,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByName_First(
-			String name,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String name, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -765,9 +727,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByName_First(
-		String name,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String name, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where name = &#63;.
@@ -778,9 +738,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByName_Last(
-			String name,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String name, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -791,9 +749,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByName_Last(
-		String name,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String name, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where name = &#63;.
@@ -805,9 +761,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] findByName_PrevAndNext(
-			long roleId, String name,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, String name, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -848,8 +802,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByName(
 		String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where name = &#63;.
@@ -861,9 +814,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] filterFindByName_PrevAndNext(
-			long roleId, String name,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, String name, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -918,16 +869,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByType(int, int, int, OrderByComparator)}
 	 * @param type the type
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByType(
-		int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int type, int start, int end, OrderByComparator<Role> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where type = &#63;.
@@ -940,14 +893,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByType(
 		int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where type = &#63;.
@@ -958,9 +908,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByType_First(
-			int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -971,9 +919,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByType_First(
-		int type,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int type, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where type = &#63;.
@@ -984,9 +930,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByType_Last(
-			int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -997,9 +941,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByType_Last(
-		int type,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int type, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where type = &#63;.
@@ -1011,9 +953,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] findByType_PrevAndNext(
-			long roleId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1053,8 +993,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByType(
 		int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where type = &#63;.
@@ -1066,9 +1005,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a role with the primary key could not be found
 	 */
 	public Role[] filterFindByType_PrevAndNext(
-			long roleId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long roleId, int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1124,16 +1061,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySubtype(String, int, int, OrderByComparator)}
 	 * @param subtype the subtype
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findBySubtype(
 		String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where subtype = &#63;.
@@ -1146,14 +1085,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findBySubtype(
 		String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where subtype = &#63;.
@@ -1164,9 +1100,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findBySubtype_First(
-			String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String subtype, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1177,9 +1111,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchBySubtype_First(
-		String subtype,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String subtype, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where subtype = &#63;.
@@ -1190,9 +1122,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findBySubtype_Last(
-			String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			String subtype, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1203,9 +1133,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchBySubtype_Last(
-		String subtype,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		String subtype, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where subtype = &#63;.
@@ -1218,8 +1146,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] findBySubtype_PrevAndNext(
 			long roleId, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1260,8 +1187,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindBySubtype(
 		String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where subtype = &#63;.
@@ -1274,8 +1200,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] filterFindBySubtype_PrevAndNext(
 			long roleId, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1313,13 +1238,16 @@ public interface RolePersistence extends BasePersistence<Role> {
 		throws NoSuchRoleException;
 
 	/**
-	 * Returns the role where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the role where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_N(long,String)}
 	 * @param companyId the company ID
 	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching role, or <code>null</code> if a matching role could not be found
 	 */
-	public Role fetchByC_N(long companyId, String name);
+	@Deprecated
+	public Role fetchByC_N(long companyId, String name, boolean useFinderCache);
 
 	/**
 	 * Returns the role where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1329,7 +1257,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching role, or <code>null</code> if a matching role could not be found
 	 */
-	public Role fetchByC_N(long companyId, String name, boolean useFinderCache);
+	public Role fetchByC_N(long companyId, String name);
 
 	/**
 	 * Removes the role where companyId = &#63; and name = &#63; from the database.
@@ -1382,17 +1310,19 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_T(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param type the type
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByC_T(
 		long companyId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where companyId = &#63; and type = &#63;.
@@ -1406,14 +1336,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByC_T(
 		long companyId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where companyId = &#63; and type = &#63;.
@@ -1425,9 +1352,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByC_T_First(
-			long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long companyId, int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1439,9 +1364,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByC_T_First(
-		long companyId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		long companyId, int type, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where companyId = &#63; and type = &#63;.
@@ -1453,9 +1376,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByC_T_Last(
-			long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			long companyId, int type, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1467,9 +1388,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByC_T_Last(
-		long companyId, int type,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		long companyId, int type, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where companyId = &#63; and type = &#63;.
@@ -1483,8 +1402,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] findByC_T_PrevAndNext(
 			long roleId, long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1528,8 +1446,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByC_T(
 		long companyId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where companyId = &#63; and type = &#63;.
@@ -1543,8 +1460,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] filterFindByC_T_PrevAndNext(
 			long roleId, long companyId, int type,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1588,8 +1504,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByC_T(
 		long companyId, int[] types, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns all the roles where companyId = &#63; and type = any &#63;.
@@ -1621,6 +1536,27 @@ public interface RolePersistence extends BasePersistence<Role> {
 		long companyId, int[] types, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the roles where companyId = &#63; and type = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_T(long,int, int, int, OrderByComparator)}
+	 * @param companyId the company ID
+	 * @param type the type
+	 * @param start the lower bound of the range of roles
+	 * @param end the upper bound of the range of roles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching roles
+	 */
+	@Deprecated
+	public java.util.List<Role> findByC_T(
+		long companyId, int[] types, int start, int end,
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the roles where companyId = &#63; and type = any &#63;.
 	 *
 	 * <p>
@@ -1636,29 +1572,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> findByC_T(
 		long companyId, int[] types, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the roles where companyId = &#63; and type = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param companyId the company ID
-	 * @param type the type
-	 * @param start the lower bound of the range of roles
-	 * @param end the upper bound of the range of roles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching roles
-	 */
-	public java.util.List<Role> findByC_T(
-		long companyId, int[] types, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Removes all the roles where companyId = &#63; and type = &#63; from the database.
@@ -1736,17 +1650,19 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_S(int,String, int, int, OrderByComparator)}
 	 * @param type the type
 	 * @param subtype the subtype
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findByT_S(
 		int type, String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles where type = &#63; and subtype = &#63;.
@@ -1760,14 +1676,11 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching roles
 	 */
 	public java.util.List<Role> findByT_S(
 		int type, String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the first role in the ordered set where type = &#63; and subtype = &#63;.
@@ -1779,9 +1692,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByT_S_First(
-			int type, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			int type, String subtype, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1793,9 +1704,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the first matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByT_S_First(
-		int type, String subtype,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int type, String subtype, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the last role in the ordered set where type = &#63; and subtype = &#63;.
@@ -1807,9 +1716,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @throws NoSuchRoleException if a matching role could not be found
 	 */
 	public Role findByT_S_Last(
-			int type, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			int type, String subtype, OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1821,9 +1728,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @return the last matching role, or <code>null</code> if a matching role could not be found
 	 */
 	public Role fetchByT_S_Last(
-		int type, String subtype,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int type, String subtype, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set where type = &#63; and subtype = &#63;.
@@ -1837,8 +1742,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] findByT_S_PrevAndNext(
 			long roleId, int type, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1882,8 +1786,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> filterFindByT_S(
 		int type, String subtype, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the roles before and after the current role in the ordered set of roles that the user has permission to view where type = &#63; and subtype = &#63;.
@@ -1897,8 +1800,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public Role[] filterFindByT_S_PrevAndNext(
 			long roleId, int type, String subtype,
-			com.liferay.portal.kernel.util.OrderByComparator<Role>
-				orderByComparator)
+			OrderByComparator<Role> orderByComparator)
 		throws NoSuchRoleException;
 
 	/**
@@ -1960,6 +1862,28 @@ public interface RolePersistence extends BasePersistence<Role> {
 		long companyId, long classNameId, long[] classPKs, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the roles where companyId = &#63; and classNameId = &#63; and classPK = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_C(long,long,long, int, int, OrderByComparator)}
+	 * @param companyId the company ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class pk
+	 * @param start the lower bound of the range of roles
+	 * @param end the upper bound of the range of roles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching roles
+	 */
+	@Deprecated
+	public java.util.List<Role> findByC_C_C(
+		long companyId, long classNameId, long[] classPKs, int start, int end,
+		OrderByComparator<Role> orderByComparator, boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the roles where companyId = &#63; and classNameId = &#63; and classPK = any &#63;.
 	 *
 	 * <p>
@@ -1976,30 +1900,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<Role> findByC_C_C(
 		long companyId, long classNameId, long[] classPKs, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the roles where companyId = &#63; and classNameId = &#63; and classPK = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param companyId the company ID
-	 * @param classNameId the class name ID
-	 * @param classPK the class pk
-	 * @param start the lower bound of the range of roles
-	 * @param end the upper bound of the range of roles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching roles
-	 */
-	public java.util.List<Role> findByC_C_C(
-		long companyId, long classNameId, long[] classPKs, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Returns the role where companyId = &#63; and classNameId = &#63; and classPK = &#63; or throws a <code>NoSuchRoleException</code> if it could not be found.
@@ -2014,14 +1915,18 @@ public interface RolePersistence extends BasePersistence<Role> {
 		throws NoSuchRoleException;
 
 	/**
-	 * Returns the role where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the role where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C_C(long,long,long)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching role, or <code>null</code> if a matching role could not be found
 	 */
-	public Role fetchByC_C_C(long companyId, long classNameId, long classPK);
+	@Deprecated
+	public Role fetchByC_C_C(
+		long companyId, long classNameId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Returns the role where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -2032,8 +1937,7 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching role, or <code>null</code> if a matching role could not be found
 	 */
-	public Role fetchByC_C_C(
-		long companyId, long classNameId, long classPK, boolean useFinderCache);
+	public Role fetchByC_C_C(long companyId, long classNameId, long classPK);
 
 	/**
 	 * Removes the role where companyId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
@@ -2165,15 +2069,17 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RoleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of roles
 	 */
+	@Deprecated
 	public java.util.List<Role> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator);
+		int start, int end, OrderByComparator<Role> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the roles.
@@ -2185,14 +2091,10 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 * @param start the lower bound of the range of roles
 	 * @param end the upper bound of the range of roles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of roles
 	 */
 	public java.util.List<Role> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<Role> orderByComparator);
 
 	/**
 	 * Removes all the roles from the database.
@@ -2253,8 +2155,8 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<com.liferay.portal.kernel.model.Group> getGroups(
 		long pk, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Group> orderByComparator);
+		OrderByComparator<com.liferay.portal.kernel.model.Group>
+			orderByComparator);
 
 	/**
 	 * Returns the number of groups associated with the role.
@@ -2419,8 +2321,8 @@ public interface RolePersistence extends BasePersistence<Role> {
 	 */
 	public java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 		long pk, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.User> orderByComparator);
+		OrderByComparator<com.liferay.portal.kernel.model.User>
+			orderByComparator);
 
 	/**
 	 * Returns the number of users associated with the role.

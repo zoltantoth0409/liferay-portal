@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.journal.exception.NoSuchFeedException;
 import com.liferay.journal.model.JournalFeed;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,16 +79,19 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalFeedModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
+	@Deprecated
 	public java.util.List<JournalFeed> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal feeds where uuid = &#63;.
@@ -100,14 +104,11 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
 	public java.util.List<JournalFeed> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the first journal feed in the ordered set where uuid = &#63;.
@@ -118,9 +119,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @throws NoSuchFeedException if a matching journal feed could not be found
 	 */
 	public JournalFeed findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			String uuid, OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -131,9 +130,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @return the first matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
 	public JournalFeed fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		String uuid, OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the last journal feed in the ordered set where uuid = &#63;.
@@ -144,9 +141,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @throws NoSuchFeedException if a matching journal feed could not be found
 	 */
 	public JournalFeed findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			String uuid, OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -157,9 +152,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @return the last matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
 	public JournalFeed fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		String uuid, OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the journal feeds before and after the current journal feed in the ordered set where uuid = &#63;.
@@ -172,8 +165,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed[] findByUuid_PrevAndNext(
 			long id, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -203,13 +195,17 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 		throws NoSuchFeedException;
 
 	/**
-	 * Returns the journal feed where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the journal feed where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
-	public JournalFeed fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public JournalFeed fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the journal feed where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -219,8 +215,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
-	public JournalFeed fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public JournalFeed fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the journal feed where uuid = &#63; and groupId = &#63; from the database.
@@ -274,17 +269,20 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalFeedModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
+	@Deprecated
 	public java.util.List<JournalFeed> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal feeds where uuid = &#63; and companyId = &#63;.
@@ -298,14 +296,11 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
 	public java.util.List<JournalFeed> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the first journal feed in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -318,8 +313,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -332,8 +326,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the last journal feed in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -346,8 +339,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -360,8 +352,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the journal feeds before and after the current journal feed in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -375,8 +366,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed[] findByUuid_C_PrevAndNext(
 			long id, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -426,16 +416,19 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalFeedModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
+	@Deprecated
 	public java.util.List<JournalFeed> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal feeds where groupId = &#63;.
@@ -448,14 +441,11 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal feeds
 	 */
 	public java.util.List<JournalFeed> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the first journal feed in the ordered set where groupId = &#63;.
@@ -466,9 +456,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @throws NoSuchFeedException if a matching journal feed could not be found
 	 */
 	public JournalFeed findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			long groupId, OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -479,9 +467,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @return the first matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
 	public JournalFeed fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		long groupId, OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the last journal feed in the ordered set where groupId = &#63;.
@@ -492,9 +478,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @throws NoSuchFeedException if a matching journal feed could not be found
 	 */
 	public JournalFeed findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			long groupId, OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -505,9 +489,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @return the last matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
 	public JournalFeed fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		long groupId, OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the journal feeds before and after the current journal feed in the ordered set where groupId = &#63;.
@@ -520,8 +502,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed[] findByGroupId_PrevAndNext(
 			long id, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -562,8 +543,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public java.util.List<JournalFeed> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Returns the journal feeds before and after the current journal feed in the ordered set of journal feeds that the user has permission to view where groupId = &#63;.
@@ -576,8 +556,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 */
 	public JournalFeed[] filterFindByGroupId_PrevAndNext(
 			long id, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-				orderByComparator)
+			OrderByComparator<JournalFeed> orderByComparator)
 		throws NoSuchFeedException;
 
 	/**
@@ -615,13 +594,17 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 		throws NoSuchFeedException;
 
 	/**
-	 * Returns the journal feed where groupId = &#63; and feedId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the journal feed where groupId = &#63; and feedId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_F(long,String)}
 	 * @param groupId the group ID
 	 * @param feedId the feed ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
-	public JournalFeed fetchByG_F(long groupId, String feedId);
+	@Deprecated
+	public JournalFeed fetchByG_F(
+		long groupId, String feedId, boolean useFinderCache);
 
 	/**
 	 * Returns the journal feed where groupId = &#63; and feedId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -631,8 +614,7 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal feed, or <code>null</code> if a matching journal feed could not be found
 	 */
-	public JournalFeed fetchByG_F(
-		long groupId, String feedId, boolean useFinderCache);
+	public JournalFeed fetchByG_F(long groupId, String feedId);
 
 	/**
 	 * Removes the journal feed where groupId = &#63; and feedId = &#63; from the database.
@@ -730,15 +712,17 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalFeedModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal feeds
 	 */
+	@Deprecated
 	public java.util.List<JournalFeed> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator);
+		int start, int end, OrderByComparator<JournalFeed> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal feeds.
@@ -750,14 +734,10 @@ public interface JournalFeedPersistence extends BasePersistence<JournalFeed> {
 	 * @param start the lower bound of the range of journal feeds
 	 * @param end the upper bound of the range of journal feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal feeds
 	 */
 	public java.util.List<JournalFeed> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalFeed>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<JournalFeed> orderByComparator);
 
 	/**
 	 * Removes all the journal feeds from the database.

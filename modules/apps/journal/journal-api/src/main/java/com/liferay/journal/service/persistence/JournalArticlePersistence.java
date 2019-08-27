@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.journal.exception.NoSuchArticleException;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -81,16 +82,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByResourcePrimKey(long, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63;.
@@ -103,14 +107,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where resourcePrimKey = &#63;.
@@ -122,8 +123,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByResourcePrimKey_First(
 			long resourcePrimKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -135,8 +135,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByResourcePrimKey_First(
 		long resourcePrimKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where resourcePrimKey = &#63;.
@@ -148,8 +147,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByResourcePrimKey_Last(
 			long resourcePrimKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -161,8 +159,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByResourcePrimKey_Last(
 		long resourcePrimKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where resourcePrimKey = &#63;.
@@ -175,8 +172,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByResourcePrimKey_PrevAndNext(
 			long id, long resourcePrimKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -224,16 +220,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where uuid = &#63;.
@@ -246,14 +245,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where uuid = &#63;.
@@ -264,9 +260,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			String uuid, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -277,9 +271,7 @@ public interface JournalArticlePersistence
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		String uuid, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where uuid = &#63;.
@@ -290,9 +282,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			String uuid, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -303,9 +293,7 @@ public interface JournalArticlePersistence
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		String uuid, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where uuid = &#63;.
@@ -318,8 +306,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByUuid_PrevAndNext(
 			long id, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -349,13 +336,17 @@ public interface JournalArticlePersistence
 		throws NoSuchArticleException;
 
 	/**
-	 * Returns the journal article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the journal article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
-	public JournalArticle fetchByUUID_G(String uuid, long groupId);
+	@Deprecated
+	public JournalArticle fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Returns the journal article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -365,8 +356,7 @@ public interface JournalArticlePersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
-	public JournalArticle fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public JournalArticle fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Removes the journal article where uuid = &#63; and groupId = &#63; from the database.
@@ -420,17 +410,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where uuid = &#63; and companyId = &#63;.
@@ -444,14 +437,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -464,8 +454,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -478,8 +467,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -492,8 +480,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -506,8 +493,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -521,8 +507,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByUuid_C_PrevAndNext(
 			long id, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -572,16 +557,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63;.
@@ -594,14 +582,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63;.
@@ -612,9 +597,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			long groupId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -625,9 +608,7 @@ public interface JournalArticlePersistence
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long groupId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63;.
@@ -638,9 +619,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			long groupId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -651,9 +630,7 @@ public interface JournalArticlePersistence
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long groupId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63;.
@@ -666,8 +643,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByGroupId_PrevAndNext(
 			long id, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -708,8 +684,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63;.
@@ -722,8 +697,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByGroupId_PrevAndNext(
 			long id, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -779,16 +753,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where companyId = &#63;.
@@ -801,14 +778,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where companyId = &#63;.
@@ -819,9 +793,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			long companyId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -832,9 +804,7 @@ public interface JournalArticlePersistence
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long companyId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where companyId = &#63;.
@@ -845,9 +815,7 @@ public interface JournalArticlePersistence
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	public JournalArticle findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			long companyId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -858,9 +826,7 @@ public interface JournalArticlePersistence
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long companyId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where companyId = &#63;.
@@ -873,8 +839,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByCompanyId_PrevAndNext(
 			long id, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -923,16 +888,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByDDMStructureKey(String, int, int, OrderByComparator)}
 	 * @param DDMStructureKey the ddm structure key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByDDMStructureKey(
 		String DDMStructureKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where DDMStructureKey = &#63;.
@@ -945,14 +913,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByDDMStructureKey(
 		String DDMStructureKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where DDMStructureKey = &#63;.
@@ -964,8 +929,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByDDMStructureKey_First(
 			String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -977,8 +941,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByDDMStructureKey_First(
 		String DDMStructureKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where DDMStructureKey = &#63;.
@@ -990,8 +953,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByDDMStructureKey_Last(
 			String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1003,8 +965,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByDDMStructureKey_Last(
 		String DDMStructureKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where DDMStructureKey = &#63;.
@@ -1017,8 +978,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByDDMStructureKey_PrevAndNext(
 			long id, String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1050,6 +1010,27 @@ public interface JournalArticlePersistence
 		String[] DDMStructureKeies, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where DDMStructureKey = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByDDMStructureKey(String, int, int, OrderByComparator)}
+	 * @param DDMStructureKey the ddm structure key
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByDDMStructureKey(
+		String[] DDMStructureKeies, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where DDMStructureKey = any &#63;.
 	 *
 	 * <p>
@@ -1064,28 +1045,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByDDMStructureKey(
 		String[] DDMStructureKeies, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where DDMStructureKey = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param DDMStructureKey the ddm structure key
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByDDMStructureKey(
-		String[] DDMStructureKeies, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where DDMStructureKey = &#63; from the database.
@@ -1141,16 +1101,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByDDMTemplateKey(String, int, int, OrderByComparator)}
 	 * @param DDMTemplateKey the ddm template key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByDDMTemplateKey(
 		String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where DDMTemplateKey = &#63;.
@@ -1163,14 +1126,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByDDMTemplateKey(
 		String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where DDMTemplateKey = &#63;.
@@ -1182,8 +1142,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByDDMTemplateKey_First(
 			String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1195,8 +1154,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByDDMTemplateKey_First(
 		String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where DDMTemplateKey = &#63;.
@@ -1208,8 +1166,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByDDMTemplateKey_Last(
 			String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1221,8 +1178,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByDDMTemplateKey_Last(
 		String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where DDMTemplateKey = &#63;.
@@ -1235,8 +1191,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByDDMTemplateKey_PrevAndNext(
 			long id, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1284,16 +1239,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLayoutUuid(String, int, int, OrderByComparator)}
 	 * @param layoutUuid the layout uuid
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByLayoutUuid(
 		String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where layoutUuid = &#63;.
@@ -1306,14 +1264,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByLayoutUuid(
 		String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where layoutUuid = &#63;.
@@ -1325,8 +1280,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByLayoutUuid_First(
 			String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1337,9 +1291,7 @@ public interface JournalArticlePersistence
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByLayoutUuid_First(
-		String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where layoutUuid = &#63;.
@@ -1351,8 +1303,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByLayoutUuid_Last(
 			String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1363,9 +1314,7 @@ public interface JournalArticlePersistence
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByLayoutUuid_Last(
-		String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where layoutUuid = &#63;.
@@ -1378,8 +1327,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByLayoutUuid_PrevAndNext(
 			long id, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1427,16 +1375,19 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySmallImageId(long, int, int, OrderByComparator)}
 	 * @param smallImageId the small image ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findBySmallImageId(
 		long smallImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where smallImageId = &#63;.
@@ -1449,14 +1400,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findBySmallImageId(
 		long smallImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where smallImageId = &#63;.
@@ -1468,8 +1416,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findBySmallImageId_First(
 			long smallImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1480,9 +1427,7 @@ public interface JournalArticlePersistence
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchBySmallImageId_First(
-		long smallImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long smallImageId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where smallImageId = &#63;.
@@ -1494,8 +1439,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findBySmallImageId_Last(
 			long smallImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1506,9 +1450,7 @@ public interface JournalArticlePersistence
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchBySmallImageId_Last(
-		long smallImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		long smallImageId, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where smallImageId = &#63;.
@@ -1521,8 +1463,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findBySmallImageId_PrevAndNext(
 			long id, long smallImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1573,17 +1514,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_I(long,boolean, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param indexable the indexable
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByR_I(
 		long resourcePrimKey, boolean indexable, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and indexable = &#63;.
@@ -1597,14 +1541,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByR_I(
 		long resourcePrimKey, boolean indexable, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63;.
@@ -1617,8 +1558,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_I_First(
 			long resourcePrimKey, boolean indexable,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1631,8 +1571,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_I_First(
 		long resourcePrimKey, boolean indexable,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63;.
@@ -1645,8 +1584,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_I_Last(
 			long resourcePrimKey, boolean indexable,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1659,8 +1597,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_I_Last(
 		long resourcePrimKey, boolean indexable,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63;.
@@ -1674,8 +1611,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByR_I_PrevAndNext(
 			long id, long resourcePrimKey, boolean indexable,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1728,17 +1664,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_ST(long,int, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByR_ST(
 		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and status = &#63;.
@@ -1752,14 +1691,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByR_ST(
 		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1772,8 +1708,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_ST_First(
 			long resourcePrimKey, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1786,8 +1721,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_ST_First(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1800,8 +1734,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_ST_Last(
 			long resourcePrimKey, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1814,8 +1747,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_ST_Last(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1829,8 +1761,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByR_ST_PrevAndNext(
 			long id, long resourcePrimKey, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -1864,6 +1795,28 @@ public interface JournalArticlePersistence
 		long resourcePrimKey, int[] statuses, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_ST(long,int, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int[] statuses, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and status = any &#63;.
 	 *
 	 * <p>
@@ -1879,29 +1832,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByR_ST(
 		long resourcePrimKey, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param status the status
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByR_ST(
-		long resourcePrimKey, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where resourcePrimKey = &#63; and status = &#63; from the database.
@@ -1961,17 +1892,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and userId = &#63;.
@@ -1985,14 +1919,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and userId = &#63;.
@@ -2005,8 +1936,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_U_First(
 			long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2019,8 +1949,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and userId = &#63;.
@@ -2033,8 +1962,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_U_Last(
 			long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2047,8 +1975,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and userId = &#63;.
@@ -2062,8 +1989,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_U_PrevAndNext(
 			long id, long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2108,8 +2034,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and userId = &#63;.
@@ -2123,8 +2048,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_U_PrevAndNext(
 			long id, long groupId, long userId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2186,17 +2110,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param folderId the folder ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_F(
 		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63;.
@@ -2210,14 +2137,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_F(
 		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and folderId = &#63;.
@@ -2230,8 +2154,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_F_First(
 			long groupId, long folderId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2244,8 +2167,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_F_First(
 		long groupId, long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and folderId = &#63;.
@@ -2258,8 +2180,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_F_Last(
 			long groupId, long folderId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2272,8 +2193,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_F_Last(
 		long groupId, long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and folderId = &#63;.
@@ -2287,8 +2207,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_F_PrevAndNext(
 			long id, long groupId, long folderId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2333,8 +2252,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_F(
 		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and folderId = &#63;.
@@ -2348,8 +2266,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_F_PrevAndNext(
 			long id, long groupId, long folderId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2394,8 +2311,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_F(
 		long groupId, long[] folderIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns all the journal articles where groupId = &#63; and folderId = any &#63;.
@@ -2428,6 +2344,28 @@ public interface JournalArticlePersistence
 		long groupId, long[] folderIds, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F(long,long, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param folderId the folder ID
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByG_F(
+		long groupId, long[] folderIds, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = any &#63;.
 	 *
 	 * <p>
@@ -2443,29 +2381,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByG_F(
 		long groupId, long[] folderIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param folderId the folder ID
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByG_F(
-		long groupId, long[] folderIds, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where groupId = &#63; and folderId = &#63; from the database.
@@ -2544,17 +2460,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_A(
 		long groupId, String articleId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63;.
@@ -2568,14 +2487,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_A(
 		long groupId, String articleId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and articleId = &#63;.
@@ -2588,8 +2504,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_First(
 			long groupId, String articleId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2602,8 +2517,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_First(
 		long groupId, String articleId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and articleId = &#63;.
@@ -2616,8 +2530,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_Last(
 			long groupId, String articleId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2630,8 +2543,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_Last(
 		long groupId, String articleId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and articleId = &#63;.
@@ -2645,8 +2557,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_A_PrevAndNext(
 			long id, long groupId, String articleId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2691,8 +2602,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_A(
 		long groupId, String articleId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and articleId = &#63;.
@@ -2706,8 +2616,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_A_PrevAndNext(
 			long id, long groupId, String articleId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2769,17 +2678,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_UT(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param urlTitle the url title
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_UT(
 		long groupId, String urlTitle, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and urlTitle = &#63;.
@@ -2793,14 +2705,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_UT(
 		long groupId, String urlTitle, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and urlTitle = &#63;.
@@ -2813,8 +2722,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_UT_First(
 			long groupId, String urlTitle,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2827,8 +2735,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_UT_First(
 		long groupId, String urlTitle,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and urlTitle = &#63;.
@@ -2841,8 +2748,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_UT_Last(
 			long groupId, String urlTitle,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2855,8 +2761,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_UT_Last(
 		long groupId, String urlTitle,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and urlTitle = &#63;.
@@ -2870,8 +2775,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_UT_PrevAndNext(
 			long id, long groupId, String urlTitle,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2916,8 +2820,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_UT(
 		long groupId, String urlTitle, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and urlTitle = &#63;.
@@ -2931,8 +2834,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_UT_PrevAndNext(
 			long id, long groupId, String urlTitle,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -2994,17 +2896,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_DDMSK(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param DDMStructureKey the ddm structure key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_DDMSK(
 		long groupId, String DDMStructureKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and DDMStructureKey = &#63;.
@@ -3018,14 +2923,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_DDMSK(
 		long groupId, String DDMStructureKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and DDMStructureKey = &#63;.
@@ -3038,8 +2940,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_DDMSK_First(
 			long groupId, String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3052,8 +2953,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_DDMSK_First(
 		long groupId, String DDMStructureKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and DDMStructureKey = &#63;.
@@ -3066,8 +2966,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_DDMSK_Last(
 			long groupId, String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3080,8 +2979,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_DDMSK_Last(
 		long groupId, String DDMStructureKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and DDMStructureKey = &#63;.
@@ -3095,8 +2993,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_DDMSK_PrevAndNext(
 			long id, long groupId, String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3141,8 +3038,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_DDMSK(
 		long groupId, String DDMStructureKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and DDMStructureKey = &#63;.
@@ -3156,8 +3052,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_DDMSK_PrevAndNext(
 			long id, long groupId, String DDMStructureKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3219,17 +3114,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_DDMTK(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param DDMTemplateKey the ddm template key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_DDMTK(
 		long groupId, String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and DDMTemplateKey = &#63;.
@@ -3243,14 +3141,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_DDMTK(
 		long groupId, String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and DDMTemplateKey = &#63;.
@@ -3263,8 +3158,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_DDMTK_First(
 			long groupId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3277,8 +3171,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_DDMTK_First(
 		long groupId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and DDMTemplateKey = &#63;.
@@ -3291,8 +3184,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_DDMTK_Last(
 			long groupId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3305,8 +3197,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_DDMTK_Last(
 		long groupId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and DDMTemplateKey = &#63;.
@@ -3320,8 +3211,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_DDMTK_PrevAndNext(
 			long id, long groupId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3366,8 +3256,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_DDMTK(
 		long groupId, String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and DDMTemplateKey = &#63;.
@@ -3381,8 +3270,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_DDMTK_PrevAndNext(
 			long id, long groupId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3444,17 +3332,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_L(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param layoutUuid the layout uuid
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_L(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and layoutUuid = &#63;.
@@ -3468,14 +3359,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_L(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and layoutUuid = &#63;.
@@ -3488,8 +3376,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_L_First(
 			long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3502,8 +3389,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_L_First(
 		long groupId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and layoutUuid = &#63;.
@@ -3516,8 +3402,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_L_Last(
 			long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3530,8 +3415,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_L_Last(
 		long groupId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and layoutUuid = &#63;.
@@ -3545,8 +3429,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_L_PrevAndNext(
 			long id, long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3591,8 +3474,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_L(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and layoutUuid = &#63;.
@@ -3606,8 +3488,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_L_PrevAndNext(
 			long id, long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3669,17 +3550,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotL(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param layoutUuid the layout uuid
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_NotL(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and layoutUuid &ne; &#63;.
@@ -3693,14 +3577,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_NotL(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and layoutUuid &ne; &#63;.
@@ -3713,8 +3594,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_NotL_First(
 			long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3727,8 +3607,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_NotL_First(
 		long groupId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and layoutUuid &ne; &#63;.
@@ -3741,8 +3620,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_NotL_Last(
 			long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3755,8 +3633,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_NotL_Last(
 		long groupId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and layoutUuid &ne; &#63;.
@@ -3770,8 +3647,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_NotL_PrevAndNext(
 			long id, long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3816,8 +3692,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_NotL(
 		long groupId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and layoutUuid &ne; &#63;.
@@ -3831,8 +3706,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_NotL_PrevAndNext(
 			long id, long groupId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -3877,8 +3751,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_NotL(
 		long groupId, String[] layoutUuids, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns all the journal articles where groupId = &#63; and layoutUuid &ne; all &#63;.
@@ -3911,6 +3784,28 @@ public interface JournalArticlePersistence
 		long groupId, String[] layoutUuids, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where groupId = &#63; and layoutUuid &ne; &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotL(long,String, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param layoutUuid the layout uuid
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and layoutUuid &ne; all &#63;.
 	 *
 	 * <p>
@@ -3926,29 +3821,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByG_NotL(
 		long groupId, String[] layoutUuids, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where groupId = &#63; and layoutUuid &ne; &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param layoutUuid the layout uuid
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByG_NotL(
-		long groupId, String[] layoutUuids, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where groupId = &#63; and layoutUuid &ne; &#63; from the database.
@@ -4026,17 +3899,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_ST(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_ST(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and status = &#63;.
@@ -4050,14 +3926,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_ST(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and status = &#63;.
@@ -4070,8 +3943,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_ST_First(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4084,8 +3956,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_ST_First(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and status = &#63;.
@@ -4098,8 +3969,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_ST_Last(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4112,8 +3982,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_ST_Last(
 		long groupId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and status = &#63;.
@@ -4127,8 +3996,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_ST_PrevAndNext(
 			long id, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4173,8 +4041,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_ST(
 		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and status = &#63;.
@@ -4188,8 +4055,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_ST_PrevAndNext(
 			long id, long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4251,17 +4117,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_V(long,double, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_V(
 		long companyId, double version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where companyId = &#63; and version = &#63;.
@@ -4275,14 +4144,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_V(
 		long companyId, double version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where companyId = &#63; and version = &#63;.
@@ -4295,8 +4161,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_V_First(
 			long companyId, double version,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4309,8 +4174,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_V_First(
 		long companyId, double version,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where companyId = &#63; and version = &#63;.
@@ -4323,8 +4187,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_V_Last(
 			long companyId, double version,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4337,8 +4200,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_V_Last(
 		long companyId, double version,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where companyId = &#63; and version = &#63;.
@@ -4352,8 +4214,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_V_PrevAndNext(
 			long id, long companyId, double version,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4406,17 +4267,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_ST(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_ST(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where companyId = &#63; and status = &#63;.
@@ -4430,14 +4294,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_ST(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where companyId = &#63; and status = &#63;.
@@ -4450,8 +4311,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_ST_First(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4464,8 +4324,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_ST_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where companyId = &#63; and status = &#63;.
@@ -4478,8 +4337,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_ST_Last(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4492,8 +4350,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_ST_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where companyId = &#63; and status = &#63;.
@@ -4507,8 +4364,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_ST_PrevAndNext(
 			long id, long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4561,17 +4417,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_NotST(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_NotST(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where companyId = &#63; and status &ne; &#63;.
@@ -4585,14 +4444,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_NotST(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -4605,8 +4461,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_NotST_First(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4619,8 +4474,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_NotST_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -4633,8 +4487,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_NotST_Last(
 			long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4647,8 +4500,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_NotST_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -4662,8 +4514,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_NotST_PrevAndNext(
 			long id, long companyId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4716,17 +4567,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_DDMTK(long,String, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param DDMTemplateKey the ddm template key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_DDMTK(
 		long classNameId, String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -4740,14 +4594,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_DDMTK(
 		long classNameId, String DDMTemplateKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -4760,8 +4611,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_DDMTK_First(
 			long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4774,8 +4624,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_DDMTK_First(
 		long classNameId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -4788,8 +4637,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_DDMTK_Last(
 			long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4802,8 +4650,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_DDMTK_Last(
 		long classNameId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -4817,8 +4664,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_DDMTK_PrevAndNext(
 			long id, long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4871,17 +4717,20 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLtD_S(Date,int, int, int, OrderByComparator)}
 	 * @param displayDate the display date
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByLtD_S(
 		Date displayDate, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where displayDate &lt; &#63; and status = &#63;.
@@ -4895,14 +4744,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByLtD_S(
 		Date displayDate, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where displayDate &lt; &#63; and status = &#63;.
@@ -4915,8 +4761,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByLtD_S_First(
 			Date displayDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4929,8 +4774,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByLtD_S_First(
 		Date displayDate, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where displayDate &lt; &#63; and status = &#63;.
@@ -4943,8 +4787,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByLtD_S_Last(
 			Date displayDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -4957,8 +4800,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByLtD_S_Last(
 		Date displayDate, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where displayDate &lt; &#63; and status = &#63;.
@@ -4972,8 +4814,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByLtD_S_PrevAndNext(
 			long id, Date displayDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5029,18 +4870,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_I_S(long,boolean,int, int, int, OrderByComparator)}
 	 * @param resourcePrimKey the resource prim key
 	 * @param indexable the indexable
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByR_I_S(
 		long resourcePrimKey, boolean indexable, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;.
@@ -5055,14 +4899,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByR_I_S(
 		long resourcePrimKey, boolean indexable, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;.
@@ -5076,8 +4917,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_I_S_First(
 			long resourcePrimKey, boolean indexable, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5091,8 +4931,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_I_S_First(
 		long resourcePrimKey, boolean indexable, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;.
@@ -5106,8 +4945,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByR_I_S_Last(
 			long resourcePrimKey, boolean indexable, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5121,8 +4959,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByR_I_S_Last(
 		long resourcePrimKey, boolean indexable, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;.
@@ -5137,8 +4974,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByR_I_S_PrevAndNext(
 			long id, long resourcePrimKey, boolean indexable, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5175,6 +5011,29 @@ public interface JournalArticlePersistence
 		int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_I_S(long,boolean,int, int, int, OrderByComparator)}
+	 * @param resourcePrimKey the resource prim key
+	 * @param indexable the indexable
+	 * @param status the status
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and indexable = &#63; and status = any &#63;.
 	 *
 	 * <p>
@@ -5191,32 +5050,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByR_I_S(
 		long resourcePrimKey, boolean indexable, int[] statuses, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where resourcePrimKey = &#63; and indexable = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key
-	 * @param indexable the indexable
-	 * @param status the status
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByR_I_S(
-		long resourcePrimKey, boolean indexable, int[] statuses, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where resourcePrimKey = &#63; and indexable = &#63; and status = &#63; from the database.
@@ -5285,18 +5119,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_U_C(
 		long groupId, long userId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and userId = &#63; and classNameId = &#63;.
@@ -5311,14 +5148,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_U_C(
 		long groupId, long userId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and userId = &#63; and classNameId = &#63;.
@@ -5332,8 +5166,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_U_C_First(
 			long groupId, long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5347,8 +5180,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_U_C_First(
 		long groupId, long userId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and userId = &#63; and classNameId = &#63;.
@@ -5362,8 +5194,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_U_C_Last(
 			long groupId, long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5377,8 +5208,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_U_C_Last(
 		long groupId, long userId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and userId = &#63; and classNameId = &#63;.
@@ -5393,8 +5223,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_U_C_PrevAndNext(
 			long id, long groupId, long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5442,8 +5271,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_U_C(
 		long groupId, long userId, long classNameId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and userId = &#63; and classNameId = &#63;.
@@ -5458,8 +5286,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_U_C_PrevAndNext(
 			long id, long groupId, long userId, long classNameId,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5526,18 +5353,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_ST(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param folderId the folder ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_F_ST(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -5552,14 +5382,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_F_ST(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -5573,8 +5400,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_F_ST_First(
 			long groupId, long folderId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5588,8 +5414,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_F_ST_First(
 		long groupId, long folderId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -5603,8 +5428,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_F_ST_Last(
 			long groupId, long folderId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5618,8 +5442,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_F_ST_Last(
 		long groupId, long folderId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -5634,8 +5457,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_F_ST_PrevAndNext(
 			long id, long groupId, long folderId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5683,8 +5505,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_F_ST(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -5699,8 +5520,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_F_ST_PrevAndNext(
 			long id, long groupId, long folderId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5748,8 +5568,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_F_ST(
 		long groupId, long folderId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns all the journal articles where groupId = &#63; and folderId = &#63; and status = any &#63;.
@@ -5784,6 +5603,29 @@ public interface JournalArticlePersistence
 		long groupId, long folderId, int[] statuses, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_ST(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param folderId the folder ID
+	 * @param status the status
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63; and status = any &#63;.
 	 *
 	 * <p>
@@ -5800,30 +5642,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByG_F_ST(
 		long groupId, long folderId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where groupId = &#63; and folderId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param folderId the folder ID
-	 * @param status the status
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByG_F_ST(
-		long groupId, long folderId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where groupId = &#63; and folderId = &#63; and status = &#63; from the database.
@@ -5909,18 +5728,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -5935,14 +5757,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -5956,8 +5775,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_C_First(
 			long groupId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -5971,8 +5789,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_C_First(
 		long groupId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -5986,8 +5803,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_C_Last(
 			long groupId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6001,8 +5817,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_C_Last(
 		long groupId, long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -6017,8 +5832,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_C_C_PrevAndNext(
 			long id, long groupId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6066,8 +5880,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -6082,8 +5895,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_C_C_PrevAndNext(
 			long id, long groupId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6129,15 +5941,19 @@ public interface JournalArticlePersistence
 		throws NoSuchArticleException;
 
 	/**
-	 * Returns the journal article where groupId = &#63; and classNameId = &#63; and DDMStructureKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the journal article where groupId = &#63; and classNameId = &#63; and DDMStructureKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_C_DDMSK(long,long,String)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param DDMStructureKey the ddm structure key
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
+	@Deprecated
 	public JournalArticle fetchByG_C_DDMSK(
-		long groupId, long classNameId, String DDMStructureKey);
+		long groupId, long classNameId, String DDMStructureKey,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the journal article where groupId = &#63; and classNameId = &#63; and DDMStructureKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -6149,8 +5965,7 @@ public interface JournalArticlePersistence
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByG_C_DDMSK(
-		long groupId, long classNameId, String DDMStructureKey,
-		boolean useFinderCache);
+		long groupId, long classNameId, String DDMStructureKey);
 
 	/**
 	 * Removes the journal article where groupId = &#63; and classNameId = &#63; and DDMStructureKey = &#63; from the database.
@@ -6211,19 +6026,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_DDMTK(long,long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param DDMTemplateKey the ddm template key
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_C_DDMTK(
 		long groupId, long classNameId, String DDMTemplateKey, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		int end, OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -6238,15 +6055,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_C_DDMTK(
 		long groupId, long classNameId, String DDMTemplateKey, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -6260,8 +6073,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_DDMTK_First(
 			long groupId, long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6275,8 +6087,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_DDMTK_First(
 		long groupId, long classNameId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -6290,8 +6101,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_DDMTK_Last(
 			long groupId, long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6305,8 +6115,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_DDMTK_Last(
 		long groupId, long classNameId, String DDMTemplateKey,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -6321,8 +6130,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_C_DDMTK_PrevAndNext(
 			long id, long groupId, long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6371,9 +6179,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_C_DDMTK(
 		long groupId, long classNameId, String DDMTemplateKey, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		int end, OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and classNameId = &#63; and DDMTemplateKey = &#63;.
@@ -6388,8 +6194,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_C_DDMTK_PrevAndNext(
 			long id, long groupId, long classNameId, String DDMTemplateKey,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6459,18 +6264,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_L(long,long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param layoutUuid the layout uuid
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_C_L(
 		long groupId, long classNameId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and classNameId = &#63; and layoutUuid = &#63;.
@@ -6485,14 +6293,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_C_L(
 		long groupId, long classNameId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and classNameId = &#63; and layoutUuid = &#63;.
@@ -6506,8 +6311,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_L_First(
 			long groupId, long classNameId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6521,8 +6325,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_L_First(
 		long groupId, long classNameId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and classNameId = &#63; and layoutUuid = &#63;.
@@ -6536,8 +6339,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_C_L_Last(
 			long groupId, long classNameId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6551,8 +6353,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_C_L_Last(
 		long groupId, long classNameId, String layoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and classNameId = &#63; and layoutUuid = &#63;.
@@ -6567,8 +6368,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_C_L_PrevAndNext(
 			long id, long groupId, long classNameId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6616,8 +6416,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_C_L(
 		long groupId, long classNameId, String layoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and classNameId = &#63; and layoutUuid = &#63;.
@@ -6632,8 +6431,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_C_L_PrevAndNext(
 			long id, long groupId, long classNameId, String layoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6681,15 +6479,18 @@ public interface JournalArticlePersistence
 		throws NoSuchArticleException;
 
 	/**
-	 * Returns the journal article where groupId = &#63; and articleId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the journal article where groupId = &#63; and articleId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_A_V(long,String,double)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
+	@Deprecated
 	public JournalArticle fetchByG_A_V(
-		long groupId, String articleId, double version);
+		long groupId, String articleId, double version, boolean useFinderCache);
 
 	/**
 	 * Returns the journal article where groupId = &#63; and articleId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -6701,7 +6502,7 @@ public interface JournalArticlePersistence
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	public JournalArticle fetchByG_A_V(
-		long groupId, String articleId, double version, boolean useFinderCache);
+		long groupId, String articleId, double version);
 
 	/**
 	 * Removes the journal article where groupId = &#63; and articleId = &#63; and version = &#63; from the database.
@@ -6760,18 +6561,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A_ST(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_A_ST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63; and status = &#63;.
@@ -6786,14 +6590,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_A_ST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and articleId = &#63; and status = &#63;.
@@ -6807,8 +6608,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_ST_First(
 			long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6822,8 +6622,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_ST_First(
 		long groupId, String articleId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and articleId = &#63; and status = &#63;.
@@ -6837,8 +6636,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_ST_Last(
 			long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6852,8 +6650,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_ST_Last(
 		long groupId, String articleId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and articleId = &#63; and status = &#63;.
@@ -6868,8 +6665,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_A_ST_PrevAndNext(
 			long id, long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6917,8 +6713,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_A_ST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and articleId = &#63; and status = &#63;.
@@ -6933,8 +6728,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_A_ST_PrevAndNext(
 			long id, long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -6982,8 +6776,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_A_ST(
 		long groupId, String articleId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns all the journal articles where groupId = &#63; and articleId = &#63; and status = any &#63;.
@@ -7018,6 +6811,29 @@ public interface JournalArticlePersistence
 		long groupId, String articleId, int[] statuses, int start, int end);
 
 	/**
+	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A_ST(long,String,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param articleId the article ID
+	 * @param status the status
+	 * @param start the lower bound of the range of journal articles
+	 * @param end the upper bound of the range of journal articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching journal articles
+	 */
+	@Deprecated
+	public java.util.List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
+
+	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63; and status = any &#63;.
 	 *
 	 * <p>
@@ -7034,30 +6850,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> findByG_A_ST(
 		long groupId, String articleId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
-
-	/**
-	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param articleId the article ID
-	 * @param status the status
-	 * @param start the lower bound of the range of journal articles
-	 * @param end the upper bound of the range of journal articles (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching journal articles
-	 */
-	public java.util.List<JournalArticle> findByG_A_ST(
-		long groupId, String articleId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles where groupId = &#63; and articleId = &#63; and status = &#63; from the database.
@@ -7144,18 +6937,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A_NotST(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_A_NotST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and articleId = &#63; and status &ne; &#63;.
@@ -7170,14 +6966,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_A_NotST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and articleId = &#63; and status &ne; &#63;.
@@ -7191,8 +6984,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_NotST_First(
 			long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7206,8 +6998,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_NotST_First(
 		long groupId, String articleId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and articleId = &#63; and status &ne; &#63;.
@@ -7221,8 +7012,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_A_NotST_Last(
 			long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7236,8 +7026,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_A_NotST_Last(
 		long groupId, String articleId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and articleId = &#63; and status &ne; &#63;.
@@ -7252,8 +7041,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_A_NotST_PrevAndNext(
 			long id, long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7301,8 +7089,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_A_NotST(
 		long groupId, String articleId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and articleId = &#63; and status &ne; &#63;.
@@ -7317,8 +7104,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_A_NotST_PrevAndNext(
 			long id, long groupId, String articleId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7386,18 +7172,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_UT_ST(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param urlTitle the url title
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByG_UT_ST(
 		long groupId, String urlTitle, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where groupId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7412,14 +7201,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByG_UT_ST(
 		long groupId, String urlTitle, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where groupId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7433,8 +7219,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_UT_ST_First(
 			long groupId, String urlTitle, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7448,8 +7233,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_UT_ST_First(
 		long groupId, String urlTitle, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where groupId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7463,8 +7247,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByG_UT_ST_Last(
 			long groupId, String urlTitle, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7478,8 +7261,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByG_UT_ST_Last(
 		long groupId, String urlTitle, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where groupId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7494,8 +7276,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByG_UT_ST_PrevAndNext(
 			long id, long groupId, String urlTitle, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7543,8 +7324,7 @@ public interface JournalArticlePersistence
 	 */
 	public java.util.List<JournalArticle> filterFindByG_UT_ST(
 		long groupId, String urlTitle, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set of journal articles that the user has permission to view where groupId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7559,8 +7339,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] filterFindByG_UT_ST_PrevAndNext(
 			long id, long groupId, String urlTitle, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7627,18 +7406,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_V_ST(long,double,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_V_ST(
 		long companyId, double version, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where companyId = &#63; and version = &#63; and status = &#63;.
@@ -7653,14 +7435,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_V_ST(
 		long companyId, double version, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where companyId = &#63; and version = &#63; and status = &#63;.
@@ -7674,8 +7453,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_V_ST_First(
 			long companyId, double version, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7689,8 +7467,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_V_ST_First(
 		long companyId, double version, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where companyId = &#63; and version = &#63; and status = &#63;.
@@ -7704,8 +7481,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_V_ST_Last(
 			long companyId, double version, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7719,8 +7495,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_V_ST_Last(
 		long companyId, double version, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where companyId = &#63; and version = &#63; and status = &#63;.
@@ -7735,8 +7510,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_V_ST_PrevAndNext(
 			long id, long companyId, double version, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7793,18 +7567,21 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_ED_ST(long,Date,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param expirationDate the expiration date
 	 * @param status the status
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findByC_ED_ST(
 		long classNameId, Date expirationDate, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles where classNameId = &#63; and expirationDate = &#63; and status = &#63;.
@@ -7819,14 +7596,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal articles
 	 */
 	public java.util.List<JournalArticle> findByC_ED_ST(
 		long classNameId, Date expirationDate, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the first journal article in the ordered set where classNameId = &#63; and expirationDate = &#63; and status = &#63;.
@@ -7840,8 +7614,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_ED_ST_First(
 			long classNameId, Date expirationDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7855,8 +7628,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_ED_ST_First(
 		long classNameId, Date expirationDate, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the last journal article in the ordered set where classNameId = &#63; and expirationDate = &#63; and status = &#63;.
@@ -7870,8 +7642,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle findByC_ED_ST_Last(
 			long classNameId, Date expirationDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -7885,8 +7656,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle fetchByC_ED_ST_Last(
 		long classNameId, Date expirationDate, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the journal articles before and after the current journal article in the ordered set where classNameId = &#63; and expirationDate = &#63; and status = &#63;.
@@ -7901,8 +7671,7 @@ public interface JournalArticlePersistence
 	 */
 	public JournalArticle[] findByC_ED_ST_PrevAndNext(
 			long id, long classNameId, Date expirationDate, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-				orderByComparator)
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException;
 
 	/**
@@ -8004,15 +7773,17 @@ public interface JournalArticlePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal articles
 	 */
+	@Deprecated
 	public java.util.List<JournalArticle> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator);
+		int start, int end, OrderByComparator<JournalArticle> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the journal articles.
@@ -8024,14 +7795,11 @@ public interface JournalArticlePersistence
 	 * @param start the lower bound of the range of journal articles
 	 * @param end the upper bound of the range of journal articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal articles
 	 */
 	public java.util.List<JournalArticle> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<JournalArticle>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Removes all the journal articles from the database.

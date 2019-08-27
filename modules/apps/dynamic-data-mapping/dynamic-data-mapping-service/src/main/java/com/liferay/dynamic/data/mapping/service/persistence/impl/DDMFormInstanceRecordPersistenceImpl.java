@@ -130,18 +130,22 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -155,14 +159,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -174,30 +176,24 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if (!uuid.equals(ddmFormInstanceRecord.getUuid())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if (!uuid.equals(ddmFormInstanceRecord.getUuid())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -264,14 +260,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -691,15 +683,20 @@ public class DDMFormInstanceRecordPersistenceImpl
 	}
 
 	/**
-	 * Returns the ddm form instance record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the ddm form instance record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm form instance record, or <code>null</code> if a matching ddm form instance record could not be found
 	 */
+	@Deprecated
 	@Override
-	public DDMFormInstanceRecord fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public DDMFormInstanceRecord fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -711,23 +708,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @return the matching ddm form instance record, or <code>null</code> if a matching ddm form instance record could not be found
 	 */
 	@Override
-	public DDMFormInstanceRecord fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public DDMFormInstanceRecord fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof DDMFormInstanceRecord) {
 			DDMFormInstanceRecord ddmFormInstanceRecord =
@@ -778,10 +765,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 				List<DDMFormInstanceRecord> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					DDMFormInstanceRecord ddmFormInstanceRecord = list.get(0);
@@ -792,10 +777,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -953,20 +935,23 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -981,14 +966,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1000,34 +983,28 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if (!uuid.equals(ddmFormInstanceRecord.getUuid()) ||
-						(companyId != ddmFormInstanceRecord.getCompanyId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if (!uuid.equals(ddmFormInstanceRecord.getUuid()) ||
+					(companyId != ddmFormInstanceRecord.getCompanyId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1098,14 +1075,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1554,18 +1527,22 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1579,14 +1556,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1596,32 +1571,26 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((companyId != ddmFormInstanceRecord.getCompanyId())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if ((companyId != ddmFormInstanceRecord.getCompanyId())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1677,14 +1646,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2081,19 +2046,23 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFormInstanceId(long, int, int, OrderByComparator)}
 	 * @param formInstanceId the form instance ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByFormInstanceId(
 		long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByFormInstanceId(
-			formInstanceId, start, end, orderByComparator, true);
+			formInstanceId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2107,14 +2076,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByFormInstanceId(
 		long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2124,34 +2091,28 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByFormInstanceId;
-				finderArgs = new Object[] {formInstanceId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByFormInstanceId;
+			finderArgs = new Object[] {formInstanceId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByFormInstanceId;
 			finderArgs = new Object[] {
 				formInstanceId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((formInstanceId !=
-							ddmFormInstanceRecord.getFormInstanceId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if ((formInstanceId !=
+						ddmFormInstanceRecord.getFormInstanceId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2207,14 +2168,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2614,20 +2571,23 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_F(long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param formInstanceId the form instance ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByU_F(
 		long userId, long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByU_F(
-			userId, formInstanceId, start, end, orderByComparator, true);
+		return findByU_F(userId, formInstanceId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2642,14 +2602,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByU_F(
 		long userId, long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2659,35 +2617,29 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByU_F;
-				finderArgs = new Object[] {userId, formInstanceId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByU_F;
+			finderArgs = new Object[] {userId, formInstanceId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByU_F;
 			finderArgs = new Object[] {
 				userId, formInstanceId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((userId != ddmFormInstanceRecord.getUserId()) ||
-						(formInstanceId !=
-							ddmFormInstanceRecord.getFormInstanceId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if ((userId != ddmFormInstanceRecord.getUserId()) ||
+					(formInstanceId !=
+						ddmFormInstanceRecord.getFormInstanceId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2747,14 +2699,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3179,21 +3127,24 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByF_F(long,String, int, int, OrderByComparator)}
 	 * @param formInstanceId the form instance ID
 	 * @param formInstanceVersion the form instance version
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findByF_F(
 		long formInstanceId, String formInstanceVersion, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByF_F(
-			formInstanceId, formInstanceVersion, start, end, orderByComparator,
-			true);
+			formInstanceId, formInstanceVersion, start, end, orderByComparator);
 	}
 
 	/**
@@ -3208,14 +3159,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByF_F(
 		long formInstanceId, String formInstanceVersion, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		formInstanceVersion = Objects.toString(formInstanceVersion, "");
 
@@ -3227,13 +3176,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByF_F;
-				finderArgs = new Object[] {formInstanceId, formInstanceVersion};
-			}
+			finderPath = _finderPathWithoutPaginationFindByF_F;
+			finderArgs = new Object[] {formInstanceId, formInstanceVersion};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByF_F;
 			finderArgs = new Object[] {
 				formInstanceId, formInstanceVersion, start, end,
@@ -3241,23 +3187,20 @@ public class DDMFormInstanceRecordPersistenceImpl
 			};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((formInstanceId !=
-							ddmFormInstanceRecord.getFormInstanceId()) ||
-						!formInstanceVersion.equals(
-							ddmFormInstanceRecord.getFormInstanceVersion())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
+				if ((formInstanceId !=
+						ddmFormInstanceRecord.getFormInstanceId()) ||
+					!formInstanceVersion.equals(
+						ddmFormInstanceRecord.getFormInstanceVersion())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3328,14 +3271,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4554,17 +4493,21 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm form instance records
 	 */
+	@Deprecated
 	@Override
 	public List<DDMFormInstanceRecord> findAll(
 		int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -4577,14 +4520,12 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findAll(
 		int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4594,23 +4535,17 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<DDMFormInstanceRecord> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
+		List<DDMFormInstanceRecord> list =
+			(List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4658,14 +4593,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
