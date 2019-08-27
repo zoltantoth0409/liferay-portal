@@ -128,18 +128,22 @@ public class SyncDevicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SyncDeviceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
+	@Deprecated
 	@Override
 	public List<SyncDevice> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator) {
+		OrderByComparator<SyncDevice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -153,14 +157,12 @@ public class SyncDevicePersistenceImpl
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	@Override
 	public List<SyncDevice> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SyncDevice> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -172,30 +174,23 @@ public class SyncDevicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<SyncDevice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if (!uuid.equals(syncDevice.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if (!uuid.equals(syncDevice.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -262,14 +257,10 @@ public class SyncDevicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -681,20 +672,23 @@ public class SyncDevicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SyncDeviceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
+	@Deprecated
 	@Override
 	public List<SyncDevice> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator) {
+		OrderByComparator<SyncDevice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -709,14 +703,12 @@ public class SyncDevicePersistenceImpl
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	@Override
 	public List<SyncDevice> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SyncDevice> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -728,34 +720,27 @@ public class SyncDevicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<SyncDevice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if (!uuid.equals(syncDevice.getUuid()) ||
+					(companyId != syncDevice.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if (!uuid.equals(syncDevice.getUuid()) ||
-						(companyId != syncDevice.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -826,14 +811,10 @@ public class SyncDevicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1273,18 +1254,22 @@ public class SyncDevicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SyncDeviceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
+	@Deprecated
 	@Override
 	public List<SyncDevice> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator) {
+		OrderByComparator<SyncDevice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUserId(userId, start, end, orderByComparator, true);
+		return findByUserId(userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1298,14 +1283,12 @@ public class SyncDevicePersistenceImpl
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	@Override
 	public List<SyncDevice> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SyncDevice> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1315,30 +1298,23 @@ public class SyncDevicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUserId;
-				finderArgs = new Object[] {userId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUserId;
+			finderArgs = new Object[] {userId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] {userId, start, end, orderByComparator};
 		}
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<SyncDevice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if ((userId != syncDevice.getUserId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if ((userId != syncDevice.getUserId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1394,14 +1370,10 @@ public class SyncDevicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1784,20 +1756,23 @@ public class SyncDevicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SyncDeviceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_U(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param userName the user name
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
+	@Deprecated
 	@Override
 	public List<SyncDevice> findByC_U(
 		long companyId, String userName, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator) {
+		OrderByComparator<SyncDevice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_U(
-			companyId, userName, start, end, orderByComparator, true);
+		return findByC_U(companyId, userName, start, end, orderByComparator);
 	}
 
 	/**
@@ -1812,14 +1787,12 @@ public class SyncDevicePersistenceImpl
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	@Override
 	public List<SyncDevice> findByC_U(
 		long companyId, String userName, int start, int end,
-		OrderByComparator<SyncDevice> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SyncDevice> orderByComparator) {
 
 		userName = Objects.toString(userName, "");
 
@@ -1832,23 +1805,19 @@ public class SyncDevicePersistenceImpl
 			companyId, userName, start, end, orderByComparator
 		};
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<SyncDevice>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if ((companyId != syncDevice.getCompanyId()) ||
+					!StringUtil.wildcardMatches(
+						syncDevice.getUserName(), userName, '_', '%', '\\',
+						false)) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if ((companyId != syncDevice.getCompanyId()) ||
-						!StringUtil.wildcardMatches(
-							syncDevice.getUserName(), userName, '_', '%', '\\',
-							false)) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1919,14 +1888,10 @@ public class SyncDevicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2944,16 +2909,20 @@ public class SyncDevicePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SyncDeviceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of sync devices
 	 */
+	@Deprecated
 	@Override
 	public List<SyncDevice> findAll(
-		int start, int end, OrderByComparator<SyncDevice> orderByComparator) {
+		int start, int end, OrderByComparator<SyncDevice> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -2966,13 +2935,11 @@ public class SyncDevicePersistenceImpl
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of sync devices
 	 */
 	@Override
 	public List<SyncDevice> findAll(
-		int start, int end, OrderByComparator<SyncDevice> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<SyncDevice> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2982,23 +2949,16 @@ public class SyncDevicePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<SyncDevice> list = null;
-
-		if (useFinderCache) {
-			list = (List<SyncDevice>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<SyncDevice> list = (List<SyncDevice>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3045,14 +3005,10 @@ public class SyncDevicePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.workflow.kaleo.exception.NoSuchTimerInstanceTokenException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 
@@ -80,16 +81,19 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTimerInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKaleoInstanceId(long, int, int, OrderByComparator)}
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
+	@Deprecated
 	public java.util.List<KaleoTimerInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
@@ -102,14 +106,11 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
 	public java.util.List<KaleoTimerInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
@@ -121,8 +122,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKaleoInstanceId_First(
 			long kaleoInstanceId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -134,8 +134,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKaleoInstanceId_First(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
@@ -147,8 +146,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKaleoInstanceId_Last(
 			long kaleoInstanceId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -160,8 +158,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKaleoInstanceId_Last(
 		long kaleoInstanceId,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
@@ -174,8 +171,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken[] findByKaleoInstanceId_PrevAndNext(
 			long kaleoTimerInstanceTokenId, long kaleoInstanceId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -206,14 +202,17 @@ public interface KaleoTimerInstanceTokenPersistence
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
-	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByKITI_KTI(long,long)}
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoTimerId the kaleo timer ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
 	 */
+	@Deprecated
 	public KaleoTimerInstanceToken fetchByKITI_KTI(
-		long kaleoInstanceTokenId, long kaleoTimerId);
+		long kaleoInstanceTokenId, long kaleoTimerId, boolean useFinderCache);
 
 	/**
 	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -224,7 +223,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
 	 */
 	public KaleoTimerInstanceToken fetchByKITI_KTI(
-		long kaleoInstanceTokenId, long kaleoTimerId, boolean useFinderCache);
+		long kaleoInstanceTokenId, long kaleoTimerId);
 
 	/**
 	 * Removes the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; from the database.
@@ -279,17 +278,20 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTimerInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKITI_C(long,boolean, int, int, OrderByComparator)}
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
+	@Deprecated
 	public java.util.List<KaleoTimerInstanceToken> findByKITI_C(
 		long kaleoInstanceTokenId, boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
@@ -303,14 +305,11 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
 	public java.util.List<KaleoTimerInstanceToken> findByKITI_C(
 		long kaleoInstanceTokenId, boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
@@ -323,8 +322,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKITI_C_First(
 			long kaleoInstanceTokenId, boolean completed,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -337,8 +335,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKITI_C_First(
 		long kaleoInstanceTokenId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
@@ -351,8 +348,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKITI_C_Last(
 			long kaleoInstanceTokenId, boolean completed,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -365,8 +361,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKITI_C_Last(
 		long kaleoInstanceTokenId, boolean completed,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
@@ -381,8 +376,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	public KaleoTimerInstanceToken[] findByKITI_C_PrevAndNext(
 			long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
 			boolean completed,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -438,19 +432,22 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTimerInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKITI_C_B(long,boolean,boolean, int, int, OrderByComparator)}
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
 	 * @param blocking the blocking
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
+	@Deprecated
 	public java.util.List<KaleoTimerInstanceToken> findByKITI_C_B(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
@@ -465,15 +462,12 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo timer instance tokens
 	 */
 	public java.util.List<KaleoTimerInstanceToken> findByKITI_C_B(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
@@ -487,8 +481,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKITI_C_B_First(
 			long kaleoInstanceTokenId, boolean completed, boolean blocking,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -502,8 +495,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKITI_C_B_First(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
@@ -517,8 +509,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken findByKITI_C_B_Last(
 			long kaleoInstanceTokenId, boolean completed, boolean blocking,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -532,8 +523,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	 */
 	public KaleoTimerInstanceToken fetchByKITI_C_B_Last(
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
@@ -549,8 +539,7 @@ public interface KaleoTimerInstanceTokenPersistence
 	public KaleoTimerInstanceToken[] findByKITI_C_B_PrevAndNext(
 			long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
 			boolean completed, boolean blocking,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<KaleoTimerInstanceToken> orderByComparator)
+			OrderByComparator<KaleoTimerInstanceToken> orderByComparator)
 		throws NoSuchTimerInstanceTokenException;
 
 	/**
@@ -657,15 +646,18 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTimerInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo timer instance tokens
 	 */
+	@Deprecated
 	public java.util.List<KaleoTimerInstanceToken> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the kaleo timer instance tokens.
@@ -677,14 +669,11 @@ public interface KaleoTimerInstanceTokenPersistence
 	 * @param start the lower bound of the range of kaleo timer instance tokens
 	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo timer instance tokens
 	 */
 	public java.util.List<KaleoTimerInstanceToken> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<KaleoTimerInstanceToken> orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<KaleoTimerInstanceToken> orderByComparator);
 
 	/**
 	 * Removes all the kaleo timer instance tokens from the database.

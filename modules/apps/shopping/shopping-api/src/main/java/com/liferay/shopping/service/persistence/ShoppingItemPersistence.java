@@ -17,6 +17,7 @@ package com.liferay.shopping.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.shopping.exception.NoSuchItemException;
 import com.liferay.shopping.model.ShoppingItem;
 
@@ -59,12 +60,16 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 		throws NoSuchItemException;
 
 	/**
-	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBySmallImageId(long)}
 	 * @param smallImageId the small image ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchBySmallImageId(long smallImageId);
+	@Deprecated
+	public ShoppingItem fetchBySmallImageId(
+		long smallImageId, boolean useFinderCache);
 
 	/**
 	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -73,8 +78,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchBySmallImageId(
-		long smallImageId, boolean useFinderCache);
+	public ShoppingItem fetchBySmallImageId(long smallImageId);
 
 	/**
 	 * Removes the shopping item where smallImageId = &#63; from the database.
@@ -104,12 +108,16 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 		throws NoSuchItemException;
 
 	/**
-	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByMediumImageId(long)}
 	 * @param mediumImageId the medium image ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByMediumImageId(long mediumImageId);
+	@Deprecated
+	public ShoppingItem fetchByMediumImageId(
+		long mediumImageId, boolean useFinderCache);
 
 	/**
 	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -118,8 +126,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByMediumImageId(
-		long mediumImageId, boolean useFinderCache);
+	public ShoppingItem fetchByMediumImageId(long mediumImageId);
 
 	/**
 	 * Removes the shopping item where mediumImageId = &#63; from the database.
@@ -149,12 +156,16 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 		throws NoSuchItemException;
 
 	/**
-	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByLargeImageId(long)}
 	 * @param largeImageId the large image ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByLargeImageId(long largeImageId);
+	@Deprecated
+	public ShoppingItem fetchByLargeImageId(
+		long largeImageId, boolean useFinderCache);
 
 	/**
 	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -163,8 +174,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByLargeImageId(
-		long largeImageId, boolean useFinderCache);
+	public ShoppingItem fetchByLargeImageId(long largeImageId);
 
 	/**
 	 * Removes the shopping item where largeImageId = &#63; from the database.
@@ -216,17 +226,20 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
+	@Deprecated
 	public java.util.List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator);
+		OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the shopping items where groupId = &#63; and categoryId = &#63;.
@@ -240,14 +253,11 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
 	public java.util.List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<ShoppingItem> orderByComparator);
 
 	/**
 	 * Returns the first shopping item in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -260,8 +270,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem findByG_C_First(
 			long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-				orderByComparator)
+			OrderByComparator<ShoppingItem> orderByComparator)
 		throws NoSuchItemException;
 
 	/**
@@ -274,8 +283,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem fetchByG_C_First(
 		long groupId, long categoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator);
+		OrderByComparator<ShoppingItem> orderByComparator);
 
 	/**
 	 * Returns the last shopping item in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -288,8 +296,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem findByG_C_Last(
 			long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-				orderByComparator)
+			OrderByComparator<ShoppingItem> orderByComparator)
 		throws NoSuchItemException;
 
 	/**
@@ -302,8 +309,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem fetchByG_C_Last(
 		long groupId, long categoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator);
+		OrderByComparator<ShoppingItem> orderByComparator);
 
 	/**
 	 * Returns the shopping items before and after the current shopping item in the ordered set where groupId = &#63; and categoryId = &#63;.
@@ -317,8 +323,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem[] findByG_C_PrevAndNext(
 			long itemId, long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-				orderByComparator)
+			OrderByComparator<ShoppingItem> orderByComparator)
 		throws NoSuchItemException;
 
 	/**
@@ -363,8 +368,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public java.util.List<ShoppingItem> filterFindByG_C(
 		long groupId, long categoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator);
+		OrderByComparator<ShoppingItem> orderByComparator);
 
 	/**
 	 * Returns the shopping items before and after the current shopping item in the ordered set of shopping items that the user has permission to view where groupId = &#63; and categoryId = &#63;.
@@ -378,8 +382,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 */
 	public ShoppingItem[] filterFindByG_C_PrevAndNext(
 			long itemId, long groupId, long categoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-				orderByComparator)
+			OrderByComparator<ShoppingItem> orderByComparator)
 		throws NoSuchItemException;
 
 	/**
@@ -420,13 +423,17 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 		throws NoSuchItemException;
 
 	/**
-	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_S(long,String)}
 	 * @param companyId the company ID
 	 * @param sku the sku
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByC_S(long companyId, String sku);
+	@Deprecated
+	public ShoppingItem fetchByC_S(
+		long companyId, String sku, boolean useFinderCache);
 
 	/**
 	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -436,8 +443,7 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public ShoppingItem fetchByC_S(
-		long companyId, String sku, boolean useFinderCache);
+	public ShoppingItem fetchByC_S(long companyId, String sku);
 
 	/**
 	 * Removes the shopping item where companyId = &#63; and sku = &#63; from the database.
@@ -536,15 +542,17 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
+	@Deprecated
 	public java.util.List<ShoppingItem> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator);
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the shopping items.
@@ -556,14 +564,10 @@ public interface ShoppingItemPersistence extends BasePersistence<ShoppingItem> {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
 	public java.util.List<ShoppingItem> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItem>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator);
 
 	/**
 	 * Removes all the shopping items from the database.

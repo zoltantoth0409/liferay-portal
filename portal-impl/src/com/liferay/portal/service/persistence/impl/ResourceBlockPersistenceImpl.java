@@ -125,19 +125,23 @@ public class ResourceBlockPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_N(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
+	@Deprecated
 	@Override
 	public List<ResourceBlock> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator) {
+		OrderByComparator<ResourceBlock> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_N(companyId, name, start, end, orderByComparator, true);
+		return findByC_N(companyId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -152,14 +156,12 @@ public class ResourceBlockPersistenceImpl
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
 	public List<ResourceBlock> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ResourceBlock> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -171,34 +173,28 @@ public class ResourceBlockPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_N;
-				finderArgs = new Object[] {companyId, name};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_N;
+			finderArgs = new Object[] {companyId, name};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_N;
 			finderArgs = new Object[] {
 				companyId, name, start, end, orderByComparator
 			};
 		}
 
-		List<ResourceBlock> list = null;
-
-		if (useFinderCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+		List<ResourceBlock> list =
+			(List<ResourceBlock>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ResourceBlock resourceBlock : list) {
-					if ((companyId != resourceBlock.getCompanyId()) ||
-						!name.equals(resourceBlock.getName())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ResourceBlock resourceBlock : list) {
+				if ((companyId != resourceBlock.getCompanyId()) ||
+					!name.equals(resourceBlock.getName())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -269,14 +265,10 @@ public class ResourceBlockPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -731,21 +723,25 @@ public class ResourceBlockPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_G_N(long,long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
+	@Deprecated
 	@Override
 	public List<ResourceBlock> findByC_G_N(
 		long companyId, long groupId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator) {
+		OrderByComparator<ResourceBlock> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByC_G_N(
-			companyId, groupId, name, start, end, orderByComparator, true);
+			companyId, groupId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -761,14 +757,12 @@ public class ResourceBlockPersistenceImpl
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
 	public List<ResourceBlock> findByC_G_N(
 		long companyId, long groupId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ResourceBlock> orderByComparator) {
 
 		name = Objects.toString(name, "");
 
@@ -780,35 +774,29 @@ public class ResourceBlockPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_G_N;
-				finderArgs = new Object[] {companyId, groupId, name};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_G_N;
+			finderArgs = new Object[] {companyId, groupId, name};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_G_N;
 			finderArgs = new Object[] {
 				companyId, groupId, name, start, end, orderByComparator
 			};
 		}
 
-		List<ResourceBlock> list = null;
-
-		if (useFinderCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+		List<ResourceBlock> list =
+			(List<ResourceBlock>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (ResourceBlock resourceBlock : list) {
-					if ((companyId != resourceBlock.getCompanyId()) ||
-						(groupId != resourceBlock.getGroupId()) ||
-						!name.equals(resourceBlock.getName())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (ResourceBlock resourceBlock : list) {
+				if ((companyId != resourceBlock.getCompanyId()) ||
+					(groupId != resourceBlock.getGroupId()) ||
+					!name.equals(resourceBlock.getName())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -883,14 +871,10 @@ public class ResourceBlockPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1371,19 +1355,23 @@ public class ResourceBlockPersistenceImpl
 	}
 
 	/**
-	 * Returns the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_G_N_P(long,long,String,String)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param permissionsHash the permissions hash
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
+	@Deprecated
 	@Override
 	public ResourceBlock fetchByC_G_N_P(
-		long companyId, long groupId, String name, String permissionsHash) {
+		long companyId, long groupId, String name, String permissionsHash,
+		boolean useFinderCache) {
 
-		return fetchByC_G_N_P(companyId, groupId, name, permissionsHash, true);
+		return fetchByC_G_N_P(companyId, groupId, name, permissionsHash);
 	}
 
 	/**
@@ -1398,26 +1386,17 @@ public class ResourceBlockPersistenceImpl
 	 */
 	@Override
 	public ResourceBlock fetchByC_G_N_P(
-		long companyId, long groupId, String name, String permissionsHash,
-		boolean useFinderCache) {
+		long companyId, long groupId, String name, String permissionsHash) {
 
 		name = Objects.toString(name, "");
 		permissionsHash = Objects.toString(permissionsHash, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {
+			companyId, groupId, name, permissionsHash
+		};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {
-				companyId, groupId, name, permissionsHash
-			};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByC_G_N_P, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByC_G_N_P, finderArgs, this);
 
 		if (result instanceof ResourceBlock) {
 			ResourceBlock resourceBlock = (ResourceBlock)result;
@@ -1489,10 +1468,8 @@ public class ResourceBlockPersistenceImpl
 				List<ResourceBlock> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByC_G_N_P, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_G_N_P, finderArgs, list);
 				}
 				else {
 					ResourceBlock resourceBlock = list.get(0);
@@ -1503,10 +1480,8 @@ public class ResourceBlockPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByC_G_N_P, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByC_G_N_P, finderArgs);
 
 				throw processException(e);
 			}
@@ -2275,17 +2250,20 @@ public class ResourceBlockPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource blocks
 	 */
+	@Deprecated
 	@Override
 	public List<ResourceBlock> findAll(
-		int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator) {
+		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -2298,13 +2276,12 @@ public class ResourceBlockPersistenceImpl
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource blocks
 	 */
 	@Override
 	public List<ResourceBlock> findAll(
-		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<ResourceBlock> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2314,23 +2291,17 @@ public class ResourceBlockPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<ResourceBlock> list = null;
-
-		if (useFinderCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+		List<ResourceBlock> list =
+			(List<ResourceBlock>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2377,14 +2348,10 @@ public class ResourceBlockPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

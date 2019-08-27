@@ -133,18 +133,21 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -158,13 +161,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -176,30 +178,23 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if (!uuid.equals(mbThread.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if (!uuid.equals(mbThread.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -266,14 +261,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -683,15 +674,20 @@ public class MBThreadPersistenceImpl
 	}
 
 	/**
-	 * Returns the message boards thread where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the message boards thread where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards thread, or <code>null</code> if a matching message boards thread could not be found
 	 */
+	@Deprecated
 	@Override
-	public MBThread fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public MBThread fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -703,23 +699,13 @@ public class MBThreadPersistenceImpl
 	 * @return the matching message boards thread, or <code>null</code> if a matching message boards thread could not be found
 	 */
 	@Override
-	public MBThread fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public MBThread fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof MBThread) {
 			MBThread mbThread = (MBThread)result;
@@ -769,10 +755,8 @@ public class MBThreadPersistenceImpl
 				List<MBThread> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					MBThread mbThread = list.get(0);
@@ -783,10 +767,8 @@ public class MBThreadPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -942,20 +924,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -970,13 +954,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -988,34 +971,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if (!uuid.equals(mbThread.getUuid()) ||
+					(companyId != mbThread.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if (!uuid.equals(mbThread.getUuid()) ||
-						(companyId != mbThread.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1086,14 +1062,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1535,18 +1507,21 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByGroupId(groupId, start, end, orderByComparator, true);
+		return findByGroupId(groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1560,13 +1535,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1576,30 +1550,23 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByGroupId;
-				finderArgs = new Object[] {groupId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByGroupId;
+			finderArgs = new Object[] {groupId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1655,14 +1622,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2415,14 +2378,19 @@ public class MBThreadPersistenceImpl
 	}
 
 	/**
-	 * Returns the message boards thread where rootMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the message boards thread where rootMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByRootMessageId(long)}
 	 * @param rootMessageId the root message ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards thread, or <code>null</code> if a matching message boards thread could not be found
 	 */
+	@Deprecated
 	@Override
-	public MBThread fetchByRootMessageId(long rootMessageId) {
-		return fetchByRootMessageId(rootMessageId, true);
+	public MBThread fetchByRootMessageId(
+		long rootMessageId, boolean useFinderCache) {
+
+		return fetchByRootMessageId(rootMessageId);
 	}
 
 	/**
@@ -2433,21 +2401,11 @@ public class MBThreadPersistenceImpl
 	 * @return the matching message boards thread, or <code>null</code> if a matching message boards thread could not be found
 	 */
 	@Override
-	public MBThread fetchByRootMessageId(
-		long rootMessageId, boolean useFinderCache) {
+	public MBThread fetchByRootMessageId(long rootMessageId) {
+		Object[] finderArgs = new Object[] {rootMessageId};
 
-		Object[] finderArgs = null;
-
-		if (useFinderCache) {
-			finderArgs = new Object[] {rootMessageId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByRootMessageId, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByRootMessageId, finderArgs, this);
 
 		if (result instanceof MBThread) {
 			MBThread mbThread = (MBThread)result;
@@ -2480,20 +2438,14 @@ public class MBThreadPersistenceImpl
 				List<MBThread> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByRootMessageId, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByRootMessageId, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {rootMessageId};
-							}
-
 							_log.warn(
 								"MBThreadPersistenceImpl.fetchByRootMessageId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -2509,10 +2461,8 @@ public class MBThreadPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByRootMessageId, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByRootMessageId, finderArgs);
 
 				throw processException(e);
 			}
@@ -2644,20 +2594,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByG_C(
-			groupId, categoryId, start, end, orderByComparator, true);
+		return findByG_C(groupId, categoryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2672,13 +2624,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2688,34 +2639,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C;
-				finderArgs = new Object[] {groupId, categoryId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C;
+			finderArgs = new Object[] {groupId, categoryId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C;
 			finderArgs = new Object[] {
 				groupId, categoryId, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId != mbThread.getCategoryId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId != mbThread.getCategoryId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2775,14 +2719,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3607,6 +3547,31 @@ public class MBThreadPersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param categoryId the category ID
+	 * @param start the lower bound of the range of message boards threads
+	 * @param end the upper bound of the range of message boards threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards threads
+	 */
+	@Deprecated
+	@Override
+	public List<MBThread> findByG_C(
+		long groupId, long[] categoryIds, int start, int end,
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+
+		return findByG_C(groupId, categoryIds, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = any &#63;.
 	 *
 	 * <p>
@@ -3624,30 +3589,6 @@ public class MBThreadPersistenceImpl
 	public List<MBThread> findByG_C(
 		long groupId, long[] categoryIds, int start, int end,
 		OrderByComparator<MBThread> orderByComparator) {
-
-		return findByG_C(
-			groupId, categoryIds, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param categoryId the category ID
-	 * @param start the lower bound of the range of message boards threads
-	 * @param end the upper bound of the range of message boards threads (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards threads
-	 */
-	@Override
-	public List<MBThread> findByG_C(
-		long groupId, long[] categoryIds, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		if (categoryIds == null) {
 			categoryIds = new long[0];
@@ -3670,36 +3611,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(categoryIds)
-				};
-			}
+			finderArgs = new Object[] {groupId, StringUtil.merge(categoryIds)};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(categoryIds), start, end,
 				orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			_finderPathWithPaginationFindByG_C, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				_finderPathWithPaginationFindByG_C, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					!ArrayUtil.contains(
+						categoryIds, mbThread.getCategoryId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						!ArrayUtil.contains(
-							categoryIds, mbThread.getCategoryId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3763,16 +3695,12 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(
-						_finderPathWithPaginationFindByG_C, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(
+					_finderPathWithPaginationFindByG_C, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathWithPaginationFindByG_C, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathWithPaginationFindByG_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -4117,20 +4045,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotC(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_NotC(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByG_NotC(
-			groupId, categoryId, start, end, orderByComparator, true);
+		return findByG_NotC(groupId, categoryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -4145,13 +4075,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_NotC(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4162,21 +4091,17 @@ public class MBThreadPersistenceImpl
 			groupId, categoryId, start, end, orderByComparator
 		};
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId == mbThread.getCategoryId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId == mbThread.getCategoryId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4236,14 +4161,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5057,19 +4978,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByG_S(groupId, status, start, end, orderByComparator, true);
+		return findByG_S(groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -5084,13 +5008,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_S(
 		long groupId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5100,34 +5023,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_S;
-				finderArgs = new Object[] {groupId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_S;
+			finderArgs = new Object[] {groupId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(status != mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(status != mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5187,14 +5103,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6002,20 +5914,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P(long,double, int, int, OrderByComparator)}
 	 * @param categoryId the category ID
 	 * @param priority the priority
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByC_P(
 		long categoryId, double priority, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByC_P(
-			categoryId, priority, start, end, orderByComparator, true);
+		return findByC_P(categoryId, priority, start, end, orderByComparator);
 	}
 
 	/**
@@ -6030,13 +5944,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByC_P(
 		long categoryId, double priority, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6046,34 +5959,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByC_P;
-				finderArgs = new Object[] {categoryId, priority};
-			}
+			finderPath = _finderPathWithoutPaginationFindByC_P;
+			finderArgs = new Object[] {categoryId, priority};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByC_P;
 			finderArgs = new Object[] {
 				categoryId, priority, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((categoryId != mbThread.getCategoryId()) ||
+					(priority != mbThread.getPriority())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((categoryId != mbThread.getCategoryId()) ||
-						(priority != mbThread.getPriority())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -6133,14 +6039,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6559,20 +6461,22 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByL_P(Date,double, int, int, OrderByComparator)}
 	 * @param lastPostDate the last post date
 	 * @param priority the priority
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByL_P(
 		Date lastPostDate, double priority, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
-		return findByL_P(
-			lastPostDate, priority, start, end, orderByComparator, true);
+		return findByL_P(lastPostDate, priority, start, end, orderByComparator);
 	}
 
 	/**
@@ -6587,13 +6491,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByL_P(
 		Date lastPostDate, double priority, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6603,35 +6506,27 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByL_P;
-				finderArgs = new Object[] {_getTime(lastPostDate), priority};
-			}
+			finderPath = _finderPathWithoutPaginationFindByL_P;
+			finderArgs = new Object[] {_getTime(lastPostDate), priority};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByL_P;
 			finderArgs = new Object[] {
 				_getTime(lastPostDate), priority, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if (!Objects.equals(lastPostDate, mbThread.getLastPostDate()) ||
+					(priority != mbThread.getPriority())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if (!Objects.equals(
-							lastPostDate, mbThread.getLastPostDate()) ||
-						(priority != mbThread.getPriority())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -6702,14 +6597,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7158,22 +7049,24 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_L(long,long,Date, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param lastPostDate the last post date
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_C_L(
 		long groupId, long categoryId, Date lastPostDate, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		return findByG_C_L(
-			groupId, categoryId, lastPostDate, start, end, orderByComparator,
-			true);
+			groupId, categoryId, lastPostDate, start, end, orderByComparator);
 	}
 
 	/**
@@ -7189,13 +7082,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_C_L(
 		long groupId, long categoryId, Date lastPostDate, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7205,15 +7097,12 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_L;
-				finderArgs = new Object[] {
-					groupId, categoryId, _getTime(lastPostDate)
-				};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_L;
+			finderArgs = new Object[] {
+				groupId, categoryId, _getTime(lastPostDate)
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_L;
 			finderArgs = new Object[] {
 				groupId, categoryId, _getTime(lastPostDate), start, end,
@@ -7221,23 +7110,18 @@ public class MBThreadPersistenceImpl
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId != mbThread.getCategoryId()) ||
+					!Objects.equals(lastPostDate, mbThread.getLastPostDate())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId != mbThread.getCategoryId()) ||
-						!Objects.equals(
-							lastPostDate, mbThread.getLastPostDate())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -7312,14 +7196,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -8252,21 +8132,24 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		return findByG_C_S(
-			groupId, categoryId, status, start, end, orderByComparator, true);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -8282,13 +8165,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_C_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8298,35 +8180,28 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_S;
-				finderArgs = new Object[] {groupId, categoryId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_C_S;
+			finderArgs = new Object[] {groupId, categoryId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_C_S;
 			finderArgs = new Object[] {
 				groupId, categoryId, status, start, end, orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId != mbThread.getCategoryId()) ||
+					(status != mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId != mbThread.getCategoryId()) ||
-						(status != mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -8390,14 +8265,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9272,6 +9143,33 @@ public class MBThreadPersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63; and status = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_S(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param categoryId the category ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message boards threads
+	 * @param end the upper bound of the range of message boards threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards threads
+	 */
+	@Deprecated
+	@Override
+	public List<MBThread> findByG_C_S(
+		long groupId, long[] categoryIds, int status, int start, int end,
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+
+		return findByG_C_S(
+			groupId, categoryIds, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -9290,31 +9188,6 @@ public class MBThreadPersistenceImpl
 	public List<MBThread> findByG_C_S(
 		long groupId, long[] categoryIds, int status, int start, int end,
 		OrderByComparator<MBThread> orderByComparator) {
-
-		return findByG_C_S(
-			groupId, categoryIds, status, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63; and status = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param categoryId the category ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message boards threads
-	 * @param end the upper bound of the range of message boards threads (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards threads
-	 */
-	@Override
-	public List<MBThread> findByG_C_S(
-		long groupId, long[] categoryIds, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		if (categoryIds == null) {
 			categoryIds = new long[0];
@@ -9337,37 +9210,30 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(categoryIds), status
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(categoryIds), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(categoryIds), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			_finderPathWithPaginationFindByG_C_S, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				_finderPathWithPaginationFindByG_C_S, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					!ArrayUtil.contains(
+						categoryIds, mbThread.getCategoryId()) ||
+					(status != mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						!ArrayUtil.contains(
-							categoryIds, mbThread.getCategoryId()) ||
-						(status != mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9437,16 +9303,12 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(
-						_finderPathWithPaginationFindByG_C_S, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(
+					_finderPathWithPaginationFindByG_C_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathWithPaginationFindByG_C_S, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathWithPaginationFindByG_C_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -9826,21 +9688,24 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_NotS(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_C_NotS(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		return findByG_C_NotS(
-			groupId, categoryId, status, start, end, orderByComparator, true);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -9856,13 +9721,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_C_NotS(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9873,22 +9737,18 @@ public class MBThreadPersistenceImpl
 			groupId, categoryId, status, start, end, orderByComparator
 		};
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId != mbThread.getCategoryId()) ||
+					(status == mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId != mbThread.getCategoryId()) ||
-						(status == mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -9952,14 +9812,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10835,6 +10691,33 @@ public class MBThreadPersistenceImpl
 	}
 
 	/**
+	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63; and status &ne; &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_NotS(long,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param categoryId the category ID
+	 * @param status the status
+	 * @param start the lower bound of the range of message boards threads
+	 * @param end the upper bound of the range of message boards threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching message boards threads
+	 */
+	@Deprecated
+	@Override
+	public List<MBThread> findByG_C_NotS(
+		long groupId, long[] categoryIds, int status, int start, int end,
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+
+		return findByG_C_NotS(
+			groupId, categoryIds, status, start, end, orderByComparator);
+	}
+
+	/**
 	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = any &#63; and status &ne; &#63;.
 	 *
 	 * <p>
@@ -10853,31 +10736,6 @@ public class MBThreadPersistenceImpl
 	public List<MBThread> findByG_C_NotS(
 		long groupId, long[] categoryIds, int status, int start, int end,
 		OrderByComparator<MBThread> orderByComparator) {
-
-		return findByG_C_NotS(
-			groupId, categoryIds, status, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the message boards threads where groupId = &#63; and categoryId = &#63; and status &ne; &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param categoryId the category ID
-	 * @param status the status
-	 * @param start the lower bound of the range of message boards threads
-	 * @param end the upper bound of the range of message boards threads (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching message boards threads
-	 */
-	@Override
-	public List<MBThread> findByG_C_NotS(
-		long groupId, long[] categoryIds, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		if (categoryIds == null) {
 			categoryIds = new long[0];
@@ -10900,37 +10758,30 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderArgs = new Object[] {
-					groupId, StringUtil.merge(categoryIds), status
-				};
-			}
+			finderArgs = new Object[] {
+				groupId, StringUtil.merge(categoryIds), status
+			};
 		}
-		else if (useFinderCache) {
+		else {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(categoryIds), status, start, end,
 				orderByComparator
 			};
 		}
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			_finderPathWithPaginationFindByG_C_NotS, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				_finderPathWithPaginationFindByG_C_NotS, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					!ArrayUtil.contains(
+						categoryIds, mbThread.getCategoryId()) ||
+					(status == mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						!ArrayUtil.contains(
-							categoryIds, mbThread.getCategoryId()) ||
-						(status == mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11000,17 +10851,12 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(
-						_finderPathWithPaginationFindByG_C_NotS, finderArgs,
-						list);
-				}
+				FinderCacheUtil.putResult(
+					_finderPathWithPaginationFindByG_C_NotS, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathWithPaginationFindByG_C_NotS, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathWithPaginationFindByG_C_NotS, finderArgs);
 
 				throw processException(e);
 			}
@@ -11393,21 +11239,24 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotC_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_NotC_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		return findByG_NotC_S(
-			groupId, categoryId, status, start, end, orderByComparator, true);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -11423,13 +11272,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_NotC_S(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11440,22 +11288,18 @@ public class MBThreadPersistenceImpl
 			groupId, categoryId, status, start, end, orderByComparator
 		};
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId == mbThread.getCategoryId()) ||
+					(status != mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId == mbThread.getCategoryId()) ||
-						(status != mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -11519,14 +11363,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12393,21 +12233,24 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_NotC_NotS(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param status the status
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findByG_NotC_NotS(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator) {
+		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
 
 		return findByG_NotC_NotS(
-			groupId, categoryId, status, start, end, orderByComparator, true);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -12423,13 +12266,12 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards threads
 	 */
 	@Override
 	public List<MBThread> findByG_NotC_NotS(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBThread> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -12440,22 +12282,18 @@ public class MBThreadPersistenceImpl
 			groupId, categoryId, status, start, end, orderByComparator
 		};
 
-		List<MBThread> list = null;
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (MBThread mbThread : list) {
+				if ((groupId != mbThread.getGroupId()) ||
+					(categoryId == mbThread.getCategoryId()) ||
+					(status == mbThread.getStatus())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (MBThread mbThread : list) {
-					if ((groupId != mbThread.getGroupId()) ||
-						(categoryId == mbThread.getCategoryId()) ||
-						(status == mbThread.getStatus())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -12519,14 +12357,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -14232,16 +14066,20 @@ public class MBThreadPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards threads
 	 */
+	@Deprecated
 	@Override
 	public List<MBThread> findAll(
-		int start, int end, OrderByComparator<MBThread> orderByComparator) {
+		int start, int end, OrderByComparator<MBThread> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -14254,13 +14092,11 @@ public class MBThreadPersistenceImpl
 	 * @param start the lower bound of the range of message boards threads
 	 * @param end the upper bound of the range of message boards threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards threads
 	 */
 	@Override
 	public List<MBThread> findAll(
-		int start, int end, OrderByComparator<MBThread> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<MBThread> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -14270,23 +14106,16 @@ public class MBThreadPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<MBThread> list = null;
-
-		if (useFinderCache) {
-			list = (List<MBThread>)FinderCacheUtil.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<MBThread> list = (List<MBThread>)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -14333,14 +14162,10 @@ public class MBThreadPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

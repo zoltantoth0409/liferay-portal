@@ -124,18 +124,22 @@ public class DDLRecordVersionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByRecordId(long, int, int, OrderByComparator)}
 	 * @param recordId the record ID
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record versions
 	 */
+	@Deprecated
 	@Override
 	public List<DDLRecordVersion> findByRecordId(
 		long recordId, int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator) {
+		OrderByComparator<DDLRecordVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByRecordId(recordId, start, end, orderByComparator, true);
+		return findByRecordId(recordId, start, end, orderByComparator);
 	}
 
 	/**
@@ -149,14 +153,12 @@ public class DDLRecordVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record versions
 	 */
 	@Override
 	public List<DDLRecordVersion> findByRecordId(
 		long recordId, int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDLRecordVersion> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,30 +168,24 @@ public class DDLRecordVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByRecordId;
-				finderArgs = new Object[] {recordId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByRecordId;
+			finderArgs = new Object[] {recordId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByRecordId;
 			finderArgs = new Object[] {recordId, start, end, orderByComparator};
 		}
 
-		List<DDLRecordVersion> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDLRecordVersion>)finderCache.getResult(
+		List<DDLRecordVersion> list =
+			(List<DDLRecordVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDLRecordVersion ddlRecordVersion : list) {
-					if ((recordId != ddlRecordVersion.getRecordId())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DDLRecordVersion ddlRecordVersion : list) {
+				if ((recordId != ddlRecordVersion.getRecordId())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -245,14 +241,10 @@ public class DDLRecordVersionPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -640,15 +632,20 @@ public class DDLRecordVersionPersistenceImpl
 	}
 
 	/**
-	 * Returns the ddl record version where recordId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the ddl record version where recordId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByR_V(long,String)}
 	 * @param recordId the record ID
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	 */
+	@Deprecated
 	@Override
-	public DDLRecordVersion fetchByR_V(long recordId, String version) {
-		return fetchByR_V(recordId, version, true);
+	public DDLRecordVersion fetchByR_V(
+		long recordId, String version, boolean useFinderCache) {
+
+		return fetchByR_V(recordId, version);
 	}
 
 	/**
@@ -660,23 +657,13 @@ public class DDLRecordVersionPersistenceImpl
 	 * @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	 */
 	@Override
-	public DDLRecordVersion fetchByR_V(
-		long recordId, String version, boolean useFinderCache) {
-
+	public DDLRecordVersion fetchByR_V(long recordId, String version) {
 		version = Objects.toString(version, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {recordId, version};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {recordId, version};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByR_V, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByR_V, finderArgs, this);
 
 		if (result instanceof DDLRecordVersion) {
 			DDLRecordVersion ddlRecordVersion = (DDLRecordVersion)result;
@@ -726,10 +713,8 @@ public class DDLRecordVersionPersistenceImpl
 				List<DDLRecordVersion> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByR_V, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByR_V, finderArgs, list);
 				}
 				else {
 					DDLRecordVersion ddlRecordVersion = list.get(0);
@@ -740,9 +725,7 @@ public class DDLRecordVersionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
 
 				throw processException(e);
 			}
@@ -897,19 +880,23 @@ public class DDLRecordVersionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_S(long,int, int, int, OrderByComparator)}
 	 * @param recordId the record ID
 	 * @param status the status
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record versions
 	 */
+	@Deprecated
 	@Override
 	public List<DDLRecordVersion> findByR_S(
 		long recordId, int status, int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator) {
+		OrderByComparator<DDLRecordVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByR_S(recordId, status, start, end, orderByComparator, true);
+		return findByR_S(recordId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -924,14 +911,12 @@ public class DDLRecordVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record versions
 	 */
 	@Override
 	public List<DDLRecordVersion> findByR_S(
 		long recordId, int status, int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDLRecordVersion> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -941,34 +926,28 @@ public class DDLRecordVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByR_S;
-				finderArgs = new Object[] {recordId, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByR_S;
+			finderArgs = new Object[] {recordId, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByR_S;
 			finderArgs = new Object[] {
 				recordId, status, start, end, orderByComparator
 			};
 		}
 
-		List<DDLRecordVersion> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDLRecordVersion>)finderCache.getResult(
+		List<DDLRecordVersion> list =
+			(List<DDLRecordVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DDLRecordVersion ddlRecordVersion : list) {
-					if ((recordId != ddlRecordVersion.getRecordId()) ||
-						(status != ddlRecordVersion.getStatus())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DDLRecordVersion ddlRecordVersion : list) {
+				if ((recordId != ddlRecordVersion.getRecordId()) ||
+					(status != ddlRecordVersion.getStatus())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1028,14 +1007,10 @@ public class DDLRecordVersionPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2018,17 +1993,21 @@ public class DDLRecordVersionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddl record versions
 	 */
+	@Deprecated
 	@Override
 	public List<DDLRecordVersion> findAll(
 		int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator) {
+		OrderByComparator<DDLRecordVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -2041,14 +2020,12 @@ public class DDLRecordVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record versions
 	 * @param end the upper bound of the range of ddl record versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddl record versions
 	 */
 	@Override
 	public List<DDLRecordVersion> findAll(
 		int start, int end,
-		OrderByComparator<DDLRecordVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDLRecordVersion> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2058,23 +2035,17 @@ public class DDLRecordVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<DDLRecordVersion> list = null;
-
-		if (useFinderCache) {
-			list = (List<DDLRecordVersion>)finderCache.getResult(
+		List<DDLRecordVersion> list =
+			(List<DDLRecordVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2121,14 +2092,10 @@ public class DDLRecordVersionPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

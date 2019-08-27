@@ -17,6 +17,7 @@ package com.liferay.wsrp.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 
@@ -79,16 +80,19 @@ public interface WSRPConsumerPortletPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	public java.util.List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the wsrp consumer portlets where uuid = &#63;.
@@ -101,14 +105,11 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where uuid = &#63;.
@@ -120,8 +121,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByUuid_First(
 			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -132,9 +132,7 @@ public interface WSRPConsumerPortletPersistence
 	 * @return the first matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	public WSRPConsumerPortlet fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		String uuid, OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the last wsrp consumer portlet in the ordered set where uuid = &#63;.
@@ -146,8 +144,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByUuid_Last(
 			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -158,9 +155,7 @@ public interface WSRPConsumerPortletPersistence
 	 * @return the last matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	public WSRPConsumerPortlet fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		String uuid, OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the wsrp consumer portlets before and after the current wsrp consumer portlet in the ordered set where uuid = &#63;.
@@ -173,8 +168,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet[] findByUuid_PrevAndNext(
 			long wsrpConsumerPortletId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -225,17 +219,20 @@ public interface WSRPConsumerPortletPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	public java.util.List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the wsrp consumer portlets where uuid = &#63; and companyId = &#63;.
@@ -249,14 +246,11 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -269,8 +263,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -283,8 +276,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the last wsrp consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -297,8 +289,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -311,8 +302,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the wsrp consumer portlets before and after the current wsrp consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -326,8 +316,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet[] findByUuid_C_PrevAndNext(
 			long wsrpConsumerPortletId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -378,16 +367,19 @@ public interface WSRPConsumerPortletPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByWsrpConsumerId(long, int, int, OrderByComparator)}
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	public java.util.List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the wsrp consumer portlets where wsrpConsumerId = &#63;.
@@ -400,14 +392,11 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -419,8 +408,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByWsrpConsumerId_First(
 			long wsrpConsumerId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -432,8 +420,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet fetchByWsrpConsumerId_First(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the last wsrp consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -445,8 +432,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet findByWsrpConsumerId_Last(
 			long wsrpConsumerId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -458,8 +444,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet fetchByWsrpConsumerId_Last(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Returns the wsrp consumer portlets before and after the current wsrp consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -472,8 +457,7 @@ public interface WSRPConsumerPortletPersistence
 	 */
 	public WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 			long wsrpConsumerPortletId, long wsrpConsumerId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<WSRPConsumerPortlet> orderByComparator)
+			OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException;
 
 	/**
@@ -504,14 +488,17 @@ public interface WSRPConsumerPortletPersistence
 		throws NoSuchConsumerPortletException;
 
 	/**
-	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByW_P(long,String)}
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
+	@Deprecated
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle);
+		long wsrpConsumerId, String portletHandle, boolean useFinderCache);
 
 	/**
 	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -522,7 +509,7 @@ public interface WSRPConsumerPortletPersistence
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle, boolean useFinderCache);
+		long wsrpConsumerId, String portletHandle);
 
 	/**
 	 * Removes the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
@@ -625,15 +612,18 @@ public interface WSRPConsumerPortletPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
+	@Deprecated
 	public java.util.List<WSRPConsumerPortlet> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the wsrp consumer portlets.
@@ -645,14 +635,11 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator);
 
 	/**
 	 * Removes all the wsrp consumer portlets from the database.

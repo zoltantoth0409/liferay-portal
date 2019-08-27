@@ -129,18 +129,22 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -154,14 +158,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -173,30 +175,24 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if (!uuid.equals(dlFileShortcut.getUuid())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if (!uuid.equals(dlFileShortcut.getUuid())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -263,14 +259,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -683,15 +675,20 @@ public class DLFileShortcutPersistenceImpl
 	}
 
 	/**
-	 * Returns the document library file shortcut where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the document library file shortcut where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching document library file shortcut, or <code>null</code> if a matching document library file shortcut could not be found
 	 */
+	@Deprecated
 	@Override
-	public DLFileShortcut fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
+	public DLFileShortcut fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -703,23 +700,13 @@ public class DLFileShortcutPersistenceImpl
 	 * @return the matching document library file shortcut, or <code>null</code> if a matching document library file shortcut could not be found
 	 */
 	@Override
-	public DLFileShortcut fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
+	public DLFileShortcut fetchByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = FinderCacheUtil.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
+		Object result = FinderCacheUtil.getResult(
+			_finderPathFetchByUUID_G, finderArgs, this);
 
 		if (result instanceof DLFileShortcut) {
 			DLFileShortcut dlFileShortcut = (DLFileShortcut)result;
@@ -769,10 +756,8 @@ public class DLFileShortcutPersistenceImpl
 				List<DLFileShortcut> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						FinderCacheUtil.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
+					FinderCacheUtil.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					DLFileShortcut dlFileShortcut = list.get(0);
@@ -783,10 +768,8 @@ public class DLFileShortcutPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(
-						_finderPathFetchByUUID_G, finderArgs);
-				}
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByUUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -942,20 +925,23 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -970,14 +956,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -989,34 +973,28 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if (!uuid.equals(dlFileShortcut.getUuid()) ||
-						(companyId != dlFileShortcut.getCompanyId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if (!uuid.equals(dlFileShortcut.getUuid()) ||
+					(companyId != dlFileShortcut.getCompanyId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1087,14 +1065,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1542,18 +1516,22 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator, true);
+		return findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1567,14 +1545,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1584,32 +1560,26 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByCompanyId;
-				finderArgs = new Object[] {companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
+			finderArgs = new Object[] {companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((companyId != dlFileShortcut.getCompanyId())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((companyId != dlFileShortcut.getCompanyId())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1665,14 +1635,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2059,19 +2025,23 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByToFileEntryId(long, int, int, OrderByComparator)}
 	 * @param toFileEntryId the to file entry ID
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByToFileEntryId(
 		long toFileEntryId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByToFileEntryId(
-			toFileEntryId, start, end, orderByComparator, true);
+			toFileEntryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2085,14 +2055,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByToFileEntryId(
 		long toFileEntryId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2102,32 +2070,26 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByToFileEntryId;
-				finderArgs = new Object[] {toFileEntryId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByToFileEntryId;
+			finderArgs = new Object[] {toFileEntryId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByToFileEntryId;
 			finderArgs = new Object[] {
 				toFileEntryId, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((toFileEntryId != dlFileShortcut.getToFileEntryId())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((toFileEntryId != dlFileShortcut.getToFileEntryId())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2183,14 +2145,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2586,20 +2544,23 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param folderId the folder ID
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByG_F(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByG_F(
-			groupId, folderId, start, end, orderByComparator, true);
+		return findByG_F(groupId, folderId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2614,14 +2575,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByG_F(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2631,34 +2590,28 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_F;
-				finderArgs = new Object[] {groupId, folderId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_F;
+			finderArgs = new Object[] {groupId, folderId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_F;
 			finderArgs = new Object[] {
 				groupId, folderId, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((groupId != dlFileShortcut.getGroupId()) ||
-						(folderId != dlFileShortcut.getFolderId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((groupId != dlFileShortcut.getGroupId()) ||
+					(folderId != dlFileShortcut.getFolderId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2718,14 +2671,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3542,20 +3491,23 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_NotS(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByC_NotS(
 		long companyId, int status, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByC_NotS(
-			companyId, status, start, end, orderByComparator, true);
+		return findByC_NotS(companyId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -3570,14 +3522,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByC_NotS(
 		long companyId, int status, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3588,21 +3538,18 @@ public class DLFileShortcutPersistenceImpl
 			companyId, status, start, end, orderByComparator
 		};
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((companyId != dlFileShortcut.getCompanyId()) ||
-						(status == dlFileShortcut.getStatus())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((companyId != dlFileShortcut.getCompanyId()) ||
+					(status == dlFileShortcut.getStatus())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -3662,14 +3609,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4095,21 +4038,25 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_A(long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param folderId the folder ID
 	 * @param active the active
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByG_F_A(
 		long groupId, long folderId, boolean active, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_F_A(
-			groupId, folderId, active, start, end, orderByComparator, true);
+			groupId, folderId, active, start, end, orderByComparator);
 	}
 
 	/**
@@ -4125,14 +4072,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByG_F_A(
 		long groupId, long folderId, boolean active, int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4142,35 +4087,29 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_F_A;
-				finderArgs = new Object[] {groupId, folderId, active};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_F_A;
+			finderArgs = new Object[] {groupId, folderId, active};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_F_A;
 			finderArgs = new Object[] {
 				groupId, folderId, active, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((groupId != dlFileShortcut.getGroupId()) ||
-						(folderId != dlFileShortcut.getFolderId()) ||
-						(active != dlFileShortcut.isActive())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((groupId != dlFileShortcut.getGroupId()) ||
+					(folderId != dlFileShortcut.getFolderId()) ||
+					(active != dlFileShortcut.isActive())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -4234,14 +4173,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5116,6 +5051,7 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_A_S(long,long,boolean,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param folderId the folder ID
 	 * @param active the active
@@ -5123,16 +5059,18 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findByG_F_A_S(
 		long groupId, long folderId, boolean active, int status, int start,
-		int end, OrderByComparator<DLFileShortcut> orderByComparator) {
+		int end, OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByG_F_A_S(
-			groupId, folderId, active, status, start, end, orderByComparator,
-			true);
+			groupId, folderId, active, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -5149,14 +5087,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findByG_F_A_S(
 		long groupId, long folderId, boolean active, int status, int start,
-		int end, OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5166,36 +5102,30 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_F_A_S;
-				finderArgs = new Object[] {groupId, folderId, active, status};
-			}
+			finderPath = _finderPathWithoutPaginationFindByG_F_A_S;
+			finderArgs = new Object[] {groupId, folderId, active, status};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByG_F_A_S;
 			finderArgs = new Object[] {
 				groupId, folderId, active, status, start, end, orderByComparator
 			};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (DLFileShortcut dlFileShortcut : list) {
-					if ((groupId != dlFileShortcut.getGroupId()) ||
-						(folderId != dlFileShortcut.getFolderId()) ||
-						(active != dlFileShortcut.isActive()) ||
-						(status != dlFileShortcut.getStatus())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (DLFileShortcut dlFileShortcut : list) {
+				if ((groupId != dlFileShortcut.getGroupId()) ||
+					(folderId != dlFileShortcut.getFolderId()) ||
+					(active != dlFileShortcut.isActive()) ||
+					(status != dlFileShortcut.getStatus())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -5263,14 +5193,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6960,17 +6886,20 @@ public class DLFileShortcutPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileShortcutModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of document library file shortcuts
 	 */
+	@Deprecated
 	@Override
 	public List<DLFileShortcut> findAll(
-		int start, int end,
-		OrderByComparator<DLFileShortcut> orderByComparator) {
+		int start, int end, OrderByComparator<DLFileShortcut> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -6983,13 +6912,12 @@ public class DLFileShortcutPersistenceImpl
 	 * @param start the lower bound of the range of document library file shortcuts
 	 * @param end the upper bound of the range of document library file shortcuts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of document library file shortcuts
 	 */
 	@Override
 	public List<DLFileShortcut> findAll(
-		int start, int end, OrderByComparator<DLFileShortcut> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<DLFileShortcut> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6999,23 +6927,17 @@ public class DLFileShortcutPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<DLFileShortcut> list = null;
-
-		if (useFinderCache) {
-			list = (List<DLFileShortcut>)FinderCacheUtil.getResult(
+		List<DLFileShortcut> list =
+			(List<DLFileShortcut>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -7062,14 +6984,10 @@ public class DLFileShortcutPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

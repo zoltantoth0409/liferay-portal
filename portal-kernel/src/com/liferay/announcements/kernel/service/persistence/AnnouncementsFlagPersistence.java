@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.announcements.kernel.exception.NoSuchFlagException;
 import com.liferay.announcements.kernel.model.AnnouncementsFlag;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,16 +80,19 @@ public interface AnnouncementsFlagPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnnouncementsFlagModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByEntryId(long, int, int, OrderByComparator)}
 	 * @param entryId the entry ID
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching announcements flags
 	 */
+	@Deprecated
 	public java.util.List<AnnouncementsFlag> findByEntryId(
 		long entryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator);
+		OrderByComparator<AnnouncementsFlag> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the announcements flags where entryId = &#63;.
@@ -101,14 +105,11 @@ public interface AnnouncementsFlagPersistence
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching announcements flags
 	 */
 	public java.util.List<AnnouncementsFlag> findByEntryId(
 		long entryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<AnnouncementsFlag> orderByComparator);
 
 	/**
 	 * Returns the first announcements flag in the ordered set where entryId = &#63;.
@@ -120,8 +121,7 @@ public interface AnnouncementsFlagPersistence
 	 */
 	public AnnouncementsFlag findByEntryId_First(
 			long entryId,
-			com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-				orderByComparator)
+			OrderByComparator<AnnouncementsFlag> orderByComparator)
 		throws NoSuchFlagException;
 
 	/**
@@ -132,9 +132,7 @@ public interface AnnouncementsFlagPersistence
 	 * @return the first matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
 	public AnnouncementsFlag fetchByEntryId_First(
-		long entryId,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator);
+		long entryId, OrderByComparator<AnnouncementsFlag> orderByComparator);
 
 	/**
 	 * Returns the last announcements flag in the ordered set where entryId = &#63;.
@@ -146,8 +144,7 @@ public interface AnnouncementsFlagPersistence
 	 */
 	public AnnouncementsFlag findByEntryId_Last(
 			long entryId,
-			com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-				orderByComparator)
+			OrderByComparator<AnnouncementsFlag> orderByComparator)
 		throws NoSuchFlagException;
 
 	/**
@@ -158,9 +155,7 @@ public interface AnnouncementsFlagPersistence
 	 * @return the last matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
 	public AnnouncementsFlag fetchByEntryId_Last(
-		long entryId,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator);
+		long entryId, OrderByComparator<AnnouncementsFlag> orderByComparator);
 
 	/**
 	 * Returns the announcements flags before and after the current announcements flag in the ordered set where entryId = &#63;.
@@ -173,8 +168,7 @@ public interface AnnouncementsFlagPersistence
 	 */
 	public AnnouncementsFlag[] findByEntryId_PrevAndNext(
 			long flagId, long entryId,
-			com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-				orderByComparator)
+			OrderByComparator<AnnouncementsFlag> orderByComparator)
 		throws NoSuchFlagException;
 
 	/**
@@ -205,14 +199,18 @@ public interface AnnouncementsFlagPersistence
 		throws NoSuchFlagException;
 
 	/**
-	 * Returns the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_E_V(long,long,int)}
 	 * @param userId the user ID
 	 * @param entryId the entry ID
 	 * @param value the value
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
-	public AnnouncementsFlag fetchByU_E_V(long userId, long entryId, int value);
+	@Deprecated
+	public AnnouncementsFlag fetchByU_E_V(
+		long userId, long entryId, int value, boolean useFinderCache);
 
 	/**
 	 * Returns the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -223,8 +221,7 @@ public interface AnnouncementsFlagPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
-	public AnnouncementsFlag fetchByU_E_V(
-		long userId, long entryId, int value, boolean useFinderCache);
+	public AnnouncementsFlag fetchByU_E_V(long userId, long entryId, int value);
 
 	/**
 	 * Removes the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; from the database.
@@ -326,15 +323,18 @@ public interface AnnouncementsFlagPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnnouncementsFlagModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of announcements flags
 	 */
+	@Deprecated
 	public java.util.List<AnnouncementsFlag> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator);
+		OrderByComparator<AnnouncementsFlag> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the announcements flags.
@@ -346,14 +346,11 @@ public interface AnnouncementsFlagPersistence
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of announcements flags
 	 */
 	public java.util.List<AnnouncementsFlag> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AnnouncementsFlag>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<AnnouncementsFlag> orderByComparator);
 
 	/**
 	 * Removes all the announcements flags from the database.

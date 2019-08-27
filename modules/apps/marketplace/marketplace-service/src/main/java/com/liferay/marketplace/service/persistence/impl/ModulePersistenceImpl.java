@@ -125,18 +125,21 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Module> orderByComparator) {
+		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -150,13 +153,12 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	@Override
 	public List<Module> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Module> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -168,30 +170,23 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<Module> list = null;
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!uuid.equals(module.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Module module : list) {
-					if (!uuid.equals(module.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -258,14 +253,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -676,20 +667,22 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Module> orderByComparator) {
+		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -704,13 +697,12 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	@Override
 	public List<Module> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Module> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -722,34 +714,27 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<Module> list = null;
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!uuid.equals(module.getUuid()) ||
+					(companyId != module.getCompanyId())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Module module : list) {
-					if (!uuid.equals(module.getUuid()) ||
-						(companyId != module.getCompanyId())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -820,14 +805,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1265,18 +1246,21 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByAppId(long, int, int, OrderByComparator)}
 	 * @param appId the app ID
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findByAppId(
 		long appId, int start, int end,
-		OrderByComparator<Module> orderByComparator) {
+		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
 
-		return findByAppId(appId, start, end, orderByComparator, true);
+		return findByAppId(appId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1290,13 +1274,12 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	@Override
 	public List<Module> findByAppId(
 		long appId, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Module> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1306,30 +1289,23 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByAppId;
-				finderArgs = new Object[] {appId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByAppId;
+			finderArgs = new Object[] {appId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByAppId;
 			finderArgs = new Object[] {appId, start, end, orderByComparator};
 		}
 
-		List<Module> list = null;
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if ((appId != module.getAppId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Module module : list) {
-					if ((appId != module.getAppId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1385,14 +1361,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1774,19 +1746,22 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByBundleSymbolicName(String, int, int, OrderByComparator)}
 	 * @param bundleSymbolicName the bundle symbolic name
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findByBundleSymbolicName(
 		String bundleSymbolicName, int start, int end,
-		OrderByComparator<Module> orderByComparator) {
+		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
 
 		return findByBundleSymbolicName(
-			bundleSymbolicName, start, end, orderByComparator, true);
+			bundleSymbolicName, start, end, orderByComparator);
 	}
 
 	/**
@@ -1800,13 +1775,12 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	@Override
 	public List<Module> findByBundleSymbolicName(
 		String bundleSymbolicName, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Module> orderByComparator) {
 
 		bundleSymbolicName = Objects.toString(bundleSymbolicName, "");
 
@@ -1818,35 +1792,27 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath =
-					_finderPathWithoutPaginationFindByBundleSymbolicName;
-				finderArgs = new Object[] {bundleSymbolicName};
-			}
+			finderPath = _finderPathWithoutPaginationFindByBundleSymbolicName;
+			finderArgs = new Object[] {bundleSymbolicName};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByBundleSymbolicName;
 			finderArgs = new Object[] {
 				bundleSymbolicName, start, end, orderByComparator
 			};
 		}
 
-		List<Module> list = null;
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!bundleSymbolicName.equals(
+						module.getBundleSymbolicName())) {
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Module module : list) {
-					if (!bundleSymbolicName.equals(
-							module.getBundleSymbolicName())) {
+					list = null;
 
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1915,14 +1881,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2347,19 +2309,21 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByContextName(String, int, int, OrderByComparator)}
 	 * @param contextName the context name
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findByContextName(
 		String contextName, int start, int end,
-		OrderByComparator<Module> orderByComparator) {
+		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
 
-		return findByContextName(
-			contextName, start, end, orderByComparator, true);
+		return findByContextName(contextName, start, end, orderByComparator);
 	}
 
 	/**
@@ -2373,13 +2337,12 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	@Override
 	public List<Module> findByContextName(
 		String contextName, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Module> orderByComparator) {
 
 		contextName = Objects.toString(contextName, "");
 
@@ -2391,32 +2354,25 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByContextName;
-				finderArgs = new Object[] {contextName};
-			}
+			finderPath = _finderPathWithoutPaginationFindByContextName;
+			finderArgs = new Object[] {contextName};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByContextName;
 			finderArgs = new Object[] {
 				contextName, start, end, orderByComparator
 			};
 		}
 
-		List<Module> list = null;
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!contextName.equals(module.getContextName())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Module module : list) {
-					if (!contextName.equals(module.getContextName())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2483,14 +2439,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2902,15 +2854,20 @@ public class ModulePersistenceImpl
 	}
 
 	/**
-	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByA_CN(long,String)}
 	 * @param appId the app ID
 	 * @param contextName the context name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
+	@Deprecated
 	@Override
-	public Module fetchByA_CN(long appId, String contextName) {
-		return fetchByA_CN(appId, contextName, true);
+	public Module fetchByA_CN(
+		long appId, String contextName, boolean useFinderCache) {
+
+		return fetchByA_CN(appId, contextName);
 	}
 
 	/**
@@ -2922,23 +2879,13 @@ public class ModulePersistenceImpl
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
 	@Override
-	public Module fetchByA_CN(
-		long appId, String contextName, boolean useFinderCache) {
-
+	public Module fetchByA_CN(long appId, String contextName) {
 		contextName = Objects.toString(contextName, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {appId, contextName};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {appId, contextName};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByA_CN, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByA_CN, finderArgs, this);
 
 		if (result instanceof Module) {
 			Module module = (Module)result;
@@ -2988,20 +2935,14 @@ public class ModulePersistenceImpl
 				List<Module> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByA_CN, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByA_CN, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {appId, contextName};
-							}
-
 							_log.warn(
 								"ModulePersistenceImpl.fetchByA_CN(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -3017,10 +2958,7 @@ public class ModulePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByA_CN, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByA_CN, finderArgs);
 
 				throw processException(e);
 			}
@@ -3178,18 +3116,22 @@ public class ModulePersistenceImpl
 	}
 
 	/**
-	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByA_BSN_BV(long,String,String)}
 	 * @param appId the app ID
 	 * @param bundleSymbolicName the bundle symbolic name
 	 * @param bundleVersion the bundle version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
+	@Deprecated
 	@Override
 	public Module fetchByA_BSN_BV(
-		long appId, String bundleSymbolicName, String bundleVersion) {
+		long appId, String bundleSymbolicName, String bundleVersion,
+		boolean useFinderCache) {
 
-		return fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion, true);
+		return fetchByA_BSN_BV(appId, bundleSymbolicName, bundleVersion);
 	}
 
 	/**
@@ -3203,26 +3145,17 @@ public class ModulePersistenceImpl
 	 */
 	@Override
 	public Module fetchByA_BSN_BV(
-		long appId, String bundleSymbolicName, String bundleVersion,
-		boolean useFinderCache) {
+		long appId, String bundleSymbolicName, String bundleVersion) {
 
 		bundleSymbolicName = Objects.toString(bundleSymbolicName, "");
 		bundleVersion = Objects.toString(bundleVersion, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {
+			appId, bundleSymbolicName, bundleVersion
+		};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {
-				appId, bundleSymbolicName, bundleVersion
-			};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByA_BSN_BV, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByA_BSN_BV, finderArgs, this);
 
 		if (result instanceof Module) {
 			Module module = (Module)result;
@@ -3289,22 +3222,14 @@ public class ModulePersistenceImpl
 				List<Module> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByA_BSN_BV, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByA_BSN_BV, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {
-									appId, bundleSymbolicName, bundleVersion
-								};
-							}
-
 							_log.warn(
 								"ModulePersistenceImpl.fetchByA_BSN_BV(long, String, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -3320,10 +3245,8 @@ public class ModulePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(
-						_finderPathFetchByA_BSN_BV, finderArgs);
-				}
+				finderCache.removeResult(
+					_finderPathFetchByA_BSN_BV, finderArgs);
 
 				throw processException(e);
 			}
@@ -4186,16 +4109,20 @@ public class ModulePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of modules
 	 */
+	@Deprecated
 	@Override
 	public List<Module> findAll(
-		int start, int end, OrderByComparator<Module> orderByComparator) {
+		int start, int end, OrderByComparator<Module> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -4208,13 +4135,11 @@ public class ModulePersistenceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of modules
 	 */
 	@Override
 	public List<Module> findAll(
-		int start, int end, OrderByComparator<Module> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<Module> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4224,23 +4149,16 @@ public class ModulePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<Module> list = null;
-
-		if (useFinderCache) {
-			list = (List<Module>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<Module> list = (List<Module>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4287,14 +4205,10 @@ public class ModulePersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

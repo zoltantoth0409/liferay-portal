@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.invitation.invite.members.exception.NoSuchMemberRequestException;
 import com.liferay.invitation.invite.members.model.MemberRequest;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -60,12 +61,15 @@ public interface MemberRequestPersistence
 		throws NoSuchMemberRequestException;
 
 	/**
-	 * Returns the member request where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByKey(String)}
 	 * @param key the key
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
-	public MemberRequest fetchByKey(String key);
+	@Deprecated
+	public MemberRequest fetchByKey(String key, boolean useFinderCache);
 
 	/**
 	 * Returns the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -74,7 +78,7 @@ public interface MemberRequestPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
-	public MemberRequest fetchByKey(String key, boolean useFinderCache);
+	public MemberRequest fetchByKey(String key);
 
 	/**
 	 * Removes the member request where key = &#63; from the database.
@@ -124,16 +128,19 @@ public interface MemberRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MemberRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByReceiverUserId(long, int, int, OrderByComparator)}
 	 * @param receiverUserId the receiver user ID
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
+	@Deprecated
 	public java.util.List<MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the member requests where receiverUserId = &#63;.
@@ -146,14 +153,11 @@ public interface MemberRequestPersistence
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
 	public java.util.List<MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the first member request in the ordered set where receiverUserId = &#63;.
@@ -165,8 +169,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest findByReceiverUserId_First(
 			long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -178,8 +181,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest fetchByReceiverUserId_First(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the last member request in the ordered set where receiverUserId = &#63;.
@@ -191,8 +193,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest findByReceiverUserId_Last(
 			long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -204,8 +205,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest fetchByReceiverUserId_Last(
 		long receiverUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
@@ -218,8 +218,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest[] findByReceiverUserId_PrevAndNext(
 			long memberRequestId, long receiverUserId,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -270,17 +269,20 @@ public interface MemberRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MemberRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_S(long,int, int, int, OrderByComparator)}
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
+	@Deprecated
 	public java.util.List<MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the member requests where receiverUserId = &#63; and status = &#63;.
@@ -294,14 +296,11 @@ public interface MemberRequestPersistence
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
 	public java.util.List<MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -314,8 +313,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest findByR_S_First(
 			long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -328,8 +326,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest fetchByR_S_First(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -342,8 +339,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest findByR_S_Last(
 			long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -356,8 +352,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest fetchByR_S_Last(
 		long receiverUserId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -371,8 +366,7 @@ public interface MemberRequestPersistence
 	 */
 	public MemberRequest[] findByR_S_PrevAndNext(
 			long memberRequestId, long receiverUserId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-				orderByComparator)
+			OrderByComparator<MemberRequest> orderByComparator)
 		throws NoSuchMemberRequestException;
 
 	/**
@@ -406,15 +400,18 @@ public interface MemberRequestPersistence
 		throws NoSuchMemberRequestException;
 
 	/**
-	 * Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_R_S(long,long,int)}
 	 * @param groupId the group ID
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
+	@Deprecated
 	public MemberRequest fetchByG_R_S(
-		long groupId, long receiverUserId, int status);
+		long groupId, long receiverUserId, int status, boolean useFinderCache);
 
 	/**
 	 * Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -426,7 +423,7 @@ public interface MemberRequestPersistence
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
 	public MemberRequest fetchByG_R_S(
-		long groupId, long receiverUserId, int status, boolean useFinderCache);
+		long groupId, long receiverUserId, int status);
 
 	/**
 	 * Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
@@ -529,15 +526,17 @@ public interface MemberRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MemberRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of member requests
 	 */
+	@Deprecated
 	public java.util.List<MemberRequest> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator);
+		int start, int end, OrderByComparator<MemberRequest> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the member requests.
@@ -549,14 +548,10 @@ public interface MemberRequestPersistence
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of member requests
 	 */
 	public java.util.List<MemberRequest> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<MemberRequest> orderByComparator);
 
 	/**
 	 * Removes all the member requests from the database.

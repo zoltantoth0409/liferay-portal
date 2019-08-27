@@ -131,18 +131,22 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid(uuid, start, end, orderByComparator, true);
+		return findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -156,14 +160,12 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -175,30 +177,24 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid;
-				finderArgs = new Object[] {uuid};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid;
+			finderArgs = new Object[] {uuid};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<WSRPConsumerPortlet> list = null;
-
-		if (useFinderCache) {
-			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
+		List<WSRPConsumerPortlet> list =
+			(List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if (!uuid.equals(wsrpConsumerPortlet.getUuid())) {
-						list = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
+				if (!uuid.equals(wsrpConsumerPortlet.getUuid())) {
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -265,14 +261,10 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -692,20 +684,23 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache) {
 
-		return findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, true);
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -720,14 +715,12 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -739,34 +732,28 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByUuid_C;
-				finderArgs = new Object[] {uuid, companyId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
+			finderArgs = new Object[] {uuid, companyId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<WSRPConsumerPortlet> list = null;
-
-		if (useFinderCache) {
-			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
+		List<WSRPConsumerPortlet> list =
+			(List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if (!uuid.equals(wsrpConsumerPortlet.getUuid()) ||
-						(companyId != wsrpConsumerPortlet.getCompanyId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
+				if (!uuid.equals(wsrpConsumerPortlet.getUuid()) ||
+					(companyId != wsrpConsumerPortlet.getCompanyId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -837,14 +824,10 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1293,19 +1276,23 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByWsrpConsumerId(long, int, int, OrderByComparator)}
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
+	@Deprecated
 	@Override
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache) {
 
 		return findByWsrpConsumerId(
-			wsrpConsumerId, start, end, orderByComparator, true);
+			wsrpConsumerId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1319,14 +1306,12 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1336,34 +1321,28 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByWsrpConsumerId;
-				finderArgs = new Object[] {wsrpConsumerId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByWsrpConsumerId;
+			finderArgs = new Object[] {wsrpConsumerId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByWsrpConsumerId;
 			finderArgs = new Object[] {
 				wsrpConsumerId, start, end, orderByComparator
 			};
 		}
 
-		List<WSRPConsumerPortlet> list = null;
-
-		if (useFinderCache) {
-			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
+		List<WSRPConsumerPortlet> list =
+			(List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-			if ((list != null) && !list.isEmpty()) {
-				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if ((wsrpConsumerId !=
-							wsrpConsumerPortlet.getWsrpConsumerId())) {
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
+				if ((wsrpConsumerId !=
+						wsrpConsumerPortlet.getWsrpConsumerId())) {
 
-						list = null;
+					list = null;
 
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1419,14 +1398,10 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1823,17 +1798,20 @@ public class WSRPConsumerPortletPersistenceImpl
 	}
 
 	/**
-	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByW_P(long,String)}
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
+	@Deprecated
 	@Override
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle) {
+		long wsrpConsumerId, String portletHandle, boolean useFinderCache) {
 
-		return fetchByW_P(wsrpConsumerId, portletHandle, true);
+		return fetchByW_P(wsrpConsumerId, portletHandle);
 	}
 
 	/**
@@ -1846,22 +1824,14 @@ public class WSRPConsumerPortletPersistenceImpl
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle, boolean useFinderCache) {
+		long wsrpConsumerId, String portletHandle) {
 
 		portletHandle = Objects.toString(portletHandle, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {wsrpConsumerId, portletHandle};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {wsrpConsumerId, portletHandle};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByW_P, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByW_P, finderArgs, this);
 
 		if (result instanceof WSRPConsumerPortlet) {
 			WSRPConsumerPortlet wsrpConsumerPortlet =
@@ -1913,22 +1883,14 @@ public class WSRPConsumerPortletPersistenceImpl
 				List<WSRPConsumerPortlet> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByW_P, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByW_P, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {
-									wsrpConsumerId, portletHandle
-								};
-							}
-
 							_log.warn(
 								"WSRPConsumerPortletPersistenceImpl.fetchByW_P(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -1944,9 +1906,7 @@ public class WSRPConsumerPortletPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByW_P, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByW_P, finderArgs);
 
 				throw processException(e);
 			}
@@ -2762,17 +2722,21 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPConsumerPortletModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
+	@Deprecated
 	@Override
 	public List<WSRPConsumerPortlet> findAll(
 		int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -2785,14 +2749,12 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findAll(
 		int start, int end,
-		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2802,23 +2764,17 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<WSRPConsumerPortlet> list = null;
-
-		if (useFinderCache) {
-			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
+		List<WSRPConsumerPortlet> list =
+			(List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
-		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2866,14 +2822,10 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}

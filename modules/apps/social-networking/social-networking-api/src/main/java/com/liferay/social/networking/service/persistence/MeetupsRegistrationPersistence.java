@@ -17,6 +17,7 @@ package com.liferay.social.networking.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.social.networking.exception.NoSuchMeetupsRegistrationException;
 import com.liferay.social.networking.model.MeetupsRegistration;
 
@@ -80,16 +81,19 @@ public interface MeetupsRegistrationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MeetupsRegistrationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByMeetupsEntryId(long, int, int, OrderByComparator)}
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
+	@Deprecated
 	public java.util.List<MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the meetups registrations where meetupsEntryId = &#63;.
@@ -102,14 +106,11 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -121,8 +122,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration findByMeetupsEntryId_First(
 			long meetupsEntryId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -134,8 +134,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration fetchByMeetupsEntryId_First(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -147,8 +146,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration findByMeetupsEntryId_Last(
 			long meetupsEntryId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -160,8 +158,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration fetchByMeetupsEntryId_Last(
 		long meetupsEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -174,8 +171,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 			long meetupsRegistrationId, long meetupsEntryId,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -205,13 +201,17 @@ public interface MeetupsRegistrationPersistence
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
-	 * Returns the meetups registration where userId = &#63; and meetupsEntryId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the meetups registration where userId = &#63; and meetupsEntryId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_ME(long,long)}
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 */
-	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId);
+	@Deprecated
+	public MeetupsRegistration fetchByU_ME(
+		long userId, long meetupsEntryId, boolean useFinderCache);
 
 	/**
 	 * Returns the meetups registration where userId = &#63; and meetupsEntryId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -221,8 +221,7 @@ public interface MeetupsRegistrationPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 */
-	public MeetupsRegistration fetchByU_ME(
-		long userId, long meetupsEntryId, boolean useFinderCache);
+	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId);
 
 	/**
 	 * Removes the meetups registration where userId = &#63; and meetupsEntryId = &#63; from the database.
@@ -276,17 +275,20 @@ public interface MeetupsRegistrationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MeetupsRegistrationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByME_S(long,int, int, int, OrderByComparator)}
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param status the status
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
+	@Deprecated
 	public java.util.List<MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
@@ -300,14 +302,11 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -320,8 +319,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration findByME_S_First(
 			long meetupsEntryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -334,8 +332,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration fetchByME_S_First(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -348,8 +345,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration findByME_S_Last(
 			long meetupsEntryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -362,8 +358,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration fetchByME_S_Last(
 		long meetupsEntryId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -377,8 +372,7 @@ public interface MeetupsRegistrationPersistence
 	 */
 	public MeetupsRegistration[] findByME_S_PrevAndNext(
 			long meetupsRegistrationId, long meetupsEntryId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<MeetupsRegistration> orderByComparator)
+			OrderByComparator<MeetupsRegistration> orderByComparator)
 		throws NoSuchMeetupsRegistrationException;
 
 	/**
@@ -479,15 +473,18 @@ public interface MeetupsRegistrationPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MeetupsRegistrationModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups registrations
 	 */
+	@Deprecated
 	public java.util.List<MeetupsRegistration> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator);
+		OrderByComparator<MeetupsRegistration> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the meetups registrations.
@@ -499,14 +496,11 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<MeetupsRegistration> orderByComparator);
 
 	/**
 	 * Removes all the meetups registrations from the database.

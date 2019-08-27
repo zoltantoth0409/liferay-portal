@@ -17,6 +17,7 @@ package com.liferay.shopping.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.shopping.exception.NoSuchCategoryException;
 import com.liferay.shopping.model.ShoppingCategory;
 
@@ -79,16 +80,19 @@ public interface ShoppingCategoryPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
+	@Deprecated
 	public java.util.List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the shopping categories where groupId = &#63;.
@@ -101,14 +105,11 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the first shopping category in the ordered set where groupId = &#63;.
@@ -119,9 +120,7 @@ public interface ShoppingCategoryPersistence
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	public ShoppingCategory findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -132,9 +131,7 @@ public interface ShoppingCategoryPersistence
 	 * @return the first matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	public ShoppingCategory fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		long groupId, OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the last shopping category in the ordered set where groupId = &#63;.
@@ -145,9 +142,7 @@ public interface ShoppingCategoryPersistence
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	public ShoppingCategory findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -158,9 +153,7 @@ public interface ShoppingCategoryPersistence
 	 * @return the last matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	public ShoppingCategory fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		long groupId, OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the shopping categories before and after the current shopping category in the ordered set where groupId = &#63;.
@@ -173,8 +166,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory[] findByGroupId_PrevAndNext(
 			long categoryId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -215,8 +207,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public java.util.List<ShoppingCategory> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the shopping categories before and after the current shopping category in the ordered set of shopping categories that the user has permission to view where groupId = &#63;.
@@ -229,8 +220,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory[] filterFindByGroupId_PrevAndNext(
 			long categoryId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -289,17 +279,20 @@ public interface ShoppingCategoryPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
+	@Deprecated
 	public java.util.List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the shopping categories where groupId = &#63; and parentCategoryId = &#63;.
@@ -313,14 +306,11 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the first shopping category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -333,8 +323,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory findByG_P_First(
 			long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -347,8 +336,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory fetchByG_P_First(
 		long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the last shopping category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -361,8 +349,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory findByG_P_Last(
 			long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -375,8 +362,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory fetchByG_P_Last(
 		long groupId, long parentCategoryId,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the shopping categories before and after the current shopping category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -390,8 +376,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory[] findByG_P_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -436,8 +421,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public java.util.List<ShoppingCategory> filterFindByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Returns the shopping categories before and after the current shopping category in the ordered set of shopping categories that the user has permission to view where groupId = &#63; and parentCategoryId = &#63;.
@@ -451,8 +435,7 @@ public interface ShoppingCategoryPersistence
 	 */
 	public ShoppingCategory[] filterFindByG_P_PrevAndNext(
 			long categoryId, long groupId, long parentCategoryId,
-			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-				orderByComparator)
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException;
 
 	/**
@@ -493,13 +476,17 @@ public interface ShoppingCategoryPersistence
 		throws NoSuchCategoryException;
 
 	/**
-	 * Returns the shopping category where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the shopping category where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_N(long,String)}
 	 * @param groupId the group ID
 	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
-	public ShoppingCategory fetchByG_N(long groupId, String name);
+	@Deprecated
+	public ShoppingCategory fetchByG_N(
+		long groupId, String name, boolean useFinderCache);
 
 	/**
 	 * Returns the shopping category where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -509,8 +496,7 @@ public interface ShoppingCategoryPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
-	public ShoppingCategory fetchByG_N(
-		long groupId, String name, boolean useFinderCache);
+	public ShoppingCategory fetchByG_N(long groupId, String name);
 
 	/**
 	 * Removes the shopping category where groupId = &#63; and name = &#63; from the database.
@@ -611,15 +597,18 @@ public interface ShoppingCategoryPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
+	@Deprecated
 	public java.util.List<ShoppingCategory> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator);
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the shopping categories.
@@ -631,14 +620,11 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<ShoppingCategory> orderByComparator);
 
 	/**
 	 * Removes all the shopping categories from the database.

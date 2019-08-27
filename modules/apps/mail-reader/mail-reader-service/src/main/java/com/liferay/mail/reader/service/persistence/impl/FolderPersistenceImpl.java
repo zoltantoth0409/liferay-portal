@@ -125,18 +125,21 @@ public class FolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByAccountId(long, int, int, OrderByComparator)}
 	 * @param accountId the account ID
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching folders
 	 */
+	@Deprecated
 	@Override
 	public List<Folder> findByAccountId(
 		long accountId, int start, int end,
-		OrderByComparator<Folder> orderByComparator) {
+		OrderByComparator<Folder> orderByComparator, boolean useFinderCache) {
 
-		return findByAccountId(accountId, start, end, orderByComparator, true);
+		return findByAccountId(accountId, start, end, orderByComparator);
 	}
 
 	/**
@@ -150,13 +153,12 @@ public class FolderPersistenceImpl
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching folders
 	 */
 	@Override
 	public List<Folder> findByAccountId(
 		long accountId, int start, int end,
-		OrderByComparator<Folder> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<Folder> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,32 +168,25 @@ public class FolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByAccountId;
-				finderArgs = new Object[] {accountId};
-			}
+			finderPath = _finderPathWithoutPaginationFindByAccountId;
+			finderArgs = new Object[] {accountId};
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindByAccountId;
 			finderArgs = new Object[] {
 				accountId, start, end, orderByComparator
 			};
 		}
 
-		List<Folder> list = null;
+		List<Folder> list = (List<Folder>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
-		if (useFinderCache) {
-			list = (List<Folder>)finderCache.getResult(
-				finderPath, finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (Folder folder : list) {
+				if ((accountId != folder.getAccountId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (Folder folder : list) {
-					if ((accountId != folder.getAccountId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -247,14 +242,10 @@ public class FolderPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -635,15 +626,20 @@ public class FolderPersistenceImpl
 	}
 
 	/**
-	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByA_F(long,String)}
 	 * @param accountId the account ID
 	 * @param fullName the full name
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 */
+	@Deprecated
 	@Override
-	public Folder fetchByA_F(long accountId, String fullName) {
-		return fetchByA_F(accountId, fullName, true);
+	public Folder fetchByA_F(
+		long accountId, String fullName, boolean useFinderCache) {
+
+		return fetchByA_F(accountId, fullName);
 	}
 
 	/**
@@ -655,23 +651,13 @@ public class FolderPersistenceImpl
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 */
 	@Override
-	public Folder fetchByA_F(
-		long accountId, String fullName, boolean useFinderCache) {
-
+	public Folder fetchByA_F(long accountId, String fullName) {
 		fullName = Objects.toString(fullName, "");
 
-		Object[] finderArgs = null;
+		Object[] finderArgs = new Object[] {accountId, fullName};
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {accountId, fullName};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByA_F, finderArgs, this);
-		}
+		Object result = finderCache.getResult(
+			_finderPathFetchByA_F, finderArgs, this);
 
 		if (result instanceof Folder) {
 			Folder folder = (Folder)result;
@@ -721,20 +707,14 @@ public class FolderPersistenceImpl
 				List<Folder> list = q.list();
 
 				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByA_F, finderArgs, list);
-					}
+					finderCache.putResult(
+						_finderPathFetchByA_F, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {accountId, fullName};
-							}
-
 							_log.warn(
 								"FolderPersistenceImpl.fetchByA_F(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -750,9 +730,7 @@ public class FolderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByA_F, finderArgs);
-				}
+				finderCache.removeResult(_finderPathFetchByA_F, finderArgs);
 
 				throw processException(e);
 			}
@@ -1430,16 +1408,20 @@ public class FolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of folders
 	 */
+	@Deprecated
 	@Override
 	public List<Folder> findAll(
-		int start, int end, OrderByComparator<Folder> orderByComparator) {
+		int start, int end, OrderByComparator<Folder> orderByComparator,
+		boolean useFinderCache) {
 
-		return findAll(start, end, orderByComparator, true);
+		return findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1452,13 +1434,11 @@ public class FolderPersistenceImpl
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of folders
 	 */
 	@Override
 	public List<Folder> findAll(
-		int start, int end, OrderByComparator<Folder> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<Folder> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1468,23 +1448,16 @@ public class FolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-
-			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindAll;
-				finderArgs = FINDER_ARGS_EMPTY;
-			}
+			finderPath = _finderPathWithoutPaginationFindAll;
+			finderArgs = FINDER_ARGS_EMPTY;
 		}
-		else if (useFinderCache) {
+		else {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<Folder> list = null;
-
-		if (useFinderCache) {
-			list = (List<Folder>)finderCache.getResult(
-				finderPath, finderArgs, this);
-		}
+		List<Folder> list = (List<Folder>)finderCache.getResult(
+			finderPath, finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1531,14 +1504,10 @@ public class FolderPersistenceImpl
 
 				cacheResult(list);
 
-				if (useFinderCache) {
-					finderCache.putResult(finderPath, finderArgs, list);
-				}
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				if (useFinderCache) {
-					finderCache.removeResult(finderPath, finderArgs);
-				}
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
