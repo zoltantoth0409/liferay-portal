@@ -195,7 +195,9 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 				_subscriptionLocalService, JournalArticle.class.getName(),
 				UpgradeDiscussionSubscriptionClassName.DeletionMode.ADD_NEW));
 
-		registry.register("1.1.7", "1.1.8", new DummyUpgradeStep());
+		registry.register(
+			"1.1.7", "1.1.8",
+			new com.liferay.journal.internal.upgrade.v1_1_7.UpgradeUrlTitle());
 
 		registry.register(
 			"1.1.8", "2.0.0",
@@ -216,11 +218,7 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 				UpgradeJournalArticle());
 
 		registry.register(
-			"3.0.1", "3.0.2",
-			new com.liferay.journal.internal.upgrade.v3_0_2.UpgradeUrlTitle());
-
-		registry.register(
-			"3.0.2", "3.1.0",
+			"3.0.1", "3.1.0",
 			new UpgradeMVCCVersion() {
 
 				@Override
