@@ -735,7 +735,7 @@ definition {
 				dmDocumentTitle = "Document_${entryCount}.jpg");
 		}
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
