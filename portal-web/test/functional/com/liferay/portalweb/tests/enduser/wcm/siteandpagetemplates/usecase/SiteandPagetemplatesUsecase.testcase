@@ -38,6 +38,7 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-51432 and LPS-95113."
 	@priority = "4"
 	test AdminCanNotAddASubpageOfAChildPageLinkedToSiteTemplatePage {
 		ProductMenu.gotoPortlet(
@@ -45,9 +46,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Site Templates");
 
-		SiteTemplates.addCP(
-			siteTemplateActive = "Yes",
-			siteTemplateName = "Site Template Name");
+		SiteTemplates.addCP(siteTemplateName = "Site Template Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
@@ -83,6 +82,23 @@ definition {
 			site = "Site Name");
 
 		Page.viewNoDeletePagesAssociatedWithSiteTemplate(page = "Site Child Page Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Site Templates");
+
+		SiteTemplates.deletePage(
+			pageName = "Site Page Name",
+			siteTemplateName = "Site Template Name");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		Page.viewDeletedPage(pageName = "Site Page Name");
+
+		Page.viewDeletedPage(pageName = "Site Child Page Name");
+
+		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@priority = "4"
