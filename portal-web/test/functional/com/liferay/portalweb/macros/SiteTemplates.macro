@@ -103,6 +103,24 @@ definition {
 		}
 	}
 
+	macro deletePage {
+		var key_siteTemplateName = "${siteTemplateName}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_NAME",
+			value1 = "${siteTemplateName}");
+
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
+
+		MenuItem.click(menuItem = "Manage");
+
+		Click(
+			key_itemName = "Pages",
+			locator1 = "SitePages#LIST_GROUP_ITEM");
+
+		SitePages.deletePage(pageName = "${pageName}");
+	}
+
 	macro deleteViaDeleteIconCP {
 		Click(
 			key_siteTemplateName = "${siteTemplateName}",
