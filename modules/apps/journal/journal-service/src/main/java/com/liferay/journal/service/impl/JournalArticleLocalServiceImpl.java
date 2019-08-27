@@ -9148,10 +9148,11 @@ public class JournalArticleLocalServiceImpl
 					continue;
 				}
 			}
-
-			friendlyURL =
-				FriendlyURLNormalizerUtil.normalizeWithPeriodsAndSlashes(
-					friendlyURL);
+			else {
+				friendlyURL =
+					FriendlyURLNormalizerUtil.normalizeWithPeriodsAndSlashes(
+						friendlyURL);
+			}
 
 			String urlTitle = friendlyURLEntryLocalService.getUniqueUrlTitle(
 				groupId,
