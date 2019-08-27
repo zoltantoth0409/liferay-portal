@@ -901,7 +901,9 @@ public class ContentPageEditorDisplayContext {
 		List<SoyContext> soyContexts =
 			_getFragmentCollectionContributorSoyContexts(type);
 
-		long[] groupIds = {getGroupId(), themeDisplay.getCompanyGroupId()};
+		soyContexts.addAll(_getDynamicFragmentsSoyContexts(type));
+
+		long[] groupIds = {themeDisplay.getCompanyGroupId(), getGroupId()};
 
 		List<FragmentCollection> fragmentCollections =
 			FragmentCollectionServiceUtil.getFragmentCollections(groupIds);
@@ -931,8 +933,6 @@ public class ContentPageEditorDisplayContext {
 
 			soyContexts.add(soyContext);
 		}
-
-		soyContexts.addAll(_getDynamicFragmentsSoyContexts(type));
 
 		return soyContexts;
 	}
