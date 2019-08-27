@@ -4,6 +4,7 @@ buildService {
 
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.auto.tagger.api", version: "1.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.bulk.selection.api", version: "1.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.changeset.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "5.2.0"
