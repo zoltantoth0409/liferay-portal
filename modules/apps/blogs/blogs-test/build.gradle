@@ -12,7 +12,7 @@ dependencies {
 	testCompile project(":core:petra:petra-string")
 	testCompile project(":core:registry-api")
 
-	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.18"
+	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.19"
 	testIntegrationCompile project(":apps:asset:asset-api")
 	testIntegrationCompile project(":apps:asset:asset-auto-tagger-api")
 	testIntegrationCompile project(":apps:asset:asset-test-util")
