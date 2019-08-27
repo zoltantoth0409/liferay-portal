@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.service.persistence;
 
 import com.liferay.portal.kernel.exception.NoSuchLayoutVersionException;
 import com.liferay.portal.kernel.model.LayoutVersion;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -70,16 +71,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPlid(long, int, int, OrderByComparator)}
 	 * @param plid the plid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByPlid(
 		long plid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where plid = &#63;.
@@ -92,14 +96,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByPlid(
 		long plid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where plid = &#63;.
@@ -110,9 +111,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByPlid_First(
-			long plid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long plid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -123,9 +122,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByPlid_First(
-		long plid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long plid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where plid = &#63;.
@@ -136,9 +133,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByPlid_Last(
-			long plid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long plid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -149,9 +144,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByPlid_Last(
-		long plid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long plid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where plid = &#63;.
@@ -164,8 +157,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByPlid_PrevAndNext(
 			long layoutVersionId, long plid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -195,13 +187,17 @@ public interface LayoutVersionPersistence
 		throws NoSuchLayoutVersionException;
 
 	/**
-	 * Returns the layout version where plid = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where plid = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByPlid_Version(long,int)}
 	 * @param plid the plid
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
-	public LayoutVersion fetchByPlid_Version(long plid, int version);
+	@Deprecated
+	public LayoutVersion fetchByPlid_Version(
+		long plid, int version, boolean useFinderCache);
 
 	/**
 	 * Returns the layout version where plid = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -211,8 +207,7 @@ public interface LayoutVersionPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
-	public LayoutVersion fetchByPlid_Version(
-		long plid, int version, boolean useFinderCache);
+	public LayoutVersion fetchByPlid_Version(long plid, int version);
 
 	/**
 	 * Removes the layout version where plid = &#63; and version = &#63; from the database.
@@ -263,16 +258,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where uuid = &#63;.
@@ -285,14 +283,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByUuid(
 		String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where uuid = &#63;.
@@ -303,9 +298,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByUuid_First(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			String uuid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -316,9 +309,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByUuid_First(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		String uuid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where uuid = &#63;.
@@ -329,9 +320,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByUuid_Last(
-			String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			String uuid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -342,9 +331,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByUuid_Last(
-		String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		String uuid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where uuid = &#63;.
@@ -357,8 +344,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByUuid_PrevAndNext(
 			long layoutVersionId, String uuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -409,17 +395,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByUuid_Version(
 		String uuid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where uuid = &#63; and version = &#63;.
@@ -433,14 +422,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByUuid_Version(
 		String uuid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where uuid = &#63; and version = &#63;.
@@ -453,8 +439,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_Version_First(
 			String uuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -467,8 +452,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_Version_First(
 		String uuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where uuid = &#63; and version = &#63;.
@@ -481,8 +465,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_Version_Last(
 			String uuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -495,8 +478,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_Version_Last(
 		String uuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where uuid = &#63; and version = &#63;.
@@ -510,8 +492,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByUuid_Version_PrevAndNext(
 			long layoutVersionId, String uuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -566,18 +547,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUUID_G_P(String,long,boolean, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByUUID_G_P(
 		String uuid, long groupId, boolean privateLayout, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where uuid = &#63; and groupId = &#63; and privateLayout = &#63;.
@@ -592,14 +576,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByUUID_G_P(
 		String uuid, long groupId, boolean privateLayout, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where uuid = &#63; and groupId = &#63; and privateLayout = &#63;.
@@ -613,8 +594,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUUID_G_P_First(
 			String uuid, long groupId, boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -628,8 +608,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUUID_G_P_First(
 		String uuid, long groupId, boolean privateLayout,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where uuid = &#63; and groupId = &#63; and privateLayout = &#63;.
@@ -643,8 +622,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUUID_G_P_Last(
 			String uuid, long groupId, boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -658,8 +636,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUUID_G_P_Last(
 		String uuid, long groupId, boolean privateLayout,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where uuid = &#63; and groupId = &#63; and privateLayout = &#63;.
@@ -675,8 +652,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByUUID_G_P_PrevAndNext(
 			long layoutVersionId, String uuid, long groupId,
 			boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -715,16 +691,20 @@ public interface LayoutVersionPersistence
 		throws NoSuchLayoutVersionException;
 
 	/**
-	 * Returns the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G_P_Version(String,long,boolean,int)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public LayoutVersion fetchByUUID_G_P_Version(
-		String uuid, long groupId, boolean privateLayout, int version);
+		String uuid, long groupId, boolean privateLayout, int version,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -737,8 +717,7 @@ public interface LayoutVersionPersistence
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByUUID_G_P_Version(
-		String uuid, long groupId, boolean privateLayout, int version,
-		boolean useFinderCache);
+		String uuid, long groupId, boolean privateLayout, int version);
 
 	/**
 	 * Removes the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; from the database.
@@ -798,17 +777,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where uuid = &#63; and companyId = &#63;.
@@ -822,14 +804,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -842,8 +821,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_C_First(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -856,8 +834,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_C_First(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -870,8 +847,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_C_Last(
 			String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -884,8 +860,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_C_Last(
 		String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -899,8 +874,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByUuid_C_PrevAndNext(
 			long layoutVersionId, String uuid, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -955,18 +929,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C_Version(String,long,int, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByUuid_C_Version(
 		String uuid, long companyId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where uuid = &#63; and companyId = &#63; and version = &#63;.
@@ -981,14 +958,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByUuid_C_Version(
 		String uuid, long companyId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where uuid = &#63; and companyId = &#63; and version = &#63;.
@@ -1002,8 +976,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_C_Version_First(
 			String uuid, long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1017,8 +990,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_C_Version_First(
 		String uuid, long companyId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where uuid = &#63; and companyId = &#63; and version = &#63;.
@@ -1032,8 +1004,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByUuid_C_Version_Last(
 			String uuid, long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1047,8 +1018,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByUuid_C_Version_Last(
 		String uuid, long companyId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where uuid = &#63; and companyId = &#63; and version = &#63;.
@@ -1063,8 +1033,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByUuid_C_Version_PrevAndNext(
 			long layoutVersionId, String uuid, long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1117,16 +1086,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63;.
@@ -1139,14 +1111,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63;.
@@ -1157,9 +1126,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByGroupId_First(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long groupId, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1170,9 +1137,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long groupId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63;.
@@ -1183,9 +1148,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByGroupId_Last(
-			long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long groupId, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1196,9 +1159,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long groupId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63;.
@@ -1211,8 +1172,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByGroupId_PrevAndNext(
 			long layoutVersionId, long groupId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1263,17 +1223,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId_Version(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByGroupId_Version(
 		long groupId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and version = &#63;.
@@ -1287,14 +1250,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByGroupId_Version(
 		long groupId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and version = &#63;.
@@ -1307,8 +1267,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByGroupId_Version_First(
 			long groupId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1321,8 +1280,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByGroupId_Version_First(
 		long groupId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and version = &#63;.
@@ -1335,8 +1293,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByGroupId_Version_Last(
 			long groupId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1349,8 +1306,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByGroupId_Version_Last(
 		long groupId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and version = &#63;.
@@ -1364,8 +1320,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByGroupId_Version_PrevAndNext(
 			long layoutVersionId, long groupId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1415,16 +1370,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where companyId = &#63;.
@@ -1437,14 +1395,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where companyId = &#63;.
@@ -1455,9 +1410,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByCompanyId_First(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long companyId, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1468,9 +1421,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long companyId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where companyId = &#63;.
@@ -1481,9 +1432,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByCompanyId_Last(
-			long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long companyId, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1494,9 +1443,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long companyId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where companyId = &#63;.
@@ -1509,8 +1456,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByCompanyId_PrevAndNext(
 			long layoutVersionId, long companyId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1561,17 +1507,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId_Version(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByCompanyId_Version(
 		long companyId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where companyId = &#63; and version = &#63;.
@@ -1585,14 +1534,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByCompanyId_Version(
 		long companyId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where companyId = &#63; and version = &#63;.
@@ -1605,8 +1551,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByCompanyId_Version_First(
 			long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1619,8 +1564,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByCompanyId_Version_First(
 		long companyId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where companyId = &#63; and version = &#63;.
@@ -1633,8 +1577,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByCompanyId_Version_Last(
 			long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1647,8 +1590,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByCompanyId_Version_Last(
 		long companyId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where companyId = &#63; and version = &#63;.
@@ -1662,8 +1604,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByCompanyId_Version_PrevAndNext(
 			long layoutVersionId, long companyId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1713,16 +1654,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentPlid(long, int, int, OrderByComparator)}
 	 * @param parentPlid the parent plid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByParentPlid(
 		long parentPlid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where parentPlid = &#63;.
@@ -1735,14 +1679,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByParentPlid(
 		long parentPlid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where parentPlid = &#63;.
@@ -1753,9 +1694,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByParentPlid_First(
-			long parentPlid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long parentPlid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1766,9 +1705,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByParentPlid_First(
-		long parentPlid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long parentPlid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where parentPlid = &#63;.
@@ -1779,9 +1716,7 @@ public interface LayoutVersionPersistence
 	 * @throws NoSuchLayoutVersionException if a matching layout version could not be found
 	 */
 	public LayoutVersion findByParentPlid_Last(
-			long parentPlid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long parentPlid, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1792,9 +1727,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByParentPlid_Last(
-		long parentPlid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long parentPlid, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where parentPlid = &#63;.
@@ -1807,8 +1740,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByParentPlid_PrevAndNext(
 			long layoutVersionId, long parentPlid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1859,17 +1791,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentPlid_Version(long,int, int, int, OrderByComparator)}
 	 * @param parentPlid the parent plid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByParentPlid_Version(
 		long parentPlid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where parentPlid = &#63; and version = &#63;.
@@ -1883,14 +1818,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByParentPlid_Version(
 		long parentPlid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where parentPlid = &#63; and version = &#63;.
@@ -1903,8 +1835,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByParentPlid_Version_First(
 			long parentPlid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1917,8 +1848,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByParentPlid_Version_First(
 		long parentPlid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where parentPlid = &#63; and version = &#63;.
@@ -1931,8 +1861,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByParentPlid_Version_Last(
 			long parentPlid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -1945,8 +1874,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByParentPlid_Version_Last(
 		long parentPlid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where parentPlid = &#63; and version = &#63;.
@@ -1960,8 +1888,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByParentPlid_Version_PrevAndNext(
 			long layoutVersionId, long parentPlid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2011,16 +1938,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIconImageId(long, int, int, OrderByComparator)}
 	 * @param iconImageId the icon image ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByIconImageId(
 		long iconImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where iconImageId = &#63;.
@@ -2033,14 +1963,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByIconImageId(
 		long iconImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where iconImageId = &#63;.
@@ -2052,8 +1979,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByIconImageId_First(
 			long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2064,9 +1990,7 @@ public interface LayoutVersionPersistence
 	 * @return the first matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByIconImageId_First(
-		long iconImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long iconImageId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where iconImageId = &#63;.
@@ -2078,8 +2002,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByIconImageId_Last(
 			long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2090,9 +2013,7 @@ public interface LayoutVersionPersistence
 	 * @return the last matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByIconImageId_Last(
-		long iconImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		long iconImageId, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where iconImageId = &#63;.
@@ -2105,8 +2026,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByIconImageId_PrevAndNext(
 			long layoutVersionId, long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2157,17 +2077,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIconImageId_Version(long,int, int, int, OrderByComparator)}
 	 * @param iconImageId the icon image ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByIconImageId_Version(
 		long iconImageId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where iconImageId = &#63; and version = &#63;.
@@ -2181,14 +2104,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByIconImageId_Version(
 		long iconImageId, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where iconImageId = &#63; and version = &#63;.
@@ -2201,8 +2121,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByIconImageId_Version_First(
 			long iconImageId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2215,8 +2134,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByIconImageId_Version_First(
 		long iconImageId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where iconImageId = &#63; and version = &#63;.
@@ -2229,8 +2147,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByIconImageId_Version_Last(
 			long iconImageId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2243,8 +2160,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByIconImageId_Version_Last(
 		long iconImageId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where iconImageId = &#63; and version = &#63;.
@@ -2258,8 +2174,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByIconImageId_Version_PrevAndNext(
 			long layoutVersionId, long iconImageId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2310,16 +2225,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLayoutPrototypeUuid(String, int, int, OrderByComparator)}
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByLayoutPrototypeUuid(
 		String layoutPrototypeUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where layoutPrototypeUuid = &#63;.
@@ -2332,14 +2250,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByLayoutPrototypeUuid(
 		String layoutPrototypeUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where layoutPrototypeUuid = &#63;.
@@ -2351,8 +2266,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByLayoutPrototypeUuid_First(
 			String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2364,8 +2278,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByLayoutPrototypeUuid_First(
 		String layoutPrototypeUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where layoutPrototypeUuid = &#63;.
@@ -2377,8 +2290,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByLayoutPrototypeUuid_Last(
 			String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2390,8 +2302,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByLayoutPrototypeUuid_Last(
 		String layoutPrototypeUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where layoutPrototypeUuid = &#63;.
@@ -2404,8 +2315,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByLayoutPrototypeUuid_PrevAndNext(
 			long layoutVersionId, String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2456,17 +2366,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLayoutPrototypeUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByLayoutPrototypeUuid_Version(
 		String layoutPrototypeUuid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where layoutPrototypeUuid = &#63; and version = &#63;.
@@ -2480,14 +2393,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByLayoutPrototypeUuid_Version(
 		String layoutPrototypeUuid, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where layoutPrototypeUuid = &#63; and version = &#63;.
@@ -2500,8 +2410,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByLayoutPrototypeUuid_Version_First(
 			String layoutPrototypeUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2514,8 +2423,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByLayoutPrototypeUuid_Version_First(
 		String layoutPrototypeUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where layoutPrototypeUuid = &#63; and version = &#63;.
@@ -2528,8 +2436,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByLayoutPrototypeUuid_Version_Last(
 			String layoutPrototypeUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2542,8 +2449,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByLayoutPrototypeUuid_Version_Last(
 		String layoutPrototypeUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where layoutPrototypeUuid = &#63; and version = &#63;.
@@ -2557,8 +2463,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByLayoutPrototypeUuid_Version_PrevAndNext(
 			long layoutVersionId, String layoutPrototypeUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2611,16 +2516,19 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySourcePrototypeLayoutUuid(String, int, int, OrderByComparator)}
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findBySourcePrototypeLayoutUuid(
 		String sourcePrototypeLayoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where sourcePrototypeLayoutUuid = &#63;.
@@ -2633,14 +2541,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findBySourcePrototypeLayoutUuid(
 		String sourcePrototypeLayoutUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where sourcePrototypeLayoutUuid = &#63;.
@@ -2652,8 +2557,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findBySourcePrototypeLayoutUuid_First(
 			String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2665,8 +2569,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchBySourcePrototypeLayoutUuid_First(
 		String sourcePrototypeLayoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where sourcePrototypeLayoutUuid = &#63;.
@@ -2678,8 +2581,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findBySourcePrototypeLayoutUuid_Last(
 			String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2691,8 +2593,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchBySourcePrototypeLayoutUuid_Last(
 		String sourcePrototypeLayoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where sourcePrototypeLayoutUuid = &#63;.
@@ -2705,8 +2606,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findBySourcePrototypeLayoutUuid_PrevAndNext(
 			long layoutVersionId, String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2761,18 +2661,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySourcePrototypeLayoutUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion>
 		findBySourcePrototypeLayoutUuid_Version(
 			String sourcePrototypeLayoutUuid, int version, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator);
+			OrderByComparator<LayoutVersion> orderByComparator,
+			boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -2786,15 +2689,12 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion>
 		findBySourcePrototypeLayoutUuid_Version(
 			String sourcePrototypeLayoutUuid, int version, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator,
-			boolean useFinderCache);
+			OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -2807,8 +2707,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findBySourcePrototypeLayoutUuid_Version_First(
 			String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2821,8 +2720,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchBySourcePrototypeLayoutUuid_Version_First(
 		String sourcePrototypeLayoutUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -2835,8 +2733,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findBySourcePrototypeLayoutUuid_Version_Last(
 			String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2849,8 +2746,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchBySourcePrototypeLayoutUuid_Version_Last(
 		String sourcePrototypeLayoutUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -2864,8 +2760,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findBySourcePrototypeLayoutUuid_Version_PrevAndNext(
 			long layoutVersionId, String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2920,17 +2815,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63;.
@@ -2944,14 +2842,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63;.
@@ -2964,8 +2859,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_First(
 			long groupId, boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -2978,8 +2872,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_First(
 		long groupId, boolean privateLayout,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63;.
@@ -2992,8 +2885,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_Last(
 			long groupId, boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3006,8 +2898,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_Last(
 		long groupId, boolean privateLayout,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63;.
@@ -3021,8 +2912,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_P_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3077,18 +2967,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_Version(long,boolean,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_Version(
 		long groupId, boolean privateLayout, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and version = &#63;.
@@ -3103,14 +2996,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_Version(
 		long groupId, boolean privateLayout, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and version = &#63;.
@@ -3124,8 +3014,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_Version_First(
 			long groupId, boolean privateLayout, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3139,8 +3028,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_Version_First(
 		long groupId, boolean privateLayout, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and version = &#63;.
@@ -3154,8 +3042,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_Version_Last(
 			long groupId, boolean privateLayout, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3169,8 +3056,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_Version_Last(
 		long groupId, boolean privateLayout, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and version = &#63;.
@@ -3185,9 +3071,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_P_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
-			int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int version, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3243,17 +3127,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_T(
 		long groupId, String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and type = &#63;.
@@ -3267,14 +3154,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_T(
 		long groupId, String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and type = &#63;.
@@ -3287,8 +3171,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_T_First(
 			long groupId, String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3301,8 +3184,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_T_First(
 		long groupId, String type,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and type = &#63;.
@@ -3315,8 +3197,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_T_Last(
 			long groupId, String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3329,8 +3210,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_T_Last(
 		long groupId, String type,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and type = &#63;.
@@ -3344,8 +3224,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_T_PrevAndNext(
 			long layoutVersionId, long groupId, String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3400,18 +3279,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T_Version(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_T_Version(
 		long groupId, String type, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and type = &#63; and version = &#63;.
@@ -3426,14 +3308,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_T_Version(
 		long groupId, String type, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and type = &#63; and version = &#63;.
@@ -3447,8 +3326,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_T_Version_First(
 			long groupId, String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3462,8 +3340,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_T_Version_First(
 		long groupId, String type, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and type = &#63; and version = &#63;.
@@ -3477,8 +3354,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_T_Version_Last(
 			long groupId, String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3492,8 +3368,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_T_Version_Last(
 		long groupId, String type, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and type = &#63; and version = &#63;.
@@ -3508,8 +3383,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_T_Version_PrevAndNext(
 			long layoutVersionId, long groupId, String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3564,17 +3438,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_L(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByC_L(
 		long companyId, String layoutPrototypeUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where companyId = &#63; and layoutPrototypeUuid = &#63;.
@@ -3588,14 +3465,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByC_L(
 		long companyId, String layoutPrototypeUuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63;.
@@ -3608,8 +3482,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_L_First(
 			long companyId, String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3622,8 +3495,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_L_First(
 		long companyId, String layoutPrototypeUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63;.
@@ -3636,8 +3508,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_L_Last(
 			long companyId, String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3650,8 +3521,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_L_Last(
 		long companyId, String layoutPrototypeUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63;.
@@ -3665,8 +3535,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByC_L_PrevAndNext(
 			long layoutVersionId, long companyId, String layoutPrototypeUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3722,19 +3591,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_L_Version(long,String,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByC_L_Version(
 		long companyId, String layoutPrototypeUuid, int version, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where companyId = &#63; and layoutPrototypeUuid = &#63; and version = &#63;.
@@ -3749,15 +3620,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByC_L_Version(
 		long companyId, String layoutPrototypeUuid, int version, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63; and version = &#63;.
@@ -3771,8 +3638,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_L_Version_First(
 			long companyId, String layoutPrototypeUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3786,8 +3652,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_L_Version_First(
 		long companyId, String layoutPrototypeUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63; and version = &#63;.
@@ -3801,8 +3666,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_L_Version_Last(
 			long companyId, String layoutPrototypeUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3816,8 +3680,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_L_Version_Last(
 		long companyId, String layoutPrototypeUuid, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63; and version = &#63;.
@@ -3832,9 +3695,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByC_L_Version_PrevAndNext(
 			long layoutVersionId, long companyId, String layoutPrototypeUuid,
-			int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int version, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3891,17 +3752,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_I(boolean,long, int, int, OrderByComparator)}
 	 * @param privateLayout the private layout
 	 * @param iconImageId the icon image ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByP_I(
 		boolean privateLayout, long iconImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where privateLayout = &#63; and iconImageId = &#63;.
@@ -3915,14 +3779,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByP_I(
 		boolean privateLayout, long iconImageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63;.
@@ -3935,8 +3796,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByP_I_First(
 			boolean privateLayout, long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3949,8 +3809,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByP_I_First(
 		boolean privateLayout, long iconImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63;.
@@ -3963,8 +3822,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByP_I_Last(
 			boolean privateLayout, long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -3977,8 +3835,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByP_I_Last(
 		boolean privateLayout, long iconImageId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63;.
@@ -3992,8 +3849,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByP_I_PrevAndNext(
 			long layoutVersionId, boolean privateLayout, long iconImageId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4049,19 +3905,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_I_Version(boolean,long,int, int, int, OrderByComparator)}
 	 * @param privateLayout the private layout
 	 * @param iconImageId the icon image ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByP_I_Version(
 		boolean privateLayout, long iconImageId, int version, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where privateLayout = &#63; and iconImageId = &#63; and version = &#63;.
@@ -4076,15 +3934,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByP_I_Version(
 		boolean privateLayout, long iconImageId, int version, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63; and version = &#63;.
@@ -4098,8 +3952,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByP_I_Version_First(
 			boolean privateLayout, long iconImageId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4113,8 +3966,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByP_I_Version_First(
 		boolean privateLayout, long iconImageId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63; and version = &#63;.
@@ -4128,8 +3980,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByP_I_Version_Last(
 			boolean privateLayout, long iconImageId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4143,8 +3994,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByP_I_Version_Last(
 		boolean privateLayout, long iconImageId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where privateLayout = &#63; and iconImageId = &#63; and version = &#63;.
@@ -4159,9 +4009,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByP_I_Version_PrevAndNext(
 			long layoutVersionId, boolean privateLayout, long iconImageId,
-			int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int version, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4218,17 +4066,20 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where classNameId = &#63; and classPK = &#63;.
@@ -4242,14 +4093,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -4262,8 +4110,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_C_First(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4276,8 +4123,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_C_First(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -4290,8 +4136,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_C_Last(
 			long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4304,8 +4149,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_C_Last(
 		long classNameId, long classPK,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -4319,8 +4163,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByC_C_PrevAndNext(
 			long layoutVersionId, long classNameId, long classPK,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4375,18 +4218,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_Version(long,long,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByC_C_Version(
 		long classNameId, long classPK, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where classNameId = &#63; and classPK = &#63; and version = &#63;.
@@ -4401,14 +4247,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByC_C_Version(
 		long classNameId, long classPK, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where classNameId = &#63; and classPK = &#63; and version = &#63;.
@@ -4422,8 +4265,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_C_Version_First(
 			long classNameId, long classPK, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4437,8 +4279,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_C_Version_First(
 		long classNameId, long classPK, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where classNameId = &#63; and classPK = &#63; and version = &#63;.
@@ -4452,8 +4293,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByC_C_Version_Last(
 			long classNameId, long classPK, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4467,8 +4307,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByC_C_Version_Last(
 		long classNameId, long classPK, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where classNameId = &#63; and classPK = &#63; and version = &#63;.
@@ -4483,8 +4322,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByC_C_Version_PrevAndNext(
 			long layoutVersionId, long classNameId, long classPK, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4542,18 +4380,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L(long,boolean,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and layoutId = &#63;.
@@ -4568,14 +4409,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and layoutId = &#63;.
@@ -4589,8 +4427,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_L_First(
 			long groupId, boolean privateLayout, long layoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4604,8 +4441,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_L_First(
 		long groupId, boolean privateLayout, long layoutId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and layoutId = &#63;.
@@ -4619,8 +4455,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_L_Last(
 			long groupId, boolean privateLayout, long layoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4634,8 +4469,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_L_Last(
 		long groupId, boolean privateLayout, long layoutId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and layoutId = &#63;.
@@ -4650,9 +4484,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_P_L_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
-			long layoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			long layoutId, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4690,16 +4522,20 @@ public interface LayoutVersionPersistence
 		throws NoSuchLayoutVersionException;
 
 	/**
-	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_P_L_Version(long,boolean,long,int)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public LayoutVersion fetchByG_P_L_Version(
-		long groupId, boolean privateLayout, long layoutId, int version);
+		long groupId, boolean privateLayout, long layoutId, int version,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -4712,8 +4548,7 @@ public interface LayoutVersionPersistence
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByG_P_L_Version(
-		long groupId, boolean privateLayout, long layoutId, int version,
-		boolean useFinderCache);
+		long groupId, boolean privateLayout, long layoutId, int version);
 
 	/**
 	 * Removes the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; from the database.
@@ -4776,19 +4611,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P(long,boolean,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P(
 		long groupId, boolean privateLayout, long parentLayoutId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63;.
@@ -4803,15 +4640,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P(
 		long groupId, boolean privateLayout, long parentLayoutId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63;.
@@ -4825,8 +4658,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4840,8 +4672,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_First(
 		long groupId, boolean privateLayout, long parentLayoutId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63;.
@@ -4855,8 +4686,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4870,8 +4700,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_Last(
 		long groupId, boolean privateLayout, long parentLayoutId,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63;.
@@ -4887,8 +4716,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -4950,6 +4778,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_Version(long,boolean,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -4957,13 +4786,14 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P_Version(
 		long groupId, boolean privateLayout, long parentLayoutId, int version,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
@@ -4979,15 +4809,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P_Version(
 		long groupId, boolean privateLayout, long parentLayoutId, int version,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
@@ -5002,9 +4828,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_Version_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int version, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5019,8 +4843,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_Version_First(
 		long groupId, boolean privateLayout, long parentLayoutId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
@@ -5035,9 +4858,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_Version_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int version, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5052,8 +4873,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_Version_Last(
 		long groupId, boolean privateLayout, long parentLayoutId, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
@@ -5070,8 +4890,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5132,18 +4951,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_T(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param type the type
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_T(
 		long groupId, boolean privateLayout, String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and type = &#63;.
@@ -5158,14 +4980,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_T(
 		long groupId, boolean privateLayout, String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63;.
@@ -5179,8 +4998,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_T_First(
 			long groupId, boolean privateLayout, String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5194,8 +5012,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_T_First(
 		long groupId, boolean privateLayout, String type,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63;.
@@ -5209,8 +5026,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_T_Last(
 			long groupId, boolean privateLayout, String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5224,8 +5040,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_T_Last(
 		long groupId, boolean privateLayout, String type,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63;.
@@ -5240,9 +5055,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion[] findByG_P_T_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
-			String type,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			String type, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5302,6 +5115,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_T_Version(long,boolean,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param type the type
@@ -5309,13 +5123,14 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_T_Version(
 		long groupId, boolean privateLayout, String type, int version,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
@@ -5331,15 +5146,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_T_Version(
 		long groupId, boolean privateLayout, String type, int version,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
@@ -5354,8 +5165,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_T_Version_First(
 			long groupId, boolean privateLayout, String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5370,8 +5180,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_T_Version_First(
 		long groupId, boolean privateLayout, String type, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
@@ -5386,8 +5195,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_T_Version_Last(
 			long groupId, boolean privateLayout, String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5402,8 +5210,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_T_Version_Last(
 		long groupId, boolean privateLayout, String type, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
@@ -5420,8 +5227,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_T_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			String type, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5483,19 +5289,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_F(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param friendlyURL the friendly url
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_F(
 		long groupId, boolean privateLayout, String friendlyURL, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63;.
@@ -5510,15 +5318,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_F(
 		long groupId, boolean privateLayout, String friendlyURL, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63;.
@@ -5532,8 +5336,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_F_First(
 			long groupId, boolean privateLayout, String friendlyURL,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5547,8 +5350,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_F_First(
 		long groupId, boolean privateLayout, String friendlyURL,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63;.
@@ -5562,8 +5364,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_F_Last(
 			long groupId, boolean privateLayout, String friendlyURL,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5577,8 +5378,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_F_Last(
 		long groupId, boolean privateLayout, String friendlyURL,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63;.
@@ -5594,8 +5394,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_F_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			String friendlyURL,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5635,16 +5434,20 @@ public interface LayoutVersionPersistence
 		throws NoSuchLayoutVersionException;
 
 	/**
-	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_P_F_Version(long,boolean,String,int)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param friendlyURL the friendly url
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public LayoutVersion fetchByG_P_F_Version(
-		long groupId, boolean privateLayout, String friendlyURL, int version);
+		long groupId, boolean privateLayout, String friendlyURL, int version,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -5657,8 +5460,7 @@ public interface LayoutVersionPersistence
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public LayoutVersion fetchByG_P_F_Version(
-		long groupId, boolean privateLayout, String friendlyURL, int version,
-		boolean useFinderCache);
+		long groupId, boolean privateLayout, String friendlyURL, int version);
 
 	/**
 	 * Removes the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; from the database.
@@ -5722,19 +5524,21 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_SPLU(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_SPLU(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
@@ -5749,15 +5553,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_SPLU(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
@@ -5772,8 +5572,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_SPLU_First(
 			long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5787,8 +5586,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_SPLU_First(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
@@ -5803,8 +5601,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_SPLU_Last(
 			long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5818,8 +5615,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_SPLU_Last(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
@@ -5835,8 +5631,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_SPLU_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5899,6 +5694,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_SPLU_Version(long,boolean,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
@@ -5906,13 +5702,15 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_SPLU_Version(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
 		int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -5928,15 +5726,12 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_SPLU_Version(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
 		int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -5952,8 +5747,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_SPLU_Version_First(
 			long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -5968,9 +5762,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_SPLU_Version_First(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int version, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -5986,8 +5778,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_SPLU_Version_Last(
 			long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6002,9 +5793,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_SPLU_Version_Last(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int version, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
@@ -6021,8 +5810,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_SPLU_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			String sourcePrototypeLayoutUuid, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6089,6 +5877,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_H(long,boolean,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -6096,13 +5885,15 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P_H(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
@@ -6118,15 +5909,12 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P_H(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
@@ -6141,9 +5929,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_H_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			boolean hidden,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			boolean hidden, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6158,9 +5944,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_H_First(
 		long groupId, boolean privateLayout, long parentLayoutId,
-		boolean hidden,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		boolean hidden, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
@@ -6175,9 +5959,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_H_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			boolean hidden,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			boolean hidden, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6192,9 +5974,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_H_Last(
 		long groupId, boolean privateLayout, long parentLayoutId,
-		boolean hidden,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		boolean hidden, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
@@ -6211,8 +5991,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_H_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId, boolean hidden,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6281,6 +6060,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_H_Version(long,boolean,long,boolean,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -6289,13 +6069,15 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P_H_Version(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
@@ -6312,15 +6094,12 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P_H_Version(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
@@ -6337,8 +6116,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_P_H_Version_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
 			boolean hidden, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6355,8 +6133,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion fetchByG_P_P_H_Version_First(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
@@ -6373,8 +6150,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_P_H_Version_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
 			boolean hidden, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6391,8 +6167,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion fetchByG_P_P_H_Version_Last(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean hidden, int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
@@ -6410,8 +6185,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_H_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId, boolean hidden, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6479,6 +6253,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_LtP(long,boolean,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -6486,13 +6261,14 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P_LtP(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
@@ -6508,15 +6284,11 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P_LtP(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
@@ -6531,9 +6303,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_LtP_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			int priority,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int priority, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6548,8 +6318,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_LtP_First(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
@@ -6564,9 +6333,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion findByG_P_P_LtP_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
-			int priority,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			int priority, OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6581,8 +6348,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_LtP_Last(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
@@ -6599,8 +6365,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_LtP_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId, int priority,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6667,6 +6432,7 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_LtP_Version(long,boolean,long,int,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -6675,13 +6441,15 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findByG_P_P_LtP_Version(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
 		int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
@@ -6698,15 +6466,12 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public java.util.List<LayoutVersion> findByG_P_P_LtP_Version(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
 		int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the first layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
@@ -6723,8 +6488,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_P_LtP_Version_First(
 			long groupId, boolean privateLayout, long parentLayoutId,
 			int priority, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6740,9 +6504,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_LtP_Version_First(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int version, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the last layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
@@ -6759,8 +6521,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion findByG_P_P_LtP_Version_Last(
 			long groupId, boolean privateLayout, long parentLayoutId,
 			int priority, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6776,9 +6537,7 @@ public interface LayoutVersionPersistence
 	 */
 	public LayoutVersion fetchByG_P_P_LtP_Version_Last(
 		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int version,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int version, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Returns the layout versions before and after the current layout version in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
@@ -6796,8 +6555,7 @@ public interface LayoutVersionPersistence
 	public LayoutVersion[] findByG_P_P_LtP_Version_PrevAndNext(
 			long layoutVersionId, long groupId, boolean privateLayout,
 			long parentLayoutId, int priority, int version,
-			com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-				orderByComparator)
+			OrderByComparator<LayoutVersion> orderByComparator)
 		throws NoSuchLayoutVersionException;
 
 	/**
@@ -6906,15 +6664,17 @@ public interface LayoutVersionPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout versions
 	 */
+	@Deprecated
 	public java.util.List<LayoutVersion> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns an ordered range of all the layout versions.
@@ -6926,14 +6686,10 @@ public interface LayoutVersionPersistence
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout versions
 	 */
 	public java.util.List<LayoutVersion> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<LayoutVersion>
-			orderByComparator,
-		boolean useFinderCache);
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator);
 
 	/**
 	 * Removes all the layout versions from the database.

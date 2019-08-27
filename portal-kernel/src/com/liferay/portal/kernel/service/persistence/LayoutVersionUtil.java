@@ -158,17 +158,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPlid(long, int, int, OrderByComparator)}
 	 * @param plid the plid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByPlid(
 		long plid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findByPlid(plid, start, end, orderByComparator);
+		return getPersistence().findByPlid(
+			plid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -182,16 +187,13 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByPlid(
 		long plid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
-		return getPersistence().findByPlid(
-			plid, start, end, orderByComparator, useFinderCache);
+		return getPersistence().findByPlid(plid, start, end, orderByComparator);
 	}
 
 	/**
@@ -306,14 +308,20 @@ public class LayoutVersionUtil {
 	}
 
 	/**
-	 * Returns the layout version where plid = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where plid = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByPlid_Version(long,int)}
 	 * @param plid the plid
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
-	public static LayoutVersion fetchByPlid_Version(long plid, int version) {
-		return getPersistence().fetchByPlid_Version(plid, version);
+	@Deprecated
+	public static LayoutVersion fetchByPlid_Version(
+		long plid, int version, boolean useFinderCache) {
+
+		return getPersistence().fetchByPlid_Version(
+			plid, version, useFinderCache);
 	}
 
 	/**
@@ -324,11 +332,8 @@ public class LayoutVersionUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
-	public static LayoutVersion fetchByPlid_Version(
-		long plid, int version, boolean useFinderCache) {
-
-		return getPersistence().fetchByPlid_Version(
-			plid, version, useFinderCache);
+	public static LayoutVersion fetchByPlid_Version(long plid, int version) {
+		return getPersistence().fetchByPlid_Version(plid, version);
 	}
 
 	/**
@@ -391,17 +396,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
+		return getPersistence().findByUuid(
+			uuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -415,16 +425,13 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
-		return getPersistence().findByUuid(
-			uuid, start, end, orderByComparator, useFinderCache);
+		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -562,19 +569,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByUuid_Version(
 		String uuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_Version(
-			uuid, version, start, end, orderByComparator);
+			uuid, version, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -589,16 +600,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByUuid_Version(
 		String uuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByUuid_Version(
-			uuid, version, start, end, orderByComparator, useFinderCache);
+			uuid, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -754,20 +763,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUUID_G_P(String,long,boolean, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByUUID_G_P(
 		String uuid, long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUUID_G_P(
-			uuid, groupId, privateLayout, start, end, orderByComparator);
+			uuid, groupId, privateLayout, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -783,17 +797,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByUUID_G_P(
 		String uuid, long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByUUID_G_P(
-			uuid, groupId, privateLayout, start, end, orderByComparator,
-			useFinderCache);
+			uuid, groupId, privateLayout, start, end, orderByComparator);
 	}
 
 	/**
@@ -939,19 +950,23 @@ public class LayoutVersionUtil {
 	}
 
 	/**
-	 * Returns the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where uuid = &#63; and groupId = &#63; and privateLayout = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G_P_Version(String,long,boolean,int)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public static LayoutVersion fetchByUUID_G_P_Version(
-		String uuid, long groupId, boolean privateLayout, int version) {
+		String uuid, long groupId, boolean privateLayout, int version,
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByUUID_G_P_Version(
-			uuid, groupId, privateLayout, version);
+			uuid, groupId, privateLayout, version, useFinderCache);
 	}
 
 	/**
@@ -965,11 +980,10 @@ public class LayoutVersionUtil {
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public static LayoutVersion fetchByUUID_G_P_Version(
-		String uuid, long groupId, boolean privateLayout, int version,
-		boolean useFinderCache) {
+		String uuid, long groupId, boolean privateLayout, int version) {
 
 		return getPersistence().fetchByUUID_G_P_Version(
-			uuid, groupId, privateLayout, version, useFinderCache);
+			uuid, groupId, privateLayout, version);
 	}
 
 	/**
@@ -1045,19 +1059,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator);
+			uuid, companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1072,16 +1090,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, useFinderCache);
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1237,20 +1253,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C_Version(String,long,int, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByUuid_C_Version(
 		String uuid, long companyId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C_Version(
-			uuid, companyId, version, start, end, orderByComparator);
+			uuid, companyId, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -1266,17 +1287,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByUuid_C_Version(
 		String uuid, long companyId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByUuid_C_Version(
-			uuid, companyId, version, start, end, orderByComparator,
-			useFinderCache);
+			uuid, companyId, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -1436,18 +1454,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1461,16 +1483,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, useFinderCache);
+			groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1610,19 +1630,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId_Version(long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByGroupId_Version(
 		long groupId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId_Version(
-			groupId, version, start, end, orderByComparator);
+			groupId, version, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1637,16 +1661,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByGroupId_Version(
 		long groupId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByGroupId_Version(
-			groupId, version, start, end, orderByComparator, useFinderCache);
+			groupId, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -1795,18 +1817,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1820,16 +1846,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, useFinderCache);
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1972,19 +1996,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId_Version(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByCompanyId_Version(
 		long companyId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId_Version(
-			companyId, version, start, end, orderByComparator);
+			companyId, version, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1999,16 +2027,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByCompanyId_Version(
 		long companyId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByCompanyId_Version(
-			companyId, version, start, end, orderByComparator, useFinderCache);
+			companyId, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -2157,18 +2183,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentPlid(long, int, int, OrderByComparator)}
 	 * @param parentPlid the parent plid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByParentPlid(
 		long parentPlid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByParentPlid(
-			parentPlid, start, end, orderByComparator);
+			parentPlid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2182,16 +2212,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByParentPlid(
 		long parentPlid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByParentPlid(
-			parentPlid, start, end, orderByComparator, useFinderCache);
+			parentPlid, start, end, orderByComparator);
 	}
 
 	/**
@@ -2334,19 +2362,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentPlid_Version(long,int, int, int, OrderByComparator)}
 	 * @param parentPlid the parent plid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByParentPlid_Version(
 		long parentPlid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByParentPlid_Version(
-			parentPlid, version, start, end, orderByComparator);
+			parentPlid, version, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2361,16 +2393,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByParentPlid_Version(
 		long parentPlid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByParentPlid_Version(
-			parentPlid, version, start, end, orderByComparator, useFinderCache);
+			parentPlid, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -2521,18 +2551,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIconImageId(long, int, int, OrderByComparator)}
 	 * @param iconImageId the icon image ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByIconImageId(
 		long iconImageId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByIconImageId(
-			iconImageId, start, end, orderByComparator);
+			iconImageId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2546,16 +2580,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByIconImageId(
 		long iconImageId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByIconImageId(
-			iconImageId, start, end, orderByComparator, useFinderCache);
+			iconImageId, start, end, orderByComparator);
 	}
 
 	/**
@@ -2700,19 +2732,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIconImageId_Version(long,int, int, int, OrderByComparator)}
 	 * @param iconImageId the icon image ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByIconImageId_Version(
 		long iconImageId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByIconImageId_Version(
-			iconImageId, version, start, end, orderByComparator);
+			iconImageId, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -2727,17 +2764,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByIconImageId_Version(
 		long iconImageId, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByIconImageId_Version(
-			iconImageId, version, start, end, orderByComparator,
-			useFinderCache);
+			iconImageId, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -2894,18 +2928,22 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLayoutPrototypeUuid(String, int, int, OrderByComparator)}
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByLayoutPrototypeUuid(
 		String layoutPrototypeUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByLayoutPrototypeUuid(
-			layoutPrototypeUuid, start, end, orderByComparator);
+			layoutPrototypeUuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2919,16 +2957,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByLayoutPrototypeUuid(
 		String layoutPrototypeUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByLayoutPrototypeUuid(
-			layoutPrototypeUuid, start, end, orderByComparator, useFinderCache);
+			layoutPrototypeUuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -3076,19 +3112,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByLayoutPrototypeUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByLayoutPrototypeUuid_Version(
 		String layoutPrototypeUuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByLayoutPrototypeUuid_Version(
-			layoutPrototypeUuid, version, start, end, orderByComparator);
+			layoutPrototypeUuid, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -3103,17 +3144,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByLayoutPrototypeUuid_Version(
 		String layoutPrototypeUuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByLayoutPrototypeUuid_Version(
-			layoutPrototypeUuid, version, start, end, orderByComparator,
-			useFinderCache);
+			layoutPrototypeUuid, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -3272,18 +3310,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySourcePrototypeLayoutUuid(String, int, int, OrderByComparator)}
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findBySourcePrototypeLayoutUuid(
 		String sourcePrototypeLayoutUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findBySourcePrototypeLayoutUuid(
-			sourcePrototypeLayoutUuid, start, end, orderByComparator);
+			sourcePrototypeLayoutUuid, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -3297,17 +3340,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findBySourcePrototypeLayoutUuid(
 		String sourcePrototypeLayoutUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findBySourcePrototypeLayoutUuid(
-			sourcePrototypeLayoutUuid, start, end, orderByComparator,
-			useFinderCache);
+			sourcePrototypeLayoutUuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -3461,19 +3501,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySourcePrototypeLayoutUuid_Version(String,int, int, int, OrderByComparator)}
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findBySourcePrototypeLayoutUuid_Version(
 		String sourcePrototypeLayoutUuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findBySourcePrototypeLayoutUuid_Version(
-			sourcePrototypeLayoutUuid, version, start, end, orderByComparator);
+			sourcePrototypeLayoutUuid, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -3488,17 +3533,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findBySourcePrototypeLayoutUuid_Version(
 		String sourcePrototypeLayoutUuid, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findBySourcePrototypeLayoutUuid_Version(
-			sourcePrototypeLayoutUuid, version, start, end, orderByComparator,
-			useFinderCache);
+			sourcePrototypeLayoutUuid, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -3660,19 +3702,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P(
-			groupId, privateLayout, start, end, orderByComparator);
+			groupId, privateLayout, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -3687,17 +3734,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P(
-			groupId, privateLayout, start, end, orderByComparator,
-			useFinderCache);
+			groupId, privateLayout, start, end, orderByComparator);
 	}
 
 	/**
@@ -3854,20 +3898,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_Version(long,boolean,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P_Version(
 		long groupId, boolean privateLayout, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_Version(
-			groupId, privateLayout, version, start, end, orderByComparator);
+			groupId, privateLayout, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -3883,17 +3932,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P_Version(
 		long groupId, boolean privateLayout, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P_Version(
-			groupId, privateLayout, version, start, end, orderByComparator,
-			useFinderCache);
+			groupId, privateLayout, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -4057,19 +4103,23 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_T(
 		long groupId, String type, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_T(
-			groupId, type, start, end, orderByComparator);
+			groupId, type, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -4084,16 +4134,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_T(
 		long groupId, String type, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_T(
-			groupId, type, start, end, orderByComparator, useFinderCache);
+			groupId, type, start, end, orderByComparator);
 	}
 
 	/**
@@ -4249,20 +4297,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_T_Version(long,String,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param type the type
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_T_Version(
 		long groupId, String type, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_T_Version(
-			groupId, type, version, start, end, orderByComparator);
+			groupId, type, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -4278,17 +4331,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_T_Version(
 		long groupId, String type, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_T_Version(
-			groupId, type, version, start, end, orderByComparator,
-			useFinderCache);
+			groupId, type, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -4453,19 +4503,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_L(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByC_L(
 		long companyId, String layoutPrototypeUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_L(
-			companyId, layoutPrototypeUuid, start, end, orderByComparator);
+			companyId, layoutPrototypeUuid, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -4480,17 +4535,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByC_L(
 		long companyId, String layoutPrototypeUuid, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByC_L(
-			companyId, layoutPrototypeUuid, start, end, orderByComparator,
-			useFinderCache);
+			companyId, layoutPrototypeUuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -4648,21 +4700,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_L_Version(long,String,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param layoutPrototypeUuid the layout prototype uuid
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByC_L_Version(
 		long companyId, String layoutPrototypeUuid, int version, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_L_Version(
 			companyId, layoutPrototypeUuid, version, start, end,
-			orderByComparator);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -4678,17 +4734,15 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByC_L_Version(
 		long companyId, String layoutPrototypeUuid, int version, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByC_L_Version(
 			companyId, layoutPrototypeUuid, version, start, end,
-			orderByComparator, useFinderCache);
+			orderByComparator);
 	}
 
 	/**
@@ -4856,19 +4910,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_I(boolean,long, int, int, OrderByComparator)}
 	 * @param privateLayout the private layout
 	 * @param iconImageId the icon image ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByP_I(
 		boolean privateLayout, long iconImageId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByP_I(
-			privateLayout, iconImageId, start, end, orderByComparator);
+			privateLayout, iconImageId, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -4883,17 +4942,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByP_I(
 		boolean privateLayout, long iconImageId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByP_I(
-			privateLayout, iconImageId, start, end, orderByComparator,
-			useFinderCache);
+			privateLayout, iconImageId, start, end, orderByComparator);
 	}
 
 	/**
@@ -5051,20 +5107,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByP_I_Version(boolean,long,int, int, int, OrderByComparator)}
 	 * @param privateLayout the private layout
 	 * @param iconImageId the icon image ID
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByP_I_Version(
 		boolean privateLayout, long iconImageId, int version, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByP_I_Version(
-			privateLayout, iconImageId, version, start, end, orderByComparator);
+			privateLayout, iconImageId, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -5080,17 +5141,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByP_I_Version(
 		boolean privateLayout, long iconImageId, int version, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByP_I_Version(
-			privateLayout, iconImageId, version, start, end, orderByComparator,
-			useFinderCache);
+			privateLayout, iconImageId, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -5257,19 +5315,24 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_C(
-			classNameId, classPK, start, end, orderByComparator);
+			classNameId, classPK, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -5284,17 +5347,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByC_C(
-			classNameId, classPK, start, end, orderByComparator,
-			useFinderCache);
+			classNameId, classPK, start, end, orderByComparator);
 	}
 
 	/**
@@ -5451,20 +5511,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_Version(long,long,int, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param version the version
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByC_C_Version(
 		long classNameId, long classPK, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_C_Version(
-			classNameId, classPK, version, start, end, orderByComparator);
+			classNameId, classPK, version, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -5480,17 +5545,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByC_C_Version(
 		long classNameId, long classPK, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByC_C_Version(
-			classNameId, classPK, version, start, end, orderByComparator,
-			useFinderCache);
+			classNameId, classPK, version, start, end, orderByComparator);
 	}
 
 	/**
@@ -5659,20 +5721,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L(long,boolean,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_L(
-			groupId, privateLayout, layoutId, start, end, orderByComparator);
+			groupId, privateLayout, layoutId, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -5688,17 +5755,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P_L(
-			groupId, privateLayout, layoutId, start, end, orderByComparator,
-			useFinderCache);
+			groupId, privateLayout, layoutId, start, end, orderByComparator);
 	}
 
 	/**
@@ -5844,19 +5908,23 @@ public class LayoutVersionUtil {
 	}
 
 	/**
-	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_P_L_Version(long,boolean,long,int)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public static LayoutVersion fetchByG_P_L_Version(
-		long groupId, boolean privateLayout, long layoutId, int version) {
+		long groupId, boolean privateLayout, long layoutId, int version,
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByG_P_L_Version(
-			groupId, privateLayout, layoutId, version);
+			groupId, privateLayout, layoutId, version, useFinderCache);
 	}
 
 	/**
@@ -5870,11 +5938,10 @@ public class LayoutVersionUtil {
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public static LayoutVersion fetchByG_P_L_Version(
-		long groupId, boolean privateLayout, long layoutId, int version,
-		boolean useFinderCache) {
+		long groupId, boolean privateLayout, long layoutId, int version) {
 
 		return getPersistence().fetchByG_P_L_Version(
-			groupId, privateLayout, layoutId, version, useFinderCache);
+			groupId, privateLayout, layoutId, version);
 	}
 
 	/**
@@ -5955,21 +6022,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P(long,boolean,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P_P(
 		long groupId, boolean privateLayout, long parentLayoutId, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_P(
 			groupId, privateLayout, parentLayoutId, start, end,
-			orderByComparator);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -5985,17 +6056,15 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P_P(
 		long groupId, boolean privateLayout, long parentLayoutId, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P_P(
 			groupId, privateLayout, parentLayoutId, start, end,
-			orderByComparator, useFinderCache);
+			orderByComparator);
 	}
 
 	/**
@@ -6169,6 +6238,35 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_Version(long,boolean,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param parentLayoutId the parent layout ID
+	 * @param version the version
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_P_Version(
+		long groupId, boolean privateLayout, long parentLayoutId, int version,
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_P_Version(
+			groupId, privateLayout, parentLayoutId, version, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -6186,33 +6284,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_P_Version(
 			groupId, privateLayout, parentLayoutId, version, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and version = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param parentLayoutId the parent layout ID
-	 * @param version the version
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_P_Version(
-		long groupId, boolean privateLayout, long parentLayoutId, int version,
-		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_P_Version(
-			groupId, privateLayout, parentLayoutId, version, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -6390,20 +6461,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_T(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param type the type
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P_T(
 		long groupId, boolean privateLayout, String type, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_T(
-			groupId, privateLayout, type, start, end, orderByComparator);
+			groupId, privateLayout, type, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -6419,17 +6495,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P_T(
 		long groupId, boolean privateLayout, String type, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P_T(
-			groupId, privateLayout, type, start, end, orderByComparator,
-			useFinderCache);
+			groupId, privateLayout, type, start, end, orderByComparator);
 	}
 
 	/**
@@ -6600,6 +6673,35 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_T_Version(long,boolean,String,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param type the type
+	 * @param version the version
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_T_Version(
+		long groupId, boolean privateLayout, String type, int version,
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_T_Version(
+			groupId, privateLayout, type, version, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param type the type
@@ -6617,33 +6719,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_T_Version(
 			groupId, privateLayout, type, version, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and type = &#63; and version = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param type the type
-	 * @param version the version
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_T_Version(
-		long groupId, boolean privateLayout, String type, int version,
-		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_T_Version(
-			groupId, privateLayout, type, version, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -6823,20 +6898,25 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_F(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param friendlyURL the friendly url
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findByG_P_F(
 		long groupId, boolean privateLayout, String friendlyURL, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_F(
-			groupId, privateLayout, friendlyURL, start, end, orderByComparator);
+			groupId, privateLayout, friendlyURL, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -6852,17 +6932,14 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout versions
 	 */
 	public static List<LayoutVersion> findByG_P_F(
 		long groupId, boolean privateLayout, String friendlyURL, int start,
-		int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<LayoutVersion> orderByComparator) {
 
 		return getPersistence().findByG_P_F(
-			groupId, privateLayout, friendlyURL, start, end, orderByComparator,
-			useFinderCache);
+			groupId, privateLayout, friendlyURL, start, end, orderByComparator);
 	}
 
 	/**
@@ -7011,19 +7088,23 @@ public class LayoutVersionUtil {
 	}
 
 	/**
-	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the layout version where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_P_F_Version(long,boolean,String,int)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param friendlyURL the friendly url
 	 * @param version the version
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
+	@Deprecated
 	public static LayoutVersion fetchByG_P_F_Version(
-		long groupId, boolean privateLayout, String friendlyURL, int version) {
+		long groupId, boolean privateLayout, String friendlyURL, int version,
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByG_P_F_Version(
-			groupId, privateLayout, friendlyURL, version);
+			groupId, privateLayout, friendlyURL, version, useFinderCache);
 	}
 
 	/**
@@ -7037,11 +7118,10 @@ public class LayoutVersionUtil {
 	 * @return the matching layout version, or <code>null</code> if a matching layout version could not be found
 	 */
 	public static LayoutVersion fetchByG_P_F_Version(
-		long groupId, boolean privateLayout, String friendlyURL, int version,
-		boolean useFinderCache) {
+		long groupId, boolean privateLayout, String friendlyURL, int version) {
 
 		return getPersistence().fetchByG_P_F_Version(
-			groupId, privateLayout, friendlyURL, version, useFinderCache);
+			groupId, privateLayout, friendlyURL, version);
 	}
 
 	/**
@@ -7123,6 +7203,34 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_SPLU(long,boolean,String, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_SPLU(
+		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_SPLU(
+			groupId, privateLayout, sourcePrototypeLayoutUuid, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
@@ -7139,32 +7247,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_SPLU(
 			groupId, privateLayout, sourcePrototypeLayoutUuid, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_SPLU(
-		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_SPLU(
-			groupId, privateLayout, sourcePrototypeLayoutUuid, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -7347,6 +7429,36 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_SPLU_Version(long,boolean,String,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
+	 * @param version the version
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_SPLU_Version(
+		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
+		int version, int start, int end,
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_SPLU_Version(
+			groupId, privateLayout, sourcePrototypeLayoutUuid, version, start,
+			end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
@@ -7364,34 +7476,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_SPLU_Version(
 			groupId, privateLayout, sourcePrototypeLayoutUuid, version, start,
 			end, orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; and version = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
-	 * @param version the version
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_SPLU_Version(
-		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_SPLU_Version(
-			groupId, privateLayout, sourcePrototypeLayoutUuid, version, start,
-			end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -7582,6 +7666,36 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_H(long,boolean,long,boolean, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param parentLayoutId the parent layout ID
+	 * @param hidden the hidden
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_P_H(
+		long groupId, boolean privateLayout, long parentLayoutId,
+		boolean hidden, int start, int end,
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_P_H(
+			groupId, privateLayout, parentLayoutId, hidden, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -7599,34 +7713,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_P_H(
 			groupId, privateLayout, parentLayoutId, hidden, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param parentLayoutId the parent layout ID
-	 * @param hidden the hidden
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_P_H(
-		long groupId, boolean privateLayout, long parentLayoutId,
-		boolean hidden, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_P_H(
-			groupId, privateLayout, parentLayoutId, hidden, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -7814,6 +7900,37 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_H_Version(long,boolean,long,boolean,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param parentLayoutId the parent layout ID
+	 * @param hidden the hidden
+	 * @param version the version
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_P_H_Version(
+		long groupId, boolean privateLayout, long parentLayoutId,
+		boolean hidden, int version, int start, int end,
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_P_H_Version(
+			groupId, privateLayout, parentLayoutId, hidden, version, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -7832,35 +7949,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_P_H_Version(
 			groupId, privateLayout, parentLayoutId, hidden, version, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and hidden = &#63; and version = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param parentLayoutId the parent layout ID
-	 * @param hidden the hidden
-	 * @param version the version
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_P_H_Version(
-		long groupId, boolean privateLayout, long parentLayoutId,
-		boolean hidden, int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_P_H_Version(
-			groupId, privateLayout, parentLayoutId, hidden, version, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -8060,6 +8148,35 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_LtP(long,boolean,long,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param parentLayoutId the parent layout ID
+	 * @param priority the priority
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_P_LtP(
+		long groupId, boolean privateLayout, long parentLayoutId, int priority,
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_P_LtP(
+			groupId, privateLayout, parentLayoutId, priority, start, end,
+			orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -8077,33 +8194,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_P_LtP(
 			groupId, privateLayout, parentLayoutId, priority, start, end,
 			orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param parentLayoutId the parent layout ID
-	 * @param priority the priority
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_P_LtP(
-		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_P_LtP(
-			groupId, privateLayout, parentLayoutId, priority, start, end,
-			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -8295,6 +8385,37 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_P_LtP_Version(long,boolean,long,int,int, int, int, OrderByComparator)}
+	 * @param groupId the group ID
+	 * @param privateLayout the private layout
+	 * @param parentLayoutId the parent layout ID
+	 * @param priority the priority
+	 * @param version the version
+	 * @param start the lower bound of the range of layout versions
+	 * @param end the upper bound of the range of layout versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout versions
+	 */
+	@Deprecated
+	public static List<LayoutVersion> findByG_P_P_LtP_Version(
+		long groupId, boolean privateLayout, long parentLayoutId, int priority,
+		int version, int start, int end,
+		OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
+
+		return getPersistence().findByG_P_P_LtP_Version(
+			groupId, privateLayout, parentLayoutId, priority, version, start,
+			end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param parentLayoutId the parent layout ID
@@ -8313,35 +8434,6 @@ public class LayoutVersionUtil {
 		return getPersistence().findByG_P_P_LtP_Version(
 			groupId, privateLayout, parentLayoutId, priority, version, start,
 			end, orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the layout versions where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority = &#63; and version = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param privateLayout the private layout
-	 * @param parentLayoutId the parent layout ID
-	 * @param priority the priority
-	 * @param version the version
-	 * @param start the lower bound of the range of layout versions
-	 * @param end the upper bound of the range of layout versions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching layout versions
-	 */
-	public static List<LayoutVersion> findByG_P_P_LtP_Version(
-		long groupId, boolean privateLayout, long parentLayoutId, int priority,
-		int version, int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
-
-		return getPersistence().findByG_P_P_LtP_Version(
-			groupId, privateLayout, parentLayoutId, priority, version, start,
-			end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -8593,16 +8685,20 @@ public class LayoutVersionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout versions
 	 */
+	@Deprecated
 	public static List<LayoutVersion> findAll(
-		int start, int end,
-		OrderByComparator<LayoutVersion> orderByComparator) {
+		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -8615,15 +8711,13 @@ public class LayoutVersionUtil {
 	 * @param start the lower bound of the range of layout versions
 	 * @param end the upper bound of the range of layout versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout versions
 	 */
 	public static List<LayoutVersion> findAll(
-		int start, int end, OrderByComparator<LayoutVersion> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<LayoutVersion> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
