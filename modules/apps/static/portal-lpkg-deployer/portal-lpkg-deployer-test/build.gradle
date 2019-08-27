@@ -16,7 +16,7 @@ dependencies {
 	testCompile project(":apps:static:portal-lpkg-deployer:portal-lpkg-deployer-test-util")
 	testCompile project(":core:petra:petra-lang")
 
-	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.18"
+	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.19"
 }
 
 test {

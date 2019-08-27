@@ -1,5 +1,5 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.18"
+	compileOnly group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.19"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.39.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test", version: "4.0.0"
 }
