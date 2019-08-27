@@ -10,6 +10,10 @@ AUI.add(
 		var ValidationField = A.Component.create(
 			{
 				ATTRS: {
+					builder: {
+						getter: '_getFormBuilder'
+					},
+
 					dataType: {
 						value: ''
 					},
@@ -164,11 +168,22 @@ AUI.add(
 
 						var value = instance.get('value');
 
+						var errorMessageValue = instance.get('errorMessageValue')
+
+						if (Lang.isObject(errorMessageValue)) {
+							if (errorMessageValue[instance._getEditingLanguageId()]) {
+								errorMessageValue = errorMessageValue[instance._getEditingLanguageId()];
+							}
+							else {
+								errorMessageValue = errorMessageValue[instance._getDefaultLanguageId()];
+							}
+						}
+
 						return A.merge(
 							ValidationField.superclass.getTemplateContext.apply(instance, arguments),
 							{
 								enableValidationValue: !!(value && value.expression),
-								errorMessageValue: instance.get('errorMessageValue'),
+								errorMessageValue: errorMessageValue,
 								parameterMessagePlaceholder: parameterMessage,
 								parameterValue: instance.get('parameterValue'),
 								strings: instance.get('strings'),
@@ -200,8 +215,12 @@ AUI.add(
 							);
 						}
 
+						var errorMessage = instance._getLocalizedErrorMessage();
+
+						errorMessage[instance._getEditingLanguageId()] = instance._getMessageValue();
+
 						return {
-							errorMessage: instance._getMessageValue(),
+							errorMessage: errorMessage,
 							expression: expression
 						};
 					},
@@ -257,6 +276,34 @@ AUI.add(
 						return field;
 					},
 
+					_getDefaultLanguageId: function() {
+						var instance = this;
+
+						var builder = instance.get('builder');
+
+						var defaultLanguageId = instance.get('locale');
+
+						if (builder) {
+							defaultLanguageId = builder.get('defaultLanguageId');
+						}
+
+						return defaultLanguageId;
+					},
+
+					_getEditingLanguageId: function() {
+						var instance = this;
+
+						var builder = instance.get('builder');
+
+						var currentEditingLanguageId = instance.get('locale');
+
+						if (builder) {
+							currentEditingLanguageId = builder.get('editingLanguageId');
+						}
+
+						return currentEditingLanguageId;
+					},
+
 					_getEnableValidationValue: function() {
 						var instance = this;
 
@@ -265,6 +312,43 @@ AUI.add(
 						var enableValidationNode = container.one('.enable-validation');
 
 						return !!enableValidationNode.attr('checked');
+					},
+
+					_getFormBuilder: function() {
+						var instance = this;
+
+						var form = instance.get('parent');
+
+						var builder;
+
+						if (form) {
+							builder = form.get('builder');
+						}
+
+						return builder;
+					},
+
+					_getLocalizedErrorMessage() {
+						var instance = this;
+
+						var errorMessages = {};
+						var localizedValue = instance.get('localizedValue');
+
+						Object.keys(localizedValue || {}).forEach(
+							function(locale) {
+								var value = localizedValue[locale].errorMessage[locale];
+
+								if (!value) {
+									var defaultLanguageId = instance._getDefaultLanguageId();
+
+									value = localizedValue[defaultLanguageId].errorMessage[defaultLanguageId];
+								}
+
+								return errorMessages[locale] = value;
+							}
+						);
+
+						return errorMessages;
 					},
 
 					_getMessageValue: function() {
@@ -378,7 +462,11 @@ AUI.add(
 
 						var input = event.target;
 
-						instance.set('errorMessageValue', input.val());
+						instance.set('errorMessageValue', {
+							...instance.get('errorMessageValue'),
+							[instance._getEditingLanguageId()]: input.val()
+						});
+
 						instance.set('value', instance.getValue());
 					},
 
@@ -396,12 +484,11 @@ AUI.add(
 
 						if (validation) {
 							var errorMessage = validation.errorMessage;
-
 							var expression = validation.expression;
 
 							A.each(
 								instance.get('validations'),
-								function(item, type) {
+								function(item) {
 									var regex = item.regex;
 
 									if (regex.test(expression)) {
@@ -455,8 +542,12 @@ AUI.add(
 					_validationValueFn: function() {
 						var instance = this;
 
+						var errorMessage = {};
+
+						errorMessage[instance._getEditingLanguageId()] = Liferay.Language.get('is-empty');
+
 						return {
-							errorMessage: Liferay.Language.get('is-empty'),
+							errorMessage: errorMessage,
 							expression: 'NOT(equals({name}, ""))'
 						};
 					}
