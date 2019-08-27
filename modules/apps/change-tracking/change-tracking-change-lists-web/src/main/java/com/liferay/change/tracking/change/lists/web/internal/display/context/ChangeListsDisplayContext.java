@@ -183,7 +183,6 @@ public class ChangeListsDisplayContext {
 
 		checkoutURL.setParameter(
 			ActionRequest.ACTION_NAME, "/change_lists/checkout_ct_collection");
-
 		checkoutURL.setParameter(
 			"ctCollectionId", String.valueOf(ctCollectionId));
 
