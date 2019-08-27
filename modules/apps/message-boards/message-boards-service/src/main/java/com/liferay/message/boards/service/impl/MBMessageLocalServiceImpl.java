@@ -2175,13 +2175,11 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		subscriptionSender.setHtmlFormat(true);
 
 		Map<Locale, String> localizedBodyMap = null;
-
 		Map<Locale, String> localizedSubjectMap = null;
 
 		if (serviceContext.isCommandUpdate()) {
 			localizedBodyMap = LocalizationUtil.getMap(
 				commentGroupServiceConfiguration.discussionEmailUpdatedBody());
-
 			localizedSubjectMap = LocalizationUtil.getMap(
 				commentGroupServiceConfiguration.
 					discussionEmailUpdatedSubject());
@@ -2189,7 +2187,6 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		else {
 			localizedBodyMap = LocalizationUtil.getMap(
 				commentGroupServiceConfiguration.discussionEmailBody());
-
 			localizedSubjectMap = LocalizationUtil.getMap(
 				commentGroupServiceConfiguration.discussionEmailSubject());
 		}
