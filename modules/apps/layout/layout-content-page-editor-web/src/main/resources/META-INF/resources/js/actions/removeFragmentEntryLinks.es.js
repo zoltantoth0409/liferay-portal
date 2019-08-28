@@ -25,6 +25,7 @@ import {updateMappedContentsAction} from './updateMappedContents.es';
 /**
  * Removes a list of fragment entry links
  * @param {array} fragmentEntryLinks
+ * @review
  */
 function removeFragmentEntryLinksAction(fragmentEntryLinks) {
 	return function(dispatch) {
@@ -37,6 +38,7 @@ function removeFragmentEntryLinksAction(fragmentEntryLinks) {
 /**
  * Removes a fragment entry link
  * @param {string} fragmentEntryLinkId
+ * @review
  */
 function removeFragmentEntryLinkAction(fragmentEntryLinkId) {
 	return function(dispatch, getState) {

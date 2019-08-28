@@ -26,6 +26,7 @@ import {updatePageEditorLayoutDataAction} from './updatePageEditorLayoutData.es'
 /**
  * Removes a row of the layout data structure
  * @param {number} rowId
+ * @review
  */
 function removeRowAction(rowId) {
 	return function(dispatch, getState) {
