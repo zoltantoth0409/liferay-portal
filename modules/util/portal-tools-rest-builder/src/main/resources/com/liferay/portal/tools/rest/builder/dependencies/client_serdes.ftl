@@ -222,14 +222,14 @@ public class ${schemaName}SerDes {
 				</#if>
 
 				if (Objects.equals(jsonParserFieldName, "${propertyName}")) {
-				if (jsonParserFieldValue != null) {
+					if (jsonParserFieldValue != null) {
 						<#assign capitalizedPropertyName = propertyName?cap_first />
 
 						<#if enumSchemas?keys?seq_contains(properties[propertyName])>
 							<#assign capitalizedPropertyName = properties[propertyName] />
 						</#if>
 
-					${schemaVarName}.set${capitalizedPropertyName}(
+						${schemaVarName}.set${capitalizedPropertyName}(
 
 						<#assign propertyType = properties[propertyName] />
 
@@ -271,14 +271,14 @@ public class ${schemaName}SerDes {
 							(${propertyType})jsonParserFieldValue
 						</#if>
 
-					);
+						);
+					}
 				}
-			}
 			</#list>
 
-		else {
-			throw new IllegalArgumentException("Unsupported field name " + jsonParserFieldName);
-		}
+			else {
+				throw new IllegalArgumentException("Unsupported field name " + jsonParserFieldName);
+			}
 		}
 	}
 
