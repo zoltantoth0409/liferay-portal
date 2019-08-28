@@ -121,9 +121,9 @@ public class DuplicateFragmentEntryLinkMVCActionCommand
 				fragmentEntryLink.getFragmentEntryId(),
 				fragmentEntryLink.getRendererKey(), serviceContext);
 
-			String configuration;
-			String fragmentEntryKey;
-			String name;
+			String configuration = null;
+			String fragmentEntryKey = null;
+			String name = null;
 
 			if (fragmentEntry != null) {
 				configuration = fragmentEntry.getConfiguration();
