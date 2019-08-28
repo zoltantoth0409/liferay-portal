@@ -186,7 +186,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 		boolean ignoreCDNHost, boolean ignorePathProxy, String pathPrefix,
 		String relativeURL) {
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(5);
 
 		String cdnHost = _getCDNHost(_request);
 
@@ -273,6 +273,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	 * @review
 	 */
 	private final String _pathContext;
+
 	private final String _pathImage;
 	private final String _pathMain;
 	private final String _pathModule;
