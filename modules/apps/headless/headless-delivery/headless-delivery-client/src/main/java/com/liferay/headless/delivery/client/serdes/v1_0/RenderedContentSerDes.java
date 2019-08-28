@@ -123,6 +123,44 @@ public class RenderedContentSerDes {
 		return map;
 	}
 
+	public static class RenderedContentJSONParser
+		extends BaseJSONParser<RenderedContent> {
+
+		@Override
+		protected RenderedContent createDTO() {
+			return new RenderedContent();
+		}
+
+		@Override
+		protected RenderedContent[] createDTOArray(int size) {
+			return new RenderedContent[size];
+		}
+
+		@Override
+		protected void setField(
+			RenderedContent renderedContent, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "renderedContentURL")) {
+				if (jsonParserFieldValue != null) {
+					renderedContent.setRenderedContentURL(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "templateName")) {
+				if (jsonParserFieldValue != null) {
+					renderedContent.setTemplateName(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -149,7 +187,7 @@ public class RenderedContentSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -190,44 +228,6 @@ public class RenderedContentSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class RenderedContentJSONParser
-		extends BaseJSONParser<RenderedContent> {
-
-		@Override
-		protected RenderedContent createDTO() {
-			return new RenderedContent();
-		}
-
-		@Override
-		protected RenderedContent[] createDTOArray(int size) {
-			return new RenderedContent[size];
-		}
-
-		@Override
-		protected void setField(
-			RenderedContent renderedContent, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "renderedContentURL")) {
-				if (jsonParserFieldValue != null) {
-					renderedContent.setRenderedContentURL(
-						(String)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "templateName")) {
-				if (jsonParserFieldValue != null) {
-					renderedContent.setTemplateName(
-						(String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

@@ -134,6 +134,45 @@ public class DocumentBulkSelectionSerDes {
 		return map;
 	}
 
+	public static class DocumentBulkSelectionJSONParser
+		extends BaseJSONParser<DocumentBulkSelection> {
+
+		@Override
+		protected DocumentBulkSelection createDTO() {
+			return new DocumentBulkSelection();
+		}
+
+		@Override
+		protected DocumentBulkSelection[] createDTOArray(int size) {
+			return new DocumentBulkSelection[size];
+		}
+
+		@Override
+		protected void setField(
+			DocumentBulkSelection documentBulkSelection,
+			String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "documentIds")) {
+				if (jsonParserFieldValue != null) {
+					documentBulkSelection.setDocumentIds(
+						toStrings((Object[])jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "selectionScope")) {
+				if (jsonParserFieldValue != null) {
+					documentBulkSelection.setSelectionScope(
+						SelectionScopeSerDes.toDTO(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -160,7 +199,7 @@ public class DocumentBulkSelectionSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -201,45 +240,6 @@ public class DocumentBulkSelectionSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class DocumentBulkSelectionJSONParser
-		extends BaseJSONParser<DocumentBulkSelection> {
-
-		@Override
-		protected DocumentBulkSelection createDTO() {
-			return new DocumentBulkSelection();
-		}
-
-		@Override
-		protected DocumentBulkSelection[] createDTOArray(int size) {
-			return new DocumentBulkSelection[size];
-		}
-
-		@Override
-		protected void setField(
-			DocumentBulkSelection documentBulkSelection,
-			String jsonParserFieldName, Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "documentIds")) {
-				if (jsonParserFieldValue != null) {
-					documentBulkSelection.setDocumentIds(
-						toStrings((Object[])jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "selectionScope")) {
-				if (jsonParserFieldValue != null) {
-					documentBulkSelection.setSelectionScope(
-						SelectionScopeSerDes.toDTO(
-							(String)jsonParserFieldValue));
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

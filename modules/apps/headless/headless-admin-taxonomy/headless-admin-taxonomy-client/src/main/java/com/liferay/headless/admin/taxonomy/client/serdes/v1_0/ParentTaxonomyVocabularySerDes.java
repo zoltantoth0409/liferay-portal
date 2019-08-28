@@ -119,6 +119,44 @@ public class ParentTaxonomyVocabularySerDes {
 		return map;
 	}
 
+	public static class ParentTaxonomyVocabularyJSONParser
+		extends BaseJSONParser<ParentTaxonomyVocabulary> {
+
+		@Override
+		protected ParentTaxonomyVocabulary createDTO() {
+			return new ParentTaxonomyVocabulary();
+		}
+
+		@Override
+		protected ParentTaxonomyVocabulary[] createDTOArray(int size) {
+			return new ParentTaxonomyVocabulary[size];
+		}
+
+		@Override
+		protected void setField(
+			ParentTaxonomyVocabulary parentTaxonomyVocabulary,
+			String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					parentTaxonomyVocabulary.setId(
+						Long.valueOf((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					parentTaxonomyVocabulary.setName(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -145,7 +183,7 @@ public class ParentTaxonomyVocabularySerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -186,44 +224,6 @@ public class ParentTaxonomyVocabularySerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class ParentTaxonomyVocabularyJSONParser
-		extends BaseJSONParser<ParentTaxonomyVocabulary> {
-
-		@Override
-		protected ParentTaxonomyVocabulary createDTO() {
-			return new ParentTaxonomyVocabulary();
-		}
-
-		@Override
-		protected ParentTaxonomyVocabulary[] createDTOArray(int size) {
-			return new ParentTaxonomyVocabulary[size];
-		}
-
-		@Override
-		protected void setField(
-			ParentTaxonomyVocabulary parentTaxonomyVocabulary,
-			String jsonParserFieldName, Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "id")) {
-				if (jsonParserFieldValue != null) {
-					parentTaxonomyVocabulary.setId(
-						Long.valueOf((String)jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "name")) {
-				if (jsonParserFieldValue != null) {
-					parentTaxonomyVocabulary.setName(
-						(String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

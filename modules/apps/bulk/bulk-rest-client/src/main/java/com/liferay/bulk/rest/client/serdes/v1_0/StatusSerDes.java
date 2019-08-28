@@ -93,6 +93,36 @@ public class StatusSerDes {
 		return map;
 	}
 
+	public static class StatusJSONParser extends BaseJSONParser<Status> {
+
+		@Override
+		protected Status createDTO() {
+			return new Status();
+		}
+
+		@Override
+		protected Status[] createDTOArray(int size) {
+			return new Status[size];
+		}
+
+		@Override
+		protected void setField(
+			Status status, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "actionInProgress")) {
+				if (jsonParserFieldValue != null) {
+					status.setActionInProgress((Boolean)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -119,7 +149,7 @@ public class StatusSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -160,36 +190,6 @@ public class StatusSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class StatusJSONParser extends BaseJSONParser<Status> {
-
-		@Override
-		protected Status createDTO() {
-			return new Status();
-		}
-
-		@Override
-		protected Status[] createDTOArray(int size) {
-			return new Status[size];
-		}
-
-		@Override
-		protected void setField(
-			Status status, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "actionInProgress")) {
-				if (jsonParserFieldValue != null) {
-					status.setActionInProgress((Boolean)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }
