@@ -38,6 +38,7 @@ definition {
 		}
 	}
 
+	@ignore = "true"
 	@priority = "3"
 	test SearchFriendsDirectory {
 		var pageName = "Friends Directory Page";
