@@ -111,13 +111,13 @@ public class UpgradeDDMDataProviderInstance extends UpgradeProcess {
 			long ddmDataProviderInstanceId, String definition, String uuid)
 		throws JSONException {
 
+		String instanceId = StringUtil.randomString();
+
 		JSONObject definitionJSONObject = _jsonFactory.createJSONObject(
 			definition);
 
 		JSONArray fieldValuesJSONArray = definitionJSONObject.getJSONArray(
 			"fieldValues");
-
-		String instanceId = StringUtil.randomString();
 
 		for (int i = 0; i < fieldValuesJSONArray.length(); i++) {
 			JSONObject fieldValueJSONObject =
