@@ -308,7 +308,7 @@ public class ${schemaName}SerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
