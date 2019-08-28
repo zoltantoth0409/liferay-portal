@@ -533,7 +533,8 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 		for (String languageId : languageIds) {
 			String content = extractDDMContent(journalArticle, languageId);
 
-			String description = journalArticle.getDescription(languageId);
+			String description = HtmlUtil.stripHtml(
+				journalArticle.getDescription(languageId));
 
 			String title = journalArticle.getTitle(languageId);
 
