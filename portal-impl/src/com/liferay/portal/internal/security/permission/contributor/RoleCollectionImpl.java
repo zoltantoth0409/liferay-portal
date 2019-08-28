@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.permission.contributor;
+package com.liferay.portal.internal.security.permission.contributor;
 
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
