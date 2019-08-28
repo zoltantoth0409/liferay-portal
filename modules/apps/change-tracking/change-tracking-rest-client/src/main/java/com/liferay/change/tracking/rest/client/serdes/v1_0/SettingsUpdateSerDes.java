@@ -123,6 +123,47 @@ public class SettingsUpdateSerDes {
 		return map;
 	}
 
+	public static class SettingsUpdateJSONParser
+		extends BaseJSONParser<SettingsUpdate> {
+
+		@Override
+		protected SettingsUpdate createDTO() {
+			return new SettingsUpdate();
+		}
+
+		@Override
+		protected SettingsUpdate[] createDTOArray(int size) {
+			return new SettingsUpdate[size];
+		}
+
+		@Override
+		protected void setField(
+			SettingsUpdate settingsUpdate, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "changeTrackingEnabled")) {
+				if (jsonParserFieldValue != null) {
+					settingsUpdate.setChangeTrackingEnabled(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName,
+						"checkoutCTCollectionConfirmationEnabled")) {
+
+				if (jsonParserFieldValue != null) {
+					settingsUpdate.setCheckoutCTCollectionConfirmationEnabled(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -149,7 +190,7 @@ public class SettingsUpdateSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -190,47 +231,6 @@ public class SettingsUpdateSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class SettingsUpdateJSONParser
-		extends BaseJSONParser<SettingsUpdate> {
-
-		@Override
-		protected SettingsUpdate createDTO() {
-			return new SettingsUpdate();
-		}
-
-		@Override
-		protected SettingsUpdate[] createDTOArray(int size) {
-			return new SettingsUpdate[size];
-		}
-
-		@Override
-		protected void setField(
-			SettingsUpdate settingsUpdate, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "changeTrackingEnabled")) {
-				if (jsonParserFieldValue != null) {
-					settingsUpdate.setChangeTrackingEnabled(
-						(Boolean)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(
-						jsonParserFieldName,
-						"checkoutCTCollectionConfirmationEnabled")) {
-
-				if (jsonParserFieldValue != null) {
-					settingsUpdate.setCheckoutCTCollectionConfirmationEnabled(
-						(Boolean)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

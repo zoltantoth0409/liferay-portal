@@ -115,6 +115,43 @@ public class CustomValueSerDes {
 		return map;
 	}
 
+	public static class CustomValueJSONParser
+		extends BaseJSONParser<CustomValue> {
+
+		@Override
+		protected CustomValue createDTO() {
+			return new CustomValue();
+		}
+
+		@Override
+		protected CustomValue[] createDTOArray(int size) {
+			return new CustomValue[size];
+		}
+
+		@Override
+		protected void setField(
+			CustomValue customValue, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "data")) {
+				if (jsonParserFieldValue != null) {
+					customValue.setData((Object)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "geo")) {
+				if (jsonParserFieldValue != null) {
+					customValue.setGeo(
+						GeoSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -141,7 +178,7 @@ public class CustomValueSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -182,43 +219,6 @@ public class CustomValueSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class CustomValueJSONParser
-		extends BaseJSONParser<CustomValue> {
-
-		@Override
-		protected CustomValue createDTO() {
-			return new CustomValue();
-		}
-
-		@Override
-		protected CustomValue[] createDTOArray(int size) {
-			return new CustomValue[size];
-		}
-
-		@Override
-		protected void setField(
-			CustomValue customValue, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "data")) {
-				if (jsonParserFieldValue != null) {
-					customValue.setData((Object)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "geo")) {
-				if (jsonParserFieldValue != null) {
-					customValue.setGeo(
-						GeoSerDes.toDTO((String)jsonParserFieldValue));
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

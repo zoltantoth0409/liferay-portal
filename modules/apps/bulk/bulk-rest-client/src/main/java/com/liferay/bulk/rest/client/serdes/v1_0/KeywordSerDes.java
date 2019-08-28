@@ -95,6 +95,36 @@ public class KeywordSerDes {
 		return map;
 	}
 
+	public static class KeywordJSONParser extends BaseJSONParser<Keyword> {
+
+		@Override
+		protected Keyword createDTO() {
+			return new Keyword();
+		}
+
+		@Override
+		protected Keyword[] createDTOArray(int size) {
+			return new Keyword[size];
+		}
+
+		@Override
+		protected void setField(
+			Keyword keyword, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					keyword.setName((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -121,7 +151,7 @@ public class KeywordSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -162,36 +192,6 @@ public class KeywordSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class KeywordJSONParser extends BaseJSONParser<Keyword> {
-
-		@Override
-		protected Keyword createDTO() {
-			return new Keyword();
-		}
-
-		@Override
-		protected Keyword[] createDTOArray(int size) {
-			return new Keyword[size];
-		}
-
-		@Override
-		protected void setField(
-			Keyword keyword, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "name")) {
-				if (jsonParserFieldValue != null) {
-					keyword.setName((String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

@@ -91,6 +91,37 @@ public class SelectionSerDes {
 		return map;
 	}
 
+	public static class SelectionJSONParser extends BaseJSONParser<Selection> {
+
+		@Override
+		protected Selection createDTO() {
+			return new Selection();
+		}
+
+		@Override
+		protected Selection[] createDTOArray(int size) {
+			return new Selection[size];
+		}
+
+		@Override
+		protected void setField(
+			Selection selection, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "size")) {
+				if (jsonParserFieldValue != null) {
+					selection.setSize(
+						Long.valueOf((String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -117,7 +148,7 @@ public class SelectionSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -158,37 +189,6 @@ public class SelectionSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class SelectionJSONParser extends BaseJSONParser<Selection> {
-
-		@Override
-		protected Selection createDTO() {
-			return new Selection();
-		}
-
-		@Override
-		protected Selection[] createDTOArray(int size) {
-			return new Selection[size];
-		}
-
-		@Override
-		protected void setField(
-			Selection selection, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "size")) {
-				if (jsonParserFieldValue != null) {
-					selection.setSize(
-						Long.valueOf((String)jsonParserFieldValue));
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

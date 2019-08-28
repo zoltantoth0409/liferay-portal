@@ -137,6 +137,48 @@ public class SegmentUserSerDes {
 		return map;
 	}
 
+	public static class SegmentUserJSONParser
+		extends BaseJSONParser<SegmentUser> {
+
+		@Override
+		protected SegmentUser createDTO() {
+			return new SegmentUser();
+		}
+
+		@Override
+		protected SegmentUser[] createDTOArray(int size) {
+			return new SegmentUser[size];
+		}
+
+		@Override
+		protected void setField(
+			SegmentUser segmentUser, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "emailAddress")) {
+				if (jsonParserFieldValue != null) {
+					segmentUser.setEmailAddress((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					segmentUser.setId(
+						Long.valueOf((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					segmentUser.setName((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -163,7 +205,7 @@ public class SegmentUserSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -204,48 +246,6 @@ public class SegmentUserSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class SegmentUserJSONParser
-		extends BaseJSONParser<SegmentUser> {
-
-		@Override
-		protected SegmentUser createDTO() {
-			return new SegmentUser();
-		}
-
-		@Override
-		protected SegmentUser[] createDTOArray(int size) {
-			return new SegmentUser[size];
-		}
-
-		@Override
-		protected void setField(
-			SegmentUser segmentUser, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "emailAddress")) {
-				if (jsonParserFieldValue != null) {
-					segmentUser.setEmailAddress((String)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "id")) {
-				if (jsonParserFieldValue != null) {
-					segmentUser.setId(
-						Long.valueOf((String)jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "name")) {
-				if (jsonParserFieldValue != null) {
-					segmentUser.setName((String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

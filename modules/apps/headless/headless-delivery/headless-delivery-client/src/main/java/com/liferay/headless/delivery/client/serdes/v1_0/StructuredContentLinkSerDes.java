@@ -117,6 +117,44 @@ public class StructuredContentLinkSerDes {
 		return map;
 	}
 
+	public static class StructuredContentLinkJSONParser
+		extends BaseJSONParser<StructuredContentLink> {
+
+		@Override
+		protected StructuredContentLink createDTO() {
+			return new StructuredContentLink();
+		}
+
+		@Override
+		protected StructuredContentLink[] createDTOArray(int size) {
+			return new StructuredContentLink[size];
+		}
+
+		@Override
+		protected void setField(
+			StructuredContentLink structuredContentLink,
+			String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					structuredContentLink.setId(
+						Long.valueOf((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "title")) {
+				if (jsonParserFieldValue != null) {
+					structuredContentLink.setTitle(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -143,7 +181,7 @@ public class StructuredContentLinkSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -184,44 +222,6 @@ public class StructuredContentLinkSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class StructuredContentLinkJSONParser
-		extends BaseJSONParser<StructuredContentLink> {
-
-		@Override
-		protected StructuredContentLink createDTO() {
-			return new StructuredContentLink();
-		}
-
-		@Override
-		protected StructuredContentLink[] createDTOArray(int size) {
-			return new StructuredContentLink[size];
-		}
-
-		@Override
-		protected void setField(
-			StructuredContentLink structuredContentLink,
-			String jsonParserFieldName, Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "id")) {
-				if (jsonParserFieldValue != null) {
-					structuredContentLink.setId(
-						Long.valueOf((String)jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "title")) {
-				if (jsonParserFieldValue != null) {
-					structuredContentLink.setTitle(
-						(String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }

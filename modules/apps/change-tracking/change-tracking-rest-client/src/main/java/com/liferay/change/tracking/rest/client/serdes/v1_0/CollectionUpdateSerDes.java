@@ -122,6 +122,43 @@ public class CollectionUpdateSerDes {
 		return map;
 	}
 
+	public static class CollectionUpdateJSONParser
+		extends BaseJSONParser<CollectionUpdate> {
+
+		@Override
+		protected CollectionUpdate createDTO() {
+			return new CollectionUpdate();
+		}
+
+		@Override
+		protected CollectionUpdate[] createDTOArray(int size) {
+			return new CollectionUpdate[size];
+		}
+
+		@Override
+		protected void setField(
+			CollectionUpdate collectionUpdate, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "description")) {
+				if (jsonParserFieldValue != null) {
+					collectionUpdate.setDescription(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					collectionUpdate.setName((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
 	private static String _escape(Object object) {
 		String string = String.valueOf(object);
 
@@ -148,7 +185,7 @@ public class CollectionUpdateSerDes {
 
 			Object value = entry.getValue();
 
-			Class valueClass = value.getClass();
+			Class<?> valueClass = value.getClass();
 
 			if (value instanceof Map) {
 				sb.append(_toJSON((Map)value));
@@ -189,43 +226,6 @@ public class CollectionUpdateSerDes {
 		sb.append("}");
 
 		return sb.toString();
-	}
-
-	private static class CollectionUpdateJSONParser
-		extends BaseJSONParser<CollectionUpdate> {
-
-		@Override
-		protected CollectionUpdate createDTO() {
-			return new CollectionUpdate();
-		}
-
-		@Override
-		protected CollectionUpdate[] createDTOArray(int size) {
-			return new CollectionUpdate[size];
-		}
-
-		@Override
-		protected void setField(
-			CollectionUpdate collectionUpdate, String jsonParserFieldName,
-			Object jsonParserFieldValue) {
-
-			if (Objects.equals(jsonParserFieldName, "description")) {
-				if (jsonParserFieldValue != null) {
-					collectionUpdate.setDescription(
-						(String)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "name")) {
-				if (jsonParserFieldValue != null) {
-					collectionUpdate.setName((String)jsonParserFieldValue);
-				}
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
 	}
 
 }
