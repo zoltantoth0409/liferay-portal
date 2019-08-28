@@ -94,7 +94,7 @@
 							<aui:fieldset cssClass="col-md-6 column-last" label="administrator-user">
 								<%@ include file="/html/portal/setup_wizard_user_name.jspf" %>
 
-								<aui:input label="email" name="adminEmailAddress" value="<%= PropsValues.ADMIN_EMAIL_FROM_ADDRESS %>">
+								<aui:input label="email" name="adminEmailAddress">
 									<aui:validator name="email" />
 									<aui:validator name="required" />
 								</aui:input>
