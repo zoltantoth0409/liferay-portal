@@ -382,7 +382,7 @@ public abstract class BaseJSONParser<T> {
 			}
 			catch (Exception e) {
 				throw new IllegalArgumentException(
-					"Expected map or JSON Object");
+					"Expected JSON object or map");
 			}
 		}
 		else if (_lastChar == '{') {
