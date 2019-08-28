@@ -44,15 +44,15 @@ public class JsonObjectIndexedRecordConverterTest extends BaseTest {
 				readObject("attachmentContent.json"));
 
 		Assert.assertNotNull(
-			"attachment is converted to indexed record", indexedRecord);
+			"Attachment is converted to indexed record", indexedRecord);
 
 		Object displayDate = indexedRecord.get(1);
 
 		Assert.assertEquals(
-			"displayDate field type", Long.class, displayDate.getClass());
+			"Display date field type", Long.class, displayDate.getClass());
 
 		Assert.assertEquals(
-			"displayDate field value", 1320144300000L, displayDate);
+			"Display date field value", 1320144300000L, displayDate);
 	}
 
 	@Test(expected = ConverterException.class)
@@ -98,7 +98,7 @@ public class JsonObjectIndexedRecordConverterTest extends BaseTest {
 				readObject("productContent.json"));
 
 		Assert.assertNotNull(
-			"product is converted to indexed record", indexedRecord);
+			"Product is converted to indexed record", indexedRecord);
 
 		Assert.assertEquals("SKU is '3 pcs'", "3 pcs", indexedRecord.get(13));
 
@@ -111,11 +111,11 @@ public class JsonObjectIndexedRecordConverterTest extends BaseTest {
 		Object productId = indexedRecord.get(24);
 
 		Assert.assertEquals(
-			"productId class is long 20111101", Long.class,
+			"Product ID class is long 20111101", Long.class,
 			productId.getClass());
 
 		Assert.assertEquals(
-			"productId value is 20111101", Long.valueOf(20111101), productId);
+			"Product ID value is 20111101", Long.valueOf(20111101), productId);
 	}
 
 }

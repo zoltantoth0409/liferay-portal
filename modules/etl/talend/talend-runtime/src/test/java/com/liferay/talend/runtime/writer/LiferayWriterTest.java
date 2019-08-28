@@ -72,14 +72,14 @@ public class LiferayWriterTest extends BaseTest {
 			liferayRequestContentAggregatorSink.getOutputJsonObject();
 
 		Assert.assertTrue(
-			"output has name", outputJsonObject.containsKey("name"));
+			"Output has name", outputJsonObject.containsKey("name"));
 
 		JsonObject nameJsonObject = outputJsonObject.getJsonObject("name");
 
 		Assert.assertNotNull("name is json object", nameJsonObject);
 
 		Assert.assertTrue(
-			"name has key hr_HR", nameJsonObject.containsKey("hr_HR"));
+			"Name has key hr_HR", nameJsonObject.containsKey("hr_HR"));
 	}
 
 	@Test(expected = IOException.class)
