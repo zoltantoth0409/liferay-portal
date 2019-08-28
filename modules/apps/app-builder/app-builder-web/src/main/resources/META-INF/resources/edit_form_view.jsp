@@ -17,9 +17,10 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String editFormViewRootElementId = renderResponse.getNamespace() + "-app-builder-edit-form-view";
-String dataLayoutBuilderElementId = renderResponse.getNamespace() + "-app-builder-data-layout-builder";
 String componentId = renderResponse.getNamespace() + "dataLayoutBuilder";
+String dataLayoutBuilderElementId = renderResponse.getNamespace() + "-app-builder-data-layout-builder";
+String editFormViewRootElementId = renderResponse.getNamespace() + "-app-builder-edit-form-view";
+
 long dataDefinitionId = ParamUtil.getLong(request, "dataDefinitionId");
 long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 boolean newCustomObject = ParamUtil.getBoolean(request, "newCustomObject");
