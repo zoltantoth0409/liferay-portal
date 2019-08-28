@@ -1565,7 +1565,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		if (portalInstanceLifecycleManager != null) {
 			portalInstanceLifecycleManager.preregisterCompany(companyId);
 		}
-		
+
 		SearchEngineHelperUtil.initialize(companyId);
 	}
 
