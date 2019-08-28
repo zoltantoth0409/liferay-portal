@@ -356,7 +356,7 @@ public abstract class BaseJSONParser<T> {
 				return baseJSONParser.parseToMap(_readValueAsStringJSON());
 			}
 			catch (Exception e) {
-				throw new IllegalArgumentException("Expected map or JSON Object");
+				throw new IllegalArgumentException("Expected JSON object or map");
 			}
 		}
 		else if (_lastChar == '{') {
