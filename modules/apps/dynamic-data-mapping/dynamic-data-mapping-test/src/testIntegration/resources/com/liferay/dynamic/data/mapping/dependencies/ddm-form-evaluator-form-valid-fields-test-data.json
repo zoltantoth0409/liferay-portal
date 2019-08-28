@@ -35,7 +35,9 @@
 					},
 					"type": "ddm-integer",
 					"validation": {
-						"errorMessage": "Integer must be equal to zero.",
+						"errorMessage": {
+							"en_US": "Integer must be equal to zero."
+						},
 						"expression": "Integer == 0"
 					},
 					"visibilityExpression": "FALSE"
@@ -53,7 +55,9 @@
 			},
 			"type": "text",
 			"validation": {
-				"errorMessage": "This field is never valid.",
+				"errorMessage": {
+					"en_US": "This field is never valid."
+				},
 				"expression": "FALSE"
 			},
 			"visibilityExpression": "TRUE"
@@ -79,7 +83,9 @@
 			},
 			"type": "checkbox",
 			"validation": {
-				"errorMessage": "This field must be checked.",
+				"errorMessage": {
+					"en_US": "This field must be checked."
+				},
 				"expression": "Boolean"
 			},
 			"visibilityExpression": "NOT(Boolean)"
@@ -127,7 +133,9 @@
 			},
 			"type": "text",
 			"validation": {
-				"errorMessage": "This field should contain 'Joe'.",
+				"errorMessage": {
+					"en_US": "This field should contain 'Joe'."
+				},
 				"expression": "contains(Text3, \"Joe\")"
 			},
 			"visibilityExpression": "TRUE"
