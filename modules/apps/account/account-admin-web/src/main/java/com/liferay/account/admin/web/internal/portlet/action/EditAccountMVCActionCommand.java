@@ -57,9 +57,10 @@ public class EditAccountMVCActionCommand extends BaseMVCActionCommand {
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 		long logoId = ParamUtil.getInteger(actionRequest, "logoId");
-		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
-		int status;
+		int status = 0;
+
+		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
 		if (active) {
 			status = WorkflowConstants.STATUS_APPROVED;
