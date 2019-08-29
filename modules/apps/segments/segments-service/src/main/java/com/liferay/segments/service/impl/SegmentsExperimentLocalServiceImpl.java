@@ -254,17 +254,6 @@ public class SegmentsExperimentLocalServiceImpl
 
 	@Override
 	public SegmentsExperiment updateSegmentsExperiment(
-			long segmentsExperimentId, int status)
-		throws PortalException {
-
-		return _updateSegmentsExperimentStatus(
-			segmentsExperimentPersistence.findByPrimaryKey(
-				segmentsExperimentId),
-			status, 0);
-	}
-
-	@Override
-	public SegmentsExperiment updateSegmentsExperiment(
 			long segmentsExperimentId, double confidenceLevel, int status)
 		throws PortalException {
 
@@ -274,6 +263,17 @@ public class SegmentsExperimentLocalServiceImpl
 			segmentsExperimentPersistence.findByPrimaryKey(
 				segmentsExperimentId),
 			confidenceLevel, status);
+	}
+
+	@Override
+	public SegmentsExperiment updateSegmentsExperiment(
+			long segmentsExperimentId, int status)
+		throws PortalException {
+
+		return _updateSegmentsExperimentStatus(
+			segmentsExperimentPersistence.findByPrimaryKey(
+				segmentsExperimentId),
+			status, 0);
 	}
 
 	@Override
