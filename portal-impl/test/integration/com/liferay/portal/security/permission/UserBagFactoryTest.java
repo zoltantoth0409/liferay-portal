@@ -126,7 +126,6 @@ public class UserBagFactoryTest {
 		Assert.assertTrue(userBag.hasRole(inheritedRole));
 	}
 
-
 	@Test
 	public void testGetRoles() throws Exception {
 		Role regularRole = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
