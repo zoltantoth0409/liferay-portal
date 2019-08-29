@@ -40,7 +40,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "add-account"));
 		</h2>
 
 		<liferay-frontend:fieldset-group>
-			<liferay-util:include page="/account_display_data.jsp" servletContext="<%= application %>" />
+			<liferay-util:include page="/account_display.jsp" servletContext="<%= application %>" />
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
