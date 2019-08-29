@@ -485,21 +485,18 @@ AUI.add(
 
 							if (predefinedValue) {
 								return predefinedValue;
-							} else {
-								var defaultLocale = instance.getDefaultLocale();
-
-								if (
-									defaultLocale &&
-									localizationMap[defaultLocale]
-								) {
-									return localizationMap[defaultLocale];
-								} else {
-									return '';
-								}
 							}
-						} else {
-							return localizationMap[locale];
+
+							var defaultLocale = instance.getDefaultLocale();
+
+							if (defaultLocale && localizationMap[defaultLocale]) {
+								return localizationMap[defaultLocale];
+							}
+
+							return '';
 						}
+
+						return localizationMap[locale];
 					},
 
 					getFieldByNameInFieldDefinition: function(name) {
@@ -861,11 +858,12 @@ AUI.add(
 						var instance = this;
 
 						var localizationMap = instance.get('localizationMap');
-						var defaultLocale = instance.getDefaultLocale();
 
 						var value = instance.getValue();
 
 						if (instance.get('localizable')) {
+							var defaultLocale = instance.getDefaultLocale();
+
 							if (
 								locale === defaultLocale ||
 								value !== localizationMap[defaultLocale]
