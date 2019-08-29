@@ -492,7 +492,9 @@ public class ContentPageEditorDisplayContext {
 			soyContexts.add(availableSoyContext);
 		}
 
-		if (!pageIsDisplayPage) {
+		// LPS-100647
+
+		if (false && !pageIsDisplayPage) {
 			availableSoyContext = SoyContextFactoryUtil.createSoyContext();
 
 			availableSoyContext.put("sidebarPanelId", "separator");
