@@ -130,7 +130,7 @@ public class FragmentRendererTrackerImpl implements FragmentRendererTracker {
 					FragmentRendererConstants.
 						FRAGMENT_ENTRY_FRAGMENT_RENDERER_KEY)) {
 
-				_log.error("Fragment renderer collection key cannot be empty");
+				_log.error("Fragment renderer collection key is null");
 
 				return null;
 			}
