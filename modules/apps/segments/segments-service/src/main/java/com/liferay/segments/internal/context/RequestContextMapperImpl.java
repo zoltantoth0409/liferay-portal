@@ -147,7 +147,7 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 				httpServletRequest.getHeader(HttpHeaders.REFERER)));
 		context.put(
 			Context.REQUEST_PARAMETER,
-			_getRequestParameters(httpServletRequest));
+			_getRequestParameter(httpServletRequest));
 
 		boolean signedIn = false;
 
@@ -213,7 +213,7 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 		);
 	}
 
-	private String[] _getRequestParameters(
+	private String[] _getRequestParameter(
 		HttpServletRequest httpServletRequest) {
 
 		Map<String, String[]> parameterMap =
