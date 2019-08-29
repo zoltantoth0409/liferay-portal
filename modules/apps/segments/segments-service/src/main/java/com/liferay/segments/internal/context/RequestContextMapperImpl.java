@@ -113,6 +113,9 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 			(double)screenResolution.getWidth());
 
 		context.put(Context.HOSTNAME, httpServletRequest.getServerName());
+		context.put(
+			Context.LANGUAGE_ID,
+			LocaleUtil.toLanguageId(_portal.getLocale(httpServletRequest)));
 
 		User user = null;
 
@@ -136,10 +139,6 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 		}
 
 		context.put(Context.LAST_SIGN_IN_DATE_TIME, lastSignInZonedDateTime);
-
-		context.put(
-			Context.LANGUAGE_ID,
-			LocaleUtil.toLanguageId(_portal.getLocale(httpServletRequest)));
 
 		context.put(Context.LOCAL_DATE, LocalDate.from(ZonedDateTime.now()));
 		context.put(
