@@ -88,7 +88,7 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 
 		Device device = DeviceDetectionUtil.detectDevice(httpServletRequest);
 
-		Dimensions screenResolution = null;
+		Dimensions screenResolutionDimensions = null;
 
 		if ((device != null) &&
 			!Objects.equals(device, UnknownDevice.getInstance())) {
@@ -96,21 +96,21 @@ public class RequestContextMapperImpl implements RequestContextMapper {
 			context.put(Context.DEVICE_BRAND, device.getBrand());
 			context.put(Context.DEVICE_MODEL, device.getModel());
 
-			screenResolution = device.getScreenResolution();
+			screenResolutionDimensions = device.getScreenResolution();
 		}
 		else {
 			context.put(Context.DEVICE_BRAND, StringPool.BLANK);
 			context.put(Context.DEVICE_MODEL, StringPool.BLANK);
 
-			screenResolution = Dimensions.UNKNOWN;
+			screenResolutionDimensions = Dimensions.UNKNOWN;
 		}
 
 		context.put(
 			Context.DEVICE_SCREEN_RESOLUTION_HEIGHT,
-			(double)screenResolution.getHeight());
+			(double)screenResolutionDimensions.getHeight());
 		context.put(
 			Context.DEVICE_SCREEN_RESOLUTION_WIDTH,
-			(double)screenResolution.getWidth());
+			(double)screenResolutionDimensions.getWidth());
 
 		context.put(Context.HOSTNAME, httpServletRequest.getServerName());
 		context.put(
