@@ -135,7 +135,7 @@ public class SetupWizardUtil {
 		}
 
 		String timeZoneId = ParamUtil.getString(
-			httpServletRequest, "companyTimeZoneId", getDefaultTimeZoneId());
+			request, "companyTimeZoneId", getDefaultTimeZoneId());
 
 		CompanyLocalServiceUtil.updateDisplay(
 			PortalInstances.getDefaultCompanyId(), languageId, timeZoneId);
@@ -379,7 +379,7 @@ public class SetupWizardUtil {
 		unicodeProperties.put(PropsKeys.COMPANY_DEFAULT_LOCALE, languageId);
 
 		String timeZoneId = ParamUtil.getString(
-			httpServletRequest, "companyTimeZoneId", getDefaultTimeZoneId());
+			request, "companyTimeZoneId", getDefaultTimeZoneId());
 
 		unicodeProperties.put(PropsKeys.COMPANY_DEFAULT_TIME_ZONE, timeZoneId);
 
