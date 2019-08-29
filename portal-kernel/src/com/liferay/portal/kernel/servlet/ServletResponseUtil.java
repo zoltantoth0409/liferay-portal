@@ -411,8 +411,7 @@ public class ServletResponseUtil {
 		response.flushBuffer();
 
 		try {
-			StreamUtil.transfer(
-				inputStream, response.getOutputStream());
+			StreamUtil.transfer(inputStream, response.getOutputStream());
 		}
 		catch (IOException ioe) {
 			_checkSocketException(ioe);
