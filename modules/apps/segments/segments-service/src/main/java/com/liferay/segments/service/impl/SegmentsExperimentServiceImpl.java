@@ -144,21 +144,6 @@ public class SegmentsExperimentServiceImpl
 
 	@Override
 	public SegmentsExperiment updateSegmentsExperiment(
-			long segmentsExperimentId, int status)
-		throws PortalException {
-
-		_segmentsExperimentResourcePermission.check(
-			getPermissionChecker(),
-			segmentsExperimentLocalService.getSegmentsExperiment(
-				segmentsExperimentId),
-			ActionKeys.UPDATE);
-
-		return segmentsExperimentLocalService.updateSegmentsExperiment(
-			segmentsExperimentId, status);
-	}
-
-	@Override
-	public SegmentsExperiment updateSegmentsExperiment(
 			long segmentsExperimentId, double confidenceLevel, int status)
 		throws PortalException {
 
@@ -170,6 +155,21 @@ public class SegmentsExperimentServiceImpl
 
 		return segmentsExperimentLocalService.updateSegmentsExperiment(
 			segmentsExperimentId, confidenceLevel, status);
+	}
+
+	@Override
+	public SegmentsExperiment updateSegmentsExperiment(
+			long segmentsExperimentId, int status)
+		throws PortalException {
+
+		_segmentsExperimentResourcePermission.check(
+			getPermissionChecker(),
+			segmentsExperimentLocalService.getSegmentsExperiment(
+				segmentsExperimentId),
+			ActionKeys.UPDATE);
+
+		return segmentsExperimentLocalService.updateSegmentsExperiment(
+			segmentsExperimentId, status);
 	}
 
 	@Override
