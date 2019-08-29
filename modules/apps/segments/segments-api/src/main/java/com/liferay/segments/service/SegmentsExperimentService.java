@@ -95,11 +95,11 @@ public interface SegmentsExperimentService extends BaseService {
 		long groupId, long classNameId, long classPK);
 
 	public SegmentsExperiment updateSegmentsExperiment(
-			long segmentsExperimentId, int status)
+			long segmentsExperimentId, double confidenceLevel, int status)
 		throws PortalException;
 
 	public SegmentsExperiment updateSegmentsExperiment(
-			long segmentsExperimentId, int status, double confidenceLevel)
+			long segmentsExperimentId, int status)
 		throws PortalException;
 
 	public SegmentsExperiment updateSegmentsExperiment(

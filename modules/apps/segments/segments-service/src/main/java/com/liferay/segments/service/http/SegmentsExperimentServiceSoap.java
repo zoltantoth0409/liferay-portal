@@ -230,13 +230,13 @@ public class SegmentsExperimentServiceSoap {
 
 	public static com.liferay.segments.model.SegmentsExperimentSoap
 			updateSegmentsExperiment(
-				long segmentsExperimentId, int status, double confidenceLevel)
+				long segmentsExperimentId, double confidenceLevel, int status)
 		throws RemoteException {
 
 		try {
 			com.liferay.segments.model.SegmentsExperiment returnValue =
 				SegmentsExperimentServiceUtil.updateSegmentsExperiment(
-					segmentsExperimentId, status, confidenceLevel);
+					segmentsExperimentId, confidenceLevel, status);
 
 			return com.liferay.segments.model.SegmentsExperimentSoap.
 				toSoapModel(returnValue);
