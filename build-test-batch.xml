@@ -3448,7 +3448,7 @@ app.server.type=@{app.server.type}]]></echo>
 					<path>
 						<dirset
 							dir="modules"
-							excludes="private/**,node_modules/**,${base.dir}/**/test/stories/**"
+							excludes="private/**,node_modules/**,**/node_modules/**,${base.dir}/**/test/stories/**"
 							includes="**/test"
 						/>
 					</path>
