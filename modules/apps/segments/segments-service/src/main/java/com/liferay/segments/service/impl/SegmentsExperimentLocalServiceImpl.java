@@ -265,7 +265,7 @@ public class SegmentsExperimentLocalServiceImpl
 
 	@Override
 	public SegmentsExperiment updateSegmentsExperiment(
-			long segmentsExperimentId, int status, double confidenceLevel)
+			long segmentsExperimentId, double confidenceLevel, int status)
 		throws PortalException {
 
 		_validateConfidenceLevel(confidenceLevel);
@@ -273,7 +273,7 @@ public class SegmentsExperimentLocalServiceImpl
 		return _updateSegmentsExperimentStatus(
 			segmentsExperimentPersistence.findByPrimaryKey(
 				segmentsExperimentId),
-			status, confidenceLevel);
+			confidenceLevel, status);
 	}
 
 	@Override
@@ -341,8 +341,8 @@ public class SegmentsExperimentLocalServiceImpl
 	}
 
 	private SegmentsExperiment _updateSegmentsExperimentStatus(
-			SegmentsExperiment segmentsExperiment, int status,
-			double confidenceLevel)
+			SegmentsExperiment segmentsExperiment, double confidenceLevel,
+			int status)
 		throws SegmentsExperimentStatusException {
 
 		_validateStatus(
@@ -353,7 +353,6 @@ public class SegmentsExperimentLocalServiceImpl
 			status);
 
 		segmentsExperiment.setModifiedDate(new Date());
-		segmentsExperiment.setStatus(status);
 
 		if (confidenceLevel != 0) {
 			UnicodeProperties typeSettingsProperties =
@@ -365,6 +364,8 @@ public class SegmentsExperimentLocalServiceImpl
 			segmentsExperiment.setTypeSettings(
 				typeSettingsProperties.toString());
 		}
+
+		segmentsExperiment.setStatus(status);
 
 		return segmentsExperimentPersistence.update(segmentsExperiment);
 	}

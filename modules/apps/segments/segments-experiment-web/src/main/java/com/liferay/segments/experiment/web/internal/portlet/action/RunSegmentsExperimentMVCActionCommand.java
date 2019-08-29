@@ -125,8 +125,8 @@ public class RunSegmentsExperimentMVCActionCommand
 		SegmentsExperiment segmentsExperiment =
 			_segmentsExperimentService.updateSegmentsExperiment(
 				ParamUtil.getLong(actionRequest, "segmentsExperimentId"),
-				ParamUtil.getInteger(actionRequest, "status"),
-				ParamUtil.getDouble(actionRequest, "confidenceLevel"));
+				ParamUtil.getDouble(actionRequest, "confidenceLevel"),
+				ParamUtil.getInteger(actionRequest, "status"));
 
 		return JSONUtil.put(
 			"segmentsExperiment",
