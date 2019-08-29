@@ -2,7 +2,9 @@ import com.liferay.gradle.util.FileUtil
 import com.liferay.gradle.util.copy.StripPathSegmentsAction
 
 task buildAlloyEditor(type: Copy)
+task buildCreateReactClass(type: Copy)
 
+File createReactClassDestinationDir = file("classes/META-INF/resources/js")
 File editorDestinationDir = file("tmp/META-INF/resources")
 File editorSrcDir = file("src/main/resources/META-INF/resources")
 
@@ -44,8 +46,24 @@ buildAlloyEditor {
 	into alloyEditorDestinationDir
 }
 
+buildCreateReactClass {
+	dependsOn buildAlloyEditor
+
+ 	filter {
+		String line ->
+
+ 		line.replace('exports.createReactClass=e(require("react")):t.createReactClass=e(t.React)}(this,', 'exports.createClass=e(require("react")):t.React.createClass=e(t.React)}(AlloyEditor,')
+	}
+
+ 	from npmInstall.nodeModulesDir
+	include "create-react-class/create-react-class.min.js"
+	includeEmptyDirs = false
+	into createReactClassDestinationDir
+}
+
 classes {
 	dependsOn buildAlloyEditor
+	dependsOn buildCreateReactClass
 }
 
 clean {
