@@ -449,30 +449,6 @@ AUI.add(
 						instance.get('container').remove();
 					},
 
-					addLocaleToLocalizationMap: function(locale) {
-						var instance = this;
-
-						var localizationMap = instance.get('localizationMap');
-
-						if (Lang.isUndefined(localizationMap[locale])) {
-							var predefinedValue = instance.getPredefinedValueByLocale(locale);
-
-							if (predefinedValue) {
-								localizationMap[locale] = predefinedValue;
-							}
-							else {
-								var defaultLocale = instance.getDefaultLocale();
-
-								if (defaultLocale && localizationMap[defaultLocale]) {
-									localizationMap[locale] = localizationMap[defaultLocale];
-								}
-								else {
-									localizationMap[locale] = '';
-								}
-							}
-						}
-					},
-
 					createField: function(fieldTemplate) {
 						var instance = this;
 
@@ -495,6 +471,35 @@ AUI.add(
 						field.set('parent', parent);
 
 						return field;
+					},
+
+					getDefaultLocalization: function(locale) {
+						var instance = this;
+
+						var localizationMap = instance.get('localizationMap');
+
+						if (Lang.isUndefined(localizationMap[locale])) {
+							var predefinedValue = instance.getPredefinedValueByLocale(
+								locale
+							);
+
+							if (predefinedValue) {
+								return predefinedValue;
+							} else {
+								var defaultLocale = instance.getDefaultLocale();
+
+								if (
+									defaultLocale &&
+									localizationMap[defaultLocale]
+								) {
+									return localizationMap[defaultLocale];
+								} else {
+									return '';
+								}
+							}
+						} else {
+							return localizationMap[locale];
+						}
 					},
 
 					getFieldByNameInFieldDefinition: function(name) {
@@ -681,7 +686,6 @@ AUI.add(
 
 								var displayLocale = instance.get('displayLocale');
 
-								field.addLocaleToLocalizationMap(displayLocale);
 								field.set('displayLocale', displayLocale);
 
 								if (instance.originalField) {
@@ -798,7 +802,9 @@ AUI.add(
 							}
 
 							if (Lang.isUndefined(value)) {
-								value = instance.getValue();
+								value = instance.getDefaultLocalization(
+									instance.get('displayLocale')
+								);
 							}
 
 							instance.setValue(value);
@@ -841,11 +847,17 @@ AUI.add(
 						var instance = this;
 
 						var localizationMap = instance.get('localizationMap');
+						var defaultLocale = instance.getDefaultLocale();
 
 						var value = instance.getValue();
 
 						if (instance.get('localizable')) {
-							localizationMap[locale] = value;
+							if (
+								locale === defaultLocale ||
+								value !== localizationMap[defaultLocale]
+							) {
+								localizationMap[locale] = value;
+							}
 						}
 						else {
 							localizationMap = value;
@@ -945,7 +957,6 @@ AUI.add(
 						var displayLocale = event.item.getAttribute('data-value');
 
 						instance.updateLocalizationMap(currentLocale);
-						instance.addLocaleToLocalizationMap(displayLocale);
 
 						instance.set('displayLocale', displayLocale);
 
