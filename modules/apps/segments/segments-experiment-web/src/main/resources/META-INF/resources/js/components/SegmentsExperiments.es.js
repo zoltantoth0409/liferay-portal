@@ -43,6 +43,7 @@ const STATUS_TO_TYPE = {
 
 function SegmentsExperiments({
 	onCreateSegmentsExperiment,
+	onDeleteSegmentsExperiment,
 	onEditSegmentsExperiment,
 	onEditSegmentsExperimentStatus,
 	onRunExperiment,
@@ -119,6 +120,11 @@ function SegmentsExperiments({
 									>
 										{Liferay.Language.get('edit')}
 									</ClayDropDown.Item>
+									<ClayDropDown.Item
+										onClick={_handleDeleteExperiment}
+									>
+										{Liferay.Language.get('delete')}
+									</ClayDropDown.Item>
 								</ClayDropDown.ItemList>
 							</ClayDropDown>
 						)}
@@ -183,6 +189,14 @@ function SegmentsExperiments({
 		</>
 	);
 
+	function _handleDeleteExperiment() {
+		const confirmed = confirm(
+			Liferay.Language.get('are-you-sure-you-want-to-delete-this')
+		);
+
+		if (confirmed) return onDeleteSegmentsExperiment();
+	}
+
 	function _handleExperienceSelection(event) {
 		const segmentsExperienceId = event.target.value;
 
@@ -196,6 +210,7 @@ function SegmentsExperiments({
 
 SegmentsExperiments.propTypes = {
 	onCreateSegmentsExperiment: PropTypes.func.isRequired,
+	onDeleteSegmentsExperiment: PropTypes.func.isRequired,
 	onEditSegmentsExperiment: PropTypes.func.isRequired,
 	onEditSegmentsExperimentStatus: PropTypes.func.isRequired,
 	onRunExperiment: PropTypes.func.isRequired,
