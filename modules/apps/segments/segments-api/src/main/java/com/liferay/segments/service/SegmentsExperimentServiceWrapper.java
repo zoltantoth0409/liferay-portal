@@ -119,21 +119,21 @@ public class SegmentsExperimentServiceWrapper
 
 	@Override
 	public com.liferay.segments.model.SegmentsExperiment
+			updateSegmentsExperiment(
+				long segmentsExperimentId, double confidenceLevel, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _segmentsExperimentService.updateSegmentsExperiment(
+			segmentsExperimentId, confidenceLevel, status);
+	}
+
+	@Override
+	public com.liferay.segments.model.SegmentsExperiment
 			updateSegmentsExperiment(long segmentsExperimentId, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _segmentsExperimentService.updateSegmentsExperiment(
 			segmentsExperimentId, status);
-	}
-
-	@Override
-	public com.liferay.segments.model.SegmentsExperiment
-			updateSegmentsExperiment(
-				long segmentsExperimentId, int status, double confidenceLevel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _segmentsExperimentService.updateSegmentsExperiment(
-			segmentsExperimentId, status, confidenceLevel);
 	}
 
 	@Override

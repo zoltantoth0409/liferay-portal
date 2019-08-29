@@ -110,20 +110,20 @@ public class SegmentsExperimentServiceUtil {
 	}
 
 	public static com.liferay.segments.model.SegmentsExperiment
+			updateSegmentsExperiment(
+				long segmentsExperimentId, double confidenceLevel, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateSegmentsExperiment(
+			segmentsExperimentId, confidenceLevel, status);
+	}
+
+	public static com.liferay.segments.model.SegmentsExperiment
 			updateSegmentsExperiment(long segmentsExperimentId, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateSegmentsExperiment(
 			segmentsExperimentId, status);
-	}
-
-	public static com.liferay.segments.model.SegmentsExperiment
-			updateSegmentsExperiment(
-				long segmentsExperimentId, int status, double confidenceLevel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return getService().updateSegmentsExperiment(
-			segmentsExperimentId, status, confidenceLevel);
 	}
 
 	public static com.liferay.segments.model.SegmentsExperiment
