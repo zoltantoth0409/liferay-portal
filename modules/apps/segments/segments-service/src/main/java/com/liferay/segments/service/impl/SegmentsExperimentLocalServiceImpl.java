@@ -134,6 +134,19 @@ public class SegmentsExperimentLocalServiceImpl
 			SegmentsExperiment segmentsExperiment)
 		throws PortalException {
 
+		return deleteSegmentsExperiment(segmentsExperiment, false);
+	}
+
+	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
+	public SegmentsExperiment deleteSegmentsExperiment(
+			SegmentsExperiment segmentsExperiment, boolean force)
+		throws PortalException {
+
+		if (!force) {
+			_validateEditableStatus(segmentsExperiment.getStatus());
+		}
+
 		// Segments experiment
 
 		segmentsExperimentPersistence.remove(segmentsExperiment);
@@ -292,13 +305,7 @@ public class SegmentsExperimentLocalServiceImpl
 			segmentsExperimentPersistence.findByPrimaryKey(
 				segmentsExperimentId);
 
-		SegmentsExperimentConstants.Status status =
-			SegmentsExperimentConstants.Status.valueOf(
-				segmentsExperiment.getStatus());
-
-		if (!status.isEditable()) {
-			throw new LockedSegmentsExperimentException(segmentsExperimentId);
-		}
+		_validateEditableStatus(segmentsExperiment.getStatus());
 
 		_validateGoal(goal);
 		_validateName(name);
@@ -439,6 +446,19 @@ public class SegmentsExperimentLocalServiceImpl
 			throw new SegmentsExperimentConfidenceLevelException(
 				"Confidence level " + confidenceLevel +
 					" is not a value between 0 and 1");
+		}
+	}
+
+	private void _validateEditableStatus(int statusValue)
+		throws PortalException {
+
+		SegmentsExperimentConstants.Status status =
+			SegmentsExperimentConstants.Status.valueOf(statusValue);
+
+		if (!status.isEditable()) {
+			throw new LockedSegmentsExperimentException(
+				"Segments experiment is not editable in status " +
+					SegmentsExperimentConstants.Status.parse(statusValue));
 		}
 	}
 
