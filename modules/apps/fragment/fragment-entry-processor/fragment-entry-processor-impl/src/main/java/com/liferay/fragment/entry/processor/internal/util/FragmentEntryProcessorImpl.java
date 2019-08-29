@@ -107,7 +107,7 @@ public class FragmentEntryProcessorImpl implements FragmentEntryProcessorUtil {
 		InfoDisplayObjectProvider infoDisplayObjectProvider = null;
 
 		if ((fragmentEntryProcessorContext.getPreviewClassPK() > 0) &&
-			_isSameEntity(
+			_isSameClassedModel(
 				classPK, fragmentEntryProcessorContext.getPreviewClassPK())) {
 
 			infoDisplayObjectProvider =
@@ -316,7 +316,7 @@ public class FragmentEntryProcessorImpl implements FragmentEntryProcessorUtil {
 		return false;
 	}
 
-	private boolean _isSameEntity(long classPK, long previewClassPK) {
+	private boolean _isSameClassedModel(long classPK, long previewClassPK) {
 		AssetEntry assetEntry = _assetEntryLocalService.fetchAssetEntry(
 			previewClassPK);
 
