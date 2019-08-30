@@ -1806,7 +1806,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 										<then>
 											<ant dir="modules" inheritAll="false" target="build-app-lpkg">
 												<property name="app.name" value="${app.name}" />
-												<property name="output.dir" value="${app.server.parent.dir}/osgi/marketplace/temp/${app.name}" />
+												<property name="output.dir" value="${app.server.parent.dir}/osgi/temp/${app.name}" />
 											</ant>
 										</then>
 									</if>
