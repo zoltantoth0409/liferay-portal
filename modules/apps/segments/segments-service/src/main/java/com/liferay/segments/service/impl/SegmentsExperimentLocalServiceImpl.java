@@ -412,11 +412,11 @@ public class SegmentsExperimentLocalServiceImpl
 
 		segmentsExperiment.setStatus(status);
 
-		// Notifications
+		segmentsExperimentPersistence.update(segmentsExperiment);
 
 		sendNotificationEvent(segmentsExperiment);
 
-		return segmentsExperimentPersistence.update(segmentsExperiment);
+		return segmentsExperiment;
 	}
 
 	private void _validate(
