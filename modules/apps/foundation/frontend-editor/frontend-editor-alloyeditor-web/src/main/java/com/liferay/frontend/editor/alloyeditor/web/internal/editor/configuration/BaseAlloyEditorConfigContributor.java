@@ -103,28 +103,28 @@ public class BaseAlloyEditorConfigContributor
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory,
 		String eventName) {
 
- 		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
 			new ArrayList<>();
 
- 		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
 
- 		ItemSelectorCriterion fileItemSelectorCriterion =
+		ItemSelectorCriterion fileItemSelectorCriterion =
 			new FileItemSelectorCriterion();
 
- 		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
+		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			desiredItemSelectorReturnTypes);
 
- 		LayoutItemSelectorCriterion layoutItemSelectorCriterion =
+		LayoutItemSelectorCriterion layoutItemSelectorCriterion =
 			new LayoutItemSelectorCriterion();
 
- 		layoutItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
+		layoutItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			desiredItemSelectorReturnTypes);
 
- 		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
+		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
 			requestBackedPortletURLFactory, eventName,
 			fileItemSelectorCriterion, layoutItemSelectorCriterion);
 
- 		jsonObject.put("documentBrowseLinkUrl", itemSelectorURL.toString());
+		jsonObject.put("documentBrowseLinkUrl", itemSelectorURL.toString());
 	}
 
 	@Reference(unbind = "-")
