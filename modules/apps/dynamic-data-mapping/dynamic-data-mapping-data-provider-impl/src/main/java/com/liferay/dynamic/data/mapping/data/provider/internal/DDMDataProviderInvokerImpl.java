@@ -55,6 +55,10 @@ public class DDMDataProviderInvokerImpl implements DDMDataProviderInvoker {
 
 	@Deactivate
 	public void deactivate() throws Exception {
+		if (!_invoked) {
+			return;
+		}
+
 		Hystrix.reset();
 
 		Field field = ReflectionUtil.getDeclaredField(
@@ -68,6 +72,8 @@ public class DDMDataProviderInvokerImpl implements DDMDataProviderInvoker {
 	@Override
 	public DDMDataProviderResponse invoke(
 		DDMDataProviderRequest ddmDataProviderRequest) {
+
+		_invoked = true;
 
 		try {
 			return doInvoke(ddmDataProviderRequest);
@@ -282,5 +288,7 @@ public class DDMDataProviderInvokerImpl implements DDMDataProviderInvoker {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMDataProviderInvokerImpl.class);
+
+	private boolean _invoked;
 
 }
