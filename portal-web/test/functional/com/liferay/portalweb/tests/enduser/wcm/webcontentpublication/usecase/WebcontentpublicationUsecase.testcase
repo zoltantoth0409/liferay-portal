@@ -1110,6 +1110,8 @@ definition {
 
 	@priority = "4"
 	test AssetPublisherTogglingBetweenSites {
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
@@ -1188,7 +1190,7 @@ definition {
 			pageName = "Site Page",
 			siteName = "Site Name");
 
-		AssetPublisherPortlet.configureAddSiteScopes(otherSite = "Liferay");
+		AssetPublisherPortlet.configureAddSiteScopes(otherSite = "${siteName}");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page",
