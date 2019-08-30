@@ -30,7 +30,7 @@
 		text-align: center;
 		text-transform: uppercase;
 
-		@include media-breakpoint-up(sm) {
+		@include sm {
 			margin-top: 30px;
 		}
 	}
