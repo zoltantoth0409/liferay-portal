@@ -71,7 +71,6 @@ public class RenderFragmentEntryStrutsAction implements StrutsAction {
 		httpServletRequest.setAttribute(
 			FragmentWebKeys.FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER,
 			_fragmentCollectionContributorTracker);
-
 		httpServletRequest.setAttribute(
 			FragmentActionKeys.FRAGMENT_RENDERER_CONTROLLER,
 			_fragmentRendererController);
