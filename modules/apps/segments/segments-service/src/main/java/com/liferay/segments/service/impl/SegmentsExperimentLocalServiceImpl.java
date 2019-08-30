@@ -143,11 +143,11 @@ public class SegmentsExperimentLocalServiceImpl
 			SegmentsExperiment segmentsExperiment, boolean force)
 		throws PortalException {
 
+		// Segments experiment
+
 		if (!force) {
 			_validateEditableStatus(segmentsExperiment.getStatus());
 		}
-
-		// Segments experiment
 
 		segmentsExperimentPersistence.remove(segmentsExperiment);
 
