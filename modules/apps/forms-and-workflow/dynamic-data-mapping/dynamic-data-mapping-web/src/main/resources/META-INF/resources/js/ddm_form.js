@@ -393,7 +393,11 @@ AUI.add(
 						var localizationMap = instance.get('localizationMap');
 
 						if (Lang.isUndefined(localizationMap[locale])) {
-							var predefinedValue = instance.getPredefinedValueByLocale(locale);
+							var name = instance.get('name');
+
+							var field = instance.getFieldByNameInFieldDefinition(name);
+
+							var predefinedValue = instance.getPredefinedValueByLocale(field, locale);
 
 							if (predefinedValue) {
 								localizationMap[locale] = predefinedValue;
@@ -403,7 +407,14 @@ AUI.add(
 									localizationMap[locale] = localizationMap[defaultLocale];
 								}
 								else {
-									localizationMap[locale] = '';
+									var type = field.type;
+
+									if (type === 'select' || type === 'radio') {
+										localizationMap[locale] = '[""]';
+									}
+									else {
+										localizationMap[locale] = '';
+									}
 								}
 							}
 						}
@@ -538,13 +549,7 @@ AUI.add(
 						return instance.get('container').one('.control-label');
 					},
 
-					getPredefinedValueByLocale: function(locale) {
-						var instance = this;
-
-						var name = instance.get('name');
-
-						var field = instance.getFieldByNameInFieldDefinition(name);
-
+					getPredefinedValueByLocale: function(field, locale) {
 						var predefinedValue;
 
 						if (field) {
@@ -2953,7 +2958,7 @@ AUI.add(
 
 						radioNodes.set('checked', false);
 
-						if (Lang.isString(value) && value != '') {
+						if (Lang.isString(value)) {
 							value = JSON.parse(value);
 						}
 
@@ -3028,7 +3033,7 @@ AUI.add(
 					setValue: function(value) {
 						var instance = this;
 
-						if (Lang.isString(value) && value != '') {
+						if (Lang.isString(value)) {
 							value = JSON.parse(value);
 						}
 
