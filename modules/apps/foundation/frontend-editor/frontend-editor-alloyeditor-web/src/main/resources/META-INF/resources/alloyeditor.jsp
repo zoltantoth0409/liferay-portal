@@ -196,7 +196,7 @@ name = HtmlUtil.escapeJS(name);
 
 	var documentBrowseLinkCallback = function(editor, linkHref, callback) {
 		AUI().use(
-			'liferay-item-selector-dialog', 
+			'liferay-item-selector-dialog',
 			function(A) {
 				var itemSelectorDialog = new A.LiferayItemSelectorDialog(
 					{

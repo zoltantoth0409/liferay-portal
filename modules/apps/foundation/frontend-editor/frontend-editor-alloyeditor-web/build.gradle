@@ -49,13 +49,13 @@ buildAlloyEditor {
 buildCreateReactClass {
 	dependsOn buildAlloyEditor
 
- 	filter {
+	filter {
 		String line ->
 
- 		line.replace('exports.createReactClass=e(require("react")):t.createReactClass=e(t.React)}(this,', 'exports.createClass=e(require("react")):t.React.createClass=e(t.React)}(AlloyEditor,')
+		line.replace('exports.createReactClass=e(require("react")):t.createReactClass=e(t.React)}(this,', 'exports.createClass=e(require("react")):t.React.createClass=e(t.React)}(AlloyEditor,')
 	}
 
- 	from npmInstall.nodeModulesDir
+	from npmInstall.nodeModulesDir
 	include "create-react-class/create-react-class.min.js"
 	includeEmptyDirs = false
 	into createReactClassDestinationDir
@@ -87,6 +87,9 @@ dependencies {
 	compileOnly group: "javax.servlet.jsp", name: "javax.servlet.jsp-api", version: "2.3.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly project(":apps:collaboration:item-selector:item-selector-api")
+	compileOnly project(":apps:collaboration:item-selector:item-selector-criteria-api")
+	compileOnly project(":apps:web-experience:layout:layout-item-selector-api")
 }
 
 transpileJS {
