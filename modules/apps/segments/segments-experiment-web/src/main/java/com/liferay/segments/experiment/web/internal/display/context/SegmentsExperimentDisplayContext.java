@@ -241,7 +241,7 @@ public class SegmentsExperimentDisplayContext {
 
 			segmentsExperimentRelsJSONArray.put(
 				SegmentsExperimentUtil.toSegmentsExperimentRelJSONObject(
-					segmentsExperimentRel, locale));
+					locale, segmentsExperimentRel));
 		}
 
 		return segmentsExperimentRelsJSONArray;
