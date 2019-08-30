@@ -387,7 +387,7 @@ AUI.add(
 						instance.get('container').remove();
 					},
 
-					addLocaleToLocalizationMap: function(locale) {
+					addLocaleToLocalizationMap: function(locale, defaultLocale) {
 						var instance = this;
 
 						var localizationMap = instance.get('localizationMap');
@@ -399,15 +399,8 @@ AUI.add(
 								localizationMap[locale] = predefinedValue;
 							}
 							else {
-								var defaultInstanceLocale = themeDisplay.getLanguageId();
-
-								var defaultLocale = instance.getDefaultLocale();
-
 								if (defaultLocale && localizationMap[defaultLocale]) {
 									localizationMap[locale] = localizationMap[defaultLocale];
-								}
-								else if (defaultInstanceLocale && localizationMap[defaultInstanceLocale]) {
-									localizationMap[locale] = localizationMap[defaultInstanceLocale];
 								}
 								else {
 									localizationMap[locale] = '';
@@ -949,7 +942,7 @@ AUI.add(
 						}
 
 						if (locales.indexOf(event.newVal) > -1) {
-							instance.addLocaleToLocalizationMap(event.newVal);
+							instance.addLocaleToLocalizationMap(event.newVal, defaultLocale);
 						}
 
 						var localizable = instance.get('localizable');
