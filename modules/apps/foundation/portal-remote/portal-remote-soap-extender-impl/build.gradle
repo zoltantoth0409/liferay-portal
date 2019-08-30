@@ -14,5 +14,5 @@ dependencies {
 	compileOnly group: "org.apache.cxf", name: "cxf-core", version: "3.1.18"
 	compileOnly group: "org.apache.felix", name: "org.apache.felix.dependencymanager", version: "3.2.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
-	compileOnly group: "org.osgi", name: "osgi.core", version: "5.0.0"
+	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 }
