@@ -38,10 +38,11 @@ public interface PortletRegistry {
 
 	public String getPortletName(String alias);
 
-	public void writePortletPaths(
+	public default void writePortletPaths(
 			FragmentEntryLink fragmentEntryLink,
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
-		throws PortalException;
+		throws PortalException {
+	}
 
 }
