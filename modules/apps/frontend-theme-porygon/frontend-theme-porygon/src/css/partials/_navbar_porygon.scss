@@ -4,7 +4,7 @@
 	margin-bottom: 0;
 
 	.navbar-nav {
-		@include media-breakpoint-up(sm) {
+		@include sm {
 			margin-left: 12px;
 		}
 
@@ -30,7 +30,7 @@
 
 	section,
 	.navbar {
-		@include media-breakpoint-up(sm) {
+		@include sm {
 			margin: 0;
 		}
 	}
