@@ -105,9 +105,9 @@ public class ChangeListsPortlet extends MVCPortlet {
 			new ChangeListsDisplayContext(
 				_ctCollectionLocalService, _ctEntryLocalService,
 				_ctEngineManager, _ctPreferencesLocalService,
-				_ctProcessLocalService, _userLocalService,
+				_ctProcessLocalService,
 				_portal.getHttpServletRequest(renderRequest), renderRequest,
-				renderResponse);
+				renderResponse, _userLocalService);
 
 		renderRequest.setAttribute(
 			CTWebConstants.CHANGE_LISTS_DISPLAY_CONTEXT,
