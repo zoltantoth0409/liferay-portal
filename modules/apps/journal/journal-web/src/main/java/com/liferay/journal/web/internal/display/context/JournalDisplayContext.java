@@ -1312,7 +1312,7 @@ public class JournalDisplayContext {
 			sb.append(StringPool.QUOTE);
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.QUOTE);
-			sb.append(entry.getValue());
+			sb.append(HtmlUtil.escapeJS(entry.getValue()));
 			sb.append(StringPool.QUOTE);
 			sb.append(StringPool.COMMA);
 		}
