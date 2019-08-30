@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -187,8 +188,17 @@ public class AddRecordSetMVCActionCommand
 
 		DDMForm ddmForm = DDMFormFactory.create(DDLRecordSetSettings.class);
 
-		return ddmFormValuesJSONDeserializer.deserialize(
+		DDMFormValues ddmFormValues = ddmFormValuesJSONDeserializer.deserialize(
 			ddmForm, serializedSettingsDDMFormValues);
+
+		Set<Locale> availableLocales = ddmFormValues.getAvailableLocales();
+
+		availableLocales.clear();
+
+		ddmFormValues.addAvailableLocale(LocaleUtil.US);
+		ddmFormValues.setDefaultLocale(LocaleUtil.US);
+
+		return ddmFormValues;
 	}
 
 	protected String getStorageType(DDMFormValues ddmFormValues)
