@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchResourceBlockException;
 import com.liferay.portal.kernel.model.ResourceBlock;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -83,20 +82,17 @@ public interface ResourceBlockPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_N(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
-	@Deprecated
 	public java.util.List<ResourceBlock> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the resource blocks where companyId = &#63; and name = &#63;.
@@ -110,11 +106,14 @@ public interface ResourceBlockPersistence
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	public java.util.List<ResourceBlock> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first resource block in the ordered set where companyId = &#63; and name = &#63;.
@@ -127,7 +126,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock findByC_N_First(
 			long companyId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -140,7 +140,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock fetchByC_N_First(
 		long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns the last resource block in the ordered set where companyId = &#63; and name = &#63;.
@@ -153,7 +154,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock findByC_N_Last(
 			long companyId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -166,7 +168,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock fetchByC_N_Last(
 		long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns the resource blocks before and after the current resource block in the ordered set where companyId = &#63; and name = &#63;.
@@ -180,7 +183,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock[] findByC_N_PrevAndNext(
 			long resourceBlockId, long companyId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -235,21 +239,18 @@ public interface ResourceBlockPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_G_N(long,long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
-	@Deprecated
 	public java.util.List<ResourceBlock> findByC_G_N(
 		long companyId, long groupId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the resource blocks where companyId = &#63; and groupId = &#63; and name = &#63;.
@@ -264,11 +265,14 @@ public interface ResourceBlockPersistence
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource blocks
 	 */
 	public java.util.List<ResourceBlock> findByC_G_N(
 		long companyId, long groupId, String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first resource block in the ordered set where companyId = &#63; and groupId = &#63; and name = &#63;.
@@ -282,7 +286,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock findByC_G_N_First(
 			long companyId, long groupId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -296,7 +301,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock fetchByC_G_N_First(
 		long companyId, long groupId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns the last resource block in the ordered set where companyId = &#63; and groupId = &#63; and name = &#63;.
@@ -310,7 +316,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock findByC_G_N_Last(
 			long companyId, long groupId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -324,7 +331,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock fetchByC_G_N_Last(
 		long companyId, long groupId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns the resource blocks before and after the current resource block in the ordered set where companyId = &#63; and groupId = &#63; and name = &#63;.
@@ -339,7 +347,8 @@ public interface ResourceBlockPersistence
 	 */
 	public ResourceBlock[] findByC_G_N_PrevAndNext(
 			long resourceBlockId, long companyId, long groupId, String name,
-			OrderByComparator<ResourceBlock> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+				orderByComparator)
 		throws NoSuchResourceBlockException;
 
 	/**
@@ -376,20 +385,16 @@ public interface ResourceBlockPersistence
 		throws NoSuchResourceBlockException;
 
 	/**
-	 * Returns the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_G_N_P(long,long,String,String)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param permissionsHash the permissions hash
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
-	@Deprecated
 	public ResourceBlock fetchByC_G_N_P(
-		long companyId, long groupId, String name, String permissionsHash,
-		boolean useFinderCache);
+		long companyId, long groupId, String name, String permissionsHash);
 
 	/**
 	 * Returns the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -402,7 +407,8 @@ public interface ResourceBlockPersistence
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	public ResourceBlock fetchByC_G_N_P(
-		long companyId, long groupId, String name, String permissionsHash);
+		long companyId, long groupId, String name, String permissionsHash,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the resource block where companyId = &#63; and groupId = &#63; and name = &#63; and permissionsHash = &#63; from the database.
@@ -508,17 +514,15 @@ public interface ResourceBlockPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource blocks
 	 */
-	@Deprecated
 	public java.util.List<ResourceBlock> findAll(
-		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the resource blocks.
@@ -530,10 +534,14 @@ public interface ResourceBlockPersistence
 	 * @param start the lower bound of the range of resource blocks
 	 * @param end the upper bound of the range of resource blocks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource blocks
 	 */
 	public java.util.List<ResourceBlock> findAll(
-		int start, int end, OrderByComparator<ResourceBlock> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ResourceBlock>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the resource blocks from the database.

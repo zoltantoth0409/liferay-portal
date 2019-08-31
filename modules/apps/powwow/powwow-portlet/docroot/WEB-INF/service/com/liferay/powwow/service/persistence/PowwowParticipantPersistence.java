@@ -17,7 +17,6 @@ package com.liferay.powwow.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.powwow.exception.NoSuchParticipantException;
 import com.liferay.powwow.model.PowwowParticipant;
 
@@ -81,19 +80,16 @@ public interface PowwowParticipantPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowParticipantModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPowwowMeetingId(long, int, int, OrderByComparator)}
 	 * @param powwowMeetingId the powwow meeting ID
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow participants
 	 */
-	@Deprecated
 	public java.util.List<PowwowParticipant> findByPowwowMeetingId(
 		long powwowMeetingId, int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the powwow participants where powwowMeetingId = &#63;.
@@ -106,11 +102,14 @@ public interface PowwowParticipantPersistence
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow participants
 	 */
 	public java.util.List<PowwowParticipant> findByPowwowMeetingId(
 		long powwowMeetingId, int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first powwow participant in the ordered set where powwowMeetingId = &#63;.
@@ -122,7 +121,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant findByPowwowMeetingId_First(
 			long powwowMeetingId,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -134,7 +134,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant fetchByPowwowMeetingId_First(
 		long powwowMeetingId,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns the last powwow participant in the ordered set where powwowMeetingId = &#63;.
@@ -146,7 +147,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant findByPowwowMeetingId_Last(
 			long powwowMeetingId,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -158,7 +160,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant fetchByPowwowMeetingId_Last(
 		long powwowMeetingId,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns the powwow participants before and after the current powwow participant in the ordered set where powwowMeetingId = &#63;.
@@ -171,7 +174,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant[] findByPowwowMeetingId_PrevAndNext(
 			long powwowParticipantId, long powwowMeetingId,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -202,17 +206,14 @@ public interface PowwowParticipantPersistence
 		throws NoSuchParticipantException;
 
 	/**
-	 * Returns the powwow participant where powwowMeetingId = &#63; and participantUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the powwow participant where powwowMeetingId = &#63; and participantUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByPMI_PUI(long,long)}
 	 * @param powwowMeetingId the powwow meeting ID
 	 * @param participantUserId the participant user ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching powwow participant, or <code>null</code> if a matching powwow participant could not be found
 	 */
-	@Deprecated
 	public PowwowParticipant fetchByPMI_PUI(
-		long powwowMeetingId, long participantUserId, boolean useFinderCache);
+		long powwowMeetingId, long participantUserId);
 
 	/**
 	 * Returns the powwow participant where powwowMeetingId = &#63; and participantUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -223,7 +224,7 @@ public interface PowwowParticipantPersistence
 	 * @return the matching powwow participant, or <code>null</code> if a matching powwow participant could not be found
 	 */
 	public PowwowParticipant fetchByPMI_PUI(
-		long powwowMeetingId, long participantUserId);
+		long powwowMeetingId, long participantUserId, boolean useFinderCache);
 
 	/**
 	 * Removes the powwow participant where powwowMeetingId = &#63; and participantUserId = &#63; from the database.
@@ -258,17 +259,14 @@ public interface PowwowParticipantPersistence
 		throws NoSuchParticipantException;
 
 	/**
-	 * Returns the powwow participant where powwowMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the powwow participant where powwowMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByPMI_EA(long,String)}
 	 * @param powwowMeetingId the powwow meeting ID
 	 * @param emailAddress the email address
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching powwow participant, or <code>null</code> if a matching powwow participant could not be found
 	 */
-	@Deprecated
 	public PowwowParticipant fetchByPMI_EA(
-		long powwowMeetingId, String emailAddress, boolean useFinderCache);
+		long powwowMeetingId, String emailAddress);
 
 	/**
 	 * Returns the powwow participant where powwowMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -279,7 +277,7 @@ public interface PowwowParticipantPersistence
 	 * @return the matching powwow participant, or <code>null</code> if a matching powwow participant could not be found
 	 */
 	public PowwowParticipant fetchByPMI_EA(
-		long powwowMeetingId, String emailAddress);
+		long powwowMeetingId, String emailAddress, boolean useFinderCache);
 
 	/**
 	 * Removes the powwow participant where powwowMeetingId = &#63; and emailAddress = &#63; from the database.
@@ -334,20 +332,17 @@ public interface PowwowParticipantPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowParticipantModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPMI_T(long,int, int, int, OrderByComparator)}
 	 * @param powwowMeetingId the powwow meeting ID
 	 * @param type the type
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow participants
 	 */
-	@Deprecated
 	public java.util.List<PowwowParticipant> findByPMI_T(
 		long powwowMeetingId, int type, int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the powwow participants where powwowMeetingId = &#63; and type = &#63;.
@@ -361,11 +356,14 @@ public interface PowwowParticipantPersistence
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow participants
 	 */
 	public java.util.List<PowwowParticipant> findByPMI_T(
 		long powwowMeetingId, int type, int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first powwow participant in the ordered set where powwowMeetingId = &#63; and type = &#63;.
@@ -378,7 +376,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant findByPMI_T_First(
 			long powwowMeetingId, int type,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -391,7 +390,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant fetchByPMI_T_First(
 		long powwowMeetingId, int type,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns the last powwow participant in the ordered set where powwowMeetingId = &#63; and type = &#63;.
@@ -404,7 +404,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant findByPMI_T_Last(
 			long powwowMeetingId, int type,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -417,7 +418,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant fetchByPMI_T_Last(
 		long powwowMeetingId, int type,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns the powwow participants before and after the current powwow participant in the ordered set where powwowMeetingId = &#63; and type = &#63;.
@@ -431,7 +433,8 @@ public interface PowwowParticipantPersistence
 	 */
 	public PowwowParticipant[] findByPMI_T_PrevAndNext(
 			long powwowParticipantId, long powwowMeetingId, int type,
-			OrderByComparator<PowwowParticipant> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+				orderByComparator)
 		throws NoSuchParticipantException;
 
 	/**
@@ -531,18 +534,15 @@ public interface PowwowParticipantPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowParticipantModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of powwow participants
 	 */
-	@Deprecated
 	public java.util.List<PowwowParticipant> findAll(
 		int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the powwow participants.
@@ -554,11 +554,14 @@ public interface PowwowParticipantPersistence
 	 * @param start the lower bound of the range of powwow participants
 	 * @param end the upper bound of the range of powwow participants (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of powwow participants
 	 */
 	public java.util.List<PowwowParticipant> findAll(
 		int start, int end,
-		OrderByComparator<PowwowParticipant> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PowwowParticipant>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the powwow participants from the database.

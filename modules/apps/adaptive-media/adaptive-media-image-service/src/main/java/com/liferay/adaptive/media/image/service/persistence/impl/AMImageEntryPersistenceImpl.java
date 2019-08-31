@@ -125,22 +125,18 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
-		return findByUuid(uuid, start, end, orderByComparator);
+		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -154,12 +150,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -171,23 +169,30 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if (!uuid.equals(amImageEntry.getUuid())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if (!uuid.equals(amImageEntry.getUuid())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -254,10 +259,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -666,20 +675,15 @@ public class AMImageEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the am image entry where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the am image entry where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching am image entry, or <code>null</code> if a matching am image entry could not be found
 	 */
-	@Deprecated
 	@Override
-	public AMImageEntry fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		return fetchByUUID_G(uuid, groupId);
+	public AMImageEntry fetchByUUID_G(String uuid, long groupId) {
+		return fetchByUUID_G(uuid, groupId, true);
 	}
 
 	/**
@@ -691,13 +695,23 @@ public class AMImageEntryPersistenceImpl
 	 * @return the matching am image entry, or <code>null</code> if a matching am image entry could not be found
 	 */
 	@Override
-	public AMImageEntry fetchByUUID_G(String uuid, long groupId) {
+	public AMImageEntry fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByUUID_G, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
+		}
 
 		if (result instanceof AMImageEntry) {
 			AMImageEntry amImageEntry = (AMImageEntry)result;
@@ -747,8 +761,10 @@ public class AMImageEntryPersistenceImpl
 				List<AMImageEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					AMImageEntry amImageEntry = list.get(0);
@@ -759,7 +775,10 @@ public class AMImageEntryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -914,23 +933,20 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -945,12 +961,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -962,27 +980,34 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if (!uuid.equals(amImageEntry.getUuid()) ||
-					(companyId != amImageEntry.getCompanyId())) {
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if (!uuid.equals(amImageEntry.getUuid()) ||
+						(companyId != amImageEntry.getCompanyId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1053,10 +1078,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1499,22 +1528,18 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1528,12 +1553,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1543,23 +1570,30 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if ((groupId != amImageEntry.getGroupId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if ((groupId != amImageEntry.getGroupId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1615,10 +1649,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2003,22 +2041,18 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator);
+		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2032,12 +2066,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2047,25 +2083,32 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if ((companyId != amImageEntry.getCompanyId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if ((companyId != amImageEntry.getCompanyId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -2121,10 +2164,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2511,23 +2558,19 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByConfigurationUuid(String, int, int, OrderByComparator)}
 	 * @param configurationUuid the configuration uuid
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByConfigurationUuid(
 		String configurationUuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
 		return findByConfigurationUuid(
-			configurationUuid, start, end, orderByComparator);
+			configurationUuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2541,12 +2584,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByConfigurationUuid(
 		String configurationUuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		configurationUuid = Objects.toString(configurationUuid, "");
 
@@ -2558,27 +2603,35 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByConfigurationUuid;
-			finderArgs = new Object[] {configurationUuid};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByConfigurationUuid;
+				finderArgs = new Object[] {configurationUuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByConfigurationUuid;
 			finderArgs = new Object[] {
 				configurationUuid, start, end, orderByComparator
 			};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if (!configurationUuid.equals(
-						amImageEntry.getConfigurationUuid())) {
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if (!configurationUuid.equals(
+							amImageEntry.getConfigurationUuid())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -2647,10 +2700,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3075,23 +3132,19 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFileVersionId(long, int, int, OrderByComparator)}
 	 * @param fileVersionId the file version ID
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByFileVersionId(
 		long fileVersionId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
 		return findByFileVersionId(
-			fileVersionId, start, end, orderByComparator);
+			fileVersionId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3105,12 +3158,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByFileVersionId(
 		long fileVersionId, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3120,25 +3175,32 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByFileVersionId;
-			finderArgs = new Object[] {fileVersionId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByFileVersionId;
+				finderArgs = new Object[] {fileVersionId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByFileVersionId;
 			finderArgs = new Object[] {
 				fileVersionId, start, end, orderByComparator
 			};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if ((fileVersionId != amImageEntry.getFileVersionId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if ((fileVersionId != amImageEntry.getFileVersionId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -3194,10 +3256,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3590,24 +3656,20 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param configurationUuid the configuration uuid
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findByC_C(
 		long companyId, String configurationUuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AMImageEntry> orderByComparator) {
 
 		return findByC_C(
-			companyId, configurationUuid, start, end, orderByComparator);
+			companyId, configurationUuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3622,12 +3684,14 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findByC_C(
 		long companyId, String configurationUuid, int start, int end,
-		OrderByComparator<AMImageEntry> orderByComparator) {
+		OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		configurationUuid = Objects.toString(configurationUuid, "");
 
@@ -3639,28 +3703,35 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_C;
-			finderArgs = new Object[] {companyId, configurationUuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_C;
+				finderArgs = new Object[] {companyId, configurationUuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
 				companyId, configurationUuid, start, end, orderByComparator
 			};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AMImageEntry amImageEntry : list) {
-				if ((companyId != amImageEntry.getCompanyId()) ||
-					!configurationUuid.equals(
-						amImageEntry.getConfigurationUuid())) {
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AMImageEntry amImageEntry : list) {
+					if ((companyId != amImageEntry.getCompanyId()) ||
+						!configurationUuid.equals(
+							amImageEntry.getConfigurationUuid())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -3731,10 +3802,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4180,20 +4255,17 @@ public class AMImageEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the am image entry where configurationUuid = &#63; and fileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the am image entry where configurationUuid = &#63; and fileVersionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F(String,long)}
 	 * @param configurationUuid the configuration uuid
 	 * @param fileVersionId the file version ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching am image entry, or <code>null</code> if a matching am image entry could not be found
 	 */
-	@Deprecated
 	@Override
 	public AMImageEntry fetchByC_F(
-		String configurationUuid, long fileVersionId, boolean useFinderCache) {
+		String configurationUuid, long fileVersionId) {
 
-		return fetchByC_F(configurationUuid, fileVersionId);
+		return fetchByC_F(configurationUuid, fileVersionId, true);
 	}
 
 	/**
@@ -4206,14 +4278,22 @@ public class AMImageEntryPersistenceImpl
 	 */
 	@Override
 	public AMImageEntry fetchByC_F(
-		String configurationUuid, long fileVersionId) {
+		String configurationUuid, long fileVersionId, boolean useFinderCache) {
 
 		configurationUuid = Objects.toString(configurationUuid, "");
 
-		Object[] finderArgs = new Object[] {configurationUuid, fileVersionId};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByC_F, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {configurationUuid, fileVersionId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByC_F, finderArgs, this);
+		}
 
 		if (result instanceof AMImageEntry) {
 			AMImageEntry amImageEntry = (AMImageEntry)result;
@@ -4264,8 +4344,10 @@ public class AMImageEntryPersistenceImpl
 				List<AMImageEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByC_F, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByC_F, finderArgs, list);
+					}
 				}
 				else {
 					AMImageEntry amImageEntry = list.get(0);
@@ -4276,7 +4358,9 @@ public class AMImageEntryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByC_F, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByC_F, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5186,20 +5270,16 @@ public class AMImageEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AMImageEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of am image entries
 	 */
-	@Deprecated
 	@Override
 	public List<AMImageEntry> findAll(
-		int start, int end, OrderByComparator<AMImageEntry> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<AMImageEntry> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5212,11 +5292,13 @@ public class AMImageEntryPersistenceImpl
 	 * @param start the lower bound of the range of am image entries
 	 * @param end the upper bound of the range of am image entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of am image entries
 	 */
 	@Override
 	public List<AMImageEntry> findAll(
-		int start, int end, OrderByComparator<AMImageEntry> orderByComparator) {
+		int start, int end, OrderByComparator<AMImageEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5226,16 +5308,23 @@ public class AMImageEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<AMImageEntry> list = (List<AMImageEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<AMImageEntry> list = null;
+
+		if (useFinderCache) {
+			list = (List<AMImageEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -5282,10 +5371,14 @@ public class AMImageEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

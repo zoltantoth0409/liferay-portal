@@ -123,22 +123,19 @@ public class DDMTemplateLinkPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMTemplateLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByClassNameId(long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
-	@Deprecated
 	@Override
 	public List<DDMTemplateLink> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMTemplateLink> orderByComparator) {
 
-		return findByClassNameId(classNameId, start, end, orderByComparator);
+		return findByClassNameId(
+			classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -152,12 +149,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator) {
+		OrderByComparator<DDMTemplateLink> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -167,26 +166,32 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByClassNameId;
-			finderArgs = new Object[] {classNameId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByClassNameId;
+				finderArgs = new Object[] {classNameId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByClassNameId;
 			finderArgs = new Object[] {
 				classNameId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMTemplateLink> list =
-			(List<DDMTemplateLink>)finderCache.getResult(
+		List<DDMTemplateLink> list = null;
+
+		if (useFinderCache) {
+			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (DDMTemplateLink ddmTemplateLink : list) {
-				if ((classNameId != ddmTemplateLink.getClassNameId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (DDMTemplateLink ddmTemplateLink : list) {
+					if ((classNameId != ddmTemplateLink.getClassNameId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -242,10 +247,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -637,22 +646,19 @@ public class DDMTemplateLinkPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMTemplateLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTemplateId(long, int, int, OrderByComparator)}
 	 * @param templateId the template ID
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
-	@Deprecated
 	@Override
 	public List<DDMTemplateLink> findByTemplateId(
 		long templateId, int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMTemplateLink> orderByComparator) {
 
-		return findByTemplateId(templateId, start, end, orderByComparator);
+		return findByTemplateId(
+			templateId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -666,12 +672,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findByTemplateId(
 		long templateId, int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator) {
+		OrderByComparator<DDMTemplateLink> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -681,26 +689,32 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByTemplateId;
-			finderArgs = new Object[] {templateId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByTemplateId;
+				finderArgs = new Object[] {templateId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByTemplateId;
 			finderArgs = new Object[] {
 				templateId, start, end, orderByComparator
 			};
 		}
 
-		List<DDMTemplateLink> list =
-			(List<DDMTemplateLink>)finderCache.getResult(
+		List<DDMTemplateLink> list = null;
+
+		if (useFinderCache) {
+			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (DDMTemplateLink ddmTemplateLink : list) {
-				if ((templateId != ddmTemplateLink.getTemplateId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (DDMTemplateLink ddmTemplateLink : list) {
+					if ((templateId != ddmTemplateLink.getTemplateId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -756,10 +770,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1147,20 +1165,15 @@ public class DDMTemplateLinkPersistenceImpl
 	}
 
 	/**
-	 * Returns the ddm template link where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the ddm template link where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C(long,long)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm template link, or <code>null</code> if a matching ddm template link could not be found
 	 */
-	@Deprecated
 	@Override
-	public DDMTemplateLink fetchByC_C(
-		long classNameId, long classPK, boolean useFinderCache) {
-
-		return fetchByC_C(classNameId, classPK);
+	public DDMTemplateLink fetchByC_C(long classNameId, long classPK) {
+		return fetchByC_C(classNameId, classPK, true);
 	}
 
 	/**
@@ -1172,11 +1185,21 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @return the matching ddm template link, or <code>null</code> if a matching ddm template link could not be found
 	 */
 	@Override
-	public DDMTemplateLink fetchByC_C(long classNameId, long classPK) {
-		Object[] finderArgs = new Object[] {classNameId, classPK};
+	public DDMTemplateLink fetchByC_C(
+		long classNameId, long classPK, boolean useFinderCache) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByC_C, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {classNameId, classPK};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByC_C, finderArgs, this);
+		}
 
 		if (result instanceof DDMTemplateLink) {
 			DDMTemplateLink ddmTemplateLink = (DDMTemplateLink)result;
@@ -1215,8 +1238,10 @@ public class DDMTemplateLinkPersistenceImpl
 				List<DDMTemplateLink> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByC_C, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByC_C, finderArgs, list);
+					}
 				}
 				else {
 					DDMTemplateLink ddmTemplateLink = list.get(0);
@@ -1227,7 +1252,9 @@ public class DDMTemplateLinkPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1922,21 +1949,17 @@ public class DDMTemplateLinkPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMTemplateLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm template links
 	 */
-	@Deprecated
 	@Override
 	public List<DDMTemplateLink> findAll(
 		int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<DDMTemplateLink> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1949,12 +1972,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findAll(
 		int start, int end,
-		OrderByComparator<DDMTemplateLink> orderByComparator) {
+		OrderByComparator<DDMTemplateLink> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1964,17 +1989,23 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<DDMTemplateLink> list =
-			(List<DDMTemplateLink>)finderCache.getResult(
+		List<DDMTemplateLink> list = null;
+
+		if (useFinderCache) {
+			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2021,10 +2052,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

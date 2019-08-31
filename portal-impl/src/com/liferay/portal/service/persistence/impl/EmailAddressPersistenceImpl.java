@@ -127,22 +127,18 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findByUuid(uuid, start, end, orderByComparator);
+		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -156,12 +152,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -173,23 +171,30 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if (!uuid.equals(emailAddress.getUuid())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if (!uuid.equals(emailAddress.getUuid())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -256,10 +261,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -672,23 +681,20 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -703,12 +709,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -720,27 +728,34 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if (!uuid.equals(emailAddress.getUuid()) ||
-					(companyId != emailAddress.getCompanyId())) {
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if (!uuid.equals(emailAddress.getUuid()) ||
+						(companyId != emailAddress.getCompanyId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -811,10 +826,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1260,22 +1279,18 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator);
+		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1289,12 +1304,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1304,25 +1321,32 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if ((companyId != emailAddress.getCompanyId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if ((companyId != emailAddress.getCompanyId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1378,10 +1402,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1764,22 +1792,18 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findByUserId(userId, start, end, orderByComparator);
+		return findByUserId(userId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1793,12 +1817,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1808,23 +1834,30 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUserId;
-			finderArgs = new Object[] {userId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUserId;
+				finderArgs = new Object[] {userId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] {userId, start, end, orderByComparator};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if ((userId != emailAddress.getUserId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if ((userId != emailAddress.getUserId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1880,10 +1913,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2270,23 +2307,20 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findByC_C(companyId, classNameId, start, end, orderByComparator);
+		return findByC_C(
+			companyId, classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2301,12 +2335,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2316,27 +2352,34 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_C;
-			finderArgs = new Object[] {companyId, classNameId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_C;
+				finderArgs = new Object[] {companyId, classNameId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
 				companyId, classNameId, start, end, orderByComparator
 			};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if ((companyId != emailAddress.getCompanyId()) ||
-					(classNameId != emailAddress.getClassNameId())) {
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if ((companyId != emailAddress.getCompanyId()) ||
+						(classNameId != emailAddress.getClassNameId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -2396,10 +2439,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2824,25 +2871,22 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByC_C_C(
 		long companyId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<EmailAddress> orderByComparator) {
 
 		return findByC_C_C(
-			companyId, classNameId, classPK, start, end, orderByComparator);
+			companyId, classNameId, classPK, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -2858,12 +2902,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByC_C_C(
 		long companyId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<EmailAddress> orderByComparator) {
+		OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2873,28 +2919,35 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_C_C;
-			finderArgs = new Object[] {companyId, classNameId, classPK};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_C_C;
+				finderArgs = new Object[] {companyId, classNameId, classPK};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_C_C;
 			finderArgs = new Object[] {
 				companyId, classNameId, classPK, start, end, orderByComparator
 			};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if ((companyId != emailAddress.getCompanyId()) ||
-					(classNameId != emailAddress.getClassNameId()) ||
-					(classPK != emailAddress.getClassPK())) {
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if ((companyId != emailAddress.getCompanyId()) ||
+						(classNameId != emailAddress.getClassNameId()) ||
+						(classPK != emailAddress.getClassPK())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -2958,10 +3011,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3415,7 +3472,6 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_C_P(long,long,long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
@@ -3423,19 +3479,16 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findByC_C_C_P(
 		long companyId, long classNameId, long classPK, boolean primary,
-		int start, int end, OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<EmailAddress> orderByComparator) {
 
 		return findByC_C_C_P(
 			companyId, classNameId, classPK, primary, start, end,
-			orderByComparator);
+			orderByComparator, true);
 	}
 
 	/**
@@ -3452,12 +3505,14 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	@Override
 	public List<EmailAddress> findByC_C_C_P(
 		long companyId, long classNameId, long classPK, boolean primary,
-		int start, int end, OrderByComparator<EmailAddress> orderByComparator) {
+		int start, int end, OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3467,12 +3522,15 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_C_C_P;
-			finderArgs = new Object[] {
-				companyId, classNameId, classPK, primary
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_C_C_P;
+				finderArgs = new Object[] {
+					companyId, classNameId, classPK, primary
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_C_C_P;
 			finderArgs = new Object[] {
 				companyId, classNameId, classPK, primary, start, end,
@@ -3480,19 +3538,23 @@ public class EmailAddressPersistenceImpl
 			};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (EmailAddress emailAddress : list) {
-				if ((companyId != emailAddress.getCompanyId()) ||
-					(classNameId != emailAddress.getClassNameId()) ||
-					(classPK != emailAddress.getClassPK()) ||
-					(primary != emailAddress.isPrimary())) {
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (EmailAddress emailAddress : list) {
+					if ((companyId != emailAddress.getCompanyId()) ||
+						(classNameId != emailAddress.getClassNameId()) ||
+						(classPK != emailAddress.getClassPK()) ||
+						(primary != emailAddress.isPrimary())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -3560,10 +3622,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4746,20 +4812,16 @@ public class EmailAddressPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>EmailAddressModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of email addresses
 	 */
-	@Deprecated
 	@Override
 	public List<EmailAddress> findAll(
-		int start, int end, OrderByComparator<EmailAddress> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<EmailAddress> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -4772,11 +4834,13 @@ public class EmailAddressPersistenceImpl
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of email addresses
 	 */
 	@Override
 	public List<EmailAddress> findAll(
-		int start, int end, OrderByComparator<EmailAddress> orderByComparator) {
+		int start, int end, OrderByComparator<EmailAddress> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4786,16 +4850,23 @@ public class EmailAddressPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<EmailAddress> list = (List<EmailAddress>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<EmailAddress> list = null;
+
+		if (useFinderCache) {
+			list = (List<EmailAddress>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4842,10 +4913,14 @@ public class EmailAddressPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

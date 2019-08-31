@@ -164,22 +164,18 @@ public class ChangesetCollectionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ChangesetCollectionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
-	@Deprecated
 	public static List<ChangesetCollection> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ChangesetCollection> orderByComparator) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, useFinderCache);
+			groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -193,14 +189,16 @@ public class ChangesetCollectionUtil {
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
 	public static List<ChangesetCollection> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator) {
+		OrderByComparator<ChangesetCollection> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -336,22 +334,18 @@ public class ChangesetCollectionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ChangesetCollectionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
-	@Deprecated
 	public static List<ChangesetCollection> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ChangesetCollection> orderByComparator) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, useFinderCache);
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -365,14 +359,16 @@ public class ChangesetCollectionUtil {
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
 	public static List<ChangesetCollection> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator) {
+		OrderByComparator<ChangesetCollection> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -515,23 +511,19 @@ public class ChangesetCollectionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ChangesetCollectionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
-	@Deprecated
 	public static List<ChangesetCollection> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ChangesetCollection> orderByComparator) {
 
 		return getPersistence().findByG_U(
-			groupId, userId, start, end, orderByComparator, useFinderCache);
+			groupId, userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -546,14 +538,16 @@ public class ChangesetCollectionUtil {
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
 	public static List<ChangesetCollection> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator) {
+		OrderByComparator<ChangesetCollection> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_U(
-			groupId, userId, start, end, orderByComparator);
+			groupId, userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -679,19 +673,14 @@ public class ChangesetCollectionUtil {
 	}
 
 	/**
-	 * Returns the changeset collection where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the changeset collection where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_N(long,String)}
 	 * @param groupId the group ID
 	 * @param name the name
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching changeset collection, or <code>null</code> if a matching changeset collection could not be found
 	 */
-	@Deprecated
-	public static ChangesetCollection fetchByG_N(
-		long groupId, String name, boolean useFinderCache) {
-
-		return getPersistence().fetchByG_N(groupId, name, useFinderCache);
+	public static ChangesetCollection fetchByG_N(long groupId, String name) {
+		return getPersistence().fetchByG_N(groupId, name);
 	}
 
 	/**
@@ -702,8 +691,10 @@ public class ChangesetCollectionUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching changeset collection, or <code>null</code> if a matching changeset collection could not be found
 	 */
-	public static ChangesetCollection fetchByG_N(long groupId, String name) {
-		return getPersistence().fetchByG_N(groupId, name);
+	public static ChangesetCollection fetchByG_N(
+		long groupId, String name, boolean useFinderCache) {
+
+		return getPersistence().fetchByG_N(groupId, name, useFinderCache);
 	}
 
 	/**
@@ -769,23 +760,19 @@ public class ChangesetCollectionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ChangesetCollectionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_N(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
-	@Deprecated
 	public static List<ChangesetCollection> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ChangesetCollection> orderByComparator) {
 
 		return getPersistence().findByC_N(
-			companyId, name, start, end, orderByComparator, useFinderCache);
+			companyId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -800,14 +787,16 @@ public class ChangesetCollectionUtil {
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching changeset collections
 	 */
 	public static List<ChangesetCollection> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator) {
+		OrderByComparator<ChangesetCollection> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_N(
-			companyId, name, start, end, orderByComparator);
+			companyId, name, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1024,21 +1013,16 @@ public class ChangesetCollectionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ChangesetCollectionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of changeset collections
 	 */
-	@Deprecated
 	public static List<ChangesetCollection> findAll(
 		int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ChangesetCollection> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1051,13 +1035,16 @@ public class ChangesetCollectionUtil {
 	 * @param start the lower bound of the range of changeset collections
 	 * @param end the upper bound of the range of changeset collections (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of changeset collections
 	 */
 	public static List<ChangesetCollection> findAll(
 		int start, int end,
-		OrderByComparator<ChangesetCollection> orderByComparator) {
+		OrderByComparator<ChangesetCollection> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -129,22 +129,18 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator);
+		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -158,12 +154,14 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -173,26 +171,32 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoInstanceToken kaleoInstanceToken : list) {
-				if ((companyId != kaleoInstanceToken.getCompanyId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (KaleoInstanceToken kaleoInstanceToken : list) {
+					if ((companyId != kaleoInstanceToken.getCompanyId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -248,10 +252,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -650,23 +658,19 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKaleoDefinitionVersionId(long, int, int, OrderByComparator)}
 	 * @param kaleoDefinitionVersionId the kaleo definition version ID
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
 		return findByKaleoDefinitionVersionId(
-			kaleoDefinitionVersionId, start, end, orderByComparator);
+			kaleoDefinitionVersionId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -680,12 +684,14 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -695,11 +701,14 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath =
-				_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
-			finderArgs = new Object[] {kaleoDefinitionVersionId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
+				finderArgs = new Object[] {kaleoDefinitionVersionId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath =
 				_finderPathWithPaginationFindByKaleoDefinitionVersionId;
 			finderArgs = new Object[] {
@@ -707,18 +716,21 @@ public class KaleoInstanceTokenPersistenceImpl
 			};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoInstanceToken kaleoInstanceToken : list) {
-				if ((kaleoDefinitionVersionId !=
-						kaleoInstanceToken.getKaleoDefinitionVersionId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (KaleoInstanceToken kaleoInstanceToken : list) {
+					if ((kaleoDefinitionVersionId !=
+							kaleoInstanceToken.getKaleoDefinitionVersionId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -775,10 +787,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1183,23 +1199,19 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKaleoInstanceId(long, int, int, OrderByComparator)}
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
 		return findByKaleoInstanceId(
-			kaleoInstanceId, start, end, orderByComparator);
+			kaleoInstanceId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1213,12 +1225,14 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1228,28 +1242,34 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKaleoInstanceId;
-			finderArgs = new Object[] {kaleoInstanceId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByKaleoInstanceId;
+				finderArgs = new Object[] {kaleoInstanceId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByKaleoInstanceId;
 			finderArgs = new Object[] {
 				kaleoInstanceId, start, end, orderByComparator
 			};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoInstanceToken kaleoInstanceToken : list) {
-				if ((kaleoInstanceId !=
-						kaleoInstanceToken.getKaleoInstanceId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (KaleoInstanceToken kaleoInstanceToken : list) {
+					if ((kaleoInstanceId !=
+							kaleoInstanceToken.getKaleoInstanceId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1305,10 +1325,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1711,25 +1735,21 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_PKITI(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI(
 		long companyId, long parentKaleoInstanceTokenId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
 		return findByC_PKITI(
 			companyId, parentKaleoInstanceTokenId, start, end,
-			orderByComparator);
+			orderByComparator, true);
 	}
 
 	/**
@@ -1744,12 +1764,14 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI(
 		long companyId, long parentKaleoInstanceTokenId, int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1759,10 +1781,15 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_PKITI;
-			finderArgs = new Object[] {companyId, parentKaleoInstanceTokenId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_PKITI;
+				finderArgs = new Object[] {
+					companyId, parentKaleoInstanceTokenId
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_PKITI;
 			finderArgs = new Object[] {
 				companyId, parentKaleoInstanceTokenId, start, end,
@@ -1770,19 +1797,23 @@ public class KaleoInstanceTokenPersistenceImpl
 			};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoInstanceToken kaleoInstanceToken : list) {
-				if ((companyId != kaleoInstanceToken.getCompanyId()) ||
-					(parentKaleoInstanceTokenId !=
-						kaleoInstanceToken.getParentKaleoInstanceTokenId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (KaleoInstanceToken kaleoInstanceToken : list) {
+					if ((companyId != kaleoInstanceToken.getCompanyId()) ||
+						(parentKaleoInstanceTokenId !=
+							kaleoInstanceToken.
+								getParentKaleoInstanceTokenId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1842,10 +1873,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2282,27 +2317,23 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_PKITI_CD(long,long,Date, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	 * @param completionDate the completion date
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI_CD(
 		long companyId, long parentKaleoInstanceTokenId, Date completionDate,
 		int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
 		return findByC_PKITI_CD(
 			companyId, parentKaleoInstanceTokenId, completionDate, start, end,
-			orderByComparator);
+			orderByComparator, true);
 	}
 
 	/**
@@ -2318,13 +2349,15 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findByC_PKITI_CD(
 		long companyId, long parentKaleoInstanceTokenId, Date completionDate,
 		int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2334,12 +2367,16 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_PKITI_CD;
-			finderArgs = new Object[] {
-				companyId, parentKaleoInstanceTokenId, _getTime(completionDate)
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_PKITI_CD;
+				finderArgs = new Object[] {
+					companyId, parentKaleoInstanceTokenId,
+					_getTime(completionDate)
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_PKITI_CD;
 			finderArgs = new Object[] {
 				companyId, parentKaleoInstanceTokenId, _getTime(completionDate),
@@ -2347,22 +2384,26 @@ public class KaleoInstanceTokenPersistenceImpl
 			};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoInstanceToken kaleoInstanceToken : list) {
-				if ((companyId != kaleoInstanceToken.getCompanyId()) ||
-					(parentKaleoInstanceTokenId !=
-						kaleoInstanceToken.getParentKaleoInstanceTokenId()) ||
-					!Objects.equals(
-						completionDate,
-						kaleoInstanceToken.getCompletionDate())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (KaleoInstanceToken kaleoInstanceToken : list) {
+					if ((companyId != kaleoInstanceToken.getCompanyId()) ||
+						(parentKaleoInstanceTokenId !=
+							kaleoInstanceToken.
+								getParentKaleoInstanceTokenId()) ||
+						!Objects.equals(
+							completionDate,
+							kaleoInstanceToken.getCompletionDate())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2438,10 +2479,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3577,21 +3622,17 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoInstanceTokenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo instance tokens
 	 */
-	@Deprecated
 	@Override
 	public List<KaleoInstanceToken> findAll(
 		int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3604,12 +3645,14 @@ public class KaleoInstanceTokenPersistenceImpl
 	 * @param start the lower bound of the range of kaleo instance tokens
 	 * @param end the upper bound of the range of kaleo instance tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo instance tokens
 	 */
 	@Override
 	public List<KaleoInstanceToken> findAll(
 		int start, int end,
-		OrderByComparator<KaleoInstanceToken> orderByComparator) {
+		OrderByComparator<KaleoInstanceToken> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3619,17 +3662,23 @@ public class KaleoInstanceTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<KaleoInstanceToken> list =
-			(List<KaleoInstanceToken>)finderCache.getResult(
+		List<KaleoInstanceToken> list = null;
+
+		if (useFinderCache) {
+			list = (List<KaleoInstanceToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3676,10 +3725,14 @@ public class KaleoInstanceTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

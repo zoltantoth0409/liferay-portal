@@ -122,22 +122,18 @@ public class AssetTagStatsPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AssetTagStatsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTagId(long, int, int, OrderByComparator)}
 	 * @param tagId the tag ID
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset tag statses
 	 */
-	@Deprecated
 	@Override
 	public List<AssetTagStats> findByTagId(
 		long tagId, int start, int end,
-		OrderByComparator<AssetTagStats> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AssetTagStats> orderByComparator) {
 
-		return findByTagId(tagId, start, end, orderByComparator);
+		return findByTagId(tagId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -151,12 +147,14 @@ public class AssetTagStatsPersistenceImpl
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset tag statses
 	 */
 	@Override
 	public List<AssetTagStats> findByTagId(
 		long tagId, int start, int end,
-		OrderByComparator<AssetTagStats> orderByComparator) {
+		OrderByComparator<AssetTagStats> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,24 +164,30 @@ public class AssetTagStatsPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByTagId;
-			finderArgs = new Object[] {tagId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByTagId;
+				finderArgs = new Object[] {tagId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByTagId;
 			finderArgs = new Object[] {tagId, start, end, orderByComparator};
 		}
 
-		List<AssetTagStats> list =
-			(List<AssetTagStats>)FinderCacheUtil.getResult(
+		List<AssetTagStats> list = null;
+
+		if (useFinderCache) {
+			list = (List<AssetTagStats>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AssetTagStats assetTagStats : list) {
-				if ((tagId != assetTagStats.getTagId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AssetTagStats assetTagStats : list) {
+					if ((tagId != assetTagStats.getTagId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -239,10 +243,14 @@ public class AssetTagStatsPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -628,22 +636,19 @@ public class AssetTagStatsPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AssetTagStatsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByClassNameId(long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset tag statses
 	 */
-	@Deprecated
 	@Override
 	public List<AssetTagStats> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<AssetTagStats> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AssetTagStats> orderByComparator) {
 
-		return findByClassNameId(classNameId, start, end, orderByComparator);
+		return findByClassNameId(
+			classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -657,12 +662,14 @@ public class AssetTagStatsPersistenceImpl
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset tag statses
 	 */
 	@Override
 	public List<AssetTagStats> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<AssetTagStats> orderByComparator) {
+		OrderByComparator<AssetTagStats> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -672,26 +679,32 @@ public class AssetTagStatsPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByClassNameId;
-			finderArgs = new Object[] {classNameId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByClassNameId;
+				finderArgs = new Object[] {classNameId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByClassNameId;
 			finderArgs = new Object[] {
 				classNameId, start, end, orderByComparator
 			};
 		}
 
-		List<AssetTagStats> list =
-			(List<AssetTagStats>)FinderCacheUtil.getResult(
+		List<AssetTagStats> list = null;
+
+		if (useFinderCache) {
+			list = (List<AssetTagStats>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AssetTagStats assetTagStats : list) {
-				if ((classNameId != assetTagStats.getClassNameId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AssetTagStats assetTagStats : list) {
+					if ((classNameId != assetTagStats.getClassNameId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -747,10 +760,14 @@ public class AssetTagStatsPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1138,20 +1155,15 @@ public class AssetTagStatsPersistenceImpl
 	}
 
 	/**
-	 * Returns the asset tag stats where tagId = &#63; and classNameId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the asset tag stats where tagId = &#63; and classNameId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByT_C(long,long)}
 	 * @param tagId the tag ID
 	 * @param classNameId the class name ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching asset tag stats, or <code>null</code> if a matching asset tag stats could not be found
 	 */
-	@Deprecated
 	@Override
-	public AssetTagStats fetchByT_C(
-		long tagId, long classNameId, boolean useFinderCache) {
-
-		return fetchByT_C(tagId, classNameId);
+	public AssetTagStats fetchByT_C(long tagId, long classNameId) {
+		return fetchByT_C(tagId, classNameId, true);
 	}
 
 	/**
@@ -1163,11 +1175,21 @@ public class AssetTagStatsPersistenceImpl
 	 * @return the matching asset tag stats, or <code>null</code> if a matching asset tag stats could not be found
 	 */
 	@Override
-	public AssetTagStats fetchByT_C(long tagId, long classNameId) {
-		Object[] finderArgs = new Object[] {tagId, classNameId};
+	public AssetTagStats fetchByT_C(
+		long tagId, long classNameId, boolean useFinderCache) {
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByT_C, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {tagId, classNameId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByT_C, finderArgs, this);
+		}
 
 		if (result instanceof AssetTagStats) {
 			AssetTagStats assetTagStats = (AssetTagStats)result;
@@ -1206,8 +1228,10 @@ public class AssetTagStatsPersistenceImpl
 				List<AssetTagStats> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByT_C, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByT_C, finderArgs, list);
+					}
 				}
 				else {
 					AssetTagStats assetTagStats = list.get(0);
@@ -1218,7 +1242,10 @@ public class AssetTagStatsPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByT_C, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByT_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1910,20 +1937,17 @@ public class AssetTagStatsPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AssetTagStatsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of asset tag statses
 	 */
-	@Deprecated
 	@Override
 	public List<AssetTagStats> findAll(
-		int start, int end, OrderByComparator<AssetTagStats> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<AssetTagStats> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1936,12 +1960,13 @@ public class AssetTagStatsPersistenceImpl
 	 * @param start the lower bound of the range of asset tag statses
 	 * @param end the upper bound of the range of asset tag statses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of asset tag statses
 	 */
 	@Override
 	public List<AssetTagStats> findAll(
-		int start, int end,
-		OrderByComparator<AssetTagStats> orderByComparator) {
+		int start, int end, OrderByComparator<AssetTagStats> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1951,17 +1976,23 @@ public class AssetTagStatsPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<AssetTagStats> list =
-			(List<AssetTagStats>)FinderCacheUtil.getResult(
+		List<AssetTagStats> list = null;
+
+		if (useFinderCache) {
+			list = (List<AssetTagStats>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2008,10 +2039,14 @@ public class AssetTagStatsPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

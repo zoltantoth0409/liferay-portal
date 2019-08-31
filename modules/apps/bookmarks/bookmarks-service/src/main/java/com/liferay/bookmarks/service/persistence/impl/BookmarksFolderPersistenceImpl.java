@@ -130,22 +130,18 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findByUuid(uuid, start, end, orderByComparator);
+		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -159,12 +155,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -176,24 +174,30 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if (!uuid.equals(bookmarksFolder.getUuid())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if (!uuid.equals(bookmarksFolder.getUuid())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -260,10 +264,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -676,20 +684,15 @@ public class BookmarksFolderPersistenceImpl
 	}
 
 	/**
-	 * Returns the bookmarks folder where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the bookmarks folder where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching bookmarks folder, or <code>null</code> if a matching bookmarks folder could not be found
 	 */
-	@Deprecated
 	@Override
-	public BookmarksFolder fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		return fetchByUUID_G(uuid, groupId);
+	public BookmarksFolder fetchByUUID_G(String uuid, long groupId) {
+		return fetchByUUID_G(uuid, groupId, true);
 	}
 
 	/**
@@ -701,13 +704,23 @@ public class BookmarksFolderPersistenceImpl
 	 * @return the matching bookmarks folder, or <code>null</code> if a matching bookmarks folder could not be found
 	 */
 	@Override
-	public BookmarksFolder fetchByUUID_G(String uuid, long groupId) {
+	public BookmarksFolder fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByUUID_G, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
+		}
 
 		if (result instanceof BookmarksFolder) {
 			BookmarksFolder bookmarksFolder = (BookmarksFolder)result;
@@ -757,8 +770,10 @@ public class BookmarksFolderPersistenceImpl
 				List<BookmarksFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					BookmarksFolder bookmarksFolder = list.get(0);
@@ -769,7 +784,10 @@ public class BookmarksFolderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -924,23 +942,20 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -955,12 +970,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -972,28 +989,34 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if (!uuid.equals(bookmarksFolder.getUuid()) ||
-					(companyId != bookmarksFolder.getCompanyId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if (!uuid.equals(bookmarksFolder.getUuid()) ||
+						(companyId != bookmarksFolder.getCompanyId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1064,10 +1087,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1514,22 +1541,18 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1543,12 +1566,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1558,24 +1583,30 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((groupId != bookmarksFolder.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((groupId != bookmarksFolder.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1631,10 +1662,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2399,22 +2434,18 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findByCompanyId(companyId, start, end, orderByComparator);
+		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2428,12 +2459,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2443,26 +2476,32 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
 			};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((companyId != bookmarksFolder.getCompanyId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((companyId != bookmarksFolder.getCompanyId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2518,10 +2557,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2913,24 +2956,20 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentFolderId the parent folder ID
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByG_P(
 		long groupId, long parentFolderId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
 		return findByG_P(
-			groupId, parentFolderId, start, end, orderByComparator);
+			groupId, parentFolderId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2945,12 +2984,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByG_P(
 		long groupId, long parentFolderId, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2960,28 +3001,35 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] {groupId, parentFolderId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P;
+				finderArgs = new Object[] {groupId, parentFolderId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
 				groupId, parentFolderId, start, end, orderByComparator
 			};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((groupId != bookmarksFolder.getGroupId()) ||
-					(parentFolderId != bookmarksFolder.getParentFolderId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((groupId != bookmarksFolder.getGroupId()) ||
+						(parentFolderId !=
+							bookmarksFolder.getParentFolderId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -3041,10 +3089,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3866,23 +3918,20 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_NotS(long,int, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByC_NotS(
 		long companyId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findByC_NotS(companyId, status, start, end, orderByComparator);
+		return findByC_NotS(
+			companyId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3897,12 +3946,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByC_NotS(
 		long companyId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3913,18 +3964,21 @@ public class BookmarksFolderPersistenceImpl
 			companyId, status, start, end, orderByComparator
 		};
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((companyId != bookmarksFolder.getCompanyId()) ||
-					(status == bookmarksFolder.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((companyId != bookmarksFolder.getCompanyId()) ||
+						(status == bookmarksFolder.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -3984,10 +4038,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4412,25 +4470,22 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_S(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentFolderId the parent folder ID
 	 * @param status the status
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByG_P_S(
 		long groupId, long parentFolderId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
 		return findByG_P_S(
-			groupId, parentFolderId, status, start, end, orderByComparator);
+			groupId, parentFolderId, status, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -4446,12 +4501,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByG_P_S(
 		long groupId, long parentFolderId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4461,29 +4518,36 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_S;
-			finderArgs = new Object[] {groupId, parentFolderId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_S;
+				finderArgs = new Object[] {groupId, parentFolderId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_S;
 			finderArgs = new Object[] {
 				groupId, parentFolderId, status, start, end, orderByComparator
 			};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((groupId != bookmarksFolder.getGroupId()) ||
-					(parentFolderId != bookmarksFolder.getParentFolderId()) ||
-					(status != bookmarksFolder.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((groupId != bookmarksFolder.getGroupId()) ||
+						(parentFolderId !=
+							bookmarksFolder.getParentFolderId()) ||
+						(status != bookmarksFolder.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -4547,10 +4611,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5423,25 +5491,22 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_NotS(long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentFolderId the parent folder ID
 	 * @param status the status
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByG_P_NotS(
 		long groupId, long parentFolderId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
 		return findByG_P_NotS(
-			groupId, parentFolderId, status, start, end, orderByComparator);
+			groupId, parentFolderId, status, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -5457,12 +5522,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByG_P_NotS(
 		long groupId, long parentFolderId, int status, int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5473,19 +5540,23 @@ public class BookmarksFolderPersistenceImpl
 			groupId, parentFolderId, status, start, end, orderByComparator
 		};
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((groupId != bookmarksFolder.getGroupId()) ||
-					(parentFolderId != bookmarksFolder.getParentFolderId()) ||
-					(status == bookmarksFolder.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((groupId != bookmarksFolder.getGroupId()) ||
+						(parentFolderId !=
+							bookmarksFolder.getParentFolderId()) ||
+						(status == bookmarksFolder.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -5549,10 +5620,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -6430,7 +6505,6 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByF_C_P_NotS(long,long,long,int, int, int, OrderByComparator)}
 	 * @param folderId the folder ID
 	 * @param companyId the company ID
 	 * @param parentFolderId the parent folder ID
@@ -6438,20 +6512,17 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findByF_C_P_NotS(
 		long folderId, long companyId, long parentFolderId, int status,
 		int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
 		return findByF_C_P_NotS(
 			folderId, companyId, parentFolderId, status, start, end,
-			orderByComparator);
+			orderByComparator, true);
 	}
 
 	/**
@@ -6468,13 +6539,15 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findByF_C_P_NotS(
 		long folderId, long companyId, long parentFolderId, int status,
 		int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6486,20 +6559,24 @@ public class BookmarksFolderPersistenceImpl
 			orderByComparator
 		};
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (BookmarksFolder bookmarksFolder : list) {
-				if ((folderId >= bookmarksFolder.getFolderId()) ||
-					(companyId != bookmarksFolder.getCompanyId()) ||
-					(parentFolderId != bookmarksFolder.getParentFolderId()) ||
-					(status == bookmarksFolder.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (BookmarksFolder bookmarksFolder : list) {
+					if ((folderId >= bookmarksFolder.getFolderId()) ||
+						(companyId != bookmarksFolder.getCompanyId()) ||
+						(parentFolderId !=
+							bookmarksFolder.getParentFolderId()) ||
+						(status == bookmarksFolder.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -6567,10 +6644,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7607,21 +7688,17 @@ public class BookmarksFolderPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>BookmarksFolderModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of bookmarks folders
 	 */
-	@Deprecated
 	@Override
 	public List<BookmarksFolder> findAll(
 		int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<BookmarksFolder> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -7634,12 +7711,14 @@ public class BookmarksFolderPersistenceImpl
 	 * @param start the lower bound of the range of bookmarks folders
 	 * @param end the upper bound of the range of bookmarks folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of bookmarks folders
 	 */
 	@Override
 	public List<BookmarksFolder> findAll(
 		int start, int end,
-		OrderByComparator<BookmarksFolder> orderByComparator) {
+		OrderByComparator<BookmarksFolder> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7649,17 +7728,23 @@ public class BookmarksFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<BookmarksFolder> list =
-			(List<BookmarksFolder>)finderCache.getResult(
+		List<BookmarksFolder> list = null;
+
+		if (useFinderCache) {
+			list = (List<BookmarksFolder>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -7706,10 +7791,14 @@ public class BookmarksFolderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

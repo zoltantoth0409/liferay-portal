@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.mapping.exception.NoSuchFormInstanceRecordException;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -80,19 +79,16 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where uuid = &#63;.
@@ -105,11 +101,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where uuid = &#63;.
@@ -121,7 +120,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByUuid_First(
 			String uuid,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -133,7 +133,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByUuid_First(
 		String uuid,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where uuid = &#63;.
@@ -145,7 +146,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByUuid_Last(
 			String uuid,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -157,7 +159,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByUuid_Last(
 		String uuid,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where uuid = &#63;.
@@ -170,7 +173,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord[] findByUuid_PrevAndNext(
 			long formInstanceRecordId, String uuid,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -200,17 +204,13 @@ public interface DDMFormInstanceRecordPersistence
 		throws NoSuchFormInstanceRecordException;
 
 	/**
-	 * Returns the ddm form instance record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the ddm form instance record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm form instance record, or <code>null</code> if a matching ddm form instance record could not be found
 	 */
-	@Deprecated
-	public DDMFormInstanceRecord fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public DDMFormInstanceRecord fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the ddm form instance record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -220,7 +220,8 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm form instance record, or <code>null</code> if a matching ddm form instance record could not be found
 	 */
-	public DDMFormInstanceRecord fetchByUUID_G(String uuid, long groupId);
+	public DDMFormInstanceRecord fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the ddm form instance record where uuid = &#63; and groupId = &#63; from the database.
@@ -274,20 +275,17 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where uuid = &#63; and companyId = &#63;.
@@ -301,11 +299,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -318,7 +319,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -331,7 +333,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -344,7 +347,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -357,7 +361,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -371,7 +376,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord[] findByUuid_C_PrevAndNext(
 			long formInstanceRecordId, String uuid, long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -422,19 +428,16 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where companyId = &#63;.
@@ -447,11 +450,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where companyId = &#63;.
@@ -463,7 +469,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByCompanyId_First(
 			long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -475,7 +482,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByCompanyId_First(
 		long companyId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where companyId = &#63;.
@@ -487,7 +495,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByCompanyId_Last(
 			long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -499,7 +508,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByCompanyId_Last(
 		long companyId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where companyId = &#63;.
@@ -512,7 +522,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord[] findByCompanyId_PrevAndNext(
 			long formInstanceRecordId, long companyId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -561,19 +572,16 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFormInstanceId(long, int, int, OrderByComparator)}
 	 * @param formInstanceId the form instance ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByFormInstanceId(
 		long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where formInstanceId = &#63;.
@@ -586,11 +594,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByFormInstanceId(
 		long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where formInstanceId = &#63;.
@@ -602,7 +613,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByFormInstanceId_First(
 			long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -614,7 +626,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByFormInstanceId_First(
 		long formInstanceId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where formInstanceId = &#63;.
@@ -626,7 +639,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByFormInstanceId_Last(
 			long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -638,7 +652,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByFormInstanceId_Last(
 		long formInstanceId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where formInstanceId = &#63;.
@@ -651,7 +666,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord[] findByFormInstanceId_PrevAndNext(
 			long formInstanceRecordId, long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -702,20 +718,17 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_F(long,long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param formInstanceId the form instance ID
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByU_F(
 		long userId, long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where userId = &#63; and formInstanceId = &#63;.
@@ -729,11 +742,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByU_F(
 		long userId, long formInstanceId, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where userId = &#63; and formInstanceId = &#63;.
@@ -746,7 +762,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByU_F_First(
 			long userId, long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -759,7 +776,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByU_F_First(
 		long userId, long formInstanceId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where userId = &#63; and formInstanceId = &#63;.
@@ -772,7 +790,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByU_F_Last(
 			long userId, long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -785,7 +804,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByU_F_Last(
 		long userId, long formInstanceId,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where userId = &#63; and formInstanceId = &#63;.
@@ -799,7 +819,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord[] findByU_F_PrevAndNext(
 			long formInstanceRecordId, long userId, long formInstanceId,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -852,20 +873,17 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByF_F(long,String, int, int, OrderByComparator)}
 	 * @param formInstanceId the form instance ID
 	 * @param formInstanceVersion the form instance version
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findByF_F(
 		long formInstanceId, String formInstanceVersion, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records where formInstanceId = &#63; and formInstanceVersion = &#63;.
@@ -879,11 +897,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findByF_F(
 		long formInstanceId, String formInstanceVersion, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm form instance record in the ordered set where formInstanceId = &#63; and formInstanceVersion = &#63;.
@@ -896,7 +917,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByF_F_First(
 			long formInstanceId, String formInstanceVersion,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -909,7 +931,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByF_F_First(
 		long formInstanceId, String formInstanceVersion,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm form instance record in the ordered set where formInstanceId = &#63; and formInstanceVersion = &#63;.
@@ -922,7 +945,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord findByF_F_Last(
 			long formInstanceId, String formInstanceVersion,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -935,7 +959,8 @@ public interface DDMFormInstanceRecordPersistence
 	 */
 	public DDMFormInstanceRecord fetchByF_F_Last(
 		long formInstanceId, String formInstanceVersion,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm form instance records before and after the current ddm form instance record in the ordered set where formInstanceId = &#63; and formInstanceVersion = &#63;.
@@ -950,7 +975,8 @@ public interface DDMFormInstanceRecordPersistence
 	public DDMFormInstanceRecord[] findByF_F_PrevAndNext(
 			long formInstanceRecordId, long formInstanceId,
 			String formInstanceVersion,
-			OrderByComparator<DDMFormInstanceRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DDMFormInstanceRecord> orderByComparator)
 		throws NoSuchFormInstanceRecordException;
 
 	/**
@@ -1051,18 +1077,15 @@ public interface DDMFormInstanceRecordPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMFormInstanceRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm form instance records
 	 */
-	@Deprecated
 	public java.util.List<DDMFormInstanceRecord> findAll(
 		int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm form instance records.
@@ -1074,11 +1097,14 @@ public interface DDMFormInstanceRecordPersistence
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm form instance records
 	 */
 	public java.util.List<DDMFormInstanceRecord> findAll(
 		int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ddm form instance records from the database.

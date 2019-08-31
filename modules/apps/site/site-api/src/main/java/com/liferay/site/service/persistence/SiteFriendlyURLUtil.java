@@ -161,22 +161,17 @@ public class SiteFriendlyURLUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
-	@Deprecated
 	public static List<SiteFriendlyURL> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator) {
 
-		return getPersistence().findByUuid(
-			uuid, start, end, orderByComparator, useFinderCache);
+		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
@@ -190,13 +185,16 @@ public class SiteFriendlyURLUtil {
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public static List<SiteFriendlyURL> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
+		return getPersistence().findByUuid(
+			uuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -307,19 +305,14 @@ public class SiteFriendlyURLUtil {
 	}
 
 	/**
-	 * Returns the site friendly url where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the site friendly url where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	@Deprecated
-	public static SiteFriendlyURL fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		return getPersistence().fetchByUUID_G(uuid, groupId, useFinderCache);
+	public static SiteFriendlyURL fetchByUUID_G(String uuid, long groupId) {
+		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -330,8 +323,10 @@ public class SiteFriendlyURLUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	public static SiteFriendlyURL fetchByUUID_G(String uuid, long groupId) {
-		return getPersistence().fetchByUUID_G(uuid, groupId);
+	public static SiteFriendlyURL fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
+		return getPersistence().fetchByUUID_G(uuid, groupId, useFinderCache);
 	}
 
 	/**
@@ -397,23 +392,19 @@ public class SiteFriendlyURLUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
-	@Deprecated
 	public static List<SiteFriendlyURL> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, useFinderCache);
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -428,14 +419,16 @@ public class SiteFriendlyURLUtil {
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public static List<SiteFriendlyURL> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator);
+			uuid, companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -585,23 +578,19 @@ public class SiteFriendlyURLUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_G(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
-	@Deprecated
 	public static List<SiteFriendlyURL> findByC_G(
 		long companyId, long groupId, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator) {
 
 		return getPersistence().findByC_G(
-			companyId, groupId, start, end, orderByComparator, useFinderCache);
+			companyId, groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -616,14 +605,16 @@ public class SiteFriendlyURLUtil {
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching site friendly urls
 	 */
 	public static List<SiteFriendlyURL> findByC_G(
 		long companyId, long groupId, int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_G(
-			companyId, groupId, start, end, orderByComparator);
+			companyId, groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -749,20 +740,16 @@ public class SiteFriendlyURLUtil {
 	}
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F(long,String)}
 	 * @param companyId the company ID
 	 * @param friendlyURL the friendly url
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	@Deprecated
 	public static SiteFriendlyURL fetchByC_F(
-		long companyId, String friendlyURL, boolean useFinderCache) {
+		long companyId, String friendlyURL) {
 
-		return getPersistence().fetchByC_F(
-			companyId, friendlyURL, useFinderCache);
+		return getPersistence().fetchByC_F(companyId, friendlyURL);
 	}
 
 	/**
@@ -774,9 +761,10 @@ public class SiteFriendlyURLUtil {
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public static SiteFriendlyURL fetchByC_F(
-		long companyId, String friendlyURL) {
+		long companyId, String friendlyURL, boolean useFinderCache) {
 
-		return getPersistence().fetchByC_F(companyId, friendlyURL);
+		return getPersistence().fetchByC_F(
+			companyId, friendlyURL, useFinderCache);
 	}
 
 	/**
@@ -821,22 +809,17 @@ public class SiteFriendlyURLUtil {
 	}
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and groupId = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_G_L(long,long,String)}
 	 * @param companyId the company ID
 	 * @param groupId the group ID
 	 * @param languageId the language ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	@Deprecated
 	public static SiteFriendlyURL fetchByC_G_L(
-		long companyId, long groupId, String languageId,
-		boolean useFinderCache) {
+		long companyId, long groupId, String languageId) {
 
-		return getPersistence().fetchByC_G_L(
-			companyId, groupId, languageId, useFinderCache);
+		return getPersistence().fetchByC_G_L(companyId, groupId, languageId);
 	}
 
 	/**
@@ -849,9 +832,11 @@ public class SiteFriendlyURLUtil {
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public static SiteFriendlyURL fetchByC_G_L(
-		long companyId, long groupId, String languageId) {
+		long companyId, long groupId, String languageId,
+		boolean useFinderCache) {
 
-		return getPersistence().fetchByC_G_L(companyId, groupId, languageId);
+		return getPersistence().fetchByC_G_L(
+			companyId, groupId, languageId, useFinderCache);
 	}
 
 	/**
@@ -900,22 +885,18 @@ public class SiteFriendlyURLUtil {
 	}
 
 	/**
-	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the site friendly url where companyId = &#63; and friendlyURL = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F_L(long,String,String)}
 	 * @param companyId the company ID
 	 * @param friendlyURL the friendly url
 	 * @param languageId the language ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
-	@Deprecated
 	public static SiteFriendlyURL fetchByC_F_L(
-		long companyId, String friendlyURL, String languageId,
-		boolean useFinderCache) {
+		long companyId, String friendlyURL, String languageId) {
 
 		return getPersistence().fetchByC_F_L(
-			companyId, friendlyURL, languageId, useFinderCache);
+			companyId, friendlyURL, languageId);
 	}
 
 	/**
@@ -928,10 +909,11 @@ public class SiteFriendlyURLUtil {
 	 * @return the matching site friendly url, or <code>null</code> if a matching site friendly url could not be found
 	 */
 	public static SiteFriendlyURL fetchByC_F_L(
-		long companyId, String friendlyURL, String languageId) {
+		long companyId, String friendlyURL, String languageId,
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByC_F_L(
-			companyId, friendlyURL, languageId);
+			companyId, friendlyURL, languageId, useFinderCache);
 	}
 
 	/**
@@ -1064,21 +1046,16 @@ public class SiteFriendlyURLUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SiteFriendlyURLModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site friendly urls
 	 */
-	@Deprecated
 	public static List<SiteFriendlyURL> findAll(
 		int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1091,13 +1068,16 @@ public class SiteFriendlyURLUtil {
 	 * @param start the lower bound of the range of site friendly urls
 	 * @param end the upper bound of the range of site friendly urls (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of site friendly urls
 	 */
 	public static List<SiteFriendlyURL> findAll(
 		int start, int end,
-		OrderByComparator<SiteFriendlyURL> orderByComparator) {
+		OrderByComparator<SiteFriendlyURL> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

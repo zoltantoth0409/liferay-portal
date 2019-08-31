@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.fragment.exception.NoSuchEntryLinkException;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -80,19 +79,16 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where uuid = &#63;.
@@ -105,11 +101,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where uuid = &#63;.
@@ -120,7 +119,9 @@ public interface FragmentEntryLinkPersistence
 	 * @throws NoSuchEntryLinkException if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink findByUuid_First(
-			String uuid, OrderByComparator<FragmentEntryLink> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -131,7 +132,9 @@ public interface FragmentEntryLinkPersistence
 	 * @return the first matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink fetchByUuid_First(
-		String uuid, OrderByComparator<FragmentEntryLink> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where uuid = &#63;.
@@ -142,7 +145,9 @@ public interface FragmentEntryLinkPersistence
 	 * @throws NoSuchEntryLinkException if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink findByUuid_Last(
-			String uuid, OrderByComparator<FragmentEntryLink> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -153,7 +158,9 @@ public interface FragmentEntryLinkPersistence
 	 * @return the last matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink fetchByUuid_Last(
-		String uuid, OrderByComparator<FragmentEntryLink> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where uuid = &#63;.
@@ -166,7 +173,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink[] findByUuid_PrevAndNext(
 			long fragmentEntryLinkId, String uuid,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -196,17 +204,13 @@ public interface FragmentEntryLinkPersistence
 		throws NoSuchEntryLinkException;
 
 	/**
-	 * Returns the fragment entry link where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the fragment entry link where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
-	@Deprecated
-	public FragmentEntryLink fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public FragmentEntryLink fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the fragment entry link where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -216,7 +220,8 @@ public interface FragmentEntryLinkPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
-	public FragmentEntryLink fetchByUUID_G(String uuid, long groupId);
+	public FragmentEntryLink fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the fragment entry link where uuid = &#63; and groupId = &#63; from the database.
@@ -270,20 +275,17 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where uuid = &#63; and companyId = &#63;.
@@ -297,11 +299,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -314,7 +319,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -327,7 +333,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -340,7 +347,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -353,7 +361,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -367,7 +376,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink[] findByUuid_C_PrevAndNext(
 			long fragmentEntryLinkId, String uuid, long companyId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -417,19 +427,16 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where groupId = &#63;.
@@ -442,11 +449,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where groupId = &#63;.
@@ -458,7 +468,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByGroupId_First(
 			long groupId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -469,7 +480,9 @@ public interface FragmentEntryLinkPersistence
 	 * @return the first matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink fetchByGroupId_First(
-		long groupId, OrderByComparator<FragmentEntryLink> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where groupId = &#63;.
@@ -481,7 +494,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByGroupId_Last(
 			long groupId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -492,7 +506,9 @@ public interface FragmentEntryLinkPersistence
 	 * @return the last matching fragment entry link, or <code>null</code> if a matching fragment entry link could not be found
 	 */
 	public FragmentEntryLink fetchByGroupId_Last(
-		long groupId, OrderByComparator<FragmentEntryLink> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where groupId = &#63;.
@@ -505,7 +521,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink[] findByGroupId_PrevAndNext(
 			long fragmentEntryLinkId, long groupId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -556,20 +573,17 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentEntryId the fragment entry ID
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByG_F(
 		long groupId, long fragmentEntryId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where groupId = &#63; and fragmentEntryId = &#63;.
@@ -583,11 +597,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByG_F(
 		long groupId, long fragmentEntryId, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63;.
@@ -600,7 +617,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_First(
 			long groupId, long fragmentEntryId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -613,7 +631,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_First(
 		long groupId, long fragmentEntryId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63;.
@@ -626,7 +645,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_Last(
 			long groupId, long fragmentEntryId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -639,7 +659,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_Last(
 		long groupId, long fragmentEntryId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63;.
@@ -653,7 +674,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink[] findByG_F_PrevAndNext(
 			long fragmentEntryLinkId, long groupId, long fragmentEntryId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -709,21 +731,19 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentEntryId the fragment entry ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByG_F_C(
 		long groupId, long fragmentEntryId, long classNameId, int start,
-		int end, OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63;.
@@ -738,11 +758,15 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByG_F_C(
 		long groupId, long fragmentEntryId, long classNameId, int start,
-		int end, OrderByComparator<FragmentEntryLink> orderByComparator);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63;.
@@ -756,7 +780,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_C_First(
 			long groupId, long fragmentEntryId, long classNameId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -770,7 +795,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_C_First(
 		long groupId, long fragmentEntryId, long classNameId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63;.
@@ -784,7 +810,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_C_Last(
 			long groupId, long fragmentEntryId, long classNameId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -798,7 +825,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_C_Last(
 		long groupId, long fragmentEntryId, long classNameId,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63;.
@@ -814,7 +842,8 @@ public interface FragmentEntryLinkPersistence
 	public FragmentEntryLink[] findByG_F_C_PrevAndNext(
 			long fragmentEntryLinkId, long groupId, long fragmentEntryId,
 			long classNameId,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -873,21 +902,18 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -902,11 +928,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -920,7 +949,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_C_C_First(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -934,7 +964,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_C_C_First(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -948,7 +979,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_C_C_Last(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -962,7 +994,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_C_C_Last(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -978,7 +1011,8 @@ public interface FragmentEntryLinkPersistence
 	public FragmentEntryLink[] findByG_C_C_PrevAndNext(
 			long fragmentEntryLinkId, long groupId, long classNameId,
 			long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -1038,7 +1072,6 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_F_C_C(long,long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param fragmentEntryId the fragment entry ID
 	 * @param classNameId the class name ID
@@ -1046,15 +1079,13 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findByG_F_C_C(
 		long groupId, long fragmentEntryId, long classNameId, long classPK,
 		int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1070,12 +1101,15 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findByG_F_C_C(
 		long groupId, long fragmentEntryId, long classNameId, long classPK,
 		int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1090,7 +1124,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_C_C_First(
 			long groupId, long fragmentEntryId, long classNameId, long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -1105,7 +1140,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_C_C_First(
 		long groupId, long fragmentEntryId, long classNameId, long classPK,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the last fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1120,7 +1156,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink findByG_F_C_C_Last(
 			long groupId, long fragmentEntryId, long classNameId, long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -1135,7 +1172,8 @@ public interface FragmentEntryLinkPersistence
 	 */
 	public FragmentEntryLink fetchByG_F_C_C_Last(
 		long groupId, long fragmentEntryId, long classNameId, long classPK,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns the fragment entry links before and after the current fragment entry link in the ordered set where groupId = &#63; and fragmentEntryId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1152,7 +1190,8 @@ public interface FragmentEntryLinkPersistence
 	public FragmentEntryLink[] findByG_F_C_C_PrevAndNext(
 			long fragmentEntryLinkId, long groupId, long fragmentEntryId,
 			long classNameId, long classPK,
-			OrderByComparator<FragmentEntryLink> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+				orderByComparator)
 		throws NoSuchEntryLinkException;
 
 	/**
@@ -1258,18 +1297,15 @@ public interface FragmentEntryLinkPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>FragmentEntryLinkModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of fragment entry links
 	 */
-	@Deprecated
 	public java.util.List<FragmentEntryLink> findAll(
 		int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the fragment entry links.
@@ -1281,11 +1317,14 @@ public interface FragmentEntryLinkPersistence
 	 * @param start the lower bound of the range of fragment entry links
 	 * @param end the upper bound of the range of fragment entry links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of fragment entry links
 	 */
 	public java.util.List<FragmentEntryLink> findAll(
 		int start, int end,
-		OrderByComparator<FragmentEntryLink> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<FragmentEntryLink>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the fragment entry links from the database.

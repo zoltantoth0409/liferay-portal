@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -77,18 +76,16 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where uuid = &#63;.
@@ -101,11 +98,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where uuid = &#63;.
@@ -116,7 +116,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @throws NoSuchGroupException if a matching group could not be found
 	 */
 	public Group findByUuid_First(
-			String uuid, OrderByComparator<Group> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -127,7 +129,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the first matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByUuid_First(
-		String uuid, OrderByComparator<Group> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where uuid = &#63;.
@@ -138,7 +142,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @throws NoSuchGroupException if a matching group could not be found
 	 */
 	public Group findByUuid_Last(
-			String uuid, OrderByComparator<Group> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -149,7 +155,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the last matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByUuid_Last(
-		String uuid, OrderByComparator<Group> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where uuid = &#63;.
@@ -162,7 +170,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByUuid_PrevAndNext(
 			long groupId, String uuid,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -192,17 +201,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
-	public Group fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public Group fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the group where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -212,7 +217,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	public Group fetchByUUID_G(String uuid, long groupId);
+	public Group fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the group where uuid = &#63; and groupId = &#63; from the database.
@@ -265,19 +271,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where uuid = &#63; and companyId = &#63;.
@@ -291,11 +295,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -308,7 +315,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -321,7 +329,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -334,7 +343,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -347,7 +357,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -361,7 +372,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByUuid_C_PrevAndNext(
 			long groupId, String uuid, long companyId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -411,18 +423,16 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63;.
@@ -435,11 +445,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63;.
@@ -450,7 +463,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @throws NoSuchGroupException if a matching group could not be found
 	 */
 	public Group findByCompanyId_First(
-			long companyId, OrderByComparator<Group> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -461,7 +476,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the first matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByCompanyId_First(
-		long companyId, OrderByComparator<Group> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63;.
@@ -472,7 +489,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @throws NoSuchGroupException if a matching group could not be found
 	 */
 	public Group findByCompanyId_Last(
-			long companyId, OrderByComparator<Group> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -483,7 +502,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the last matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByCompanyId_Last(
-		long companyId, OrderByComparator<Group> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63;.
@@ -496,7 +517,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByCompanyId_PrevAndNext(
 			long groupId, long companyId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -525,15 +547,12 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where liveGroupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where liveGroupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByLiveGroupId(long)}
 	 * @param liveGroupId the live group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
-	public Group fetchByLiveGroupId(long liveGroupId, boolean useFinderCache);
+	public Group fetchByLiveGroupId(long liveGroupId);
 
 	/**
 	 * Returns the group where liveGroupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -542,7 +561,7 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	public Group fetchByLiveGroupId(long liveGroupId);
+	public Group fetchByLiveGroupId(long liveGroupId, boolean useFinderCache);
 
 	/**
 	 * Removes the group where liveGroupId = &#63; from the database.
@@ -593,19 +612,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and classNameId = &#63;.
@@ -619,11 +636,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -636,7 +656,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_C_First(
 			long companyId, long classNameId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -649,7 +670,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_C_First(
 		long companyId, long classNameId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -662,7 +684,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_C_Last(
 			long companyId, long classNameId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -675,7 +698,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_C_Last(
 		long companyId, long classNameId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -689,7 +713,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_C_PrevAndNext(
 			long groupId, long companyId, long classNameId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -741,19 +766,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_P(
 		long companyId, long parentGroupId, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and parentGroupId = &#63;.
@@ -767,11 +790,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_P(
 		long companyId, long parentGroupId, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and parentGroupId = &#63;.
@@ -784,7 +810,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_First(
 			long companyId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -797,7 +824,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_First(
 		long companyId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and parentGroupId = &#63;.
@@ -810,7 +838,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_Last(
 			long companyId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -823,7 +852,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_Last(
 		long companyId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and parentGroupId = &#63;.
@@ -837,7 +867,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_P_PrevAndNext(
 			long groupId, long companyId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -869,17 +900,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where companyId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where companyId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_GK(long,String)}
 	 * @param companyId the company ID
 	 * @param groupKey the group key
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
-	public Group fetchByC_GK(
-		long companyId, String groupKey, boolean useFinderCache);
+	public Group fetchByC_GK(long companyId, String groupKey);
 
 	/**
 	 * Returns the group where companyId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -889,7 +916,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	public Group fetchByC_GK(long companyId, String groupKey);
+	public Group fetchByC_GK(
+		long companyId, String groupKey, boolean useFinderCache);
 
 	/**
 	 * Removes the group where companyId = &#63; and groupKey = &#63; from the database.
@@ -922,17 +950,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_F(long,String)}
 	 * @param companyId the company ID
 	 * @param friendlyURL the friendly url
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
-	public Group fetchByC_F(
-		long companyId, String friendlyURL, boolean useFinderCache);
+	public Group fetchByC_F(long companyId, String friendlyURL);
 
 	/**
 	 * Returns the group where companyId = &#63; and friendlyURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -942,7 +966,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	public Group fetchByC_F(long companyId, String friendlyURL);
+	public Group fetchByC_F(
+		long companyId, String friendlyURL, boolean useFinderCache);
 
 	/**
 	 * Removes the group where companyId = &#63; and friendlyURL = &#63; from the database.
@@ -995,19 +1020,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S(long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param site the site
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_S(
 		long companyId, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and site = &#63;.
@@ -1021,11 +1044,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_S(
 		long companyId, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and site = &#63;.
@@ -1038,7 +1064,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_S_First(
 			long companyId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1051,7 +1078,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_S_First(
 		long companyId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and site = &#63;.
@@ -1064,7 +1092,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_S_Last(
 			long companyId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1077,7 +1106,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_S_Last(
 		long companyId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and site = &#63;.
@@ -1091,7 +1121,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_S_PrevAndNext(
 			long groupId, long companyId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1143,19 +1174,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_A(long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param active the active
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_A(
 		long companyId, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and active = &#63;.
@@ -1169,11 +1198,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_A(
 		long companyId, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and active = &#63;.
@@ -1186,7 +1218,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_A_First(
 			long companyId, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1199,7 +1232,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_A_First(
 		long companyId, boolean active,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and active = &#63;.
@@ -1212,7 +1246,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_A_Last(
 			long companyId, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1225,7 +1260,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_A_Last(
 		long companyId, boolean active,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and active = &#63;.
@@ -1239,7 +1275,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_A_PrevAndNext(
 			long groupId, long companyId, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1291,19 +1328,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_CPK(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_CPK(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where classNameId = &#63; and classPK = &#63;.
@@ -1317,11 +1352,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_CPK(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1334,7 +1372,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_CPK_First(
 			long classNameId, long classPK,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1347,7 +1386,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_CPK_First(
 		long classNameId, long classPK,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1360,7 +1400,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_CPK_Last(
 			long classNameId, long classPK,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1373,7 +1414,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_CPK_Last(
 		long classNameId, long classPK,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1387,7 +1429,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_CPK_PrevAndNext(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1439,19 +1482,17 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByT_A(int,boolean, int, int, OrderByComparator)}
 	 * @param type the type
 	 * @param active the active
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByT_A(
 		int type, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where type = &#63; and active = &#63;.
@@ -1465,11 +1506,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByT_A(
 		int type, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where type = &#63; and active = &#63;.
@@ -1482,7 +1526,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByT_A_First(
 			int type, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1494,7 +1539,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the first matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByT_A_First(
-		int type, boolean active, OrderByComparator<Group> orderByComparator);
+		int type, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where type = &#63; and active = &#63;.
@@ -1507,7 +1554,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByT_A_Last(
 			int type, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1519,7 +1567,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the last matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByT_A_Last(
-		int type, boolean active, OrderByComparator<Group> orderByComparator);
+		int type, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where type = &#63; and active = &#63;.
@@ -1533,7 +1583,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByT_A_PrevAndNext(
 			long groupId, int type, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1588,20 +1639,18 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_P(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByG_C_P(
 		long groupId, long companyId, long parentGroupId, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63;.
@@ -1616,11 +1665,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByG_C_P(
 		long groupId, long companyId, long parentGroupId, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63;.
@@ -1634,7 +1686,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_P_First(
 			long groupId, long companyId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1648,7 +1701,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_P_First(
 		long groupId, long companyId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63;.
@@ -1662,7 +1716,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_P_Last(
 			long groupId, long companyId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1676,7 +1731,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_P_Last(
 		long groupId, long companyId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Removes all the groups where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63; from the database.
@@ -1710,18 +1766,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C_C(long,long,long)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
-	public Group fetchByC_C_C(
-		long companyId, long classNameId, long classPK, boolean useFinderCache);
+	public Group fetchByC_C_C(long companyId, long classNameId, long classPK);
 
 	/**
 	 * Returns the group where companyId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1732,7 +1784,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	public Group fetchByC_C_C(long companyId, long classNameId, long classPK);
+	public Group fetchByC_C_C(
+		long companyId, long classNameId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Removes the group where companyId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
@@ -1791,21 +1844,19 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_P(long,long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param parentGroupId the parent group ID
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_C_P(
 		long companyId, long classNameId, long parentGroupId, int start,
-		int end, OrderByComparator<Group> orderByComparator,
-		boolean useFinderCache);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -1820,11 +1871,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_C_P(
 		long companyId, long classNameId, long parentGroupId, int start,
-		int end, OrderByComparator<Group> orderByComparator);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -1838,7 +1893,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_C_P_First(
 			long companyId, long classNameId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1852,7 +1908,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_C_P_First(
 		long companyId, long classNameId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -1866,7 +1923,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_C_P_Last(
 			long companyId, long classNameId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1880,7 +1938,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_C_P_Last(
 		long companyId, long classNameId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -1895,7 +1954,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_C_P_PrevAndNext(
 			long groupId, long companyId, long classNameId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -1954,20 +2014,18 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P_S(long,long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
 	 * @param site the site
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_P_S(
 		long companyId, long parentGroupId, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -1982,11 +2040,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_P_S(
 		long companyId, long parentGroupId, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2000,7 +2061,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_S_First(
 			long companyId, long parentGroupId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2014,7 +2076,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_S_First(
 		long companyId, long parentGroupId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2028,7 +2091,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_S_Last(
 			long companyId, long parentGroupId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2042,7 +2106,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_S_Last(
 		long companyId, long parentGroupId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2057,7 +2122,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_P_S_PrevAndNext(
 			long groupId, long companyId, long parentGroupId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2092,19 +2158,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where companyId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where companyId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_L_GK(long,long,String)}
 	 * @param companyId the company ID
 	 * @param liveGroupId the live group ID
 	 * @param groupKey the group key
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
 	public Group fetchByC_L_GK(
-		long companyId, long liveGroupId, String groupKey,
-		boolean useFinderCache);
+		long companyId, long liveGroupId, String groupKey);
 
 	/**
 	 * Returns the group where companyId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -2116,7 +2178,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByC_L_GK(
-		long companyId, long liveGroupId, String groupKey);
+		long companyId, long liveGroupId, String groupKey,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the group where companyId = &#63; and liveGroupId = &#63; and groupKey = &#63; from the database.
@@ -2175,20 +2238,18 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_T_S(long,String,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param treePath the tree path
 	 * @param site the site
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_T_S(
 		long companyId, String treePath, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and treePath LIKE &#63; and site = &#63;.
@@ -2203,11 +2264,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_T_S(
 		long companyId, String treePath, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and treePath LIKE &#63; and site = &#63;.
@@ -2221,7 +2285,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_T_S_First(
 			long companyId, String treePath, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2235,7 +2300,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_T_S_First(
 		long companyId, String treePath, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and treePath LIKE &#63; and site = &#63;.
@@ -2249,7 +2315,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_T_S_Last(
 			long companyId, String treePath, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2263,7 +2330,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_T_S_Last(
 		long companyId, String treePath, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and treePath LIKE &#63; and site = &#63;.
@@ -2278,7 +2346,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_T_S_PrevAndNext(
 			long groupId, long companyId, String treePath, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2335,20 +2404,18 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_LikeN_S(long,String,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param site the site
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_LikeN_S(
 		long companyId, String name, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and name LIKE &#63; and site = &#63;.
@@ -2363,11 +2430,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_LikeN_S(
 		long companyId, String name, boolean site, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and name LIKE &#63; and site = &#63;.
@@ -2381,7 +2451,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_LikeN_S_First(
 			long companyId, String name, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2395,7 +2466,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_LikeN_S_First(
 		long companyId, String name, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and name LIKE &#63; and site = &#63;.
@@ -2409,7 +2481,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_LikeN_S_Last(
 			long companyId, String name, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2423,7 +2496,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_LikeN_S_Last(
 		long companyId, String name, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and name LIKE &#63; and site = &#63;.
@@ -2438,7 +2512,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_LikeN_S_PrevAndNext(
 			long groupId, long companyId, String name, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2495,20 +2570,18 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_S_A(long,boolean,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param site the site
 	 * @param active the active
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_S_A(
 		long companyId, boolean site, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and site = &#63; and active = &#63;.
@@ -2523,11 +2596,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_S_A(
 		long companyId, boolean site, boolean active, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and site = &#63; and active = &#63;.
@@ -2541,7 +2617,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_S_A_First(
 			long companyId, boolean site, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2555,7 +2632,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_S_A_First(
 		long companyId, boolean site, boolean active,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and site = &#63; and active = &#63;.
@@ -2569,7 +2647,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_S_A_Last(
 			long companyId, boolean site, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2583,7 +2662,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_S_A_Last(
 		long companyId, boolean site, boolean active,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and site = &#63; and active = &#63;.
@@ -2598,7 +2678,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_S_A_PrevAndNext(
 			long groupId, long companyId, boolean site, boolean active,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2658,7 +2739,6 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C_P(long,long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
@@ -2666,14 +2746,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByG_C_C_P(
 		long groupId, long companyId, long classNameId, long parentGroupId,
-		int start, int end, OrderByComparator<Group> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where groupId &gt; &#63; and companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -2689,11 +2768,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByG_C_C_P(
 		long groupId, long companyId, long classNameId, long parentGroupId,
-		int start, int end, OrderByComparator<Group> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where groupId &gt; &#63; and companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -2708,7 +2791,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_C_P_First(
 			long groupId, long companyId, long classNameId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2723,7 +2807,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_C_P_First(
 		long groupId, long companyId, long classNameId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where groupId &gt; &#63; and companyId = &#63; and classNameId = &#63; and parentGroupId = &#63;.
@@ -2738,7 +2823,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_C_P_Last(
 			long groupId, long companyId, long classNameId, long parentGroupId,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2753,7 +2839,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_C_P_Last(
 		long groupId, long companyId, long classNameId, long parentGroupId,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Removes all the groups where groupId &gt; &#63; and companyId = &#63; and classNameId = &#63; and parentGroupId = &#63; from the database.
@@ -2816,7 +2903,6 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_P_S(long,long,long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
@@ -2824,14 +2910,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByG_C_P_S(
 		long groupId, long companyId, long parentGroupId, boolean site,
-		int start, int end, OrderByComparator<Group> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2847,11 +2932,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByG_C_P_S(
 		long groupId, long companyId, long parentGroupId, boolean site,
-		int start, int end, OrderByComparator<Group> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2866,7 +2955,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_P_S_First(
 			long groupId, long companyId, long parentGroupId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2881,7 +2971,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_P_S_First(
 		long groupId, long companyId, long parentGroupId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63; and site = &#63;.
@@ -2896,7 +2987,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByG_C_P_S_Last(
 			long groupId, long companyId, long parentGroupId, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -2911,7 +3003,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByG_C_P_S_Last(
 		long groupId, long companyId, long parentGroupId, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Removes all the groups where groupId &gt; &#63; and companyId = &#63; and parentGroupId = &#63; and site = &#63; from the database.
@@ -2951,20 +3044,16 @@ public interface GroupPersistence extends BasePersistence<Group> {
 		throws NoSuchGroupException;
 
 	/**
-	 * Returns the group where companyId = &#63; and classNameId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the group where companyId = &#63; and classNameId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C_L_GK(long,long,long,String)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param liveGroupId the live group ID
 	 * @param groupKey the group key
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
-	@Deprecated
 	public Group fetchByC_C_L_GK(
-		long companyId, long classNameId, long liveGroupId, String groupKey,
-		boolean useFinderCache);
+		long companyId, long classNameId, long liveGroupId, String groupKey);
 
 	/**
 	 * Returns the group where companyId = &#63; and classNameId = &#63; and liveGroupId = &#63; and groupKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -2977,7 +3066,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @return the matching group, or <code>null</code> if a matching group could not be found
 	 */
 	public Group fetchByC_C_L_GK(
-		long companyId, long classNameId, long liveGroupId, String groupKey);
+		long companyId, long classNameId, long liveGroupId, String groupKey,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the group where companyId = &#63; and classNameId = &#63; and liveGroupId = &#63; and groupKey = &#63; from the database.
@@ -3042,7 +3132,6 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P_LikeN_S(long,long,String,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
 	 * @param name the name
@@ -3050,14 +3139,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_P_LikeN_S(
 		long companyId, long parentGroupId, String name, boolean site,
-		int start, int end, OrderByComparator<Group> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and parentGroupId = &#63; and name LIKE &#63; and site = &#63;.
@@ -3073,11 +3161,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_P_LikeN_S(
 		long companyId, long parentGroupId, String name, boolean site,
-		int start, int end, OrderByComparator<Group> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and parentGroupId = &#63; and name LIKE &#63; and site = &#63;.
@@ -3092,7 +3184,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_LikeN_S_First(
 			long companyId, long parentGroupId, String name, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3107,7 +3200,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_LikeN_S_First(
 		long companyId, long parentGroupId, String name, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and parentGroupId = &#63; and name LIKE &#63; and site = &#63;.
@@ -3122,7 +3216,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_LikeN_S_Last(
 			long companyId, long parentGroupId, String name, boolean site,
-			OrderByComparator<Group> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3137,7 +3232,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_LikeN_S_Last(
 		long companyId, long parentGroupId, String name, boolean site,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and parentGroupId = &#63; and name LIKE &#63; and site = &#63;.
@@ -3153,7 +3249,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_P_LikeN_S_PrevAndNext(
 			long groupId, long companyId, long parentGroupId, String name,
-			boolean site, OrderByComparator<Group> orderByComparator)
+			boolean site,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3218,7 +3316,6 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_P_S_I(long,long,boolean,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param parentGroupId the parent group ID
 	 * @param site the site
@@ -3226,14 +3323,13 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findByC_P_S_I(
 		long companyId, long parentGroupId, boolean site,
 		boolean inheritContent, int start, int end,
-		OrderByComparator<Group> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups where companyId = &#63; and parentGroupId = &#63; and site = &#63; and inheritContent = &#63;.
@@ -3249,12 +3345,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching groups
 	 */
 	public java.util.List<Group> findByC_P_S_I(
 		long companyId, long parentGroupId, boolean site,
 		boolean inheritContent, int start, int end,
-		OrderByComparator<Group> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63; and inheritContent = &#63;.
@@ -3269,7 +3368,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_S_I_First(
 			long companyId, long parentGroupId, boolean site,
-			boolean inheritContent, OrderByComparator<Group> orderByComparator)
+			boolean inheritContent,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3284,7 +3385,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_S_I_First(
 		long companyId, long parentGroupId, boolean site,
-		boolean inheritContent, OrderByComparator<Group> orderByComparator);
+		boolean inheritContent,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the last group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63; and inheritContent = &#63;.
@@ -3299,7 +3402,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group findByC_P_S_I_Last(
 			long companyId, long parentGroupId, boolean site,
-			boolean inheritContent, OrderByComparator<Group> orderByComparator)
+			boolean inheritContent,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3314,7 +3419,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group fetchByC_P_S_I_Last(
 		long companyId, long parentGroupId, boolean site,
-		boolean inheritContent, OrderByComparator<Group> orderByComparator);
+		boolean inheritContent,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns the groups before and after the current group in the ordered set where companyId = &#63; and parentGroupId = &#63; and site = &#63; and inheritContent = &#63;.
@@ -3330,7 +3437,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public Group[] findByC_P_S_I_PrevAndNext(
 			long groupId, long companyId, long parentGroupId, boolean site,
-			boolean inheritContent, OrderByComparator<Group> orderByComparator)
+			boolean inheritContent,
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws NoSuchGroupException;
 
 	/**
@@ -3435,17 +3544,15 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>GroupModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of groups
 	 */
-	@Deprecated
 	public java.util.List<Group> findAll(
-		int start, int end, OrderByComparator<Group> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the groups.
@@ -3457,10 +3564,14 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 * @param start the lower bound of the range of groups
 	 * @param end the upper bound of the range of groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of groups
 	 */
 	public java.util.List<Group> findAll(
-		int start, int end, OrderByComparator<Group> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the groups from the database.
@@ -3522,8 +3633,9 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	public java.util.List<com.liferay.portal.kernel.model.Organization>
 		getOrganizations(
 			long pk, int start, int end,
-			OrderByComparator<com.liferay.portal.kernel.model.Organization>
-				orderByComparator);
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator);
 
 	/**
 	 * Returns the number of organizations associated with the group.
@@ -3695,8 +3807,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public java.util.List<com.liferay.portal.kernel.model.Role> getRoles(
 		long pk, int start, int end,
-		OrderByComparator<com.liferay.portal.kernel.model.Role>
-			orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	/**
 	 * Returns the number of roles associated with the group.
@@ -3861,8 +3973,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		getUserGroups(
 			long pk, int start, int end,
-			OrderByComparator<com.liferay.portal.kernel.model.UserGroup>
-				orderByComparator);
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	/**
 	 * Returns the number of user groups associated with the group.
@@ -4031,8 +4143,8 @@ public interface GroupPersistence extends BasePersistence<Group> {
 	 */
 	public java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 		long pk, int start, int end,
-		OrderByComparator<com.liferay.portal.kernel.model.User>
-			orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.portal.kernel.model.User> orderByComparator);
 
 	/**
 	 * Returns the number of users associated with the group.

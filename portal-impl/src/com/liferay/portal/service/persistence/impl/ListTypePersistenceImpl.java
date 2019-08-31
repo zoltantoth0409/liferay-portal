@@ -121,21 +121,18 @@ public class ListTypePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ListTypeModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByType(String, int, int, OrderByComparator)}
 	 * @param type the type
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching list types
 	 */
-	@Deprecated
 	@Override
 	public List<ListType> findByType(
 		String type, int start, int end,
-		OrderByComparator<ListType> orderByComparator, boolean useFinderCache) {
+		OrderByComparator<ListType> orderByComparator) {
 
-		return findByType(type, start, end, orderByComparator);
+		return findByType(type, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -149,12 +146,13 @@ public class ListTypePersistenceImpl
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching list types
 	 */
 	@Override
 	public List<ListType> findByType(
 		String type, int start, int end,
-		OrderByComparator<ListType> orderByComparator) {
+		OrderByComparator<ListType> orderByComparator, boolean useFinderCache) {
 
 		type = Objects.toString(type, "");
 
@@ -166,23 +164,30 @@ public class ListTypePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByType;
-			finderArgs = new Object[] {type};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByType;
+				finderArgs = new Object[] {type};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByType;
 			finderArgs = new Object[] {type, start, end, orderByComparator};
 		}
 
-		List<ListType> list = (List<ListType>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<ListType> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (ListType listType : list) {
-				if (!type.equals(listType.getType())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<ListType>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (ListType listType : list) {
+					if (!type.equals(listType.getType())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -249,10 +254,14 @@ public class ListTypePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -662,20 +671,15 @@ public class ListTypePersistenceImpl
 	}
 
 	/**
-	 * Returns the list type where name = &#63; and type = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the list type where name = &#63; and type = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByN_T(String,String)}
 	 * @param name the name
 	 * @param type the type
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching list type, or <code>null</code> if a matching list type could not be found
 	 */
-	@Deprecated
 	@Override
-	public ListType fetchByN_T(
-		String name, String type, boolean useFinderCache) {
-
-		return fetchByN_T(name, type);
+	public ListType fetchByN_T(String name, String type) {
+		return fetchByN_T(name, type, true);
 	}
 
 	/**
@@ -687,14 +691,24 @@ public class ListTypePersistenceImpl
 	 * @return the matching list type, or <code>null</code> if a matching list type could not be found
 	 */
 	@Override
-	public ListType fetchByN_T(String name, String type) {
+	public ListType fetchByN_T(
+		String name, String type, boolean useFinderCache) {
+
 		name = Objects.toString(name, "");
 		type = Objects.toString(type, "");
 
-		Object[] finderArgs = new Object[] {name, type};
+		Object[] finderArgs = null;
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByN_T, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {name, type};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByN_T, finderArgs, this);
+		}
 
 		if (result instanceof ListType) {
 			ListType listType = (ListType)result;
@@ -755,14 +769,20 @@ public class ListTypePersistenceImpl
 				List<ListType> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByN_T, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByN_T, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {name, type};
+							}
+
 							_log.warn(
 								"ListTypePersistenceImpl.fetchByN_T(String, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -778,7 +798,10 @@ public class ListTypePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByN_T, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByN_T, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1475,20 +1498,16 @@ public class ListTypePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ListTypeModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of list types
 	 */
-	@Deprecated
 	@Override
 	public List<ListType> findAll(
-		int start, int end, OrderByComparator<ListType> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<ListType> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1501,11 +1520,13 @@ public class ListTypePersistenceImpl
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of list types
 	 */
 	@Override
 	public List<ListType> findAll(
-		int start, int end, OrderByComparator<ListType> orderByComparator) {
+		int start, int end, OrderByComparator<ListType> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1515,16 +1536,23 @@ public class ListTypePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<ListType> list = (List<ListType>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<ListType> list = null;
+
+		if (useFinderCache) {
+			list = (List<ListType>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1571,10 +1599,14 @@ public class ListTypePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

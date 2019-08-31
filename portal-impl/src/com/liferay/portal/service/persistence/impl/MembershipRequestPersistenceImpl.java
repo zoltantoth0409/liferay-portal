@@ -122,22 +122,18 @@ public class MembershipRequestPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	@Override
 	public List<MembershipRequest> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MembershipRequest> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -151,12 +147,14 @@ public class MembershipRequestPersistenceImpl
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	@Override
 	public List<MembershipRequest> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator) {
+		OrderByComparator<MembershipRequest> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,24 +164,30 @@ public class MembershipRequestPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<MembershipRequest> list =
-			(List<MembershipRequest>)FinderCacheUtil.getResult(
+		List<MembershipRequest> list = null;
+
+		if (useFinderCache) {
+			list = (List<MembershipRequest>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MembershipRequest membershipRequest : list) {
-				if ((groupId != membershipRequest.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (MembershipRequest membershipRequest : list) {
+					if ((groupId != membershipRequest.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -239,10 +243,14 @@ public class MembershipRequestPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -632,22 +640,18 @@ public class MembershipRequestPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	@Override
 	public List<MembershipRequest> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MembershipRequest> orderByComparator) {
 
-		return findByUserId(userId, start, end, orderByComparator);
+		return findByUserId(userId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -661,12 +665,14 @@ public class MembershipRequestPersistenceImpl
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	@Override
 	public List<MembershipRequest> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator) {
+		OrderByComparator<MembershipRequest> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -676,24 +682,30 @@ public class MembershipRequestPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUserId;
-			finderArgs = new Object[] {userId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUserId;
+				finderArgs = new Object[] {userId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] {userId, start, end, orderByComparator};
 		}
 
-		List<MembershipRequest> list =
-			(List<MembershipRequest>)FinderCacheUtil.getResult(
+		List<MembershipRequest> list = null;
+
+		if (useFinderCache) {
+			list = (List<MembershipRequest>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MembershipRequest membershipRequest : list) {
-				if ((userId != membershipRequest.getUserId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (MembershipRequest membershipRequest : list) {
+					if ((userId != membershipRequest.getUserId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -749,10 +761,14 @@ public class MembershipRequestPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1143,23 +1159,20 @@ public class MembershipRequestPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param statusId the status ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	@Override
 	public List<MembershipRequest> findByG_S(
 		long groupId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MembershipRequest> orderByComparator) {
 
-		return findByG_S(groupId, statusId, start, end, orderByComparator);
+		return findByG_S(
+			groupId, statusId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1174,12 +1187,14 @@ public class MembershipRequestPersistenceImpl
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	@Override
 	public List<MembershipRequest> findByG_S(
 		long groupId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator) {
+		OrderByComparator<MembershipRequest> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1189,28 +1204,34 @@ public class MembershipRequestPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_S;
-			finderArgs = new Object[] {groupId, statusId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_S;
+				finderArgs = new Object[] {groupId, statusId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, statusId, start, end, orderByComparator
 			};
 		}
 
-		List<MembershipRequest> list =
-			(List<MembershipRequest>)FinderCacheUtil.getResult(
+		List<MembershipRequest> list = null;
+
+		if (useFinderCache) {
+			list = (List<MembershipRequest>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MembershipRequest membershipRequest : list) {
-				if ((groupId != membershipRequest.getGroupId()) ||
-					(statusId != membershipRequest.getStatusId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (MembershipRequest membershipRequest : list) {
+					if ((groupId != membershipRequest.getGroupId()) ||
+						(statusId != membershipRequest.getStatusId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1270,10 +1291,14 @@ public class MembershipRequestPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1700,25 +1725,21 @@ public class MembershipRequestPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U_S(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param statusId the status ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	@Override
 	public List<MembershipRequest> findByG_U_S(
 		long groupId, long userId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MembershipRequest> orderByComparator) {
 
 		return findByG_U_S(
-			groupId, userId, statusId, start, end, orderByComparator);
+			groupId, userId, statusId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1734,12 +1755,14 @@ public class MembershipRequestPersistenceImpl
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	@Override
 	public List<MembershipRequest> findByG_U_S(
 		long groupId, long userId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator) {
+		OrderByComparator<MembershipRequest> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1749,29 +1772,35 @@ public class MembershipRequestPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_U_S;
-			finderArgs = new Object[] {groupId, userId, statusId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_U_S;
+				finderArgs = new Object[] {groupId, userId, statusId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_U_S;
 			finderArgs = new Object[] {
 				groupId, userId, statusId, start, end, orderByComparator
 			};
 		}
 
-		List<MembershipRequest> list =
-			(List<MembershipRequest>)FinderCacheUtil.getResult(
+		List<MembershipRequest> list = null;
+
+		if (useFinderCache) {
+			list = (List<MembershipRequest>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MembershipRequest membershipRequest : list) {
-				if ((groupId != membershipRequest.getGroupId()) ||
-					(userId != membershipRequest.getUserId()) ||
-					(statusId != membershipRequest.getStatusId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (MembershipRequest membershipRequest : list) {
+					if ((groupId != membershipRequest.getGroupId()) ||
+						(userId != membershipRequest.getUserId()) ||
+						(statusId != membershipRequest.getStatusId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1835,10 +1864,14 @@ public class MembershipRequestPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2858,21 +2891,17 @@ public class MembershipRequestPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of membership requests
 	 */
-	@Deprecated
 	@Override
 	public List<MembershipRequest> findAll(
 		int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MembershipRequest> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2885,12 +2914,14 @@ public class MembershipRequestPersistenceImpl
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of membership requests
 	 */
 	@Override
 	public List<MembershipRequest> findAll(
 		int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator) {
+		OrderByComparator<MembershipRequest> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2900,17 +2931,23 @@ public class MembershipRequestPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<MembershipRequest> list =
-			(List<MembershipRequest>)FinderCacheUtil.getResult(
+		List<MembershipRequest> list = null;
+
+		if (useFinderCache) {
+			list = (List<MembershipRequest>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2957,10 +2994,14 @@ public class MembershipRequestPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

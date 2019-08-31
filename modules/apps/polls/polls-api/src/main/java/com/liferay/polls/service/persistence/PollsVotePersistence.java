@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.polls.exception.NoSuchVoteException;
 import com.liferay.polls.model.PollsVote;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,18 +78,16 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes where uuid = &#63;.
@@ -103,11 +100,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
 	public java.util.List<PollsVote> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first polls vote in the ordered set where uuid = &#63;.
@@ -118,7 +118,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByUuid_First(
-			String uuid, OrderByComparator<PollsVote> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -129,7 +131,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the first matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByUuid_First(
-		String uuid, OrderByComparator<PollsVote> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the last polls vote in the ordered set where uuid = &#63;.
@@ -140,7 +144,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByUuid_Last(
-			String uuid, OrderByComparator<PollsVote> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -151,7 +157,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the last matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByUuid_Last(
-		String uuid, OrderByComparator<PollsVote> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the polls votes before and after the current polls vote in the ordered set where uuid = &#63;.
@@ -164,7 +172,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote[] findByUuid_PrevAndNext(
 			long voteId, String uuid,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -194,17 +203,13 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 		throws NoSuchVoteException;
 
 	/**
-	 * Returns the polls vote where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the polls vote where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
-	@Deprecated
-	public PollsVote fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public PollsVote fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the polls vote where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -214,7 +219,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
-	public PollsVote fetchByUUID_G(String uuid, long groupId);
+	public PollsVote fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the polls vote where uuid = &#63; and groupId = &#63; from the database.
@@ -267,19 +273,17 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes where uuid = &#63; and companyId = &#63;.
@@ -293,11 +297,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
 	public java.util.List<PollsVote> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first polls vote in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -310,7 +317,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -323,7 +331,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the last polls vote in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -336,7 +345,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -349,7 +359,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the polls votes before and after the current polls vote in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -363,7 +374,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote[] findByUuid_C_PrevAndNext(
 			long voteId, String uuid, long companyId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -413,18 +425,16 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByQuestionId(long, int, int, OrderByComparator)}
 	 * @param questionId the question ID
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findByQuestionId(
 		long questionId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes where questionId = &#63;.
@@ -437,11 +447,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
 	public java.util.List<PollsVote> findByQuestionId(
 		long questionId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first polls vote in the ordered set where questionId = &#63;.
@@ -452,7 +465,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByQuestionId_First(
-			long questionId, OrderByComparator<PollsVote> orderByComparator)
+			long questionId,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -463,7 +478,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the first matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByQuestionId_First(
-		long questionId, OrderByComparator<PollsVote> orderByComparator);
+		long questionId,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the last polls vote in the ordered set where questionId = &#63;.
@@ -474,7 +491,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByQuestionId_Last(
-			long questionId, OrderByComparator<PollsVote> orderByComparator)
+			long questionId,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -485,7 +504,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the last matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByQuestionId_Last(
-		long questionId, OrderByComparator<PollsVote> orderByComparator);
+		long questionId,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the polls votes before and after the current polls vote in the ordered set where questionId = &#63;.
@@ -498,7 +519,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote[] findByQuestionId_PrevAndNext(
 			long voteId, long questionId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -546,18 +568,16 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByChoiceId(long, int, int, OrderByComparator)}
 	 * @param choiceId the choice ID
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findByChoiceId(
 		long choiceId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes where choiceId = &#63;.
@@ -570,11 +590,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
 	public java.util.List<PollsVote> findByChoiceId(
 		long choiceId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first polls vote in the ordered set where choiceId = &#63;.
@@ -585,7 +608,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByChoiceId_First(
-			long choiceId, OrderByComparator<PollsVote> orderByComparator)
+			long choiceId,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -596,7 +621,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the first matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByChoiceId_First(
-		long choiceId, OrderByComparator<PollsVote> orderByComparator);
+		long choiceId,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the last polls vote in the ordered set where choiceId = &#63;.
@@ -607,7 +634,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @throws NoSuchVoteException if a matching polls vote could not be found
 	 */
 	public PollsVote findByChoiceId_Last(
-			long choiceId, OrderByComparator<PollsVote> orderByComparator)
+			long choiceId,
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -618,7 +647,9 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @return the last matching polls vote, or <code>null</code> if a matching polls vote could not be found
 	 */
 	public PollsVote fetchByChoiceId_Last(
-		long choiceId, OrderByComparator<PollsVote> orderByComparator);
+		long choiceId,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the polls votes before and after the current polls vote in the ordered set where choiceId = &#63;.
@@ -631,7 +662,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote[] findByChoiceId_PrevAndNext(
 			long voteId, long choiceId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -681,19 +713,17 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByQ_U(long,long, int, int, OrderByComparator)}
 	 * @param questionId the question ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findByQ_U(
 		long questionId, long userId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes where questionId = &#63; and userId = &#63;.
@@ -707,11 +737,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching polls votes
 	 */
 	public java.util.List<PollsVote> findByQ_U(
 		long questionId, long userId, int start, int end,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first polls vote in the ordered set where questionId = &#63; and userId = &#63;.
@@ -724,7 +757,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote findByQ_U_First(
 			long questionId, long userId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -737,7 +771,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote fetchByQ_U_First(
 		long questionId, long userId,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the last polls vote in the ordered set where questionId = &#63; and userId = &#63;.
@@ -750,7 +785,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote findByQ_U_Last(
 			long questionId, long userId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -763,7 +799,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote fetchByQ_U_Last(
 		long questionId, long userId,
-		OrderByComparator<PollsVote> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns the polls votes before and after the current polls vote in the ordered set where questionId = &#63; and userId = &#63;.
@@ -777,7 +814,8 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 */
 	public PollsVote[] findByQ_U_PrevAndNext(
 			long voteId, long questionId, long userId,
-			OrderByComparator<PollsVote> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+				orderByComparator)
 		throws NoSuchVoteException;
 
 	/**
@@ -874,17 +912,15 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PollsVoteModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of polls votes
 	 */
-	@Deprecated
 	public java.util.List<PollsVote> findAll(
-		int start, int end, OrderByComparator<PollsVote> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the polls votes.
@@ -896,10 +932,14 @@ public interface PollsVotePersistence extends BasePersistence<PollsVote> {
 	 * @param start the lower bound of the range of polls votes
 	 * @param end the upper bound of the range of polls votes (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of polls votes
 	 */
 	public java.util.List<PollsVote> findAll(
-		int start, int end, OrderByComparator<PollsVote> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PollsVote>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the polls votes from the database.

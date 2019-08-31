@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchMembershipRequestException;
 import com.liferay.portal.kernel.model.MembershipRequest;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,19 +78,16 @@ public interface MembershipRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	public java.util.List<MembershipRequest> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the membership requests where groupId = &#63;.
@@ -104,11 +100,14 @@ public interface MembershipRequestPersistence
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	public java.util.List<MembershipRequest> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first membership request in the ordered set where groupId = &#63;.
@@ -120,7 +119,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByGroupId_First(
 			long groupId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -131,7 +131,9 @@ public interface MembershipRequestPersistence
 	 * @return the first matching membership request, or <code>null</code> if a matching membership request could not be found
 	 */
 	public MembershipRequest fetchByGroupId_First(
-		long groupId, OrderByComparator<MembershipRequest> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the last membership request in the ordered set where groupId = &#63;.
@@ -143,7 +145,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByGroupId_Last(
 			long groupId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -154,7 +157,9 @@ public interface MembershipRequestPersistence
 	 * @return the last matching membership request, or <code>null</code> if a matching membership request could not be found
 	 */
 	public MembershipRequest fetchByGroupId_Last(
-		long groupId, OrderByComparator<MembershipRequest> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the membership requests before and after the current membership request in the ordered set where groupId = &#63;.
@@ -167,7 +172,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest[] findByGroupId_PrevAndNext(
 			long membershipRequestId, long groupId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -215,19 +221,16 @@ public interface MembershipRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	public java.util.List<MembershipRequest> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the membership requests where userId = &#63;.
@@ -240,11 +243,14 @@ public interface MembershipRequestPersistence
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	public java.util.List<MembershipRequest> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first membership request in the ordered set where userId = &#63;.
@@ -255,7 +261,9 @@ public interface MembershipRequestPersistence
 	 * @throws NoSuchMembershipRequestException if a matching membership request could not be found
 	 */
 	public MembershipRequest findByUserId_First(
-			long userId, OrderByComparator<MembershipRequest> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -266,7 +274,9 @@ public interface MembershipRequestPersistence
 	 * @return the first matching membership request, or <code>null</code> if a matching membership request could not be found
 	 */
 	public MembershipRequest fetchByUserId_First(
-		long userId, OrderByComparator<MembershipRequest> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the last membership request in the ordered set where userId = &#63;.
@@ -277,7 +287,9 @@ public interface MembershipRequestPersistence
 	 * @throws NoSuchMembershipRequestException if a matching membership request could not be found
 	 */
 	public MembershipRequest findByUserId_Last(
-			long userId, OrderByComparator<MembershipRequest> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -288,7 +300,9 @@ public interface MembershipRequestPersistence
 	 * @return the last matching membership request, or <code>null</code> if a matching membership request could not be found
 	 */
 	public MembershipRequest fetchByUserId_Last(
-		long userId, OrderByComparator<MembershipRequest> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the membership requests before and after the current membership request in the ordered set where userId = &#63;.
@@ -301,7 +315,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest[] findByUserId_PrevAndNext(
 			long membershipRequestId, long userId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -352,20 +367,17 @@ public interface MembershipRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param statusId the status ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	public java.util.List<MembershipRequest> findByG_S(
 		long groupId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the membership requests where groupId = &#63; and statusId = &#63;.
@@ -379,11 +391,14 @@ public interface MembershipRequestPersistence
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	public java.util.List<MembershipRequest> findByG_S(
 		long groupId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first membership request in the ordered set where groupId = &#63; and statusId = &#63;.
@@ -396,7 +411,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByG_S_First(
 			long groupId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -409,7 +425,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest fetchByG_S_First(
 		long groupId, long statusId,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the last membership request in the ordered set where groupId = &#63; and statusId = &#63;.
@@ -422,7 +439,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByG_S_Last(
 			long groupId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -435,7 +453,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest fetchByG_S_Last(
 		long groupId, long statusId,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the membership requests before and after the current membership request in the ordered set where groupId = &#63; and statusId = &#63;.
@@ -449,7 +468,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest[] findByG_S_PrevAndNext(
 			long membershipRequestId, long groupId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -504,21 +524,18 @@ public interface MembershipRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U_S(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param statusId the status ID
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
-	@Deprecated
 	public java.util.List<MembershipRequest> findByG_U_S(
 		long groupId, long userId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the membership requests where groupId = &#63; and userId = &#63; and statusId = &#63;.
@@ -533,11 +550,14 @@ public interface MembershipRequestPersistence
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching membership requests
 	 */
 	public java.util.List<MembershipRequest> findByG_U_S(
 		long groupId, long userId, long statusId, int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first membership request in the ordered set where groupId = &#63; and userId = &#63; and statusId = &#63;.
@@ -551,7 +571,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByG_U_S_First(
 			long groupId, long userId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -565,7 +586,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest fetchByG_U_S_First(
 		long groupId, long userId, long statusId,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the last membership request in the ordered set where groupId = &#63; and userId = &#63; and statusId = &#63;.
@@ -579,7 +601,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest findByG_U_S_Last(
 			long groupId, long userId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -593,7 +616,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest fetchByG_U_S_Last(
 		long groupId, long userId, long statusId,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns the membership requests before and after the current membership request in the ordered set where groupId = &#63; and userId = &#63; and statusId = &#63;.
@@ -608,7 +632,8 @@ public interface MembershipRequestPersistence
 	 */
 	public MembershipRequest[] findByG_U_S_PrevAndNext(
 			long membershipRequestId, long groupId, long userId, long statusId,
-			OrderByComparator<MembershipRequest> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+				orderByComparator)
 		throws NoSuchMembershipRequestException;
 
 	/**
@@ -710,18 +735,15 @@ public interface MembershipRequestPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MembershipRequestModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of membership requests
 	 */
-	@Deprecated
 	public java.util.List<MembershipRequest> findAll(
 		int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the membership requests.
@@ -733,11 +755,14 @@ public interface MembershipRequestPersistence
 	 * @param start the lower bound of the range of membership requests
 	 * @param end the upper bound of the range of membership requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of membership requests
 	 */
 	public java.util.List<MembershipRequest> findAll(
 		int start, int end,
-		OrderByComparator<MembershipRequest> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MembershipRequest>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the membership requests from the database.
