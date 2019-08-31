@@ -6119,7 +6119,7 @@ public class MBCategoryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("categoryId=");
+		msg.append("categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", groupId=");
@@ -6184,7 +6184,7 @@ public class MBCategoryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("categoryId=");
+		msg.append("categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", groupId=");
@@ -9021,7 +9021,7 @@ public class MBCategoryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("categoryId=");
+		msg.append("categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", groupId=");
@@ -9092,7 +9092,7 @@ public class MBCategoryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("categoryId=");
+		msg.append("categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", groupId=");

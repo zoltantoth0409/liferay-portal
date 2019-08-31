@@ -5021,7 +5021,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -5081,7 +5081,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -5894,7 +5894,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -5954,7 +5954,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -7399,7 +7399,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append(", userId=");
 		msg.append(userId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -7464,7 +7464,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append(", userId=");
 		msg.append(userId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -9807,7 +9807,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append(", folderId=");
 		msg.append(folderId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -9872,7 +9872,7 @@ public class BookmarksEntryPersistenceImpl
 		msg.append(", folderId=");
 		msg.append(folderId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");

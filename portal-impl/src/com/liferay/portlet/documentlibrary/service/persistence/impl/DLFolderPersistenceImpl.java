@@ -4572,7 +4572,7 @@ public class DLFolderPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -4632,7 +4632,7 @@ public class DLFolderPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -7848,7 +7848,7 @@ public class DLFolderPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("folderId=");
+		msg.append("folderId>");
 		msg.append(folderId);
 
 		msg.append(", companyId=");
@@ -7857,7 +7857,7 @@ public class DLFolderPersistenceImpl
 		msg.append(", parentFolderId=");
 		msg.append(parentFolderId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -7919,7 +7919,7 @@ public class DLFolderPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("folderId=");
+		msg.append("folderId>");
 		msg.append(folderId);
 
 		msg.append(", companyId=");
@@ -7928,7 +7928,7 @@ public class DLFolderPersistenceImpl
 		msg.append(", parentFolderId=");
 		msg.append(parentFolderId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -9414,7 +9414,7 @@ public class DLFolderPersistenceImpl
 		msg.append(", mountPoint=");
 		msg.append(mountPoint);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append(", hidden=");
@@ -9484,7 +9484,7 @@ public class DLFolderPersistenceImpl
 		msg.append(", mountPoint=");
 		msg.append(mountPoint);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append(", hidden=");

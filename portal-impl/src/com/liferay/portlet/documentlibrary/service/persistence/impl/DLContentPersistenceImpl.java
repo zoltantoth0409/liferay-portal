@@ -1520,7 +1520,7 @@ public class DLContentPersistenceImpl
 		msg.append(", repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", path=");
+		msg.append(", pathLIKE");
 		msg.append(path);
 
 		msg.append("}");
@@ -1585,7 +1585,7 @@ public class DLContentPersistenceImpl
 		msg.append(", repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", path=");
+		msg.append(", pathLIKE");
 		msg.append(path);
 
 		msg.append("}");

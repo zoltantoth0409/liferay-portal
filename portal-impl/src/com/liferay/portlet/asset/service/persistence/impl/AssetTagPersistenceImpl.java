@@ -3337,7 +3337,7 @@ public class AssetTagPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -3397,7 +3397,7 @@ public class AssetTagPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");

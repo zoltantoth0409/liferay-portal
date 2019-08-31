@@ -15289,7 +15289,7 @@ public class JournalArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", layoutUuid=");
+		msg.append(", layoutUuid!=");
 		msg.append(layoutUuid);
 
 		msg.append("}");
@@ -15349,7 +15349,7 @@ public class JournalArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", layoutUuid=");
+		msg.append(", layoutUuid!=");
 		msg.append(layoutUuid);
 
 		msg.append("}");
@@ -18978,7 +18978,7 @@ public class JournalArticlePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -19038,7 +19038,7 @@ public class JournalArticlePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -20138,7 +20138,7 @@ public class JournalArticlePersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("displayDate=");
+		msg.append("displayDate<");
 		msg.append(displayDate);
 
 		msg.append(", status=");
@@ -20198,7 +20198,7 @@ public class JournalArticlePersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("displayDate=");
+		msg.append("displayDate<");
 		msg.append(displayDate);
 
 		msg.append(", status=");
@@ -29782,7 +29782,7 @@ public class JournalArticlePersistenceImpl
 		msg.append(", articleId=");
 		msg.append(articleId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -29847,7 +29847,7 @@ public class JournalArticlePersistenceImpl
 		msg.append(", articleId=");
 		msg.append(articleId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");

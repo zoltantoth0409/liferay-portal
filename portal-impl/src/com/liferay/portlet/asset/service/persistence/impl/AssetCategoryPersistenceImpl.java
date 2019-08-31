@@ -7985,7 +7985,7 @@ public class AssetCategoryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", vocabularyId=");
@@ -8050,7 +8050,7 @@ public class AssetCategoryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", vocabularyId=");

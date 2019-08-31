@@ -2927,7 +2927,7 @@ public class UserPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("userId=");
+		msg.append("userId>");
 		msg.append(userId);
 
 		msg.append(", companyId=");
@@ -2985,7 +2985,7 @@ public class UserPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("userId=");
+		msg.append("userId>");
 		msg.append(userId);
 
 		msg.append(", companyId=");

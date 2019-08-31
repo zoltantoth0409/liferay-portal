@@ -4284,7 +4284,7 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
 		msg.append("}");
@@ -4344,7 +4344,7 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
 		msg.append("}");
@@ -10004,7 +10004,7 @@ public class MBThreadPersistenceImpl
 		msg.append(", categoryId=");
 		msg.append(categoryId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -10069,7 +10069,7 @@ public class MBThreadPersistenceImpl
 		msg.append(", categoryId=");
 		msg.append(categoryId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -11568,7 +11568,7 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", status=");
@@ -11633,7 +11633,7 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
 		msg.append(", status=");
@@ -12568,10 +12568,10 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -12633,10 +12633,10 @@ public class MBThreadPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", categoryId=");
+		msg.append(", categoryId!=");
 		msg.append(categoryId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
