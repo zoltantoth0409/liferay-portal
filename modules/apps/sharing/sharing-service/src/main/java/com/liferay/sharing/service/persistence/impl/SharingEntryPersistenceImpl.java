@@ -3243,7 +3243,7 @@ public class SharingEntryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("expirationDate=");
+		msg.append("expirationDate<");
 		msg.append(expirationDate);
 
 		msg.append("}");
@@ -3298,7 +3298,7 @@ public class SharingEntryPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("expirationDate=");
+		msg.append("expirationDate<");
 		msg.append(expirationDate);
 
 		msg.append("}");

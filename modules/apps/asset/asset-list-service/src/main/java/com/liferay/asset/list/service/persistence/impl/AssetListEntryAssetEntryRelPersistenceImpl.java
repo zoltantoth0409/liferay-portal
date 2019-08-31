@@ -3154,7 +3154,7 @@ public class AssetListEntryAssetEntryRelPersistenceImpl
 		msg.append(", segmentsEntryId=");
 		msg.append(segmentsEntryId);
 
-		msg.append(", position=");
+		msg.append(", position>");
 		msg.append(position);
 
 		msg.append("}");
@@ -3221,7 +3221,7 @@ public class AssetListEntryAssetEntryRelPersistenceImpl
 		msg.append(", segmentsEntryId=");
 		msg.append(segmentsEntryId);
 
-		msg.append(", position=");
+		msg.append(", position>");
 		msg.append(position);
 
 		msg.append("}");

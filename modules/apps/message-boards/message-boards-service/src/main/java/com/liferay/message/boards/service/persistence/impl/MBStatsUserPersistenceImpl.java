@@ -1555,10 +1555,10 @@ public class MBStatsUserPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", userId=");
+		msg.append(", userId!=");
 		msg.append(userId);
 
-		msg.append(", messageCount=");
+		msg.append(", messageCount!=");
 		msg.append(messageCount);
 
 		msg.append("}");
@@ -1620,10 +1620,10 @@ public class MBStatsUserPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", userId=");
+		msg.append(", userId!=");
 		msg.append(userId);
 
-		msg.append(", messageCount=");
+		msg.append(", messageCount!=");
 		msg.append(messageCount);
 
 		msg.append("}");

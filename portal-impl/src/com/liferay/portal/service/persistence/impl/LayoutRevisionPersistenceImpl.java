@@ -4085,7 +4085,7 @@ public class LayoutRevisionPersistenceImpl
 		msg.append("plid=");
 		msg.append(plid);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -4145,7 +4145,7 @@ public class LayoutRevisionPersistenceImpl
 		msg.append("plid=");
 		msg.append(plid);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");

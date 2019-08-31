@@ -4428,7 +4428,7 @@ public class UserGroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -4488,7 +4488,7 @@ public class UserGroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -5447,7 +5447,7 @@ public class UserGroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("userGroupId=");
+		msg.append("userGroupId>");
 		msg.append(userGroupId);
 
 		msg.append(", companyId=");
@@ -5512,7 +5512,7 @@ public class UserGroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("userGroupId=");
+		msg.append("userGroupId>");
 		msg.append(userGroupId);
 
 		msg.append(", companyId=");

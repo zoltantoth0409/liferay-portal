@@ -5027,7 +5027,7 @@ public class PortletPreferencesPersistenceImpl
 		msg.append(", ownerType=");
 		msg.append(ownerType);
 
-		msg.append(", portletId=");
+		msg.append(", portletIdLIKE");
 		msg.append(portletId);
 
 		msg.append("}");
@@ -5097,7 +5097,7 @@ public class PortletPreferencesPersistenceImpl
 		msg.append(", ownerType=");
 		msg.append(ownerType);
 
-		msg.append(", portletId=");
+		msg.append(", portletIdLIKE");
 		msg.append(portletId);
 
 		msg.append("}");

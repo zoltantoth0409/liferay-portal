@@ -11640,7 +11640,7 @@ public class MBMessagePersistenceImpl
 		msg.append("threadId=");
 		msg.append(threadId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -11700,7 +11700,7 @@ public class MBMessagePersistenceImpl
 		msg.append("threadId=");
 		msg.append(threadId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");

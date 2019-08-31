@@ -5845,7 +5845,7 @@ public class SegmentsExperiencePersistenceImpl
 		msg.append(", classPK=");
 		msg.append(classPK);
 
-		msg.append(", priority=");
+		msg.append(", priority>");
 		msg.append(priority);
 
 		msg.append("}");
@@ -5915,7 +5915,7 @@ public class SegmentsExperiencePersistenceImpl
 		msg.append(", classPK=");
 		msg.append(classPK);
 
-		msg.append(", priority=");
+		msg.append(", priority>");
 		msg.append(priority);
 
 		msg.append("}");

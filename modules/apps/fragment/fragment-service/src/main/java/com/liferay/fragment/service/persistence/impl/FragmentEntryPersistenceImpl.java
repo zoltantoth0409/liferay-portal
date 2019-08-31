@@ -4396,7 +4396,7 @@ public class FragmentEntryPersistenceImpl
 		msg.append(", fragmentCollectionId=");
 		msg.append(fragmentCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -4461,7 +4461,7 @@ public class FragmentEntryPersistenceImpl
 		msg.append(", fragmentCollectionId=");
 		msg.append(fragmentCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -7574,7 +7574,7 @@ public class FragmentEntryPersistenceImpl
 		msg.append(", fragmentCollectionId=");
 		msg.append(fragmentCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", status=");
@@ -7645,7 +7645,7 @@ public class FragmentEntryPersistenceImpl
 		msg.append(", fragmentCollectionId=");
 		msg.append(fragmentCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", status=");

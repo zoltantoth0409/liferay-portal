@@ -3437,7 +3437,7 @@ public class SiteNavigationMenuItemPersistenceImpl
 		msg.append("siteNavigationMenuId=");
 		msg.append(siteNavigationMenuId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -3497,7 +3497,7 @@ public class SiteNavigationMenuItemPersistenceImpl
 		msg.append("siteNavigationMenuId=");
 		msg.append(siteNavigationMenuId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");

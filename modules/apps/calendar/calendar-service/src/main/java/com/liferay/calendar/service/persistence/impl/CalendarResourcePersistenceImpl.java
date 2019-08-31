@@ -5963,7 +5963,7 @@ public class CalendarResourcePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", code=");
+		msg.append(", codeLIKE");
 		msg.append(code);
 
 		msg.append(", active=");
@@ -6028,7 +6028,7 @@ public class CalendarResourcePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", code=");
+		msg.append(", codeLIKE");
 		msg.append(code);
 
 		msg.append(", active=");
