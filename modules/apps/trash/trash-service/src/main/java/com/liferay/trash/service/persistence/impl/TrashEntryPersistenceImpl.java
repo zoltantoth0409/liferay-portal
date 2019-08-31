@@ -1330,7 +1330,7 @@ public class TrashEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", createDate=");
+		msg.append(", createDate<");
 		msg.append(createDate);
 
 		msg.append("}");
@@ -1390,7 +1390,7 @@ public class TrashEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", createDate=");
+		msg.append(", createDate<");
 		msg.append(createDate);
 
 		msg.append("}");

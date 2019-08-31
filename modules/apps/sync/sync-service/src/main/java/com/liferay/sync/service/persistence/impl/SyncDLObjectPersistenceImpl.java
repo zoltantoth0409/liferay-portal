@@ -296,7 +296,7 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("treePath=");
+		msg.append("treePathLIKE");
 		msg.append(treePath);
 
 		msg.append("}");
@@ -349,7 +349,7 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("treePath=");
+		msg.append("treePathLIKE");
 		msg.append(treePath);
 
 		msg.append("}");
@@ -841,7 +841,7 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append(", repositoryId=");
@@ -901,7 +901,7 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append(", repositoryId=");
@@ -1963,7 +1963,7 @@ public class SyncDLObjectPersistenceImpl
 		msg.append("repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");
@@ -2023,7 +2023,7 @@ public class SyncDLObjectPersistenceImpl
 		msg.append("repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");
@@ -3161,10 +3161,10 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("treePath=");
+		msg.append("treePathLIKE");
 		msg.append(treePath);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");
@@ -3221,10 +3221,10 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("treePath=");
+		msg.append("treePathLIKE");
 		msg.append(treePath);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");
@@ -4680,13 +4680,13 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append(", repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");
@@ -4745,13 +4745,13 @@ public class SyncDLObjectPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append(", repositoryId=");
 		msg.append(repositoryId);
 
-		msg.append(", event=");
+		msg.append(", event!=");
 		msg.append(event);
 
 		msg.append("}");

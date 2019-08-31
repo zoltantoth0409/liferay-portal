@@ -3884,7 +3884,7 @@ public class AssetVocabularyPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -3944,7 +3944,7 @@ public class AssetVocabularyPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");

@@ -276,7 +276,7 @@ public class DLSyncEventPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append("}");
@@ -329,7 +329,7 @@ public class DLSyncEventPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("modifiedTime=");
+		msg.append("modifiedTime>");
 		msg.append(modifiedTime);
 
 		msg.append("}");

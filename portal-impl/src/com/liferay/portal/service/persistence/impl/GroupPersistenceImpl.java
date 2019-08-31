@@ -6273,7 +6273,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -6338,7 +6338,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -8447,7 +8447,7 @@ public class GroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append(", site=");
@@ -8512,7 +8512,7 @@ public class GroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append(", site=");
@@ -9069,7 +9069,7 @@ public class GroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", site=");
@@ -9134,7 +9134,7 @@ public class GroupPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", site=");
@@ -10283,7 +10283,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -10354,7 +10354,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -10743,7 +10743,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -10813,7 +10813,7 @@ public class GroupPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("groupId=");
+		msg.append("groupId>");
 		msg.append(groupId);
 
 		msg.append(", companyId=");
@@ -11530,7 +11530,7 @@ public class GroupPersistenceImpl
 		msg.append(", parentGroupId=");
 		msg.append(parentGroupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", site=");
@@ -11600,7 +11600,7 @@ public class GroupPersistenceImpl
 		msg.append(", parentGroupId=");
 		msg.append(parentGroupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", site=");

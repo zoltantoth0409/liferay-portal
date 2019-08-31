@@ -10973,7 +10973,7 @@ public class LayoutPersistenceImpl
 		msg.append(", parentLayoutId=");
 		msg.append(parentLayoutId);
 
-		msg.append(", priority=");
+		msg.append(", priority<=");
 		msg.append(priority);
 
 		msg.append("}");
@@ -11045,7 +11045,7 @@ public class LayoutPersistenceImpl
 		msg.append(", parentLayoutId=");
 		msg.append(parentLayoutId);
 
-		msg.append(", priority=");
+		msg.append(", priority<=");
 		msg.append(priority);
 
 		msg.append("}");

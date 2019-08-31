@@ -5437,7 +5437,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", layoutPageTemplateCollectionId=");
 		msg.append(layoutPageTemplateCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -5503,7 +5503,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", layoutPageTemplateCollectionId=");
 		msg.append(layoutPageTemplateCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -8655,7 +8655,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -8720,7 +8720,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -10803,7 +10803,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", layoutPageTemplateCollectionId=");
 		msg.append(layoutPageTemplateCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", status=");
@@ -10878,7 +10878,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", layoutPageTemplateCollectionId=");
 		msg.append(layoutPageTemplateCollectionId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", status=");
@@ -14203,7 +14203,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -14274,7 +14274,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -15388,7 +15388,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", classTypeId=");
 		msg.append(classTypeId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -15467,7 +15467,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", classTypeId=");
 		msg.append(classTypeId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -18966,7 +18966,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", classTypeId=");
 		msg.append(classTypeId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");
@@ -19051,7 +19051,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 		msg.append(", classTypeId=");
 		msg.append(classTypeId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append(", type=");

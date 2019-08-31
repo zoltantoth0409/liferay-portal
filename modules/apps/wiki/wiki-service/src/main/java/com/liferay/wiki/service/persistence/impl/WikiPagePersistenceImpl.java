@@ -14733,7 +14733,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", head=");
 		msg.append(head);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -14798,7 +14798,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", head=");
 		msg.append(head);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -19308,7 +19308,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", parentTitle=");
 		msg.append(parentTitle);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -19378,7 +19378,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", parentTitle=");
 		msg.append(parentTitle);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -20652,7 +20652,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", redirectTitle=");
 		msg.append(redirectTitle);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -20722,7 +20722,7 @@ public class WikiPagePersistenceImpl
 		msg.append(", redirectTitle=");
 		msg.append(redirectTitle);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");

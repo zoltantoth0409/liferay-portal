@@ -5085,7 +5085,7 @@ public class OrganizationPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append("}");
@@ -5145,7 +5145,7 @@ public class OrganizationPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", treePath=");
+		msg.append(", treePathLIKE");
 		msg.append(treePath);
 
 		msg.append("}");
@@ -6367,7 +6367,7 @@ public class OrganizationPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -6427,7 +6427,7 @@ public class OrganizationPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -7391,7 +7391,7 @@ public class OrganizationPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("organizationId=");
+		msg.append("organizationId>");
 		msg.append(organizationId);
 
 		msg.append(", companyId=");
@@ -7457,7 +7457,7 @@ public class OrganizationPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("organizationId=");
+		msg.append("organizationId>");
 		msg.append(organizationId);
 
 		msg.append(", companyId=");
@@ -8056,7 +8056,7 @@ public class OrganizationPersistenceImpl
 		msg.append(", parentOrganizationId=");
 		msg.append(parentOrganizationId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");
@@ -8121,7 +8121,7 @@ public class OrganizationPersistenceImpl
 		msg.append(", parentOrganizationId=");
 		msg.append(parentOrganizationId);
 
-		msg.append(", name=");
+		msg.append(", nameLIKE");
 		msg.append(name);
 
 		msg.append("}");

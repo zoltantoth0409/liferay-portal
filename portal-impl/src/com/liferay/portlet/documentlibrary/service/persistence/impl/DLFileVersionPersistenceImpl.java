@@ -3302,7 +3302,7 @@ public class DLFileVersionPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
@@ -3362,7 +3362,7 @@ public class DLFileVersionPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", status=");
+		msg.append(", status!=");
 		msg.append(status);
 
 		msg.append("}");
