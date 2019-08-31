@@ -1974,7 +1974,7 @@ public class SyncDevicePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", userName=");
+		msg.append(", userNameLIKE");
 		msg.append(userName);
 
 		msg.append("}");
@@ -2034,7 +2034,7 @@ public class SyncDevicePersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", userName=");
+		msg.append(", userNameLIKE");
 		msg.append(userName);
 
 		msg.append("}");

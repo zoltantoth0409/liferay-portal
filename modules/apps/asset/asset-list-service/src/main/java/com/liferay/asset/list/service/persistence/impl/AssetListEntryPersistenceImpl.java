@@ -3137,7 +3137,7 @@ public class AssetListEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", title=");
+		msg.append(", titleLIKE");
 		msg.append(title);
 
 		msg.append("}");
@@ -3197,7 +3197,7 @@ public class AssetListEntryPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", title=");
+		msg.append(", titleLIKE");
 		msg.append(title);
 
 		msg.append("}");

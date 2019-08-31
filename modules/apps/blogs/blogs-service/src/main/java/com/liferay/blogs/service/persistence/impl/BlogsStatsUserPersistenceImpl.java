@@ -1552,7 +1552,7 @@ public class BlogsStatsUserPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", entryCount=");
+		msg.append(", entryCount!=");
 		msg.append(entryCount);
 
 		msg.append("}");
@@ -1612,7 +1612,7 @@ public class BlogsStatsUserPersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", entryCount=");
+		msg.append(", entryCount!=");
 		msg.append(entryCount);
 
 		msg.append("}");
@@ -2098,7 +2098,7 @@ public class BlogsStatsUserPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", entryCount=");
+		msg.append(", entryCount!=");
 		msg.append(entryCount);
 
 		msg.append("}");
@@ -2158,7 +2158,7 @@ public class BlogsStatsUserPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", entryCount=");
+		msg.append(", entryCount!=");
 		msg.append(entryCount);
 
 		msg.append("}");

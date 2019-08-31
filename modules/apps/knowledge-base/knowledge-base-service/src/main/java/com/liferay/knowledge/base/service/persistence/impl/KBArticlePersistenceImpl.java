@@ -26077,7 +26077,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", latest=");
@@ -26142,7 +26142,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", latest=");
@@ -27795,7 +27795,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", main=");
@@ -27860,7 +27860,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", main=");
@@ -29511,7 +29511,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", status=");
@@ -29576,7 +29576,7 @@ public class KBArticlePersistenceImpl
 		msg.append("groupId=");
 		msg.append(groupId);
 
-		msg.append(", sections=");
+		msg.append(", sectionsLIKE");
 		msg.append(sections);
 
 		msg.append(", status=");

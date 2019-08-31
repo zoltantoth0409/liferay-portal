@@ -2170,7 +2170,7 @@ public class ResourcePermissionPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", primKey=");
+		msg.append(", primKeyLIKE");
 		msg.append(primKey);
 
 		msg.append("}");
@@ -2230,7 +2230,7 @@ public class ResourcePermissionPersistenceImpl
 		msg.append("companyId=");
 		msg.append(companyId);
 
-		msg.append(", primKey=");
+		msg.append(", primKeyLIKE");
 		msg.append(primKey);
 
 		msg.append("}");
