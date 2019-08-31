@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchSystemEventException;
 import com.liferay.portal.kernel.model.SystemEvent;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,19 +77,16 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SystemEventModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
-	@Deprecated
 	public java.util.List<SystemEvent> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the system events where groupId = &#63;.
@@ -103,11 +99,14 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
 	public java.util.List<SystemEvent> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first system event in the ordered set where groupId = &#63;.
@@ -118,7 +117,9 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @throws NoSuchSystemEventException if a matching system event could not be found
 	 */
 	public SystemEvent findByGroupId_First(
-			long groupId, OrderByComparator<SystemEvent> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -129,7 +130,9 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @return the first matching system event, or <code>null</code> if a matching system event could not be found
 	 */
 	public SystemEvent fetchByGroupId_First(
-		long groupId, OrderByComparator<SystemEvent> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the last system event in the ordered set where groupId = &#63;.
@@ -140,7 +143,9 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @throws NoSuchSystemEventException if a matching system event could not be found
 	 */
 	public SystemEvent findByGroupId_Last(
-			long groupId, OrderByComparator<SystemEvent> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -151,7 +156,9 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @return the last matching system event, or <code>null</code> if a matching system event could not be found
 	 */
 	public SystemEvent fetchByGroupId_Last(
-		long groupId, OrderByComparator<SystemEvent> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the system events before and after the current system event in the ordered set where groupId = &#63;.
@@ -164,7 +171,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent[] findByGroupId_PrevAndNext(
 			long systemEventId, long groupId,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -215,20 +223,17 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SystemEventModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_S(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param systemEventSetKey the system event set key
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
-	@Deprecated
 	public java.util.List<SystemEvent> findByG_S(
 		long groupId, long systemEventSetKey, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the system events where groupId = &#63; and systemEventSetKey = &#63;.
@@ -242,11 +247,14 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
 	public java.util.List<SystemEvent> findByG_S(
 		long groupId, long systemEventSetKey, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first system event in the ordered set where groupId = &#63; and systemEventSetKey = &#63;.
@@ -259,7 +267,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_S_First(
 			long groupId, long systemEventSetKey,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -272,7 +281,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_S_First(
 		long groupId, long systemEventSetKey,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the last system event in the ordered set where groupId = &#63; and systemEventSetKey = &#63;.
@@ -285,7 +295,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_S_Last(
 			long groupId, long systemEventSetKey,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -298,7 +309,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_S_Last(
 		long groupId, long systemEventSetKey,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the system events before and after the current system event in the ordered set where groupId = &#63; and systemEventSetKey = &#63;.
@@ -312,7 +324,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent[] findByG_S_PrevAndNext(
 			long systemEventId, long groupId, long systemEventSetKey,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -367,21 +380,18 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SystemEventModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
-	@Deprecated
 	public java.util.List<SystemEvent> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the system events where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -396,11 +406,14 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
 	public java.util.List<SystemEvent> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -414,7 +427,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_C_C_First(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -428,7 +442,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_C_C_First(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the last system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -442,7 +457,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_C_C_Last(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -456,7 +472,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_C_C_Last(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the system events before and after the current system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -471,7 +488,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent[] findByG_C_C_PrevAndNext(
 			long systemEventId, long groupId, long classNameId, long classPK,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -531,7 +549,6 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SystemEventModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C_T(long,long,long,int, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
@@ -539,14 +556,13 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
-	@Deprecated
 	public java.util.List<SystemEvent> findByG_C_C_T(
 		long groupId, long classNameId, long classPK, int type, int start,
-		int end, OrderByComparator<SystemEvent> orderByComparator,
-		boolean useFinderCache);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the system events where groupId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -562,11 +578,15 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching system events
 	 */
 	public java.util.List<SystemEvent> findByG_C_C_T(
 		long groupId, long classNameId, long classPK, int type, int start,
-		int end, OrderByComparator<SystemEvent> orderByComparator);
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -581,7 +601,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_C_C_T_First(
 			long groupId, long classNameId, long classPK, int type,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -596,7 +617,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_C_C_T_First(
 		long groupId, long classNameId, long classPK, int type,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the last system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -611,7 +633,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent findByG_C_C_T_Last(
 			long groupId, long classNameId, long classPK, int type,
-			OrderByComparator<SystemEvent> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -626,7 +649,8 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent fetchByG_C_C_T_Last(
 		long groupId, long classNameId, long classPK, int type,
-		OrderByComparator<SystemEvent> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns the system events before and after the current system event in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -642,7 +666,9 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 */
 	public SystemEvent[] findByG_C_C_T_PrevAndNext(
 			long systemEventId, long groupId, long classNameId, long classPK,
-			int type, OrderByComparator<SystemEvent> orderByComparator)
+			int type,
+			com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+				orderByComparator)
 		throws NoSuchSystemEventException;
 
 	/**
@@ -747,17 +773,15 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>SystemEventModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of system events
 	 */
-	@Deprecated
 	public java.util.List<SystemEvent> findAll(
-		int start, int end, OrderByComparator<SystemEvent> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the system events.
@@ -769,10 +793,14 @@ public interface SystemEventPersistence extends BasePersistence<SystemEvent> {
 	 * @param start the lower bound of the range of system events
 	 * @param end the upper bound of the range of system events (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of system events
 	 */
 	public java.util.List<SystemEvent> findAll(
-		int start, int end, OrderByComparator<SystemEvent> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<SystemEvent>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the system events from the database.

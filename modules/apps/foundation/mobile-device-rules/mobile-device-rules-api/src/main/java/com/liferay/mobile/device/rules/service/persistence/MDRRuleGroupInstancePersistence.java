@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.mobile.device.rules.exception.NoSuchRuleGroupInstanceException;
 import com.liferay.mobile.device.rules.model.MDRRuleGroupInstance;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -80,19 +79,16 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where uuid = &#63;.
@@ -105,11 +101,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where uuid = &#63;.
@@ -121,7 +120,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByUuid_First(
 			String uuid,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -132,7 +132,9 @@ public interface MDRRuleGroupInstancePersistence
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	public MDRRuleGroupInstance fetchByUuid_First(
-		String uuid, OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where uuid = &#63;.
@@ -144,7 +146,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByUuid_Last(
 			String uuid,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -155,7 +158,9 @@ public interface MDRRuleGroupInstancePersistence
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	public MDRRuleGroupInstance fetchByUuid_Last(
-		String uuid, OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where uuid = &#63;.
@@ -168,7 +173,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] findByUuid_PrevAndNext(
 			long ruleGroupInstanceId, String uuid,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -198,17 +204,13 @@ public interface MDRRuleGroupInstancePersistence
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
-	 * Returns the mdr rule group instance where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the mdr rule group instance where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
-	@Deprecated
-	public MDRRuleGroupInstance fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public MDRRuleGroupInstance fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the mdr rule group instance where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -218,7 +220,8 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
-	public MDRRuleGroupInstance fetchByUUID_G(String uuid, long groupId);
+	public MDRRuleGroupInstance fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the mdr rule group instance where uuid = &#63; and groupId = &#63; from the database.
@@ -272,20 +275,17 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where uuid = &#63; and companyId = &#63;.
@@ -299,11 +299,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +319,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -329,7 +333,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -342,7 +347,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -355,7 +361,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -369,7 +376,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] findByUuid_C_PrevAndNext(
 			long ruleGroupInstanceId, String uuid, long companyId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -419,19 +427,16 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where groupId = &#63;.
@@ -444,11 +449,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where groupId = &#63;.
@@ -460,7 +468,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByGroupId_First(
 			long groupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -472,7 +481,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByGroupId_First(
 		long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where groupId = &#63;.
@@ -484,7 +494,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByGroupId_Last(
 			long groupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -496,7 +507,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByGroupId_Last(
 		long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where groupId = &#63;.
@@ -509,7 +521,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] findByGroupId_PrevAndNext(
 			long ruleGroupInstanceId, long groupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -551,7 +564,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public java.util.List<MDRRuleGroupInstance> filterFindByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set of mdr rule group instances that the user has permission to view where groupId = &#63;.
@@ -564,7 +578,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] filterFindByGroupId_PrevAndNext(
 			long ruleGroupInstanceId, long groupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -621,19 +636,16 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByRuleGroupId(long, int, int, OrderByComparator)}
 	 * @param ruleGroupId the rule group ID
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByRuleGroupId(
 		long ruleGroupId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where ruleGroupId = &#63;.
@@ -646,11 +658,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByRuleGroupId(
 		long ruleGroupId, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where ruleGroupId = &#63;.
@@ -662,7 +677,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByRuleGroupId_First(
 			long ruleGroupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -674,7 +690,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByRuleGroupId_First(
 		long ruleGroupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where ruleGroupId = &#63;.
@@ -686,7 +703,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByRuleGroupId_Last(
 			long ruleGroupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -698,7 +716,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByRuleGroupId_Last(
 		long ruleGroupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where ruleGroupId = &#63;.
@@ -711,7 +730,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] findByRuleGroupId_PrevAndNext(
 			long ruleGroupInstanceId, long ruleGroupId,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -762,20 +782,17 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where classNameId = &#63; and classPK = &#63;.
@@ -789,11 +806,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByC_C(
 		long classNameId, long classPK, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -806,7 +826,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByC_C_First(
 			long classNameId, long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -819,7 +840,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByC_C_First(
 		long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -832,7 +854,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByC_C_Last(
 			long classNameId, long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -845,7 +868,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByC_C_Last(
 		long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -859,7 +883,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance[] findByC_C_PrevAndNext(
 			long ruleGroupInstanceId, long classNameId, long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -914,21 +939,18 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C_C(long,long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -943,11 +965,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group instance in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -961,7 +986,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByG_C_C_First(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -975,7 +1001,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByG_C_C_First(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the last mdr rule group instance in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -989,7 +1016,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance findByG_C_C_Last(
 			long groupId, long classNameId, long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -1003,7 +1031,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public MDRRuleGroupInstance fetchByG_C_C_Last(
 		long groupId, long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1019,7 +1048,8 @@ public interface MDRRuleGroupInstancePersistence
 	public MDRRuleGroupInstance[] findByG_C_C_PrevAndNext(
 			long ruleGroupInstanceId, long groupId, long classNameId,
 			long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -1067,7 +1097,8 @@ public interface MDRRuleGroupInstancePersistence
 	 */
 	public java.util.List<MDRRuleGroupInstance> filterFindByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns the mdr rule group instances before and after the current mdr rule group instance in the ordered set of mdr rule group instances that the user has permission to view where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1083,7 +1114,8 @@ public interface MDRRuleGroupInstancePersistence
 	public MDRRuleGroupInstance[] filterFindByG_C_C_PrevAndNext(
 			long ruleGroupInstanceId, long groupId, long classNameId,
 			long classPK,
-			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
@@ -1129,19 +1161,15 @@ public interface MDRRuleGroupInstancePersistence
 		throws NoSuchRuleGroupInstanceException;
 
 	/**
-	 * Returns the mdr rule group instance where classNameId = &#63; and classPK = &#63; and ruleGroupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the mdr rule group instance where classNameId = &#63; and classPK = &#63; and ruleGroupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C_R(long,long,long)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param ruleGroupId the rule group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
-	@Deprecated
 	public MDRRuleGroupInstance fetchByC_C_R(
-		long classNameId, long classPK, long ruleGroupId,
-		boolean useFinderCache);
+		long classNameId, long classPK, long ruleGroupId);
 
 	/**
 	 * Returns the mdr rule group instance where classNameId = &#63; and classPK = &#63; and ruleGroupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1153,7 +1181,8 @@ public interface MDRRuleGroupInstancePersistence
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	public MDRRuleGroupInstance fetchByC_C_R(
-		long classNameId, long classPK, long ruleGroupId);
+		long classNameId, long classPK, long ruleGroupId,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the mdr rule group instance where classNameId = &#63; and classPK = &#63; and ruleGroupId = &#63; from the database.
@@ -1258,18 +1287,15 @@ public interface MDRRuleGroupInstancePersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MDRRuleGroupInstanceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of mdr rule group instances
 	 */
-	@Deprecated
 	public java.util.List<MDRRuleGroupInstance> findAll(
 		int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the mdr rule group instances.
@@ -1281,11 +1307,14 @@ public interface MDRRuleGroupInstancePersistence
 	 * @param start the lower bound of the range of mdr rule group instances
 	 * @param end the upper bound of the range of mdr rule group instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of mdr rule group instances
 	 */
 	public java.util.List<MDRRuleGroupInstance> findAll(
 		int start, int end,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroupInstance>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the mdr rule group instances from the database.

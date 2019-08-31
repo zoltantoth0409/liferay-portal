@@ -161,22 +161,18 @@ public class KaleoDefinitionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoDefinitionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
-	@Deprecated
 	public static List<KaleoDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoDefinition> orderByComparator) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, useFinderCache);
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -190,14 +186,16 @@ public class KaleoDefinitionUtil {
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
 	public static List<KaleoDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator) {
+		OrderByComparator<KaleoDefinition> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -339,23 +337,19 @@ public class KaleoDefinitionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoDefinitionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_N(long,String, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
-	@Deprecated
 	public static List<KaleoDefinition> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoDefinition> orderByComparator) {
 
 		return getPersistence().findByC_N(
-			companyId, name, start, end, orderByComparator, useFinderCache);
+			companyId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -370,14 +364,16 @@ public class KaleoDefinitionUtil {
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
 	public static List<KaleoDefinition> findByC_N(
 		long companyId, String name, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator) {
+		OrderByComparator<KaleoDefinition> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_N(
-			companyId, name, start, end, orderByComparator);
+			companyId, name, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -530,23 +526,19 @@ public class KaleoDefinitionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoDefinitionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_A(long,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param active the active
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
-	@Deprecated
 	public static List<KaleoDefinition> findByC_A(
 		long companyId, boolean active, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoDefinition> orderByComparator) {
 
 		return getPersistence().findByC_A(
-			companyId, active, start, end, orderByComparator, useFinderCache);
+			companyId, active, start, end, orderByComparator);
 	}
 
 	/**
@@ -561,14 +553,16 @@ public class KaleoDefinitionUtil {
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
 	public static List<KaleoDefinition> findByC_A(
 		long companyId, boolean active, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator) {
+		OrderByComparator<KaleoDefinition> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_A(
-			companyId, active, start, end, orderByComparator);
+			companyId, active, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -700,21 +694,17 @@ public class KaleoDefinitionUtil {
 	}
 
 	/**
-	 * Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_N_V(long,String,int)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param version the version
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo definition, or <code>null</code> if a matching kaleo definition could not be found
 	 */
-	@Deprecated
 	public static KaleoDefinition fetchByC_N_V(
-		long companyId, String name, int version, boolean useFinderCache) {
+		long companyId, String name, int version) {
 
-		return getPersistence().fetchByC_N_V(
-			companyId, name, version, useFinderCache);
+		return getPersistence().fetchByC_N_V(companyId, name, version);
 	}
 
 	/**
@@ -727,9 +717,10 @@ public class KaleoDefinitionUtil {
 	 * @return the matching kaleo definition, or <code>null</code> if a matching kaleo definition could not be found
 	 */
 	public static KaleoDefinition fetchByC_N_V(
-		long companyId, String name, int version) {
+		long companyId, String name, int version, boolean useFinderCache) {
 
-		return getPersistence().fetchByC_N_V(companyId, name, version);
+		return getPersistence().fetchByC_N_V(
+			companyId, name, version, useFinderCache);
 	}
 
 	/**
@@ -802,25 +793,20 @@ public class KaleoDefinitionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoDefinitionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_N_A(long,String,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param active the active
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
-	@Deprecated
 	public static List<KaleoDefinition> findByC_N_A(
 		long companyId, String name, boolean active, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoDefinition> orderByComparator) {
 
 		return getPersistence().findByC_N_A(
-			companyId, name, active, start, end, orderByComparator,
-			useFinderCache);
+			companyId, name, active, start, end, orderByComparator);
 	}
 
 	/**
@@ -836,14 +822,17 @@ public class KaleoDefinitionUtil {
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo definitions
 	 */
 	public static List<KaleoDefinition> findByC_N_A(
 		long companyId, String name, boolean active, int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator) {
+		OrderByComparator<KaleoDefinition> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_N_A(
-			companyId, name, active, start, end, orderByComparator);
+			companyId, name, active, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -1069,21 +1058,16 @@ public class KaleoDefinitionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoDefinitionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo definitions
 	 */
-	@Deprecated
 	public static List<KaleoDefinition> findAll(
 		int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<KaleoDefinition> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1096,13 +1080,16 @@ public class KaleoDefinitionUtil {
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo definitions
 	 */
 	public static List<KaleoDefinition> findAll(
 		int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator) {
+		OrderByComparator<KaleoDefinition> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -123,22 +123,18 @@ public class WallEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	@Override
 	public List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WallEntry> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -152,12 +148,14 @@ public class WallEntryPersistenceImpl
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	@Override
 	public List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator) {
+		OrderByComparator<WallEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -167,23 +165,30 @@ public class WallEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<WallEntry> list = (List<WallEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<WallEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (WallEntry wallEntry : list) {
-				if ((groupId != wallEntry.getGroupId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<WallEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (WallEntry wallEntry : list) {
+					if ((groupId != wallEntry.getGroupId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -239,10 +244,14 @@ public class WallEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -621,22 +630,18 @@ public class WallEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	@Override
 	public List<WallEntry> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WallEntry> orderByComparator) {
 
-		return findByUserId(userId, start, end, orderByComparator);
+		return findByUserId(userId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -650,12 +655,14 @@ public class WallEntryPersistenceImpl
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	@Override
 	public List<WallEntry> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator) {
+		OrderByComparator<WallEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -665,23 +672,30 @@ public class WallEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUserId;
-			finderArgs = new Object[] {userId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUserId;
+				finderArgs = new Object[] {userId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] {userId, start, end, orderByComparator};
 		}
 
-		List<WallEntry> list = (List<WallEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<WallEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (WallEntry wallEntry : list) {
-				if ((userId != wallEntry.getUserId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<WallEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (WallEntry wallEntry : list) {
+					if ((userId != wallEntry.getUserId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -737,10 +751,14 @@ public class WallEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1124,23 +1142,19 @@ public class WallEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	@Override
 	public List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<WallEntry> orderByComparator) {
 
-		return findByG_U(groupId, userId, start, end, orderByComparator);
+		return findByG_U(groupId, userId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1155,12 +1169,14 @@ public class WallEntryPersistenceImpl
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	@Override
 	public List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator) {
+		OrderByComparator<WallEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1170,27 +1186,34 @@ public class WallEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_U;
-			finderArgs = new Object[] {groupId, userId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_U;
+				finderArgs = new Object[] {groupId, userId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_U;
 			finderArgs = new Object[] {
 				groupId, userId, start, end, orderByComparator
 			};
 		}
 
-		List<WallEntry> list = (List<WallEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<WallEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (WallEntry wallEntry : list) {
-				if ((groupId != wallEntry.getGroupId()) ||
-					(userId != wallEntry.getUserId())) {
+		if (useFinderCache) {
+			list = (List<WallEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (WallEntry wallEntry : list) {
+					if ((groupId != wallEntry.getGroupId()) ||
+						(userId != wallEntry.getUserId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1250,10 +1273,14 @@ public class WallEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2209,20 +2236,16 @@ public class WallEntryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
-	@Deprecated
 	@Override
 	public List<WallEntry> findAll(
-		int start, int end, OrderByComparator<WallEntry> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<WallEntry> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2235,11 +2258,13 @@ public class WallEntryPersistenceImpl
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
 	@Override
 	public List<WallEntry> findAll(
-		int start, int end, OrderByComparator<WallEntry> orderByComparator) {
+		int start, int end, OrderByComparator<WallEntry> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2249,16 +2274,23 @@ public class WallEntryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<WallEntry> list = (List<WallEntry>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<WallEntry> list = null;
+
+		if (useFinderCache) {
+			list = (List<WallEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2305,10 +2337,14 @@ public class WallEntryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

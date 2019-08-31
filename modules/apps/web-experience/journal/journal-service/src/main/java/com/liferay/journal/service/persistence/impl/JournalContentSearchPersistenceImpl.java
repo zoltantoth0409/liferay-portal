@@ -124,22 +124,18 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPortletId(String, int, int, OrderByComparator)}
 	 * @param portletId the portlet ID
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByPortletId(
 		String portletId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
-		return findByPortletId(portletId, start, end, orderByComparator);
+		return findByPortletId(portletId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -153,12 +149,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByPortletId(
 		String portletId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		portletId = Objects.toString(portletId, "");
 
@@ -170,26 +168,34 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByPortletId;
-			finderArgs = new Object[] {portletId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByPortletId;
+				finderArgs = new Object[] {portletId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByPortletId;
 			finderArgs = new Object[] {
 				portletId, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if (!portletId.equals(journalContentSearch.getPortletId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if (!portletId.equals(
+							journalContentSearch.getPortletId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -256,10 +262,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -683,22 +693,18 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByArticleId(String, int, int, OrderByComparator)}
 	 * @param articleId the article ID
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByArticleId(
 		String articleId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
-		return findByArticleId(articleId, start, end, orderByComparator);
+		return findByArticleId(articleId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -712,12 +718,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByArticleId(
 		String articleId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 
@@ -729,26 +737,34 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByArticleId;
-			finderArgs = new Object[] {articleId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByArticleId;
+				finderArgs = new Object[] {articleId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByArticleId;
 			finderArgs = new Object[] {
 				articleId, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if (!articleId.equals(journalContentSearch.getArticleId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if (!articleId.equals(
+							journalContentSearch.getArticleId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -815,10 +831,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1246,23 +1266,20 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
-		return findByG_P(groupId, privateLayout, start, end, orderByComparator);
+		return findByG_P(
+			groupId, privateLayout, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1277,12 +1294,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1292,28 +1311,35 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] {groupId, privateLayout};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P;
+				finderArgs = new Object[] {groupId, privateLayout};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
 				groupId, privateLayout, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if ((groupId != journalContentSearch.getGroupId()) ||
-					(privateLayout != journalContentSearch.isPrivateLayout())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if ((groupId != journalContentSearch.getGroupId()) ||
+						(privateLayout !=
+							journalContentSearch.isPrivateLayout())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1373,10 +1399,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1800,23 +1830,20 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByG_A(
 		long groupId, String articleId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
-		return findByG_A(groupId, articleId, start, end, orderByComparator);
+		return findByG_A(
+			groupId, articleId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1831,12 +1858,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByG_A(
 		long groupId, String articleId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 
@@ -1848,28 +1877,35 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_A;
-			finderArgs = new Object[] {groupId, articleId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_A;
+				finderArgs = new Object[] {groupId, articleId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_A;
 			finderArgs = new Object[] {
 				groupId, articleId, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if ((groupId != journalContentSearch.getGroupId()) ||
-					!articleId.equals(journalContentSearch.getArticleId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if ((groupId != journalContentSearch.getGroupId()) ||
+						!articleId.equals(
+							journalContentSearch.getArticleId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1940,10 +1976,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2400,25 +2440,22 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L(long,boolean,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
 		return findByG_P_L(
-			groupId, privateLayout, layoutId, start, end, orderByComparator);
+			groupId, privateLayout, layoutId, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -2434,12 +2471,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByG_P_L(
 		long groupId, boolean privateLayout, long layoutId, int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2449,29 +2488,36 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_L;
-			finderArgs = new Object[] {groupId, privateLayout, layoutId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_L;
+				finderArgs = new Object[] {groupId, privateLayout, layoutId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_L;
 			finderArgs = new Object[] {
 				groupId, privateLayout, layoutId, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if ((groupId != journalContentSearch.getGroupId()) ||
-					(privateLayout != journalContentSearch.isPrivateLayout()) ||
-					(layoutId != journalContentSearch.getLayoutId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if ((groupId != journalContentSearch.getGroupId()) ||
+						(privateLayout !=
+							journalContentSearch.isPrivateLayout()) ||
+						(layoutId != journalContentSearch.getLayoutId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2535,10 +2581,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2996,25 +3046,22 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_A(long,boolean,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param articleId the article ID
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByG_P_A(
 		long groupId, boolean privateLayout, String articleId, int start,
-		int end, OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		int end, OrderByComparator<JournalContentSearch> orderByComparator) {
 
 		return findByG_P_A(
-			groupId, privateLayout, articleId, start, end, orderByComparator);
+			groupId, privateLayout, articleId, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -3030,12 +3077,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByG_P_A(
 		long groupId, boolean privateLayout, String articleId, int start,
-		int end, OrderByComparator<JournalContentSearch> orderByComparator) {
+		int end, OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 
@@ -3047,29 +3096,37 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_A;
-			finderArgs = new Object[] {groupId, privateLayout, articleId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_A;
+				finderArgs = new Object[] {groupId, privateLayout, articleId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_A;
 			finderArgs = new Object[] {
 				groupId, privateLayout, articleId, start, end, orderByComparator
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if ((groupId != journalContentSearch.getGroupId()) ||
-					(privateLayout != journalContentSearch.isPrivateLayout()) ||
-					!articleId.equals(journalContentSearch.getArticleId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if ((groupId != journalContentSearch.getGroupId()) ||
+						(privateLayout !=
+							journalContentSearch.isPrivateLayout()) ||
+						!articleId.equals(
+							journalContentSearch.getArticleId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -3144,10 +3201,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3637,7 +3698,6 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P_L_P(long,boolean,long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
@@ -3645,20 +3705,17 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findByG_P_L_P(
 		long groupId, boolean privateLayout, long layoutId, String portletId,
 		int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
 		return findByG_P_L_P(
 			groupId, privateLayout, layoutId, portletId, start, end,
-			orderByComparator);
+			orderByComparator, true);
 	}
 
 	/**
@@ -3675,13 +3732,15 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findByG_P_L_P(
 		long groupId, boolean privateLayout, long layoutId, String portletId,
 		int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		portletId = Objects.toString(portletId, "");
 
@@ -3693,12 +3752,15 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_L_P;
-			finderArgs = new Object[] {
-				groupId, privateLayout, layoutId, portletId
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_L_P;
+				finderArgs = new Object[] {
+					groupId, privateLayout, layoutId, portletId
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_L_P;
 			finderArgs = new Object[] {
 				groupId, privateLayout, layoutId, portletId, start, end,
@@ -3706,20 +3768,25 @@ public class JournalContentSearchPersistenceImpl
 			};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalContentSearch journalContentSearch : list) {
-				if ((groupId != journalContentSearch.getGroupId()) ||
-					(privateLayout != journalContentSearch.isPrivateLayout()) ||
-					(layoutId != journalContentSearch.getLayoutId()) ||
-					!portletId.equals(journalContentSearch.getPortletId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalContentSearch journalContentSearch : list) {
+					if ((groupId != journalContentSearch.getGroupId()) ||
+						(privateLayout !=
+							journalContentSearch.isPrivateLayout()) ||
+						(layoutId != journalContentSearch.getLayoutId()) ||
+						!portletId.equals(
+							journalContentSearch.getPortletId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -3798,10 +3865,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4323,25 +4394,22 @@ public class JournalContentSearchPersistenceImpl
 	}
 
 	/**
-	 * Returns the journal content search where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and portletId = &#63; and articleId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the journal content search where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; and portletId = &#63; and articleId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_P_L_P_A(long,boolean,long,String,String)}
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @param portletId the portlet ID
 	 * @param articleId the article ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal content search, or <code>null</code> if a matching journal content search could not be found
 	 */
-	@Deprecated
 	@Override
 	public JournalContentSearch fetchByG_P_L_P_A(
 		long groupId, boolean privateLayout, long layoutId, String portletId,
-		String articleId, boolean useFinderCache) {
+		String articleId) {
 
 		return fetchByG_P_L_P_A(
-			groupId, privateLayout, layoutId, portletId, articleId);
+			groupId, privateLayout, layoutId, portletId, articleId, true);
 	}
 
 	/**
@@ -4358,17 +4426,25 @@ public class JournalContentSearchPersistenceImpl
 	@Override
 	public JournalContentSearch fetchByG_P_L_P_A(
 		long groupId, boolean privateLayout, long layoutId, String portletId,
-		String articleId) {
+		String articleId, boolean useFinderCache) {
 
 		portletId = Objects.toString(portletId, "");
 		articleId = Objects.toString(articleId, "");
 
-		Object[] finderArgs = new Object[] {
-			groupId, privateLayout, layoutId, portletId, articleId
-		};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByG_P_L_P_A, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {
+				groupId, privateLayout, layoutId, portletId, articleId
+			};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByG_P_L_P_A, finderArgs, this);
+		}
 
 		if (result instanceof JournalContentSearch) {
 			JournalContentSearch journalContentSearch =
@@ -4447,8 +4523,10 @@ public class JournalContentSearchPersistenceImpl
 				List<JournalContentSearch> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByG_P_L_P_A, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByG_P_L_P_A, finderArgs, list);
+					}
 				}
 				else {
 					JournalContentSearch journalContentSearch = list.get(0);
@@ -4459,8 +4537,10 @@ public class JournalContentSearchPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByG_P_L_P_A, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByG_P_L_P_A, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5429,21 +5509,17 @@ public class JournalContentSearchPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalContentSearchModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal content searchs
 	 */
-	@Deprecated
 	@Override
 	public List<JournalContentSearch> findAll(
 		int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalContentSearch> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5456,12 +5532,14 @@ public class JournalContentSearchPersistenceImpl
 	 * @param start the lower bound of the range of journal content searchs
 	 * @param end the upper bound of the range of journal content searchs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal content searchs
 	 */
 	@Override
 	public List<JournalContentSearch> findAll(
 		int start, int end,
-		OrderByComparator<JournalContentSearch> orderByComparator) {
+		OrderByComparator<JournalContentSearch> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5471,17 +5549,23 @@ public class JournalContentSearchPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<JournalContentSearch> list =
-			(List<JournalContentSearch>)finderCache.getResult(
+		List<JournalContentSearch> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalContentSearch>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -5529,10 +5613,14 @@ public class JournalContentSearchPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

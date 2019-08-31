@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.NoSuchUserIdMapperException;
 import com.liferay.portal.kernel.model.UserIdMapper;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,19 +77,16 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserIdMapperModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of user ID mappers
 	 * @param end the upper bound of the range of user ID mappers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user ID mappers
 	 */
-	@Deprecated
 	public java.util.List<UserIdMapper> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<UserIdMapper> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the user ID mappers where userId = &#63;.
@@ -103,11 +99,14 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @param start the lower bound of the range of user ID mappers
 	 * @param end the upper bound of the range of user ID mappers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user ID mappers
 	 */
 	public java.util.List<UserIdMapper> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<UserIdMapper> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first user ID mapper in the ordered set where userId = &#63;.
@@ -118,7 +117,9 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @throws NoSuchUserIdMapperException if a matching user ID mapper could not be found
 	 */
 	public UserIdMapper findByUserId_First(
-			long userId, OrderByComparator<UserIdMapper> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+				orderByComparator)
 		throws NoSuchUserIdMapperException;
 
 	/**
@@ -129,7 +130,9 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @return the first matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
 	public UserIdMapper fetchByUserId_First(
-		long userId, OrderByComparator<UserIdMapper> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator);
 
 	/**
 	 * Returns the last user ID mapper in the ordered set where userId = &#63;.
@@ -140,7 +143,9 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @throws NoSuchUserIdMapperException if a matching user ID mapper could not be found
 	 */
 	public UserIdMapper findByUserId_Last(
-			long userId, OrderByComparator<UserIdMapper> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+				orderByComparator)
 		throws NoSuchUserIdMapperException;
 
 	/**
@@ -151,7 +156,9 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @return the last matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
 	public UserIdMapper fetchByUserId_Last(
-		long userId, OrderByComparator<UserIdMapper> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator);
 
 	/**
 	 * Returns the user ID mappers before and after the current user ID mapper in the ordered set where userId = &#63;.
@@ -164,7 +171,8 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 */
 	public UserIdMapper[] findByUserId_PrevAndNext(
 			long userIdMapperId, long userId,
-			OrderByComparator<UserIdMapper> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+				orderByComparator)
 		throws NoSuchUserIdMapperException;
 
 	/**
@@ -194,17 +202,13 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 		throws NoSuchUserIdMapperException;
 
 	/**
-	 * Returns the user ID mapper where userId = &#63; and type = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the user ID mapper where userId = &#63; and type = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_T(long,String)}
 	 * @param userId the user ID
 	 * @param type the type
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
-	@Deprecated
-	public UserIdMapper fetchByU_T(
-		long userId, String type, boolean useFinderCache);
+	public UserIdMapper fetchByU_T(long userId, String type);
 
 	/**
 	 * Returns the user ID mapper where userId = &#63; and type = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -214,7 +218,8 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
-	public UserIdMapper fetchByU_T(long userId, String type);
+	public UserIdMapper fetchByU_T(
+		long userId, String type, boolean useFinderCache);
 
 	/**
 	 * Removes the user ID mapper where userId = &#63; and type = &#63; from the database.
@@ -247,17 +252,13 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 		throws NoSuchUserIdMapperException;
 
 	/**
-	 * Returns the user ID mapper where type = &#63; and externalUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the user ID mapper where type = &#63; and externalUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByT_E(String,String)}
 	 * @param type the type
 	 * @param externalUserId the external user ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
-	@Deprecated
-	public UserIdMapper fetchByT_E(
-		String type, String externalUserId, boolean useFinderCache);
+	public UserIdMapper fetchByT_E(String type, String externalUserId);
 
 	/**
 	 * Returns the user ID mapper where type = &#63; and externalUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -267,7 +268,8 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user ID mapper, or <code>null</code> if a matching user ID mapper could not be found
 	 */
-	public UserIdMapper fetchByT_E(String type, String externalUserId);
+	public UserIdMapper fetchByT_E(
+		String type, String externalUserId, boolean useFinderCache);
 
 	/**
 	 * Removes the user ID mapper where type = &#63; and externalUserId = &#63; from the database.
@@ -367,17 +369,15 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserIdMapperModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of user ID mappers
 	 * @param end the upper bound of the range of user ID mappers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user ID mappers
 	 */
-	@Deprecated
 	public java.util.List<UserIdMapper> findAll(
-		int start, int end, OrderByComparator<UserIdMapper> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the user ID mappers.
@@ -389,10 +389,14 @@ public interface UserIdMapperPersistence extends BasePersistence<UserIdMapper> {
 	 * @param start the lower bound of the range of user ID mappers
 	 * @param end the upper bound of the range of user ID mappers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user ID mappers
 	 */
 	public java.util.List<UserIdMapper> findAll(
-		int start, int end, OrderByComparator<UserIdMapper> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserIdMapper>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the user ID mappers from the database.

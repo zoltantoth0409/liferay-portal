@@ -127,19 +127,14 @@ public class ShoppingItemPersistenceImpl
 	}
 
 	/**
-	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBySmallImageId(long)}
 	 * @param smallImageId the small image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
 	@Override
-	public ShoppingItem fetchBySmallImageId(
-		long smallImageId, boolean useFinderCache) {
-
-		return fetchBySmallImageId(smallImageId);
+	public ShoppingItem fetchBySmallImageId(long smallImageId) {
+		return fetchBySmallImageId(smallImageId, true);
 	}
 
 	/**
@@ -150,11 +145,21 @@ public class ShoppingItemPersistenceImpl
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	@Override
-	public ShoppingItem fetchBySmallImageId(long smallImageId) {
-		Object[] finderArgs = new Object[] {smallImageId};
+	public ShoppingItem fetchBySmallImageId(
+		long smallImageId, boolean useFinderCache) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchBySmallImageId, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {smallImageId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchBySmallImageId, finderArgs, this);
+		}
 
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
@@ -187,14 +192,20 @@ public class ShoppingItemPersistenceImpl
 				List<ShoppingItem> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchBySmallImageId, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchBySmallImageId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {smallImageId};
+							}
+
 							_log.warn(
 								"ShoppingItemPersistenceImpl.fetchBySmallImageId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -210,8 +221,10 @@ public class ShoppingItemPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchBySmallImageId, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchBySmallImageId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -334,19 +347,14 @@ public class ShoppingItemPersistenceImpl
 	}
 
 	/**
-	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByMediumImageId(long)}
 	 * @param mediumImageId the medium image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
 	@Override
-	public ShoppingItem fetchByMediumImageId(
-		long mediumImageId, boolean useFinderCache) {
-
-		return fetchByMediumImageId(mediumImageId);
+	public ShoppingItem fetchByMediumImageId(long mediumImageId) {
+		return fetchByMediumImageId(mediumImageId, true);
 	}
 
 	/**
@@ -357,11 +365,21 @@ public class ShoppingItemPersistenceImpl
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	@Override
-	public ShoppingItem fetchByMediumImageId(long mediumImageId) {
-		Object[] finderArgs = new Object[] {mediumImageId};
+	public ShoppingItem fetchByMediumImageId(
+		long mediumImageId, boolean useFinderCache) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByMediumImageId, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {mediumImageId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByMediumImageId, finderArgs, this);
+		}
 
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
@@ -394,14 +412,20 @@ public class ShoppingItemPersistenceImpl
 				List<ShoppingItem> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByMediumImageId, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByMediumImageId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {mediumImageId};
+							}
+
 							_log.warn(
 								"ShoppingItemPersistenceImpl.fetchByMediumImageId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -417,8 +441,10 @@ public class ShoppingItemPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByMediumImageId, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByMediumImageId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -541,19 +567,14 @@ public class ShoppingItemPersistenceImpl
 	}
 
 	/**
-	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByLargeImageId(long)}
 	 * @param largeImageId the large image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
 	@Override
-	public ShoppingItem fetchByLargeImageId(
-		long largeImageId, boolean useFinderCache) {
-
-		return fetchByLargeImageId(largeImageId);
+	public ShoppingItem fetchByLargeImageId(long largeImageId) {
+		return fetchByLargeImageId(largeImageId, true);
 	}
 
 	/**
@@ -564,11 +585,21 @@ public class ShoppingItemPersistenceImpl
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	@Override
-	public ShoppingItem fetchByLargeImageId(long largeImageId) {
-		Object[] finderArgs = new Object[] {largeImageId};
+	public ShoppingItem fetchByLargeImageId(
+		long largeImageId, boolean useFinderCache) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByLargeImageId, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {largeImageId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByLargeImageId, finderArgs, this);
+		}
 
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
@@ -601,14 +632,20 @@ public class ShoppingItemPersistenceImpl
 				List<ShoppingItem> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByLargeImageId, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByLargeImageId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {largeImageId};
+							}
+
 							_log.warn(
 								"ShoppingItemPersistenceImpl.fetchByLargeImageId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -624,8 +661,10 @@ public class ShoppingItemPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByLargeImageId, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByLargeImageId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -755,23 +794,20 @@ public class ShoppingItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
-	@Deprecated
 	@Override
 	public List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<ShoppingItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ShoppingItem> orderByComparator) {
 
-		return findByG_C(groupId, categoryId, start, end, orderByComparator);
+		return findByG_C(
+			groupId, categoryId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -786,12 +822,14 @@ public class ShoppingItemPersistenceImpl
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
 	@Override
 	public List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<ShoppingItem> orderByComparator) {
+		OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -801,27 +839,34 @@ public class ShoppingItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_C;
-			finderArgs = new Object[] {groupId, categoryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_C;
+				finderArgs = new Object[] {groupId, categoryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_C;
 			finderArgs = new Object[] {
 				groupId, categoryId, start, end, orderByComparator
 			};
 		}
 
-		List<ShoppingItem> list = (List<ShoppingItem>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<ShoppingItem> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (ShoppingItem shoppingItem : list) {
-				if ((groupId != shoppingItem.getGroupId()) ||
-					(categoryId != shoppingItem.getCategoryId())) {
+		if (useFinderCache) {
+			list = (List<ShoppingItem>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (ShoppingItem shoppingItem : list) {
+					if ((groupId != shoppingItem.getGroupId()) ||
+						(categoryId != shoppingItem.getCategoryId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -881,10 +926,14 @@ public class ShoppingItemPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1697,20 +1746,15 @@ public class ShoppingItemPersistenceImpl
 	}
 
 	/**
-	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_S(long,String)}
 	 * @param companyId the company ID
 	 * @param sku the sku
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
 	@Override
-	public ShoppingItem fetchByC_S(
-		long companyId, String sku, boolean useFinderCache) {
-
-		return fetchByC_S(companyId, sku);
+	public ShoppingItem fetchByC_S(long companyId, String sku) {
+		return fetchByC_S(companyId, sku, true);
 	}
 
 	/**
@@ -1722,13 +1766,23 @@ public class ShoppingItemPersistenceImpl
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	@Override
-	public ShoppingItem fetchByC_S(long companyId, String sku) {
+	public ShoppingItem fetchByC_S(
+		long companyId, String sku, boolean useFinderCache) {
+
 		sku = Objects.toString(sku, "");
 
-		Object[] finderArgs = new Object[] {companyId, sku};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByC_S, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, sku};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByC_S, finderArgs, this);
+		}
 
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
@@ -1778,8 +1832,10 @@ public class ShoppingItemPersistenceImpl
 				List<ShoppingItem> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByC_S, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByC_S, finderArgs, list);
+					}
 				}
 				else {
 					ShoppingItem shoppingItem = list.get(0);
@@ -1790,7 +1846,9 @@ public class ShoppingItemPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByC_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByC_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2605,20 +2663,16 @@ public class ShoppingItemPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
-	@Deprecated
 	@Override
 	public List<ShoppingItem> findAll(
-		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2631,11 +2685,13 @@ public class ShoppingItemPersistenceImpl
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
 	@Override
 	public List<ShoppingItem> findAll(
-		int start, int end, OrderByComparator<ShoppingItem> orderByComparator) {
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2645,16 +2701,23 @@ public class ShoppingItemPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<ShoppingItem> list = (List<ShoppingItem>)finderCache.getResult(
-			finderPath, finderArgs, this);
+		List<ShoppingItem> list = null;
+
+		if (useFinderCache) {
+			list = (List<ShoppingItem>)finderCache.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2701,10 +2764,14 @@ public class ShoppingItemPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

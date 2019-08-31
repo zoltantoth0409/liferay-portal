@@ -166,22 +166,18 @@ public class ResourceBlockPermissionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockPermissionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByResourceBlockId(long, int, int, OrderByComparator)}
 	 * @param resourceBlockId the resource block ID
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
-	@Deprecated
 	public static List<ResourceBlockPermission> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator) {
 
 		return getPersistence().findByResourceBlockId(
-			resourceBlockId, start, end, orderByComparator, useFinderCache);
+			resourceBlockId, start, end, orderByComparator);
 	}
 
 	/**
@@ -195,14 +191,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByResourceBlockId(
-			resourceBlockId, start, end, orderByComparator);
+			resourceBlockId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -344,22 +342,18 @@ public class ResourceBlockPermissionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockPermissionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByRoleId(long, int, int, OrderByComparator)}
 	 * @param roleId the role ID
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
-	@Deprecated
 	public static List<ResourceBlockPermission> findByRoleId(
 		long roleId, int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator) {
 
 		return getPersistence().findByRoleId(
-			roleId, start, end, orderByComparator, useFinderCache);
+			roleId, start, end, orderByComparator);
 	}
 
 	/**
@@ -373,14 +367,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findByRoleId(
 		long roleId, int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByRoleId(
-			roleId, start, end, orderByComparator);
+			roleId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -500,20 +496,16 @@ public class ResourceBlockPermissionUtil {
 	}
 
 	/**
-	 * Returns the resource block permission where resourceBlockId = &#63; and roleId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the resource block permission where resourceBlockId = &#63; and roleId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByR_R(long,long)}
 	 * @param resourceBlockId the resource block ID
 	 * @param roleId the role ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching resource block permission, or <code>null</code> if a matching resource block permission could not be found
 	 */
-	@Deprecated
 	public static ResourceBlockPermission fetchByR_R(
-		long resourceBlockId, long roleId, boolean useFinderCache) {
+		long resourceBlockId, long roleId) {
 
-		return getPersistence().fetchByR_R(
-			resourceBlockId, roleId, useFinderCache);
+		return getPersistence().fetchByR_R(resourceBlockId, roleId);
 	}
 
 	/**
@@ -525,9 +517,10 @@ public class ResourceBlockPermissionUtil {
 	 * @return the matching resource block permission, or <code>null</code> if a matching resource block permission could not be found
 	 */
 	public static ResourceBlockPermission fetchByR_R(
-		long resourceBlockId, long roleId) {
+		long resourceBlockId, long roleId, boolean useFinderCache) {
 
-		return getPersistence().fetchByR_R(resourceBlockId, roleId);
+		return getPersistence().fetchByR_R(
+			resourceBlockId, roleId, useFinderCache);
 	}
 
 	/**
@@ -668,21 +661,16 @@ public class ResourceBlockPermissionUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ResourceBlockPermissionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource block permissions
 	 */
-	@Deprecated
 	public static List<ResourceBlockPermission> findAll(
 		int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -695,13 +683,16 @@ public class ResourceBlockPermissionUtil {
 	 * @param start the lower bound of the range of resource block permissions
 	 * @param end the upper bound of the range of resource block permissions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource block permissions
 	 */
 	public static List<ResourceBlockPermission> findAll(
 		int start, int end,
-		OrderByComparator<ResourceBlockPermission> orderByComparator) {
+		OrderByComparator<ResourceBlockPermission> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

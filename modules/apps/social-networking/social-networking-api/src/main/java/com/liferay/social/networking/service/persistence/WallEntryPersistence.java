@@ -17,7 +17,6 @@ package com.liferay.social.networking.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.social.networking.exception.NoSuchWallEntryException;
 import com.liferay.social.networking.model.WallEntry;
 
@@ -79,18 +78,16 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	public java.util.List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the wall entries where groupId = &#63;.
@@ -103,11 +100,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where groupId = &#63;.
@@ -118,7 +118,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @throws NoSuchWallEntryException if a matching wall entry could not be found
 	 */
 	public WallEntry findByGroupId_First(
-			long groupId, OrderByComparator<WallEntry> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -129,7 +131,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 */
 	public WallEntry fetchByGroupId_First(
-		long groupId, OrderByComparator<WallEntry> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the last wall entry in the ordered set where groupId = &#63;.
@@ -140,7 +144,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @throws NoSuchWallEntryException if a matching wall entry could not be found
 	 */
 	public WallEntry findByGroupId_Last(
-			long groupId, OrderByComparator<WallEntry> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -151,7 +157,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 */
 	public WallEntry fetchByGroupId_Last(
-		long groupId, OrderByComparator<WallEntry> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63;.
@@ -164,7 +172,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry[] findByGroupId_PrevAndNext(
 			long wallEntryId, long groupId,
-			OrderByComparator<WallEntry> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -212,18 +221,16 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	public java.util.List<WallEntry> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the wall entries where userId = &#63;.
@@ -236,11 +243,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where userId = &#63;.
@@ -251,7 +261,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @throws NoSuchWallEntryException if a matching wall entry could not be found
 	 */
 	public WallEntry findByUserId_First(
-			long userId, OrderByComparator<WallEntry> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -262,7 +274,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 */
 	public WallEntry fetchByUserId_First(
-		long userId, OrderByComparator<WallEntry> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the last wall entry in the ordered set where userId = &#63;.
@@ -273,7 +287,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @throws NoSuchWallEntryException if a matching wall entry could not be found
 	 */
 	public WallEntry findByUserId_Last(
-			long userId, OrderByComparator<WallEntry> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -284,7 +300,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 */
 	public WallEntry fetchByUserId_Last(
-		long userId, OrderByComparator<WallEntry> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the wall entries before and after the current wall entry in the ordered set where userId = &#63;.
@@ -297,7 +315,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry[] findByUserId_PrevAndNext(
 			long wallEntryId, long userId,
-			OrderByComparator<WallEntry> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -347,19 +366,17 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_U(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
-	@Deprecated
 	public java.util.List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the wall entries where groupId = &#63; and userId = &#63;.
@@ -373,11 +390,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<WallEntry> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -390,7 +410,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry findByG_U_First(
 			long groupId, long userId,
-			OrderByComparator<WallEntry> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -403,7 +424,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry fetchByG_U_First(
 		long groupId, long userId,
-		OrderByComparator<WallEntry> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the last wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -416,7 +438,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry findByG_U_Last(
 			long groupId, long userId,
-			OrderByComparator<WallEntry> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -429,7 +452,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry fetchByG_U_Last(
 		long groupId, long userId,
-		OrderByComparator<WallEntry> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns the wall entries before and after the current wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -443,7 +467,8 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 */
 	public WallEntry[] findByG_U_PrevAndNext(
 			long wallEntryId, long groupId, long userId,
-			OrderByComparator<WallEntry> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+				orderByComparator)
 		throws NoSuchWallEntryException;
 
 	/**
@@ -541,17 +566,15 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WallEntryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
-	@Deprecated
 	public java.util.List<WallEntry> findAll(
-		int start, int end, OrderByComparator<WallEntry> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the wall entries.
@@ -563,10 +586,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
 	public java.util.List<WallEntry> findAll(
-		int start, int end, OrderByComparator<WallEntry> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wall entries from the database.

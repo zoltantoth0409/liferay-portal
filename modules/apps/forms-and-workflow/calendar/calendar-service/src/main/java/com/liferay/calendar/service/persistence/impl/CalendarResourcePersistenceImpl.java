@@ -135,23 +135,19 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByResourceBlockId(long, int, int, OrderByComparator)}
 	 * @param resourceBlockId the resource block ID
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return findByResourceBlockId(
-			resourceBlockId, start, end, orderByComparator);
+			resourceBlockId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -165,12 +161,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -180,28 +178,34 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByResourceBlockId;
-			finderArgs = new Object[] {resourceBlockId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByResourceBlockId;
+				finderArgs = new Object[] {resourceBlockId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByResourceBlockId;
 			finderArgs = new Object[] {
 				resourceBlockId, start, end, orderByComparator
 			};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((resourceBlockId !=
-						calendarResource.getResourceBlockId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((resourceBlockId !=
+							calendarResource.getResourceBlockId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -257,10 +261,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -654,22 +662,18 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByUuid(uuid, start, end, orderByComparator);
+		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -683,12 +687,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -700,24 +706,30 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if (!uuid.equals(calendarResource.getUuid())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if (!uuid.equals(calendarResource.getUuid())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -784,10 +796,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1201,20 +1217,15 @@ public class CalendarResourcePersistenceImpl
 	}
 
 	/**
-	 * Returns the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the calendar resource where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
-	@Deprecated
 	@Override
-	public CalendarResource fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		return fetchByUUID_G(uuid, groupId);
+	public CalendarResource fetchByUUID_G(String uuid, long groupId) {
+		return fetchByUUID_G(uuid, groupId, true);
 	}
 
 	/**
@@ -1226,13 +1237,23 @@ public class CalendarResourcePersistenceImpl
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
 	@Override
-	public CalendarResource fetchByUUID_G(String uuid, long groupId) {
+	public CalendarResource fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByUUID_G, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
+		}
 
 		if (result instanceof CalendarResource) {
 			CalendarResource calendarResource = (CalendarResource)result;
@@ -1282,8 +1303,10 @@ public class CalendarResourcePersistenceImpl
 				List<CalendarResource> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					CalendarResource calendarResource = list.get(0);
@@ -1294,7 +1317,10 @@ public class CalendarResourcePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1449,23 +1475,20 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1480,12 +1503,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1497,28 +1522,34 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if (!uuid.equals(calendarResource.getUuid()) ||
-					(companyId != calendarResource.getCompanyId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if (!uuid.equals(calendarResource.getUuid()) ||
+						(companyId != calendarResource.getCompanyId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1589,10 +1620,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2040,22 +2075,18 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2069,12 +2100,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2084,24 +2117,30 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((groupId != calendarResource.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((groupId != calendarResource.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2157,10 +2196,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2856,22 +2899,18 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByActive(boolean, int, int, OrderByComparator)}
 	 * @param active the active
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByActive(
 		boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByActive(active, start, end, orderByComparator);
+		return findByActive(active, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2885,12 +2924,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByActive(
 		boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2900,24 +2941,30 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByActive;
-			finderArgs = new Object[] {active};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByActive;
+				finderArgs = new Object[] {active};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByActive;
 			finderArgs = new Object[] {active, start, end, orderByComparator};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((active != calendarResource.isActive())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((active != calendarResource.isActive())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2973,10 +3020,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3369,23 +3420,19 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param code the code
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByG_C(
 		long groupId, String code, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByG_C(groupId, code, start, end, orderByComparator);
+		return findByG_C(groupId, code, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3400,12 +3447,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByG_C(
 		long groupId, String code, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		code = Objects.toString(code, "");
 
@@ -3417,28 +3466,34 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_C;
-			finderArgs = new Object[] {groupId, code};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_C;
+				finderArgs = new Object[] {groupId, code};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_C;
 			finderArgs = new Object[] {
 				groupId, code, start, end, orderByComparator
 			};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((groupId != calendarResource.getGroupId()) ||
-					!code.equals(calendarResource.getCode())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((groupId != calendarResource.getGroupId()) ||
+						!code.equals(calendarResource.getCode())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -3509,10 +3564,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4303,32 +4362,6 @@ public class CalendarResourcePersistenceImpl
 	}
 
 	/**
-	 * Returns an ordered range of all the calendar resources where groupId = &#63; and code = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,String, int, int, OrderByComparator)}
-	 * @param groupId the group ID
-	 * @param code the code
-	 * @param start the lower bound of the range of calendar resources
-	 * @param end the upper bound of the range of calendar resources (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching calendar resources
-	 */
-	@Deprecated
-	@Override
-	public List<CalendarResource> findByG_C(
-		long[] groupIds, String code, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
-
-		return findByG_C(groupIds, code, start, end, orderByComparator);
-	}
-
-	/**
 	 * Returns an ordered range of all the calendar resources where groupId = any &#63; and code = &#63;.
 	 *
 	 * <p>
@@ -4346,6 +4379,30 @@ public class CalendarResourcePersistenceImpl
 	public List<CalendarResource> findByG_C(
 		long[] groupIds, String code, int start, int end,
 		OrderByComparator<CalendarResource> orderByComparator) {
+
+		return findByG_C(groupIds, code, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the calendar resources where groupId = &#63; and code = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param code the code
+	 * @param start the lower bound of the range of calendar resources
+	 * @param end the upper bound of the range of calendar resources (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching calendar resources
+	 */
+	@Override
+	public List<CalendarResource> findByG_C(
+		long[] groupIds, String code, int start, int end,
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		if (groupIds == null) {
 			groupIds = new long[0];
@@ -4369,27 +4426,33 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {StringUtil.merge(groupIds), code};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {StringUtil.merge(groupIds), code};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(groupIds), code, start, end, orderByComparator
 			};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_C, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if (!ArrayUtil.contains(
-						groupIds, calendarResource.getGroupId()) ||
-					!code.equals(calendarResource.getCode())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if (!ArrayUtil.contains(
+							groupIds, calendarResource.getGroupId()) ||
+						!code.equals(calendarResource.getCode())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -4466,12 +4529,16 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_C, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_C, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_C, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4869,23 +4936,19 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A(long,boolean, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param active the active
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByG_A(
 		long groupId, boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findByG_A(groupId, active, start, end, orderByComparator);
+		return findByG_A(groupId, active, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -4900,12 +4963,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByG_A(
 		long groupId, boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4915,28 +4980,34 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_A;
-			finderArgs = new Object[] {groupId, active};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_A;
+				finderArgs = new Object[] {groupId, active};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_A;
 			finderArgs = new Object[] {
 				groupId, active, start, end, orderByComparator
 			};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((groupId != calendarResource.getGroupId()) ||
-					(active != calendarResource.isActive())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((groupId != calendarResource.getGroupId()) ||
+						(active != calendarResource.isActive())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -4996,10 +5067,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5747,20 +5822,15 @@ public class CalendarResourcePersistenceImpl
 	}
 
 	/**
-	 * Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C(long,long)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
-	@Deprecated
 	@Override
-	public CalendarResource fetchByC_C(
-		long classNameId, long classPK, boolean useFinderCache) {
-
-		return fetchByC_C(classNameId, classPK);
+	public CalendarResource fetchByC_C(long classNameId, long classPK) {
+		return fetchByC_C(classNameId, classPK, true);
 	}
 
 	/**
@@ -5772,11 +5842,21 @@ public class CalendarResourcePersistenceImpl
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
 	@Override
-	public CalendarResource fetchByC_C(long classNameId, long classPK) {
-		Object[] finderArgs = new Object[] {classNameId, classPK};
+	public CalendarResource fetchByC_C(
+		long classNameId, long classPK, boolean useFinderCache) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByC_C, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {classNameId, classPK};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByC_C, finderArgs, this);
+		}
 
 		if (result instanceof CalendarResource) {
 			CalendarResource calendarResource = (CalendarResource)result;
@@ -5815,8 +5895,10 @@ public class CalendarResourcePersistenceImpl
 				List<CalendarResource> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByC_C, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByC_C, finderArgs, list);
+					}
 				}
 				else {
 					CalendarResource calendarResource = list.get(0);
@@ -5827,7 +5909,9 @@ public class CalendarResourcePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5970,25 +6054,21 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C_A(long,String,boolean, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param code the code
 	 * @param active the active
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findByC_C_A(
 		long companyId, String code, boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
 		return findByC_C_A(
-			companyId, code, active, start, end, orderByComparator);
+			companyId, code, active, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -6004,12 +6084,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findByC_C_A(
 		long companyId, String code, boolean active, int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		code = Objects.toString(code, "");
 
@@ -6022,21 +6104,24 @@ public class CalendarResourcePersistenceImpl
 			companyId, code, active, start, end, orderByComparator
 		};
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (CalendarResource calendarResource : list) {
-				if ((companyId != calendarResource.getCompanyId()) ||
-					!StringUtil.wildcardMatches(
-						calendarResource.getCode(), code, '_', '%', '\\',
-						true) ||
-					(active != calendarResource.isActive())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (CalendarResource calendarResource : list) {
+					if ((companyId != calendarResource.getCompanyId()) ||
+						!StringUtil.wildcardMatches(
+							calendarResource.getCode(), code, '_', '%', '\\',
+							true) ||
+						(active != calendarResource.isActive())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -6111,10 +6196,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7390,21 +7479,17 @@ public class CalendarResourcePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>CalendarResourceModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of calendar resources
 	 */
-	@Deprecated
 	@Override
 	public List<CalendarResource> findAll(
 		int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<CalendarResource> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -7417,12 +7502,14 @@ public class CalendarResourcePersistenceImpl
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of calendar resources
 	 */
 	@Override
 	public List<CalendarResource> findAll(
 		int start, int end,
-		OrderByComparator<CalendarResource> orderByComparator) {
+		OrderByComparator<CalendarResource> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7432,17 +7519,23 @@ public class CalendarResourcePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<CalendarResource> list =
-			(List<CalendarResource>)finderCache.getResult(
+		List<CalendarResource> list = null;
+
+		if (useFinderCache) {
+			list = (List<CalendarResource>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -7489,10 +7582,14 @@ public class CalendarResourcePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

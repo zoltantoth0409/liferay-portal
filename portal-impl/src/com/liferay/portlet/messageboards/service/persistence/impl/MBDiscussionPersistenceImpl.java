@@ -127,22 +127,18 @@ public class MBDiscussionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBDiscussionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
-	@Deprecated
 	@Override
 	public List<MBDiscussion> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBDiscussion> orderByComparator) {
 
-		return findByUuid(uuid, start, end, orderByComparator);
+		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -156,12 +152,14 @@ public class MBDiscussionPersistenceImpl
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
 	@Override
 	public List<MBDiscussion> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator) {
+		OrderByComparator<MBDiscussion> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -173,23 +171,30 @@ public class MBDiscussionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
-		List<MBDiscussion> list = (List<MBDiscussion>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<MBDiscussion> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MBDiscussion mbDiscussion : list) {
-				if (!uuid.equals(mbDiscussion.getUuid())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<MBDiscussion>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (MBDiscussion mbDiscussion : list) {
+					if (!uuid.equals(mbDiscussion.getUuid())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -256,10 +261,14 @@ public class MBDiscussionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -669,20 +678,15 @@ public class MBDiscussionPersistenceImpl
 	}
 
 	/**
-	 * Returns the message boards discussion where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the message boards discussion where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
-	@Deprecated
 	@Override
-	public MBDiscussion fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		return fetchByUUID_G(uuid, groupId);
+	public MBDiscussion fetchByUUID_G(String uuid, long groupId) {
+		return fetchByUUID_G(uuid, groupId, true);
 	}
 
 	/**
@@ -694,13 +698,23 @@ public class MBDiscussionPersistenceImpl
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
 	@Override
-	public MBDiscussion fetchByUUID_G(String uuid, long groupId) {
+	public MBDiscussion fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByUUID_G, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
+		}
 
 		if (result instanceof MBDiscussion) {
 			MBDiscussion mbDiscussion = (MBDiscussion)result;
@@ -750,8 +764,10 @@ public class MBDiscussionPersistenceImpl
 				List<MBDiscussion> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					MBDiscussion mbDiscussion = list.get(0);
@@ -762,8 +778,10 @@ public class MBDiscussionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -919,23 +937,20 @@ public class MBDiscussionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBDiscussionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
-	@Deprecated
 	@Override
 	public List<MBDiscussion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBDiscussion> orderByComparator) {
 
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator);
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -950,12 +965,14 @@ public class MBDiscussionPersistenceImpl
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
 	@Override
 	public List<MBDiscussion> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator) {
+		OrderByComparator<MBDiscussion> orderByComparator,
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -967,27 +984,34 @@ public class MBDiscussionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
 			};
 		}
 
-		List<MBDiscussion> list = (List<MBDiscussion>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<MBDiscussion> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MBDiscussion mbDiscussion : list) {
-				if (!uuid.equals(mbDiscussion.getUuid()) ||
-					(companyId != mbDiscussion.getCompanyId())) {
+		if (useFinderCache) {
+			list = (List<MBDiscussion>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (MBDiscussion mbDiscussion : list) {
+					if (!uuid.equals(mbDiscussion.getUuid()) ||
+						(companyId != mbDiscussion.getCompanyId())) {
 
-					break;
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1058,10 +1082,14 @@ public class MBDiscussionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1507,22 +1535,19 @@ public class MBDiscussionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBDiscussionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByClassNameId(long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
-	@Deprecated
 	@Override
 	public List<MBDiscussion> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<MBDiscussion> orderByComparator) {
 
-		return findByClassNameId(classNameId, start, end, orderByComparator);
+		return findByClassNameId(
+			classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1536,12 +1561,14 @@ public class MBDiscussionPersistenceImpl
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards discussions
 	 */
 	@Override
 	public List<MBDiscussion> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator) {
+		OrderByComparator<MBDiscussion> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1551,25 +1578,32 @@ public class MBDiscussionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByClassNameId;
-			finderArgs = new Object[] {classNameId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByClassNameId;
+				finderArgs = new Object[] {classNameId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByClassNameId;
 			finderArgs = new Object[] {
 				classNameId, start, end, orderByComparator
 			};
 		}
 
-		List<MBDiscussion> list = (List<MBDiscussion>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<MBDiscussion> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (MBDiscussion mbDiscussion : list) {
-				if ((classNameId != mbDiscussion.getClassNameId())) {
-					list = null;
+		if (useFinderCache) {
+			list = (List<MBDiscussion>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (MBDiscussion mbDiscussion : list) {
+					if ((classNameId != mbDiscussion.getClassNameId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1625,10 +1659,14 @@ public class MBDiscussionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2009,17 +2047,14 @@ public class MBDiscussionPersistenceImpl
 	}
 
 	/**
-	 * Returns the message boards discussion where threadId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the message boards discussion where threadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByThreadId(long)}
 	 * @param threadId the thread ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
-	@Deprecated
 	@Override
-	public MBDiscussion fetchByThreadId(long threadId, boolean useFinderCache) {
-		return fetchByThreadId(threadId);
+	public MBDiscussion fetchByThreadId(long threadId) {
+		return fetchByThreadId(threadId, true);
 	}
 
 	/**
@@ -2030,11 +2065,19 @@ public class MBDiscussionPersistenceImpl
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
 	@Override
-	public MBDiscussion fetchByThreadId(long threadId) {
-		Object[] finderArgs = new Object[] {threadId};
+	public MBDiscussion fetchByThreadId(long threadId, boolean useFinderCache) {
+		Object[] finderArgs = null;
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByThreadId, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {threadId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByThreadId, finderArgs, this);
+		}
 
 		if (result instanceof MBDiscussion) {
 			MBDiscussion mbDiscussion = (MBDiscussion)result;
@@ -2067,8 +2110,10 @@ public class MBDiscussionPersistenceImpl
 				List<MBDiscussion> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByThreadId, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByThreadId, finderArgs, list);
+					}
 				}
 				else {
 					MBDiscussion mbDiscussion = list.get(0);
@@ -2079,8 +2124,10 @@ public class MBDiscussionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByThreadId, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByThreadId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2208,20 +2255,15 @@ public class MBDiscussionPersistenceImpl
 	}
 
 	/**
-	 * Returns the message boards discussion where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the message boards discussion where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_C(long,long)}
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
-	@Deprecated
 	@Override
-	public MBDiscussion fetchByC_C(
-		long classNameId, long classPK, boolean useFinderCache) {
-
-		return fetchByC_C(classNameId, classPK);
+	public MBDiscussion fetchByC_C(long classNameId, long classPK) {
+		return fetchByC_C(classNameId, classPK, true);
 	}
 
 	/**
@@ -2233,11 +2275,21 @@ public class MBDiscussionPersistenceImpl
 	 * @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	 */
 	@Override
-	public MBDiscussion fetchByC_C(long classNameId, long classPK) {
-		Object[] finderArgs = new Object[] {classNameId, classPK};
+	public MBDiscussion fetchByC_C(
+		long classNameId, long classPK, boolean useFinderCache) {
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByC_C, finderArgs, this);
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {classNameId, classPK};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByC_C, finderArgs, this);
+		}
 
 		if (result instanceof MBDiscussion) {
 			MBDiscussion mbDiscussion = (MBDiscussion)result;
@@ -2276,8 +2328,10 @@ public class MBDiscussionPersistenceImpl
 				List<MBDiscussion> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_C, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_C, finderArgs, list);
+					}
 				}
 				else {
 					MBDiscussion mbDiscussion = list.get(0);
@@ -2288,7 +2342,10 @@ public class MBDiscussionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByC_C, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3126,20 +3183,16 @@ public class MBDiscussionPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>MBDiscussionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards discussions
 	 */
-	@Deprecated
 	@Override
 	public List<MBDiscussion> findAll(
-		int start, int end, OrderByComparator<MBDiscussion> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<MBDiscussion> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3152,11 +3205,13 @@ public class MBDiscussionPersistenceImpl
 	 * @param start the lower bound of the range of message boards discussions
 	 * @param end the upper bound of the range of message boards discussions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards discussions
 	 */
 	@Override
 	public List<MBDiscussion> findAll(
-		int start, int end, OrderByComparator<MBDiscussion> orderByComparator) {
+		int start, int end, OrderByComparator<MBDiscussion> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3166,16 +3221,23 @@ public class MBDiscussionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<MBDiscussion> list = (List<MBDiscussion>)FinderCacheUtil.getResult(
-			finderPath, finderArgs, this);
+		List<MBDiscussion> list = null;
+
+		if (useFinderCache) {
+			list = (List<MBDiscussion>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3222,10 +3284,14 @@ public class MBDiscussionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

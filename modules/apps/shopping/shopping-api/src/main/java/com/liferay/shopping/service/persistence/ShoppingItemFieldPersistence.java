@@ -17,7 +17,6 @@ package com.liferay.shopping.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.shopping.exception.NoSuchItemFieldException;
 import com.liferay.shopping.model.ShoppingItemField;
 
@@ -80,19 +79,16 @@ public interface ShoppingItemFieldPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemFieldModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByItemId(long, int, int, OrderByComparator)}
 	 * @param itemId the item ID
 	 * @param start the lower bound of the range of shopping item fields
 	 * @param end the upper bound of the range of shopping item fields (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping item fields
 	 */
-	@Deprecated
 	public java.util.List<ShoppingItemField> findByItemId(
 		long itemId, int start, int end,
-		OrderByComparator<ShoppingItemField> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the shopping item fields where itemId = &#63;.
@@ -105,11 +101,14 @@ public interface ShoppingItemFieldPersistence
 	 * @param start the lower bound of the range of shopping item fields
 	 * @param end the upper bound of the range of shopping item fields (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping item fields
 	 */
 	public java.util.List<ShoppingItemField> findByItemId(
 		long itemId, int start, int end,
-		OrderByComparator<ShoppingItemField> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping item field in the ordered set where itemId = &#63;.
@@ -120,7 +119,9 @@ public interface ShoppingItemFieldPersistence
 	 * @throws NoSuchItemFieldException if a matching shopping item field could not be found
 	 */
 	public ShoppingItemField findByItemId_First(
-			long itemId, OrderByComparator<ShoppingItemField> orderByComparator)
+			long itemId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+				orderByComparator)
 		throws NoSuchItemFieldException;
 
 	/**
@@ -131,7 +132,9 @@ public interface ShoppingItemFieldPersistence
 	 * @return the first matching shopping item field, or <code>null</code> if a matching shopping item field could not be found
 	 */
 	public ShoppingItemField fetchByItemId_First(
-		long itemId, OrderByComparator<ShoppingItemField> orderByComparator);
+		long itemId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator);
 
 	/**
 	 * Returns the last shopping item field in the ordered set where itemId = &#63;.
@@ -142,7 +145,9 @@ public interface ShoppingItemFieldPersistence
 	 * @throws NoSuchItemFieldException if a matching shopping item field could not be found
 	 */
 	public ShoppingItemField findByItemId_Last(
-			long itemId, OrderByComparator<ShoppingItemField> orderByComparator)
+			long itemId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+				orderByComparator)
 		throws NoSuchItemFieldException;
 
 	/**
@@ -153,7 +158,9 @@ public interface ShoppingItemFieldPersistence
 	 * @return the last matching shopping item field, or <code>null</code> if a matching shopping item field could not be found
 	 */
 	public ShoppingItemField fetchByItemId_Last(
-		long itemId, OrderByComparator<ShoppingItemField> orderByComparator);
+		long itemId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator);
 
 	/**
 	 * Returns the shopping item fields before and after the current shopping item field in the ordered set where itemId = &#63;.
@@ -166,7 +173,8 @@ public interface ShoppingItemFieldPersistence
 	 */
 	public ShoppingItemField[] findByItemId_PrevAndNext(
 			long itemFieldId, long itemId,
-			OrderByComparator<ShoppingItemField> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+				orderByComparator)
 		throws NoSuchItemFieldException;
 
 	/**
@@ -264,18 +272,15 @@ public interface ShoppingItemFieldPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemFieldModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping item fields
 	 * @param end the upper bound of the range of shopping item fields (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping item fields
 	 */
-	@Deprecated
 	public java.util.List<ShoppingItemField> findAll(
 		int start, int end,
-		OrderByComparator<ShoppingItemField> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the shopping item fields.
@@ -287,11 +292,14 @@ public interface ShoppingItemFieldPersistence
 	 * @param start the lower bound of the range of shopping item fields
 	 * @param end the upper bound of the range of shopping item fields (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping item fields
 	 */
 	public java.util.List<ShoppingItemField> findAll(
 		int start, int end,
-		OrderByComparator<ShoppingItemField> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemField>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping item fields from the database.

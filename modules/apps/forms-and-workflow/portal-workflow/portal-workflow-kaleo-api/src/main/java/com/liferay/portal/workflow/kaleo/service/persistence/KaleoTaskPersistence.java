@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.workflow.kaleo.exception.NoSuchTaskException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 
@@ -79,18 +78,16 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTaskModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
-	@Deprecated
 	public java.util.List<KaleoTask> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoTask> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the kaleo tasks where companyId = &#63;.
@@ -103,11 +100,14 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
 	public java.util.List<KaleoTask> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoTask> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task in the ordered set where companyId = &#63;.
@@ -118,7 +118,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @throws NoSuchTaskException if a matching kaleo task could not be found
 	 */
 	public KaleoTask findByCompanyId_First(
-			long companyId, OrderByComparator<KaleoTask> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -129,7 +131,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
 	public KaleoTask fetchByCompanyId_First(
-		long companyId, OrderByComparator<KaleoTask> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns the last kaleo task in the ordered set where companyId = &#63;.
@@ -140,7 +144,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @throws NoSuchTaskException if a matching kaleo task could not be found
 	 */
 	public KaleoTask findByCompanyId_Last(
-			long companyId, OrderByComparator<KaleoTask> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -151,7 +157,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
 	public KaleoTask fetchByCompanyId_Last(
-		long companyId, OrderByComparator<KaleoTask> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns the kaleo tasks before and after the current kaleo task in the ordered set where companyId = &#63;.
@@ -164,7 +172,8 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 */
 	public KaleoTask[] findByCompanyId_PrevAndNext(
 			long kaleoTaskId, long companyId,
-			OrderByComparator<KaleoTask> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -213,18 +222,16 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTaskModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByKaleoDefinitionId(long, int, int, OrderByComparator)}
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
-	@Deprecated
 	public java.util.List<KaleoTask> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator<KaleoTask> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the kaleo tasks where kaleoDefinitionId = &#63;.
@@ -237,11 +244,14 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
 	public java.util.List<KaleoTask> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator<KaleoTask> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -253,7 +263,8 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 */
 	public KaleoTask findByKaleoDefinitionId_First(
 			long kaleoDefinitionId,
-			OrderByComparator<KaleoTask> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -264,7 +275,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
 	public KaleoTask fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId, OrderByComparator<KaleoTask> orderByComparator);
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns the last kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -276,7 +289,8 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 */
 	public KaleoTask findByKaleoDefinitionId_Last(
 			long kaleoDefinitionId,
-			OrderByComparator<KaleoTask> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -287,7 +301,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
 	public KaleoTask fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId, OrderByComparator<KaleoTask> orderByComparator);
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns the kaleo tasks before and after the current kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -300,7 +316,8 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 */
 	public KaleoTask[] findByKaleoDefinitionId_PrevAndNext(
 			long kaleoTaskId, long kaleoDefinitionId,
-			OrderByComparator<KaleoTask> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+				orderByComparator)
 		throws NoSuchTaskException;
 
 	/**
@@ -329,16 +346,12 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 		throws NoSuchTaskException;
 
 	/**
-	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByKaleoNodeId(long)}
 	 * @param kaleoNodeId the kaleo node ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
-	@Deprecated
-	public KaleoTask fetchByKaleoNodeId(
-		long kaleoNodeId, boolean useFinderCache);
+	public KaleoTask fetchByKaleoNodeId(long kaleoNodeId);
 
 	/**
 	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -347,7 +360,8 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
-	public KaleoTask fetchByKaleoNodeId(long kaleoNodeId);
+	public KaleoTask fetchByKaleoNodeId(
+		long kaleoNodeId, boolean useFinderCache);
 
 	/**
 	 * Removes the kaleo task where kaleoNodeId = &#63; from the database.
@@ -444,17 +458,15 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>KaleoTaskModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo tasks
 	 */
-	@Deprecated
 	public java.util.List<KaleoTask> findAll(
-		int start, int end, OrderByComparator<KaleoTask> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the kaleo tasks.
@@ -466,10 +478,14 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo tasks
 	 */
 	public java.util.List<KaleoTask> findAll(
-		int start, int end, OrderByComparator<KaleoTask> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoTask>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kaleo tasks from the database.

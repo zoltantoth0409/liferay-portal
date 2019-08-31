@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.lists.exception.NoSuchRecordException;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,18 +78,16 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records where uuid = &#63;.
@@ -103,11 +100,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
 	public java.util.List<DDLRecord> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddl record in the ordered set where uuid = &#63;.
@@ -118,7 +118,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByUuid_First(
-			String uuid, OrderByComparator<DDLRecord> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -129,7 +131,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByUuid_First(
-		String uuid, OrderByComparator<DDLRecord> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddl record in the ordered set where uuid = &#63;.
@@ -140,7 +144,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByUuid_Last(
-			String uuid, OrderByComparator<DDLRecord> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -151,7 +157,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByUuid_Last(
-		String uuid, OrderByComparator<DDLRecord> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddl records before and after the current ddl record in the ordered set where uuid = &#63;.
@@ -164,7 +172,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord[] findByUuid_PrevAndNext(
 			long recordId, String uuid,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -194,17 +203,13 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 		throws NoSuchRecordException;
 
 	/**
-	 * Returns the ddl record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the ddl record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
-	@Deprecated
-	public DDLRecord fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public DDLRecord fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the ddl record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -214,7 +219,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
-	public DDLRecord fetchByUUID_G(String uuid, long groupId);
+	public DDLRecord fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the ddl record where uuid = &#63; and groupId = &#63; from the database.
@@ -267,19 +273,17 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records where uuid = &#63; and companyId = &#63;.
@@ -293,11 +297,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
 	public java.util.List<DDLRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddl record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -310,7 +317,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -323,7 +331,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddl record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -336,7 +345,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -349,7 +359,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddl records before and after the current ddl record in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -363,7 +374,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord[] findByUuid_C_PrevAndNext(
 			long recordId, String uuid, long companyId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -413,18 +425,16 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByCompanyId(long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records where companyId = &#63;.
@@ -437,11 +447,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
 	public java.util.List<DDLRecord> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddl record in the ordered set where companyId = &#63;.
@@ -452,7 +465,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByCompanyId_First(
-			long companyId, OrderByComparator<DDLRecord> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -463,7 +478,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByCompanyId_First(
-		long companyId, OrderByComparator<DDLRecord> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddl record in the ordered set where companyId = &#63;.
@@ -474,7 +491,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByCompanyId_Last(
-			long companyId, OrderByComparator<DDLRecord> orderByComparator)
+			long companyId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -485,7 +504,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByCompanyId_Last(
-		long companyId, OrderByComparator<DDLRecord> orderByComparator);
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddl records before and after the current ddl record in the ordered set where companyId = &#63;.
@@ -498,7 +519,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord[] findByCompanyId_PrevAndNext(
 			long recordId, long companyId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -546,18 +568,16 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByRecordSetId(long, int, int, OrderByComparator)}
 	 * @param recordSetId the record set ID
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findByRecordSetId(
 		long recordSetId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records where recordSetId = &#63;.
@@ -570,11 +590,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
 	public java.util.List<DDLRecord> findByRecordSetId(
 		long recordSetId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddl record in the ordered set where recordSetId = &#63;.
@@ -585,7 +608,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByRecordSetId_First(
-			long recordSetId, OrderByComparator<DDLRecord> orderByComparator)
+			long recordSetId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -596,7 +621,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByRecordSetId_First(
-		long recordSetId, OrderByComparator<DDLRecord> orderByComparator);
+		long recordSetId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddl record in the ordered set where recordSetId = &#63;.
@@ -607,7 +634,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	public DDLRecord findByRecordSetId_Last(
-			long recordSetId, OrderByComparator<DDLRecord> orderByComparator)
+			long recordSetId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -618,7 +647,9 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	public DDLRecord fetchByRecordSetId_Last(
-		long recordSetId, OrderByComparator<DDLRecord> orderByComparator);
+		long recordSetId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddl records before and after the current ddl record in the ordered set where recordSetId = &#63;.
@@ -631,7 +662,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord[] findByRecordSetId_PrevAndNext(
 			long recordId, long recordSetId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -681,19 +713,17 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByR_U(long,long, int, int, OrderByComparator)}
 	 * @param recordSetId the record set ID
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findByR_U(
 		long recordSetId, long userId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records where recordSetId = &#63; and userId = &#63;.
@@ -707,11 +737,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl records
 	 */
 	public java.util.List<DDLRecord> findByR_U(
 		long recordSetId, long userId, int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddl record in the ordered set where recordSetId = &#63; and userId = &#63;.
@@ -724,7 +757,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord findByR_U_First(
 			long recordSetId, long userId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -737,7 +771,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord fetchByR_U_First(
 		long recordSetId, long userId,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddl record in the ordered set where recordSetId = &#63; and userId = &#63;.
@@ -750,7 +785,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord findByR_U_Last(
 			long recordSetId, long userId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -763,7 +799,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord fetchByR_U_Last(
 		long recordSetId, long userId,
-		OrderByComparator<DDLRecord> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns the ddl records before and after the current ddl record in the ordered set where recordSetId = &#63; and userId = &#63;.
@@ -777,7 +814,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 */
 	public DDLRecord[] findByR_U_PrevAndNext(
 			long recordId, long recordSetId, long userId,
-			OrderByComparator<DDLRecord> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+				orderByComparator)
 		throws NoSuchRecordException;
 
 	/**
@@ -875,17 +913,15 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDLRecordModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddl records
 	 */
-	@Deprecated
 	public java.util.List<DDLRecord> findAll(
-		int start, int end, OrderByComparator<DDLRecord> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddl records.
@@ -897,10 +933,14 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	 * @param start the lower bound of the range of ddl records
 	 * @param end the upper bound of the range of ddl records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddl records
 	 */
 	public java.util.List<DDLRecord> findAll(
-		int start, int end, OrderByComparator<DDLRecord> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ddl records from the database.

@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.expando.kernel.exception.NoSuchRowException;
 import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,19 +78,16 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExpandoRowModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTableId(long, int, int, OrderByComparator)}
 	 * @param tableId the table ID
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
-	@Deprecated
 	public java.util.List<ExpandoRow> findByTableId(
 		long tableId, int start, int end,
-		OrderByComparator<ExpandoRow> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the expando rows where tableId = &#63;.
@@ -104,11 +100,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
 	public java.util.List<ExpandoRow> findByTableId(
 		long tableId, int start, int end,
-		OrderByComparator<ExpandoRow> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first expando row in the ordered set where tableId = &#63;.
@@ -119,7 +118,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @throws NoSuchRowException if a matching expando row could not be found
 	 */
 	public ExpandoRow findByTableId_First(
-			long tableId, OrderByComparator<ExpandoRow> orderByComparator)
+			long tableId,
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -130,7 +131,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @return the first matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
 	public ExpandoRow fetchByTableId_First(
-		long tableId, OrderByComparator<ExpandoRow> orderByComparator);
+		long tableId,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns the last expando row in the ordered set where tableId = &#63;.
@@ -141,7 +144,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @throws NoSuchRowException if a matching expando row could not be found
 	 */
 	public ExpandoRow findByTableId_Last(
-			long tableId, OrderByComparator<ExpandoRow> orderByComparator)
+			long tableId,
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -152,7 +157,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @return the last matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
 	public ExpandoRow fetchByTableId_Last(
-		long tableId, OrderByComparator<ExpandoRow> orderByComparator);
+		long tableId,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns the expando rows before and after the current expando row in the ordered set where tableId = &#63;.
@@ -165,7 +172,8 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 */
 	public ExpandoRow[] findByTableId_PrevAndNext(
 			long rowId, long tableId,
-			OrderByComparator<ExpandoRow> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -213,19 +221,16 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExpandoRowModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByClassPK(long, int, int, OrderByComparator)}
 	 * @param classPK the class pk
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
-	@Deprecated
 	public java.util.List<ExpandoRow> findByClassPK(
 		long classPK, int start, int end,
-		OrderByComparator<ExpandoRow> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the expando rows where classPK = &#63;.
@@ -238,11 +243,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
 	public java.util.List<ExpandoRow> findByClassPK(
 		long classPK, int start, int end,
-		OrderByComparator<ExpandoRow> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first expando row in the ordered set where classPK = &#63;.
@@ -253,7 +261,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @throws NoSuchRowException if a matching expando row could not be found
 	 */
 	public ExpandoRow findByClassPK_First(
-			long classPK, OrderByComparator<ExpandoRow> orderByComparator)
+			long classPK,
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -264,7 +274,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @return the first matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
 	public ExpandoRow fetchByClassPK_First(
-		long classPK, OrderByComparator<ExpandoRow> orderByComparator);
+		long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns the last expando row in the ordered set where classPK = &#63;.
@@ -275,7 +287,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @throws NoSuchRowException if a matching expando row could not be found
 	 */
 	public ExpandoRow findByClassPK_Last(
-			long classPK, OrderByComparator<ExpandoRow> orderByComparator)
+			long classPK,
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -286,7 +300,9 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @return the last matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
 	public ExpandoRow fetchByClassPK_Last(
-		long classPK, OrderByComparator<ExpandoRow> orderByComparator);
+		long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns the expando rows before and after the current expando row in the ordered set where classPK = &#63;.
@@ -299,7 +315,8 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 */
 	public ExpandoRow[] findByClassPK_PrevAndNext(
 			long rowId, long classPK,
-			OrderByComparator<ExpandoRow> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+				orderByComparator)
 		throws NoSuchRowException;
 
 	/**
@@ -329,17 +346,13 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 		throws NoSuchRowException;
 
 	/**
-	 * Returns the expando row where tableId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the expando row where tableId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByT_C(long,long)}
 	 * @param tableId the table ID
 	 * @param classPK the class pk
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
-	@Deprecated
-	public ExpandoRow fetchByT_C(
-		long tableId, long classPK, boolean useFinderCache);
+	public ExpandoRow fetchByT_C(long tableId, long classPK);
 
 	/**
 	 * Returns the expando row where tableId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -349,7 +362,8 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
-	public ExpandoRow fetchByT_C(long tableId, long classPK);
+	public ExpandoRow fetchByT_C(
+		long tableId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Removes the expando row where tableId = &#63; and classPK = &#63; from the database.
@@ -447,17 +461,15 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ExpandoRowModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of expando rows
 	 */
-	@Deprecated
 	public java.util.List<ExpandoRow> findAll(
-		int start, int end, OrderByComparator<ExpandoRow> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the expando rows.
@@ -469,10 +481,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of expando rows
 	 */
 	public java.util.List<ExpandoRow> findAll(
-		int start, int end, OrderByComparator<ExpandoRow> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the expando rows from the database.

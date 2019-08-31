@@ -125,22 +125,18 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -154,12 +150,14 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -169,24 +167,30 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (PowwowMeeting powwowMeeting : list) {
-				if ((groupId != powwowMeeting.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (PowwowMeeting powwowMeeting : list) {
+					if ((groupId != powwowMeeting.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -242,10 +246,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1009,23 +1017,19 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPowwowServerId(long, int, int, OrderByComparator)}
 	 * @param powwowServerId the powwow server ID
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findByPowwowServerId(
 		long powwowServerId, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
 		return findByPowwowServerId(
-			powwowServerId, start, end, orderByComparator);
+			powwowServerId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1039,12 +1043,14 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findByPowwowServerId(
 		long powwowServerId, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1054,26 +1060,32 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByPowwowServerId;
-			finderArgs = new Object[] {powwowServerId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByPowwowServerId;
+				finderArgs = new Object[] {powwowServerId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByPowwowServerId;
 			finderArgs = new Object[] {
 				powwowServerId, start, end, orderByComparator
 			};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (PowwowMeeting powwowMeeting : list) {
-				if ((powwowServerId != powwowMeeting.getPowwowServerId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (PowwowMeeting powwowMeeting : list) {
+					if ((powwowServerId != powwowMeeting.getPowwowServerId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1129,10 +1141,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1523,22 +1539,18 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByStatus(int, int, int, OrderByComparator)}
 	 * @param status the status
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findByStatus(
 		int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
-		return findByStatus(status, start, end, orderByComparator);
+		return findByStatus(status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1552,12 +1564,14 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findByStatus(
 		int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1567,24 +1581,30 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByStatus;
-			finderArgs = new Object[] {status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByStatus;
+				finderArgs = new Object[] {status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByStatus;
 			finderArgs = new Object[] {status, start, end, orderByComparator};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (PowwowMeeting powwowMeeting : list) {
-				if ((status != powwowMeeting.getStatus())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (PowwowMeeting powwowMeeting : list) {
+					if ((status != powwowMeeting.getStatus())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1640,10 +1660,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2032,23 +2056,19 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_S(long,int, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param status the status
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findByU_S(
 		long userId, int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
-		return findByU_S(userId, status, start, end, orderByComparator);
+		return findByU_S(userId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2063,12 +2083,14 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findByU_S(
 		long userId, int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2078,28 +2100,34 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByU_S;
-			finderArgs = new Object[] {userId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByU_S;
+				finderArgs = new Object[] {userId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByU_S;
 			finderArgs = new Object[] {
 				userId, status, start, end, orderByComparator
 			};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (PowwowMeeting powwowMeeting : list) {
-				if ((userId != powwowMeeting.getUserId()) ||
-					(status != powwowMeeting.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (PowwowMeeting powwowMeeting : list) {
+					if ((userId != powwowMeeting.getUserId()) ||
+						(status != powwowMeeting.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2159,10 +2187,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2582,24 +2614,20 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByPSI_S(long,int, int, int, OrderByComparator)}
 	 * @param powwowServerId the powwow server ID
 	 * @param status the status
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findByPSI_S(
 		long powwowServerId, int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
 		return findByPSI_S(
-			powwowServerId, status, start, end, orderByComparator);
+			powwowServerId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2614,12 +2642,14 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findByPSI_S(
 		long powwowServerId, int status, int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2629,28 +2659,34 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByPSI_S;
-			finderArgs = new Object[] {powwowServerId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByPSI_S;
+				finderArgs = new Object[] {powwowServerId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByPSI_S;
 			finderArgs = new Object[] {
 				powwowServerId, status, start, end, orderByComparator
 			};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (PowwowMeeting powwowMeeting : list) {
-				if ((powwowServerId != powwowMeeting.getPowwowServerId()) ||
-					(status != powwowMeeting.getStatus())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (PowwowMeeting powwowMeeting : list) {
+					if ((powwowServerId != powwowMeeting.getPowwowServerId()) ||
+						(status != powwowMeeting.getStatus())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -2710,10 +2746,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3747,20 +3787,17 @@ public class PowwowMeetingPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>PowwowMeetingModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of powwow meetings
 	 */
-	@Deprecated
 	@Override
 	public List<PowwowMeeting> findAll(
-		int start, int end, OrderByComparator<PowwowMeeting> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end,
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3773,12 +3810,13 @@ public class PowwowMeetingPersistenceImpl
 	 * @param start the lower bound of the range of powwow meetings
 	 * @param end the upper bound of the range of powwow meetings (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of powwow meetings
 	 */
 	@Override
 	public List<PowwowMeeting> findAll(
-		int start, int end,
-		OrderByComparator<PowwowMeeting> orderByComparator) {
+		int start, int end, OrderByComparator<PowwowMeeting> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3788,17 +3826,23 @@ public class PowwowMeetingPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<PowwowMeeting> list =
-			(List<PowwowMeeting>)FinderCacheUtil.getResult(
+		List<PowwowMeeting> list = null;
+
+		if (useFinderCache) {
+			list = (List<PowwowMeeting>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3845,10 +3889,14 @@ public class PowwowMeetingPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

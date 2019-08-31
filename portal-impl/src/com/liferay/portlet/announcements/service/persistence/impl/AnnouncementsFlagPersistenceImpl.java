@@ -122,22 +122,18 @@ public class AnnouncementsFlagPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnnouncementsFlagModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByEntryId(long, int, int, OrderByComparator)}
 	 * @param entryId the entry ID
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching announcements flags
 	 */
-	@Deprecated
 	@Override
 	public List<AnnouncementsFlag> findByEntryId(
 		long entryId, int start, int end,
-		OrderByComparator<AnnouncementsFlag> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AnnouncementsFlag> orderByComparator) {
 
-		return findByEntryId(entryId, start, end, orderByComparator);
+		return findByEntryId(entryId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -151,12 +147,14 @@ public class AnnouncementsFlagPersistenceImpl
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching announcements flags
 	 */
 	@Override
 	public List<AnnouncementsFlag> findByEntryId(
 		long entryId, int start, int end,
-		OrderByComparator<AnnouncementsFlag> orderByComparator) {
+		OrderByComparator<AnnouncementsFlag> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,24 +164,30 @@ public class AnnouncementsFlagPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByEntryId;
-			finderArgs = new Object[] {entryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByEntryId;
+				finderArgs = new Object[] {entryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByEntryId;
 			finderArgs = new Object[] {entryId, start, end, orderByComparator};
 		}
 
-		List<AnnouncementsFlag> list =
-			(List<AnnouncementsFlag>)FinderCacheUtil.getResult(
+		List<AnnouncementsFlag> list = null;
+
+		if (useFinderCache) {
+			list = (List<AnnouncementsFlag>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AnnouncementsFlag announcementsFlag : list) {
-				if ((entryId != announcementsFlag.getEntryId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (AnnouncementsFlag announcementsFlag : list) {
+					if ((entryId != announcementsFlag.getEntryId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -239,10 +243,14 @@ public class AnnouncementsFlagPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -636,21 +644,18 @@ public class AnnouncementsFlagPersistenceImpl
 	}
 
 	/**
-	 * Returns the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the announcements flag where userId = &#63; and entryId = &#63; and value = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_E_V(long,long,int)}
 	 * @param userId the user ID
 	 * @param entryId the entry ID
 	 * @param value the value
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
-	@Deprecated
 	@Override
 	public AnnouncementsFlag fetchByU_E_V(
-		long userId, long entryId, int value, boolean useFinderCache) {
+		long userId, long entryId, int value) {
 
-		return fetchByU_E_V(userId, entryId, value);
+		return fetchByU_E_V(userId, entryId, value, true);
 	}
 
 	/**
@@ -664,12 +669,20 @@ public class AnnouncementsFlagPersistenceImpl
 	 */
 	@Override
 	public AnnouncementsFlag fetchByU_E_V(
-		long userId, long entryId, int value) {
+		long userId, long entryId, int value, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {userId, entryId, value};
+		Object[] finderArgs = null;
 
-		Object result = FinderCacheUtil.getResult(
-			_finderPathFetchByU_E_V, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {userId, entryId, value};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByU_E_V, finderArgs, this);
+		}
 
 		if (result instanceof AnnouncementsFlag) {
 			AnnouncementsFlag announcementsFlag = (AnnouncementsFlag)result;
@@ -713,8 +726,10 @@ public class AnnouncementsFlagPersistenceImpl
 				List<AnnouncementsFlag> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByU_E_V, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByU_E_V, finderArgs, list);
+					}
 				}
 				else {
 					AnnouncementsFlag announcementsFlag = list.get(0);
@@ -725,8 +740,10 @@ public class AnnouncementsFlagPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByU_E_V, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByU_E_V, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1416,21 +1433,17 @@ public class AnnouncementsFlagPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnnouncementsFlagModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of announcements flags
 	 */
-	@Deprecated
 	@Override
 	public List<AnnouncementsFlag> findAll(
 		int start, int end,
-		OrderByComparator<AnnouncementsFlag> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<AnnouncementsFlag> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1443,12 +1456,14 @@ public class AnnouncementsFlagPersistenceImpl
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of announcements flags
 	 */
 	@Override
 	public List<AnnouncementsFlag> findAll(
 		int start, int end,
-		OrderByComparator<AnnouncementsFlag> orderByComparator) {
+		OrderByComparator<AnnouncementsFlag> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1458,17 +1473,23 @@ public class AnnouncementsFlagPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<AnnouncementsFlag> list =
-			(List<AnnouncementsFlag>)FinderCacheUtil.getResult(
+		List<AnnouncementsFlag> list = null;
+
+		if (useFinderCache) {
+			list = (List<AnnouncementsFlag>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1515,10 +1536,14 @@ public class AnnouncementsFlagPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

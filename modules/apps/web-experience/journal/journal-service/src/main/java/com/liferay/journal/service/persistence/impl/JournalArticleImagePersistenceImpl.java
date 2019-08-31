@@ -124,22 +124,18 @@ public class JournalArticleImagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleImageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
-	@Deprecated
 	@Override
 	public List<JournalArticleImage> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalArticleImage> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -153,12 +149,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator) {
+		OrderByComparator<JournalArticleImage> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -168,24 +166,30 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<JournalArticleImage> list =
-			(List<JournalArticleImage>)finderCache.getResult(
+		List<JournalArticleImage> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalArticleImage journalArticleImage : list) {
-				if ((groupId != journalArticleImage.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalArticleImage journalArticleImage : list) {
+					if ((groupId != journalArticleImage.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -241,10 +245,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -637,22 +645,18 @@ public class JournalArticleImagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleImageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByTempImage(boolean, int, int, OrderByComparator)}
 	 * @param tempImage the temp image
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
-	@Deprecated
 	@Override
 	public List<JournalArticleImage> findByTempImage(
 		boolean tempImage, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalArticleImage> orderByComparator) {
 
-		return findByTempImage(tempImage, start, end, orderByComparator);
+		return findByTempImage(tempImage, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -666,12 +670,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByTempImage(
 		boolean tempImage, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator) {
+		OrderByComparator<JournalArticleImage> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -681,26 +687,32 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByTempImage;
-			finderArgs = new Object[] {tempImage};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByTempImage;
+				finderArgs = new Object[] {tempImage};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByTempImage;
 			finderArgs = new Object[] {
 				tempImage, start, end, orderByComparator
 			};
 		}
 
-		List<JournalArticleImage> list =
-			(List<JournalArticleImage>)finderCache.getResult(
+		List<JournalArticleImage> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalArticleImage journalArticleImage : list) {
-				if ((tempImage != journalArticleImage.isTempImage())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalArticleImage journalArticleImage : list) {
+					if ((tempImage != journalArticleImage.isTempImage())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -756,10 +768,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1161,25 +1177,21 @@ public class JournalArticleImagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleImageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_A_V(long,String,double, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param version the version
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
-	@Deprecated
 	@Override
 	public List<JournalArticleImage> findByG_A_V(
 		long groupId, String articleId, double version, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalArticleImage> orderByComparator) {
 
 		return findByG_A_V(
-			groupId, articleId, version, start, end, orderByComparator);
+			groupId, articleId, version, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1195,12 +1207,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByG_A_V(
 		long groupId, String articleId, double version, int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator) {
+		OrderByComparator<JournalArticleImage> orderByComparator,
+		boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 
@@ -1212,29 +1226,35 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_A_V;
-			finderArgs = new Object[] {groupId, articleId, version};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_A_V;
+				finderArgs = new Object[] {groupId, articleId, version};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_A_V;
 			finderArgs = new Object[] {
 				groupId, articleId, version, start, end, orderByComparator
 			};
 		}
 
-		List<JournalArticleImage> list =
-			(List<JournalArticleImage>)finderCache.getResult(
+		List<JournalArticleImage> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JournalArticleImage journalArticleImage : list) {
-				if ((groupId != journalArticleImage.getGroupId()) ||
-					!articleId.equals(journalArticleImage.getArticleId()) ||
-					(version != journalArticleImage.getVersion())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (JournalArticleImage journalArticleImage : list) {
+					if ((groupId != journalArticleImage.getGroupId()) ||
+						!articleId.equals(journalArticleImage.getArticleId()) ||
+						(version != journalArticleImage.getVersion())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1309,10 +1329,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1803,26 +1827,24 @@ public class JournalArticleImagePersistenceImpl
 	}
 
 	/**
-	 * Returns the journal article image where groupId = &#63; and articleId = &#63; and version = &#63; and elInstanceId = &#63; and elName = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the journal article image where groupId = &#63; and articleId = &#63; and version = &#63; and elInstanceId = &#63; and elName = &#63; and languageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_A_V_E_E_L(long,String,double,String,String,String)}
 	 * @param groupId the group ID
 	 * @param articleId the article ID
 	 * @param version the version
 	 * @param elInstanceId the el instance ID
 	 * @param elName the el name
 	 * @param languageId the language ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article image, or <code>null</code> if a matching journal article image could not be found
 	 */
-	@Deprecated
 	@Override
 	public JournalArticleImage fetchByG_A_V_E_E_L(
 		long groupId, String articleId, double version, String elInstanceId,
-		String elName, String languageId, boolean useFinderCache) {
+		String elName, String languageId) {
 
 		return fetchByG_A_V_E_E_L(
-			groupId, articleId, version, elInstanceId, elName, languageId);
+			groupId, articleId, version, elInstanceId, elName, languageId,
+			true);
 	}
 
 	/**
@@ -1840,19 +1862,27 @@ public class JournalArticleImagePersistenceImpl
 	@Override
 	public JournalArticleImage fetchByG_A_V_E_E_L(
 		long groupId, String articleId, double version, String elInstanceId,
-		String elName, String languageId) {
+		String elName, String languageId, boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 		elInstanceId = Objects.toString(elInstanceId, "");
 		elName = Objects.toString(elName, "");
 		languageId = Objects.toString(languageId, "");
 
-		Object[] finderArgs = new Object[] {
-			groupId, articleId, version, elInstanceId, elName, languageId
-		};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByG_A_V_E_E_L, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {
+				groupId, articleId, version, elInstanceId, elName, languageId
+			};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByG_A_V_E_E_L, finderArgs, this);
+		}
 
 		if (result instanceof JournalArticleImage) {
 			JournalArticleImage journalArticleImage =
@@ -1959,8 +1989,10 @@ public class JournalArticleImagePersistenceImpl
 				List<JournalArticleImage> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByG_A_V_E_E_L, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByG_A_V_E_E_L, finderArgs, list);
+					}
 				}
 				else {
 					JournalArticleImage journalArticleImage = list.get(0);
@@ -1971,8 +2003,10 @@ public class JournalArticleImagePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByG_A_V_E_E_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByG_A_V_E_E_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2838,21 +2872,17 @@ public class JournalArticleImagePersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>JournalArticleImageModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal article images
 	 */
-	@Deprecated
 	@Override
 	public List<JournalArticleImage> findAll(
 		int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<JournalArticleImage> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2865,12 +2895,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findAll(
 		int start, int end,
-		OrderByComparator<JournalArticleImage> orderByComparator) {
+		OrderByComparator<JournalArticleImage> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2880,17 +2912,23 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<JournalArticleImage> list =
-			(List<JournalArticleImage>)finderCache.getResult(
+		List<JournalArticleImage> list = null;
+
+		if (useFinderCache) {
+			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2938,10 +2976,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

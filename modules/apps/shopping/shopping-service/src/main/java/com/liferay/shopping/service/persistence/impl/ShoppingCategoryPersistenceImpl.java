@@ -130,22 +130,18 @@ public class ShoppingCategoryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
-	@Deprecated
 	@Override
 	public List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ShoppingCategory> orderByComparator) {
 
-		return findByGroupId(groupId, start, end, orderByComparator);
+		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -159,12 +155,14 @@ public class ShoppingCategoryPersistenceImpl
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
 	public List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator) {
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -174,24 +172,30 @@ public class ShoppingCategoryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
-		List<ShoppingCategory> list =
-			(List<ShoppingCategory>)finderCache.getResult(
+		List<ShoppingCategory> list = null;
+
+		if (useFinderCache) {
+			list = (List<ShoppingCategory>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (ShoppingCategory shoppingCategory : list) {
-				if ((groupId != shoppingCategory.getGroupId())) {
-					list = null;
+			if ((list != null) && !list.isEmpty()) {
+				for (ShoppingCategory shoppingCategory : list) {
+					if ((groupId != shoppingCategory.getGroupId())) {
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -247,10 +251,14 @@ public class ShoppingCategoryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1020,24 +1028,20 @@ public class ShoppingCategoryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentCategoryId the parent category ID
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
-	@Deprecated
 	@Override
 	public List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ShoppingCategory> orderByComparator) {
 
 		return findByG_P(
-			groupId, parentCategoryId, start, end, orderByComparator);
+			groupId, parentCategoryId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1052,12 +1056,14 @@ public class ShoppingCategoryPersistenceImpl
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
 	public List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator) {
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1067,29 +1073,35 @@ public class ShoppingCategoryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] {groupId, parentCategoryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P;
+				finderArgs = new Object[] {groupId, parentCategoryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
 				groupId, parentCategoryId, start, end, orderByComparator
 			};
 		}
 
-		List<ShoppingCategory> list =
-			(List<ShoppingCategory>)finderCache.getResult(
+		List<ShoppingCategory> list = null;
+
+		if (useFinderCache) {
+			list = (List<ShoppingCategory>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
-		if ((list != null) && !list.isEmpty()) {
-			for (ShoppingCategory shoppingCategory : list) {
-				if ((groupId != shoppingCategory.getGroupId()) ||
-					(parentCategoryId !=
-						shoppingCategory.getParentCategoryId())) {
+			if ((list != null) && !list.isEmpty()) {
+				for (ShoppingCategory shoppingCategory : list) {
+					if ((groupId != shoppingCategory.getGroupId()) ||
+						(parentCategoryId !=
+							shoppingCategory.getParentCategoryId())) {
 
-					list = null;
+						list = null;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
@@ -1149,10 +1161,14 @@ public class ShoppingCategoryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1972,20 +1988,15 @@ public class ShoppingCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns the shopping category where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping category where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_N(long,String)}
 	 * @param groupId the group ID
 	 * @param name the name
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
-	@Deprecated
 	@Override
-	public ShoppingCategory fetchByG_N(
-		long groupId, String name, boolean useFinderCache) {
-
-		return fetchByG_N(groupId, name);
+	public ShoppingCategory fetchByG_N(long groupId, String name) {
+		return fetchByG_N(groupId, name, true);
 	}
 
 	/**
@@ -1997,13 +2008,23 @@ public class ShoppingCategoryPersistenceImpl
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByG_N(long groupId, String name) {
+	public ShoppingCategory fetchByG_N(
+		long groupId, String name, boolean useFinderCache) {
+
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = new Object[] {groupId, name};
+		Object[] finderArgs = null;
 
-		Object result = finderCache.getResult(
-			_finderPathFetchByG_N, finderArgs, this);
+		if (useFinderCache) {
+			finderArgs = new Object[] {groupId, name};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByG_N, finderArgs, this);
+		}
 
 		if (result instanceof ShoppingCategory) {
 			ShoppingCategory shoppingCategory = (ShoppingCategory)result;
@@ -2053,14 +2074,20 @@ public class ShoppingCategoryPersistenceImpl
 				List<ShoppingCategory> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByG_N, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByG_N, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {groupId, name};
+							}
+
 							_log.warn(
 								"ShoppingCategoryPersistenceImpl.fetchByG_N(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -2076,7 +2103,9 @@ public class ShoppingCategoryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByG_N, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByG_N, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2819,21 +2848,17 @@ public class ShoppingCategoryPersistenceImpl
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCategoryModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
-	@Deprecated
 	@Override
 	public List<ShoppingCategory> findAll(
 		int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ShoppingCategory> orderByComparator) {
 
-		return findAll(start, end, orderByComparator);
+		return findAll(start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2846,12 +2871,14 @@ public class ShoppingCategoryPersistenceImpl
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
 	@Override
 	public List<ShoppingCategory> findAll(
 		int start, int end,
-		OrderByComparator<ShoppingCategory> orderByComparator) {
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2861,17 +2888,23 @@ public class ShoppingCategoryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<ShoppingCategory> list =
-			(List<ShoppingCategory>)finderCache.getResult(
+		List<ShoppingCategory> list = null;
+
+		if (useFinderCache) {
+			list = (List<ShoppingCategory>)finderCache.getResult(
 				finderPath, finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2918,10 +2951,14 @@ public class ShoppingCategoryPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

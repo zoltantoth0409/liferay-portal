@@ -17,7 +17,6 @@ package com.liferay.shopping.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.shopping.exception.NoSuchCartException;
 import com.liferay.shopping.model.ShoppingCart;
 
@@ -79,19 +78,16 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCartModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
-	@Deprecated
 	public java.util.List<ShoppingCart> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ShoppingCart> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the shopping carts where groupId = &#63;.
@@ -104,11 +100,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
 	public java.util.List<ShoppingCart> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<ShoppingCart> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping cart in the ordered set where groupId = &#63;.
@@ -119,7 +118,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @throws NoSuchCartException if a matching shopping cart could not be found
 	 */
 	public ShoppingCart findByGroupId_First(
-			long groupId, OrderByComparator<ShoppingCart> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -130,7 +131,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @return the first matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
 	public ShoppingCart fetchByGroupId_First(
-		long groupId, OrderByComparator<ShoppingCart> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns the last shopping cart in the ordered set where groupId = &#63;.
@@ -141,7 +144,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @throws NoSuchCartException if a matching shopping cart could not be found
 	 */
 	public ShoppingCart findByGroupId_Last(
-			long groupId, OrderByComparator<ShoppingCart> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -152,7 +157,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @return the last matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
 	public ShoppingCart fetchByGroupId_Last(
-		long groupId, OrderByComparator<ShoppingCart> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns the shopping carts before and after the current shopping cart in the ordered set where groupId = &#63;.
@@ -165,7 +172,8 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 */
 	public ShoppingCart[] findByGroupId_PrevAndNext(
 			long cartId, long groupId,
-			OrderByComparator<ShoppingCart> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -213,19 +221,16 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCartModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
-	@Deprecated
 	public java.util.List<ShoppingCart> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<ShoppingCart> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the shopping carts where userId = &#63;.
@@ -238,11 +243,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
 	public java.util.List<ShoppingCart> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<ShoppingCart> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping cart in the ordered set where userId = &#63;.
@@ -253,7 +261,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @throws NoSuchCartException if a matching shopping cart could not be found
 	 */
 	public ShoppingCart findByUserId_First(
-			long userId, OrderByComparator<ShoppingCart> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -264,7 +274,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @return the first matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
 	public ShoppingCart fetchByUserId_First(
-		long userId, OrderByComparator<ShoppingCart> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns the last shopping cart in the ordered set where userId = &#63;.
@@ -275,7 +287,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @throws NoSuchCartException if a matching shopping cart could not be found
 	 */
 	public ShoppingCart findByUserId_Last(
-			long userId, OrderByComparator<ShoppingCart> orderByComparator)
+			long userId,
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -286,7 +300,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @return the last matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
 	public ShoppingCart fetchByUserId_Last(
-		long userId, OrderByComparator<ShoppingCart> orderByComparator);
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns the shopping carts before and after the current shopping cart in the ordered set where userId = &#63;.
@@ -299,7 +315,8 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 */
 	public ShoppingCart[] findByUserId_PrevAndNext(
 			long cartId, long userId,
-			OrderByComparator<ShoppingCart> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+				orderByComparator)
 		throws NoSuchCartException;
 
 	/**
@@ -329,17 +346,13 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 		throws NoSuchCartException;
 
 	/**
-	 * Returns the shopping cart where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping cart where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_U(long,long)}
 	 * @param groupId the group ID
 	 * @param userId the user ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
-	@Deprecated
-	public ShoppingCart fetchByG_U(
-		long groupId, long userId, boolean useFinderCache);
+	public ShoppingCart fetchByG_U(long groupId, long userId);
 
 	/**
 	 * Returns the shopping cart where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -349,7 +362,8 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
-	public ShoppingCart fetchByG_U(long groupId, long userId);
+	public ShoppingCart fetchByG_U(
+		long groupId, long userId, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping cart where groupId = &#63; and userId = &#63; from the database.
@@ -448,17 +462,15 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingCartModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping carts
 	 */
-	@Deprecated
 	public java.util.List<ShoppingCart> findAll(
-		int start, int end, OrderByComparator<ShoppingCart> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the shopping carts.
@@ -470,10 +482,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping carts
 	 */
 	public java.util.List<ShoppingCart> findAll(
-		int start, int end, OrderByComparator<ShoppingCart> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping carts from the database.

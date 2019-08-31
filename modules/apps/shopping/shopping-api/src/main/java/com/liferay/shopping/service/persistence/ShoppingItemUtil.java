@@ -140,19 +140,13 @@ public class ShoppingItemUtil {
 	}
 
 	/**
-	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBySmallImageId(long)}
 	 * @param smallImageId the small image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
-	public static ShoppingItem fetchBySmallImageId(
-		long smallImageId, boolean useFinderCache) {
-
-		return getPersistence().fetchBySmallImageId(
-			smallImageId, useFinderCache);
+	public static ShoppingItem fetchBySmallImageId(long smallImageId) {
+		return getPersistence().fetchBySmallImageId(smallImageId);
 	}
 
 	/**
@@ -162,8 +156,11 @@ public class ShoppingItemUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public static ShoppingItem fetchBySmallImageId(long smallImageId) {
-		return getPersistence().fetchBySmallImageId(smallImageId);
+	public static ShoppingItem fetchBySmallImageId(
+		long smallImageId, boolean useFinderCache) {
+
+		return getPersistence().fetchBySmallImageId(
+			smallImageId, useFinderCache);
 	}
 
 	/**
@@ -202,19 +199,13 @@ public class ShoppingItemUtil {
 	}
 
 	/**
-	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByMediumImageId(long)}
 	 * @param mediumImageId the medium image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
-	public static ShoppingItem fetchByMediumImageId(
-		long mediumImageId, boolean useFinderCache) {
-
-		return getPersistence().fetchByMediumImageId(
-			mediumImageId, useFinderCache);
+	public static ShoppingItem fetchByMediumImageId(long mediumImageId) {
+		return getPersistence().fetchByMediumImageId(mediumImageId);
 	}
 
 	/**
@@ -224,8 +215,11 @@ public class ShoppingItemUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public static ShoppingItem fetchByMediumImageId(long mediumImageId) {
-		return getPersistence().fetchByMediumImageId(mediumImageId);
+	public static ShoppingItem fetchByMediumImageId(
+		long mediumImageId, boolean useFinderCache) {
+
+		return getPersistence().fetchByMediumImageId(
+			mediumImageId, useFinderCache);
 	}
 
 	/**
@@ -264,19 +258,13 @@ public class ShoppingItemUtil {
 	}
 
 	/**
-	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByLargeImageId(long)}
 	 * @param largeImageId the large image ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
-	public static ShoppingItem fetchByLargeImageId(
-		long largeImageId, boolean useFinderCache) {
-
-		return getPersistence().fetchByLargeImageId(
-			largeImageId, useFinderCache);
+	public static ShoppingItem fetchByLargeImageId(long largeImageId) {
+		return getPersistence().fetchByLargeImageId(largeImageId);
 	}
 
 	/**
@@ -286,8 +274,11 @@ public class ShoppingItemUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public static ShoppingItem fetchByLargeImageId(long largeImageId) {
-		return getPersistence().fetchByLargeImageId(largeImageId);
+	public static ShoppingItem fetchByLargeImageId(
+		long largeImageId, boolean useFinderCache) {
+
+		return getPersistence().fetchByLargeImageId(
+			largeImageId, useFinderCache);
 	}
 
 	/**
@@ -349,23 +340,19 @@ public class ShoppingItemUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param categoryId the category ID
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
-	@Deprecated
 	public static List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<ShoppingItem> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<ShoppingItem> orderByComparator) {
 
 		return getPersistence().findByG_C(
-			groupId, categoryId, start, end, orderByComparator, useFinderCache);
+			groupId, categoryId, start, end, orderByComparator);
 	}
 
 	/**
@@ -380,14 +367,16 @@ public class ShoppingItemUtil {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
 	public static List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
-		OrderByComparator<ShoppingItem> orderByComparator) {
+		OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_C(
-			groupId, categoryId, start, end, orderByComparator);
+			groupId, categoryId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -598,19 +587,14 @@ public class ShoppingItemUtil {
 	}
 
 	/**
-	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the shopping item where companyId = &#63; and sku = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByC_S(long,String)}
 	 * @param companyId the company ID
 	 * @param sku the sku
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	@Deprecated
-	public static ShoppingItem fetchByC_S(
-		long companyId, String sku, boolean useFinderCache) {
-
-		return getPersistence().fetchByC_S(companyId, sku, useFinderCache);
+	public static ShoppingItem fetchByC_S(long companyId, String sku) {
+		return getPersistence().fetchByC_S(companyId, sku);
 	}
 
 	/**
@@ -621,8 +605,10 @@ public class ShoppingItemUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
-	public static ShoppingItem fetchByC_S(long companyId, String sku) {
-		return getPersistence().fetchByC_S(companyId, sku);
+	public static ShoppingItem fetchByC_S(
+		long companyId, String sku, boolean useFinderCache) {
+
+		return getPersistence().fetchByC_S(companyId, sku, useFinderCache);
 	}
 
 	/**
@@ -748,20 +734,15 @@ public class ShoppingItemUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
-	@Deprecated
 	public static List<ShoppingItem> findAll(
-		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -774,12 +755,15 @@ public class ShoppingItemUtil {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
 	public static List<ShoppingItem> findAll(
-		int start, int end, OrderByComparator<ShoppingItem> orderByComparator) {
+		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

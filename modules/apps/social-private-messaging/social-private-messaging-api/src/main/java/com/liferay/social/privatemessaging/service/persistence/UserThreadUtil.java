@@ -161,22 +161,18 @@ public class UserThreadUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUserId(long, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
-	@Deprecated
 	public static List<UserThread> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<UserThread> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserThread> orderByComparator) {
 
 		return getPersistence().findByUserId(
-			userId, start, end, orderByComparator, useFinderCache);
+			userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -190,14 +186,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<UserThread> orderByComparator) {
+		OrderByComparator<UserThread> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByUserId(
-			userId, start, end, orderByComparator);
+			userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -331,22 +329,18 @@ public class UserThreadUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByMBThreadId(long, int, int, OrderByComparator)}
 	 * @param mbThreadId the mb thread ID
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
-	@Deprecated
 	public static List<UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
-		OrderByComparator<UserThread> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserThread> orderByComparator) {
 
 		return getPersistence().findByMBThreadId(
-			mbThreadId, start, end, orderByComparator, useFinderCache);
+			mbThreadId, start, end, orderByComparator);
 	}
 
 	/**
@@ -360,14 +354,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
-		OrderByComparator<UserThread> orderByComparator) {
+		OrderByComparator<UserThread> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByMBThreadId(
-			mbThreadId, start, end, orderByComparator);
+			mbThreadId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -486,19 +482,14 @@ public class UserThreadUtil {
 	}
 
 	/**
-	 * Returns the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByU_M(long,long)}
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 */
-	@Deprecated
-	public static UserThread fetchByU_M(
-		long userId, long mbThreadId, boolean useFinderCache) {
-
-		return getPersistence().fetchByU_M(userId, mbThreadId, useFinderCache);
+	public static UserThread fetchByU_M(long userId, long mbThreadId) {
+		return getPersistence().fetchByU_M(userId, mbThreadId);
 	}
 
 	/**
@@ -509,8 +500,10 @@ public class UserThreadUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 */
-	public static UserThread fetchByU_M(long userId, long mbThreadId) {
-		return getPersistence().fetchByU_M(userId, mbThreadId);
+	public static UserThread fetchByU_M(
+		long userId, long mbThreadId, boolean useFinderCache) {
+
+		return getPersistence().fetchByU_M(userId, mbThreadId, useFinderCache);
 	}
 
 	/**
@@ -575,23 +568,19 @@ public class UserThreadUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_D(long,boolean, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param deleted the deleted
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
-	@Deprecated
 	public static List<UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
-		OrderByComparator<UserThread> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserThread> orderByComparator) {
 
 		return getPersistence().findByU_D(
-			userId, deleted, start, end, orderByComparator, useFinderCache);
+			userId, deleted, start, end, orderByComparator);
 	}
 
 	/**
@@ -606,14 +595,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
-		OrderByComparator<UserThread> orderByComparator) {
+		OrderByComparator<UserThread> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByU_D(
-			userId, deleted, start, end, orderByComparator);
+			userId, deleted, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -768,25 +759,20 @@ public class UserThreadUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByU_R_D(long,boolean,boolean, int, int, OrderByComparator)}
 	 * @param userId the user ID
 	 * @param read the read
 	 * @param deleted the deleted
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
-	@Deprecated
 	public static List<UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
-		OrderByComparator<UserThread> orderByComparator,
-		boolean useFinderCache) {
+		OrderByComparator<UserThread> orderByComparator) {
 
 		return getPersistence().findByU_R_D(
-			userId, read, deleted, start, end, orderByComparator,
-			useFinderCache);
+			userId, read, deleted, start, end, orderByComparator);
 	}
 
 	/**
@@ -802,14 +788,17 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
-		OrderByComparator<UserThread> orderByComparator) {
+		OrderByComparator<UserThread> orderByComparator,
+		boolean useFinderCache) {
 
 		return getPersistence().findByU_R_D(
-			userId, read, deleted, start, end, orderByComparator);
+			userId, read, deleted, start, end, orderByComparator,
+			useFinderCache);
 	}
 
 	/**
@@ -1033,20 +1022,15 @@ public class UserThreadUtil {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>UserThreadModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user threads
 	 */
-	@Deprecated
 	public static List<UserThread> findAll(
-		int start, int end, OrderByComparator<UserThread> orderByComparator,
-		boolean useFinderCache) {
+		int start, int end, OrderByComparator<UserThread> orderByComparator) {
 
-		return getPersistence().findAll(
-			start, end, orderByComparator, useFinderCache);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -1059,12 +1043,15 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user threads
 	 */
 	public static List<UserThread> findAll(
-		int start, int end, OrderByComparator<UserThread> orderByComparator) {
+		int start, int end, OrderByComparator<UserThread> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence().findAll(
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

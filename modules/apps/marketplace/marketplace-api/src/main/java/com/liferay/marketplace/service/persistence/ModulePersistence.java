@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.marketplace.exception.NoSuchModuleException;
 import com.liferay.marketplace.model.Module;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -78,18 +77,16 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules where uuid = &#63;.
@@ -102,11 +99,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	public java.util.List<Module> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first module in the ordered set where uuid = &#63;.
@@ -117,7 +117,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByUuid_First(
-			String uuid, OrderByComparator<Module> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -128,7 +130,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the first matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByUuid_First(
-		String uuid, OrderByComparator<Module> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the last module in the ordered set where uuid = &#63;.
@@ -139,7 +143,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByUuid_Last(
-			String uuid, OrderByComparator<Module> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -150,7 +156,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the last matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByUuid_Last(
-		String uuid, OrderByComparator<Module> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where uuid = &#63;.
@@ -163,7 +171,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module[] findByUuid_PrevAndNext(
 			long moduleId, String uuid,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -213,19 +222,17 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules where uuid = &#63; and companyId = &#63;.
@@ -239,11 +246,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	public java.util.List<Module> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first module in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -256,7 +266,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -269,7 +280,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the last module in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -282,7 +294,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -295,7 +308,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -309,7 +323,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module[] findByUuid_C_PrevAndNext(
 			long moduleId, String uuid, long companyId,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -358,18 +373,16 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByAppId(long, int, int, OrderByComparator)}
 	 * @param appId the app ID
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findByAppId(
 		long appId, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules where appId = &#63;.
@@ -382,11 +395,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	public java.util.List<Module> findByAppId(
 		long appId, int start, int end,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first module in the ordered set where appId = &#63;.
@@ -397,7 +413,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByAppId_First(
-			long appId, OrderByComparator<Module> orderByComparator)
+			long appId,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -408,7 +426,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the first matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByAppId_First(
-		long appId, OrderByComparator<Module> orderByComparator);
+		long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the last module in the ordered set where appId = &#63;.
@@ -419,7 +439,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByAppId_Last(
-			long appId, OrderByComparator<Module> orderByComparator)
+			long appId,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -430,7 +452,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the last matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByAppId_Last(
-		long appId, OrderByComparator<Module> orderByComparator);
+		long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where appId = &#63;.
@@ -443,7 +467,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module[] findByAppId_PrevAndNext(
 			long moduleId, long appId,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -492,18 +517,16 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByBundleSymbolicName(String, int, int, OrderByComparator)}
 	 * @param bundleSymbolicName the bundle symbolic name
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findByBundleSymbolicName(
 		String bundleSymbolicName, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules where bundleSymbolicName = &#63;.
@@ -516,11 +539,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	public java.util.List<Module> findByBundleSymbolicName(
 		String bundleSymbolicName, int start, int end,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first module in the ordered set where bundleSymbolicName = &#63;.
@@ -532,7 +558,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module findByBundleSymbolicName_First(
 			String bundleSymbolicName,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -543,7 +570,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the first matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByBundleSymbolicName_First(
-		String bundleSymbolicName, OrderByComparator<Module> orderByComparator);
+		String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the last module in the ordered set where bundleSymbolicName = &#63;.
@@ -555,7 +584,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module findByBundleSymbolicName_Last(
 			String bundleSymbolicName,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -566,7 +596,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the last matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByBundleSymbolicName_Last(
-		String bundleSymbolicName, OrderByComparator<Module> orderByComparator);
+		String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where bundleSymbolicName = &#63;.
@@ -579,7 +611,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module[] findByBundleSymbolicName_PrevAndNext(
 			long moduleId, String bundleSymbolicName,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -627,18 +660,16 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByContextName(String, int, int, OrderByComparator)}
 	 * @param contextName the context name
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findByContextName(
 		String contextName, int start, int end,
-		OrderByComparator<Module> orderByComparator, boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules where contextName = &#63;.
@@ -651,11 +682,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching modules
 	 */
 	public java.util.List<Module> findByContextName(
 		String contextName, int start, int end,
-		OrderByComparator<Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first module in the ordered set where contextName = &#63;.
@@ -666,7 +700,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByContextName_First(
-			String contextName, OrderByComparator<Module> orderByComparator)
+			String contextName,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -677,7 +713,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the first matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByContextName_First(
-		String contextName, OrderByComparator<Module> orderByComparator);
+		String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the last module in the ordered set where contextName = &#63;.
@@ -688,7 +726,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @throws NoSuchModuleException if a matching module could not be found
 	 */
 	public Module findByContextName_Last(
-			String contextName, OrderByComparator<Module> orderByComparator)
+			String contextName,
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -699,7 +739,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the last matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByContextName_Last(
-		String contextName, OrderByComparator<Module> orderByComparator);
+		String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where contextName = &#63;.
@@ -712,7 +754,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 */
 	public Module[] findByContextName_PrevAndNext(
 			long moduleId, String contextName,
-			OrderByComparator<Module> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<Module>
+				orderByComparator)
 		throws NoSuchModuleException;
 
 	/**
@@ -742,17 +785,13 @@ public interface ModulePersistence extends BasePersistence<Module> {
 		throws NoSuchModuleException;
 
 	/**
-	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByA_CN(long,String)}
 	 * @param appId the app ID
 	 * @param contextName the context name
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
-	@Deprecated
-	public Module fetchByA_CN(
-		long appId, String contextName, boolean useFinderCache);
+	public Module fetchByA_CN(long appId, String contextName);
 
 	/**
 	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -762,7 +801,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
-	public Module fetchByA_CN(long appId, String contextName);
+	public Module fetchByA_CN(
+		long appId, String contextName, boolean useFinderCache);
 
 	/**
 	 * Removes the module where appId = &#63; and contextName = &#63; from the database.
@@ -797,19 +837,15 @@ public interface ModulePersistence extends BasePersistence<Module> {
 		throws NoSuchModuleException;
 
 	/**
-	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByA_BSN_BV(long,String,String)}
 	 * @param appId the app ID
 	 * @param bundleSymbolicName the bundle symbolic name
 	 * @param bundleVersion the bundle version
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
-	@Deprecated
 	public Module fetchByA_BSN_BV(
-		long appId, String bundleSymbolicName, String bundleVersion,
-		boolean useFinderCache);
+		long appId, String bundleSymbolicName, String bundleVersion);
 
 	/**
 	 * Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -821,7 +857,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @return the matching module, or <code>null</code> if a matching module could not be found
 	 */
 	public Module fetchByA_BSN_BV(
-		long appId, String bundleSymbolicName, String bundleVersion);
+		long appId, String bundleSymbolicName, String bundleVersion,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; from the database.
@@ -923,17 +960,15 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>ModuleModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of modules
 	 */
-	@Deprecated
 	public java.util.List<Module> findAll(
-		int start, int end, OrderByComparator<Module> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the modules.
@@ -945,10 +980,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of modules
 	 */
 	public java.util.List<Module> findAll(
-		int start, int end, OrderByComparator<Module> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Module>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the modules from the database.

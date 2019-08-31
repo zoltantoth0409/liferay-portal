@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureException;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -79,19 +78,16 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid(String, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where uuid = &#63;.
@@ -104,11 +100,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where uuid = &#63;.
@@ -119,7 +118,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByUuid_First(
-			String uuid, OrderByComparator<DDMStructure> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -130,7 +131,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByUuid_First(
-		String uuid, OrderByComparator<DDMStructure> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where uuid = &#63;.
@@ -141,7 +144,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByUuid_Last(
-			String uuid, OrderByComparator<DDMStructure> orderByComparator)
+			String uuid,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -152,7 +157,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByUuid_Last(
-		String uuid, OrderByComparator<DDMStructure> orderByComparator);
+		String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where uuid = &#63;.
@@ -165,7 +172,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByUuid_PrevAndNext(
 			long structureId, String uuid,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -195,17 +203,13 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 		throws NoSuchStructureException;
 
 	/**
-	 * Returns the ddm structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the ddm structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByUUID_G(String,long)}
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
-	@Deprecated
-	public DDMStructure fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
+	public DDMStructure fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	 * Returns the ddm structure where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -215,7 +219,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
-	public DDMStructure fetchByUUID_G(String uuid, long groupId);
+	public DDMStructure fetchByUUID_G(
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the ddm structure where uuid = &#63; and groupId = &#63; from the database.
@@ -269,20 +274,17 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByUuid_C(String,long, int, int, OrderByComparator)}
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where uuid = &#63; and companyId = &#63;.
@@ -296,11 +298,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -313,7 +318,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByUuid_C_First(
 			String uuid, long companyId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -326,7 +332,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -339,7 +346,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByUuid_C_Last(
 			String uuid, long companyId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -352,7 +360,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByUuid_C_Last(
 		String uuid, long companyId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -366,7 +375,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByUuid_C_PrevAndNext(
 			long structureId, String uuid, long companyId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -416,19 +426,16 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where groupId = &#63;.
@@ -441,11 +448,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where groupId = &#63;.
@@ -456,7 +466,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByGroupId_First(
-			long groupId, OrderByComparator<DDMStructure> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -467,7 +479,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByGroupId_First(
-		long groupId, OrderByComparator<DDMStructure> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where groupId = &#63;.
@@ -478,7 +492,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByGroupId_Last(
-			long groupId, OrderByComparator<DDMStructure> orderByComparator)
+			long groupId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -489,7 +505,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByGroupId_Last(
-		long groupId, OrderByComparator<DDMStructure> orderByComparator);
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where groupId = &#63;.
@@ -502,7 +520,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByGroupId_PrevAndNext(
 			long structureId, long groupId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -543,7 +562,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set of ddm structures that the user has permission to view where groupId = &#63;.
@@ -556,7 +576,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] filterFindByGroupId_PrevAndNext(
 			long structureId, long groupId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -597,7 +618,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByGroupId(
 		long[] groupIds, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns all the ddm structures where groupId = any &#63;.
@@ -627,27 +649,6 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 		long[] groupIds, int start, int end);
 
 	/**
-	 * Returns an ordered range of all the ddm structures where groupId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByGroupId(long, int, int, OrderByComparator)}
-	 * @param groupId the group ID
-	 * @param start the lower bound of the range of ddm structures
-	 * @param end the upper bound of the range of ddm structures (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching ddm structures
-	 */
-	@Deprecated
-	public java.util.List<DDMStructure> findByGroupId(
-		long[] groupIds, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
-
-	/**
 	 * Returns an ordered range of all the ddm structures where groupId = any &#63;.
 	 *
 	 * <p>
@@ -662,7 +663,28 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> findByGroupId(
 		long[] groupIds, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the ddm structures where groupId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of ddm structures
+	 * @param end the upper bound of the range of ddm structures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching ddm structures
+	 */
+	public java.util.List<DDMStructure> findByGroupId(
+		long[] groupIds, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ddm structures where groupId = &#63; from the database.
@@ -734,19 +756,16 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByParentStructureId(long, int, int, OrderByComparator)}
 	 * @param parentStructureId the parent structure ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByParentStructureId(
 		long parentStructureId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where parentStructureId = &#63;.
@@ -759,11 +778,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByParentStructureId(
 		long parentStructureId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where parentStructureId = &#63;.
@@ -775,7 +797,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByParentStructureId_First(
 			long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -787,7 +810,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByParentStructureId_First(
 		long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where parentStructureId = &#63;.
@@ -799,7 +823,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByParentStructureId_Last(
 			long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -811,7 +836,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByParentStructureId_Last(
 		long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where parentStructureId = &#63;.
@@ -824,7 +850,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByParentStructureId_PrevAndNext(
 			long structureId, long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -872,19 +899,16 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByClassNameId(long, int, int, OrderByComparator)}
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where classNameId = &#63;.
@@ -897,11 +921,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByClassNameId(
 		long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where classNameId = &#63;.
@@ -912,7 +939,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByClassNameId_First(
-			long classNameId, OrderByComparator<DDMStructure> orderByComparator)
+			long classNameId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -923,7 +952,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByClassNameId_First(
-		long classNameId, OrderByComparator<DDMStructure> orderByComparator);
+		long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where classNameId = &#63;.
@@ -934,7 +965,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	public DDMStructure findByClassNameId_Last(
-			long classNameId, OrderByComparator<DDMStructure> orderByComparator)
+			long classNameId,
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -945,7 +978,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByClassNameId_Last(
-		long classNameId, OrderByComparator<DDMStructure> orderByComparator);
+		long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where classNameId = &#63;.
@@ -958,7 +993,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByClassNameId_PrevAndNext(
 			long structureId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1006,19 +1042,16 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByStructureKey(String, int, int, OrderByComparator)}
 	 * @param structureKey the structure key
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByStructureKey(
 		String structureKey, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where structureKey = &#63;.
@@ -1031,11 +1064,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByStructureKey(
 		String structureKey, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where structureKey = &#63;.
@@ -1047,7 +1083,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByStructureKey_First(
 			String structureKey,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1058,7 +1095,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByStructureKey_First(
-		String structureKey, OrderByComparator<DDMStructure> orderByComparator);
+		String structureKey,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where structureKey = &#63;.
@@ -1070,7 +1109,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByStructureKey_Last(
 			String structureKey,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1081,7 +1121,9 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByStructureKey_Last(
-		String structureKey, OrderByComparator<DDMStructure> orderByComparator);
+		String structureKey,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where structureKey = &#63;.
@@ -1094,7 +1136,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByStructureKey_PrevAndNext(
 			long structureId, String structureKey,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1145,20 +1188,17 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_P(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param parentStructureId the parent structure ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByG_P(
 		long groupId, long parentStructureId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where groupId = &#63; and parentStructureId = &#63;.
@@ -1172,11 +1212,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByG_P(
 		long groupId, long parentStructureId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where groupId = &#63; and parentStructureId = &#63;.
@@ -1189,7 +1232,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_P_First(
 			long groupId, long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1202,7 +1246,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_P_First(
 		long groupId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where groupId = &#63; and parentStructureId = &#63;.
@@ -1215,7 +1260,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_P_Last(
 			long groupId, long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1228,7 +1274,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_P_Last(
 		long groupId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where groupId = &#63; and parentStructureId = &#63;.
@@ -1242,7 +1289,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByG_P_PrevAndNext(
 			long structureId, long groupId, long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1287,7 +1335,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByG_P(
 		long groupId, long parentStructureId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set of ddm structures that the user has permission to view where groupId = &#63; and parentStructureId = &#63;.
@@ -1301,7 +1350,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] filterFindByG_P_PrevAndNext(
 			long structureId, long groupId, long parentStructureId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1363,20 +1413,17 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where groupId = &#63; and classNameId = &#63;.
@@ -1390,11 +1437,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByG_C(
 		long groupId, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -1407,7 +1457,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_C_First(
 			long groupId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1420,7 +1471,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_C_First(
 		long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -1433,7 +1485,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_C_Last(
 			long groupId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1446,7 +1499,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_C_Last(
 		long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -1460,7 +1514,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByG_C_PrevAndNext(
 			long structureId, long groupId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1505,7 +1560,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByG_C(
 		long groupId, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set of ddm structures that the user has permission to view where groupId = &#63; and classNameId = &#63;.
@@ -1519,7 +1575,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] filterFindByG_C_PrevAndNext(
 			long structureId, long groupId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1564,7 +1621,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByG_C(
 		long[] groupIds, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns all the ddm structures where groupId = any &#63; and classNameId = &#63;.
@@ -1597,28 +1655,6 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 		long[] groupIds, long classNameId, int start, int end);
 
 	/**
-	 * Returns an ordered range of all the ddm structures where groupId = &#63; and classNameId = &#63;, optionally using the finder cache.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_C(long,long, int, int, OrderByComparator)}
-	 * @param groupId the group ID
-	 * @param classNameId the class name ID
-	 * @param start the lower bound of the range of ddm structures
-	 * @param end the upper bound of the range of ddm structures (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching ddm structures
-	 */
-	@Deprecated
-	public java.util.List<DDMStructure> findByG_C(
-		long[] groupIds, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
-
-	/**
 	 * Returns an ordered range of all the ddm structures where groupId = any &#63; and classNameId = &#63;.
 	 *
 	 * <p>
@@ -1634,7 +1670,29 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> findByG_C(
 		long[] groupIds, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the ddm structures where groupId = &#63; and classNameId = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param classNameId the class name ID
+	 * @param start the lower bound of the range of ddm structures
+	 * @param end the upper bound of the range of ddm structures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching ddm structures
+	 */
+	public java.util.List<DDMStructure> findByG_C(
+		long[] groupIds, long classNameId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ddm structures where groupId = &#63; and classNameId = &#63; from the database.
@@ -1713,20 +1771,17 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByC_C(long,long, int, int, OrderByComparator)}
 	 * @param companyId the company ID
 	 * @param classNameId the class name ID
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where companyId = &#63; and classNameId = &#63;.
@@ -1740,11 +1795,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByC_C(
 		long companyId, long classNameId, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -1757,7 +1815,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByC_C_First(
 			long companyId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1770,7 +1829,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByC_C_First(
 		long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -1783,7 +1843,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByC_C_Last(
 			long companyId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1796,7 +1857,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByC_C_Last(
 		long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -1810,7 +1872,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByC_C_PrevAndNext(
 			long structureId, long companyId, long classNameId,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1844,19 +1907,15 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 		throws NoSuchStructureException;
 
 	/**
-	 * Returns the ddm structure where groupId = &#63; and classNameId = &#63; and structureKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the ddm structure where groupId = &#63; and classNameId = &#63; and structureKey = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByG_C_S(long,long,String)}
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param structureKey the structure key
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
-	@Deprecated
 	public DDMStructure fetchByG_C_S(
-		long groupId, long classNameId, String structureKey,
-		boolean useFinderCache);
+		long groupId, long classNameId, String structureKey);
 
 	/**
 	 * Returns the ddm structure where groupId = &#63; and classNameId = &#63; and structureKey = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -1868,7 +1927,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	public DDMStructure fetchByG_C_S(
-		long groupId, long classNameId, String structureKey);
+		long groupId, long classNameId, String structureKey,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the ddm structure where groupId = &#63; and classNameId = &#63; and structureKey = &#63; from the database.
@@ -1928,21 +1988,18 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByG_N_D(long,String,String, int, int, OrderByComparator)}
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param description the description
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findByG_N_D(
 		long groupId, String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures where groupId = &#63; and name = &#63; and description = &#63;.
@@ -1957,11 +2014,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm structures
 	 */
 	public java.util.List<DDMStructure> findByG_N_D(
 		long groupId, String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ddm structure in the ordered set where groupId = &#63; and name = &#63; and description = &#63;.
@@ -1975,7 +2035,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_N_D_First(
 			long groupId, String name, String description,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -1989,7 +2050,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_N_D_First(
 		long groupId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the last ddm structure in the ordered set where groupId = &#63; and name = &#63; and description = &#63;.
@@ -2003,7 +2065,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure findByG_N_D_Last(
 			long groupId, String name, String description,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -2017,7 +2080,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure fetchByG_N_D_Last(
 		long groupId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set where groupId = &#63; and name = &#63; and description = &#63;.
@@ -2032,7 +2096,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] findByG_N_D_PrevAndNext(
 			long structureId, long groupId, String name, String description,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -2080,7 +2145,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public java.util.List<DDMStructure> filterFindByG_N_D(
 		long groupId, String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns the ddm structures before and after the current ddm structure in the ordered set of ddm structures that the user has permission to view where groupId = &#63; and name = &#63; and description = &#63;.
@@ -2095,7 +2161,8 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 */
 	public DDMStructure[] filterFindByG_N_D_PrevAndNext(
 			long structureId, long groupId, String name, String description,
-			OrderByComparator<DDMStructure> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+				orderByComparator)
 		throws NoSuchStructureException;
 
 	/**
@@ -2207,17 +2274,15 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DDMStructureModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm structures
 	 */
-	@Deprecated
 	public java.util.List<DDMStructure> findAll(
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
-		boolean useFinderCache);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the ddm structures.
@@ -2229,10 +2294,14 @@ public interface DDMStructurePersistence extends BasePersistence<DDMStructure> {
 	 * @param start the lower bound of the range of ddm structures
 	 * @param end the upper bound of the range of ddm structures (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm structures
 	 */
 	public java.util.List<DDMStructure> findAll(
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator);
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMStructure>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ddm structures from the database.
