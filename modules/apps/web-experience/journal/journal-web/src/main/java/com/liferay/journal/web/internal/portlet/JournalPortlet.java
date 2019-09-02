@@ -810,7 +810,13 @@ public class JournalPortlet extends MVCPortlet {
 					actionRequest, portletResource, article.getArticleId());
 			}
 
-			hideDefaultSuccessMessage(actionRequest);
+			int workflowAction = ParamUtil.getInteger(
+				actionRequest, "workflowAction",
+				WorkflowConstants.ACTION_PUBLISH);
+
+			if (workflowAction != WorkflowConstants.ACTION_SAVE_DRAFT) {
+				hideDefaultSuccessMessage(actionRequest);
+			}
 		}
 
 		sendEditArticleRedirect(
