@@ -244,17 +244,17 @@ public class EntityCacheImpl
 					loadResult = (Serializable)session.get(clazz, primaryKey);
 				}
 				finally {
-					if (loadResult == null) {
-						result = StringPool.BLANK;
-					}
-					else {
-						result = ((BaseModel<?>)loadResult).toCacheModel();
-
-						PortalCacheHelperUtil.putWithoutReplicator(
-							portalCache, primaryKey, result);
-					}
-
 					sessionFactory.closeSession(session);
+				}
+
+				if (loadResult == null) {
+					result = StringPool.BLANK;
+				}
+				else {
+					result = ((BaseModel<?>)loadResult).toCacheModel();
+
+					PortalCacheHelperUtil.putWithoutReplicator(
+						portalCache, primaryKey, result);
 				}
 			}
 
