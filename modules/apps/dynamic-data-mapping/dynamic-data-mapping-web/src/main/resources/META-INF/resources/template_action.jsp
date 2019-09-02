@@ -24,6 +24,10 @@ long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 DDMTemplate template = (DDMTemplate)row.getObject();
+
+if (classPK == 0) {
+	classPK = template.getClassPK();
+}
 %>
 
 <liferay-ui:icon-menu
