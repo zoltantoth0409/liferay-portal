@@ -138,8 +138,8 @@ portletURL.setParameter("calendarResourceId", String.valueOf(calendarResource.ge
 						label: '<liferay-ui:message key="import" />',
 						on: {
 							click: function() {
-
 								var data = new URLSearchParams();
+
 								data.append('id', '<portlet:namespace />importFm');
 								data.append('upload', true);
 
