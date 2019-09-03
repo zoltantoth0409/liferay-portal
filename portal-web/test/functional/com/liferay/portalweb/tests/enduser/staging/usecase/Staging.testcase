@@ -1454,8 +1454,6 @@ definition {
 
 		Navigator.gotoStagedView();
 
-		Pause(locator1 = "30000");
-
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
@@ -1508,8 +1506,6 @@ definition {
 			entryContent = "Bodzavirágból, bodzavirágból hullik a, hullik a sárga virágpor.",
 			entrySubtitle = "Nemes Nagy Ágnes",
 			entryTitle = "Tavaszi felhők");
-
-		Pause(locator1 = "1000");
 
 		PortletEntry.publish();
 
@@ -3161,8 +3157,6 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
-
-		Pause(locator1 = "30000");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
