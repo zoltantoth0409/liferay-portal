@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Chema Balsas
  */
-public class ReactRendererHelper {
+public class ReactRendererUtil {
 
 	public static void renderReact(
 			HttpServletRequest httpServletRequest, Writer writer,
