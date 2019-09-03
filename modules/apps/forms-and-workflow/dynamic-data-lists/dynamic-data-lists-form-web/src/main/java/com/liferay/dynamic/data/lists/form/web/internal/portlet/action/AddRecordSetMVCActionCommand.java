@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
@@ -77,6 +76,9 @@ public class AddRecordSetMVCActionCommand
 			ActionRequest actionRequest, DDMFormValues settingsDDMFormValues)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		String structureKey = ParamUtil.getString(
 			actionRequest, "structureKey");
@@ -92,14 +94,18 @@ public class AddRecordSetMVCActionCommand
 		return ddmStructureService.addStructure(
 			groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 			portal.getClassNameId(DDLRecordSet.class), structureKey,
-			getLocalizedMap(LocaleUtil.US, name),
-			getLocalizedMap(LocaleUtil.US, description), ddmForm, ddmFormLayout,
-			storageType, DDMStructureConstants.TYPE_AUTO, serviceContext);
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
+			ddmForm, ddmFormLayout, storageType,
+			DDMStructureConstants.TYPE_AUTO, serviceContext);
 	}
 
 	protected DDLRecordSet addRecordSet(
 			ActionRequest actionRequest, long ddmStructureId)
 		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		String recordSetKey = ParamUtil.getString(
@@ -112,8 +118,8 @@ public class AddRecordSetMVCActionCommand
 
 		return ddlRecordSetService.addRecordSet(
 			groupId, ddmStructureId, recordSetKey,
-			getLocalizedMap(LocaleUtil.US, name),
-			getLocalizedMap(LocaleUtil.US, description),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT,
 			DDLRecordSetConstants.SCOPE_FORMS, serviceContext);
 	}
@@ -142,13 +148,6 @@ public class AddRecordSetMVCActionCommand
 		try {
 			String definition = ParamUtil.getString(
 				actionRequest, "definition");
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			definition = definition.replace(
-				LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()),
-				"en_US");
 
 			return ddmFormJSONDeserializer.deserialize(definition);
 		}

@@ -25,8 +25,10 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -67,6 +69,9 @@ public class UpdateRecordSetMVCActionCommand
 	protected DDMStructure updateDDMStructure(ActionRequest actionRequest)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long ddmStructureId = ParamUtil.getLong(
 			actionRequest, "ddmStructureId");
 		String name = ParamUtil.getString(actionRequest, "name");
@@ -74,21 +79,22 @@ public class UpdateRecordSetMVCActionCommand
 		DDMForm ddmForm = getDDMForm(actionRequest);
 		DDMFormLayout ddmFormLayout = getDDMFormLayout(actionRequest);
 
-		ddmForm.addAvailableLocale(LocaleUtil.US);
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDMStructure.class.getName(), actionRequest);
 
 		return ddmStructureService.updateStructure(
 			ddmStructureId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-			getLocalizedMap(LocaleUtil.US, name),
-			getLocalizedMap(LocaleUtil.US, description), ddmForm, ddmFormLayout,
-			serviceContext);
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
+			ddmForm, ddmFormLayout, serviceContext);
 	}
 
 	protected DDLRecordSet updateRecordSet(
 			ActionRequest actionRequest, long ddmStructureId)
 		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
 
@@ -99,8 +105,9 @@ public class UpdateRecordSetMVCActionCommand
 			DDLRecordSet.class.getName(), actionRequest);
 
 		return ddlRecordSetService.updateRecordSet(
-			recordSetId, ddmStructureId, getLocalizedMap(LocaleUtil.US, name),
-			getLocalizedMap(LocaleUtil.US, description),
+			recordSetId, ddmStructureId,
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, serviceContext);
 	}
 
