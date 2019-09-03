@@ -427,7 +427,7 @@
 				<licenses>
 					<license>
 						<license-name>PayPal SDK License</license-name>
-						<license-url>https://github.com/paypal/PayPal-Java-SDK/blob/master/LICENSE</license-url>
+						<license-url>https://github.com/paypal/PayPal-Java-SDK/blob/master/LICENSE.txt</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -444,7 +444,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.configuration.admin.web.jar!org.apache.felix.fileinstall.jar</file-name>
-				<version>3.6.4.LIFERAY-PATCHED-6</version>
+				<version>3.6.4.LIFERAY-PATCHED-8</version>
 				<project-name>Apache Felix File Install</project-name>
 				<project-url>http://felix.apache.org/site/apache-felix-file-install.html</project-url>
 				<licenses>
@@ -2801,8 +2801,8 @@
 				<project-name>JA-SIG CAS Client for Java - Core</project-name>
 				<licenses>
 					<license>
-						<license-name>Apache License 2.0</license-name>
-						<license-url>https://github.com/apereo/java-cas-client/blob/master/cas-client-core/LICENSE.txt</license-url>
+						<license-name>JA-SIG License for Use</license-name>
+						<license-url>http://www.ja-sig.org/products/cas/overview/license/</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -3036,8 +3036,8 @@
 				<project-url>http://hc.apache.org/httpcomponents-core-ga/</project-url>
 				<licenses>
 					<license>
-						<license-name>Apache License 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.html</license-url>
+						<license-name>Apache License</license-name>
+						<license-url>LICENSE.txt</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -3071,8 +3071,8 @@
 				<project-name>org.apache.httpcomponents.httpclient</project-name>
 				<licenses>
 					<license>
-						<license-name>Apache License 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.html</license-url>
+						<license-name>LGPL 2.1</license-name>
+						<license-url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -3193,6 +3193,17 @@
 					<license>
 						<license-name>The Apache Software License, Version 2.0</license-name>
 						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.store.jcr.jar!concurrent.jar</file-name>
+				<version>1.3.4</version>
+				<project-name>Dough Lea's util.concurrent package</project-name>
+				<licenses>
+					<license>
+						<license-name>Public domain, Sun Microsoystems</license-name>
+						<license-url>&gt;http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -3708,8 +3719,7 @@
 				<project-name>JGraphT - Core</project-name>
 				<licenses>
 					<license>
-						<license-name>Eclipse Public License (EPL) 1.0</license-name>
-						<license-url>http://www.eclipse.org/legal/epl-v10.html</license-url>
+						<license-name>http://jgrapht.sourceforge.net/LGPL.html, http://www.eclipse.org/legal/epl-v10.html</license-name>
 					</license>
 				</licenses>
 			</library>
@@ -3959,8 +3969,7 @@
 				<project-url>http://www.javassist.org/</project-url>
 				<licenses>
 					<license>
-						<license-name>LGPL 2.1</license-name>
-						<license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
+						<license-name>http://www.mozilla.org/MPL/MPL-1.1.html, http://www.gnu.org/licenses/lgpl-2.1.html, http://www.apache.org/licenses/</license-name>
 					</license>
 				</licenses>
 			</library>
@@ -3983,8 +3992,7 @@
 				<project-url>http://github.com/ronmamo/reflections</project-url>
 				<licenses>
 					<license>
-						<license-name>The New BSD License</license-name>
-						<license-url>http://www.opensource.org/licenses/bsd-license.html</license-url>
+						<license-name>http://www.wtfpl.net/, http://www.opensource.org/licenses/bsd-license.html</license-name>
 					</license>
 				</licenses>
 			</library>
@@ -4312,8 +4320,7 @@
 				<project-url>http://bnd.bndtools.org/</project-url>
 				<licenses>
 					<license>
-						<license-name>Apache License, Version 2.0</license-name>
-						<license-url>http://www.opensource.org/licenses/apache2.0.php</license-url>
+						<license-name>http://www.opensource.org/licenses/apache2.0.php; description="Apache License, Version 2.0"; link="http://www.apache.org/licenses/LICENSE-2.0"</license-name>
 					</license>
 				</licenses>
 			</library>
@@ -4482,6 +4489,17 @@
 					<license>
 						<license-name>Mozilla Public License, Version 2.0</license-name>
 						<license-url>http://www.mozilla.org/MPL/2.0/index.txt</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.web.proxy.web.jar!concurrent.jar</file-name>
+				<version>1.3.4</version>
+				<project-name>Dough Lea's util.concurrent package</project-name>
+				<licenses>
+					<license>
+						<license-name>Public domain, Sun Microsoystems</license-name>
+						<license-url>&gt;http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html</license-url>
 					</license>
 				</licenses>
 			</library>
