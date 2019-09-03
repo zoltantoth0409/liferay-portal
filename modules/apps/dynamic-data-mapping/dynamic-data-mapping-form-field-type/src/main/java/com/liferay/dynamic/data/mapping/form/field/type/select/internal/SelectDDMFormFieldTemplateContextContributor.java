@@ -119,10 +119,7 @@ public class SelectDDMFormFieldTemplateContextContributor
 		}
 
 		parameters.put(
-			"value",
-			getValue(
-				GetterUtil.getString(
-					ddmFormFieldRenderingContext.getValue(), "[]")));
+			"value", getValue(_getSelectValue(ddmFormFieldRenderingContext)));
 
 		return parameters;
 	}
@@ -162,8 +159,13 @@ public class SelectDDMFormFieldTemplateContextContributor
 
 		List<Object> options = new ArrayList<>();
 
+		List<String> values = getValue(
+			_getSelectValue(ddmFormFieldRenderingContext));
+
 		for (String optionValue : ddmFormFieldOptions.getOptionsValues()) {
-			Map<String, String> optionMap = new HashMap<>();
+			if (values.contains(optionValue)) {
+				values.remove(optionValue);
+			}
 
 			LocalizedValue optionLabel = ddmFormFieldOptions.getOptionLabels(
 				optionValue);
@@ -174,11 +176,11 @@ public class SelectDDMFormFieldTemplateContextContributor
 				optionLabelString = HtmlUtil.extractText(optionLabelString);
 			}
 
-			optionMap.put("label", optionLabelString);
+			_putOption(options, optionLabelString, optionValue);
+		}
 
-			optionMap.put("value", optionValue);
-
-			options.add(optionMap);
+		if (ddmFormFieldRenderingContext.isReadOnly()) {
+			values.forEach(value -> _putOption(options, value, value));
 		}
 
 		return options;
@@ -241,6 +243,25 @@ public class SelectDDMFormFieldTemplateContextContributor
 
 	@Reference
 	protected Portal portal;
+
+	private String _getSelectValue(
+		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
+
+		return GetterUtil.getString(
+			ddmFormFieldRenderingContext.getValue(), "[]");
+	}
+
+	private void _putOption(
+		List<Object> options, String optionLabel, String optionValue) {
+
+		Map<String, String> optionMap = new HashMap<>();
+
+		optionMap.put("label", optionLabel);
+
+		optionMap.put("value", optionValue);
+
+		options.add(optionMap);
+	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		SelectDDMFormFieldTemplateContextContributor.class);

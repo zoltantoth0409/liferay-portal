@@ -447,26 +447,6 @@ AUI.add(
 					},
 
 					_getOptions: function(options) {
-						var instance = this;
-
-						if (instance.get('readOnly')) {
-
-							var selectedValue = instance.get('selectedValue');
-
-							if ((selectedValue !== undefined) && (selectedValue.length > 0)) {
-								options = [];
-
-								for (var index in selectedValue) {
-									options.push({
-										label: selectedValue[index],
-										value: selectedValue[index]
-									});
-								}
-							}
-
-							return options;
-						}
-
 						return options || [];
 					},
 
@@ -809,10 +789,6 @@ AUI.add(
 
 						if (value.length == 0) {
 							return true;
-						}
-
-						if (instance.get('readOnly')) {
-							instance.set('selectedValue', value);
 						}
 
 						var fixedOptions = instance.get('fixedOptions');
