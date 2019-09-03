@@ -31,6 +31,7 @@ const showVideo = () => {
 	loadingIndicator.parentElement.removeChild(loadingIndicator);
 
 	window.addEventListener('resize', resize);
+
 	resize();
 };
 
