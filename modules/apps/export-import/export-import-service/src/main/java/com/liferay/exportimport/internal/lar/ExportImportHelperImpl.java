@@ -830,6 +830,10 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 		Portlet portlet = _portletLocalService.getPortletById(rootPortletId);
 
+		if (portlet == null) {
+			return true;
+		}
+
 		PortletDataHandler portletDataHandler =
 			portlet.getPortletDataHandlerInstance();
 
