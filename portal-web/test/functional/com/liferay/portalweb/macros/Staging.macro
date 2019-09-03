@@ -110,7 +110,7 @@ definition {
 				value1 = "SUCCESSFUL");
 		}
 
-		Pause(locator1 = "5000");
+		Pause(locator1 = "3000");
 
 		AssertTextNotPresent(
 			locator1 = "Message#ERROR",
@@ -565,7 +565,7 @@ definition {
 
 		Button.clickSave();
 
-		Pause(locator1 = "5000");
+		Pause(locator1 = "2000");
 	}
 
 	macro enablePageInSitePagesVariation {

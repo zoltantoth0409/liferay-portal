@@ -114,7 +114,7 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Export / Import");
 
-		Pause(locator1 = "5000");
+		Pause(locator1 = "3000");
 	}
 
 	macro _gotoExportSite {
@@ -209,7 +209,7 @@ definition {
 				value1 = "${larFileName}");
 		}
 
-		Pause(locator1 = "20000");
+		Pause(locator1 = "15000");
 
 		if ("${cannotImport}" == "true") {
 			AssertTextEquals(
@@ -304,7 +304,7 @@ definition {
 				value1 = "${larFileName}");
 		}
 
-		Pause(locator1 = "190000");
+		Pause(locator1 = "15000");
 
 		if (isSet(importValidationMissingItem)) {
 			AssertTextEquals.assertPartialText(
@@ -491,7 +491,7 @@ definition {
 	}
 
 	macro filterCompletedProcesses {
-		Pause(locator1 = "5000");
+		Pause(locator1 = "3000");
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
