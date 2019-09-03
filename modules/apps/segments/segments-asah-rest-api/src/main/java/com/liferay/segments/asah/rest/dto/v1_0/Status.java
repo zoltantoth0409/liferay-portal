@@ -32,6 +32,8 @@ import java.util.Set;
 
 import javax.annotation.Generated;
 
+import javax.validation.constraints.NotEmpty;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -41,6 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Generated("")
 @GraphQLName("Status")
 @JsonFilter("Liferay.Vulcan")
+@Schema(requiredProperties = {"status"})
 @XmlRootElement(name = "Status")
 public class Status {
 
@@ -70,6 +73,7 @@ public class Status {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	@NotEmpty
 	protected String status;
 
 	@Schema
