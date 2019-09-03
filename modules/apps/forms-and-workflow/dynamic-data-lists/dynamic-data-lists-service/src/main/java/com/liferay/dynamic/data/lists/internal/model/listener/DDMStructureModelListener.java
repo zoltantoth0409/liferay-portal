@@ -108,6 +108,21 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 					serviceContext.setUserId(defaultUserId);
 
 					try {
+						Locale recordSetLocale = LocaleUtil.fromLanguageId(
+							recordSet.getDefaultLanguageId());
+
+						Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
+
+						if (!recordSetLocale.equals(siteDefaultLocale)) {
+							recordSet.setDescription(
+								recordSet.getDescription(recordSetLocale),
+								siteDefaultLocale);
+
+							recordSet.setName(
+								recordSet.getName(recordSetLocale),
+								siteDefaultLocale);
+						}
+
 						_ddlRecordSetLocalService.updateRecordSet(
 							recordSet.getRecordSetId(),
 							ddmStructure.getStructureId(),
