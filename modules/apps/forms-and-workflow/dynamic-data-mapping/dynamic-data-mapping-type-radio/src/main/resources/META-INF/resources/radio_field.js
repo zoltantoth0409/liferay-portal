@@ -4,10 +4,6 @@ AUI.add(
 		var RadioField = A.Component.create(
 			{
 				ATTRS: {
-					defaultLocale: {
-						value: "en_US"
-					},
-
 					inline: {
 						value: true
 					},
@@ -66,7 +62,7 @@ AUI.add(
 						return A.map(
 							instance.get('options'),
 							function(item) {
-								var label = item.label[instance.get('locale')] || item.label[instance.get('defaultLocale')];
+								var label = item.label[instance.get('locale')];
 								
 								if (!label) {
 									var values = Object.values(item.label);
