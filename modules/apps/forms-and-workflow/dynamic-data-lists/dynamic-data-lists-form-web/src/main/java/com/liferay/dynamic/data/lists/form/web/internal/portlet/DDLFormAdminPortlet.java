@@ -163,12 +163,15 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			String label = StringBundler.concat(
 				workflowDefinition.getName(), " (", version, ")");
 
-			ddmFormFieldOptions.addOptionLabel(value, LocaleUtil.US, label);
+			ddmFormFieldOptions.addOptionLabel(
+				value, themeDisplay.getLocale(), label);
 		}
 	}
 
 	protected DDMFormRenderingContext createDDMFormRenderingContext(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
+
+		String languageId = ParamUtil.getString(renderRequest, "languageId");
 
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
@@ -178,7 +181,8 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 		ddmFormRenderingContext.setHttpServletResponse(
 			_portal.getHttpServletResponse(renderResponse));
 		ddmFormRenderingContext.setContainerId("settings");
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
+		ddmFormRenderingContext.setLocale(
+			LocaleUtil.fromLanguageId(languageId));
 		ddmFormRenderingContext.setPortletNamespace(
 			renderResponse.getNamespace());
 
@@ -191,8 +195,8 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 
 		DDMForm ddmForm = DDMFormFactory.create(DDLRecordSetSettings.class);
 
-		ddmForm.addAvailableLocale(LocaleUtil.US);
-		ddmForm.setDefaultLocale(LocaleUtil.US);
+		ddmForm.addAvailableLocale(themeDisplay.getLocale());
+		ddmForm.setDefaultLocale(themeDisplay.getLocale());
 
 		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm.getDDMFormFieldsMap(false);
@@ -226,7 +230,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Locale locale = LocaleUtil.US;
+		Locale locale = themeDisplay.getLocale();
 
 		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
 
@@ -258,7 +262,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Locale locale = LocaleUtil.US;
+		Locale locale = themeDisplay.getLocale();
 
 		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
 
