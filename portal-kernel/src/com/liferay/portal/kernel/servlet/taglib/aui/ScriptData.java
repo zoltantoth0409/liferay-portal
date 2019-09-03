@@ -26,6 +26,7 @@ import java.io.Serializable;
 import java.io.Writer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -359,58 +360,56 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 		}
 	}
 
-	private static final Set<String> _reservedWords = Stream.of(
-		"arguments",
-		"await",
-		"break",
-		"case",
-		"catch",
-		"class",
-		"const",
-		"continue",
-		"debugger",
-		"default",
-		"delete",
-		"do",
-		"else",
-		"enum",
-		"eval",
-		"export",
-		"extends",
-		"false",
-		"finally",
-		"for",
-		"function",
-		"if",
-		"implements",
-		"import",
-		"in",
-		"instanceof",
-		"interface",
-		"let",
-		"new",
-		"null",
-		"package",
-		"private",
-		"protected",
-		"public",
-		"return",
-		"static",
-		"super",
-		"switch",
-		"this",
-		"throw",
-		"true",
-		"try",
-		"typeof",
-		"var",
-		"void",
-		"while",
-		"with",
-		"yield"
-	).collect(
-		Collectors.toSet()
-	);
+	private static final Set<String> _reservedWords = new HashSet<>(
+		Arrays.asList(
+			"arguments",
+			"await",
+			"break",
+			"case",
+			"catch",
+			"class",
+			"const",
+			"continue",
+			"debugger",
+			"default",
+			"delete",
+			"do",
+			"else",
+			"enum",
+			"eval",
+			"export",
+			"extends",
+			"false",
+			"finally",
+			"for",
+			"function",
+			"if",
+			"implements",
+			"import",
+			"in",
+			"instanceof",
+			"interface",
+			"let",
+			"new",
+			"null",
+			"package",
+			"private",
+			"protected",
+			"public",
+			"return",
+			"static",
+			"super",
+			"switch",
+			"this",
+			"throw",
+			"true",
+			"try",
+			"typeof",
+			"var",
+			"void",
+			"while",
+			"with",
+			"yield"));
 	private static final Pattern _whitespacePattern = Pattern.compile("\\s+");
 	private static final long serialVersionUID = 1L;
 
