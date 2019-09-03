@@ -51,6 +51,16 @@ definition {
 			value1 = "${preferredLanguageLocalizationMessage}");
 	}
 
+	macro viewLocalizationMessageInUserSite {
+		AssertTextEquals.assertPartialText(
+			locator1 = "Home#PORTAL_LOCALIZATION_TRANSLATION_LANGUAGE_MESSAGE",
+			value1 = "${translationLanguageLocalizationMessage}");
+
+		AssertTextEquals(
+			locator1 = "Home#PORTAL_LOCALIZATION_PREFERRED_LANGUAGE_MESSAGE",
+			value1 = "${preferredLanguageLocalizationMessage}");
+	}
+
 	macro viewRequestFailedToComplete {
 		AssertElementPresent(locator1 = "Message#ERROR_DISMISSIBLE");
 
