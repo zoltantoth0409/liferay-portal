@@ -1508,6 +1508,18 @@ AUI.add(
 
 						var titleNode = A.one('#' + instance.getInputName() + 'Title');
 
+						var parsedAssetTitleMap = instance.getParsedValue(
+							parsedValue.assetTitleMap
+						);
+
+						if (parsedAssetTitleMap) {
+							var assetTitle = parsedAssetTitleMap[instance.get('displayLocale')];
+
+							if (assetTitle) {
+								parsedValue.title = assetTitle;
+							}
+						}
+
 						titleNode.val(parsedValue.title || '');
 
 						instance._validateField(titleNode);
@@ -1653,13 +1665,13 @@ AUI.add(
 								if (event.details.length > 0) {
 									var selectedWebContent = event.details[0];
 
-									instance.setValue(
-										{
-											className: selectedWebContent.assetclassname,
-											classPK: selectedWebContent.assetclasspk,
-											title: selectedWebContent.assettitle || ''
-										}
-									);
+									instance.setValue({
+										className:
+											selectedWebContent.assetclassname,
+										classPK: selectedWebContent.assetclasspk,
+										title: selectedWebContent.assettitle || '',
+										assetTitleMap: selectedWebContent.assettitlemap
+									});
 
 									instance._hideMessage();
 								}
