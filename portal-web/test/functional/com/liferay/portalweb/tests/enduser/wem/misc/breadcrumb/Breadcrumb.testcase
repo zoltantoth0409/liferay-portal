@@ -477,6 +477,8 @@ definition {
 			childPageName = "Child Page Name",
 			parentPageName = "Welcome");
 
+		Navigator.openURL();
+
 		Page.gotoChildPagePG(
 			childPageName = "Child Page Name",
 			pageName = "Welcome");
