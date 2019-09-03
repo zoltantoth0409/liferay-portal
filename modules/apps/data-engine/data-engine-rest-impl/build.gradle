@@ -10,7 +10,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.renderer.api", version: "1.0.0"
@@ -31,4 +30,5 @@ dependencies {
 	compileOnly project(":apps:data-engine:data-engine-api")
 	compileOnly project(":apps:data-engine:data-engine-rest-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly project(":apps:portal-odata:portal-odata-api")
 }
