@@ -38,9 +38,9 @@ import javax.servlet.http.HttpServletRequest;
 public class ReactRendererUtil {
 
 	public static void renderReact(
-			HttpServletRequest httpServletRequest, Writer writer,
 			ComponentDescriptor componentDescriptor, Map<String, Object> data,
-			Portal portal, String npmResolvedPackageName)
+			HttpServletRequest httpServletRequest,
+			String npmResolvedPackageName, Portal portal, Writer writer)
 		throws IOException {
 
 		String placeholderId = StringUtil.randomId();
@@ -48,13 +48,13 @@ public class ReactRendererUtil {
 		_renderPlaceholder(writer, placeholderId);
 
 		_renderJavaScript(
-			httpServletRequest, writer, componentDescriptor, data, portal,
-			npmResolvedPackageName, placeholderId);
+			componentDescriptor, data, httpServletRequest,
+			npmResolvedPackageName, placeholderId, portal, writer);
 	}
 
 	private static Map<String, Object> _prepareData(
-		HttpServletRequest httpServletRequest,
-		ComponentDescriptor componentDescriptor, Map<String, Object> data) {
+		ComponentDescriptor componentDescriptor, Map<String, Object> data,
+		HttpServletRequest httpServletRequest) {
 
 		Map<String, Object> modifiedData = null;
 
@@ -103,9 +103,10 @@ public class ReactRendererUtil {
 	}
 
 	private static void _renderJavaScript(
-			HttpServletRequest httpServletRequest, Writer writer,
 			ComponentDescriptor componentDescriptor, Map<String, Object> data,
-			Portal portal, String npmResolvedPackageName, String placeholderId)
+			HttpServletRequest httpServletRequest,
+			String npmResolvedPackageName, String placeholderId, Portal portal,
+			Writer writer)
 		throws IOException {
 
 		StringBundler dependenciesSB = new StringBundler(7);
@@ -129,7 +130,7 @@ public class ReactRendererUtil {
 		javascriptSB.append(".default, ");
 		javascriptSB.append(
 			jsonSerializer.serialize(
-				_prepareData(httpServletRequest, componentDescriptor, data)));
+				_prepareData(componentDescriptor, data, httpServletRequest)));
 		javascriptSB.append(", '");
 		javascriptSB.append(placeholderId);
 		javascriptSB.append("');");
