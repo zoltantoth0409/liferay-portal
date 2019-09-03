@@ -527,6 +527,7 @@ definition {
 	@priority = "5"
 	test ExportImportPrivatePage {
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "ExportImport#ExportImportPrivatePage";
 		property testray.component.names = "Training";
 
 		Page.add(
@@ -766,6 +767,7 @@ definition {
 	@priority = "5"
 	test ExportImportSmoke {
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "ExportImport#ExportImportSmoke";
 		property testray.component.names = "Training";
 
 		LAR.configureExportSiteCP();
