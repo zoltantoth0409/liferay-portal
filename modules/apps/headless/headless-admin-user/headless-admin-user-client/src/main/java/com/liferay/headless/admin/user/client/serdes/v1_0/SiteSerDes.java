@@ -14,17 +14,15 @@
 
 package com.liferay.headless.admin.user.client.serdes.v1_0;
 
-import com.liferay.headless.admin.user.client.dto.v1_0.Role;
+import com.liferay.headless.admin.user.client.dto.v1_0.Site;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -33,22 +31,22 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class RoleSerDes {
+public class SiteSerDes {
 
-	public static Role toDTO(String json) {
-		RoleJSONParser roleJSONParser = new RoleJSONParser();
+	public static Site toDTO(String json) {
+		SiteJSONParser siteJSONParser = new SiteJSONParser();
 
-		return roleJSONParser.parseToDTO(json);
+		return siteJSONParser.parseToDTO(json);
 	}
 
-	public static Role[] toDTOs(String json) {
-		RoleJSONParser roleJSONParser = new RoleJSONParser();
+	public static Site[] toDTOs(String json) {
+		SiteJSONParser siteJSONParser = new SiteJSONParser();
 
-		return roleJSONParser.parseToDTOs(json);
+		return siteJSONParser.parseToDTOs(json);
 	}
 
-	public static String toJSON(Role role) {
-		if (role == null) {
+	public static String toJSON(Site site) {
+		if (site == null) {
 			return "null";
 		}
 
@@ -56,10 +54,7 @@ public class RoleSerDes {
 
 		sb.append("{");
 
-		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-		if (role.getAvailableLanguages() != null) {
+		if (site.getAvailableLanguages() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -68,14 +63,14 @@ public class RoleSerDes {
 
 			sb.append("[");
 
-			for (int i = 0; i < role.getAvailableLanguages().length; i++) {
+			for (int i = 0; i < site.getAvailableLanguages().length; i++) {
 				sb.append("\"");
 
-				sb.append(_escape(role.getAvailableLanguages()[i]));
+				sb.append(_escape(site.getAvailableLanguages()[i]));
 
 				sb.append("\"");
 
-				if ((i + 1) < role.getAvailableLanguages().length) {
+				if ((i + 1) < site.getAvailableLanguages().length) {
 					sb.append(", ");
 				}
 			}
@@ -83,45 +78,17 @@ public class RoleSerDes {
 			sb.append("]");
 		}
 
-		if (role.getCreator() != null) {
+		if (site.getCreator() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
 			sb.append("\"creator\": ");
 
-			sb.append(String.valueOf(role.getCreator()));
+			sb.append(String.valueOf(site.getCreator()));
 		}
 
-		if (role.getDateCreated() != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"dateCreated\": ");
-
-			sb.append("\"");
-
-			sb.append(liferayToJSONDateFormat.format(role.getDateCreated()));
-
-			sb.append("\"");
-		}
-
-		if (role.getDateModified() != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"dateModified\": ");
-
-			sb.append("\"");
-
-			sb.append(liferayToJSONDateFormat.format(role.getDateModified()));
-
-			sb.append("\"");
-		}
-
-		if (role.getDescription() != null) {
+		if (site.getDescription() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -130,22 +97,36 @@ public class RoleSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(role.getDescription()));
+			sb.append(_escape(site.getDescription()));
 
 			sb.append("\"");
 		}
 
-		if (role.getId() != null) {
+		if (site.getId() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
 			sb.append("\"id\": ");
 
-			sb.append(role.getId());
+			sb.append(site.getId());
 		}
 
-		if (role.getName() != null) {
+		if (site.getMembershipType() != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"membershipType\": ");
+
+			sb.append("\"");
+
+			sb.append(_escape(site.getMembershipType()));
+
+			sb.append("\"");
+		}
+
+		if (site.getName() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -154,23 +135,29 @@ public class RoleSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(role.getName()));
+			sb.append(_escape(site.getName()));
 
 			sb.append("\"");
 		}
 
-		if (role.getRoleType() != null) {
+		if (site.getSites() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleType\": ");
+			sb.append("\"sites\": ");
 
-			sb.append("\"");
+			sb.append("[");
 
-			sb.append(_escape(role.getRoleType()));
+			for (int i = 0; i < site.getSites().length; i++) {
+				sb.append(String.valueOf(site.getSites()[i]));
 
-			sb.append("\"");
+				if ((i + 1) < site.getSites().length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
 		}
 
 		sb.append("}");
@@ -179,133 +166,131 @@ public class RoleSerDes {
 	}
 
 	public static Map<String, Object> toMap(String json) {
-		RoleJSONParser roleJSONParser = new RoleJSONParser();
+		SiteJSONParser siteJSONParser = new SiteJSONParser();
 
-		return roleJSONParser.parseToMap(json);
+		return siteJSONParser.parseToMap(json);
 	}
 
-	public static Map<String, String> toMap(Role role) {
-		if (role == null) {
+	public static Map<String, String> toMap(Site site) {
+		if (site == null) {
 			return null;
 		}
 
 		Map<String, String> map = new TreeMap<>();
 
-		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-		if (role.getAvailableLanguages() == null) {
+		if (site.getAvailableLanguages() == null) {
 			map.put("availableLanguages", null);
 		}
 		else {
 			map.put(
 				"availableLanguages",
-				String.valueOf(role.getAvailableLanguages()));
+				String.valueOf(site.getAvailableLanguages()));
 		}
 
-		if (role.getCreator() == null) {
+		if (site.getCreator() == null) {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", String.valueOf(role.getCreator()));
+			map.put("creator", String.valueOf(site.getCreator()));
 		}
 
-		map.put(
-			"dateCreated",
-			liferayToJSONDateFormat.format(role.getDateCreated()));
-
-		map.put(
-			"dateModified",
-			liferayToJSONDateFormat.format(role.getDateModified()));
-
-		if (role.getDescription() == null) {
+		if (site.getDescription() == null) {
 			map.put("description", null);
 		}
 		else {
-			map.put("description", String.valueOf(role.getDescription()));
+			map.put("description", String.valueOf(site.getDescription()));
 		}
 
-		if (role.getId() == null) {
+		if (site.getId() == null) {
 			map.put("id", null);
 		}
 		else {
-			map.put("id", String.valueOf(role.getId()));
+			map.put("id", String.valueOf(site.getId()));
 		}
 
-		if (role.getName() == null) {
+		if (site.getMembershipType() == null) {
+			map.put("membershipType", null);
+		}
+		else {
+			map.put("membershipType", String.valueOf(site.getMembershipType()));
+		}
+
+		if (site.getName() == null) {
 			map.put("name", null);
 		}
 		else {
-			map.put("name", String.valueOf(role.getName()));
+			map.put("name", String.valueOf(site.getName()));
 		}
 
-		if (role.getRoleType() == null) {
-			map.put("roleType", null);
+		if (site.getSites() == null) {
+			map.put("sites", null);
 		}
 		else {
-			map.put("roleType", String.valueOf(role.getRoleType()));
+			map.put("sites", String.valueOf(site.getSites()));
 		}
 
 		return map;
 	}
 
-	public static class RoleJSONParser extends BaseJSONParser<Role> {
+	public static class SiteJSONParser extends BaseJSONParser<Site> {
 
 		@Override
-		protected Role createDTO() {
-			return new Role();
+		protected Site createDTO() {
+			return new Site();
 		}
 
 		@Override
-		protected Role[] createDTOArray(int size) {
-			return new Role[size];
+		protected Site[] createDTOArray(int size) {
+			return new Site[size];
 		}
 
 		@Override
 		protected void setField(
-			Role role, String jsonParserFieldName,
+			Site site, String jsonParserFieldName,
 			Object jsonParserFieldValue) {
 
 			if (Objects.equals(jsonParserFieldName, "availableLanguages")) {
 				if (jsonParserFieldValue != null) {
-					role.setAvailableLanguages(
+					site.setAvailableLanguages(
 						toStrings((Object[])jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "creator")) {
 				if (jsonParserFieldValue != null) {
-					role.setCreator(
+					site.setCreator(
 						CreatorSerDes.toDTO((String)jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
-				if (jsonParserFieldValue != null) {
-					role.setDateCreated(toDate((String)jsonParserFieldValue));
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
-				if (jsonParserFieldValue != null) {
-					role.setDateModified(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
 				if (jsonParserFieldValue != null) {
-					role.setDescription((String)jsonParserFieldValue);
+					site.setDescription((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
 				if (jsonParserFieldValue != null) {
-					role.setId(Long.valueOf((String)jsonParserFieldValue));
+					site.setId(Long.valueOf((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "membershipType")) {
+				if (jsonParserFieldValue != null) {
+					site.setMembershipType((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "name")) {
 				if (jsonParserFieldValue != null) {
-					role.setName((String)jsonParserFieldValue);
+					site.setName((String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "roleType")) {
+			else if (Objects.equals(jsonParserFieldName, "sites")) {
 				if (jsonParserFieldValue != null) {
-					role.setRoleType((String)jsonParserFieldValue);
+					site.setSites(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> SiteSerDes.toDTO((String)object)
+						).toArray(
+							size -> new Site[size]
+						));
 				}
 			}
 			else {
