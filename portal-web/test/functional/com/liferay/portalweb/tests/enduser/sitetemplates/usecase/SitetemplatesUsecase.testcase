@@ -666,11 +666,14 @@ definition {
 			siteName = "Site Name",
 			siteType = "Template");
 
+		JSONLayout.addWidgetToPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Page1 Name",
+			widgetName = "Web Content Display");
+
 		Navigator.gotoSitePage(
 			pageName = "Page1 Name",
 			siteName = "Site Name");
-
-		Portlet.addPG(portletName = "Web Content Display");
 
 		WebContentDisplayPortlet.selectWebContent(
 			portletName = "Web Content Display",
@@ -701,12 +704,14 @@ definition {
 			siteName = "Export",
 			siteType = "Blank");
 
+		JSONLayout.addPublicLayout(
+			groupName = "Export",
+			layoutName = "1");
+
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
 			portlet = "Pages");
-
-		SitePages.addPublicPage(pageName = "1");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
@@ -716,12 +721,14 @@ definition {
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/1");
 
+		JSONLayout.addPublicLayout(
+			groupName = "Export",
+			layoutName = "2");
+
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
 			portlet = "Pages");
-
-		SitePages.addPublicPage(pageName = "2");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
@@ -731,12 +738,14 @@ definition {
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/2");
 
+		JSONLayout.addPublicLayout(
+			groupName = "Export",
+			layoutName = "Hello");
+
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
 			portlet = "Pages");
-
-		SitePages.addPublicPage(pageName = "Hello");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
