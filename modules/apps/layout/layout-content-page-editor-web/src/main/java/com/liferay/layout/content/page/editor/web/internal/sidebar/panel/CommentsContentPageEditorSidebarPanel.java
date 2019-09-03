@@ -17,6 +17,8 @@ package com.liferay.layout.content.page.editor.web.internal.sidebar.panel;
 import com.liferay.layout.content.page.editor.sidebar.panel.ContentPageEditorSidebarPanel;
 import com.liferay.layout.content.page.editor.web.internal.configuration.ContentPageEditorConfiguration;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -71,10 +73,16 @@ public class CommentsContentPageEditorSidebarPanel
 			return companyConfiguration.commentsEnabled();
 		}
 		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 		}
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommentsContentPageEditorSidebarPanel.class);
 
 	@Reference
 	private ConfigurationProvider _configurationProvider;
