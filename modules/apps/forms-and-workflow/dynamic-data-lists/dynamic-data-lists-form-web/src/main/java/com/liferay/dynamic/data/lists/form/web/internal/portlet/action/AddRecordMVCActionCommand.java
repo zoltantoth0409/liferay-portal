@@ -28,6 +28,7 @@ import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
+import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -38,10 +39,13 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+
+import java.util.Collections;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -138,7 +142,13 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 
 		DDMStructure ddmStructure = recordSet.getDDMStructure();
 
-		return ddmStructure.getDDMForm();
+		DDMForm ddmForm = _ddm.updateDDMFormDefaultLocale(
+			ddmStructure.getDDMForm(), LocaleUtil.getSiteDefault());
+
+		ddmForm.setAvailableLocales(
+			Collections.singleton(ddmForm.getDefaultLocale()));
+
+		return ddmForm;
 	}
 
 	protected boolean isEmailNotificationEnabled(DDLRecordSet recordSet)
@@ -200,6 +210,10 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 	private DDLFormEmailNotificationSender _ddlFormEmailNotificationSender;
 	private DDLRecordService _ddlRecordService;
 	private DDLRecordSetService _ddlRecordSetService;
+
+	@Reference
+	private DDM _ddm;
+
 	private DDMFormValuesFactory _ddmFormValuesFactory;
 
 	@Reference

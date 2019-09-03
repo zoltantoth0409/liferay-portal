@@ -31,9 +31,13 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDMFormValuesMerger;
+import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+
+import java.util.Collections;
 
 import javax.portlet.RenderRequest;
 
@@ -72,7 +76,11 @@ public class DDLFormViewRecordDisplayContext {
 
 		DDMStructure ddmStructure = getDDMStructure();
 
-		DDMForm ddmForm = ddmStructure.getDDMForm();
+		DDMForm ddmForm = DDMUtil.updateDDMFormDefaultLocale(
+			ddmStructure.getDDMForm(), LocaleUtil.getSiteDefault());
+
+		ddmForm.setAvailableLocales(
+			Collections.singleton(ddmForm.getDefaultLocale()));
 
 		DDMFormValues ddmFormValues = _ddmFormValuesFactory.create(
 			renderRequest, ddmForm);

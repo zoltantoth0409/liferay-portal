@@ -49,6 +49,7 @@ import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLocalServ
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.StorageEngine;
 import com.liferay.dynamic.data.mapping.util.DDMFormValuesMerger;
+import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
@@ -58,6 +59,7 @@ import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -68,6 +70,7 @@ import com.liferay.portal.kernel.workflow.WorkflowEngineManager;
 import com.liferay.portal.kernel.workflow.WorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -347,6 +350,12 @@ public class DDLFormAdminDisplayContext {
 
 		if (ddmStructure != null) {
 			ddmForm = ddmStructure.getDDMForm();
+
+			ddmForm = DDMUtil.updateDDMFormDefaultLocale(
+				ddmForm, LocaleUtil.getSiteDefault());
+
+			ddmForm.setAvailableLocales(
+				Collections.singleton(ddmForm.getDefaultLocale()));
 		}
 
 		return _ddmFormJSONSerializer.serialize(ddmForm);

@@ -31,6 +31,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayoutPage;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
@@ -42,6 +43,7 @@ import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -51,6 +53,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -291,6 +294,12 @@ public class DDLFormDisplayContext {
 		DDMStructure ddmStructure, boolean requireCaptcha) {
 
 		DDMForm ddmForm = ddmStructure.getDDMForm();
+
+		ddmForm = DDMUtil.updateDDMFormDefaultLocale(
+			ddmForm, LocaleUtil.getSiteDefault());
+
+		ddmForm.setAvailableLocales(
+			Collections.singleton(ddmForm.getDefaultLocale()));
 
 		if (requireCaptcha) {
 			DDMFormField captchaDDMFormField = new DDMFormField(
