@@ -98,7 +98,7 @@
 </tr>
 <tr>
 	<td>EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_HEADER</td>
-	<td>//iframe[contains(@title,'adminEmailPasswordSentBody')]/ancestor::span/preceding-sibling::span[contains(.,'Body')]</td>
+	<td>//iframe[contains(@title,'adminEmailPasswordSent')]/ancestor::span/preceding-sibling::span[contains(.,'Email with Password')]</td>
 	<td></td>
 </tr>
 <tr>
