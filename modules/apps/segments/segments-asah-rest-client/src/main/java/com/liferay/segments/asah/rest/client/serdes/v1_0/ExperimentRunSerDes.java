@@ -67,6 +67,29 @@ public class ExperimentRunSerDes {
 			sb.append(experimentRun.getConfidenceLevel());
 		}
 
+		if (experimentRun.getExperimentVariants() != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"experimentVariants\": ");
+
+			sb.append("[");
+
+			for (int i = 0; i < experimentRun.getExperimentVariants().length;
+				 i++) {
+
+				sb.append(
+					String.valueOf(experimentRun.getExperimentVariants()[i]));
+
+				if ((i + 1) < experimentRun.getExperimentVariants().length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		if (experimentRun.getStatus() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
@@ -79,26 +102,6 @@ public class ExperimentRunSerDes {
 			sb.append(_escape(experimentRun.getStatus()));
 
 			sb.append("\"");
-		}
-
-		if (experimentRun.getVariants() != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"variants\": ");
-
-			sb.append("[");
-
-			for (int i = 0; i < experimentRun.getVariants().length; i++) {
-				sb.append(String.valueOf(experimentRun.getVariants()[i]));
-
-				if ((i + 1) < experimentRun.getVariants().length) {
-					sb.append(", ");
-				}
-			}
-
-			sb.append("]");
 		}
 
 		sb.append("}");
@@ -129,18 +132,20 @@ public class ExperimentRunSerDes {
 				String.valueOf(experimentRun.getConfidenceLevel()));
 		}
 
+		if (experimentRun.getExperimentVariants() == null) {
+			map.put("experimentVariants", null);
+		}
+		else {
+			map.put(
+				"experimentVariants",
+				String.valueOf(experimentRun.getExperimentVariants()));
+		}
+
 		if (experimentRun.getStatus() == null) {
 			map.put("status", null);
 		}
 		else {
 			map.put("status", String.valueOf(experimentRun.getStatus()));
-		}
-
-		if (experimentRun.getVariants() == null) {
-			map.put("variants", null);
-		}
-		else {
-			map.put("variants", String.valueOf(experimentRun.getVariants()));
 		}
 
 		return map;
@@ -170,14 +175,11 @@ public class ExperimentRunSerDes {
 						Double.valueOf((String)jsonParserFieldValue));
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "status")) {
+			else if (Objects.equals(
+						jsonParserFieldName, "experimentVariants")) {
+
 				if (jsonParserFieldValue != null) {
-					experimentRun.setStatus((String)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "variants")) {
-				if (jsonParserFieldValue != null) {
-					experimentRun.setVariants(
+					experimentRun.setExperimentVariants(
 						Stream.of(
 							toStrings((Object[])jsonParserFieldValue)
 						).map(
@@ -186,6 +188,11 @@ public class ExperimentRunSerDes {
 						).toArray(
 							size -> new ExperimentVariant[size]
 						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "status")) {
+				if (jsonParserFieldValue != null) {
+					experimentRun.setStatus((String)jsonParserFieldValue);
 				}
 			}
 			else {

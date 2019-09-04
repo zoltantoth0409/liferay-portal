@@ -49,6 +49,28 @@ public class ExperimentRun {
 
 	protected Double confidenceLevel;
 
+	public ExperimentVariant[] getExperimentVariants() {
+		return experimentVariants;
+	}
+
+	public void setExperimentVariants(ExperimentVariant[] experimentVariants) {
+		this.experimentVariants = experimentVariants;
+	}
+
+	public void setExperimentVariants(
+		UnsafeSupplier<ExperimentVariant[], Exception>
+			experimentVariantsUnsafeSupplier) {
+
+		try {
+			experimentVariants = experimentVariantsUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected ExperimentVariant[] experimentVariants;
+
 	public String getStatus() {
 		return status;
 	}
@@ -69,27 +91,6 @@ public class ExperimentRun {
 	}
 
 	protected String status;
-
-	public ExperimentVariant[] getVariants() {
-		return variants;
-	}
-
-	public void setVariants(ExperimentVariant[] variants) {
-		this.variants = variants;
-	}
-
-	public void setVariants(
-		UnsafeSupplier<ExperimentVariant[], Exception> variantsUnsafeSupplier) {
-
-		try {
-			variants = variantsUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected ExperimentVariant[] variants;
 
 	@Override
 	public boolean equals(Object object) {
