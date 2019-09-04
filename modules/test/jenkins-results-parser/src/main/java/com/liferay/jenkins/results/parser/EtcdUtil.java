@@ -159,7 +159,7 @@ public class EtcdUtil {
 						if (etcdNode == null) {
 							throw new RuntimeException(
 								JenkinsResultsParserUtil.combine(
-									"Unable to get EtcdNode from ",
+									"Unable to get Etcd node from ",
 									getEtcdServerURL(), " with key ",
 									getKey()));
 						}
