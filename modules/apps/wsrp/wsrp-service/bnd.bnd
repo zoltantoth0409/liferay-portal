@@ -12,6 +12,6 @@ Liferay-Require-SchemaVersion: 1.2.0
 Liferay-Service: true
 Web-ContextPath: /wsrp-service
 -includeresource:\
-	META-INF/=@oasis.names.tc.wsrp-[0-9]*.jar!/wsdl/*,\
+	META-INF/=@oasis.names.tc.wsrp-[0-9.]*.jar!/wsdl/*,\
 	@com.liferay.util.java-*.jar!/com/liferay/util/axis/*.class,\
 	@com.liferay.util.java-*.jar!/com/liferay/util/portlet/PortletProps.class
