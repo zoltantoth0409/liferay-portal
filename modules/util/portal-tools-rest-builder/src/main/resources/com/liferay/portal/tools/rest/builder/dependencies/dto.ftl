@@ -138,6 +138,13 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 			propertyType = properties[propertyName]
 		/>
 
+		<#if propertySchema.maximum??>
+			@DecimalMax("${propertySchema.maximum}")
+		</#if>
+		<#if propertySchema.minimum??>
+			@DecimalMin("${propertySchema.minimum}")
+		</#if>
+
 		@Schema(
 			<#if propertySchema.description??>
 				description = "${propertySchema.description}"
@@ -151,12 +158,6 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 				example = "${propertySchema.example}"
 			</#if>
 		)
-		<#if propertySchema.maximum??>
-			@DecimalMax("${propertySchema.maximum}")
-		</#if>
-		<#if propertySchema.minimum??>
-			@DecimalMin("${propertySchema.minimum}")
-		</#if>
 
 		<#assign capitalizedPropertyName = propertyName?cap_first />
 
