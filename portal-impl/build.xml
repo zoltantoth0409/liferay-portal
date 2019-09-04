@@ -783,7 +783,7 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 		<delete file="ServiceBuilder.temp" />
 
 		<var name="source.formatter.npm.script" value="format" />
-		<var name="source.formatter.npm.task" value="npmRunFormat" />
+		<var name="source.formatter.npm.task" value="packageRunFormat" />
 
 		<if>
 			<and>
@@ -792,7 +792,7 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 			</and>
 			<then>
 				<var name="source.formatter.npm.script" value="checkFormat" />
-				<var name="source.formatter.npm.task" value="npmRunCheckFormat" />
+				<var name="source.formatter.npm.task" value="packageRunCheckFormat" />
 			</then>
 		</if>
 
