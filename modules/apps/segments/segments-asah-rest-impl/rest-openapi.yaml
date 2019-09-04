@@ -36,13 +36,13 @@ components:
                     maximum: 1
                     minimum: 0
                     type: number
-                status:
-                    readOnly: true
-                    type: string
                 experimentVariants:
                     items:
                         $ref: '#/components/schemas/ExperimentVariant'
                     type: array
+                status:
+                    readOnly: true
+                    type: string
             required:
                 - confidenceLevel
                 - variants
