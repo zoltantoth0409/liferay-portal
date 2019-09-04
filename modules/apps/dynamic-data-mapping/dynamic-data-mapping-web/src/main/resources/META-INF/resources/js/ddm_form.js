@@ -1513,7 +1513,8 @@ AUI.add(
 						);
 
 						if (parsedAssetTitleMap) {
-							var assetTitle = parsedAssetTitleMap[instance.get('displayLocale')];
+							var assetTitle =
+								parsedAssetTitleMap[instance.get('displayLocale')];
 
 							if (assetTitle) {
 								parsedValue.title = assetTitle;
@@ -1670,7 +1671,8 @@ AUI.add(
 											selectedWebContent.assetclassname,
 										classPK: selectedWebContent.assetclasspk,
 										title: selectedWebContent.assettitle || '',
-										assetTitleMap: selectedWebContent.assettitlemap
+										assetTitleMap: 
+											selectedWebContent.assettitlemap
 									});
 
 									instance._hideMessage();
