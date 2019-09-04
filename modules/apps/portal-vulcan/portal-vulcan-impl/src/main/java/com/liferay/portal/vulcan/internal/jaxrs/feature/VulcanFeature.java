@@ -94,7 +94,12 @@ public class VulcanFeature implements Feature {
 
 	@Override
 	public boolean configure(FeatureContext featureContext) {
-		_registerConfiguration(featureContext);
+		try {
+			_registerConfiguration(featureContext);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 
 		featureContext.register(BeanValidationInterceptor.class);
 		featureContext.register(ExceptionMapper.class);
@@ -143,43 +148,40 @@ public class VulcanFeature implements Feature {
 		return false;
 	}
 
-	private void _registerConfiguration(FeatureContext featureContext) {
-		try {
-			Configuration configuration =
-				_configurationAdmin.createFactoryConfiguration(
-					VulcanConfiguration.class.getName(), StringPool.QUESTION);
+	private void _registerConfiguration(FeatureContext featureContext)
+		throws Exception {
 
-			javax.ws.rs.core.Configuration jaxRSConfiguration =
-				featureContext.getConfiguration();
+		Configuration configuration =
+			_configurationAdmin.createFactoryConfiguration(
+				VulcanConfiguration.class.getName(), StringPool.QUESTION);
 
-			if (jaxRSConfiguration != null) {
-				Map property = (Map)jaxRSConfiguration.getProperty(
-					"osgi.jaxrs.application.serviceProperties");
+		javax.ws.rs.core.Configuration jaxRSConfiguration =
+			featureContext.getConfiguration();
 
-				String name = (String)property.get(
-					"osgi.jaxrs.application.base");
+		if (jaxRSConfiguration != null) {
+			Map property = (Map)jaxRSConfiguration.getProperty(
+				"osgi.jaxrs.application.serviceProperties");
 
-				String filterString = String.format(
-					"(&(service.factoryPid=%s)(name=%s))",
-					VulcanConfiguration.class.getName(), name);
+			String name = (String)property.get(
+				"osgi.jaxrs.application.base");
 
-				Configuration[] configurations =
-					_configurationAdmin.listConfigurations(filterString);
+			String filterString = String.format(
+				"(&(service.factoryPid=%s)(name=%s))",
+				VulcanConfiguration.class.getName(), name);
 
-				if (ArrayUtil.isEmpty(configurations)) {
-					Dictionary<String, Object> dictionary =
-						new HashMapDictionary<>();
+			Configuration[] configurations =
+				_configurationAdmin.listConfigurations(filterString);
 
-					dictionary.put("path", name);
-					dictionary.put("graphQLEnabled", true);
-					dictionary.put("restEnabled", true);
+			if (ArrayUtil.isEmpty(configurations)) {
+				Dictionary<String, Object> dictionary =
+					new HashMapDictionary<>();
 
-					configuration.update(dictionary);
-				}
+				dictionary.put("path", name);
+				dictionary.put("graphQLEnabled", true);
+				dictionary.put("restEnabled", true);
+
+				configuration.update(dictionary);
 			}
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
 		}
 	}
 
