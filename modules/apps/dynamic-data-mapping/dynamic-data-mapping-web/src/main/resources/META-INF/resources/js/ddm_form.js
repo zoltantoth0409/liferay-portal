@@ -1508,16 +1508,16 @@ AUI.add(
 
 						var titleNode = A.one('#' + instance.getInputName() + 'Title');
 
-						var parsedAssetTitleMap = instance.getParsedValue(
-							parsedValue.assetTitleMap
+						var parsedTitleMap = instance.getParsedValue(
+							parsedValue.titleMap
 						);
 
-						if (parsedAssetTitleMap) {
-							var assetTitle =
-								parsedAssetTitleMap[instance.get('displayLocale')];
+						if (parsedTitleMap) {
+							var journalTitle =
+								parsedTitleMap[instance.get('displayLocale')];
 
-							if (assetTitle) {
-								parsedValue.title = assetTitle;
+							if (journalTitle) {
+								parsedValue.title = journalTitle;
 							}
 						}
 
@@ -1671,7 +1671,7 @@ AUI.add(
 											selectedWebContent.assetclassname,
 										classPK: selectedWebContent.assetclasspk,
 										title: selectedWebContent.assettitle || '',
-										assetTitleMap: 
+										titleMap: 
 											selectedWebContent.assettitlemap
 									});
 
