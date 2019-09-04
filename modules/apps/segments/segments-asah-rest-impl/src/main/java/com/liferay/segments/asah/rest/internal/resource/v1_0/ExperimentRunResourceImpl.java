@@ -49,7 +49,8 @@ public class ExperimentRunResourceImpl extends BaseExperimentRunResourceImpl {
 			Long segmentsExperimentKey, ExperimentRun experimentRun)
 		throws Exception {
 
-		ExperimentVariant[] experimentVariants = experimentRun.getVariants();
+		ExperimentVariant[] experimentVariants =
+			experimentRun.getExperimentVariants();
 
 		Map<String, Double> segmentsExperienceKeySplitMap = new HashMap<>();
 
@@ -120,8 +121,9 @@ public class ExperimentRunResourceImpl extends BaseExperimentRunResourceImpl {
 		return new ExperimentRun() {
 			{
 				confidenceLevel = segmentsExperiment.getConfidenceLevel();
+				experimentVariants = _toExperimentVariants(
+					segmentsExperimentRels);
 				status = segmentsExperimentConstantsStatus.toString();
-				variants = _toExperimentVariants(segmentsExperimentRels);
 			}
 		};
 	}
