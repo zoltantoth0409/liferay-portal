@@ -14,7 +14,6 @@
 
 package com.liferay.frontend.taglib.clay.servlet.taglib.util;
 
-
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
