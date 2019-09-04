@@ -2,5 +2,5 @@ Bundle-Name: Liferay Frontend JS Loader Modules Extender
 Bundle-SymbolicName: com.liferay.frontend.js.loader.modules.extender
 Bundle-Version: 3.0.29
 -includeresource:\
-	@biz.aQute.bndlib-[0-9]*.jar!/aQute/lib/base64/*,\
-	@biz.aQute.bndlib-[0-9]*.jar!/aQute/lib/converter/*
+	@biz.aQute.bndlib-[0-9.]*.jar!/aQute/lib/base64/*,\
+	@biz.aQute.bndlib-[0-9.]*.jar!/aQute/lib/converter/*
