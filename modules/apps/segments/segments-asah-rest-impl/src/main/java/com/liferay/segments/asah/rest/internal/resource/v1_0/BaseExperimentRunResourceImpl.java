@@ -56,7 +56,7 @@ public abstract class BaseExperimentRunResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'POST' 'http://localhost:8080/o/segments-asah/v1.0/experiments/{experimentId}/run' -d $'{"confidenceLevel": ___, "variants": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'POST' 'http://localhost:8080/o/segments-asah/v1.0/experiments/{experimentId}/run' -d $'{"confidenceLevel": ___, "experimentVariants": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@Override
 	@Consumes({"application/json", "application/xml"})

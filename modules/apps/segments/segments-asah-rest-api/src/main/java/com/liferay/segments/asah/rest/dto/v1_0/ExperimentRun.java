@@ -77,6 +77,35 @@ public class ExperimentRun {
 	protected Double confidenceLevel;
 
 	@Schema
+	public ExperimentVariant[] getExperimentVariants() {
+		return experimentVariants;
+	}
+
+	public void setExperimentVariants(ExperimentVariant[] experimentVariants) {
+		this.experimentVariants = experimentVariants;
+	}
+
+	@JsonIgnore
+	public void setExperimentVariants(
+		UnsafeSupplier<ExperimentVariant[], Exception>
+			experimentVariantsUnsafeSupplier) {
+
+		try {
+			experimentVariants = experimentVariantsUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected ExperimentVariant[] experimentVariants;
+
+	@Schema
 	public String getStatus() {
 		return status;
 	}
@@ -103,35 +132,6 @@ public class ExperimentRun {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String status;
-
-	@Schema
-	public ExperimentVariant[] getVariants() {
-		return variants;
-	}
-
-	public void setVariants(ExperimentVariant[] variants) {
-		this.variants = variants;
-	}
-
-	@JsonIgnore
-	public void setVariants(
-		UnsafeSupplier<ExperimentVariant[], Exception> variantsUnsafeSupplier) {
-
-		try {
-			variants = variantsUnsafeSupplier.get();
-		}
-		catch (RuntimeException re) {
-			throw re;
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	@NotNull
-	protected ExperimentVariant[] variants;
 
 	@Override
 	public boolean equals(Object object) {
@@ -170,6 +170,26 @@ public class ExperimentRun {
 			sb.append(confidenceLevel);
 		}
 
+		if (experimentVariants != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"experimentVariants\": ");
+
+			sb.append("[");
+
+			for (int i = 0; i < experimentVariants.length; i++) {
+				sb.append(String.valueOf(experimentVariants[i]));
+
+				if ((i + 1) < experimentVariants.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		if (status != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
@@ -182,26 +202,6 @@ public class ExperimentRun {
 			sb.append(_escape(status));
 
 			sb.append("\"");
-		}
-
-		if (variants != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"variants\": ");
-
-			sb.append("[");
-
-			for (int i = 0; i < variants.length; i++) {
-				sb.append(String.valueOf(variants[i]));
-
-				if ((i + 1) < variants.length) {
-					sb.append(", ");
-				}
-			}
-
-			sb.append("]");
 		}
 
 		sb.append("}");

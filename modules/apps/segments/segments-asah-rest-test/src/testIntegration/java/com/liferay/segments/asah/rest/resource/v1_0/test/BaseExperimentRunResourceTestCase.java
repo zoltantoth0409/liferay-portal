@@ -296,16 +296,18 @@ public abstract class BaseExperimentRunResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("status", additionalAssertFieldName)) {
-				if (experimentRun.getStatus() == null) {
+			if (Objects.equals(
+					"experimentVariants", additionalAssertFieldName)) {
+
+				if (experimentRun.getExperimentVariants() == null) {
 					valid = false;
 				}
 
 				continue;
 			}
 
-			if (Objects.equals("variants", additionalAssertFieldName)) {
-				if (experimentRun.getVariants() == null) {
+			if (Objects.equals("status", additionalAssertFieldName)) {
+				if (experimentRun.getStatus() == null) {
 					valid = false;
 				}
 
@@ -380,10 +382,12 @@ public abstract class BaseExperimentRunResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("status", additionalAssertFieldName)) {
+			if (Objects.equals(
+					"experimentVariants", additionalAssertFieldName)) {
+
 				if (!Objects.deepEquals(
-						experimentRun1.getStatus(),
-						experimentRun2.getStatus())) {
+						experimentRun1.getExperimentVariants(),
+						experimentRun2.getExperimentVariants())) {
 
 					return false;
 				}
@@ -391,10 +395,10 @@ public abstract class BaseExperimentRunResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("variants", additionalAssertFieldName)) {
+			if (Objects.equals("status", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						experimentRun1.getVariants(),
-						experimentRun2.getVariants())) {
+						experimentRun1.getStatus(),
+						experimentRun2.getStatus())) {
 
 					return false;
 				}
@@ -498,17 +502,17 @@ public abstract class BaseExperimentRunResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
+		if (entityFieldName.equals("experimentVariants")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		if (entityFieldName.equals("status")) {
 			sb.append("'");
 			sb.append(String.valueOf(experimentRun.getStatus()));
 			sb.append("'");
 
 			return sb.toString();
-		}
-
-		if (entityFieldName.equals("variants")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
 		}
 
 		throw new IllegalArgumentException(
