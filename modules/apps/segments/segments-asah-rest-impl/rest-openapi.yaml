@@ -39,7 +39,7 @@ components:
                 status:
                     readOnly: true
                     type: string
-                variants:
+                experimentVariants:
                     items:
                         $ref: '#/components/schemas/ExperimentVariant'
                     type: array
