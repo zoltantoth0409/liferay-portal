@@ -157,7 +157,7 @@ public class ProcessSummaryDisplayContext {
 
 	private boolean _hasApprovedLayoutRevision(Layout layout) {
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.fetchLayoutSet(
-			layout.getGroupId(), layout.getPrivateLayout());
+			layout.getGroupId(), layout.isPrivateLayout());
 
 		LayoutSetBranch layoutSetBranch = LayoutStagingUtil.getLayoutSetBranch(
 			layoutSet);
