@@ -43,7 +43,7 @@ Import-Package:\
 	\
 	org.hibernate,\
 	\
-	org.osgi.framework,\
+	org.osgi.framework;version="[1.9,2.0)",\
 	org.osgi.framework.wiring,\
 	\
 	org.springframework.aop,\
