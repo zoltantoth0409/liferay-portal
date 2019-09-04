@@ -33,12 +33,12 @@ if (role != null) {
 
 String subtype = BeanParamUtil.getString(role, request, "subtype");
 
+RoleTypeContributor currentRoleTypeContributor = RoleTypeContributorRetrieverUtil.getCurrentRoleTypeContributor(request);
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
 
 renderResponse.setTitle((role == null) ? LanguageUtil.get(request, "new-role") : role.getTitle(locale));
-
-RoleTypeContributor currentRoleTypeContributor = RoleTypeContributorRetrieverUtil.getCurrentRoleTypeContributor(request);
 %>
 
 <liferay-util:include page="/edit_role_tabs.jsp" servletContext="<%= application %>" />
