@@ -111,7 +111,7 @@ public class MultisearchSearchRequestExecutorImpl
 					StringBundler.concat(
 						"The search engine processed ",
 						searchSearchResponse.getSearchRequestString(), " in ",
-						searchSearchResponse.getExecutionTime() + " ms"));
+						searchSearchResponse.getExecutionTime(), " ms"));
 			}
 
 			counter++;

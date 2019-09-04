@@ -111,8 +111,8 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 						StringBundler.concat(
 							"The search engine processed ",
 							searchSearchResponse.getSearchRequestString(),
-							" in ",
-							searchSearchResponse.getExecutionTime() + " ms"));
+							" in ", searchSearchResponse.getExecutionTime(),
+							" ms"));
 				}
 
 				searchContext.setAttribute(
@@ -193,7 +193,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 					StringBundler.concat(
 						"The search engine processed ",
 						countSearchResponse.getSearchRequestString(), " in ",
-						countSearchResponse.getExecutionTime() + " ms"));
+						countSearchResponse.getExecutionTime(), " ms"));
 			}
 
 			searchContext.setAttribute(
