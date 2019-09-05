@@ -180,7 +180,7 @@ public abstract class BaseFragmentCollectionContributor
 	}
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), logic moved to FragmentCollectionContributorTracker
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	protected FragmentEntryLinkLocalService fragmentEntryLinkLocalService;
@@ -189,13 +189,13 @@ public abstract class BaseFragmentCollectionContributor
 	protected FragmentEntryLocalService fragmentEntryLocalService;
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), logic moved to FragmentCollectionContributorTracker
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	protected FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry;
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), logic moved to FragmentCollectionContributorTracker
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	protected FragmentEntryValidator fragmentEntryValidator;
