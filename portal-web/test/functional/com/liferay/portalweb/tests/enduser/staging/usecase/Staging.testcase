@@ -4203,8 +4203,8 @@ definition {
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
 		Staging.publishViaSAP(
-			confirmMessage = "Are you sure you want to publish the selected web content?",
-			entry = "Web Content Title");
+			assetTitle = "Web Content Title",
+			confirmMessage = "Are you sure you want to publish the selected web content?");
 
 		User.logoutPG(
 			password = "test",
