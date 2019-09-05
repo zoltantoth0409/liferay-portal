@@ -2,3 +2,4 @@ Bundle-Name: Liferay Adaptive Media Image JS Web
 Bundle-SymbolicName: com.liferay.adaptive.media.image.js.web
 Bundle-Version: 3.0.3
 Fragment-Host: com.liferay.frontend.editor.ckeditor.web
+Web-ContextPath: /adaptive-media-image-js-web
