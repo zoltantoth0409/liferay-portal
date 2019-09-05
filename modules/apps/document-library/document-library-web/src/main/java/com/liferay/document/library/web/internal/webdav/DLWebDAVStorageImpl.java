@@ -148,7 +148,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			serviceContext.setAddGroupPermissions(
 				isAddGroupPermissions(groupId));
-			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setAddGuestPermissions(
+				isAddGuestPermissions(groupId));
 
 			int status = HttpServletResponse.SC_CREATED;
 
@@ -234,7 +235,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			serviceContext.setAddGroupPermissions(
 				isAddGroupPermissions(groupId));
-			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setAddGuestPermissions(
+				isAddGuestPermissions(groupId));
 
 			int status = HttpServletResponse.SC_CREATED;
 
@@ -493,7 +495,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 				serviceContext.setAddGroupPermissions(
 					isAddGroupPermissions(groupId));
-				serviceContext.setAddGuestPermissions(true);
+				serviceContext.setAddGuestPermissions(
+					isAddGuestPermissions(groupId));
 
 				FileEntry fileEntry = _dlAppService.addFileEntry(
 					groupId, parentFolderId, title, contentType, title,
@@ -573,7 +576,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			serviceContext.setAddGroupPermissions(
 				isAddGroupPermissions(groupId));
-			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setAddGuestPermissions(
+				isAddGuestPermissions(groupId));
 
 			_dlAppService.addFolder(
 				groupId, parentFolderId, name, description, serviceContext);
@@ -829,12 +833,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			serviceContext.setAddGroupPermissions(
 				isAddGroupPermissions(groupId));
 
-			if (group.getType() == GroupConstants.TYPE_SITE_OPEN) {
-				serviceContext.setAddGuestPermissions(true);
-			}
-			else {
-				serviceContext.setAddGuestPermissions(false);
-			}
+			serviceContext.setAddGuestPermissions(
+				isAddGuestPermissions(groupId));
 
 			String extension = FileUtil.getExtension(title);
 
