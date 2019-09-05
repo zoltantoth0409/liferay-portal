@@ -376,7 +376,6 @@ definition {
 		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
-	@ignore = "true"
 	@priority = "4"
 	test ViewRecycleBin {
 
