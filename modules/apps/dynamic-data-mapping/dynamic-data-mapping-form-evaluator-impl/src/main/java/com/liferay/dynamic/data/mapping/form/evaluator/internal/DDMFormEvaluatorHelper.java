@@ -141,6 +141,12 @@ public class DDMFormEvaluatorHelper {
 
 		String dataType = ddmFormField.getDataType();
 
+		if (dataType.equals(FieldConstants.INTEGER) &&
+			Validator.isNotNull(value)) {
+
+			return GetterUtil.getNumber(String.valueOf(value));
+		}
+
 		if (FieldConstants.isNumericType(dataType) ||
 			dataType.equals(FieldConstants.BOOLEAN) ||
 			dataType.equals(FieldConstants.DATE)) {
