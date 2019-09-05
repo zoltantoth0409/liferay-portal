@@ -333,6 +333,8 @@ definition {
 	}
 
 	macro reopenResolvedComment {
+		AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_UNCHECKED");
+
 		MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
 
 		Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
@@ -350,6 +352,8 @@ definition {
 		AssertElementPresent(locator1 = "Button#REPLY_DISABLED");
 
 		Click.clickNoMouseOver(locator1 = "Button#REOPEN");
+
+		AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_DISABLED");
 	}
 
 	macro replyToComment {
