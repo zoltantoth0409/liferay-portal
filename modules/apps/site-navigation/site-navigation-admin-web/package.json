@@ -1,9 +1,9 @@
 {
 	"dependencies": {
-		"metal-dom": "^2.0.0",
-		"metal-drag-drop": "~3.0.1",
-		"metal-position": "^2.1.0",
-		"metal-state": "^2.13.2"
+		"metal-dom": "2.16.8",
+		"metal-drag-drop": "3.2.2",
+		"metal-position": "^2.1.2",
+		"metal-state": "2.16.8"
 	},
 	"name": "site-navigation-menu-web",
 	"scripts": {
