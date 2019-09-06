@@ -964,6 +964,7 @@ definition {
 
 	@priority = "5"
 	test AddWebContentFromImportedStructureAndTemplate {
+		property test.name.skip.portal.instance = "WebcontentUsecase#AddWebContentFromImportedStructureAndTemplate";
 		property testray.component.names = "Training";
 
 		ProductMenu.gotoPortlet(
