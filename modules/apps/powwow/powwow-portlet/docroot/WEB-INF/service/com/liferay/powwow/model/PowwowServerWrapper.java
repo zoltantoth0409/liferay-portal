@@ -336,6 +336,11 @@ public class PowwowServerWrapper
 		return _powwowServer.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a powwow server model instance should use the <code>PowwowServer</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_powwowServer.persist();

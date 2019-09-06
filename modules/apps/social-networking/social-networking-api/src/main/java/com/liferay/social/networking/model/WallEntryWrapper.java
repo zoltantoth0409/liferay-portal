@@ -257,6 +257,11 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return _wallEntry.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a wall entry model instance should use the <code>WallEntry</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_wallEntry.persist();

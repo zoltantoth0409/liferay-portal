@@ -537,6 +537,11 @@ public class LayoutSetBranchWrapper
 		return _layoutSetBranch.isPrivateLayout();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a layout set branch model instance should use the <code>LayoutSetBranch</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_layoutSetBranch.persist();

@@ -359,6 +359,11 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return _oAuthToken.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a o auth token model instance should use the <code>OAuthToken</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_oAuthToken.persist();

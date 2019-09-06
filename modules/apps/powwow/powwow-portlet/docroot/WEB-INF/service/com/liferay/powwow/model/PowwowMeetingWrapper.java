@@ -383,6 +383,11 @@ public class PowwowMeetingWrapper
 		return _powwowMeeting.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a powwow meeting model instance should use the <code>PowwowMeeting</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_powwowMeeting.persist();

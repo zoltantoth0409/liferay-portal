@@ -63,7 +63,7 @@ public abstract class JournalArticleImageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements JournalArticleImageLocalService, IdentifiableOSGiService {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>JournalArticleImageLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.journal.service.JournalArticleImageLocalServiceUtil</code>.

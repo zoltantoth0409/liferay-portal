@@ -286,6 +286,11 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 		return _status.isPlaySound();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a status model instance should use the <code>Status</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_status.persist();

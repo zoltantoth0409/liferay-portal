@@ -332,6 +332,11 @@ public class TeamWrapper implements Team, ModelWrapper<Team> {
 		return _team.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a team model instance should use the <code>Team</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_team.persist();

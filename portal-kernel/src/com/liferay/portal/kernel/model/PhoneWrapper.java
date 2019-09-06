@@ -386,6 +386,11 @@ public class PhoneWrapper implements Phone, ModelWrapper<Phone> {
 		return _phone.isPrimary();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a phone model instance should use the <code>Phone</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_phone.persist();

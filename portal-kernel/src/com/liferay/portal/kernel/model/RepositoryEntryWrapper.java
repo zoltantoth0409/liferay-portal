@@ -355,6 +355,11 @@ public class RepositoryEntryWrapper
 		return _repositoryEntry.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a repository entry model instance should use the <code>RepositoryEntry</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_repositoryEntry.persist();
