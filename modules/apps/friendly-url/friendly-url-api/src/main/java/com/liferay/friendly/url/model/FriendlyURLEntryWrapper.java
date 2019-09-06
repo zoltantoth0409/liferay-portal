@@ -331,6 +331,11 @@ public class FriendlyURLEntryWrapper
 		return _friendlyURLEntry.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a friendly url entry model instance should use the <code>FriendlyURLEntry</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_friendlyURLEntry.persist();

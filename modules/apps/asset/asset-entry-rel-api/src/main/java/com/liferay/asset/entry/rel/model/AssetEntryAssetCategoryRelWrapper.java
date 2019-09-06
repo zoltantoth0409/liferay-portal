@@ -188,6 +188,11 @@ public class AssetEntryAssetCategoryRelWrapper
 		return _assetEntryAssetCategoryRel.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a asset entry asset category rel model instance should use the <code>AssetEntryAssetCategoryRel</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_assetEntryAssetCategoryRel.persist();

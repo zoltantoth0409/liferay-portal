@@ -437,6 +437,11 @@ public class SAPEntryWrapper implements SAPEntry, ModelWrapper<SAPEntry> {
 		return _sapEntry.isSystem();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a sap entry model instance should use the <code>SAPEntry</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_sapEntry.persist();

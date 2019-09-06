@@ -235,6 +235,11 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return _module.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a module model instance should use the <code>Module</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_module.persist();

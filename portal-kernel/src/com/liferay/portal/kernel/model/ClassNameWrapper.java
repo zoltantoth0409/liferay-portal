@@ -170,6 +170,11 @@ public class ClassNameWrapper implements ClassName, ModelWrapper<ClassName> {
 		return _className.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a class name model instance should use the <code>ClassName</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_className.persist();

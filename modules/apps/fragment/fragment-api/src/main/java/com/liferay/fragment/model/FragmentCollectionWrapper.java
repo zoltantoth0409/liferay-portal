@@ -330,6 +330,11 @@ public class FragmentCollectionWrapper
 		return _fragmentCollection.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a fragment collection model instance should use the <code>FragmentCollection</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_fragmentCollection.persist();

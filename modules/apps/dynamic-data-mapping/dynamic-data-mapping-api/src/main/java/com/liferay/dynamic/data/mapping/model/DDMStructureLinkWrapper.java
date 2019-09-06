@@ -214,6 +214,11 @@ public class DDMStructureLinkWrapper
 		return _ddmStructureLink.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a ddm structure link model instance should use the <code>DDMStructureLink</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_ddmStructureLink.persist();

@@ -235,6 +235,11 @@ public class SyncDLFileVersionDiffWrapper
 		return _syncDLFileVersionDiff.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a sync dl file version diff model instance should use the <code>SyncDLFileVersionDiff</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_syncDLFileVersionDiff.persist();
