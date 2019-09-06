@@ -44,7 +44,13 @@ import com.liferay.portal.search.engine.adapter.search.CountSearchRequest;
 import com.liferay.portal.search.engine.adapter.search.CountSearchResponse;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
+import com.liferay.portal.search.groupby.GroupByRequest;
 
+import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -114,6 +120,10 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 							" in ", searchSearchResponse.getExecutionTime(),
 							" ms"));
 				}
+
+				searchContext.setAttribute(
+					"groupByResponses",
+					(Serializable)searchSearchResponse.getGroupByResponses());
 
 				searchContext.setAttribute(
 					"queryString",
@@ -265,6 +275,17 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		searchSearchRequest.putAllFacets(searchContext.getFacets());
 
 		searchSearchRequest.setGroupBy(searchContext.getGroupBy());
+
+		List<GroupByRequest> groupByRequests =
+			(ArrayList<GroupByRequest>)searchContext.getAttribute(
+				"groupByRequests");
+
+		if (groupByRequests == null) {
+			searchSearchRequest.setGroupByRequests(Collections.emptyList());
+		}
+		else {
+			searchSearchRequest.setGroupByRequests(groupByRequests);
+		}
 
 		searchSearchRequest.setHighlightEnabled(
 			queryConfig.isHighlightEnabled());

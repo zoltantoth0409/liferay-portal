@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.GroupBy;
 import com.liferay.portal.kernel.search.Stats;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.elasticsearch6.internal.groupby.GroupByTranslator;
@@ -25,7 +26,10 @@ import com.liferay.portal.search.elasticsearch6.internal.highlight.HighlighterTr
 import com.liferay.portal.search.elasticsearch6.internal.sort.SortTranslator;
 import com.liferay.portal.search.elasticsearch6.internal.stats.StatsTranslator;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
+import com.liferay.portal.search.groupby.GroupByRequest;
+import com.liferay.portal.search.legacy.groupby.GroupByRequestFactory;
 
+import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -57,6 +61,7 @@ public class SearchSearchRequestAssemblerImpl
 		}
 
 		addGroupBy(searchRequestBuilder, searchSearchRequest);
+		addGroupByRequests(searchRequestBuilder, searchSearchRequest);
 
 		if (searchSearchRequest.isHighlightEnabled()) {
 			highlighterTranslator.translate(
@@ -93,15 +98,35 @@ public class SearchSearchRequestAssemblerImpl
 		}
 
 		groupByTranslator.translate(
-			searchRequestBuilder, groupBy, searchSearchRequest.getSorts(),
+			searchRequestBuilder, translate(groupBy),
 			searchSearchRequest.getLocale(),
 			searchSearchRequest.getSelectedFieldNames(),
 			searchSearchRequest.getHighlightFieldNames(),
 			searchSearchRequest.isHighlightEnabled(),
 			searchSearchRequest.isHighlightRequireFieldMatch(),
 			searchSearchRequest.getHighlightFragmentSize(),
-			searchSearchRequest.getHighlightSnippetSize(),
-			searchSearchRequest.getStart(), searchSearchRequest.getSize());
+			searchSearchRequest.getHighlightSnippetSize());
+	}
+
+	protected void addGroupByRequests(
+		SearchRequestBuilder searchRequestBuilder,
+		SearchSearchRequest searchSearchRequest) {
+
+		List<GroupByRequest> groupByRequests =
+			searchSearchRequest.getGroupByRequests();
+
+		if (ListUtil.isNotEmpty(groupByRequests)) {
+			groupByRequests.forEach(
+				groupByRequest -> groupByTranslator.translate(
+					searchRequestBuilder, groupByRequest,
+					searchSearchRequest.getLocale(),
+					searchSearchRequest.getSelectedFieldNames(),
+					searchSearchRequest.getHighlightFieldNames(),
+					searchSearchRequest.isHighlightEnabled(),
+					searchSearchRequest.isHighlightRequireFieldMatch(),
+					searchSearchRequest.getHighlightFragmentSize(),
+					searchSearchRequest.getHighlightSnippetSize()));
+		}
 	}
 
 	protected void addPagination(
@@ -134,9 +159,16 @@ public class SearchSearchRequestAssemblerImpl
 		}
 	}
 
+	protected GroupByRequest translate(GroupBy groupBy) {
+		return groupByRequestFactory.getGroupByRequest(groupBy);
+	}
+
 	@Reference
 	protected CommonSearchRequestBuilderAssembler
 		commonSearchRequestBuilderAssembler;
+
+	@Reference
+	protected GroupByRequestFactory groupByRequestFactory;
 
 	@Reference
 	protected GroupByTranslator groupByTranslator;

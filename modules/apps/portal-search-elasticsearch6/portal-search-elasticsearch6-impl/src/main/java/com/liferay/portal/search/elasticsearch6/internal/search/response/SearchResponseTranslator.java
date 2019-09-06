@@ -14,11 +14,11 @@
 
 package com.liferay.portal.search.elasticsearch6.internal.search.response;
 
-import org.elasticsearch.action.search.SearchResponse;
-
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
+
+import org.elasticsearch.action.search.SearchResponse;
 
 /**
  * @author Dylan Rebelak
@@ -27,7 +27,6 @@ public interface SearchResponseTranslator {
 
 	public Hits translate(
 		SearchSearchResponse searchSearchResponse,
-		SearchResponse searchResponse, 
-		SearchSearchRequest searchSearchRequest);
+		SearchResponse searchResponse, SearchSearchRequest searchSearchRequest);
 
 }
