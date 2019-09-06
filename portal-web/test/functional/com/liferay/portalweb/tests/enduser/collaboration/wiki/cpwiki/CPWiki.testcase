@@ -25,7 +25,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddChildPageFormatMediaWiki {
+	test AddChildPageWithFormatMedia {
 		property osgi.app.includes = "wiki-engine-mediawiki";
 		property test.assert.warning.exceptions = "true";
 
@@ -88,7 +88,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiFrontPage {
+	test AddFrontPage {
 		property portal.acceptance = "true";
 
 		Navigator.openURL();
@@ -124,7 +124,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiNode {
+	test AddNode {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -147,7 +147,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiPageToNode {
+	test AddPageToNode {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -240,7 +240,7 @@ definition {
 	}
 
 	@priority = "4"
-	test CompareVersionsWikiPage {
+	test ComparePageVersions {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -307,7 +307,7 @@ definition {
 	}
 
 	@priority = "5"
-	test DeleteWikiNode {
+	test DeleteNode {
 		property portal.acceptance = "true";
 
 		Navigator.openURL();
@@ -344,7 +344,7 @@ definition {
 	}
 
 	@priority = "5"
-	test EditWikiNode {
+	test EditNode {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
@@ -376,7 +376,7 @@ definition {
 	}
 
 	@priority = "5"
-	test ImportLarAddWikiPageType {
+	test ImportLarAndViewPages {
 		property portal.acceptance = "false";
 		property testray.component.names = "Training";
 
@@ -626,7 +626,7 @@ definition {
 	}
 
 	@priority = "4"
-	test ViewWikiEntryRSS {
+	test ViewPageRSS {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

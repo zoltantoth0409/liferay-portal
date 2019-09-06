@@ -32,7 +32,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddChildSiteWikiFrontPageFormatHTML {
+	test AddChildSiteFrontPageWithFormatHTML {
 		property portal.acceptance = "false";
 		property testray.component.names = "Training";
 		var portalURL = PropsUtil.get("portal.url");
@@ -116,14 +116,14 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPage {
+	test AddFrontPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageAttachment {
+	test AddFrontPageWithAttachment {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
@@ -149,7 +149,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageAttachments {
+	test AddFrontPageWithAttachments {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
@@ -200,7 +200,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiFrontPageChildPage {
+	test AddFrontPageWithChildPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(
@@ -233,7 +233,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageChildPageFormatHTML {
+	test AddFrontPageChildPageFormatHTML {
 		property portal.acceptance = "true";
 
 		var welcomeToLiferay = '''
@@ -273,7 +273,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageChildPages {
+	test AddFrontPageWithChildPages {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
@@ -305,7 +305,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageChildPageWithInvalidTitle {
+	test AddFrontPageChildPageWithInvalidTitle {
 		WikiPage.addFrontPagePG(
 			wikiNodeName = "Main",
 			wikiPageContent = "Wiki FrontPage Content",
@@ -419,7 +419,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageContentNoJavascript {
+	test AddFrontPageContentWithNoJavascript {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		AssertClick(
@@ -447,7 +447,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageFormatCreole {
+	test AddFrontPageWithCreoleFormat {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.addFrontPagePG(
@@ -472,7 +472,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiFrontPageFormatHTML {
+	test AddFrontPageWithHTMLFormat {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
@@ -499,7 +499,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiPage {
+	test AddPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -525,7 +525,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiPageChildPage {
+	test AddPageWithChildPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -558,7 +558,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiPageFormatHTML {
+	test AddPageWithHTMLFormat {
 
 		var welcomeToLiferay = '''
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
@@ -598,7 +598,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiPageFormatJSPWiki {
+	test AddWPageWithFormatJSP {
 		property osgi.app.includes = "wiki-engine-jspwiki";
 		property test.assert.warning.exceptions = "true";
 
@@ -673,7 +673,7 @@ definition {
 	}
 
 	@priority = "5"
-	test AddWikiPages {
+	test AddPages {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
@@ -708,7 +708,7 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiPageWithInlineImage {
+	test AddPageWithInlineImage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -886,7 +886,7 @@ definition {
 	}
 
 	@priority = "5"
-	test DeleteWikiFrontPage {
+	test DeleteFrontPage {
 		property portal.acceptance = "true";
 
 		Navigator.gotoPage(pageName = "Wiki Test Page");
@@ -904,7 +904,7 @@ definition {
 	}
 
 	@priority = "5"
-	test DeleteWikiPage {
+	test DeletePage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -967,7 +967,7 @@ definition {
 	}
 
 	@priority = "5"
-	test EditWikiFrontPage {
+	test EditFrontPage {
 		property portal.acceptance = "true";
 
 		Navigator.gotoPage(pageName = "Wiki Test Page");
@@ -997,7 +997,7 @@ definition {
 	}
 
 	@priority = "5"
-	test EditWikiPageFormatMediaWiki {
+	test EditPageWithFormatMedia {
 		property osgi.app.includes = "wiki-engine-mediawiki";
 		property test.assert.warning.exceptions = "true";
 
@@ -1055,7 +1055,7 @@ definition {
 	}
 
 	@priority = "4"
-	test LinkWikiPage1toWikiPage2 {
+	test LinkPage1toPage2 {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -1099,7 +1099,7 @@ definition {
 	}
 
 	@priority = "3"
-	test RemoveRedirectLinkFromWikiPage {
+	test RemoveRedirectLinkFromPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -1148,7 +1148,7 @@ definition {
 	}
 
 	@priority = "4"
-	test RenameWikiPageTitle {
+	test RenamePageTitle {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();
@@ -1189,7 +1189,7 @@ definition {
 	}
 
 	@priority = "4"
-	test RevertChangeParentWikipage2toWikipage1 {
+	test RevertChangesMadeToParentPages {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiNavigator.gotoAllPagesPG();

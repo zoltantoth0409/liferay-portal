@@ -40,7 +40,7 @@ definition {
 	}
 
 	@priority = "4"
-	test ActivateInitialStagingWithWikiAttachment {
+	test ActivateInitialStagingWithAttachment {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
@@ -164,7 +164,7 @@ definition {
 	}
 
 	@priority = "5"
-	test DeleteDeleteWikiFrontpage {
+	test DeleteFrontpage {
 		property portal.acceptance = "false";
 
 		Navigator.openURL();
@@ -230,7 +230,7 @@ definition {
 	}
 
 	@priority = "5"
-	test importWikiLARLinkNode {
+	test ImportLARLinkNode {
 		property portal.acceptance = "false";
 		property testray.component.names = "Training";
 
@@ -363,7 +363,7 @@ definition {
 	}
 
 	@priority = "5"
-	test RestoreDeleteWikiFrontpage {
+	test RestoreDeletedFrontPage {
 		property portal.acceptance = "true";
 
 		Navigator.openURL();
@@ -421,7 +421,7 @@ definition {
 	}
 
 	@priority = "4"
-	test SearchWikiCommentsAndAttachments {
+	test SearchFrontPageAttachments {
 		WikiPage.addFrontPagePG(
 			wikiNodeName = "Main",
 			wikiPageContent = "Wiki FrontPage Content");
@@ -461,7 +461,7 @@ definition {
 	}
 
 	@priority = "3"
-	test ViewNoWikiXSSviaAddPage {
+	test ViewNoXSSViaAddPage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		WikiPage.editFrontPagePG(wikiPageContentEdit = '''<script>alert(123);</script>''');
@@ -482,7 +482,7 @@ definition {
 	}
 
 	@priority = "4"
-	test ViewWikiDraftPagesViaBreadcrumb {
+	test ViewDraftPagesViaBreadcrumb {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
 		Portlet.addPG(portletName = "Breadcrumb");
