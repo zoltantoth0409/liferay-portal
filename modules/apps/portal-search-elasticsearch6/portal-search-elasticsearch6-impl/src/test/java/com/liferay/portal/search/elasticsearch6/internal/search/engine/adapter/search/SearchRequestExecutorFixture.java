@@ -27,6 +27,8 @@ import com.liferay.portal.search.elasticsearch6.internal.search.response.Default
 import com.liferay.portal.search.elasticsearch6.internal.sort.DefaultSortTranslator;
 import com.liferay.portal.search.elasticsearch6.internal.stats.DefaultStatsTranslator;
 import com.liferay.portal.search.engine.adapter.search.SearchRequestExecutor;
+import com.liferay.portal.search.internal.groupby.GroupByResponseFactoryImpl;
+import com.liferay.portal.search.internal.legacy.groupby.GroupByRequestFactoryImpl;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
 
@@ -136,6 +138,7 @@ public class SearchRequestExecutorFixture {
 			{
 				commonSearchRequestBuilderAssembler =
 					createCommonSearchRequestBuilderAssembler();
+				groupByRequestFactory = new GroupByRequestFactoryImpl();
 				groupByTranslator = new DefaultGroupByTranslator();
 				highlighterTranslator = new DefaultHighlighterTranslator();
 				sortTranslator = new DefaultSortTranslator();
@@ -167,6 +170,8 @@ public class SearchRequestExecutorFixture {
 				searchResponseTranslator =
 					new DefaultSearchResponseTranslator() {
 						{
+							groupByResponseFactory =
+								new GroupByResponseFactoryImpl();
 							searchHitDocumentTranslator =
 								new SearchHitDocumentTranslatorImpl();
 							statsTranslator = new DefaultStatsTranslator();
