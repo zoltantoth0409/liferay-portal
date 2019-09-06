@@ -2175,7 +2175,6 @@ public interface UserLocalService
 	 * @param createDate the new creation date
 	 * @return the user
 	 */
-	@Indexable(type = IndexableType.REINDEX)
 	public User updateCreateDate(long userId, Date createDate)
 		throws PortalException;
 
@@ -2219,7 +2218,6 @@ public interface UserLocalService
 	 * @param emailAddressVerified whether the user has verified email address
 	 * @return the user
 	 */
-	@Indexable(type = IndexableType.REINDEX)
 	public User updateEmailAddressVerified(
 			long userId, boolean emailAddressVerified)
 		throws PortalException;
@@ -2231,7 +2229,6 @@ public interface UserLocalService
 	 * @param facebookId the user's new Facebook ID
 	 * @return the user
 	 */
-	@Indexable(type = IndexableType.REINDEX)
 	public User updateFacebookId(long userId, long facebookId)
 		throws PortalException;
 
@@ -2242,7 +2239,6 @@ public interface UserLocalService
 	 * @param googleUserId the new Google user ID
 	 * @return the user
 	 */
-	@Indexable(type = IndexableType.REINDEX)
 	public User updateGoogleUserId(long userId, String googleUserId)
 		throws PortalException;
 
@@ -2389,7 +2385,6 @@ public interface UserLocalService
 	 * @param openId the new OpenID
 	 * @return the user
 	 */
-	@Indexable(type = IndexableType.REINDEX)
 	public User updateOpenId(long userId, String openId) throws PortalException;
 
 	/**
