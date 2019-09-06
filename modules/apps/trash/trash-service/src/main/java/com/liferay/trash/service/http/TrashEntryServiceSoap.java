@@ -14,8 +14,6 @@
 
 package com.liferay.trash.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.trash.service.TrashEntryServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see TrashEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class TrashEntryServiceSoap {
 
 	/**

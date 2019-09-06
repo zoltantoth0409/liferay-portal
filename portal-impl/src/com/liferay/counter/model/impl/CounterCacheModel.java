@@ -14,8 +14,6 @@
 
 package com.liferay.counter.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.model.Counter;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -32,7 +30,6 @@ import java.io.ObjectOutput;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class CounterCacheModel implements CacheModel<Counter>, Externalizable {
 
 	@Override

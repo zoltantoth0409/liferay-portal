@@ -14,8 +14,6 @@
 
 package com.liferay.asset.tag.stats.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetTagPersistence;
 import com.liferay.asset.tag.stats.model.AssetTagStats;
 import com.liferay.asset.tag.stats.service.AssetTagStatsLocalService;
@@ -61,7 +59,6 @@ import javax.sql.DataSource;
  * @see com.liferay.asset.tag.stats.service.impl.AssetTagStatsLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetTagStatsLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetTagStatsLocalService, IdentifiableOSGiService {

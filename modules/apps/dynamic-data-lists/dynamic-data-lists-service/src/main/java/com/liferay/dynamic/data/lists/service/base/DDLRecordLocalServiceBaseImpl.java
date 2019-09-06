@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.lists.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
@@ -74,7 +72,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.lists.service.impl.DDLRecordLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDLRecordLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDLRecordLocalService, IdentifiableOSGiService {

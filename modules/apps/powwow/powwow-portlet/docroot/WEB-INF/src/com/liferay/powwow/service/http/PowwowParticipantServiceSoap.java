@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.powwow.service.PowwowParticipantServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see PowwowParticipantServiceHttp
  * @generated
  */
-@ProviderType
 public class PowwowParticipantServiceSoap {
 
 	public static com.liferay.powwow.model.PowwowParticipantSoap

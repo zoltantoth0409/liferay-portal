@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
@@ -61,7 +59,6 @@ import java.util.function.Function;
  * @see FragmentEntryLinkImpl
  * @generated
  */
-@ProviderType
 public class FragmentEntryLinkModelImpl
 	extends BaseModelImpl<FragmentEntryLink> implements FragmentEntryLinkModel {
 

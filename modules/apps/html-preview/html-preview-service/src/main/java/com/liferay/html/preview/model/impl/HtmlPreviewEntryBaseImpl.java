@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.html.preview.model.HtmlPreviewEntry;
 import com.liferay.html.preview.service.HtmlPreviewEntryLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.html.preview.service.HtmlPreviewEntryLocalServiceUtil;
  * @see HtmlPreviewEntry
  * @generated
  */
-@ProviderType
 public abstract class HtmlPreviewEntryBaseImpl
 	extends HtmlPreviewEntryModelImpl implements HtmlPreviewEntry {
 

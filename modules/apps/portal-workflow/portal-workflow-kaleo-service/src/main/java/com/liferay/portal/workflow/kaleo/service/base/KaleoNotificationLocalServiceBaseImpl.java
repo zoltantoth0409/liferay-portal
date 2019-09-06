@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -81,7 +79,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class KaleoNotificationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements KaleoNotificationLocalService, IdentifiableOSGiService {

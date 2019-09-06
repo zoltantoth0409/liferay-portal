@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.sync.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.sync.model.DLSyncEvent;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see DLSyncEventPersistence
  * @generated
  */
-@ProviderType
 public class DLSyncEventUtil {
 
 	/*

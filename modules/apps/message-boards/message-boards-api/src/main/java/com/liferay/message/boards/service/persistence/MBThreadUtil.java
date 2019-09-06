@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -43,7 +41,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see MBThreadPersistence
  * @generated
  */
-@ProviderType
 public class MBThreadUtil {
 
 	/*

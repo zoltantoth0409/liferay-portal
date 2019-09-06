@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetTagStats;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -42,7 +40,6 @@ import java.util.Set;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class AssetTagStatsUtil {
 
 	/*

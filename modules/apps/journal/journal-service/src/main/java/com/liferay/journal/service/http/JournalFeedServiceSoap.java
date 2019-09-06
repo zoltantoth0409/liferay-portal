@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.service.JournalFeedServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see JournalFeedServiceHttp
  * @generated
  */
-@ProviderType
 public class JournalFeedServiceSoap {
 
 	public static com.liferay.journal.model.JournalFeedSoap addFeed(

@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.NoSuchStorageLinkException;
 import com.liferay.dynamic.data.mapping.model.DDMStorageLink;
 import com.liferay.dynamic.data.mapping.model.impl.DDMStorageLinkImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMStorageLinkPersistenceImpl
 	extends BasePersistenceImpl<DDMStorageLink>
 	implements DDMStorageLinkPersistence {

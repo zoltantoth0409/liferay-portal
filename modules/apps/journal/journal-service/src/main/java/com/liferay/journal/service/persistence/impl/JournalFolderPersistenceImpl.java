@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.exception.NoSuchFolderException;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.model.impl.JournalFolderImpl;
@@ -70,7 +68,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class JournalFolderPersistenceImpl
 	extends BasePersistenceImpl<JournalFolder>
 	implements JournalFolderPersistence {

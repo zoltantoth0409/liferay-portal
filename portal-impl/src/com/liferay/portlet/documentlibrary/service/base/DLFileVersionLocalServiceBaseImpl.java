@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.document.library.kernel.model.DLFileVersion;
 import com.liferay.document.library.kernel.service.DLFileVersionLocalService;
@@ -79,7 +77,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.documentlibrary.service.impl.DLFileVersionLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DLFileVersionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DLFileVersionLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -65,7 +63,6 @@ import java.util.Map;
  * @see DDMDataProviderInstanceServiceHttp
  * @generated
  */
-@ProviderType
 public class DDMDataProviderInstanceServiceSoap {
 
 	public static

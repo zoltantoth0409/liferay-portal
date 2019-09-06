@@ -14,8 +14,6 @@
 
 package com.liferay.asset.tag.stats.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.tag.stats.model.AssetTagStats;
 import com.liferay.asset.tag.stats.service.AssetTagStatsLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.asset.tag.stats.service.AssetTagStatsLocalServiceUtil;
  * @see AssetTagStats
  * @generated
  */
-@ProviderType
 public abstract class AssetTagStatsBaseImpl
 	extends AssetTagStatsModelImpl implements AssetTagStats {
 

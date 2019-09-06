@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.exception.NoSuchFileShortcutException;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
 import com.liferay.document.library.kernel.service.persistence.DLFileShortcutPersistence;
@@ -68,7 +66,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DLFileShortcutPersistenceImpl
 	extends BasePersistenceImpl<DLFileShortcut>
 	implements DLFileShortcutPersistence {

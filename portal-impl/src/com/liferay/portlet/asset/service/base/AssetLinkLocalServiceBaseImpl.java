@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
@@ -66,7 +64,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.asset.service.impl.AssetLinkLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetLinkLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetLinkLocalService, IdentifiableOSGiService {

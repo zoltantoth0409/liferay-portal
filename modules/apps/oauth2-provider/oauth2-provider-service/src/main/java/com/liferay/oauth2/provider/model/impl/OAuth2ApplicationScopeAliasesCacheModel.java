@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.model.OAuth2ApplicationScopeAliases;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -34,7 +32,6 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class OAuth2ApplicationScopeAliasesCacheModel
 	implements CacheModel<OAuth2ApplicationScopeAliases>, Externalizable {
 

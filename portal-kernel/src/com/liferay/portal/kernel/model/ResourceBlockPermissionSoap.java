@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ import java.util.List;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class ResourceBlockPermissionSoap implements Serializable {
 
 	public static ResourceBlockPermissionSoap toSoapModel(

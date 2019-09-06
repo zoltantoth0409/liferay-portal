@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntryModel;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntrySoap;
@@ -66,7 +64,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class AssetDisplayPageEntryModelImpl
 	extends BaseModelImpl<AssetDisplayPageEntry>
 	implements AssetDisplayPageEntryModel {

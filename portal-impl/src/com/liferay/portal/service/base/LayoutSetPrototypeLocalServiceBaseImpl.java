@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -73,7 +71,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.LayoutSetPrototypeLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class LayoutSetPrototypeLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements LayoutSetPrototypeLocalService, IdentifiableOSGiService {

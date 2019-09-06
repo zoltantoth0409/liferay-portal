@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersionModel;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersionSoap;
@@ -71,7 +69,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class DDMFormInstanceVersionModelImpl
 	extends BaseModelImpl<DDMFormInstanceVersion>
 	implements DDMFormInstanceVersionModel {

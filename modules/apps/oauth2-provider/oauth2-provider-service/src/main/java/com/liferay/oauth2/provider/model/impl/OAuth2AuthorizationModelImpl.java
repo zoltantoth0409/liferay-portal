@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
@@ -61,7 +59,6 @@ import java.util.function.Function;
  * @see OAuth2AuthorizationImpl
  * @generated
  */
-@ProviderType
 public class OAuth2AuthorizationModelImpl
 	extends BaseModelImpl<OAuth2Authorization>
 	implements OAuth2AuthorizationModel {

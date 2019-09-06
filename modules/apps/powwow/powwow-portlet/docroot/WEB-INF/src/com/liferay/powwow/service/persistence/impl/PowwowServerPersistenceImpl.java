@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -64,7 +62,6 @@ import java.util.Set;
  * @author Shinn Lok
  * @generated
  */
-@ProviderType
 public class PowwowServerPersistenceImpl
 	extends BasePersistenceImpl<PowwowServer>
 	implements PowwowServerPersistence {

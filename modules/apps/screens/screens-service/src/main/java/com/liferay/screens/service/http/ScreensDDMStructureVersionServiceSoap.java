@@ -14,8 +14,6 @@
 
 package com.liferay.screens.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.screens.service.ScreensDDMStructureVersionServiceUtil;
@@ -50,7 +48,6 @@ import java.rmi.RemoteException;
  * @see ScreensDDMStructureVersionServiceHttp
  * @generated
  */
-@ProviderType
 public class ScreensDDMStructureVersionServiceSoap {
 
 	public static String getDDMStructureVersion(long structureId)

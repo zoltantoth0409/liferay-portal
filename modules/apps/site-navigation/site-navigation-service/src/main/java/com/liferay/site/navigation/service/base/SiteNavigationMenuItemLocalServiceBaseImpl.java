@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -68,7 +66,6 @@ import javax.sql.DataSource;
  * @see com.liferay.site.navigation.service.impl.SiteNavigationMenuItemLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class SiteNavigationMenuItemLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements SiteNavigationMenuItemLocalService, IdentifiableOSGiService {

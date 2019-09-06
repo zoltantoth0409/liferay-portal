@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.NoSuchFormInstanceVersionException;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
 import com.liferay.dynamic.data.mapping.model.impl.DDMFormInstanceVersionImpl;
@@ -62,7 +60,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMFormInstanceVersionPersistenceImpl
 	extends BasePersistenceImpl<DDMFormInstanceVersion>
 	implements DDMFormInstanceVersionPersistence {

@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -85,7 +83,6 @@ import javax.sql.DataSource;
  * @see com.liferay.message.boards.service.impl.MBCategoryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class MBCategoryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements MBCategoryLocalService, IdentifiableOSGiService {

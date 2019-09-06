@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -30,7 +28,6 @@ import java.util.List;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class AssetCategoryPropertySoap implements Serializable {
 
 	public static AssetCategoryPropertySoap toSoapModel(

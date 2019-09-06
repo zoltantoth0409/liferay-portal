@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.content.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.content.model.DLContent;
 import com.liferay.document.library.content.model.DLContentDataBlobModel;
 import com.liferay.document.library.content.model.DLContentModel;
@@ -57,7 +55,6 @@ import java.util.function.Function;
  * @see DLContentImpl
  * @generated
  */
-@ProviderType
 public class DLContentModelImpl
 	extends BaseModelImpl<DLContent> implements DLContentModel {
 

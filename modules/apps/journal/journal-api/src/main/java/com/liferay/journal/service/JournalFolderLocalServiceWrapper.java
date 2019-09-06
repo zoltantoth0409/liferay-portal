@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see JournalFolderLocalService
  * @generated
  */
-@ProviderType
 public class JournalFolderLocalServiceWrapper
 	implements JournalFolderLocalService,
 			   ServiceWrapper<JournalFolderLocalService> {

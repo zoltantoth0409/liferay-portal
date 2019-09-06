@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 
 /**
@@ -30,7 +28,6 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
  * @see TasksEntryService
  * @generated
  */
-@ProviderType
 public class TasksEntryServiceUtil {
 
 	/*

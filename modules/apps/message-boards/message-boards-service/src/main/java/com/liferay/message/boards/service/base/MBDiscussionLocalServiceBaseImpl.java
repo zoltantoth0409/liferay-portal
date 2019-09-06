@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -71,7 +69,6 @@ import javax.sql.DataSource;
  * @see com.liferay.message.boards.service.impl.MBDiscussionLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class MBDiscussionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements MBDiscussionLocalService, IdentifiableOSGiService {

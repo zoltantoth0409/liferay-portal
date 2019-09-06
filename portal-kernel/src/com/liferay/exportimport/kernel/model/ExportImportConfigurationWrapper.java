@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see ExportImportConfiguration
  * @generated
  */
-@ProviderType
 public class ExportImportConfigurationWrapper
 	implements ExportImportConfiguration,
 			   ModelWrapper<ExportImportConfiguration> {

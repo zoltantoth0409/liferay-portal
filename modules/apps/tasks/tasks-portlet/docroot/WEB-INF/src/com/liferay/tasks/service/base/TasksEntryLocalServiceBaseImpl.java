@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -65,7 +63,6 @@ import javax.sql.DataSource;
  * @see com.liferay.tasks.service.impl.TasksEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class TasksEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements TasksEntryLocalService, IdentifiableOSGiService {

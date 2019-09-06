@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.exception.NoSuchOAuth2AuthorizationException;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.oauth2.provider.model.impl.OAuth2AuthorizationImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class OAuth2AuthorizationPersistenceImpl
 	extends BasePersistenceImpl<OAuth2Authorization>
 	implements OAuth2AuthorizationPersistence {

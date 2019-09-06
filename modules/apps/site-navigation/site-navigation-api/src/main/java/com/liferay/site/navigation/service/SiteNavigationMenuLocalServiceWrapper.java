@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see SiteNavigationMenuLocalService
  * @generated
  */
-@ProviderType
 public class SiteNavigationMenuLocalServiceWrapper
 	implements SiteNavigationMenuLocalService,
 			   ServiceWrapper<SiteNavigationMenuLocalService> {

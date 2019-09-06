@@ -14,8 +14,6 @@
 
 package com.liferay.mail.reader.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.mail.reader.exception.NoSuchFolderException;
 import com.liferay.mail.reader.model.Folder;
 import com.liferay.mail.reader.model.impl.FolderImpl;
@@ -64,7 +62,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class FolderPersistenceImpl
 	extends BasePersistenceImpl<Folder> implements FolderPersistence {
 

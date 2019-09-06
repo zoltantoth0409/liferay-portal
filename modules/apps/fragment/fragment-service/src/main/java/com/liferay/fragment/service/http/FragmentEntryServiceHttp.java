@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.service.FragmentEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see FragmentEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class FragmentEntryServiceHttp {
 
 	public static com.liferay.fragment.model.FragmentEntry addFragmentEntry(

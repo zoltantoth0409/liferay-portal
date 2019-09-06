@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.tasks.service.TasksEntryServiceUtil;
  * @see TasksEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class TasksEntryServiceHttp {
 
 	public static com.liferay.tasks.model.TasksEntry addTasksEntry(

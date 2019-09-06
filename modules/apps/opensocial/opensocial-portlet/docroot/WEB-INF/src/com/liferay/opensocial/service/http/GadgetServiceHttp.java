@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.opensocial.service.GadgetServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see GadgetServiceSoap
  * @generated
  */
-@ProviderType
 public class GadgetServiceHttp {
 
 	public static com.liferay.opensocial.model.Gadget addGadget(

@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -32,7 +30,6 @@ import java.io.ObjectOutput;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMStructureLinkCacheModel
 	implements CacheModel<DDMStructureLink>, Externalizable {
 

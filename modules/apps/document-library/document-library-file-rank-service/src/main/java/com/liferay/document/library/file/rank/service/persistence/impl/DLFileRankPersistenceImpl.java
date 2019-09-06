@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.file.rank.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.file.rank.exception.NoSuchFileRankException;
 import com.liferay.document.library.file.rank.model.DLFileRank;
 import com.liferay.document.library.file.rank.model.impl.DLFileRankImpl;
@@ -62,7 +60,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DLFileRankPersistenceImpl
 	extends BasePersistenceImpl<DLFileRank> implements DLFileRankPersistence {
 

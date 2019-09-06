@@ -14,8 +14,6 @@
 
 package com.liferay.asset.tag.stats.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.tag.stats.exception.NoSuchTagStatsException;
 import com.liferay.asset.tag.stats.model.AssetTagStats;
 import com.liferay.asset.tag.stats.model.impl.AssetTagStatsImpl;
@@ -59,7 +57,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AssetTagStatsPersistenceImpl
 	extends BasePersistenceImpl<AssetTagStats>
 	implements AssetTagStatsPersistence {

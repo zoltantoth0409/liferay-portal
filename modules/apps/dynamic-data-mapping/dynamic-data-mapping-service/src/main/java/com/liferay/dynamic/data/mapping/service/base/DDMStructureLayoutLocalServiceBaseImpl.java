@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMStructureLayoutPersistence;
@@ -67,7 +65,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMStructureLayoutLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMStructureLayoutLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMStructureLayoutLocalService, IdentifiableOSGiService {

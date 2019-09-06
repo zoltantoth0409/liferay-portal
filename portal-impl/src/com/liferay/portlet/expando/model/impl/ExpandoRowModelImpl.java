@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.expando.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.expando.kernel.model.ExpandoRowModel;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -52,7 +50,6 @@ import java.util.function.Function;
  * @see ExpandoRowImpl
  * @generated
  */
-@ProviderType
 public class ExpandoRowModelImpl
 	extends BaseModelImpl<ExpandoRow> implements ExpandoRowModel {
 

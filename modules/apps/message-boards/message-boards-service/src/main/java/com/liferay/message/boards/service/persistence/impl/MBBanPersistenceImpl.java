@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.exception.NoSuchBanException;
 import com.liferay.message.boards.model.MBBan;
 import com.liferay.message.boards.model.impl.MBBanImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBBanPersistenceImpl
 	extends BasePersistenceImpl<MBBan> implements MBBanPersistence {
 

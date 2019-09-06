@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -87,7 +85,6 @@ import javax.sql.DataSource;
  * @see com.liferay.message.boards.service.impl.MBThreadLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class MBThreadLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements MBThreadLocalService, IdentifiableOSGiService {

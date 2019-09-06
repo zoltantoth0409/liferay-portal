@@ -14,8 +14,6 @@
 
 package com.liferay.external.reference.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetVocabularyPersistence;
 import com.liferay.external.reference.service.ERAssetVocabularyLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -44,7 +42,6 @@ import javax.sql.DataSource;
  * @see com.liferay.external.reference.service.impl.ERAssetVocabularyLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ERAssetVocabularyLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ERAssetVocabularyLocalService, IdentifiableOSGiService {

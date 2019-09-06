@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see LayoutPageTemplateCollectionService
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateCollectionServiceWrapper
 	implements LayoutPageTemplateCollectionService,
 			   ServiceWrapper<LayoutPageTemplateCollectionService> {

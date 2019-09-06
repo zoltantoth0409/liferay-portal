@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.CompanyServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see CompanyServiceHttp
  * @generated
  */
-@ProviderType
 public class CompanyServiceSoap {
 
 	/**

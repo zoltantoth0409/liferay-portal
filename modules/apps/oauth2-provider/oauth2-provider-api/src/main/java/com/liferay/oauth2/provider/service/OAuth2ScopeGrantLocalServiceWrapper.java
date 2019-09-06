@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see OAuth2ScopeGrantLocalService
  * @generated
  */
-@ProviderType
 public class OAuth2ScopeGrantLocalServiceWrapper
 	implements OAuth2ScopeGrantLocalService,
 			   ServiceWrapper<OAuth2ScopeGrantLocalService> {

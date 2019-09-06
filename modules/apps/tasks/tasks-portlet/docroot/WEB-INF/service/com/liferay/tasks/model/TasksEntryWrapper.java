@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see TasksEntry
  * @generated
  */
-@ProviderType
 public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 
 	public TasksEntryWrapper(TasksEntry tasksEntry) {

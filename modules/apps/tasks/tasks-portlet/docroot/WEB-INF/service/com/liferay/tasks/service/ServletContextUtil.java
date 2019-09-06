@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -27,7 +25,6 @@ import java.lang.reflect.Method;
  * @author Ryan Park
  * @generated
  */
-@ProviderType
 public class ServletContextUtil {
 
 	public static String getServletContextName() {

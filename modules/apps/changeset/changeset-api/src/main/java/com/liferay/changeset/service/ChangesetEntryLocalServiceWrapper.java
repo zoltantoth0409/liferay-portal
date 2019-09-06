@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see ChangesetEntryLocalService
  * @generated
  */
-@ProviderType
 public class ChangesetEntryLocalServiceWrapper
 	implements ChangesetEntryLocalService,
 			   ServiceWrapper<ChangesetEntryLocalService> {

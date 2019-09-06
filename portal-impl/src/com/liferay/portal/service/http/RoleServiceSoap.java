@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.RoleServiceUtil;
@@ -65,7 +63,6 @@ import java.util.Map;
  * @see RoleServiceHttp
  * @generated
  */
-@ProviderType
 public class RoleServiceSoap {
 
 	/**

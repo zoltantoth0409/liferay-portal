@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.exception.NoSuchCategoryPropertyException;
 import com.liferay.asset.kernel.model.AssetCategoryProperty;
 import com.liferay.asset.kernel.service.persistence.AssetCategoryPropertyPersistence;
@@ -66,7 +64,6 @@ import java.util.Set;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class AssetCategoryPropertyPersistenceImpl
 	extends BasePersistenceImpl<AssetCategoryProperty>
 	implements AssetCategoryPropertyPersistence {

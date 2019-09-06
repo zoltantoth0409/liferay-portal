@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.model.DLFileVersion;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see DLFileVersionPersistence
  * @generated
  */
-@ProviderType
 public class DLFileVersionUtil {
 
 	/*

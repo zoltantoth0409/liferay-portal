@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.exception.NoSuchMailingListException;
 import com.liferay.message.boards.model.MBMailingList;
 import com.liferay.message.boards.model.impl.MBMailingListImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBMailingListPersistenceImpl
 	extends BasePersistenceImpl<MBMailingList>
 	implements MBMailingListPersistence {

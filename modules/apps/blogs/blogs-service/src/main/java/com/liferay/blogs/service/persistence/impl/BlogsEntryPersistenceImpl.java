@@ -14,8 +14,6 @@
 
 package com.liferay.blogs.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.exception.NoSuchEntryException;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.model.impl.BlogsEntryImpl;
@@ -81,7 +79,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class BlogsEntryPersistenceImpl
 	extends BasePersistenceImpl<BlogsEntry> implements BlogsEntryPersistence {
 

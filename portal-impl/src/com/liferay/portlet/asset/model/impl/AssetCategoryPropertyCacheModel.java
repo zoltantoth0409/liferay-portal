@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetCategoryProperty;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -36,7 +34,6 @@ import java.util.Date;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class AssetCategoryPropertyCacheModel
 	implements CacheModel<AssetCategoryProperty>, Externalizable {
 

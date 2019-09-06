@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStorageLink;
 import com.liferay.dynamic.data.mapping.service.DDMStorageLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMStorageLinkPersistence;
@@ -61,7 +59,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMStorageLinkLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMStorageLinkLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMStorageLinkLocalService, IdentifiableOSGiService {

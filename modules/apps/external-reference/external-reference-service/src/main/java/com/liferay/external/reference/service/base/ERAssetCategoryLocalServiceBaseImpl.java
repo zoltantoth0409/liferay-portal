@@ -14,8 +14,6 @@
 
 package com.liferay.external.reference.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetCategoryPersistence;
 import com.liferay.external.reference.service.ERAssetCategoryLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -44,7 +42,6 @@ import javax.sql.DataSource;
  * @see com.liferay.external.reference.service.impl.ERAssetCategoryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ERAssetCategoryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ERAssetCategoryLocalService, IdentifiableOSGiService {

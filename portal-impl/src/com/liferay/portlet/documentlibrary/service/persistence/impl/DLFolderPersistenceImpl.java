@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.exception.NoSuchFolderException;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.persistence.DLFileEntryTypePersistence;
@@ -75,7 +73,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DLFolderPersistenceImpl
 	extends BasePersistenceImpl<DLFolder> implements DLFolderPersistence {
 

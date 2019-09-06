@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -30,7 +28,6 @@ import java.util.List;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class SubscriptionSoap implements Serializable {
 
 	public static SubscriptionSoap toSoapModel(Subscription model) {

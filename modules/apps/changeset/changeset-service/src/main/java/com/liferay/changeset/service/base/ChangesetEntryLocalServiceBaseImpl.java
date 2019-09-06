@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.changeset.model.ChangesetEntry;
 import com.liferay.changeset.service.ChangesetEntryLocalService;
 import com.liferay.changeset.service.persistence.ChangesetCollectionPersistence;
@@ -63,7 +61,6 @@ import javax.sql.DataSource;
  * @see com.liferay.changeset.service.impl.ChangesetEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ChangesetEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ChangesetEntryLocalService, IdentifiableOSGiService {

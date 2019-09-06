@@ -14,8 +14,6 @@
 
 package com.liferay.external.reference.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.external.reference.service.EROrganizationLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -44,7 +42,6 @@ import javax.sql.DataSource;
  * @see com.liferay.external.reference.service.impl.EROrganizationLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class EROrganizationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements EROrganizationLocalService, IdentifiableOSGiService {

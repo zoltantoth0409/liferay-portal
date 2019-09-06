@@ -14,8 +14,6 @@
 
 package com.liferay.reading.time.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -68,7 +66,6 @@ import javax.sql.DataSource;
  * @see com.liferay.reading.time.service.impl.ReadingTimeEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ReadingTimeEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ReadingTimeEntryLocalService, IdentifiableOSGiService {

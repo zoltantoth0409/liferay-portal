@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.exception.NoSuchThreadFlagException;
 import com.liferay.message.boards.model.MBThreadFlag;
 import com.liferay.message.boards.model.impl.MBThreadFlagImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBThreadFlagPersistenceImpl
 	extends BasePersistenceImpl<MBThreadFlag>
 	implements MBThreadFlagPersistence {

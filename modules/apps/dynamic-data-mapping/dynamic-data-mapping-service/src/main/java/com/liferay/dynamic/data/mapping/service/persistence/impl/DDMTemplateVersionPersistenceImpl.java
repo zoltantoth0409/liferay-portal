@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.NoSuchTemplateVersionException;
 import com.liferay.dynamic.data.mapping.model.DDMTemplateVersion;
 import com.liferay.dynamic.data.mapping.model.impl.DDMTemplateVersionImpl;
@@ -60,7 +58,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMTemplateVersionPersistenceImpl
 	extends BasePersistenceImpl<DDMTemplateVersion>
 	implements DDMTemplateVersionPersistence {

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link RepositoryService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see RepositoryService
  * @generated
  */
-@ProviderType
 public class RepositoryServiceWrapper
 	implements RepositoryService, ServiceWrapper<RepositoryService> {
 
@@ -33,8 +31,9 @@ public class RepositoryServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.Repository addRepository(
-			long groupId, long classNameId, long parentFolderId, String name,
-			String description, String portletId,
+			long groupId, long classNameId, long parentFolderId,
+			java.lang.String name, java.lang.String description,
+			java.lang.String portletId,
 			com.liferay.portal.kernel.util.UnicodeProperties
 				typeSettingsProperties,
 			ServiceContext serviceContext)
@@ -65,7 +64,7 @@ public class RepositoryServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _repositoryService.getOSGiServiceIdentifier();
 	}
 
@@ -82,7 +81,7 @@ public class RepositoryServiceWrapper
 	 */
 	@Deprecated
 	@Override
-	public String[] getSupportedConfigurations(long classNameId) {
+	public java.lang.String[] getSupportedConfigurations(long classNameId) {
 		return _repositoryService.getSupportedConfigurations(classNameId);
 	}
 
@@ -91,8 +90,8 @@ public class RepositoryServiceWrapper
 	 */
 	@Deprecated
 	@Override
-	public String[] getSupportedParameters(
-		long classNameId, String configuration) {
+	public java.lang.String[] getSupportedParameters(
+		long classNameId, java.lang.String configuration) {
 
 		return _repositoryService.getSupportedParameters(
 			classNameId, configuration);
@@ -103,8 +102,8 @@ public class RepositoryServiceWrapper
 	 */
 	@Deprecated
 	@Override
-	public String[] getSupportedParameters(
-		String className, String configuration) {
+	public java.lang.String[] getSupportedParameters(
+		java.lang.String className, java.lang.String configuration) {
 
 		return _repositoryService.getSupportedParameters(
 			className, configuration);
@@ -120,7 +119,8 @@ public class RepositoryServiceWrapper
 
 	@Override
 	public void updateRepository(
-			long repositoryId, String name, String description)
+			long repositoryId, java.lang.String name,
+			java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_repositoryService.updateRepository(repositoryId, name, description);

@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetCategoryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
@@ -97,7 +95,6 @@ import javax.sql.DataSource;
  * @see com.liferay.journal.service.impl.JournalArticleLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class JournalArticleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements JournalArticleLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.exception.NoSuchArticleLocalizationException;
 import com.liferay.journal.model.JournalArticleLocalization;
 import com.liferay.journal.model.impl.JournalArticleLocalizationImpl;
@@ -60,7 +58,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class JournalArticleLocalizationPersistenceImpl
 	extends BasePersistenceImpl<JournalArticleLocalization>
 	implements JournalArticleLocalizationPersistence {

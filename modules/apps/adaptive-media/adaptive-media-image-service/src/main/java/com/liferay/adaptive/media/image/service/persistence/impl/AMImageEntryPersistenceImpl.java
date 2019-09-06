@@ -14,8 +14,6 @@
 
 package com.liferay.adaptive.media.image.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.adaptive.media.image.exception.NoSuchAMImageEntryException;
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.model.impl.AMImageEntryImpl;
@@ -64,7 +62,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AMImageEntryPersistenceImpl
 	extends BasePersistenceImpl<AMImageEntry>
 	implements AMImageEntryPersistence {

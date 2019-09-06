@@ -14,8 +14,6 @@
 
 package com.liferay.polls.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.polls.exception.NoSuchChoiceException;
 import com.liferay.polls.model.PollsChoice;
 import com.liferay.polls.model.impl.PollsChoiceImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class PollsChoicePersistenceImpl
 	extends BasePersistenceImpl<PollsChoice> implements PollsChoicePersistence {
 

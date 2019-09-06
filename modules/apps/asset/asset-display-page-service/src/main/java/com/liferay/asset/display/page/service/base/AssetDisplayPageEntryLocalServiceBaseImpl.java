@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.asset.display.page.service.persistence.AssetDisplayPageEntryPersistence;
@@ -69,7 +67,6 @@ import javax.sql.DataSource;
  * @see com.liferay.asset.display.page.service.impl.AssetDisplayPageEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetDisplayPageEntryLocalService, IdentifiableOSGiService {

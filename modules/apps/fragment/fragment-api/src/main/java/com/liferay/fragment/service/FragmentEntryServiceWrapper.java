@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see FragmentEntryService
  * @generated
  */
-@ProviderType
 public class FragmentEntryServiceWrapper
 	implements FragmentEntryService, ServiceWrapper<FragmentEntryService> {
 

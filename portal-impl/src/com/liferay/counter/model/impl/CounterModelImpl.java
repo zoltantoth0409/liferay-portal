@@ -14,8 +14,6 @@
 
 package com.liferay.counter.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.model.Counter;
 import com.liferay.counter.kernel.model.CounterModel;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -51,7 +49,6 @@ import java.util.function.Function;
  * @see CounterImpl
  * @generated
  */
-@ProviderType
 public class CounterModelImpl
 	extends BaseModelImpl<Counter> implements CounterModel {
 

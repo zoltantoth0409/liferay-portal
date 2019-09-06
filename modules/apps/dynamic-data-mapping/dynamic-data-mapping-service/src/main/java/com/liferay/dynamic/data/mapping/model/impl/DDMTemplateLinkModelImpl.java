@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMTemplateLink;
 import com.liferay.dynamic.data.mapping.model.DDMTemplateLinkModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -56,7 +54,6 @@ import java.util.function.Function;
  * @see DDMTemplateLinkImpl
  * @generated
  */
-@ProviderType
 public class DDMTemplateLinkModelImpl
 	extends BaseModelImpl<DDMTemplateLink> implements DDMTemplateLinkModel {
 

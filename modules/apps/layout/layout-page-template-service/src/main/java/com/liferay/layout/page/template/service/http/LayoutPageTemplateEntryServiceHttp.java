@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see LayoutPageTemplateEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateEntryServiceHttp {
 
 	public static com.liferay.layout.page.template.model.LayoutPageTemplateEntry

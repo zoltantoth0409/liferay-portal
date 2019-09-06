@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -77,7 +75,6 @@ import javax.sql.DataSource;
  * @see com.liferay.layout.page.template.service.impl.LayoutPageTemplateEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class LayoutPageTemplateEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements LayoutPageTemplateEntryLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.AssetEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see AssetEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class AssetEntryServiceHttp {
 
 	public static com.liferay.asset.kernel.model.AssetEntry fetchEntry(

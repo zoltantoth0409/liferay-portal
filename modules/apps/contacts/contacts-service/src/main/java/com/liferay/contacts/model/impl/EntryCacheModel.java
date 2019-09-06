@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -34,7 +32,6 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
 
 	@Override

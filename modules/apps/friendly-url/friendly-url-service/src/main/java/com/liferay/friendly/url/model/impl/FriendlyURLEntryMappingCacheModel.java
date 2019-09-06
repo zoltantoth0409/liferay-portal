@@ -14,8 +14,6 @@
 
 package com.liferay.friendly.url.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.friendly.url.model.FriendlyURLEntryMapping;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.MVCCModel;
@@ -33,7 +31,6 @@ import java.io.ObjectOutput;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class FriendlyURLEntryMappingCacheModel
 	implements CacheModel<FriendlyURLEntryMapping>, Externalizable, MVCCModel {
 

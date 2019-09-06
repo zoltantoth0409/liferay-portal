@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 
 /**
@@ -32,7 +30,6 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class ResourceBlockLocalServiceUtil {
 
 	/*

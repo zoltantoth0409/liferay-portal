@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.exception.NoSuchCategoryException;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.model.impl.MBCategoryImpl;
@@ -72,7 +70,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBCategoryPersistenceImpl
 	extends BasePersistenceImpl<MBCategory> implements MBCategoryPersistence {
 

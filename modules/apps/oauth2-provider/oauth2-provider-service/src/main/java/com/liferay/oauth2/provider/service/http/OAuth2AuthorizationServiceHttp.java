@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.service.OAuth2AuthorizationServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see OAuth2AuthorizationServiceSoap
  * @generated
  */
-@ProviderType
 public class OAuth2AuthorizationServiceHttp {
 
 	public static java.util.List

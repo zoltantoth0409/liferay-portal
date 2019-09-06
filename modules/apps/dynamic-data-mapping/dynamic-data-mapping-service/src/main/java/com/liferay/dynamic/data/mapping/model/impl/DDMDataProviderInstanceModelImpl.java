@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceModel;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceSoap;
@@ -72,7 +70,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class DDMDataProviderInstanceModelImpl
 	extends BaseModelImpl<DDMDataProviderInstance>
 	implements DDMDataProviderInstanceModel {

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.service.access.policy.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -65,7 +63,6 @@ import java.util.Map;
  * @see SAPEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class SAPEntryServiceSoap {
 
 	public static

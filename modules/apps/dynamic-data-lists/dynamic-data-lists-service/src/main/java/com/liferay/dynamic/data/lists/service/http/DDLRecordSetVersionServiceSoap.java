@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.lists.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.lists.service.DDLRecordSetVersionServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see DDLRecordSetVersionServiceHttp
  * @generated
  */
-@ProviderType
 public class DDLRecordSetVersionServiceSoap {
 
 	public static com.liferay.dynamic.data.lists.model.DDLRecordSetVersionSoap

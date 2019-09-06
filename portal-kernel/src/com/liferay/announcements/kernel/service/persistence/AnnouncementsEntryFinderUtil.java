@@ -14,15 +14,12 @@
 
 package com.liferay.announcements.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AnnouncementsEntryFinderUtil {
 
 	public static int countByScope(

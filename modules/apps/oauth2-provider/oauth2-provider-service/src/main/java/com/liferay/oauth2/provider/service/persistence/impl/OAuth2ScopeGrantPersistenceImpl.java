@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.exception.NoSuchOAuth2ScopeGrantException;
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
 import com.liferay.oauth2.provider.model.impl.OAuth2ScopeGrantImpl;
@@ -69,7 +67,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class OAuth2ScopeGrantPersistenceImpl
 	extends BasePersistenceImpl<OAuth2ScopeGrant>
 	implements OAuth2ScopeGrantPersistence {

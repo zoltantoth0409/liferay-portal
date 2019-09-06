@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.NoSuchDataProviderInstanceLinkException;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink;
 import com.liferay.dynamic.data.mapping.model.impl.DDMDataProviderInstanceLinkImpl;
@@ -59,7 +57,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMDataProviderInstanceLinkPersistenceImpl
 	extends BasePersistenceImpl<DDMDataProviderInstanceLink>
 	implements DDMDataProviderInstanceLinkPersistence {

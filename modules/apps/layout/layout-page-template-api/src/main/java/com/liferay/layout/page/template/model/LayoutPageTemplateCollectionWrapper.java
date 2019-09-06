@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -37,7 +35,6 @@ import java.util.Objects;
  * @see LayoutPageTemplateCollection
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateCollectionWrapper
 	implements LayoutPageTemplateCollection,
 			   ModelWrapper<LayoutPageTemplateCollection> {

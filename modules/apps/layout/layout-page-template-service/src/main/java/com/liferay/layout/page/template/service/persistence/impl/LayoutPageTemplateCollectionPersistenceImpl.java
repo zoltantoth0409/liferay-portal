@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.exception.NoSuchPageTemplateCollectionException;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.layout.page.template.model.impl.LayoutPageTemplateCollectionImpl;
@@ -70,7 +68,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateCollectionPersistenceImpl
 	extends BasePersistenceImpl<LayoutPageTemplateCollection>
 	implements LayoutPageTemplateCollectionPersistence {

@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.model.OAuth2ApplicationScopeAliases;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ApplicationScopeAliasesPersistence;
@@ -62,7 +60,6 @@ import javax.sql.DataSource;
  * @see com.liferay.oauth2.provider.service.impl.OAuth2ApplicationScopeAliasesLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class OAuth2ApplicationScopeAliasesLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements OAuth2ApplicationScopeAliasesLocalService,

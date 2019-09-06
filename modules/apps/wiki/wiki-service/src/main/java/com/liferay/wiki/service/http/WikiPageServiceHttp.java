@@ -14,8 +14,6 @@
 
 package com.liferay.wiki.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.wiki.service.WikiPageServiceUtil;
  * @see WikiPageServiceSoap
  * @generated
  */
-@ProviderType
 public class WikiPageServiceHttp {
 
 	public static com.liferay.wiki.model.WikiPage addPage(

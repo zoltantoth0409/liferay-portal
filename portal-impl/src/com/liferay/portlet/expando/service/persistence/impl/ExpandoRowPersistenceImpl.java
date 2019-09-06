@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.expando.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.exception.NoSuchRowException;
 import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
@@ -60,7 +58,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ExpandoRowPersistenceImpl
 	extends BasePersistenceImpl<ExpandoRow> implements ExpandoRowPersistence {
 

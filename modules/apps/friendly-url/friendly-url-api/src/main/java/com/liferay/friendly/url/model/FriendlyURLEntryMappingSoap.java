@@ -14,8 +14,6 @@
 
 package com.liferay.friendly.url.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,7 +25,6 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class FriendlyURLEntryMappingSoap implements Serializable {
 
 	public static FriendlyURLEntryMappingSoap toSoapModel(

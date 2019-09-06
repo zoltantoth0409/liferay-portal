@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.exportimport.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.service.StagingServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -50,7 +48,6 @@ import java.rmi.RemoteException;
  * @see StagingServiceHttp
  * @generated
  */
-@ProviderType
 public class StagingServiceSoap {
 
 	public static void cleanUpStagingRequest(long stagingRequestId)

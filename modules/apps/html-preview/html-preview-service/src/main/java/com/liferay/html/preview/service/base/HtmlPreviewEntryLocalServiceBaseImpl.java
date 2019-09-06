@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.html.preview.model.HtmlPreviewEntry;
 import com.liferay.html.preview.service.HtmlPreviewEntryLocalService;
 import com.liferay.html.preview.service.persistence.HtmlPreviewEntryPersistence;
@@ -61,7 +59,6 @@ import javax.sql.DataSource;
  * @see com.liferay.html.preview.service.impl.HtmlPreviewEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class HtmlPreviewEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements HtmlPreviewEntryLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.service.OAuthTokenLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
@@ -63,7 +61,6 @@ import javax.sql.DataSource;
  * @see com.liferay.opensocial.service.impl.OAuthTokenLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class OAuthTokenLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements OAuthTokenLocalService, IdentifiableOSGiService {

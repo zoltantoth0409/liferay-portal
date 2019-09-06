@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.html.preview.model.HtmlPreviewEntry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see HtmlPreviewEntryPersistence
  * @generated
  */
-@ProviderType
 public class HtmlPreviewEntryUtil {
 
 	/*

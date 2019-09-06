@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.announcements.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.announcements.kernel.service.AnnouncementsEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see AnnouncementsEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class AnnouncementsEntryServiceHttp {
 
 	public static com.liferay.announcements.kernel.model.AnnouncementsEntry

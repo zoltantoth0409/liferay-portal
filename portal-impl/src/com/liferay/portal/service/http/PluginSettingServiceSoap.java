@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.PluginSettingServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see PluginSettingServiceHttp
  * @generated
  */
-@ProviderType
 public class PluginSettingServiceSoap {
 
 	public static com.liferay.portal.kernel.model.PluginSettingSoap

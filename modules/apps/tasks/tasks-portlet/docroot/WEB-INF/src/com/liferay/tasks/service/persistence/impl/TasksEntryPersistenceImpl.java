@@ -14,8 +14,6 @@
 
 package com.liferay.tasks.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -66,7 +64,6 @@ import java.util.Set;
  * @author Ryan Park
  * @generated
  */
-@ProviderType
 public class TasksEntryPersistenceImpl
 	extends BasePersistenceImpl<TasksEntry> implements TasksEntryPersistence {
 

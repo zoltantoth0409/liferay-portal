@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see LayoutPageTemplateEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateEntryServiceSoap {
 
 	public static

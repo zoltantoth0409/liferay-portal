@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see ExportImportConfigurationPersistence
  * @generated
  */
-@ProviderType
 public class ExportImportConfigurationUtil {
 
 	/*

@@ -14,8 +14,6 @@
 
 package com.liferay.journal.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.journal.model.JournalContentSearch;
@@ -54,7 +52,6 @@ import java.util.function.Function;
  * @see JournalContentSearchImpl
  * @generated
  */
-@ProviderType
 public class JournalContentSearchModelImpl
 	extends BaseModelImpl<JournalContentSearch>
 	implements JournalContentSearchModel {

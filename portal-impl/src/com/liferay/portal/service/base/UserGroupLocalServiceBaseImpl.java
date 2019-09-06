@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
@@ -78,7 +76,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.UserGroupLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class UserGroupLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements UserGroupLocalService, IdentifiableOSGiService {

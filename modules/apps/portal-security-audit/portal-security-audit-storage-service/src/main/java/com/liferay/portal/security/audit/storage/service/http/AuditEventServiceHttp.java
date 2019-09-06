@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.audit.storage.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.portal.security.audit.storage.service.AuditEventServiceUtil;
  * @see AuditEventServiceSoap
  * @generated
  */
-@ProviderType
 public class AuditEventServiceHttp {
 
 	public static java.util.List

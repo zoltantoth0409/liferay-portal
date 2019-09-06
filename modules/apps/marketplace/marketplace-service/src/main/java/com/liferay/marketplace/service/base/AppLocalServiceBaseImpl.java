@@ -14,8 +14,6 @@
 
 package com.liferay.marketplace.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -69,7 +67,6 @@ import javax.sql.DataSource;
  * @see com.liferay.marketplace.service.impl.AppLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AppLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AppLocalService, IdentifiableOSGiService {

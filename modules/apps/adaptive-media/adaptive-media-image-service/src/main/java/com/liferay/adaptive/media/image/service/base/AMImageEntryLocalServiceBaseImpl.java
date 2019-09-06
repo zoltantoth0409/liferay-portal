@@ -14,8 +14,6 @@
 
 package com.liferay.adaptive.media.image.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.service.AMImageEntryLocalService;
 import com.liferay.adaptive.media.image.service.persistence.AMImageEntryPersistence;
@@ -60,7 +58,6 @@ import javax.sql.DataSource;
  * @see com.liferay.adaptive.media.image.service.impl.AMImageEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AMImageEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AMImageEntryLocalService, IdentifiableOSGiService {

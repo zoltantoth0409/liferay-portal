@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.html.preview.exception.NoSuchHtmlPreviewEntryException;
 import com.liferay.html.preview.model.HtmlPreviewEntry;
 import com.liferay.html.preview.model.impl.HtmlPreviewEntryImpl;
@@ -63,7 +61,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class HtmlPreviewEntryPersistenceImpl
 	extends BasePersistenceImpl<HtmlPreviewEntry>
 	implements HtmlPreviewEntryPersistence {

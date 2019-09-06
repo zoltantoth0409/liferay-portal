@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link ImageService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see ImageService
  * @generated
  */
-@ProviderType
 public class ImageServiceWrapper
 	implements ImageService, ServiceWrapper<ImageService> {
 
@@ -44,7 +42,7 @@ public class ImageServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _imageService.getOSGiServiceIdentifier();
 	}
 

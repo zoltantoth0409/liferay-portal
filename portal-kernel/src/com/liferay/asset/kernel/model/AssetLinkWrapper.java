@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see AssetLink
  * @generated
  */
-@ProviderType
 public class AssetLinkWrapper implements AssetLink, ModelWrapper<AssetLink> {
 
 	public AssetLinkWrapper(AssetLink assetLink) {

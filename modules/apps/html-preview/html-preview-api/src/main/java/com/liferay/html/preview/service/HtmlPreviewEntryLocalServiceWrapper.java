@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see HtmlPreviewEntryLocalService
  * @generated
  */
-@ProviderType
 public class HtmlPreviewEntryLocalServiceWrapper
 	implements HtmlPreviewEntryLocalService,
 			   ServiceWrapper<HtmlPreviewEntryLocalService> {

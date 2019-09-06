@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.powwow.model.PowwowServer;
 import com.liferay.powwow.service.PowwowServerLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.powwow.service.PowwowServerLocalServiceUtil;
  * @see PowwowServer
  * @generated
  */
-@ProviderType
 public abstract class PowwowServerBaseImpl
 	extends PowwowServerModelImpl implements PowwowServer {
 

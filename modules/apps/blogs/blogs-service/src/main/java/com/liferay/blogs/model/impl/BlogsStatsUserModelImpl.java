@@ -14,8 +14,6 @@
 
 package com.liferay.blogs.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.model.BlogsStatsUser;
 import com.liferay.blogs.model.BlogsStatsUserModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see BlogsStatsUserImpl
  * @generated
  */
-@ProviderType
 public class BlogsStatsUserModelImpl
 	extends BaseModelImpl<BlogsStatsUser> implements BlogsStatsUserModel {
 

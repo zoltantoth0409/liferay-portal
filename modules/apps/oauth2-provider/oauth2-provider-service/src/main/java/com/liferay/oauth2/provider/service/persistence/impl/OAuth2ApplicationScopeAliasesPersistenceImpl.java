@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.exception.NoSuchOAuth2ApplicationScopeAliasesException;
 import com.liferay.oauth2.provider.model.OAuth2ApplicationScopeAliases;
 import com.liferay.oauth2.provider.model.impl.OAuth2ApplicationScopeAliasesImpl;
@@ -61,7 +59,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class OAuth2ApplicationScopeAliasesPersistenceImpl
 	extends BasePersistenceImpl<OAuth2ApplicationScopeAliases>
 	implements OAuth2ApplicationScopeAliasesPersistence {

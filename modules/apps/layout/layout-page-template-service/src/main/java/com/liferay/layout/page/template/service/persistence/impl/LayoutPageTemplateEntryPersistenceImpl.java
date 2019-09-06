@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.exception.NoSuchPageTemplateEntryException;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.model.impl.LayoutPageTemplateEntryImpl;
@@ -70,7 +68,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateEntryPersistenceImpl
 	extends BasePersistenceImpl<LayoutPageTemplateEntry>
 	implements LayoutPageTemplateEntryPersistence {

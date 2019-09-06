@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.changeset.exception.NoSuchEntryException;
 import com.liferay.changeset.model.ChangesetEntry;
 import com.liferay.changeset.model.impl.ChangesetEntryImpl;
@@ -62,7 +60,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ChangesetEntryPersistenceImpl
 	extends BasePersistenceImpl<ChangesetEntry>
 	implements ChangesetEntryPersistence {

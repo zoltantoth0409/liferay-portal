@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.html.preview.model.HtmlPreviewEntry;
@@ -60,7 +58,6 @@ import java.util.function.Function;
  * @see HtmlPreviewEntryImpl
  * @generated
  */
-@ProviderType
 public class HtmlPreviewEntryModelImpl
 	extends BaseModelImpl<HtmlPreviewEntry> implements HtmlPreviewEntryModel {
 

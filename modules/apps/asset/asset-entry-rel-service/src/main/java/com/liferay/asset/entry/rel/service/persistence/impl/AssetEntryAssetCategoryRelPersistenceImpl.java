@@ -14,8 +14,6 @@
 
 package com.liferay.asset.entry.rel.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.entry.rel.exception.NoSuchEntryAssetCategoryRelException;
 import com.liferay.asset.entry.rel.model.AssetEntryAssetCategoryRel;
 import com.liferay.asset.entry.rel.model.impl.AssetEntryAssetCategoryRelImpl;
@@ -59,7 +57,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AssetEntryAssetCategoryRelPersistenceImpl
 	extends BasePersistenceImpl<AssetEntryAssetCategoryRel>
 	implements AssetEntryAssetCategoryRelPersistence {

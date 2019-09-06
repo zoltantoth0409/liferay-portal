@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.changeset.model.ChangesetCollection;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -34,7 +32,6 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ChangesetCollectionCacheModel
 	implements CacheModel<ChangesetCollection>, Externalizable {
 

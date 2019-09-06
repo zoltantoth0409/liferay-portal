@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMFormInstanceFinder;
@@ -75,7 +73,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMFormInstanceLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMFormInstanceLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMFormInstanceLocalService, IdentifiableOSGiService {

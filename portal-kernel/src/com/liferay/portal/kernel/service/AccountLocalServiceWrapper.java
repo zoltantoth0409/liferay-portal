@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link AccountLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see AccountLocalService
  * @generated
  */
-@ProviderType
 public class AccountLocalServiceWrapper
 	implements AccountLocalService, ServiceWrapper<AccountLocalService> {
 
@@ -261,7 +259,7 @@ public class AccountLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _accountLocalService.getOSGiServiceIdentifier();
 	}
 

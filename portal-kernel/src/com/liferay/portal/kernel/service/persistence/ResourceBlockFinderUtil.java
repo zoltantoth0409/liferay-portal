@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 
 /**
@@ -24,7 +22,6 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class ResourceBlockFinderUtil {
 
 	public static

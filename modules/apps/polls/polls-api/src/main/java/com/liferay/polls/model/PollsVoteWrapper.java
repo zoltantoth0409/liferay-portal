@@ -14,8 +14,6 @@
 
 package com.liferay.polls.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -37,7 +35,6 @@ import java.util.Objects;
  * @see PollsVote
  * @generated
  */
-@ProviderType
 public class PollsVoteWrapper implements PollsVote, ModelWrapper<PollsVote> {
 
 	public PollsVoteWrapper(PollsVote pollsVote) {

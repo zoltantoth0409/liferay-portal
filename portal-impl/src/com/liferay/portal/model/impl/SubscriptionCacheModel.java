@@ -14,8 +14,6 @@
 
 package com.liferay.portal.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.MVCCModel;
 import com.liferay.portal.kernel.model.Subscription;
@@ -37,7 +35,6 @@ import java.util.Date;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class SubscriptionCacheModel
 	implements CacheModel<Subscription>, Externalizable, MVCCModel {
 

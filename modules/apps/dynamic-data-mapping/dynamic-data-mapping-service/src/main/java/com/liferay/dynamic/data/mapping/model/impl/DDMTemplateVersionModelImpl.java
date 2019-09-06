@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMTemplateVersion;
 import com.liferay.dynamic.data.mapping.model.DDMTemplateVersionModel;
 import com.liferay.dynamic.data.mapping.model.DDMTemplateVersionSoap;
@@ -72,7 +70,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class DDMTemplateVersionModelImpl
 	extends BaseModelImpl<DDMTemplateVersion>
 	implements DDMTemplateVersionModel {

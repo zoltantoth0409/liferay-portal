@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -27,7 +25,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class KaleoDefinitionServiceWrapper
 	implements KaleoDefinitionService, ServiceWrapper<KaleoDefinitionService> {
 

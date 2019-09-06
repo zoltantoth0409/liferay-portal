@@ -14,8 +14,6 @@
 
 package com.liferay.asset.entry.rel.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.entry.rel.model.AssetEntryAssetCategoryRel;
 import com.liferay.asset.entry.rel.model.AssetEntryAssetCategoryRelModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -54,7 +52,6 @@ import java.util.function.Function;
  * @see AssetEntryAssetCategoryRelImpl
  * @generated
  */
-@ProviderType
 public class AssetEntryAssetCategoryRelModelImpl
 	extends BaseModelImpl<AssetEntryAssetCategoryRel>
 	implements AssetEntryAssetCategoryRelModel {

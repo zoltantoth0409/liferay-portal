@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.exception.NoSuchCollectionException;
 import com.liferay.fragment.model.FragmentCollection;
 import com.liferay.fragment.model.impl.FragmentCollectionImpl;
@@ -68,7 +66,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class FragmentCollectionPersistenceImpl
 	extends BasePersistenceImpl<FragmentCollection>
 	implements FragmentCollectionPersistence {

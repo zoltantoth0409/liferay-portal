@@ -14,8 +14,6 @@
 
 package com.liferay.portal.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
@@ -60,7 +58,6 @@ import java.util.function.Function;
  * @see LayoutFriendlyURLImpl
  * @generated
  */
-@ProviderType
 public class LayoutFriendlyURLModelImpl
 	extends BaseModelImpl<LayoutFriendlyURL> implements LayoutFriendlyURLModel {
 

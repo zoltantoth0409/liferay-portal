@@ -14,8 +14,6 @@
 
 package com.liferay.asset.category.property.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.category.property.model.AssetCategoryProperty;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see AssetCategoryPropertyPersistence
  * @generated
  */
-@ProviderType
 public class AssetCategoryPropertyUtil {
 
 	/*

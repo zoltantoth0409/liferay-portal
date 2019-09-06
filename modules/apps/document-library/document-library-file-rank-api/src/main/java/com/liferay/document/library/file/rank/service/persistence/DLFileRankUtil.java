@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.file.rank.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.file.rank.model.DLFileRank;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see DLFileRankPersistence
  * @generated
  */
-@ProviderType
 public class DLFileRankUtil {
 
 	/*

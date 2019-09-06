@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.exception.NoSuchEntryException;
 import com.liferay.fragment.model.FragmentEntry;
 import com.liferay.fragment.model.impl.FragmentEntryImpl;
@@ -68,7 +66,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class FragmentEntryPersistenceImpl
 	extends BasePersistenceImpl<FragmentEntry>
 	implements FragmentEntryPersistence {

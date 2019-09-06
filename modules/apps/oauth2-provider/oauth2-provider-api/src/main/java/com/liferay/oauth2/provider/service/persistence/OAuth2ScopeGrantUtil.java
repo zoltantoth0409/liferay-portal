@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see OAuth2ScopeGrantPersistence
  * @generated
  */
-@ProviderType
 public class OAuth2ScopeGrantUtil {
 
 	/*

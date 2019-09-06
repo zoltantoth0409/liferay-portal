@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.changeset.model.ChangesetEntry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see ChangesetEntryPersistence
  * @generated
  */
-@ProviderType
 public class ChangesetEntryUtil {
 
 	/*

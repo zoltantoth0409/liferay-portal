@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.sync.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.sync.model.DLSyncEvent;
 import com.liferay.document.library.sync.model.DLSyncEventModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -54,7 +52,6 @@ import java.util.function.Function;
  * @see DLSyncEventImpl
  * @generated
  */
-@ProviderType
 public class DLSyncEventModelImpl
 	extends BaseModelImpl<DLSyncEvent> implements DLSyncEventModel {
 

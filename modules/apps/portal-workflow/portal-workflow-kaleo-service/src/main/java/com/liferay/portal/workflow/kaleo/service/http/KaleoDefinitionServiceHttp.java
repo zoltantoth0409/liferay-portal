@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -53,7 +51,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class KaleoDefinitionServiceHttp {
 
 	public static java.util.List

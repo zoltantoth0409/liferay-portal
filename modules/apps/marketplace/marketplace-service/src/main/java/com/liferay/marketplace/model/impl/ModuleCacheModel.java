@@ -14,8 +14,6 @@
 
 package com.liferay.marketplace.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.marketplace.model.Module;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -32,7 +30,6 @@ import java.io.ObjectOutput;
  * @author Ryan Park
  * @generated
  */
-@ProviderType
 public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 
 	@Override

@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.site.navigation.service.SiteNavigationMenuServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see SiteNavigationMenuServiceHttp
  * @generated
  */
-@ProviderType
 public class SiteNavigationMenuServiceSoap {
 
 	public static com.liferay.site.navigation.model.SiteNavigationMenuSoap

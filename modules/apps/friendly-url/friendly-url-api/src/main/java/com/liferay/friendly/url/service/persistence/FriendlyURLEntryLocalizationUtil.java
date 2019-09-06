@@ -14,8 +14,6 @@
 
 package com.liferay.friendly.url.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.friendly.url.model.FriendlyURLEntryLocalization;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see FriendlyURLEntryLocalizationPersistence
  * @generated
  */
-@ProviderType
 public class FriendlyURLEntryLocalizationUtil {
 
 	/*

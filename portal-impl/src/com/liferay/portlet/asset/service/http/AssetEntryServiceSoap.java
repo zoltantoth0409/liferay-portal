@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.AssetEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see AssetEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class AssetEntryServiceSoap {
 
 	public static com.liferay.asset.kernel.model.AssetEntrySoap fetchEntry(

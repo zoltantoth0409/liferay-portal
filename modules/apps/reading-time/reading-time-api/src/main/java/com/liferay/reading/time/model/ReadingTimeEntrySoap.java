@@ -14,8 +14,6 @@
 
 package com.liferay.reading.time.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ReadingTimeEntrySoap implements Serializable {
 
 	public static ReadingTimeEntrySoap toSoapModel(ReadingTimeEntry model) {

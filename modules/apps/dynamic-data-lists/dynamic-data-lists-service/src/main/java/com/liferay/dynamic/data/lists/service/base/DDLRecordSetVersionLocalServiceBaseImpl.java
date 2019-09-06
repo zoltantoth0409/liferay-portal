@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.lists.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersion;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetVersionLocalService;
 import com.liferay.dynamic.data.lists.service.persistence.DDLRecordSetVersionPersistence;
@@ -60,7 +58,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.lists.service.impl.DDLRecordSetVersionLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDLRecordSetVersionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDLRecordSetVersionLocalService, IdentifiableOSGiService {

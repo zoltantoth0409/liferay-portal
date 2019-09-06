@@ -14,8 +14,6 @@
 
 package com.liferay.knowledge.base.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.knowledge.base.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see KBArticleServiceSoap
  * @generated
  */
-@ProviderType
 public class KBArticleServiceHttp {
 
 	public static com.liferay.knowledge.base.model.KBArticle addKBArticle(

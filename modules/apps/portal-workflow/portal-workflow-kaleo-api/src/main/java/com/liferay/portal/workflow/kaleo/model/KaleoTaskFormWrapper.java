@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see KaleoTaskForm
  * @generated
  */
-@ProviderType
 public class KaleoTaskFormWrapper
 	implements KaleoTaskForm, ModelWrapper<KaleoTaskForm> {
 

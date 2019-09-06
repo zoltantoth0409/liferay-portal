@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceVersionServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see DDMFormInstanceVersionServiceSoap
  * @generated
  */
-@ProviderType
 public class DDMFormInstanceVersionServiceHttp {
 
 	public static com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion

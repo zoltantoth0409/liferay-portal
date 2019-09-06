@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.opensocial.exception.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.impl.GadgetImpl;
@@ -68,7 +66,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class GadgetPersistenceImpl
 	extends BasePersistenceImpl<Gadget> implements GadgetPersistence {
 

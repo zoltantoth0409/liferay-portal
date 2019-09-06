@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.announcements.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.announcements.kernel.model.AnnouncementsEntry;
 import com.liferay.announcements.kernel.model.AnnouncementsEntryModel;
 import com.liferay.announcements.kernel.model.AnnouncementsEntrySoap;
@@ -67,7 +65,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class AnnouncementsEntryModelImpl
 	extends BaseModelImpl<AnnouncementsEntry>
 	implements AnnouncementsEntryModel {

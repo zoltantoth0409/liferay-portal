@@ -14,8 +14,6 @@
 
 package com.liferay.marketplace.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.marketplace.model.App;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -34,7 +32,6 @@ import java.util.Date;
  * @author Ryan Park
  * @generated
  */
-@ProviderType
 public class AppCacheModel implements CacheModel<App>, Externalizable {
 
 	@Override

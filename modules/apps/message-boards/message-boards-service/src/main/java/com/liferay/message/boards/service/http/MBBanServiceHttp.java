@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.service.MBBanServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see MBBanServiceSoap
  * @generated
  */
-@ProviderType
 public class MBBanServiceHttp {
 
 	public static com.liferay.message.boards.model.MBBan addBan(

@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see DDMFormInstanceVersionPersistence
  * @generated
  */
-@ProviderType
 public class DDMFormInstanceVersionUtil {
 
 	/*

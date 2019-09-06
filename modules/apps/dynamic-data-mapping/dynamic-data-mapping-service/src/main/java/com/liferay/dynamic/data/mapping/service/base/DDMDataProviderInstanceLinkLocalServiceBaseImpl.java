@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMDataProviderInstanceLinkPersistence;
@@ -60,7 +58,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMDataProviderInstanceLinkLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMDataProviderInstanceLinkLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMDataProviderInstanceLinkLocalService,

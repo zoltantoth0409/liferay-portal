@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.sync.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.sync.exception.NoSuchEventException;
 import com.liferay.document.library.sync.model.DLSyncEvent;
 import com.liferay.document.library.sync.model.impl.DLSyncEventImpl;
@@ -61,7 +59,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DLSyncEventPersistenceImpl
 	extends BasePersistenceImpl<DLSyncEvent> implements DLSyncEventPersistence {
 

@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see AssetDisplayPageEntryLocalService
  * @generated
  */
-@ProviderType
 public class AssetDisplayPageEntryLocalServiceWrapper
 	implements AssetDisplayPageEntryLocalService,
 			   ServiceWrapper<AssetDisplayPageEntryLocalService> {

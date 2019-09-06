@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.lists.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersion;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersionModel;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersionSoap;
@@ -71,7 +69,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class DDLRecordSetVersionModelImpl
 	extends BaseModelImpl<DDLRecordSetVersion>
 	implements DDLRecordSetVersionModel {

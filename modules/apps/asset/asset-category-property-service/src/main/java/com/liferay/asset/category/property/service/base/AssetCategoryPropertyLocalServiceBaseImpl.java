@@ -14,8 +14,6 @@
 
 package com.liferay.asset.category.property.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.category.property.model.AssetCategoryProperty;
 import com.liferay.asset.category.property.service.AssetCategoryPropertyLocalService;
 import com.liferay.asset.category.property.service.persistence.AssetCategoryPropertyFinder;
@@ -62,7 +60,6 @@ import javax.sql.DataSource;
  * @see com.liferay.asset.category.property.service.impl.AssetCategoryPropertyLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetCategoryPropertyLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetCategoryPropertyLocalService, IdentifiableOSGiService {

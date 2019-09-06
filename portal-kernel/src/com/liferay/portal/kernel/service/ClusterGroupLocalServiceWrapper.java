@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link ClusterGroupLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see ClusterGroupLocalService
  * @generated
  */
-@ProviderType
 public class ClusterGroupLocalServiceWrapper
 	implements ClusterGroupLocalService,
 			   ServiceWrapper<ClusterGroupLocalService> {
@@ -49,14 +47,15 @@ public class ClusterGroupLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.ClusterGroup addClusterGroup(
-		String name, java.util.List<String> clusterNodeIds) {
+		java.lang.String name,
+		java.util.List<java.lang.String> clusterNodeIds) {
 
 		return _clusterGroupLocalService.addClusterGroup(name, clusterNodeIds);
 	}
 
 	@Override
 	public com.liferay.portal.kernel.model.ClusterGroup addWholeClusterGroup(
-		String name) {
+		java.lang.String name) {
 
 		return _clusterGroupLocalService.addWholeClusterGroup(name);
 	}
@@ -273,7 +272,7 @@ public class ClusterGroupLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _clusterGroupLocalService.getOSGiServiceIdentifier();
 	}
 

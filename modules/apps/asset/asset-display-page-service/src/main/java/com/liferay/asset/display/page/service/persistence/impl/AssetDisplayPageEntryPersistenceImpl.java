@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.display.page.exception.NoSuchDisplayPageEntryException;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.model.impl.AssetDisplayPageEntryImpl;
@@ -67,7 +65,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AssetDisplayPageEntryPersistenceImpl
 	extends BasePersistenceImpl<AssetDisplayPageEntry>
 	implements AssetDisplayPageEntryPersistence {

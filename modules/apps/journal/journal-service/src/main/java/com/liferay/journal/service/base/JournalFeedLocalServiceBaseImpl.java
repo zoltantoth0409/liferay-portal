@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.service.persistence.ExpandoValuePersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -70,7 +68,6 @@ import javax.sql.DataSource;
  * @see com.liferay.journal.service.impl.JournalFeedLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class JournalFeedLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements JournalFeedLocalService, IdentifiableOSGiService {

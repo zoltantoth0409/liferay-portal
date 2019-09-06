@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.model.FragmentCollection;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see FragmentCollectionPersistence
  * @generated
  */
-@ProviderType
 public class FragmentCollectionUtil {
 
 	/*

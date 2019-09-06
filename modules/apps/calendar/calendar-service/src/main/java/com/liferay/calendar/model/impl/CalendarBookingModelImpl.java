@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingModel;
 import com.liferay.calendar.model.CalendarBookingSoap;
@@ -76,7 +74,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class CalendarBookingModelImpl
 	extends BaseModelImpl<CalendarBooking> implements CalendarBookingModel {
 

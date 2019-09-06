@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.exception.NoSuchTagException;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
@@ -76,7 +74,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class AssetTagPersistenceImpl
 	extends BasePersistenceImpl<AssetTag> implements AssetTagPersistence {
 

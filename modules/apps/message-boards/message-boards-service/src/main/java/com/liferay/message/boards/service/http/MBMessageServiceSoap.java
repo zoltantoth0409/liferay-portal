@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.service.MBMessageServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see MBMessageServiceHttp
  * @generated
  */
-@ProviderType
 public class MBMessageServiceSoap {
 
 	public static com.liferay.message.boards.model.MBMessageSoap

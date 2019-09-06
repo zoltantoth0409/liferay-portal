@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see CalendarBookingServiceSoap
  * @generated
  */
-@ProviderType
 public class CalendarBookingServiceHttp {
 
 	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(

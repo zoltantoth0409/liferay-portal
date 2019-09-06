@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see PowwowServerLocalService
  * @generated
  */
-@ProviderType
 public class PowwowServerLocalServiceWrapper
 	implements PowwowServerLocalService,
 			   ServiceWrapper<PowwowServerLocalService> {

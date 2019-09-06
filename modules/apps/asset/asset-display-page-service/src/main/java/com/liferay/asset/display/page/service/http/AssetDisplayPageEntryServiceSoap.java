@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see AssetDisplayPageEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class AssetDisplayPageEntryServiceSoap {
 
 	public static com.liferay.asset.display.page.model.AssetDisplayPageEntrySoap

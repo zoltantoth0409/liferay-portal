@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -34,7 +32,6 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateCollectionCacheModel
 	implements CacheModel<LayoutPageTemplateCollection>, Externalizable {
 

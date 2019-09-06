@@ -14,8 +14,6 @@
 
 package com.liferay.screens.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -51,7 +49,6 @@ import java.rmi.RemoteException;
  * @see ScreensAssetEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class ScreensAssetEntryServiceSoap {
 
 	public static String getAssetEntries(

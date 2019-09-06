@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.site.navigation.service.SiteNavigationMenuItemServiceUtil;
  * @see SiteNavigationMenuItemServiceSoap
  * @generated
  */
-@ProviderType
 public class SiteNavigationMenuItemServiceHttp {
 
 	public static com.liferay.site.navigation.model.SiteNavigationMenuItem

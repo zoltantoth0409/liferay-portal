@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.exception.NoSuchFileVersionException;
 import com.liferay.document.library.kernel.model.DLFileVersion;
 import com.liferay.document.library.kernel.service.persistence.DLFileVersionPersistence;
@@ -66,7 +64,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DLFileVersionPersistenceImpl
 	extends BasePersistenceImpl<DLFileVersion>
 	implements DLFileVersionPersistence {

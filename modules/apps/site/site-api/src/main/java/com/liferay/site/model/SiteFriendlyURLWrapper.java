@@ -14,8 +14,6 @@
 
 package com.liferay.site.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -37,7 +35,6 @@ import java.util.Objects;
  * @see SiteFriendlyURL
  * @generated
  */
-@ProviderType
 public class SiteFriendlyURLWrapper
 	implements SiteFriendlyURL, ModelWrapper<SiteFriendlyURL> {
 

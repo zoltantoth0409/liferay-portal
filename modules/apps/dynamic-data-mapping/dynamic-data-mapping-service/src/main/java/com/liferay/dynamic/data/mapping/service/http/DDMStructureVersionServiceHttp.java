@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.service.DDMStructureVersionServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see DDMStructureVersionServiceSoap
  * @generated
  */
-@ProviderType
 public class DDMStructureVersionServiceHttp {
 
 	public static com.liferay.dynamic.data.mapping.model.DDMStructureVersion

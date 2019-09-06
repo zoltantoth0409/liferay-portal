@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMContent;
 import com.liferay.dynamic.data.mapping.model.DDMContentModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -68,7 +66,6 @@ import java.util.function.Function;
  * @see DDMContentImpl
  * @generated
  */
-@ProviderType
 public class DDMContentModelImpl
 	extends BaseModelImpl<DDMContent> implements DDMContentModel {
 

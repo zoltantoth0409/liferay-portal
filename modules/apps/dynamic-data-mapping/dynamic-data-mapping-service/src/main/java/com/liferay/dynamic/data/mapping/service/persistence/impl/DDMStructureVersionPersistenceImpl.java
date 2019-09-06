@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureVersionException;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.model.impl.DDMStructureVersionImpl;
@@ -62,7 +60,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class DDMStructureVersionPersistenceImpl
 	extends BasePersistenceImpl<DDMStructureVersion>
 	implements DDMStructureVersionPersistence {

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -62,7 +60,6 @@ import java.util.function.Function;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class SubscriptionModelImpl
 	extends BaseModelImpl<Subscription> implements SubscriptionModel {
 

@@ -14,8 +14,6 @@
 
 package com.liferay.knowledge.base.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.knowledge.base.service.KBCommentServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see KBCommentServiceHttp
  * @generated
  */
-@ProviderType
 public class KBCommentServiceSoap {
 
 	public static com.liferay.knowledge.base.model.KBCommentSoap

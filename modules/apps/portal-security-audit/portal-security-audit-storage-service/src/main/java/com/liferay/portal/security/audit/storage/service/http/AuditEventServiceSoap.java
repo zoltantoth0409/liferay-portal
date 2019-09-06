@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.audit.storage.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.audit.storage.service.AuditEventServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see AuditEventServiceHttp
  * @generated
  */
-@ProviderType
 public class AuditEventServiceSoap {
 
 	public static

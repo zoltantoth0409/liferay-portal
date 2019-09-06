@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.social.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -57,7 +55,6 @@ import java.util.function.Function;
  * @see SocialActivityAchievementImpl
  * @generated
  */
-@ProviderType
 public class SocialActivityAchievementModelImpl
 	extends BaseModelImpl<SocialActivityAchievement>
 	implements SocialActivityAchievementModel {

@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -70,7 +68,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class SiteNavigationMenuPersistenceImpl
 	extends BasePersistenceImpl<SiteNavigationMenu>
 	implements SiteNavigationMenuPersistence {

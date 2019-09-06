@@ -14,8 +14,6 @@
 
 package com.liferay.asset.category.property.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.category.property.model.AssetCategoryProperty;
 import com.liferay.asset.category.property.model.AssetCategoryPropertyModel;
 import com.liferay.asset.category.property.model.AssetCategoryPropertySoap;
@@ -63,7 +61,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class AssetCategoryPropertyModelImpl
 	extends BaseModelImpl<AssetCategoryProperty>
 	implements AssetCategoryPropertyModel {

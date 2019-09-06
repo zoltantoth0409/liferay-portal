@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.exception.NoSuchFeedException;
 import com.liferay.journal.model.JournalFeed;
 import com.liferay.journal.model.impl.JournalFeedImpl;
@@ -69,7 +67,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class JournalFeedPersistenceImpl
 	extends BasePersistenceImpl<JournalFeed> implements JournalFeedPersistence {
 

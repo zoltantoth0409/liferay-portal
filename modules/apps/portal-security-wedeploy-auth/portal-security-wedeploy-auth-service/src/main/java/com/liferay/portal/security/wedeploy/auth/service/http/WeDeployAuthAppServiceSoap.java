@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.wedeploy.auth.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.wedeploy.auth.service.WeDeployAuthAppServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see WeDeployAuthAppServiceHttp
  * @generated
  */
-@ProviderType
 public class WeDeployAuthAppServiceSoap {
 
 	public static

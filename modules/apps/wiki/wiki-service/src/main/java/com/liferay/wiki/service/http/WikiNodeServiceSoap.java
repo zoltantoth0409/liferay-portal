@@ -14,8 +14,6 @@
 
 package com.liferay.wiki.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.wiki.service.WikiNodeServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see WikiNodeServiceHttp
  * @generated
  */
-@ProviderType
 public class WikiNodeServiceSoap {
 
 	public static com.liferay.wiki.model.WikiNodeSoap addNode(

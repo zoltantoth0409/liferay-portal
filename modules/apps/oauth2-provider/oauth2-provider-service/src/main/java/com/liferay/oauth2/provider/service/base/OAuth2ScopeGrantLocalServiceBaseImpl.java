@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
 import com.liferay.oauth2.provider.service.OAuth2ScopeGrantLocalService;
 import com.liferay.oauth2.provider.service.persistence.OAuth2AuthorizationPersistence;
@@ -62,7 +60,6 @@ import javax.sql.DataSource;
  * @see com.liferay.oauth2.provider.service.impl.OAuth2ScopeGrantLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements OAuth2ScopeGrantLocalService, IdentifiableOSGiService {

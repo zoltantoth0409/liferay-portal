@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -27,7 +25,6 @@ import java.lang.reflect.Method;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ServletContextUtil {
 
 	public static String getServletContextName() {

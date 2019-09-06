@@ -14,8 +14,6 @@
 
 package com.liferay.changeset.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.changeset.model.ChangesetCollection;
 import com.liferay.changeset.model.ChangesetCollectionModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see ChangesetCollectionImpl
  * @generated
  */
-@ProviderType
 public class ChangesetCollectionModelImpl
 	extends BaseModelImpl<ChangesetCollection>
 	implements ChangesetCollectionModel {

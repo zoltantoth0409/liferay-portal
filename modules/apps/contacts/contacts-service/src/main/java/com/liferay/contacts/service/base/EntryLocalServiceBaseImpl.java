@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.service.EntryLocalService;
 import com.liferay.contacts.service.persistence.EntryFinder;
@@ -63,7 +61,6 @@ import javax.sql.DataSource;
  * @see com.liferay.contacts.service.impl.EntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class EntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements EntryLocalService, IdentifiableOSGiService {

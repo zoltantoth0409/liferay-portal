@@ -14,8 +14,6 @@
 
 package com.liferay.sync.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.sync.service.SyncDeviceServiceUtil;
  * @see SyncDeviceServiceSoap
  * @generated
  */
-@ProviderType
 public class SyncDeviceServiceHttp {
 
 	public static com.liferay.sync.model.SyncDevice registerSyncDevice(

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.audit.storage.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see AuditEvent
  * @generated
  */
-@ProviderType
 public class AuditEventWrapper implements AuditEvent, ModelWrapper<AuditEvent> {
 
 	public AuditEventWrapper(AuditEvent auditEvent) {

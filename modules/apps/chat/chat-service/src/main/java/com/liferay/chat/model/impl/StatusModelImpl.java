@@ -14,8 +14,6 @@
 
 package com.liferay.chat.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.chat.model.Status;
 import com.liferay.chat.model.StatusModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -57,7 +55,6 @@ import java.util.function.Function;
  * @see StatusImpl
  * @generated
  */
-@ProviderType
 public class StatusModelImpl
 	extends BaseModelImpl<Status> implements StatusModel {
 

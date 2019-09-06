@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.wedeploy.auth.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -64,7 +62,6 @@ import java.util.Set;
  * @author Supritha Sundaram
  * @generated
  */
-@ProviderType
 public class WeDeployAuthAppPersistenceImpl
 	extends BasePersistenceImpl<WeDeployAuthApp>
 	implements WeDeployAuthAppPersistence {

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.wedeploy.auth.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ import java.util.List;
  * @author Supritha Sundaram
  * @generated
  */
-@ProviderType
 public class WeDeployAuthTokenSoap implements Serializable {
 
 	public static WeDeployAuthTokenSoap toSoapModel(WeDeployAuthToken model) {

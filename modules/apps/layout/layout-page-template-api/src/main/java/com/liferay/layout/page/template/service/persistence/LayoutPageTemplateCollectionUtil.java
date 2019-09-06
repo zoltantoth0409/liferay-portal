@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see LayoutPageTemplateCollectionPersistence
  * @generated
  */
-@ProviderType
 public class LayoutPageTemplateCollectionUtil {
 
 	/*

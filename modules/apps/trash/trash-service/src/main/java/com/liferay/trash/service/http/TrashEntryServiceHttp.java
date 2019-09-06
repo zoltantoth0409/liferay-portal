@@ -14,8 +14,6 @@
 
 package com.liferay.trash.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.trash.service.TrashEntryServiceUtil;
  * @see TrashEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class TrashEntryServiceHttp {
 
 	public static void deleteEntries(HttpPrincipal httpPrincipal, long groupId)

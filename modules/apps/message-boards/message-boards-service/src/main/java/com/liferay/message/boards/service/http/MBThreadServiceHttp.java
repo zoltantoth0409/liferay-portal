@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.service.MBThreadServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see MBThreadServiceSoap
  * @generated
  */
-@ProviderType
 public class MBThreadServiceHttp {
 
 	public static void deleteThread(HttpPrincipal httpPrincipal, long threadId)

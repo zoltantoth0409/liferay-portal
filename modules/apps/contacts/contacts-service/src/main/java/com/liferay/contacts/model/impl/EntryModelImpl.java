@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.EntryModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see EntryImpl
  * @generated
  */
-@ProviderType
 public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	/*

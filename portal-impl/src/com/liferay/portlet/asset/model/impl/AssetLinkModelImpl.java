@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.model.AssetLinkModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see AssetLinkImpl
  * @generated
  */
-@ProviderType
 public class AssetLinkModelImpl
 	extends BaseModelImpl<AssetLink> implements AssetLinkModel {
 

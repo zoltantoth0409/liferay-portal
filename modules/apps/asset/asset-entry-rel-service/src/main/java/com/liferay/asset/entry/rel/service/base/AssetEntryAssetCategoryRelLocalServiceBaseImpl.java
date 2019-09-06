@@ -14,8 +14,6 @@
 
 package com.liferay.asset.entry.rel.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.entry.rel.model.AssetEntryAssetCategoryRel;
 import com.liferay.asset.entry.rel.service.AssetEntryAssetCategoryRelLocalService;
 import com.liferay.asset.entry.rel.service.persistence.AssetEntryAssetCategoryRelPersistence;
@@ -60,7 +58,6 @@ import javax.sql.DataSource;
  * @see com.liferay.asset.entry.rel.service.impl.AssetEntryAssetCategoryRelLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetEntryAssetCategoryRelLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetEntryAssetCategoryRelLocalService, IdentifiableOSGiService {

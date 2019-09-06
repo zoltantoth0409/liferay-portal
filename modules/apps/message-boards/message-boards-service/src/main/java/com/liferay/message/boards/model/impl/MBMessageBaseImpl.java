@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
  * @see MBMessage
  * @generated
  */
-@ProviderType
 public abstract class MBMessageBaseImpl
 	extends MBMessageModelImpl implements MBMessage {
 

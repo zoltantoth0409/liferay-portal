@@ -14,8 +14,6 @@
 
 package com.liferay.oauth2.provider.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -35,7 +33,6 @@ import java.util.Objects;
  * @see OAuth2ScopeGrant
  * @generated
  */
-@ProviderType
 public class OAuth2ScopeGrantWrapper
 	implements OAuth2ScopeGrant, ModelWrapper<OAuth2ScopeGrant> {
 

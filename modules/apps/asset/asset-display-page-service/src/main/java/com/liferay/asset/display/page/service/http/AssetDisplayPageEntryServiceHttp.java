@@ -14,8 +14,6 @@
 
 package com.liferay.asset.display.page.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see AssetDisplayPageEntryServiceSoap
  * @generated
  */
-@ProviderType
 public class AssetDisplayPageEntryServiceHttp {
 
 	public static com.liferay.asset.display.page.model.AssetDisplayPageEntry

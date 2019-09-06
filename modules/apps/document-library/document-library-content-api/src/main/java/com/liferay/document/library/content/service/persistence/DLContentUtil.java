@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.content.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.content.model.DLContent;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see DLContentPersistence
  * @generated
  */
-@ProviderType
 public class DLContentUtil {
 
 	/*

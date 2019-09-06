@@ -14,8 +14,6 @@
 
 package com.liferay.blogs.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -43,7 +41,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see BlogsEntryPersistence
  * @generated
  */
-@ProviderType
 public class BlogsEntryUtil {
 
 	/*

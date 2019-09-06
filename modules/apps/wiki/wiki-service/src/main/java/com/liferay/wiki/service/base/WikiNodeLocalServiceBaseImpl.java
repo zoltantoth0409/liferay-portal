@@ -14,8 +14,6 @@
 
 package com.liferay.wiki.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -79,7 +77,6 @@ import javax.sql.DataSource;
  * @see com.liferay.wiki.service.impl.WikiNodeLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class WikiNodeLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements WikiNodeLocalService, IdentifiableOSGiService {

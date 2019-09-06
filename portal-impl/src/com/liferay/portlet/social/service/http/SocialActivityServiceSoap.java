@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.social.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.social.kernel.service.SocialActivityServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see SocialActivityServiceHttp
  * @generated
  */
-@ProviderType
 public class SocialActivityServiceSoap {
 
 	/**

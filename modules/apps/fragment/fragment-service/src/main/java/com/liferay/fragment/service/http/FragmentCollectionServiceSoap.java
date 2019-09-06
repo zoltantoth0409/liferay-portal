@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.service.FragmentCollectionServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see FragmentCollectionServiceHttp
  * @generated
  */
-@ProviderType
 public class FragmentCollectionServiceSoap {
 
 	public static com.liferay.fragment.model.FragmentCollectionSoap

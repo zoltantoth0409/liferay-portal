@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -28,7 +26,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class AssetCategoryPropertyLocalServiceWrapper
 	implements AssetCategoryPropertyLocalService,
 			   ServiceWrapper<AssetCategoryPropertyLocalService> {

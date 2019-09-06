@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see KaleoTaskFormLocalService
  * @generated
  */
-@ProviderType
 public class KaleoTaskFormLocalServiceWrapper
 	implements KaleoTaskFormLocalService,
 			   ServiceWrapper<KaleoTaskFormLocalService> {

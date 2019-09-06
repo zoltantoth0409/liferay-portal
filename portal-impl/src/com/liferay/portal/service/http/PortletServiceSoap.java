@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.PortletServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see PortletServiceHttp
  * @generated
  */
-@ProviderType
 public class PortletServiceSoap {
 
 	public static String getWARPortlets() throws RemoteException {
