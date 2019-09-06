@@ -418,7 +418,7 @@
 											var usingAlloyEditor = typeof AlloyEditor == 'undefined';
 
 											if (!usingAlloyEditor) {
-												var emptySelectionMarkup = 'nbsp;';
+												var emptySelectionMarkup = '&nbsp;';
 
 												emptySelectionMarkup = elementOuterHtml + emptySelectionMarkup;
 
