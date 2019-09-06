@@ -19,4 +19,5 @@ dependencies {
 	compileOnly project(":apps:segments:segments-api")
 
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
+	testCompile project(":core:registry-api")
 }
