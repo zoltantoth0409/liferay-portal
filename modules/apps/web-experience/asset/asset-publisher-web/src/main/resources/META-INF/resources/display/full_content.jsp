@@ -45,6 +45,16 @@ AssetRenderer<?> assetRenderer = (AssetRenderer<?>)request.getAttribute("view.js
 
 String languageId = LanguageUtil.getLanguageId(request);
 
+String[] availableLanguageIds = assetRenderer.getAvailableLanguageIds();
+
+if (ArrayUtil.isNotEmpty(availableLanguageIds) && !ArrayUtil.contains(availableLanguageIds, languageId)) {
+	languageId = LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault());
+
+	if (!ArrayUtil.contains(availableLanguageIds, languageId)) {
+		languageId = availableLanguageIds[0];
+	}
+}
+
 String title = assetRenderer.getTitle(LocaleUtil.fromLanguageId(languageId));
 
 boolean print = ((Boolean)request.getAttribute("view.jsp-print")).booleanValue();
@@ -94,11 +104,6 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			</c:if>
 
 			<c:if test="<%= assetPublisherDisplayContext.isShowAvailableLocales() && assetRenderer.isLocalizable() && !print %>">
-
-				<%
-				String[] availableLanguageIds = assetRenderer.getAvailableLanguageIds();
-				%>
-
 				<c:if test="<%= availableLanguageIds.length > 1 %>">
 					<c:if test="<%= assetPublisherDisplayContext.isEnableConversions() || assetPublisherDisplayContext.isEnablePrint() %>">
 						<div class="locale-separator"> </div>
