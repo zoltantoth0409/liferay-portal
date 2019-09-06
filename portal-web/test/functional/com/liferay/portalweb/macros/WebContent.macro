@@ -574,6 +574,17 @@ definition {
 				uploadFileName = "${webContentImage}");
 		}
 
+		if (isSet(webContentImageUnderDocumentsAndMedia)) {
+			AssertClick(
+				key_fieldName = "Image",
+				locator1 = "Button#SELECT_CONTENT",
+				value1 = "Select");
+
+			ItemSelector.uploadFile(
+				navTab = "Documents and Media",
+				uploadFileName = "${webContentImageUnderDocumentsAndMedia}");
+		}
+
 		if (isSet(webContentInteger)) {
 			Type(
 				key_fieldName = "Integer",
