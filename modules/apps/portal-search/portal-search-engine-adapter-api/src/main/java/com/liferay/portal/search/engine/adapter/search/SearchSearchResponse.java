@@ -15,11 +15,24 @@
 package com.liferay.portal.search.engine.adapter.search;
 
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.search.groupby.GroupByResponse;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Michael C. Han
  */
 public class SearchSearchResponse extends BaseSearchResponse {
+
+	public void addGroupByResponse(GroupByResponse groupByResponse) {
+		_groupByResponses.add(groupByResponse);
+	}
+
+	public List<GroupByResponse> getGroupByResponses() {
+		return Collections.unmodifiableList(_groupByResponses);
+	}
 
 	public Hits getHits() {
 		return _hits;
@@ -29,6 +42,7 @@ public class SearchSearchResponse extends BaseSearchResponse {
 		_hits = hits;
 	}
 
+	private final List<GroupByResponse> _groupByResponses = new ArrayList<>();
 	private Hits _hits;
 
 }

@@ -18,8 +18,13 @@ import com.liferay.portal.kernel.search.GroupBy;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.Stats;
+import com.liferay.portal.search.groupby.GroupByRequest;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -42,6 +47,10 @@ public class SearchSearchRequest
 
 	public GroupBy getGroupBy() {
 		return _groupBy;
+	}
+
+	public List<GroupByRequest> getGroupByRequests() {
+		return Collections.unmodifiableList(_groupByRequests);
 	}
 
 	public String[] getHighlightFieldNames() {
@@ -125,6 +134,10 @@ public class SearchSearchRequest
 		_groupBy = groupBy;
 	}
 
+	public void setGroupByRequests(Collection<GroupByRequest> groupByRequests) {
+		_groupByRequests = new ArrayList<>(groupByRequests);
+	}
+
 	public void setHighlightEnabled(boolean highlightEnabled) {
 		_highlightEnabled = highlightEnabled;
 	}
@@ -185,6 +198,7 @@ public class SearchSearchRequest
 
 	private String _alternateUidFieldName;
 	private GroupBy _groupBy;
+	private List<GroupByRequest> _groupByRequests = Collections.emptyList();
 	private boolean _highlightEnabled;
 	private String[] _highlightFieldNames;
 	private int _highlightFragmentSize = 80;
