@@ -218,6 +218,60 @@ public class AssetSearcher extends BaseSearcher {
 		queryBooleanFilter.add(categoryIdsTermsFilter, BooleanClauseOccur.MUST);
 	}
 
+	protected void addSearchAnyExtendedCategories(
+		BooleanFilter queryBooleanFilter) throws Exception {
+
+		long[] anyExtendedCategoryIds =
+			GetterUtil.getLongValues(
+				_assetEntryQuery.getAttribute("anyExtendedCategoryIds"));
+
+		if (anyExtendedCategoryIds.length == 0) {
+			return;
+		}
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		long[] filteredAnyExtendedCategoryIds = AssetUtil.filterCategoryIds(
+			permissionChecker, anyExtendedCategoryIds);
+
+		if (filteredAnyExtendedCategoryIds.length == 0) {
+			addImpossibleTerm(queryBooleanFilter, Field.ASSET_CATEGORY_IDS);
+
+			return;
+		}
+
+		TermsFilter categoryIdsTermsFilter = new TermsFilter(
+			Field.ASSET_CATEGORY_IDS);
+
+		for (long anyExtendedCategoryId : filteredAnyExtendedCategoryIds) {
+			AssetCategory assetCategory =
+				AssetCategoryLocalServiceUtil.fetchAssetCategory(
+					anyExtendedCategoryId);
+
+			if (assetCategory == null) {
+				continue;
+			}
+
+			List<Long> categoryIds = new ArrayList<>();
+
+			if (PropsValues.ASSET_CATEGORIES_SEARCH_HIERARCHICAL) {
+				categoryIds.addAll(
+					AssetCategoryLocalServiceUtil.getSubcategoryIds(
+						anyExtendedCategoryId));
+			}
+
+			if (categoryIds.isEmpty()) {
+				categoryIds.add(anyExtendedCategoryId);
+			}
+
+			categoryIdsTermsFilter.addValues(
+				ArrayUtil.toStringArray(categoryIds.toArray(new Long[0])));
+		}
+
+		queryBooleanFilter.add(categoryIdsTermsFilter, BooleanClauseOccur.MUST);
+	}
+
 	protected void addSearchAnyTags(BooleanFilter queryBooleanFilter)
 		throws Exception {
 
@@ -243,6 +297,10 @@ public class AssetSearcher extends BaseSearcher {
 		addSearchAnyCategories(queryBooleanFilter);
 		addSearchNotAnyCategories(queryBooleanFilter);
 		addSearchNotAllCategories(queryBooleanFilter);
+
+		// LPS-100989
+
+		addSearchAnyExtendedCategories(queryBooleanFilter);
 	}
 
 	@Override
