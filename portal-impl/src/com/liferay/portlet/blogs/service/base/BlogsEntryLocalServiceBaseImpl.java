@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.blogs.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
@@ -97,7 +95,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.blogs.service.impl.BlogsEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class BlogsEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements BlogsEntryLocalService, IdentifiableOSGiService {

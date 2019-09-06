@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see KaleoDefinitionServiceHttp
  * @generated
  */
-@ProviderType
 public class KaleoDefinitionServiceSoap {
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinitionSoap[]

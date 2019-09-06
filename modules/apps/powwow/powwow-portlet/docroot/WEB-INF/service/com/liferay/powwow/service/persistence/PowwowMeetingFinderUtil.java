@@ -14,15 +14,12 @@
 
 package com.liferay.powwow.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 
 /**
  * @author Shinn Lok
  * @generated
  */
-@ProviderType
 public class PowwowMeetingFinderUtil {
 
 	public static int countByU_S(long userId, int[] statuses) {

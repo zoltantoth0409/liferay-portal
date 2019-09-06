@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.document.library.kernel.model.DLContent;
 import com.liferay.document.library.kernel.model.DLContentDataBlobModel;
@@ -62,7 +60,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.documentlibrary.service.impl.DLContentLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DLContentLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DLContentLocalService, IdentifiableOSGiService {

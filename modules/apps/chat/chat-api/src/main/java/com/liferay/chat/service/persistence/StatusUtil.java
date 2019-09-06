@@ -14,8 +14,6 @@
 
 package com.liferay.chat.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.chat.model.Status;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see StatusPersistence
  * @generated
  */
-@ProviderType
 public class StatusUtil {
 
 	/*

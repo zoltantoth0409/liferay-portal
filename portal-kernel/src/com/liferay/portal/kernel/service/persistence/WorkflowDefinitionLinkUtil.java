@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see WorkflowDefinitionLinkPersistence
  * @generated
  */
-@ProviderType
 public class WorkflowDefinitionLinkUtil {
 
 	/*

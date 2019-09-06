@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMContent;
 import com.liferay.dynamic.data.mapping.service.DDMContentLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMContentPersistence;
@@ -67,7 +65,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMContentLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMContentLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMContentLocalService, IdentifiableOSGiService {

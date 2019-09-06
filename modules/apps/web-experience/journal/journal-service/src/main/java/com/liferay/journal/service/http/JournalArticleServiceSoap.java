@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -66,7 +64,6 @@ import java.util.Map;
  * @see JournalArticleServiceHttp
  * @generated
  */
-@ProviderType
 public class JournalArticleServiceSoap {
 
 	/**

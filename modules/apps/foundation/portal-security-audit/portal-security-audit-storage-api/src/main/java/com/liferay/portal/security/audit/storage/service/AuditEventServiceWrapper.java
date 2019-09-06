@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.audit.storage.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see AuditEventService
  * @generated
  */
-@ProviderType
 public class AuditEventServiceWrapper
 	implements AuditEventService, ServiceWrapper<AuditEventService> {
 

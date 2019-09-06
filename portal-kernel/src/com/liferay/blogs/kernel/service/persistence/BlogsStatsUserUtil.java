@@ -14,8 +14,6 @@
 
 package com.liferay.blogs.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.kernel.model.BlogsStatsUser;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -40,7 +38,6 @@ import java.util.Set;
  * @see BlogsStatsUserPersistence
  * @generated
  */
-@ProviderType
 public class BlogsStatsUserUtil {
 
 	/*

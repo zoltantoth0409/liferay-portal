@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -68,7 +66,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.LayoutFriendlyURLLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class LayoutFriendlyURLLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements LayoutFriendlyURLLocalService, IdentifiableOSGiService {

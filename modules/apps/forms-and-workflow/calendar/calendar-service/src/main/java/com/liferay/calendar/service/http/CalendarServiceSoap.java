@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.service.CalendarServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -65,7 +63,6 @@ import java.util.Map;
  * @see CalendarServiceHttp
  * @generated
  */
-@ProviderType
 public class CalendarServiceSoap {
 
 	public static com.liferay.calendar.model.CalendarSoap addCalendar(

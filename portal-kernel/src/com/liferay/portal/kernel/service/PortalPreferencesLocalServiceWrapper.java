@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link PortalPreferencesLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see PortalPreferencesLocalService
  * @generated
  */
-@ProviderType
 public class PortalPreferencesLocalServiceWrapper
 	implements PortalPreferencesLocalService,
 			   ServiceWrapper<PortalPreferencesLocalService> {
@@ -37,7 +35,7 @@ public class PortalPreferencesLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.model.PortalPreferences
 		addPortalPreferences(
-			long ownerId, int ownerType, String defaultPreferences) {
+			long ownerId, int ownerType, java.lang.String defaultPreferences) {
 
 		return _portalPreferencesLocalService.addPortalPreferences(
 			ownerId, ownerType, defaultPreferences);
@@ -237,7 +235,7 @@ public class PortalPreferencesLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _portalPreferencesLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -304,7 +302,7 @@ public class PortalPreferencesLocalServiceWrapper
 
 	@Override
 	public javax.portlet.PortletPreferences getPreferences(
-		long ownerId, int ownerType, String defaultPreferences) {
+		long ownerId, int ownerType, java.lang.String defaultPreferences) {
 
 		return _portalPreferencesLocalService.getPreferences(
 			ownerId, ownerType, defaultPreferences);
@@ -337,7 +335,7 @@ public class PortalPreferencesLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.PortalPreferences updatePreferences(
-		long ownerId, int ownerType, String xml) {
+		long ownerId, int ownerType, java.lang.String xml) {
 
 		return _portalPreferencesLocalService.updatePreferences(
 			ownerId, ownerType, xml);

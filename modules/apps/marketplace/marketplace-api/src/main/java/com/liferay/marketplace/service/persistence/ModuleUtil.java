@@ -14,8 +14,6 @@
 
 package com.liferay.marketplace.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.marketplace.model.Module;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see ModulePersistence
  * @generated
  */
-@ProviderType
 public class ModuleUtil {
 
 	/*

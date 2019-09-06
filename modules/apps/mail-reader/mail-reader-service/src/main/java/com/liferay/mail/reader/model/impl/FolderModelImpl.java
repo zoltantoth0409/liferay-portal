@@ -14,8 +14,6 @@
 
 package com.liferay.mail.reader.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.mail.reader.model.Folder;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see FolderImpl
  * @generated
  */
-@ProviderType
 public class FolderModelImpl
 	extends BaseModelImpl<Folder> implements FolderModel {
 

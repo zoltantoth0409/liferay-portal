@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.messageboards.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.kernel.service.MBThreadServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see MBThreadServiceHttp
  * @generated
  */
-@ProviderType
 public class MBThreadServiceSoap {
 
 	public static void deleteThread(long threadId) throws RemoteException {

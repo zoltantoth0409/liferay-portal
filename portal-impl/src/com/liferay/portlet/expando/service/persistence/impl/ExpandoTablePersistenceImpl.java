@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.expando.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.exception.NoSuchTableException;
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.service.persistence.ExpandoTablePersistence;
@@ -59,7 +57,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ExpandoTablePersistenceImpl
 	extends BasePersistenceImpl<ExpandoTable>
 	implements ExpandoTablePersistence {

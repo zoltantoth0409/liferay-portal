@@ -14,8 +14,6 @@
 
 package com.liferay.social.privatemessaging.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.social.privatemessaging.service.UserThreadServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see UserThreadServiceHttp
  * @generated
  */
-@ProviderType
 public class UserThreadServiceSoap {
 
 	public static com.liferay.message.boards.kernel.model.MBMessage

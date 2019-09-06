@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.EntryModel;
 import com.liferay.contacts.model.EntrySoap;
@@ -63,7 +61,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	/*

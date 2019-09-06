@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -67,7 +65,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.ResourceBlockLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ResourceBlockLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ResourceBlockLocalService, IdentifiableOSGiService {

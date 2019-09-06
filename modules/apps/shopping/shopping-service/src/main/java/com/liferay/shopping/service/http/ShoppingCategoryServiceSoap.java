@@ -14,8 +14,6 @@
 
 package com.liferay.shopping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -62,7 +60,6 @@ import java.rmi.RemoteException;
  * @see ShoppingCategoryServiceHttp
  * @generated
  */
-@ProviderType
 public class ShoppingCategoryServiceSoap {
 
 	public static com.liferay.shopping.model.ShoppingCategorySoap addCategory(

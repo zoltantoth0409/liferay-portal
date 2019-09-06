@@ -14,8 +14,6 @@
 
 package com.liferay.polls.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.polls.model.PollsQuestion;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see PollsQuestionPersistence
  * @generated
  */
-@ProviderType
 public class PollsQuestionUtil {
 
 	/*

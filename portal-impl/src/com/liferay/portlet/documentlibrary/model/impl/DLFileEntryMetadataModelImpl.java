@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.model.DLFileEntryMetadata;
 import com.liferay.document.library.kernel.model.DLFileEntryMetadataModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -54,7 +52,6 @@ import java.util.function.Function;
  * @see DLFileEntryMetadataImpl
  * @generated
  */
-@ProviderType
 public class DLFileEntryMetadataModelImpl
 	extends BaseModelImpl<DLFileEntryMetadata>
 	implements DLFileEntryMetadataModel {

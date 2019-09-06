@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLinkModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -54,7 +52,6 @@ import java.util.function.Function;
  * @see DDMDataProviderInstanceLinkImpl
  * @generated
  */
-@ProviderType
 public class DDMDataProviderInstanceLinkModelImpl
 	extends BaseModelImpl<DDMDataProviderInstanceLink>
 	implements DDMDataProviderInstanceLinkModel {

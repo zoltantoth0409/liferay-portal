@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.blogs.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
  * @see BlogsEntry
  * @generated
  */
-@ProviderType
 public abstract class BlogsEntryBaseImpl
 	extends BlogsEntryModelImpl implements BlogsEntry {
 

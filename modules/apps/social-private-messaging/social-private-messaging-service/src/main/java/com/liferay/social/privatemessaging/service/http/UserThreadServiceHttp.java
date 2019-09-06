@@ -14,8 +14,6 @@
 
 package com.liferay.social.privatemessaging.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.social.privatemessaging.service.UserThreadServiceUtil;
  * @see UserThreadServiceSoap
  * @generated
  */
-@ProviderType
 public class UserThreadServiceHttp {
 
 	public static com.liferay.message.boards.kernel.model.MBMessage

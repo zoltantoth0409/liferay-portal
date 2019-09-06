@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.blogs.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.kernel.model.BlogsStatsUser;
 import com.liferay.blogs.kernel.service.BlogsStatsUserLocalService;
 import com.liferay.blogs.kernel.service.persistence.BlogsEntryFinder;
@@ -65,7 +63,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.blogs.service.impl.BlogsStatsUserLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class BlogsStatsUserLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements BlogsStatsUserLocalService, IdentifiableOSGiService {

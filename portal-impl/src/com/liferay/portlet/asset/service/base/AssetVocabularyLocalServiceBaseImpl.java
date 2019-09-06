@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.asset.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.asset.kernel.service.persistence.AssetCategoryFinder;
@@ -74,7 +72,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.asset.service.impl.AssetVocabularyLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class AssetVocabularyLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AssetVocabularyLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.blogs.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.kernel.exception.NoSuchStatsUserException;
 import com.liferay.blogs.kernel.model.BlogsStatsUser;
 import com.liferay.blogs.kernel.service.persistence.BlogsStatsUserPersistence;
@@ -62,7 +60,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class BlogsStatsUserPersistenceImpl
 	extends BasePersistenceImpl<BlogsStatsUser>
 	implements BlogsStatsUserPersistence {

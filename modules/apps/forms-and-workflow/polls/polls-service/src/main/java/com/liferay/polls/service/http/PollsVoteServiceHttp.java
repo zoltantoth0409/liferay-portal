@@ -14,8 +14,6 @@
 
 package com.liferay.polls.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.polls.service.PollsVoteServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see PollsVoteServiceSoap
  * @generated
  */
-@ProviderType
 public class PollsVoteServiceHttp {
 
 	public static com.liferay.polls.model.PollsVote addVote(

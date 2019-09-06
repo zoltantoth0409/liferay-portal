@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link RecentLayoutRevisionLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see RecentLayoutRevisionLocalService
  * @generated
  */
-@ProviderType
 public class RecentLayoutRevisionLocalServiceWrapper
 	implements RecentLayoutRevisionLocalService,
 			   ServiceWrapper<RecentLayoutRevisionLocalService> {
@@ -261,7 +259,7 @@ public class RecentLayoutRevisionLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _recentLayoutRevisionLocalService.getOSGiServiceIdentifier();
 	}
 

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link ResourceTypePermissionLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see ResourceTypePermissionLocalService
  * @generated
  */
-@ProviderType
 public class ResourceTypePermissionLocalServiceWrapper
 	implements ResourceTypePermissionLocalService,
 			   ServiceWrapper<ResourceTypePermissionLocalService> {
@@ -212,7 +210,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.model.ResourceTypePermission
 		fetchResourceTypePermission(
-			long companyId, long groupId, String name, long roleId) {
+			long companyId, long groupId, java.lang.String name, long roleId) {
 
 		return _resourceTypePermissionLocalService.fetchResourceTypePermission(
 			companyId, groupId, name, roleId);
@@ -227,7 +225,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public long getCompanyScopeActionIds(
-		long companyId, String name, long roleId) {
+		long companyId, java.lang.String name, long roleId) {
 
 		return _resourceTypePermissionLocalService.getCompanyScopeActionIds(
 			companyId, name, roleId);
@@ -235,7 +233,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public long getGroupScopeActionIds(
-		long companyId, long groupId, String name, long roleId) {
+		long companyId, long groupId, java.lang.String name, long roleId) {
 
 		return _resourceTypePermissionLocalService.getGroupScopeActionIds(
 			companyId, groupId, name, roleId);
@@ -245,7 +243,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 	public java.util.List
 		<com.liferay.portal.kernel.model.ResourceTypePermission>
 			getGroupScopeResourceTypePermissions(
-				long companyId, String name, long roleId) {
+				long companyId, java.lang.String name, long roleId) {
 
 		return _resourceTypePermissionLocalService.
 			getGroupScopeResourceTypePermissions(companyId, name, roleId);
@@ -265,7 +263,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _resourceTypePermissionLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -281,7 +279,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.model.ResourceBlockPermissionsContainer
 		getResourceBlockPermissionsContainer(
-			long companyId, long groupId, String name) {
+			long companyId, long groupId, java.lang.String name) {
 
 		return _resourceTypePermissionLocalService.
 			getResourceBlockPermissionsContainer(companyId, groupId, name);
@@ -345,7 +343,8 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public boolean hasCompanyScopePermission(
-			long companyId, String name, long roleId, String actionId)
+			long companyId, java.lang.String name, long roleId,
+			java.lang.String actionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _resourceTypePermissionLocalService.hasCompanyScopePermission(
@@ -354,7 +353,8 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public boolean hasEitherScopePermission(
-			long companyId, String name, long roleId, String actionId)
+			long companyId, java.lang.String name, long roleId,
+			java.lang.String actionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _resourceTypePermissionLocalService.hasEitherScopePermission(
@@ -363,8 +363,8 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public boolean hasGroupScopePermission(
-			long companyId, long groupId, String name, long roleId,
-			String actionId)
+			long companyId, long groupId, java.lang.String name, long roleId,
+			java.lang.String actionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _resourceTypePermissionLocalService.hasGroupScopePermission(
@@ -373,7 +373,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public void updateCompanyScopeResourceTypePermissions(
-		long companyId, String name, long roleId, long actionIdsLong,
+		long companyId, java.lang.String name, long roleId, long actionIdsLong,
 		long operator) {
 
 		_resourceTypePermissionLocalService.
@@ -383,7 +383,7 @@ public class ResourceTypePermissionLocalServiceWrapper
 
 	@Override
 	public void updateGroupScopeResourceTypePermissions(
-		long companyId, long groupId, String name, long roleId,
+		long companyId, long groupId, java.lang.String name, long roleId,
 		long actionIdsLong, long operator) {
 
 		_resourceTypePermissionLocalService.

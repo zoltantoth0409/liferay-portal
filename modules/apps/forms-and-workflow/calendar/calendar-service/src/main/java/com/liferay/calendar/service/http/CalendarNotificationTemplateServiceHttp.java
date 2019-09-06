@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see CalendarNotificationTemplateServiceSoap
  * @generated
  */
-@ProviderType
 public class CalendarNotificationTemplateServiceHttp {
 
 	public static com.liferay.calendar.model.CalendarNotificationTemplate

@@ -14,8 +14,6 @@
 
 package com.liferay.mail.reader.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.mail.reader.model.Folder;
 import com.liferay.mail.reader.service.FolderLocalService;
 import com.liferay.mail.reader.service.persistence.AccountPersistence;
@@ -65,7 +63,6 @@ import javax.sql.DataSource;
  * @see com.liferay.mail.reader.service.impl.FolderLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class FolderLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements FolderLocalService, IdentifiableOSGiService {

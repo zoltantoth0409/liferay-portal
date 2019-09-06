@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.exception.NoSuchNotificationTemplateException;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl;
@@ -68,7 +66,6 @@ import java.util.Set;
  * @author Eduardo Lundgren
  * @generated
  */
-@ProviderType
 public class CalendarNotificationTemplatePersistenceImpl
 	extends BasePersistenceImpl<CalendarNotificationTemplate>
 	implements CalendarNotificationTemplatePersistence {

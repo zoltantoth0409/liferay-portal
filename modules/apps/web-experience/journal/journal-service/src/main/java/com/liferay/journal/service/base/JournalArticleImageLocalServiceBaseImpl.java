@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.service.JournalArticleImageLocalService;
 import com.liferay.journal.service.persistence.JournalArticleImagePersistence;
@@ -61,7 +59,6 @@ import javax.sql.DataSource;
  * @see com.liferay.journal.service.impl.JournalArticleImageLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class JournalArticleImageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements JournalArticleImageLocalService, IdentifiableOSGiService {

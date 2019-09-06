@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see OAuthTokenPersistence
  * @generated
  */
-@ProviderType
 public class OAuthTokenUtil {
 
 	/*

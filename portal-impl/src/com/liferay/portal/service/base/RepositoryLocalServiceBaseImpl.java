@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
@@ -87,7 +85,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.RepositoryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class RepositoryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements RepositoryLocalService, IdentifiableOSGiService {

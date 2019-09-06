@@ -14,8 +14,6 @@
 
 package com.liferay.portal.background.task.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.background.task.model.BackgroundTask;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see BackgroundTaskPersistence
  * @generated
  */
-@ProviderType
 public class BackgroundTaskUtil {
 
 	/*

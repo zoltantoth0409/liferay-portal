@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.document.library.kernel.service.DLTrashLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -42,7 +40,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.documentlibrary.service.impl.DLTrashLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DLTrashLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DLTrashLocalService, IdentifiableOSGiService {

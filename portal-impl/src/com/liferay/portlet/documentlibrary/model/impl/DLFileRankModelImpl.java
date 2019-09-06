@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.model.DLFileRank;
 import com.liferay.document.library.kernel.model.DLFileRankModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -59,7 +57,6 @@ import java.util.function.Function;
  * @see DLFileRankImpl
  * @generated
  */
-@ProviderType
 public class DLFileRankModelImpl
 	extends BaseModelImpl<DLFileRank> implements DLFileRankModel {
 

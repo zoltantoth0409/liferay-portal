@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.blogs.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.model.BlogsEntryModel;
 import com.liferay.blogs.kernel.model.BlogsEntrySoap;
@@ -71,7 +69,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class BlogsEntryModelImpl
 	extends BaseModelImpl<BlogsEntry> implements BlogsEntryModel {
 

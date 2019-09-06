@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.ratings.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -66,7 +64,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.ratings.service.impl.RatingsStatsLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class RatingsStatsLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements RatingsStatsLocalService, IdentifiableOSGiService {

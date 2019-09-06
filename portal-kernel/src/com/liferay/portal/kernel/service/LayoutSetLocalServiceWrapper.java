@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link LayoutSetLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see LayoutSetLocalService
  * @generated
  */
-@ProviderType
 public class LayoutSetLocalServiceWrapper
 	implements LayoutSetLocalService, ServiceWrapper<LayoutSetLocalService> {
 
@@ -214,7 +212,7 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet fetchLayoutSet(
-		String virtualHostname) {
+		java.lang.String virtualHostname) {
 
 		return _layoutSetLocalService.fetchLayoutSet(virtualHostname);
 	}
@@ -267,7 +265,7 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet getLayoutSet(
-			String virtualHostname)
+			java.lang.String virtualHostname)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutSetLocalService.getLayoutSet(virtualHostname);
@@ -293,7 +291,8 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.LayoutSet>
-		getLayoutSetsByLayoutSetPrototypeUuid(String layoutSetPrototypeUuid) {
+		getLayoutSetsByLayoutSetPrototypeUuid(
+			java.lang.String layoutSetPrototypeUuid) {
 
 		return _layoutSetLocalService.getLayoutSetsByLayoutSetPrototypeUuid(
 			layoutSetPrototypeUuid);
@@ -315,7 +314,7 @@ public class LayoutSetLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _layoutSetLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -354,7 +353,7 @@ public class LayoutSetLocalServiceWrapper
 	public void updateLayoutSetPrototypeLinkEnabled(
 			long groupId, boolean privateLayout,
 			boolean layoutSetPrototypeLinkEnabled,
-			String layoutSetPrototypeUuid)
+			java.lang.String layoutSetPrototypeUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_layoutSetLocalService.updateLayoutSetPrototypeLinkEnabled(
@@ -403,8 +402,8 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet updateLookAndFeel(
-			long groupId, boolean privateLayout, String themeId,
-			String colorSchemeId, String css)
+			long groupId, boolean privateLayout, java.lang.String themeId,
+			java.lang.String colorSchemeId, java.lang.String css)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutSetLocalService.updateLookAndFeel(
@@ -413,7 +412,8 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public void updateLookAndFeel(
-			long groupId, String themeId, String colorSchemeId, String css)
+			long groupId, java.lang.String themeId,
+			java.lang.String colorSchemeId, java.lang.String css)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_layoutSetLocalService.updateLookAndFeel(
@@ -430,7 +430,7 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet updateSettings(
-			long groupId, boolean privateLayout, String settings)
+			long groupId, boolean privateLayout, java.lang.String settings)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutSetLocalService.updateSettings(
@@ -439,7 +439,8 @@ public class LayoutSetLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet updateVirtualHost(
-			long groupId, boolean privateLayout, String virtualHostname)
+			long groupId, boolean privateLayout,
+			java.lang.String virtualHostname)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutSetLocalService.updateVirtualHost(

@@ -14,8 +14,6 @@
 
 package com.liferay.screens.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.screens.service.ScreensRatingsEntryServiceUtil;
@@ -50,7 +48,6 @@ import java.rmi.RemoteException;
  * @see ScreensRatingsEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class ScreensRatingsEntryServiceSoap {
 
 	public static String deleteRatingsEntry(

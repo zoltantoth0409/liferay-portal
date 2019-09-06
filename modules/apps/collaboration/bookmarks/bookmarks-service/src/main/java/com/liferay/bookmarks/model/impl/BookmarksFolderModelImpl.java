@@ -14,8 +14,6 @@
 
 package com.liferay.bookmarks.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.model.BookmarksFolderModel;
 import com.liferay.bookmarks.model.BookmarksFolderSoap;
@@ -70,7 +68,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class BookmarksFolderModelImpl
 	extends BaseModelImpl<BookmarksFolder> implements BookmarksFolderModel {
 

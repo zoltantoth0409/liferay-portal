@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.trash.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -67,7 +65,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.trash.service.impl.TrashEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class TrashEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements TrashEntryLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.exception.NoSuchContentSearchException;
 import com.liferay.journal.model.JournalContentSearch;
 import com.liferay.journal.model.impl.JournalContentSearchImpl;
@@ -60,7 +58,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class JournalContentSearchPersistenceImpl
 	extends BasePersistenceImpl<JournalContentSearch>
 	implements JournalContentSearchPersistence {

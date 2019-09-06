@@ -14,8 +14,6 @@
 
 package com.liferay.message.boards.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.kernel.model.MBStatsUser;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see MBStatsUserPersistence
  * @generated
  */
-@ProviderType
 public class MBStatsUserUtil {
 
 	/*

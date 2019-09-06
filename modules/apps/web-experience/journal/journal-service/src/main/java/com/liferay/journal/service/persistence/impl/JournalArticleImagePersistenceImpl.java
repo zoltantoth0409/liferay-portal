@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.exception.NoSuchArticleImageException;
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.model.impl.JournalArticleImageImpl;
@@ -60,7 +58,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class JournalArticleImagePersistenceImpl
 	extends BasePersistenceImpl<JournalArticleImage>
 	implements JournalArticleImagePersistence {

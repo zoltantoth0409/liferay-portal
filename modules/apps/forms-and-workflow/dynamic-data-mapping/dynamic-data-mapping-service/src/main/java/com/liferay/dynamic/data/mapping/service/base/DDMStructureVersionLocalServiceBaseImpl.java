@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMStructureVersionPersistence;
@@ -60,7 +58,6 @@ import javax.sql.DataSource;
  * @see com.liferay.dynamic.data.mapping.service.impl.DDMStructureVersionLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DDMStructureVersionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DDMStructureVersionLocalService, IdentifiableOSGiService {

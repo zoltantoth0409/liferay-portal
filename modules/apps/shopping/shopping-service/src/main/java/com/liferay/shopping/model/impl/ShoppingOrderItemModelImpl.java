@@ -14,8 +14,6 @@
 
 package com.liferay.shopping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -55,7 +53,6 @@ import java.util.function.Function;
  * @see ShoppingOrderItemImpl
  * @generated
  */
-@ProviderType
 public class ShoppingOrderItemModelImpl
 	extends BaseModelImpl<ShoppingOrderItem> implements ShoppingOrderItemModel {
 

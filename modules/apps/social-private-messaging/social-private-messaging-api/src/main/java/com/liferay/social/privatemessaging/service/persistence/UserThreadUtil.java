@@ -14,8 +14,6 @@
 
 package com.liferay.social.privatemessaging.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see UserThreadPersistence
  * @generated
  */
-@ProviderType
 public class UserThreadUtil {
 
 	/*

@@ -14,8 +14,6 @@
 
 package com.liferay.social.privatemessaging.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -36,7 +34,6 @@ import java.util.Objects;
  * @see UserThread
  * @generated
  */
-@ProviderType
 public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 
 	public UserThreadWrapper(UserThread userThread) {

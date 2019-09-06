@@ -14,8 +14,6 @@
 
 package com.liferay.opensocial.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.opensocial.service.GadgetServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see GadgetServiceHttp
  * @generated
  */
-@ProviderType
 public class GadgetServiceSoap {
 
 	public static com.liferay.opensocial.model.GadgetSoap addGadget(

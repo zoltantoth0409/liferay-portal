@@ -14,8 +14,6 @@
 
 package com.liferay.chat.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.EntryModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -57,7 +55,6 @@ import java.util.function.Function;
  * @see EntryImpl
  * @generated
  */
-@ProviderType
 public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	/*

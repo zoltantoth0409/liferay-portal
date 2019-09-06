@@ -14,8 +14,6 @@
 
 package com.liferay.push.notifications.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.push.notifications.service.PushNotificationsDeviceServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see PushNotificationsDeviceServiceHttp
  * @generated
  */
-@ProviderType
 public class PushNotificationsDeviceServiceSoap {
 
 	public static

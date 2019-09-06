@@ -14,8 +14,6 @@
 
 package com.liferay.microblogs.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.microblogs.model.MicroblogsEntry;
@@ -64,7 +62,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class MicroblogsEntryModelImpl
 	extends BaseModelImpl<MicroblogsEntry> implements MicroblogsEntryModel {
 

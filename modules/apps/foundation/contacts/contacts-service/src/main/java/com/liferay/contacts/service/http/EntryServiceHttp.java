@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.service.EntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -51,7 +49,6 @@ import com.liferay.portal.kernel.util.MethodKey;
  * @see EntryServiceSoap
  * @generated
  */
-@ProviderType
 public class EntryServiceHttp {
 
 	public static com.liferay.portal.kernel.json.JSONArray

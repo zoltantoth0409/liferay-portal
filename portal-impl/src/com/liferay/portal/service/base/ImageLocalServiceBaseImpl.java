@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.document.library.kernel.service.persistence.DLFileEntryFinder;
 import com.liferay.document.library.kernel.service.persistence.DLFileEntryPersistence;
@@ -62,7 +60,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.ImageLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ImageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ImageLocalService, IdentifiableOSGiService {

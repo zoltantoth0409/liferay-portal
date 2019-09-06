@@ -14,15 +14,12 @@
 
 package com.liferay.message.boards.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBCategoryFinderUtil {
 
 	public static int countC_ByS_G_U_P(

@@ -14,8 +14,6 @@
 
 package com.liferay.adaptive.media.image.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.model.AMImageEntryModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -55,7 +53,6 @@ import java.util.function.Function;
  * @see AMImageEntryImpl
  * @generated
  */
-@ProviderType
 public class AMImageEntryModelImpl
 	extends BaseModelImpl<AMImageEntry> implements AMImageEntryModel {
 

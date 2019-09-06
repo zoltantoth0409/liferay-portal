@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.PortalServiceUtil;
@@ -50,7 +48,6 @@ import java.rmi.RemoteException;
  * @see PortalServiceHttp
  * @generated
  */
-@ProviderType
 public class PortalServiceSoap {
 
 	public static String getAutoDeployDirectory() throws RemoteException {

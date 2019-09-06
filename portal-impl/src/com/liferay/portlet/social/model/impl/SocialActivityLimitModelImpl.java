@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.social.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -59,7 +57,6 @@ import java.util.function.Function;
  * @see SocialActivityLimitImpl
  * @generated
  */
-@ProviderType
 public class SocialActivityLimitModelImpl
 	extends BaseModelImpl<SocialActivityLimit>
 	implements SocialActivityLimitModel {

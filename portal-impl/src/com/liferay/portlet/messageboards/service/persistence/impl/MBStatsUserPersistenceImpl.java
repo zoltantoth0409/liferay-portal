@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.messageboards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.kernel.exception.NoSuchStatsUserException;
 import com.liferay.message.boards.kernel.model.MBStatsUser;
 import com.liferay.message.boards.kernel.service.persistence.MBStatsUserPersistence;
@@ -58,7 +56,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBStatsUserPersistenceImpl
 	extends BasePersistenceImpl<MBStatsUser> implements MBStatsUserPersistence {
 

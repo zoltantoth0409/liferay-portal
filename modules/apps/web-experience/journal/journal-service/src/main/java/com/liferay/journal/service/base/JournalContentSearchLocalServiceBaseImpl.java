@@ -14,8 +14,6 @@
 
 package com.liferay.journal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.model.JournalContentSearch;
 import com.liferay.journal.service.JournalContentSearchLocalService;
 import com.liferay.journal.service.persistence.JournalContentSearchPersistence;
@@ -63,7 +61,6 @@ import javax.sql.DataSource;
  * @see com.liferay.journal.service.impl.JournalContentSearchLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class JournalContentSearchLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements JournalContentSearchLocalService, IdentifiableOSGiService {

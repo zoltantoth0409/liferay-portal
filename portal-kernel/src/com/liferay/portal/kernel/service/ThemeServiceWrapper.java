@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link ThemeService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see ThemeService
  * @generated
  */
-@ProviderType
 public class ThemeServiceWrapper
 	implements ThemeService, ServiceWrapper<ThemeService> {
 
@@ -37,7 +35,7 @@ public class ThemeServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _themeService.getOSGiServiceIdentifier();
 	}
 

@@ -14,8 +14,6 @@
 
 package com.liferay.mail.reader.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.mail.reader.model.Attachment;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see AttachmentPersistence
  * @generated
  */
-@ProviderType
 public class AttachmentUtil {
 
 	/*

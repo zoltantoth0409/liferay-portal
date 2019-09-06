@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStorageLink;
 import com.liferay.dynamic.data.mapping.model.DDMStorageLinkModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -56,7 +54,6 @@ import java.util.function.Function;
  * @see DDMStorageLinkImpl
  * @generated
  */
-@ProviderType
 public class DDMStorageLinkModelImpl
 	extends BaseModelImpl<DDMStorageLink> implements DDMStorageLinkModel {
 

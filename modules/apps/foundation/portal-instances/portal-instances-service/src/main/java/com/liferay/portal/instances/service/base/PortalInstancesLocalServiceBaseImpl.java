@@ -14,8 +14,6 @@
 
 package com.liferay.portal.instances.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.instances.service.PortalInstancesLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -42,7 +40,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.instances.service.impl.PortalInstancesLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class PortalInstancesLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements PortalInstancesLocalService, IdentifiableOSGiService {

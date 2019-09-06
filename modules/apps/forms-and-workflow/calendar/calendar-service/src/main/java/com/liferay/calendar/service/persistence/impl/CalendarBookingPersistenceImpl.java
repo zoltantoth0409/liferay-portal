@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.exception.NoSuchBookingException;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
@@ -70,7 +68,6 @@ import java.util.Set;
  * @author Eduardo Lundgren
  * @generated
  */
-@ProviderType
 public class CalendarBookingPersistenceImpl
 	extends BasePersistenceImpl<CalendarBooking>
 	implements CalendarBookingPersistence {

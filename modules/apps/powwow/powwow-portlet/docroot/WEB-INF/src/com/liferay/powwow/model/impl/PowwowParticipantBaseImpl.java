@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.powwow.model.PowwowParticipant;
 import com.liferay.powwow.service.PowwowParticipantLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.powwow.service.PowwowParticipantLocalServiceUtil;
  * @see PowwowParticipant
  * @generated
  */
-@ProviderType
 public abstract class PowwowParticipantBaseImpl
 	extends PowwowParticipantModelImpl implements PowwowParticipant {
 

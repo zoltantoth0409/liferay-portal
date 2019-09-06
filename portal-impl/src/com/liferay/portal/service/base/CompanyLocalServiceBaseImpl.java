@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.expando.kernel.service.persistence.ExpandoColumnPersistence;
 import com.liferay.expando.kernel.service.persistence.ExpandoTablePersistence;
@@ -86,7 +84,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.service.impl.CompanyLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class CompanyLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements CompanyLocalService, IdentifiableOSGiService {

@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.messageboards.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
@@ -94,7 +92,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.messageboards.service.impl.MBThreadLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class MBThreadLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements MBThreadLocalService, IdentifiableOSGiService {

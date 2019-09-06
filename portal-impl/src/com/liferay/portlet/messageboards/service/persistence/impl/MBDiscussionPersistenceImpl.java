@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.messageboards.service.persistence.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.kernel.exception.NoSuchDiscussionException;
 import com.liferay.message.boards.kernel.model.MBDiscussion;
 import com.liferay.message.boards.kernel.service.persistence.MBDiscussionPersistence;
@@ -66,7 +64,6 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class MBDiscussionPersistenceImpl
 	extends BasePersistenceImpl<MBDiscussion>
 	implements MBDiscussionPersistence {

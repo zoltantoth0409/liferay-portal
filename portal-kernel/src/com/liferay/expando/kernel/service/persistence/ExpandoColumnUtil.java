@@ -14,8 +14,6 @@
 
 package com.liferay.expando.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoColumn;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -39,7 +37,6 @@ import java.util.Set;
  * @see ExpandoColumnPersistence
  * @generated
  */
-@ProviderType
 public class ExpandoColumnUtil {
 
 	/*

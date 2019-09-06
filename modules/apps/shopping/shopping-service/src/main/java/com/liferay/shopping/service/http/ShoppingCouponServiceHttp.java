@@ -14,8 +14,6 @@
 
 package com.liferay.shopping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.shopping.service.ShoppingCouponServiceUtil;
  * @see ShoppingCouponServiceSoap
  * @generated
  */
-@ProviderType
 public class ShoppingCouponServiceHttp {
 
 	public static com.liferay.shopping.model.ShoppingCoupon addCoupon(

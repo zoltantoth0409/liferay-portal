@@ -14,8 +14,6 @@
 
 package com.liferay.adaptive.media.image.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see AMImageEntryLocalService
  * @generated
  */
-@ProviderType
 public class AMImageEntryLocalServiceWrapper
 	implements AMImageEntryLocalService,
 			   ServiceWrapper<AMImageEntryLocalService> {

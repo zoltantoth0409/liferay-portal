@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ import java.util.List;
  * @author Eduardo Lundgren
  * @generated
  */
-@ProviderType
 public class CalendarResourceSoap implements Serializable {
 
 	public static CalendarResourceSoap toSoapModel(CalendarResource model) {

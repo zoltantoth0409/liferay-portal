@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayoutModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -60,7 +58,6 @@ import java.util.function.Function;
  * @see DDMStructureLayoutImpl
  * @generated
  */
-@ProviderType
 public class DDMStructureLayoutModelImpl
 	extends BaseModelImpl<DDMStructureLayout>
 	implements DDMStructureLayoutModel {

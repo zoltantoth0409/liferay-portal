@@ -14,8 +14,6 @@
 
 package com.liferay.sync.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.sync.service.SyncDeviceServiceUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see SyncDeviceServiceHttp
  * @generated
  */
-@ProviderType
 public class SyncDeviceServiceSoap {
 
 	public static com.liferay.sync.model.SyncDeviceSoap registerSyncDevice(

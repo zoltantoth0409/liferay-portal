@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.device.rules.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.mobile.device.rules.model.MDRRule;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see MDRRulePersistence
  * @generated
  */
-@ProviderType
 public class MDRRuleUtil {
 
 	/*

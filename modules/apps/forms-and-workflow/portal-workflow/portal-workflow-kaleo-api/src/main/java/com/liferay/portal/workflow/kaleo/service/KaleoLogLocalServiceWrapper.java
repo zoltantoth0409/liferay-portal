@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see KaleoLogLocalService
  * @generated
  */
-@ProviderType
 public class KaleoLogLocalServiceWrapper
 	implements KaleoLogLocalService, ServiceWrapper<KaleoLogLocalService> {
 

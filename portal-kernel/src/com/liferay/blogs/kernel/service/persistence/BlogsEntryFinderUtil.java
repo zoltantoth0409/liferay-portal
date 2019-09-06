@@ -14,15 +14,12 @@
 
 package com.liferay.blogs.kernel.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class BlogsEntryFinderUtil {
 
 	public static int countByOrganizationId(

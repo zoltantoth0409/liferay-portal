@@ -14,8 +14,6 @@
 
 package com.liferay.wiki.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetCategoryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
@@ -95,7 +93,6 @@ import javax.sql.DataSource;
  * @see com.liferay.wiki.service.impl.WikiPageLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class WikiPageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements WikiPageLocalService, IdentifiableOSGiService {

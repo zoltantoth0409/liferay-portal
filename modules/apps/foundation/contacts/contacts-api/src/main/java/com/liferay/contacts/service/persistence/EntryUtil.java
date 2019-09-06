@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see EntryPersistence
  * @generated
  */
-@ProviderType
 public class EntryUtil {
 
 	/*

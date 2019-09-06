@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link LayoutPrototypeLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see LayoutPrototypeLocalService
  * @generated
  */
-@ProviderType
 public class LayoutPrototypeLocalServiceWrapper
 	implements LayoutPrototypeLocalService,
 			   ServiceWrapper<LayoutPrototypeLocalService> {
@@ -50,8 +48,8 @@ public class LayoutPrototypeLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.model.LayoutPrototype addLayoutPrototype(
 			long userId, long companyId,
-			java.util.Map<java.util.Locale, String> nameMap,
-			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Map<java.util.Locale, java.lang.String> nameMap,
+			java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 			boolean active, ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -68,8 +66,9 @@ public class LayoutPrototypeLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.model.LayoutPrototype addLayoutPrototype(
 			long userId, long companyId,
-			java.util.Map<java.util.Locale, String> nameMap, String description,
-			boolean active, ServiceContext serviceContext)
+			java.util.Map<java.util.Locale, java.lang.String> nameMap,
+			java.lang.String description, boolean active,
+			ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutPrototypeLocalService.addLayoutPrototype(
@@ -251,7 +250,8 @@ public class LayoutPrototypeLocalServiceWrapper
 	 */
 	@Override
 	public com.liferay.portal.kernel.model.LayoutPrototype
-		fetchLayoutPrototypeByUuidAndCompanyId(String uuid, long companyId) {
+		fetchLayoutPrototypeByUuidAndCompanyId(
+			java.lang.String uuid, long companyId) {
 
 		return _layoutPrototypeLocalService.
 			fetchLayoutPrototypeByUuidAndCompanyId(uuid, companyId);
@@ -308,7 +308,8 @@ public class LayoutPrototypeLocalServiceWrapper
 	 */
 	@Override
 	public com.liferay.portal.kernel.model.LayoutPrototype
-			getLayoutPrototypeByUuidAndCompanyId(String uuid, long companyId)
+			getLayoutPrototypeByUuidAndCompanyId(
+				java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutPrototypeLocalService.
@@ -349,7 +350,7 @@ public class LayoutPrototypeLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _layoutPrototypeLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -364,7 +365,7 @@ public class LayoutPrototypeLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.LayoutPrototype>
 		search(
-			long companyId, Boolean active, int start, int end,
+			long companyId, java.lang.Boolean active, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<com.liferay.portal.kernel.model.LayoutPrototype> obc) {
 
@@ -373,7 +374,7 @@ public class LayoutPrototypeLocalServiceWrapper
 	}
 
 	@Override
-	public int searchCount(long companyId, Boolean active) {
+	public int searchCount(long companyId, java.lang.Boolean active) {
 		return _layoutPrototypeLocalService.searchCount(companyId, active);
 	}
 
@@ -396,8 +397,9 @@ public class LayoutPrototypeLocalServiceWrapper
 	public com.liferay.portal.kernel.model.LayoutPrototype
 			updateLayoutPrototype(
 				long layoutPrototypeId,
-				java.util.Map<java.util.Locale, String> nameMap,
-				java.util.Map<java.util.Locale, String> descriptionMap,
+				java.util.Map<java.util.Locale, java.lang.String> nameMap,
+				java.util.Map<java.util.Locale, java.lang.String>
+					descriptionMap,
 				boolean active, ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -415,8 +417,8 @@ public class LayoutPrototypeLocalServiceWrapper
 	public com.liferay.portal.kernel.model.LayoutPrototype
 			updateLayoutPrototype(
 				long layoutPrototypeId,
-				java.util.Map<java.util.Locale, String> nameMap,
-				String description, boolean active,
+				java.util.Map<java.util.Locale, java.lang.String> nameMap,
+				java.lang.String description, boolean active,
 				ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 

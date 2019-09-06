@@ -14,8 +14,6 @@
 
 package com.liferay.adaptive.media.image.service.persistence;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -42,7 +40,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see AMImageEntryPersistence
  * @generated
  */
-@ProviderType
 public class AMImageEntryUtil {
 
 	/*

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ThemeServiceUtil;
@@ -50,7 +48,6 @@ import java.rmi.RemoteException;
  * @see ThemeServiceHttp
  * @generated
  */
-@ProviderType
 public class ThemeServiceSoap {
 
 	public static String getWARThemes() throws RemoteException {

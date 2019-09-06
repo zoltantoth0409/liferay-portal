@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see CalendarNotificationTemplateServiceHttp
  * @generated
  */
-@ProviderType
 public class CalendarNotificationTemplateServiceSoap {
 
 	public static com.liferay.calendar.model.CalendarNotificationTemplateSoap

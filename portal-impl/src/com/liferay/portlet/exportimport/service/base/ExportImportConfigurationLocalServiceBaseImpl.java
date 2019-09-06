@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.exportimport.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalService;
@@ -65,7 +63,6 @@ import javax.sql.DataSource;
  * @see com.liferay.portlet.exportimport.service.impl.ExportImportConfigurationLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class ExportImportConfigurationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements ExportImportConfigurationLocalService, IdentifiableOSGiService {

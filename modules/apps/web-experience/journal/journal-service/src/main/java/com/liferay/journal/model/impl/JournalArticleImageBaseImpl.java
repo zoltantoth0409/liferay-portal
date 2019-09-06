@@ -14,8 +14,6 @@
 
 package com.liferay.journal.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.service.JournalArticleImageLocalServiceUtil;
 
@@ -31,7 +29,6 @@ import com.liferay.journal.service.JournalArticleImageLocalServiceUtil;
  * @see JournalArticleImage
  * @generated
  */
-@ProviderType
 public abstract class JournalArticleImageBaseImpl
 	extends JournalArticleImageModelImpl implements JournalArticleImage {
 

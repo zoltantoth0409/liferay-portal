@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.model.CalendarResourceModel;
 import com.liferay.calendar.model.CalendarResourceSoap;
@@ -72,7 +70,6 @@ import java.util.function.Function;
  * @generated
  */
 @JSON(strict = true)
-@ProviderType
 public class CalendarResourceModelImpl
 	extends BaseModelImpl<CalendarResource> implements CalendarResourceModel {
 

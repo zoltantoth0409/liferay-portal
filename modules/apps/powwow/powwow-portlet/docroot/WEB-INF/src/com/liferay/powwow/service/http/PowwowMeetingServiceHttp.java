@@ -14,8 +14,6 @@
 
 package com.liferay.powwow.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -51,7 +49,6 @@ import com.liferay.powwow.service.PowwowMeetingServiceUtil;
  * @see PowwowMeetingServiceSoap
  * @generated
  */
-@ProviderType
 public class PowwowMeetingServiceHttp {
 
 	public static com.liferay.powwow.model.PowwowMeeting addPowwowMeeting(

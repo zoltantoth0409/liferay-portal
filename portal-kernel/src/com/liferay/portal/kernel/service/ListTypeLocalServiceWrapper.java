@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import aQute.bnd.annotation.ProviderType;
 
 /**
  * Provides a wrapper for {@link ListTypeLocalService}.
@@ -23,7 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  * @see ListTypeLocalService
  * @generated
  */
-@ProviderType
 public class ListTypeLocalServiceWrapper
 	implements ListTypeLocalService, ServiceWrapper<ListTypeLocalService> {
 
@@ -48,7 +46,7 @@ public class ListTypeLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.ListType addListType(
-		String name, String type) {
+		java.lang.String name, java.lang.String type) {
 
 		return _listTypeLocalService.addListType(name, type);
 	}
@@ -250,7 +248,7 @@ public class ListTypeLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.ListType>
-		getListTypes(String type) {
+		getListTypes(java.lang.String type) {
 
 		return _listTypeLocalService.getListTypes(type);
 	}
@@ -271,7 +269,7 @@ public class ListTypeLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _listTypeLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -297,14 +295,15 @@ public class ListTypeLocalServiceWrapper
 	}
 
 	@Override
-	public void validate(long listTypeId, long classNameId, String type)
+	public void validate(
+			long listTypeId, long classNameId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_listTypeLocalService.validate(listTypeId, classNameId, type);
 	}
 
 	@Override
-	public void validate(long listTypeId, String type)
+	public void validate(long listTypeId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_listTypeLocalService.validate(listTypeId, type);

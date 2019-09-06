@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service.http;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.service.DDMStructureVersionServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -61,7 +59,6 @@ import java.rmi.RemoteException;
  * @see DDMStructureVersionServiceHttp
  * @generated
  */
-@ProviderType
 public class DDMStructureVersionServiceSoap {
 
 	public static com.liferay.dynamic.data.mapping.model.DDMStructureVersionSoap

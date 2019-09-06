@@ -14,8 +14,6 @@
 
 package com.liferay.social.privatemessaging.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.message.boards.kernel.service.persistence.MBMessagePersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -67,7 +65,6 @@ import javax.sql.DataSource;
  * @see com.liferay.social.privatemessaging.service.impl.UserThreadLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class UserThreadLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements UserThreadLocalService, IdentifiableOSGiService {

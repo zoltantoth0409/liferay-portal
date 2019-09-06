@@ -14,8 +14,6 @@
 
 package com.liferay.mail.reader.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.mail.reader.model.Account;
@@ -58,7 +56,6 @@ import java.util.function.Function;
  * @see AccountImpl
  * @generated
  */
-@ProviderType
 public class AccountModelImpl
 	extends BaseModelImpl<Account> implements AccountModel {
 

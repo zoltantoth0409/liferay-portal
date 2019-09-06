@@ -14,8 +14,6 @@
 
 package com.liferay.knowledge.base.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
 import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
@@ -95,7 +93,6 @@ import javax.sql.DataSource;
  * @see com.liferay.knowledge.base.service.impl.KBArticleLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class KBArticleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements KBArticleLocalService, IdentifiableOSGiService {

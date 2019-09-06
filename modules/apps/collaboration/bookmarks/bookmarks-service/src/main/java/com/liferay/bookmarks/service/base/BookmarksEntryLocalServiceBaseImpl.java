@@ -14,8 +14,6 @@
 
 package com.liferay.bookmarks.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetTagPersistence;
@@ -91,7 +89,6 @@ import javax.sql.DataSource;
  * @see com.liferay.bookmarks.service.impl.BookmarksEntryLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class BookmarksEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements BookmarksEntryLocalService, IdentifiableOSGiService {
