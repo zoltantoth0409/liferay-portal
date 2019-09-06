@@ -365,7 +365,11 @@ class FragmentEditableField extends PortletBase {
 	 * @private
 	 * @review
 	 */
-	_createProcessor() {
+	_createProcessor(event) {
+		if (event) {
+			event.preventDefault();
+		}
+
 		if (
 			!this._processorEnabled &&
 			!this.editableValues.fieldId &&
