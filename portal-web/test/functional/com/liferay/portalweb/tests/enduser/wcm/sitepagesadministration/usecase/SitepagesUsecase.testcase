@@ -523,7 +523,7 @@ definition {
 			emailFromUserName = "Test Test",
 			gmailAssetType = "G7MB3",
 			gmailMessageBody = "MB Thread Message Body",
-			gmailMessageTitle = "Message Boards Home - ${siteName} New Message: MB Thread Message Subject G7MB3");
+			gmailMessageTitle = "Home - ${siteName} New Message: MB Thread Message Subject G7MB3");
 
 		Gmail.openMessageLink(
 			contentTitle = "MB Thread Message Subject G7MB3",
@@ -727,7 +727,7 @@ definition {
 			emailFromUserName = "Test Test",
 			gmailAssetType = "G7MB2",
 			gmailMessageBody = "MB Thread Message Body",
-			gmailMessageTitle = "Message Boards Home - ${siteName} New Message: MB Thread Message Subject G7MB2");
+			gmailMessageTitle = "Home - ${siteName} New Message: MB Thread Message Subject G7MB2");
 
 		Gmail.openMessageLink(
 			contentTitle = "MB Thread Message Subject G7MB2",
@@ -931,7 +931,7 @@ definition {
 			emailFromUserName = "Test Test",
 			gmailAssetType = "G7MB4",
 			gmailMessageBody = "MB Thread Message Body",
-			gmailMessageTitle = "Message Boards Home - ${siteName} New Message: MB Thread Message Subject G7MB4");
+			gmailMessageTitle = "Home - ${siteName} New Message: MB Thread Message Subject G7MB4");
 
 		Gmail.openMessageLink(
 			contentTitle = "MB Thread Message Subject G7MB4",
