@@ -14,15 +14,11 @@
 
 package com.liferay.portal.search.elasticsearch6.internal.search.response;
 
-import com.liferay.portal.kernel.search.GroupBy;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Stats;
-import com.liferay.portal.kernel.search.facet.Facet;
-
-import java.util.Locale;
-import java.util.Map;
-
 import org.elasticsearch.action.search.SearchResponse;
+
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
+import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
 
 /**
  * @author Dylan Rebelak
@@ -30,9 +26,8 @@ import org.elasticsearch.action.search.SearchResponse;
 public interface SearchResponseTranslator {
 
 	public Hits translate(
-		SearchResponse searchResponse, Map<String, Facet> facetMap,
-		GroupBy groupBy, Map<String, Stats> statsMap,
-		String alternateUidFieldName, String[] highlightFieldNames,
-		Locale locale);
+		SearchSearchResponse searchSearchResponse,
+		SearchResponse searchResponse, 
+		SearchSearchRequest searchSearchRequest);
 
 }

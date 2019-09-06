@@ -33,6 +33,8 @@ import com.liferay.portal.search.elasticsearch6.internal.facet.FacetCollectorFac
 import com.liferay.portal.search.elasticsearch6.internal.facet.FacetUtil;
 import com.liferay.portal.search.elasticsearch6.internal.groupby.GroupByTranslator;
 import com.liferay.portal.search.elasticsearch6.internal.stats.StatsTranslator;
+import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
+import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,28 +63,33 @@ public class DefaultSearchResponseTranslator
 
 	@Override
 	public Hits translate(
-		SearchResponse searchResponse, Map<String, Facet> facetMap,
-		GroupBy groupBy, Map<String, Stats> statsMap,
-		String alternateUidFieldName, String[] highlightFieldNames,
-		Locale locale) {
+		SearchSearchResponse searchSearchResponse,
+		SearchResponse searchResponse, 
+		SearchSearchRequest searchSearchRequest) {
 
 		SearchHits searchHits = searchResponse.getHits();
 
 		Hits hits = new HitsImpl();
 
-		updateFacetCollectors(searchResponse, facetMap);
+		updateFacetCollectors(searchResponse, searchSearchRequest.getFacets());
+
 		updateGroupedHits(
-			searchResponse, groupBy, hits, alternateUidFieldName,
-			highlightFieldNames, locale);
-		updateStatsResults(searchResponse, hits, statsMap);
+			searchResponse, searchSearchRequest.getGroupBy(), hits,
+			searchSearchRequest.getAlternateUidFieldName(),
+			searchSearchRequest.getHighlightFieldNames(),
+			searchSearchRequest.getLocale());
+
+		updateStatsResults(
+			searchResponse, hits, searchSearchRequest.getStats());
 
 		TimeValue timeValue = searchResponse.getTook();
 
 		hits.setSearchTime((float)timeValue.getSecondsFrac());
 
 		return processSearchHits(
-			searchHits, hits, alternateUidFieldName, highlightFieldNames,
-			locale);
+			searchHits, hits, searchSearchRequest.getAlternateUidFieldName(),
+			searchSearchRequest.getHighlightFieldNames(),
+			searchSearchRequest.getLocale());
 	}
 
 	protected void addSnippets(

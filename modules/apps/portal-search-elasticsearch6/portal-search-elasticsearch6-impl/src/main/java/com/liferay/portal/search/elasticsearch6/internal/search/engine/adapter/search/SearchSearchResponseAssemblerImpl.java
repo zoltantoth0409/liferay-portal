@@ -47,11 +47,7 @@ public class SearchSearchResponseAssemblerImpl
 		searchSearchResponse.setCount(searchHits.totalHits);
 
 		Hits hits = searchResponseTranslator.translate(
-			searchResponse, searchSearchRequest.getFacets(),
-			searchSearchRequest.getGroupBy(), searchSearchRequest.getStats(),
-			searchSearchRequest.getAlternateUidFieldName(),
-			searchSearchRequest.getHighlightFieldNames(),
-			searchSearchRequest.getLocale());
+			searchSearchResponse, searchResponse, searchSearchRequest);
 
 		searchSearchResponse.setHits(hits);
 	}
