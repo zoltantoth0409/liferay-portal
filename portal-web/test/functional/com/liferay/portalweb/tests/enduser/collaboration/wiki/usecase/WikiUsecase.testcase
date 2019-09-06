@@ -394,27 +394,6 @@ definition {
 			wikiPageTitle = "FrontPage");
 	}
 
-	@priority = "3"
-	test ViewNoXSSViaAddPage {
-		Navigator.gotoPage(pageName = "Wiki Test Page");
-
-		WikiPage.editFrontPagePG(wikiPageContentEdit = '''<script>alert(123);</script>''');
-
-		AssertClick(
-			locator1 = "Link#EDIT",
-			value1 = "Edit");
-
-		AssertAlertNotPresent();
-
-		var actualScript = '''<script>alert(123);</script>''';
-
-		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
-
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
-
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
-	}
-
 	@priority = "4"
 	test ViewDraftPagesViaBreadcrumb {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
@@ -456,6 +435,27 @@ definition {
 		Breadcrumb.viewPG(
 			breadcrumbListVisible = "Draft Pages",
 			pathLocator = "CURRENT_LOCATION");
+	}
+
+	@priority = "3"
+	test ViewNoXSSViaAddPage {
+		Navigator.gotoPage(pageName = "Wiki Test Page");
+
+		WikiPage.editFrontPagePG(wikiPageContentEdit = '''<script>alert(123);</script>''');
+
+		AssertClick(
+			locator1 = "Link#EDIT",
+			value1 = "Edit");
+
+		AssertAlertNotPresent();
+
+		var actualScript = '''<script>alert(123);</script>''';
+
+		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
+
+		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+
+		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 }
