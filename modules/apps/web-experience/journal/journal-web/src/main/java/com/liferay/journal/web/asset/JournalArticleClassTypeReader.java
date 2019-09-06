@@ -18,8 +18,7 @@ import com.liferay.asset.kernel.model.BaseDDMStructureClassTypeReader;
 import com.liferay.asset.kernel.model.ClassType;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.staging.StagingGroupHelper;
-import com.liferay.staging.StagingGroupHelperUtil;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -44,20 +43,15 @@ public class JournalArticleClassTypeReader
 	}
 
 	private long[] _replaceGroupIds(long[] groupIds) {
-		StagingGroupHelper stagingGroupHelper =
-			StagingGroupHelperUtil.getStagingGroupHelper();
-
 		groupIds = groupIds.clone();
 
 		for (int i = 0; i < groupIds.length; i++) {
-			if (stagingGroupHelper.isLocalStagingGroup(groupIds[i]) &&
-				!stagingGroupHelper.isStagedPortlet(
-					groupIds[i], JournalPortletKeys.JOURNAL)) {
+			Group group = GroupLocalServiceUtil.fetchGroup(groupIds[i]);
 
-				Group group = stagingGroupHelper.fetchLocalLiveGroup(
-					groupIds[i]);
+			if (group.isStagingGroup() &&
+				!group.isStagedPortlet(JournalPortletKeys.JOURNAL)) {
 
-				groupIds[i] = group.getGroupId();
+				groupIds[i] = group.getLiveGroupId();
 			}
 		}
 
