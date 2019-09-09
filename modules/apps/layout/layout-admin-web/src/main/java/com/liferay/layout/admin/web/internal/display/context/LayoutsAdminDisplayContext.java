@@ -1289,11 +1289,9 @@ public class LayoutsAdminDisplayContext {
 		LayoutConverter layoutConverter =
 			_layoutConverterRegistry.getLayoutConverter(layoutTemplateId);
 
-		if (layoutConverter == null) {
-			return false;
-		}
+		if ((layoutConverter == null) ||
+			!layoutConverter.isConvertible(layout)) {
 
-		if (!layoutConverter.isConvertible(layout)) {
 			return false;
 		}
 
