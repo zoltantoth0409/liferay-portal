@@ -335,9 +335,15 @@ public class AssetEntryFinderImpl
 		}
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
-			sb.append("INNER JOIN AssetLink ON (AssetEntry.entryId = ");
-			sb.append("AssetLink.entryId1) OR (AssetEntry.entryId = ");
-			sb.append("AssetLink.entryId2)");
+			sb.append("INNER JOIN ( ");
+			sb.append("SELECT AssetLink.entryId1 as entryId ");
+			sb.append("FROM AssetLink WHERE AssetLink.entryId2 = ? ");
+			sb.append("AND AssetLink.entryId1 != ? ");
+			sb.append("UNION ");
+			sb.append("SELECT AssetLink.entryId2 as entryId ");
+			sb.append("FROM AssetLink WHERE AssetLink.entryId1 = ? ");
+			sb.append("AND AssetLink.entryId2 != ? ) TEMP_ASSETLINK ");
+			sb.append("ON (TEMP_ASSETLINK.entryId = AssetEntry.entryId) ");
 		}
 
 		String orderByCol1 = AssetEntryQuery.ORDER_BY_COLUMNS[2];
@@ -364,8 +370,7 @@ public class AssetEntryFinderImpl
 		int whereIndex = sb.index();
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
-			sb.append(" AND ((AssetLink.entryId1 = ?) OR (AssetLink.entryId2 ");
-			sb.append("= ?)) AND (AssetEntry.entryId != ?)");
+			sb.append(" AND (AssetEntry.entryId != ?)");
 		}
 
 		if (entryQuery.isListable() != null) {
@@ -536,6 +541,8 @@ public class AssetEntryFinderImpl
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
+			qPos.add(entryQuery.getLinkedAssetEntryId());
+			qPos.add(entryQuery.getLinkedAssetEntryId());
 			qPos.add(entryQuery.getLinkedAssetEntryId());
 			qPos.add(entryQuery.getLinkedAssetEntryId());
 			qPos.add(entryQuery.getLinkedAssetEntryId());
