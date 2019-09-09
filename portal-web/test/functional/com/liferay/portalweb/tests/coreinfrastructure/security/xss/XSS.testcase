@@ -391,7 +391,7 @@ definition {
 
 		BlogsNavigator.gotoAddEntry();
 
-		Type.typeEditor(
+		Type.sendKeys(
 			locator1 = "AlloyEditor#EDITOR",
 			value1 = "${entryTitle}",
 			key_editor = "title"
