@@ -19,8 +19,6 @@
 <%
 LayoutSet layoutSet = layoutsAdminDisplayContext.getSelLayoutSet();
 
-String defaultRobots = RobotsUtil.getRobots(layoutsAdminDisplayContext.getSelLayoutSet());
-
 String virtualHostName = PortalUtil.getVirtualHostname(layoutsAdminDisplayContext.getSelLayoutSet());
 
 Group scopeGroup = themeDisplay.getScopeGroup();
@@ -31,7 +29,7 @@ if (Validator.isNull(virtualHostName) && scopeGroup.isStagingGroup()) {
 	virtualHostName = PortalUtil.getVirtualHostname(layoutSet.isPrivateLayout() ? liveGroup.getPrivateLayoutSet() : liveGroup.getPublicLayoutSet());
 }
 
-String robots = ParamUtil.getString(request, "robots", defaultRobots);
+String robots = ParamUtil.getString(request, "robots", RobotsUtil.getRobots(layoutsAdminDisplayContext.getSelLayoutSet()));
 %>
 
 <liferay-ui:error-marker
