@@ -36,6 +36,7 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.StorageType;
 import com.liferay.dynamic.data.mapping.util.DDMFormFactory;
+import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseTransactionalMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -43,11 +44,13 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -149,7 +152,15 @@ public class AddRecordSetMVCActionCommand
 			String definition = ParamUtil.getString(
 				actionRequest, "definition");
 
-			return ddmFormJSONDeserializer.deserialize(definition);
+			DDMForm ddmForm = ddmFormJSONDeserializer.deserialize(definition);
+
+			ddmForm = DDMUtil.updateDDMFormDefaultLocale(
+				ddmForm, LocaleUtil.getSiteDefault());
+
+			ddmForm.setAvailableLocales(
+				Collections.singleton(ddmForm.getDefaultLocale()));
+
+			return ddmForm;
 		}
 		catch (PortalException pe) {
 			throw new StructureDefinitionException(pe);
