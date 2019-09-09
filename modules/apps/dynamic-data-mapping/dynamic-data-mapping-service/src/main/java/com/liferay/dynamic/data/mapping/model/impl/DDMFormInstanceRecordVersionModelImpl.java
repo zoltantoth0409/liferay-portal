@@ -80,9 +80,9 @@ public class DDMFormInstanceRecordVersionModelImpl
 		{"createDate", Types.TIMESTAMP}, {"formInstanceId", Types.BIGINT},
 		{"formInstanceVersion", Types.VARCHAR},
 		{"formInstanceRecordId", Types.BIGINT}, {"version", Types.VARCHAR},
-		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
-		{"statusByUserName", Types.VARCHAR}, {"statusDate", Types.TIMESTAMP},
-		{"storageId", Types.BIGINT}
+		{"storageId", Types.BIGINT}, {"status", Types.INTEGER},
+		{"statusByUserId", Types.BIGINT}, {"statusByUserName", Types.VARCHAR},
+		{"statusDate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -99,15 +99,15 @@ public class DDMFormInstanceRecordVersionModelImpl
 		TABLE_COLUMNS_MAP.put("formInstanceVersion", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("formInstanceRecordId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("version", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("storageId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("statusByUserName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("storageId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table DDMFormInstanceRecordVersion (formInstanceRecordVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,formInstanceId LONG,formInstanceVersion VARCHAR(75) null,formInstanceRecordId LONG,version VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null,storageId LONG)";
+		"create table DDMFormInstanceRecordVersion (formInstanceRecordVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,formInstanceId LONG,formInstanceVersion VARCHAR(75) null,formInstanceRecordId LONG,version VARCHAR(75) null,storageId LONG,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table DDMFormInstanceRecordVersion";
@@ -180,11 +180,11 @@ public class DDMFormInstanceRecordVersionModelImpl
 		model.setFormInstanceVersion(soapModel.getFormInstanceVersion());
 		model.setFormInstanceRecordId(soapModel.getFormInstanceRecordId());
 		model.setVersion(soapModel.getVersion());
+		model.setStorageId(soapModel.getStorageId());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
 		model.setStatusDate(soapModel.getStatusDate());
-		model.setStorageId(soapModel.getStorageId());
 
 		return model;
 	}
@@ -608,6 +608,31 @@ public class DDMFormInstanceRecordVersionModelImpl
 
 			});
 		attributeGetterFunctions.put(
+			"storageId",
+			new Function<DDMFormInstanceRecordVersion, Object>() {
+
+				@Override
+				public Object apply(
+					DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion) {
+
+					return ddmFormInstanceRecordVersion.getStorageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"storageId",
+			new BiConsumer<DDMFormInstanceRecordVersion, Object>() {
+
+				@Override
+				public void accept(
+					DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion,
+					Object storageId) {
+
+					ddmFormInstanceRecordVersion.setStorageId((Long)storageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
 			"status",
 			new Function<DDMFormInstanceRecordVersion, Object>() {
 
@@ -707,31 +732,6 @@ public class DDMFormInstanceRecordVersionModelImpl
 
 					ddmFormInstanceRecordVersion.setStatusDate(
 						(Date)statusDate);
-				}
-
-			});
-		attributeGetterFunctions.put(
-			"storageId",
-			new Function<DDMFormInstanceRecordVersion, Object>() {
-
-				@Override
-				public Object apply(
-					DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion) {
-
-					return ddmFormInstanceRecordVersion.getStorageId();
-				}
-
-			});
-		attributeSetterBiConsumers.put(
-			"storageId",
-			new BiConsumer<DDMFormInstanceRecordVersion, Object>() {
-
-				@Override
-				public void accept(
-					DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion,
-					Object storageId) {
-
-					ddmFormInstanceRecordVersion.setStorageId((Long)storageId);
 				}
 
 			});
@@ -943,6 +943,17 @@ public class DDMFormInstanceRecordVersionModelImpl
 
 	@JSON
 	@Override
+	public long getStorageId() {
+		return _storageId;
+	}
+
+	@Override
+	public void setStorageId(long storageId) {
+		_storageId = storageId;
+	}
+
+	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -1016,17 +1027,6 @@ public class DDMFormInstanceRecordVersionModelImpl
 	@Override
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
-	}
-
-	@JSON
-	@Override
-	public long getStorageId() {
-		return _storageId;
-	}
-
-	@Override
-	public void setStorageId(long storageId) {
-		_storageId = storageId;
 	}
 
 	@Override
@@ -1160,12 +1160,12 @@ public class DDMFormInstanceRecordVersionModelImpl
 		ddmFormInstanceRecordVersionImpl.setFormInstanceRecordId(
 			getFormInstanceRecordId());
 		ddmFormInstanceRecordVersionImpl.setVersion(getVersion());
+		ddmFormInstanceRecordVersionImpl.setStorageId(getStorageId());
 		ddmFormInstanceRecordVersionImpl.setStatus(getStatus());
 		ddmFormInstanceRecordVersionImpl.setStatusByUserId(getStatusByUserId());
 		ddmFormInstanceRecordVersionImpl.setStatusByUserName(
 			getStatusByUserName());
 		ddmFormInstanceRecordVersionImpl.setStatusDate(getStatusDate());
-		ddmFormInstanceRecordVersionImpl.setStorageId(getStorageId());
 
 		ddmFormInstanceRecordVersionImpl.resetOriginalValues();
 
@@ -1322,6 +1322,8 @@ public class DDMFormInstanceRecordVersionModelImpl
 			ddmFormInstanceRecordVersionCacheModel.version = null;
 		}
 
+		ddmFormInstanceRecordVersionCacheModel.storageId = getStorageId();
+
 		ddmFormInstanceRecordVersionCacheModel.status = getStatus();
 
 		ddmFormInstanceRecordVersionCacheModel.statusByUserId =
@@ -1346,8 +1348,6 @@ public class DDMFormInstanceRecordVersionModelImpl
 		else {
 			ddmFormInstanceRecordVersionCacheModel.statusDate = Long.MIN_VALUE;
 		}
-
-		ddmFormInstanceRecordVersionCacheModel.storageId = getStorageId();
 
 		return ddmFormInstanceRecordVersionCacheModel;
 	}
@@ -1446,13 +1446,13 @@ public class DDMFormInstanceRecordVersionModelImpl
 	private boolean _setOriginalFormInstanceRecordId;
 	private String _version;
 	private String _originalVersion;
+	private long _storageId;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private long _statusByUserId;
 	private String _statusByUserName;
 	private Date _statusDate;
-	private long _storageId;
 	private long _columnBitmask;
 	private DDMFormInstanceRecordVersion _escapedModel;
 

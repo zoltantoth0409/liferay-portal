@@ -88,6 +88,8 @@ public class DDMFormInstanceRecordVersionCacheModel
 		sb.append(formInstanceRecordId);
 		sb.append(", version=");
 		sb.append(version);
+		sb.append(", storageId=");
+		sb.append(storageId);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -96,8 +98,6 @@ public class DDMFormInstanceRecordVersionCacheModel
 		sb.append(statusByUserName);
 		sb.append(", statusDate=");
 		sb.append(statusDate);
-		sb.append(", storageId=");
-		sb.append(storageId);
 		sb.append("}");
 
 		return sb.toString();
@@ -149,6 +149,7 @@ public class DDMFormInstanceRecordVersionCacheModel
 			ddmFormInstanceRecordVersionImpl.setVersion(version);
 		}
 
+		ddmFormInstanceRecordVersionImpl.setStorageId(storageId);
 		ddmFormInstanceRecordVersionImpl.setStatus(status);
 		ddmFormInstanceRecordVersionImpl.setStatusByUserId(statusByUserId);
 
@@ -167,8 +168,6 @@ public class DDMFormInstanceRecordVersionCacheModel
 			ddmFormInstanceRecordVersionImpl.setStatusDate(
 				new Date(statusDate));
 		}
-
-		ddmFormInstanceRecordVersionImpl.setStorageId(storageId);
 
 		ddmFormInstanceRecordVersionImpl.resetOriginalValues();
 
@@ -193,13 +192,13 @@ public class DDMFormInstanceRecordVersionCacheModel
 		formInstanceRecordId = objectInput.readLong();
 		version = objectInput.readUTF();
 
+		storageId = objectInput.readLong();
+
 		status = objectInput.readInt();
 
 		statusByUserId = objectInput.readLong();
 		statusByUserName = objectInput.readUTF();
 		statusDate = objectInput.readLong();
-
-		storageId = objectInput.readLong();
 	}
 
 	@Override
@@ -239,6 +238,8 @@ public class DDMFormInstanceRecordVersionCacheModel
 			objectOutput.writeUTF(version);
 		}
 
+		objectOutput.writeLong(storageId);
+
 		objectOutput.writeInt(status);
 
 		objectOutput.writeLong(statusByUserId);
@@ -251,8 +252,6 @@ public class DDMFormInstanceRecordVersionCacheModel
 		}
 
 		objectOutput.writeLong(statusDate);
-
-		objectOutput.writeLong(storageId);
 	}
 
 	public long formInstanceRecordVersionId;
@@ -265,10 +264,10 @@ public class DDMFormInstanceRecordVersionCacheModel
 	public String formInstanceVersion;
 	public long formInstanceRecordId;
 	public String version;
+	public long storageId;
 	public int status;
 	public long statusByUserId;
 	public String statusByUserName;
 	public long statusDate;
-	public long storageId;
 
 }
