@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides a wrapper for {@link ResourceBlockPermissionLocalService}.
@@ -25,7 +24,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class ResourceBlockPermissionLocalServiceWrapper
 	implements ResourceBlockPermissionLocalService,
 			   ServiceWrapper<ResourceBlockPermissionLocalService> {
@@ -236,9 +234,10 @@ public class ResourceBlockPermissionLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.Map<Long, java.util.Set<String>>
+	public java.util.Map<java.lang.Long, java.util.Set<java.lang.String>>
 			getAvailableResourceBlockPermissionActionIds(
-				String name, long primKey, java.util.List<String> actionIds)
+				java.lang.String name, long primKey,
+				java.util.List<java.lang.String> actionIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _resourceBlockPermissionLocalService.
@@ -260,7 +259,7 @@ public class ResourceBlockPermissionLocalServiceWrapper
 	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _resourceBlockPermissionLocalService.getOSGiServiceIdentifier();
 	}
 

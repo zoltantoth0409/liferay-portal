@@ -586,7 +586,8 @@ public class RoleLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Role>
 		getResourceBlockRoles(
-			long resourceBlockId, String className, String actionId) {
+			long resourceBlockId, java.lang.String className,
+			java.lang.String actionId) {
 
 		return _roleLocalService.getResourceBlockRoles(
 			resourceBlockId, className, actionId);

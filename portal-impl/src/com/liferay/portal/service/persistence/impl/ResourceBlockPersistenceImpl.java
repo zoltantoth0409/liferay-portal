@@ -44,8 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The persistence implementation for the resource block service.
  *
@@ -58,12 +56,11 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @Deprecated
-@ProviderType
 public class ResourceBlockPersistenceImpl
 	extends BasePersistenceImpl<ResourceBlock>
 	implements ResourceBlockPersistence {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ResourceBlockUtil</code> to access the resource block persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

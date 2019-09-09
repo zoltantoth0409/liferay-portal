@@ -50,8 +50,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The persistence implementation for the layout version service.
  *
@@ -62,12 +60,11 @@ import org.osgi.annotation.versioning.ProviderType;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class LayoutVersionPersistenceImpl
 	extends BasePersistenceImpl<LayoutVersion>
 	implements LayoutVersionPersistence {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>LayoutVersionUtil</code> to access the layout version persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
