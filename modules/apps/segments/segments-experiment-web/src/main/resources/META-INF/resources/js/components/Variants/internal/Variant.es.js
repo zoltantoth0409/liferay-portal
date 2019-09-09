@@ -29,6 +29,8 @@ function Variant({
 	name,
 	onVariantDeletion,
 	onVariantEdition,
+	onVariantPublish,
+	publishable = false,
 	segmentsExperienceId,
 	split,
 	variantId,
@@ -122,6 +124,18 @@ function Variant({
 					</span>
 				</ClayList.ItemField>
 			)}
+
+			{publishable && !control && (
+				<ClayList.ItemField>
+					<ClayButton
+						displayType={winner ? 'primary' : 'secondary'}
+						onClick={() => onVariantPublish(segmentsExperienceId)}
+						small={true}
+					>
+						{Liferay.Language.get('publish')}
+					</ClayButton>
+				</ClayList.ItemField>
+			)}
 		</ClayList.Item>
 	);
 
@@ -153,6 +167,8 @@ Variant.propTypes = {
 	name: PropTypes.string.isRequired,
 	onVariantDeletion: PropTypes.func.isRequired,
 	onVariantEdition: PropTypes.func.isRequired,
+	onVariantPublish: PropTypes.func.isRequired,
+	publishable: PropTypes.bool,
 	segmentsExperienceId: PropTypes.string.isRequired,
 	split: PropTypes.number,
 	variantId: PropTypes.string.isRequired,
