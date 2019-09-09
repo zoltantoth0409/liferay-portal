@@ -22,10 +22,6 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public class AppBuilderAppConstants {
 
-	public static final long DEFAULT_DE_DATA_LAYOUT_ID = 0;
-
-	public static final long DEFAULT_DE_DATA_LIST_VIEW_ID = 0;
-
 	public static final int STATUS_DEPLOYED = 0;
 
 	public static final int STATUS_UNDEPLOYED = 1;

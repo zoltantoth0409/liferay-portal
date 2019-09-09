@@ -224,12 +224,8 @@ public class AppResourceImpl
 			_appBuilderAppLocalService.addAppBuilderApp(
 				ddmStructure.getGroupId(), contextCompany.getCompanyId(),
 				PrincipalThreadLocal.getUserId(), dataDefinitionId,
-				GetterUtil.getLong(
-					app.getDataLayoutId(),
-					AppBuilderAppConstants.DEFAULT_DE_DATA_LAYOUT_ID),
-				GetterUtil.getLong(
-					app.getDataListViewId(),
-					AppBuilderAppConstants.DEFAULT_DE_DATA_LIST_VIEW_ID),
+				GetterUtil.getLong(app.getDataLayoutId()),
+				GetterUtil.getLong(app.getDataListViewId()),
 				LocalizedValueUtil.toLocaleStringMap(app.getName()),
 				_toJSON(app.getSettings()),
 				appBuilderAppConstantsStatus.getValue()));
@@ -312,30 +308,27 @@ public class AppResourceImpl
 	}
 
 	private void _validate(
-			Long ddmStructureLayoutId, Long deDataListViewId, String status)
+			Long dataLayoutId, Long dataListViewId, String status)
 		throws Exception {
 
-		if (Validator.isNull(ddmStructureLayoutId) &&
-			Validator.isNull(deDataListViewId)) {
-
+		if ((dataLayoutId == null) && (dataListViewId == null)) {
 			throw new InvalidAppException(
 				"An app must have one data engine data layout or one data " +
 					"engine data list view");
 		}
 
-		if (Validator.isNotNull(ddmStructureLayoutId)) {
+		if (dataLayoutId == null) {
 			DDMStructureLayout ddmStructureLayout =
 				_ddmStructureLayoutLocalService.fetchStructureLayout(
-					ddmStructureLayoutId);
+					dataLayoutId);
 
 			if (ddmStructureLayout == null) {
 				throw new NoSuchStructureLayoutException(
-					"Dynamic data mapping structure layout " +
-						ddmStructureLayoutId + " does not exist");
+					"Data layout " + dataLayoutId + " does not exist");
 			}
 		}
 
-		if (Validator.isNotNull(deDataListViewId)) {
+		if (dataListViewId == null) {
 			String sessionId = CookieKeys.getCookie(
 				contextHttpServletRequest, CookieKeys.JSESSIONID);
 
@@ -352,12 +345,11 @@ public class AppResourceImpl
 				).build();
 
 			try {
-				dataListViewResource.getDataListView(deDataListViewId);
+				dataListViewResource.getDataListView(dataListViewId);
 			}
 			catch (Exception e) {
 				throw new NoSuchDataListViewException(
-					"Data engine data list view " + deDataListViewId +
-						" does not exist",
+					"Data data list view " + dataListViewId + " does not exist",
 					e);
 			}
 		}
