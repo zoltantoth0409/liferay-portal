@@ -303,6 +303,8 @@ definition {
 
 		WikiNavigator.gotoNode(wikiNodeName = "Main");
 
+		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
 		WikiNavigator.gotoCP(wikiPageTitle = "FrontPage");
 
 		WikiPage.viewFrontPageDefaultCP(wikiPageTitle = "FrontPage");
