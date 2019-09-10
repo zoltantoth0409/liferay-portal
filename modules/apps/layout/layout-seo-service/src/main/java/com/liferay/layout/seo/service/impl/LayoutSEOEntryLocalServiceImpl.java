@@ -14,7 +14,7 @@
 
 package com.liferay.layout.seo.service.impl;
 
-import com.liferay.layout.seo.exception.NoSuchSEOEntryException;
+import com.liferay.layout.seo.exception.NoSuchEntryException;
 import com.liferay.layout.seo.model.LayoutSEOEntry;
 import com.liferay.layout.seo.service.base.LayoutSEOEntryLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
@@ -42,7 +42,7 @@ public class LayoutSEOEntryLocalServiceImpl
 	@Override
 	public void deleteLayoutSEOEntry(
 			long groupId, boolean privateLayout, long layoutId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		layoutSEOEntryPersistence.removeByG_P_L(
 			groupId, privateLayout, layoutId);
@@ -50,7 +50,7 @@ public class LayoutSEOEntryLocalServiceImpl
 
 	@Override
 	public void deleteLayoutSEOEntry(String uuid, long groupId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		layoutSEOEntryPersistence.removeByUUID_G(uuid, groupId);
 	}
