@@ -55,7 +55,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
@@ -142,12 +141,8 @@ public class GetCTProcessesMVCResourceCommand
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
-			resourceRequest);
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String keywords = ParamUtil.getString(
 			resourceRequest, "keywords", null);
@@ -163,13 +158,13 @@ public class GetCTProcessesMVCResourceCommand
 			5, _getOrderByComparator(sort));
 
 		PortletURL detailsURL = PortletURLFactoryUtil.create(
-			httpServletRequest, CTPortletKeys.CHANGE_LISTS_HISTORY,
+			resourceRequest, CTPortletKeys.CHANGE_LISTS_HISTORY,
 			PortletRequest.RENDER_PHASE);
 
 		detailsURL.setParameter(
 			"mvcRenderCommandName", "/change_lists_history/view_details");
 		detailsURL.setParameter(
-			"backURL", _portal.getCurrentURL(httpServletRequest));
+			"backURL", _portal.getCurrentURL(resourceRequest));
 		detailsURL.setParameter("orderByCol", "title");
 		detailsURL.setParameter("orderByType", "desc");
 
