@@ -28,10 +28,10 @@ public abstract class BaseCTProcessMVCResourceCommand
 	extends BaseMVCResourceCommand {
 
 	protected int getStatus(String type) {
-		return _statusMap.getOrDefault(type, 0);
+		return _statuses.getOrDefault(type, 0);
 	}
 
-	private static final Map<String, Integer> _statusMap =
+	private static final Map<String, Integer> _statuses =
 		new HashMap<String, Integer>() {
 			{
 				put("all", WorkflowConstants.STATUS_ANY);
