@@ -490,6 +490,29 @@ if (portletTitleBasedNavigation) {
 </div>
 
 <aui:script>
+	var editorName = '<portlet:namespace />bodyEditor';
+
+	Liferay.after(
+		editorName + ':registered',
+		function() {
+			var messageSubject = document.querySelector('#<portlet:namespace />subject');
+			var subjectCoordinate = messageSubject.labels[0].getBoundingClientRect().top + window.pageYOffset;
+			var ctrlMenu = document.getElementById('ControlMenu');
+			var ctrlMenuOffset = 70;
+
+			if (ctrlMenu) {
+				ctrlMenuOffset = ctrlMenu.getBoundingClientRect().height;
+			}
+
+			window.scrollTo({
+				top: subjectCoordinate - ctrlMenuOffset,
+				behavior: 'smooth'
+			});
+
+			messageSubject.focus();
+		}
+	);
+
 	function <portlet:namespace />saveMessage(draft) {
 		var form = AUI.$(document.<portlet:namespace />fm);
 
