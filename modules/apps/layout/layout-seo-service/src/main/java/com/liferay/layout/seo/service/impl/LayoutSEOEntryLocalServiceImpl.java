@@ -109,10 +109,10 @@ public class LayoutSEOEntryLocalServiceImpl
 		layoutSEOEntry.setCreateDate(now);
 		layoutSEOEntry.setModifiedDate(now);
 
-		layoutSEOEntry.setEnabled(enabled);
-		layoutSEOEntry.setCanonicalURLMap(canonicalURLMap);
 		layoutSEOEntry.setPrivateLayout(privateLayout);
 		layoutSEOEntry.setLayoutId(layoutId);
+		layoutSEOEntry.setEnabled(enabled);
+		layoutSEOEntry.setCanonicalURLMap(canonicalURLMap);
 
 		return layoutSEOEntryPersistence.update(layoutSEOEntry);
 	}
