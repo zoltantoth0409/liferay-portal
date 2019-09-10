@@ -17,22 +17,11 @@ package com.liferay.view.count.model.impl;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * The extended model implementation for the ViewCountEntry service. Represents a row in the &quot;ViewCountEntry&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.view.count.model.ViewCountEntry</code> interface.
- * </p>
- *
  * @author Preston Crary
  */
 @ProviderType
 public class ViewCountEntryImpl extends ViewCountEntryBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a view count entry model instance should use the {@link com.liferay.view.count.model.ViewCountEntry} interface instead.
-	 */
 	public ViewCountEntryImpl() {
 	}
 
