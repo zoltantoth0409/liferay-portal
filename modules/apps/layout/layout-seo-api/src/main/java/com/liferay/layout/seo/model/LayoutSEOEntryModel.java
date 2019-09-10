@@ -208,6 +208,62 @@ public interface LayoutSEOEntryModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the private layout of this layout seo entry.
+	 *
+	 * @return the private layout of this layout seo entry
+	 */
+	public boolean getPrivateLayout();
+
+	/**
+	 * Returns <code>true</code> if this layout seo entry is private layout.
+	 *
+	 * @return <code>true</code> if this layout seo entry is private layout; <code>false</code> otherwise
+	 */
+	public boolean isPrivateLayout();
+
+	/**
+	 * Sets whether this layout seo entry is private layout.
+	 *
+	 * @param privateLayout the private layout of this layout seo entry
+	 */
+	public void setPrivateLayout(boolean privateLayout);
+
+	/**
+	 * Returns the layout ID of this layout seo entry.
+	 *
+	 * @return the layout ID of this layout seo entry
+	 */
+	public long getLayoutId();
+
+	/**
+	 * Sets the layout ID of this layout seo entry.
+	 *
+	 * @param layoutId the layout ID of this layout seo entry
+	 */
+	public void setLayoutId(long layoutId);
+
+	/**
+	 * Returns the enabled of this layout seo entry.
+	 *
+	 * @return the enabled of this layout seo entry
+	 */
+	public boolean getEnabled();
+
+	/**
+	 * Returns <code>true</code> if this layout seo entry is enabled.
+	 *
+	 * @return <code>true</code> if this layout seo entry is enabled; <code>false</code> otherwise
+	 */
+	public boolean isEnabled();
+
+	/**
+	 * Sets whether this layout seo entry is enabled.
+	 *
+	 * @param enabled the enabled of this layout seo entry
+	 */
+	public void setEnabled(boolean enabled);
+
+	/**
 	 * Returns the canonical url of this layout seo entry.
 	 *
 	 * @return the canonical url of this layout seo entry
@@ -309,48 +365,6 @@ public interface LayoutSEOEntryModel
 		Map<Locale, String> canonicalURLMap, Locale defaultLocale);
 
 	/**
-	 * Returns the enabled of this layout seo entry.
-	 *
-	 * @return the enabled of this layout seo entry
-	 */
-	public boolean getEnabled();
-
-	/**
-	 * Returns <code>true</code> if this layout seo entry is enabled.
-	 *
-	 * @return <code>true</code> if this layout seo entry is enabled; <code>false</code> otherwise
-	 */
-	public boolean isEnabled();
-
-	/**
-	 * Sets whether this layout seo entry is enabled.
-	 *
-	 * @param enabled the enabled of this layout seo entry
-	 */
-	public void setEnabled(boolean enabled);
-
-	/**
-	 * Returns the private layout of this layout seo entry.
-	 *
-	 * @return the private layout of this layout seo entry
-	 */
-	public boolean getPrivateLayout();
-
-	/**
-	 * Returns <code>true</code> if this layout seo entry is private layout.
-	 *
-	 * @return <code>true</code> if this layout seo entry is private layout; <code>false</code> otherwise
-	 */
-	public boolean isPrivateLayout();
-
-	/**
-	 * Sets whether this layout seo entry is private layout.
-	 *
-	 * @param privateLayout the private layout of this layout seo entry
-	 */
-	public void setPrivateLayout(boolean privateLayout);
-
-	/**
 	 * Returns the last publish date of this layout seo entry.
 	 *
 	 * @return the last publish date of this layout seo entry
@@ -365,20 +379,6 @@ public interface LayoutSEOEntryModel
 	 */
 	@Override
 	public void setLastPublishDate(Date lastPublishDate);
-
-	/**
-	 * Returns the layout ID of this layout seo entry.
-	 *
-	 * @return the layout ID of this layout seo entry
-	 */
-	public long getLayoutId();
-
-	/**
-	 * Sets the layout ID of this layout seo entry.
-	 *
-	 * @param layoutId the layout ID of this layout seo entry
-	 */
-	public void setLayoutId(long layoutId);
 
 	@Override
 	public String[] getAvailableLanguageIds();

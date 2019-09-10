@@ -7,9 +7,9 @@ create table LayoutSEOEntry (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	canonicalURL STRING null,
-	enabled BOOLEAN,
 	privateLayout BOOLEAN,
-	lastPublishDate DATE null,
-	layoutId LONG
+	layoutId LONG,
+	enabled BOOLEAN,
+	canonicalURL STRING null,
+	lastPublishDate DATE null
 );

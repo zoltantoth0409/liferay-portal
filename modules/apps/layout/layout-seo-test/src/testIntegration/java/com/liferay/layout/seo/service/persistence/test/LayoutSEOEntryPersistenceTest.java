@@ -15,7 +15,7 @@
 package com.liferay.layout.seo.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.layout.seo.exception.NoSuchSEOEntryException;
+import com.liferay.layout.seo.exception.NoSuchEntryException;
 import com.liferay.layout.seo.model.LayoutSEOEntry;
 import com.liferay.layout.seo.service.LayoutSEOEntryLocalServiceUtil;
 import com.liferay.layout.seo.service.persistence.LayoutSEOEntryPersistence;
@@ -138,15 +138,15 @@ public class LayoutSEOEntryPersistenceTest {
 
 		newLayoutSEOEntry.setModifiedDate(RandomTestUtil.nextDate());
 
-		newLayoutSEOEntry.setCanonicalURL(RandomTestUtil.randomString());
+		newLayoutSEOEntry.setPrivateLayout(RandomTestUtil.randomBoolean());
+
+		newLayoutSEOEntry.setLayoutId(RandomTestUtil.nextLong());
 
 		newLayoutSEOEntry.setEnabled(RandomTestUtil.randomBoolean());
 
-		newLayoutSEOEntry.setPrivateLayout(RandomTestUtil.randomBoolean());
+		newLayoutSEOEntry.setCanonicalURL(RandomTestUtil.randomString());
 
 		newLayoutSEOEntry.setLastPublishDate(RandomTestUtil.nextDate());
-
-		newLayoutSEOEntry.setLayoutId(RandomTestUtil.nextLong());
 
 		_layoutSEOEntries.add(_persistence.update(newLayoutSEOEntry));
 
@@ -176,19 +176,19 @@ public class LayoutSEOEntryPersistenceTest {
 			Time.getShortTimestamp(existingLayoutSEOEntry.getModifiedDate()),
 			Time.getShortTimestamp(newLayoutSEOEntry.getModifiedDate()));
 		Assert.assertEquals(
-			existingLayoutSEOEntry.getCanonicalURL(),
-			newLayoutSEOEntry.getCanonicalURL());
-		Assert.assertEquals(
-			existingLayoutSEOEntry.isEnabled(), newLayoutSEOEntry.isEnabled());
-		Assert.assertEquals(
 			existingLayoutSEOEntry.isPrivateLayout(),
 			newLayoutSEOEntry.isPrivateLayout());
 		Assert.assertEquals(
-			Time.getShortTimestamp(existingLayoutSEOEntry.getLastPublishDate()),
-			Time.getShortTimestamp(newLayoutSEOEntry.getLastPublishDate()));
-		Assert.assertEquals(
 			existingLayoutSEOEntry.getLayoutId(),
 			newLayoutSEOEntry.getLayoutId());
+		Assert.assertEquals(
+			existingLayoutSEOEntry.isEnabled(), newLayoutSEOEntry.isEnabled());
+		Assert.assertEquals(
+			existingLayoutSEOEntry.getCanonicalURL(),
+			newLayoutSEOEntry.getCanonicalURL());
+		Assert.assertEquals(
+			Time.getShortTimestamp(existingLayoutSEOEntry.getLastPublishDate()),
+			Time.getShortTimestamp(newLayoutSEOEntry.getLastPublishDate()));
 	}
 
 	@Test
@@ -237,7 +237,7 @@ public class LayoutSEOEntryPersistenceTest {
 		Assert.assertEquals(existingLayoutSEOEntry, newLayoutSEOEntry);
 	}
 
-	@Test(expected = NoSuchSEOEntryException.class)
+	@Test(expected = NoSuchEntryException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
@@ -254,9 +254,9 @@ public class LayoutSEOEntryPersistenceTest {
 		return OrderByComparatorFactoryUtil.create(
 			"LayoutSEOEntry", "uuid", true, "layoutSEOEntryId", true, "groupId",
 			true, "companyId", true, "userId", true, "userName", true,
-			"createDate", true, "modifiedDate", true, "canonicalURL", true,
-			"enabled", true, "privateLayout", true, "lastPublishDate", true,
-			"layoutId", true);
+			"createDate", true, "modifiedDate", true, "privateLayout", true,
+			"layoutId", true, "enabled", true, "canonicalURL", true,
+			"lastPublishDate", true);
 	}
 
 	@Test
@@ -528,15 +528,15 @@ public class LayoutSEOEntryPersistenceTest {
 
 		layoutSEOEntry.setModifiedDate(RandomTestUtil.nextDate());
 
-		layoutSEOEntry.setCanonicalURL(RandomTestUtil.randomString());
+		layoutSEOEntry.setPrivateLayout(RandomTestUtil.randomBoolean());
+
+		layoutSEOEntry.setLayoutId(RandomTestUtil.nextLong());
 
 		layoutSEOEntry.setEnabled(RandomTestUtil.randomBoolean());
 
-		layoutSEOEntry.setPrivateLayout(RandomTestUtil.randomBoolean());
+		layoutSEOEntry.setCanonicalURL(RandomTestUtil.randomString());
 
 		layoutSEOEntry.setLastPublishDate(RandomTestUtil.nextDate());
-
-		layoutSEOEntry.setLayoutId(RandomTestUtil.nextLong());
 
 		_layoutSEOEntries.add(_persistence.update(layoutSEOEntry));
 

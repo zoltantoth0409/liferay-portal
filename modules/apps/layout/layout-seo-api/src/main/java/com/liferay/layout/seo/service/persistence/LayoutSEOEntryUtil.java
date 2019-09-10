@@ -200,11 +200,11 @@ public class LayoutSEOEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByUuid_First(
 			String uuid, OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -228,11 +228,11 @@ public class LayoutSEOEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByUuid_Last(
 			String uuid, OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -257,12 +257,12 @@ public class LayoutSEOEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	public static LayoutSEOEntry[] findByUuid_PrevAndNext(
 			long layoutSEOEntryId, String uuid,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_PrevAndNext(
 			layoutSEOEntryId, uuid, orderByComparator);
@@ -288,15 +288,15 @@ public class LayoutSEOEntryUtil {
 	}
 
 	/**
-	 * Returns the layout seo entry where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByUUID_G(String uuid, long groupId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -334,7 +334,7 @@ public class LayoutSEOEntryUtil {
 	 * @return the layout seo entry that was removed
 	 */
 	public static LayoutSEOEntry removeByUUID_G(String uuid, long groupId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -435,12 +435,12 @@ public class LayoutSEOEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -469,12 +469,12 @@ public class LayoutSEOEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -504,12 +504,12 @@ public class LayoutSEOEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	public static LayoutSEOEntry[] findByUuid_C_PrevAndNext(
 			long layoutSEOEntryId, String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByUuid_C_PrevAndNext(
 			layoutSEOEntryId, uuid, companyId, orderByComparator);
@@ -537,17 +537,17 @@ public class LayoutSEOEntryUtil {
 	}
 
 	/**
-	 * Returns the layout seo entry where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @return the matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	public static LayoutSEOEntry findByG_P_L(
 			long groupId, boolean privateLayout, long layoutId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByG_P_L(groupId, privateLayout, layoutId);
 	}
@@ -593,7 +593,7 @@ public class LayoutSEOEntryUtil {
 	 */
 	public static LayoutSEOEntry removeByG_P_L(
 			long groupId, boolean privateLayout, long layoutId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().removeByG_P_L(groupId, privateLayout, layoutId);
 	}
@@ -645,10 +645,10 @@ public class LayoutSEOEntryUtil {
 	 *
 	 * @param layoutSEOEntryId the primary key of the layout seo entry
 	 * @return the layout seo entry that was removed
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	public static LayoutSEOEntry remove(long layoutSEOEntryId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().remove(layoutSEOEntryId);
 	}
@@ -658,14 +658,14 @@ public class LayoutSEOEntryUtil {
 	}
 
 	/**
-	 * Returns the layout seo entry with the primary key or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry with the primary key or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param layoutSEOEntryId the primary key of the layout seo entry
 	 * @return the layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	public static LayoutSEOEntry findByPrimaryKey(long layoutSEOEntryId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		return getPersistence().findByPrimaryKey(layoutSEOEntryId);
 	}

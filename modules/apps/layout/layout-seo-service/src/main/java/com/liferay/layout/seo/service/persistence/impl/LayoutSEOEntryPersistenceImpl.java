@@ -14,12 +14,12 @@
 
 package com.liferay.layout.seo.service.persistence.impl;
 
-import com.liferay.layout.seo.exception.NoSuchSEOEntryException;
+import com.liferay.layout.seo.exception.NoSuchEntryException;
 import com.liferay.layout.seo.model.LayoutSEOEntry;
 import com.liferay.layout.seo.model.impl.LayoutSEOEntryImpl;
 import com.liferay.layout.seo.model.impl.LayoutSEOEntryModelImpl;
 import com.liferay.layout.seo.service.persistence.LayoutSEOEntryPersistence;
-import com.liferay.layout.seo.service.persistence.impl.constants.LayoutPersistenceConstants;
+import com.liferay.layout.seo.service.persistence.impl.constants.LayoutSEOPersistenceConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
@@ -292,12 +292,12 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByUuid_First(
 			String uuid, OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByUuid_First(
 			uuid, orderByComparator);
@@ -315,7 +315,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 		msg.append("}");
 
-		throw new NoSuchSEOEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -344,12 +344,12 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByUuid_Last(
 			String uuid, OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByUuid_Last(
 			uuid, orderByComparator);
@@ -367,7 +367,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 		msg.append("}");
 
-		throw new NoSuchSEOEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -404,13 +404,13 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry[] findByUuid_PrevAndNext(
 			long layoutSEOEntryId, String uuid,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -649,16 +649,16 @@ public class LayoutSEOEntryPersistenceImpl
 	private FinderPath _finderPathCountByUUID_G;
 
 	/**
-	 * Returns the layout seo entry where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByUUID_G(String uuid, long groupId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByUUID_G(uuid, groupId);
 
@@ -679,7 +679,7 @@ public class LayoutSEOEntryPersistenceImpl
 				_log.debug(msg.toString());
 			}
 
-			throw new NoSuchSEOEntryException(msg.toString());
+			throw new NoSuchEntryException(msg.toString());
 		}
 
 		return layoutSEOEntry;
@@ -815,7 +815,7 @@ public class LayoutSEOEntryPersistenceImpl
 	 */
 	@Override
 	public LayoutSEOEntry removeByUUID_G(String uuid, long groupId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = findByUUID_G(uuid, groupId);
 
@@ -1115,13 +1115,13 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -1142,7 +1142,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 		msg.append("}");
 
-		throw new NoSuchSEOEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -1175,13 +1175,13 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -1202,7 +1202,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 		msg.append("}");
 
-		throw new NoSuchSEOEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -1242,13 +1242,13 @@ public class LayoutSEOEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry[] findByUuid_C_PrevAndNext(
 			long layoutSEOEntryId, String uuid, long companyId,
 			OrderByComparator<LayoutSEOEntry> orderByComparator)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1505,18 +1505,18 @@ public class LayoutSEOEntryPersistenceImpl
 	private FinderPath _finderPathCountByG_P_L;
 
 	/**
-	 * Returns the layout seo entry where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
 	 * @return the matching layout seo entry
-	 * @throws NoSuchSEOEntryException if a matching layout seo entry could not be found
+	 * @throws NoSuchEntryException if a matching layout seo entry could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByG_P_L(
 			long groupId, boolean privateLayout, long layoutId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByG_P_L(
 			groupId, privateLayout, layoutId);
@@ -1541,7 +1541,7 @@ public class LayoutSEOEntryPersistenceImpl
 				_log.debug(msg.toString());
 			}
 
-			throw new NoSuchSEOEntryException(msg.toString());
+			throw new NoSuchEntryException(msg.toString());
 		}
 
 		return layoutSEOEntry;
@@ -1676,7 +1676,7 @@ public class LayoutSEOEntryPersistenceImpl
 	@Override
 	public LayoutSEOEntry removeByG_P_L(
 			long groupId, boolean privateLayout, long layoutId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = findByG_P_L(
 			groupId, privateLayout, layoutId);
@@ -1970,11 +1970,11 @@ public class LayoutSEOEntryPersistenceImpl
 	 *
 	 * @param layoutSEOEntryId the primary key of the layout seo entry
 	 * @return the layout seo entry that was removed
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry remove(long layoutSEOEntryId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		return remove((Serializable)layoutSEOEntryId);
 	}
@@ -1984,11 +1984,11 @@ public class LayoutSEOEntryPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the layout seo entry
 	 * @return the layout seo entry that was removed
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry remove(Serializable primaryKey)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		Session session = null;
 
@@ -2003,13 +2003,13 @@ public class LayoutSEOEntryPersistenceImpl
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchSEOEntryException(
+				throw new NoSuchEntryException(
 					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(layoutSEOEntry);
 		}
-		catch (NoSuchSEOEntryException nsee) {
+		catch (NoSuchEntryException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -2212,11 +2212,11 @@ public class LayoutSEOEntryPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the layout seo entry
 	 * @return the layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		LayoutSEOEntry layoutSEOEntry = fetchByPrimaryKey(primaryKey);
 
@@ -2225,7 +2225,7 @@ public class LayoutSEOEntryPersistenceImpl
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchSEOEntryException(
+			throw new NoSuchEntryException(
 				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
@@ -2233,15 +2233,15 @@ public class LayoutSEOEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the layout seo entry with the primary key or throws a <code>NoSuchSEOEntryException</code> if it could not be found.
+	 * Returns the layout seo entry with the primary key or throws a <code>NoSuchEntryException</code> if it could not be found.
 	 *
 	 * @param layoutSEOEntryId the primary key of the layout seo entry
 	 * @return the layout seo entry
-	 * @throws NoSuchSEOEntryException if a layout seo entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a layout seo entry with the primary key could not be found
 	 */
 	@Override
 	public LayoutSEOEntry findByPrimaryKey(long layoutSEOEntryId)
-		throws NoSuchSEOEntryException {
+		throws NoSuchEntryException {
 
 		return findByPrimaryKey((Serializable)layoutSEOEntryId);
 	}
@@ -2588,7 +2588,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 	@Override
 	@Reference(
-		target = LayoutPersistenceConstants.SERVICE_CONFIGURATION_FILTER,
+		target = LayoutSEOPersistenceConstants.SERVICE_CONFIGURATION_FILTER,
 		unbind = "-"
 	)
 	public void setConfiguration(Configuration configuration) {
@@ -2602,7 +2602,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 	@Override
 	@Reference(
-		target = LayoutPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
+		target = LayoutSEOPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
 		unbind = "-"
 	)
 	public void setDataSource(DataSource dataSource) {
@@ -2611,7 +2611,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 	@Override
 	@Reference(
-		target = LayoutPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
+		target = LayoutSEOPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
 		unbind = "-"
 	)
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -2654,7 +2654,7 @@ public class LayoutSEOEntryPersistenceImpl
 
 	static {
 		try {
-			Class.forName(LayoutPersistenceConstants.class.getName());
+			Class.forName(LayoutSEOPersistenceConstants.class.getName());
 		}
 		catch (ClassNotFoundException cnfe) {
 			throw new ExceptionInInitializerError(cnfe);

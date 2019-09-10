@@ -15,7 +15,7 @@
 package com.liferay.layout.seo.service;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.layout.seo.exception.NoSuchSEOEntryException;
+import com.liferay.layout.seo.exception.NoSuchEntryException;
 import com.liferay.layout.seo.model.LayoutSEOEntry;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -107,10 +107,10 @@ public interface LayoutSEOEntryLocalService
 
 	public void deleteLayoutSEOEntry(
 			long groupId, boolean privateLayout, long layoutId)
-		throws NoSuchSEOEntryException;
+		throws NoSuchEntryException;
 
 	public void deleteLayoutSEOEntry(String uuid, long groupId)
-		throws NoSuchSEOEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	 * @throws PortalException
