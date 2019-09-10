@@ -49,10 +49,10 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 			Map<Locale, String> alternateURLs)
 		throws PortalException {
 
-		List<LayoutSEOLink> seoLinks = new ArrayList<>(
+		List<LayoutSEOLink> layoutSEOLinks = new ArrayList<>(
 			alternateURLs.size() + 2);
 
-		seoLinks.add(
+		layoutSEOLinks.add(
 			new LayoutSEOLinkImpl(
 				_html.escapeAttribute(
 					_getCanonicalURL(
@@ -60,7 +60,7 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 				null, LayoutSEOLink.Relationship.CANONICAL));
 
 		alternateURLs.forEach(
-			(urlLocale, url) -> seoLinks.add(
+			(urlLocale, url) -> layoutSEOLinks.add(
 				new LayoutSEOLinkImpl(
 					_html.escapeAttribute(url),
 					LocaleUtil.toW3cLanguageId(urlLocale),
@@ -69,15 +69,15 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 		String defaultLocaleURL = alternateURLs.get(LocaleUtil.getDefault());
 
 		if (defaultLocaleURL == null) {
-			return seoLinks;
+			return layoutSEOLinks;
 		}
 
-		seoLinks.add(
+		layoutSEOLinks.add(
 			new LayoutSEOLinkImpl(
 				_html.escapeAttribute(defaultLocaleURL), "x-default",
 				LayoutSEOLink.Relationship.ALTERNATE));
 
-		return seoLinks;
+		return layoutSEOLinks;
 	}
 
 	private String _getCanonicalURL(
