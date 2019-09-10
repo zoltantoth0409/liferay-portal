@@ -23,11 +23,11 @@
 
 		<!-- Other fields -->
 
-		<column localized="true" name="canonicalURL" type="String" />
-		<column name="enabled" type="boolean" />
 		<column name="privateLayout" type="boolean" />
-		<column name="lastPublishDate" type="Date" />
 		<column name="layoutId" type="long" />
+		<column name="enabled" type="boolean" />
+		<column localized="true" name="canonicalURL" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Finder methods -->
 
