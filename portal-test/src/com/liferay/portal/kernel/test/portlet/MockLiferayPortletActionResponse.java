@@ -237,7 +237,7 @@ public class MockLiferayPortletActionResponse
 	}
 
 	@Override
-	public Collection<String> getPropertyValues(String s) {
+	public Collection<String> getPropertyValues(String key) {
 		return null;
 	}
 
@@ -257,15 +257,16 @@ public class MockLiferayPortletActionResponse
 	}
 
 	@Override
-	public void removePublicRenderParameter(String s) {
+	public void removePublicRenderParameter(String name) {
 	}
 
 	@Override
-	public void sendRedirect(String s) throws IOException {
+	public void sendRedirect(String location) throws IOException {
 	}
 
 	@Override
-	public void sendRedirect(String s, String s1) throws IOException {
+	public void sendRedirect(String location, String renderUrlParamName)
+		throws IOException {
 	}
 
 	@Override
@@ -277,7 +278,7 @@ public class MockLiferayPortletActionResponse
 	}
 
 	@Override
-	public void setEvent(String s, Serializable serializable) {
+	public void setEvent(String name, Serializable serializable) {
 	}
 
 	@Override
@@ -294,15 +295,15 @@ public class MockLiferayPortletActionResponse
 	}
 
 	@Override
-	public void setProperty(String s, String s1) {
+	public void setProperty(String key, String value) {
 	}
 
 	@Override
-	public void setRenderParameter(String s, String s1) {
+	public void setRenderParameter(String name, String value) {
 	}
 
 	@Override
-	public void setRenderParameter(String s, String... strings) {
+	public void setRenderParameter(String name, String... values) {
 	}
 
 	@Override

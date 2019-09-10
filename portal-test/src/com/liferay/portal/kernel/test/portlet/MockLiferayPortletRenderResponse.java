@@ -250,7 +250,7 @@ public class MockLiferayPortletRenderResponse
 	}
 
 	@Override
-	public Collection<String> getPropertyValues(String s) {
+	public Collection<String> getPropertyValues(String key) {
 		return null;
 	}
 
@@ -277,7 +277,7 @@ public class MockLiferayPortletRenderResponse
 	}
 
 	@Override
-	public void setContentType(String s) {
+	public void setContentType(String contentType) {
 	}
 
 	@Override
@@ -298,11 +298,11 @@ public class MockLiferayPortletRenderResponse
 	}
 
 	@Override
-	public void setProperty(String s, String s1) {
+	public void setProperty(String key, String value) {
 	}
 
 	@Override
-	public void setTitle(String s) {
+	public void setTitle(String title) {
 	}
 
 	@Override
