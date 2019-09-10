@@ -178,8 +178,9 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			throw new ClientErrorException(
 				StringBundler.concat(
-					"Unexpected response status: ", status,
-					". Response message: ", response.readEntity(String.class)),
+					"Unexpected response status ", status,
+					" with response message: ",
+					response.readEntity(String.class)),
 				status);
 		}
 	}
