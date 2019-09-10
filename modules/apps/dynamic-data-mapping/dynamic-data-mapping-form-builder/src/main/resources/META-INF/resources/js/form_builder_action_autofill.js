@@ -268,8 +268,10 @@ AUI.add(
 								)
 							);
 
-							if (action && action.outputs && action.outputs[name]) {
-								value = [action.outputs[name]];
+							var id = outputParameters[i].id;
+
+							if (action && action.outputs && action.outputs[id]) {
+								value = [action.outputs[id]];
 							}
 
 							outputParameterField = instance.createSelectField(
@@ -285,7 +287,7 @@ AUI.add(
 							instance._outputParameters.push(
 								{
 									field: outputParameterField,
-									parameter: name
+									parameter: id
 								}
 							);
 

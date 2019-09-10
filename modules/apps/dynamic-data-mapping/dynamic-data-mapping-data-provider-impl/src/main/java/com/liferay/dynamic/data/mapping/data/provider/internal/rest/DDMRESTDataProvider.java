@@ -186,7 +186,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 		for (DDMDataProviderOutputParametersSettings outputParameterSettings :
 				outputParameterSettingsArray) {
 
-			String name = outputParameterSettings.outputParameterName();
+			String id = outputParameterSettings.outputParameterId();
 			String type = outputParameterSettings.outputParameterType();
 			String path = outputParameterSettings.outputParameterPath();
 
@@ -196,7 +196,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 				if (value != null) {
 					ddmDataProviderResponseOutputs.add(
-						DDMDataProviderResponseOutput.of(name, "text", value));
+						DDMDataProviderResponseOutput.of(id, "text", value));
 				}
 			}
 			else if (Objects.equals(type, "number")) {
@@ -205,8 +205,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 				if (value != null) {
 					ddmDataProviderResponseOutputs.add(
-						DDMDataProviderResponseOutput.of(
-							name, "number", value));
+						DDMDataProviderResponseOutput.of(id, "number", value));
 				}
 			}
 			else if (Objects.equals(type, "list")) {
@@ -253,7 +252,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 				ddmDataProviderResponseOutputs.add(
 					DDMDataProviderResponseOutput.of(
-						name, "list", keyValuePairs));
+						id, "list", keyValuePairs));
 			}
 		}
 

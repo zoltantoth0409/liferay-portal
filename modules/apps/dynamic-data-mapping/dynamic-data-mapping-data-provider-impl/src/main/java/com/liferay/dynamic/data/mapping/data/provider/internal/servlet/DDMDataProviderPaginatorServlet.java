@@ -106,14 +106,14 @@ public class DDMDataProviderPaginatorServlet extends HttpServlet {
 		String dataProviderInstanceUUID = ParamUtil.getString(
 			request, "dataProviderInstanceUUID");
 
-		String outputParameterName = ParamUtil.getString(
-			request, "outputParameterName");
+		String outputParameterId = ParamUtil.getString(
+			request, "outputParameterId");
 
 		int start = ParamUtil.getInteger(request, "start");
 		int end = ParamUtil.getInteger(request, "end");
 
 		if (Validator.isNull(dataProviderInstanceUUID) ||
-			Validator.isNull(outputParameterName) || (start < 0) || (end < 0) ||
+			Validator.isNull(outputParameterId) || (start < 0) || (end < 0) ||
 			(end < start) || (start == end)) {
 
 			return null;
@@ -136,7 +136,7 @@ public class DDMDataProviderPaginatorServlet extends HttpServlet {
 				_ddmDataProviderInvoker.invoke(ddmDataProviderRequest);
 
 			DDMDataProviderResponseOutput ddmDataProviderResponseOutput =
-				ddmDataProviderResponse.get(outputParameterName);
+				ddmDataProviderResponse.get(outputParameterId);
 
 			if (ddmDataProviderResponseOutput == null) {
 				return dataProviderResult;

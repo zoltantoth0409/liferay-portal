@@ -91,8 +91,11 @@ public class DDMDataProviderInstanceOutputParametersDataProvider
 					ddmDataProviderOutputParametersSetting.
 						outputParameterName();
 
+				String outputParameterId =
+					ddmDataProviderOutputParametersSetting.outputParameterId();
+
 				data.add(
-					new KeyValuePair(outputParameterName, outputParameterName));
+					new KeyValuePair(outputParameterId, outputParameterName));
 			}
 		}
 		catch (Exception e) {
