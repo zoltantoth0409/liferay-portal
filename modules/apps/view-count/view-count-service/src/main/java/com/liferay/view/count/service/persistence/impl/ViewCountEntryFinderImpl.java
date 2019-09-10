@@ -36,13 +36,13 @@ public class ViewCountEntryFinderImpl
 	public void incrementViewCount(
 		long companyId, long classNameId, long classPK, int increment) {
 
-		ViewCountEntryPK viewCountEntryPK = new ViewCountEntryPK(
-			companyId, classNameId, classPK);
-
 		Session session = null;
 
 		try {
 			session = openSession();
+
+			ViewCountEntryPK viewCountEntryPK = new ViewCountEntryPK(
+				companyId, classNameId, classPK);
 
 			ViewCountEntry viewCountEntry = (ViewCountEntry)session.get(
 				ViewCountEntryImpl.class, viewCountEntryPK, LockMode.UPGRADE);
