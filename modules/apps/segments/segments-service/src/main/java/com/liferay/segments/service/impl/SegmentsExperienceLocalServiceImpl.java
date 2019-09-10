@@ -152,6 +152,8 @@ public class SegmentsExperienceLocalServiceImpl
 			SegmentsExperience segmentsExperience)
 		throws PortalException {
 
+		// Segments experience
+
 		if (!GroupThreadLocal.isDeleteInProcess()) {
 			int count = segmentsExperimentFinder.countByS_C_C_S(
 				segmentsExperience.getSegmentsExperienceId(),
@@ -165,8 +167,6 @@ public class SegmentsExperienceLocalServiceImpl
 						segmentsExperience.getSegmentsExperienceId());
 			}
 		}
-
-		// Segments experience
 
 		segmentsExperiencePersistence.remove(segmentsExperience);
 
