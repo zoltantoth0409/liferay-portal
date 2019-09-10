@@ -53,13 +53,12 @@ public class PropagateGroupFragmentEntryChangesMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long fragmentEntryId = ParamUtil.getLong(
-			actionRequest, "fragmentEntryId");
-
-		long[] groupIds = ParamUtil.getLongValues(actionRequest, "rowIds");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		long fragmentEntryId = ParamUtil.getLong(
+			actionRequest, "fragmentEntryId");
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "rowIds");
 
 		for (long groupId : groupIds) {
 			ActionableDynamicQuery actionableDynamicQuery =
@@ -73,10 +72,8 @@ public class PropagateGroupFragmentEntryChangesMVCActionCommand
 					dynamicQuery.add(
 						fragmentEntryIdProperty.eq(fragmentEntryId));
 				});
-
 			actionableDynamicQuery.setCompanyId(themeDisplay.getCompanyId());
 			actionableDynamicQuery.setGroupId(groupId);
-
 			actionableDynamicQuery.setPerformActionMethod(
 				(FragmentEntryLink fragmentEntryLink) ->
 					_fragmentEntryLinkLocalService.updateLatestChanges(
