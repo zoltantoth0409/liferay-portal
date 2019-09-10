@@ -104,11 +104,6 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 			LocalizationUtil.getLocalizationMap(actionRequest, "friendlyURL");
 		boolean deleteLogo = ParamUtil.getBoolean(actionRequest, "deleteLogo");
 
-		boolean useCustomCanonicalURL = ParamUtil.getBoolean(
-			actionRequest, "useCustomCanonicalURL");
-		Map<Locale, String> canonicalURLMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "canonicalURL");
-
 		byte[] iconBytes = null;
 
 		long fileEntryId = ParamUtil.getLong(
@@ -149,6 +144,11 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 			groupId, privateLayout, layoutId, layout.getParentLayoutId(),
 			nameMap, titleMap, descriptionMap, keywordsMap, robotsMap, type,
 			hidden, friendlyURLMap, !deleteLogo, iconBytes, serviceContext);
+
+		boolean useCustomCanonicalURL = ParamUtil.getBoolean(
+			actionRequest, "useCustomCanonicalURL");
+		Map<Locale, String> canonicalURLMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "canonicalURL");
 
 		_layoutSEOEntryService.updateLayoutSEOEntry(
 			groupId, privateLayout, layoutId, useCustomCanonicalURL,
