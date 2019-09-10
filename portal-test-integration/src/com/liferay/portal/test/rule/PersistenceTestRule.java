@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.model.ModelListenerRegistrationUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
-import com.liferay.portal.kernel.test.rule.MethodTestRule;
+import com.liferay.portal.kernel.test.rule.AbstractTestRule;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.service.test.ServiceTestUtil;
 
@@ -30,7 +30,7 @@ import org.junit.runner.Description;
 /**
  * @author Shuyang Zhou
  */
-public class PersistenceTestRule extends MethodTestRule<Object> {
+public class PersistenceTestRule extends AbstractTestRule<Object, Object> {
 
 	public static final PersistenceTestRule INSTANCE =
 		new PersistenceTestRule();
@@ -46,6 +46,11 @@ public class PersistenceTestRule extends MethodTestRule<Object> {
 
 		ReflectionTestUtil.setFieldValue(
 			instance, "_modelListeners", modelListeners);
+	}
+
+	@Override
+	public Object beforeClass(Description description) {
+		return null;
 	}
 
 	@Override
@@ -67,6 +72,10 @@ public class PersistenceTestRule extends MethodTestRule<Object> {
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
 
 		return modelListeners;
+	}
+
+	@Override
+	protected void afterClass(Description description, Object object) {
 	}
 
 	private PersistenceTestRule() {
