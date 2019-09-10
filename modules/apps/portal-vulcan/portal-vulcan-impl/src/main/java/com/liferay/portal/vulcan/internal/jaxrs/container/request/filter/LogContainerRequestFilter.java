@@ -33,22 +33,25 @@ import javax.ws.rs.ext.Provider;
 public class LogContainerRequestFilter implements ContainerRequestFilter {
 
 	@Override
-	public void filter(ContainerRequestContext requestContext)
+	public void filter(ContainerRequestContext containerRequestContext)
 		throws IOException {
 
-		if (_log.isTraceEnabled()) {
-			UriInfo uriInfo = requestContext.getUriInfo();
+		if (_log.isDebugEnabled()) {
+			StringBundler sb = new StringBundler(7);
 
-			StringBundler sb = new StringBundler(6);
+			sb.append("{headers: ");
+			sb.append(MapUtil.toString(containerRequestContext.getHeaders()));
+			sb.append(", method: ");
+			sb.append(containerRequestContext.getMethod());
+			sb.append(", uri: ");
 
-			sb.append("method: ");
-			sb.append(requestContext.getMethod());
-			sb.append(", request uri: ");
+			UriInfo uriInfo = containerRequestContext.getUriInfo();
+
 			sb.append(uriInfo.getRequestUri());
-			sb.append(", headers: ");
-			sb.append(MapUtil.toString(requestContext.getHeaders()));
 
-			_log.trace(sb.toString());
+			sb.append("}");
+
+			_log.debug(sb.toString());
 		}
 	}
 
