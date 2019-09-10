@@ -80,16 +80,16 @@ public class LayoutSEOEntryCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", canonicalURL=");
-		sb.append(canonicalURL);
-		sb.append(", enabled=");
-		sb.append(enabled);
 		sb.append(", privateLayout=");
 		sb.append(privateLayout);
-		sb.append(", lastPublishDate=");
-		sb.append(lastPublishDate);
 		sb.append(", layoutId=");
 		sb.append(layoutId);
+		sb.append(", enabled=");
+		sb.append(enabled);
+		sb.append(", canonicalURL=");
+		sb.append(canonicalURL);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -132,6 +132,10 @@ public class LayoutSEOEntryCacheModel
 			layoutSEOEntryImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		layoutSEOEntryImpl.setPrivateLayout(privateLayout);
+		layoutSEOEntryImpl.setLayoutId(layoutId);
+		layoutSEOEntryImpl.setEnabled(enabled);
+
 		if (canonicalURL == null) {
 			layoutSEOEntryImpl.setCanonicalURL("");
 		}
@@ -139,17 +143,12 @@ public class LayoutSEOEntryCacheModel
 			layoutSEOEntryImpl.setCanonicalURL(canonicalURL);
 		}
 
-		layoutSEOEntryImpl.setEnabled(enabled);
-		layoutSEOEntryImpl.setPrivateLayout(privateLayout);
-
 		if (lastPublishDate == Long.MIN_VALUE) {
 			layoutSEOEntryImpl.setLastPublishDate(null);
 		}
 		else {
 			layoutSEOEntryImpl.setLastPublishDate(new Date(lastPublishDate));
 		}
-
-		layoutSEOEntryImpl.setLayoutId(layoutId);
 
 		layoutSEOEntryImpl.resetOriginalValues();
 
@@ -170,14 +169,14 @@ public class LayoutSEOEntryCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		canonicalURL = objectInput.readUTF();
-
-		enabled = objectInput.readBoolean();
 
 		privateLayout = objectInput.readBoolean();
-		lastPublishDate = objectInput.readLong();
 
 		layoutId = objectInput.readLong();
+
+		enabled = objectInput.readBoolean();
+		canonicalURL = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -207,6 +206,12 @@ public class LayoutSEOEntryCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
+		objectOutput.writeBoolean(privateLayout);
+
+		objectOutput.writeLong(layoutId);
+
+		objectOutput.writeBoolean(enabled);
+
 		if (canonicalURL == null) {
 			objectOutput.writeUTF("");
 		}
@@ -214,12 +219,7 @@ public class LayoutSEOEntryCacheModel
 			objectOutput.writeUTF(canonicalURL);
 		}
 
-		objectOutput.writeBoolean(enabled);
-
-		objectOutput.writeBoolean(privateLayout);
 		objectOutput.writeLong(lastPublishDate);
-
-		objectOutput.writeLong(layoutId);
 	}
 
 	public String uuid;
@@ -230,10 +230,10 @@ public class LayoutSEOEntryCacheModel
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public String canonicalURL;
-	public boolean enabled;
 	public boolean privateLayout;
-	public long lastPublishDate;
 	public long layoutId;
+	public boolean enabled;
+	public String canonicalURL;
+	public long lastPublishDate;
 
 }

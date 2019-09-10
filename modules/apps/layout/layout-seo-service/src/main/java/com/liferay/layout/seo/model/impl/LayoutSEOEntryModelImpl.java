@@ -85,9 +85,9 @@ public class LayoutSEOEntryModelImpl
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"canonicalURL", Types.VARCHAR}, {"enabled", Types.BOOLEAN},
-		{"privateLayout", Types.BOOLEAN}, {"lastPublishDate", Types.TIMESTAMP},
-		{"layoutId", Types.BIGINT}
+		{"privateLayout", Types.BOOLEAN}, {"layoutId", Types.BIGINT},
+		{"enabled", Types.BOOLEAN}, {"canonicalURL", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -102,15 +102,15 @@ public class LayoutSEOEntryModelImpl
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("canonicalURL", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("enabled", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("privateLayout", Types.BOOLEAN);
-		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("layoutId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("enabled", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("canonicalURL", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table LayoutSEOEntry (uuid_ VARCHAR(75) null,layoutSEOEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,canonicalURL STRING null,enabled BOOLEAN,privateLayout BOOLEAN,lastPublishDate DATE null,layoutId LONG)";
+		"create table LayoutSEOEntry (uuid_ VARCHAR(75) null,layoutSEOEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,privateLayout BOOLEAN,layoutId LONG,enabled BOOLEAN,canonicalURL STRING null,lastPublishDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table LayoutSEOEntry";
 
@@ -167,11 +167,11 @@ public class LayoutSEOEntryModelImpl
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setCanonicalURL(soapModel.getCanonicalURL());
-		model.setEnabled(soapModel.isEnabled());
 		model.setPrivateLayout(soapModel.isPrivateLayout());
-		model.setLastPublishDate(soapModel.getLastPublishDate());
 		model.setLayoutId(soapModel.getLayoutId());
+		model.setEnabled(soapModel.isEnabled());
+		model.setCanonicalURL(soapModel.getCanonicalURL());
+		model.setLastPublishDate(soapModel.getLastPublishDate());
 
 		return model;
 	}
@@ -361,31 +361,31 @@ public class LayoutSEOEntryModelImpl
 			"modifiedDate",
 			(BiConsumer<LayoutSEOEntry, Date>)LayoutSEOEntry::setModifiedDate);
 		attributeGetterFunctions.put(
-			"canonicalURL", LayoutSEOEntry::getCanonicalURL);
-		attributeSetterBiConsumers.put(
-			"canonicalURL",
-			(BiConsumer<LayoutSEOEntry, String>)
-				LayoutSEOEntry::setCanonicalURL);
-		attributeGetterFunctions.put("enabled", LayoutSEOEntry::getEnabled);
-		attributeSetterBiConsumers.put(
-			"enabled",
-			(BiConsumer<LayoutSEOEntry, Boolean>)LayoutSEOEntry::setEnabled);
-		attributeGetterFunctions.put(
 			"privateLayout", LayoutSEOEntry::getPrivateLayout);
 		attributeSetterBiConsumers.put(
 			"privateLayout",
 			(BiConsumer<LayoutSEOEntry, Boolean>)
 				LayoutSEOEntry::setPrivateLayout);
+		attributeGetterFunctions.put("layoutId", LayoutSEOEntry::getLayoutId);
+		attributeSetterBiConsumers.put(
+			"layoutId",
+			(BiConsumer<LayoutSEOEntry, Long>)LayoutSEOEntry::setLayoutId);
+		attributeGetterFunctions.put("enabled", LayoutSEOEntry::getEnabled);
+		attributeSetterBiConsumers.put(
+			"enabled",
+			(BiConsumer<LayoutSEOEntry, Boolean>)LayoutSEOEntry::setEnabled);
+		attributeGetterFunctions.put(
+			"canonicalURL", LayoutSEOEntry::getCanonicalURL);
+		attributeSetterBiConsumers.put(
+			"canonicalURL",
+			(BiConsumer<LayoutSEOEntry, String>)
+				LayoutSEOEntry::setCanonicalURL);
 		attributeGetterFunctions.put(
 			"lastPublishDate", LayoutSEOEntry::getLastPublishDate);
 		attributeSetterBiConsumers.put(
 			"lastPublishDate",
 			(BiConsumer<LayoutSEOEntry, Date>)
 				LayoutSEOEntry::setLastPublishDate);
-		attributeGetterFunctions.put("layoutId", LayoutSEOEntry::getLayoutId);
-		attributeSetterBiConsumers.put(
-			"layoutId",
-			(BiConsumer<LayoutSEOEntry, Long>)LayoutSEOEntry::setLayoutId);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -549,6 +549,75 @@ public class LayoutSEOEntryModelImpl
 
 	@JSON
 	@Override
+	public boolean getPrivateLayout() {
+		return _privateLayout;
+	}
+
+	@JSON
+	@Override
+	public boolean isPrivateLayout() {
+		return _privateLayout;
+	}
+
+	@Override
+	public void setPrivateLayout(boolean privateLayout) {
+		_columnBitmask |= PRIVATELAYOUT_COLUMN_BITMASK;
+
+		if (!_setOriginalPrivateLayout) {
+			_setOriginalPrivateLayout = true;
+
+			_originalPrivateLayout = _privateLayout;
+		}
+
+		_privateLayout = privateLayout;
+	}
+
+	public boolean getOriginalPrivateLayout() {
+		return _originalPrivateLayout;
+	}
+
+	@JSON
+	@Override
+	public long getLayoutId() {
+		return _layoutId;
+	}
+
+	@Override
+	public void setLayoutId(long layoutId) {
+		_columnBitmask |= LAYOUTID_COLUMN_BITMASK;
+
+		if (!_setOriginalLayoutId) {
+			_setOriginalLayoutId = true;
+
+			_originalLayoutId = _layoutId;
+		}
+
+		_layoutId = layoutId;
+	}
+
+	public long getOriginalLayoutId() {
+		return _originalLayoutId;
+	}
+
+	@JSON
+	@Override
+	public boolean getEnabled() {
+		return _enabled;
+	}
+
+	@JSON
+	@Override
+	public boolean isEnabled() {
+		return _enabled;
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		_enabled = enabled;
+	}
+
+	@JSON
+	@Override
 	public String getCanonicalURL() {
 		if (_canonicalURL == null) {
 			return "";
@@ -657,52 +726,6 @@ public class LayoutSEOEntryModelImpl
 
 	@JSON
 	@Override
-	public boolean getEnabled() {
-		return _enabled;
-	}
-
-	@JSON
-	@Override
-	public boolean isEnabled() {
-		return _enabled;
-	}
-
-	@Override
-	public void setEnabled(boolean enabled) {
-		_enabled = enabled;
-	}
-
-	@JSON
-	@Override
-	public boolean getPrivateLayout() {
-		return _privateLayout;
-	}
-
-	@JSON
-	@Override
-	public boolean isPrivateLayout() {
-		return _privateLayout;
-	}
-
-	@Override
-	public void setPrivateLayout(boolean privateLayout) {
-		_columnBitmask |= PRIVATELAYOUT_COLUMN_BITMASK;
-
-		if (!_setOriginalPrivateLayout) {
-			_setOriginalPrivateLayout = true;
-
-			_originalPrivateLayout = _privateLayout;
-		}
-
-		_privateLayout = privateLayout;
-	}
-
-	public boolean getOriginalPrivateLayout() {
-		return _originalPrivateLayout;
-	}
-
-	@JSON
-	@Override
 	public Date getLastPublishDate() {
 		return _lastPublishDate;
 	}
@@ -710,29 +733,6 @@ public class LayoutSEOEntryModelImpl
 	@Override
 	public void setLastPublishDate(Date lastPublishDate) {
 		_lastPublishDate = lastPublishDate;
-	}
-
-	@JSON
-	@Override
-	public long getLayoutId() {
-		return _layoutId;
-	}
-
-	@Override
-	public void setLayoutId(long layoutId) {
-		_columnBitmask |= LAYOUTID_COLUMN_BITMASK;
-
-		if (!_setOriginalLayoutId) {
-			_setOriginalLayoutId = true;
-
-			_originalLayoutId = _layoutId;
-		}
-
-		_layoutId = layoutId;
-	}
-
-	public long getOriginalLayoutId() {
-		return _originalLayoutId;
 	}
 
 	@Override
@@ -853,11 +853,11 @@ public class LayoutSEOEntryModelImpl
 		layoutSEOEntryImpl.setUserName(getUserName());
 		layoutSEOEntryImpl.setCreateDate(getCreateDate());
 		layoutSEOEntryImpl.setModifiedDate(getModifiedDate());
-		layoutSEOEntryImpl.setCanonicalURL(getCanonicalURL());
-		layoutSEOEntryImpl.setEnabled(isEnabled());
 		layoutSEOEntryImpl.setPrivateLayout(isPrivateLayout());
-		layoutSEOEntryImpl.setLastPublishDate(getLastPublishDate());
 		layoutSEOEntryImpl.setLayoutId(getLayoutId());
+		layoutSEOEntryImpl.setEnabled(isEnabled());
+		layoutSEOEntryImpl.setCanonicalURL(getCanonicalURL());
+		layoutSEOEntryImpl.setLastPublishDate(getLastPublishDate());
 
 		layoutSEOEntryImpl.resetOriginalValues();
 
@@ -994,6 +994,12 @@ public class LayoutSEOEntryModelImpl
 			layoutSEOEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
+		layoutSEOEntryCacheModel.privateLayout = isPrivateLayout();
+
+		layoutSEOEntryCacheModel.layoutId = getLayoutId();
+
+		layoutSEOEntryCacheModel.enabled = isEnabled();
+
 		layoutSEOEntryCacheModel.canonicalURL = getCanonicalURL();
 
 		String canonicalURL = layoutSEOEntryCacheModel.canonicalURL;
@@ -1001,10 +1007,6 @@ public class LayoutSEOEntryModelImpl
 		if ((canonicalURL != null) && (canonicalURL.length() == 0)) {
 			layoutSEOEntryCacheModel.canonicalURL = null;
 		}
-
-		layoutSEOEntryCacheModel.enabled = isEnabled();
-
-		layoutSEOEntryCacheModel.privateLayout = isPrivateLayout();
 
 		Date lastPublishDate = getLastPublishDate();
 
@@ -1015,8 +1017,6 @@ public class LayoutSEOEntryModelImpl
 		else {
 			layoutSEOEntryCacheModel.lastPublishDate = Long.MIN_VALUE;
 		}
-
-		layoutSEOEntryCacheModel.layoutId = getLayoutId();
 
 		return layoutSEOEntryCacheModel;
 	}
@@ -1108,16 +1108,16 @@ public class LayoutSEOEntryModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private String _canonicalURL;
-	private String _canonicalURLCurrentLanguageId;
-	private boolean _enabled;
 	private boolean _privateLayout;
 	private boolean _originalPrivateLayout;
 	private boolean _setOriginalPrivateLayout;
-	private Date _lastPublishDate;
 	private long _layoutId;
 	private long _originalLayoutId;
 	private boolean _setOriginalLayoutId;
+	private boolean _enabled;
+	private String _canonicalURL;
+	private String _canonicalURLCurrentLanguageId;
+	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private LayoutSEOEntry _escapedModel;
 

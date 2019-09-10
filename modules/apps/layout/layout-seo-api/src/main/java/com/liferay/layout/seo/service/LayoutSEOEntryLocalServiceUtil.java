@@ -91,13 +91,13 @@ public class LayoutSEOEntryLocalServiceUtil {
 
 	public static void deleteLayoutSEOEntry(
 			long groupId, boolean privateLayout, long layoutId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		getService().deleteLayoutSEOEntry(groupId, privateLayout, layoutId);
 	}
 
 	public static void deleteLayoutSEOEntry(String uuid, long groupId)
-		throws com.liferay.layout.seo.exception.NoSuchSEOEntryException {
+		throws com.liferay.layout.seo.exception.NoSuchEntryException {
 
 		getService().deleteLayoutSEOEntry(uuid, groupId);
 	}

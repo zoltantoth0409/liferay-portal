@@ -39,11 +39,11 @@ public class LayoutSEOEntrySoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setCanonicalURL(model.getCanonicalURL());
-		soapModel.setEnabled(model.isEnabled());
 		soapModel.setPrivateLayout(model.isPrivateLayout());
-		soapModel.setLastPublishDate(model.getLastPublishDate());
 		soapModel.setLayoutId(model.getLayoutId());
+		soapModel.setEnabled(model.isEnabled());
+		soapModel.setCanonicalURL(model.getCanonicalURL());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;
 	}
@@ -166,12 +166,24 @@ public class LayoutSEOEntrySoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getCanonicalURL() {
-		return _canonicalURL;
+	public boolean getPrivateLayout() {
+		return _privateLayout;
 	}
 
-	public void setCanonicalURL(String canonicalURL) {
-		_canonicalURL = canonicalURL;
+	public boolean isPrivateLayout() {
+		return _privateLayout;
+	}
+
+	public void setPrivateLayout(boolean privateLayout) {
+		_privateLayout = privateLayout;
+	}
+
+	public long getLayoutId() {
+		return _layoutId;
+	}
+
+	public void setLayoutId(long layoutId) {
+		_layoutId = layoutId;
 	}
 
 	public boolean getEnabled() {
@@ -186,16 +198,12 @@ public class LayoutSEOEntrySoap implements Serializable {
 		_enabled = enabled;
 	}
 
-	public boolean getPrivateLayout() {
-		return _privateLayout;
+	public String getCanonicalURL() {
+		return _canonicalURL;
 	}
 
-	public boolean isPrivateLayout() {
-		return _privateLayout;
-	}
-
-	public void setPrivateLayout(boolean privateLayout) {
-		_privateLayout = privateLayout;
+	public void setCanonicalURL(String canonicalURL) {
+		_canonicalURL = canonicalURL;
 	}
 
 	public Date getLastPublishDate() {
@@ -206,14 +214,6 @@ public class LayoutSEOEntrySoap implements Serializable {
 		_lastPublishDate = lastPublishDate;
 	}
 
-	public long getLayoutId() {
-		return _layoutId;
-	}
-
-	public void setLayoutId(long layoutId) {
-		_layoutId = layoutId;
-	}
-
 	private String _uuid;
 	private long _layoutSEOEntryId;
 	private long _groupId;
@@ -222,10 +222,10 @@ public class LayoutSEOEntrySoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _canonicalURL;
-	private boolean _enabled;
 	private boolean _privateLayout;
-	private Date _lastPublishDate;
 	private long _layoutId;
+	private boolean _enabled;
+	private String _canonicalURL;
+	private Date _lastPublishDate;
 
 }

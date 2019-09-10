@@ -24,7 +24,7 @@ import org.osgi.framework.FrameworkUtil;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class LayoutPersistenceConstants {
+public class LayoutSEOPersistenceConstants {
 
 	public static final String BUNDLE_SYMBOLIC_NAME =
 		"com.liferay.layout.seo.service";
@@ -37,7 +37,7 @@ public class LayoutPersistenceConstants {
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(
-			LayoutPersistenceConstants.class);
+			LayoutSEOPersistenceConstants.class);
 
 		if (!BUNDLE_SYMBOLIC_NAME.equals(bundle.getSymbolicName())) {
 			throw new IllegalStateException(

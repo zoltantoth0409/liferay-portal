@@ -16,26 +16,23 @@ package com.liferay.layout.seo.exception;
 
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
-public class NoSuchSEOEntryException extends NoSuchModelException {
+public class NoSuchEntryException extends NoSuchModelException {
 
-	public NoSuchSEOEntryException() {
+	public NoSuchEntryException() {
 	}
 
-	public NoSuchSEOEntryException(String msg) {
+	public NoSuchEntryException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchSEOEntryException(String msg, Throwable cause) {
+	public NoSuchEntryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchSEOEntryException(Throwable cause) {
+	public NoSuchEntryException(Throwable cause) {
 		super(cause);
 	}
 

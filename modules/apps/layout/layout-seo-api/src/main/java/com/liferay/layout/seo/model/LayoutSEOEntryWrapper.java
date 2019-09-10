@@ -51,11 +51,11 @@ public class LayoutSEOEntryWrapper
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("canonicalURL", getCanonicalURL());
-		attributes.put("enabled", isEnabled());
 		attributes.put("privateLayout", isPrivateLayout());
-		attributes.put("lastPublishDate", getLastPublishDate());
 		attributes.put("layoutId", getLayoutId());
+		attributes.put("enabled", isEnabled());
+		attributes.put("canonicalURL", getCanonicalURL());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		return attributes;
 	}
@@ -110,10 +110,16 @@ public class LayoutSEOEntryWrapper
 			setModifiedDate(modifiedDate);
 		}
 
-		String canonicalURL = (String)attributes.get("canonicalURL");
+		Boolean privateLayout = (Boolean)attributes.get("privateLayout");
 
-		if (canonicalURL != null) {
-			setCanonicalURL(canonicalURL);
+		if (privateLayout != null) {
+			setPrivateLayout(privateLayout);
+		}
+
+		Long layoutId = (Long)attributes.get("layoutId");
+
+		if (layoutId != null) {
+			setLayoutId(layoutId);
 		}
 
 		Boolean enabled = (Boolean)attributes.get("enabled");
@@ -122,22 +128,16 @@ public class LayoutSEOEntryWrapper
 			setEnabled(enabled);
 		}
 
-		Boolean privateLayout = (Boolean)attributes.get("privateLayout");
+		String canonicalURL = (String)attributes.get("canonicalURL");
 
-		if (privateLayout != null) {
-			setPrivateLayout(privateLayout);
+		if (canonicalURL != null) {
+			setCanonicalURL(canonicalURL);
 		}
 
 		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
 
 		if (lastPublishDate != null) {
 			setLastPublishDate(lastPublishDate);
-		}
-
-		Long layoutId = (Long)attributes.get("layoutId");
-
-		if (layoutId != null) {
-			setLayoutId(layoutId);
 		}
 	}
 
