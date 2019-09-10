@@ -23,8 +23,8 @@ create table SN_MeetupsRegistration (
 	createDate DATE null,
 	modifiedDate DATE null,
 	meetupsEntryId LONG,
-	status INTEGER,
-	comments VARCHAR(75) null
+	comments VARCHAR(75) null,
+	status INTEGER
 );
 
 create table SN_WallEntry (

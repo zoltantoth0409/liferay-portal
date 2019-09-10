@@ -137,9 +137,9 @@ public class MeetupsRegistrationPersistenceTest {
 
 		newMeetupsRegistration.setMeetupsEntryId(RandomTestUtil.nextLong());
 
-		newMeetupsRegistration.setStatus(RandomTestUtil.nextInt());
-
 		newMeetupsRegistration.setComments(RandomTestUtil.randomString());
+
+		newMeetupsRegistration.setStatus(RandomTestUtil.nextInt());
 
 		_meetupsRegistrations.add(_persistence.update(newMeetupsRegistration));
 
@@ -170,11 +170,11 @@ public class MeetupsRegistrationPersistenceTest {
 			existingMeetupsRegistration.getMeetupsEntryId(),
 			newMeetupsRegistration.getMeetupsEntryId());
 		Assert.assertEquals(
-			existingMeetupsRegistration.getStatus(),
-			newMeetupsRegistration.getStatus());
-		Assert.assertEquals(
 			existingMeetupsRegistration.getComments(),
 			newMeetupsRegistration.getComments());
+		Assert.assertEquals(
+			existingMeetupsRegistration.getStatus(),
+			newMeetupsRegistration.getStatus());
 	}
 
 	@Test
@@ -229,8 +229,8 @@ public class MeetupsRegistrationPersistenceTest {
 		return OrderByComparatorFactoryUtil.create(
 			"SN_MeetupsRegistration", "meetupsRegistrationId", true,
 			"companyId", true, "userId", true, "userName", true, "createDate",
-			true, "modifiedDate", true, "meetupsEntryId", true, "status", true,
-			"comments", true);
+			true, "modifiedDate", true, "meetupsEntryId", true, "comments",
+			true, "status", true);
 	}
 
 	@Test
@@ -497,9 +497,9 @@ public class MeetupsRegistrationPersistenceTest {
 
 		meetupsRegistration.setMeetupsEntryId(RandomTestUtil.nextLong());
 
-		meetupsRegistration.setStatus(RandomTestUtil.nextInt());
-
 		meetupsRegistration.setComments(RandomTestUtil.randomString());
+
+		meetupsRegistration.setStatus(RandomTestUtil.nextInt());
 
 		_meetupsRegistrations.add(_persistence.update(meetupsRegistration));
 

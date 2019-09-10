@@ -62,8 +62,8 @@ public class MeetupsRegistrationWrapper
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("meetupsEntryId", getMeetupsEntryId());
-		attributes.put("status", getStatus());
 		attributes.put("comments", getComments());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -113,16 +113,16 @@ public class MeetupsRegistrationWrapper
 			setMeetupsEntryId(meetupsEntryId);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		String comments = (String)attributes.get("comments");
 
 		if (comments != null) {
 			setComments(comments);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 

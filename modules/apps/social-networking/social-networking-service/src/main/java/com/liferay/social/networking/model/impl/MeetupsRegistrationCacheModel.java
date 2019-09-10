@@ -80,10 +80,10 @@ public class MeetupsRegistrationCacheModel
 		sb.append(modifiedDate);
 		sb.append(", meetupsEntryId=");
 		sb.append(meetupsEntryId);
-		sb.append(", status=");
-		sb.append(status);
 		sb.append(", comments=");
 		sb.append(comments);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append("}");
 
 		return sb.toString();
@@ -120,7 +120,6 @@ public class MeetupsRegistrationCacheModel
 		}
 
 		meetupsRegistrationImpl.setMeetupsEntryId(meetupsEntryId);
-		meetupsRegistrationImpl.setStatus(status);
 
 		if (comments == null) {
 			meetupsRegistrationImpl.setComments("");
@@ -128,6 +127,8 @@ public class MeetupsRegistrationCacheModel
 		else {
 			meetupsRegistrationImpl.setComments(comments);
 		}
+
+		meetupsRegistrationImpl.setStatus(status);
 
 		meetupsRegistrationImpl.resetOriginalValues();
 
@@ -146,9 +147,9 @@ public class MeetupsRegistrationCacheModel
 		modifiedDate = objectInput.readLong();
 
 		meetupsEntryId = objectInput.readLong();
+		comments = objectInput.readUTF();
 
 		status = objectInput.readInt();
-		comments = objectInput.readUTF();
 	}
 
 	@Override
@@ -171,14 +172,14 @@ public class MeetupsRegistrationCacheModel
 
 		objectOutput.writeLong(meetupsEntryId);
 
-		objectOutput.writeInt(status);
-
 		if (comments == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(comments);
 		}
+
+		objectOutput.writeInt(status);
 	}
 
 	public long meetupsRegistrationId;
@@ -188,7 +189,7 @@ public class MeetupsRegistrationCacheModel
 	public long createDate;
 	public long modifiedDate;
 	public long meetupsEntryId;
-	public int status;
 	public String comments;
+	public int status;
 
 }

@@ -72,8 +72,8 @@ public class MeetupsRegistrationModelImpl
 		{"meetupsRegistrationId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"meetupsEntryId", Types.BIGINT}, {"status", Types.INTEGER},
-		{"comments", Types.VARCHAR}
+		{"meetupsEntryId", Types.BIGINT}, {"comments", Types.VARCHAR},
+		{"status", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -87,12 +87,12 @@ public class MeetupsRegistrationModelImpl
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("meetupsEntryId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("comments", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments VARCHAR(75) null)";
+		"create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,comments VARCHAR(75) null,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table SN_MeetupsRegistration";
@@ -424,28 +424,6 @@ public class MeetupsRegistrationModelImpl
 
 			});
 		attributeGetterFunctions.put(
-			"status",
-			new Function<MeetupsRegistration, Object>() {
-
-				@Override
-				public Object apply(MeetupsRegistration meetupsRegistration) {
-					return meetupsRegistration.getStatus();
-				}
-
-			});
-		attributeSetterBiConsumers.put(
-			"status",
-			new BiConsumer<MeetupsRegistration, Object>() {
-
-				@Override
-				public void accept(
-					MeetupsRegistration meetupsRegistration, Object status) {
-
-					meetupsRegistration.setStatus((Integer)status);
-				}
-
-			});
-		attributeGetterFunctions.put(
 			"comments",
 			new Function<MeetupsRegistration, Object>() {
 
@@ -464,6 +442,28 @@ public class MeetupsRegistrationModelImpl
 					MeetupsRegistration meetupsRegistration, Object comments) {
 
 					meetupsRegistration.setComments((String)comments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object status) {
+
+					meetupsRegistration.setStatus((Integer)status);
 				}
 
 			});
@@ -598,6 +598,21 @@ public class MeetupsRegistrationModelImpl
 	}
 
 	@Override
+	public String getComments() {
+		if (_comments == null) {
+			return "";
+		}
+		else {
+			return _comments;
+		}
+	}
+
+	@Override
+	public void setComments(String comments) {
+		_comments = comments;
+	}
+
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -617,21 +632,6 @@ public class MeetupsRegistrationModelImpl
 
 	public int getOriginalStatus() {
 		return _originalStatus;
-	}
-
-	@Override
-	public String getComments() {
-		if (_comments == null) {
-			return "";
-		}
-		else {
-			return _comments;
-		}
-	}
-
-	@Override
-	public void setComments(String comments) {
-		_comments = comments;
 	}
 
 	public long getColumnBitmask() {
@@ -680,8 +680,8 @@ public class MeetupsRegistrationModelImpl
 		meetupsRegistrationImpl.setCreateDate(getCreateDate());
 		meetupsRegistrationImpl.setModifiedDate(getModifiedDate());
 		meetupsRegistrationImpl.setMeetupsEntryId(getMeetupsEntryId());
-		meetupsRegistrationImpl.setStatus(getStatus());
 		meetupsRegistrationImpl.setComments(getComments());
+		meetupsRegistrationImpl.setStatus(getStatus());
 
 		meetupsRegistrationImpl.resetOriginalValues();
 
@@ -805,8 +805,6 @@ public class MeetupsRegistrationModelImpl
 
 		meetupsRegistrationCacheModel.meetupsEntryId = getMeetupsEntryId();
 
-		meetupsRegistrationCacheModel.status = getStatus();
-
 		meetupsRegistrationCacheModel.comments = getComments();
 
 		String comments = meetupsRegistrationCacheModel.comments;
@@ -814,6 +812,8 @@ public class MeetupsRegistrationModelImpl
 		if ((comments != null) && (comments.length() == 0)) {
 			meetupsRegistrationCacheModel.comments = null;
 		}
+
+		meetupsRegistrationCacheModel.status = getStatus();
 
 		return meetupsRegistrationCacheModel;
 	}
@@ -900,10 +900,10 @@ public class MeetupsRegistrationModelImpl
 	private long _meetupsEntryId;
 	private long _originalMeetupsEntryId;
 	private boolean _setOriginalMeetupsEntryId;
+	private String _comments;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
-	private String _comments;
 	private long _columnBitmask;
 	private MeetupsRegistration _escapedModel;
 

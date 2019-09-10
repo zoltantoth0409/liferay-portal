@@ -189,20 +189,6 @@ public interface MeetupsRegistrationModel
 	public void setMeetupsEntryId(long meetupsEntryId);
 
 	/**
-	 * Returns the status of this meetups registration.
-	 *
-	 * @return the status of this meetups registration
-	 */
-	public int getStatus();
-
-	/**
-	 * Sets the status of this meetups registration.
-	 *
-	 * @param status the status of this meetups registration
-	 */
-	public void setStatus(int status);
-
-	/**
 	 * Returns the comments of this meetups registration.
 	 *
 	 * @return the comments of this meetups registration
@@ -216,6 +202,20 @@ public interface MeetupsRegistrationModel
 	 * @param comments the comments of this meetups registration
 	 */
 	public void setComments(String comments);
+
+	/**
+	 * Returns the status of this meetups registration.
+	 *
+	 * @return the status of this meetups registration
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this meetups registration.
+	 *
+	 * @param status the status of this meetups registration
+	 */
+	public void setStatus(int status);
 
 	@Override
 	public boolean isNew();
