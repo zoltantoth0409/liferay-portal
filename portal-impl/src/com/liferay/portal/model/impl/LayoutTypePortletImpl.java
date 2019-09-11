@@ -1931,7 +1931,12 @@ public class LayoutTypePortletImpl
 		String[] columnValues = StringUtil.split(getColumnValue(columnId));
 
 		for (String nonstaticPortletId : columnValues) {
-			if (nonstaticPortletId.equals(portletId)) {
+			String decodedNonStaticPortletName =
+				PortletIdCodec.decodePortletName(nonstaticPortletId);
+
+			if (nonstaticPortletId.equals(portletId) ||
+				decodedNonStaticPortletName.equals(portletId)) {
+
 				return true;
 			}
 		}
@@ -1944,7 +1949,12 @@ public class LayoutTypePortletImpl
 			PropsKeys.LAYOUT_STATIC_PORTLETS_START + columnId);
 
 		for (String staticPortletId : staticPortletIdsStart) {
-			if (staticPortletId.equals(portletId)) {
+			String decodedStaticPortletName = PortletIdCodec.decodePortletName(
+				staticPortletId);
+
+			if (staticPortletId.equals(portletId) ||
+				decodedStaticPortletName.equals(portletId)) {
+
 				return true;
 			}
 		}
@@ -1953,7 +1963,12 @@ public class LayoutTypePortletImpl
 			PropsKeys.LAYOUT_STATIC_PORTLETS_END + columnId);
 
 		for (String staticPortletId : staticPortletIdsEnd) {
-			if (staticPortletId.equals(portletId)) {
+			String decodedStaticPortletName = PortletIdCodec.decodePortletName(
+				staticPortletId);
+
+			if (staticPortletId.equals(portletId) ||
+				decodedStaticPortletName.equals(portletId)) {
+
 				return true;
 			}
 		}
