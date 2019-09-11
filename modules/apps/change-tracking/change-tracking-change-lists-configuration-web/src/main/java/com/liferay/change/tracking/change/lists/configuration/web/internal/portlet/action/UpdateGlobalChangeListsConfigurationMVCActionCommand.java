@@ -81,8 +81,7 @@ public class UpdateGlobalChangeListsConfigurationMVCActionCommand
 			hideDefaultSuccessMessage(actionRequest);
 
 			SessionMessages.add(
-				_portal.getHttpServletRequest(actionRequest),
-				"requestProcessed",
+				actionRequest, "requestProcessed",
 				LanguageUtil.get(
 					themeDisplay.getLocale(),
 					"the-configuration-has-been-saved"));
