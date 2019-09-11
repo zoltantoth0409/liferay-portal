@@ -152,9 +152,9 @@ public class FlagsTag extends IncludeTag {
 	}
 
 	private Map<String, Object> _getData() throws PortalException {
-		Map<String, Object> data = new HashMap<>(2);
+		Map<String, Object> data = new HashMap<>();
 
-		Map<String, Object> context = new HashMap<>(1);
+		Map<String, Object> context = new HashMap<>();
 
 		context.put(
 			"namespace", PortalUtil.getPortletNamespace(PortletKeys.FLAGS));
