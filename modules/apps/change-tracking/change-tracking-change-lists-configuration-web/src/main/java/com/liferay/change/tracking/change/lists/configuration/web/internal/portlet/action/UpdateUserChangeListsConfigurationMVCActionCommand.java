@@ -50,7 +50,8 @@ public class UpdateUserChangeListsConfigurationMVCActionCommand
 
 	@Override
 	protected void doProcessAction(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			actionRequest);

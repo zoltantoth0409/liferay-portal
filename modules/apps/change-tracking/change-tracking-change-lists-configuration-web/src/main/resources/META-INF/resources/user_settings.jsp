@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@ include file="/init.jsp" %>
+
 <div class="sheet-header">
 	<h2 class="sheet-title"><liferay-ui:message key="user-settings" /></h2>
 </div>
