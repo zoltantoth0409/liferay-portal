@@ -32,6 +32,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -54,11 +56,15 @@ public class UpdateGlobalChangeListsConfigurationMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
+			actionRequest);
+
 		boolean enableChangeLists = ParamUtil.getBoolean(
 			actionRequest, "enableChangeLists");
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		if (enableChangeLists) {
 			_ctPreferencesLocalService.getCTPreferences(
@@ -81,10 +87,9 @@ public class UpdateGlobalChangeListsConfigurationMVCActionCommand
 			hideDefaultSuccessMessage(actionRequest);
 
 			SessionMessages.add(
-				actionRequest, "requestProcessed",
+				httpServletRequest, "requestProcessed",
 				LanguageUtil.get(
-					themeDisplay.getLocale(),
-					"the-configuration-has-been-saved"));
+					httpServletRequest, "the-configuration-has-been-saved"));
 
 			PortletURL portletURL = PortletURLFactoryUtil.create(
 				actionRequest, CTPortletKeys.CHANGE_LISTS,
@@ -96,8 +101,7 @@ public class UpdateGlobalChangeListsConfigurationMVCActionCommand
 			SessionMessages.add(
 				actionRequest, "requestProcessed",
 				LanguageUtil.get(
-					themeDisplay.getLocale(),
-					"the-configuration-has-been-saved"));
+					httpServletRequest, "the-configuration-has-been-saved"));
 		}
 	}
 
