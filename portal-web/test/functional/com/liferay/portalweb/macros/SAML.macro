@@ -84,7 +84,7 @@ definition {
 	macro connectSPAndIdP {
 		Navigator.openSpecificURL(url = "${spURL}");
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.loginPG(
 				password = "test",
 				specificURL = "${spURL}",
@@ -118,7 +118,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${idpURL}");
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.loginPG(
 				password = "test",
 				specificURL = "${idpURL}",
