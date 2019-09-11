@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -11,15 +12,4 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-package com.liferay.change.tracking.change.lists.configuration.web.internal.constants;
-
-/**
- * @author Samuel Trong Tran
- */
-public class CTConfigurationConstants {
-
-	public static final String CHANGE_LISTS_CONFIGURATION_DISPLAY_CONTEXT =
-		"CHANGE_LISTS_CONFIGURATION_DISPLAY_CONTEXT";
-
-}
+--%>

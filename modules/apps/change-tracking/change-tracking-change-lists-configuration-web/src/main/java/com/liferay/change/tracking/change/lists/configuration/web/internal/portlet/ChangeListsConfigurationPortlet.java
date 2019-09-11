@@ -14,11 +14,8 @@
 
 package com.liferay.change.tracking.change.lists.configuration.web.internal.portlet;
 
-import com.liferay.change.tracking.change.lists.configuration.web.internal.constants.CTConfigurationConstants;
-import com.liferay.change.tracking.change.lists.configuration.web.internal.display.context.ChangeListsConfigurationDisplayContext;
 import com.liferay.change.tracking.configuration.CTConfiguration;
 import com.liferay.change.tracking.constants.CTPortletKeys;
-import com.liferay.change.tracking.service.CTPreferencesLocalService;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -26,8 +23,9 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.UserBag;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
 
@@ -43,7 +41,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Modified;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Máté Thurzó
@@ -54,6 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"com.liferay.portlet.css-class-wrapper=portlet-change-lists-configuration",
 		"com.liferay.portlet.display-category=category.hidden",
+		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"javax.portlet.display-name=Settings",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
@@ -73,21 +71,17 @@ public class ChangeListsConfigurationPortlet extends MVCPortlet {
 
 		try {
 			checkPermissions(renderRequest);
-
-			ChangeListsConfigurationDisplayContext
-				changeListsConfigurationDisplayContext =
-					new ChangeListsConfigurationDisplayContext(
-						_portal.getHttpServletRequest(renderRequest),
-						renderResponse, _ctPreferencesLocalService);
-
-			renderRequest.setAttribute(
-				CTConfigurationConstants.
-					CHANGE_LISTS_CONFIGURATION_DISPLAY_CONTEXT,
-				changeListsConfigurationDisplayContext);
 		}
 		catch (Exception e) {
 			throw new PortletException(
 				"Unable to check permissions: " + e.getMessage(), e);
+		}
+
+		boolean configurationSaved = ParamUtil.getBoolean(
+			renderRequest, "configurationSaved");
+
+		if (configurationSaved) {
+			SessionMessages.add(renderRequest, "configurationSaved");
 		}
 
 		super.render(renderRequest, renderResponse);
@@ -129,11 +123,5 @@ public class ChangeListsConfigurationPortlet extends MVCPortlet {
 	}
 
 	private CTConfiguration _ctConfiguration;
-
-	@Reference
-	private CTPreferencesLocalService _ctPreferencesLocalService;
-
-	@Reference
-	private Portal _portal;
 
 }
