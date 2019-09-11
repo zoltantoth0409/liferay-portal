@@ -1010,7 +1010,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.petra.json.web.service.client.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -1091,7 +1091,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.osgi.web.servlet.jsp.compiler.jar!javax.servlet.jsp.jar</file-name>
-				<version>2.3.3-b02.LIFERAY-PATCHED-7</version>
+				<version>2.3.3-b02.LIFERAY-PATCHED-9</version>
 				<project-name>JSP implementation</project-name>
 				<project-url>http://glassfish.org</project-url>
 				<licenses>
@@ -2699,7 +2699,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.store.s3.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -2948,8 +2948,7 @@
 				<project-name>JGraphT - Core</project-name>
 				<licenses>
 					<license>
-						<license-name>Eclipse Public License (EPL) 1.0</license-name>
-						<license-url>http://www.eclipse.org/legal/epl-v10.html</license-url>
+						<license-name>http://jgrapht.sourceforge.net/LGPL.html, http://www.eclipse.org/legal/epl-v10.html</license-name>
 					</license>
 				</licenses>
 			</library>
@@ -3003,7 +3002,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.push.notifications.sender.apple.jar!jackson-databind.jar</file-name>
-				<version>2.9.9</version>
+				<version>2.9.9.1</version>
 				<project-name>jackson-databind</project-name>
 				<project-url>http://github.com/FasterXML/jackson</project-url>
 				<licenses>
@@ -3209,8 +3208,7 @@
 				<project-url>http://bnd.bndtools.org/</project-url>
 				<licenses>
 					<license>
-						<license-name>Apache License, Version 2.0</license-name>
-						<license-url>http://www.opensource.org/licenses/apache2.0.php</license-url>
+						<license-name>http://www.opensource.org/licenses/apache2.0.php; description="Apache License, Version 2.0"; link="http://www.apache.org/licenses/LICENSE-2.0"</license-name>
 					</license>
 				</licenses>
 			</library>
