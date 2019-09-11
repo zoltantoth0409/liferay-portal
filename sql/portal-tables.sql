@@ -556,8 +556,9 @@ create table Image (
 
 create table Layout (
 	mvccVersion LONG default 0 not null,
+	ctCollectionId LONG default 0 not null,
 	uuid_ VARCHAR(75) null,
-	plid LONG not null primary key,
+	plid LONG not null,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
@@ -589,7 +590,8 @@ create table Layout (
 	layoutPrototypeLinkEnabled BOOLEAN,
 	sourcePrototypeLayoutUuid VARCHAR(75) null,
 	publishDate DATE null,
-	lastPublishDate DATE null
+	lastPublishDate DATE null,
+	primary key (plid, ctCollectionId)
 );
 
 create table LayoutBranch (
