@@ -160,7 +160,7 @@ public class FlagsTag extends IncludeTag {
 		context.put(
 			"namespace", PortalUtil.getPortletNamespace(PortletKeys.FLAGS));
 
-		Map<String, Object> props = new HashMap<>(10);
+		Map<String, Object> props = new HashMap<>();
 
 		props.put("baseData", _getDataJSONObject(themeDisplay));
 
