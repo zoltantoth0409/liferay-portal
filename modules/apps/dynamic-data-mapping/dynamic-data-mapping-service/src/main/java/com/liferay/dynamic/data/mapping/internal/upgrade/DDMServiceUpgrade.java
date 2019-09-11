@@ -183,8 +183,7 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 				UpgradeDDMFormFieldValidation(_jsonFactory));
 
 		registry.register(
-			"2.0.5", "3.1.3",
-			new UpgradeDDMDataProviderInstance(_jsonFactory));
+			"2.0.5", "3.1.3", new UpgradeDDMDataProviderInstance(_jsonFactory));
 	}
 
 	@Reference
