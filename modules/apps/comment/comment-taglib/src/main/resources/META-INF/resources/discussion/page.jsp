@@ -158,7 +158,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 													</svg>
 												</span>
 
-												<strong class="lead">INFO:</strong><liferay-ui:message key="comments-are-unable-to-show-in-staged-sites" />
+												<strong class="lead">INFO:</strong><liferay-ui:message key="comments-are-unavailable-in-staged-sites" />
 											</div>
 										</c:when>
 										<c:otherwise>
