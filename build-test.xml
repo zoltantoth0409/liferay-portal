@@ -7109,12 +7109,6 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 
 liferay.home=${liferay.home}
 
-admin.email.from.address=test@liferay.com
-
-announcements.email.to.address=noreply@liferay.com
-
-mail.send.blacklist=
-
 plugin.notifications.enabled=false
 
 jdbc.default.jndi.name=
@@ -7151,6 +7145,8 @@ index.on.startup=true
 
 setup.wizard.enabled=false
 
+mail.send.blacklist=
+
 mail.session.jndi.name=
 
 module.framework.properties.initial.system.check.enabled=true
@@ -7165,7 +7161,11 @@ virtual.hosts.default.site.name=
 
 com.liferay.portal.servlet.filters.strip.StripFilter=true
 
-web.server.http.port=8080</echo>
+web.server.http.port=8080
+
+admin.email.from.address=test@liferay.com
+
+announcements.email.to.address=noreply@liferay.com</echo>
 
 		<if>
 			<equals arg1="${database.type}" arg2="oracle" />
