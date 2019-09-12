@@ -100,7 +100,7 @@ public class DataDefinitionUtil {
 			"name", fieldType.getName()
 		).put(
 			"settingsContext",
-			_createFieldContext(
+			_createFieldContextJSONObject(
 				ddmFormFieldTypeServicesTracker, ddmFormTemplateContextFactory,
 				ddmFormValuesFactory, httpServletRequest,
 				acceptLanguage.getPreferredLocale(), fieldType.getName())
@@ -171,7 +171,7 @@ public class DataDefinitionUtil {
 		).toString();
 	}
 
-	private static JSONObject _createFieldContext(
+	private static JSONObject _createFieldContextJSONObject(
 		DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker,
 		DDMFormTemplateContextFactory ddmFormTemplateContextFactory,
 		DDMFormValuesFactory ddmFormValuesFactory,
