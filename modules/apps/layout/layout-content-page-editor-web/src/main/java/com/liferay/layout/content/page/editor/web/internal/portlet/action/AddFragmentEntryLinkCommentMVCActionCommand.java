@@ -80,6 +80,10 @@ public class AddFragmentEntryLinkCommentMVCActionCommand
 
 		WorkflowUtil.withoutWorkflow(
 			() -> {
+				_commentManager.subscribeDiscussion(
+					user.getUserId(), themeDisplay.getScopeGroupId(),
+					FragmentEntryLink.class.getName(), fragmentEntryLinkId);
+
 				long commentId = 0;
 
 				Function<String, ServiceContext> serviceContextFunction =
@@ -99,10 +103,6 @@ public class AddFragmentEntryLinkCommentMVCActionCommand
 
 						return serviceContext;
 					});
-
-				_commentManager.subscribeDiscussion(
-					user.getUserId(), themeDisplay.getScopeGroupId(),
-					FragmentEntryLink.class.getName(), fragmentEntryLinkId);
 
 				if (parentCommentId == 0) {
 					_commentManager.subscribeDiscussion(
