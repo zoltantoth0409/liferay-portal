@@ -15,11 +15,12 @@
 package com.liferay.portal.tools;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.xml.SAXReaderFactory;
@@ -292,9 +293,8 @@ public class ToolsUtil {
 			String content, String packagePath)
 		throws IOException {
 
-		String imports = JavaImportsFormatter.getImports(content);
-
-		return stripFullyQualifiedClassNames(content, imports, packagePath);
+		return stripFullyQualifiedClassNames(
+			content, JavaImportsFormatter.getImports(content), packagePath);
 	}
 
 	public static String stripFullyQualifiedClassNames(
@@ -342,28 +342,18 @@ public class ToolsUtil {
 					continue;
 				}
 
-				while (true) {
-					x = afterImportsContent.indexOf(
-						importPackageAndClassName, x + 1);
+				Pattern pattern = Pattern.compile(
+					StringBundler.concat(
+						"[^\\w.](",
+						StringUtil.replace(
+							importPackageAndClassName, CharPool.PERIOD,
+							"\\.\\s*"),
+						")\\W"));
 
-					if (x == -1) {
-						break;
-					}
+				Matcher matcher = pattern.matcher(afterImportsContent);
 
-					char previousChar = afterImportsContent.charAt(x - 1);
-
-					if (Character.isLetterOrDigit(previousChar) ||
-						(previousChar == CharPool.PERIOD)) {
-
-						continue;
-					}
-
-					char nextChar = afterImportsContent.charAt(
-						x + importPackageAndClassName.length());
-
-					if (Character.isLetterOrDigit(nextChar)) {
-						continue;
-					}
+				while (matcher.find()) {
+					x = matcher.start();
 
 					int y = afterImportsContent.lastIndexOf(
 						CharPool.NEW_LINE, x);
@@ -384,14 +374,12 @@ public class ToolsUtil {
 						continue;
 					}
 
-					String importClassName =
-						importPackageAndClassName.substring(
-							importPackageAndClassName.lastIndexOf(
-								StringPool.PERIOD) + 1);
+					int z = importPackageAndClassName.lastIndexOf(
+						StringPool.PERIOD);
 
 					afterImportsContent = StringUtil.replaceFirst(
-						afterImportsContent, importPackageAndClassName,
-						importClassName, x);
+						afterImportsContent, matcher.group(1),
+						importPackageAndClassName.substring(z + 1), x);
 				}
 			}
 
@@ -462,26 +450,6 @@ public class ToolsUtil {
 		content = importsFormatter.format(content, packagePath, className);
 
 		// Beautify
-
-		String jalopyIgnoreStart = "/* @start-ignoring-jalopy@ */";
-
-		int start = content.indexOf(jalopyIgnoreStart);
-
-		String jalopyIgnoreEnd = "/* @stop-ignoring-jalopy@ */";
-
-		String jalopyIgnoreBody = null;
-
-		if (start != -1) {
-			start += jalopyIgnoreStart.length();
-
-			int end = content.indexOf(jalopyIgnoreEnd);
-
-			if (end != -1) {
-				jalopyIgnoreBody = content.substring(start, end);
-
-				content = content.substring(0, start) + content.substring(end);
-			}
-		}
 
 		StringBuffer sb = new StringBuffer();
 
@@ -560,18 +528,6 @@ public class ToolsUtil {
 		boolean formatSuccess = jalopy.format();
 
 		String newContent = sb.toString();
-
-		if (jalopyIgnoreBody != null) {
-			start = newContent.indexOf(jalopyIgnoreStart);
-
-			start = newContent.lastIndexOf('\n', start);
-
-			int end = newContent.indexOf(jalopyIgnoreEnd);
-
-			newContent =
-				newContent.substring(0, start) + jalopyIgnoreBody +
-					newContent.substring(end + jalopyIgnoreEnd.length());
-		}
 
 		// Remove double blank lines after the package or last import
 
@@ -748,8 +704,10 @@ public class ToolsUtil {
 		String imports, String afterImportsContent, String packagePath) {
 
 		Pattern pattern1 = Pattern.compile(
-			"\n(.*)" + StringUtil.replace(packagePath, CharPool.PERIOD, "\\.") +
-				"\\.([A-Z]\\w+)\\W");
+			StringBundler.concat(
+				"\n(.*)",
+				StringUtil.replace(packagePath, CharPool.PERIOD, "\\.\\s*"),
+				"\\.\\s*([A-Z]\\w+)\\W"));
 
 		outerLoop:
 		while (true) {
