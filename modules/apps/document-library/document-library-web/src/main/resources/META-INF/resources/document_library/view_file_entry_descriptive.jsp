@@ -87,7 +87,9 @@ rowURL.setParameter("fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 <span class="h5 text-default">
 	<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= latestFileVersion.getStatus() %>" />
 </span>
-
+<span>
+	<%= DLUtil.getAbsolutePath(liferayPortletRequest, fileEntry.getFolderId()).replace(StringPool.RAQUO_CHAR, StringPool.GREATER_THAN)%>
+</span>
 <c:if test="<%= latestFileVersion.getModel() instanceof DLFileVersion %>">
 
 	<%

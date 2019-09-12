@@ -50,3 +50,6 @@ rowURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
 		<%= folder.getName() %>
 	</aui:a>
 </h4>
+<span>
+    <%= DLUtil.getAbsolutePath(liferayPortletRequest, folder.getParentFolderId()).replace(StringPool.RAQUO_CHAR, StringPool.GREATER_THAN)%>
+</span>
