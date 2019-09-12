@@ -61,6 +61,7 @@ import ${import};
 
 <#if entity.hasRemoteService() && !stringUtil.equals(sessionTypeName, "Local")>
 	@AccessControlled
+
 	<#if entity.isJsonEnabled()>
 		@JSONWebService
 	</#if>
