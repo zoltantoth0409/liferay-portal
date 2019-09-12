@@ -808,7 +808,7 @@ public class LayoutStagedModelDataHandler
 		importLayoutPageTemplateStructures(
 			portletDataContext, layout, importedLayout);
 
-		importLayoutSEOEntrys(portletDataContext, layout);
+		importLayoutSEOEntries(portletDataContext, layout);
 
 		portletDataContext.importClassedModel(layout, importedLayout);
 	}
@@ -1624,7 +1624,7 @@ public class LayoutStagedModelDataHandler
 		portletDataContext.setPortletId(originalPortletId);
 	}
 
-	protected void importLayoutSEOEntrys(
+	protected void importLayoutSEOEntries(
 			PortletDataContext portletDataContext, Layout layout)
 		throws PortletDataException {
 
