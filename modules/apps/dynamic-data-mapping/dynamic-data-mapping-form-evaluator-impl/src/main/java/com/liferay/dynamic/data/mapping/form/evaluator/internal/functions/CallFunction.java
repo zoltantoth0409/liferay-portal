@@ -252,7 +252,7 @@ public class CallFunction extends BaseDDMFormRuleFunction {
 
 			JSONArray valueJSONArray = _jsonFactory.createJSONArray();
 
-			valueJSONArray.put(keyValuePair.getValue());
+			valueJSONArray.put(keyValuePair.getKey());
 
 			ddmFormFieldEvaluationResult.setValue(valueJSONArray);
 
