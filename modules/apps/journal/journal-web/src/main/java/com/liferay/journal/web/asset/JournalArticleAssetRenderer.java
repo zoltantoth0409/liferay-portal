@@ -444,6 +444,7 @@ public class JournalArticleAssetRenderer
 			sb.append(groupFriendlyURL);
 			sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
 			sb.append(_article.getUrlTitle(themeDisplay.getLocale()));
+
 			if (portletId.startsWith(PortletKeys.MY_WORKFLOW_TASK)) {
 				sb.append(StringPool.SLASH);
 				sb.append(_article.getVersion());
