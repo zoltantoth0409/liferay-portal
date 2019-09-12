@@ -847,11 +847,10 @@ definition {
 		var portalURL = PropsUtil.get("portal.url");
 
 		Page.viewTranslationsPG(
-			defaultLanguageLocalizationMessage = "Display the page in English (United States).",
-			pageName = "Página2",
-			preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
-			sitePageURL = "${portalURL}/es/web/site-name-staging/page2",
-			translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
+			childPageName = "Página2",
+			pageLocalizationMessage = "This page is displayed in Spanish (Spain). Display the page in English (United States). Set Spanish (Spain) as your preferred language.",
+			pageLocalizationPreferredLanguage = "Set Spanish (Spain) as your preferred language.",
+			sitePageURL = "${portalURL}/es/web/site-name-staging/page2");
 	}
 
 }
