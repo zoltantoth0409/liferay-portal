@@ -89,7 +89,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "2.4.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "2.2.0"
-	compileOnly project(":apps:web-experience:layout:layout-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.item.selector.api", version: "1.0.0"
 }
 
 transpileJS {
