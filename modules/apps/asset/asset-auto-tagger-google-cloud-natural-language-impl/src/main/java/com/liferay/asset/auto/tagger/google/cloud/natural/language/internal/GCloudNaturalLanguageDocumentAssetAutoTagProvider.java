@@ -56,7 +56,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTagProvider
 					Locale locale = LocaleUtil.fromLanguageId(
 						assetEntry.getDefaultLanguageId());
 
-					return _gCloudNaturalLanguageDocumentAssetAutoTagger.
+					return _gCloudNaturalLanguageDocumentAssetAutoTaggerImpl.
 						getTagNames(
 							assetEntry.getCompanyId(),
 							() -> textExtractor.extract(
@@ -102,7 +102,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTagProvider
 
 	@Reference
 	private GCloudNaturalLanguageDocumentAssetAutoTaggerImpl
-		_gCloudNaturalLanguageDocumentAssetAutoTagger;
+		_gCloudNaturalLanguageDocumentAssetAutoTaggerImpl;
 
 	@Reference
 	private TextExtractorTracker _textExtractorTracker;
