@@ -259,12 +259,12 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 
 	@Override
 	protected UserAccount testGetSiteUserAccountsPage_addUserAccount(
-			Long webSiteId, UserAccount userAccount)
+			Long siteId, UserAccount userAccount)
 		throws Exception {
 
 		userAccount = _addUserAccount(userAccount);
 
-		UserLocalServiceUtil.addGroupUser(webSiteId, userAccount.getId());
+		UserLocalServiceUtil.addGroupUser(siteId, userAccount.getId());
 
 		return userAccount;
 	}
