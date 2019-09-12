@@ -245,17 +245,6 @@ public class DataDefinitionUtil {
 		return npmResolver.resolveModuleName(moduleName);
 	}
 
-	private static String _translate(
-		String key, ResourceBundle resourceBundle) {
-
-		if (Validator.isNull(key)) {
-			return StringPool.BLANK;
-		}
-
-		return GetterUtil.getString(
-			ResourceBundleUtil.getString(resourceBundle, key), key);
-	}
-
 	private static void _setTypeDDMFormFieldValue(
 		DDMFormValues ddmFormValues, String type) {
 
@@ -333,6 +322,17 @@ public class DataDefinitionUtil {
 		).put(
 			"ruleType", dataDefinitionRule.getRuleType()
 		);
+	}
+
+	private static String _translate(
+		String key, ResourceBundle resourceBundle) {
+
+		if (Validator.isNull(key)) {
+			return StringPool.BLANK;
+		}
+
+		return GetterUtil.getString(
+			ResourceBundleUtil.getString(resourceBundle, key), key);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
