@@ -134,9 +134,9 @@ public class DataDefinitionResourceImpl
 	public String getDataDefinitionDataDefinitionFieldFieldType()
 		throws Exception {
 
-		Collection<FieldType> fieldTypes = _fieldTypeTracker.getFieldTypes();
-
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
+
+		Collection<FieldType> fieldTypes = _fieldTypeTracker.getFieldTypes();
 
 		Stream<FieldType> stream = fieldTypes.stream();
 
