@@ -15,7 +15,7 @@ definition {
 		property portal.version = "6.2.5";
 		property setup.wizard.enabled = "true";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@description = "This is a use case for LPS-73277."
@@ -26,7 +26,7 @@ definition {
 		property portal.version = "7.0.4";
 		property setup.wizard.enabled = "true";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@description = "This is a use case for LPS-73277."
@@ -37,7 +37,7 @@ definition {
 		property setup.wizard.enabled = "true";
 		property test.run.environment = "EE";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@description = "This is a use case for LPS-73277."
@@ -47,7 +47,7 @@ definition {
 		property portal.version = "7.0.10.6";
 		property setup.wizard.enabled = "true";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@description = "This is a use case for LPS-73277."
@@ -57,7 +57,7 @@ definition {
 		property portal.version = "6.2.10.15";
 		property setup.wizard.enabled = "true";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@description = "This is a use case for LPS-73277."
@@ -67,7 +67,7 @@ definition {
 		property portal.version = "6.2.10.21";
 		property setup.wizard.enabled = "true";
 
-		Upgrade.resetTestUserPassword();
+		Upgrade.resetTestUserPassword(administratorEmail = "test@liferay.com");
 	}
 
 	@priority = "5"
