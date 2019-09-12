@@ -178,12 +178,11 @@ public class DataDefinitionUtil {
 		HttpServletRequest httpServletRequest, Locale locale, String type) {
 
 		try {
-			Class<?> ddmFormFieldTypeSettingsClass =
-				_getDDMFormFieldTypeSettingsClass(
-					ddmFormFieldTypeServicesTracker, type);
+			DDMFormFieldType ddmFormFieldType =
+				ddmFormFieldTypeServicesTracker.getDDMFormFieldType(type);
 
 			DDMForm ddmFormFieldTypeSettingsDDMForm = DDMFormFactory.create(
-				ddmFormFieldTypeSettingsClass);
+				ddmFormFieldType.getDDMFormFieldTypeSettings());
 
 			DDMFormRenderingContext ddmFormRenderingContext =
 				new DDMFormRenderingContext();
@@ -208,7 +207,7 @@ public class DataDefinitionUtil {
 					ddmFormTemplateContextFactory.create(
 						ddmFormFieldTypeSettingsDDMForm,
 						DDMFormLayoutFactory.create(
-							ddmFormFieldTypeSettingsClass),
+							ddmFormFieldType.getDDMFormFieldTypeSettings()),
 						ddmFormRenderingContext)));
 		}
 		catch (Exception e) {
@@ -223,16 +222,6 @@ public class DataDefinitionUtil {
 	private static String[] _getAvailableLanguageIds(JSONObject jsonObject) {
 		return JSONUtil.toStringArray(
 			jsonObject.getJSONArray("availableLanguageIds"));
-	}
-
-	private static Class<?> _getDDMFormFieldTypeSettingsClass(
-		DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker,
-		String type) {
-
-		DDMFormFieldType ddmFormFieldType =
-			ddmFormFieldTypeServicesTracker.getDDMFormFieldType(type);
-
-		return ddmFormFieldType.getDDMFormFieldTypeSettings();
 	}
 
 	private static String _resolveModuleName(
