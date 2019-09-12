@@ -31,7 +31,7 @@ List<ScreenNavigationCategory> screenNavigationCategories = (List<ScreenNavigati
 List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntry>)request.getAttribute("liferay-frontend:screen-navigation:screenNavigationEntries");
 %>
 
-<c:if test="<%= screenNavigationCategories.size() > 1 %>">
+<c:if test="<%= (screenNavigationCategories != null) && (screenNavigationCategories.size() > 1) %>">
 	<div class="page-header">
 		<div class="<%= headerContainerCssClass %>">
 			<nav>
@@ -46,7 +46,7 @@ List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntr
 					%>
 
 						<li class="nav-item">
-							<a class="nav-link <%= Objects.equals(selectedScreenNavigationCategory.getCategoryKey(), screenNavigationCategory.getCategoryKey()) ? "active" : StringPool.BLANK %>" href="<%= screenNavigationCategoryURL.toString() %>"><%= screenNavigationCategory.getLabel(themeDisplay.getLocale()) %></a>
+							<a class="nav-link <%= ((selectedScreenNavigationCategory != null) && Objects.equals(selectedScreenNavigationCategory.getCategoryKey(), screenNavigationCategory.getCategoryKey())) ? "active" : StringPool.BLANK %>" href="<%= screenNavigationCategoryURL.toString() %>"><%= screenNavigationCategory.getLabel(themeDisplay.getLocale()) %></a>
 						</li>
 
 					<%
@@ -59,48 +59,50 @@ List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntr
 	</div>
 </c:if>
 
-<div class="<%= containerWrapperCssClass %>">
-	<div class="row">
-		<c:if test="<%= screenNavigationEntries.size() > 1 %>">
-			<div class="<%= navCssClass %>">
-				<nav class="<%= menubarCssClass %>">
-					<a aria-controls="<%= id %>" aria-expanded="false" class="menubar-toggler" data-toggle="collapse" href="#<%= id %>" role="button">
-						<liferay-ui:message key="<%= selectedScreenNavigationEntry.getEntryKey() %>" />
+<c:if test="<%= (selectedScreenNavigationEntry != null) && (screenNavigationEntries != null) %>">
+	<div class="<%= containerWrapperCssClass %>">
+		<div class="row">
+			<c:if test="<%= screenNavigationEntries.size() > 1 %>">
+				<div class="<%= navCssClass %>">
+					<nav class="<%= menubarCssClass %>">
+						<a aria-controls="<%= id %>" aria-expanded="false" class="menubar-toggler" data-toggle="collapse" href="#<%= id %>" role="button">
+							<liferay-ui:message key="<%= selectedScreenNavigationEntry.getEntryKey() %>" />
 
-						<aui:icon image="caret-bottom" markupView="lexicon" />
-					</a>
+							<aui:icon image="caret-bottom" markupView="lexicon" />
+						</a>
 
-					<div class="collapse menubar-collapse" id="<%= id %>">
-						<ul class="nav nav-nested">
+						<div class="collapse menubar-collapse" id="<%= id %>">
+							<ul class="nav nav-nested">
 
-							<%
-							for (ScreenNavigationEntry screenNavigationEntry : screenNavigationEntries) {
-								PortletURL screenNavigationEntryURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+								<%
+								for (ScreenNavigationEntry screenNavigationEntry : screenNavigationEntries) {
+									PortletURL screenNavigationEntryURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
 
-								screenNavigationEntryURL.setParameter("screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey());
-								screenNavigationEntryURL.setParameter("screenNavigationEntryKey", screenNavigationEntry.getEntryKey());
-							%>
+									screenNavigationEntryURL.setParameter("screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey());
+									screenNavigationEntryURL.setParameter("screenNavigationEntryKey", screenNavigationEntry.getEntryKey());
+								%>
 
-								<li class="nav-item">
-									<a class="nav-link <%= Objects.equals(selectedScreenNavigationEntry.getEntryKey(), screenNavigationEntry.getEntryKey()) ? "active" : StringPool.BLANK %>" href="<%= screenNavigationEntryURL %>"><%= screenNavigationEntry.getLabel(themeDisplay.getLocale()) %></a>
-								</li>
+									<li class="nav-item">
+										<a class="nav-link <%= Objects.equals(selectedScreenNavigationEntry.getEntryKey(), screenNavigationEntry.getEntryKey()) ? "active" : StringPool.BLANK %>" href="<%= screenNavigationEntryURL %>"><%= screenNavigationEntry.getLabel(themeDisplay.getLocale()) %></a>
+									</li>
 
-							<%
-							}
-							%>
+								<%
+								}
+								%>
 
-						</ul>
-					</div>
-				</nav>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</c:if>
+
+			<div class="<%= (screenNavigationEntries.size() > 1) ? containerCssClass : fullContainerCssClass %>">
+
+				<%
+				selectedScreenNavigationEntry.render(request, PipingServletResponse.createPipingServletResponse(pageContext));
+				%>
+
 			</div>
-		</c:if>
-
-		<div class="<%= (screenNavigationEntries.size() > 1) ? containerCssClass : fullContainerCssClass %>">
-
-			<%
-			selectedScreenNavigationEntry.render(request, PipingServletResponse.createPipingServletResponse(pageContext));
-			%>
-
 		</div>
 	</div>
-</div>
+</c:if>
