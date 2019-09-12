@@ -137,7 +137,6 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 
 		UserAccount userAccount1 = testGetSiteUserAccountsPage_addUserAccount(
 			siteId, randomUserAccount());
-
 		UserAccount userAccount2 = testGetSiteUserAccountsPage_addUserAccount(
 			siteId, randomUserAccount());
 
@@ -273,7 +272,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		throws Exception {
 
 		return _addUserAccount(
-			randomUserAccount(), testGetSiteUserAccountsPage_getSiteId());
+			testGetSiteUserAccountsPage_getSiteId(), randomUserAccount());
 	}
 
 	@Override
@@ -282,7 +281,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		throws Exception {
 
 		userAccount = _addUserAccount(
-			userAccount, testGetSiteUserAccountsPage_getSiteId());
+			testGetSiteUserAccountsPage_getSiteId(), userAccount);
 
 		UserLocalServiceUtil.addOrganizationUser(
 			organizationId, userAccount.getId());
@@ -300,7 +299,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			Long siteId, UserAccount userAccount)
 		throws Exception {
 
-		return _addUserAccount(userAccount, siteId);
+		return _addUserAccount(siteId, userAccount);
 	}
 
 	@Override
@@ -311,7 +310,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	@Override
 	protected UserAccount testGetUserAccount_addUserAccount() throws Exception {
 		return _addUserAccount(
-			randomUserAccount(), testGetSiteUserAccountsPage_getSiteId());
+			testGetSiteUserAccountsPage_getSiteId(), randomUserAccount());
 	}
 
 	@Override
@@ -319,7 +318,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			UserAccount userAccount)
 		throws Exception {
 
-		return _addUserAccount(userAccount, testGroup.getGroupId());
+		return _addUserAccount(testGroup.getGroupId(), userAccount);
 	}
 
 	@Override
@@ -329,7 +328,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		return testGetMyUserAccount_addUserAccount();
 	}
 
-	private UserAccount _addUserAccount(UserAccount userAccount, long groupId)
+	private UserAccount _addUserAccount(long siteId, UserAccount userAccount)
 		throws Exception {
 
 		User user = UserLocalServiceUtil.addUser(
@@ -352,7 +351,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 
 		_users.add(UserLocalServiceUtil.getUser(user.getUserId()));
 
-		UserLocalServiceUtil.addGroupUser(groupId, userAccount.getId());
+		UserLocalServiceUtil.addGroupUser(siteId, userAccount.getId());
 
 		return userAccount;
 	}
