@@ -158,11 +158,11 @@ public class JsonObjectIndexedRecordConverter {
 		if (AvroUtils.isSameType(fieldSchema, AvroUtils._boolean())) {
 			return _asBoolean(jsonValue);
 		}
-		else if (AvroUtils.isSameType(fieldSchema, AvroUtils._decimal())) {
-			return _asBigDecimal(jsonValue);
-		}
 		else if (AvroUtils.isSameType(fieldSchema, AvroUtils._bytes())) {
 			return avroConverter.convertToAvro(_asText(jsonValue));
+		}
+		else if (AvroUtils.isSameType(fieldSchema, AvroUtils._decimal())) {
+			return _asBigDecimal(jsonValue);
 		}
 		else if (AvroUtils.isSameType(fieldSchema, AvroUtils._double())) {
 			return _asDouble(jsonValue);
