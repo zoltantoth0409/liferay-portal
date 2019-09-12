@@ -152,7 +152,7 @@ public class FieldConstants {
 			int integerValue = GetterUtil.getInteger(value);
 
 			if (integerValue == 0) {
-				return GetterUtil.getLong(value);
+				return value;
 			}
 
 			return integerValue;
