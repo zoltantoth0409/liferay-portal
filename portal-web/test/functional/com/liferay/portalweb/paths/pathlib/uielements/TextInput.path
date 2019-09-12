@@ -120,7 +120,7 @@
 </tr>
 <tr>
 	<td>EXPIRATION_DATE</td>
-	<td>//input[contains(@id,'expirationDate')]</td>
+	<td>//input[contains(@id,'expirationDate')and @placeholder='mm/dd/yyyy']</td>
 	<td></td>
 </tr>
 <tr>
