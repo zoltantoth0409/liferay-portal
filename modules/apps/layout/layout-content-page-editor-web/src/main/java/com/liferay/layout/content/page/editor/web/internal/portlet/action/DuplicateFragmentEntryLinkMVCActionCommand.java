@@ -197,7 +197,7 @@ public class DuplicateFragmentEntryLinkMVCActionCommand
 						"deleted";
 			}
 			else if (pe instanceof PortletIdException) {
-				errorMessage = "non-instanceable-widget-cannot-be-duplicated";
+				errorMessage = "uninstanceable-widget-cannot-be-duplicated";
 			}
 
 			ThemeDisplay themeDisplay =
