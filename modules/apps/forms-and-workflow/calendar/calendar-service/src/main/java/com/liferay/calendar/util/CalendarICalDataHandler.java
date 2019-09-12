@@ -542,6 +542,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		return iCalCalendar;
 	}
 
+	protected DateTime toICalDateTime(long time) {
+		throw new UnsupportedOperationException();
+	}
+
 	protected DateTime toICalDateTime(long time, TimeZone timeZone) {
 		DateTime dateTime = new DateTime();
 
@@ -763,6 +767,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		}
 
 		return vEvent;
+	}
+
+	protected ExDate toICalExDate(Recurrence recurrence) {
+		throw new UnsupportedOperationException();
 	}
 
 	protected ExDate toICalExDate(Recurrence recurrence, TimeZone timeZone) {
