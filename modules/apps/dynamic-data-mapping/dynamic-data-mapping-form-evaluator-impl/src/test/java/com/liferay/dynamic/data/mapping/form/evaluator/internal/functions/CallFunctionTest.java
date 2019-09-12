@@ -62,7 +62,7 @@ public class CallFunctionTest {
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		jsonArray.put("value_1");
+		jsonArray.put("key_1");
 
 		Object value = ddmFormFieldEvaluationResult.getValue();
 

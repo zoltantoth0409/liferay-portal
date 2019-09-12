@@ -71,6 +71,8 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 	public void testSelectCallGetDataProviderInstanceOutputParameters()
 		throws Exception {
 
+		String outputParameterId = StringUtil.randomString();
+
 		List<DDMDataProviderOutputParametersSettings> outputParametersSettings =
 			ListUtil.fromArray(
 				new DDMDataProviderOutputParametersSettings[] {
@@ -78,7 +80,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 						@Override
 						public String outputParameterId() {
-							return StringUtil.randomString();
+							return outputParameterId;
 						}
 
 						@Override
@@ -108,7 +110,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 		Assert.assertEquals(1, jsonArray.length());
 
-		Assert.assertEquals("Countries", jsonArray.getString(0));
+		Assert.assertEquals(outputParameterId, jsonArray.getString(0));
 	}
 
 	@Test
