@@ -212,12 +212,12 @@ public class FragmentEntryLinkDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/fragment/view_fragment_entry_usages");
+		portletURL.setParameter("navigation", getNavigation());
 		portletURL.setParameter("redirect", getRedirect());
 		portletURL.setParameter(
 			"fragmentCollectionId", String.valueOf(getFragmentCollectionId()));
 		portletURL.setParameter(
 			"fragmentEntryId", String.valueOf(getFragmentEntryId()));
-		portletURL.setParameter("navigation", getNavigation());
 
 		return portletURL;
 	}
