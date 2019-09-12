@@ -144,7 +144,7 @@ public class FlagsTag extends IncludeTag {
 			httpServletRequest.setAttribute(
 				"liferay-flags:flags:message", _getMessage());
 			httpServletRequest.setAttribute(
-				"liferay-flags:flags:onlyIcon", !label);
+				"liferay-flags:flags:onlyIcon", !_label);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -181,7 +181,7 @@ public class FlagsTag extends IncludeTag {
 			props.put("message", message);
 		}
 
-		props.put("onlyIcon", !label);
+		props.put("onlyIcon", !_label);
 		props.put(
 			"pathTermsOfUse",
 			PortalUtil.getPathMain() + "/portal/terms_of_use");
