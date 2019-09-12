@@ -512,12 +512,12 @@ public class NestedFieldsWriterInterceptorTest {
 	}
 
 	private static Subproduct _toSubproduct(long id, String externalCode) {
-		Subproduct product = new Subproduct();
+		Subproduct subproduct = new Subproduct();
 
-		product.setExternalCode(externalCode);
-		product.setId(id);
+		subproduct.setExternalCode(externalCode);
+		subproduct.setId(id);
 
-		return product;
+		return subproduct;
 	}
 
 	private MultivaluedHashMap<String, String> _getPathParameters() {
