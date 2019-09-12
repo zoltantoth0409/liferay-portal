@@ -51,8 +51,7 @@ public class DataDefinitionResourceTest
 			dataDefinitionResource.
 				getDataDefinitionDataDefinitionFieldFieldType();
 
-		Assert.assertNotNull(fieldTypes);
-		Assert.assertFalse(fieldTypes.isEmpty());
+		Assert.assertTrue(Validator.isNotNull(fieldTypes));
 	}
 
 	@Override
