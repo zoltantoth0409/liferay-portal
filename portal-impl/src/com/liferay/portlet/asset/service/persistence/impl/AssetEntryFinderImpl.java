@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -521,6 +522,20 @@ public class AssetEntryFinderImpl
 
 		if (ArrayUtil.isNotEmpty(entryQuery.getNotAnyTagIds())) {
 			buildNotAnyTagsSQL(entryQuery.getNotAnyTagIds(), sb);
+		}
+
+		// Attribute conditions
+
+		// LPS-100989
+
+		if (ArrayUtil.isNotEmpty(
+				GetterUtil.getLongValues(
+					entryQuery.getAttribute("anyExtendedCategoryIds")))) {
+
+			buildAnyCategoriesSQL(
+				GetterUtil.getLongValues(
+					entryQuery.getAttribute("anyExtendedCategoryIds")),
+				sb);
 		}
 
 		// Other conditions
