@@ -72,7 +72,7 @@ public class DataDefinitionUtil {
 
 		return JSONUtil.put(
 			"description",
-			_getLanguageTerm(
+			_translate(
 				MapUtil.getString(
 					fieldTypeProperties, "data.engine.field.type.description"),
 				resourceBundle)
@@ -92,7 +92,7 @@ public class DataDefinitionUtil {
 				npmResolver)
 		).put(
 			"label",
-			_getLanguageTerm(
+			_translate(
 				MapUtil.getString(
 					fieldTypeProperties, "data.engine.field.type.label"),
 				resourceBundle)
@@ -245,7 +245,7 @@ public class DataDefinitionUtil {
 		return npmResolver.resolveModuleName(moduleName);
 	}
 
-	private static String _getLanguageTerm(
+	private static String _translate(
 		String key, ResourceBundle resourceBundle) {
 
 		if (Validator.isNull(key)) {
