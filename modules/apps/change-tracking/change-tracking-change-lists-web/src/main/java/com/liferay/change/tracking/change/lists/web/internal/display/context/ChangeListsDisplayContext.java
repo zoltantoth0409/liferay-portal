@@ -89,9 +89,9 @@ public class ChangeListsDisplayContext {
 		CTEngineManager ctEngineManager,
 		CTPreferencesLocalService ctPreferencesLocalService,
 		CTProcessLocalService ctProcessLocalService,
-		ResourceActions resourceActions, UserLocalService userLocalService,
 		HttpServletRequest httpServletRequest, RenderRequest renderRequest,
-		RenderResponse renderResponse) {
+		RenderResponse renderResponse, ResourceActions resourceActions,
+		UserLocalService userLocalService) {
 
 		_classNameLocalService = classNameLocalService;
 		_ctCollectionLocalService = ctCollectionLocalService;
@@ -99,11 +99,11 @@ public class ChangeListsDisplayContext {
 		_ctEngineManager = ctEngineManager;
 		_ctPreferencesLocalService = ctPreferencesLocalService;
 		_ctProcessLocalService = ctProcessLocalService;
-		_resourceActions = resourceActions;
-		_userLocalService = userLocalService;
 		_httpServletRequest = httpServletRequest;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+		_resourceActions = resourceActions;
+		_userLocalService = userLocalService;
 
 		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
