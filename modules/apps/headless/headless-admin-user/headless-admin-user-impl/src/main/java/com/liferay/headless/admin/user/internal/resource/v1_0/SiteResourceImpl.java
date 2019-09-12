@@ -61,7 +61,7 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 
 		if (group == null) {
 			throw new ValidationException(
-				"No Site exists with friendly URL " + url);
+				"No site exists with friendly URL " + url);
 		}
 
 		GroupPermissionUtil.check(
