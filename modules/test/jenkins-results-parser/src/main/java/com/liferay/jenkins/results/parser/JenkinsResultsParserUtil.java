@@ -739,7 +739,7 @@ public class JenkinsResultsParserUtil {
 				new StringReader(toString(getLocalURL(url), false)));
 		}
 
-		_buildProperties = new Hashtable<>(properties.size());
+		_buildProperties = new Hashtable<>();
 
 		_buildProperties.putAll(properties);
 
