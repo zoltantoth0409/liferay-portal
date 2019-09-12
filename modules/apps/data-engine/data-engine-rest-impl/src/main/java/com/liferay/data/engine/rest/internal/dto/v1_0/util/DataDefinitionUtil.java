@@ -86,7 +86,7 @@ public class DataDefinitionUtil {
 				fieldTypeProperties, "data.engine.field.type.icon")
 		).put(
 			"javaScriptModule",
-			_getJavaScriptModule(
+			_resolveModuleName(
 				MapUtil.getString(
 					fieldTypeProperties, "data.engine.field.type.js.module"),
 				npmResolver)
@@ -235,7 +235,7 @@ public class DataDefinitionUtil {
 		return ddmFormFieldType.getDDMFormFieldTypeSettings();
 	}
 
-	private static String _getJavaScriptModule(
+	private static String _resolveModuleName(
 		String moduleName, NPMResolver npmResolver) {
 
 		if (Validator.isNull(moduleName)) {
