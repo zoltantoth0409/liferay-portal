@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
@@ -40,7 +39,6 @@ import java.util.List;
  * @generated
  */
 @AccessControlled
-@JSONWebService
 @OSGiBeanProperties(
 	property = {
 		"json.web.service.context.name=oauthtwo",
