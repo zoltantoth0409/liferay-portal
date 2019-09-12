@@ -56,7 +56,7 @@ public class OpenNLPDocumentAssetAutoTagProvider
 					Locale locale = LocaleUtil.fromLanguageId(
 						assetEntry.getDefaultLanguageId());
 
-					return _openNLPDocumentAssetAutoTagger.getTagNames(
+					return _openNLPDocumentAssetAutoTaggerImpl.getTagNames(
 						assetEntry.getCompanyId(),
 						() -> textExtractor.extract(
 							_getAssetObject(assetEntry), locale),
@@ -99,7 +99,8 @@ public class OpenNLPDocumentAssetAutoTagProvider
 	private ConfigurationProvider _configurationProvider;
 
 	@Reference
-	private OpenNLPDocumentAssetAutoTaggerImpl _openNLPDocumentAssetAutoTagger;
+	private OpenNLPDocumentAssetAutoTaggerImpl
+		_openNLPDocumentAssetAutoTaggerImpl;
 
 	@Reference
 	private TextExtractorTracker _textExtractorTracker;
