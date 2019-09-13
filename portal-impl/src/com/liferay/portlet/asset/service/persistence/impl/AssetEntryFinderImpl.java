@@ -348,11 +348,11 @@ public class AssetEntryFinderImpl
 	protected SQLQuery buildAssetQuerySQL(
 		AssetEntryQuery entryQuery, boolean count, Session session) {
 
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(59);
 
 		if (count) {
-			sb.append(
-				"SELECT COUNT(DISTINCT AssetEntry.entryId) AS COUNT_VALUE ");
+			sb.append("SELECT COUNT(DISTINCT AssetEntry.entryId) AS ");
+			sb.append("COUNT_VALUE ");
 		}
 		else {
 			sb.append("SELECT {AssetEntry.*} ");
@@ -387,16 +387,13 @@ public class AssetEntryFinderImpl
 		}
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
-			sb.append("INNER JOIN ( ");
-			sb.append("SELECT AssetLink.entryId1 as entryId ");
-			sb.append("FROM AssetLink WHERE AssetLink.entryId2 = ? ");
-			sb.append("AND AssetLink.entryId1 != ? ");
-			sb.append("UNION ");
-			sb.append("SELECT AssetLink.entryId2 as entryId ");
-			sb.append("FROM AssetLink WHERE AssetLink.entryId1 = ? ");
-			sb.append("AND AssetLink.entryId2 != ? ) TEMP_TABLE_ASSET_LINK ");
-			sb.append("ON (TEMP_TABLE_ASSET_LINK.entryId = ");
-			sb.append("AssetEntry.entryId) ");
+			sb.append("INNER JOIN (SELECT AssetLink.entryId1 AS entryId ");
+			sb.append("FROM AssetLink WHERE AssetLink.entryId2 = ? AND ");
+			sb.append("AssetLink.entryId1 != ? UNION SELECT ");
+			sb.append("AssetLink.entryId2 AS entryId FROM AssetLink WHERE ");
+			sb.append("AssetLink.entryId1 = ? AND AssetLink.entryId2 != ? ) ");
+			sb.append("TEMP_TABLE_ASSET_LINK ON ");
+			sb.append("(TEMP_TABLE_ASSET_LINK.entryId = AssetEntry.entryId) ");
 		}
 
 		String orderByCol1 = AssetEntryQuery.ORDER_BY_COLUMNS[2];
@@ -575,10 +572,10 @@ public class AssetEntryFinderImpl
 				!orderByCol1.equals(orderByCol2)) {
 
 				if (orderByCol2.equals("ratings")) {
-					sb.append(
-						", CASE WHEN TEMP_TABLE_ASSET_ENTRY.averageScore ");
-					sb.append("IS NULL THEN 0 ");
-					sb.append("ELSE TEMP_TABLE_ASSET_ENTRY.averageScore END");
+					sb.append(", CASE WHEN ");
+					sb.append("TEMP_TABLE_ASSET_ENTRY.averageScore IS NULL ");
+					sb.append("THEN 0 ELSE ");
+					sb.append("TEMP_TABLE_ASSET_ENTRY.averageScore END");
 				}
 				else {
 					sb.append(", AssetEntry.");
