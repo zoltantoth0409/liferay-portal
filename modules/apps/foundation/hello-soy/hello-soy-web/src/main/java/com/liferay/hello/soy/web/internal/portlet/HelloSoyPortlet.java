@@ -94,7 +94,6 @@ public class HelloSoyPortlet extends SoyPortlet {
 		);
 
 		template.put("layouts", layoutMaps);
-		
 
 		PortletURL navigationURL = renderResponse.createRenderURL();
 
