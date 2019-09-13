@@ -348,7 +348,7 @@ public class AssetEntryFinderImpl
 	protected SQLQuery buildAssetQuerySQL(
 		AssetEntryQuery entryQuery, boolean count, Session session) {
 
-		StringBundler sb = new StringBundler(53);
+		StringBundler sb = new StringBundler(57);
 
 		if (count) {
 			sb.append(
@@ -367,7 +367,7 @@ public class AssetEntryFinderImpl
 
 				selectRatings = true;
 
-				sb.append(", TEMP_TABLE.averageScore ");
+				sb.append(", TEMP_TABLE_ASSET_ENTRY.averageScore ");
 			}
 
 			sb.append("FROM (SELECT DISTINCT AssetEntry.entryId ");
@@ -553,12 +553,15 @@ public class AssetEntryFinderImpl
 		sb.append(getClassNameIds(entryQuery.getClassNameIds()));
 
 		if (!count) {
-			sb.append(") TEMP_TABLE INNER JOIN AssetEntry AssetEntry ON ");
-			sb.append("TEMP_TABLE.entryId = AssetEntry.entryId ORDER BY ");
+			sb.append(") TEMP_TABLE_ASSET_ENTRY INNER JOIN ");
+			sb.append("AssetEntry AssetEntry ON ");
+			sb.append("TEMP_TABLE_ASSET_ENTRY.entryId = ");
+			sb.append("AssetEntry.entryId ORDER BY ");
 
 			if (orderByCol1.equals("ratings")) {
-				sb.append("CASE WHEN TEMP_TABLE.averageScore IS NULL THEN 0 ");
-				sb.append("ELSE TEMP_TABLE.averageScore END");
+				sb.append("CASE WHEN TEMP_TABLE_ASSET_ENTRY.averageScore ");
+				sb.append("IS NULL THEN 0 ");
+				sb.append("ELSE TEMP_TABLE_ASSET_ENTRY.averageScore END");
 			}
 			else {
 				sb.append("AssetEntry.");
@@ -573,8 +576,9 @@ public class AssetEntryFinderImpl
 
 				if (orderByCol2.equals("ratings")) {
 					sb.append(
-						", CASE WHEN TEMP_TABLE.averageScore IS NULL THEN 0 ");
-					sb.append("ELSE TEMP_TABLE.averageScore END");
+						", CASE WHEN TEMP_TABLE_ASSET_ENTRY.averageScore ");
+					sb.append("IS NULL THEN 0 ");
+					sb.append("ELSE TEMP_TABLE_ASSET_ENTRY.averageScore END");
 				}
 				else {
 					sb.append(", AssetEntry.");
