@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.language;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 
 import java.util.Locale;
@@ -26,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class UnicodeLanguageUtil {
 
 	public static String format(

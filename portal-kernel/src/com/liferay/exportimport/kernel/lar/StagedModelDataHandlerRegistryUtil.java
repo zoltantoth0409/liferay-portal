@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -39,7 +37,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Brian Wing Shun Chan
  * @since  6.2
  */
-@ProviderType
 public class StagedModelDataHandlerRegistryUtil {
 
 	/**

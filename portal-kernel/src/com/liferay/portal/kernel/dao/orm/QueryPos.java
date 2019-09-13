@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.dao.orm;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.CalendarUtil;
 
 import java.math.BigDecimal;
@@ -28,7 +26,6 @@ import java.util.Date;
  * @author Brian Wing Shun Chan
  * @author Shuyang Zhou
  */
-@ProviderType
 public class QueryPos {
 
 	public static QueryPos getInstance(Query query) {

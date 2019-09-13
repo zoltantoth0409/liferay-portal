@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.cache;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
 
@@ -28,7 +26,6 @@ import java.io.Serializable;
  */
 @Deprecated
 @OSGiBeanProperties(service = MultiVMPoolUtil.class)
-@ProviderType
 public class MultiVMPoolUtil {
 
 	public static void clear() {

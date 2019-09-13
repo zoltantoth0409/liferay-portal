@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.atom;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -32,7 +30,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author Igor Spasic
  */
-@ProviderType
 public class AtomCollectionAdapterRegistryUtil {
 
 	public static AtomCollectionAdapter<?> getAtomCollectionAdapter(

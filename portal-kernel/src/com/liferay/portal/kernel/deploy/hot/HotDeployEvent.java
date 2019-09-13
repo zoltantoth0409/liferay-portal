@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.deploy.hot;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -45,7 +43,6 @@ import javax.servlet.ServletContext;
  * @author Raymond Augé
  * @author Miguel Pastor
  */
-@ProviderType
 public class HotDeployEvent {
 
 	public HotDeployEvent(ServletContext servletContext) {

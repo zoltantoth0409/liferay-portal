@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -30,7 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author Daniel Kocsis
  */
-@ProviderType
 public class ExportImportProcessCallbackUtil {
 
 	/**

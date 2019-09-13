@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.buffer;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.lang.CentralizedThreadLocal;
 
 import java.util.ArrayList;
@@ -26,7 +24,6 @@ import java.util.List;
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class IndexerRequestBuffer {
 
 	public static IndexerRequestBuffer create() {

@@ -14,14 +14,11 @@
 
 package com.liferay.social.networking.exception;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class NoSuchMeetupsRegistrationException extends NoSuchModelException {
 
 	public NoSuchMeetupsRegistrationException() {

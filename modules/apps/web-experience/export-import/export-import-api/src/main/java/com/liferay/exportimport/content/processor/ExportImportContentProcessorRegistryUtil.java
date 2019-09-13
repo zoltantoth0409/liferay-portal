@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.content.processor;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.osgi.util.StringPlus;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -36,7 +34,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Gergely Mathe
  * @author Máté Thurzó
  */
-@ProviderType
 public class ExportImportContentProcessorRegistryUtil {
 
 	public static ExportImportContentProcessor getExportImportContentProcessor(

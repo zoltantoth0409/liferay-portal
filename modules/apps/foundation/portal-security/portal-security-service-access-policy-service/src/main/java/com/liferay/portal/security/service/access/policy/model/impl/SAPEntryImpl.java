@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.service.access.policy.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
@@ -31,7 +29,6 @@ import java.util.Objects;
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class SAPEntryImpl extends SAPEntryBaseImpl {
 
 	@Override

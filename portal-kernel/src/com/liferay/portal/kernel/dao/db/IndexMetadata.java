@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.dao.db;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -29,7 +27,6 @@ import java.util.Objects;
  * @author Peter Shin
  * @author Shuyang Zhou
  */
-@ProviderType
 public class IndexMetadata extends Index implements Comparable<IndexMetadata> {
 
 	public IndexMetadata(

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.backgroundtask;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.lock.Lock;
 import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -23,7 +21,6 @@ import com.liferay.portal.kernel.util.StringPool;
 /**
  * @author Daniel Kocsis
  */
-@ProviderType
 public class BackgroundTaskLockHelperUtil {
 
 	public static boolean isLockedBackgroundTask(

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.security.auth;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -28,7 +26,6 @@ import com.liferay.portal.kernel.util.TimeZoneThreadLocal;
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class CompanyThreadLocal {
 
 	public static Long getCompanyId() {

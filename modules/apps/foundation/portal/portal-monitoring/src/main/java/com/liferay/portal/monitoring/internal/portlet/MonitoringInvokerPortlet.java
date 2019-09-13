@@ -14,8 +14,6 @@
 
 package com.liferay.portal.monitoring.internal.portlet;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.monitoring.DataSample;
 import com.liferay.portal.kernel.monitoring.DataSampleFactory;
 import com.liferay.portal.kernel.monitoring.DataSampleThreadLocal;
@@ -53,7 +51,6 @@ import javax.portlet.filter.ResourceFilter;
  * @author Raymond Augé
  * @author Philip Jones
  */
-@ProviderType
 public class MonitoringInvokerPortlet
 	implements InvokerFilterContainer, InvokerPortlet {
 

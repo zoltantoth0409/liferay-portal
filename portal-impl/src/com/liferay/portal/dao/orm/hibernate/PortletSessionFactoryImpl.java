@@ -14,8 +14,6 @@
 
 package com.liferay.portal.dao.orm.hibernate;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -30,7 +28,6 @@ import org.hibernate.SessionFactory;
  * @author Shuyang Zhou
  * @author Alexander Chow
  */
-@ProviderType
 public class PortletSessionFactoryImpl extends SessionFactoryImpl {
 
 	/**

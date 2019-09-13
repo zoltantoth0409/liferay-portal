@@ -14,8 +14,6 @@
 
 package com.liferay.marketplace.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.store.DLStoreUtil;
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.marketplace.internal.bundle.BundleManagerUtil;
@@ -35,7 +33,6 @@ import java.util.List;
  * @author Ryan Park
  * @author Joan Kim
  */
-@ProviderType
 public class AppImpl extends AppBaseImpl {
 
 	@Override

@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.lifecycle;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lifecycle.BaseProcessExportImportLifecycleListener;
 import com.liferay.exportimport.lar.ExportImportProcessCallbackUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -31,7 +29,6 @@ import java.util.concurrent.Callable;
  * @deprecated As of Judson (7.1.x)
  */
 @Deprecated
-@ProviderType
 public class ExportImportProcessCallbackLifecycleListener
 	extends BaseProcessExportImportLifecycleListener {
 

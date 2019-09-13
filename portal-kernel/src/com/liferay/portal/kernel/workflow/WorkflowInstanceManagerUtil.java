@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.workflow;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -31,7 +29,6 @@ import java.util.Map;
  * @author Marcellus Tavares
  * @author Raymond Augé
  */
-@ProviderType
 public class WorkflowInstanceManagerUtil {
 
 	public static void deleteWorkflowInstance(

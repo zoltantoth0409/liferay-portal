@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.image;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.ImageResolutionException;
 import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
@@ -36,7 +34,6 @@ import java.util.concurrent.Future;
  * @author Brian Wing Shun Chan
  * @author Alexander Chow
  */
-@ProviderType
 public class ImageToolUtil {
 
 	/**

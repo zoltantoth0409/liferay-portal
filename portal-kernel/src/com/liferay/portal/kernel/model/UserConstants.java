@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -31,7 +29,6 @@ import com.liferay.portal.kernel.webserver.WebServerServletTokenUtil;
 /**
  * @author Amos Fong
  */
-@ProviderType
 public class UserConstants {
 
 	public static final int FULL_NAME_MAX_LENGTH = 75;

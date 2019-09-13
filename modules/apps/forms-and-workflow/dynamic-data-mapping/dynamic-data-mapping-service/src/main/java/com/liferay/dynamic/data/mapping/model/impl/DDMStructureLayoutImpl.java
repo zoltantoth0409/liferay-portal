@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.model.cache.CacheField;
 /**
  * @author Marcellus Tavares
  */
-@ProviderType
 public class DDMStructureLayoutImpl extends DDMStructureLayoutBaseImpl {
 
 	@Override

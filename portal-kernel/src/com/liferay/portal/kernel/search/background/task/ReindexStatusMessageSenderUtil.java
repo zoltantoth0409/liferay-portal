@@ -14,15 +14,12 @@
 
 package com.liferay.portal.kernel.search.background.task;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
 
 /**
  * @author Andrew Betts
  */
-@ProviderType
 public class ReindexStatusMessageSenderUtil {
 
 	/**

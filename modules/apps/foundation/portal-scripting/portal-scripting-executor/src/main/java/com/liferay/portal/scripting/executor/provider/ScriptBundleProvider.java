@@ -14,8 +14,6 @@
 
 package com.liferay.portal.scripting.executor.provider;
 
-import aQute.bnd.annotation.ProviderType;
-
 import org.osgi.framework.Bundle;
 
 /**
@@ -24,7 +22,6 @@ import org.osgi.framework.Bundle;
  *             com.liferay.portal.scripting.ScriptBundleProvider}
  */
 @Deprecated
-@ProviderType
 public interface ScriptBundleProvider {
 
 	public Bundle getBundle();

@@ -14,15 +14,12 @@
 
 package com.liferay.knowledge.base.service.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 
 /**
  * @author Adolfo Pérez
  */
-@ProviderType
 public class PortletProps {
 
 	public static String get(String key) {

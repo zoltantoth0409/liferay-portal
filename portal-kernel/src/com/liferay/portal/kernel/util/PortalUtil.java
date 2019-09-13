@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -83,7 +81,6 @@ import javax.servlet.http.HttpSession;
  * @author Eduardo Lundgren
  * @author Juan Fernández
  */
-@ProviderType
 public class PortalUtil {
 
 	/**

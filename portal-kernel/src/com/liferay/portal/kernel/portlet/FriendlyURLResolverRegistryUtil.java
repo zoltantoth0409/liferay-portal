@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.portlet;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
@@ -35,7 +33,6 @@ import java.util.Set;
  * @author Eduardo García
  * @author Raymond Augé
  */
-@ProviderType
 public class FriendlyURLResolverRegistryUtil {
 
 	public static FriendlyURLResolver getFriendlyURLResolver(

@@ -14,12 +14,9 @@
 
 package com.liferay.portal.search.elasticsearch.settings;
 
-import aQute.bnd.annotation.ProviderType;
-
 /**
  * @author André de Oliveira
  */
-@ProviderType
 public class BaseIndexSettingsContributor implements IndexSettingsContributor {
 
 	public BaseIndexSettingsContributor(int priority) {

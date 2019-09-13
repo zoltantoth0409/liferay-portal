@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.mobile.device;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.util.Collections;
 import java.util.Map;
 
@@ -24,7 +22,6 @@ import java.util.Map;
  *
  * @author Milen Dyankov
  */
-@ProviderType
 public class UnknownDevice extends AbstractDevice {
 
 	public static UnknownDevice getInstance() {

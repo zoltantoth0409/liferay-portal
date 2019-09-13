@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.backgroundtask.display;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.backgroundtask.BackgroundTask;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatusRegistryUtil;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
@@ -24,7 +22,6 @@ import com.liferay.portal.kernel.util.ServiceProxyFactory;
 /**
  * @author Andrew Betts
  */
-@ProviderType
 public class BackgroundTaskDisplayFactoryUtil {
 
 	public static BackgroundTaskDisplay getBackgroundTaskDisplay(

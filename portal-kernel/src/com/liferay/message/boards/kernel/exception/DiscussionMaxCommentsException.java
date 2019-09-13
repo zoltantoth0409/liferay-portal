@@ -14,14 +14,11 @@
 
 package com.liferay.message.boards.kernel.exception;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class DiscussionMaxCommentsException extends PortalException {
 
 	public DiscussionMaxCommentsException() {

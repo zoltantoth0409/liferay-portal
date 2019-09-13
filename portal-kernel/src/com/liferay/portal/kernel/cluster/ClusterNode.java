@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.cluster;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 
@@ -29,7 +27,6 @@ import java.util.Objects;
 /**
  * @author Tina Tian
  */
-@ProviderType
 public class ClusterNode implements Serializable {
 
 	public ClusterNode(String clusterNodeId, InetAddress bindInetAddress) {

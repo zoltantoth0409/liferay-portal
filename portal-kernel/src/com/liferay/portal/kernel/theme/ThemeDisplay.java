@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.theme;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.admin.kernel.util.PortalMyAccountApplicationType;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.mobile.device.rules.kernel.MDRRuleGroupInstance;
@@ -102,7 +100,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Brian Wing Shun Chan
  */
 @JSON
-@ProviderType
 public class ThemeDisplay
 	implements Cloneable, Mergeable<ThemeDisplay>, Serializable {
 

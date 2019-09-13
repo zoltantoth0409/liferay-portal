@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.validator;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.dynamic.data.mapping.exception.StorageException;
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormFieldEvaluationResult;
 
@@ -24,7 +22,6 @@ import java.util.List;
 /**
  * @author Marcellus Tavares
  */
-@ProviderType
 public class DDMFormValuesValidationException extends StorageException {
 
 	public DDMFormValuesValidationException() {

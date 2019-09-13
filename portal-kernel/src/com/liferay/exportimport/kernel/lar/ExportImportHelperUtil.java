@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
@@ -40,7 +38,6 @@ import javax.portlet.PortletRequest;
 /**
  * @author Zsolt Berentey
  */
-@ProviderType
 public class ExportImportHelperUtil {
 
 	public static long[] getAllLayoutIds(long groupId, boolean privateLayout) {
