@@ -439,7 +439,7 @@ public class AssetBrowserDisplayContext {
 		return getTotal(getFilterGroupIds());
 	}
 
-	public int getTotal(long[] groupIds) {
+	public int getTotal(long[] groupIds) throws PortalException {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -460,10 +460,16 @@ public class AssetBrowserDisplayContext {
 				getKeywords(), getKeywords(), getListable(), false, false);
 		}
 		else {
-			total = (int)AssetEntryLocalServiceUtil.searchCount(
+			AssetBrowserSearch assetBrowserSearch = new AssetBrowserSearch(
+				_renderRequest, getPortletURL());
+
+			Hits hits = AssetEntryLocalServiceUtil.search(
 				themeDisplay.getCompanyId(), groupIds, themeDisplay.getUserId(),
 				assetRendererFactory.getClassName(), getSubtypeSelectionId(),
-				getKeywords(), isShowNonindexable(), getStatuses());
+				getKeywords(), isShowNonindexable(), getStatuses(),
+				assetBrowserSearch.getStart(), assetBrowserSearch.getEnd());
+
+			total = hits.getLength();
 		}
 
 		return total;
