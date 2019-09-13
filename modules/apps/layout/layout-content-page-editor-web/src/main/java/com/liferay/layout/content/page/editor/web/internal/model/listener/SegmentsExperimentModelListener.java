@@ -85,10 +85,10 @@ public class SegmentsExperimentModelListener
 	private boolean _requiresDefaultExperienceReplacement(
 		SegmentsExperiment segmentsExperiment) {
 
-		if ((segmentsExperiment.getStatus() ==
-				SegmentsExperimentConstants.STATUS_COMPLETED) &&
-			(segmentsExperiment.getSegmentsExperienceId() ==
+		if ((segmentsExperiment.getSegmentsExperienceId() ==
 				SegmentsExperienceConstants.ID_DEFAULT) &&
+			(segmentsExperiment.getStatus() ==
+				SegmentsExperimentConstants.STATUS_COMPLETED) &&
 			(segmentsExperiment.getWinnerSegmentsExperienceId() !=
 				SegmentsExperienceConstants.ID_DEFAULT)) {
 
