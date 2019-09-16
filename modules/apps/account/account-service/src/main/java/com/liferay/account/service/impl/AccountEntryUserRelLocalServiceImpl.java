@@ -50,9 +50,8 @@ public class AccountEntryUserRelLocalServiceImpl
 		accountEntryLocalService.getAccountEntry(accountEntryId);
 		userLocalService.getUser(accountUserId);
 
-		long accountEntryUserRelId = counterLocalService.increment();
-
-		accountEntryUserRel = createAccountEntryUserRel(accountEntryUserRelId);
+		accountEntryUserRel = createAccountEntryUserRel(
+			counterLocalService.increment());
 
 		accountEntryUserRel.setAccountEntryId(accountEntryId);
 		accountEntryUserRel.setAccountUserId(accountUserId);
