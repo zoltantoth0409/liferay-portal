@@ -128,10 +128,8 @@ public class FreeMarkerTool {
 			"filter",
 			"_filterBiFunction.apply(" + schemaVarName +
 				"Resource, filterString)");
-
 		arguments = arguments.replace(
 			"pageSize,page", "Pagination.of(page, pageSize)");
-
 		arguments = arguments.replace(
 			"sorts",
 			"_sortsBiFunction.apply(" + schemaVarName +
