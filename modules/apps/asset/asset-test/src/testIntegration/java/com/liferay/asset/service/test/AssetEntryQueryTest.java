@@ -920,15 +920,15 @@ public class AssetEntryQueryTest {
 			initialAssetEntriesCount + expectedAssetEntriesCount,
 			assetEntriesCount);
 
-		List<AssetEntry> entries = AssetEntryServiceUtil.getEntries(
+		List<AssetEntry> assetEntries = AssetEntryServiceUtil.getEntries(
 			assetEntryQuery);
 
 		Assert.assertEquals(
-			entries.toString(),
+			assetEntries.toString(),
 			initialAssetEntriesCount + expectedAssetEntriesCount,
-			entries.size());
+			assetEntries.size());
 
-		for (AssetEntry assetEntry : entries) {
+		for (AssetEntry assetEntry : assetEntries) {
 			Assert.assertTrue(
 				linkedAssetEntryIds.contains(assetEntry.getEntryId()));
 		}
