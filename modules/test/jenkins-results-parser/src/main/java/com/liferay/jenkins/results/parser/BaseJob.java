@@ -72,6 +72,11 @@ public abstract class BaseJob implements Job {
 	}
 
 	@Override
+	public boolean isUsePreBuiltBundles() {
+		return false;
+	}
+
+	@Override
 	public void readJobProperties() {
 		_jobProperties.clear();
 
@@ -79,11 +84,6 @@ public abstract class BaseJob implements Job {
 			_jobProperties.putAll(
 				JenkinsResultsParserUtil.getProperties(jobPropertiesFile));
 		}
-	}
-
-	@Override
-	public boolean isUsePreBuiltBundles() {
-		return false;
 	}
 
 	protected BaseJob(String jobName) {
