@@ -82,7 +82,7 @@ public abstract class BaseJob implements Job {
 	}
 
 	@Override
-	public boolean usePreBuiltBundles() {
+	public boolean isUsePreBuiltBundles() {
 		return false;
 	}
 

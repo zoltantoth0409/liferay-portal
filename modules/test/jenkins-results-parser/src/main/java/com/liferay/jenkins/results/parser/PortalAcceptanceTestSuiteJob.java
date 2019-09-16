@@ -70,7 +70,7 @@ public abstract class PortalAcceptanceTestSuiteJob
 	}
 
 	@Override
-	public boolean usePreBuiltBundles() {
+	public boolean isUsePreBuiltBundles() {
 		String preBuiltBundles = JenkinsResultsParserUtil.getProperty(
 			getJobProperties(), "test.batch.dist.pre.built.bundles",
 			getTestSuiteName());

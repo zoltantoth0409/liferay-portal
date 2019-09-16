@@ -37,6 +37,6 @@ public interface Job {
 
 	public void readJobProperties();
 
-	public boolean usePreBuiltBundles();
+	public boolean isUsePreBuiltBundles();
 
 }
