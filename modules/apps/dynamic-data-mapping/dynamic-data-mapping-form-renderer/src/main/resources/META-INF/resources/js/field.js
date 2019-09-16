@@ -328,6 +328,14 @@ AUI.add(
 						instance.getInputNode().val(value);
 					},
 
+					showPendingErrorMessage: function() {
+						var instance = this;
+
+						if (!instance.hasFocus()) {
+							instance.showErrorMessage();
+						}
+					},
+
 					toJSON: function() {
 						var instance = this;
 
