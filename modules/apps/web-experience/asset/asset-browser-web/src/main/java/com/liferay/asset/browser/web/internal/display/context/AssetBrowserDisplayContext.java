@@ -201,6 +201,8 @@ public class AssetBrowserDisplayContext {
 			List<AssetEntry> assetEntries = AssetUtil.getAssetEntries(hits);
 
 			assetBrowserSearch.setResults(assetEntries);
+
+			assetBrowserSearch.setTotal(hits.getLength());
 		}
 
 		return assetBrowserSearch;
