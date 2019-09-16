@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.seo.internal;
+package com.liferay.layout.seo.internal.model.listener;
 
 import com.liferay.layout.seo.exception.NoSuchEntryException;
 import com.liferay.layout.seo.model.LayoutSEOEntry;
