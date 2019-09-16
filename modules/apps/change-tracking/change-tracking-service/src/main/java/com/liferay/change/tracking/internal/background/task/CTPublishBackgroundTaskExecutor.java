@@ -120,7 +120,8 @@ public class CTPublishBackgroundTaskExecutor
 					throw new SystemException(
 						StringBundler.concat(
 							"Unable to publish ", ctCollectionId,
-							" missing service for ", modelClassNameId));
+							" because service for ",
+							modelClassNameId, " is missing"));
 				});
 
 			ctPublisher.addCTEntry(ctEntry);
