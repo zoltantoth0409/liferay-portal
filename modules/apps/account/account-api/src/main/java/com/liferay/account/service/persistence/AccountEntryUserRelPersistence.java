@@ -49,7 +49,7 @@ public interface AccountEntryUserRelPersistence
 	 * @return the matching account entry user rel
 	 * @throws NoSuchEntryUserRelException if a matching account entry user rel could not be found
 	 */
-	public AccountEntryUserRel findByA_A(
+	public AccountEntryUserRel findByAEI_AUI(
 			long accountEntryId, long accountUserId)
 		throws NoSuchEntryUserRelException;
 
@@ -60,7 +60,7 @@ public interface AccountEntryUserRelPersistence
 	 * @param accountUserId the account user ID
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
-	public AccountEntryUserRel fetchByA_A(
+	public AccountEntryUserRel fetchByAEI_AUI(
 		long accountEntryId, long accountUserId);
 
 	/**
@@ -71,7 +71,7 @@ public interface AccountEntryUserRelPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
-	public AccountEntryUserRel fetchByA_A(
+	public AccountEntryUserRel fetchByAEI_AUI(
 		long accountEntryId, long accountUserId, boolean useFinderCache);
 
 	/**
@@ -81,7 +81,7 @@ public interface AccountEntryUserRelPersistence
 	 * @param accountUserId the account user ID
 	 * @return the account entry user rel that was removed
 	 */
-	public AccountEntryUserRel removeByA_A(
+	public AccountEntryUserRel removeByAEI_AUI(
 			long accountEntryId, long accountUserId)
 		throws NoSuchEntryUserRelException;
 
@@ -92,7 +92,7 @@ public interface AccountEntryUserRelPersistence
 	 * @param accountUserId the account user ID
 	 * @return the number of matching account entry user rels
 	 */
-	public int countByA_A(long accountEntryId, long accountUserId);
+	public int countByAEI_AUI(long accountEntryId, long accountUserId);
 
 	/**
 	 * Caches the account entry user rel in the entity cache if it is enabled.
