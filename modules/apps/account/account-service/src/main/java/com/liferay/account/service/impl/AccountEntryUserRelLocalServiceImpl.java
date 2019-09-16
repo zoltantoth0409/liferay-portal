@@ -54,7 +54,6 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		accountEntryUserRel = createAccountEntryUserRel(accountEntryUserRelId);
 
-		accountEntryUserRel.setAccountEntryUserRelId(accountEntryUserRelId);
 		accountEntryUserRel.setAccountEntryId(accountEntryId);
 		accountEntryUserRel.setAccountUserId(accountUserId);
 
