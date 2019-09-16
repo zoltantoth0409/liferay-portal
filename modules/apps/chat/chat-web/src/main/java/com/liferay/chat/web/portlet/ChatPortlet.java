@@ -51,8 +51,7 @@ import org.osgi.service.component.annotations.Modified;
 		"javax.portlet.portlet-info.short-title=Chat",
 		"javax.portlet.portlet-info.title=Chat",
 		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=guest,power-user,user",
-		"javax.portlet.supports.mime-type=text/html"
+		"javax.portlet.security-role-ref=guest,power-user,user"
 	},
 	service = Portlet.class
 )
