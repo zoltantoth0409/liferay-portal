@@ -71,5 +71,6 @@
 	</entity>
 	<exceptions>
 		<exception>AccountEntryName</exception>
+		<exception>DuplicateAccountEntryUserRel</exception>
 	</exceptions>
 </service-builder>
