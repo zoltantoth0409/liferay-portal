@@ -14,14 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.document;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.util.function.Consumer;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class DeleteDocumentRequest
 	implements BulkableDocumentRequest<DeleteDocumentRequest>,
 			   DocumentRequest<DeleteDocumentResponse> {

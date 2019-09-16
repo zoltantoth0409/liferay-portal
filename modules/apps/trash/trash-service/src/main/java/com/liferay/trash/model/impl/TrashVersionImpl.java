@@ -14,14 +14,11 @@
 
 package com.liferay.trash.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 /**
  * @author Alexander Chow
  */
-@ProviderType
 public class TrashVersionImpl extends TrashVersionBaseImpl {
 
 	@Override

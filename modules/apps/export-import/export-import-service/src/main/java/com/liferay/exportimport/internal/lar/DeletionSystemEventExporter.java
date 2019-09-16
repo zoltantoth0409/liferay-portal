@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportDateUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
@@ -49,7 +47,6 @@ import java.util.Set;
 /**
  * @author Zsolt Berentey
  */
-@ProviderType
 public class DeletionSystemEventExporter {
 
 	public static DeletionSystemEventExporter getInstance() {

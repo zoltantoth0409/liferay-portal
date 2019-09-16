@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.List;
@@ -33,7 +31,6 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Eduardo García
  */
 @Component(immediate = true, service = DDMDisplayRegistry.class)
-@ProviderType
 public class DDMDisplayRegistry {
 
 	public DDMDisplay getDDMDisplay(String portletId) {

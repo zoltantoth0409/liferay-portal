@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.configuration;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationConstants;
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationParameterMapFactoryUtil;
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationSettingsMapFactory;
@@ -60,7 +58,6 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = ExportImportConfigurationSettingsMapFactory.class
 )
-@ProviderType
 public class ExportImportConfigurationSettingsMapFactoryImpl
 	implements ExportImportConfigurationSettingsMapFactory {
 

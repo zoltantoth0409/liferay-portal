@@ -14,8 +14,6 @@
 
 package com.liferay.portlet;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.ActionResult;
@@ -37,7 +35,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Shuyang Zhou
  */
-@ProviderType
 public class RestrictPortletContainerWrapper implements PortletContainer {
 
 	public static PortletContainer createRestrictPortletContainerWrapper(

@@ -14,8 +14,6 @@
 
 package com.liferay.staging.taglib.servlet.taglib;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.staging.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.taglib.util.IncludeTag;
 
@@ -27,7 +25,6 @@ import javax.servlet.jsp.tagext.BodyTag;
 /**
  * @author Péter Alius
  */
-@ProviderType
 public class AlertTag extends IncludeTag implements BodyTag {
 
 	@Override

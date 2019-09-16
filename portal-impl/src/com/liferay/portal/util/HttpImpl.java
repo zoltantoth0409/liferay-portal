@@ -14,8 +14,6 @@
 
 package com.liferay.portal.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.memory.FinalizeAction;
 import com.liferay.petra.memory.FinalizeManager;
 import com.liferay.petra.string.CharPool;
@@ -116,7 +114,6 @@ import org.apache.http.util.EntityUtils;
  * @author Hugo Huijser
  * @author Shuyang Zhou
  */
-@ProviderType
 public class HttpImpl implements Http {
 
 	public HttpImpl() {

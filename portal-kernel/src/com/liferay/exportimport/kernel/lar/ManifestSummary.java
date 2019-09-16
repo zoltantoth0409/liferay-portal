@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.model.Portlet;
@@ -42,7 +40,6 @@ import java.util.Set;
  * @author Zsolt Berentey
  * @author Daniel Kocsis
  */
-@ProviderType
 public class ManifestSummary implements Serializable {
 
 	public static String getManifestSummaryKey(

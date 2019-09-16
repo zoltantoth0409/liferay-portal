@@ -14,8 +14,6 @@
 
 package com.liferay.staging.security.internal.permission;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
@@ -34,7 +32,6 @@ import java.util.Objects;
 /**
  * @author Tomas Polesovsky
  */
-@ProviderType
 public class StagingPermissionChecker implements PermissionChecker {
 
 	public StagingPermissionChecker(PermissionChecker permissionChecker) {

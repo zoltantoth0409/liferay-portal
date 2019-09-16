@@ -14,14 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.snapshot;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class CreateSnapshotRequest
 	implements SnapshotRequest<CreateSnapshotResponse> {
 

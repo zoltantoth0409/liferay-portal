@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.lang.HashUtil;
 
 import java.io.Serializable;
@@ -25,7 +23,6 @@ import java.util.Objects;
 /**
  * @author Leonardo Barros
  */
-@ProviderType
 public class DDMFormSuccessPageSettings implements Serializable {
 
 	public DDMFormSuccessPageSettings() {

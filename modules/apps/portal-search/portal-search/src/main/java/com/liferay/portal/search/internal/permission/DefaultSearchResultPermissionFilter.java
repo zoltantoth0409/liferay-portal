@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.internal.permission;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
@@ -57,7 +55,6 @@ import java.util.function.Function;
 /**
  * @author Tina Tian
  */
-@ProviderType
 public class DefaultSearchResultPermissionFilter
 	implements SearchResultPermissionFilter {
 

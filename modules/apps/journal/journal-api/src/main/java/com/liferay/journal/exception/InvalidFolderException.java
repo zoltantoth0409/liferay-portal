@@ -14,8 +14,6 @@
 
 package com.liferay.journal.exception;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -25,7 +23,6 @@ import java.util.Locale;
 /**
  * @author Jonathan McCann
  */
-@ProviderType
 public class InvalidFolderException extends PortalException {
 
 	public static final int CANNOT_MOVE_INTO_CHILD_FOLDER = 1;

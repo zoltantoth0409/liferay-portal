@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.web.internal.trash;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -45,7 +43,6 @@ import org.osgi.service.component.annotations.Reference;
 	property = "model.class.name=com.liferay.exportimport.kernel.model.ExportImportConfiguration",
 	service = TrashHandler.class
 )
-@ProviderType
 public class ExportImportConfigurationTrashHandler extends BaseTrashHandler {
 
 	@Override

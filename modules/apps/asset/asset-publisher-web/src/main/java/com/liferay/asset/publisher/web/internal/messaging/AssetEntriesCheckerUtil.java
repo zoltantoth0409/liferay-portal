@@ -14,8 +14,6 @@
 
 package com.liferay.asset.publisher.web.internal.messaging;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.persistence.AssetEntryQuery;
 import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
@@ -79,7 +77,6 @@ import org.osgi.service.component.annotations.Reference;
 	configurationPid = "com.liferay.asset.publisher.web.configuration.AssetPublisherWebConfiguration",
 	immediate = true, service = AssetEntriesCheckerUtil.class
 )
-@ProviderType
 public class AssetEntriesCheckerUtil {
 
 	public void checkAssetEntries() throws Exception {

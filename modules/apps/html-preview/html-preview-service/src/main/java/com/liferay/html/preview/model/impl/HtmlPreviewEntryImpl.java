@@ -14,8 +14,6 @@
 
 package com.liferay.html.preview.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.petra.string.StringPool;
@@ -27,7 +25,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 /**
  * @author Pavel Savinov
  */
-@ProviderType
 public class HtmlPreviewEntryImpl extends HtmlPreviewEntryBaseImpl {
 
 	@Override

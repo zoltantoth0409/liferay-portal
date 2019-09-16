@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.controller;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.adapter.StagedAssetLink;
 import com.liferay.exportimport.constants.ExportImportConstants;
 import com.liferay.exportimport.controller.PortletImportController;
@@ -125,7 +123,6 @@ import org.osgi.service.component.annotations.Reference;
 	property = "model.class.name=com.liferay.portal.kernel.model.Layout",
 	service = {ExportImportController.class, LayoutImportController.class}
 )
-@ProviderType
 public class LayoutImportController implements ImportController {
 
 	@Override

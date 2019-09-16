@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.audit.event.generators.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.audit.AuditMessage;
 import com.liferay.portal.kernel.audit.AuditRequestThreadLocal;
@@ -33,7 +31,6 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class AuditMessageBuilder {
 
 	public static AuditMessage buildAuditMessage(

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.validation;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -33,7 +31,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class ModelValidatorRegistryUtil {
 
 	public static <T extends ClassedModel> ModelValidator<T> getModelValidator(

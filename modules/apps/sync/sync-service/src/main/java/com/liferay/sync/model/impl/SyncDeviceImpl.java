@@ -14,8 +14,6 @@
 
 package com.liferay.sync.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.sync.SyncClientMinBuildException;
@@ -30,7 +28,6 @@ import com.liferay.sync.service.internal.configuration.SyncServiceConfigurationV
 /**
  * @author Shinn Lok
  */
-@ProviderType
 public class SyncDeviceImpl extends SyncDeviceBaseImpl {
 
 	@Override

@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.configuration;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.changeset.constants.ChangesetPortletKeys;
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationParameterMapFactory;
 import com.liferay.exportimport.kernel.exception.ExportImportRuntimeException;
@@ -53,7 +51,6 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = ExportImportConfigurationParameterMapFactory.class
 )
-@ProviderType
 public class ExportImportConfigurationParameterMapFactoryImpl
 	implements ExportImportConfigurationParameterMapFactory {
 

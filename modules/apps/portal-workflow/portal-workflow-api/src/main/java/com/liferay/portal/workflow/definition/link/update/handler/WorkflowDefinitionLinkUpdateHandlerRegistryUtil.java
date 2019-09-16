@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.definition.link.update.handler;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.portal.kernel.util.GetterUtil;
 
@@ -32,7 +30,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class WorkflowDefinitionLinkUpdateHandlerRegistryUtil {
 
 	public static WorkflowDefinitionLinkUpdateHandler

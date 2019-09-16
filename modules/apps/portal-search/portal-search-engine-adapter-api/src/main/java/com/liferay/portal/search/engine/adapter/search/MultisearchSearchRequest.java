@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.engine.adapter.search;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +21,6 @@ import java.util.List;
 /**
  * @author Dylan Rebelak
  */
-@ProviderType
 public class MultisearchSearchRequest
 	implements SearchRequest<MultisearchSearchResponse> {
 

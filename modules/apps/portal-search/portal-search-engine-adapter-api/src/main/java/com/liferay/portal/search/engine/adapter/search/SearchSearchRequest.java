@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.engine.adapter.search;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.search.GroupBy;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.Sort;
@@ -28,7 +26,6 @@ import java.util.Map;
 /**
  * @author Dylan Rebelak
  */
-@ProviderType
 public class SearchSearchRequest
 	extends BaseSearchRequest implements SearchRequest<SearchSearchResponse> {
 

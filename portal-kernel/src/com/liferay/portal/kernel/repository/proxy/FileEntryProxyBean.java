@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.repository.proxy;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.petra.string.StringPool;
@@ -41,7 +39,6 @@ import java.util.Map;
 /**
  * @author Mika Koivisto
  */
-@ProviderType
 public class FileEntryProxyBean
 	extends RepositoryModelProxyBean implements FileEntry {
 

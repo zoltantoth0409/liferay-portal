@@ -14,8 +14,6 @@
 
 package com.liferay.portal.deploy.hot;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.deploy.hot.BaseHotDeployListener;
 import com.liferay.portal.kernel.deploy.hot.HotDeployEvent;
@@ -52,7 +50,6 @@ import javax.servlet.ServletContext;
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class ExtHotDeployListener extends BaseHotDeployListener {
 
 	@Override

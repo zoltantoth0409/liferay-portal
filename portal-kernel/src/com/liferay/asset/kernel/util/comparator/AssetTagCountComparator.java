@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.util.comparator;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  *             com.liferay.asset.util.comparator.AssetTagCountComparator}
  */
 @Deprecated
-@ProviderType
 public class AssetTagCountComparator extends OrderByComparator<AssetTag> {
 
 	public static final String ORDER_BY_ASC = "AssetTag.assetCount ASC";

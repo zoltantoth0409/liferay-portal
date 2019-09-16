@@ -14,14 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.document;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.search.Query;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class DeleteByQueryDocumentRequest
 	implements DocumentRequest<DeleteByQueryDocumentResponse> {
 

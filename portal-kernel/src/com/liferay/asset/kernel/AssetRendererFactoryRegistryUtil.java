@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -39,7 +37,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Bruno Farache
  * @author Marcellus Tavares
  */
-@ProviderType
 public class AssetRendererFactoryRegistryUtil {
 
 	public static List<AssetRendererFactory<?>> getAssetRendererFactories(

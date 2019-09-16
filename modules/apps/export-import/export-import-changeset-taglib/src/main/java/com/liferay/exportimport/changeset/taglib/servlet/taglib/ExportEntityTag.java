@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.changeset.taglib.servlet.taglib;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.changeset.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.taglib.util.IncludeTag;
@@ -26,7 +24,6 @@ import javax.servlet.jsp.PageContext;
 /**
  * @author Akos Thurzo
  */
-@ProviderType
 public class ExportEntityTag extends IncludeTag {
 
 	public void setClassName(String className) {

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.search;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.facet.Facet;
@@ -39,7 +37,6 @@ import java.util.Map;
  *             com.liferay.portal.search.internal.permission.DefaultSearchResultPermissionFilter}
  */
 @Deprecated
-@ProviderType
 public class DefaultSearchResultPermissionFilter
 	extends BaseSearchResultPermissionFilter {
 

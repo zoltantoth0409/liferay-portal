@@ -14,8 +14,6 @@
 
 package com.liferay.portlet;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.portlet.LiferayResourceResponse;
 import com.liferay.portlet.internal.ResourceRequestImpl;
 import com.liferay.portlet.internal.ResourceResponseImpl;
@@ -29,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Brian Wing Shun Chan
  * @author Neil Griffin
  */
-@ProviderType
 public class ResourceResponseFactory {
 
 	public static LiferayResourceResponse create(

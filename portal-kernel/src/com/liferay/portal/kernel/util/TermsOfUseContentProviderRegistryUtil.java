@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
@@ -33,7 +31,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author Eduardo García
  */
-@ProviderType
 public class TermsOfUseContentProviderRegistryUtil {
 
 	public static String[] getClassNames() {

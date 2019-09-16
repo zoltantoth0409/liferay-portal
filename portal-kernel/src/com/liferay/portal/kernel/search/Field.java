@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.search;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.geolocation.GeoLocationPoint;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -38,7 +36,6 @@ import java.util.Map;
  * @author Allen Chiang
  * @author Alex Wallace
  */
-@ProviderType
 public class Field implements Serializable {
 
 	public static final String ANY = StringPool.STAR;

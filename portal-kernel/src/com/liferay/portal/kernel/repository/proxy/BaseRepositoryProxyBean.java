@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.repository.proxy;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.document.library.kernel.service.DLAppHelperLocalService;
 import com.liferay.document.library.kernel.service.DLFolderLocalService;
@@ -49,7 +47,6 @@ import java.util.List;
 /**
  * @author Mika Koivisto
  */
-@ProviderType
 public class BaseRepositoryProxyBean
 	extends RepositoryModelProxyBean implements BaseRepository {
 

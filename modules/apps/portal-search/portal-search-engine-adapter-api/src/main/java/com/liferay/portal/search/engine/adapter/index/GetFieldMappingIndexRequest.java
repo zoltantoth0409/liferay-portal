@@ -14,12 +14,9 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
-import aQute.bnd.annotation.ProviderType;
-
 /**
  * @author Dylan Rebelak
  */
-@ProviderType
 public class GetFieldMappingIndexRequest
 	implements IndexRequest<GetFieldMappingIndexResponse> {
 

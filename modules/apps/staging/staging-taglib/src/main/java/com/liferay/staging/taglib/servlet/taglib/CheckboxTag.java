@@ -14,8 +14,6 @@
 
 package com.liferay.staging.taglib.servlet.taglib;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.staging.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.staging.taglib.servlet.taglib.base.BaseCssTag;
@@ -27,7 +25,6 @@ import javax.servlet.jsp.PageContext;
 /**
  * @author Péter Borkuti
  */
-@ProviderType
 public class CheckboxTag extends BaseCssTag {
 
 	/**

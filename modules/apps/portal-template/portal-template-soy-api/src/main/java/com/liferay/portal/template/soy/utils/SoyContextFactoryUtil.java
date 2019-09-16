@@ -14,8 +14,6 @@
 
 package com.liferay.portal.template.soy.utils;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.util.Map;
 
 /**
@@ -24,7 +22,6 @@ import java.util.Map;
  *             com.liferay.portal.template.soy.util.SoyContextFactoryUtil}
  */
 @Deprecated
-@ProviderType
 public class SoyContextFactoryUtil {
 
 	public static SoyContext createSoyContext() {

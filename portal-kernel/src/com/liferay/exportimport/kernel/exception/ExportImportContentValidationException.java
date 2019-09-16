@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.exception;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.Map;
@@ -23,7 +21,6 @@ import java.util.Map;
 /**
  * @author Gergely Mathe
  */
-@ProviderType
 public class ExportImportContentValidationException extends PortalException {
 
 	public static final int ARTICLE_NOT_FOUND = 6;

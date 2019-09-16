@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.changeset.taglib.servlet.taglib;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.changeset.Changeset;
 import com.liferay.exportimport.changeset.ChangesetManager;
 import com.liferay.exportimport.changeset.ChangesetManagerUtil;
@@ -34,7 +32,6 @@ import javax.servlet.jsp.PageContext;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class PublishEntityMenuItemTag extends IncludeTag {
 
 	@Override

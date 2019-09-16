@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.staging;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.staging.StagingURLHelper;
 import com.liferay.petra.string.StringBundler;
@@ -36,7 +34,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Akos Thurzo
  */
 @Component(immediate = true, service = StagingURLHelper.class)
-@ProviderType
 public class StagingURLHelperImpl implements StagingURLHelper {
 
 	@Override

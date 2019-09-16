@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.staged.model.repository;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -34,7 +32,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 /**
  * @author Daniel Kocsis
  */
-@ProviderType
 public class StagedModelRepositoryRegistryUtil {
 
 	public static List<StagedModelRepository<?>> getStagedModelRepositories() {

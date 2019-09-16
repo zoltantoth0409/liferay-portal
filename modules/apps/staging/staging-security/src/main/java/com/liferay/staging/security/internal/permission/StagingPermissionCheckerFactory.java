@@ -14,8 +14,6 @@
 
 package com.liferay.staging.security.internal.permission;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -35,7 +33,6 @@ import org.osgi.util.tracker.ServiceTracker;
 	immediate = true, property = "service.ranking:Integer=1000",
 	service = PermissionCheckerFactory.class
 )
-@ProviderType
 public class StagingPermissionCheckerFactory
 	implements PermissionCheckerFactory {
 

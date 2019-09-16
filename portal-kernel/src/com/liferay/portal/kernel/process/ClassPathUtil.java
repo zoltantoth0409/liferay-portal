@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.process;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
@@ -55,7 +53,6 @@ import javax.servlet.ServletException;
  *             com.liferay.portal.util. PortalClassPathUtil}
  */
 @Deprecated
-@ProviderType
 public class ClassPathUtil {
 
 	public static String buildClassPath(Class<?>... classes) {

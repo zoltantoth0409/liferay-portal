@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.exception.ExportImportRuntimeException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -31,7 +29,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author Daniel Kocsis
  */
-@ProviderType
 public class ExportImportProcessCallbackUtil {
 
 	/**

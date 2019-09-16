@@ -14,8 +14,6 @@
 
 package com.liferay.layout.page.template.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.fragment.model.FragmentEntryLink;
@@ -35,7 +33,6 @@ import java.util.List;
 /**
  * @author Jürgen Kappler
  */
-@ProviderType
 public class LayoutPageTemplateEntryImpl
 	extends LayoutPageTemplateEntryBaseImpl {
 

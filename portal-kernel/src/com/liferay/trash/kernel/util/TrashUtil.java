@@ -14,8 +14,6 @@
 
 package com.liferay.trash.kernel.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.TrashedModel;
@@ -39,7 +37,6 @@ import javax.servlet.http.HttpServletRequest;
  * @deprecated As of Judson (7.1.x)
  */
 @Deprecated
-@ProviderType
 public class TrashUtil {
 
 	public static void addBaseModelBreadcrumbEntries(

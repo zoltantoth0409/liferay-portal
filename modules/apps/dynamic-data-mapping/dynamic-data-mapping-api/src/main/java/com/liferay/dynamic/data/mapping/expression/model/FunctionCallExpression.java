@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.expression.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 
 import java.util.List;
@@ -25,7 +23,6 @@ import java.util.stream.Stream;
 /**
  * @author Leonardo Barros
  */
-@ProviderType
 public class FunctionCallExpression extends Expression {
 
 	public FunctionCallExpression(

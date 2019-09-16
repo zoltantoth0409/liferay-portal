@@ -14,8 +14,6 @@
 
 package com.liferay.portal.security.sso;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.security.sso.OpenSSO;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -36,7 +34,6 @@ import javax.servlet.http.HttpServletRequest;
  * @author Brian Wing Shun Chan
  * @author Wesley Gong
  */
-@ProviderType
 public class OpenSSOUtil {
 
 	public static Map<String, String> getAttributes(

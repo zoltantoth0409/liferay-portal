@@ -14,8 +14,6 @@
 
 package com.liferay.asset.kernel.exception;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
@@ -28,7 +26,6 @@ import java.util.Locale;
 /**
  * @author Jürgen Kappler
  */
-@ProviderType
 public class InvalidAssetCategoryException extends PortalException {
 
 	public static final int CANNOT_MOVE_INTO_CHILD_CATEGORY = 1;

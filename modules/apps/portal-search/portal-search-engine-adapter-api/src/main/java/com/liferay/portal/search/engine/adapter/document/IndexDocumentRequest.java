@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.engine.adapter.document;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.search.Document;
 
 import java.util.function.Consumer;
@@ -23,7 +21,6 @@ import java.util.function.Consumer;
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class IndexDocumentRequest
 	implements BulkableDocumentRequest<IndexDocumentRequest>,
 			   DocumentRequest<IndexDocumentResponse> {

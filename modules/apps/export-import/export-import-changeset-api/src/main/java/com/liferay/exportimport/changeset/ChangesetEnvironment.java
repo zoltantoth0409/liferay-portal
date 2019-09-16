@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.changeset;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 
@@ -25,7 +23,6 @@ import java.util.Map;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class ChangesetEnvironment {
 
 	public static Builder create(long groupId, String portletId) {

@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.staging;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.MissingReference;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
@@ -52,7 +50,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Raymond Augé
  */
-@ProviderType
 public class StagingUtil {
 
 	public static <T extends BaseModel> void addModelToChangesetCollection(

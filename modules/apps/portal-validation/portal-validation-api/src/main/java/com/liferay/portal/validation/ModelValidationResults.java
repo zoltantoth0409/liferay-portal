@@ -14,8 +14,6 @@
 
 package com.liferay.portal.validation;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 
@@ -25,7 +23,6 @@ import java.util.Map;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class ModelValidationResults {
 
 	public static FailureBuilder failure() {

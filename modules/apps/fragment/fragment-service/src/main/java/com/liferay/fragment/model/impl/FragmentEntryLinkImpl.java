@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.fragment.model.FragmentEntry;
 import com.liferay.fragment.service.FragmentEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -25,7 +23,6 @@ import java.util.Date;
 /**
  * @author Eudaldo Alonso
  */
-@ProviderType
 public class FragmentEntryLinkImpl extends FragmentEntryLinkBaseImpl {
 
 	@Override

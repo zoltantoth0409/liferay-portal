@@ -14,15 +14,12 @@
 
 package com.liferay.portal.search.internal.indexer;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.search.SearchEngineHelper;
 import com.liferay.portal.search.spi.model.registrar.ModelSearchSettings;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class ModelSearchSettingsImpl implements ModelSearchSettings {
 
 	public ModelSearchSettingsImpl(String className) {

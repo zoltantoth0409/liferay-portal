@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.validator;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 
@@ -26,7 +24,6 @@ import java.util.regex.Pattern;
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class DDMFormValidationException extends PortalException {
 
 	public DDMFormValidationException() {

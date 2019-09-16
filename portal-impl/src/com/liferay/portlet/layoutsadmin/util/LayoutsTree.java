@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.layoutsadmin.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.model.LayoutSetBranch;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Akos Thurzo
  */
-@ProviderType
 public interface LayoutsTree {
 
 	public String getLayoutsJSON(

@@ -14,8 +14,6 @@
 
 package com.liferay.portlet;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.portlet.LiferayHeaderResponse;
 import com.liferay.portlet.internal.HeaderRequestImpl;
 import com.liferay.portlet.internal.HeaderResponseImpl;
@@ -28,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Neil Griffin
  */
-@ProviderType
 public class HeaderResponseFactory {
 
 	public static LiferayHeaderResponse create(

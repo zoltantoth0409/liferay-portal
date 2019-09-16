@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.web.internal.exportimport.lifecycle;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.DLFileEntryTypeLocalService;
 import com.liferay.document.library.kernel.service.DLFolderLocalService;
@@ -39,7 +37,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Máté Thurzó
  */
 @Component(service = ExportImportLifecycleListener.class)
-@ProviderType
 public class CascadeFileEntryTypesExportImportLifecycleListener
 	implements EventAwareExportImportLifecycleListener {
 

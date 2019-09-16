@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.servlet.taglib.util;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Mergeable;
@@ -30,7 +28,6 @@ import java.util.Set;
 /**
  * @author Shuyang Zhou
  */
-@ProviderType
 public class OutputData implements Mergeable<OutputData>, Serializable {
 
 	/**

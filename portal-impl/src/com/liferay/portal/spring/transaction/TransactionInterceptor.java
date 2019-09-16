@@ -14,8 +14,6 @@
 
 package com.liferay.portal.spring.transaction;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.reflect.AnnotationLocator;
 import com.liferay.portal.kernel.transaction.Transactional;
 
@@ -36,7 +34,6 @@ import org.springframework.transaction.interceptor.TransactionAttributeSource;
 /**
  * @author Shuyang Zhou
  */
-@ProviderType
 public class TransactionInterceptor implements MethodInterceptor {
 
 	public TransactionAttribute getTransactionAttribute(

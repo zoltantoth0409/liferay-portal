@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.exportimport.constants.ExportImportBackgroundTaskContextMapConstants;
 import com.liferay.exportimport.kernel.lar.DefaultConfigurationPortletDataHandler;
@@ -127,7 +125,6 @@ import org.xml.sax.XMLReader;
  * @author Máté Thurzó
  */
 @Component(immediate = true, service = ExportImportHelper.class)
-@ProviderType
 public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override

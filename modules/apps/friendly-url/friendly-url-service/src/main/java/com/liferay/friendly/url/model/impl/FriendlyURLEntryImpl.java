@@ -14,8 +14,6 @@
 
 package com.liferay.friendly.url.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.service.FriendlyURLEntryLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
@@ -29,7 +27,6 @@ import java.util.Map;
 /**
  * @author Pavel Savinov
  */
-@ProviderType
 public class FriendlyURLEntryImpl extends FriendlyURLEntryBaseImpl {
 
 	@Override

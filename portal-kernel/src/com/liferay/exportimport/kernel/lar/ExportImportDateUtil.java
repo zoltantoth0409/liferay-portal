@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.kernel.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationConstants;
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalServiceUtil;
@@ -58,7 +56,6 @@ import javax.portlet.PortletRequest;
 /**
  * @author Máté Thurzó
  */
-@ProviderType
 public class ExportImportDateUtil {
 
 	public static final String RANGE = "range";

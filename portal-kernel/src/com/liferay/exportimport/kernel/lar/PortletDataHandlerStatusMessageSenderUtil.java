@@ -14,15 +14,12 @@
 
 package com.liferay.exportimport.kernel.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class PortletDataHandlerStatusMessageSenderUtil {
 
 	/**

@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.internal.lar;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.kernel.lar.ExportImportProcessCallbackRegistry;
 
 import java.util.concurrent.Callable;
@@ -28,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true, service = ExportImportProcessCallbackRegistry.class
 )
-@ProviderType
 public class ExportImportProcessCallbackRegistryImpl
 	implements ExportImportProcessCallbackRegistry {
 

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -27,7 +25,6 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class AnalyzeIndexRequest implements IndexRequest<AnalyzeIndexResponse> {
 
 	@Override

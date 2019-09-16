@@ -14,8 +14,6 @@
 
 package com.liferay.portal.facebook;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.facebook.FacebookConnect;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.registry.Registry;
@@ -29,7 +27,6 @@ import javax.portlet.PortletRequest;
  * @author Brian Wing Shun Chan
  * @author Mika Koivisto
  */
-@ProviderType
 public class FacebookConnectUtil {
 
 	public static String getAccessToken(

@@ -14,14 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.search;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.search.Hits;
 
 /**
  * @author Michael C. Han
  */
-@ProviderType
 public class SearchSearchResponse extends BaseSearchResponse {
 
 	public Hits getHits() {

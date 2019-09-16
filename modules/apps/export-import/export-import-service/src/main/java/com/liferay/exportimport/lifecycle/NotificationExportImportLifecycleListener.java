@@ -14,8 +14,6 @@
 
 package com.liferay.exportimport.lifecycle;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.exportimport.constants.ExportImportPortletKeys;
 import com.liferay.exportimport.kernel.lifecycle.BaseProcessExportImportLifecycleListener;
 import com.liferay.portal.background.task.model.BackgroundTask;
@@ -41,7 +39,6 @@ import org.osgi.service.component.annotations.Reference;
  * @deprecated As of Judson (7.1.x)
  */
 @Deprecated
-@ProviderType
 public class NotificationExportImportLifecycleListener
 	extends BaseProcessExportImportLifecycleListener {
 
