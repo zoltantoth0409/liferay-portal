@@ -49,7 +49,7 @@ public class AccountEntryUserRelLocalServiceImpl
 		throws PortalException {
 
 		AccountEntryUserRel existingAccountEntryUserRel =
-			accountEntryUserRelPersistence.fetchByA_A(
+			accountEntryUserRelPersistence.fetchByAEI_AUI(
 				accountEntryId, accountUserId);
 
 		if (existingAccountEntryUserRel != null) {
