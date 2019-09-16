@@ -261,9 +261,9 @@ public class DataLayoutResourceImpl
 			DataActionKeys.ADD_DATA_LAYOUT, _groupLocalService,
 			ddmStructure.getGroupId());
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		String dataLayoutJSON = DataLayoutUtil.toJSON(dataLayout);
+
+		ServiceContext serviceContext = new ServiceContext();
 
 		dataLayout = _toDataLayout(
 			_ddmStructureLayoutLocalService.addStructureLayout(
