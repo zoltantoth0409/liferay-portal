@@ -281,9 +281,9 @@ public class DataLayoutResourceImpl
 			InternalDataLayout.class.getName(), dataLayout.getId(),
 			serviceContext.getModelPermissions());
 
-		DocumentContext jsonContext = JsonPath.parse(dataLayoutJSON);
+		DocumentContext documentContext = JsonPath.parse(dataLayoutJSON);
 
-		List<String> fieldNames = jsonContext.read(
+		List<String> fieldNames = documentContext.read(
 			"$['pages'][*]['rows'][*]['columns'][*]['fieldNames'][*]");
 
 		for (String fieldName : fieldNames) {
