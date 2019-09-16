@@ -284,7 +284,7 @@ public class DataLayoutResourceImpl
 		DocumentContext documentContext = JsonPath.parse(dataLayoutJSON);
 
 		List<String> fieldNames = documentContext.read(
-			"$['pages'][*]['rows'][*]['columns'][*]['fieldNames'][*]");
+			"$[\"pages\"][*][\"rows\"][*][\"columns\"][*][\"fieldNames\"][*]");
 
 		for (String fieldName : fieldNames) {
 			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
