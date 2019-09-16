@@ -34,15 +34,6 @@ import org.osgi.service.component.annotations.Reference;
 public class AccountEntryUserRelLocalServiceImpl
 	extends AccountEntryUserRelLocalServiceBaseImpl {
 
-	/**
-	 * Creates an AccountEntryUserRel and adds it to the database. An
-	 * AccountEntryUserRel is essentially an "AccountEntry membership".
-	 *
-	 * @param accountEntryId the primary key of the AccountEntry
-	 * @param accountUserId the primary key of the User
-	 * @return the AccountEntryUserRel
-	 * @review
-	 */
 	@Override
 	public AccountEntryUserRel addAccountEntryUserRel(
 			long accountEntryId, long accountUserId)
