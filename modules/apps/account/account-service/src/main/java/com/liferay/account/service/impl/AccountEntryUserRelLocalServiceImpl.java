@@ -39,11 +39,11 @@ public class AccountEntryUserRelLocalServiceImpl
 			long accountEntryId, long accountUserId)
 		throws PortalException {
 
-		AccountEntryUserRel existingAccountEntryUserRel =
+		AccountEntryUserRel accountEntryUserRel =
 			accountEntryUserRelPersistence.fetchByAEI_AUI(
 				accountEntryId, accountUserId);
 
-		if (existingAccountEntryUserRel != null) {
+		if (accountEntryUserRel != null) {
 			throw new DuplicateAccountEntryUserRelException();
 		}
 
@@ -52,8 +52,7 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		long accountEntryUserRelId = counterLocalService.increment();
 
-		AccountEntryUserRel accountEntryUserRel = createAccountEntryUserRel(
-			accountEntryUserRelId);
+		accountEntryUserRel = createAccountEntryUserRel(accountEntryUserRelId);
 
 		accountEntryUserRel.setAccountEntryUserRelId(accountEntryUserRelId);
 		accountEntryUserRel.setAccountEntryId(accountEntryId);
