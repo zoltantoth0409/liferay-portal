@@ -640,20 +640,6 @@ AUI.add(
 						parser.parseContent(content);
 					},
 
-					populateRepeatedSiblings: function(locale) {
-						var instance = this;
-
-						var siblings = instance.getRepeatedSiblings();
-
-						siblings.forEach(function(item) {
-							var localizationMap = item.get('localizationMap');
-
-							if (Lang.isUndefined(localizationMap[locale])) {
-								localizationMap[locale] = '';
-							}
-						});
-					},
-
 					remove: function() {
 						var instance = this;
 
@@ -869,8 +855,6 @@ AUI.add(
 								value !== localizationMap[defaultLocale]
 							) {
 								localizationMap[locale] = value;
-
-								instance.populateRepeatedSiblings(locale);
 							}
 						}
 						else {
@@ -3460,6 +3444,7 @@ AUI.add(
 								}
 
 								instance.populateBlankLocalizationMap(defaultLocale, field.originalField, field);
+								instance.populateBlankLocalizationMap(defaultLocale, field, field.originalField);
 							}
 						);
 					},
@@ -3480,11 +3465,10 @@ AUI.add(
 
 						var currentLocale = repeatedField.get('displayLocale');
 
-						for (var localization in totalLocalizations) {
-							if (localization === currentLocale) {
-								continue;
-							}
+						var localizations = Object.keys(totalLocalizations);
+						localizations.push(currentLocale);
 
+						localizations.forEach(function(localization) {
 							if (!newFieldLocalizations[localization]) {
 								var localizationValue = '';
 
@@ -3497,7 +3481,7 @@ AUI.add(
 
 								newFieldLocalizations[localization] = localizationValue;
 							}
-						}
+						});
 
 						repeatedField.set('localizationMap', newFieldLocalizations);
 
