@@ -31,7 +31,7 @@ List<ScreenNavigationCategory> screenNavigationCategories = (List<ScreenNavigati
 List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntry>)request.getAttribute("liferay-frontend:screen-navigation:screenNavigationEntries");
 %>
 
-<c:if test="<%= (screenNavigationCategories != null) && (screenNavigationCategories.size() > 1) %>">
+<c:if test="<%= ListUtil.isNotEmpty(screenNavigationCategories) && (screenNavigationCategories.size() > 1) %>">
 	<div class="page-header">
 		<div class="<%= headerContainerCssClass %>">
 			<nav>
@@ -59,7 +59,7 @@ List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntr
 	</div>
 </c:if>
 
-<c:if test="<%= (selectedScreenNavigationEntry != null) && (screenNavigationEntries != null) %>">
+<c:if test="<%= (selectedScreenNavigationEntry != null) && ListUtil.isNotEmpty(screenNavigationEntries) %>">
 	<div class="<%= containerWrapperCssClass %>">
 		<div class="row">
 			<c:if test="<%= screenNavigationEntries.size() > 1 %>">
