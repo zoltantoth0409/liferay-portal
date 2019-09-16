@@ -112,7 +112,7 @@ public class CTServicePublisher<T extends CTModel<T>> implements CTPublisher {
 
 					throw new SystemException(
 						StringBundler.concat(
-							"MvccVersion mismatch between ", ctEntry, " and ",
+							"MVCC version mismatch between ", ctEntry, " and ",
 							ctModel, " for ", _ctService.getModelClass()));
 				}
 
