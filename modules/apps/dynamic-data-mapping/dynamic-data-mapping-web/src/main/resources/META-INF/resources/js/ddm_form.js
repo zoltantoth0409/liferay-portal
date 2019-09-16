@@ -3256,7 +3256,7 @@ AUI.add(
 						if (value !== '') {
 							value = JSON.parse(value);
 						} else {
-							value = [""];
+							value = [''];
 						}
 
 						instance.getInputNode().all('option').each(
