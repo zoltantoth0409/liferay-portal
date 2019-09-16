@@ -67,7 +67,6 @@ public class AccountEntryUserRelLocalServiceTest {
 		_accountEntryUserRels.add(accountEntryUserRel);
 
 		Assert.assertNotNull(accountEntryUserRel);
-
 		Assert.assertNotNull(
 			_accountEntryUserRelLocalService.fetchAccountEntryUserRel(
 				accountEntryUserRel.getPrimaryKey()));
