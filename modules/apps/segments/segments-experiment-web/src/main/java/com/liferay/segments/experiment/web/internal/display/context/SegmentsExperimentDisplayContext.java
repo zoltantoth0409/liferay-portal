@@ -150,10 +150,6 @@ public class SegmentsExperimentDisplayContext {
 		return _getSegmentsExperimentActionURL("/edit_segments_experiment_rel");
 	}
 
-	public String getRunSegmentsExperimenttURL() {
-		return _getSegmentsExperimentActionURL("/run_segments_experiment");
-	}
-
 	public JSONArray getHistorySegmentsExperimentsJSONArray(Locale locale)
 		throws PortalException {
 
@@ -164,7 +160,7 @@ public class SegmentsExperimentDisplayContext {
 				getSelectedSegmentsExperienceId(),
 				_portal.getClassNameId(Layout.class), layout.getPlid(),
 				SegmentsExperimentConstants.Status.
-					getNonExclusiveStatusValues(),
+					getNonexclusiveStatusValues(),
 				new SegmentsExperimentModifiedDateComparator());
 
 		JSONArray segmentsExperimentsJSONArray =
@@ -181,6 +177,10 @@ public class SegmentsExperimentDisplayContext {
 		}
 
 		return segmentsExperimentsJSONArray;
+	}
+
+	public String getRunSegmentsExperimenttURL() {
+		return _getSegmentsExperimentActionURL("/run_segments_experiment");
 	}
 
 	public JSONArray getSegmentsExperiencesJSONArray(Locale locale)
