@@ -48,6 +48,7 @@ public interface AsahFaroBackendClient {
 	 * @param  experimentId the ID of the experiment
 	 * @param  experimentSettings settings for the calculation
 	 * @return estimated duration for the experiment in days
+	 * @review
 	 */
 	public Long calculateExperimentEstimatedDaysDuration(
 		String experimentId, ExperimentSettings experimentSettings);
