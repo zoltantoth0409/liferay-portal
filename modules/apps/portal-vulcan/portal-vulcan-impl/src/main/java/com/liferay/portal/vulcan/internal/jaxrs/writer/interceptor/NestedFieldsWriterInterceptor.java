@@ -128,17 +128,9 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	protected List<ServiceReference<?>> getServiceReferences()
 		throws InvalidSyntaxException {
 
-		List<ServiceReference<?>> resources = new ArrayList<>();
-
-		ServiceReference<?>[] serviceReferences =
+		return Arrays.asList(
 			_bundleContext.getAllServiceReferences(
-				null, "(osgi.jaxrs.resource=true)");
-
-		for (ServiceReference<?> serviceReference : serviceReferences) {
-			resources.add(serviceReference);
-		}
-
-		return resources;
+				null, "(osgi.jaxrs.resource=true)"));
 	}
 
 	private Object _adaptToFieldType(Class<?> fieldType, Object value) {
