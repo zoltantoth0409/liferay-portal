@@ -269,7 +269,8 @@ public class FriendlyURLEntryLocalServiceImpl
 
 		FriendlyURLEntryLocalization friendlyURLEntryLocalization =
 			friendlyURLEntryLocalizationPersistence.fetchByG_C_U(
-				groupId, classNameId, urlTitle);
+				groupId, classNameId,
+				FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle));
 
 		if (friendlyURLEntryLocalization != null) {
 			return friendlyURLEntryPersistence.fetchByPrimaryKey(
@@ -284,7 +285,8 @@ public class FriendlyURLEntryLocalServiceImpl
 		long groupId, long classNameId, String urlTitle) {
 
 		return friendlyURLEntryLocalizationPersistence.fetchByG_C_U(
-			groupId, classNameId, urlTitle);
+			groupId, classNameId,
+			FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle));
 	}
 
 	@Override
