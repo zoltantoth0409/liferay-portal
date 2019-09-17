@@ -39,7 +39,7 @@ portletURL.setParameter("mvcRenderCommandName", "/monitoring/view");
 		/>
 
 		<liferay-frontend:management-bar-sort
-			orderByCol='<%= "last-request" %>'
+			orderByCol="last-request"
 			orderByType="<%= orderByType %>"
 			orderColumns='<%= new String[] {"last-request"} %>'
 			portletURL="<%= renderResponse.createRenderURL() %>"

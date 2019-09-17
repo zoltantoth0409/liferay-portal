@@ -24,7 +24,7 @@
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
 			<liferay-ui:tabs
-				names='<%= "user-settings,display-settings,rss" %>'
+				names="user-settings,display-settings,rss"
 				param="tabs2"
 				refresh="<%= false %>"
 				type="tabs nav-tabs-default"
