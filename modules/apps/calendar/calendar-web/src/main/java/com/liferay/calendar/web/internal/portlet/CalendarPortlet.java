@@ -1223,7 +1223,6 @@ public class CalendarPortlet extends MVCPortlet {
 			LocalizationUtil.getLocalizedName(
 				Field.NAME, searchContext.getLanguageId()),
 			keywords);
-
 		searchContext.setAttribute(
 			LocalizationUtil.getLocalizedName(
 				"resourceName", searchContext.getLanguageId()),
