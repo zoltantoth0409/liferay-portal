@@ -116,7 +116,7 @@ if (dlViewFileVersionDisplayContext.isVersionInfoVisible()) {
 						<div class="btn-group-item">
 							<clay:link
 								buttonStyle="primary"
-								elementClasses='<%= "btn-sm" %>'
+								elementClasses="btn-sm"
 								href="<%= DLUtil.getDownloadURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>"
 								label='<%= LanguageUtil.get(resourceBundle, "download") %>'
 								title='<%= LanguageUtil.get(resourceBundle, "download") + " (" + TextFormatter.formatStorageSize(fileVersion.getSize(), locale) + ")" %>'
