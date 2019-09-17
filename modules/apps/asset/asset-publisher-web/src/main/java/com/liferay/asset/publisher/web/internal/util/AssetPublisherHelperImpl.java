@@ -140,8 +140,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		if (_isSearchWithIndex(portletName, assetEntryQuery)) {
 			return _assetHelper.searchAssetEntries(
 				assetEntryQuery,
-				_filterAssetCategoryIdsPresentInAssetEntryQuery(
-					assetEntryQuery, portletPreferences),
+				_filterAssetCategoryIds(assetEntryQuery, portletPreferences),
 				getAssetTagNames(portletPreferences), attributes, companyId,
 				assetEntryQuery.getKeywords(), layout, locale, scopeGroupId,
 				timeZone, userId, start, end);
@@ -843,7 +842,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
 	}
 
-	private long[] _filterAssetCategoryIdsPresentInAssetEntryQuery(
+	private long[] _filterAssetCategoryIds(
 		AssetEntryQuery assetEntryQuery,
 		PortletPreferences portletPreferences) {
 
