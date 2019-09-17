@@ -186,7 +186,7 @@ public class PortalUpgradeProcessTest {
 
 		try (Connection connection = DataAccess.getConnection()) {
 			Assert.assertFalse(
-				"Major schema version changes must be non revertible",
+				"Major schema version changes must be nonrevertible",
 				PortalUpgradeProcess.isInRequiredSchemaVersion(connection));
 		}
 	}
