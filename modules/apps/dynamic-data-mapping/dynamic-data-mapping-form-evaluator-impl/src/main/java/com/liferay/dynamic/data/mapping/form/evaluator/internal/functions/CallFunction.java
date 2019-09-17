@@ -245,7 +245,8 @@ public class CallFunction extends BaseDDMFormRuleFunction {
 			}
 		}
 
-		if ((options.size() == 1)) {
+		if ((options.size() == 1) &&
+			ddmFormFieldEvaluationResult.isRequired()) {
 
 			KeyValuePair keyValuePair = options.get(0);
 
