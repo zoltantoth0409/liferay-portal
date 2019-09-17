@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -231,7 +232,21 @@ public class CallFunction extends BaseDDMFormRuleFunction {
 
 		ddmFormFieldEvaluationResult.setProperty("options", options);
 
-		if (options.size() == 1) {
+		String value = _getStringValue(ddmFormFieldEvaluationResult);
+
+		if (Validator.isNotNull(value)) {
+			Stream<KeyValuePair> stream = options.stream();
+
+			if (!stream.anyMatch(
+					option -> Objects.equals(option.getValue(), value))) {
+
+				ddmFormFieldEvaluationResult.setValue(
+					_jsonFactory.createJSONArray());
+			}
+		}
+
+		if ((options.size() == 1)) {
+
 			KeyValuePair keyValuePair = options.get(0);
 
 			JSONArray valueJSONArray = _jsonFactory.createJSONArray();
@@ -299,6 +314,18 @@ public class CallFunction extends BaseDDMFormRuleFunction {
 				}
 			}
 		}
+	}
+
+	private String _getStringValue(
+		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult) {
+
+		JSONArray valueJSONArray = ddmFormFieldEvaluationResult.getValue();
+
+		if ((valueJSONArray != null) && (valueJSONArray.length() > 0)) {
+			return valueJSONArray.getString(0);
+		}
+
+		return StringPool.BLANK;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(CallFunction.class);
