@@ -708,7 +708,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			ExDate exDate = toICalExDate(
 				calendarBooking.getRecurrenceObj(),
-				calendarBooking.getStartTime(), calendarBooking.getTimeZone());
+				calendarBooking.getTimeZone());
 
 			if (exDate != null) {
 				propertyList.add(exDate);
@@ -773,9 +773,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		throw new UnsupportedOperationException();
 	}
 
-	protected ExDate toICalExDate(
-		Recurrence recurrence, long startTime, TimeZone timeZone) {
-
+	protected ExDate toICalExDate(Recurrence recurrence, TimeZone timeZone) {
 		List<java.util.Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
 
@@ -793,8 +791,6 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		}
 
 		for (java.util.Calendar exceptionJCalendar : exceptionJCalendars) {
-			_addHourMinuteFromTimeInMillis(startTime, exceptionJCalendar);
-
 			DateTime dateTime = toICalDateTime(
 				exceptionJCalendar.getTimeInMillis(), timeZone);
 
@@ -822,21 +818,6 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		unsyncStringWriter.flush();
 
 		return unsyncStringWriter.toString();
-	}
-
-	private void _addHourMinuteFromTimeInMillis(
-		long sourceTimeInMillis, java.util.Calendar targetJCalendar) {
-
-		java.util.Calendar jCalendar = java.util.Calendar.getInstance();
-
-		jCalendar.setTimeInMillis(sourceTimeInMillis);
-
-		targetJCalendar.add(
-			java.util.Calendar.HOUR_OF_DAY,
-			jCalendar.get(java.util.Calendar.HOUR_OF_DAY));
-		targetJCalendar.add(
-			java.util.Calendar.MINUTE,
-			jCalendar.get(java.util.Calendar.MINUTE));
 	}
 
 	private void _addHourMinuteToUntilDate(Recur recur) {
