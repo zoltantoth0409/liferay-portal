@@ -158,7 +158,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 			}
 			catch (IllegalStateException ise) {
 
-				// Concurrent unregisteration from register(long)
+				// Concurrent unregistration from register(long)
 
 			}
 		}
