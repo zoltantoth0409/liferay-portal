@@ -254,6 +254,8 @@ public class CallFunction extends BaseDDMFormRuleFunction {
 			valueJSONArray.put(keyValuePair.getValue());
 
 			ddmFormFieldEvaluationResult.setValue(valueJSONArray);
+
+			ddmFormFieldEvaluationResult.setProperty("valueChanged", true);
 		}
 	}
 
