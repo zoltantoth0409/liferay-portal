@@ -205,15 +205,15 @@
 			<matches>Successfully recreated and upgraded table .*</matches>
 		</ignore-error>
 		<ignore-error description="LPS-88394 - temporarily ignore warning until fixed">
-			<contains>Duplicate column name 'kaleoClassName': alter table KaleoNotification add kaleoClassName</contains>
+			<contains>alter table KaleoNotification add kaleoClassName</contains>
 			<matches></matches>
 		</ignore-error>
 		<ignore-error description="LPS-88394 - temporarily ignore warning until fixed">
-			<contains>Duplicate column name 'kaleoClassPK': alter table KaleoNotification add kaleoClassPK</contains>
+			<contains>alter table KaleoNotification add kaleoClassPK</contains>
 			<matches></matches>
 		</ignore-error>
 		<ignore-error description="LPS-88394 - temporarily ignore warning until fixed">
-			<contains>Duplicate column name 'uuid_': alter table KaleoProcess add uuid_</contains>
+			<contains>alter table KaleoProcess add uuid_</contains>
 			<matches></matches>
 		</ignore-error>
 		<ignore-error description="LPS-88395 - temporarily ignore until fixed">
