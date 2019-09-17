@@ -97,8 +97,7 @@ definition {
 		ContentPages.addPage(pageName = "Test Content Page Name");
 
 		PageEditor.addFragment(
-			collectionName = "Collection Name",
-			fragmentName = "Text Fragment Example");
+			collectionName = "Collection Name",fragmentName = "Text Fragment Example");
 
 		PageEditorConfiguration.changeConfigSelection(
 			fragmentName = "Text Fragment Example",
