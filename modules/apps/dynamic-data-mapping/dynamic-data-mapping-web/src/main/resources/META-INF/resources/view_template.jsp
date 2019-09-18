@@ -103,6 +103,7 @@ if (layout != null) {
 					else {
 						rowURL.setParameter("classPK", "0");
 					}
+
 					rowURL.setParameter("type", template.getType());
 					rowURL.setParameter("structureAvailableFields", renderResponse.getNamespace() + "getAvailableFields");
 
