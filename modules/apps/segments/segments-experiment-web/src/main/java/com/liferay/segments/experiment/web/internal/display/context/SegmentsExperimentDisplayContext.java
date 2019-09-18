@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -37,6 +38,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsExperimentConstants;
+import com.liferay.segments.experiment.web.internal.configuration.SegmentsExperimentConfiguration;
 import com.liferay.segments.experiment.web.internal.util.SegmentsExperimentUtil;
 import com.liferay.segments.model.SegmentsExperience;
 import com.liferay.segments.model.SegmentsExperiment;
@@ -45,11 +47,13 @@ import com.liferay.segments.service.SegmentsExperienceService;
 import com.liferay.segments.service.SegmentsExperimentRelService;
 import com.liferay.segments.service.SegmentsExperimentService;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
@@ -66,6 +70,7 @@ public class SegmentsExperimentDisplayContext {
 		HttpServletRequest httpServletRequest, RenderResponse renderResponse,
 		LayoutLocalService layoutLocalService, Portal portal,
 		SegmentsExperienceService segmentsExperienceService,
+		SegmentsExperimentConfiguration segmentsExperimentConfiguration,
 		SegmentsExperimentService segmentsExperimentService,
 		SegmentsExperimentRelService segmentsExperimentRelService) {
 
@@ -74,6 +79,7 @@ public class SegmentsExperimentDisplayContext {
 		_layoutLocalService = layoutLocalService;
 		_portal = portal;
 		_segmentsExperienceService = segmentsExperienceService;
+		_segmentsExperimentConfiguration = segmentsExperimentConfiguration;
 		_segmentsExperimentService = segmentsExperimentService;
 		_segmentsExperimentRelService = segmentsExperimentRelService;
 
@@ -205,16 +211,21 @@ public class SegmentsExperimentDisplayContext {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		for (SegmentsExperimentConstants.Goal goal :
-				SegmentsExperimentConstants.Goal.values()) {
+		String[] goalsEnabled = _segmentsExperimentConfiguration.goalsEnabled();
 
-			segmentsExperimentGoalsJSONArray.put(
+		Stream<SegmentsExperimentConstants.Goal> stream = Arrays.stream(
+			SegmentsExperimentConstants.Goal.values());
+
+		stream.filter(
+			goal -> ArrayUtil.contains(goalsEnabled, goal.name())
+		).forEach(
+			goal -> segmentsExperimentGoalsJSONArray.put(
 				JSONUtil.put(
 					"label", LanguageUtil.get(resourceBundle, goal.getLabel())
 				).put(
 					"value", goal.getLabel()
-				));
-		}
+				))
+		);
 
 		return segmentsExperimentGoalsJSONArray;
 	}
@@ -434,6 +445,8 @@ public class SegmentsExperimentDisplayContext {
 	private Long _segmentsExperienceId;
 	private final SegmentsExperienceService _segmentsExperienceService;
 	private SegmentsExperiment _segmentsExperiment;
+	private final SegmentsExperimentConfiguration
+		_segmentsExperimentConfiguration;
 	private final SegmentsExperimentRelService _segmentsExperimentRelService;
 	private final SegmentsExperimentService _segmentsExperimentService;
 	private final ThemeDisplay _themeDisplay;
