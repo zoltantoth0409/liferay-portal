@@ -267,8 +267,18 @@ public class AppResourceImpl
 
 		return new App() {
 			{
-				appDeployments = _toAppDeployments(
-					appBuilderApp.getAppBuilderAppId());
+				appDeployments = transformToArray(
+					_appBuilderAppDeploymentLocalService.
+						getAppBuilderAppDeployments(
+							appBuilderApp.getAppBuilderAppId()),
+					appBuilderAppDeployment -> new AppDeployment() {
+						{
+							settings = _toSettings(
+								appBuilderAppDeployment.getSettings());
+							type = appBuilderAppDeployment.getType();
+						}
+					},
+					AppDeployment.class);
 				dataDefinitionId = appBuilderApp.getDdmStructureId();
 				dataLayoutId = appBuilderApp.getDdmStructureLayoutId();
 				dataListViewId = appBuilderApp.getDeDataListViewId();
@@ -282,20 +292,6 @@ public class AppResourceImpl
 				userId = appBuilderApp.getUserId();
 			}
 		};
-	}
-
-	private AppDeployment[] _toAppDeployments(long appId) throws Exception {
-		return transformToArray(
-			_appBuilderAppDeploymentLocalService.getAppBuilderAppDeployments(
-				appId),
-			appBuilderAppDeployment -> new AppDeployment() {
-				{
-					settings = _toSettings(
-						appBuilderAppDeployment.getSettings());
-					type = appBuilderAppDeployment.getType();
-				}
-			},
-			AppDeployment.class);
 	}
 
 	private String _toJSONString(Map<String, Object> map) {
