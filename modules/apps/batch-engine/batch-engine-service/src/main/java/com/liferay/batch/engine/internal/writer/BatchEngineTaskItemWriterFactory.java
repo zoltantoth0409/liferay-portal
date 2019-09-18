@@ -81,9 +81,9 @@ public class BatchEngineTaskItemWriterFactory {
 		if (unsafeBiFunction == null) {
 			StringBundler sb = new StringBundler(4);
 
-			sb.append("No resource available for batchEngineTaskOperation ");
+			sb.append("No resource available for batch engine task operation ");
 			sb.append(batchEngineTask.getOperation());
-			sb.append(" and className ");
+			sb.append(" and class name ");
 			sb.append(batchEngineTask.getClassName());
 
 			throw new IllegalStateException(sb.toString());
