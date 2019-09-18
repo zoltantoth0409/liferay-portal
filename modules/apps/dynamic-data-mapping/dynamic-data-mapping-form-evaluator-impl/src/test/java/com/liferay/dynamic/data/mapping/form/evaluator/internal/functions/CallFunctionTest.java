@@ -46,6 +46,8 @@ public class CallFunctionTest {
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
 			new DDMFormFieldEvaluationResult("field0", "1");
 
+		ddmFormFieldEvaluationResult.setRequired(true);
+
 		ddmFormFieldEvaluationResults.put(
 			"field0", Arrays.asList(ddmFormFieldEvaluationResult));
 
