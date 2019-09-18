@@ -110,10 +110,10 @@ public class BatchEngineTaskExecutorImpl<T> implements BatchEngineTaskExecutor {
 	}
 
 	private void _execute(BatchEngineTask batchEngineTask) throws Throwable {
-		User user = _userLocalService.getUser(batchEngineTask.getUserId());
-
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+
+		User user = _userLocalService.getUser(batchEngineTask.getUserId());
 
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(user));
