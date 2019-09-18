@@ -236,7 +236,11 @@ public class AppResourceImpl
 
 		app.setId(appBuilderApp.getAppBuilderAppId());
 
-		_createDeployments(app);
+		for (AppDeployment appDeployment : app.getAppDeployments()) {
+			_appBuilderAppDeploymentLocalService.addAppBuilderAppDeployment(
+				app.getId(), _toJSONString(appDeployment.getSettings()),
+				appDeployment.getType());
+		}
 
 		return _toApp(appBuilderApp);
 	}
@@ -258,16 +262,6 @@ public class AppResourceImpl
 				app.getDataListViewId(),
 				LocalizedValueUtil.toLocaleStringMap(app.getName()),
 				appBuilderAppConstantsStatus.getValue()));
-	}
-
-	private void _createDeployments(App app) {
-		AppDeployment[] appDeployments = app.getAppDeployments();
-
-		for (AppDeployment appDeployment : appDeployments) {
-			_appBuilderAppDeploymentLocalService.addAppBuilderAppDeployment(
-				app.getId(), _toJSONString(appDeployment.getSettings()),
-				appDeployment.getType());
-		}
 	}
 
 	private App _toApp(AppBuilderApp appBuilderApp) throws Exception {
