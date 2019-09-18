@@ -54,8 +54,8 @@
 						viewSegmentsExperimentDetailsURL: '<%= segmentsExperimentDisplayContext.getViewSegmentsExperimentDetailsURL() %>'
 					},
 					props: {
-						initialSegmentsVariants: <%= segmentsExperimentDisplayContext.getSegmentsExperimentRelsJSONArray(locale) %>,
 						historySegmentsExperiments: <%= segmentsExperimentDisplayContext.getHistorySegmentsExperimentsJSONArray(locale) %>,
+						initialSegmentsVariants: <%= segmentsExperimentDisplayContext.getSegmentsExperimentRelsJSONArray(locale) %>,
 						segmentsExperiences: <%= segmentsExperimentDisplayContext.getSegmentsExperiencesJSONArray(locale) %>,
 						segmentsExperiment: <%= segmentsExperimentDisplayContext.getSegmentsExperimentJSONObject(locale) %>,
 						segmentsExperimentGoals: <%= segmentsExperimentDisplayContext.getSegmentsExperimentGoalsJSONArray(locale) %>,
