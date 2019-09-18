@@ -197,6 +197,14 @@ gradle.beforeProject {
 			}
 		}
 
+		pluginManager.withPlugin("com.liferay.baseline") {
+			if (project.path.startsWith(":third-party:")) {
+				baseline {
+					enabled = false
+				}
+			}
+		}
+
 		pluginManager.withPlugin("com.liferay.jsdoc") {
 			downloadJSDoc {
 				moduleVersion = "3.5.5"
