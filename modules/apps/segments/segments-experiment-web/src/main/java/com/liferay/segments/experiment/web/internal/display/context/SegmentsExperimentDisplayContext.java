@@ -69,21 +69,22 @@ import javax.servlet.http.HttpServletRequest;
 public class SegmentsExperimentDisplayContext {
 
 	public SegmentsExperimentDisplayContext(
-		HttpServletRequest httpServletRequest, RenderResponse renderResponse,
+		HttpServletRequest httpServletRequest,
 		LayoutLocalService layoutLocalService, Portal portal,
+		RenderResponse renderResponse,
 		SegmentsExperienceService segmentsExperienceService,
 		SegmentsExperimentConfiguration segmentsExperimentConfiguration,
-		SegmentsExperimentService segmentsExperimentService,
-		SegmentsExperimentRelService segmentsExperimentRelService) {
+		SegmentsExperimentRelService segmentsExperimentRelService,
+		SegmentsExperimentService segmentsExperimentService) {
 
 		_httpServletRequest = httpServletRequest;
-		_renderResponse = renderResponse;
 		_layoutLocalService = layoutLocalService;
 		_portal = portal;
+		_renderResponse = renderResponse;
 		_segmentsExperienceService = segmentsExperienceService;
 		_segmentsExperimentConfiguration = segmentsExperimentConfiguration;
-		_segmentsExperimentService = segmentsExperimentService;
 		_segmentsExperimentRelService = segmentsExperimentRelService;
+		_segmentsExperimentService = segmentsExperimentService;
 
 		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
