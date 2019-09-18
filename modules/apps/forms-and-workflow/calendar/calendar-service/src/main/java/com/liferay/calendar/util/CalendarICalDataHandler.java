@@ -804,6 +804,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		return new ExDate(dateList);
 	}
 
+	protected ExDate toICalExDate(Recurrence recurrence, TimeZone timeZone) {
+		throw new UnsupportedOperationException();
+	}
+
 	protected String toString(net.fortuna.ical4j.model.Calendar iCalCalendar)
 		throws Exception {
 
