@@ -320,21 +320,22 @@ public class AppResourceImpl
 	}
 
 	private Map<String, Object> _toSettings(String settings) throws Exception {
-		Map<String, Object> settingsMap = new HashMap<>();
+		return new HashMap<String, Object>() {
+			{
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					settings);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(settings);
+				Set<String> keys = jsonObject.keySet();
 
-		Set<String> keys = jsonObject.keySet();
+				Iterator<String> iterator = keys.iterator();
 
-		Iterator<String> iterator = keys.iterator();
+				while (iterator.hasNext()) {
+					String key = iterator.next();
 
-		while (iterator.hasNext()) {
-			String key = iterator.next();
-
-			settingsMap.put(key, jsonObject.get(key));
-		}
-
-		return settingsMap;
+					put(key, jsonObject.get(key));
+				}
+			}
+		};
 	}
 
 	private void _validate(
