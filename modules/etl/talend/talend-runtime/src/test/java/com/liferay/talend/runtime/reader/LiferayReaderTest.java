@@ -115,16 +115,16 @@ public class LiferayReaderTest extends BaseTest {
 		LiferayInputResourceProperties testLiferayInputResourceProperties =
 			new LiferayInputResourceProperties("resource");
 
-		testLiferayInputResourceProperties.operations.setValue(action);
-		testLiferayInputResourceProperties.endpoint.setValue(endpoint);
 		testLiferayInputResourceProperties.connection =
 			liferayConnectionProperties;
+		testLiferayInputResourceProperties.endpoint.setValue(endpoint);
+		testLiferayInputResourceProperties.operations.setValue(action);
+		testLiferayInputResourceProperties.parametersTable.columnName.setValue(
+			Arrays.asList("id"));
 		testLiferayInputResourceProperties.parametersTable.typeColumnName.
 			setValue(Arrays.asList("path"));
 		testLiferayInputResourceProperties.parametersTable.valueColumnName.
 			setValue(Arrays.asList("1234"));
-		testLiferayInputResourceProperties.parametersTable.columnName.setValue(
-			Arrays.asList("id"));
 
 		testLiferayInputProperties.connection = liferayConnectionProperties;
 
