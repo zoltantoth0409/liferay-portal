@@ -124,7 +124,8 @@ public class LayoutSetPrototypeLocalServiceImpl
 		// Group
 
 		if (!CompanyThreadLocal.isDeleteInProcess()) {
-			int count = layoutSetPersistence.countByLayoutSetPrototypeUuid_Head(
+			long count = layoutSetPersistence.countByC_L_Head(
+				layoutSetPrototype.getCompanyId(),
 				layoutSetPrototype.getUuid(), false);
 
 			if (count > 0) {
