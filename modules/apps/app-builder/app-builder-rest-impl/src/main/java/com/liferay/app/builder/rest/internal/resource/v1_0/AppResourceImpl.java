@@ -17,7 +17,6 @@ package com.liferay.app.builder.rest.internal.resource.v1_0;
 import com.liferay.app.builder.constants.AppBuilderAppConstants;
 import com.liferay.app.builder.exception.AppBuilderAppStatusException;
 import com.liferay.app.builder.model.AppBuilderApp;
-import com.liferay.app.builder.model.AppBuilderAppDeployment;
 import com.liferay.app.builder.rest.dto.v1_0.App;
 import com.liferay.app.builder.rest.dto.v1_0.AppDeployment;
 import com.liferay.app.builder.rest.internal.jaxrs.exception.InvalidAppException;
@@ -56,10 +55,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -288,26 +285,17 @@ public class AppResourceImpl
 	}
 
 	private AppDeployment[] _toAppDeployments(long appId) throws Exception {
-		List<AppDeployment> appDeployments = new ArrayList<>();
-
-		List<AppBuilderAppDeployment> appBuilderAppDeployments =
+		return transformToArray(
 			_appBuilderAppDeploymentLocalService.getAppBuilderAppDeployments(
-				appId);
-
-		for (AppBuilderAppDeployment appBuilderAppDeployment :
-				appBuilderAppDeployments) {
-
-			appDeployments.add(
-				new AppDeployment() {
-					{
-						settings = _toSettings(
-							appBuilderAppDeployment.getSettings());
-						type = appBuilderAppDeployment.getType();
-					}
-				});
-		}
-
-		return appDeployments.toArray(new AppDeployment[0]);
+				appId),
+			appBuilderAppDeployment -> new AppDeployment() {
+				{
+					settings = _toSettings(
+						appBuilderAppDeployment.getSettings());
+					type = appBuilderAppDeployment.getType();
+				}
+			},
+			AppDeployment.class);
 	}
 
 	private String _toJSONString(Map<String, Object> map) {
