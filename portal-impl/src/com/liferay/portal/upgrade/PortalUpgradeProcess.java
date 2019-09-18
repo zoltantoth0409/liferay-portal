@@ -171,8 +171,7 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 
 	private static final Class<?>[] _PORTAL_UPGRADE_PROCESS_REGISTRIES = {
 		PortalUpgradeProcessRegistryImpl.class,
-		com.liferay.portal.upgrade.v7_2_x.PortalUpgradeProcessRegistryImpl.
-			class
+		com.liferay.portal.upgrade.v7_2_x.PortalUpgradeProcessRegistryImpl.class
 	};
 
 	private static final Version _initialSchemaVersion = new Version(0, 1, 0);
