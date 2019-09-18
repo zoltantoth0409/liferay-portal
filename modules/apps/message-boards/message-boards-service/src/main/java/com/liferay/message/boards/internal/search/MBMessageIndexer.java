@@ -19,10 +19,12 @@ import com.liferay.message.boards.constants.MBCategoryConstants;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.model.MBDiscussion;
 import com.liferay.message.boards.model.MBMessage;
+import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBCategoryLocalService;
 import com.liferay.message.boards.service.MBCategoryService;
 import com.liferay.message.boards.service.MBDiscussionLocalService;
 import com.liferay.message.boards.service.MBMessageLocalService;
+import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManager;
@@ -313,8 +315,16 @@ public class MBMessageIndexer
 			document.addKeyword("discussion", true);
 		}
 
+		document.addKeyword("answer", mbMessage.isAnswer());
 		document.addKeyword("parentMessageId", mbMessage.getParentMessageId());
 		document.addKeyword("threadId", mbMessage.getThreadId());
+
+		if (mbMessage.getMessageId() == mbMessage.getRootMessageId()) {
+			MBThread mbThread = mbThreadLocalService.fetchMBThread(
+				mbMessage.getThreadId());
+
+			document.addKeyword("question", mbThread.isQuestion());
+		}
 
 		if (mbMessage.isDiscussion()) {
 			List<RelatedEntryIndexer> relatedEntryIndexers =
@@ -598,6 +608,9 @@ public class MBMessageIndexer
 
 	@Reference
 	protected MBMessageLocalService mbMessageLocalService;
+
+	@Reference
+	protected MBThreadLocalService mbThreadLocalService;
 
 	private DynamicQuery _getDistinctGroupIdDynamicQuery(
 		long companyId, long categoryId) {
