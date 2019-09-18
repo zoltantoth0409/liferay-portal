@@ -18,10 +18,10 @@ import com.liferay.app.builder.constants.AppBuilderAppConstants;
 import com.liferay.app.builder.deploy.AppDeployer;
 import com.liferay.app.builder.service.AppBuilderAppLocalServiceUtil;
 import com.liferay.osgi.util.ServiceTrackerFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -69,9 +69,7 @@ public class AppBuilderWebBundleActivator implements BundleActivator {
 					appDeployer.deploy(appBuilderAppId);
 				}
 				catch (Exception e) {
-					_logger.log(
-						Level.SEVERE, "Unable to deploy app " + appBuilderAppId,
-						e);
+					_log.error("Unable to deploy app " + appBuilderAppId, e);
 				}
 			}
 
@@ -97,7 +95,7 @@ public class AppBuilderWebBundleActivator implements BundleActivator {
 		}
 
 		private final BundleContext _bundleContext;
-		private final Logger _logger = Logger.getLogger(
+		private final Log _log = LogFactoryUtil.getLog(
 			AppDeployerServiceTrackerCustomizer.class.getName());
 
 	}
