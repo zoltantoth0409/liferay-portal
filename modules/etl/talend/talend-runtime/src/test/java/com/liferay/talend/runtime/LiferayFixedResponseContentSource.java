@@ -21,15 +21,15 @@ import javax.json.JsonObject;
  */
 public class LiferayFixedResponseContentSource extends LiferaySource {
 
-	public LiferayFixedResponseContentSource(JsonObject content) {
-		_content = content;
+	public LiferayFixedResponseContentSource(JsonObject jsonObject) {
+		_jsonObject = jsonObject;
 	}
 
 	@Override
 	public JsonObject doGetRequest(String resourceURL) {
-		return _content;
+		return _jsonObject;
 	}
 
-	private final JsonObject _content;
+	private final JsonObject _jsonObject;
 
 }
