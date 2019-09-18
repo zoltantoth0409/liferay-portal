@@ -110,6 +110,7 @@ public class SegmentsExperimentFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$STATUSES$]", getStatusesSQL(statuses));
+
 			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
