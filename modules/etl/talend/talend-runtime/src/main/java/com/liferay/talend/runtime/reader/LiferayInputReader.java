@@ -65,9 +65,9 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			throw new IllegalStateException("Reader was not started");
 		}
 
-		_currentItemIdx++;
+		_currentItemIndex++;
 
-		if (_currentItemIdx < _itemsJsonArray.size()) {
+		if (_currentItemIndex < _itemsJsonArray.size()) {
 			dataCount++;
 			_hasMore = true;
 
@@ -125,8 +125,8 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 	}
 
 	public JsonValue getCurrentJsonValue() throws NoSuchElementException {
-		if (_currentItemIdx < _itemsJsonArray.size()) {
-			return _itemsJsonArray.get(_currentItemIdx);
+		if (_currentItemIndex < _itemsJsonArray.size()) {
+			return _itemsJsonArray.get(_currentItemIndex);
 		}
 
 		throw new NoSuchElementException(
@@ -166,7 +166,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			liferayConnectionResourceBaseProperties.getItemsPerPage()
 		).build();
 
-		_currentItemIdx = 0;
+		_currentItemIndex = 0;
 
 		LiferaySource liferaySource = (LiferaySource)getCurrentSource();
 
@@ -213,7 +213,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 	private static final Logger _logger = LoggerFactory.getLogger(
 		LiferayInputReader.class);
 
-	private transient int _currentItemIdx;
+	private transient int _currentItemIndex;
 	private int _currentPage;
 	private boolean _hasMore;
 	private transient JsonArray _itemsJsonArray;
