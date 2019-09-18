@@ -70,7 +70,7 @@ public class AppBuilderWebBundleActivator implements BundleActivator {
 				}
 				catch (Exception e) {
 					_logger.log(
-						Level.SEVERE, "Unable to deploy App " + appBuilderAppId,
+						Level.SEVERE, "Unable to deploy app " + appBuilderAppId,
 						e);
 				}
 			}
