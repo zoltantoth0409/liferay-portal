@@ -49,7 +49,9 @@ public class LiferayReaderTest extends BaseTest {
 				Action.Unavailable, _OAS_URL, endpoint));
 
 		liferayInputReader.start();
+
 		liferayInputReader.advance();
+
 		liferayInputReader.getCurrentJsonValue();
 	}
 
