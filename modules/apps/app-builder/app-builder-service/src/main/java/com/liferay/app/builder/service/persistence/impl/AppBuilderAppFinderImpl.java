@@ -35,8 +35,6 @@ import org.osgi.service.component.annotations.Reference;
 public class AppBuilderAppFinderImpl
 	extends AppBuilderAppFinderBaseImpl implements AppBuilderAppFinder {
 
-	public static final String APP_BUILDER_APP_ID = "appBuilderAppId";
-
 	public static final String FIND_BY_S_T =
 		AppBuilderAppFinder.class.getName() + ".findByS_T";
 
@@ -51,7 +49,7 @@ public class AppBuilderAppFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(APP_BUILDER_APP_ID, Type.LONG);
+			q.addScalar("appBuilderAppId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
