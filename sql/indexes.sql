@@ -224,6 +224,7 @@ create index IX_7FFAE700 on LayoutRevision (layoutSetBranchId, status);
 create index IX_8EC3D2BC on LayoutRevision (plid, status);
 create index IX_421223B1 on LayoutRevision (status);
 
+create index IX_2C8C9CB7 on LayoutSet (companyId, layoutSetPrototypeUuid[$COLUMN_LENGTH:75$], head);
 create index IX_50C60CC0 on LayoutSet (groupId, head);
 create unique index IX_AAF037A5 on LayoutSet (groupId, privateLayout, head);
 create unique index IX_28B7204D on LayoutSet (headId);
