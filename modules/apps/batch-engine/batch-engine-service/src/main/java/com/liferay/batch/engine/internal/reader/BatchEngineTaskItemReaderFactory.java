@@ -35,7 +35,6 @@ public class BatchEngineTaskItemReaderFactory {
 				batchEngineTask.getContentType());
 		Blob content = batchEngineTask.getContent();
 
-		@SuppressWarnings("unchecked")
 		Class<T> itemClass = (Class<T>)batchEngineTaskItemClassRegistry.get(
 			batchEngineTask.getClassName());
 
