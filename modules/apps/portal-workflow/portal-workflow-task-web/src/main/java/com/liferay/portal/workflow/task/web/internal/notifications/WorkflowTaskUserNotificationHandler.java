@@ -65,7 +65,7 @@ public class WorkflowTaskUserNotificationHandler
 		long workflowTaskId = jsonObject.getLong("workflowTaskId");
 
 		if (workflowTaskId > 0) {
-			WorkflowTask workflowTask = _getWorkflowTask(
+			WorkflowTask workflowTask = _fetchWorkflowTask(
 				workflowTaskId, serviceContext);
 
 			if (workflowTask == null) {
@@ -111,7 +111,7 @@ public class WorkflowTaskUserNotificationHandler
 		_userNotificationEventLocalService = userNotificationEventLocalService;
 	}
 
-	private WorkflowTask _getWorkflowTask(
+	private WorkflowTask _fetchWorkflowTask(
 			long workflowTaskId, ServiceContext serviceContext)
 		throws WorkflowException {
 
@@ -127,7 +127,7 @@ public class WorkflowTaskUserNotificationHandler
 			long workflowTaskId, ServiceContext serviceContext)
 		throws WorkflowException {
 
-		WorkflowTask workflowTask = _getWorkflowTask(
+		WorkflowTask workflowTask = _fetchWorkflowTask(
 			workflowTaskId, serviceContext);
 
 		if (workflowTask == null) {
