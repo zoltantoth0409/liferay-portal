@@ -36,14 +36,14 @@ import org.osgi.framework.ServiceObjects;
 public class BatchEngineTaskItemWriter implements Closeable {
 
 	public BatchEngineTaskItemWriter(
-			Company company, Method resourceMethod,
-			String[] itemClassFieldNames,
+			Company company, String[] itemClassFieldNames,
+			Method resourceMethod,
 			ServiceObjects<Object> resourceServiceObjects, User user)
 		throws ReflectiveOperationException {
 
 		_company = company;
-		_resourceMethod = resourceMethod;
 		_itemClassFieldNames = itemClassFieldNames;
+		_resourceMethod = resourceMethod;
 		_resourceServiceObjects = resourceServiceObjects;
 		_user = user;
 

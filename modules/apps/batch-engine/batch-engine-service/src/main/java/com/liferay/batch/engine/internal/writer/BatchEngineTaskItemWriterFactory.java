@@ -144,7 +144,7 @@ public class BatchEngineTaskItemWriterFactory {
 					_batchEngineTaskItemWriterFactories.put(
 						key,
 						(company, user) -> new BatchEngineTaskItemWriter(
-							company, resourceMethod, itemClassFieldNames,
+							company, itemClassFieldNames, resourceMethod,
 							serviceObjects, user));
 				}
 				catch (NoSuchMethodException nsme) {
