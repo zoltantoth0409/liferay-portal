@@ -19,8 +19,6 @@ import aQute.bnd.annotation.metatype.Meta;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 
 /**
- * The functionality enabled by this configuration is experimental and not
- * covered by Liferay's support services
  * @author Eudaldo Alonso
  */
 @ExtendedObjectClassDefinition(generateUI = false)
