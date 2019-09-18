@@ -111,7 +111,6 @@ public class BatchEngineTaskItemWriter implements Closeable {
 				}
 
 			});
-
 		_setFieldValue(resource, "contextCompany", _company);
 		_setFieldValue(resource, "contextUser", _user);
 
