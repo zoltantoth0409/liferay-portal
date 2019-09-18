@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.app.builder.web.internal.deploy;
+package com.liferay.app.builder.web.internal.activator;
 
 import com.liferay.app.builder.constants.AppBuilderAppConstants;
 import com.liferay.app.builder.deploy.AppDeployer;
