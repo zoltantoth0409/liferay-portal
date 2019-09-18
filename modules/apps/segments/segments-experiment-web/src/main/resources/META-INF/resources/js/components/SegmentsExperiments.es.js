@@ -29,7 +29,7 @@ import {StateContext} from '../state/context.es';
 import SegmentsExperimentsContext from '../context.es';
 import ClayTabs from '@clayui/tabs';
 import ExperimentsHistory from './ExperimentsHistory.es';
-import {NO_EXPERIMENT_ILLUSTRATION_FILENAME} from '../util/contants.es';
+import {NO_EXPERIMENT_ILLUSTRATION_FILE_NAME} from '../util/contants.es';
 
 const TABS_STATES = {
 	ACTIVE: 0,
@@ -55,7 +55,7 @@ function SegmentsExperiments({
 	const _selectedExperienceId = experiment
 		? experiment.segmentsExperienceId
 		: selectedExperienceId;
-	const noExperimentIllustration = `${assetsPath}${NO_EXPERIMENT_ILLUSTRATION_FILENAME}`;
+	const noExperimentIllustration = `${assetsPath}${NO_EXPERIMENT_ILLUSTRATION_FILE_NAME}`;
 
 	return (
 		<>

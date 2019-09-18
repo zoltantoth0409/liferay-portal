@@ -19,14 +19,14 @@ import ClayLabel from '@clayui/label';
 import {statusToLabelDisplayType} from '../util/statuses.es';
 import {SegmentsExperimentType} from '../types.es';
 import SegmentsExperimentContext from '../context.es';
-import {NO_EXPERIMENT_ILLUSTRATION_FILENAME} from '../util/contants.es';
+import {NO_EXPERIMENT_ILLUSTRATION_FILE_NAME} from '../util/contants.es';
 
 const {useContext} = React;
 
 function ExperimentsHistory({experimentHistory}) {
 	const {assetsPath} = useContext(SegmentsExperimentContext);
 
-	const noHistoryIllustration = `${assetsPath}${NO_EXPERIMENT_ILLUSTRATION_FILENAME}`;
+	const noHistoryIllustration = `${assetsPath}${NO_EXPERIMENT_ILLUSTRATION_FILE_NAME}`;
 	return experimentHistory.length === 0 ? (
 		<div className="text-center">
 			<img
