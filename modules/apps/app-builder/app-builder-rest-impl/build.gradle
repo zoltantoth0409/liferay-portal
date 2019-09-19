@@ -15,6 +15,6 @@ dependencies {
 	compileOnly project(":apps:app-builder:app-builder-rest-api")
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.5.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.3.0"
-	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.8.0"
 	compileOnly project(":core:petra:petra-function")
 }
