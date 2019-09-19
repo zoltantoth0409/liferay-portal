@@ -40,6 +40,6 @@ dependencies {
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "4.1.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:layout:layout-content-page-editor-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.content.page.editor.api", version: "1.1.0"
 	compileOnly project(":apps:segments:segments-api")
 }
