@@ -14,7 +14,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.8.0"
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.9.0"
 	compileOnly project(":apps:segments:segments-asah-rest-api")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")

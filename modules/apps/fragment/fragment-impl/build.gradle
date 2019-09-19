@@ -22,5 +22,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "4.1.0"
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.9.0"
 }
