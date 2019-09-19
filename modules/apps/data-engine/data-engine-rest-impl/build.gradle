@@ -33,6 +33,6 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.api", version: "2.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.rest.api", version: "9.1.0"
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.5.0"
 	compileOnly project(":apps:portal-odata:portal-odata-api")
 }
