@@ -11,7 +11,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:portal-security:portal-security-permission-api")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":core:registry-api")
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.1.0"
 }
 
 liferay {
