@@ -251,17 +251,23 @@ AUI.add(
 
 							var articleId = article.id;
 
+							var hideDefaultSuccessMessageInput = instance._getByName(form, 'hideDefaultSuccessMessage');
+
 							if (actionName === 'publish') {
 								var workflowActionInput = instance._getByName(form, 'workflowAction');
 
 								workflowActionInput.val(Liferay.Workflow.ACTION_PUBLISH);
 
 								actionName = null;
+
+								if (themeDisplay.isStatePopUp()) {
+									hideDefaultSuccessMessageInput.val('true');
+								}
 							}
 							else {
-								var hideDefaultSuccessMessageInput = instance._getByName(form, 'hideDefaultSuccessMessage');
-
-								hideDefaultSuccessMessageInput.val('false');
+								if (themeDisplay.isStatePopUp()) {
+									hideDefaultSuccessMessageInput.val('false');
+								}
 							}
 
 							if (!actionName) {
