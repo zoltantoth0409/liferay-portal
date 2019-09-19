@@ -93,7 +93,6 @@ public class CTIndicatorProductNavigationControlMenuEntry
 				themeDisplay.getCompanyId(), themeDisplay.getUserId());
 
 		String ctCollectionName = StringPool.BLANK;
-
 		String image = "change-list-disabled";
 
 		if ((ctPreferences == null) ||
@@ -113,7 +112,6 @@ public class CTIndicatorProductNavigationControlMenuEntry
 
 			if (ctCollection != null) {
 				ctCollectionName = ctCollection.getName();
-
 				image = "change-list";
 			}
 		}
