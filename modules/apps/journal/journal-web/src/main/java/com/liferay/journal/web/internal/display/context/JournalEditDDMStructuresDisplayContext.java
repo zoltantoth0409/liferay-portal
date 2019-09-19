@@ -66,6 +66,10 @@ public class JournalEditDDMStructuresDisplayContext {
 		return _journalWebConfiguration.changeableDefaultLanguage();
 	}
 
+	public boolean enableDDMStructureFieldIndexable() {
+		return _journalWebConfiguration.enableDDMStructureFieldIndexable();
+	}
+
 	public String getAvailableFields() {
 		return "Liferay.FormBuilder.AVAILABLE_FIELDS.WCM_STRUCTURE";
 	}
