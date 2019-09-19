@@ -17,3 +17,8 @@
 # Bundle Version 2.0.3
 #
 8d983ad6ae9d913e04de2100d590d78e9d053cdf^..e2f2ff8d60adf7388cf73ac5eeae1a1a81d255a2=LPS-99252
+
+#
+# Bundle Version 2.0.4
+#
+e2f2ff8d60adf7388cf73ac5eeae1a1a81d255a2^..fc693c529b738cabeda3e0608083172f485f4d00=LPS-100352 LPS-101089 LPS-101208
