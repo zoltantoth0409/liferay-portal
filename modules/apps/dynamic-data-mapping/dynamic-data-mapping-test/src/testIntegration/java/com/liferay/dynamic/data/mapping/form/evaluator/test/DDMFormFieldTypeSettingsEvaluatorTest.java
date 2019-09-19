@@ -24,6 +24,7 @@ import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
+import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.UnlocalizedValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
@@ -92,9 +93,12 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 					}
 				});
 
+		boolean evaluationDemandsRequiredField = true;
+
 		DDMFormFieldEvaluationResult
 			ddmDataProviderInstanceOutputFieldEvaluationResult =
-				evaluateCallFunctionExpression(outputParametersSettings);
+				evaluateCallFunctionExpression(
+					outputParametersSettings, evaluationDemandsRequiredField);
 
 		JSONArray jsonArray =
 			ddmDataProviderInstanceOutputFieldEvaluationResult.getValue();
@@ -149,9 +153,12 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 					}
 				});
 
+		boolean evaluationDemandsRequiredField = false;
+
 		DDMFormFieldEvaluationResult
 			ddmDataProviderInstanceOutputFieldEvaluationResult =
-				evaluateCallFunctionExpression(outputParametersSettings);
+				evaluateCallFunctionExpression(
+					outputParametersSettings, evaluationDemandsRequiredField);
 
 		List<KeyValuePair> options =
 			ddmDataProviderInstanceOutputFieldEvaluationResult.getProperty(
@@ -363,7 +370,8 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 	protected DDMFormFieldEvaluationResult evaluateCallFunctionExpression(
 			List<DDMDataProviderOutputParametersSettings>
-				outputParametersSettings)
+				outputParametersSettings,
+			boolean evaluationDemandsRequiredField)
 		throws Exception {
 
 		DDMDataProviderInstance ddmDataProviderInstance =
@@ -380,6 +388,12 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 		DDMForm ddmForm = DDMFormFactory.create(
 			ddmFormFieldType.getDDMFormFieldTypeSettings());
+
+		if (evaluationDemandsRequiredField) {
+			for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
+				ddmFormField.setProperty("required", "true");
+			}
+		}
 
 		DDMFormValues ddmFormValues =
 			DDMFormValuesTestUtil.createDDMFormValuesWithDefaultFieldValues(
