@@ -302,6 +302,12 @@ public class FragmentEntryServiceImpl extends FragmentEntryServiceBaseImpl {
 		FragmentEntry fragmentEntry =
 			fragmentEntryLocalService.fetchFragmentEntry(fragmentEntryId);
 
+		if (fragmentEntry != null) {
+			_portletResourcePermission.check(
+				getPermissionChecker(), fragmentEntry.getGroupId(),
+				ActionKeys.VIEW);
+		}
+
 		return fragmentEntry;
 	}
 
