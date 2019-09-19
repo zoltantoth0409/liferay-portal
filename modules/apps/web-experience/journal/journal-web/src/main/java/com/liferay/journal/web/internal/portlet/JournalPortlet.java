@@ -1278,6 +1278,10 @@ public class JournalPortlet extends MVCPortlet {
 			WindowState windowState = actionRequest.getWindowState();
 
 			if (windowState.equals(LiferayWindowState.POP_UP)) {
+				if (workflowAction == WorkflowConstants.ACTION_PUBLISH) {
+					hideDefaultSuccessMessage(actionRequest);
+				}
+
 				redirect = _portal.escapeRedirect(redirect);
 
 				if (Validator.isNotNull(redirect) &&
