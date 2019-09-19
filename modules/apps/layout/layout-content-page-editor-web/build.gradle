@@ -38,7 +38,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "2.2.0"
 	compileOnly project(":apps:fragment:fragment-api")
-	compileOnly project(":apps:info:info-api")
+	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "4.1.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:layout:layout-content-page-editor-api")
 	compileOnly project(":apps:segments:segments-api")
