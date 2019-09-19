@@ -5,7 +5,10 @@ buildService {
 
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.2.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.10.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.28.0"
@@ -18,8 +21,5 @@ dependencies {
 	compileOnly project(":apps:layout:layout-api")
 	compileOnly project(":apps:layout:layout-seo-api")
 	compileOnly project(":apps:portal:portal-aop-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.2.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.1.0"
 	compileOnly project(":core:petra:petra-string")
-	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.1.0"
 }

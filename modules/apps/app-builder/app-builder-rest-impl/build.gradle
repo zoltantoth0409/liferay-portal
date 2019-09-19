@@ -3,6 +3,7 @@ dependencies {
 
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.5.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.8.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.28.0"
@@ -16,5 +17,4 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:app-builder:app-builder-api")
 	compileOnly project(":apps:app-builder:app-builder-rest-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.2.0"
 }
