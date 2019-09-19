@@ -150,7 +150,7 @@
 </tr>
 <tr>
 	<td>CLOSE_MESSAGE</td>
-	<td>//div[contains(@class,'alert-dismissible')]//button[@aria-label='Close']</td>
+	<td>//div[contains(@class,'alert-dismissible') and contains(@class,'show')]//button[@aria-label='Close']</td>
 	<td></td>
 </tr>
 <tr>
