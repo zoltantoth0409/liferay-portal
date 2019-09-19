@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:layout:layout-api")
 	compileOnly project(":apps:layout:layout-seo-api")
 	compileOnly project(":apps:portal:portal-aop-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "4.0.0"
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-lang")
