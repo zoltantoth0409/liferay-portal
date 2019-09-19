@@ -16,5 +16,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:app-builder:app-builder-api")
 	compileOnly project(":apps:app-builder:app-builder-rest-api")
-	compileOnly project(":core:petra:petra-function")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.2.0"
 }
