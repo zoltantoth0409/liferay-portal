@@ -66,7 +66,6 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 		SegmentsExperiment segmentsExperiment =
 			(SegmentsExperiment)httpServletRequest.getAttribute(
 				SegmentsExperimentWebKeys.SEGMENTS_EXPERIMENT);
-
 		long[] segmentsExperienceIds = GetterUtil.getLongValues(
 			httpServletRequest.getAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS));
