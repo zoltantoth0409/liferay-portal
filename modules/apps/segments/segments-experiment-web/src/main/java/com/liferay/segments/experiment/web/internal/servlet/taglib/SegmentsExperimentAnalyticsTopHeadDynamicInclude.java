@@ -72,7 +72,7 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS));
 
 		StringBundler sb = StringUtil.replaceToStringBundler(
-			_ANALYTICS_TMPL_CONTENT, "${", "}",
+			_TMPL_CONTENT, "${", "}",
 			_getAnalyticsClientContextMap(
 				segmentsExperiment,
 				_getSegmentsExperienceKey(segmentsExperienceIds)));
@@ -125,7 +125,7 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 		return SegmentsExperienceConstants.KEY_DEFAULT;
 	}
 
-	private static final String _ANALYTICS_TMPL_CONTENT = StringUtil.read(
+	private static final String _TMPL_CONTENT = StringUtil.read(
 		SegmentsExperimentAnalyticsTopHeadJSPDynamicInclude.class,
 		"analytics.tmpl");
 
