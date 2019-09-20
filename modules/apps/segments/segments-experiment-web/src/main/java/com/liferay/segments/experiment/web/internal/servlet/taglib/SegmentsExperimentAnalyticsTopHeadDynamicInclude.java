@@ -73,7 +73,7 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 
 		StringBundler sb = StringUtil.replaceToStringBundler(
 			_TMPL_CONTENT, "${", "}",
-			_getAnalyticsClientContextMap(
+			_getValues(
 				segmentsExperiment,
 				_getSegmentsExperienceKey(segmentsExperienceIds)));
 
@@ -86,7 +86,7 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 			"/dynamic_include/top_head.jsp#analytics");
 	}
 
-	private Map<String, String> _getAnalyticsClientContextMap(
+	private Map<String, String> _getValues(
 		SegmentsExperiment segmentsExperiment,
 		String segmentsExperimentSegmentsExperienceKey) {
 
