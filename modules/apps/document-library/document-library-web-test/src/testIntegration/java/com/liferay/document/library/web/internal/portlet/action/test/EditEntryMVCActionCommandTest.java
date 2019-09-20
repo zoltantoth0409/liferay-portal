@@ -96,7 +96,7 @@ public class EditEntryMVCActionCommandTest {
 
 		Map<String, String[]> parameters = Stream.of(
 			new AbstractMap.SimpleEntry<>(
-				"changeLog", new String[] {"New version"}),
+				"changeLog", new String[] {"New Version"}),
 			new AbstractMap.SimpleEntry<>(
 				Constants.CMD, new String[] {Constants.CHECKIN}),
 			new AbstractMap.SimpleEntry<>(
@@ -131,7 +131,7 @@ public class EditEntryMVCActionCommandTest {
 
 		FileVersion fileVersion = actualFileEntry.getFileVersion();
 
-		Assert.assertEquals("New version", fileVersion.getChangeLog());
+		Assert.assertEquals("New Version", fileVersion.getChangeLog());
 	}
 
 	@Test
@@ -148,7 +148,7 @@ public class EditEntryMVCActionCommandTest {
 
 		Map<String, String[]> parameters = Stream.of(
 			new AbstractMap.SimpleEntry<>(
-				"changeLog", new String[] {"New version"}),
+				"changeLog", new String[] {"New Version"}),
 			new AbstractMap.SimpleEntry<>(
 				Constants.CMD, new String[] {Constants.CHECKIN}),
 			new AbstractMap.SimpleEntry<>(
@@ -180,7 +180,7 @@ public class EditEntryMVCActionCommandTest {
 
 		FileVersion fileVersion = actualFileEntry.getFileVersion();
 
-		Assert.assertEquals("New version", fileVersion.getChangeLog());
+		Assert.assertEquals("New Version", fileVersion.getChangeLog());
 	}
 
 	@Test
