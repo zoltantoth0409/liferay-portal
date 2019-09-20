@@ -170,6 +170,10 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	private void _checkInEntries(ActionRequest actionRequest)
 		throws PortalException {
 
+		BulkSelection<FileShortcut> fileShortcutBulkSelection =
+			_fileShortcutBulkSelectionFactory.create(
+				actionRequest.getParameterMap());
+
 		DLVersionNumberIncrease dlVersionNumberIncrease =
 			DLVersionNumberIncrease.valueOf(
 				actionRequest.getParameter("versionIncrease"),
@@ -178,10 +182,6 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
-
-		BulkSelection<FileShortcut> fileShortcutBulkSelection =
-			_fileShortcutBulkSelectionFactory.create(
-				actionRequest.getParameterMap());
 
 		fileShortcutBulkSelection.forEach(
 			fileShortcut -> _dlAppService.checkInFileEntry(
@@ -201,12 +201,12 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	private void _checkOutEntries(ActionRequest actionRequest)
 		throws PortalException {
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
-
 		BulkSelection<FileShortcut> fileShortcutBulkSelection =
 			_fileShortcutBulkSelectionFactory.create(
 				actionRequest.getParameterMap());
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
 
 		fileShortcutBulkSelection.forEach(
 			fileShortcut -> _dlAppService.checkOutFileEntry(
