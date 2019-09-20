@@ -85,6 +85,20 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 			"/dynamic_include/top_head.jsp#analytics");
 	}
 
+	private String _getSegmentsExperienceKey(long[] segmentsExperienceIds) {
+		if (segmentsExperienceIds.length > 0) {
+			SegmentsExperience segmentsExperience =
+				_segmentsExperienceLocalService.fetchSegmentsExperience(
+					segmentsExperienceIds[0]);
+
+			if (segmentsExperience != null) {
+				return segmentsExperience.getSegmentsExperienceKey();
+			}
+		}
+
+		return SegmentsExperienceConstants.KEY_DEFAULT;
+	}
+
 	private Map<String, String> _getValues(
 		SegmentsExperiment segmentsExperiment,
 		String segmentsExperimentSegmentsExperienceKey) {
@@ -108,20 +122,6 @@ public class SegmentsExperimentAnalyticsTopHeadDynamicInclude
 			"variantId", segmentsExperimentSegmentsExperienceKey);
 
 		return analyticsClientContextMap;
-	}
-
-	private String _getSegmentsExperienceKey(long[] segmentsExperienceIds) {
-		if (segmentsExperienceIds.length > 0) {
-			SegmentsExperience segmentsExperience =
-				_segmentsExperienceLocalService.fetchSegmentsExperience(
-					segmentsExperienceIds[0]);
-
-			if (segmentsExperience != null) {
-				return segmentsExperience.getSegmentsExperienceKey();
-			}
-		}
-
-		return SegmentsExperienceConstants.KEY_DEFAULT;
 	}
 
 	private static final String _TMPL_CONTENT = StringUtil.read(
