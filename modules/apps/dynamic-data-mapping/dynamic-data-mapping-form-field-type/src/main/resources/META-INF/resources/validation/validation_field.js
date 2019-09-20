@@ -334,19 +334,38 @@ AUI.add(
 						var errorMessages = {};
 						var localizedValue = instance.get('localizedValue');
 
-						Object.keys(localizedValue || {}).forEach(
-							function(locale) {
-								var value = localizedValue[locale].errorMessage[locale];
+						if (!localizedValue) {
+							localizedValue = instance.get('value');
 
-								if (!value) {
-									var defaultLanguageId = instance._getDefaultLanguageId();
+							Object.keys(localizedValue.errorMessage || {}).forEach(
+								function(locale) {
+									var value = localizedValue.errorMessage[locale];
+			
+									if (!value) {
+										var defaultLanguageId = instance._getDefaultLanguageId();
 
-									value = localizedValue[defaultLanguageId].errorMessage[defaultLanguageId];
+										value = localizedValue.errorMessage[defaultLanguageId];
+									}
+
+									return errorMessages[locale] = value;
 								}
+							);
+						}
+						else {
+							Object.keys(localizedValue || {}).forEach(
+								function(locale) {
+									var value = localizedValue[locale].errorMessage[locale];
 
-								return errorMessages[locale] = value;
-							}
-						);
+									if (!value) {
+										var defaultLanguageId = instance._getDefaultLanguageId();
+
+										value = localizedValue[defaultLanguageId].errorMessage[defaultLanguageId];
+									}
+
+									return errorMessages[locale] = value;
+								}
+							);
+						}
 
 						return errorMessages;
 					},
