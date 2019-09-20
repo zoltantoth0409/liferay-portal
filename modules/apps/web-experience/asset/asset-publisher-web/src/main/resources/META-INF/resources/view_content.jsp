@@ -31,6 +31,14 @@ long groupId = ParamUtil.getLong(request, "groupId", scopeGroupId);
 long companyId = ParamUtil.getLong(request, "companyId");
 String urlTitle = ParamUtil.getString(request, "urlTitle");
 
+for (char c : urlTitle.toCharArray()) {
+	if (!Validator.isAscii(c)) {
+		urlTitle = FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle);
+
+		break;
+	}
+}
+
 boolean workflowPreview = GetterUtil.getBoolean(request.getAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW));
 
 boolean print = ParamUtil.getString(request, "viewMode").equals(Constants.PRINT);
