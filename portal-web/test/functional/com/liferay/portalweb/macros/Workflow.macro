@@ -238,7 +238,6 @@ definition {
 			workflowAssetTitle = "${key_workflowInstanceTitle}",
 			workflowAssetType = "Blogs Entry",
 			workflowTask = "Review");
-
 	}
 
 	macro configureDMWorkflowViaFolderInfo {
