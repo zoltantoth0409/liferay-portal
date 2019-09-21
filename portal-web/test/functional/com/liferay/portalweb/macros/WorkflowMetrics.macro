@@ -93,7 +93,6 @@ definition {
 		}
 
 		Click(locator1 = "WorkflowMetrics#DASHBOARD_TOTAL_${key_workflowFilterOption}_ITEMS_TITLE");
-
 	}
 
 	macro goToWorkflowProcessMetrics {
