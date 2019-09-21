@@ -12,27 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.dependencymanager.component.executor.factory.internal;
-
-import java.util.concurrent.Executor;
-
-import org.apache.felix.dm.Component;
-import org.apache.felix.dm.ComponentExecutorFactory;
+package com.liferay.portal.kernel.dependency.manager;
 
 /**
  * @author Shuyang Zhou
  */
-public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
+public interface DependencyManagerSync {
 
-	public ComponentExecutorFactoryImpl(Executor executor) {
-		_executor = executor;
-	}
-
-	@Override
-	public Executor getExecutorFor(Component component) {
-		return _executor;
-	}
-
-	private final Executor _executor;
+	public void sync();
 
 }

@@ -12,13 +12,22 @@
  * details.
  */
 
-package com.liferay.portal.kernel.dependency;
+package com.liferay.portal.kernel.dependency.manager;
+
+import com.liferay.portal.kernel.util.ServiceProxyFactory;
 
 /**
  * @author Shuyang Zhou
  */
-public interface DependencyManagerSync {
+public class DependencyManagerSyncUtil {
 
-	public void sync();
+	public static void sync() {
+		_dependencyManagerSync.sync();
+	}
+
+	private static volatile DependencyManagerSync _dependencyManagerSync =
+		ServiceProxyFactory.newServiceTrackedInstance(
+			DependencyManagerSync.class, DependencyManagerSyncUtil.class,
+			"_dependencyManagerSync", false);
 
 }
