@@ -57,7 +57,7 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 			}
 			catch (IllegalStateException ise) {
 
-				// Concurrent unregister, no need to do anything.
+				// Concurrent unregister, no need to do anything
 
 			}
 
@@ -69,7 +69,7 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 		}
 		catch (IllegalStateException ise) {
 
-			// Concurrent unregister, no need to do anything.
+			// Concurrent unregister, no need to do anything
 
 		}
 
