@@ -83,13 +83,13 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"DependencyManage sync timeout after waited " +
+						"Dependency manager sync timeout after waiting " +
 							_syncTimeout + "s");
 				}
 			}
 		}
 		catch (InterruptedException ie) {
-			_log.error("DependencyManage sync got interrupted", ie);
+			_log.error("Dependency manager sync interrupted", ie);
 		}
 	}
 
