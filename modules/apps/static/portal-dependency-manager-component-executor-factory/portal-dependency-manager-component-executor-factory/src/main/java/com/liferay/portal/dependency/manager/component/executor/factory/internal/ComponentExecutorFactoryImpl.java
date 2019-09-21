@@ -12,22 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.kernel.dependency;
+package com.liferay.portal.dependency.manager.component.executor.factory.internal;
 
-import com.liferay.portal.kernel.util.ServiceProxyFactory;
+import java.util.concurrent.Executor;
+
+import org.apache.felix.dm.Component;
+import org.apache.felix.dm.ComponentExecutorFactory;
 
 /**
  * @author Shuyang Zhou
  */
-public class DependencyManagerSyncUtil {
+public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
 
-	public static void sync() {
-		_dependencyManagerSync.sync();
+	public ComponentExecutorFactoryImpl(Executor executor) {
+		_executor = executor;
 	}
 
-	private static volatile DependencyManagerSync _dependencyManagerSync =
-		ServiceProxyFactory.newServiceTrackedInstance(
-			DependencyManagerSync.class, DependencyManagerSyncUtil.class,
-			"_dependencyManagerSync", false);
+	@Override
+	public Executor getExecutorFor(Component component) {
+		return _executor;
+	}
+
+	private final Executor _executor;
 
 }

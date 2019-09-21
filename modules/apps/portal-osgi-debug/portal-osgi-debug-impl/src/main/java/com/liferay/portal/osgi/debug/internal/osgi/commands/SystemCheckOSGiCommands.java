@@ -15,7 +15,7 @@
 package com.liferay.portal.osgi.debug.internal.osgi.commands;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.dependency.DependencyManagerSyncUtil;
+import com.liferay.portal.kernel.dependency.manager.DependencyManagerSyncUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;

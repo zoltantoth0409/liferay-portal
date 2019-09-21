@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.dependencymanager.component.executor.factory.internal;
+package com.liferay.portal.dependency.manager.component.executor.factory.internal;
 
-import com.liferay.portal.kernel.dependency.DependencyManagerSync;
+import com.liferay.portal.kernel.dependency.manager.DependencyManagerSync;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 
@@ -37,7 +37,7 @@ public class ComponentExecutorFactoryBundleActivator
 	@Override
 	public void start(BundleContext bundleContext) {
 		boolean threadPoolEnabled = GetterUtil.getBoolean(
-			bundleContext.getProperty("dependencymanager.threadpool.enabled"),
+			bundleContext.getProperty("dependency.manager.thread.pool.enabled"),
 			true);
 
 		if (!threadPoolEnabled) {
@@ -45,12 +45,12 @@ public class ComponentExecutorFactoryBundleActivator
 		}
 
 		long syncTimeout = GetterUtil.getInteger(
-			bundleContext.getProperty("dependencymanager.sync.timeout"), 60);
+			bundleContext.getProperty("dependency.manager.sync.timeout"), 60);
 
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
 			0, 1, 1, TimeUnit.MINUTES, new LinkedBlockingDeque<>(),
 			new NamedThreadFactory(
-				"Portal Dependencymanager Component Executor-",
+				"Portal Dependency Manager Component Executor-",
 				Thread.NORM_PRIORITY,
 				ComponentExecutorFactory.class.getClassLoader()));
 
