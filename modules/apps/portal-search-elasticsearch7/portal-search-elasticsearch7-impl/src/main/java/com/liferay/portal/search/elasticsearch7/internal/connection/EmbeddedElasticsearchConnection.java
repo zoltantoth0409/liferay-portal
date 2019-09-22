@@ -185,6 +185,13 @@ public class EmbeddedElasticsearchConnection
 
 	protected void configureHttp() {
 		settingsBuilder.put(
+			"http.enabled", elasticsearchConfiguration.httpEnabled());
+
+		if (!elasticsearchConfiguration.httpEnabled()) {
+			return;
+		}
+
+		settingsBuilder.put(
 			"http.cors.enabled", elasticsearchConfiguration.httpCORSEnabled());
 
 		if (!elasticsearchConfiguration.httpCORSEnabled()) {
