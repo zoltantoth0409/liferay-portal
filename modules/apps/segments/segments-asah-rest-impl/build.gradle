@@ -5,6 +5,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.8.0"
 	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.9.0"
+	compileOnly group: "com.liferay", name: "com.liferay.segments.asah.rest.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.10.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.28.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "4.2.0"
@@ -17,5 +18,4 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.segments.asah.rest.api", version: "1.0.0"
 }
