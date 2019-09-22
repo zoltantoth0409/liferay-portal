@@ -298,13 +298,12 @@ public class StructuredContentResourceImpl
 
 		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(templateId);
 
-		ThemeDisplay themeDisplay = _getThemeDisplay(journalArticle);
-
 		JournalArticleDisplay journalArticleDisplay =
 			_journalContent.getDisplay(
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
 				ddmTemplate.getTemplateKey(), null,
-				contextAcceptLanguage.getPreferredLanguageId(), themeDisplay);
+				contextAcceptLanguage.getPreferredLanguageId(),
+				_getThemeDisplay(journalArticle));
 
 		String content = journalArticleDisplay.getContent();
 
