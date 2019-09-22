@@ -141,8 +141,8 @@ public class DiscussionTag extends IncludeTag {
 		return StringBundler.concat(
 			themeDisplay.getPathMain(),
 			"/portal/comment/discussion/get_editor?p_p_isolated=1&",
-			"portletId=", portletId, "&doAsUserId=",
-			themeDisplay.getDoAsUserId());
+			"doAsUserId=", themeDisplay.getDoAsUserId(), "&portletId=",
+			portletId);
 	}
 
 	protected String getFormAction(HttpServletRequest httpServletRequest) {
@@ -177,8 +177,8 @@ public class DiscussionTag extends IncludeTag {
 		return StringBundler.concat(
 			themeDisplay.getPathMain(),
 			"/portal/comment/discussion/get_comments?p_p_isolated=1&",
-			"portletId=", portletId, "&doAsUserId=",
-			themeDisplay.getDoAsUserId());
+			"doAsUserId=", themeDisplay.getDoAsUserId(), "&portletId=",
+			portletId);
 	}
 
 	@Override
