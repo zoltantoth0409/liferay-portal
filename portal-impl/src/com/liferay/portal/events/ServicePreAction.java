@@ -147,7 +147,7 @@ public class ServicePreAction extends Action {
 		stopWatch.start();
 
 		try {
-			servicePre(true, httpServletRequest, httpServletResponse);
+			servicePre(httpServletRequest, httpServletResponse, true);
 		}
 		catch (Exception e) {
 			throw new ActionException(e);
@@ -159,9 +159,9 @@ public class ServicePreAction extends Action {
 	}
 
 	public void servicePre(
-			boolean initPermissionChecker,
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse)
+			HttpServletResponse httpServletResponse,
+			boolean initPermissionChecker)
 		throws Exception {
 
 		// Service context
@@ -174,7 +174,7 @@ public class ServicePreAction extends Action {
 		// Theme display
 
 		ThemeDisplay themeDisplay = _initThemeDisplay(
-			initPermissionChecker, httpServletRequest, httpServletResponse);
+			httpServletRequest, httpServletResponse, initPermissionChecker);
 
 		if (themeDisplay == null) {
 			return;
@@ -803,9 +803,9 @@ public class ServicePreAction extends Action {
 	}
 
 	private ThemeDisplay _initThemeDisplay(
-			boolean initPermissionChecker,
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse)
+			HttpServletResponse httpServletResponse,
+			boolean initPermissionChecker)
 		throws Exception {
 
 		HttpSession session = httpServletRequest.getSession();

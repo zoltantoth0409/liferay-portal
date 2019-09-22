@@ -716,7 +716,7 @@ public class StructuredContentResourceImpl
 		ServicePreAction servicePreAction = new ServicePreAction();
 
 		servicePreAction.servicePre(
-			false, contextHttpServletRequest, dummyHttpServletResponse);
+			contextHttpServletRequest, dummyHttpServletResponse, false);
 
 		ThemeServicePreAction themeServicePreAction =
 			new ThemeServicePreAction();
