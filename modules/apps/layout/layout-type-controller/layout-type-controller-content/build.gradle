@@ -1,5 +1,5 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "2.3.0"
+	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "4.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"

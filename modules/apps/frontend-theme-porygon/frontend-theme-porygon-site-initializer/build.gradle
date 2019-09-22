@@ -3,7 +3,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.publisher.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "2.18.0"
+	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
