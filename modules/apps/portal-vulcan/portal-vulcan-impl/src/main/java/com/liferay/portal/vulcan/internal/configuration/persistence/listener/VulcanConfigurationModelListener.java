@@ -24,7 +24,6 @@ import com.liferay.portal.vulcan.internal.configuration.VulcanConfiguration;
 import java.util.Collection;
 import java.util.Dictionary;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import org.osgi.framework.BundleContext;
@@ -111,14 +110,12 @@ public class VulcanConfigurationModelListener
 			return;
 		}
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", LocaleThreadLocal.getThemeDisplayLocale(),
-			getClass());
-
-		String message = ResourceBundleUtil.getString(
-			resourceBundle, "path-cannot-be-empty");
-
-		throw new Exception(message);
+		throw new Exception(
+			ResourceBundleUtil.getString(
+				ResourceBundleUtil.getBundle(
+					"content.Language",
+					LocaleThreadLocal.getThemeDisplayLocale(), getClass()),
+				"path-cannot-be-empty"));
 	}
 
 	private void _validateUniqueConfiguration(
