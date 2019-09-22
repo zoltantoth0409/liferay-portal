@@ -709,10 +709,10 @@ public class StructuredContentResourceImpl
 	private ThemeDisplay _getThemeDisplay(JournalArticle journalArticle)
 		throws Exception {
 
+		ServicePreAction servicePreAction = new ServicePreAction();
+
 		DummyHttpServletResponse dummyHttpServletResponse =
 			new DummyHttpServletResponse();
-
-		ServicePreAction servicePreAction = new ServicePreAction();
 
 		servicePreAction.servicePre(
 			contextHttpServletRequest, dummyHttpServletResponse, false);
