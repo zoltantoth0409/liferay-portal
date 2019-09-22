@@ -195,14 +195,14 @@ public class ExpandoInfoDisplayFieldProviderTest {
 				getContributorExpandoInfoDisplayFieldsValues(
 					User.class.getName(), _user, LocaleUtil.ENGLISH);
 
+		Assert.assertEquals(
+			expandoValue.getString(LocaleUtil.ENGLISH),
+			enInfoDisplayFieldsValues.get(infoDisplayField.getKey()));
+
 		Map<String, Object> frInfoDisplayFieldsValues =
 			_expandoInfoDisplayFieldProvider.
 				getContributorExpandoInfoDisplayFieldsValues(
 					User.class.getName(), _user, LocaleUtil.FRENCH);
-
-		Assert.assertEquals(
-			expandoValue.getString(LocaleUtil.ENGLISH),
-			enInfoDisplayFieldsValues.get(infoDisplayField.getKey()));
 
 		Assert.assertEquals(
 			expandoValue.getString(LocaleUtil.FRENCH),
