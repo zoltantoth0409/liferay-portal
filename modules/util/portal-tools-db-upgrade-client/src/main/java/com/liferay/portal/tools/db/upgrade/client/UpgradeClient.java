@@ -416,13 +416,13 @@ public class UpgradeClient {
 
 		String output = gogoShellClient.send(command);
 
-		int endOfFirstLineIndex = output.indexOf(System.lineSeparator());
+		int index = output.indexOf(System.lineSeparator());
 
-		if (endOfFirstLineIndex == -1) {
+		if (index == -1) {
 			return true;
 		}
 
-		output = output.substring(endOfFirstLineIndex + 1);
+		output = output.substring(index + 1);
 
 		System.out.println(output);
 
