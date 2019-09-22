@@ -70,7 +70,7 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 	protected void updateAssetDisplayPageEntry(Company company)
 		throws Exception {
 
-		_initGroupIdMaps(company.getCompanyId());
+		_init(company.getCompanyId());
 
 		StringBuilder sb = new StringBuilder(17);
 
@@ -154,15 +154,15 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 
 		long liveGroupId = groupId;
 
-		if (_stagingToLiveGroupIdMap.containsKey(groupId)) {
-			liveGroupId = _stagingToLiveGroupIdMap.get(groupId);
+		if (_liveGroupIdsMap.containsKey(groupId)) {
+			liveGroupId = _liveGroupIdsMap.get(groupId);
 		}
 
-		if (!_uuidsByGroupsMap.containsKey(liveGroupId)) {
-			_uuidsByGroupsMap.put(liveGroupId, new HashMap<>());
+		if (!_uuidsMaps.containsKey(liveGroupId)) {
+			_uuidsMaps.put(liveGroupId, new HashMap<>());
 		}
 
-		Map<String, String> uuids = _uuidsByGroupsMap.get(liveGroupId);
+		Map<String, String> uuids = _uuidsMaps.get(liveGroupId);
 
 		if (uuids.containsKey(journalArticleUuid)) {
 			return uuids.get(journalArticleUuid);
@@ -175,10 +175,10 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 		return newUuid;
 	}
 
-	private void _initGroupIdMaps(long companyId) throws Exception {
+	private void _init(long companyId) throws Exception {
+		_liveGroupIdsMap.clear();
 		_stagedGroupIds.clear();
-		_stagingToLiveGroupIdMap.clear();
-		_uuidsByGroupsMap.clear();
+		_uuidsMaps.clear();
 
 		StringBuilder sb = new StringBuilder(3);
 
@@ -197,7 +197,8 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 					long groupId = rs.getLong("groupId");
 					long liveGroupId = rs.getLong("liveGroupId");
 
-					_stagingToLiveGroupIdMap.put(groupId, liveGroupId);
+					_liveGroupIdsMap.put(groupId, liveGroupId);
+
 					_stagedGroupIds.add(groupId);
 					_stagedGroupIds.add(liveGroupId);
 				}
@@ -211,9 +212,9 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 	private final AssetDisplayPageEntryLocalService
 		_assetDisplayPageEntryLocalService;
 	private final CompanyLocalService _companyLocalService;
+	private Map<Long, Long> _liveGroupIdsMap = new HashMap<>();
 	private Set<Long> _stagedGroupIds = new HashSet<>();
-	private Map<Long, Long> _stagingToLiveGroupIdMap = new HashMap<>();
-	private Map<Long, Map<String, String>> _uuidsByGroupsMap = new HashMap<>();
+	private Map<Long, Map<String, String>> _uuidsMaps = new HashMap<>();
 
 	private class SaveAssetDisplayPageEntryCallable
 		implements Callable<Boolean> {
