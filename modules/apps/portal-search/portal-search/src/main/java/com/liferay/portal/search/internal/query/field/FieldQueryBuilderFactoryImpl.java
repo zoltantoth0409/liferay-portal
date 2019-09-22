@@ -23,6 +23,7 @@ import com.liferay.portal.search.query.field.QueryPreProcessConfiguration;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -36,9 +37,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Rodrigo Paulino
  */
 @Component(
-	property = {
-		"description.fields=content|description", "title.fields=name|title"
-	},
+	property = {"description.fields=description", "title.fields=title"},
 	service = FieldQueryBuilderFactory.class
 )
 public class FieldQueryBuilderFactoryImpl implements FieldQueryBuilderFactory {
@@ -46,19 +45,15 @@ public class FieldQueryBuilderFactoryImpl implements FieldQueryBuilderFactory {
 	@Override
 	public FieldQueryBuilder getQueryBuilder(String field) {
 		if (queryPreProcessConfiguration.isSubstringSearchAlways(field)) {
-			return substringFieldQueryBuilder;
+			return substringQueryBuilder;
 		}
 
-		for (String descriptionField : _descriptionFields) {
-			if (field.startsWith(descriptionField)) {
-				return descriptionFieldQueryBuilder;
-			}
+		if (_descriptionFields.contains(field)) {
+			return descriptionQueryBuilder;
 		}
 
-		for (String titleField : _titleFields) {
-			if (field.startsWith(titleField)) {
-				return titleFieldQueryBuilder;
-			}
+		if (_titleFields.contains(field)) {
+			return titleQueryBuilder;
 		}
 
 		return null;
@@ -81,20 +76,20 @@ public class FieldQueryBuilderFactoryImpl implements FieldQueryBuilderFactory {
 	}
 
 	@Reference
-	protected DescriptionFieldQueryBuilder descriptionFieldQueryBuilder;
+	protected DescriptionFieldQueryBuilder descriptionQueryBuilder;
 
 	@Reference
 	protected QueryPreProcessConfiguration queryPreProcessConfiguration;
 
 	@Reference
-	protected SubstringFieldQueryBuilder substringFieldQueryBuilder;
+	protected SubstringFieldQueryBuilder substringQueryBuilder;
 
 	@Reference
-	protected TitleFieldQueryBuilder titleFieldQueryBuilder;
+	protected TitleFieldQueryBuilder titleQueryBuilder;
 
-	private volatile Collection<String> _descriptionFields = Arrays.asList(
-		"content", "description");
-	private volatile Collection<String> _titleFields = new HashSet<>(
-		Arrays.asList("name", "title"));
+	private volatile Collection<String> _descriptionFields =
+		Collections.singleton("description");
+	private volatile Collection<String> _titleFields = Collections.singleton(
+		"title");
 
 }
