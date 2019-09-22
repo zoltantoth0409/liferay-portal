@@ -1,6 +1,7 @@
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.layout.test.util", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search", version: "6.0.23"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.8.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.engine.adapter.api", version: "3.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi", version: "3.0.0"
@@ -13,7 +14,6 @@ dependencies {
 	compileOnly group: "junit", name: "junit", version: "4.12"
 	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api", version: "1.1.2"
 	compileOnly group: "org.mockito", name: "mockito-core", version: "1.10.8"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.search", version: "6.0.0"
 }
 
 liferay {
