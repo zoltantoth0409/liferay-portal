@@ -73,7 +73,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.11.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.elasticsearch6.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.elasticsearch6.spi", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.search.engine.adapter.api", version: "3.4.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.engine.adapter.api", version: "3.5.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi", version: "3.3.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.3.0"
