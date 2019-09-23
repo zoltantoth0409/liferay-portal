@@ -180,16 +180,6 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 			_dlFileVersionPreviewLocalService);
 	}
 
-	@Activate
-	protected void activate() {
-		_alwaysGeneratingProcessorCapability = new LiferayProcessorCapability(
-			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE,
-			_inputStreamSanitizer);
-		_reusingProcessorCapability = new LiferayProcessorCapability(
-			ProcessorCapability.ResourceGenerationStrategy.REUSE,
-			_inputStreamSanitizer);
-	}
-
 	private ProcessorCapability _alwaysGeneratingProcessorCapability;
 	private final CommentCapability _commentCapability =
 		new LiferayCommentCapability();
