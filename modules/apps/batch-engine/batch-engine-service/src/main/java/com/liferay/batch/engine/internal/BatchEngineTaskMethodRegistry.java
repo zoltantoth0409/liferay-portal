@@ -66,7 +66,7 @@ public class BatchEngineTaskMethodRegistry {
 
 	public UnsafeBiFunction
 		<Company, User, BatchEngineTaskItemWriter, ReflectiveOperationException>
-			getBatchEngineTaskItemWriterFactory(
+			getUnsafeBiFunction(
 				BatchEngineTaskOperation batchEngineTaskOperation,
 				String itemClassName, String apiVersion) {
 

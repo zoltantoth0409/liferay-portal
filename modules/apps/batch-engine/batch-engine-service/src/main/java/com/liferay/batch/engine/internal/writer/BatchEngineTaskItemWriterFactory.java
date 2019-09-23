@@ -49,7 +49,7 @@ public class BatchEngineTaskItemWriterFactory {
 			<Company, User, BatchEngineTaskItemWriter,
 			 ReflectiveOperationException> unsafeBiFunction =
 				_batchEngineTaskMethodRegistry.
-					getBatchEngineTaskItemWriterFactory(
+					getUnsafeBiFunction(
 						batchEngineTaskOperation,
 						batchEngineTask.getClassName(),
 						batchEngineTask.getVersion());
