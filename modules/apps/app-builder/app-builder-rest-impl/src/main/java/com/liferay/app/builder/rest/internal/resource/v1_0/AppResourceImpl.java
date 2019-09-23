@@ -282,6 +282,7 @@ public class AppResourceImpl
 				if (Objects.equals(
 						app.getStatus(),
 						AppBuilderAppConstants.Status.DEPLOYED)) {
+
 					appDeployer.deploy(appId);
 				}
 				else {
