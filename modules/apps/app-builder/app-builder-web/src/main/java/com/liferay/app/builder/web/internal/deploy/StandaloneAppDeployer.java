@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Gabriel Albuquerque
  */
 @Component(
-	immediate = true, property = "com.app.builder.deploy.type=standalone",
+	immediate = true, property = "app.builder.deploy.type=standalone",
 	service = AppDeployer.class
 )
 public class StandaloneAppDeployer implements AppDeployer {
