@@ -406,9 +406,9 @@ public class UpgradeClient {
 			return true;
 		}
 
-		String line = _GOGO_SHELL_PREFFIX + command + System.lineSeparator();
-
-		_fileOutputStream.write(line.getBytes());
+		_fileOutputStream.write(
+			(_GOGO_SHELL_PREFFIX + command + System.lineSeparator()).
+				getBytes());
 
 		if (command.equals("exit") || command.equals("quit")) {
 			return false;
