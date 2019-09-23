@@ -52,16 +52,16 @@
 							AssignScopesDisplayContext.Relations relations = applicationAssignableScopesRelationsEntry.getValue();
 
 							Set<String> assignedScopeAliases = relations.getAssignedScopeAliases();
-							Set<String> scopeAliases = relations.getScopeAliases();
-
-							Set<String> globalScopeAliases = relations.getGlobalScopeAliases();
 
 							Map<String, Object> data = new HashMap<>();
+
+							Set<String> globalScopeAliases = relations.getGlobalScopeAliases();
 
 							data.put("slave", StringUtil.merge(globalScopeAliases, StringPool.SPACE));
 
 							String id = "scopeAlias" + StringUtil.randomId();
 							boolean removedScope = scopeAliases.isEmpty() && globalScopeAliases.isEmpty();
+							Set<String> scopeAliases = relations.getScopeAliases();
 						%>
 
 							<li class="list-group-item list-group-item-flex<c:if test="<%= removedScope %>"> removed-scope</c:if>">
