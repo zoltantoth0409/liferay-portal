@@ -16,16 +16,12 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-long appId = (long)request.getAttribute(AppBuilderWebKeys.APP_ID);
-%>
-
 <div id="<portlet:namespace />-app-builder-root">
 
 	<%
 	Map<String, Object> data = new HashMap<>();
 
-	data.put("appId", appId);
+	data.put("appId", request.getAttribute(AppBuilderWebKeys.APP_ID));
 	data.put("basePortletURL", renderResponse.createRenderURL());
 	%>
 
