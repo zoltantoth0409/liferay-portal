@@ -1602,7 +1602,7 @@ public class FragmentEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (FragmentEntry fragmentEntry : list) {
-					if ((groupId != fragmentEntry.getGroupId())) {
+					if (groupId != fragmentEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -2123,8 +2123,8 @@ public class FragmentEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (FragmentEntry fragmentEntry : list) {
-					if ((fragmentCollectionId !=
-							fragmentEntry.getFragmentCollectionId())) {
+					if (fragmentCollectionId !=
+							fragmentEntry.getFragmentCollectionId()) {
 
 						list = null;
 
