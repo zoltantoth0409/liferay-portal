@@ -78,8 +78,9 @@ public class BatchEngineTaskMethodRegistry {
 	public UnsafeBiFunction
 		<Company, User, BatchEngineTaskItemWriter, ReflectiveOperationException>
 			getUnsafeBiFunction(
+				String apiVersion,
 				BatchEngineTaskOperation batchEngineTaskOperation,
-				String itemClassName, String apiVersion) {
+				String itemClassName) {
 
 		return _unsafeBiFunctions.get(
 			new FactoryKey(
