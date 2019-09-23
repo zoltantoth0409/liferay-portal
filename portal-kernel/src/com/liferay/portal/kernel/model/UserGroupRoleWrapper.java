@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class UserGroupRoleWrapper
-	implements UserGroupRole, ModelWrapper<UserGroupRole> {
+	implements ModelWrapper<UserGroupRole>, UserGroupRole {
 
 	public UserGroupRoleWrapper(UserGroupRole userGroupRole) {
 		_userGroupRole = userGroupRole;

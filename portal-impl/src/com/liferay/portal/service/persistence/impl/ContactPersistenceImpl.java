@@ -181,7 +181,7 @@ public class ContactPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Contact contact : list) {
-					if ((companyId != contact.getCompanyId())) {
+					if (companyId != contact.getCompanyId()) {
 						list = null;
 
 						break;
@@ -692,7 +692,7 @@ public class ContactPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Contact contact : list) {
-					if ((accountId != contact.getAccountId())) {
+					if (accountId != contact.getAccountId()) {
 						list = null;
 
 						break;

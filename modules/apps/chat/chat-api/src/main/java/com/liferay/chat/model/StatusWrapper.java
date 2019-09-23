@@ -33,7 +33,7 @@ import java.util.Objects;
  * @see Status
  * @generated
  */
-public class StatusWrapper implements Status, ModelWrapper<Status> {
+public class StatusWrapper implements ModelWrapper<Status>, Status {
 
 	public StatusWrapper(Status status) {
 		_status = status;

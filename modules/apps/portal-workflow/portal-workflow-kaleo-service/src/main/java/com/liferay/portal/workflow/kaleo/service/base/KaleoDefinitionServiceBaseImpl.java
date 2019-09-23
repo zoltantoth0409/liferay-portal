@@ -66,7 +66,7 @@ import javax.sql.DataSource;
 @Deprecated
 public abstract class KaleoDefinitionServiceBaseImpl
 	extends BaseServiceImpl
-	implements KaleoDefinitionService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KaleoDefinitionService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

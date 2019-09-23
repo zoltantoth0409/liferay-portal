@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class OAuth2ScopeGrantWrapper
-	implements OAuth2ScopeGrant, ModelWrapper<OAuth2ScopeGrant> {
+	implements ModelWrapper<OAuth2ScopeGrant>, OAuth2ScopeGrant {
 
 	public OAuth2ScopeGrantWrapper(OAuth2ScopeGrant oAuth2ScopeGrant) {
 		_oAuth2ScopeGrant = oAuth2ScopeGrant;

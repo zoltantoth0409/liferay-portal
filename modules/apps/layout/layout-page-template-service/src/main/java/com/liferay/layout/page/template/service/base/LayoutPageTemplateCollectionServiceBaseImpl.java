@@ -45,7 +45,7 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutPageTemplateCollectionServiceBaseImpl
 	extends BaseServiceImpl
-	implements LayoutPageTemplateCollectionService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LayoutPageTemplateCollectionService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -192,7 +192,7 @@ public class AssetEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetEntry assetEntry : list) {
-					if ((groupId != assetEntry.getGroupId())) {
+					if (groupId != assetEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -706,7 +706,7 @@ public class AssetEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetEntry assetEntry : list) {
-					if ((companyId != assetEntry.getCompanyId())) {
+					if (companyId != assetEntry.getCompanyId()) {
 						list = null;
 
 						break;
@@ -1218,7 +1218,7 @@ public class AssetEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetEntry assetEntry : list) {
-					if ((visible != assetEntry.isVisible())) {
+					if (visible != assetEntry.isVisible()) {
 						list = null;
 
 						break;

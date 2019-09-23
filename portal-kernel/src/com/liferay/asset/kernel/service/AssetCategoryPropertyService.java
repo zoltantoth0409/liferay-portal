@@ -39,8 +39,8 @@ import java.util.List;
  com.liferay.asset.category.property.service.impl.AssetCategoryPropertyServiceImpl}
  * @generated
  */
-@Deprecated
 @AccessControlled
+@Deprecated
 @JSONWebService
 @ProviderType
 @Transactional(

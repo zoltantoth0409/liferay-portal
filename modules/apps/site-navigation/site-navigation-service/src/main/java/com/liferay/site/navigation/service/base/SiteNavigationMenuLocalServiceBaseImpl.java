@@ -70,7 +70,7 @@ import javax.sql.DataSource;
  */
 public abstract class SiteNavigationMenuLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SiteNavigationMenuLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SiteNavigationMenuLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

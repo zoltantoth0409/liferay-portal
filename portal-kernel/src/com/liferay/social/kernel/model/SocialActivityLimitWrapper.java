@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class SocialActivityLimitWrapper
-	implements SocialActivityLimit, ModelWrapper<SocialActivityLimit> {
+	implements ModelWrapper<SocialActivityLimit>, SocialActivityLimit {
 
 	public SocialActivityLimitWrapper(SocialActivityLimit socialActivityLimit) {
 		_socialActivityLimit = socialActivityLimit;

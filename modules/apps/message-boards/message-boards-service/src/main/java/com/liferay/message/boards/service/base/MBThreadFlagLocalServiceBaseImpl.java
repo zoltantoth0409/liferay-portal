@@ -66,7 +66,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBThreadFlagLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBThreadFlagLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBThreadFlagLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

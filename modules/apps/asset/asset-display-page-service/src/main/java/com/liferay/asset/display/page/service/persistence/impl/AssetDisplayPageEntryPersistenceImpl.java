@@ -1612,7 +1612,7 @@ public class AssetDisplayPageEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetDisplayPageEntry assetDisplayPageEntry : list) {
-					if ((groupId != assetDisplayPageEntry.getGroupId())) {
+					if (groupId != assetDisplayPageEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -2145,9 +2145,9 @@ public class AssetDisplayPageEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetDisplayPageEntry assetDisplayPageEntry : list) {
-					if ((layoutPageTemplateEntryId !=
+					if (layoutPageTemplateEntryId !=
 							assetDisplayPageEntry.
-								getLayoutPageTemplateEntryId())) {
+								getLayoutPageTemplateEntryId()) {
 
 						list = null;
 

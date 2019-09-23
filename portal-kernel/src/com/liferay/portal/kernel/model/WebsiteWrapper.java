@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see Website
  * @generated
  */
-public class WebsiteWrapper implements Website, ModelWrapper<Website> {
+public class WebsiteWrapper implements ModelWrapper<Website>, Website {
 
 	public WebsiteWrapper(Website website) {
 		_website = website;

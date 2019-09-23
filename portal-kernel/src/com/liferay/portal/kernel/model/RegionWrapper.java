@@ -32,7 +32,7 @@ import java.util.Objects;
  * @see Region
  * @generated
  */
-public class RegionWrapper implements Region, ModelWrapper<Region> {
+public class RegionWrapper implements ModelWrapper<Region>, Region {
 
 	public RegionWrapper(Region region) {
 		_region = region;

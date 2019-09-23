@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see OAuthToken
  * @generated
  */
-public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
+public class OAuthTokenWrapper implements ModelWrapper<OAuthToken>, OAuthToken {
 
 	public OAuthTokenWrapper(OAuthToken oAuthToken) {
 		_oAuthToken = oAuthToken;

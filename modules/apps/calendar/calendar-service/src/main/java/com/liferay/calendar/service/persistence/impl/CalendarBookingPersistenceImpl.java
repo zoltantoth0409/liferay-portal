@@ -1603,7 +1603,7 @@ public class CalendarBookingPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarBooking calendarBooking : list) {
-					if ((calendarId != calendarBooking.getCalendarId())) {
+					if (calendarId != calendarBooking.getCalendarId()) {
 						list = null;
 
 						break;
@@ -2126,8 +2126,8 @@ public class CalendarBookingPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarBooking calendarBooking : list) {
-					if ((calendarResourceId !=
-							calendarBooking.getCalendarResourceId())) {
+					if (calendarResourceId !=
+							calendarBooking.getCalendarResourceId()) {
 
 						list = null;
 
@@ -2663,8 +2663,8 @@ public class CalendarBookingPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarBooking calendarBooking : list) {
-					if ((parentCalendarBookingId !=
-							calendarBooking.getParentCalendarBookingId())) {
+					if (parentCalendarBookingId !=
+							calendarBooking.getParentCalendarBookingId()) {
 
 						list = null;
 
@@ -3203,8 +3203,8 @@ public class CalendarBookingPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarBooking calendarBooking : list) {
-					if ((recurringCalendarBookingId !=
-							calendarBooking.getRecurringCalendarBookingId())) {
+					if (recurringCalendarBookingId !=
+							calendarBooking.getRecurringCalendarBookingId()) {
 
 						list = null;
 

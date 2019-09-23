@@ -36,8 +36,8 @@ import java.util.Map;
  * @deprecated
  * @generated
  */
-@Deprecated
 @AccessControlled
+@Deprecated
 @JSONWebService
 @ProviderType
 @Transactional(

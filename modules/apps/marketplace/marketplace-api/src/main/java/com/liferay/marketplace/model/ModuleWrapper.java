@@ -33,7 +33,7 @@ import java.util.Objects;
  * @see Module
  * @generated
  */
-public class ModuleWrapper implements Module, ModelWrapper<Module> {
+public class ModuleWrapper implements ModelWrapper<Module>, Module {
 
 	public ModuleWrapper(Module module) {
 		_module = module;

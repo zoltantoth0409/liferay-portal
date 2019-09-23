@@ -2210,7 +2210,7 @@ public class OrganizationPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Organization organization : list) {
-					if ((companyId != organization.getCompanyId())) {
+					if (companyId != organization.getCompanyId()) {
 						list = null;
 
 						break;
@@ -3102,7 +3102,7 @@ public class OrganizationPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Organization organization : list) {
-					if ((companyId != organization.getCompanyId())) {
+					if (companyId != organization.getCompanyId()) {
 						list = null;
 
 						break;

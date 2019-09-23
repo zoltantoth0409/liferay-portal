@@ -43,7 +43,7 @@ import javax.sql.DataSource;
  */
 public abstract class ReadingTimeEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements ReadingTimeEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ReadingTimeEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -1589,7 +1589,7 @@ public class KBCommentPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KBComment kbComment : list) {
-					if ((groupId != kbComment.getGroupId())) {
+					if (groupId != kbComment.getGroupId()) {
 						list = null;
 
 						break;

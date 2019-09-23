@@ -51,7 +51,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBTemplateServiceBaseImpl
 	extends BaseServiceImpl
-	implements KBTemplateService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBTemplateService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

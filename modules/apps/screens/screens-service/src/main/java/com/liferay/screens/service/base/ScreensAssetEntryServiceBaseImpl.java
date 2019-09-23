@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class ScreensAssetEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements ScreensAssetEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ScreensAssetEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

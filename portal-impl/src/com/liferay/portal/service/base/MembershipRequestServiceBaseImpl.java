@@ -52,7 +52,7 @@ import javax.sql.DataSource;
  */
 public abstract class MembershipRequestServiceBaseImpl
 	extends BaseServiceImpl
-	implements MembershipRequestService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MembershipRequestService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

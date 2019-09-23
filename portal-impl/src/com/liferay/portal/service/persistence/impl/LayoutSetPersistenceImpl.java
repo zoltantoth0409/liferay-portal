@@ -184,7 +184,7 @@ public class LayoutSetPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutSet layoutSet : list) {
-					if ((groupId != layoutSet.getGroupId())) {
+					if (groupId != layoutSet.getGroupId()) {
 						list = null;
 
 						break;

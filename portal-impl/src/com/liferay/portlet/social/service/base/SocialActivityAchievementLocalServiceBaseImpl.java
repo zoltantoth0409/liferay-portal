@@ -64,7 +64,7 @@ import javax.sql.DataSource;
  */
 public abstract class SocialActivityAchievementLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SocialActivityAchievementLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SocialActivityAchievementLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

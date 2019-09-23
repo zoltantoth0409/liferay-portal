@@ -47,7 +47,7 @@ import javax.sql.DataSource;
  */
 public abstract class SAPEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements SAPEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SAPEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

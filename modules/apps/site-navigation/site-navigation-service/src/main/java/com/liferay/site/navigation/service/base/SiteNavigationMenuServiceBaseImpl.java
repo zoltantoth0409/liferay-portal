@@ -47,7 +47,7 @@ import javax.sql.DataSource;
  */
 public abstract class SiteNavigationMenuServiceBaseImpl
 	extends BaseServiceImpl
-	implements SiteNavigationMenuService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SiteNavigationMenuService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class OAuth2AuthorizationWrapper
-	implements OAuth2Authorization, ModelWrapper<OAuth2Authorization> {
+	implements ModelWrapper<OAuth2Authorization>, OAuth2Authorization {
 
 	public OAuth2AuthorizationWrapper(OAuth2Authorization oAuth2Authorization) {
 		_oAuth2Authorization = oAuth2Authorization;

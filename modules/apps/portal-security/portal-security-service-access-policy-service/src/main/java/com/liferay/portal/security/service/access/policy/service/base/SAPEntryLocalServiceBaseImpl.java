@@ -70,7 +70,7 @@ import javax.sql.DataSource;
  */
 public abstract class SAPEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SAPEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SAPEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

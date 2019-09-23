@@ -89,7 +89,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBMessageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBMessageLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBMessageLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

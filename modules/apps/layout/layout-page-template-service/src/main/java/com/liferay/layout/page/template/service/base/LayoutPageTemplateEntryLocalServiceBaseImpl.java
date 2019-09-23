@@ -77,7 +77,7 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutPageTemplateEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements LayoutPageTemplateEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LayoutPageTemplateEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

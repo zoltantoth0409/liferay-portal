@@ -180,7 +180,7 @@ public class AssetTagStatsPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetTagStats assetTagStats : list) {
-					if ((tagId != assetTagStats.getTagId())) {
+					if (tagId != assetTagStats.getTagId()) {
 						list = null;
 
 						break;
@@ -697,7 +697,7 @@ public class AssetTagStatsPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetTagStats assetTagStats : list) {
-					if ((classNameId != assetTagStats.getClassNameId())) {
+					if (classNameId != assetTagStats.getClassNameId()) {
 						list = null;
 
 						break;

@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class PluginSettingWrapper
-	implements PluginSetting, ModelWrapper<PluginSetting> {
+	implements ModelWrapper<PluginSetting>, PluginSetting {
 
 	public PluginSettingWrapper(PluginSetting pluginSetting) {
 		_pluginSetting = pluginSetting;

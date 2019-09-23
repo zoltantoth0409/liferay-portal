@@ -1614,7 +1614,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((companyId != ddmFormInstanceRecord.getCompanyId())) {
+					if (companyId != ddmFormInstanceRecord.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2142,8 +2142,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMFormInstanceRecord ddmFormInstanceRecord : list) {
-					if ((formInstanceId !=
-							ddmFormInstanceRecord.getFormInstanceId())) {
+					if (formInstanceId !=
+							ddmFormInstanceRecord.getFormInstanceId()) {
 
 						list = null;
 

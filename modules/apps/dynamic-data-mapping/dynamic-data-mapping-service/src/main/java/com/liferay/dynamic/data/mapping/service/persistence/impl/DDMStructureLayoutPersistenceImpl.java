@@ -1578,8 +1578,8 @@ public class DDMStructureLayoutPersistenceImpl
 		if (result instanceof DDMStructureLayout) {
 			DDMStructureLayout ddmStructureLayout = (DDMStructureLayout)result;
 
-			if ((structureVersionId !=
-					ddmStructureLayout.getStructureVersionId())) {
+			if (structureVersionId !=
+					ddmStructureLayout.getStructureVersionId()) {
 
 				result = null;
 			}

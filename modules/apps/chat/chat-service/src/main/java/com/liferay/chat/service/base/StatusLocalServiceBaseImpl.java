@@ -65,7 +65,7 @@ import javax.sql.DataSource;
  */
 public abstract class StatusLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements StatusLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, StatusLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

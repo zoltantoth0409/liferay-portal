@@ -66,7 +66,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBMailingListLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBMailingListLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBMailingListLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

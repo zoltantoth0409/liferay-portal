@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class SyncDLObjectWrapper
-	implements SyncDLObject, ModelWrapper<SyncDLObject> {
+	implements ModelWrapper<SyncDLObject>, SyncDLObject {
 
 	public SyncDLObjectWrapper(SyncDLObject syncDLObject) {
 		_syncDLObject = syncDLObject;

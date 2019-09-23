@@ -1591,7 +1591,7 @@ public class MBCategoryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBCategory mbCategory : list) {
-					if ((groupId != mbCategory.getGroupId())) {
+					if (groupId != mbCategory.getGroupId()) {
 						list = null;
 
 						break;
@@ -2480,7 +2480,7 @@ public class MBCategoryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBCategory mbCategory : list) {
-					if ((companyId != mbCategory.getCompanyId())) {
+					if (companyId != mbCategory.getCompanyId()) {
 						list = null;
 
 						break;
@@ -6662,7 +6662,7 @@ public class MBCategoryPersistenceImpl
 			Arrays.sort(parentCategoryIds);
 		}
 
-		if (categoryIds.length == 1 && parentCategoryIds.length == 1) {
+		if ((categoryIds.length == 1) && (parentCategoryIds.length == 1)) {
 			return findByNotC_G_P(
 				categoryIds[0], groupId, parentCategoryIds[0], start, end,
 				orderByComparator);
@@ -11184,7 +11184,7 @@ public class MBCategoryPersistenceImpl
 			Arrays.sort(parentCategoryIds);
 		}
 
-		if (categoryIds.length == 1 && parentCategoryIds.length == 1) {
+		if ((categoryIds.length == 1) && (parentCategoryIds.length == 1)) {
 			return findByNotC_G_P_S(
 				categoryIds[0], groupId, parentCategoryIds[0], status, start,
 				end, orderByComparator);

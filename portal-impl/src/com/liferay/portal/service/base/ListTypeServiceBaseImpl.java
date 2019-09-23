@@ -44,7 +44,7 @@ import javax.sql.DataSource;
  */
 public abstract class ListTypeServiceBaseImpl
 	extends BaseServiceImpl
-	implements ListTypeService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ListTypeService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

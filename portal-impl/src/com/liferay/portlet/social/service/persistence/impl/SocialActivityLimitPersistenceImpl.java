@@ -181,7 +181,7 @@ public class SocialActivityLimitPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivityLimit socialActivityLimit : list) {
-					if ((groupId != socialActivityLimit.getGroupId())) {
+					if (groupId != socialActivityLimit.getGroupId()) {
 						list = null;
 
 						break;
@@ -702,7 +702,7 @@ public class SocialActivityLimitPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivityLimit socialActivityLimit : list) {
-					if ((userId != socialActivityLimit.getUserId())) {
+					if (userId != socialActivityLimit.getUserId()) {
 						list = null;
 
 						break;

@@ -188,7 +188,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
-					if ((companyId != kaleoTaskInstanceToken.getCompanyId())) {
+					if (companyId != kaleoTaskInstanceToken.getCompanyId()) {
 						list = null;
 
 						break;
@@ -721,9 +721,9 @@ public class KaleoTaskInstanceTokenPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
-					if ((kaleoDefinitionVersionId !=
+					if (kaleoDefinitionVersionId !=
 							kaleoTaskInstanceToken.
-								getKaleoDefinitionVersionId())) {
+								getKaleoDefinitionVersionId()) {
 
 						list = null;
 
@@ -1261,8 +1261,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
-					if ((kaleoInstanceId !=
-							kaleoTaskInstanceToken.getKaleoInstanceId())) {
+					if (kaleoInstanceId !=
+							kaleoTaskInstanceToken.getKaleoInstanceId()) {
 
 						list = null;
 

@@ -42,7 +42,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class ThemeServiceBaseImpl
-	extends BaseServiceImpl implements ThemeService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, ThemeService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class SyncDLFileVersionDiffWrapper
-	implements SyncDLFileVersionDiff, ModelWrapper<SyncDLFileVersionDiff> {
+	implements ModelWrapper<SyncDLFileVersionDiff>, SyncDLFileVersionDiff {
 
 	public SyncDLFileVersionDiffWrapper(
 		SyncDLFileVersionDiff syncDLFileVersionDiff) {

@@ -87,7 +87,7 @@ import javax.sql.DataSource;
  */
 public abstract class RoleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements RoleLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, RoleLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

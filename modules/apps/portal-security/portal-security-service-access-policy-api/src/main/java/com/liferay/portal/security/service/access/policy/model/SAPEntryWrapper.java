@@ -35,7 +35,7 @@ import java.util.Objects;
  * @see SAPEntry
  * @generated
  */
-public class SAPEntryWrapper implements SAPEntry, ModelWrapper<SAPEntry> {
+public class SAPEntryWrapper implements ModelWrapper<SAPEntry>, SAPEntry {
 
 	public SAPEntryWrapper(SAPEntry sapEntry) {
 		_sapEntry = sapEntry;

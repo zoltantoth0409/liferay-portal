@@ -42,7 +42,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class ImageServiceBaseImpl
-	extends BaseServiceImpl implements ImageService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, ImageService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

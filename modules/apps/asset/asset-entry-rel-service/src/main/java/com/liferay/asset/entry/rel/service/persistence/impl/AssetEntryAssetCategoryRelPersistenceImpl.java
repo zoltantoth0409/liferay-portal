@@ -188,8 +188,8 @@ public class AssetEntryAssetCategoryRelPersistenceImpl
 				for (AssetEntryAssetCategoryRel assetEntryAssetCategoryRel :
 						list) {
 
-					if ((assetEntryId !=
-							assetEntryAssetCategoryRel.getAssetEntryId())) {
+					if (assetEntryId !=
+							assetEntryAssetCategoryRel.getAssetEntryId()) {
 
 						list = null;
 
@@ -721,8 +721,8 @@ public class AssetEntryAssetCategoryRelPersistenceImpl
 				for (AssetEntryAssetCategoryRel assetEntryAssetCategoryRel :
 						list) {
 
-					if ((assetCategoryId !=
-							assetEntryAssetCategoryRel.getAssetCategoryId())) {
+					if (assetCategoryId !=
+							assetEntryAssetCategoryRel.getAssetCategoryId()) {
 
 						list = null;
 

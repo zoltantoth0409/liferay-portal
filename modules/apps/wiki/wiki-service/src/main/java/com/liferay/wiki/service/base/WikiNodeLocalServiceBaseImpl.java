@@ -79,7 +79,7 @@ import javax.sql.DataSource;
  */
 public abstract class WikiNodeLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements WikiNodeLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WikiNodeLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

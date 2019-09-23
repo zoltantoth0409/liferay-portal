@@ -1606,7 +1606,7 @@ public class LayoutFriendlyURLPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
-					if ((groupId != layoutFriendlyURL.getGroupId())) {
+					if (groupId != layoutFriendlyURL.getGroupId()) {
 						list = null;
 
 						break;
@@ -2127,7 +2127,7 @@ public class LayoutFriendlyURLPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
-					if ((companyId != layoutFriendlyURL.getCompanyId())) {
+					if (companyId != layoutFriendlyURL.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2646,7 +2646,7 @@ public class LayoutFriendlyURLPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
-					if ((plid != layoutFriendlyURL.getPlid())) {
+					if (plid != layoutFriendlyURL.getPlid()) {
 						list = null;
 
 						break;

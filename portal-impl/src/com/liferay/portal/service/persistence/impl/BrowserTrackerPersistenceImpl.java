@@ -149,7 +149,7 @@ public class BrowserTrackerPersistenceImpl
 		if (result instanceof BrowserTracker) {
 			BrowserTracker browserTracker = (BrowserTracker)result;
 
-			if ((userId != browserTracker.getUserId())) {
+			if (userId != browserTracker.getUserId()) {
 				result = null;
 			}
 		}

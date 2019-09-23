@@ -62,7 +62,7 @@ import javax.sql.DataSource;
  */
 public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements OAuth2ScopeGrantLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, OAuth2ScopeGrantLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

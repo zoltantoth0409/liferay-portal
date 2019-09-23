@@ -63,7 +63,7 @@ import javax.sql.DataSource;
  */
 public abstract class JournalContentSearchLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements JournalContentSearchLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, JournalContentSearchLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

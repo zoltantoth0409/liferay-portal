@@ -48,7 +48,7 @@ import javax.sql.DataSource;
  */
 public abstract class SyncDeviceServiceBaseImpl
 	extends BaseServiceImpl
-	implements SyncDeviceService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SyncDeviceService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

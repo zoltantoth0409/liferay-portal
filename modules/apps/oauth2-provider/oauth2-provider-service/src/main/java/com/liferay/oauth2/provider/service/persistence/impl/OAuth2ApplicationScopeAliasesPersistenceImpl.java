@@ -186,8 +186,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 				for (OAuth2ApplicationScopeAliases
 						oAuth2ApplicationScopeAliases : list) {
 
-					if ((companyId !=
-							oAuth2ApplicationScopeAliases.getCompanyId())) {
+					if (companyId !=
+							oAuth2ApplicationScopeAliases.getCompanyId()) {
 
 						list = null;
 
@@ -722,9 +722,9 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 				for (OAuth2ApplicationScopeAliases
 						oAuth2ApplicationScopeAliases : list) {
 
-					if ((oAuth2ApplicationId !=
+					if (oAuth2ApplicationId !=
 							oAuth2ApplicationScopeAliases.
-								getOAuth2ApplicationId())) {
+								getOAuth2ApplicationId()) {
 
 						list = null;
 

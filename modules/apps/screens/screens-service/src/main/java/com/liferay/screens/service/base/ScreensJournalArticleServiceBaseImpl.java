@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  */
 public abstract class ScreensJournalArticleServiceBaseImpl
 	extends BaseServiceImpl
-	implements ScreensJournalArticleService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ScreensJournalArticleService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

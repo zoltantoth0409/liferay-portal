@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class WorkflowInstanceLinkWrapper
-	implements WorkflowInstanceLink, ModelWrapper<WorkflowInstanceLink> {
+	implements ModelWrapper<WorkflowInstanceLink>, WorkflowInstanceLink {
 
 	public WorkflowInstanceLinkWrapper(
 		WorkflowInstanceLink workflowInstanceLink) {

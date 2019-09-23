@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class MicroblogsEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements MicroblogsEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MicroblogsEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

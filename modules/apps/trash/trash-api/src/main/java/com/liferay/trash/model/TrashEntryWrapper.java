@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see TrashEntry
  * @generated
  */
-public class TrashEntryWrapper implements TrashEntry, ModelWrapper<TrashEntry> {
+public class TrashEntryWrapper implements ModelWrapper<TrashEntry>, TrashEntry {
 
 	public TrashEntryWrapper(TrashEntry trashEntry) {
 		_trashEntry = trashEntry;

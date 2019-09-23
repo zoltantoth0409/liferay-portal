@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class UserTrackerWrapper
-	implements UserTracker, ModelWrapper<UserTracker> {
+	implements ModelWrapper<UserTracker>, UserTracker {
 
 	public UserTrackerWrapper(UserTracker userTracker) {
 		_userTracker = userTracker;

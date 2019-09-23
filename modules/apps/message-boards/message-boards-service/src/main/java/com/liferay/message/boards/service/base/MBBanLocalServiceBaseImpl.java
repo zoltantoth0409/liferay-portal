@@ -66,7 +66,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBBanLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBBanLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBBanLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

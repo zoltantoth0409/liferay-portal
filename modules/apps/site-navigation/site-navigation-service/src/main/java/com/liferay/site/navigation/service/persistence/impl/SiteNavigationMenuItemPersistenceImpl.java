@@ -1622,8 +1622,8 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((siteNavigationMenuId !=
-							siteNavigationMenuItem.getSiteNavigationMenuId())) {
+					if (siteNavigationMenuId !=
+							siteNavigationMenuItem.getSiteNavigationMenuId()) {
 
 						list = null;
 
@@ -2166,9 +2166,9 @@ public class SiteNavigationMenuItemPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SiteNavigationMenuItem siteNavigationMenuItem : list) {
-					if ((parentSiteNavigationMenuItemId !=
+					if (parentSiteNavigationMenuItemId !=
 							siteNavigationMenuItem.
-								getParentSiteNavigationMenuItemId())) {
+								getParentSiteNavigationMenuItemId()) {
 
 						list = null;
 

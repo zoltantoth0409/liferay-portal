@@ -35,7 +35,7 @@ import java.util.Objects;
  */
 @Deprecated
 public class ResourceBlockWrapper
-	implements ResourceBlock, ModelWrapper<ResourceBlock> {
+	implements ModelWrapper<ResourceBlock>, ResourceBlock {
 
 	public ResourceBlockWrapper(ResourceBlock resourceBlock) {
 		_resourceBlock = resourceBlock;

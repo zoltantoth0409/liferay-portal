@@ -56,7 +56,7 @@ import javax.sql.DataSource;
  */
 public abstract class JournalFolderServiceBaseImpl
 	extends BaseServiceImpl
-	implements JournalFolderService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, JournalFolderService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

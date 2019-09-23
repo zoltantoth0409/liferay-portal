@@ -63,7 +63,7 @@ import javax.sql.DataSource;
  */
 public abstract class ModuleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements ModuleLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ModuleLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

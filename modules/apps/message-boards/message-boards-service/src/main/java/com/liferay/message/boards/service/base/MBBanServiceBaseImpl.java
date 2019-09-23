@@ -42,7 +42,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MBBanServiceBaseImpl
-	extends BaseServiceImpl implements MBBanService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, MBBanService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

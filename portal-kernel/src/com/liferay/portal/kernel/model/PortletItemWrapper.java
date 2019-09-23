@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class PortletItemWrapper
-	implements PortletItem, ModelWrapper<PortletItem> {
+	implements ModelWrapper<PortletItem>, PortletItem {
 
 	public PortletItemWrapper(PortletItem portletItem) {
 		_portletItem = portletItem;

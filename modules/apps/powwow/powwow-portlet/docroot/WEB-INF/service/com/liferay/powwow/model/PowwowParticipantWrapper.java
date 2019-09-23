@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class PowwowParticipantWrapper
-	implements PowwowParticipant, ModelWrapper<PowwowParticipant> {
+	implements ModelWrapper<PowwowParticipant>, PowwowParticipant {
 
 	public PowwowParticipantWrapper(PowwowParticipant powwowParticipant) {
 		_powwowParticipant = powwowParticipant;

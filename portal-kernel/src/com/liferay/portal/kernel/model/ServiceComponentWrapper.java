@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class ServiceComponentWrapper
-	implements ServiceComponent, ModelWrapper<ServiceComponent> {
+	implements ModelWrapper<ServiceComponent>, ServiceComponent {
 
 	public ServiceComponentWrapper(ServiceComponent serviceComponent) {
 		_serviceComponent = serviceComponent;

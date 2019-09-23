@@ -1605,7 +1605,7 @@ public class FragmentCollectionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (FragmentCollection fragmentCollection : list) {
-					if ((groupId != fragmentCollection.getGroupId())) {
+					if (groupId != fragmentCollection.getGroupId()) {
 						list = null;
 
 						break;

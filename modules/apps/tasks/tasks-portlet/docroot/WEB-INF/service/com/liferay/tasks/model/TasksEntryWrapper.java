@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see TasksEntry
  * @generated
  */
-public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
+public class TasksEntryWrapper implements ModelWrapper<TasksEntry>, TasksEntry {
 
 	public TasksEntryWrapper(TasksEntry tasksEntry) {
 		_tasksEntry = tasksEntry;

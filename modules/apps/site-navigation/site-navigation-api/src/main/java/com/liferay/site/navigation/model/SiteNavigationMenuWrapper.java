@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class SiteNavigationMenuWrapper
-	implements SiteNavigationMenu, ModelWrapper<SiteNavigationMenu> {
+	implements ModelWrapper<SiteNavigationMenu>, SiteNavigationMenu {
 
 	public SiteNavigationMenuWrapper(SiteNavigationMenu siteNavigationMenu) {
 		_siteNavigationMenu = siteNavigationMenu;

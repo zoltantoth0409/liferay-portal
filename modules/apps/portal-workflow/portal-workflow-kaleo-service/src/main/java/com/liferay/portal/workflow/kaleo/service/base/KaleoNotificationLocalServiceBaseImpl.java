@@ -81,7 +81,7 @@ import javax.sql.DataSource;
  */
 public abstract class KaleoNotificationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KaleoNotificationLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KaleoNotificationLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

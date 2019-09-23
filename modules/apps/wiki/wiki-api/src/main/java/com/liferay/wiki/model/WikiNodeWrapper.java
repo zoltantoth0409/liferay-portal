@@ -35,7 +35,7 @@ import java.util.Objects;
  * @see WikiNode
  * @generated
  */
-public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
+public class WikiNodeWrapper implements ModelWrapper<WikiNode>, WikiNode {
 
 	public WikiNodeWrapper(WikiNode wikiNode) {
 		_wikiNode = wikiNode;

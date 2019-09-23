@@ -68,7 +68,7 @@ import javax.sql.DataSource;
  */
 public abstract class SiteNavigationMenuItemLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SiteNavigationMenuItemLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SiteNavigationMenuItemLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -179,7 +179,7 @@ public class PortletPreferencesPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PortletPreferences portletPreferences : list) {
-					if ((plid != portletPreferences.getPlid())) {
+					if (plid != portletPreferences.getPlid()) {
 						list = null;
 
 						break;

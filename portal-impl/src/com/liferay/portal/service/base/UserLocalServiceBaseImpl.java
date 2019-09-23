@@ -106,7 +106,7 @@ import javax.sql.DataSource;
  */
 public abstract class UserLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements UserLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, UserLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

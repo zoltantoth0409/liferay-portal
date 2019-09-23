@@ -62,8 +62,8 @@ import javax.sql.DataSource;
  */
 public abstract class OAuth2ApplicationScopeAliasesLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements OAuth2ApplicationScopeAliasesLocalService,
-			   IdentifiableOSGiService {
+	implements IdentifiableOSGiService,
+			   OAuth2ApplicationScopeAliasesLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

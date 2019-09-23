@@ -39,8 +39,8 @@ import java.util.List;
  * @deprecated As of Judson (7.1.x), with no direct replacement
  * @generated
  */
-@Deprecated
 @AccessControlled
+@Deprecated
 @JSONWebService
 @OSGiBeanProperties(
 	property = {

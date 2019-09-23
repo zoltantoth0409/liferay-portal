@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class PollsQuestionWrapper
-	implements PollsQuestion, ModelWrapper<PollsQuestion> {
+	implements ModelWrapper<PollsQuestion>, PollsQuestion {
 
 	public PollsQuestionWrapper(PollsQuestion pollsQuestion) {
 		_pollsQuestion = pollsQuestion;

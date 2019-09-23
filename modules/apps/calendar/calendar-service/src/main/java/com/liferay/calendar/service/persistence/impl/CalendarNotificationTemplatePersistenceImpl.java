@@ -1637,8 +1637,8 @@ public class CalendarNotificationTemplatePersistenceImpl
 				for (CalendarNotificationTemplate calendarNotificationTemplate :
 						list) {
 
-					if ((calendarId !=
-							calendarNotificationTemplate.getCalendarId())) {
+					if (calendarId !=
+							calendarNotificationTemplate.getCalendarId()) {
 
 						list = null;
 

@@ -68,8 +68,8 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutPageTemplateCollectionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements LayoutPageTemplateCollectionLocalService,
-			   IdentifiableOSGiService {
+	implements IdentifiableOSGiService,
+			   LayoutPageTemplateCollectionLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

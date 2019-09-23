@@ -185,7 +185,7 @@ public class KaleoNodePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNode kaleoNode : list) {
-					if ((companyId != kaleoNode.getCompanyId())) {
+					if (companyId != kaleoNode.getCompanyId()) {
 						list = null;
 
 						break;
@@ -708,8 +708,8 @@ public class KaleoNodePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNode kaleoNode : list) {
-					if ((kaleoDefinitionVersionId !=
-							kaleoNode.getKaleoDefinitionVersionId())) {
+					if (kaleoDefinitionVersionId !=
+							kaleoNode.getKaleoDefinitionVersionId()) {
 
 						list = null;
 

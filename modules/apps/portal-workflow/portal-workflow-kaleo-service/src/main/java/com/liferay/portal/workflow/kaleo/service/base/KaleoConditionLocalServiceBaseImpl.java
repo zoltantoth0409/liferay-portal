@@ -81,7 +81,7 @@ import javax.sql.DataSource;
  */
 public abstract class KaleoConditionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KaleoConditionLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KaleoConditionLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

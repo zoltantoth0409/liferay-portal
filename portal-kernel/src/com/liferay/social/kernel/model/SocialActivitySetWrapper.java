@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class SocialActivitySetWrapper
-	implements SocialActivitySet, ModelWrapper<SocialActivitySet> {
+	implements ModelWrapper<SocialActivitySet>, SocialActivitySet {
 
 	public SocialActivitySetWrapper(SocialActivitySet socialActivitySet) {
 		_socialActivitySet = socialActivitySet;

@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class PasswordTrackerWrapper
-	implements PasswordTracker, ModelWrapper<PasswordTracker> {
+	implements ModelWrapper<PasswordTracker>, PasswordTracker {
 
 	public PasswordTrackerWrapper(PasswordTracker passwordTracker) {
 		_passwordTracker = passwordTracker;

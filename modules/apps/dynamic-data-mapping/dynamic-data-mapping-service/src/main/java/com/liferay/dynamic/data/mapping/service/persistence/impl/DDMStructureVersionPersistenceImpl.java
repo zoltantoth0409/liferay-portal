@@ -187,7 +187,7 @@ public class DDMStructureVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructureVersion ddmStructureVersion : list) {
-					if ((structureId != ddmStructureVersion.getStructureId())) {
+					if (structureId != ddmStructureVersion.getStructureId()) {
 						list = null;
 
 						break;

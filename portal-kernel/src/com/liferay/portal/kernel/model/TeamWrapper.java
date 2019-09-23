@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see Team
  * @generated
  */
-public class TeamWrapper implements Team, ModelWrapper<Team> {
+public class TeamWrapper implements ModelWrapper<Team>, Team {
 
 	public TeamWrapper(Team team) {
 		_team = team;

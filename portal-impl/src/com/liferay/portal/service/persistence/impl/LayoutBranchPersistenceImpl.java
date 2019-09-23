@@ -185,8 +185,8 @@ public class LayoutBranchPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutBranch layoutBranch : list) {
-					if ((layoutSetBranchId !=
-							layoutBranch.getLayoutSetBranchId())) {
+					if (layoutSetBranchId !=
+							layoutBranch.getLayoutSetBranchId()) {
 
 						list = null;
 

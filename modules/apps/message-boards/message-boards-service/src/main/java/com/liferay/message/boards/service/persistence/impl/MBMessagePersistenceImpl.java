@@ -1598,7 +1598,7 @@ public class MBMessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMessage mbMessage : list) {
-					if ((groupId != mbMessage.getGroupId())) {
+					if (groupId != mbMessage.getGroupId()) {
 						list = null;
 
 						break;
@@ -2483,7 +2483,7 @@ public class MBMessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMessage mbMessage : list) {
-					if ((companyId != mbMessage.getCompanyId())) {
+					if (companyId != mbMessage.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2993,7 +2993,7 @@ public class MBMessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMessage mbMessage : list) {
-					if ((userId != mbMessage.getUserId())) {
+					if (userId != mbMessage.getUserId()) {
 						list = null;
 
 						break;
@@ -3501,7 +3501,7 @@ public class MBMessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId())) {
+					if (threadId != mbMessage.getThreadId()) {
 						list = null;
 
 						break;
@@ -4014,7 +4014,7 @@ public class MBMessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMessage mbMessage : list) {
-					if ((threadId != mbMessage.getThreadId())) {
+					if (threadId != mbMessage.getThreadId()) {
 						list = null;
 
 						break;

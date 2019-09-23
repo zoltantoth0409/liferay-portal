@@ -67,7 +67,7 @@ import javax.sql.DataSource;
  */
 public abstract class SiteFriendlyURLLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SiteFriendlyURLLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SiteFriendlyURLLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

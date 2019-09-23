@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class PowwowServerWrapper
-	implements PowwowServer, ModelWrapper<PowwowServer> {
+	implements ModelWrapper<PowwowServer>, PowwowServer {
 
 	public PowwowServerWrapper(PowwowServer powwowServer) {
 		_powwowServer = powwowServer;

@@ -35,7 +35,7 @@ import java.util.Objects;
  */
 @Deprecated
 public class ResourceBlockPermissionWrapper
-	implements ResourceBlockPermission, ModelWrapper<ResourceBlockPermission> {
+	implements ModelWrapper<ResourceBlockPermission>, ResourceBlockPermission {
 
 	public ResourceBlockPermissionWrapper(
 		ResourceBlockPermission resourceBlockPermission) {

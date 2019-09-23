@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  */
 public abstract class ScreensCommentServiceBaseImpl
 	extends BaseServiceImpl
-	implements ScreensCommentService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ScreensCommentService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

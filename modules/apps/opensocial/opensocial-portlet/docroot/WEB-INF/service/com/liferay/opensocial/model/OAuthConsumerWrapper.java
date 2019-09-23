@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class OAuthConsumerWrapper
-	implements OAuthConsumer, ModelWrapper<OAuthConsumer> {
+	implements ModelWrapper<OAuthConsumer>, OAuthConsumer {
 
 	public OAuthConsumerWrapper(OAuthConsumer oAuthConsumer) {
 		_oAuthConsumer = oAuthConsumer;

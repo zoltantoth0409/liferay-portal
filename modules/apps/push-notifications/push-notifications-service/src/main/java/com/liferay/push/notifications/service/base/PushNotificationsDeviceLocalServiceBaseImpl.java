@@ -62,7 +62,7 @@ import javax.sql.DataSource;
  */
 public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements PushNotificationsDeviceLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PushNotificationsDeviceLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

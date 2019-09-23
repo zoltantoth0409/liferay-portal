@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class SocialRequestWrapper
-	implements SocialRequest, ModelWrapper<SocialRequest> {
+	implements ModelWrapper<SocialRequest>, SocialRequest {
 
 	public SocialRequestWrapper(SocialRequest socialRequest) {
 		_socialRequest = socialRequest;

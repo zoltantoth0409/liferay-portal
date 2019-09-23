@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class VirtualHostWrapper
-	implements VirtualHost, ModelWrapper<VirtualHost> {
+	implements ModelWrapper<VirtualHost>, VirtualHost {
 
 	public VirtualHostWrapper(VirtualHost virtualHost) {
 		_virtualHost = virtualHost;

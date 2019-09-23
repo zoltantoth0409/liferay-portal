@@ -51,7 +51,7 @@ import javax.sql.DataSource;
  */
 public abstract class RatingsEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements RatingsEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, RatingsEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

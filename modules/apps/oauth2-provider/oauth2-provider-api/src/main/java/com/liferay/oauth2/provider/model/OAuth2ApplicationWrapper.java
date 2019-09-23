@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class OAuth2ApplicationWrapper
-	implements OAuth2Application, ModelWrapper<OAuth2Application> {
+	implements ModelWrapper<OAuth2Application>, OAuth2Application {
 
 	public OAuth2ApplicationWrapper(OAuth2Application oAuth2Application) {
 		_oAuth2Application = oAuth2Application;

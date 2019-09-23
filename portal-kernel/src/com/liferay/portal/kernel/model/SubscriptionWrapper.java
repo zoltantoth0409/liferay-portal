@@ -36,7 +36,7 @@ import java.util.Objects;
  */
 @Deprecated
 public class SubscriptionWrapper
-	implements Subscription, ModelWrapper<Subscription> {
+	implements ModelWrapper<Subscription>, Subscription {
 
 	public SubscriptionWrapper(Subscription subscription) {
 		_subscription = subscription;

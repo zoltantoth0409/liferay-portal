@@ -52,7 +52,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBCommentServiceBaseImpl
 	extends BaseServiceImpl
-	implements KBCommentService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBCommentService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class ReadingTimeEntryWrapper
-	implements ReadingTimeEntry, ModelWrapper<ReadingTimeEntry> {
+	implements ModelWrapper<ReadingTimeEntry>, ReadingTimeEntry {
 
 	public ReadingTimeEntryWrapper(ReadingTimeEntry readingTimeEntry) {
 		_readingTimeEntry = readingTimeEntry;

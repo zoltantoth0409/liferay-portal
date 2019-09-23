@@ -1603,7 +1603,7 @@ public class DDMFormInstancePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMFormInstance ddmFormInstance : list) {
-					if ((groupId != ddmFormInstance.getGroupId())) {
+					if (groupId != ddmFormInstance.getGroupId()) {
 						list = null;
 
 						break;

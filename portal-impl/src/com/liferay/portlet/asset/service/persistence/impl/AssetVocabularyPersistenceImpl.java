@@ -1605,7 +1605,7 @@ public class AssetVocabularyPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetVocabulary assetVocabulary : list) {
-					if ((groupId != assetVocabulary.getGroupId())) {
+					if (groupId != assetVocabulary.getGroupId()) {
 						list = null;
 
 						break;
@@ -2984,7 +2984,7 @@ public class AssetVocabularyPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetVocabulary assetVocabulary : list) {
-					if ((companyId != assetVocabulary.getCompanyId())) {
+					if (companyId != assetVocabulary.getCompanyId()) {
 						list = null;
 
 						break;

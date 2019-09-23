@@ -65,7 +65,7 @@ import javax.sql.DataSource;
  */
 public abstract class MessageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MessageLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MessageLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

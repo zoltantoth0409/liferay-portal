@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class SiteFriendlyURLWrapper
-	implements SiteFriendlyURL, ModelWrapper<SiteFriendlyURL> {
+	implements ModelWrapper<SiteFriendlyURL>, SiteFriendlyURL {
 
 	public SiteFriendlyURLWrapper(SiteFriendlyURL siteFriendlyURL) {
 		_siteFriendlyURL = siteFriendlyURL;

@@ -42,7 +42,7 @@ import javax.sql.DataSource;
  */
 public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SocialRequestInterpreterLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SocialRequestInterpreterLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -185,8 +185,8 @@ public class PasswordPolicyRelPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PasswordPolicyRel passwordPolicyRel : list) {
-					if ((passwordPolicyId !=
-							passwordPolicyRel.getPasswordPolicyId())) {
+					if (passwordPolicyId !=
+							passwordPolicyRel.getPasswordPolicyId()) {
 
 						list = null;
 

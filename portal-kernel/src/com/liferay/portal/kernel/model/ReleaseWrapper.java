@@ -33,7 +33,7 @@ import java.util.Objects;
  * @see Release
  * @generated
  */
-public class ReleaseWrapper implements Release, ModelWrapper<Release> {
+public class ReleaseWrapper implements ModelWrapper<Release>, Release {
 
 	public ReleaseWrapper(Release release) {
 		_release = release;

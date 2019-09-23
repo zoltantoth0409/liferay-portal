@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class WorkflowDefinitionLinkWrapper
-	implements WorkflowDefinitionLink, ModelWrapper<WorkflowDefinitionLink> {
+	implements ModelWrapper<WorkflowDefinitionLink>, WorkflowDefinitionLink {
 
 	public WorkflowDefinitionLinkWrapper(
 		WorkflowDefinitionLink workflowDefinitionLink) {

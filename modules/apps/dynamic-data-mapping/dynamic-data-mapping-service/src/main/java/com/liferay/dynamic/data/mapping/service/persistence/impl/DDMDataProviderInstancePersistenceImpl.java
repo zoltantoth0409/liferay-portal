@@ -1624,7 +1624,7 @@ public class DDMDataProviderInstancePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMDataProviderInstance ddmDataProviderInstance : list) {
-					if ((groupId != ddmDataProviderInstance.getGroupId())) {
+					if (groupId != ddmDataProviderInstance.getGroupId()) {
 						list = null;
 
 						break;
@@ -3022,7 +3022,7 @@ public class DDMDataProviderInstancePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMDataProviderInstance ddmDataProviderInstance : list) {
-					if ((companyId != ddmDataProviderInstance.getCompanyId())) {
+					if (companyId != ddmDataProviderInstance.getCompanyId()) {
 						list = null;
 
 						break;

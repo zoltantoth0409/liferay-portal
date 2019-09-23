@@ -55,7 +55,7 @@ import javax.sql.DataSource;
  */
 public abstract class StagingLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements StagingLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, StagingLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

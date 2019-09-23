@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class UserNotificationEventWrapper
-	implements UserNotificationEvent, ModelWrapper<UserNotificationEvent> {
+	implements ModelWrapper<UserNotificationEvent>, UserNotificationEvent {
 
 	public UserNotificationEventWrapper(
 		UserNotificationEvent userNotificationEvent) {

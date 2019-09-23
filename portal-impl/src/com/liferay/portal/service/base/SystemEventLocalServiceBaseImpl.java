@@ -65,7 +65,7 @@ import javax.sql.DataSource;
  */
 public abstract class SystemEventLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SystemEventLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SystemEventLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -52,7 +52,7 @@ import javax.sql.DataSource;
 @Deprecated
 public abstract class ResourceBlockServiceBaseImpl
 	extends BaseServiceImpl
-	implements ResourceBlockService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ResourceBlockService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

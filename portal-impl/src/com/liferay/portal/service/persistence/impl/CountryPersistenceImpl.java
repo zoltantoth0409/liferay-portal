@@ -861,7 +861,7 @@ public class CountryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Country country : list) {
-					if ((active != country.isActive())) {
+					if (active != country.isActive()) {
 						list = null;
 
 						break;

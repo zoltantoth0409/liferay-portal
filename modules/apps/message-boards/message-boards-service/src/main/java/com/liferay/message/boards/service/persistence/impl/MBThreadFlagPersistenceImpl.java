@@ -1588,7 +1588,7 @@ public class MBThreadFlagPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBThreadFlag mbThreadFlag : list) {
-					if ((userId != mbThreadFlag.getUserId())) {
+					if (userId != mbThreadFlag.getUserId()) {
 						list = null;
 
 						break;
@@ -2100,7 +2100,7 @@ public class MBThreadFlagPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBThreadFlag mbThreadFlag : list) {
-					if ((threadId != mbThreadFlag.getThreadId())) {
+					if (threadId != mbThreadFlag.getThreadId()) {
 						list = null;
 
 						break;

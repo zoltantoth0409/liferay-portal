@@ -1600,7 +1600,7 @@ public class FragmentEntryLinkPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (FragmentEntryLink fragmentEntryLink : list) {
-					if ((groupId != fragmentEntryLink.getGroupId())) {
+					if (groupId != fragmentEntryLink.getGroupId()) {
 						list = null;
 
 						break;

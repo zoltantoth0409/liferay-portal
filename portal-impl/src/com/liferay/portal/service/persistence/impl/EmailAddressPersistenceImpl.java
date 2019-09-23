@@ -1339,7 +1339,7 @@ public class EmailAddressPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (EmailAddress emailAddress : list) {
-					if ((companyId != emailAddress.getCompanyId())) {
+					if (companyId != emailAddress.getCompanyId()) {
 						list = null;
 
 						break;
@@ -1850,7 +1850,7 @@ public class EmailAddressPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (EmailAddress emailAddress : list) {
-					if ((userId != emailAddress.getUserId())) {
+					if (userId != emailAddress.getUserId()) {
 						list = null;
 
 						break;

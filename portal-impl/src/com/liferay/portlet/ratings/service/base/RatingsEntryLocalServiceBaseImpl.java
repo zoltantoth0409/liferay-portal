@@ -76,7 +76,7 @@ import javax.sql.DataSource;
  */
 public abstract class RatingsEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements RatingsEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, RatingsEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

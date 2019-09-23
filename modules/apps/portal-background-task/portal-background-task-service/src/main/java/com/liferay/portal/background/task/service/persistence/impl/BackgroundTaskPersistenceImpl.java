@@ -188,7 +188,7 @@ public class BackgroundTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BackgroundTask backgroundTask : list) {
-					if ((groupId != backgroundTask.getGroupId())) {
+					if (groupId != backgroundTask.getGroupId()) {
 						list = null;
 
 						break;
@@ -704,7 +704,7 @@ public class BackgroundTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BackgroundTask backgroundTask : list) {
-					if ((companyId != backgroundTask.getCompanyId())) {
+					if (companyId != backgroundTask.getCompanyId()) {
 						list = null;
 
 						break;
@@ -1220,7 +1220,7 @@ public class BackgroundTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BackgroundTask backgroundTask : list) {
-					if ((completed != backgroundTask.isCompleted())) {
+					if (completed != backgroundTask.isCompleted()) {
 						list = null;
 
 						break;
@@ -1735,7 +1735,7 @@ public class BackgroundTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BackgroundTask backgroundTask : list) {
-					if ((status != backgroundTask.getStatus())) {
+					if (status != backgroundTask.getStatus()) {
 						list = null;
 
 						break;
@@ -2767,7 +2767,7 @@ public class BackgroundTaskPersistenceImpl
 			Arrays.sort(taskExecutorClassNames);
 		}
 
-		if (groupIds.length == 1 && taskExecutorClassNames.length == 1) {
+		if ((groupIds.length == 1) && (taskExecutorClassNames.length == 1)) {
 			return findByG_T(
 				groupIds[0], taskExecutorClassNames[0], start, end,
 				orderByComparator);
@@ -2884,7 +2884,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -3110,7 +3110,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -4420,7 +4420,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -4629,7 +4629,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -5358,7 +5358,7 @@ public class BackgroundTaskPersistenceImpl
 			Arrays.sort(taskExecutorClassNames);
 		}
 
-		if (groupIds.length == 1 && taskExecutorClassNames.length == 1) {
+		if ((groupIds.length == 1) && (taskExecutorClassNames.length == 1)) {
 			return findByG_N_T(
 				groupIds[0], name, taskExecutorClassNames[0], start, end,
 				orderByComparator);
@@ -5491,7 +5491,7 @@ public class BackgroundTaskPersistenceImpl
 				}
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -5762,7 +5762,7 @@ public class BackgroundTaskPersistenceImpl
 				}
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -6465,7 +6465,7 @@ public class BackgroundTaskPersistenceImpl
 			Arrays.sort(taskExecutorClassNames);
 		}
 
-		if (groupIds.length == 1 && taskExecutorClassNames.length == 1) {
+		if ((groupIds.length == 1) && (taskExecutorClassNames.length == 1)) {
 			return findByG_T_C(
 				groupIds[0], taskExecutorClassNames[0], completed, start, end,
 				orderByComparator);
@@ -6587,7 +6587,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -6835,7 +6835,7 @@ public class BackgroundTaskPersistenceImpl
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -7642,7 +7642,7 @@ public class BackgroundTaskPersistenceImpl
 				qPos.add(groupId);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);
@@ -7870,7 +7870,7 @@ public class BackgroundTaskPersistenceImpl
 				qPos.add(groupId);
 
 				for (String taskExecutorClassName : taskExecutorClassNames) {
-					if (taskExecutorClassName != null &&
+					if ((taskExecutorClassName != null) &&
 						!taskExecutorClassName.isEmpty()) {
 
 						qPos.add(taskExecutorClassName);

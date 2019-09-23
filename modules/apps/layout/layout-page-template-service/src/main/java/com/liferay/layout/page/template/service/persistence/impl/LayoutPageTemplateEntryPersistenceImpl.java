@@ -1621,7 +1621,7 @@ public class LayoutPageTemplateEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutPageTemplateEntry layoutPageTemplateEntry : list) {
-					if ((groupId != layoutPageTemplateEntry.getGroupId())) {
+					if (groupId != layoutPageTemplateEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -2537,8 +2537,8 @@ public class LayoutPageTemplateEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutPageTemplateEntry layoutPageTemplateEntry : list) {
-					if ((layoutPrototypeId !=
-							layoutPageTemplateEntry.getLayoutPrototypeId())) {
+					if (layoutPrototypeId !=
+							layoutPageTemplateEntry.getLayoutPrototypeId()) {
 
 						list = null;
 

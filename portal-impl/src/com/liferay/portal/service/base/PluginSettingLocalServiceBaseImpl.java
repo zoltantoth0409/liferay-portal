@@ -64,7 +64,7 @@ import javax.sql.DataSource;
  */
 public abstract class PluginSettingLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements PluginSettingLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PluginSettingLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

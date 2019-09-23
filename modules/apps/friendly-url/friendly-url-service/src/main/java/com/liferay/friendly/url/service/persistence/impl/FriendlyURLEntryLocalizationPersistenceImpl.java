@@ -190,9 +190,9 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 				for (FriendlyURLEntryLocalization friendlyURLEntryLocalization :
 						list) {
 
-					if ((friendlyURLEntryId !=
+					if (friendlyURLEntryId !=
 							friendlyURLEntryLocalization.
-								getFriendlyURLEntryId())) {
+								getFriendlyURLEntryId()) {
 
 						list = null;
 

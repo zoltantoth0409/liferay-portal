@@ -187,7 +187,7 @@ public class KaleoDefinitionVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoDefinitionVersion kaleoDefinitionVersion : list) {
-					if ((companyId != kaleoDefinitionVersion.getCompanyId())) {
+					if (companyId != kaleoDefinitionVersion.getCompanyId()) {
 						list = null;
 
 						break;

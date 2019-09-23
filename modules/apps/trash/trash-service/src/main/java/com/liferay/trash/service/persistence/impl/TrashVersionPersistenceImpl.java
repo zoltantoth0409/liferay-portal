@@ -179,7 +179,7 @@ public class TrashVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (TrashVersion trashVersion : list) {
-					if ((entryId != trashVersion.getEntryId())) {
+					if (entryId != trashVersion.getEntryId()) {
 						list = null;
 
 						break;

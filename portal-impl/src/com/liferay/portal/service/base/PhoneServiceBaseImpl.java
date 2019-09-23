@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class PhoneServiceBaseImpl
-	extends BaseServiceImpl implements PhoneService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, PhoneService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:
