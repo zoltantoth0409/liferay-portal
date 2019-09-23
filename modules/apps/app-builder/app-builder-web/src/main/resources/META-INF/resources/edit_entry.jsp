@@ -17,9 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String editEntryContainerElementId = renderResponse.getNamespace() + "container";
-String editEntryRootElementId = renderResponse.getNamespace() + "-app-builder-edit-entry";
-
 long dataDefinitionId = ParamUtil.getLong(request, "dataDefinitionId");
 long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 %>
@@ -27,19 +24,19 @@ long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 <div class="app-builder-root">
 	<aui:form>
 		<liferay-data-engine:data-layout-renderer
-			containerId="<%= editEntryContainerElementId %>"
+			containerId='<%= renderResponse.getNamespace() + "container" %>'
 			dataLayoutId="<%= dataLayoutId %>"
 			namespace="<%= renderResponse.getNamespace() %>"
 		/>
 
-		<div id="<%= editEntryRootElementId %>">
+		<div id="<portlet:namespace />-app-builder-edit-entry">
 
 			<%
 			Map<String, Object> data = new HashMap<>();
 
 			data.put("basePortletURL", renderResponse.createRenderURL());
 			data.put("dataDefinitionId", dataDefinitionId);
-			data.put("editEntryContainerElementId", editEntryContainerElementId);
+			data.put("editEntryContainerElementId", renderResponse.getNamespace() + "container");
 			%>
 
 			<react:component
