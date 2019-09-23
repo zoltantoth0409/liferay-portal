@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Gabriel Albuquerque
  */
 @Component(
-	immediate = true, property = "com.app.builder.deploy.type=widget",
+	immediate = true, property = "app.builder.deploy.type=widget",
 	service = AppDeployer.class
 )
 public class WidgetAppDeployer implements AppDeployer {

@@ -39,7 +39,7 @@ public class AppDeployerTrackerImpl implements AppDeployerTracker {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, AppDeployer.class, "com.app.builder.deploy.type");
+			bundleContext, AppDeployer.class, "app.builder.deploy.type");
 	}
 
 	@Deactivate

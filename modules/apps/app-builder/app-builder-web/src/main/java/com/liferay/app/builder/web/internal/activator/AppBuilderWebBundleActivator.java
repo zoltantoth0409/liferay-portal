@@ -59,7 +59,7 @@ public class AppBuilderWebBundleActivator implements BundleActivator {
 				AppBuilderAppLocalServiceUtil.getAppBuilderAppIds(
 					AppBuilderAppConstants.STATUS_DEPLOYED,
 					(String)serviceReference.getProperty(
-						"com.app.builder.deploy.type"));
+						"app.builder.deploy.type"));
 
 			AppDeployer appDeployer = _bundleContext.getService(
 				serviceReference);

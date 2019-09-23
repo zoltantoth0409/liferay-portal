@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jeyvison Nascimento
  */
 @Component(
-	immediate = true, property = "com.app.builder.deploy.type=productMenu",
+	immediate = true, property = "app.builder.deploy.type=productMenu",
 	service = AppDeployer.class
 )
 public class ProductMenuAppDeployer implements AppDeployer {
