@@ -241,7 +241,7 @@ public class UpgradeClient {
 
 				_printHelp();
 
-				_consoleReader.setPrompt(_GOGO_SHELL_PREFIX);
+				_consoleReader.setPrompt(_GOGO_SHELL_PREFFIX);
 
 				String line = _consoleReader.readLine();
 
@@ -406,7 +406,7 @@ public class UpgradeClient {
 			return true;
 		}
 
-		String line = _GOGO_SHELL_PREFIX + command + System.lineSeparator();
+		String line = _GOGO_SHELL_PREFFIX + command + System.lineSeparator();
 
 		_fileOutputStream.write(line.getBytes());
 
@@ -707,7 +707,7 @@ public class UpgradeClient {
 			"liferay.home", liferayHome.getCanonicalPath());
 	}
 
-	private static final String _GOGO_SHELL_PREFIX = "g! ";
+	private static final String _GOGO_SHELL_PREFFIX = "g! ";
 
 	private static final String _JAVA_HOME = System.getenv("JAVA_HOME");
 
