@@ -181,7 +181,7 @@ public class LayoutVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutVersion layoutVersion : list) {
-					if ((plid != layoutVersion.getPlid())) {
+					if (plid != layoutVersion.getPlid()) {
 						list = null;
 
 						break;
@@ -4264,7 +4264,7 @@ public class LayoutVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutVersion layoutVersion : list) {
-					if ((groupId != layoutVersion.getGroupId())) {
+					if (groupId != layoutVersion.getGroupId()) {
 						list = null;
 
 						break;
@@ -5342,7 +5342,7 @@ public class LayoutVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutVersion layoutVersion : list) {
-					if ((companyId != layoutVersion.getCompanyId())) {
+					if (companyId != layoutVersion.getCompanyId()) {
 						list = null;
 
 						break;
@@ -6423,7 +6423,7 @@ public class LayoutVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutVersion layoutVersion : list) {
-					if ((parentPlid != layoutVersion.getParentPlid())) {
+					if (parentPlid != layoutVersion.getParentPlid()) {
 						list = null;
 
 						break;
@@ -7504,7 +7504,7 @@ public class LayoutVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutVersion layoutVersion : list) {
-					if ((iconImageId != layoutVersion.getIconImageId())) {
+					if (iconImageId != layoutVersion.getIconImageId()) {
 						list = null;
 
 						break;

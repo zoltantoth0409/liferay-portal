@@ -32,7 +32,7 @@ import java.util.Map;
 @Deprecated
 public class ResourceBlockPermissionWrapper
 	extends BaseModelWrapper<ResourceBlockPermission>
-	implements ResourceBlockPermission, ModelWrapper<ResourceBlockPermission> {
+	implements ModelWrapper<ResourceBlockPermission>, ResourceBlockPermission {
 
 	public ResourceBlockPermissionWrapper(
 		ResourceBlockPermission resourceBlockPermission) {

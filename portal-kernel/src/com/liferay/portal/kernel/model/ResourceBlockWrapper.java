@@ -32,7 +32,7 @@ import java.util.Map;
 @Deprecated
 public class ResourceBlockWrapper
 	extends BaseModelWrapper<ResourceBlock>
-	implements ResourceBlock, ModelWrapper<ResourceBlock> {
+	implements ModelWrapper<ResourceBlock>, ResourceBlock {
 
 	public ResourceBlockWrapper(ResourceBlock resourceBlock) {
 		super(resourceBlock);

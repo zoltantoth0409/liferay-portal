@@ -392,8 +392,8 @@ public interface LayoutLocalService
 	 *
 	 * @return the new layout
 	 */
-	@Transactional(enabled = false)
 	@Override
+	@Transactional(enabled = false)
 	public Layout create();
 
 	@Indexable(type = IndexableType.DELETE)

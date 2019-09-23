@@ -94,8 +94,8 @@ public interface LayoutSetLocalService
 	 *
 	 * @return the new layout set
 	 */
-	@Transactional(enabled = false)
 	@Override
+	@Transactional(enabled = false)
 	public LayoutSet create();
 
 	@Indexable(type = IndexableType.DELETE)

@@ -1055,6 +1055,334 @@ public interface LayoutSetVersionPersistence
 		long groupId, boolean privateLayout, int version);
 
 	/**
+	 * Returns all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @return the matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L(
+		long companyId, String layoutSetPrototypeUuid);
+
+	/**
+	 * Returns a range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @return the range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L(
+		long companyId, String layoutSetPrototypeUuid, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L(
+		long companyId, String layoutSetPrototypeUuid, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L(
+		long companyId, String layoutSetPrototypeUuid, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching layout set version
+	 * @throws NoSuchLayoutSetVersionException if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion findByC_L_First(
+			long companyId, String layoutSetPrototypeUuid,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Returns the first layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching layout set version, or <code>null</code> if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion fetchByC_L_First(
+		long companyId, String layoutSetPrototypeUuid,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns the last layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching layout set version
+	 * @throws NoSuchLayoutSetVersionException if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion findByC_L_Last(
+			long companyId, String layoutSetPrototypeUuid,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Returns the last layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching layout set version, or <code>null</code> if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion fetchByC_L_Last(
+		long companyId, String layoutSetPrototypeUuid,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns the layout set versions before and after the current layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param layoutSetVersionId the primary key of the current layout set version
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next layout set version
+	 * @throws NoSuchLayoutSetVersionException if a layout set version with the primary key could not be found
+	 */
+	public LayoutSetVersion[] findByC_L_PrevAndNext(
+			long layoutSetVersionId, long companyId,
+			String layoutSetPrototypeUuid,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Removes all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 */
+	public void removeByC_L(long companyId, String layoutSetPrototypeUuid);
+
+	/**
+	 * Returns the number of layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @return the number of matching layout set versions
+	 */
+	public int countByC_L(long companyId, String layoutSetPrototypeUuid);
+
+	/**
+	 * Returns all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @return the matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version);
+
+	/**
+	 * Returns a range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @return the range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version, int start,
+		int end);
+
+	/**
+	 * Returns an ordered range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>LayoutSetVersionModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param start the lower bound of the range of layout set versions
+	 * @param end the upper bound of the range of layout set versions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching layout set versions
+	 */
+	public java.util.List<LayoutSetVersion> findByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching layout set version
+	 * @throws NoSuchLayoutSetVersionException if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion findByC_L_Version_First(
+			long companyId, String layoutSetPrototypeUuid, int version,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Returns the first layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching layout set version, or <code>null</code> if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion fetchByC_L_Version_First(
+		long companyId, String layoutSetPrototypeUuid, int version,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns the last layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching layout set version
+	 * @throws NoSuchLayoutSetVersionException if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion findByC_L_Version_Last(
+			long companyId, String layoutSetPrototypeUuid, int version,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Returns the last layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching layout set version, or <code>null</code> if a matching layout set version could not be found
+	 */
+	public LayoutSetVersion fetchByC_L_Version_Last(
+		long companyId, String layoutSetPrototypeUuid, int version,
+		com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+			orderByComparator);
+
+	/**
+	 * Returns the layout set versions before and after the current layout set version in the ordered set where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param layoutSetVersionId the primary key of the current layout set version
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next layout set version
+	 * @throws NoSuchLayoutSetVersionException if a layout set version with the primary key could not be found
+	 */
+	public LayoutSetVersion[] findByC_L_Version_PrevAndNext(
+			long layoutSetVersionId, long companyId,
+			String layoutSetPrototypeUuid, int version,
+			com.liferay.portal.kernel.util.OrderByComparator<LayoutSetVersion>
+				orderByComparator)
+		throws NoSuchLayoutSetVersionException;
+
+	/**
+	 * Removes all the layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 */
+	public void removeByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version);
+
+	/**
+	 * Returns the number of layout set versions where companyId = &#63; and layoutSetPrototypeUuid = &#63; and version = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param layoutSetPrototypeUuid the layout set prototype uuid
+	 * @param version the version
+	 * @return the number of matching layout set versions
+	 */
+	public int countByC_L_Version(
+		long companyId, String layoutSetPrototypeUuid, int version);
+
+	/**
 	 * Returns all the layout set versions where privateLayout = &#63; and logoId = &#63;.
 	 *
 	 * @param privateLayout the private layout

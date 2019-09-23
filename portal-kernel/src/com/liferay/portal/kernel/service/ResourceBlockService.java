@@ -36,8 +36,8 @@ import org.osgi.annotation.versioning.ProviderType;
  * @deprecated
  * @generated
  */
-@Deprecated
 @AccessControlled
+@Deprecated
 @JSONWebService
 @ProviderType
 @Transactional(

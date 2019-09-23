@@ -182,7 +182,7 @@ public class LayoutSetPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutSet layoutSet : list) {
-					if ((groupId != layoutSet.getGroupId())) {
+					if (groupId != layoutSet.getGroupId()) {
 						list = null;
 
 						break;
@@ -5323,7 +5323,7 @@ public class LayoutSetPersistenceImpl
 		if (result instanceof LayoutSet) {
 			LayoutSet layoutSet = (LayoutSet)result;
 
-			if ((headId != layoutSet.getHeadId())) {
+			if (headId != layoutSet.getHeadId()) {
 				result = null;
 			}
 		}

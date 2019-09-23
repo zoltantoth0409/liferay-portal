@@ -184,8 +184,8 @@ public class ResourceBlockPermissionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceBlockPermission resourceBlockPermission : list) {
-					if ((resourceBlockId !=
-							resourceBlockPermission.getResourceBlockId())) {
+					if (resourceBlockId !=
+							resourceBlockPermission.getResourceBlockId()) {
 
 						list = null;
 
@@ -712,7 +712,7 @@ public class ResourceBlockPermissionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceBlockPermission resourceBlockPermission : list) {
-					if ((roleId != resourceBlockPermission.getRoleId())) {
+					if (roleId != resourceBlockPermission.getRoleId()) {
 						list = null;
 
 						break;

@@ -32,7 +32,7 @@ import java.util.Map;
 @Deprecated
 public class ResourceTypePermissionWrapper
 	extends BaseModelWrapper<ResourceTypePermission>
-	implements ResourceTypePermission, ModelWrapper<ResourceTypePermission> {
+	implements ModelWrapper<ResourceTypePermission>, ResourceTypePermission {
 
 	public ResourceTypePermissionWrapper(
 		ResourceTypePermission resourceTypePermission) {
