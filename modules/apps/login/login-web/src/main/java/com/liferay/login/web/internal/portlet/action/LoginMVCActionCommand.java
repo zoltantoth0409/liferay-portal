@@ -258,7 +258,7 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 			if (Validator.isNotNull(redirect) &&
 				!redirect.startsWith(Http.HTTP)) {
 
-				redirect = getCompleteRedirectURL(httpServletRequest, redirect);
+				redirect = getCompleteRedirectURL(request, redirect);
 			}
 		}
 
