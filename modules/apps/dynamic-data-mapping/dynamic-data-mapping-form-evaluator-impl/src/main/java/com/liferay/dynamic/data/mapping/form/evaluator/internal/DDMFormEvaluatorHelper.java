@@ -107,9 +107,9 @@ public class DDMFormEvaluatorHelper {
 
 		createDDMFormFieldValues(ddmFormEvaluatorContext.getDDMFormValues());
 
-		createDDMFormFieldRuleEvaluationResultsMap();
-
 		_resourceBundle = createResourceBundle();
+
+		createDDMFormFieldRuleEvaluationResultsMap();
 
 		registerDDMExpressionCustomFunctions();
 	}
