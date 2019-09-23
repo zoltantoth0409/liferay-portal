@@ -145,8 +145,6 @@ public class UpgradeClient {
 
 		_appServerProperties = _readProperties(_appServerPropertiesFile);
 
-		_fileOutputStream = new FileOutputStream(_logFile);
-
 		_portalUpgradeDatabasePropertiesFile = new File(
 			_jarDir, "portal-upgrade-database.properties");
 
@@ -169,7 +167,8 @@ public class UpgradeClient {
 			logDir.mkdirs();
 		}
 
-		System.setOut(new TeePrintStream(_fileOutputStream, System.out));
+		System.setOut(
+			new TeePrintStream(new FileOutputStream(_logFile), System.out));
 
 		ProcessBuilder processBuilder = new ProcessBuilder();
 
@@ -406,19 +405,7 @@ public class UpgradeClient {
 			return false;
 		}
 
-		String output = gogoShellClient.send(command);
-
-		int endOfFirstLineIndex = output.indexOf('\n');
-
-		if (endOfFirstLineIndex != -1) {
-			String firstLine = output.substring(0, endOfFirstLineIndex + 1);
-
-			_fileOutputStream.write(firstLine.getBytes());
-
-			output = output.substring(endOfFirstLineIndex + 1);
-		}
-
-		System.out.println(output);
+		System.out.println(gogoShellClient.send(command));
 
 		return true;
 	}
@@ -752,7 +739,6 @@ public class UpgradeClient {
 	private final Properties _appServerProperties;
 	private final File _appServerPropertiesFile;
 	private final ConsoleReader _consoleReader = new ConsoleReader();
-	private final FileOutputStream _fileOutputStream;
 	private final String _jvmOpts;
 	private final File _logFile;
 	private final Properties _portalUpgradeDatabaseProperties;
