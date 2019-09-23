@@ -75,7 +75,7 @@ definition {
 
 		Navigator.openURL();
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.loginPG(
 				password = "test",
 				userEmailAddress = "test@liferay.com");
