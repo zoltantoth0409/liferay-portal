@@ -56,7 +56,7 @@ public class ConfigurationCategoryDisplay {
 	}
 
 	private String _getMessage(Locale locale, String key) {
-		ResourceBundle resourceBundle;
+		ResourceBundle resourceBundle = null;
 
 		try {
 			resourceBundle = new AggregateResourceBundle(
