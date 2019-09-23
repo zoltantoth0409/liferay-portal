@@ -63,7 +63,6 @@
 							data.put("slave", globalScopeAliasesString);
 
 							String id = "scopeAlias" + StringUtil.randomId();
-
 							boolean removedScope = scopeAliases.isEmpty() && globalScopeAliases.isEmpty();
 						%>
 
@@ -76,7 +75,7 @@
 										<c:otherwise>
 
 											<%
-											String scopeAliasesString;
+											String scopeAliasesString = null;
 
 											if (removedScope) {
 												scopeAliasesString = StringUtil.merge(assignedScopeAliases, StringPool.SPACE);
