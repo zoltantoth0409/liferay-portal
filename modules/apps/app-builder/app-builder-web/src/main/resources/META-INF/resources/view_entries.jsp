@@ -23,13 +23,12 @@ String appBuilderRootElementId = renderResponse.getNamespace() + "-app-builder-r
 %>
 
 <div id="<%= appBuilderRootElementId %>">
-	<portlet:renderURL var="basePortletURL" />
 
 	<%
 	Map<String, Object> data = new HashMap<>();
 
 	data.put("appId", appId);
-	data.put("basePortletURL", basePortletURL.toString());
+	data.put("basePortletURL", renderResponse.createRenderURL());
 	%>
 
 	<react:component
