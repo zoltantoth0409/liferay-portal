@@ -86,15 +86,15 @@ public class BatchEngineTaskMethodRegistry {
 				apiVersion, batchEngineTaskOperation, itemClassName));
 	}
 
+	private final Map<String, Map.Entry<Class<?>, AtomicInteger>> _itemClasses =
+		new ConcurrentHashMap<>();
+	private final ServiceTracker<Object, List<FactoryKey>> _serviceTracker;
 	private final Map
 		<FactoryKey,
 		 UnsafeBiFunction
 			 <Company, User, BatchEngineTaskItemWriter,
-			  ReflectiveOperationException>>
-				_unsafeBiFunctions = new ConcurrentHashMap<>();
-	private final Map<String, Map.Entry<Class<?>, AtomicInteger>> _itemClasses =
-		new ConcurrentHashMap<>();
-	private final ServiceTracker<Object, List<FactoryKey>> _serviceTracker;
+			  ReflectiveOperationException>> _unsafeBiFunctions =
+				new ConcurrentHashMap<>();
 
 	private static class FactoryKey {
 
