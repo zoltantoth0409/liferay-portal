@@ -26,8 +26,6 @@ long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 
 <div class="app-builder-root">
 	<aui:form>
-		<portlet:renderURL var="basePortletURL" />
-
 		<liferay-data-engine:data-layout-renderer
 			containerId="<%= editEntryContainerElementId %>"
 			dataLayoutId="<%= dataLayoutId %>"
@@ -39,7 +37,7 @@ long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 			<%
 			Map<String, Object> data = new HashMap<>();
 
-			data.put("basePortletURL", basePortletURL.toString());
+			data.put("basePortletURL", renderResponse.createRenderURL());
 			data.put("dataDefinitionId", dataDefinitionId);
 			data.put("editEntryContainerElementId", editEntryContainerElementId);
 			%>
