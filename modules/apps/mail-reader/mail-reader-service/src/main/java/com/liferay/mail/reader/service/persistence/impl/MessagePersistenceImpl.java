@@ -185,7 +185,7 @@ public class MessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Message message : list) {
-					if ((companyId != message.getCompanyId())) {
+					if (companyId != message.getCompanyId()) {
 						list = null;
 
 						break;
@@ -693,7 +693,7 @@ public class MessagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Message message : list) {
-					if ((folderId != message.getFolderId())) {
+					if (folderId != message.getFolderId()) {
 						list = null;
 
 						break;

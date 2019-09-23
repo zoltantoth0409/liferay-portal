@@ -35,7 +35,7 @@ import java.util.Objects;
  * @see SyncDevice
  * @generated
  */
-public class SyncDeviceWrapper implements SyncDevice, ModelWrapper<SyncDevice> {
+public class SyncDeviceWrapper implements ModelWrapper<SyncDevice>, SyncDevice {
 
 	public SyncDeviceWrapper(SyncDevice syncDevice) {
 		_syncDevice = syncDevice;

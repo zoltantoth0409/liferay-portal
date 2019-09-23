@@ -32,7 +32,7 @@ import java.util.Objects;
  * @see Portlet
  * @generated
  */
-public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
+public class PortletWrapper implements ModelWrapper<Portlet>, Portlet {
 
 	public PortletWrapper(Portlet portlet) {
 		_portlet = portlet;

@@ -191,7 +191,7 @@ public class CalendarPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Calendar calendar : list) {
-					if ((resourceBlockId != calendar.getResourceBlockId())) {
+					if (resourceBlockId != calendar.getResourceBlockId()) {
 						list = null;
 
 						break;

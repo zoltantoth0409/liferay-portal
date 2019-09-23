@@ -1338,7 +1338,7 @@ public class WSRPConsumerPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WSRPConsumer wsrpConsumer : list) {
-					if ((companyId != wsrpConsumer.getCompanyId())) {
+					if (companyId != wsrpConsumer.getCompanyId()) {
 						list = null;
 
 						break;

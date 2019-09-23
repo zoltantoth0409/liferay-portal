@@ -76,7 +76,7 @@ import javax.sql.DataSource;
  */
 public abstract class MDRRuleGroupInstanceLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MDRRuleGroupInstanceLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MDRRuleGroupInstanceLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

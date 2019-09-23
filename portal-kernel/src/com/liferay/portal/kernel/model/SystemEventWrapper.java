@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class SystemEventWrapper
-	implements SystemEvent, ModelWrapper<SystemEvent> {
+	implements ModelWrapper<SystemEvent>, SystemEvent {
 
 	public SystemEventWrapper(SystemEvent systemEvent) {
 		_systemEvent = systemEvent;

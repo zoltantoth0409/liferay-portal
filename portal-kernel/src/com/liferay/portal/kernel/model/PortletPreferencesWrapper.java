@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class PortletPreferencesWrapper
-	implements PortletPreferences, ModelWrapper<PortletPreferences> {
+	implements ModelWrapper<PortletPreferences>, PortletPreferences {
 
 	public PortletPreferencesWrapper(PortletPreferences portletPreferences) {
 		_portletPreferences = portletPreferences;

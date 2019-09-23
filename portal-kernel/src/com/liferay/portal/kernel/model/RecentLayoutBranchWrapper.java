@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class RecentLayoutBranchWrapper
-	implements RecentLayoutBranch, ModelWrapper<RecentLayoutBranch> {
+	implements ModelWrapper<RecentLayoutBranch>, RecentLayoutBranch {
 
 	public RecentLayoutBranchWrapper(RecentLayoutBranch recentLayoutBranch) {
 		_recentLayoutBranch = recentLayoutBranch;

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.service;
 
-
 /**
  * Provides a wrapper for {@link SubscriptionLocalService}.
  *
@@ -23,8 +22,8 @@ package com.liferay.portal.kernel.service;
  * @generated
  */
 public class SubscriptionLocalServiceWrapper
-	implements SubscriptionLocalService,
-			   ServiceWrapper<SubscriptionLocalService> {
+	implements ServiceWrapper<SubscriptionLocalService>,
+			   SubscriptionLocalService {
 
 	public SubscriptionLocalServiceWrapper(
 		SubscriptionLocalService subscriptionLocalService) {

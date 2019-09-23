@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class ShoppingItemFieldWrapper
-	implements ShoppingItemField, ModelWrapper<ShoppingItemField> {
+	implements ModelWrapper<ShoppingItemField>, ShoppingItemField {
 
 	public ShoppingItemFieldWrapper(ShoppingItemField shoppingItemField) {
 		_shoppingItemField = shoppingItemField;

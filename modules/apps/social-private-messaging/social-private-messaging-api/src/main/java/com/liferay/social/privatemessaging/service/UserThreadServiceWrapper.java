@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class UserThreadServiceWrapper
-	implements UserThreadService, ServiceWrapper<UserThreadService> {
+	implements ServiceWrapper<UserThreadService>, UserThreadService {
 
 	public UserThreadServiceWrapper(UserThreadService userThreadService) {
 		_userThreadService = userThreadService;

@@ -24,8 +24,8 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class ShoppingCartLocalServiceWrapper
-	implements ShoppingCartLocalService,
-			   ServiceWrapper<ShoppingCartLocalService> {
+	implements ServiceWrapper<ShoppingCartLocalService>,
+			   ShoppingCartLocalService {
 
 	public ShoppingCartLocalServiceWrapper(
 		ShoppingCartLocalService shoppingCartLocalService) {

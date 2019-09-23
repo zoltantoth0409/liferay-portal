@@ -189,8 +189,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 						list) {
 
-					if ((companyId !=
-							kaleoTaskAssignmentInstance.getCompanyId())) {
+					if (companyId !=
+							kaleoTaskAssignmentInstance.getCompanyId()) {
 
 						list = null;
 
@@ -724,9 +724,9 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 						list) {
 
-					if ((kaleoDefinitionId !=
+					if (kaleoDefinitionId !=
 							kaleoTaskAssignmentInstance.
-								getKaleoDefinitionId())) {
+								getKaleoDefinitionId()) {
 
 						list = null;
 
@@ -1263,8 +1263,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 						list) {
 
-					if ((kaleoInstanceId !=
-							kaleoTaskAssignmentInstance.getKaleoInstanceId())) {
+					if (kaleoInstanceId !=
+							kaleoTaskAssignmentInstance.getKaleoInstanceId()) {
 
 						list = null;
 
@@ -1805,9 +1805,9 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 						list) {
 
-					if ((kaleoTaskInstanceTokenId !=
+					if (kaleoTaskInstanceTokenId !=
 							kaleoTaskAssignmentInstance.
-								getKaleoTaskInstanceTokenId())) {
+								getKaleoTaskInstanceTokenId()) {
 
 						list = null;
 

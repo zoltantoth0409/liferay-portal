@@ -61,7 +61,7 @@ import javax.sql.DataSource;
  */
 public abstract class LockLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements LockLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LockLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

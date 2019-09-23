@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  */
 public abstract class WeDeployAuthAppServiceBaseImpl
 	extends BaseServiceImpl
-	implements WeDeployAuthAppService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WeDeployAuthAppService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

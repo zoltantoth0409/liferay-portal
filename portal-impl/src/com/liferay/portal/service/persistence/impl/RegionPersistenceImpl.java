@@ -180,7 +180,7 @@ public class RegionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Region region : list) {
-					if ((countryId != region.getCountryId())) {
+					if (countryId != region.getCountryId()) {
 						list = null;
 
 						break;
@@ -687,7 +687,7 @@ public class RegionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Region region : list) {
-					if ((active != region.isActive())) {
+					if (active != region.isActive()) {
 						list = null;
 
 						break;

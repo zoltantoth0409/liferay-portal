@@ -34,8 +34,8 @@ import java.util.Objects;
  * @generated
  */
 public class SocialActivityAchievementWrapper
-	implements SocialActivityAchievement,
-			   ModelWrapper<SocialActivityAchievement> {
+	implements ModelWrapper<SocialActivityAchievement>,
+			   SocialActivityAchievement {
 
 	public SocialActivityAchievementWrapper(
 		SocialActivityAchievement socialActivityAchievement) {

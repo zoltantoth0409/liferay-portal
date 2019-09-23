@@ -1592,7 +1592,7 @@ public class DDMTemplatePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMTemplate ddmTemplate : list) {
-					if ((groupId != ddmTemplate.getGroupId())) {
+					if (groupId != ddmTemplate.getGroupId()) {
 						list = null;
 
 						break;
@@ -2479,7 +2479,7 @@ public class DDMTemplatePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMTemplate ddmTemplate : list) {
-					if ((classPK != ddmTemplate.getClassPK())) {
+					if (classPK != ddmTemplate.getClassPK()) {
 						list = null;
 
 						break;
@@ -4626,7 +4626,7 @@ public class DDMTemplatePersistenceImpl
 		if (result instanceof DDMTemplate) {
 			DDMTemplate ddmTemplate = (DDMTemplate)result;
 
-			if ((smallImageId != ddmTemplate.getSmallImageId())) {
+			if (smallImageId != ddmTemplate.getSmallImageId()) {
 				result = null;
 			}
 		}

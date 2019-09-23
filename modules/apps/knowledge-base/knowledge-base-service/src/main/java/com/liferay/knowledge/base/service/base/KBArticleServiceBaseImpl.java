@@ -62,7 +62,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBArticleServiceBaseImpl
 	extends BaseServiceImpl
-	implements KBArticleService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBArticleService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

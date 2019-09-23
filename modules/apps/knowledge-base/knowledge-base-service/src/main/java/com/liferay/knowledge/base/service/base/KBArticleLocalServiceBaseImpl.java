@@ -95,7 +95,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBArticleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KBArticleLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBArticleLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

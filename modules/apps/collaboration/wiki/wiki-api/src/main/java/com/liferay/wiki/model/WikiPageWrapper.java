@@ -35,7 +35,7 @@ import java.util.Objects;
  * @see WikiPage
  * @generated
  */
-public class WikiPageWrapper implements WikiPage, ModelWrapper<WikiPage> {
+public class WikiPageWrapper implements ModelWrapper<WikiPage>, WikiPage {
 
 	public WikiPageWrapper(WikiPage wikiPage) {
 		_wikiPage = wikiPage;

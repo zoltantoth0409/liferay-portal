@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see Role
  * @generated
  */
-public class RoleWrapper implements Role, ModelWrapper<Role> {
+public class RoleWrapper implements ModelWrapper<Role>, Role {
 
 	public RoleWrapper(Role role) {
 		_role = role;

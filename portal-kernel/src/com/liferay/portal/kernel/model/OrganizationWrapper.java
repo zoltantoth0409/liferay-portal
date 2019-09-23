@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class OrganizationWrapper
-	implements Organization, ModelWrapper<Organization> {
+	implements ModelWrapper<Organization>, Organization {
 
 	public OrganizationWrapper(Organization organization) {
 		_organization = organization;

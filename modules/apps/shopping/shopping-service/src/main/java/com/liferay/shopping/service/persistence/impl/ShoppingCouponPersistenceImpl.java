@@ -187,7 +187,7 @@ public class ShoppingCouponPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingCoupon shoppingCoupon : list) {
-					if ((groupId != shoppingCoupon.getGroupId())) {
+					if (groupId != shoppingCoupon.getGroupId()) {
 						list = null;
 
 						break;

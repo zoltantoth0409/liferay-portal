@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class WSRPConsumerWrapper
-	implements WSRPConsumer, ModelWrapper<WSRPConsumer> {
+	implements ModelWrapper<WSRPConsumer>, WSRPConsumer {
 
 	public WSRPConsumerWrapper(WSRPConsumer wsrpConsumer) {
 		_wsrpConsumer = wsrpConsumer;

@@ -1592,8 +1592,8 @@ public class MDRActionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRAction mdrAction : list) {
-					if ((ruleGroupInstanceId !=
-							mdrAction.getRuleGroupInstanceId())) {
+					if (ruleGroupInstanceId !=
+							mdrAction.getRuleGroupInstanceId()) {
 
 						list = null;
 

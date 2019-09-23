@@ -742,7 +742,7 @@ public class ResourcePermissionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourcePermission resourcePermission : list) {
-					if ((scope != resourcePermission.getScope())) {
+					if (scope != resourcePermission.getScope()) {
 						list = null;
 
 						break;
@@ -1531,7 +1531,7 @@ public class ResourcePermissionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourcePermission resourcePermission : list) {
-					if ((roleId != resourcePermission.getRoleId())) {
+					if (roleId != resourcePermission.getRoleId()) {
 						list = null;
 
 						break;

@@ -148,7 +148,7 @@ public class StatusPersistenceImpl
 		if (result instanceof Status) {
 			Status status = (Status)result;
 
-			if ((userId != status.getUserId())) {
+			if (userId != status.getUserId()) {
 				result = null;
 			}
 		}
@@ -382,7 +382,7 @@ public class StatusPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Status status : list) {
-					if ((modifiedDate != status.getModifiedDate())) {
+					if (modifiedDate != status.getModifiedDate()) {
 						list = null;
 
 						break;
@@ -891,7 +891,7 @@ public class StatusPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Status status : list) {
-					if ((online != status.isOnline())) {
+					if (online != status.isOnline()) {
 						list = null;
 
 						break;

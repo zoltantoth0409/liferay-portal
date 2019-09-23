@@ -49,7 +49,7 @@ import javax.sql.DataSource;
  */
 public abstract class ShoppingCouponServiceBaseImpl
 	extends BaseServiceImpl
-	implements ShoppingCouponService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ShoppingCouponService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

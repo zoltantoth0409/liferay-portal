@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  */
 public abstract class MDRActionServiceBaseImpl
 	extends BaseServiceImpl
-	implements MDRActionService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MDRActionService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

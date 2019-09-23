@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MDRRuleServiceBaseImpl
-	extends BaseServiceImpl implements MDRRuleService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, MDRRuleService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -180,7 +180,7 @@ public class ShoppingItemPricePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingItemPrice shoppingItemPrice : list) {
-					if ((itemId != shoppingItemPrice.getItemId())) {
+					if (itemId != shoppingItemPrice.getItemId()) {
 						list = null;
 
 						break;

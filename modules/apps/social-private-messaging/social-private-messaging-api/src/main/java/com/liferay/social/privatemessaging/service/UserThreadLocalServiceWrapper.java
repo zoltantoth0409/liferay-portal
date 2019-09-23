@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class UserThreadLocalServiceWrapper
-	implements UserThreadLocalService, ServiceWrapper<UserThreadLocalService> {
+	implements ServiceWrapper<UserThreadLocalService>, UserThreadLocalService {
 
 	public UserThreadLocalServiceWrapper(
 		UserThreadLocalService userThreadLocalService) {

@@ -66,7 +66,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class RoleServiceBaseImpl
-	extends BaseServiceImpl implements RoleService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, RoleService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

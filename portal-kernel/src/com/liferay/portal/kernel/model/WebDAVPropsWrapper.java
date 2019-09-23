@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class WebDAVPropsWrapper
-	implements WebDAVProps, ModelWrapper<WebDAVProps> {
+	implements ModelWrapper<WebDAVProps>, WebDAVProps {
 
 	public WebDAVPropsWrapper(WebDAVProps webDAVProps) {
 		_webDAVProps = webDAVProps;

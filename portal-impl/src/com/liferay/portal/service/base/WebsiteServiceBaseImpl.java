@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class WebsiteServiceBaseImpl
-	extends BaseServiceImpl implements WebsiteService, IdentifiableOSGiService {
+	extends BaseServiceImpl implements IdentifiableOSGiService, WebsiteService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

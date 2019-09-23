@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class WSRPConsumerPortletWrapper
-	implements WSRPConsumerPortlet, ModelWrapper<WSRPConsumerPortlet> {
+	implements ModelWrapper<WSRPConsumerPortlet>, WSRPConsumerPortlet {
 
 	public WSRPConsumerPortletWrapper(WSRPConsumerPortlet wsrpConsumerPortlet) {
 		_wsrpConsumerPortlet = wsrpConsumerPortlet;

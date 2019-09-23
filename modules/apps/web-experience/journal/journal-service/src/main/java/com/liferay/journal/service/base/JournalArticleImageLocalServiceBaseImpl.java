@@ -61,7 +61,7 @@ import javax.sql.DataSource;
  */
 public abstract class JournalArticleImageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements JournalArticleImageLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, JournalArticleImageLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

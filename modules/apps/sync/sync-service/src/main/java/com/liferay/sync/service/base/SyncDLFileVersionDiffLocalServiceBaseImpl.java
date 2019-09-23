@@ -66,7 +66,7 @@ import javax.sql.DataSource;
  */
 public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SyncDLFileVersionDiffLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SyncDLFileVersionDiffLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

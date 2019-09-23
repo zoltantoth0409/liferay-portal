@@ -182,7 +182,7 @@ public class JournalArticleImagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticleImage journalArticleImage : list) {
-					if ((groupId != journalArticleImage.getGroupId())) {
+					if (groupId != journalArticleImage.getGroupId()) {
 						list = null;
 
 						break;
@@ -705,7 +705,7 @@ public class JournalArticleImagePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticleImage journalArticleImage : list) {
-					if ((tempImage != journalArticleImage.isTempImage())) {
+					if (tempImage != journalArticleImage.isTempImage()) {
 						list = null;
 
 						break;

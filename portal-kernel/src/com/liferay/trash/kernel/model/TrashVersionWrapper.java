@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class TrashVersionWrapper
-	implements TrashVersion, ModelWrapper<TrashVersion> {
+	implements ModelWrapper<TrashVersion>, TrashVersion {
 
 	public TrashVersionWrapper(TrashVersion trashVersion) {
 		_trashVersion = trashVersion;

@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class ResourceBlockWrapper
-	implements ResourceBlock, ModelWrapper<ResourceBlock> {
+	implements ModelWrapper<ResourceBlock>, ResourceBlock {
 
 	public ResourceBlockWrapper(ResourceBlock resourceBlock) {
 		_resourceBlock = resourceBlock;

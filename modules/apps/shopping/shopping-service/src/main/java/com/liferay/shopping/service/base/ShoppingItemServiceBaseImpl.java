@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class ShoppingItemServiceBaseImpl
 	extends BaseServiceImpl
-	implements ShoppingItemService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ShoppingItemService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

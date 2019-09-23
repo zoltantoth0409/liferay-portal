@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class WeDeployAuthTokenWrapper
-	implements WeDeployAuthToken, ModelWrapper<WeDeployAuthToken> {
+	implements ModelWrapper<WeDeployAuthToken>, WeDeployAuthToken {
 
 	public WeDeployAuthTokenWrapper(WeDeployAuthToken weDeployAuthToken) {
 		_weDeployAuthToken = weDeployAuthToken;

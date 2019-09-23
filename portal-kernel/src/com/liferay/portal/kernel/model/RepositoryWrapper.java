@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see Repository
  * @generated
  */
-public class RepositoryWrapper implements Repository, ModelWrapper<Repository> {
+public class RepositoryWrapper implements ModelWrapper<Repository>, Repository {
 
 	public RepositoryWrapper(Repository repository) {
 		_repository = repository;

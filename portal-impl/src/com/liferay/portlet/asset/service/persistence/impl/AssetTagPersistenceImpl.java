@@ -1596,7 +1596,7 @@ public class AssetTagPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetTag assetTag : list) {
-					if ((groupId != assetTag.getGroupId())) {
+					if (groupId != assetTag.getGroupId()) {
 						list = null;
 
 						break;

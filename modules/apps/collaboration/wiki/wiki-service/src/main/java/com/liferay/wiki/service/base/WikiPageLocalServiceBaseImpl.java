@@ -95,7 +95,7 @@ import javax.sql.DataSource;
  */
 public abstract class WikiPageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements WikiPageLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WikiPageLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

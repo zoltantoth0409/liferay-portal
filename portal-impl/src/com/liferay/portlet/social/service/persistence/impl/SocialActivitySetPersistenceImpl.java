@@ -182,7 +182,7 @@ public class SocialActivitySetPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivitySet socialActivitySet : list) {
-					if ((groupId != socialActivitySet.getGroupId())) {
+					if (groupId != socialActivitySet.getGroupId()) {
 						list = null;
 
 						break;
@@ -699,7 +699,7 @@ public class SocialActivitySetPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivitySet socialActivitySet : list) {
-					if ((userId != socialActivitySet.getUserId())) {
+					if (userId != socialActivitySet.getUserId()) {
 						list = null;
 
 						break;

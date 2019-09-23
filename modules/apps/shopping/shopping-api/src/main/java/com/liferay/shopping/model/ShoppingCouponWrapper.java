@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class ShoppingCouponWrapper
-	implements ShoppingCoupon, ModelWrapper<ShoppingCoupon> {
+	implements ModelWrapper<ShoppingCoupon>, ShoppingCoupon {
 
 	public ShoppingCouponWrapper(ShoppingCoupon shoppingCoupon) {
 		_shoppingCoupon = shoppingCoupon;

@@ -1588,7 +1588,7 @@ public class DDLRecordPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
-					if ((companyId != ddlRecord.getCompanyId())) {
+					if (companyId != ddlRecord.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2104,7 +2104,7 @@ public class DDLRecordPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
-					if ((recordSetId != ddlRecord.getRecordSetId())) {
+					if (recordSetId != ddlRecord.getRecordSetId()) {
 						list = null;
 
 						break;

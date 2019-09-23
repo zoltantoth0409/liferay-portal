@@ -52,7 +52,7 @@ import javax.sql.DataSource;
  */
 public abstract class PermissionServiceBaseImpl
 	extends BaseServiceImpl
-	implements PermissionService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PermissionService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

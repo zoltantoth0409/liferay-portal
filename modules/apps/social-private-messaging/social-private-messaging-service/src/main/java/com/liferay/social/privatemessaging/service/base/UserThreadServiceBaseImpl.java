@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class UserThreadServiceBaseImpl
 	extends BaseServiceImpl
-	implements UserThreadService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, UserThreadService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

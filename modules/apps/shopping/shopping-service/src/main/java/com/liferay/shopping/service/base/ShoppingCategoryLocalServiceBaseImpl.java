@@ -64,7 +64,7 @@ import javax.sql.DataSource;
  */
 public abstract class ShoppingCategoryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements ShoppingCategoryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ShoppingCategoryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -187,7 +187,7 @@ public class KaleoConditionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoCondition kaleoCondition : list) {
-					if ((companyId != kaleoCondition.getCompanyId())) {
+					if (companyId != kaleoCondition.getCompanyId()) {
 						list = null;
 
 						break;
@@ -707,8 +707,8 @@ public class KaleoConditionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoCondition kaleoCondition : list) {
-					if ((kaleoDefinitionId !=
-							kaleoCondition.getKaleoDefinitionId())) {
+					if (kaleoDefinitionId !=
+							kaleoCondition.getKaleoDefinitionId()) {
 
 						list = null;
 
@@ -1202,7 +1202,7 @@ public class KaleoConditionPersistenceImpl
 		if (result instanceof KaleoCondition) {
 			KaleoCondition kaleoCondition = (KaleoCondition)result;
 
-			if ((kaleoNodeId != kaleoCondition.getKaleoNodeId())) {
+			if (kaleoNodeId != kaleoCondition.getKaleoNodeId()) {
 				result = null;
 			}
 		}

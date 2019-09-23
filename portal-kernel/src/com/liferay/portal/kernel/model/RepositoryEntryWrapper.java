@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class RepositoryEntryWrapper
-	implements RepositoryEntry, ModelWrapper<RepositoryEntry> {
+	implements ModelWrapper<RepositoryEntry>, RepositoryEntry {
 
 	public RepositoryEntryWrapper(RepositoryEntry repositoryEntry) {
 		_repositoryEntry = repositoryEntry;

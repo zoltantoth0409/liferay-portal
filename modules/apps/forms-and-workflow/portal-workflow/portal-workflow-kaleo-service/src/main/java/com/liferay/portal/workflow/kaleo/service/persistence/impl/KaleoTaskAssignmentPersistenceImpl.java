@@ -187,7 +187,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskAssignment kaleoTaskAssignment : list) {
-					if ((companyId != kaleoTaskAssignment.getCompanyId())) {
+					if (companyId != kaleoTaskAssignment.getCompanyId()) {
 						list = null;
 
 						break;
@@ -716,8 +716,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskAssignment kaleoTaskAssignment : list) {
-					if ((kaleoDefinitionId !=
-							kaleoTaskAssignment.getKaleoDefinitionId())) {
+					if (kaleoDefinitionId !=
+							kaleoTaskAssignment.getKaleoDefinitionId()) {
 
 						list = null;
 

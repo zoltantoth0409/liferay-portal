@@ -36,7 +36,7 @@ import java.util.Objects;
  * @generated
  */
 public class RatingsEntryWrapper
-	implements RatingsEntry, ModelWrapper<RatingsEntry> {
+	implements ModelWrapper<RatingsEntry>, RatingsEntry {
 
 	public RatingsEntryWrapper(RatingsEntry ratingsEntry) {
 		_ratingsEntry = ratingsEntry;

@@ -48,7 +48,7 @@ import javax.sql.DataSource;
  */
 public abstract class PasswordPolicyServiceBaseImpl
 	extends BaseServiceImpl
-	implements PasswordPolicyService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PasswordPolicyService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

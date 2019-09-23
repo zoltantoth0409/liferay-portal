@@ -1595,7 +1595,7 @@ public class DDLRecordSetPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecordSet ddlRecordSet : list) {
-					if ((groupId != ddlRecordSet.getGroupId())) {
+					if (groupId != ddlRecordSet.getGroupId()) {
 						list = null;
 
 						break;

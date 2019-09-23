@@ -169,7 +169,7 @@ public class DLSyncEventPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLSyncEvent dlSyncEvent : list) {
-					if ((modifiedTime >= dlSyncEvent.getModifiedTime())) {
+					if (modifiedTime >= dlSyncEvent.getModifiedTime()) {
 						list = null;
 
 						break;
@@ -652,7 +652,7 @@ public class DLSyncEventPersistenceImpl
 		if (result instanceof DLSyncEvent) {
 			DLSyncEvent dlSyncEvent = (DLSyncEvent)result;
 
-			if ((typePK != dlSyncEvent.getTypePK())) {
+			if (typePK != dlSyncEvent.getTypePK()) {
 				result = null;
 			}
 		}

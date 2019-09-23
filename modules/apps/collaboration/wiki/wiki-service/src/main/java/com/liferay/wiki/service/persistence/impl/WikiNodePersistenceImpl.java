@@ -1585,7 +1585,7 @@ public class WikiNodePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiNode wikiNode : list) {
-					if ((groupId != wikiNode.getGroupId())) {
+					if (groupId != wikiNode.getGroupId()) {
 						list = null;
 
 						break;
@@ -2469,7 +2469,7 @@ public class WikiNodePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiNode wikiNode : list) {
-					if ((companyId != wikiNode.getCompanyId())) {
+					if (companyId != wikiNode.getCompanyId()) {
 						list = null;
 
 						break;

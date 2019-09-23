@@ -2183,7 +2183,7 @@ public class RolePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Role role : list) {
-					if ((companyId != role.getCompanyId())) {
+					if (companyId != role.getCompanyId()) {
 						list = null;
 
 						break;
@@ -4012,7 +4012,7 @@ public class RolePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Role role : list) {
-					if ((type != role.getType())) {
+					if (type != role.getType()) {
 						list = null;
 
 						break;

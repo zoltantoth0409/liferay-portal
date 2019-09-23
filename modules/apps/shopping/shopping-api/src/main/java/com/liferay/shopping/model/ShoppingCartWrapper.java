@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class ShoppingCartWrapper
-	implements ShoppingCart, ModelWrapper<ShoppingCart> {
+	implements ModelWrapper<ShoppingCart>, ShoppingCart {
 
 	public ShoppingCartWrapper(ShoppingCart shoppingCart) {
 		_shoppingCart = shoppingCart;

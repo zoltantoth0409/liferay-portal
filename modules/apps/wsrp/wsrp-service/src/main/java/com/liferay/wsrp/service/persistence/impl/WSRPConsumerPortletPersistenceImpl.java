@@ -1354,8 +1354,8 @@ public class WSRPConsumerPortletPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if ((wsrpConsumerId !=
-							wsrpConsumerPortlet.getWsrpConsumerId())) {
+					if (wsrpConsumerId !=
+							wsrpConsumerPortlet.getWsrpConsumerId()) {
 
 						list = null;
 

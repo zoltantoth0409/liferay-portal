@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class ShoppingItemPriceWrapper
-	implements ShoppingItemPrice, ModelWrapper<ShoppingItemPrice> {
+	implements ModelWrapper<ShoppingItemPrice>, ShoppingItemPrice {
 
 	public ShoppingItemPriceWrapper(ShoppingItemPrice shoppingItemPrice) {
 		_shoppingItemPrice = shoppingItemPrice;

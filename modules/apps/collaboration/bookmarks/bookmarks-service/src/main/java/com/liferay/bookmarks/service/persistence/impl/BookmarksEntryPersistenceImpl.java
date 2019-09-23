@@ -196,8 +196,8 @@ public class BookmarksEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BookmarksEntry bookmarksEntry : list) {
-					if ((resourceBlockId !=
-							bookmarksEntry.getResourceBlockId())) {
+					if (resourceBlockId !=
+							bookmarksEntry.getResourceBlockId()) {
 
 						list = null;
 
@@ -2129,7 +2129,7 @@ public class BookmarksEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BookmarksEntry bookmarksEntry : list) {
-					if ((companyId != bookmarksEntry.getCompanyId())) {
+					if (companyId != bookmarksEntry.getCompanyId()) {
 						list = null;
 
 						break;

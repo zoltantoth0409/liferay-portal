@@ -56,7 +56,7 @@ import javax.sql.DataSource;
  */
 public abstract class SyncDLObjectServiceBaseImpl
 	extends BaseServiceImpl
-	implements SyncDLObjectService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SyncDLObjectService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

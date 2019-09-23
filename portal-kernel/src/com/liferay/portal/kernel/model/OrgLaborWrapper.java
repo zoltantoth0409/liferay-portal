@@ -32,7 +32,7 @@ import java.util.Objects;
  * @see OrgLabor
  * @generated
  */
-public class OrgLaborWrapper implements OrgLabor, ModelWrapper<OrgLabor> {
+public class OrgLaborWrapper implements ModelWrapper<OrgLabor>, OrgLabor {
 
 	public OrgLaborWrapper(OrgLabor orgLabor) {
 		_orgLabor = orgLabor;

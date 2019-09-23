@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class RecentLayoutRevisionWrapper
-	implements RecentLayoutRevision, ModelWrapper<RecentLayoutRevision> {
+	implements ModelWrapper<RecentLayoutRevision>, RecentLayoutRevision {
 
 	public RecentLayoutRevisionWrapper(
 		RecentLayoutRevision recentLayoutRevision) {

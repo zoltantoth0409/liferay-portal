@@ -47,7 +47,7 @@ import javax.sql.DataSource;
  */
 public abstract class PluginSettingServiceBaseImpl
 	extends BaseServiceImpl
-	implements PluginSettingService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PluginSettingService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -78,8 +78,8 @@ import javax.sql.DataSource;
  */
 public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KaleoTaskAssignmentInstanceLocalService,
-			   IdentifiableOSGiService {
+	implements IdentifiableOSGiService,
+			   KaleoTaskAssignmentInstanceLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

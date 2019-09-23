@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class WeDeployAuthAppWrapper
-	implements WeDeployAuthApp, ModelWrapper<WeDeployAuthApp> {
+	implements ModelWrapper<WeDeployAuthApp>, WeDeployAuthApp {
 
 	public WeDeployAuthAppWrapper(WeDeployAuthApp weDeployAuthApp) {
 		_weDeployAuthApp = weDeployAuthApp;

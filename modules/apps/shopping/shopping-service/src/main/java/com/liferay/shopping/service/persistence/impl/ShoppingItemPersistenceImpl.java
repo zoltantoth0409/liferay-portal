@@ -161,7 +161,7 @@ public class ShoppingItemPersistenceImpl
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
 
-			if ((smallImageId != shoppingItem.getSmallImageId())) {
+			if (smallImageId != shoppingItem.getSmallImageId()) {
 				result = null;
 			}
 		}
@@ -381,7 +381,7 @@ public class ShoppingItemPersistenceImpl
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
 
-			if ((mediumImageId != shoppingItem.getMediumImageId())) {
+			if (mediumImageId != shoppingItem.getMediumImageId()) {
 				result = null;
 			}
 		}
@@ -601,7 +601,7 @@ public class ShoppingItemPersistenceImpl
 		if (result instanceof ShoppingItem) {
 			ShoppingItem shoppingItem = (ShoppingItem)result;
 
-			if ((largeImageId != shoppingItem.getLargeImageId())) {
+			if (largeImageId != shoppingItem.getLargeImageId()) {
 				result = null;
 			}
 		}

@@ -45,7 +45,7 @@ import javax.sql.DataSource;
  */
 public abstract class ScreensDDMStructureVersionServiceBaseImpl
 	extends BaseServiceImpl
-	implements ScreensDDMStructureVersionService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ScreensDDMStructureVersionService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

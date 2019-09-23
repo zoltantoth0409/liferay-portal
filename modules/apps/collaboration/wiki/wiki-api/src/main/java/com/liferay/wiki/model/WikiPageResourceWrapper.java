@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class WikiPageResourceWrapper
-	implements WikiPageResource, ModelWrapper<WikiPageResource> {
+	implements ModelWrapper<WikiPageResource>, WikiPageResource {
 
 	public WikiPageResourceWrapper(WikiPageResource wikiPageResource) {
 		_wikiPageResource = wikiPageResource;

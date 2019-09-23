@@ -190,8 +190,8 @@ public class PowwowParticipantPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PowwowParticipant powwowParticipant : list) {
-					if ((powwowMeetingId !=
-							powwowParticipant.getPowwowMeetingId())) {
+					if (powwowMeetingId !=
+							powwowParticipant.getPowwowMeetingId()) {
 
 						list = null;
 

@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class UserTrackerPathWrapper
-	implements UserTrackerPath, ModelWrapper<UserTrackerPath> {
+	implements ModelWrapper<UserTrackerPath>, UserTrackerPath {
 
 	public UserTrackerPathWrapper(UserTrackerPath userTrackerPath) {
 		_userTrackerPath = userTrackerPath;

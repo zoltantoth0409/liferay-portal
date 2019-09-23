@@ -67,7 +67,7 @@ import javax.sql.DataSource;
  */
 public abstract class WallEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements WallEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WallEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

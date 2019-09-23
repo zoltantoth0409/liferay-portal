@@ -74,7 +74,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBFolderLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KBFolderLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBFolderLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

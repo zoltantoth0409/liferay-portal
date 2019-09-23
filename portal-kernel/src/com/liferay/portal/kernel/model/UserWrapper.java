@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see User
  * @generated
  */
-public class UserWrapper implements User, ModelWrapper<User> {
+public class UserWrapper implements ModelWrapper<User>, User {
 
 	public UserWrapper(User user) {
 		_user = user;

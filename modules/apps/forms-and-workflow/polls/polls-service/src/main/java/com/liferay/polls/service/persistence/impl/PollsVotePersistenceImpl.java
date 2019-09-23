@@ -1591,7 +1591,7 @@ public class PollsVotePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PollsVote pollsVote : list) {
-					if ((questionId != pollsVote.getQuestionId())) {
+					if (questionId != pollsVote.getQuestionId()) {
 						list = null;
 
 						break;
@@ -2102,7 +2102,7 @@ public class PollsVotePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PollsVote pollsVote : list) {
-					if ((choiceId != pollsVote.getChoiceId())) {
+					if (choiceId != pollsVote.getChoiceId()) {
 						list = null;
 
 						break;

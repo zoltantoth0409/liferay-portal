@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class ResourceTypePermissionWrapper
-	implements ResourceTypePermission, ModelWrapper<ResourceTypePermission> {
+	implements ModelWrapper<ResourceTypePermission>, ResourceTypePermission {
 
 	public ResourceTypePermissionWrapper(
 		ResourceTypePermission resourceTypePermission) {

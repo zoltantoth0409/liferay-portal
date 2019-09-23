@@ -1593,7 +1593,7 @@ public class WSRPProducerPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WSRPProducer wsrpProducer : list) {
-					if ((companyId != wsrpProducer.getCompanyId())) {
+					if (companyId != wsrpProducer.getCompanyId()) {
 						list = null;
 
 						break;

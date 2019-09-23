@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class PortalPreferencesWrapper
-	implements PortalPreferences, ModelWrapper<PortalPreferences> {
+	implements ModelWrapper<PortalPreferences>, PortalPreferences {
 
 	public PortalPreferencesWrapper(PortalPreferences portalPreferences) {
 		_portalPreferences = portalPreferences;

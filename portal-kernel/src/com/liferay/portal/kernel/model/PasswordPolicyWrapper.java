@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class PasswordPolicyWrapper
-	implements PasswordPolicy, ModelWrapper<PasswordPolicy> {
+	implements ModelWrapper<PasswordPolicy>, PasswordPolicy {
 
 	public PasswordPolicyWrapper(PasswordPolicy passwordPolicy) {
 		_passwordPolicy = passwordPolicy;

@@ -184,7 +184,7 @@ public class KaleoTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTask kaleoTask : list) {
-					if ((companyId != kaleoTask.getCompanyId())) {
+					if (companyId != kaleoTask.getCompanyId()) {
 						list = null;
 
 						break;
@@ -701,9 +701,7 @@ public class KaleoTaskPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTask kaleoTask : list) {
-					if ((kaleoDefinitionId !=
-							kaleoTask.getKaleoDefinitionId())) {
-
+					if (kaleoDefinitionId != kaleoTask.getKaleoDefinitionId()) {
 						list = null;
 
 						break;
@@ -1194,7 +1192,7 @@ public class KaleoTaskPersistenceImpl
 		if (result instanceof KaleoTask) {
 			KaleoTask kaleoTask = (KaleoTask)result;
 
-			if ((kaleoNodeId != kaleoTask.getKaleoNodeId())) {
+			if (kaleoNodeId != kaleoTask.getKaleoNodeId()) {
 				result = null;
 			}
 		}

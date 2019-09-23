@@ -67,7 +67,7 @@ import javax.sql.DataSource;
  */
 public abstract class UserThreadLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements UserThreadLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, UserThreadLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

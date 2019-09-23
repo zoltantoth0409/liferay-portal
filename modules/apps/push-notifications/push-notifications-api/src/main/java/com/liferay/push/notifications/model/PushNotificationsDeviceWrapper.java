@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class PushNotificationsDeviceWrapper
-	implements PushNotificationsDevice, ModelWrapper<PushNotificationsDevice> {
+	implements ModelWrapper<PushNotificationsDevice>, PushNotificationsDevice {
 
 	public PushNotificationsDeviceWrapper(
 		PushNotificationsDevice pushNotificationsDevice) {

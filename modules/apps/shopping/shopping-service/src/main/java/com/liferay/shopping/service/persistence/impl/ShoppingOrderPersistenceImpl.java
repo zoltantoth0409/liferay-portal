@@ -188,7 +188,7 @@ public class ShoppingOrderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingOrder shoppingOrder : list) {
-					if ((groupId != shoppingOrder.getGroupId())) {
+					if (groupId != shoppingOrder.getGroupId()) {
 						list = null;
 
 						break;

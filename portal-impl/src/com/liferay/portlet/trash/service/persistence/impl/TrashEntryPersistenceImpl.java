@@ -180,7 +180,7 @@ public class TrashEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (TrashEntry trashEntry : list) {
-					if ((groupId != trashEntry.getGroupId())) {
+					if (groupId != trashEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -694,7 +694,7 @@ public class TrashEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (TrashEntry trashEntry : list) {
-					if ((companyId != trashEntry.getCompanyId())) {
+					if (companyId != trashEntry.getCompanyId()) {
 						list = null;
 
 						break;

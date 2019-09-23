@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutSetPrototypeServiceBaseImpl
 	extends BaseServiceImpl
-	implements LayoutSetPrototypeService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LayoutSetPrototypeService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

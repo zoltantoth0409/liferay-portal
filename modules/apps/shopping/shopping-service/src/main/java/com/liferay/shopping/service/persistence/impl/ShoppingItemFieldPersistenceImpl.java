@@ -182,7 +182,7 @@ public class ShoppingItemFieldPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingItemField shoppingItemField : list) {
-					if ((itemId != shoppingItemField.getItemId())) {
+					if (itemId != shoppingItemField.getItemId()) {
 						list = null;
 
 						break;

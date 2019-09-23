@@ -68,7 +68,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBStatsUserLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBStatsUserLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBStatsUserLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -183,7 +183,7 @@ public class UserThreadPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (UserThread userThread : list) {
-					if ((userId != userThread.getUserId())) {
+					if (userId != userThread.getUserId()) {
 						list = null;
 
 						break;
@@ -696,7 +696,7 @@ public class UserThreadPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (UserThread userThread : list) {
-					if ((mbThreadId != userThread.getMbThreadId())) {
+					if (mbThreadId != userThread.getMbThreadId()) {
 						list = null;
 
 						break;

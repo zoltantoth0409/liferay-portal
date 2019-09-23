@@ -65,7 +65,7 @@ import javax.sql.DataSource;
  */
 public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MeetupsRegistrationLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MeetupsRegistrationLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

@@ -181,7 +181,7 @@ public class WallEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WallEntry wallEntry : list) {
-					if ((groupId != wallEntry.getGroupId())) {
+					if (groupId != wallEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -688,7 +688,7 @@ public class WallEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WallEntry wallEntry : list) {
-					if ((userId != wallEntry.getUserId())) {
+					if (userId != wallEntry.getUserId()) {
 						list = null;
 
 						break;

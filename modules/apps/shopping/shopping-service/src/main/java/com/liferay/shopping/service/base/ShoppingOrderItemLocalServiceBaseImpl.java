@@ -60,7 +60,7 @@ import javax.sql.DataSource;
  */
 public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements ShoppingOrderItemLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ShoppingOrderItemLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

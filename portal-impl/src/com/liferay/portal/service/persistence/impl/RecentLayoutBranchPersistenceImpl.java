@@ -180,7 +180,7 @@ public class RecentLayoutBranchPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (RecentLayoutBranch recentLayoutBranch : list) {
-					if ((groupId != recentLayoutBranch.getGroupId())) {
+					if (groupId != recentLayoutBranch.getGroupId()) {
 						list = null;
 
 						break;
@@ -698,7 +698,7 @@ public class RecentLayoutBranchPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (RecentLayoutBranch recentLayoutBranch : list) {
-					if ((userId != recentLayoutBranch.getUserId())) {
+					if (userId != recentLayoutBranch.getUserId()) {
 						list = null;
 
 						break;
@@ -1220,8 +1220,8 @@ public class RecentLayoutBranchPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (RecentLayoutBranch recentLayoutBranch : list) {
-					if ((layoutBranchId !=
-							recentLayoutBranch.getLayoutBranchId())) {
+					if (layoutBranchId !=
+							recentLayoutBranch.getLayoutBranchId()) {
 
 						list = null;
 

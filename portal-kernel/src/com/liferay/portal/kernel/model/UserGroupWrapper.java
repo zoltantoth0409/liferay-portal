@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see UserGroup
  * @generated
  */
-public class UserGroupWrapper implements UserGroup, ModelWrapper<UserGroup> {
+public class UserGroupWrapper implements ModelWrapper<UserGroup>, UserGroup {
 
 	public UserGroupWrapper(UserGroup userGroup) {
 		_userGroup = userGroup;

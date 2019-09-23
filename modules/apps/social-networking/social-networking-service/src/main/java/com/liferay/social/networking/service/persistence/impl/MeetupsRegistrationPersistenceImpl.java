@@ -188,8 +188,8 @@ public class MeetupsRegistrationPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MeetupsRegistration meetupsRegistration : list) {
-					if ((meetupsEntryId !=
-							meetupsRegistration.getMeetupsEntryId())) {
+					if (meetupsEntryId !=
+							meetupsRegistration.getMeetupsEntryId()) {
 
 						list = null;
 

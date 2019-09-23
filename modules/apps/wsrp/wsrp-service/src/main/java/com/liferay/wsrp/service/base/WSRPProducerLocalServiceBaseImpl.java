@@ -73,7 +73,7 @@ import javax.sql.DataSource;
  */
 public abstract class WSRPProducerLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements WSRPProducerLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WSRPProducerLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

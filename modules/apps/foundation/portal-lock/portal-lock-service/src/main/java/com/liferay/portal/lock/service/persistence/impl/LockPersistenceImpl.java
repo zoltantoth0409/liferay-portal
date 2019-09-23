@@ -1315,8 +1315,8 @@ public class LockPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Lock lock : list) {
-					if ((expirationDate.getTime() <=
-							lock.getExpirationDate().getTime())) {
+					if (expirationDate.getTime() <=
+							lock.getExpirationDate().getTime()) {
 
 						list = null;
 

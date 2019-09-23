@@ -64,7 +64,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBCategoryServiceBaseImpl
 	extends BaseServiceImpl
-	implements MBCategoryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBCategoryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

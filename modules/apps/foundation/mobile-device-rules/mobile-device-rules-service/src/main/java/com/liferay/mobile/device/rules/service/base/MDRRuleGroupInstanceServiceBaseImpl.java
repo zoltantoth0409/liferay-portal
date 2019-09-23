@@ -51,7 +51,7 @@ import javax.sql.DataSource;
  */
 public abstract class MDRRuleGroupInstanceServiceBaseImpl
 	extends BaseServiceImpl
-	implements MDRRuleGroupInstanceService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MDRRuleGroupInstanceService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

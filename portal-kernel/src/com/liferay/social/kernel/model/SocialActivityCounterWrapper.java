@@ -34,7 +34,7 @@ import java.util.Objects;
  * @generated
  */
 public class SocialActivityCounterWrapper
-	implements SocialActivityCounter, ModelWrapper<SocialActivityCounter> {
+	implements ModelWrapper<SocialActivityCounter>, SocialActivityCounter {
 
 	public SocialActivityCounterWrapper(
 		SocialActivityCounter socialActivityCounter) {

@@ -62,7 +62,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBThreadServiceBaseImpl
 	extends BaseServiceImpl
-	implements MBThreadService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBThreadService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

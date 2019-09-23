@@ -50,7 +50,7 @@ import javax.sql.DataSource;
  */
 public abstract class TrashEntryServiceBaseImpl
 	extends BaseServiceImpl
-	implements TrashEntryService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, TrashEntryService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

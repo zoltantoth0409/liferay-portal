@@ -77,7 +77,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBDiscussionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MBDiscussionLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBDiscussionLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

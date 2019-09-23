@@ -183,7 +183,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((groupId != socialActivity.getGroupId())) {
+					if (groupId != socialActivity.getGroupId()) {
 						list = null;
 
 						break;
@@ -700,7 +700,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((companyId != socialActivity.getCompanyId())) {
+					if (companyId != socialActivity.getCompanyId()) {
 						list = null;
 
 						break;
@@ -1212,7 +1212,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((userId != socialActivity.getUserId())) {
+					if (userId != socialActivity.getUserId()) {
 						list = null;
 
 						break;
@@ -1730,7 +1730,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((activitySetId != socialActivity.getActivitySetId())) {
+					if (activitySetId != socialActivity.getActivitySetId()) {
 						list = null;
 
 						break;
@@ -2224,7 +2224,7 @@ public class SocialActivityPersistenceImpl
 		if (result instanceof SocialActivity) {
 			SocialActivity socialActivity = (SocialActivity)result;
 
-			if ((mirrorActivityId != socialActivity.getMirrorActivityId())) {
+			if (mirrorActivityId != socialActivity.getMirrorActivityId()) {
 				result = null;
 			}
 		}
@@ -2480,7 +2480,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((classNameId != socialActivity.getClassNameId())) {
+					if (classNameId != socialActivity.getClassNameId()) {
 						list = null;
 
 						break;
@@ -3000,9 +3000,7 @@ public class SocialActivityPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SocialActivity socialActivity : list) {
-					if ((receiverUserId !=
-							socialActivity.getReceiverUserId())) {
-
+					if (receiverUserId != socialActivity.getReceiverUserId()) {
 						list = null;
 
 						break;

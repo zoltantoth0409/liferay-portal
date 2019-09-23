@@ -1586,7 +1586,7 @@ public class DDMContentPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
-					if ((groupId != ddmContent.getGroupId())) {
+					if (groupId != ddmContent.getGroupId()) {
 						list = null;
 
 						break;
@@ -2099,7 +2099,7 @@ public class DDMContentPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
-					if ((companyId != ddmContent.getCompanyId())) {
+					if (companyId != ddmContent.getCompanyId()) {
 						list = null;
 
 						break;

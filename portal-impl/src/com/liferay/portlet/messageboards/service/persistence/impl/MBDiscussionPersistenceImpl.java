@@ -1596,7 +1596,7 @@ public class MBDiscussionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBDiscussion mbDiscussion : list) {
-					if ((classNameId != mbDiscussion.getClassNameId())) {
+					if (classNameId != mbDiscussion.getClassNameId()) {
 						list = null;
 
 						break;
@@ -2079,7 +2079,7 @@ public class MBDiscussionPersistenceImpl
 		if (result instanceof MBDiscussion) {
 			MBDiscussion mbDiscussion = (MBDiscussion)result;
 
-			if ((threadId != mbDiscussion.getThreadId())) {
+			if (threadId != mbDiscussion.getThreadId()) {
 				result = null;
 			}
 		}

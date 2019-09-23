@@ -61,7 +61,7 @@ import javax.sql.DataSource;
  */
 public abstract class ListTypeLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements ListTypeLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ListTypeLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

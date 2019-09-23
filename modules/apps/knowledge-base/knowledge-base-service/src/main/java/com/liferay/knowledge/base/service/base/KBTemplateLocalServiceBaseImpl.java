@@ -75,7 +75,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBTemplateLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KBTemplateLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBTemplateLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

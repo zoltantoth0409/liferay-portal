@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see UserThread
  * @generated
  */
-public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
+public class UserThreadWrapper implements ModelWrapper<UserThread>, UserThread {
 
 	public UserThreadWrapper(UserThread userThread) {
 		_userThread = userThread;

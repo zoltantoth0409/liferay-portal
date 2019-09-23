@@ -186,7 +186,7 @@ public class MeetupsEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MeetupsEntry meetupsEntry : list) {
-					if ((companyId != meetupsEntry.getCompanyId())) {
+					if (companyId != meetupsEntry.getCompanyId()) {
 						list = null;
 
 						break;
@@ -696,7 +696,7 @@ public class MeetupsEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MeetupsEntry meetupsEntry : list) {
-					if ((userId != meetupsEntry.getUserId())) {
+					if (userId != meetupsEntry.getUserId()) {
 						list = null;
 
 						break;

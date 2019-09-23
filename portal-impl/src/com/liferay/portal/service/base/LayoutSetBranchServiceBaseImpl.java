@@ -52,7 +52,7 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutSetBranchServiceBaseImpl
 	extends BaseServiceImpl
-	implements LayoutSetBranchService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LayoutSetBranchService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

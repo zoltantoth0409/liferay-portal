@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class PasswordPolicyRelWrapper
-	implements PasswordPolicyRel, ModelWrapper<PasswordPolicyRel> {
+	implements ModelWrapper<PasswordPolicyRel>, PasswordPolicyRel {
 
 	public PasswordPolicyRelWrapper(PasswordPolicyRel passwordPolicyRel) {
 		_passwordPolicyRel = passwordPolicyRel;

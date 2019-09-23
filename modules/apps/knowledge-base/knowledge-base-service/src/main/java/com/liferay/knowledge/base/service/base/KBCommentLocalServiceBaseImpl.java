@@ -78,7 +78,7 @@ import javax.sql.DataSource;
  */
 public abstract class KBCommentLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements KBCommentLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, KBCommentLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

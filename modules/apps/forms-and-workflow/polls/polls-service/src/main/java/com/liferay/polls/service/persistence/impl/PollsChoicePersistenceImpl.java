@@ -1592,7 +1592,7 @@ public class PollsChoicePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PollsChoice pollsChoice : list) {
-					if ((questionId != pollsChoice.getQuestionId())) {
+					if (questionId != pollsChoice.getQuestionId()) {
 						list = null;
 
 						break;

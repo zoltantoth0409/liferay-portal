@@ -45,7 +45,7 @@ import javax.sql.DataSource;
  */
 public abstract class ScreensDDLRecordServiceBaseImpl
 	extends BaseServiceImpl
-	implements ScreensDDLRecordService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ScreensDDLRecordService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

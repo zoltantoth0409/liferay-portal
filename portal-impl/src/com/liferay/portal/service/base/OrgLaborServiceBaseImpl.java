@@ -44,7 +44,7 @@ import javax.sql.DataSource;
  */
 public abstract class OrgLaborServiceBaseImpl
 	extends BaseServiceImpl
-	implements OrgLaborService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, OrgLaborService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

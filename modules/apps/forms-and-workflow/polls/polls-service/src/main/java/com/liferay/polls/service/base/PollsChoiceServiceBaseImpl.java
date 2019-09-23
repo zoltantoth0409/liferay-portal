@@ -46,7 +46,7 @@ import javax.sql.DataSource;
  */
 public abstract class PollsChoiceServiceBaseImpl
 	extends BaseServiceImpl
-	implements PollsChoiceService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, PollsChoiceService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

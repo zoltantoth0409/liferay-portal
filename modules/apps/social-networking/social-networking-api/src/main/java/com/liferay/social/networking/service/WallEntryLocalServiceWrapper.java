@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class WallEntryLocalServiceWrapper
-	implements WallEntryLocalService, ServiceWrapper<WallEntryLocalService> {
+	implements ServiceWrapper<WallEntryLocalService>, WallEntryLocalService {
 
 	public WallEntryLocalServiceWrapper(
 		WallEntryLocalService wallEntryLocalService) {

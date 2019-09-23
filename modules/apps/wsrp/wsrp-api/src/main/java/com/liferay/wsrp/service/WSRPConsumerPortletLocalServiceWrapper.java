@@ -24,8 +24,8 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class WSRPConsumerPortletLocalServiceWrapper
-	implements WSRPConsumerPortletLocalService,
-			   ServiceWrapper<WSRPConsumerPortletLocalService> {
+	implements ServiceWrapper<WSRPConsumerPortletLocalService>,
+			   WSRPConsumerPortletLocalService {
 
 	public WSRPConsumerPortletLocalServiceWrapper(
 		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {

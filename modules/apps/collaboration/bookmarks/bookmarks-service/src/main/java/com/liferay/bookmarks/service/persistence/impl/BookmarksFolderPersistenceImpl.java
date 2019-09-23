@@ -193,8 +193,8 @@ public class BookmarksFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BookmarksFolder bookmarksFolder : list) {
-					if ((resourceBlockId !=
-							bookmarksFolder.getResourceBlockId())) {
+					if (resourceBlockId !=
+							bookmarksFolder.getResourceBlockId()) {
 
 						list = null;
 
@@ -2126,7 +2126,7 @@ public class BookmarksFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BookmarksFolder bookmarksFolder : list) {
-					if ((groupId != bookmarksFolder.getGroupId())) {
+					if (groupId != bookmarksFolder.getGroupId()) {
 						list = null;
 
 						break;
@@ -2951,7 +2951,7 @@ public class BookmarksFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BookmarksFolder bookmarksFolder : list) {
-					if ((companyId != bookmarksFolder.getCompanyId())) {
+					if (companyId != bookmarksFolder.getCompanyId()) {
 						list = null;
 
 						break;

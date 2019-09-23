@@ -188,8 +188,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 				for (KaleoNotificationRecipient kaleoNotificationRecipient :
 						list) {
 
-					if ((companyId !=
-							kaleoNotificationRecipient.getCompanyId())) {
+					if (companyId !=
+							kaleoNotificationRecipient.getCompanyId()) {
 
 						list = null;
 
@@ -722,9 +722,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 				for (KaleoNotificationRecipient kaleoNotificationRecipient :
 						list) {
 
-					if ((kaleoDefinitionId !=
-							kaleoNotificationRecipient.
-								getKaleoDefinitionId())) {
+					if (kaleoDefinitionId !=
+							kaleoNotificationRecipient.getKaleoDefinitionId()) {
 
 						list = null;
 
@@ -1260,9 +1259,9 @@ public class KaleoNotificationRecipientPersistenceImpl
 				for (KaleoNotificationRecipient kaleoNotificationRecipient :
 						list) {
 
-					if ((kaleoNotificationId !=
+					if (kaleoNotificationId !=
 							kaleoNotificationRecipient.
-								getKaleoNotificationId())) {
+								getKaleoNotificationId()) {
 
 						list = null;
 

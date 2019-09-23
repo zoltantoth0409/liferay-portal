@@ -33,7 +33,7 @@ import java.util.Objects;
  * @see Ticket
  * @generated
  */
-public class TicketWrapper implements Ticket, ModelWrapper<Ticket> {
+public class TicketWrapper implements ModelWrapper<Ticket>, Ticket {
 
 	public TicketWrapper(Ticket ticket) {
 		_ticket = ticket;

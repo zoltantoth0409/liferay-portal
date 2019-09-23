@@ -1330,7 +1330,7 @@ public class WebsitePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Website website : list) {
-					if ((companyId != website.getCompanyId())) {
+					if (companyId != website.getCompanyId()) {
 						list = null;
 
 						break;
@@ -1838,7 +1838,7 @@ public class WebsitePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Website website : list) {
-					if ((userId != website.getUserId())) {
+					if (userId != website.getUserId()) {
 						list = null;
 
 						break;

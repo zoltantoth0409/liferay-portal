@@ -1596,7 +1596,7 @@ public class MBMailingListPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBMailingList mbMailingList : list) {
-					if ((active != mbMailingList.isActive())) {
+					if (active != mbMailingList.isActive()) {
 						list = null;
 
 						break;

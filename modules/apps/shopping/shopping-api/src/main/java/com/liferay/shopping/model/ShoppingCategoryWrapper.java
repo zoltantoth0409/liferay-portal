@@ -35,7 +35,7 @@ import java.util.Objects;
  * @generated
  */
 public class ShoppingCategoryWrapper
-	implements ShoppingCategory, ModelWrapper<ShoppingCategory> {
+	implements ModelWrapper<ShoppingCategory>, ShoppingCategory {
 
 	public ShoppingCategoryWrapper(ShoppingCategory shoppingCategory) {
 		_shoppingCategory = shoppingCategory;

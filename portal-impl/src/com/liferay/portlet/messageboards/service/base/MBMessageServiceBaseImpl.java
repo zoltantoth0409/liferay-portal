@@ -70,7 +70,7 @@ import javax.sql.DataSource;
  */
 public abstract class MBMessageServiceBaseImpl
 	extends BaseServiceImpl
-	implements MBMessageService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MBMessageService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

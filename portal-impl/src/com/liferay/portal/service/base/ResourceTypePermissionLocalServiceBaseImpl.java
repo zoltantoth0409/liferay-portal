@@ -62,7 +62,7 @@ import javax.sql.DataSource;
  */
 public abstract class ResourceTypePermissionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements ResourceTypePermissionLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, ResourceTypePermissionLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

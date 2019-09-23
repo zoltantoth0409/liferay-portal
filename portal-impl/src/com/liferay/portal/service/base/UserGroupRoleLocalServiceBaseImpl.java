@@ -68,7 +68,7 @@ import javax.sql.DataSource;
  */
 public abstract class UserGroupRoleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements UserGroupRoleLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, UserGroupRoleLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

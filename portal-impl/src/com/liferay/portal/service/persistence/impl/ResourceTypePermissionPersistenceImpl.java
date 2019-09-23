@@ -180,7 +180,7 @@ public class ResourceTypePermissionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceTypePermission resourceTypePermission : list) {
-					if ((roleId != resourceTypePermission.getRoleId())) {
+					if (roleId != resourceTypePermission.getRoleId()) {
 						list = null;
 
 						break;

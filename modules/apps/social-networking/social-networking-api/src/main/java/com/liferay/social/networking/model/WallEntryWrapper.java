@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see WallEntry
  * @generated
  */
-public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
+public class WallEntryWrapper implements ModelWrapper<WallEntry>, WallEntry {
 
 	public WallEntryWrapper(WallEntry wallEntry) {
 		_wallEntry = wallEntry;

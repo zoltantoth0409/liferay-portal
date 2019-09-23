@@ -70,7 +70,7 @@ import javax.sql.DataSource;
  */
 public abstract class MembershipRequestLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MembershipRequestLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MembershipRequestLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

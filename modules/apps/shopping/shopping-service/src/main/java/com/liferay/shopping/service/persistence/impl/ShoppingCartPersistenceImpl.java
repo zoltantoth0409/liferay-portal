@@ -182,7 +182,7 @@ public class ShoppingCartPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingCart shoppingCart : list) {
-					if ((groupId != shoppingCart.getGroupId())) {
+					if (groupId != shoppingCart.getGroupId()) {
 						list = null;
 
 						break;
@@ -692,7 +692,7 @@ public class ShoppingCartPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingCart shoppingCart : list) {
-					if ((userId != shoppingCart.getUserId())) {
+					if (userId != shoppingCart.getUserId()) {
 						list = null;
 
 						break;

@@ -1599,7 +1599,7 @@ public class DLFileVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFileVersion dlFileVersion : list) {
-					if ((companyId != dlFileVersion.getCompanyId())) {
+					if (companyId != dlFileVersion.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2117,7 +2117,7 @@ public class DLFileVersionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFileVersion dlFileVersion : list) {
-					if ((fileEntryId != dlFileVersion.getFileEntryId())) {
+					if (fileEntryId != dlFileVersion.getFileEntryId()) {
 						list = null;
 
 						break;

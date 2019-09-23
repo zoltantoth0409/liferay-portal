@@ -24,8 +24,8 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 public class WSRPProducerLocalServiceWrapper
-	implements WSRPProducerLocalService,
-			   ServiceWrapper<WSRPProducerLocalService> {
+	implements ServiceWrapper<WSRPProducerLocalService>,
+			   WSRPProducerLocalService {
 
 	public WSRPProducerLocalServiceWrapper(
 		WSRPProducerLocalService wsrpProducerLocalService) {

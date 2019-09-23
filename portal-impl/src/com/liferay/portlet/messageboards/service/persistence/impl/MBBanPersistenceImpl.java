@@ -1581,7 +1581,7 @@ public class MBBanPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBBan mbBan : list) {
-					if ((groupId != mbBan.getGroupId())) {
+					if (groupId != mbBan.getGroupId()) {
 						list = null;
 
 						break;
@@ -2088,7 +2088,7 @@ public class MBBanPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBBan mbBan : list) {
-					if ((userId != mbBan.getUserId())) {
+					if (userId != mbBan.getUserId()) {
 						list = null;
 
 						break;
@@ -2597,7 +2597,7 @@ public class MBBanPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MBBan mbBan : list) {
-					if ((banUserId != mbBan.getBanUserId())) {
+					if (banUserId != mbBan.getBanUserId()) {
 						list = null;
 
 						break;

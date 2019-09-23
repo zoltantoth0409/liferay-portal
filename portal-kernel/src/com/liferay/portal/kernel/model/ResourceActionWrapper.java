@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class ResourceActionWrapper
-	implements ResourceAction, ModelWrapper<ResourceAction> {
+	implements ModelWrapper<ResourceAction>, ResourceAction {
 
 	public ResourceActionWrapper(ResourceAction resourceAction) {
 		_resourceAction = resourceAction;

@@ -67,7 +67,7 @@ import javax.sql.DataSource;
  */
 public abstract class TrashEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements TrashEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, TrashEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

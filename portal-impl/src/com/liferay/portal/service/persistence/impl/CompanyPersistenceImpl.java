@@ -621,7 +621,7 @@ public class CompanyPersistenceImpl
 		if (result instanceof Company) {
 			Company company = (Company)result;
 
-			if ((logoId != company.getLogoId())) {
+			if (logoId != company.getLogoId()) {
 				result = null;
 			}
 		}
@@ -865,7 +865,7 @@ public class CompanyPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Company company : list) {
-					if ((system != company.isSystem())) {
+					if (system != company.isSystem()) {
 						list = null;
 
 						break;

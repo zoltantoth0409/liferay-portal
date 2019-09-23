@@ -33,7 +33,7 @@ import java.util.Objects;
  * @generated
  */
 public class UserIdMapperWrapper
-	implements UserIdMapper, ModelWrapper<UserIdMapper> {
+	implements ModelWrapper<UserIdMapper>, UserIdMapper {
 
 	public UserIdMapperWrapper(UserIdMapper userIdMapper) {
 		_userIdMapper = userIdMapper;

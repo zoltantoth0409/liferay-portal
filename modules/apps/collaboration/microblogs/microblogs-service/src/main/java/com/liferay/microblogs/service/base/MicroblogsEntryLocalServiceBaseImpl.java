@@ -68,7 +68,7 @@ import javax.sql.DataSource;
  */
 public abstract class MicroblogsEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements MicroblogsEntryLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, MicroblogsEntryLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

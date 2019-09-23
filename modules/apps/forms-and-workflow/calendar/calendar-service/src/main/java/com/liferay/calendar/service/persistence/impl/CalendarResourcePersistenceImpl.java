@@ -196,8 +196,8 @@ public class CalendarResourcePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
-					if ((resourceBlockId !=
-							calendarResource.getResourceBlockId())) {
+					if (resourceBlockId !=
+							calendarResource.getResourceBlockId()) {
 
 						list = null;
 
@@ -2133,7 +2133,7 @@ public class CalendarResourcePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
-					if ((groupId != calendarResource.getGroupId())) {
+					if (groupId != calendarResource.getGroupId()) {
 						list = null;
 
 						break;
@@ -2957,7 +2957,7 @@ public class CalendarResourcePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
-					if ((active != calendarResource.isActive())) {
+					if (active != calendarResource.isActive()) {
 						list = null;
 
 						break;

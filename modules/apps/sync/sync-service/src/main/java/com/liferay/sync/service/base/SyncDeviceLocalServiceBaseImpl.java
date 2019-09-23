@@ -71,7 +71,7 @@ import javax.sql.DataSource;
  */
 public abstract class SyncDeviceLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements SyncDeviceLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, SyncDeviceLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

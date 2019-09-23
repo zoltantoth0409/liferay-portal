@@ -1594,7 +1594,7 @@ public class DLFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
-					if ((groupId != dlFolder.getGroupId())) {
+					if (groupId != dlFolder.getGroupId()) {
 						list = null;
 
 						break;
@@ -2479,7 +2479,7 @@ public class DLFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
-					if ((companyId != dlFolder.getCompanyId())) {
+					if (companyId != dlFolder.getCompanyId()) {
 						list = null;
 
 						break;
@@ -2994,7 +2994,7 @@ public class DLFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
-					if ((repositoryId != dlFolder.getRepositoryId())) {
+					if (repositoryId != dlFolder.getRepositoryId()) {
 						list = null;
 
 						break;

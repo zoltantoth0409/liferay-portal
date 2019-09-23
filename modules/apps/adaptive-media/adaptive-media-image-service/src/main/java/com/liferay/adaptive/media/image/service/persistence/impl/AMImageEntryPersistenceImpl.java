@@ -1586,7 +1586,7 @@ public class AMImageEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AMImageEntry amImageEntry : list) {
-					if ((groupId != amImageEntry.getGroupId())) {
+					if (groupId != amImageEntry.getGroupId()) {
 						list = null;
 
 						break;
@@ -2101,7 +2101,7 @@ public class AMImageEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AMImageEntry amImageEntry : list) {
-					if ((companyId != amImageEntry.getCompanyId())) {
+					if (companyId != amImageEntry.getCompanyId()) {
 						list = null;
 
 						break;
@@ -3193,7 +3193,7 @@ public class AMImageEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AMImageEntry amImageEntry : list) {
-					if ((fileVersionId != amImageEntry.getFileVersionId())) {
+					if (fileVersionId != amImageEntry.getFileVersionId()) {
 						list = null;
 
 						break;

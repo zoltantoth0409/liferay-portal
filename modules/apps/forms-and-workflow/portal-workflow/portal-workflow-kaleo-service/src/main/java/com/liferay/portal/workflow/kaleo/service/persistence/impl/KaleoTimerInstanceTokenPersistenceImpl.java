@@ -190,8 +190,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
-					if ((kaleoInstanceId !=
-							kaleoTimerInstanceToken.getKaleoInstanceId())) {
+					if (kaleoInstanceId !=
+							kaleoTimerInstanceToken.getKaleoInstanceId()) {
 
 						list = null;
 

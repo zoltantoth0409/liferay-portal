@@ -1596,7 +1596,7 @@ public class JournalFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalFolder journalFolder : list) {
-					if ((groupId != journalFolder.getGroupId())) {
+					if (groupId != journalFolder.getGroupId()) {
 						list = null;
 
 						break;
@@ -2489,7 +2489,7 @@ public class JournalFolderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalFolder journalFolder : list) {
-					if ((companyId != journalFolder.getCompanyId())) {
+					if (companyId != journalFolder.getCompanyId()) {
 						list = null;
 
 						break;

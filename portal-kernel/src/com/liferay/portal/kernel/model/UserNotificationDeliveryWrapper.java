@@ -33,8 +33,8 @@ import java.util.Objects;
  * @generated
  */
 public class UserNotificationDeliveryWrapper
-	implements UserNotificationDelivery,
-			   ModelWrapper<UserNotificationDelivery> {
+	implements ModelWrapper<UserNotificationDelivery>,
+			   UserNotificationDelivery {
 
 	public UserNotificationDeliveryWrapper(
 		UserNotificationDelivery userNotificationDelivery) {

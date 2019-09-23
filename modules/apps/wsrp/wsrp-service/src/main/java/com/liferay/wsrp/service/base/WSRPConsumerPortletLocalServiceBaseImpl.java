@@ -76,7 +76,7 @@ import javax.sql.DataSource;
  */
 public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements WSRPConsumerPortletLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, WSRPConsumerPortletLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

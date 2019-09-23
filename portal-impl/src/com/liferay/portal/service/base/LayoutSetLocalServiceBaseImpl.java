@@ -68,7 +68,7 @@ import javax.sql.DataSource;
  */
 public abstract class LayoutSetLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
-	implements LayoutSetLocalService, IdentifiableOSGiService {
+	implements IdentifiableOSGiService, LayoutSetLocalService {
 
 	/**
 	 * NOTE FOR DEVELOPERS:

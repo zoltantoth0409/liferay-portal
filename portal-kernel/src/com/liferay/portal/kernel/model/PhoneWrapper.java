@@ -34,7 +34,7 @@ import java.util.Objects;
  * @see Phone
  * @generated
  */
-public class PhoneWrapper implements Phone, ModelWrapper<Phone> {
+public class PhoneWrapper implements ModelWrapper<Phone>, Phone {
 
 	public PhoneWrapper(Phone phone) {
 		_phone = phone;
