@@ -48,11 +48,9 @@ public class BatchEngineTaskItemWriterFactory {
 		UnsafeBiFunction
 			<Company, User, BatchEngineTaskItemWriter,
 			 ReflectiveOperationException> unsafeBiFunction =
-				_batchEngineTaskMethodRegistry.
-					getUnsafeBiFunction(
-						batchEngineTaskOperation,
-						batchEngineTask.getClassName(),
-						batchEngineTask.getVersion());
+				_batchEngineTaskMethodRegistry.getUnsafeBiFunction(
+					batchEngineTaskOperation, batchEngineTask.getClassName(),
+					batchEngineTask.getVersion());
 
 		if (unsafeBiFunction == null) {
 			StringBundler sb = new StringBundler(4);

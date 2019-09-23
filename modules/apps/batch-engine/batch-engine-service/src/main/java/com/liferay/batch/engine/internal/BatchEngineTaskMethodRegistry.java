@@ -64,17 +64,6 @@ public class BatchEngineTaskMethodRegistry {
 		_serviceTracker.close();
 	}
 
-	public UnsafeBiFunction
-		<Company, User, BatchEngineTaskItemWriter, ReflectiveOperationException>
-			getUnsafeBiFunction(
-				BatchEngineTaskOperation batchEngineTaskOperation,
-				String itemClassName, String apiVersion) {
-
-		return _batchEngineTaskItemWriterFactories.get(
-			new FactoryKey(
-				apiVersion, batchEngineTaskOperation, itemClassName));
-	}
-
 	public Class<?> getItemClass(String itemClassName) {
 		Map.Entry<Class<?>, AtomicInteger> entry = _itemClasses.get(
 			itemClassName);
@@ -86,12 +75,23 @@ public class BatchEngineTaskMethodRegistry {
 		return entry.getKey();
 	}
 
+	public UnsafeBiFunction
+		<Company, User, BatchEngineTaskItemWriter, ReflectiveOperationException>
+			getUnsafeBiFunction(
+				BatchEngineTaskOperation batchEngineTaskOperation,
+				String itemClassName, String apiVersion) {
+
+		return _unsafeBiFunctions.get(
+			new FactoryKey(
+				apiVersion, batchEngineTaskOperation, itemClassName));
+	}
+
 	private final Map
 		<FactoryKey,
 		 UnsafeBiFunction
 			 <Company, User, BatchEngineTaskItemWriter,
 			  ReflectiveOperationException>>
-				_batchEngineTaskItemWriterFactories = new ConcurrentHashMap<>();
+				_unsafeBiFunctions = new ConcurrentHashMap<>();
 	private final Map<String, Map.Entry<Class<?>, AtomicInteger>> _itemClasses =
 		new ConcurrentHashMap<>();
 	private final ServiceTracker<Object, List<FactoryKey>> _serviceTracker;
@@ -164,8 +164,7 @@ public class BatchEngineTaskMethodRegistry {
 				Class<?> itemClass = batchEngineTaskMethod.itemClass();
 
 				FactoryKey factoryKey = new FactoryKey(
-					String.valueOf(
-						serviceReference.getProperty("api.version")),
+					String.valueOf(serviceReference.getProperty("api.version")),
 					batchEngineTaskMethod.batchEngineTaskOperation(),
 					itemClass.getName());
 
@@ -176,7 +175,7 @@ public class BatchEngineTaskMethodRegistry {
 					ServiceObjects<Object> serviceObjects =
 						_bundleContext.getServiceObjects(serviceReference);
 
-					_batchEngineTaskItemWriterFactories.put(
+					_unsafeBiFunctions.put(
 						factoryKey,
 						(company, user) -> new BatchEngineTaskItemWriter(
 							company, itemClassFieldNames, resourceMethod,
@@ -223,7 +222,7 @@ public class BatchEngineTaskMethodRegistry {
 			List<FactoryKey> factoryKeys) {
 
 			for (FactoryKey factoryKey : factoryKeys) {
-				_batchEngineTaskItemWriterFactories.remove(factoryKey);
+				_unsafeBiFunctions.remove(factoryKey);
 
 				_itemClasses.compute(
 					factoryKey._itemClassName,
