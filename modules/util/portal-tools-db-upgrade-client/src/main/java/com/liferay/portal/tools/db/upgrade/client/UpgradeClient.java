@@ -168,8 +168,6 @@ public class UpgradeClient {
 	public void upgrade() throws IOException {
 		verifyProperties();
 
-		File logDir = _logFile.getParentFile();
-
 		System.setOut(new TeePrintStream(_fileOutputStream, System.out));
 
 		ProcessBuilder processBuilder = new ProcessBuilder();
