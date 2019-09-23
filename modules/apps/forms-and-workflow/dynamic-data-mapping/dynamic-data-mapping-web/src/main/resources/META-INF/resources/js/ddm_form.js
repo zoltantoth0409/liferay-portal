@@ -1424,6 +1424,19 @@ AUI.add(
 
 						var titleNode = A.one('#' + instance.getInputName() + 'Title');
 
+						var parsedTitleMap = instance.getParsedValue(
+							parsedValue.titleMap
+						);
+
+						if (parsedTitleMap) {
+							var journalTitle = 
+								parsedTitleMap[instance.get('displayLocale')];
+
+							if (journalTitle) {
+								parsedValue.title = journalTitle;
+							}
+						}
+
 						titleNode.val(parsedValue.title || '');
 
 						var clearButtonNode = A.one('#' + instance.getInputName() + 'ClearButton');
@@ -1563,13 +1576,13 @@ AUI.add(
 								if (event.details.length > 0) {
 									var selectedWebContent = event.details[0];
 
-									instance.setValue(
-										{
-											className: selectedWebContent.assetclassname,
+									instance.setValue({
+											className: 
+													selectedWebContent.assetclassname,
 											classPK: selectedWebContent.assetclasspk,
-											title: selectedWebContent.assettitle || ''
-										}
-									);
+											title: selectedWebContent.assettitle || '',
+											titleMap: selectedWebContent.assettitlemap
+									});
 								}
 							}
 						);
