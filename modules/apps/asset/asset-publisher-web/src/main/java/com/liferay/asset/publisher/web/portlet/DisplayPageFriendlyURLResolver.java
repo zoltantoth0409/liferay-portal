@@ -106,35 +106,63 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 
 		double version = 0;
 
-		if (i > 0) {
-			urlTitle = initialURL.substring(0, i);
-			String param = initialURL.substring(i + 1);
-
-			if (param.contains(StringPool.PERIOD)) {
-				version = Double.valueOf(param);
-			}
-			else {
-				ddmTemplateKey = param;
-			}
-
-			friendlyURL =
-				JournalArticleConstants.CANONICAL_URL_SEPARATOR + urlTitle;
-		}
-
 		String normalizedUrlTitle =
 			FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle);
 
-		JournalArticle journalArticle = null;
+		JournalArticle journalArticle =
+			_journalArticleLocalService.fetchLatestArticleByUrlTitle(
+				groupId, normalizedUrlTitle, WorkflowConstants.STATUS_APPROVED);
 
-		if (version > 0) {
-			journalArticle = _journalArticleLocalService.fetchArticleByUrlTitle(
-				groupId, normalizedUrlTitle, version);
-		}
-		else {
+		if (journalArticle == null) {
 			journalArticle =
 				_journalArticleLocalService.fetchLatestArticleByUrlTitle(
 					groupId, normalizedUrlTitle,
-					WorkflowConstants.STATUS_APPROVED);
+					WorkflowConstants.STATUS_PENDING);
+		}
+
+		if ((journalArticle != null) && !journalArticle.isApproved()) {
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
+
+			if (!WorkflowPermissionUtil.hasPermission(
+					permissionChecker, groupId,
+					"com.liferay.journal.model.JournalArticle",
+					journalArticle.getId(), ActionKeys.VIEW)) {
+
+				throw new PrincipalException();
+			}
+		}
+
+		if (journalArticle == null) {
+			if (i > 0) {
+				urlTitle = initialURL.substring(0, i);
+				String param = initialURL.substring(i + 1);
+
+				if (param.contains(StringPool.PERIOD)) {
+					version = Double.valueOf(param);
+				}
+				else {
+					ddmTemplateKey = param;
+				}
+
+				friendlyURL =
+					JournalArticleConstants.CANONICAL_URL_SEPARATOR + urlTitle;
+			}
+
+			normalizedUrlTitle =
+				FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle);
+
+			if (version > 0) {
+				journalArticle =
+					_journalArticleLocalService.fetchArticleByUrlTitle(
+						groupId, normalizedUrlTitle, version);
+			}
+			else {
+				journalArticle =
+					_journalArticleLocalService.fetchLatestArticleByUrlTitle(
+						groupId, normalizedUrlTitle,
+						WorkflowConstants.STATUS_APPROVED);
+			}
 		}
 
 		if (journalArticle == null) {
@@ -213,6 +241,22 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 		String urlTitle = friendlyURL.substring(
 			JournalArticleConstants.CANONICAL_URL_SEPARATOR.length());
 
+		LayoutFriendlyURLComposite layoutFriendlyURLComposite = null;
+
+		try {
+			layoutFriendlyURLComposite = getLayoutFriendlyURLComposite(
+				companyId, groupId, privateLayout, friendlyURL, params,
+				requestContext);
+
+			return new LayoutFriendlyURLSeparatorComposite(
+				layoutFriendlyURLComposite, Portal.FRIENDLY_URL_SEPARATOR);
+		}
+		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe, pe);
+			}
+		}
+
 		int i = urlTitle.lastIndexOf(StringPool.FORWARD_SLASH);
 
 		if (i > 0) {
@@ -221,10 +265,9 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 				JournalArticleConstants.CANONICAL_URL_SEPARATOR.length() + i);
 		}
 
-		LayoutFriendlyURLComposite layoutFriendlyURLComposite =
-			getLayoutFriendlyURLComposite(
-				companyId, groupId, privateLayout, friendlyURL, params,
-				requestContext);
+		layoutFriendlyURLComposite = getLayoutFriendlyURLComposite(
+			companyId, groupId, privateLayout, friendlyURL, params,
+			requestContext);
 
 		return new LayoutFriendlyURLSeparatorComposite(
 			layoutFriendlyURLComposite, Portal.FRIENDLY_URL_SEPARATOR);
