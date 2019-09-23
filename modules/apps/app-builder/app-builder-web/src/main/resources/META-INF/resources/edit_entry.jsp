@@ -16,16 +16,11 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-long dataDefinitionId = ParamUtil.getLong(request, "dataDefinitionId");
-long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
-%>
-
 <div class="app-builder-root">
 	<aui:form>
 		<liferay-data-engine:data-layout-renderer
 			containerId='<%= renderResponse.getNamespace() + "container" %>'
-			dataLayoutId="<%= dataLayoutId %>"
+			dataLayoutId='<%= ParamUtil.getLong(request, "dataLayoutId") %>'
 			namespace="<%= renderResponse.getNamespace() %>"
 		/>
 
@@ -35,7 +30,7 @@ long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
 			Map<String, Object> data = new HashMap<>();
 
 			data.put("basePortletURL", renderResponse.createRenderURL());
-			data.put("dataDefinitionId", dataDefinitionId);
+			data.put("dataDefinitionId", ParamUtil.getLong(request, "dataDefinitionId"));
 			data.put("editEntryContainerElementId", renderResponse.getNamespace() + "container");
 			%>
 
