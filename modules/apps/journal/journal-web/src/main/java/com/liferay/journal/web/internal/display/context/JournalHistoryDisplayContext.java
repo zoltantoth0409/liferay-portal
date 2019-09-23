@@ -58,19 +58,21 @@ public class JournalHistoryDisplayContext {
 		articleSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 
-		int articleVersionsCount =
-			JournalArticleServiceUtil.getArticlesCountByArticleId(
-				_article.getGroupId(), _article.getArticleId());
-
-		articleSearchContainer.setTotal(articleVersionsCount);
+		articleSearchContainer.setOrderByCol(getOrderByCol());
 
 		OrderByComparator<JournalArticle> orderByComparator =
 			JournalPortletUtil.getArticleOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		articleSearchContainer.setOrderByCol(getOrderByCol());
 		articleSearchContainer.setOrderByComparator(orderByComparator);
+
 		articleSearchContainer.setOrderByType(getOrderByType());
+
+		int articleVersionsCount =
+			JournalArticleServiceUtil.getArticlesCountByArticleId(
+				_article.getGroupId(), _article.getArticleId());
+
+		articleSearchContainer.setTotal(articleVersionsCount);
 
 		List<JournalArticle> articleVersions =
 			JournalArticleServiceUtil.getArticlesByArticleId(
