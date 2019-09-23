@@ -18,11 +18,9 @@
 
 <%
 long appId = (long)request.getAttribute(AppBuilderWebKeys.APP_ID);
-
-String appBuilderRootElementId = renderResponse.getNamespace() + "-app-builder-root";
 %>
 
-<div id="<%= appBuilderRootElementId %>">
+<div id="<portlet:namespace />-app-builder-root">
 
 	<%
 	Map<String, Object> data = new HashMap<>();
