@@ -60,8 +60,10 @@
 							data.put("slave", StringUtil.merge(globalScopeAliases, StringPool.SPACE));
 
 							String id = "scopeAlias" + StringUtil.randomId();
-							boolean removedScope = scopeAliases.isEmpty() && globalScopeAliases.isEmpty();
+
 							Set<String> scopeAliases = relations.getScopeAliases();
+
+							boolean removedScope = scopeAliases.isEmpty() && globalScopeAliases.isEmpty();
 						%>
 
 							<li class="list-group-item list-group-item-flex<c:if test="<%= removedScope %>"> removed-scope</c:if>">
