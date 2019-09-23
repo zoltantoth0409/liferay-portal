@@ -102,10 +102,11 @@ public class BatchEngineTaskMethodRegistry {
 		public boolean equals(Object obj) {
 			FactoryKey factoryKey = (FactoryKey)obj;
 
-			if ((factoryKey._batchEngineTaskOperation ==
+			if (Objects.equals(factoryKey._apiVersion, _apiVersion) &&
+				Objects.equals(
+					factoryKey._batchEngineTaskOperation,
 					_batchEngineTaskOperation) &&
-				Objects.equals(factoryKey._itemClassName, _itemClassName) &&
-				Objects.equals(factoryKey._apiVersion, _apiVersion)) {
+				Objects.equals(factoryKey._itemClassName, _itemClassName)) {
 
 				return true;
 			}
