@@ -80,7 +80,7 @@ public class BatchEngineTaskMethodRegistry {
 			itemClassName);
 
 		if (entry == null) {
-			throw new IllegalStateException("Unknown class :" + itemClassName);
+			throw new IllegalStateException("Unknown class: " + itemClassName);
 		}
 
 		return entry.getKey();
