@@ -72,7 +72,7 @@ public class BatchEngineTaskMethodRegistry {
 
 		return _batchEngineTaskItemWriterFactories.get(
 			new FactoryKey(
-				batchEngineTaskOperation, itemClassName, apiVersion));
+				apiVersion, batchEngineTaskOperation, itemClassName));
 	}
 
 	public Class<?> getItemClass(String itemClassName) {
@@ -125,12 +125,13 @@ public class BatchEngineTaskMethodRegistry {
 		}
 
 		private FactoryKey(
+			String apiVersion,
 			BatchEngineTaskOperation batchEngineTaskOperation,
-			String itemClassName, String apiVersion) {
+			String itemClassName) {
 
+			_apiVersion = apiVersion;
 			_batchEngineTaskOperation = batchEngineTaskOperation;
 			_itemClassName = itemClassName;
-			_apiVersion = apiVersion;
 		}
 
 		private final String _apiVersion;
@@ -163,10 +164,10 @@ public class BatchEngineTaskMethodRegistry {
 				Class<?> itemClass = batchEngineTaskMethod.itemClass();
 
 				FactoryKey factoryKey = new FactoryKey(
-					batchEngineTaskMethod.batchEngineTaskOperation(),
-					itemClass.getName(),
 					String.valueOf(
-						serviceReference.getProperty("api.version")));
+						serviceReference.getProperty("api.version")),
+					batchEngineTaskMethod.batchEngineTaskOperation(),
+					itemClass.getName());
 
 				try {
 					String[] itemClassFieldNames = _getItemClassFieldNames(
