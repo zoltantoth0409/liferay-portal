@@ -116,10 +116,10 @@ public class BatchEngineTaskMethodRegistry {
 
 		@Override
 		public int hashCode() {
-			int hashCode = HashUtil.hash(0, _batchEngineTaskOperation);
+			int hashCode = HashUtil.hash(0, _apiVersion);
 
+			hashCode = HashUtil.hash(hashCode, _batchEngineTaskOperation);
 			hashCode = HashUtil.hash(hashCode, _itemClassName);
-			hashCode = HashUtil.hash(hashCode, _apiVersion);
 
 			return hashCode;
 		}
