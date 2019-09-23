@@ -63,6 +63,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.ws.rs.BadRequestException;
@@ -277,10 +278,10 @@ public class AppResourceImpl
 			AppDeployer appDeployer = _appDeployerTracker.getAppDeployer(
 				appDeployment.getType());
 
-			String status = app.getStatus();
-
 			if (appDeployer != null) {
-				if (status.equals(AppBuilderAppConstants.Status.DEPLOYED)) {
+				if (Objects.equals(
+						app.getStatus(),
+						AppBuilderAppConstants.Status.DEPLOYED)) {
 					appDeployer.deploy(appId);
 				}
 				else {
