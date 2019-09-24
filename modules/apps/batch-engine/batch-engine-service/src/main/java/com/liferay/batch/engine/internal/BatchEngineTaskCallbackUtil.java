@@ -44,16 +44,15 @@ public class BatchEngineTaskCallbackUtil {
 		try (CloseableHttpClient closeableHttpClient =
 				httpClientBuilder.build()) {
 
-			StringEntity stringEntity = new StringEntity(
-				_OBJECT_MAPPER.writeValueAsString(
-					Collections.singletonMap(
-						batchEngineTask.getBatchEngineTaskId(),
-						batchEngineTask.getExecuteStatus())),
-				ContentType.APPLICATION_JSON);
-
 			HttpPost httpPost = new HttpPost(batchEngineTask.getCallbackURL());
 
-			httpPost.setEntity(stringEntity);
+			httpPost.setEntity(
+				new StringEntity(
+					_objectMapper.writeValueAsString(
+						Collections.singletonMap(
+							batchEngineTask.getBatchEngineTaskId(),
+							batchEngineTask.getExecuteStatus())),
+					ContentType.APPLICATION_JSON));
 
 			closeableHttpClient.execute(httpPost);
 		}
@@ -62,9 +61,9 @@ public class BatchEngineTaskCallbackUtil {
 		}
 	}
 
-	private static final ObjectMapper _OBJECT_MAPPER = new ObjectMapper();
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		BatchEngineTaskCallbackUtil.class);
+
+	private static final ObjectMapper _objectMapper = new ObjectMapper();
 
 }
