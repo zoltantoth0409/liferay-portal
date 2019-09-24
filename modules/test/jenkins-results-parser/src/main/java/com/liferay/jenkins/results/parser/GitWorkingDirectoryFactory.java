@@ -31,7 +31,7 @@ public class GitWorkingDirectoryFactory {
 
 		if ((gitRepositoryDir == null) && (gitRepositoryName == null)) {
 			throw new IllegalArgumentException(
-				"GitRepositoryDir and GitRepositoryName are null");
+				"Git repository directory and Git repository name are null");
 		}
 
 		if (gitRepositoryDir == null) {
