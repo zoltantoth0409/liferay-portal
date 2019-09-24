@@ -253,6 +253,7 @@ definition {
 		property elastic.shield.enabled = "true";
 		property osgi.app.includes = "portal-search-elasticsearch-marvel";
 		property plugins.deployment.type = "osgi";
+		property portal.ssl.enabled = "true";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "ElasticsearchEE#ElasticsearchRemoteWithMarvelAndKibanaAndShieldSmokeTest";
 
