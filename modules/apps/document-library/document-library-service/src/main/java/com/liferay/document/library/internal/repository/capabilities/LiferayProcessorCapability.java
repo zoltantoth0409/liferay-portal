@@ -111,7 +111,8 @@ public class LiferayProcessorCapability
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				DLProcessorRegistryUtil.trigger(_wrap(fileEntry), _wrap(fileVersion), true);
+				DLProcessorRegistryUtil.trigger(
+					_wrap(fileEntry), _wrap(fileVersion), true);
 
 				return null;
 			});
@@ -141,9 +142,9 @@ public class LiferayProcessorCapability
 		return fileVersion;
 	}
 
-	private final InputStreamSanitizer _inputStreamSanitizer;
 	private final DLFileVersionPreviewLocalService
 		_dlFileVersionPreviewLocalService;
+	private final InputStreamSanitizer _inputStreamSanitizer;
 	private final ResourceGenerationStrategy _resourceGenerationStrategy;
 
 	private class SafeFileEntry extends FileEntryWrapper {
