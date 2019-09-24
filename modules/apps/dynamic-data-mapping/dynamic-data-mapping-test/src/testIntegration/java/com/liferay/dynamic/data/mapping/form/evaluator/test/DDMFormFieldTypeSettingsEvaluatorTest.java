@@ -93,12 +93,9 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 					}
 				});
 
-		boolean evaluationDemandsRequiredField = true;
-
 		DDMFormFieldEvaluationResult
 			ddmDataProviderInstanceOutputFieldEvaluationResult =
-				evaluateCallFunctionExpression(
-					outputParametersSettings, evaluationDemandsRequiredField);
+				evaluateCallFunctionExpression(outputParametersSettings);
 
 		JSONArray jsonArray =
 			ddmDataProviderInstanceOutputFieldEvaluationResult.getValue();
@@ -153,12 +150,9 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 					}
 				});
 
-		boolean evaluationDemandsRequiredField = false;
-
 		DDMFormFieldEvaluationResult
 			ddmDataProviderInstanceOutputFieldEvaluationResult =
-				evaluateCallFunctionExpression(
-					outputParametersSettings, evaluationDemandsRequiredField);
+				evaluateCallFunctionExpression(outputParametersSettings);
 
 		List<KeyValuePair> options =
 			ddmDataProviderInstanceOutputFieldEvaluationResult.getProperty(
@@ -370,8 +364,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 	protected DDMFormFieldEvaluationResult evaluateCallFunctionExpression(
 			List<DDMDataProviderOutputParametersSettings>
-				outputParametersSettings,
-			boolean evaluationDemandsRequiredField)
+				outputParametersSettings)
 		throws Exception {
 
 		DDMDataProviderInstance ddmDataProviderInstance =
@@ -389,10 +382,8 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 		DDMForm ddmForm = DDMFormFactory.create(
 			ddmFormFieldType.getDDMFormFieldTypeSettings());
 
-		if (evaluationDemandsRequiredField) {
-			for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
-				ddmFormField.setProperty("required", "true");
-			}
+		for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
+			ddmFormField.setProperty("required", "true");
 		}
 
 		DDMFormValues ddmFormValues =
