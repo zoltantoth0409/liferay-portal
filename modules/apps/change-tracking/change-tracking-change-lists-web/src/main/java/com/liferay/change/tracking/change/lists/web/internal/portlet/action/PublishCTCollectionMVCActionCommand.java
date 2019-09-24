@@ -62,7 +62,8 @@ public class PublishCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 
 		long ctCollectionId = ParamUtil.getLong(
 			actionRequest, "ctCollectionId");
-		String ctCollectionName = ParamUtil.getString(actionRequest, "name");
+
+		String name = ParamUtil.getString(actionRequest, "name");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -94,7 +95,7 @@ public class PublishCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 			httpServletRequest, "requestProcessed",
 			LanguageUtil.format(
 				httpServletRequest, "publishing-x-has-started-successfully",
-				new Object[] {ctCollectionName}, false));
+				new Object[] {name}, false));
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			actionRequest, CTPortletKeys.CHANGE_LISTS_HISTORY,
