@@ -762,7 +762,6 @@ public class ChangeListsDisplayContext {
 			disjunction.add(
 				RestrictionsFactoryUtil.ilike(
 					"name", StringUtil.quote(keyword, StringPool.PERCENT)));
-
 			disjunction.add(
 				RestrictionsFactoryUtil.ilike(
 					"description",
