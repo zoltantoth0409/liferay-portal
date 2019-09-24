@@ -497,12 +497,12 @@ public class PortletDisplay implements Cloneable, Serializable {
 	}
 
 	public boolean isShowPortletTopper() {
-		Layout layout = _themeDisplay.getLayout();
-
 		HttpServletRequest httpServletRequest = _themeDisplay.getRequest();
 
 		String layoutMode = ParamUtil.getString(
 			httpServletRequest, "p_l_mode", Constants.VIEW);
+
+		Layout layout = _themeDisplay.getLayout();
 
 		if (layoutMode.equals(Constants.VIEW) &&
 			(Objects.equals(
