@@ -23,8 +23,8 @@ AUI.add(
 				instance._eventHandlers.push(
 					instance.after('blur', instance._afterBlur),
 					instance.after('errorMessageChange', instance._afterErrorMessageChange),
-					instance.after('focus', instance._afterFocus),
-					instance.after(instance._afterRenderFeedbackSupport, instance, 'render')
+					instance.after(instance._afterRenderFeedbackSupport, instance, 'render'),
+					instance.on('valueChanged',instance._onValueChanged)
 				);
 			},
 
@@ -139,17 +139,17 @@ AUI.add(
 				instance._renderErrorMessage();
 			},
 
-			_afterFocus: function() {
-				var instance = this;
-
-				instance.clearValidationStatus();
-				instance.hideErrorMessage();
-			},
-
 			_afterRenderFeedbackSupport: function() {
 				var instance = this;
 
 				instance._renderErrorMessage();
+				instance.hideErrorMessage();
+			},
+
+			_onValueChanged: function() {
+				var instance = this;
+
+				instance.clearErrorMessage();
 				instance.hideErrorMessage();
 			},
 
