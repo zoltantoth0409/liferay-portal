@@ -174,10 +174,10 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 	protected void activate() {
 		_alwaysGeneratingProcessorCapability = new LiferayProcessorCapability(
 			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE,
-			_dlFileVersionPreviewLocalService);
+			_dlFileVersionPreviewLocalService, _inputStreamSanitizer);
 		_reusingProcessorCapability = new LiferayProcessorCapability(
 			ProcessorCapability.ResourceGenerationStrategy.REUSE,
-			_dlFileVersionPreviewLocalService);
+			_dlFileVersionPreviewLocalService, _inputStreamSanitizer);
 	}
 
 	private ProcessorCapability _alwaysGeneratingProcessorCapability;

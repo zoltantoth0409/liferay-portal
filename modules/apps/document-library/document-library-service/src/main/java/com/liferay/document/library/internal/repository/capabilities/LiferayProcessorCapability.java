@@ -45,7 +45,7 @@ public class LiferayProcessorCapability
 
 	public LiferayProcessorCapability(
 		ResourceGenerationStrategy resourceGenerationStrategy,
-		DLFileVersionPreviewLocalService dlFileVersionPreviewLocalService) {
+		DLFileVersionPreviewLocalService dlFileVersionPreviewLocalService,
 		InputStreamSanitizer inputStreamSanitizer) {
 
 		_resourceGenerationStrategy = resourceGenerationStrategy;
@@ -111,7 +111,7 @@ public class LiferayProcessorCapability
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				DLProcessorRegistryUtil.trigger(fileEntry, fileVersion, true);
+				DLProcessorRegistryUtil.trigger(_wrap(fileEntry), _wrap(fileVersion), true);
 
 				return null;
 			});
