@@ -379,6 +379,12 @@ public class ChangeListsDisplayContext {
 			count += 1;
 		}
 
+		int start = searchContainer.getStart();
+
+		if (start > 0) {
+			start = searchContainer.getStart() - 1;
+		}
+
 		int end = searchContainer.getEnd();
 
 		if (end < count) {
@@ -389,12 +395,6 @@ public class ChangeListsDisplayContext {
 			OrderByComparatorFactoryUtil.create(
 				"CTCollection", _getOrderByCol(),
 				getOrderByType().equals("asc"));
-
-		int start = searchContainer.getStart();
-
-		if (start > 0) {
-			start = searchContainer.getStart() - 1;
-		}
 
 		ctCollections.addAll(
 			_ctCollectionLocalService.dynamicQuery(
