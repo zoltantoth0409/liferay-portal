@@ -107,15 +107,11 @@ public class AccountEntryUserRelLocalServiceTest {
 
 	@Test
 	public void testGetAccountEntryUserRelsByAccountEntryId() throws Exception {
-		List<User> users = new ArrayList<>();
+		_users.add(UserTestUtil.addUser());
+		_users.add(UserTestUtil.addUser());
+		_users.add(UserTestUtil.addUser());
 
-		users.add(UserTestUtil.addUser());
-		users.add(UserTestUtil.addUser());
-		users.add(UserTestUtil.addUser());
-
-		_users.addAll(users);
-
-		for (User user : users) {
+		for (User user : _users) {
 			_accountEntryUserRels.add(
 				_accountEntryUserRelLocalService.addAccountEntryUserRel(
 					_accountEntry.getAccountEntryId(), user.getUserId()));
@@ -127,7 +123,7 @@ public class AccountEntryUserRelLocalServiceTest {
 					_accountEntry.getAccountEntryId());
 
 		long[] expectedUserIds = ListUtil.toLongArray(
-			users, User.USER_ID_ACCESSOR);
+			_users, User.USER_ID_ACCESSOR);
 
 		Arrays.sort(expectedUserIds);
 
