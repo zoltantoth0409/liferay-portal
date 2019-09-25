@@ -191,13 +191,17 @@ definition {
 
 		Panel.expandPanel(panel = "Presentation Settings");
 
-		Select(
-			locator1 = "Select#FEED_ITEM_CONTENT",
-			value1 = "${feedContent}");
+		if (isSet(feedContent)) {
+			Select(
+				locator1 = "Select#FEED_ITEM_CONTENT",
+				value1 = "${feedContent}");
+		}
 
-		Select(
-			locator1 = "Select#FEED_TYPE",
-			value1 = "${feedType}");
+		if (isSet(feedType)) {
+			Select(
+				locator1 = "Select#FEED_TYPE",
+				value1 = "${feedType}");
+		}
 
 		PortletEntry.save();
 	}
@@ -1976,6 +1980,14 @@ definition {
 		AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "${webContentTitle}");
+	}
+
+	macro viewTableEntryCP {
+		var key_feedName = "${feedName}";
+
+		AssertTextEquals(
+			locator1 = "DDMSelectFeed#FEED_TABLE_NAME",
+			value1 = "${feedName}");
 	}
 
 	macro viewTitle {
