@@ -496,22 +496,19 @@ if (portletTitleBasedNavigation) {
 		editorName + ':registered',
 		function() {
 			var messageSubject = document.querySelector('#<portlet:namespace />subject');
-			var subjectCoordinate = messageSubject.labels[0].getBoundingClientRect().top + window.pageYOffset;
-			var ctrlMenu = document.getElementById('ControlMenu');
-			var ctrlMenuOffset = 70;
 
-			if (ctrlMenu) {
-				ctrlMenuOffset = ctrlMenu.getBoundingClientRect().height;
-			}
+			messageSubject.previousElementSibling.scrollIntoView();
 
-			window.scrollTo({
-				top: subjectCoordinate - ctrlMenuOffset,
-				behavior: 'smooth'
-			});
+			var scrollCoordinate = <portlet:namespace />getScrollY();
 
+			window.scrollTo(0, scrollCoordinate - messageSubject.parentElement.getBoundingClientRect().height);
 			messageSubject.focus();
 		}
 	);
+
+	function <portlet:namespace />getScrollY() {
+        return  window.scrollY || window.pageYOffset || document.body.scrollTop;
+	};
 
 	function <portlet:namespace />saveMessage(draft) {
 		var form = AUI.$(document.<portlet:namespace />fm);
