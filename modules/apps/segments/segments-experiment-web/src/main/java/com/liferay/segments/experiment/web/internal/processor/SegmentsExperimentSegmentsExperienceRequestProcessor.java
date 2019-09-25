@@ -190,7 +190,9 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 		return controlSegmentsExperienceId;
 	}
 
-	private Optional<Cookie> _getCookie(HttpServletRequest httpServletRequest) {
+	private Optional<Cookie> _getCookieOptional(
+		HttpServletRequest httpServletRequest) {
+
 		return Stream.of(
 			httpServletRequest.getCookies()
 		).filter(
@@ -202,7 +204,8 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 	private long _getCurrentSegmentsExperienceId(
 		HttpServletRequest httpServletRequest, long groupId) {
 
-		Optional<Cookie> optionalCookie = _getCookie(httpServletRequest);
+		Optional<Cookie> optionalCookie = _getCookieOptional(
+			httpServletRequest);
 
 		if (!optionalCookie.isPresent()) {
 			return -1;
@@ -309,7 +312,8 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse, String path) {
 
-		Optional<Cookie> cookieOptional = _getCookie(httpServletRequest);
+		Optional<Cookie> cookieOptional = _getCookieOptional(
+			httpServletRequest);
 
 		if (!cookieOptional.isPresent()) {
 			return;
