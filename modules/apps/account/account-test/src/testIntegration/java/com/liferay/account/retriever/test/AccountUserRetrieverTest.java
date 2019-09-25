@@ -54,22 +54,18 @@ public class AccountUserRetrieverTest {
 		_accountEntry = AccountEntryTestUtil.addAccountEntry(
 			_accountEntryLocalService);
 
-		List<User> users = new ArrayList<>();
+		_users.add(UserTestUtil.addUser());
+		_users.add(UserTestUtil.addUser());
+		_users.add(UserTestUtil.addUser());
 
-		users.add(UserTestUtil.addUser());
-		users.add(UserTestUtil.addUser());
-		users.add(UserTestUtil.addUser());
-
-		_users.addAll(users);
-
-		for (User user : users) {
+		for (User user : _users) {
 			_accountEntryUserRels.add(
 				_accountEntryUserRelLocalService.addAccountEntryUserRel(
 					_accountEntry.getAccountEntryId(), user.getUserId()));
 		}
 
 		long[] expectedUserIds = ListUtil.toLongArray(
-			users, User.USER_ID_ACCESSOR);
+			_users, User.USER_ID_ACCESSOR);
 
 		Arrays.sort(expectedUserIds);
 
