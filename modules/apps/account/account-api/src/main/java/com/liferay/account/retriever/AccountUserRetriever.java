@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Drew Brokke
  */
-public interface AccountsUserRetriever {
+public interface AccountUserRetriever {
 
 	public List<User> getAccountUsers(long accountEntryId);
 

@@ -15,7 +15,7 @@
 package com.liferay.account.internal.retriever;
 
 import com.liferay.account.model.AccountEntryUserRel;
-import com.liferay.account.retriever.AccountsUserRetriever;
+import com.liferay.account.retriever.AccountUserRetriever;
 import com.liferay.account.service.AccountEntryUserRelLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -32,8 +32,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Drew Brokke
  */
-@Component(service = AccountsUserRetriever.class)
-public class AccountsUserRetrieverImpl implements AccountsUserRetriever {
+@Component(service = AccountUserRetriever.class)
+public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 	@Override
 	public List<User> getAccountUsers(long accountEntryId) {
@@ -58,7 +58,7 @@ public class AccountsUserRetrieverImpl implements AccountsUserRetriever {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AccountsUserRetrieverImpl.class);
+		AccountUserRetrieverImpl.class);
 
 	@Reference
 	private AccountEntryUserRelLocalService _accountEntryUserRelLocalService;

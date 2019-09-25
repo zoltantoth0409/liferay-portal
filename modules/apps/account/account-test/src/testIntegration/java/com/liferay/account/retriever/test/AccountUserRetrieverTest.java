@@ -16,7 +16,7 @@ package com.liferay.account.retriever.test;
 
 import com.liferay.account.model.AccountEntry;
 import com.liferay.account.model.AccountEntryUserRel;
-import com.liferay.account.retriever.AccountsUserRetriever;
+import com.liferay.account.retriever.AccountUserRetriever;
 import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.account.service.AccountEntryUserRelLocalService;
 import com.liferay.account.service.test.AccountEntryTestUtil;
@@ -42,7 +42,7 @@ import org.junit.runner.RunWith;
  * @author Drew Brokke
  */
 @RunWith(Arquillian.class)
-public class AccountsUserRetrieverTest {
+public class AccountUserRetrieverTest {
 
 	@ClassRule
 	@Rule
@@ -73,7 +73,7 @@ public class AccountsUserRetrieverTest {
 
 		Arrays.sort(expectedUserIds);
 
-		List<User> actualUsers = _accountsUserRetriever.getAccountUsers(
+		List<User> actualUsers = _accountUserRetriever.getAccountUsers(
 			_accountEntry.getAccountEntryId());
 
 		long[] actualUserIds = ListUtil.toLongArray(
@@ -98,7 +98,7 @@ public class AccountsUserRetrieverTest {
 		new ArrayList<>();
 
 	@Inject
-	private AccountsUserRetriever _accountsUserRetriever;
+	private AccountUserRetriever _accountUserRetriever;
 
 	@DeleteAfterTestRun
 	private final List<User> _users = new ArrayList<>();
