@@ -147,7 +147,9 @@ public class VulcanFeature implements Feature {
 
 	@Deactivate
 	protected void deactivate() {
-		_nestedFieldsWriterInterceptor.destroy();
+		if (_nestedFieldsWriterInterceptor != null) {
+			_nestedFieldsWriterInterceptor.destroy();
+		}
 	}
 
 	private BundleContext _bundleContext;
