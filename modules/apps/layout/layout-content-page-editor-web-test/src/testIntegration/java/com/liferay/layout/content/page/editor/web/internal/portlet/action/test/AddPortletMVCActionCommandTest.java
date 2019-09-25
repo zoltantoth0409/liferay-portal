@@ -193,14 +193,13 @@ public class AddPortletMVCActionCommandTest {
 			_layout, themeDisplay);
 
 		mockActionRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
-
+		mockActionRequest.addParameter(
+			"groupId", String.valueOf(_group.getGroupId()));
 		mockActionRequest.addParameter(
 			"classNameId",
 			String.valueOf(_portal.getClassNameId(Layout.class.getName())));
 		mockActionRequest.addParameter(
 			"classPK", String.valueOf(_layout.getPlid()));
-		mockActionRequest.addParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
 
 		return mockActionRequest;
 	}
