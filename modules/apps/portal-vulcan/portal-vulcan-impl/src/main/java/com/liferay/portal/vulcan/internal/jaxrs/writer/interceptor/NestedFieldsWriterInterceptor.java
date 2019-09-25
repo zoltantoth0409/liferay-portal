@@ -652,7 +652,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private UnsafeTriFunction<String, Object, NestedFieldsContext, Object>
-		_getNestedFieldFieldValueFactory(
+		_getUnsafeTriFunction(
 			NestedFieldsContext nestedFieldsContext, String fieldName,
 			Class<?> itemClass) {
 
@@ -714,7 +714,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				field.setAccessible(true);
 
 				UnsafeTriFunction<String, Object, NestedFieldsContext, Object>
-					unsafeTriFunction = _getNestedFieldFieldValueFactory(
+					unsafeTriFunction = _getUnsafeTriFunction(
 						nestedFieldsContext, fieldName, itemClass);
 
 				if (unsafeTriFunction == null) {
