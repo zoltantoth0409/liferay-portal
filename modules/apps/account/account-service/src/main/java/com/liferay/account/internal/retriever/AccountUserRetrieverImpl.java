@@ -14,16 +14,12 @@
 
 package com.liferay.account.internal.retriever;
 
-import com.liferay.account.model.AccountEntryUserRel;
 import com.liferay.account.retriever.AccountUserRetriever;
 import com.liferay.account.service.AccountEntryUserRelLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -37,28 +33,12 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 	@Override
 	public List<User> getAccountUsers(long accountEntryId) {
-		List<User> users = new ArrayList<>();
-
-		List<AccountEntryUserRel> accountEntryUserRels =
+		return TransformUtil.transform(
 			_accountEntryUserRelLocalService.
-				getAccountEntryUserRelsByAccountEntryId(accountEntryId);
-
-		for (AccountEntryUserRel accountEntryUserRel : accountEntryUserRels) {
-			try {
-				users.add(
-					_userLocalService.getUserById(
-						accountEntryUserRel.getAccountUserId()));
-			}
-			catch (PortalException pe) {
-				_log.error(pe, pe);
-			}
-		}
-
-		return users;
+				getAccountEntryUserRelsByAccountEntryId(accountEntryId),
+			accountEntryUserRel -> _userLocalService.getUserById(
+				accountEntryUserRel.getAccountUserId()));
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AccountUserRetrieverImpl.class);
 
 	@Reference
 	private AccountEntryUserRelLocalService _accountEntryUserRelLocalService;
