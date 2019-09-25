@@ -141,12 +141,7 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-
-		long segmentsExperienceId = ParamUtil.getLong(
-			actionRequest, "segmentsExperienceId");
 
 		Layout layout = _layoutLocalService.getLayout(classPK);
 
@@ -161,8 +156,11 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest);
 
 		try {
+			long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+
 			String instanceId = _getPortletInstanceId(
-				layout, portletId, segmentsExperienceId);
+				layout, portletId,
+				ParamUtil.getLong(actionRequest, "segmentsExperienceId"));
 
 			String html = _getPortletFragmentEntryLinkHTML(
 				serviceContext.getRequest(),
