@@ -1912,8 +1912,8 @@ public class BaseTextExportImportContentProcessor
 
 			if (urlGroup == null) {
 				throw new NoSuchLayoutException(
-					"Unable validate referenced page because it cannot be " +
-						"found with url: " + url);
+					"Unable to validate referenced page because the page " +
+						"group cannot be found: " + groupId);
 			}
 
 			if (pos == -1) {
@@ -1928,8 +1928,8 @@ public class BaseTextExportImportContentProcessor
 			}
 			catch (NoSuchLayoutException nsle) {
 				throw new NoSuchLayoutException(
-					"Unable to validate referenced page because the page " +
-						"group cannot be found: " + groupId,
+					"Unable validate referenced page because it cannot be " +
+						"found with url: " + url,
 					nsle);
 			}
 		}
