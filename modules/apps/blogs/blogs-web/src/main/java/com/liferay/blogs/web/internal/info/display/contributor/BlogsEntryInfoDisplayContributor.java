@@ -75,12 +75,12 @@ public class BlogsEntryInfoDisplayContributor
 					BlogsEntry.class.getName(), blogsEntry.getEntryId(),
 					locale));
 		infoDisplayFieldValues.putAll(
-			_infoDisplayFieldProvider.getContributorInfoDisplayFieldsValues(
-				BlogsEntry.class.getName(), blogsEntry, locale));
-		infoDisplayFieldValues.putAll(
 			_expandoInfoDisplayFieldProvider.
 				getContributorExpandoInfoDisplayFieldsValues(
 					BlogsEntry.class.getName(), blogsEntry, locale));
+		infoDisplayFieldValues.putAll(
+			_infoDisplayFieldProvider.getContributorInfoDisplayFieldsValues(
+				BlogsEntry.class.getName(), blogsEntry, locale));
 
 		return infoDisplayFieldValues;
 	}
