@@ -94,7 +94,7 @@ public class BatchEngineTaskOrphanScannerMessageListener
 
 		for (BatchEngineTask batchEngineTask :
 				_batchEngineTaskLocalService.getBatchEngineTasks(
-					BatchEngineTaskExecuteStatus.STARTED)) {
+					BatchEngineTaskExecuteStatus.STARTED.toString())) {
 
 			Date modifiedDate = batchEngineTask.getModifiedDate();
 

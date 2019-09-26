@@ -14,9 +14,6 @@
 
 package com.liferay.batch.engine.service.impl;
 
-import com.liferay.batch.engine.BatchEngineTaskContentType;
-import com.liferay.batch.engine.BatchEngineTaskExecuteStatus;
-import com.liferay.batch.engine.BatchEngineTaskOperation;
 import com.liferay.batch.engine.model.BatchEngineTask;
 import com.liferay.batch.engine.service.base.BatchEngineTaskLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
@@ -39,10 +36,9 @@ public class BatchEngineTaskLocalServiceImpl
 
 	@Override
 	public BatchEngineTask addBatchEngineTask(
-		long companyId, long userId,
-		BatchEngineTaskContentType batchEngineTaskContentType,
-		BatchEngineTaskOperation batchEngineTaskOperation, long batchSize,
-		String callbackURL, String className, byte[] content, String version) {
+		long companyId, long userId, long batchSize, String callbackURL,
+		String className, byte[] content, String contentType,
+		String executeStatus, String operation, String version) {
 
 		BatchEngineTask batchEngineTask = batchEngineTaskPersistence.create(
 			counterLocalService.increment(BatchEngineTask.class.getName()));
@@ -55,21 +51,17 @@ public class BatchEngineTaskLocalServiceImpl
 		batchEngineTask.setContent(
 			new OutputBlob(
 				new UnsyncByteArrayInputStream(content), content.length));
-		batchEngineTask.setContentType(batchEngineTaskContentType.toString());
-		batchEngineTask.setExecuteStatus(
-			BatchEngineTaskExecuteStatus.INITIAL.toString());
-		batchEngineTask.setOperation(batchEngineTaskOperation.toString());
+		batchEngineTask.setContentType(contentType);
+		batchEngineTask.setExecuteStatus(executeStatus);
+		batchEngineTask.setOperation(operation);
 		batchEngineTask.setVersion(version);
 
 		return batchEngineTaskPersistence.update(batchEngineTask);
 	}
 
 	@Override
-	public List<BatchEngineTask> getBatchEngineTasks(
-		BatchEngineTaskExecuteStatus batchEngineTaskExecuteStatus) {
-
-		return batchEngineTaskPersistence.findByExecuteStatus(
-			batchEngineTaskExecuteStatus.toString());
+	public List<BatchEngineTask> getBatchEngineTasks(String executeStatus) {
+		return batchEngineTaskPersistence.findByExecuteStatus(executeStatus);
 	}
 
 }
