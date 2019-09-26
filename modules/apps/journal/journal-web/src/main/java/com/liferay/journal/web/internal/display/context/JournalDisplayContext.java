@@ -641,6 +641,14 @@ public class JournalDisplayContext {
 						});
 				}
 
+				if (isNavigationRecent()) {
+					add(
+						labelItem -> {
+							labelItem.setLabel(
+								LanguageUtil.get(_request, "recent"));
+						});
+				}
+
 				if (isNavigationStructure()) {
 					add(
 						labelItem -> {
