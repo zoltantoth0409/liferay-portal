@@ -97,9 +97,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -486,16 +488,38 @@ public class PortletExportController implements ExportController {
 		try {
 			portletDataContext.setExportDataRootElement(rootElement);
 
+			List<AssetLink> assetLinks = new ArrayList<>();
+
 			ActionableDynamicQuery linkActionableDynamicQuery =
 				_assetLinkLocalService.getExportActionbleDynamicQuery(
 					portletDataContext);
 
+			linkActionableDynamicQuery.setPerformActionMethod(
+				new ActionableDynamicQuery.PerformActionMethod<AssetLink>() {
+
+					@Override
+					public void performAction(AssetLink assetLink)
+						throws PortalException {
+
+						assetLinks.add(assetLink);
+					}
+
+				});
+
 			linkActionableDynamicQuery.performActions();
 
-			for (long linkId : portletDataContext.getAssetLinkIds()) {
-				AssetLink assetLink = _assetLinkLocalService.getAssetLink(
-					linkId);
+			Set<Long> assetLinkIds = portletDataContext.getAssetLinkIds();
 
+			for (Long assetLinkId : assetLinkIds) {
+				AssetLink assetLink = _assetLinkLocalService.fetchAssetLink(
+					assetLinkId);
+
+				if ((assetLink != null) && !assetLinks.contains(assetLink)) {
+					assetLinks.add(assetLink);
+				}
+			}
+
+			for (AssetLink assetLink : assetLinks) {
 				StagedAssetLink stagedAssetLink = ModelAdapterUtil.adapt(
 					assetLink, AssetLink.class, StagedAssetLink.class);
 
