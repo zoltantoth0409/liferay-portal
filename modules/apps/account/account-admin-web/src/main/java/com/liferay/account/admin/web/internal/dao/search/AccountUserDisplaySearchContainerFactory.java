@@ -37,8 +37,8 @@ import org.osgi.service.component.annotations.Reference;
 public class AccountUserDisplaySearchContainerFactory {
 
 	public static SearchContainer create(
-		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse, long accountEntryId) {
+		long accountEntryId, LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse) {
 
 		SearchContainer accountUserDisplaySearchContainer = new UserSearch(
 			liferayPortletRequest, liferayPortletResponse.createRenderURL());
