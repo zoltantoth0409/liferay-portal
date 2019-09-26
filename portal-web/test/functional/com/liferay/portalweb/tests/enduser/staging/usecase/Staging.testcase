@@ -3078,6 +3078,8 @@ definition {
 
 	@priority = "4"
 	test StagingWithPublishTemplate {
+		property test.name.skip.portal.instance = "Staging#StagingWithPublishTemplate";
+
 		JSONLayout.addPublicLayout(
 			groupName = "Site Name",
 			layoutName = "Test Page 1");
@@ -3265,6 +3267,8 @@ definition {
 
 	@priority = "4"
 	test ViewHistoryVersionWithDeletedUser {
+		property test.name.skip.portal.instance = "Staging#ViewHistoryVersionWithDeletedUser";
+
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
@@ -3376,6 +3380,7 @@ definition {
 	@priority = "4"
 	test ViewLastPublishDateBehaviourAfterInitialPublication {
 		property portal.release = "false";
+		property test.name.skip.portal.instance = "Staging#ViewLastPublishDateBehaviourAfterInitialPublication";
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -3888,6 +3893,8 @@ definition {
 	@description = "This is a use case for LPS-96721."
 	@priority = "4"
 	test ViewPublishedContentWithSpecialCharsInDocumentTitle {
+		property test.name.skip.portal.instance = "Staging#ViewPublishedContentWithSpecialCharsInDocumentTitle";
+
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
