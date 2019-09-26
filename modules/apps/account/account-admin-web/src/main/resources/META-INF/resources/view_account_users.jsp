@@ -21,18 +21,14 @@ AccountDisplay accountDisplay = (AccountDisplay)request.getAttribute(AccountWebK
 
 SearchContainer accountUserDisplaySearchContainer = AccountUserDisplaySearchContainerFactory.create(accountDisplay.getAccountId(), liferayPortletRequest, liferayPortletResponse);
 
-ViewAccountUsersManagementToolbarDisplayContext viewAccountUsersManagementToolbarDisplayContext = new ViewAccountUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountUserDisplaySearchContainer);
-
-String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
-
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURL);
+portletDisplay.setURLBack(ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL())));
 
 renderResponse.setTitle((accountDisplay == null) ? "" : accountDisplay.getName());
 %>
 
 <clay:management-toolbar
-	displayContext="<%= viewAccountUsersManagementToolbarDisplayContext %>"
+	displayContext="<%= new ViewAccountUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountUserDisplaySearchContainer) %>"
 />
 
 <aui:container cssClass="container-fluid container-fluid-max-xl">
