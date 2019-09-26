@@ -119,14 +119,14 @@ public class BlogsEntryInfoDisplayContributor
 	}
 
 	@Reference
-	private ExpandoInfoDisplayFieldProvider _expandoInfoDisplayFieldProvider;
-
-	@Reference
 	private AssetEntryInfoDisplayFieldProvider
 		_assetEntryInfoDisplayFieldProvider;
 
 	@Reference
 	private BlogsEntryService _blogsEntryService;
+
+	@Reference
+	private ExpandoInfoDisplayFieldProvider _expandoInfoDisplayFieldProvider;
 
 	@Reference
 	private InfoDisplayFieldProvider _infoDisplayFieldProvider;
