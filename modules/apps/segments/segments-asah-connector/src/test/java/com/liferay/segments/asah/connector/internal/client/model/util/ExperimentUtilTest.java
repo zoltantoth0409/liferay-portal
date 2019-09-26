@@ -370,52 +370,16 @@ public class ExperimentUtilTest {
 		).getSegmentsExperienceId();
 
 		Mockito.doReturn(
-			goal
-		).when(
-			segmentsExperiment
-		).getGoal();
-
-		Mockito.doReturn(
-			status
-		).when(
-			segmentsExperiment
-		).getStatus();
-
-		Mockito.doReturn(
-			RandomTestUtil.randomLong()
-		).when(
-			segmentsExperiment
-		).getClassPK();
-
-		Mockito.doReturn(
 			RandomTestUtil.nextDate()
 		).when(
 			segmentsExperiment
 		).getCreateDate();
 
 		Mockito.doReturn(
-			RandomTestUtil.randomString()
-		).when(
-			segmentsExperiment
-		).getDescription();
-
-		Mockito.doReturn(
-			StringPool.BLANK
-		).when(
-			segmentsExperiment
-		).getGoalTarget();
-
-		Mockito.doReturn(
 			RandomTestUtil.nextDate()
 		).when(
 			segmentsExperiment
 		).getModifiedDate();
-
-		Mockito.doReturn(
-			RandomTestUtil.randomString()
-		).when(
-			segmentsExperiment
-		).getName();
 
 		Mockito.doReturn(
 			RandomTestUtil.randomString()
@@ -428,6 +392,42 @@ public class ExperimentUtilTest {
 		).when(
 			segmentsExperiment
 		).getWinnerSegmentsExperienceKey();
+
+		Mockito.doReturn(
+			RandomTestUtil.randomLong()
+		).when(
+			segmentsExperiment
+		).getClassPK();
+
+		Mockito.doReturn(
+			RandomTestUtil.randomString()
+		).when(
+			segmentsExperiment
+		).getName();
+
+		Mockito.doReturn(
+			RandomTestUtil.randomString()
+		).when(
+			segmentsExperiment
+		).getDescription();
+
+		Mockito.doReturn(
+			goal
+		).when(
+			segmentsExperiment
+		).getGoal();
+
+		Mockito.doReturn(
+			StringPool.BLANK
+		).when(
+			segmentsExperiment
+		).getGoalTarget();
+
+		Mockito.doReturn(
+			status
+		).when(
+			segmentsExperiment
+		).getStatus();
 
 		return segmentsExperiment;
 	}
