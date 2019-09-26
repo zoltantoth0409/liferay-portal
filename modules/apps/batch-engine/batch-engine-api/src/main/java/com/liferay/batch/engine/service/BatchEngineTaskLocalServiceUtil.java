@@ -53,18 +53,13 @@ public class BatchEngineTaskLocalServiceUtil {
 
 	public static com.liferay.batch.engine.model.BatchEngineTask
 		addBatchEngineTask(
-			long companyId, long userId,
-			com.liferay.batch.engine.BatchEngineTaskContentType
-				batchEngineTaskContentType,
-			com.liferay.batch.engine.BatchEngineTaskOperation
-				batchEngineTaskOperation,
-			long batchSize, String callbackURL, String className,
-			byte[] content, String version) {
+			long companyId, long userId, long batchSize, String callbackURL,
+			String className, byte[] content, String contentType,
+			String executeStatus, String operation, String version) {
 
 		return getService().addBatchEngineTask(
-			companyId, userId, batchEngineTaskContentType,
-			batchEngineTaskOperation, batchSize, callbackURL, className,
-			content, version);
+			companyId, userId, batchSize, callbackURL, className, content,
+			contentType, executeStatus, operation, version);
 	}
 
 	/**
@@ -258,14 +253,6 @@ public class BatchEngineTaskLocalServiceUtil {
 			uuid, companyId);
 	}
 
-	public static java.util.List<com.liferay.batch.engine.model.BatchEngineTask>
-		getBatchEngineTasks(
-			com.liferay.batch.engine.BatchEngineTaskExecuteStatus
-				batchEngineTaskExecuteStatus) {
-
-		return getService().getBatchEngineTasks(batchEngineTaskExecuteStatus);
-	}
-
 	/**
 	 * Returns a range of all the batch engine tasks.
 	 *
@@ -281,6 +268,12 @@ public class BatchEngineTaskLocalServiceUtil {
 		getBatchEngineTasks(int start, int end) {
 
 		return getService().getBatchEngineTasks(start, end);
+	}
+
+	public static java.util.List<com.liferay.batch.engine.model.BatchEngineTask>
+		getBatchEngineTasks(String executeStatus) {
+
+		return getService().getBatchEngineTasks(executeStatus);
 	}
 
 	/**

@@ -48,18 +48,13 @@ public class BatchEngineTaskLocalServiceWrapper
 
 	@Override
 	public com.liferay.batch.engine.model.BatchEngineTask addBatchEngineTask(
-		long companyId, long userId,
-		com.liferay.batch.engine.BatchEngineTaskContentType
-			batchEngineTaskContentType,
-		com.liferay.batch.engine.BatchEngineTaskOperation
-			batchEngineTaskOperation,
-		long batchSize, String callbackURL, String className, byte[] content,
-		String version) {
+		long companyId, long userId, long batchSize, String callbackURL,
+		String className, byte[] content, String contentType,
+		String executeStatus, String operation, String version) {
 
 		return _batchEngineTaskLocalService.addBatchEngineTask(
-			companyId, userId, batchEngineTaskContentType,
-			batchEngineTaskOperation, batchSize, callbackURL, className,
-			content, version);
+			companyId, userId, batchSize, callbackURL, className, content,
+			contentType, executeStatus, operation, version);
 	}
 
 	/**
@@ -272,16 +267,6 @@ public class BatchEngineTaskLocalServiceWrapper
 			getBatchEngineTaskByUuidAndCompanyId(uuid, companyId);
 	}
 
-	@Override
-	public java.util.List<com.liferay.batch.engine.model.BatchEngineTask>
-		getBatchEngineTasks(
-			com.liferay.batch.engine.BatchEngineTaskExecuteStatus
-				batchEngineTaskExecuteStatus) {
-
-		return _batchEngineTaskLocalService.getBatchEngineTasks(
-			batchEngineTaskExecuteStatus);
-	}
-
 	/**
 	 * Returns a range of all the batch engine tasks.
 	 *
@@ -298,6 +283,13 @@ public class BatchEngineTaskLocalServiceWrapper
 		getBatchEngineTasks(int start, int end) {
 
 		return _batchEngineTaskLocalService.getBatchEngineTasks(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.batch.engine.model.BatchEngineTask>
+		getBatchEngineTasks(String executeStatus) {
+
+		return _batchEngineTaskLocalService.getBatchEngineTasks(executeStatus);
 	}
 
 	/**

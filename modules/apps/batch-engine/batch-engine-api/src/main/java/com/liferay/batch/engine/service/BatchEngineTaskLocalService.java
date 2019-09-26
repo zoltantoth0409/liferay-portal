@@ -14,9 +14,6 @@
 
 package com.liferay.batch.engine.service;
 
-import com.liferay.batch.engine.BatchEngineTaskContentType;
-import com.liferay.batch.engine.BatchEngineTaskExecuteStatus;
-import com.liferay.batch.engine.BatchEngineTaskOperation;
 import com.liferay.batch.engine.model.BatchEngineTask;
 import com.liferay.batch.engine.model.BatchEngineTaskContentBlobModel;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -77,10 +74,9 @@ public interface BatchEngineTaskLocalService
 	public BatchEngineTask addBatchEngineTask(BatchEngineTask batchEngineTask);
 
 	public BatchEngineTask addBatchEngineTask(
-		long companyId, long userId,
-		BatchEngineTaskContentType batchEngineTaskContentType,
-		BatchEngineTaskOperation batchEngineTaskOperation, long batchSize,
-		String callbackURL, String className, byte[] content, String version);
+		long companyId, long userId, long batchSize, String callbackURL,
+		String className, byte[] content, String contentType,
+		String executeStatus, String operation, String version);
 
 	/**
 	 * Creates a new batch engine task with the primary key. Does not add the batch engine task to the database.
@@ -226,10 +222,6 @@ public interface BatchEngineTaskLocalService
 			String uuid, long companyId)
 		throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<BatchEngineTask> getBatchEngineTasks(
-		BatchEngineTaskExecuteStatus batchEngineTaskExecuteStatus);
-
 	/**
 	 * Returns a range of all the batch engine tasks.
 	 *
@@ -243,6 +235,9 @@ public interface BatchEngineTaskLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BatchEngineTask> getBatchEngineTasks(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<BatchEngineTask> getBatchEngineTasks(String executeStatus);
 
 	/**
 	 * Returns the number of batch engine tasks.
