@@ -68,7 +68,7 @@ public class AccountEntryUserRelLocalServiceImpl
 	}
 
 	@Override
-	public AccountEntryUserRel addUser(
+	public AccountEntryUserRel addAccountEntryUserRel(
 			long accountEntryId, long creatorUserId, String screenName,
 			String emailAddress, Locale locale, String firstName,
 			String middleName, String lastName, long prefixId, long suffixId)

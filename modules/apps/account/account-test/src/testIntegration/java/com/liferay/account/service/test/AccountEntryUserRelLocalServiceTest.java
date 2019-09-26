@@ -116,7 +116,7 @@ public class AccountEntryUserRelLocalServiceTest {
 			_accountEntryLocalService);
 		UserInfo userInfo = new UserInfo();
 
-		AccountEntryUserRel accountEntryUserRel = _addUser(
+		AccountEntryUserRel accountEntryUserRel = _addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), userInfo);
 
 		User user = _userLocalService.fetchUser(
@@ -163,7 +163,7 @@ public class AccountEntryUserRelLocalServiceTest {
 		UserInfo userInfo = new UserInfo();
 
 		try {
-			_addUser(RandomTestUtil.nextLong(), userInfo);
+			_addAccountEntryUserRel(RandomTestUtil.nextLong(), userInfo);
 
 			Assert.fail();
 		}
@@ -181,7 +181,8 @@ public class AccountEntryUserRelLocalServiceTest {
 		userInfo.emailAddress = "liferay";
 
 		try {
-			_addUser(_accountEntry.getAccountEntryId(), userInfo);
+			_addAccountEntryUserRel(
+				_accountEntry.getAccountEntryId(), userInfo);
 
 			Assert.fail();
 		}
@@ -192,11 +193,12 @@ public class AccountEntryUserRelLocalServiceTest {
 		}
 	}
 
-	private AccountEntryUserRel _addUser(long accountId, UserInfo userInfo)
+	private AccountEntryUserRel _addAccountEntryUserRel(
+			long accountId, UserInfo userInfo)
 		throws Exception {
 
 		AccountEntryUserRel accountEntryUserRel =
-			_accountEntryUserRelLocalService.addUser(
+			_accountEntryUserRelLocalService.addAccountEntryUserRel(
 				accountId, TestPropsValues.getUserId(), userInfo.screenName,
 				userInfo.emailAddress, userInfo.locale, userInfo.firstName,
 				userInfo.middleName, userInfo.lastName, userInfo.prefixId,
