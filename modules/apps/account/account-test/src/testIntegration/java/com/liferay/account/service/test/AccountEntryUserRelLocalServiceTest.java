@@ -62,7 +62,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRel() throws Exception {
+	public void testAddAccountEntryUserRel1() throws Exception {
 		AccountEntryUserRel accountEntryUserRel =
 			_accountEntryUserRelLocalService.addAccountEntryUserRel(
 				_accountEntry.getAccountEntryId(), _user.getUserId());
@@ -76,7 +76,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test(expected = DuplicateAccountEntryUserRelException.class)
-	public void testAddAccountEntryUserRelThrowsDuplicateAccountEntryUserRelException()
+	public void testAddAccountEntryUserRel1ThrowsDuplicateAccountEntryUserRelException()
 		throws Exception {
 
 		_accountEntryUserRels.add(
@@ -88,7 +88,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchEntryException.class)
-	public void testAddAccountEntryUserRelThrowsNoSuchEntryException()
+	public void testAddAccountEntryUserRel1ThrowsNoSuchEntryException()
 		throws Exception {
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
@@ -97,12 +97,16 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchUserException.class)
-	public void testAddAccountEntryUserRelThrowsNoSuchUserException()
+	public void testAddAccountEntryUserRel1ThrowsNoSuchUserException()
 		throws Exception {
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			_accountEntry.getAccountEntryId(),
 			_user.getUserId() + RandomTestUtil.nextLong());
+	}
+
+	@Test
+	public void testAddAccountEntryUserRel2() throws Exception {
 	}
 
 	@Test
