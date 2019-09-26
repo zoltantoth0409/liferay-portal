@@ -1,1 +1,1 @@
-{"preset":"liferay-npm-bundler-preset-liferay-dev","config":{"imports":{"dynamic-data-mapping-form-renderer":{"/":">=4.0.0"}}},"ignore":["**/__tests__/*.js"]}
+{"config":{"imports":{"dynamic-data-mapping-form-renderer":{"/":">=4.0.0"}}},"ignore":["**/__tests__/*.js"]}
