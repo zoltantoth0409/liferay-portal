@@ -5201,10 +5201,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		Group group = groupPersistence.findByPrimaryKey(groupId);
 
-		if (!Objects.equals(
-				PortalUtil.getClassName(group.getClassNameId()),
-				Group.class.getName())) {
-
+		if (!Objects.equals(group.getClassName(), Group.class.getName())) {
 			return;
 		}
 
