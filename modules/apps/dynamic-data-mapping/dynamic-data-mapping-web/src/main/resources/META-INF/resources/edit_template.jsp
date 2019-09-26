@@ -266,7 +266,7 @@ DDMNavigationHelper ddmNavigationHelper = ddmDisplay.getDDMNavigationHelper();
 								</aui:select>
 							</c:if>
 
-							<c:if test="<%= template == null && !ddmDisplayContext.autogenerateTemplateKey() %>">
+							<c:if test="<%= (template == null) && !ddmDisplayContext.autogenerateTemplateKey() %>">
 								<aui:input name="templateKey" />
 							</c:if>
 
