@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Activate;
 /**
  * @author Preston Crary
  */
-public abstract class BaseChangeListPortlet extends MVCPortlet {
+public abstract class BaseChangeListsPortlet extends MVCPortlet {
 
 	@Activate
 	public void activate(Map<String, Object> properties) {

@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = Portlet.class
 )
-public class ChangeListsConfigurationPortlet extends BaseChangeListPortlet {
+public class ChangeListsConfigurationPortlet extends BaseChangeListsPortlet {
 
 	@Override
 	public void render(
