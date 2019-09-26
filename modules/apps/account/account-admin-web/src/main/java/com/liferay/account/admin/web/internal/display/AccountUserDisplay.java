@@ -51,11 +51,11 @@ public class AccountUserDisplay {
 	}
 
 	private AccountUserDisplay(User user) {
-		_userId = user.getUserId();
-		_name = user.getFullName();
+		_accountRoles = StringPool.BLANK;
 		_emailAddress = user.getEmailAddress();
 		_jobTitle = user.getJobTitle();
-		_accountRoles = StringPool.BLANK;
+		_name = user.getFullName();
+		_userId = user.getUserId();
 	}
 
 	private final String _accountRoles;
