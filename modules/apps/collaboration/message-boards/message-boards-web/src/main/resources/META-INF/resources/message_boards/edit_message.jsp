@@ -507,7 +507,7 @@ if (portletTitleBasedNavigation) {
 	);
 
 	function <portlet:namespace />getScrollY() {
-        return  window.scrollY || window.pageYOffset || document.body.scrollTop;
+		return window.scrollY || window.pageYOffset || document.body.scrollTop;
 	};
 
 	function <portlet:namespace />saveMessage(draft) {
