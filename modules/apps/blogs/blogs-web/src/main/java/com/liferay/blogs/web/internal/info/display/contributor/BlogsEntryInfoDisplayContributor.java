@@ -55,7 +55,7 @@ public class BlogsEntryInfoDisplayContributor
 				locale, AssetEntry.class.getName(), BlogsEntry.class.getName());
 
 		infoDisplayFields.addAll(
-			expandoInfoDisplayFieldProvider.
+			_expandoInfoDisplayFieldProvider.
 				getContributorExpandoInfoDisplayFields(
 					BlogsEntry.class.getName(), locale));
 
@@ -78,7 +78,7 @@ public class BlogsEntryInfoDisplayContributor
 			_infoDisplayFieldProvider.getContributorInfoDisplayFieldsValues(
 				BlogsEntry.class.getName(), blogsEntry, locale));
 		infoDisplayFieldValues.putAll(
-			expandoInfoDisplayFieldProvider.
+			_expandoInfoDisplayFieldProvider.
 				getContributorExpandoInfoDisplayFieldsValues(
 					BlogsEntry.class.getName(), blogsEntry, locale));
 
@@ -119,7 +119,7 @@ public class BlogsEntryInfoDisplayContributor
 	}
 
 	@Reference
-	protected ExpandoInfoDisplayFieldProvider expandoInfoDisplayFieldProvider;
+	private ExpandoInfoDisplayFieldProvider _expandoInfoDisplayFieldProvider;
 
 	@Reference
 	private AssetEntryInfoDisplayFieldProvider
