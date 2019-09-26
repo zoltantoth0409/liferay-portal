@@ -90,7 +90,7 @@ public class BatchEngineTaskOrphanScannerMessageListener
 			_portalExecutorManager.getPortalExecutor(
 				BatchEngineTaskOrphanScannerMessageListener.class.getName());
 
-		long currentTime = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 
 		for (BatchEngineTask batchEngineTask :
 				_batchEngineTaskLocalService.getBatchEngineTasks(
@@ -98,7 +98,7 @@ public class BatchEngineTaskOrphanScannerMessageListener
 
 			Date modifiedDate = batchEngineTask.getModifiedDate();
 
-			if ((currentTime - modifiedDate.getTime()) > _orphanageThreshold) {
+			if ((time - modifiedDate.getTime()) > _orphanageThreshold) {
 				noticeableExecutorService.submit(
 					() -> _batchEngineTaskExecutor.execute(batchEngineTask));
 			}
