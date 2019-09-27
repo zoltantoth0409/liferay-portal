@@ -207,12 +207,12 @@ public class AccountEntryUserRelLocalServiceTest {
 		Assert.assertArrayEquals(expectedUserIds, actualUserIds);
 	}
 
-	private AccountEntryUserRel _addAccountEntryUserRel(long accountId)
+	private AccountEntryUserRel _addAccountEntryUserRel(long accountEntryId)
 		throws Exception {
 
 		AccountEntryUserRel accountEntryUserRel =
 			_accountEntryUserRelLocalService.addAccountEntryUserRel(
-				accountId, TestPropsValues.getUserId(), _userInfo.screenName,
+				accountEntryId, TestPropsValues.getUserId(), _userInfo.screenName,
 				_userInfo.emailAddress, _userInfo.locale, _userInfo.firstName,
 				_userInfo.middleName, _userInfo.lastName, _userInfo.prefixId,
 				_userInfo.suffixId);
