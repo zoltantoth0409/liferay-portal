@@ -41,8 +41,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.hamcrest.CoreMatchers;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -139,9 +137,10 @@ public class AccountEntryUserRelLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchEntryException nsee) {
-			Assert.assertThat(
-				nsee.getMessage(),
-				CoreMatchers.containsString(
+			String message = nsee.getMessage();
+
+			Assert.assertTrue(
+				message.contains(
 					"No AccountEntry exists with the primary key " +
 						invalidAccountEntryId));
 		}
@@ -165,11 +164,11 @@ public class AccountEntryUserRelLocalServiceTest {
 			Assert.fail();
 		}
 		catch (UserEmailAddressException.MustValidate ueaemv) {
-			Assert.assertThat(
-				ueaemv.getMessage(),
-				CoreMatchers.containsString(
-					"Email name address " + invalidEmailAddress +
-						" must validate with"));
+			String message = ueaemv.getMessage();
+
+			Assert.assertTrue(
+				message.contains(
+					"Email name address " + invalidEmailAddress + " must validate with"));
 		}
 
 		Assert.assertNull(
