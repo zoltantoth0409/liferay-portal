@@ -168,7 +168,8 @@ public class AccountEntryUserRelLocalServiceTest {
 
 			Assert.assertTrue(
 				message.contains(
-					"Email name address " + invalidEmailAddress + " must validate with"));
+					"Email name address " + invalidEmailAddress +
+						" must validate with"));
 		}
 
 		Assert.assertNull(
@@ -211,10 +212,10 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		AccountEntryUserRel accountEntryUserRel =
 			_accountEntryUserRelLocalService.addAccountEntryUserRel(
-				accountEntryId, TestPropsValues.getUserId(), _userInfo.screenName,
-				_userInfo.emailAddress, _userInfo.locale, _userInfo.firstName,
-				_userInfo.middleName, _userInfo.lastName, _userInfo.prefixId,
-				_userInfo.suffixId);
+				accountEntryId, TestPropsValues.getUserId(),
+				_userInfo.screenName, _userInfo.emailAddress, _userInfo.locale,
+				_userInfo.firstName, _userInfo.middleName, _userInfo.lastName,
+				_userInfo.prefixId, _userInfo.suffixId);
 
 		_users.add(
 			_userLocalService.getUser(accountEntryUserRel.getAccountUserId()));
