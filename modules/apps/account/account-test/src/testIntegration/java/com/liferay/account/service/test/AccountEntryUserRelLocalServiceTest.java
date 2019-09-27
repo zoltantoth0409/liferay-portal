@@ -239,6 +239,8 @@ public class AccountEntryUserRelLocalServiceTest {
 	@DeleteAfterTestRun
 	private User _user;
 
+	private final UserInfo _userInfo = new UserInfo();
+
 	@Inject
 	private UserLocalService _userLocalService;
 
@@ -259,7 +261,5 @@ public class AccountEntryUserRelLocalServiceTest {
 		public long suffixId = RandomTestUtil.randomLong();
 
 	}
-
-	private UserInfo _userInfo = new UserInfo();
 
 }
