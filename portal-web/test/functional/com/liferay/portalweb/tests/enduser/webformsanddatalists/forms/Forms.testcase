@@ -735,7 +735,7 @@ definition {
 				rowNumber = "${number}");
 		}
 
-		FormFields.enableSwitcher(fieldName = "required");
+		FormFields.enableSwitcher(fieldName = "Required");
 
 		Form.closeSidebar();
 

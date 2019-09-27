@@ -1036,7 +1036,7 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Date Field");
 
-		FormFields.enableSwitcher(fieldName = "required");
+		FormFields.enableSwitcher(fieldName = "Required");
 
 		Form.closeSidebar();
 
