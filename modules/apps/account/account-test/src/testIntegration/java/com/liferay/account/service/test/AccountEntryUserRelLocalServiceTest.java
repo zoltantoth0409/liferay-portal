@@ -128,7 +128,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRel2UserNotCreatedWithInvalidAccountEntryId()
+	public void testAddAccountEntryUserRel2WithInvalidAccountEntryId()
 		throws Exception {
 
 		long invalidAccountEntryId = RandomTestUtil.nextLong();
@@ -152,7 +152,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRel2UserNotCreatedWithInvalidUserInfo()
+	public void testAddAccountEntryUserRel2WithInvalidUserInfo()
 		throws Exception {
 
 		String invalidEmailAddress = "liferay";
