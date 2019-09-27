@@ -737,7 +737,7 @@ definition {
 			key_entryContent = "${entryContent}",
 			locator1 = "BlogsEntry#CONTENT_LINK");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+		Click.mouseMoveLeftClick(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
 		AssertTextEquals(
 			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
