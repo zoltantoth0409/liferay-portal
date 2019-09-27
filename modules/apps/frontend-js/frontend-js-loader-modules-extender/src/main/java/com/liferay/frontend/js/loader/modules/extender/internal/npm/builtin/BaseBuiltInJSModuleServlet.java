@@ -111,12 +111,12 @@ public abstract class BaseBuiltInJSModuleServlet extends HttpServlet {
 
 		Locale locale = LocaleUtil.fromLanguageId(languageId);
 
-		_sendResource(response, resourceDescriptor, locale);
+		_sendResource(response, resourceDescriptor, locale, pathInfo);
 	}
 
 	private void _sendResource(
 			HttpServletResponse response, ResourceDescriptor resourceDescriptor,
-			Locale locale)
+			Locale locale, String pathInfo)
 		throws IOException {
 
 		JSPackage jsPackage = resourceDescriptor.getJsPackage();
