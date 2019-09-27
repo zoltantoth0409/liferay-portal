@@ -216,8 +216,6 @@ definition {
 		Click(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#SWITCHER");
-
-		FormFields.viewSwitcherChecked(fieldName = "${fieldName}");
 	}
 
 	macro getFieldName {
