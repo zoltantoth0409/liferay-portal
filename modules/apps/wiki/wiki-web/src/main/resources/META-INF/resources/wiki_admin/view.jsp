@@ -61,7 +61,7 @@ request.setAttribute("view.jsp-orderByType", orderByType);
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	navigationItems="<%=
+	navigationItems='<%=
 		new JSPNavigationItemList(pageContext) {
 			{
 				add(
@@ -72,7 +72,7 @@ request.setAttribute("view.jsp-orderByType", orderByType);
 					});
 			}
 		}
-	%>"
+	%>'
 />
 
 <%

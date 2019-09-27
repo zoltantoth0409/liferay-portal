@@ -133,7 +133,7 @@ if (dlViewFileVersionDisplayContext.isVersionInfoVisible()) {
 								<div class="btn-group-item">
 									<div class="d-inline-block">
 										<clay:dropdown-menu
-											dropdownItems="<%=
+											dropdownItems='<%=
 												new JSPDropdownItemList(pageContext) {
 													{
 														ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
@@ -147,10 +147,10 @@ if (dlViewFileVersionDisplayContext.isVersionInfoVisible()) {
 														}
 													}
 												}
-											%>"
+											%>'
+											label='<%= LanguageUtil.get(request, "download-as") %>'
 											style="secondary"
 											triggerCssClasses="btn-outline-borderless btn-sm"
-											label="<%= LanguageUtil.get(request, "download-as") %>"
 										/>
 									</div>
 								</div>

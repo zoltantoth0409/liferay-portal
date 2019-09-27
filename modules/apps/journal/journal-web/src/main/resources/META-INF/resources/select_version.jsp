@@ -32,7 +32,7 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 %>
 
 <clay:navigation-bar
-	navigationItems="<%=
+	navigationItems='<%=
 		new JSPNavigationItemList(pageContext) {
 			{
 				add(
@@ -43,7 +43,7 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 					});
 			}
 		}
-	%>"
+	%>'
 />
 
 <%
@@ -61,7 +61,7 @@ List<DropdownItem> dropdownItems = new JSPDropdownItemList(pageContext) {
 
 <clay:management-toolbar
 	componentId="journalSelectVersionsManagementToolbar"
-	filterDropdownItems="<%=
+	filterDropdownItems='<%=
 		new JSPDropdownItemList(pageContext) {
 			{
 				addGroup(
@@ -72,7 +72,7 @@ List<DropdownItem> dropdownItems = new JSPDropdownItemList(pageContext) {
 				);
 			}
 		}
-	%>"
+	%>'
 	searchContainerId="articleVersions"
 	selectable="<%= false %>"
 	showSearch="<%= false %>"

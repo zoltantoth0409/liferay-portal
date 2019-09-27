@@ -27,7 +27,7 @@ portletURL.setParameter("navigation", navigation);
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	navigationItems="<%=
+	navigationItems='<%=
 		new JSPNavigationItemList(pageContext) {
 			{
 				add(
@@ -45,7 +45,7 @@ portletURL.setParameter("navigation", navigation);
 				});
 			}
 		}
-	%>"
+	%>'
 />
 
 <c:choose>
