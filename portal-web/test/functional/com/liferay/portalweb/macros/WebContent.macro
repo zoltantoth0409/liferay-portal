@@ -1538,6 +1538,13 @@ definition {
 				locator1 = "TextInput#DDM",
 				value1 = "${webContentText}");
 		}
+
+		if (isSet(webContentDocumentsAndMedia)) {
+			AssertTextEquals(
+				key_fieldName = "DocumentsAndMedia",
+				locator1 = "TextInput#DDM",
+				value1 = "${webContentDocumentsAndMedia}");
+		}
 		else {
 			AssertTextEquals(
 				key_editor = "content",
