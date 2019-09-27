@@ -115,10 +115,8 @@ public class AccountEntryUserRelLocalServiceTest {
 
 	@Test
 	public void testAddAccountEntryUserRel2() throws Exception {
-		UserInfo userInfo = new UserInfo();
-
 		AccountEntryUserRel accountEntryUserRel = _addAccountEntryUserRel(
-			_accountEntry.getAccountEntryId(), userInfo);
+			_accountEntry.getAccountEntryId());
 
 		User user = _userLocalService.fetchUser(
 			accountEntryUserRel.getAccountUserId());
@@ -126,7 +124,7 @@ public class AccountEntryUserRelLocalServiceTest {
 		Assert.assertNotNull(user);
 		Assert.assertEquals(
 			accountEntryUserRel.getAccountUserId(), user.getUserId());
-		Assert.assertEquals(userInfo.screenName, user.getScreenName());
+		Assert.assertEquals(_userInfo.screenName, user.getScreenName());
 	}
 
 	@Test
@@ -134,10 +132,9 @@ public class AccountEntryUserRelLocalServiceTest {
 		throws Exception {
 
 		long invalidAccountEntryId = RandomTestUtil.nextLong();
-		UserInfo userInfo = new UserInfo();
 
 		try {
-			_addAccountEntryUserRel(invalidAccountEntryId, userInfo);
+			_addAccountEntryUserRel(invalidAccountEntryId);
 
 			Assert.fail();
 		}
@@ -151,22 +148,19 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		Assert.assertNull(
 			_userLocalService.fetchUserByScreenName(
-				TestPropsValues.getCompanyId(), userInfo.screenName));
+				TestPropsValues.getCompanyId(), _userInfo.screenName));
 	}
 
 	@Test
 	public void testAddAccountEntryUserRel2UserNotCreatedWithInvalidUserInfo()
 		throws Exception {
 
-		UserInfo userInfo = new UserInfo();
-
 		String invalidEmailAddress = "liferay";
 
-		userInfo.emailAddress = invalidEmailAddress;
+		_userInfo.emailAddress = invalidEmailAddress;
 
 		try {
-			_addAccountEntryUserRel(
-				_accountEntry.getAccountEntryId(), userInfo);
+			_addAccountEntryUserRel(_accountEntry.getAccountEntryId());
 
 			Assert.fail();
 		}
@@ -180,7 +174,7 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		Assert.assertNull(
 			_userLocalService.fetchUserByScreenName(
-				TestPropsValues.getCompanyId(), userInfo.screenName));
+				TestPropsValues.getCompanyId(), _userInfo.screenName));
 	}
 
 	@Test
@@ -213,16 +207,15 @@ public class AccountEntryUserRelLocalServiceTest {
 		Assert.assertArrayEquals(expectedUserIds, actualUserIds);
 	}
 
-	private AccountEntryUserRel _addAccountEntryUserRel(
-			long accountId, UserInfo userInfo)
+	private AccountEntryUserRel _addAccountEntryUserRel(long accountId)
 		throws Exception {
 
 		AccountEntryUserRel accountEntryUserRel =
 			_accountEntryUserRelLocalService.addAccountEntryUserRel(
-				accountId, TestPropsValues.getUserId(), userInfo.screenName,
-				userInfo.emailAddress, userInfo.locale, userInfo.firstName,
-				userInfo.middleName, userInfo.lastName, userInfo.prefixId,
-				userInfo.suffixId);
+				accountId, TestPropsValues.getUserId(), _userInfo.screenName,
+				_userInfo.emailAddress, _userInfo.locale, _userInfo.firstName,
+				_userInfo.middleName, _userInfo.lastName, _userInfo.prefixId,
+				_userInfo.suffixId);
 
 		_users.add(
 			_userLocalService.getUser(accountEntryUserRel.getAccountUserId()));
@@ -252,7 +245,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	@DeleteAfterTestRun
 	private final List<User> _users = new ArrayList<>();
 
-	private static class UserInfo {
+	private class UserInfo {
 
 		public String emailAddress =
 			RandomTestUtil.randomString() + "@liferay.com";
@@ -266,5 +259,7 @@ public class AccountEntryUserRelLocalServiceTest {
 		public long suffixId = RandomTestUtil.randomLong();
 
 	}
+
+	private UserInfo _userInfo = new UserInfo();
 
 }
