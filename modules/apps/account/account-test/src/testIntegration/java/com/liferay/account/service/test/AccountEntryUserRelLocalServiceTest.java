@@ -120,9 +120,9 @@ public class AccountEntryUserRelLocalServiceTest {
 			accountEntryUserRel.getAccountUserId());
 
 		Assert.assertNotNull(user);
+		Assert.assertEquals(_userInfo.screenName, user.getScreenName());
 		Assert.assertEquals(
 			accountEntryUserRel.getAccountUserId(), user.getUserId());
-		Assert.assertEquals(_userInfo.screenName, user.getScreenName());
 	}
 
 	@Test
