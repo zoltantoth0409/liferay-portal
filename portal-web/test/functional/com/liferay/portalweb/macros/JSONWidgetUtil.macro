@@ -31,9 +31,14 @@ definition {
 
  		if ("${widgetName}" == "Asset Publisher") {
 			var portletId = "com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet";
-		} else if ("${widgetName}" == "Web Content Display") {
+		}
+		else if ("${widgetName}" == "Blogs") {
+			var portletId = "com_liferay_blogs_web_portlet_BlogsPortlet";
+		}
+		else if ("${widgetName}" == "Web Content Display") {
 			var portletId = "com_liferay_journal_content_web_portlet_JournalContentPortlet";
-		} else {
+		}
+		else {
 			fail("'widgetName' is either invalid or its 'portletId' is not yet set.");
 		}
 
