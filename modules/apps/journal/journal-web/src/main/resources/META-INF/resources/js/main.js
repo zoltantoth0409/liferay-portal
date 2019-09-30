@@ -187,7 +187,7 @@ AUI.add(
 					_onLocaleChange: function(event) {
 						var defaultLanguageId = themeDisplay.getDefaultLanguageId();
 						var instance = this;
-						var selectedLanguageId = event.source && event.source.getSelectedLanguageId();
+						var selectedLanguageId = event.item.getAttribute('data-value');
 
 						if (selectedLanguageId) {
 							instance._updateLocalizableInput('descriptionMapAsXML', defaultLanguageId, selectedLanguageId);
