@@ -17,6 +17,7 @@ package com.liferay.portal.repository.capabilities;
 import com.liferay.document.library.kernel.exception.NoSuchFolderException;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
+import com.liferay.document.library.kernel.service.DLAppHelperLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -338,9 +339,11 @@ public class TemporaryFileEntriesCapabilityImpl
 
 		@Override
 		public void execute(FileEntry fileEntry) throws PortalException {
-			Folder folder = fileEntry.getFolder();
+			DLAppHelperLocalServiceUtil.deleteFileEntry(fileEntry);
 
 			_documentRepository.deleteFileEntry(fileEntry.getFileEntryId());
+
+			Folder folder = fileEntry.getFolder();
 
 			Folder mountFolder = _documentRepository.getFolder(
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -351,6 +354,8 @@ public class TemporaryFileEntriesCapabilityImpl
 						   0)) {
 
 				long folderId = folder.getFolderId();
+
+				DLAppHelperLocalServiceUtil.deleteFolder(folder);
 
 				folder = folder.getParentFolder();
 
