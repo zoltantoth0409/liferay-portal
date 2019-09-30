@@ -19,6 +19,7 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
+
 			// There is no need for a SocialActivity#tearDownCP, as the User Statistics will not be reset and Jenkins does not run teardowns.
 
 			User.firstLoginPG();
