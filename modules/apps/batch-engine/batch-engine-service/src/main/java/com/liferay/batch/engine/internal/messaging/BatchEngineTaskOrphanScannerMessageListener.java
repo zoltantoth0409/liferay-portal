@@ -59,7 +59,6 @@ public class BatchEngineTaskOrphanScannerMessageListener
 
 		String className =
 			BatchEngineTaskOrphanScannerMessageListener.class.getName();
-
 		int scanInterval = GetterUtil.getInteger(
 			properties.get("scan.interval"));
 

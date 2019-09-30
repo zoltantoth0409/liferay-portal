@@ -50,7 +50,6 @@ public class BatchEngineTaskCleanerMessageListener extends BaseMessageListener {
 	protected void activate(Map<String, Object> properties) {
 		String className =
 			BatchEngineTaskCleanerMessageListener.class.getName();
-
 		int scanInterval = GetterUtil.getInteger(
 			properties.get("scan.interval"));
 
