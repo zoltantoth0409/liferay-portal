@@ -110,8 +110,8 @@
 			<arg value="db.database.name=${database.name}" />
 			<arg value="db.database.password=" />
 			<arg value="db.database.username=sa" />
-			<arg value="db.sql.dir=${basedir}" />
 			<arg value="db.file.name=portal${database.create.suffix}/portal${database.create.suffix}-hypersonic.sql,indexes.sql" />
+			<arg value="db.sql.dir=${basedir}" />
 		</java>
 
 		<delete dir="${database.name}.tmp" failonerror="false" />
