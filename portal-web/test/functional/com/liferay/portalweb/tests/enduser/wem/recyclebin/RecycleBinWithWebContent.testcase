@@ -157,6 +157,8 @@ definition {
 
 	@priority = "3"
 	test RecycleWebContentViaDeleteIcon {
+		property test.name.skip.portal.instance = "RecycleBinWithWebContent#RecycleWebContentViaDeleteIcon";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		Navigator.openSiteURL(siteName = "${siteName}");
