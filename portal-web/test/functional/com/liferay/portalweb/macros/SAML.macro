@@ -2,6 +2,7 @@ definition {
 
 	@description = "Configures Liferay SAML as the IdP and Liferay SAML as the SP."
 	macro configureLiferaySAMLAsIdP {
+
 		// Configure IdP (Identity Provider) on http://localhost:8080 with database lportal and saml deployed
 
 		if (isSet(idpURL)) {

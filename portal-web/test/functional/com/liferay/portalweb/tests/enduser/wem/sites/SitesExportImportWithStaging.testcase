@@ -155,6 +155,7 @@ definition {
 	@description = "Export a live site into a different staging site. This test is focused on modern site building features. The high level steps of this test are outlined in LRQA-44517."
 	@priority = "5"
 	test ImportLiveSiteToStagingSite {
+
 		// Export the live site.
 
 		LAR.openExportAdmin(siteURLKey = "test-site-name-1");
