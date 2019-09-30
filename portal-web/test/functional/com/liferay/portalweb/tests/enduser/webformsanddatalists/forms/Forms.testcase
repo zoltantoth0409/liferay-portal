@@ -3472,7 +3472,7 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Checkbox Field");
 
-		FormFields.enableSwitcher(fieldName = "required");
+		FormFields.enableSwitcher(fieldName = "Required");
 
 		FormFields.editOptionsRow(
 			optionName = "Checkbox1",
@@ -3630,7 +3630,7 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Radio Field");
 
-		FormFields.enableSwitcher(fieldName = "required");
+		FormFields.enableSwitcher(fieldName = "Required");
 
 		FormFields.editOptionsRow(
 			optionName = "Option1",
@@ -4016,7 +4016,7 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Date Field");
 
-		FormFields.enableSwitcher(fieldName = "required");
+		FormFields.enableSwitcher(fieldName = "Required");
 
 		Form.closeSidebar();
 
