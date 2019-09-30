@@ -643,30 +643,24 @@ public class JournalDisplayContext {
 
 				if (isNavigationRecent()) {
 					add(
-						labelItem -> {
-							labelItem.setLabel(
-								LanguageUtil.get(_request, "recent"));
-						});
+						labelItem -> labelItem.setLabel(
+							LanguageUtil.get(_request, "recent")));
 				}
 
 				if (isNavigationStructure()) {
 					add(
-						labelItem -> {
-							labelItem.setLabel(
-								LanguageUtil.get(_request, "structures") +
-									": " + getDDMStructureName());
-						});
+						labelItem -> labelItem.setLabel(
+							LanguageUtil.get(_request, "structures") + ": " +
+								getDDMStructureName()));
 				}
 
 				int status = getStatus();
 
 				if (status != -1) {
 					add(
-						labelItem -> {
-							labelItem.setLabel(
-								LanguageUtil.get(_request, "status") + ": " +
-									_getStatusLabel(status));
-						});
+						labelItem -> labelItem.setLabel(
+							LanguageUtil.get(_request, "status") + ": " +
+								_getStatusLabel(status)));
 				}
 			}
 		};
