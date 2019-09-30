@@ -1432,6 +1432,16 @@ public class JournalDisplayContext {
 		return false;
 	}
 
+	public boolean isCommentsTabSelected() throws PortalException {
+		if (Objects.equals(getTabs1(), "comments") ||
+			(hasCommentsResults() && Validator.isNull(getTabs1()))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean isDisabled() throws PortalException {
 		if (hasResults()) {
 			return false;
@@ -1589,6 +1599,26 @@ public class JournalDisplayContext {
 		}
 
 		if (isSearch()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isVersionsTabSelected() throws PortalException {
+		if (Objects.equals(getTabs1(), "versions") ||
+			(hasVersionsResults() && Validator.isNull(getTabs1()))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isWebContentTabSelected() throws PortalException {
+		if (Objects.equals(getTabs1(), "web-content") ||
+			(hasResults() && Validator.isNull(getTabs1()))) {
+
 			return true;
 		}
 
