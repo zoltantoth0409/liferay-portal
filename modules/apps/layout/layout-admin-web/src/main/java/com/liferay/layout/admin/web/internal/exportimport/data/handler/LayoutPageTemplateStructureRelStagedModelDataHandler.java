@@ -125,12 +125,12 @@ public class LayoutPageTemplateStructureRelStagedModelDataHandler
 					portletDataContext, importedLayoutPageTemplateStructureRel);
 		}
 		else {
+			importedLayoutPageTemplateStructureRel.setMvccVersion(
+				existingLayoutPageTemplateStructureRel.getMvccVersion());
 			importedLayoutPageTemplateStructureRel.
 				setLayoutPageTemplateStructureRelId(
 					existingLayoutPageTemplateStructureRel.
 						getLayoutPageTemplateStructureRelId());
-			importedLayoutPageTemplateStructureRel.setMvccVersion(
-				existingLayoutPageTemplateStructureRel.getMvccVersion());
 
 			importedLayoutPageTemplateStructureRel =
 				_stagedModelRepository.updateStagedModel(
