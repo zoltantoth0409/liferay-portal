@@ -482,6 +482,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 			NPMRegistryImpl.class.getName() + "._activationThreadLocal",
 			() -> Boolean.FALSE);
 
+	private Boolean _applyVersioning;
 	private BundleContext _bundleContext;
 	private BundleTracker<JSBundle> _bundleTracker;
 	private final Map<String, JSPackage> _dependencyJSPackages =
@@ -499,7 +500,6 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 	private Map<String, JSPackage> _jsPackages = new HashMap<>();
 	private List<JSPackageVersion> _jsPackageVersions = new ArrayList<>();
-	private Boolean _applyVersioning;
 	private final Map<String, String> _partialMatchMap =
 		new ConcurrentHashMap<>();
 	private Map<String, JSModule> _resolvedJSModules = new HashMap<>();
