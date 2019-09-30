@@ -153,7 +153,6 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 		ddmFormFieldValidation.setErrorMessageLocalizedValue(
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"custom validation error message", LocaleUtil.US));
-
 		ddmFormFieldValidation.setExpression("contains(text, \"test\")");
 
 		ddmFormField.setDDMFormFieldValidation(ddmFormFieldValidation);
@@ -212,7 +211,6 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 		ddmFormFieldValidation.setErrorMessageLocalizedValue(
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"custom validation error message", LocaleUtil.US));
-
 		ddmFormFieldValidation.setExpression("NOT(equals(text, \"\"))");
 
 		ddmFormField.setDDMFormFieldValidation(ddmFormFieldValidation);
