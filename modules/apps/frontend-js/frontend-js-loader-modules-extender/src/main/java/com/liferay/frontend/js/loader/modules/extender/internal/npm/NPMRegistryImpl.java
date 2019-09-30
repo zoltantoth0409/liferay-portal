@@ -282,7 +282,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 		_refreshJSModuleCaches(tracked.values());
 
-		_lastApplyVersioning = null;
+		_applyVersioning = null;
 
 		modified(bundleContext, properties);
 	}
@@ -301,10 +301,10 @@ public class NPMRegistryImpl implements NPMRegistry {
 		Details details = ConfigurableUtil.createConfigurable(
 			Details.class, properties);
 
-		if ((_lastApplyVersioning == null) ||
-			(details.applyVersioning() != _lastApplyVersioning)) {
+		if ((_applyVersioning == null) ||
+			(details.applyVersioning() != _applyVersioning)) {
 
-			_lastApplyVersioning = details.applyVersioning();
+			_applyVersioning = details.applyVersioning();
 
 			_serviceTracker = ServiceTrackerFactory.open(
 				bundleContext,
@@ -499,7 +499,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 	private Map<String, JSPackage> _jsPackages = new HashMap<>();
 	private List<JSPackageVersion> _jsPackageVersions = new ArrayList<>();
-	private Boolean _lastApplyVersioning;
+	private Boolean _applyVersioning;
 	private final Map<String, String> _partialMatchMap =
 		new ConcurrentHashMap<>();
 	private Map<String, JSModule> _resolvedJSModules = new HashMap<>();
