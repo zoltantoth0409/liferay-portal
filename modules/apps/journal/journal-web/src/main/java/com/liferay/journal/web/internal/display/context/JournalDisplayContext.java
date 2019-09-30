@@ -714,6 +714,19 @@ public class JournalDisplayContext {
 		return _languageId;
 	}
 
+	public JournalArticle getLatestArticle(JournalArticle journalArticle) {
+		JournalArticle latestArticle =
+			JournalArticleLocalServiceUtil.fetchLatestArticle(
+				journalArticle.getGroupId(), journalArticle.getArticleId(),
+				WorkflowConstants.STATUS_ANY);
+
+		if (latestArticle != null) {
+			return latestArticle;
+		}
+
+		return journalArticle;
+	}
+
 	public int getMaxAddMenuItems() {
 		if (_maxAddMenuItems != null) {
 			return _maxAddMenuItems;

@@ -47,7 +47,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			curFolder = (JournalFolder)result;
 		}
 		else {
-			curArticle = (JournalArticle)result;
+			curArticle = journalDisplayContext.getLatestArticle((JournalArticle)result);
 		}
 		%>
 
