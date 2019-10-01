@@ -117,9 +117,7 @@ public class ImportTask {
 
 	}
 
-	@Schema(
-		description = "The item class name for which data will be processed in batch."
-	)
+	@Schema
 	public String getClassName() {
 		return className;
 	}
@@ -148,7 +146,7 @@ public class ImportTask {
 	protected String className;
 
 	@DecimalMin("0")
-	@Schema(description = "The end time of import task operation.")
+	@Schema
 	public Long getEndTime() {
 		return endTime;
 	}
@@ -176,9 +174,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long endTime;
 
-	@Schema(
-		description = "The error message in case of import task's failed execution."
-	)
+	@Schema
 	public String getErrorMessage() {
 		return errorMessage;
 	}
@@ -206,7 +202,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String errorMessage;
 
-	@Schema(description = "The status of import task's execution.")
+	@Schema
 	public ExecuteStatus getExecuteStatus() {
 		return executeStatus;
 	}
@@ -244,7 +240,7 @@ public class ImportTask {
 	protected ExecuteStatus executeStatus;
 
 	@DecimalMin("0")
-	@Schema(description = "The task's ID.")
+	@Schema
 	public Long getId() {
 		return id;
 	}
@@ -270,7 +266,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long id;
 
-	@Schema(description = "The operation of import task.")
+	@Schema
 	public Operation getOperation() {
 		return operation;
 	}
@@ -308,7 +304,7 @@ public class ImportTask {
 	protected Operation operation;
 
 	@DecimalMin("0")
-	@Schema(description = "The start time of import task operation.")
+	@Schema
 	public Long getStartTime() {
 		return startTime;
 	}
@@ -336,7 +332,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long startTime;
 
-	@Schema(description = "The version of item class.")
+	@Schema
 	public String getVersion() {
 		return version;
 	}
