@@ -173,12 +173,12 @@ public class LiferaySchemaListProperties extends ComponentPropertiesImpl {
 
 		Map<String, String> endpointMap = new TreeMap<>();
 
+		SchemaBuilder schemaBuilder = new SchemaBuilder();
+
 		OASExplorer oasExplorer = new OASExplorer();
 
 		Set<String> endpoints = oasExplorer.getEndpointList(
 			operation, oasJsonObject);
-
-		SchemaBuilder schemaBuilder = new SchemaBuilder();
 
 		for (String endpoint : endpoints) {
 			endpointMap.put(
