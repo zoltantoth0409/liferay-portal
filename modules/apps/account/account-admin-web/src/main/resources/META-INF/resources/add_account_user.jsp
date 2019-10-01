@@ -78,5 +78,3 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 		<aui:button href="<%= String.valueOf(backURL) %>" type="cancel" />
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
-
-<
