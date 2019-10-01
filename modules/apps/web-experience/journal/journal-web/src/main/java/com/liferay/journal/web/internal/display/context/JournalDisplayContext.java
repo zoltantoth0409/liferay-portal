@@ -226,9 +226,8 @@ public class JournalDisplayContext {
 	public SearchContainer<MBMessage> getCommentsSearchContainer()
 		throws PortalException {
 
-		SearchContainer<MBMessage> searchContainer = new SearchContainer(
-			_liferayPortletRequest, _liferayPortletResponse.createRenderURL(),
-			null, null);
+		SearchContainer searchContainer = new SearchContainer(
+			_liferayPortletRequest, getPortletURL(), null, null);
 
 		SearchContext searchContext = SearchContextFactory.getInstance(
 			_liferayPortletRequest.getHttpServletRequest());
