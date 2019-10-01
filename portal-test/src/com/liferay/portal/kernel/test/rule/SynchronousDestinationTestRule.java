@@ -161,7 +161,7 @@ public class SynchronousDestinationTestRule
 
 			serviceDependencyManager.waitForDependencies();
 
-			_destinationMap = ReflectionTestUtil.getFieldValue(
+			_destinations = ReflectionTestUtil.getFieldValue(
 				MessageBusUtil.getMessageBus(), "_destinations");
 
 			ProxyModeThreadLocal.setForceSync(true);
@@ -204,7 +204,7 @@ public class SynchronousDestinationTestRule
 			}
 
 			BaseAsyncDestination schedulerDestination =
-				(BaseAsyncDestination)_destinationMap.get(
+				(BaseAsyncDestination)_destinations.get(
 					DestinationNames.SCHEDULER_DISPATCH);
 
 			if (schedulerDestination == null) {
@@ -264,7 +264,7 @@ public class SynchronousDestinationTestRule
 		}
 
 		public void replaceDestination(String destinationName) {
-			Destination destination = _destinationMap.get(destinationName);
+			Destination destination = _destinations.get(destinationName);
 
 			if (destination instanceof BaseAsyncDestination) {
 				_asyncServiceDestinations.add(destination);
@@ -276,13 +276,13 @@ public class SynchronousDestinationTestRule
 					synchronousDestination);
 				destination.copyMessageListeners(synchronousDestination);
 
-				_destinationMap.put(destinationName, synchronousDestination);
+				_destinations.put(destinationName, synchronousDestination);
 			}
 
 			if (destination == null) {
 				_absentDestinationNames.add(destinationName);
 
-				_destinationMap.put(
+				_destinations.put(
 					destinationName,
 					createSynchronousDestination(destinationName));
 			}
@@ -292,16 +292,16 @@ public class SynchronousDestinationTestRule
 			ProxyModeThreadLocal.setForceSync(_forceSync);
 
 			for (Destination destination : _asyncServiceDestinations) {
-				_destinationMap.put(destination.getName(), destination);
+				_destinations.put(destination.getName(), destination);
 			}
 
 			_asyncServiceDestinations.clear();
 
 			for (String absentDestinationName : _absentDestinationNames) {
-				_destinationMap.remove(absentDestinationName);
+				_destinations.remove(absentDestinationName);
 			}
 
-			Destination destination = _destinationMap.get(
+			Destination destination = _destinations.get(
 				DestinationNames.SCHEDULER_DISPATCH);
 
 			if (destination == null) {
@@ -337,7 +337,7 @@ public class SynchronousDestinationTestRule
 		private final List<String> _absentDestinationNames = new ArrayList<>();
 		private final List<Destination> _asyncServiceDestinations =
 			new ArrayList<>();
-		private Map<String, Destination> _destinationMap;
+		private Map<String, Destination> _destinations;
 		private boolean _forceSync;
 		private final List<InvokerMessageListener>
 			_schedulerInvokerMessageListeners = new ArrayList<>();
