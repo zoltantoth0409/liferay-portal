@@ -148,7 +148,7 @@ public class ImportTask {
 	protected String className;
 
 	@DecimalMin("0")
-	@Schema(description = "The end time of task operation.")
+	@Schema(description = "The end time of import task operation.")
 	public Long getEndTime() {
 		return endTime;
 	}
@@ -177,7 +177,7 @@ public class ImportTask {
 	protected Long endTime;
 
 	@Schema(
-		description = "The error message in case of task's failed execution."
+		description = "The error message in case of import task's failed execution."
 	)
 	public String getErrorMessage() {
 		return errorMessage;
@@ -206,7 +206,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String errorMessage;
 
-	@Schema(description = "The status of task's execution.")
+	@Schema(description = "The status of import task's execution.")
 	public ExecuteStatus getExecuteStatus() {
 		return executeStatus;
 	}
@@ -270,7 +270,7 @@ public class ImportTask {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long id;
 
-	@Schema(description = "The operation of task.")
+	@Schema(description = "The operation of import task.")
 	public Operation getOperation() {
 		return operation;
 	}
@@ -308,7 +308,7 @@ public class ImportTask {
 	protected Operation operation;
 
 	@DecimalMin("0")
-	@Schema(description = "The start time of task operation.")
+	@Schema(description = "The start time of import task operation.")
 	public Long getStartTime() {
 		return startTime;
 	}
