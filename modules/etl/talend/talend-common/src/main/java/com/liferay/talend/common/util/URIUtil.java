@@ -192,7 +192,7 @@ public class URIUtil {
 	public static void validateOpenAPISpecURL(String openAPISpecURL) {
 		if (openAPISpecURL == null) {
 			throw new MalformedURLException(
-				"Open API spec URL must not be null");
+				"OpenAPI spec URL must not be null");
 		}
 
 		if (!isValidOpenAPISpecURL(openAPISpecURL)) {

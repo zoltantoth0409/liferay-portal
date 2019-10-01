@@ -211,7 +211,7 @@ public class RESTClient {
 
 		if (!serverURLMatcher.matches()) {
 			throw new MalformedURLException(
-				"Unable to extract Open API endpoint from URL " +
+				"Unable to extract OpenAPI endpoint from URL " +
 					openAPISpecRef);
 		}
 
