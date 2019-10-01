@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.document.library.exception.NoSuchFileVersionPreviewException;
 import com.liferay.document.library.model.DLFileVersionPreview;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
-import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
@@ -41,7 +40,7 @@ import java.util.Set;
 public interface DLFileVersionPreviewPersistence
 	extends BasePersistence<DLFileVersionPreview> {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DLFileVersionPreviewUtil} to access the dl file version preview persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
@@ -81,19 +80,16 @@ public interface DLFileVersionPreviewPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileVersionPreviewModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFileEntryId(long, int, int, OrderByComparator)}
 	 * @param fileEntryId the file entry ID
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
-	@Deprecated
 	public java.util.List<DLFileVersionPreview> findByFileEntryId(
 		long fileEntryId, int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the dl file version previews where fileEntryId = &#63;.
@@ -106,11 +102,14 @@ public interface DLFileVersionPreviewPersistence
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
 	public java.util.List<DLFileVersionPreview> findByFileEntryId(
 		long fileEntryId, int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first dl file version preview in the ordered set where fileEntryId = &#63;.
@@ -122,7 +121,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview findByFileEntryId_First(
 			long fileEntryId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -134,7 +134,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview fetchByFileEntryId_First(
 		long fileEntryId,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns the last dl file version preview in the ordered set where fileEntryId = &#63;.
@@ -146,7 +147,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview findByFileEntryId_Last(
 			long fileEntryId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -158,7 +160,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview fetchByFileEntryId_Last(
 		long fileEntryId,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns the dl file version previews before and after the current dl file version preview in the ordered set where fileEntryId = &#63;.
@@ -171,7 +174,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview[] findByFileEntryId_PrevAndNext(
 			long dlFileVersionPreviewId, long fileEntryId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -220,19 +224,16 @@ public interface DLFileVersionPreviewPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileVersionPreviewModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByFileVersionId(long, int, int, OrderByComparator)}
 	 * @param fileVersionId the file version ID
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
-	@Deprecated
 	public java.util.List<DLFileVersionPreview> findByFileVersionId(
 		long fileVersionId, int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the dl file version previews where fileVersionId = &#63;.
@@ -245,11 +246,14 @@ public interface DLFileVersionPreviewPersistence
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching dl file version previews
 	 */
 	public java.util.List<DLFileVersionPreview> findByFileVersionId(
 		long fileVersionId, int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first dl file version preview in the ordered set where fileVersionId = &#63;.
@@ -261,7 +265,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview findByFileVersionId_First(
 			long fileVersionId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -273,7 +278,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview fetchByFileVersionId_First(
 		long fileVersionId,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns the last dl file version preview in the ordered set where fileVersionId = &#63;.
@@ -285,7 +291,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview findByFileVersionId_Last(
 			long fileVersionId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -297,7 +304,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview fetchByFileVersionId_Last(
 		long fileVersionId,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns the dl file version previews before and after the current dl file version preview in the ordered set where fileVersionId = &#63;.
@@ -310,7 +318,8 @@ public interface DLFileVersionPreviewPersistence
 	 */
 	public DLFileVersionPreview[] findByFileVersionId_PrevAndNext(
 			long dlFileVersionPreviewId, long fileVersionId,
-			OrderByComparator<DLFileVersionPreview> orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<DLFileVersionPreview> orderByComparator)
 		throws NoSuchFileVersionPreviewException;
 
 	/**
@@ -340,17 +349,14 @@ public interface DLFileVersionPreviewPersistence
 		throws NoSuchFileVersionPreviewException;
 
 	/**
-	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByF_F(long,long)}
 	 * @param fileEntryId the file entry ID
 	 * @param fileVersionId the file version ID
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
-	@Deprecated
 	public DLFileVersionPreview fetchByF_F(
-		long fileEntryId, long fileVersionId, boolean useFinderCache);
+		long fileEntryId, long fileVersionId);
 
 	/**
 	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -361,7 +367,7 @@ public interface DLFileVersionPreviewPersistence
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
 	public DLFileVersionPreview fetchByF_F(
-		long fileEntryId, long fileVersionId);
+		long fileEntryId, long fileVersionId, boolean useFinderCache);
 
 	/**
 	 * Removes the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; from the database.
@@ -397,19 +403,15 @@ public interface DLFileVersionPreviewPersistence
 		throws NoSuchFileVersionPreviewException;
 
 	/**
-	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; and previewStatus = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; and previewStatus = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchByF_F_P(long,long,int)}
 	 * @param fileEntryId the file entry ID
 	 * @param fileVersionId the file version ID
 	 * @param previewStatus the preview status
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
-	@Deprecated
 	public DLFileVersionPreview fetchByF_F_P(
-		long fileEntryId, long fileVersionId, int previewStatus,
-		boolean useFinderCache);
+		long fileEntryId, long fileVersionId, int previewStatus);
 
 	/**
 	 * Returns the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; and previewStatus = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -421,7 +423,8 @@ public interface DLFileVersionPreviewPersistence
 	 * @return the matching dl file version preview, or <code>null</code> if a matching dl file version preview could not be found
 	 */
 	public DLFileVersionPreview fetchByF_F_P(
-		long fileEntryId, long fileVersionId, int previewStatus);
+		long fileEntryId, long fileVersionId, int previewStatus,
+		boolean useFinderCache);
 
 	/**
 	 * Removes the dl file version preview where fileEntryId = &#63; and fileVersionId = &#63; and previewStatus = &#63; from the database.
@@ -527,18 +530,15 @@ public interface DLFileVersionPreviewPersistence
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>DLFileVersionPreviewModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of dl file version previews
 	 */
-	@Deprecated
 	public java.util.List<DLFileVersionPreview> findAll(
 		int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator,
-		boolean useFinderCache);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the dl file version previews.
@@ -550,11 +550,14 @@ public interface DLFileVersionPreviewPersistence
 	 * @param start the lower bound of the range of dl file version previews
 	 * @param end the upper bound of the range of dl file version previews (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of dl file version previews
 	 */
 	public java.util.List<DLFileVersionPreview> findAll(
 		int start, int end,
-		OrderByComparator<DLFileVersionPreview> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileVersionPreview>
+			orderByComparator,
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the dl file version previews from the database.

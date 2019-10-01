@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.model.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.model.DLFileVersionPreview;
 import com.liferay.document.library.model.DLFileVersionPreviewModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
@@ -54,12 +52,11 @@ import java.util.function.Function;
  * @see DLFileVersionPreviewImpl
  * @generated
  */
-@ProviderType
 public class DLFileVersionPreviewModelImpl
 	extends BaseModelImpl<DLFileVersionPreview>
 	implements DLFileVersionPreviewModel {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a dl file version preview model instance should use the <code>DLFileVersionPreview</code> interface instead.

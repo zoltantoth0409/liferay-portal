@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.model;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -35,7 +33,6 @@ import java.util.Objects;
  * @see DLFileVersionPreview
  * @generated
  */
-@ProviderType
 public class DLFileVersionPreviewWrapper
 	implements DLFileVersionPreview, ModelWrapper<DLFileVersionPreview> {
 
@@ -203,6 +200,11 @@ public class DLFileVersionPreviewWrapper
 		return _dlFileVersionPreview.isNew();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a dl file version preview model instance should use the <code>DLFileVersionPreview</code> interface instead.
+	 */
 	@Override
 	public void persist() {
 		_dlFileVersionPreview.persist();

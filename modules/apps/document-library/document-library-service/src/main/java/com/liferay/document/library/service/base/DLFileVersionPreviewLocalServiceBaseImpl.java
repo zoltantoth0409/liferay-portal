@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.service.base;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.document.library.model.DLFileVersionPreview;
 import com.liferay.document.library.service.DLFileVersionPreviewLocalService;
 import com.liferay.document.library.service.persistence.DLFileVersionPreviewPersistence;
@@ -60,12 +58,11 @@ import javax.sql.DataSource;
  * @see com.liferay.document.library.service.impl.DLFileVersionPreviewLocalServiceImpl
  * @generated
  */
-@ProviderType
 public abstract class DLFileVersionPreviewLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements DLFileVersionPreviewLocalService, IdentifiableOSGiService {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>DLFileVersionPreviewLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.document.library.service.DLFileVersionPreviewLocalServiceUtil</code>.

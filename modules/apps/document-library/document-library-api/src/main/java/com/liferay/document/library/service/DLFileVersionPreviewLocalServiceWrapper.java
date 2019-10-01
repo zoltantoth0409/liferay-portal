@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.service;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -25,7 +23,6 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @see DLFileVersionPreviewLocalService
  * @generated
  */
-@ProviderType
 public class DLFileVersionPreviewLocalServiceWrapper
 	implements DLFileVersionPreviewLocalService,
 			   ServiceWrapper<DLFileVersionPreviewLocalService> {
