@@ -47,6 +47,9 @@ public class AddAccountUserMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long accountEntryId = ParamUtil.getLong(
 			actionRequest, "accountEntryId");
 		String screenName = ParamUtil.getString(actionRequest, "screenName");
@@ -58,9 +61,6 @@ public class AddAccountUserMVCActionCommand extends BaseMVCActionCommand {
 		String lastName = ParamUtil.getString(actionRequest, "lastName");
 		long prefixId = ParamUtil.getLong(actionRequest, "prefixId");
 		long suffixId = ParamUtil.getLong(actionRequest, "suffixId");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntryId, themeDisplay.getUserId(), screenName, emailAddress,
