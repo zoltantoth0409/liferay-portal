@@ -80,7 +80,7 @@ public class DefaultSynchronousMessageSenderTest {
 
 		_messageBus = new DefaultMessageBus();
 
-		_destinationMap = ReflectionTestUtil.getFieldValue(
+		_destinations = ReflectionTestUtil.getFieldValue(
 			_messageBus, "_destinations");
 
 		SynchronousDestination synchronousDestination =
@@ -89,7 +89,7 @@ public class DefaultSynchronousMessageSenderTest {
 		synchronousDestination.setName(
 			DestinationNames.MESSAGE_BUS_DEFAULT_RESPONSE);
 
-		_destinationMap.put(
+		_destinations.put(
 			synchronousDestination.getName(), synchronousDestination);
 
 		_defaultSynchronousMessageSender =
@@ -171,7 +171,7 @@ public class DefaultSynchronousMessageSenderTest {
 
 		destination.register(new ReplayMessageListener(response));
 
-		_destinationMap.put(destination.getName(), destination);
+		_destinations.put(destination.getName(), destination);
 
 		try {
 			Assert.assertSame(
@@ -180,14 +180,14 @@ public class DefaultSynchronousMessageSenderTest {
 					destination.getName(), new Message()));
 		}
 		finally {
-			_destinationMap.remove(destination.getName());
+			_destinations.remove(destination.getName());
 
 			destination.destroy();
 		}
 	}
 
 	private DefaultSynchronousMessageSender _defaultSynchronousMessageSender;
-	private Map<String, Destination> _destinationMap;
+	private Map<String, Destination> _destinations;
 	private MessageBus _messageBus;
 	private PortalExecutorManager _portalExecutorManager;
 

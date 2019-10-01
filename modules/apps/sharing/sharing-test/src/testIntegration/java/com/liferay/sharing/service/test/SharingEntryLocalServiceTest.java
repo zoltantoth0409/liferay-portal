@@ -1231,21 +1231,21 @@ public class SharingEntryLocalServiceTest {
 	private final class DisableSchedulerDestination implements AutoCloseable {
 
 		public DisableSchedulerDestination() {
-			_destinationMap = ReflectionTestUtil.getFieldValue(
+			_destinations = ReflectionTestUtil.getFieldValue(
 				_messageBus, "_destinations");
 
-			_destination = _destinationMap.remove(
+			_destination = _destinations.remove(
 				DestinationNames.SCHEDULER_DISPATCH);
 		}
 
 		@Override
 		public void close() {
-			_destinationMap.put(
+			_destinations.put(
 				DestinationNames.SCHEDULER_DISPATCH, _destination);
 		}
 
 		private final Destination _destination;
-		private final Map<String, Destination> _destinationMap;
+		private final Map<String, Destination> _destinations;
 
 	}
 
