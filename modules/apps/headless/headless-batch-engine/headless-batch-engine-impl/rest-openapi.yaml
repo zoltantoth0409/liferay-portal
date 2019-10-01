@@ -3,43 +3,35 @@ components:
         ImportTask:
             properties:
                 className:
-                    description: The item class name for which data will be processed in batch.
                     example: com.liferay.headless.delivery.dto.v1_0.BlogPosting
                     type: string
                 endTime:
-                    description: The end time of import task operation.
                     example: 1569261245
                     format: int64
                     minimum: 0
                     type: integer
                 errorMessage:
-                    description: The error message in case of import task's failed execution.
                     example: File import failed
                     type: string
                 executeStatus:
-                    description: The status of import task's execution.
                     enum: [COMPLETED, FAILED, INITIAL, STARTED]
                     example: INITIALIZED
                     type: string
                 id:
-                    description: The task's ID.
                     example: 30130
                     format: int64
                     minimum: 0
                     type: integer
                 operation:
-                    description: The operation of import task.
                     enum: [CREATE, DELETE, UPDATE]
                     example: CREATE
                     type: string
                 startTime:
-                    description: The start time of import task operation.
                     example: 1569261245
                     format: int64
                     minimum: 0
                     type: integer
                 version:
-                    description: The version of item class.
                     example: v1.0
                     type: string
             type: object
@@ -54,7 +46,6 @@ openapi: 3.0.1
 paths:
     /import-task/{className}/{version}:
         delete:
-            description: Uploads a new file for deleting items in batch.
             operationId: deleteImportTask
             parameters:
                 - in: path
@@ -84,10 +75,8 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
-                    description: Async
             tags: ["ImportTask"]
         post:
-            description: Uploads a new file for creating new items in batch.
             operationId: postImportTask
             parameters:
                 - in: path
@@ -122,10 +111,8 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
-                    description: Async
             tags: ["ImportTask"]
         put:
-            description: Uploads a new file for updating items in batch.
             operationId: putImportTask
             parameters:
                 - in: path
@@ -160,7 +147,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
-                    description: Async
             tags: ["ImportTask"]
     /import-task/{importTaskId}/:
         get:
@@ -181,5 +167,4 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
-                    description: Async
             tags: ["ImportTask"]
