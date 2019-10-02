@@ -148,7 +148,7 @@ public class FragmentEntryRenderUtil {
 			fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink, mode, locale);
 
-		if (Validator.isNotNull(html)) {
+		if ((request != null) && Validator.isNotNull(html)) {
 			html = _processTemplate(html, parameterMap, request, response);
 
 			html = _writePortletPaths(
