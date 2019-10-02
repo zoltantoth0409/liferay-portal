@@ -44,7 +44,7 @@ public class SQLStateAcceptor implements RetryAcceptor {
 
 			Throwable cause = t.getCause();
 
-			if ((t == cause) || (cause == null)) {
+			if ((cause == null) || (cause == t) {
 				break;
 			}
 
