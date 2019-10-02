@@ -109,7 +109,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 
 		if (clazz == null) {
 			throw new IllegalArgumentException(
-				"Unknown class name : " + className);
+				"Unknown class name: " + className);
 		}
 
 		BatchEngineTask batchEngineTask =
