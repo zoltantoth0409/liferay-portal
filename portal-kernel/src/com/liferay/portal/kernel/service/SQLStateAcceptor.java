@@ -31,24 +31,24 @@ public class SQLStateAcceptor implements RetryAcceptor {
 
 	@Override
 	public boolean acceptException(
-		Throwable t, Map<String, String> propertyMap) {
+		Throwable throwable, Map<String, String> propertyMap) {
 
 		String sqlState = propertyMap.get(SQLSTATE);
 
 		while (true) {
-			if ((t instanceof SQLException) &&
-				_scanForSQLState((SQLException)t, sqlState)) {
+			if ((throwable instanceof SQLException) &&
+				_scanForSQLState((SQLException)throwable, sqlState)) {
 
 				return true;
 			}
 
-			Throwable cause = t.getCause();
+			Throwable causeThrowable = throwable.getCause();
 
-			if ((cause == null) || (cause == t) {
+			if ((causeThrowable == null) || (causeThrowable == throwable)) {
 				break;
 			}
 
-			t = cause;
+			throwable = causeThrowable;
 		}
 
 		return false;
@@ -73,13 +73,13 @@ public class SQLStateAcceptor implements RetryAcceptor {
 				return true;
 			}
 
-			SQLException next = sqle.getNextException();
+			SQLException nextSQLE = sqle.getNextException();
 
-			if ((next == null) || next.equals(sqle)) {
+			if ((nextSQLE == null) || nextSQLE.equals(sqle)) {
 				break;
 			}
 
-			sqle = next;
+			sqle = nextSQLE;
 		}
 
 		return false;
