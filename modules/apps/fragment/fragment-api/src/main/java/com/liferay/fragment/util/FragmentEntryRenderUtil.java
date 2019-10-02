@@ -32,11 +32,13 @@ import com.liferay.portal.kernel.template.TemplateException;
 import com.liferay.portal.kernel.template.TemplateManager;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
 import com.liferay.portal.kernel.template.TemplateResource;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.servlet.PipingServletResponse;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -128,12 +130,23 @@ public class FragmentEntryRenderUtil {
 			HttpServletResponse response)
 		throws PortalException {
 
+		return renderFragmentEntryLink(
+			fragmentEntryLink, mode, parameterMap, request, response,
+			LocaleUtil.getMostRelevantLocale());
+	}
+
+	public static String renderFragmentEntryLink(
+			FragmentEntryLink fragmentEntryLink, String mode,
+			Map<String, Object> parameterMap, HttpServletRequest request,
+			HttpServletResponse response, Locale locale)
+		throws PortalException {
+
 		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
 			getService();
 
 		String html =
 			fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
-				fragmentEntryLink, mode);
+				fragmentEntryLink, mode, locale);
 
 		if (Validator.isNotNull(html)) {
 			html = _processTemplate(html, parameterMap, request, response);
