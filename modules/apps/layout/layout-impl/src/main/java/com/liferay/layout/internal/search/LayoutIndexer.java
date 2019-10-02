@@ -127,7 +127,7 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 				layout.getName(LocaleUtil.fromLanguageId(languageId)));
 		}
 
-		if (fragmentEntryLinks == null || fragmentEntryLinks.isEmpty()) {
+		if ((fragmentEntryLinks == null) || fragmentEntryLinks.isEmpty()) {
 			return document;
 		}
 
