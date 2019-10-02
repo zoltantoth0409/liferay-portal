@@ -135,18 +135,16 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 	private ImportTask _toImportTask(BatchEngineTask batchEngineTask) {
 		return new ImportTask() {
 			{
-				setClassName(batchEngineTask.getClassName());
-				setEndTime(batchEngineTask.getEndTime());
-				setErrorMessage(batchEngineTask.getErrorMessage());
-				setExecuteStatus(
-					ImportTask.ExecuteStatus.valueOf(
-						batchEngineTask.getExecuteStatus()));
-				setId(batchEngineTask.getBatchEngineTaskId());
-				setOperation(
-					ImportTask.Operation.valueOf(
-						batchEngineTask.getOperation()));
-				setStartTime(batchEngineTask.getStartTime());
-				setVersion(batchEngineTask.getVersion());
+				className = batchEngineTask.getClassName();
+				endTime = batchEngineTask.getEndTime();
+				errorMessage = batchEngineTask.getErrorMessage();
+				executeStatus = ImportTask.ExecuteStatus.valueOf(
+					batchEngineTask.getExecuteStatus());
+				id = batchEngineTask.getBatchEngineTaskId();
+				operation = ImportTask.Operation.valueOf(
+					batchEngineTask.getOperation());
+				startTime = batchEngineTask.getStartTime();
+				version = batchEngineTask.getVersion();
 			}
 		};
 	}
