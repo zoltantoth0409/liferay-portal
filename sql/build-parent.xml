@@ -42,7 +42,7 @@
 			classname="com.liferay.portal.tools.DBBuilder"
 			classpathref="db.builder.classpath"
 			fork="${fork.mode}"
-			outputproperty="java.output"
+			outputproperty="db.builder.output"
 		>
 			<jvmarg if:true="${jvm.debug}" line="${jpda.settings}" />
 			<jvmarg value="-Xmx${db.build.java.mx}" />
@@ -53,7 +53,7 @@
 			<arg value="db.sql.dir=${db.sql.dir}" />
 		</java>
 
-		<echo>${java.output}</echo>
+		<echo>${db.builder.output}</echo>
 	</target>
 
 	<target name="clean">
