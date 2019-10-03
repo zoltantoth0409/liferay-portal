@@ -1739,10 +1739,6 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			Group group, boolean privateLayout, String keywords, String[] types)
 		throws PortalException {
 
-		if (Validator.isNull(keywords)) {
-			return getLayoutsCount(group, privateLayout, true);
-		}
-
 		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
 

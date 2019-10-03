@@ -22,6 +22,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.SafeConsumer;
+import com.liferay.layout.admin.constants.LayoutAdminConstants;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.layout.page.template.service.LayoutPageTemplateCollectionLocalServiceUtil;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil;
@@ -876,12 +877,28 @@ public class LayoutsAdminDisplayContext {
 		return PortalUtil.getLayoutFullURL(layout, _themeDisplay);
 	}
 
-	public boolean hasLayouts() {
+	public boolean hasLayouts() throws PortalException {
 		int privatePagesCount = LayoutLocalServiceUtil.getLayoutsCount(
-			getSelGroup(), true, 0);
+			getSelGroup(), true, StringPool.BLANK,
+			new String[] {
+				LayoutAdminConstants.LAYOUT_TYPE_CONTENT,
+				LayoutConstants.TYPE_EMBEDDED,
+				LayoutConstants.TYPE_LINK_TO_LAYOUT,
+				LayoutConstants.TYPE_FULL_PAGE_APPLICATION,
+				LayoutConstants.TYPE_PANEL, LayoutConstants.TYPE_PORTLET,
+				LayoutConstants.TYPE_URL
+			});
 
 		int publicPagesCount = LayoutLocalServiceUtil.getLayoutsCount(
-			getSelGroup(), false, 0);
+			getSelGroup(), false, StringPool.BLANK,
+			new String[] {
+				LayoutAdminConstants.LAYOUT_TYPE_CONTENT,
+				LayoutConstants.TYPE_EMBEDDED,
+				LayoutConstants.TYPE_LINK_TO_LAYOUT,
+				LayoutConstants.TYPE_FULL_PAGE_APPLICATION,
+				LayoutConstants.TYPE_PANEL, LayoutConstants.TYPE_PORTLET,
+				LayoutConstants.TYPE_URL
+			});
 
 		if ((privatePagesCount + publicPagesCount) > 0) {
 			return true;
