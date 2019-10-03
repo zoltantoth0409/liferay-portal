@@ -1582,6 +1582,14 @@ public class BaseTextExportImportContentProcessor
 	protected void validateDLReferences(long groupId, String content)
 		throws PortalException {
 
+		ExportImportServiceConfiguration configuration =
+			ConfigurationProviderUtil.getSystemConfiguration(
+				ExportImportServiceConfiguration.class);
+
+		if (!configuration.validateFileEntryReferences()) {
+			return;
+		}
+
 		String pathContext = PortalUtil.getPathContext();
 
 		String[] patterns = {
@@ -1691,6 +1699,14 @@ public class BaseTextExportImportContentProcessor
 
 	protected void validateJournalFeedReferences(long groupId, String content)
 		throws PortalException {
+
+		ExportImportServiceConfiguration configuration =
+			ConfigurationProviderUtil.getSystemConfiguration(
+				ExportImportServiceConfiguration.class);
+
+		if (!configuration.validateJournalFeedReferences()) {
+			return;
+		}
 
 		String[] patterns = {_JOURNAL_FEED_FRIENDLY_URL};
 
@@ -1953,6 +1969,14 @@ public class BaseTextExportImportContentProcessor
 				groupId, privateLayout, layoutId);
 
 			if (layout == null) {
+				ExportImportServiceConfiguration configuration =
+					ConfigurationProviderUtil.getSystemConfiguration(
+						ExportImportServiceConfiguration.class);
+
+				if (!configuration.validateLayoutReferences()) {
+					continue;
+				}
+
 				StringBundler sb = new StringBundler(8);
 
 				sb.append("Unable to validate referenced page because it ");
