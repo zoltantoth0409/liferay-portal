@@ -175,7 +175,7 @@ class MapBase extends State {
 		const customControls = {};
 
 		if (controls.indexOf(this.constructor.CONTROLS.HOME) !== -1) {
-			const homeControl = buildFragment(TPL_HOME_BUTTON).firstElementChild;
+			const homeControl = buildFragment(TPL_HOME_BUTTON).querySelector('.btn.btn-default.home-button');
 			customControls[this.constructor.CONTROLS.HOME] = homeControl;
 			this.addControl(homeControl, this.constructor.POSITION.RIGHT_BOTTOM);
 		}
@@ -184,7 +184,7 @@ class MapBase extends State {
 			controls.indexOf(this.constructor.CONTROLS.SEARCH) !== -1 &&
 			this.constructor.SearchImpl
 		) {
-			const searchControl = buildFragment(TPL_SEARCH_BOX).firstElementChild;
+			const searchControl = buildFragment(TPL_SEARCH_BOX).querySelector('div.col-md-6.search-controls');
 			customControls[
 				this.constructor.CONTROLS.SEARCH
 			] = new this.constructor.SearchImpl({
