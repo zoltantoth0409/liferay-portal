@@ -397,8 +397,9 @@ public class BaseTextExportImportContentProcessor
 	protected boolean isValidateDLReferences() {
 		try {
 			ExportImportServiceConfiguration configuration =
-				ConfigurationProviderUtil.getSystemConfiguration(
-					ExportImportServiceConfiguration.class);
+				ConfigurationProviderUtil.getCompanyConfiguration(
+					ExportImportServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			return configuration.validateFileEntryReferences();
 		}
@@ -412,8 +413,9 @@ public class BaseTextExportImportContentProcessor
 	protected boolean isValidateJournalFeedReferences() {
 		try {
 			ExportImportServiceConfiguration configuration =
-				ConfigurationProviderUtil.getSystemConfiguration(
-					ExportImportServiceConfiguration.class);
+				ConfigurationProviderUtil.getCompanyConfiguration(
+					ExportImportServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			return configuration.validateJournalFeedReferences();
 		}
@@ -437,8 +439,9 @@ public class BaseTextExportImportContentProcessor
 	protected boolean isValidateLinksToLayoutsReferences() {
 		try {
 			ExportImportServiceConfiguration configuration =
-				ConfigurationProviderUtil.getSystemConfiguration(
-					ExportImportServiceConfiguration.class);
+				ConfigurationProviderUtil.getCompanyConfiguration(
+					ExportImportServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			return configuration.validateLayoutReferences();
 		}
