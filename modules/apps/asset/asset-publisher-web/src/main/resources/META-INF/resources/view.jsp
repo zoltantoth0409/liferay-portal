@@ -116,7 +116,7 @@ request.setAttribute("view.jsp-viewInContext", assetPublisherDisplayContext.isAs
 	</c:when>
 </c:choose>
 
-<c:if test="<%= !assetPublisherDisplayContext.isPaginationTypeNone() && (searchContainer.getTotal() > searchContainer.getResults().size()) %>">
+<c:if test="<%= !assetPublisherDisplayContext.isPaginationTypeNone() && (searchContainer.getTotal() > searchContainer.getDelta()) %>">
 	<liferay-ui:search-paginator
 		searchContainer="<%= searchContainer %>"
 		type="<%= assetPublisherDisplayContext.getPaginationType() %>"
