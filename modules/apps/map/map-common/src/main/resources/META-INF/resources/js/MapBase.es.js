@@ -81,6 +81,10 @@ class MapBase extends State {
 			Liferay.Util.getGeolocation(
 				(lat, lng) => {
 					this._initializeLocation({lat, lng})
+				},
+				() => {
+					this.zoom = 2;
+					this._initializeLocation({lat: 0, lng: 0});
 				}
 			);
 		}
