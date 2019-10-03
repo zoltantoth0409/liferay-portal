@@ -137,10 +137,19 @@ public class BaseTextExportImportContentProcessor
 	public void validateContentReferences(long groupId, String content)
 		throws PortalException {
 
-		validateDLReferences(groupId, content);
-		validateJournalFeedReferences(groupId, content);
+		if (isValidateDLReferences()) {
+			validateDLReferences(groupId, content);
+		}
+
+		if (isValidateJournalFeedReferences()) {
+			validateJournalFeedReferences(groupId, content);
+		}
+
 		validateLayoutReferences(groupId, content);
-		validateLinksToLayoutsReferences(content);
+
+		if (isValidateLinksToLayoutsReferences()) {
+			validateLinksToLayoutsReferences(content);
+		}
 	}
 
 	protected void deleteTimestampParameters(StringBuilder sb, int beginPos) {
@@ -385,6 +394,36 @@ public class BaseTextExportImportContentProcessor
 		return map;
 	}
 
+	protected boolean isValidateDLReferences() {
+		try {
+			ExportImportServiceConfiguration configuration =
+				ConfigurationProviderUtil.getSystemConfiguration(
+					ExportImportServiceConfiguration.class);
+
+			return configuration.validateFileEntryReferences();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return true;
+	}
+
+	protected boolean isValidateJournalFeedReferences() {
+		try {
+			ExportImportServiceConfiguration configuration =
+				ConfigurationProviderUtil.getSystemConfiguration(
+					ExportImportServiceConfiguration.class);
+
+			return configuration.validateJournalFeedReferences();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return true;
+	}
+
 	protected boolean isValidateLayoutReferences() throws PortalException {
 		long companyId = CompanyThreadLocal.getCompanyId();
 
@@ -393,6 +432,21 @@ public class BaseTextExportImportContentProcessor
 				ExportImportServiceConfiguration.class, companyId);
 
 		return exportImportServiceConfiguration.validateLayoutReferences();
+	}
+
+	protected boolean isValidateLinksToLayoutsReferences() {
+		try {
+			ExportImportServiceConfiguration configuration =
+				ConfigurationProviderUtil.getSystemConfiguration(
+					ExportImportServiceConfiguration.class);
+
+			return configuration.validateLayoutReferences();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return true;
 	}
 
 	protected String replaceExportDLReferences(
@@ -1582,14 +1636,6 @@ public class BaseTextExportImportContentProcessor
 	protected void validateDLReferences(long groupId, String content)
 		throws PortalException {
 
-		ExportImportServiceConfiguration configuration =
-			ConfigurationProviderUtil.getSystemConfiguration(
-				ExportImportServiceConfiguration.class);
-
-		if (!configuration.validateFileEntryReferences()) {
-			return;
-		}
-
 		String pathContext = PortalUtil.getPathContext();
 
 		String[] patterns = {
@@ -1699,14 +1745,6 @@ public class BaseTextExportImportContentProcessor
 
 	protected void validateJournalFeedReferences(long groupId, String content)
 		throws PortalException {
-
-		ExportImportServiceConfiguration configuration =
-			ConfigurationProviderUtil.getSystemConfiguration(
-				ExportImportServiceConfiguration.class);
-
-		if (!configuration.validateJournalFeedReferences()) {
-			return;
-		}
 
 		String[] patterns = {_JOURNAL_FEED_FRIENDLY_URL};
 
@@ -1969,14 +2007,6 @@ public class BaseTextExportImportContentProcessor
 				groupId, privateLayout, layoutId);
 
 			if (layout == null) {
-				ExportImportServiceConfiguration configuration =
-					ConfigurationProviderUtil.getSystemConfiguration(
-						ExportImportServiceConfiguration.class);
-
-				if (!configuration.validateLayoutReferences()) {
-					continue;
-				}
-
 				StringBundler sb = new StringBundler(8);
 
 				sb.append("Unable to validate referenced page because it ");
