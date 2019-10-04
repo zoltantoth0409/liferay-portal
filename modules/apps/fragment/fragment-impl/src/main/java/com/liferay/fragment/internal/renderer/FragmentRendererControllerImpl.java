@@ -135,7 +135,7 @@ public class FragmentRendererControllerImpl
 				httpServletRequest, "fragmentEntryContentInvalid");
 
 			return _getFragmentEntryContentExceptionMessage(
-				httpServletRequest, e);
+				e, httpServletRequest);
 		}
 
 		return unsyncStringWriter.toString();
@@ -175,7 +175,7 @@ public class FragmentRendererControllerImpl
 	}
 
 	private String _getFragmentEntryContentExceptionMessage(
-		HttpServletRequest httpServletRequest, Exception e) {
+		Exception e, HttpServletRequest httpServletRequest) {
 
 		StringBundler sb = new StringBundler(3);
 
@@ -183,11 +183,11 @@ public class FragmentRendererControllerImpl
 
 		String errorMessage = "an-unexpected-error-occurred";
 
-		Throwable cause = e.getCause();
+		Throwable throwable = e.getCause();
 
-		if (cause instanceof FragmentEntryContentException) {
+		if (throwable instanceof FragmentEntryContentException) {
 			FragmentEntryContentException fece =
-				(FragmentEntryContentException)cause;
+				(FragmentEntryContentException)throwable;
 
 			errorMessage = fece.getLocalizedMessage();
 		}
