@@ -1494,8 +1494,7 @@ public class JournalArticleStagedModelDataHandler
 
 					Map<String, String> localizedJsonBodyMap =
 						(Map)JSONFactoryUtil.looseDeserialize(
-							String.valueOf(
-								jsonObject.get("localizedBodyMap")));
+							String.valueOf(jsonObject.get("localizedBodyMap")));
 
 					Map<Locale, String> localizedBodyMap = new HashMap<>();
 
