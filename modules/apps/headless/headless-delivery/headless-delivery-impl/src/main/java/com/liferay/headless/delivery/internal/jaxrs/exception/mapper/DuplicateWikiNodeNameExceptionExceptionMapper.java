@@ -42,10 +42,10 @@ public class DuplicateWikiNodeNameExceptionExceptionMapper
 	public Response toResponse(DuplicateNodeNameException dnne) {
 		return Response.status(
 			409
-		).type(
-			MediaType.TEXT_PLAIN
 		).entity(
 			"A wiki node already exists with the name " + dnne.getMessage()
+		).type(
+			MediaType.TEXT_PLAIN
 		).build();
 	}
 
