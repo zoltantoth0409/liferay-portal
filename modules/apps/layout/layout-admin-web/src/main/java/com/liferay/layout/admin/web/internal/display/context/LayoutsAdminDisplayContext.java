@@ -1135,11 +1135,7 @@ public class LayoutsAdminDisplayContext {
 			return _tabs1;
 		}
 
-		Group group = getGroup();
-
-		_tabs1 = ParamUtil.getString(
-			_liferayPortletRequest, "tabs1",
-			group.isCompany() ? "page-templates" : "pages");
+		_tabs1 = ParamUtil.getString(_liferayPortletRequest, "tabs1", "pages");
 
 		return _tabs1;
 	}
