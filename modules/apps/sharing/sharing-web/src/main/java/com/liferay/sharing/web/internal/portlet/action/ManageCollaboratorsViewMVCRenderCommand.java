@@ -78,9 +78,11 @@ public class ManageCollaboratorsViewMVCRenderCommand
 			"actionUrl", _getManageCollaboratorsActionURL(renderResponse));
 
 		long classNameId = ParamUtil.getLong(renderRequest, "classNameId");
-		long classPK = ParamUtil.getLong(renderRequest, "classPK");
 
 		template.put("classNameId", classNameId);
+
+		long classPK = ParamUtil.getLong(renderRequest, "classPK");
+
 		template.put("classPK", classPK);
 
 		template.put(
