@@ -76,7 +76,6 @@ public class CollaboratorsMVCResourceCommand extends BaseMVCResourceCommand {
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			ParamUtil.getString(httpServletRequest, "className"));
-
 		long classPK = ParamUtil.getLong(httpServletRequest, "classPK");
 
 		JSONPortletResponseUtil.writeJSON(
