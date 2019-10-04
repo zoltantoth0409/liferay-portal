@@ -36,6 +36,7 @@ import com.liferay.item.selector.ItemSelectorReturnType;
  * </ul>
  *
  * @author Eudaldo Alonso
+ * @review
  */
 public class InfoItemItemSelectorReturnType implements ItemSelectorReturnType {
 }
