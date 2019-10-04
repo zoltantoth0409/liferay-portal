@@ -78,6 +78,7 @@ public class FragmentDisplayContext {
 
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
 		_request = request;
 
 		_fragmentPortletConfiguration =

@@ -96,6 +96,7 @@ public class AssetCategoriesDisplayContext {
 
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
 		_request = request;
 
 		_assetCategoriesAdminWebConfiguration =

@@ -136,6 +136,7 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 		if (journalArticle == null) {
 			if (i > 0) {
 				urlTitle = initialURL.substring(0, i);
+
 				String param = initialURL.substring(i + 1);
 
 				if (param.contains(StringPool.PERIOD)) {

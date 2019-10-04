@@ -208,6 +208,7 @@ public class PortletRequestDispatcherImpl
 
 			if (pos != -1) {
 				pathNoQueryString = _path.substring(0, pos);
+
 				queryString = _path.substring(pos + 1);
 
 				httpServletRequest = createDynamicServletRequest(

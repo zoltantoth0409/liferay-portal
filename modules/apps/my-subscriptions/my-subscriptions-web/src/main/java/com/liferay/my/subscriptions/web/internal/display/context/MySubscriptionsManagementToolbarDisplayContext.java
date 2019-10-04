@@ -39,7 +39,7 @@ public class MySubscriptionsManagementToolbarDisplayContext {
 		_user = user;
 
 		_totalItems = SubscriptionLocalServiceUtil.getUserSubscriptionsCount(
-			_user.getUserId());
+			user.getUserId());
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {

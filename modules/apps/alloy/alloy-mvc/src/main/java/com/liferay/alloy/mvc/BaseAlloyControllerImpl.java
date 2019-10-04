@@ -1036,6 +1036,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		portletRequest = (PortletRequest)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_REQUEST);
+
 		portletResponse = (PortletResponse)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE);
 

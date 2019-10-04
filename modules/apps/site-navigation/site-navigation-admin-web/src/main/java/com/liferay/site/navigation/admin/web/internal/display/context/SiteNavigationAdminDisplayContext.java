@@ -66,6 +66,7 @@ public class SiteNavigationAdminDisplayContext {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
+
 		_request = request;
 
 		_siteNavigationMenuItemTypeRegistry =

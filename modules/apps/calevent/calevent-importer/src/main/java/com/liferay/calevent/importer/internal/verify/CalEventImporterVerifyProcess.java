@@ -768,6 +768,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 		if (assetLink.getEntryId1() == oldEntryId) {
 			entryId1 = newEntryId;
+
 			entryId2 = assetLink.getEntryId2();
 
 			linkedAssetEntry = _assetEntryLocalService.fetchAssetEntry(
@@ -775,6 +776,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 		}
 		else {
 			entryId1 = assetLink.getEntryId1();
+
 			entryId2 = newEntryId;
 
 			linkedAssetEntry = _assetEntryLocalService.fetchAssetEntry(

@@ -2684,6 +2684,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		String oldSubject = message.getSubject();
 
 		Date modifiedDate = serviceContext.getModifiedDate(null);
+
 		subject = ModelHintsUtil.trimString(
 			MBMessage.class.getName(), "subject", subject);
 

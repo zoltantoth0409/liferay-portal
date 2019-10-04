@@ -392,6 +392,7 @@ public class SiteNavigationMenuDisplayContext {
 
 			layout = LayoutLocalServiceUtil.fetchLayout(
 				themeDisplay.getRefererPlid());
+
 			scopeGroup = layout.getGroup();
 		}
 
@@ -420,6 +421,7 @@ public class SiteNavigationMenuDisplayContext {
 
 			layout = LayoutLocalServiceUtil.fetchLayout(
 				themeDisplay.getRefererPlid());
+
 			scopeGroup = layout.getGroup();
 		}
 

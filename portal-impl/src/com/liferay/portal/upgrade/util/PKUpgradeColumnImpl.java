@@ -36,6 +36,7 @@ public class PKUpgradeColumnImpl extends BaseUpgradeColumnImpl {
 		super(name, oldColumnType);
 
 		_newColumnType = Integer.valueOf(Types.BIGINT);
+
 		_trackValues = trackValues;
 
 		if (_trackValues) {
