@@ -1431,8 +1431,6 @@ public class JournalArticleStagedModelDataHandler
 		ActionableDynamicQuery actionableDynamicQuery =
 			_userNotificationEventLocalService.getActionableDynamicQuery();
 
-		actionableDynamicQuery.setCompanyId(article.getCompanyId());
-
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
 				Property delivered = PropertyFactoryUtil.forName("delivered");
@@ -1446,7 +1444,7 @@ public class JournalArticleStagedModelDataHandler
 						StringPool.PERCENT + article.getId() +
 							StringPool.PERCENT));
 			});
-
+		actionableDynamicQuery.setCompanyId(article.getCompanyId());
 		actionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod<UserNotificationEvent>)
 				userNotificationEvent -> {
