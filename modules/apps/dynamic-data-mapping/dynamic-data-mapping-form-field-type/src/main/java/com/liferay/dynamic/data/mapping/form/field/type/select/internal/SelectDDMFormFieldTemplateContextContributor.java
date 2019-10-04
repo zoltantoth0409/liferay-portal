@@ -257,7 +257,6 @@ public class SelectDDMFormFieldTemplateContextContributor
 		Map<String, String> optionMap = new HashMap<>();
 
 		optionMap.put("label", optionLabel);
-
 		optionMap.put("value", optionValue);
 
 		options.add(optionMap);
