@@ -670,7 +670,6 @@ public class ServiceBuilder {
 			_autoNamespaceTables = GetterUtil.getBoolean(
 				rootElement.attributeValue("auto-namespace-tables"),
 				_autoNamespaceTables);
-
 			_changeTrackingEnabled = GetterUtil.getBoolean(
 				rootElement.attributeValue("change-tracking-enabled"));
 
@@ -818,8 +817,6 @@ public class ServiceBuilder {
 						_createFinderBaseImpl(entity);
 						_createFinderUtil(entity);
 
-						_createCTServiceImpl(entity);
-
 						if (entity.hasLocalService()) {
 							_createServiceImpl(entity, _SESSION_TYPE_LOCAL);
 							_createServiceBaseImpl(entity, _SESSION_TYPE_LOCAL);
@@ -879,6 +876,8 @@ public class ServiceBuilder {
 
 							_removeServiceSoap(entity);
 						}
+
+						_createCTServiceImpl(entity);
 
 						if (entity.isUADEnabled()) {
 							_createBaseUADAnonymizer(entity);
@@ -3705,10 +3704,10 @@ public class ServiceBuilder {
 				continue;
 			}
 
-			List<EntityFinder> entityFinders = entity.getEntityFinders();
-
 			List<IndexMetadata> indexMetadatas = indexMetadatasMap.get(
 				entity.getTable());
+
+			List<EntityFinder> entityFinders = entity.getEntityFinders();
 
 			for (EntityFinder entityFinder : entityFinders) {
 				if (!entityFinder.isDBIndex()) {
@@ -5648,7 +5647,6 @@ public class ServiceBuilder {
 		String txManager = entityElement.attributeValue("tx-manager");
 		boolean cacheEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("cache-enabled"), true);
-
 		boolean changeTrackingEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("change-tracking-enabled"),
 			_changeTrackingEnabled);
@@ -6265,13 +6263,14 @@ public class ServiceBuilder {
 			humanName, tableName, alias, uuid, uuidAccessor,
 			externalReferenceCode, localService, remoteService, persistence,
 			persistenceClassName, finderClassName, dataSource, sessionFactory,
-			txManager, cacheEnabled, dynamicUpdateEnabled, jsonEnabled,
-			mvccEnabled, trashEnabled, uadApplicationName, uadAutoDelete,
-			uadOutputPath, uadPackagePath, deprecated, pkEntityColumns,
-			regularEntityColumns, blobEntityColumns, collectionEntityColumns,
-			entityColumns, entityOrder, entityFinders, referenceEntities,
+			txManager, cacheEnabled, changeTrackingEnabled,
+			dynamicUpdateEnabled, jsonEnabled, mvccEnabled, trashEnabled,
+			uadApplicationName, uadAutoDelete, uadOutputPath, uadPackagePath,
+			deprecated, pkEntityColumns, regularEntityColumns,
+			blobEntityColumns, collectionEntityColumns, entityColumns,
+			entityOrder, entityFinders, referenceEntities,
 			unresolvedReferenceEntityNames, txRequiredMethodNames,
-			resourceActionModel, changeTrackingEnabled);
+			resourceActionModel);
 
 		if (changeTrackingEnabled) {
 			if (!mvccEnabled) {
@@ -6282,8 +6281,8 @@ public class ServiceBuilder {
 
 			if (entity.isHierarchicalTree()) {
 				throw new ServiceBuilderException(
-					"Change tracking with Hierarchical Tree is not yet " +
-						"supported for " + entityName);
+					"Change tracking with hierarchical tree is not supported " +
+						"for " + entityName);
 			}
 
 			if (pkEntityColumns.size() > 1) {

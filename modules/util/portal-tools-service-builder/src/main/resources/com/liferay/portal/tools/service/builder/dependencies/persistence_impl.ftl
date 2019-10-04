@@ -22,9 +22,10 @@
 	/>
 </#if>
 
-<#assign finderFieldSQLSuffix = "_SQL" />
-
-<#assign useCache = "useFinderCache" />
+<#assign
+	finderFieldSQLSuffix = "_SQL"
+	useCache = "useFinderCache"
+/>
 
 <#if entity.isChangeTrackingEnabled()>
 	<#assign useCache = "useFinderCache && productionMode" />
