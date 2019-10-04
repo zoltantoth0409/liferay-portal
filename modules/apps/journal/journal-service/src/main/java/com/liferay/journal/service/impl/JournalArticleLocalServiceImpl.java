@@ -7912,8 +7912,6 @@ public class JournalArticleLocalServiceImpl
 			return defaultArticleURL;
 		}
 
-		String urlViewInContext = StringPool.BLANK;
-
 		try {
 			AssetRendererFactory<JournalArticle> assetRendererFactory =
 				AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
@@ -7923,14 +7921,14 @@ public class JournalArticleLocalServiceImpl
 				assetRendererFactory.getAssetRenderer(
 					article, AssetRendererFactory.TYPE_LATEST_APPROVED);
 
-			urlViewInContext = assetRenderer.getURLViewInContext(
+			return assetRenderer.getURLViewInContext(
 				liferayPortletRequest, null, defaultArticleURL);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
 
-		return urlViewInContext;
+		return StringPool.BLANK;
 	}
 
 	protected boolean hasModifiedLatestApprovedVersion(
