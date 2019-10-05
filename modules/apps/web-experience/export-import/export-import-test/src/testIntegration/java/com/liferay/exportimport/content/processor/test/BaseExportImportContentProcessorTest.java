@@ -169,6 +169,7 @@ public class BaseExportImportContentProcessorTest {
 		_portletDataContextExport.setExportDataRootElement(rootElement);
 
 		_stagingPrivateLayout = addMultiLocaleLayout(_stagingGroup, true);
+
 		_stagingPublicLayout = addMultiLocaleLayout(_stagingGroup, false);
 
 		_portletDataContextExport.setPlid(_stagingPublicLayout.getPlid());

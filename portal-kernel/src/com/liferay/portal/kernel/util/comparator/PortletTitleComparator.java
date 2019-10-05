@@ -43,6 +43,7 @@ public class PortletTitleComparator
 		ServletContext servletContext, Locale locale) {
 
 		_servletContext = servletContext;
+
 		_locale = locale;
 
 		_collator = CollatorUtil.getInstance(_locale);

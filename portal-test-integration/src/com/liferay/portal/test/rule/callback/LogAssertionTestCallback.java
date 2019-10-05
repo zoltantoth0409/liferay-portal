@@ -139,6 +139,7 @@ public class LogAssertionTestCallback
 		List<ExpectedLogs> expectedLogsList) {
 
 		_thread = Thread.currentThread();
+
 		_uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
 
 		Thread.setDefaultUncaughtExceptionHandler(

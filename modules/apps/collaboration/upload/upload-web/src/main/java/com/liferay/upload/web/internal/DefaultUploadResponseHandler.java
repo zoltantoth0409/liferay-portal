@@ -71,6 +71,7 @@ public class DefaultUploadResponseHandler implements UploadResponseHandler {
 			if (pe instanceof AntivirusScannerException) {
 				errorType =
 					ServletResponseConstants.SC_FILE_ANTIVIRUS_EXCEPTION;
+
 				AntivirusScannerException ase = (AntivirusScannerException)pe;
 
 				errorMessage = themeDisplay.translate(ase.getMessageKey());

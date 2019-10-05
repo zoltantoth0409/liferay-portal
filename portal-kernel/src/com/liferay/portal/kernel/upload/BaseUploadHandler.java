@@ -267,6 +267,7 @@ public abstract class BaseUploadHandler implements UploadHandler {
 			if (pe instanceof AntivirusScannerException) {
 				errorType =
 					ServletResponseConstants.SC_FILE_ANTIVIRUS_EXCEPTION;
+
 				AntivirusScannerException ase = (AntivirusScannerException)pe;
 
 				errorMessage = themeDisplay.translate(ase.getMessageKey());

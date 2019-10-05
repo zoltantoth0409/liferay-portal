@@ -167,6 +167,7 @@ public class DocumentConversionUtil {
 		}
 
 		sourceExtension = _fixExtension(sourceExtension);
+
 		targetExtension = _fixExtension(targetExtension);
 
 		_validate(targetExtension, id);

@@ -35,6 +35,7 @@ public class IPInfo {
 			_latitude = location.latitude;
 			_longitude = location.longitude;
 			_postalCode = location.postalCode;
+
 			_regionCode = location.region;
 
 			_regionName = regionName.regionNameByCode(

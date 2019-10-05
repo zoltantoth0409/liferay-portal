@@ -629,8 +629,8 @@ public class JSLoaderModulesServletTest extends PowerMockito {
 			_ranking = ranking;
 
 			_properties.put("objectClass", objectClasses);
-			_properties.put("service.id", _id);
-			_properties.put("service.ranking", _ranking);
+			_properties.put("service.id", id);
+			_properties.put("service.ranking", ranking);
 		}
 
 		@Override

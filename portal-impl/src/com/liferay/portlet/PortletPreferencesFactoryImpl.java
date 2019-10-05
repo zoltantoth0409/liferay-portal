@@ -902,7 +902,6 @@ public class PortletPreferencesFactoryImpl
 		else {
 			if (portlet.isPreferencesUniquePerLayout()) {
 				ownerId = PortletKeys.PREFS_OWNER_ID_DEFAULT;
-				ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
 				plid = layout.getPlid();
 
 				if (themeDisplay != null) {
@@ -919,6 +918,8 @@ public class PortletPreferencesFactoryImpl
 					ownerId = layout.getGroupId();
 					plid = PortletKeys.PREFS_PLID_SHARED;
 				}
+
+				ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
 
 				if (portlet.isPreferencesOwnedByGroup()) {
 				}

@@ -55,7 +55,9 @@ public class UserGroupGroupRoleFinderTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 		_role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
+
 		_user = UserTestUtil.addUser();
+
 		_userGroup = UserGroupTestUtil.addUserGroup();
 
 		UserLocalServiceUtil.addUserGroupUser(
