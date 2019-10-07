@@ -54,7 +54,6 @@ import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -497,8 +496,5 @@ public class MessageBoardThreadResourceImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	@Reference
-	private UserService _userService;
 
 }
