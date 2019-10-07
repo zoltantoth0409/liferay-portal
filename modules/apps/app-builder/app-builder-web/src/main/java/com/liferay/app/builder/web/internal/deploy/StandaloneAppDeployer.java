@@ -179,7 +179,6 @@ public class StandaloneAppDeployer implements AppDeployer {
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
 		serviceContext.setAttribute("layoutUpdateable", Boolean.FALSE);
-
 		serviceContext.setScopeGroupId(groupId);
 
 		long defaultUserId = _userLocalService.getDefaultUserId(companyId);
