@@ -132,8 +132,8 @@ public class DefaultSynchronousMessageSenderTest {
 	public void testSendToAsyncDestination() throws MessageBusException {
 		SerialDestination serialDestination = new SerialDestination();
 
-		serialDestination.setPortalExecutorManager(_portalExecutorManager);
 		serialDestination.setName("testSerialDestination");
+		serialDestination.setPortalExecutorManager(_portalExecutorManager);
 
 		serialDestination.afterPropertiesSet();
 
