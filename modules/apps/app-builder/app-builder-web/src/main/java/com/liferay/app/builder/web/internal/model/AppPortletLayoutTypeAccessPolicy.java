@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.app.builder.web.internal.layout.type.access.policy;
+package com.liferay.app.builder.web.internal.model;
 
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
