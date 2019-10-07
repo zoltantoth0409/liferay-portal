@@ -70,14 +70,14 @@ public class MBMessageModelDocumentContributor
 				mbMessage.getSubject());
 		}
 
-		document.addKeyword("parentMessageId", mbMessage.getParentMessageId());
 		document.addKeyword(
 			Field.ROOT_ENTRY_CLASS_PK, mbMessage.getRootMessageId());
-		document.addKeywordSortable("answer", mbMessage.isAnswer());
 
 		if (mbMessage.isAnonymous()) {
 			document.remove(Field.USER_NAME);
 		}
+
+		document.addKeywordSortable("answer", mbMessage.isAnswer());
 
 		MBDiscussion discussion =
 			mbDiscussionLocalService.fetchThreadDiscussion(
@@ -90,7 +90,7 @@ public class MBMessageModelDocumentContributor
 			document.addKeyword("discussion", true);
 		}
 
-		document.addKeyword("threadId", mbMessage.getThreadId());
+		document.addKeyword("parentMessageId", mbMessage.getParentMessageId());
 
 		if (mbMessage.getMessageId() == mbMessage.getRootMessageId()) {
 			MBThread mbThread = mbThreadLocalService.fetchMBThread(
@@ -98,6 +98,8 @@ public class MBMessageModelDocumentContributor
 
 			document.addKeyword("question", mbThread.isQuestion());
 		}
+
+		document.addKeyword("threadId", mbMessage.getThreadId());
 
 		if (mbMessage.isDiscussion()) {
 			List<RelatedEntryIndexer> relatedEntryIndexers =
