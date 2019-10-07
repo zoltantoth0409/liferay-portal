@@ -128,6 +128,7 @@ public class MBMessageIndexer
 
 		document.addKeyword(Field.CATEGORY_ID, message.getCategoryId());
 
+		document.addKeywordSortable("answer", message.isAnswer());
 		document.addKeyword("discussion", false);
 		document.addKeyword("threadId", message.getThreadId());
 	}
