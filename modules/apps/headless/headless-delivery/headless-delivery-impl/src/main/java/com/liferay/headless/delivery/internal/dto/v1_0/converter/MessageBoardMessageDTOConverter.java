@@ -29,7 +29,6 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.message.boards.service.MBMessageService;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -129,8 +128,5 @@ public class MessageBoardMessageDTOConverter implements DTOConverter {
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	@Reference
-	private UserService _userService;
 
 }
