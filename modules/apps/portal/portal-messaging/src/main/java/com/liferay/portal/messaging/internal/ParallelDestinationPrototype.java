@@ -39,13 +39,13 @@ public class ParallelDestinationPrototype implements DestinationPrototype {
 			destinationConfiguration.getDestinationName());
 		parallelDestination.setMaximumQueueSize(
 			destinationConfiguration.getMaximumQueueSize());
+		parallelDestination.setPortalExecutorManager(_portalExecutorManager);
 		parallelDestination.setRejectedExecutionHandler(
 			destinationConfiguration.getRejectedExecutionHandler());
 		parallelDestination.setWorkersCoreSize(
 			destinationConfiguration.getWorkersCoreSize());
 		parallelDestination.setWorkersMaxSize(
 			destinationConfiguration.getWorkersMaxSize());
-		parallelDestination.setPortalExecutorManager(_portalExecutorManager);
 
 		parallelDestination.afterPropertiesSet();
 
