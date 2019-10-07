@@ -39,11 +39,11 @@ public class SerialDestinationPrototype implements DestinationPrototype {
 			destinationConfiguration.getDestinationName());
 		serialDestination.setMaximumQueueSize(
 			destinationConfiguration.getMaximumQueueSize());
+		serialDestination.setPortalExecutorManager(_portalExecutorManager);
 		serialDestination.setRejectedExecutionHandler(
 			destinationConfiguration.getRejectedExecutionHandler());
 		serialDestination.setWorkersCoreSize(_WORKERS_CORE_SIZE);
 		serialDestination.setWorkersMaxSize(_WORKERS_MAX_SIZE);
-		serialDestination.setPortalExecutorManager(_portalExecutorManager);
 
 		serialDestination.afterPropertiesSet();
 
