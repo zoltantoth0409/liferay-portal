@@ -21,11 +21,11 @@ import com.liferay.change.tracking.exception.CTEventException;
  */
 public interface CTEventListener {
 
-	public default void afterPublish(long ctCollectionId)
+	public default void onAfterPublish(long ctCollectionId)
 		throws CTEventException {
 	}
 
-	public default void beforeRemove(long ctCollectionId)
+	public default void onBeforeRemove(long ctCollectionId)
 		throws CTEventException {
 	}
 

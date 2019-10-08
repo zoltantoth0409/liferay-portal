@@ -39,10 +39,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = CTServiceRegistry.class)
 public class CTServiceRegistry {
 
-	public void afterPublish(long ctCollectionId) {
+	public void onAfterPublish(long ctCollectionId) {
 		for (CTEventListener ctEventListener : _serviceTrackerList) {
 			try {
-				ctEventListener.afterPublish(ctCollectionId);
+				ctEventListener.onAfterPublish(ctCollectionId);
 			}
 			catch (CTEventException ctee) {
 				_log.error(
@@ -55,10 +55,10 @@ public class CTServiceRegistry {
 		}
 	}
 
-	public void beforeRemove(long ctCollectionId) {
+	public void onBeforeRemove(long ctCollectionId) {
 		for (CTEventListener ctEventListener : _serviceTrackerList) {
 			try {
-				ctEventListener.beforeRemove(ctCollectionId);
+				ctEventListener.onBeforeRemove(ctCollectionId);
 			}
 			catch (CTEventException ctee) {
 				_log.error(

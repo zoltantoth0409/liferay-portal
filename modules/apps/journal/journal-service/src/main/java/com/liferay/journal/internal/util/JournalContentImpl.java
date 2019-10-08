@@ -92,7 +92,7 @@ public class JournalContentImpl
 	}
 
 	@Override
-	public void afterPublish(long ctCollectionId) {
+	public void onAfterPublish(long ctCollectionId) {
 		_portalCache.removeAll();
 	}
 

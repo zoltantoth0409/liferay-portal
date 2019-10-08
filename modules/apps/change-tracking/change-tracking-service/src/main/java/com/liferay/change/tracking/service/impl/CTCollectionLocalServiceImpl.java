@@ -99,7 +99,7 @@ public class CTCollectionLocalServiceImpl
 
 	@Override
 	public CTCollection deleteCTCollection(CTCollection ctCollection) {
-		_ctServiceRegistry.beforeRemove(ctCollection.getCtCollectionId());
+		_ctServiceRegistry.onBeforeRemove(ctCollection.getCtCollectionId());
 
 		List<CTEntry> ctEntries = ctEntryPersistence.findByCTCollectionId(
 			ctCollection.getCtCollectionId());
