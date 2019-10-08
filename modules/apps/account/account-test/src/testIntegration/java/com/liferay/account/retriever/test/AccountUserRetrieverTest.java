@@ -149,34 +149,34 @@ public class AccountUserRetrieverTest {
 
 		// Assert unpaginated search
 
-		BaseModelSearchResult<User> userSearchResult = _searchAccountUsers(
+		BaseModelSearchResult<User> baseModelSearchResult = _searchAccountUsers(
 			searchTerm, 0, 4, false);
 
-		List<User> actualUsers = userSearchResult.getBaseModels();
+		List<User> actualUsers = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(4, userSearchResult.getLength());
+		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
 		Assert.assertEquals(actualUsers.toString(), 4, actualUsers.size());
 		Assert.assertEquals(_users.get(0), actualUsers.get(0));
 
 		// Test paginated search has a partial list, but full count
 
-		userSearchResult = _searchAccountUsers(searchTerm, 1, 2, false);
+		baseModelSearchResult = _searchAccountUsers(searchTerm, 1, 2, false);
 
-		actualUsers = userSearchResult.getBaseModels();
+		actualUsers = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(4, userSearchResult.getLength());
+		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
 		Assert.assertEquals(actualUsers.toString(), 2, actualUsers.size());
 		Assert.assertEquals(_users.get(1), actualUsers.get(0));
 
 		// Test reversed sorting
 
-		userSearchResult = _searchAccountUsers(searchTerm, 0, 4, true);
+		baseModelSearchResult = _searchAccountUsers(searchTerm, 0, 4, true);
 
-		actualUsers = userSearchResult.getBaseModels();
+		actualUsers = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(4, userSearchResult.getLength());
+		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
 		Assert.assertEquals(actualUsers.toString(), 4, actualUsers.size());
 		Assert.assertEquals(_users.get(3), actualUsers.get(0));
@@ -185,15 +185,15 @@ public class AccountUserRetrieverTest {
 	private void _assertSearch(String keywords, int expectedSize)
 		throws Exception {
 
-		BaseModelSearchResult<User> userSearchResult = _searchAccountUsers(
+		BaseModelSearchResult<User> baseModelSearchResult = _searchAccountUsers(
 			keywords, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 
-		List<User> actualUsers = userSearchResult.getBaseModels();
+		List<User> actualUsers = baseModelSearchResult.getBaseModels();
 
 		Assert.assertEquals(
 			actualUsers.toString(), expectedSize, actualUsers.size());
 
-		Assert.assertEquals(expectedSize, userSearchResult.getLength());
+		Assert.assertEquals(expectedSize, baseModelSearchResult.getLength());
 	}
 
 	private BaseModelSearchResult<User> _searchAccountUsers(
