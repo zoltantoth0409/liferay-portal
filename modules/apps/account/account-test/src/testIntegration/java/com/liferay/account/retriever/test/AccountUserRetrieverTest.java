@@ -149,7 +149,7 @@ public class AccountUserRetrieverTest {
 
 		// Assert unpaginated search
 
-		BaseModelSearchResult<User> userSearchResult = _search(
+		BaseModelSearchResult<User> userSearchResult = _searchAccountUsers(
 			searchTerm, 0, 4, false);
 
 		List<User> actualUsers = userSearchResult.getBaseModels();
@@ -161,7 +161,7 @@ public class AccountUserRetrieverTest {
 
 		// Test paginated search has a partial list, but full count
 
-		userSearchResult = _search(searchTerm, 1, 2, false);
+		userSearchResult = _searchAccountUsers(searchTerm, 1, 2, false);
 
 		actualUsers = userSearchResult.getBaseModels();
 
@@ -172,7 +172,7 @@ public class AccountUserRetrieverTest {
 
 		// Test reversed sorting
 
-		userSearchResult = _search(searchTerm, 0, 4, true);
+		userSearchResult = _searchAccountUsers(searchTerm, 0, 4, true);
 
 		actualUsers = userSearchResult.getBaseModels();
 
@@ -185,7 +185,7 @@ public class AccountUserRetrieverTest {
 	private void _assertSearch(String keywords, int expectedSize)
 		throws Exception {
 
-		BaseModelSearchResult<User> userSearchResult = _search(
+		BaseModelSearchResult<User> userSearchResult = _searchAccountUsers(
 			keywords, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 
 		List<User> actualUsers = userSearchResult.getBaseModels();
@@ -196,7 +196,7 @@ public class AccountUserRetrieverTest {
 		Assert.assertEquals(expectedSize, userSearchResult.getLength());
 	}
 
-	private BaseModelSearchResult<User> _search(
+	private BaseModelSearchResult<User> _searchAccountUsers(
 			String keywords, int cur, int delta, boolean reverse)
 		throws Exception {
 
