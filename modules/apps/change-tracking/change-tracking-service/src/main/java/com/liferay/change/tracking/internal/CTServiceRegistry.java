@@ -47,8 +47,8 @@ public class CTServiceRegistry {
 			catch (CTEventException ctee) {
 				_log.error(
 					StringBundler.concat(
-						"After publish callback failure for ct collection: ",
-						ctCollectionId, " by CTEventListener: ",
+						"On after publish callback failure for change ",
+						"tracking collection ", ctCollectionId, " by ",
 						ctEventListener),
 					ctee);
 			}
@@ -63,8 +63,8 @@ public class CTServiceRegistry {
 			catch (CTEventException ctee) {
 				_log.error(
 					StringBundler.concat(
-						"Before remove callback failure for ct collection: ",
-						ctCollectionId, " by CTEventListener: ",
+						"On before remove callback failure for change ",
+						"tracking collection ", ctCollectionId, " by ",
 						ctEventListener),
 					ctee);
 			}
