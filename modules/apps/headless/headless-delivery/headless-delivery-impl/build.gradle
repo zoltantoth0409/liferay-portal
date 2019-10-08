@@ -19,6 +19,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.7.0"
 	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.4.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.wiki.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.11.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
