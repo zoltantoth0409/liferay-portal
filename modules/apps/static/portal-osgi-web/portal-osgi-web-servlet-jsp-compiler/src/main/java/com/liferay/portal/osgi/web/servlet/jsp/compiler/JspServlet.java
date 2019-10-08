@@ -304,6 +304,41 @@ public class JspServlet extends HttpServlet {
 
 		defaults.put(_INIT_PARAMETER_NAME_SCRATCH_DIR, sb.toString());
 
+		String symbolicName = _bundle.getSymbolicName();
+
+		BundleTracker<Bundle> bundleTracker = new BundleTracker(
+			_bundle.getBundleContext(), ~Bundle.UNINSTALLED, null) {
+
+			@Override
+			public Bundle addingBundle(Bundle bundle, BundleEvent bundleEvent) {
+				Dictionary<String, String> dictionary = bundle.getHeaders(
+					StringPool.BLANK);
+
+				String fragmentHost = dictionary.get(
+					org.osgi.framework.Constants.FRAGMENT_HOST);
+
+				if ((fragmentHost != null) &&
+					fragmentHost.equals(symbolicName)) {
+
+					Enumeration<URL> enumeration = bundle.findEntries(
+						"META-INF/resources", "*.jsp", true);
+
+					if (enumeration != null) {
+						defaults.put("hasFragment", "true");
+
+						close();
+					}
+				}
+
+				return bundle;
+			}
+
+		};
+
+		bundleTracker.open();
+
+		bundleTracker.close();
+
 		defaults.put(
 			TagHandlerPool.OPTION_TAGPOOL, JspTagHandlerPool.class.getName());
 
