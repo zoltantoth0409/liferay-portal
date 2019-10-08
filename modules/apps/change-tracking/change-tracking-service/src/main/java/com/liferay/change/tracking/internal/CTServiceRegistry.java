@@ -95,7 +95,6 @@ public class CTServiceRegistry {
 	@Deactivate
 	protected void deactivate() {
 		_serviceTrackerList.close();
-
 		_serviceTrackerMap.close();
 	}
 
