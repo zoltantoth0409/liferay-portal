@@ -128,16 +128,16 @@ public class AccountEntryUserRelLocalServiceTest {
 		Assert.assertEquals(
 			accountEntryUserRel.getAccountUserId(), user.getUserId());
 
-		BaseModelSearchResult<User> userSearchResult =
+		BaseModelSearchResult<User> baseModelSearchResult =
 			_accountUserRetriever.searchAccountUsers(
 				_accountEntry.getAccountEntryId(), user.getScreenName(),
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, "screenName", false);
 
-		List<User> actualUsers = userSearchResult.getBaseModels();
+		List<User> users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(actualUsers.toString(), 1, actualUsers.size());
-		Assert.assertEquals(actualUsers.get(0), user);
+		Assert.assertEquals(users.toString(), 1, users.size());
+		Assert.assertEquals(users.get(0), user);
 	}
 
 	@Test
