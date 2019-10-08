@@ -39,6 +39,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = CTServiceRegistry.class)
 public class CTServiceRegistry {
 
+	public CTService<?> getCTService(long classNameId) {
+		return _serviceTrackerMap.getService(classNameId);
+	}
+
 	public void onAfterPublish(long ctCollectionId) {
 		for (CTEventListener ctEventListener : _serviceTrackerList) {
 			try {
@@ -69,10 +73,6 @@ public class CTServiceRegistry {
 					ctee);
 			}
 		}
-	}
-
-	public CTService<?> getCTService(long classNameId) {
-		return _serviceTrackerMap.getService(classNameId);
 	}
 
 	@Activate
