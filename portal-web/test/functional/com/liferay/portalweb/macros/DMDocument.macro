@@ -1870,6 +1870,24 @@ definition {
 			value1 = "${dmDocumentTitle}");
 	}
 
+	macro viewStagingDetailsManagementBar {
+		var key_dmDocumentTitle = "${dmDocumentTitle}";
+
+		Check(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
+
+		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+
+		MenuItem.viewPresent(menuItem = "Download");
+
+		MenuItem.viewPresent(menuItem = "Move");
+
+		MenuItem.viewPresent(menuItem = "Move to Recycle Bin");
+
+		MenuItem.viewPresent(menuItem = "Checkin");
+
+		MenuItem.viewPresent(menuItem = "Checkout");
+	}
+
 	macro viewStagingDetailsPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
