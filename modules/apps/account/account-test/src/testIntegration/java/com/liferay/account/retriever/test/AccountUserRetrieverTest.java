@@ -98,11 +98,11 @@ public class AccountUserRetrieverTest {
 
 		// Add a user that is part of the account and will hit a keyword search
 
-		String searchTerm = RandomTestUtil.randomString();
+		String keywords = RandomTestUtil.randomString();
 
 		_users.add(
 			UserTestUtil.addUser(
-				searchTerm + RandomTestUtil.randomString(), null));
+				keywords + RandomTestUtil.randomString(), null));
 
 		for (User user : _users) {
 			_accountEntryUserRels.add(
@@ -117,7 +117,7 @@ public class AccountUserRetrieverTest {
 		// Assert that non-null keyword search hits only account users that
 		// match
 
-		_assertSearch(searchTerm, 1);
+		_assertSearch(keywords, 1);
 	}
 
 	@Test
@@ -134,12 +134,12 @@ public class AccountUserRetrieverTest {
 
 	@Test
 	public void testSearchAccountUsersWithPagination() throws Exception {
-		String searchTerm = RandomTestUtil.randomString();
+		String keywords = RandomTestUtil.randomString();
 
-		_users.add(UserTestUtil.addUser(searchTerm + 1, null));
-		_users.add(UserTestUtil.addUser(searchTerm + 2, null));
-		_users.add(UserTestUtil.addUser(searchTerm + 3, null));
-		_users.add(UserTestUtil.addUser(searchTerm + 4, null));
+		_users.add(UserTestUtil.addUser(keywords + 1, null));
+		_users.add(UserTestUtil.addUser(keywords + 2, null));
+		_users.add(UserTestUtil.addUser(keywords + 3, null));
+		_users.add(UserTestUtil.addUser(keywords + 4, null));
 
 		for (User user : _users) {
 			_accountEntryUserRels.add(
@@ -150,7 +150,7 @@ public class AccountUserRetrieverTest {
 		// Assert unpaginated search
 
 		BaseModelSearchResult<User> baseModelSearchResult = _searchAccountUsers(
-			searchTerm, 0, 4, false);
+			keywords, 0, 4, false);
 
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
@@ -161,7 +161,7 @@ public class AccountUserRetrieverTest {
 
 		// Test paginated search has a partial list, but full count
 
-		baseModelSearchResult = _searchAccountUsers(searchTerm, 1, 2, false);
+		baseModelSearchResult = _searchAccountUsers(keywords, 1, 2, false);
 
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
@@ -172,7 +172,7 @@ public class AccountUserRetrieverTest {
 
 		// Test reversed sorting
 
-		baseModelSearchResult = _searchAccountUsers(searchTerm, 0, 4, true);
+		baseModelSearchResult = _searchAccountUsers(keywords, 0, 4, true);
 
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
 
