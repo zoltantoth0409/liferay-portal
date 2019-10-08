@@ -151,6 +151,8 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 		Map<String, Serializable> attributes = new HashMap<>();
 
+		attributes.put(
+			"accountEntryIds", new long[] {accountEntry.getAccountEntryId()});
 		attributes.put("city", keywords);
 		attributes.put("country", keywords);
 		attributes.put("emailAddress", keywords);
@@ -158,15 +160,12 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 		attributes.put("fullName", keywords);
 		attributes.put("lastName", keywords);
 		attributes.put("middleName", keywords);
+		attributes.put("params", new LinkedHashMap<>());
 		attributes.put("region", keywords);
 		attributes.put("screenName", keywords);
+		attributes.put("status", status);
 		attributes.put("street", keywords);
 		attributes.put("zip", keywords);
-
-		attributes.put(
-			"accountEntryIds", new long[] {accountEntry.getAccountEntryId()});
-		attributes.put("params", new LinkedHashMap<>());
-		attributes.put("status", status);
 
 		searchContext.setAttributes(attributes);
 
