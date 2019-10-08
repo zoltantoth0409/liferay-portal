@@ -152,9 +152,9 @@ public class AccountUserRetrieverTest {
 		BaseModelSearchResult<User> baseModelSearchResult = _searchAccountUsers(
 			searchTerm, 0, 4, false);
 
-		List<User> users = baseModelSearchResult.getBaseModels();
-
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
+
+		List<User> users = baseModelSearchResult.getBaseModels();
 
 		Assert.assertEquals(users.toString(), 4, users.size());
 		Assert.assertEquals(_users.get(0), users.get(0));
@@ -163,9 +163,9 @@ public class AccountUserRetrieverTest {
 
 		baseModelSearchResult = _searchAccountUsers(searchTerm, 1, 2, false);
 
-		users = baseModelSearchResult.getBaseModels();
-
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
+
+		users = baseModelSearchResult.getBaseModels();
 
 		Assert.assertEquals(users.toString(), 2, users.size());
 		Assert.assertEquals(_users.get(1), users.get(0));
@@ -174,9 +174,9 @@ public class AccountUserRetrieverTest {
 
 		baseModelSearchResult = _searchAccountUsers(searchTerm, 0, 4, true);
 
-		users = baseModelSearchResult.getBaseModels();
-
 		Assert.assertEquals(4, baseModelSearchResult.getLength());
+
+		users = baseModelSearchResult.getBaseModels();
 
 		Assert.assertEquals(users.toString(), 4, users.size());
 		Assert.assertEquals(_users.get(3), users.get(0));
@@ -188,12 +188,11 @@ public class AccountUserRetrieverTest {
 		BaseModelSearchResult<User> baseModelSearchResult = _searchAccountUsers(
 			keywords, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 
+		Assert.assertEquals(expectedSize, baseModelSearchResult.getLength());
+
 		List<User> users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			users.toString(), expectedSize, users.size());
-
-		Assert.assertEquals(expectedSize, baseModelSearchResult.getLength());
+		Assert.assertEquals(users.toString(), expectedSize, users.size());
 	}
 
 	private BaseModelSearchResult<User> _searchAccountUsers(
