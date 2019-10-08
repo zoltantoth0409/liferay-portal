@@ -20,6 +20,8 @@ import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.constants.BookmarksWebKeys;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -190,6 +192,10 @@ public class BookmarksEntryAssetRenderer
 				permissionChecker, _entry, ActionKeys.UPDATE);
 		}
 		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe, pe);
+			}
+
 			return false;
 		}
 	}
@@ -201,6 +207,10 @@ public class BookmarksEntryAssetRenderer
 				permissionChecker, _entry, ActionKeys.VIEW);
 		}
 		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe, pe);
+			}
+
 			return false;
 		}
 	}
@@ -221,6 +231,9 @@ public class BookmarksEntryAssetRenderer
 	public boolean isPrintable() {
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksEntryAssetRenderer.class);
 
 	private final ModelResourcePermission<BookmarksEntry>
 		_bookmarksEntryModelResourcePermission;
