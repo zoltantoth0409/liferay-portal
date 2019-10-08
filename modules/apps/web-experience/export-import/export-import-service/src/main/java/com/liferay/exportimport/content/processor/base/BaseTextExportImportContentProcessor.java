@@ -145,9 +145,9 @@ public class BaseTextExportImportContentProcessor
 			validateJournalFeedReferences(groupId, content);
 		}
 
-		validateLayoutReferences(groupId, content);
+		if (isValidateLayoutReferences()) {
+			validateLayoutReferences(groupId, content);
 
-		if (isValidateLinksToLayoutsReferences()) {
 			validateLinksToLayoutsReferences(content);
 		}
 	}
@@ -426,17 +426,7 @@ public class BaseTextExportImportContentProcessor
 		return true;
 	}
 
-	protected boolean isValidateLayoutReferences() throws PortalException {
-		long companyId = CompanyThreadLocal.getCompanyId();
-
-		ExportImportServiceConfiguration exportImportServiceConfiguration =
-			ConfigurationProviderUtil.getCompanyConfiguration(
-				ExportImportServiceConfiguration.class, companyId);
-
-		return exportImportServiceConfiguration.validateLayoutReferences();
-	}
-
-	protected boolean isValidateLinksToLayoutsReferences() {
+	protected boolean isValidateLayoutReferences() {
 		try {
 			ExportImportServiceConfiguration configuration =
 				ConfigurationProviderUtil.getCompanyConfiguration(
@@ -1785,10 +1775,6 @@ public class BaseTextExportImportContentProcessor
 
 	protected void validateLayoutReferences(long groupId, String content)
 		throws PortalException {
-
-		if (!isValidateLayoutReferences()) {
-			return;
-		}
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
