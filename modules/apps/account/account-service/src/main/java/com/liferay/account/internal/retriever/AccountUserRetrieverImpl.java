@@ -109,6 +109,14 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 			false
 		);
 
+		if (cur != QueryUtil.ALL_POS) {
+			searchRequestBuilder.from(
+				cur
+			).size(
+				delta
+			);
+		}
+
 		if (Validator.isNotNull(sortField)) {
 			SortOrder sortOrder = SortOrder.ASC;
 
@@ -119,14 +127,6 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 			FieldSort sort = _sorts.field(sortField, sortOrder);
 
 			searchRequestBuilder.sorts(sort);
-		}
-
-		if (cur != QueryUtil.ALL_POS) {
-			searchRequestBuilder.from(
-				cur
-			).size(
-				delta
-			);
 		}
 
 		SearchRequest searchRequest = searchRequestBuilder.build();
