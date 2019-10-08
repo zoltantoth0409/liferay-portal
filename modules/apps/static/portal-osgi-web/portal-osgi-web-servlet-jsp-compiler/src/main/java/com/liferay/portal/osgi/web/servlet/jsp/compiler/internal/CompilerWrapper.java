@@ -130,9 +130,8 @@ public class CompilerWrapper extends Compiler {
 
 		classNamePath = classNamePath.concat(".class");
 
-		URL url = null;
-
 		Options options = ctxt.getOptions();
+		URL url = null;
 
 		if (PropsValues.WORK_DIR_OVERRIDE_ENABLED) {
 			File scratchDir = options.getScratchDir();
