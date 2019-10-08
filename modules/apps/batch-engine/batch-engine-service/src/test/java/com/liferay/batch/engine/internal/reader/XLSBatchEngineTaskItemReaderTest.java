@@ -80,13 +80,13 @@ public class XLSBatchEngineTaskItemReaderTest
 				validate(
 					createDateString, "sample description " + rowCount,
 					rowCount,
+					(Item)xlsBatchEngineTaskItemReader.read(),
 					new HashMap<String, String>() {
 						{
 							put("en", "sample name " + rowCount);
 							put("hr", "naziv " + rowCount);
 						}
-					},
-					(Item)xlsBatchEngineTaskItemReader.read());
+					});
 			}
 		}
 	}
@@ -104,13 +104,13 @@ public class XLSBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, "hey, here is comma inside", 1L,
+				(Item)xlsBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name");
 						put("hr", "naziv");
 					}
-				},
-				(Item)xlsBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 
@@ -121,8 +121,8 @@ public class XLSBatchEngineTaskItemReaderTest
 					new Object[][] {{null, null, 1}})) {
 
 			validate(
-				null, null, 1L, null,
-				(Item)xlsBatchEngineTaskItemReader.read());
+				null, null, 1L, (Item)xlsBatchEngineTaskItemReader.read(),
+				null);
 		}
 	}
 
@@ -140,23 +140,23 @@ public class XLSBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, null, 1L,
+				(Item)xlsBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", null);
 						put("hr", "naziv");
 					}
-				},
-				(Item)xlsBatchEngineTaskItemReader.read());
+				});
 
 			validate(
 				createDateString, "sample description 2", 2L,
+				(Item)xlsBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name 2");
 						put("hr", "naziv 2");
 					}
-				},
-				(Item)xlsBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 

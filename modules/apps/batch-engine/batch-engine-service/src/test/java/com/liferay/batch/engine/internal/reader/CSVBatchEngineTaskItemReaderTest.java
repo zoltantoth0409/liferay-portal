@@ -75,13 +75,13 @@ public class CSVBatchEngineTaskItemReaderTest
 				validate(
 					createDateString, "sample description " + rowCount,
 					rowCount,
+					(Item)csvBatchEngineTaskItemReader.read(),
 					new HashMap<String, String>() {
 						{
 							put("en", "sample name " + rowCount);
 							put("hr", "naziv " + rowCount);
 						}
-					},
-					(Item)csvBatchEngineTaskItemReader.read());
+					});
 			}
 		}
 	}
@@ -100,13 +100,13 @@ public class CSVBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, "hey, here is comma inside", 1L,
+				(Item)csvBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name");
 						put("hr", "naziv");
 					}
-				},
-				(Item)csvBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 
@@ -117,8 +117,8 @@ public class CSVBatchEngineTaskItemReaderTest
 					new Object[][] {{"", "", 1}}, StringPool.COMMA)) {
 
 			validate(
-				null, null, 1L, null,
-				(Item)csvBatchEngineTaskItemReader.read());
+				null, null, 1L, (Item)csvBatchEngineTaskItemReader.read(),
+				null);
 		}
 	}
 
@@ -137,23 +137,23 @@ public class CSVBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, null, 1L,
+				(Item)csvBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", null);
 						put("hr", "naziv 1");
 					}
-				},
-				(Item)csvBatchEngineTaskItemReader.read());
+				});
 
 			validate(
 				createDateString, "sample description 2", 2L,
+				(Item)csvBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name 2");
 						put("hr", "naziv 2");
 					}
-				},
-				(Item)csvBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 

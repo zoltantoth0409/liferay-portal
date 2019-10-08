@@ -77,13 +77,13 @@ public class JSONBatchEngineTaskItemReaderTest
 				validate(
 					createDateString, "sample description " + rowCount,
 					rowCount,
+					(Item)jsonBatchEngineTaskItemReader.read(),
 					new HashMap<String, String>() {
 						{
 							put("en", "sample name " + rowCount);
 							put("hr", "naziv " + rowCount);
 						}
-					},
-					(Item)jsonBatchEngineTaskItemReader.read());
+					});
 			}
 		}
 	}
@@ -102,13 +102,13 @@ public class JSONBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, "hey, here is comma inside", 1L,
+				(Item)jsonBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name");
 						put("hr", "naziv");
 					}
-				},
-				(Item)jsonBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 
@@ -119,8 +119,8 @@ public class JSONBatchEngineTaskItemReaderTest
 					new Object[][] {{"null", "null", 1}})) {
 
 			validate(
-				null, null, 1L, null,
-				(Item)jsonBatchEngineTaskItemReader.read());
+				null, null, 1L, (Item)jsonBatchEngineTaskItemReader.read(),
+				null);
 		}
 	}
 
@@ -142,22 +142,22 @@ public class JSONBatchEngineTaskItemReaderTest
 
 			validate(
 				createDateString, null, 1L,
+				(Item)jsonBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("hr", "naziv 1");
 					}
-				},
-				(Item)jsonBatchEngineTaskItemReader.read());
+				});
 
 			validate(
 				createDateString, "sample description 2", 2L,
+				(Item)jsonBatchEngineTaskItemReader.read(),
 				new HashMap<String, String>() {
 					{
 						put("en", "sample name 2");
 						put("hr", "naziv 2");
 					}
-				},
-				(Item)jsonBatchEngineTaskItemReader.read());
+				});
 		}
 	}
 
