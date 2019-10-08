@@ -59,10 +59,10 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 			ConfigurableUtil.createConfigurable(
 				BatchEngineTaskConfiguration.class, properties);
 
-		_defaultBatchSize = batchEngineTaskConfiguration.batchSize();
+		_batchSize = batchEngineTaskConfiguration.batchSize();
 
-		if (_defaultBatchSize <= 0) {
-			_defaultBatchSize = 1;
+		if (_batchSize <= 0) {
+			_batchSize = 1;
 		}
 
 		Properties batchSizeProperties = PropsUtil.getProperties(
@@ -137,8 +137,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 		BatchEngineTask batchEngineTask =
 			_batchEngineTaskLocalService.addBatchEngineTask(
 				contextCompany.getCompanyId(), contextUser.getUserId(),
-				_itemClassBatchSizeMap.getOrDefault(
-					className, _defaultBatchSize),
+				_itemClassBatchSizeMap.getOrDefault(className, _batchSize),
 				callbackURL, className,
 				StreamUtil.toByteArray(binaryFile.getInputStream()),
 				StringUtil.upperCase(
@@ -175,7 +174,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 	@Reference
 	private BatchEngineTaskLocalService _batchEngineTaskLocalService;
 
-	private int _defaultBatchSize;
+	private int _batchSize;
 
 	@Reference
 	private File _file;
