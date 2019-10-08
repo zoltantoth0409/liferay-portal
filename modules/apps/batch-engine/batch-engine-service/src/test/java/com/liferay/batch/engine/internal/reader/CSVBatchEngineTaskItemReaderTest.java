@@ -16,6 +16,7 @@ package com.liferay.batch.engine.internal.reader;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.string.StringUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -160,21 +161,11 @@ public class CSVBatchEngineTaskItemReaderTest
 	private byte[] _getContent(String delimiter, Object[][] rowValues) {
 		StringBundler sb = new StringBundler();
 
-		for (String cellName : CELL_NAMES) {
-			sb.append(cellName);
-			sb.append(delimiter);
-		}
-
-		sb.setIndex(sb.index() - 1);
+		sb.append(StringUtil.merge(CELL_NAMES, delimiter));
 		sb.append("\n");
 
 		for (Object[] cellValues : rowValues) {
-			for (Object cellValue : cellValues) {
-				sb.append(cellValue);
-				sb.append(delimiter);
-			}
-
-			sb.setIndex(sb.index() - 1);
+			sb.append(StringUtil.merge(cellValues, delimiter));
 			sb.append("\n");
 		}
 
