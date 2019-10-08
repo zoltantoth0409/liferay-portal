@@ -35,13 +35,13 @@ public class CSVBatchEngineTaskItemReaderTest
 	public void testReadInvalidRow() throws Exception {
 		try (CSVBatchEngineTaskItemReader csvBatchEngineTaskItemReader =
 				_getCSVBatchEngineTaskItemReader(
+					StringPool.COMMA,
 					new Object[][] {
 						{
 							"", "sample description", 1, "sample name", "naziv",
 							"unknown column"
 						}
-					},
-					StringPool.COMMA)) {
+					})) {
 
 			try {
 				csvBatchEngineTaskItemReader.read();
@@ -57,6 +57,7 @@ public class CSVBatchEngineTaskItemReaderTest
 	public void testReadMultipleRows() throws Exception {
 		try (CSVBatchEngineTaskItemReader csvBatchEngineTaskItemReader =
 				_getCSVBatchEngineTaskItemReader(
+					StringPool.COMMA,
 					new Object[][] {
 						{
 							createDateString, "sample description 1", 1,
@@ -66,8 +67,7 @@ public class CSVBatchEngineTaskItemReaderTest
 							createDateString, "sample description 2", 2,
 							"sample name 2", "naziv 2"
 						}
-					},
-					StringPool.COMMA)) {
+					})) {
 
 			for (int i = 1; i < 3; i++) {
 				long rowCount = i;
@@ -90,13 +90,13 @@ public class CSVBatchEngineTaskItemReaderTest
 	public void testReadRowsWithCommaInsideQuotes() throws Exception {
 		try (CSVBatchEngineTaskItemReader csvBatchEngineTaskItemReader =
 				_getCSVBatchEngineTaskItemReader(
+					StringPool.SEMICOLON,
 					new Object[][] {
 						{
 							createDateString, "hey, here is comma inside", 1,
 							"sample name", "naziv"
 						}
-					},
-					StringPool.SEMICOLON)) {
+					})) {
 
 			validate(
 				createDateString, "hey, here is comma inside", 1L,
@@ -114,7 +114,7 @@ public class CSVBatchEngineTaskItemReaderTest
 	public void testReadRowsWithLessValues() throws Exception {
 		try (CSVBatchEngineTaskItemReader csvBatchEngineTaskItemReader =
 				_getCSVBatchEngineTaskItemReader(
-					new Object[][] {{"", "", 1}}, StringPool.COMMA)) {
+					StringPool.COMMA, new Object[][] {{"", "", 1}})) {
 
 			validate(
 				null, null, 1L, (Item)csvBatchEngineTaskItemReader.read(),
@@ -126,14 +126,14 @@ public class CSVBatchEngineTaskItemReaderTest
 	public void testReadRowsWithNullValues() throws Exception {
 		try (CSVBatchEngineTaskItemReader csvBatchEngineTaskItemReader =
 				_getCSVBatchEngineTaskItemReader(
+					StringPool.COMMA,
 					new Object[][] {
 						{createDateString, "", 1, "", "naziv 1"},
 						{
 							createDateString, "sample description 2", 2,
 							"sample name 2", "naziv 2"
 						}
-					},
-					StringPool.COMMA)) {
+					})) {
 
 			validate(
 				createDateString, null, 1L,
@@ -157,7 +157,7 @@ public class CSVBatchEngineTaskItemReaderTest
 		}
 	}
 
-	private byte[] _getContent(Object[][] rowValues, String delimiter) {
+	private byte[] _getContent(String delimiter, Object[][] rowValues) {
 		StringBundler sb = new StringBundler();
 
 		for (String cellName : CELL_NAMES) {
@@ -184,12 +184,12 @@ public class CSVBatchEngineTaskItemReaderTest
 	}
 
 	private CSVBatchEngineTaskItemReader _getCSVBatchEngineTaskItemReader(
-			Object[][] rowValues, String delimiter)
+			String delimiter, Object[][] rowValues)
 		throws IOException {
 
 		return new CSVBatchEngineTaskItemReader(
 			delimiter,
-			new ByteArrayInputStream(_getContent(rowValues, delimiter)),
+			new ByteArrayInputStream(_getContent(delimiter, rowValues)),
 			Item.class);
 	}
 

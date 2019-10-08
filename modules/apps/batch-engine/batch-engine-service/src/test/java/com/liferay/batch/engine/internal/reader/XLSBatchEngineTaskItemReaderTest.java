@@ -201,14 +201,16 @@ public class XLSBatchEngineTaskItemReaderTest
 			else if (cellValues[i] instanceof Date) {
 				CellStyle cellStyle = xssfWorkbook.createCellStyle();
 
-				CreationHelper createHelper = xssfWorkbook.getCreationHelper();
+				CreationHelper creationHelper =
+					xssfWorkbook.getCreationHelper();
 
-				DataFormat dataFormat = createHelper.createDataFormat();
+				DataFormat dataFormat = creationHelper.createDataFormat();
 
 				cellStyle.setDataFormat(dataFormat.getFormat("d/m/yy h:mm"));
 
-				cell.setCellValue((Date)cellValues[i]);
 				cell.setCellStyle(cellStyle);
+
+				cell.setCellValue((Date)cellValues[i]);
 			}
 			else if (cellValues[i] instanceof Number) {
 				Number value = (Number)cellValues[i];
