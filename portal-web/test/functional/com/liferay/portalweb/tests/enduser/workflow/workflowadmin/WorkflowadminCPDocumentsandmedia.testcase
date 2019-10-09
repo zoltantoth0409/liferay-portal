@@ -731,6 +731,95 @@ definition {
 			dmDocumentTitle = "DM Document Title");
 	}
 
+	@description = "This test covers LPS-90346. It ensures that the document preview displays correctly after submitting an edit."
+	@priority = "4"
+	test PreviewSubmittedEdit {
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Documents and Media");
+
+		DMPortlet.setIconView();
+
+		DMFolder.addCP(
+			dmFolderDescription = "DM Folder Description",
+			dmFolderName = "DM Folder Name");
+
+		DMFolder.configureWorkflowCP(
+			dmFolderName = "DM Folder Name",
+			workflowDefinition = "Single Approver (Version 1)",
+			workflowRestriction = "Default Workflow");
+
+		DMPortlet.setDescriptiveView();
+
+		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");
+
+		DMPortlet.setIconView();
+
+		DMDocument.addWithWorkflowCP(
+			dmDocumentFile = "Document_1.jpg",
+			dmDocumentTitle = "Document_1.jpg");
+
+		Notifications.viewBadgeCount(notificationCount = "1");
+
+		WorkflowAsset.gotoViaNotification(
+			assetType = "Document",
+			user = "Test Test");
+
+		Workflow.gotoPreviewView();
+
+		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg') and contains(@src,'version=1.0')]");
+
+		Navigator.gotoBack();
+
+		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Assign to Me");
+
+		Workflow.confirmAndViewSucessMessageViaDetails();
+
+		ProductMenu.gotoPortlet(
+			category = "My Account",
+			panel = "User",
+			portlet = "My Workflow Tasks");
+
+		Workflow.viewTaskAssignedToMeDetails(
+			workflowAssetContent = "Document_1.jpg",
+			workflowAssetTitle = "Document_1.jpg",
+			workflowAssetType = "Document",
+			workflowTask = "Review");
+
+		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Approve");
+
+		Workflow.confirmAndViewSucessMessageViaDetails();
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+
+		DMPortlet.setDescriptiveView();
+
+		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Document_1.jpg");
+
+		DMDocument.editDocument(
+			dmDocumentFile = "Document_2.jpg",
+			dmDocumentTitle = "Document_2.jpg");
+
+		Button.clickSubmitForPublication();
+
+		Navigator.openURL();
+
+		Notifications.viewBadgeCount(notificationCount = "1");
+
+		WorkflowAsset.gotoViaNotification(
+			assetType = "Document",
+			user = "Test Test");
+
+		Workflow.gotoPreviewView();
+
+		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg') and contains(@src,'version=1.1')]");
+	}
+
 	@priority = "4"
 	test RejectDMDocumentCP {
 		Navigator.openURL();
