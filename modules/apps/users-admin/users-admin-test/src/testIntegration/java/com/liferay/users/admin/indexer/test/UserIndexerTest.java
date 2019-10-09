@@ -426,7 +426,6 @@ public class UserIndexerTest {
 
 		assertSearch(
 			Collections.singletonList(siteAdministratorRole), _expectedUser);
-
 		assertSearch(
 			new ArrayList<Role>() {
 				{
