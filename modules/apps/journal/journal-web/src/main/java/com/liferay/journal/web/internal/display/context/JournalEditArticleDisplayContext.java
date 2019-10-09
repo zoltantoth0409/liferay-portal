@@ -113,42 +113,42 @@ public class JournalEditArticleDisplayContext {
 
 		data.put("defaultLanguage", getDefaultArticleLanguageId());
 
+		List<Map<String, Object>> languages = new ArrayList<>();
+
 		LinkedHashSet<String> uniqueLanguageIds = new LinkedHashSet<>();
 
 		uniqueLanguageIds.add(getDefaultLanguageId());
 
-		Map<String, Object> strings = new HashMap<>();
-
 		for (Locale availableLocale : getAvailableLocales()) {
-			String curLanguageId = LocaleUtil.toLanguageId(availableLocale);
-
-			strings.put(
-				curLanguageId,
-				StringBundler.concat(
-					availableLocale.getDisplayLanguage(), StringPool.SPACE,
-					StringPool.OPEN_PARENTHESIS, availableLocale.getCountry(),
-					StringPool.CLOSE_PARENTHESIS));
-
-			uniqueLanguageIds.add(curLanguageId);
+			uniqueLanguageIds.add(LocaleUtil.toLanguageId(availableLocale));
 		}
 
-		data.put("strings", strings);
-
-		List<Map<String, Object>> languages = new ArrayList<>();
-
-		for (String curLanguageId : uniqueLanguageIds) {
+		for (String languageId : uniqueLanguageIds) {
 			Map<String, Object> language = new HashMap<>();
 
 			language.put(
 				"icon",
 				StringUtil.toLowerCase(
-					StringUtil.replace(curLanguageId, '_', '-')));
-			language.put("label", curLanguageId);
+					StringUtil.replace(languageId, '_', '-')));
+			language.put("label", languageId);
 
 			languages.add(language);
 		}
 
 		data.put("languages", languages);
+
+		Map<String, Object> strings = new HashMap<>();
+
+		for (Locale availableLocale : getAvailableLocales()) {
+			strings.put(
+				LocaleUtil.toLanguageId(availableLocale),
+				StringBundler.concat(
+					availableLocale.getDisplayLanguage(), StringPool.SPACE,
+					StringPool.OPEN_PARENTHESIS, availableLocale.getCountry(),
+					StringPool.CLOSE_PARENTHESIS));
+		}
+
+		data.put("strings", strings);
 
 		return data;
 	}
