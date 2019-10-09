@@ -306,7 +306,9 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 		Map<String, Object> proxySettings = getProxySettings();
 
-		if (_isNonproxyHost(httpRequest.host(), proxySettings)) {
+		if (proxySettings.isEmpty() ||
+			http.isNonProxyHost(httpRequest.host())) {
+
 			httpResponse = httpRequest.send();
 		}
 		else {
@@ -484,20 +486,8 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 				ddmDataProviderRequest, ddmRESTDataProviderSettings));
 	}
 
-	private boolean _isNonproxyHost(
-		String host, Map<String, Object> proxySettings) {
-
-		if (proxySettings.isEmpty()) {
-			return true;
-		}
-
-		Pattern pattern = Pattern.compile(
-			GetterUtil.getString(proxySettings.get("nonProxyHosts")));
-
-		Matcher matcher = pattern.matcher(host);
-
-		return matcher.matches();
-	}
+	@Reference
+	protected Http http;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMRESTDataProvider.class);
