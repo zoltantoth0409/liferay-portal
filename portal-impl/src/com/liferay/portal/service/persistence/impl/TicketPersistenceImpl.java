@@ -408,14 +408,11 @@ public class TicketPersistenceImpl
 		long classNameId, long classPK, int type, int start, int end,
 		OrderByComparator<Ticket> orderByComparator, boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC_C_T;
@@ -472,7 +469,7 @@ public class TicketPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(TicketModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -493,18 +490,8 @@ public class TicketPersistenceImpl
 
 				qPos.add(type);
 
-				if (!pagination) {
-					list = (List<Ticket>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Ticket>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Ticket>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1509,14 +1496,11 @@ public class TicketPersistenceImpl
 		int start, int end, OrderByComparator<Ticket> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1553,9 +1537,7 @@ public class TicketPersistenceImpl
 			else {
 				sql = _SQL_SELECT_TICKET;
 
-				if (pagination) {
-					sql = sql.concat(TicketModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(TicketModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1565,18 +1547,8 @@ public class TicketPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<Ticket>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Ticket>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Ticket>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

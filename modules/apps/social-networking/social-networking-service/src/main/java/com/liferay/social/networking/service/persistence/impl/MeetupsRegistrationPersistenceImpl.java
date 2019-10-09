@@ -159,14 +159,11 @@ public class MeetupsRegistrationPersistenceImpl
 		OrderByComparator<MeetupsRegistration> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByMeetupsEntryId;
@@ -218,7 +215,7 @@ public class MeetupsRegistrationPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -235,18 +232,8 @@ public class MeetupsRegistrationPersistenceImpl
 
 				qPos.add(meetupsEntryId);
 
-				if (!pagination) {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<MeetupsRegistration>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -940,14 +927,11 @@ public class MeetupsRegistrationPersistenceImpl
 		OrderByComparator<MeetupsRegistration> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByME_S;
@@ -1002,7 +986,7 @@ public class MeetupsRegistrationPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1021,18 +1005,8 @@ public class MeetupsRegistrationPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<MeetupsRegistration>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2101,14 +2075,11 @@ public class MeetupsRegistrationPersistenceImpl
 		OrderByComparator<MeetupsRegistration> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2145,10 +2116,7 @@ public class MeetupsRegistrationPersistenceImpl
 			else {
 				sql = _SQL_SELECT_MEETUPSREGISTRATION;
 
-				if (pagination) {
-					sql = sql.concat(
-						MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(MeetupsRegistrationModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2158,18 +2126,8 @@ public class MeetupsRegistrationPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<MeetupsRegistration>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<MeetupsRegistration>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

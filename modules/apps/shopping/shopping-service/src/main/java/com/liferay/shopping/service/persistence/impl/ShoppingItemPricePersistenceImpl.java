@@ -153,14 +153,11 @@ public class ShoppingItemPricePersistenceImpl
 		OrderByComparator<ShoppingItemPrice> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByItemId;
@@ -208,7 +205,7 @@ public class ShoppingItemPricePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ShoppingItemPriceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -225,18 +222,8 @@ public class ShoppingItemPricePersistenceImpl
 
 				qPos.add(itemId);
 
-				if (!pagination) {
-					list = (List<ShoppingItemPrice>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ShoppingItemPrice>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ShoppingItemPrice>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1147,14 +1134,11 @@ public class ShoppingItemPricePersistenceImpl
 		OrderByComparator<ShoppingItemPrice> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1191,9 +1175,7 @@ public class ShoppingItemPricePersistenceImpl
 			else {
 				sql = _SQL_SELECT_SHOPPINGITEMPRICE;
 
-				if (pagination) {
-					sql = sql.concat(ShoppingItemPriceModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(ShoppingItemPriceModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1203,18 +1185,8 @@ public class ShoppingItemPricePersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<ShoppingItemPrice>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ShoppingItemPrice>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ShoppingItemPrice>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

@@ -154,14 +154,11 @@ public class WallEntryPersistenceImpl
 		OrderByComparator<WallEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByGroupId;
@@ -209,7 +206,7 @@ public class WallEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -226,18 +223,8 @@ public class WallEntryPersistenceImpl
 
 				qPos.add(groupId);
 
-				if (!pagination) {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WallEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -661,14 +648,11 @@ public class WallEntryPersistenceImpl
 		OrderByComparator<WallEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUserId;
@@ -716,7 +700,7 @@ public class WallEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -733,18 +717,8 @@ public class WallEntryPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WallEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1175,14 +1149,11 @@ public class WallEntryPersistenceImpl
 		OrderByComparator<WallEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_U;
@@ -1236,7 +1207,7 @@ public class WallEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1255,18 +1226,8 @@ public class WallEntryPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WallEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2263,14 +2224,11 @@ public class WallEntryPersistenceImpl
 		int start, int end, OrderByComparator<WallEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2307,9 +2265,7 @@ public class WallEntryPersistenceImpl
 			else {
 				sql = _SQL_SELECT_WALLENTRY;
 
-				if (pagination) {
-					sql = sql.concat(WallEntryModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(WallEntryModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2319,18 +2275,8 @@ public class WallEntryPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WallEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WallEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

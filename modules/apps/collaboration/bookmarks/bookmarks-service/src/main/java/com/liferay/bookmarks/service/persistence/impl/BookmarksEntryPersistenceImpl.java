@@ -167,14 +167,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByResourceBlockId;
@@ -226,7 +223,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -243,18 +240,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(resourceBlockId);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -692,14 +679,11 @@ public class BookmarksEntryPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -756,7 +740,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -775,18 +759,8 @@ public class BookmarksEntryPersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1506,14 +1480,11 @@ public class BookmarksEntryPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -1576,7 +1547,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1597,18 +1568,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2100,14 +2061,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByCompanyId;
@@ -2157,7 +2115,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2174,18 +2132,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2622,14 +2570,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_F;
@@ -2683,7 +2628,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2702,18 +2647,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(folderId);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3516,13 +3451,10 @@ public class BookmarksEntryPersistenceImpl
 				groupId, folderIds[0], start, end, orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -3584,7 +3516,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3601,18 +3533,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(groupId);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4002,14 +3924,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_S;
@@ -4063,7 +3982,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4082,18 +4001,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4887,7 +4796,6 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -4936,7 +4844,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4955,18 +4863,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -5760,7 +5658,6 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -5809,7 +5706,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5828,18 +5725,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -6314,14 +6201,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_U_S;
@@ -6378,7 +6262,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6399,18 +6283,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -7256,7 +7130,6 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -7308,7 +7181,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -7329,18 +7202,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -8188,14 +8051,11 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_F_S;
@@ -8252,7 +8112,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -8273,18 +8133,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -9136,13 +8986,10 @@ public class BookmarksEntryPersistenceImpl
 				groupId, folderIds[0], status, start, end, orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -9209,7 +9056,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -9228,18 +9075,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -9664,7 +9501,6 @@ public class BookmarksEntryPersistenceImpl
 		OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -9716,7 +9552,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -9737,18 +9573,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -10602,13 +10428,10 @@ public class BookmarksEntryPersistenceImpl
 				groupId, folderIds[0], status, start, end, orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -10675,7 +10498,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -10694,18 +10517,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -11143,14 +10956,11 @@ public class BookmarksEntryPersistenceImpl
 		int end, OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_U_F_S;
@@ -11210,7 +11020,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -11233,18 +11043,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -12145,13 +11945,10 @@ public class BookmarksEntryPersistenceImpl
 				orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -12221,7 +12018,7 @@ public class BookmarksEntryPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -12242,18 +12039,8 @@ public class BookmarksEntryPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -13537,14 +13324,11 @@ public class BookmarksEntryPersistenceImpl
 		int start, int end, OrderByComparator<BookmarksEntry> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -13581,9 +13365,7 @@ public class BookmarksEntryPersistenceImpl
 			else {
 				sql = _SQL_SELECT_BOOKMARKSENTRY;
 
-				if (pagination) {
-					sql = sql.concat(BookmarksEntryModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(BookmarksEntryModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -13593,18 +13375,8 @@ public class BookmarksEntryPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<BookmarksEntry>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<BookmarksEntry>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

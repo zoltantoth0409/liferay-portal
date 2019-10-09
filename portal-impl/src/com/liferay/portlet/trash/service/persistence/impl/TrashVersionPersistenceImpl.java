@@ -151,14 +151,11 @@ public class TrashVersionPersistenceImpl
 		OrderByComparator<TrashVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByEntryId;
@@ -206,7 +203,7 @@ public class TrashVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(TrashVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -223,18 +220,8 @@ public class TrashVersionPersistenceImpl
 
 				qPos.add(entryId);
 
-				if (!pagination) {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<TrashVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -670,14 +657,11 @@ public class TrashVersionPersistenceImpl
 		OrderByComparator<TrashVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByE_C;
@@ -731,7 +715,7 @@ public class TrashVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(TrashVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -750,18 +734,8 @@ public class TrashVersionPersistenceImpl
 
 				qPos.add(classNameId);
 
-				if (!pagination) {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<TrashVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2001,14 +1975,11 @@ public class TrashVersionPersistenceImpl
 		int start, int end, OrderByComparator<TrashVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2045,9 +2016,7 @@ public class TrashVersionPersistenceImpl
 			else {
 				sql = _SQL_SELECT_TRASHVERSION;
 
-				if (pagination) {
-					sql = sql.concat(TrashVersionModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(TrashVersionModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2057,18 +2026,8 @@ public class TrashVersionPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<TrashVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<TrashVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

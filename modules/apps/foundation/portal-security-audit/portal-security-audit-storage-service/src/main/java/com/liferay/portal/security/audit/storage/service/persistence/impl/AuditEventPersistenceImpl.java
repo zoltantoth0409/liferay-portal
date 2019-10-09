@@ -153,14 +153,11 @@ public class AuditEventPersistenceImpl
 		OrderByComparator<AuditEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByCompanyId;
@@ -210,7 +207,7 @@ public class AuditEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(AuditEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -227,18 +224,8 @@ public class AuditEventPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<AuditEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<AuditEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<AuditEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1128,14 +1115,11 @@ public class AuditEventPersistenceImpl
 		int start, int end, OrderByComparator<AuditEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1172,9 +1156,7 @@ public class AuditEventPersistenceImpl
 			else {
 				sql = _SQL_SELECT_AUDITEVENT;
 
-				if (pagination) {
-					sql = sql.concat(AuditEventModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(AuditEventModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1184,18 +1166,8 @@ public class AuditEventPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<AuditEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<AuditEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<AuditEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

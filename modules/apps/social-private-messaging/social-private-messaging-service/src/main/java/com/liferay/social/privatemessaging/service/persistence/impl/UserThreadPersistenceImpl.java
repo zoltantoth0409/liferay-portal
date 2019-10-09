@@ -156,14 +156,11 @@ public class UserThreadPersistenceImpl
 		OrderByComparator<UserThread> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUserId;
@@ -211,7 +208,7 @@ public class UserThreadPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -228,18 +225,8 @@ public class UserThreadPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserThread>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -667,14 +654,11 @@ public class UserThreadPersistenceImpl
 		OrderByComparator<UserThread> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByMBThreadId;
@@ -724,7 +708,7 @@ public class UserThreadPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -741,18 +725,8 @@ public class UserThreadPersistenceImpl
 
 				qPos.add(mbThreadId);
 
-				if (!pagination) {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserThread>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1426,14 +1400,11 @@ public class UserThreadPersistenceImpl
 		OrderByComparator<UserThread> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_D;
@@ -1487,7 +1458,7 @@ public class UserThreadPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1506,18 +1477,8 @@ public class UserThreadPersistenceImpl
 
 				qPos.add(deleted);
 
-				if (!pagination) {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserThread>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1987,14 +1948,11 @@ public class UserThreadPersistenceImpl
 		OrderByComparator<UserThread> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_R_D;
@@ -2051,7 +2009,7 @@ public class UserThreadPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2072,18 +2030,8 @@ public class UserThreadPersistenceImpl
 
 				qPos.add(deleted);
 
-				if (!pagination) {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserThread>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3213,14 +3161,11 @@ public class UserThreadPersistenceImpl
 		int start, int end, OrderByComparator<UserThread> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -3257,9 +3202,7 @@ public class UserThreadPersistenceImpl
 			else {
 				sql = _SQL_SELECT_USERTHREAD;
 
-				if (pagination) {
-					sql = sql.concat(UserThreadModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(UserThreadModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -3269,18 +3212,8 @@ public class UserThreadPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserThread>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserThread>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

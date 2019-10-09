@@ -158,14 +158,11 @@ public class WikiPageResourcePersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -222,7 +219,7 @@ public class WikiPageResourcePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(WikiPageResourceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -241,18 +238,8 @@ public class WikiPageResourcePersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WikiPageResource>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -973,14 +960,11 @@ public class WikiPageResourcePersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -1043,7 +1027,7 @@ public class WikiPageResourcePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(WikiPageResourceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1064,18 +1048,8 @@ public class WikiPageResourcePersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WikiPageResource>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2449,14 +2423,11 @@ public class WikiPageResourcePersistenceImpl
 		OrderByComparator<WikiPageResource> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2493,9 +2464,7 @@ public class WikiPageResourcePersistenceImpl
 			else {
 				sql = _SQL_SELECT_WIKIPAGERESOURCE;
 
-				if (pagination) {
-					sql = sql.concat(WikiPageResourceModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(WikiPageResourceModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2505,18 +2474,8 @@ public class WikiPageResourcePersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<WikiPageResource>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<WikiPageResource>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

@@ -155,14 +155,11 @@ public class JournalArticleImagePersistenceImpl
 		OrderByComparator<JournalArticleImage> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByGroupId;
@@ -210,7 +207,7 @@ public class JournalArticleImagePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(JournalArticleImageModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -227,18 +224,8 @@ public class JournalArticleImagePersistenceImpl
 
 				qPos.add(groupId);
 
-				if (!pagination) {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleImage>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -676,14 +663,11 @@ public class JournalArticleImagePersistenceImpl
 		OrderByComparator<JournalArticleImage> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByTempImage;
@@ -733,7 +717,7 @@ public class JournalArticleImagePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(JournalArticleImageModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -750,18 +734,8 @@ public class JournalArticleImagePersistenceImpl
 
 				qPos.add(tempImage);
 
-				if (!pagination) {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleImage>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1215,14 +1189,11 @@ public class JournalArticleImagePersistenceImpl
 
 		articleId = Objects.toString(articleId, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_A_V;
@@ -1288,7 +1259,7 @@ public class JournalArticleImagePersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(JournalArticleImageModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1311,18 +1282,8 @@ public class JournalArticleImagePersistenceImpl
 
 				qPos.add(version);
 
-				if (!pagination) {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleImage>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2901,14 +2862,11 @@ public class JournalArticleImagePersistenceImpl
 		OrderByComparator<JournalArticleImage> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2945,10 +2903,7 @@ public class JournalArticleImagePersistenceImpl
 			else {
 				sql = _SQL_SELECT_JOURNALARTICLEIMAGE;
 
-				if (pagination) {
-					sql = sql.concat(
-						JournalArticleImageModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(JournalArticleImageModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2958,18 +2913,8 @@ public class JournalArticleImagePersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleImage>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleImage>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

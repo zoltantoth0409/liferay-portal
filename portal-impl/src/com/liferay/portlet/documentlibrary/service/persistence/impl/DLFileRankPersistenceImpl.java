@@ -152,14 +152,11 @@ public class DLFileRankPersistenceImpl
 		OrderByComparator<DLFileRank> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUserId;
@@ -207,7 +204,7 @@ public class DLFileRankPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DLFileRankModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -224,18 +221,8 @@ public class DLFileRankPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLFileRank>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -664,14 +651,11 @@ public class DLFileRankPersistenceImpl
 		OrderByComparator<DLFileRank> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByFileEntryId;
@@ -721,7 +705,7 @@ public class DLFileRankPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DLFileRankModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -738,18 +722,8 @@ public class DLFileRankPersistenceImpl
 
 				qPos.add(fileEntryId);
 
-				if (!pagination) {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLFileRank>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1184,14 +1158,11 @@ public class DLFileRankPersistenceImpl
 		OrderByComparator<DLFileRank> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_U;
@@ -1245,7 +1216,7 @@ public class DLFileRankPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DLFileRankModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1264,18 +1235,8 @@ public class DLFileRankPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLFileRank>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1747,14 +1708,11 @@ public class DLFileRankPersistenceImpl
 		OrderByComparator<DLFileRank> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_U_A;
@@ -1811,7 +1769,7 @@ public class DLFileRankPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DLFileRankModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1832,18 +1790,8 @@ public class DLFileRankPersistenceImpl
 
 				qPos.add(active);
 
-				if (!pagination) {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLFileRank>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3227,14 +3175,11 @@ public class DLFileRankPersistenceImpl
 		int start, int end, OrderByComparator<DLFileRank> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -3271,9 +3216,7 @@ public class DLFileRankPersistenceImpl
 			else {
 				sql = _SQL_SELECT_DLFILERANK;
 
-				if (pagination) {
-					sql = sql.concat(DLFileRankModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(DLFileRankModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -3283,18 +3226,8 @@ public class DLFileRankPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLFileRank>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLFileRank>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

@@ -153,14 +153,11 @@ public class ResourceTypePermissionPersistenceImpl
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByRoleId;
@@ -208,7 +205,7 @@ public class ResourceTypePermissionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -225,18 +222,8 @@ public class ResourceTypePermissionPersistenceImpl
 
 				qPos.add(roleId);
 
-				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceTypePermission>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -691,14 +678,11 @@ public class ResourceTypePermissionPersistenceImpl
 
 		name = Objects.toString(name, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC_N_R;
@@ -764,7 +748,7 @@ public class ResourceTypePermissionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -787,18 +771,8 @@ public class ResourceTypePermissionPersistenceImpl
 
 				qPos.add(roleId);
 
-				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceTypePermission>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2233,14 +2207,11 @@ public class ResourceTypePermissionPersistenceImpl
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2277,10 +2248,7 @@ public class ResourceTypePermissionPersistenceImpl
 			else {
 				sql = _SQL_SELECT_RESOURCETYPEPERMISSION;
 
-				if (pagination) {
-					sql = sql.concat(
-						ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2290,18 +2258,8 @@ public class ResourceTypePermissionPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceTypePermission>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

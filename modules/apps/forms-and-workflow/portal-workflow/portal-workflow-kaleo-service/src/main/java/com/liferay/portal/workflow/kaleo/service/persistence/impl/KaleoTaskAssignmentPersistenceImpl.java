@@ -158,14 +158,11 @@ public class KaleoTaskAssignmentPersistenceImpl
 		OrderByComparator<KaleoTaskAssignment> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByCompanyId;
@@ -215,7 +212,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -232,18 +229,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<KaleoTaskAssignment>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -686,14 +673,11 @@ public class KaleoTaskAssignmentPersistenceImpl
 		OrderByComparator<KaleoTaskAssignment> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath =
@@ -746,7 +730,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -763,18 +747,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 				qPos.add(kaleoDefinitionId);
 
-				if (!pagination) {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<KaleoTaskAssignment>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1227,14 +1201,11 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 		kaleoClassName = Objects.toString(kaleoClassName, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByKCN_KCPK;
@@ -1299,7 +1270,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1320,18 +1291,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 				qPos.add(kaleoClassPK);
 
-				if (!pagination) {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<KaleoTaskAssignment>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1846,14 +1807,11 @@ public class KaleoTaskAssignmentPersistenceImpl
 		kaleoClassName = Objects.toString(kaleoClassName, "");
 		assigneeClassName = Objects.toString(assigneeClassName, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByKCN_KCPK_ACN;
@@ -1934,7 +1892,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1959,18 +1917,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 					qPos.add(assigneeClassName);
 				}
 
-				if (!pagination) {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<KaleoTaskAssignment>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3137,14 +3085,11 @@ public class KaleoTaskAssignmentPersistenceImpl
 		OrderByComparator<KaleoTaskAssignment> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -3181,10 +3126,7 @@ public class KaleoTaskAssignmentPersistenceImpl
 			else {
 				sql = _SQL_SELECT_KALEOTASKASSIGNMENT;
 
-				if (pagination) {
-					sql = sql.concat(
-						KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(KaleoTaskAssignmentModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -3194,18 +3136,8 @@ public class KaleoTaskAssignmentPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<KaleoTaskAssignment>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<KaleoTaskAssignment>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

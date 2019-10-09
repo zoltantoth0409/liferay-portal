@@ -828,14 +828,11 @@ public class ShoppingItemPersistenceImpl
 		OrderByComparator<ShoppingItem> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByG_C;
@@ -889,7 +886,7 @@ public class ShoppingItemPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ShoppingItemModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -908,18 +905,8 @@ public class ShoppingItemPersistenceImpl
 
 				qPos.add(categoryId);
 
-				if (!pagination) {
-					list = (List<ShoppingItem>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ShoppingItem>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ShoppingItem>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2690,14 +2677,11 @@ public class ShoppingItemPersistenceImpl
 		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2734,9 +2718,7 @@ public class ShoppingItemPersistenceImpl
 			else {
 				sql = _SQL_SELECT_SHOPPINGITEM;
 
-				if (pagination) {
-					sql = sql.concat(ShoppingItemModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(ShoppingItemModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2746,18 +2728,8 @@ public class ShoppingItemPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<ShoppingItem>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ShoppingItem>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ShoppingItem>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
