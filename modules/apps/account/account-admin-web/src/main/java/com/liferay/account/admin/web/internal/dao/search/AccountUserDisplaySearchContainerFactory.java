@@ -46,6 +46,11 @@ public class AccountUserDisplaySearchContainerFactory {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
 
+		String keywords = ParamUtil.getString(
+			liferayPortletRequest, "keywords", null);
+		String navigation = ParamUtil.getString(
+			liferayPortletRequest, "navigation", "active");
+
 		SearchContainer accountUserDisplaySearchContainer = new UserSearch(
 			liferayPortletRequest,
 			PortletURLUtil.getCurrent(
@@ -56,11 +61,6 @@ public class AccountUserDisplaySearchContainerFactory {
 		accountUserDisplaySearchContainer.setId("accountUsers");
 		accountUserDisplaySearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(liferayPortletResponse));
-
-		String keywords = ParamUtil.getString(
-			liferayPortletRequest, "keywords", null);
-		String navigation = ParamUtil.getString(
-			liferayPortletRequest, "navigation", "active");
 
 		BaseModelSearchResult<User> baseModelSearchResult =
 			_accountUserRetriever.searchAccountUsers(
