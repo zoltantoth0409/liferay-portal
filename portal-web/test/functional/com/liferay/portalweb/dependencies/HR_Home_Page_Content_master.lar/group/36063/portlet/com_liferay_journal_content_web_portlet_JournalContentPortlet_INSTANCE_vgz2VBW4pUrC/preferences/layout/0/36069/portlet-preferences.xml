@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<portlet-preferences owner-id="0" owner-type="3" default-user="false" plid="36069" portlet-id="com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vgz2VBW4pUrC">
+	<preference>
+		<name>assetEntryId</name>
+		<value>36172</value>
+	</preference>
+	<preference>
+		<name>groupId</name>
+		<value>36063</value>
+	</preference>
+	<preference>
+		<name>articleId</name>
+		<value>36167</value>
+	</preference>
+</portlet-preferences>

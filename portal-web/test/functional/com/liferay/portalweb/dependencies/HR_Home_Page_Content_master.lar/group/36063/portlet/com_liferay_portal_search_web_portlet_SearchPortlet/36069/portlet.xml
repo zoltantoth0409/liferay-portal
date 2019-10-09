@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<portlet portlet-id="com_liferay_portal_search_web_portlet_SearchPortlet" root-portlet-id="com_liferay_portal_search_web_portlet_SearchPortlet" old-plid="36069" scope-group-id="36063" private-layout="false">
+	<portlet-preferences path="/group/36063/portlet/com_liferay_portal_search_web_portlet_SearchPortlet/preferences/layout/36063/0/portlet-preferences.xml">
+		<preference-data/>
+	</portlet-preferences>
+	<portlet-preferences path="/group/36063/portlet/com_liferay_portal_search_web_portlet_SearchPortlet/preferences/layout/0/36069/portlet-preferences.xml">
+		<preference-data/>
+	</portlet-preferences>
+</portlet>

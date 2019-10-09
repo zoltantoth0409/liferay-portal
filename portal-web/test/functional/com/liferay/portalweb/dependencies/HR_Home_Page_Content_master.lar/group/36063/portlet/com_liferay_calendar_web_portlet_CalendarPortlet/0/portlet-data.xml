@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<CalendarPortletDataHandler>
+	<Calendar>
+		<staged-model group-id="36063" uuid="fa196a5b-8b6f-64de-86c7-1a13a22afb72" path="/group/36063/com.liferay.calendar.model.Calendar/36090.xml">
+			<references>
+				<reference class-name="com.liferay.calendar.model.CalendarResource" class-pk="36089" attached-class-name="com.liferay.portal.kernel.model.Group" group-id="36063" live-group-id="36063" type="strong" uuid="3d7bd863-d880-369b-28e9-d5b8b3a5a71f" company-id="20108" missing="false"/>
+			</references>
+		</staged-model>
+	</Calendar>
+	<CalendarResource>
+		<staged-model group-id="36063" uuid="3d7bd863-d880-369b-28e9-d5b8b3a5a71f" path="/group/36063/com.liferay.calendar.model.CalendarResource/36089.xml" attached-class-name="com.liferay.portal.kernel.model.Group" asset-priority="0.0">
+			<references>
+				<reference class-name="com.liferay.calendar.model.Calendar" class-pk="36090" group-id="36063" live-group-id="36063" type="strong" uuid="fa196a5b-8b6f-64de-86c7-1a13a22afb72" company-id="20108" missing="false"/>
+			</references>
+		</staged-model>
+	</CalendarResource>
+</CalendarPortletDataHandler>

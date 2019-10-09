@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<portlet portlet-id="com_liferay_journal_web_portlet_JournalPortlet" root-portlet-id="com_liferay_journal_web_portlet_JournalPortlet" old-plid="0" scope-group-id="36063" scope-layout-type="" scope-layout-uuid="" private-layout="false">
+	<portlet-data path="/group/36063/portlet/com_liferay_journal_web_portlet_JournalPortlet/36063/portlet-data.xml"/>
+	<portlet-preferences path="/group/36063/portlet/com_liferay_journal_web_portlet_JournalPortlet/preferences/group/36063/0/portlet-preferences.xml">
+		<preference-data/>
+	</portlet-preferences>
+	<portlet-preferences path="/group/36063/portlet/com_liferay_journal_web_portlet_JournalPortlet/preferences/layout/0/0/portlet-preferences.xml">
+		<preference-data/>
+	</portlet-preferences>
+	<portlet-preferences path="/group/36063/portlet/com_liferay_journal_web_portlet_JournalPortlet/preferences/group/36063/0/portlet-preferences.xml">
+		<preference-data/>
+	</portlet-preferences>
+</portlet>
