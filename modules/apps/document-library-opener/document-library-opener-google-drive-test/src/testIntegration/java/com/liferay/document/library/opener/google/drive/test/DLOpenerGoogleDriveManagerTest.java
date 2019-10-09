@@ -203,13 +203,12 @@ public class DLOpenerGoogleDriveManagerTest {
 	private String _getAuthorizationToken() throws Exception {
 		Http.Options options = new Http.Options();
 
+		options.addHeader(
+			"Content-Type", ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED);
 		options.addPart("client_id", _getGoogleDriveClientId());
 		options.addPart("client_secret", _getGoogleDriveClientSecret());
 		options.addPart("grant_type", "refresh_token");
 		options.addPart("refresh_token", _getGoogleDriveRefreshToken());
-
-		options.addHeader(
-			"Content-Type", ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED);
 		options.setLocation("https://www.googleapis.com/oauth2/v4/token");
 		options.setPost(true);
 
