@@ -50,7 +50,7 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 					<%= curCategory.getName() %>
 				</aui:a>
 
-				<c:if test='<%= curCategory.getDisplayStyle().equals("question") %>'>
+				<c:if test='<%= Objects.equals(curCategory.getDisplayStyle(), "question") %>'>
 					<aui:icon cssClass="icon-monospaced" image="question-circle" markupView="lexicon" message="question" />
 				</c:if>
 			</h4>
