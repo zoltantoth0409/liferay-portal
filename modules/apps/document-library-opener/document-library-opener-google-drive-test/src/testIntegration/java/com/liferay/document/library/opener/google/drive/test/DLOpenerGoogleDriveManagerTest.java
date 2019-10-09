@@ -249,8 +249,7 @@ public class DLOpenerGoogleDriveManagerTest {
 			});
 	}
 
-	private <E extends Exception> void _test(
-			UnsafeRunnable<E> unsafeRunnable)
+	private <E extends Exception> void _test(UnsafeRunnable<E> unsafeRunnable)
 		throws Exception {
 
 		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
