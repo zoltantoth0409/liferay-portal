@@ -155,7 +155,6 @@ public class DLSyncEventPersistenceImpl
 		OrderByComparator<DLSyncEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -198,7 +197,7 @@ public class DLSyncEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DLSyncEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -215,18 +214,8 @@ public class DLSyncEventPersistenceImpl
 
 				qPos.add(modifiedTime);
 
-				if (!pagination) {
-					list = (List<DLSyncEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLSyncEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLSyncEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1352,14 +1341,11 @@ public class DLSyncEventPersistenceImpl
 		int start, int end, OrderByComparator<DLSyncEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1396,9 +1382,7 @@ public class DLSyncEventPersistenceImpl
 			else {
 				sql = _SQL_SELECT_DLSYNCEVENT;
 
-				if (pagination) {
-					sql = sql.concat(DLSyncEventModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(DLSyncEventModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1408,18 +1392,8 @@ public class DLSyncEventPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<DLSyncEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DLSyncEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DLSyncEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

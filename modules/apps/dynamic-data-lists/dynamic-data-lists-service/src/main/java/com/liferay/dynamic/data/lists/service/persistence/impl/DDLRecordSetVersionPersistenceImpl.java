@@ -158,14 +158,11 @@ public class DDLRecordSetVersionPersistenceImpl
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByRecordSetId;
@@ -215,7 +212,7 @@ public class DDLRecordSetVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordSetVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -232,18 +229,8 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				qPos.add(recordSetId);
 
-				if (!pagination) {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordSetVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -946,14 +933,11 @@ public class DDLRecordSetVersionPersistenceImpl
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByRS_S;
@@ -1007,7 +991,7 @@ public class DDLRecordSetVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordSetVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1026,18 +1010,8 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordSetVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2097,14 +2071,11 @@ public class DDLRecordSetVersionPersistenceImpl
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2141,10 +2112,7 @@ public class DDLRecordSetVersionPersistenceImpl
 			else {
 				sql = _SQL_SELECT_DDLRECORDSETVERSION;
 
-				if (pagination) {
-					sql = sql.concat(
-						DDLRecordSetVersionModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(DDLRecordSetVersionModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2154,18 +2122,8 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordSetVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordSetVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

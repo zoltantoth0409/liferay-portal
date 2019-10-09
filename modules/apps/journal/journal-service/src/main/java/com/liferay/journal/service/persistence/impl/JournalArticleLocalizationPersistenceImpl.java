@@ -155,14 +155,11 @@ public class JournalArticleLocalizationPersistenceImpl
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByArticlePK;
@@ -216,7 +213,7 @@ public class JournalArticleLocalizationPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -233,18 +230,8 @@ public class JournalArticleLocalizationPersistenceImpl
 
 				qPos.add(articlePK);
 
-				if (!pagination) {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleLocalization>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1530,14 +1517,11 @@ public class JournalArticleLocalizationPersistenceImpl
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1574,10 +1558,8 @@ public class JournalArticleLocalizationPersistenceImpl
 			else {
 				sql = _SQL_SELECT_JOURNALARTICLELOCALIZATION;
 
-				if (pagination) {
-					sql = sql.concat(
-						JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(
+					JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1587,18 +1569,8 @@ public class JournalArticleLocalizationPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<JournalArticleLocalization>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

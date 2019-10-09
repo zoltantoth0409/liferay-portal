@@ -155,14 +155,11 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		OrderByComparator<OAuth2ApplicationScopeAliases> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC;
@@ -216,7 +213,7 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(
 					OAuth2ApplicationScopeAliasesModelImpl.ORDER_BY_JPQL);
 			}
@@ -234,18 +231,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -690,14 +677,11 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		OrderByComparator<OAuth2ApplicationScopeAliases> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath =
@@ -754,7 +738,7 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(
 					OAuth2ApplicationScopeAliasesModelImpl.ORDER_BY_JPQL);
 			}
@@ -772,18 +756,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 
 				qPos.add(oAuth2ApplicationId);
 
-				if (!pagination) {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1243,14 +1217,11 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		OrderByComparator<OAuth2ApplicationScopeAliases> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByO_S;
@@ -1313,7 +1284,7 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(
 					OAuth2ApplicationScopeAliasesModelImpl.ORDER_BY_JPQL);
 			}
@@ -1333,18 +1304,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 
 				qPos.add(scopeAliasesHash);
 
-				if (!pagination) {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2435,14 +2396,11 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		OrderByComparator<OAuth2ApplicationScopeAliases> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2479,10 +2437,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 			else {
 				sql = _SQL_SELECT_OAUTH2APPLICATIONSCOPEALIASES;
 
-				if (pagination) {
-					sql = sql.concat(
-						OAuth2ApplicationScopeAliasesModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(
+					OAuth2ApplicationScopeAliasesModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2492,18 +2448,8 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<OAuth2ApplicationScopeAliases>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

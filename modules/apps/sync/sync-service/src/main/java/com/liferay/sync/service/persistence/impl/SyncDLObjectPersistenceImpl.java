@@ -161,7 +161,6 @@ public class SyncDLObjectPersistenceImpl
 
 		treePath = Objects.toString(treePath, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -216,7 +215,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -235,18 +234,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(treePath);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -710,7 +699,6 @@ public class SyncDLObjectPersistenceImpl
 		OrderByComparator<SyncDLObject> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -759,7 +747,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -778,18 +766,8 @@ public class SyncDLObjectPersistenceImpl
 
 				qPos.add(repositoryId);
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1259,14 +1237,11 @@ public class SyncDLObjectPersistenceImpl
 		OrderByComparator<SyncDLObject> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByR_P;
@@ -1320,7 +1295,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1339,18 +1314,8 @@ public class SyncDLObjectPersistenceImpl
 
 				qPos.add(parentFolderId);
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1818,7 +1783,6 @@ public class SyncDLObjectPersistenceImpl
 
 		event = Objects.toString(event, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -1876,7 +1840,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1897,18 +1861,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(event);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2406,14 +2360,11 @@ public class SyncDLObjectPersistenceImpl
 
 		type = Objects.toString(type, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByR_T;
@@ -2476,7 +2427,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2497,18 +2448,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(type);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3006,7 +2947,6 @@ public class SyncDLObjectPersistenceImpl
 		treePath = Objects.toString(treePath, "");
 		event = Objects.toString(event, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -3075,7 +3015,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3098,18 +3038,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(event);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3634,14 +3564,11 @@ public class SyncDLObjectPersistenceImpl
 		version = Objects.toString(version, "");
 		type = Objects.toString(type, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByV_T;
@@ -3713,7 +3640,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3736,18 +3663,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(type);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4532,7 +4449,6 @@ public class SyncDLObjectPersistenceImpl
 
 		event = Objects.toString(event, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -4593,7 +4509,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4616,18 +4532,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(event);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -5073,13 +4979,10 @@ public class SyncDLObjectPersistenceImpl
 				orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -5152,7 +5055,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5177,18 +5080,8 @@ public class SyncDLObjectPersistenceImpl
 					}
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -5523,14 +5416,11 @@ public class SyncDLObjectPersistenceImpl
 
 		type = Objects.toString(type, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByR_P_T;
@@ -5597,7 +5487,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5620,18 +5510,8 @@ public class SyncDLObjectPersistenceImpl
 					qPos.add(type);
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -6077,13 +5957,10 @@ public class SyncDLObjectPersistenceImpl
 				orderByComparator);
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -6156,7 +6033,7 @@ public class SyncDLObjectPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6181,18 +6058,8 @@ public class SyncDLObjectPersistenceImpl
 					}
 				}
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -7147,14 +7014,11 @@ public class SyncDLObjectPersistenceImpl
 		int start, int end, OrderByComparator<SyncDLObject> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -7191,9 +7055,7 @@ public class SyncDLObjectPersistenceImpl
 			else {
 				sql = _SQL_SELECT_SYNCDLOBJECT;
 
-				if (pagination) {
-					sql = sql.concat(SyncDLObjectModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(SyncDLObjectModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -7203,18 +7065,8 @@ public class SyncDLObjectPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SyncDLObject>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SyncDLObject>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

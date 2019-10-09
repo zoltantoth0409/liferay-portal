@@ -163,14 +163,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -227,7 +224,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -246,18 +243,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -989,14 +976,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -1059,7 +1043,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1080,18 +1064,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1585,14 +1559,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByCompanyId;
@@ -1642,7 +1613,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1659,18 +1630,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2113,14 +2074,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByFormInstanceId;
@@ -2172,7 +2130,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2189,18 +2147,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				qPos.add(formInstanceId);
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2648,14 +2596,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_F;
@@ -2710,7 +2655,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2729,18 +2674,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				qPos.add(formInstanceId);
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3216,14 +3151,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		formInstanceVersion = Objects.toString(formInstanceVersion, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByF_F;
@@ -3289,7 +3221,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3310,18 +3242,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 					qPos.add(formInstanceVersion);
 				}
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4583,14 +4505,11 @@ public class DDMFormInstanceRecordPersistenceImpl
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -4627,10 +4546,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 			else {
 				sql = _SQL_SELECT_DDMFORMINSTANCERECORD;
 
-				if (pagination) {
-					sql = sql.concat(
-						DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(DDMFormInstanceRecordModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -4640,18 +4556,8 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDMFormInstanceRecord>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDMFormInstanceRecord>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

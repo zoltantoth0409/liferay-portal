@@ -162,14 +162,11 @@ public class ResourceBlockPersistenceImpl
 
 		name = Objects.toString(name, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC_N;
@@ -232,7 +229,7 @@ public class ResourceBlockPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ResourceBlockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -253,18 +250,8 @@ public class ResourceBlockPersistenceImpl
 					qPos.add(name);
 				}
 
-				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceBlock>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -771,14 +758,11 @@ public class ResourceBlockPersistenceImpl
 
 		name = Objects.toString(name, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC_G_N;
@@ -844,7 +828,7 @@ public class ResourceBlockPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(ResourceBlockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -867,18 +851,8 @@ public class ResourceBlockPersistenceImpl
 					qPos.add(name);
 				}
 
-				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceBlock>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2305,14 +2279,11 @@ public class ResourceBlockPersistenceImpl
 		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2349,9 +2320,7 @@ public class ResourceBlockPersistenceImpl
 			else {
 				sql = _SQL_SELECT_RESOURCEBLOCK;
 
-				if (pagination) {
-					sql = sql.concat(ResourceBlockModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(ResourceBlockModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2361,18 +2330,8 @@ public class ResourceBlockPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<ResourceBlock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<ResourceBlock>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

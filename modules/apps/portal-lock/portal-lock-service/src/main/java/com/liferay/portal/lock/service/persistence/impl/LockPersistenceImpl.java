@@ -159,14 +159,11 @@ public class LockPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -223,7 +220,7 @@ public class LockPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(LockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -242,18 +239,7 @@ public class LockPersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Lock>)QueryUtil.list(q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -711,14 +697,11 @@ public class LockPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -781,7 +764,7 @@ public class LockPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(LockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -802,18 +785,7 @@ public class LockPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Lock>)QueryUtil.list(q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1298,7 +1270,6 @@ public class LockPersistenceImpl
 		Date expirationDate, int start, int end,
 		OrderByComparator<Lock> orderByComparator, boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
@@ -1354,7 +1325,7 @@ public class LockPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(LockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1373,18 +1344,7 @@ public class LockPersistenceImpl
 					qPos.add(new Timestamp(expirationDate.getTime()));
 				}
 
-				if (!pagination) {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Lock>)QueryUtil.list(q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2677,14 +2637,11 @@ public class LockPersistenceImpl
 		int start, int end, OrderByComparator<Lock> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2721,9 +2678,7 @@ public class LockPersistenceImpl
 			else {
 				sql = _SQL_SELECT_LOCK;
 
-				if (pagination) {
-					sql = sql.concat(LockModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(LockModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2733,18 +2688,7 @@ public class LockPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<Lock>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<Lock>)QueryUtil.list(q, getDialect(), start, end);
 
 				cacheResult(list);
 

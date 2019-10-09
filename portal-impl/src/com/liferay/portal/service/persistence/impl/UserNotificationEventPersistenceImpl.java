@@ -159,14 +159,11 @@ public class UserNotificationEventPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -223,7 +220,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -242,18 +239,8 @@ public class UserNotificationEventPersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -728,14 +715,11 @@ public class UserNotificationEventPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -798,7 +782,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -819,18 +803,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1324,14 +1298,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUserId;
@@ -1379,7 +1350,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1396,18 +1367,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1848,14 +1809,11 @@ public class UserNotificationEventPersistenceImpl
 
 		type = Objects.toString(type, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByType;
@@ -1912,7 +1870,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1931,18 +1889,8 @@ public class UserNotificationEventPersistenceImpl
 					qPos.add(type);
 				}
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2415,14 +2363,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_DT;
@@ -2477,7 +2422,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2496,18 +2441,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(deliveryType);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2980,14 +2915,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_D;
@@ -3041,7 +2973,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3060,18 +2992,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(delivered);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3543,14 +3465,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_A;
@@ -3604,7 +3523,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3623,18 +3542,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(archived);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4113,14 +4022,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_DT_D;
@@ -4178,7 +4084,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4199,18 +4105,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(delivered);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -4717,14 +4613,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_DT_A;
@@ -4782,7 +4675,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4803,18 +4696,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(archived);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -5322,14 +5205,11 @@ public class UserNotificationEventPersistenceImpl
 		int end, OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_D_A;
@@ -5387,7 +5267,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5408,18 +5288,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(actionRequired);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -5929,14 +5799,11 @@ public class UserNotificationEventPersistenceImpl
 		int end, OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_A_A;
@@ -5994,7 +5861,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6015,18 +5882,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(archived);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -6545,14 +6402,11 @@ public class UserNotificationEventPersistenceImpl
 
 		type = Objects.toString(type, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_T_DT_D;
@@ -6625,7 +6479,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6650,18 +6504,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(delivered);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -7234,14 +7078,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_DT_D_A;
@@ -7306,7 +7147,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -7329,18 +7170,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(actionRequired);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -7893,14 +7724,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_DT_A_A;
@@ -7965,7 +7793,7 @@ public class UserNotificationEventPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -7988,18 +7816,8 @@ public class UserNotificationEventPersistenceImpl
 
 				qPos.add(archived);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -9491,14 +9309,11 @@ public class UserNotificationEventPersistenceImpl
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -9535,10 +9350,7 @@ public class UserNotificationEventPersistenceImpl
 			else {
 				sql = _SQL_SELECT_USERNOTIFICATIONEVENT;
 
-				if (pagination) {
-					sql = sql.concat(
-						UserNotificationEventModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(UserNotificationEventModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -9548,18 +9360,8 @@ public class UserNotificationEventPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<UserNotificationEvent>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<UserNotificationEvent>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

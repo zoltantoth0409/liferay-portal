@@ -151,14 +151,11 @@ public class AssetTagStatsPersistenceImpl
 		OrderByComparator<AssetTagStats> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByTagId;
@@ -206,7 +203,7 @@ public class AssetTagStatsPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(AssetTagStatsModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -223,18 +220,8 @@ public class AssetTagStatsPersistenceImpl
 
 				qPos.add(tagId);
 
-				if (!pagination) {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<AssetTagStats>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -665,14 +652,11 @@ public class AssetTagStatsPersistenceImpl
 		OrderByComparator<AssetTagStats> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByClassNameId;
@@ -722,7 +706,7 @@ public class AssetTagStatsPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(AssetTagStatsModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -739,18 +723,8 @@ public class AssetTagStatsPersistenceImpl
 
 				qPos.add(classNameId);
 
-				if (!pagination) {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<AssetTagStats>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1955,14 +1929,11 @@ public class AssetTagStatsPersistenceImpl
 		int start, int end, OrderByComparator<AssetTagStats> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1999,9 +1970,7 @@ public class AssetTagStatsPersistenceImpl
 			else {
 				sql = _SQL_SELECT_ASSETTAGSTATS;
 
-				if (pagination) {
-					sql = sql.concat(AssetTagStatsModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(AssetTagStatsModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2011,18 +1980,8 @@ public class AssetTagStatsPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<AssetTagStats>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<AssetTagStats>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

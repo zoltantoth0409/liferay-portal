@@ -155,14 +155,11 @@ public class DDLRecordVersionPersistenceImpl
 		OrderByComparator<DDLRecordVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByRecordId;
@@ -210,7 +207,7 @@ public class DDLRecordVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -227,18 +224,8 @@ public class DDLRecordVersionPersistenceImpl
 
 				qPos.add(recordId);
 
-				if (!pagination) {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -682,14 +669,11 @@ public class DDLRecordVersionPersistenceImpl
 
 		recordSetVersion = Objects.toString(recordSetVersion, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByR_R;
@@ -753,7 +737,7 @@ public class DDLRecordVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -774,18 +758,8 @@ public class DDLRecordVersionPersistenceImpl
 					qPos.add(recordSetVersion);
 				}
 
-				if (!pagination) {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1536,14 +1510,11 @@ public class DDLRecordVersionPersistenceImpl
 		OrderByComparator<DDLRecordVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByR_S;
@@ -1597,7 +1568,7 @@ public class DDLRecordVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1616,18 +1587,8 @@ public class DDLRecordVersionPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2113,14 +2074,11 @@ public class DDLRecordVersionPersistenceImpl
 
 		recordSetVersion = Objects.toString(recordSetVersion, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByU_R_R_S;
@@ -2193,7 +2151,7 @@ public class DDLRecordVersionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2218,18 +2176,8 @@ public class DDLRecordVersionPersistenceImpl
 
 				qPos.add(status);
 
-				if (!pagination) {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3413,14 +3361,11 @@ public class DDLRecordVersionPersistenceImpl
 		OrderByComparator<DDLRecordVersion> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -3457,9 +3402,7 @@ public class DDLRecordVersionPersistenceImpl
 			else {
 				sql = _SQL_SELECT_DDLRECORDVERSION;
 
-				if (pagination) {
-					sql = sql.concat(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(DDLRecordVersionModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -3469,18 +3412,8 @@ public class DDLRecordVersionPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<DDLRecordVersion>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<DDLRecordVersion>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

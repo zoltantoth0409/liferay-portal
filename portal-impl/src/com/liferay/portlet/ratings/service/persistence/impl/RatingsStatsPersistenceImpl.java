@@ -188,13 +188,10 @@ public class RatingsStatsPersistenceImpl
 			}
 		}
 
-		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderArgs = new Object[] {
@@ -245,7 +242,7 @@ public class RatingsStatsPersistenceImpl
 						list.addAll(
 							_findByC_C(
 								classNameId, classPKsPage, start, end,
-								orderByComparator, pagination));
+								orderByComparator));
 					}
 
 					Collections.sort(list, orderByComparator);
@@ -254,8 +251,7 @@ public class RatingsStatsPersistenceImpl
 				}
 				else {
 					list = _findByC_C(
-						classNameId, classPKs, start, end, orderByComparator,
-						pagination);
+						classNameId, classPKs, start, end, orderByComparator);
 				}
 
 				cacheResult(list);
@@ -280,7 +276,7 @@ public class RatingsStatsPersistenceImpl
 
 	private List<RatingsStats> _findByC_C(
 		long classNameId, long[] classPKs, int start, int end,
-		OrderByComparator<RatingsStats> orderByComparator, boolean pagination) {
+		OrderByComparator<RatingsStats> orderByComparator) {
 
 		List<RatingsStats> list = null;
 
@@ -310,7 +306,7 @@ public class RatingsStatsPersistenceImpl
 			appendOrderByComparator(
 				query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 		}
-		else if (pagination) {
+		else {
 			query.append(RatingsStatsModelImpl.ORDER_BY_JPQL);
 		}
 
@@ -327,18 +323,8 @@ public class RatingsStatsPersistenceImpl
 
 			qPos.add(classNameId);
 
-			if (!pagination) {
-				list = (List<RatingsStats>)QueryUtil.list(
-					q, getDialect(), start, end, false);
-
-				Collections.sort(list);
-
-				list = Collections.unmodifiableList(list);
-			}
-			else {
-				list = (List<RatingsStats>)QueryUtil.list(
-					q, getDialect(), start, end);
-			}
+			list = (List<RatingsStats>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1286,14 +1272,11 @@ public class RatingsStatsPersistenceImpl
 		int start, int end, OrderByComparator<RatingsStats> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -1330,9 +1313,7 @@ public class RatingsStatsPersistenceImpl
 			else {
 				sql = _SQL_SELECT_RATINGSSTATS;
 
-				if (pagination) {
-					sql = sql.concat(RatingsStatsModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(RatingsStatsModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -1342,18 +1323,8 @@ public class RatingsStatsPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<RatingsStats>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<RatingsStats>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<RatingsStats>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

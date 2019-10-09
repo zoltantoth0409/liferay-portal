@@ -153,14 +153,11 @@ public class RecentLayoutRevisionPersistenceImpl
 		OrderByComparator<RecentLayoutRevision> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByGroupId;
@@ -208,7 +205,7 @@ public class RecentLayoutRevisionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(RecentLayoutRevisionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -225,18 +222,8 @@ public class RecentLayoutRevisionPersistenceImpl
 
 				qPos.add(groupId);
 
-				if (!pagination) {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<RecentLayoutRevision>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -675,14 +662,11 @@ public class RecentLayoutRevisionPersistenceImpl
 		OrderByComparator<RecentLayoutRevision> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUserId;
@@ -730,7 +714,7 @@ public class RecentLayoutRevisionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(RecentLayoutRevisionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -747,18 +731,8 @@ public class RecentLayoutRevisionPersistenceImpl
 
 				qPos.add(userId);
 
-				if (!pagination) {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<RecentLayoutRevision>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1200,14 +1174,11 @@ public class RecentLayoutRevisionPersistenceImpl
 		OrderByComparator<RecentLayoutRevision> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByLayoutRevisionId;
@@ -1259,7 +1230,7 @@ public class RecentLayoutRevisionPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(RecentLayoutRevisionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1276,18 +1247,8 @@ public class RecentLayoutRevisionPersistenceImpl
 
 				qPos.add(layoutRevisionId);
 
-				if (!pagination) {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<RecentLayoutRevision>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -2602,14 +2563,11 @@ public class RecentLayoutRevisionPersistenceImpl
 		OrderByComparator<RecentLayoutRevision> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -2646,10 +2604,7 @@ public class RecentLayoutRevisionPersistenceImpl
 			else {
 				sql = _SQL_SELECT_RECENTLAYOUTREVISION;
 
-				if (pagination) {
-					sql = sql.concat(
-						RecentLayoutRevisionModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(RecentLayoutRevisionModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -2659,18 +2614,8 @@ public class RecentLayoutRevisionPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<RecentLayoutRevision>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<RecentLayoutRevision>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 

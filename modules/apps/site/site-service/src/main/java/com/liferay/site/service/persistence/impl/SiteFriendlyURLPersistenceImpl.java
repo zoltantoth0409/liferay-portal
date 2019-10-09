@@ -161,14 +161,11 @@ public class SiteFriendlyURLPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid;
@@ -225,7 +222,7 @@ public class SiteFriendlyURLPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SiteFriendlyURLModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -244,18 +241,8 @@ public class SiteFriendlyURLPersistenceImpl
 					qPos.add(uuid);
 				}
 
-				if (!pagination) {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SiteFriendlyURL>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -976,14 +963,11 @@ public class SiteFriendlyURLPersistenceImpl
 
 		uuid = Objects.toString(uuid, "");
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByUuid_C;
@@ -1046,7 +1030,7 @@ public class SiteFriendlyURLPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SiteFriendlyURLModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1067,18 +1051,8 @@ public class SiteFriendlyURLPersistenceImpl
 
 				qPos.add(companyId);
 
-				if (!pagination) {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SiteFriendlyURL>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -1575,14 +1549,11 @@ public class SiteFriendlyURLPersistenceImpl
 		OrderByComparator<SiteFriendlyURL> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindByC_G;
@@ -1636,7 +1607,7 @@ public class SiteFriendlyURLPersistenceImpl
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else if (pagination) {
+			else {
 				query.append(SiteFriendlyURLModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1655,18 +1626,8 @@ public class SiteFriendlyURLPersistenceImpl
 
 				qPos.add(groupId);
 
-				if (!pagination) {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SiteFriendlyURL>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
@@ -3750,14 +3711,11 @@ public class SiteFriendlyURLPersistenceImpl
 		OrderByComparator<SiteFriendlyURL> orderByComparator,
 		boolean useFinderCache) {
 
-		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 			(orderByComparator == null)) {
-
-			pagination = false;
 
 			if (useFinderCache) {
 				finderPath = _finderPathWithoutPaginationFindAll;
@@ -3794,9 +3752,7 @@ public class SiteFriendlyURLPersistenceImpl
 			else {
 				sql = _SQL_SELECT_SITEFRIENDLYURL;
 
-				if (pagination) {
-					sql = sql.concat(SiteFriendlyURLModelImpl.ORDER_BY_JPQL);
-				}
+				sql = sql.concat(SiteFriendlyURLModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -3806,18 +3762,8 @@ public class SiteFriendlyURLPersistenceImpl
 
 				Query q = session.createQuery(sql);
 
-				if (!pagination) {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = Collections.unmodifiableList(list);
-				}
-				else {
-					list = (List<SiteFriendlyURL>)QueryUtil.list(
-						q, getDialect(), start, end);
-				}
+				list = (List<SiteFriendlyURL>)QueryUtil.list(
+					q, getDialect(), start, end);
 
 				cacheResult(list);
 
