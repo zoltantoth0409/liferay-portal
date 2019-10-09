@@ -116,7 +116,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment 1");
+		Comments.addPG(entryComment = "Blogs Entry Comment 1");
 
 		Navigator.gotoPage(pageName = "Social Activity Page");
 
@@ -132,7 +132,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment 2");
+		Comments.addPG(entryComment = "Blogs Entry Comment 2");
 
 		Navigator.gotoPage(pageName = "Social Activity Page");
 
@@ -152,7 +152,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment from userfn");
+		Comments.addPG(entryComment = "Blogs Entry Comment from userfn");
 
 		Navigator.gotoPage(pageName = "Social Activity Page");
 
@@ -178,7 +178,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment 3");
+		Comments.addPG(entryComment = "Blogs Entry Comment 3");
 
 		Navigator.gotoPage(pageName = "Social Activity Page");
 

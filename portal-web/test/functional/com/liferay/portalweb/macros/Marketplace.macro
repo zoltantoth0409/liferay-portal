@@ -25,7 +25,7 @@ definition {
 			entryContent = "Blogs Entry 1 Content",
 			entryTitle = "Blogs Entry 1 Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry 1 Comment");
+		Comments.addPG(entryComment = "Blogs Entry 1 Comment");
 
 		Navigator.openURL();
 
