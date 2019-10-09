@@ -1249,8 +1249,6 @@ public class JournalDisplayContext {
 		searchContext.setEnd(end);
 		searchContext.setFolderIds(folderIds);
 		searchContext.setGroupIds(new long[] {groupId});
-		searchContext.setIncludeDiscussions(
-			GetterUtil.getBoolean(params.get("includeDiscussions"), true));
 
 		if (params != null) {
 			keywords = (String)params.remove("keywords");
