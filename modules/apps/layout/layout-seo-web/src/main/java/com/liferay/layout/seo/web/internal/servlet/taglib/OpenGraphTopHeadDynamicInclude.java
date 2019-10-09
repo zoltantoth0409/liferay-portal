@@ -233,8 +233,8 @@ public class OpenGraphTopHeadDynamicInclude extends BaseDynamicInclude {
 			}
 		}
 
-		String siteName = HtmlUtil.escape(group.getDescriptiveName());
 		Company company = themeDisplay.getCompany();
+		String siteName = HtmlUtil.escape(group.getDescriptiveName());
 
 		if (Validator.isNotNull(title) &&
 			!StringUtil.equals(company.getName(), siteName) &&
