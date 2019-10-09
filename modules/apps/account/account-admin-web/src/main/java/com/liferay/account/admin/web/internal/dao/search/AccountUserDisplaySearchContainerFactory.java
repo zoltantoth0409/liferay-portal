@@ -62,7 +62,7 @@ public class AccountUserDisplaySearchContainerFactory {
 		String navigation = ParamUtil.getString(
 			liferayPortletRequest, "navigation", "active");
 
-		BaseModelSearchResult<User> accountUsersSearchResult =
+		BaseModelSearchResult<User> baseModelSearchResult =
 			_accountUserRetriever.searchAccountUsers(
 				accountEntryId, keywords, _getStatus(navigation),
 				accountUserDisplaySearchContainer.getStart(),
@@ -71,13 +71,11 @@ public class AccountUserDisplaySearchContainerFactory {
 				_isReverseOrder(
 					accountUserDisplaySearchContainer.getOrderByType()));
 
-		List<AccountUserDisplay> accountUserDisplays = TransformUtil.transform(
-			accountUsersSearchResult.getBaseModels(), AccountUserDisplay::of);
-
-		accountUserDisplaySearchContainer.setResults(accountUserDisplays);
-
+		accountUserDisplaySearchContainer.setResults(
+			TransformUtil.transform(
+				baseModelSearchResult.getBaseModels(), AccountUserDisplay::of));
 		accountUserDisplaySearchContainer.setTotal(
-			accountUsersSearchResult.getLength());
+			baseModelSearchResult.getLength());
 
 		return accountUserDisplaySearchContainer;
 	}
