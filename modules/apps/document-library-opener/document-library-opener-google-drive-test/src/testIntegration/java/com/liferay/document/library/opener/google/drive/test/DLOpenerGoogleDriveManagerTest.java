@@ -136,7 +136,7 @@ public class DLOpenerGoogleDriveManagerTest {
 	public void testGetAuthorizationURLSucceedsIfThereAreValidCredentials()
 		throws Exception {
 
-		_withGoogleDriveEnabled(
+		_test(
 			() -> {
 				String redirectUri = "http://localhost:8080";
 				String state = RandomTestUtil.randomString();
@@ -170,7 +170,7 @@ public class DLOpenerGoogleDriveManagerTest {
 	public void testIsConfiguredIsTrueWhenGoogleDriveSettingsAreFilled()
 		throws Exception {
 
-		_withGoogleDriveEnabled(
+		_test(
 			() -> Assert.assertTrue(
 				_dlOpenerGoogleDriveManager.isConfigured(
 					_company.getCompanyId())));
@@ -234,7 +234,7 @@ public class DLOpenerGoogleDriveManagerTest {
 			long companyId, long userId, UnsafeRunnable<E> unsafeRunnable)
 		throws Exception {
 
-		_withGoogleDriveEnabled(
+		_test(
 			() -> {
 				_dlOpenerGoogleDriveManager.setAuthorizationToken(
 					companyId, userId, _getAuthorizationToken());
@@ -249,7 +249,7 @@ public class DLOpenerGoogleDriveManagerTest {
 			});
 	}
 
-	private <E extends Exception> void _withGoogleDriveEnabled(
+	private <E extends Exception> void _test(
 			UnsafeRunnable<E> unsafeRunnable)
 		throws Exception {
 
