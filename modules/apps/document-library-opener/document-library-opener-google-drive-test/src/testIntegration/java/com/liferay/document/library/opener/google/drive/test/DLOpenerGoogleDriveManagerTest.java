@@ -81,7 +81,7 @@ public class DLOpenerGoogleDriveManagerTest {
 
 	@Test
 	public void testCheckOutUploadsTheFileToGoogle() throws Exception {
-		_withGoogleDriveAuthorized(
+		_test(
 			_company.getCompanyId(), _user.getUserId(),
 			() -> {
 				FileEntry fileEntry = _addFileEntry();
@@ -103,7 +103,7 @@ public class DLOpenerGoogleDriveManagerTest {
 
 	@Test
 	public void testCreateUploadsAnEmptyFileToGoogle() throws Exception {
-		_withGoogleDriveAuthorized(
+		_test(
 			_company.getCompanyId(), _user.getUserId(),
 			() -> {
 				FileEntry fileEntry = _addFileEntry();
@@ -230,7 +230,7 @@ public class DLOpenerGoogleDriveManagerTest {
 		return PropsUtil.get("google.drive.integration.client.refresh.token.1");
 	}
 
-	private <E extends Exception> void _withGoogleDriveAuthorized(
+	private <E extends Exception> void _test(
 			long companyId, long userId, UnsafeRunnable<E> unsafeRunnable)
 		throws Exception {
 
