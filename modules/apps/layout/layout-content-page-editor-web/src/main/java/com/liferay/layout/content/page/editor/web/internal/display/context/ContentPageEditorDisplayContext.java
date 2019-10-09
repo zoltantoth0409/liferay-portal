@@ -608,6 +608,15 @@ public class ContentPageEditorDisplayContext {
 
 		Map<String, Object> configurations = new HashMap<>();
 
+		EditorConfiguration commentEditorConfiguration =
+			EditorConfigurationFactoryUtil.getEditorConfiguration(
+				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
+				"pageEditorCommentEditor", StringPool.BLANK,
+				Collections.emptyMap(), themeDisplay,
+				RequestBackedPortletURLFactoryUtil.create(request));
+
+		configurations.put("comment", commentEditorConfiguration.getData());
+
 		EditorConfiguration richTextEditorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(
 				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
@@ -625,15 +634,6 @@ public class ContentPageEditorDisplayContext {
 				RequestBackedPortletURLFactoryUtil.create(request));
 
 		configurations.put("text", editorConfiguration.getData());
-
-		EditorConfiguration commentEditorConfiguration =
-			EditorConfigurationFactoryUtil.getEditorConfiguration(
-				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-				"pageEditorCommentEditor", StringPool.BLANK,
-				Collections.emptyMap(), themeDisplay,
-				RequestBackedPortletURLFactoryUtil.create(request));
-
-		configurations.put("comment", commentEditorConfiguration.getData());
 
 		_defaultConfigurations = configurations;
 
