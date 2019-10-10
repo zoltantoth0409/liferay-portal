@@ -729,6 +729,7 @@ definition {
 		DMDocument.downloadPG(dmDocumentTitle = "/D/M/Document Title");
 	}
 
+	@ignore = "true"
 	@priority = "5"
 	test EditAndDeleteGoogleDoc {
 		property osgi.app.includes = "document-library-google-docs";
@@ -1045,6 +1046,7 @@ definition {
 			dmDocumentTitle = "DM Document Title");
 	}
 
+	@ignore = "true"
 	@priority = "5"
 	test MoveGoogleDocToFolder {
 		property osgi.app.includes = "document-library-google-docs";
