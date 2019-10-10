@@ -239,9 +239,6 @@ definition {
 			value1 = "This instance is inactive. Please contact the administrator.");
 	}
 
-	// LPS-84364
-
-	@ignore = "true"
 	@priority = "4"
 	test ViewVirtualHostPrivateSitePage {
 		property custom.properties = "virtual.hosts.valid.hosts=localhost,127.0.0.1,www.able.com,www.baker.com,www.charlie.com";
