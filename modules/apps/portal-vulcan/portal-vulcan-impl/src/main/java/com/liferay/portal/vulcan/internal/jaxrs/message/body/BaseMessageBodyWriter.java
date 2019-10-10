@@ -103,11 +103,11 @@ public abstract class BaseMessageBodyWriter
 		objectMapper.setFilterProvider(
 			new SimpleFilterProvider() {
 				{
+					PropertyFilter propertyFilter = null;
+
 					Set<String> fieldNames = _fieldsQueryParam.getFieldNames();
 					Set<String> restrictFieldNames =
 						_restrictFieldsQueryParam.getRestrictFieldNames();
-
-					PropertyFilter propertyFilter = null;
 
 					if ((fieldNames == null) && (restrictFieldNames == null)) {
 						propertyFilter =
