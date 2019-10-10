@@ -31,14 +31,7 @@ if (showEditURL && assetRenderer.hasEditPermission(permissionChecker)) {
 
 	redirectURL.setParameter("mvcPath", "/add_asset_redirect.jsp");
 
-	String fullContentRedirect = (String)request.getAttribute("view.jsp-fullContentRedirect");
-
-	if (fullContentRedirect != null) {
-		redirectURL.setParameter("redirect", fullContentRedirect);
-	}
-	else {
-		redirectURL.setParameter("redirect", currentURL);
-	}
+	redirectURL.setParameter("redirect", PortalUtil.getCurrentCompleteURL(request));
 
 	redirectURL.setWindowState(LiferayWindowState.POP_UP);
 
