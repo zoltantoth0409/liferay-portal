@@ -32,8 +32,8 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 <c:if test="<%= !StringUtil.equals(selLayout.getType(), LayoutConstants.TYPE_ASSET_DISPLAY) %>">
 
 	<%
-		String titleInputId = "title";
-		String descriptionInputId = "descriptionSEO";
+	String titleInputId = "title";
+	String descriptionInputId = "descriptionSEO";
 	%>
 
 	<aui:input id="<%= titleInputId %>" label="html-title" name="title" placeholder="title" />
