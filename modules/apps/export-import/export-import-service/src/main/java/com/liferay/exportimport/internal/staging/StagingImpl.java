@@ -228,6 +228,10 @@ public class StagingImpl implements Staging {
 					ExportImportClassedModelUtil.getClassName(
 						stagedGroupedModel));
 
+			if (stagedModelDataHandler == null) {
+				return;
+			}
+
 			if (!ArrayUtil.contains(
 					stagedModelDataHandler.getExportableStatuses(),
 					workflowedModel.getStatus())) {
