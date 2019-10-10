@@ -21,7 +21,6 @@ import com.liferay.headless.delivery.dto.v1_0.converter.DTOConverter;
 import com.liferay.headless.delivery.dto.v1_0.converter.DTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
@@ -51,8 +50,6 @@ public class DocumentFolderDTOConverter implements DTOConverter {
 		Folder folder = _dlAppService.getFolder(
 			dtoConverterContext.getResourcePrimKey());
 
-		User user = dtoConverterContext.getUser();
-
 		return new DocumentFolder() {
 			{
 				creator = CreatorUtil.toCreator(
@@ -71,7 +68,7 @@ public class DocumentFolderDTOConverter implements DTOConverter {
 					folder.getRepositoryId(), folder.getFolderId());
 				siteId = folder.getGroupId();
 				subscribed = _subscriptionLocalService.isSubscribed(
-					folder.getCompanyId(), user.getUserId(),
+					folder.getCompanyId(), dtoConverterContext.getUserId(),
 					DLFolder.class.getName(), folder.getFolderId());
 			}
 		};
