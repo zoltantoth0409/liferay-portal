@@ -246,31 +246,34 @@ public class SegmentsExperimentDisplayContext {
 	}
 
 	private Map<String, Object> _getEndpoints() throws PortalException {
-		Map<String, Object> endpoints = new HashMap<>();
-
-		endpoints.put(
-			"calculateSegmentsExperimentEstimatedDurationURL",
-			_getCalculateSegmentsExperimentEstimatedDurationURL());
-		endpoints.put(
-			"createSegmentsExperimentURL", _getCreateSegmentsExperimentURL());
-		endpoints.put(
-			"createSegmentsVariantURL", _getCreateSegmentsVariantURL());
-		endpoints.put(
-			"deleteSegmentsExperimentURL", _getDeleteSegmentsExperimentURL());
-		endpoints.put(
-			"deleteSegmentsVariantURL", _getDeleteSegmentsVariantURL());
-		endpoints.put(
-			"editSegmentsExperimentStatusURL",
-			_getEditSegmentsExperimentStatusURL());
-		endpoints.put(
-			"editSegmentsExperimentURL", _getEditSegmentsExperimentURL());
-		endpoints.put(
-			"editSegmentsVariantLayoutURL", _getEditSegmentsVariantLayoutURL());
-		endpoints.put("editSegmentsVariantURL", _getEditSegmentsVariantURL());
-		endpoints.put(
-			"runSegmentsExperimentURL", _getRunSegmentsExperimenttURL());
-
-		return endpoints;
+		return new HashMap<String, Object>() {
+			{
+				put(
+					"calculateSegmentsExperimentEstimatedDurationURL",
+					_getCalculateSegmentsExperimentEstimatedDurationURL());
+				put(
+					"createSegmentsExperimentURL",
+					_getCreateSegmentsExperimentURL());
+				put("createSegmentsVariantURL", _getCreateSegmentsVariantURL());
+				put(
+					"deleteSegmentsExperimentURL",
+					_getDeleteSegmentsExperimentURL());
+				put("deleteSegmentsVariantURL", _getDeleteSegmentsVariantURL());
+				put(
+					"editSegmentsExperimentStatusURL",
+					_getEditSegmentsExperimentStatusURL());
+				put(
+					"editSegmentsExperimentURL",
+					_getEditSegmentsExperimentURL());
+				put(
+					"editSegmentsVariantLayoutURL",
+					_getEditSegmentsVariantLayoutURL());
+				put("editSegmentsVariantURL", _getEditSegmentsVariantURL());
+				put(
+					"runSegmentsExperimentURL",
+					_getRunSegmentsExperimenttURL());
+			}
+		};
 	}
 
 	private JSONArray _getHistorySegmentsExperimentsJSONArray(Locale locale)
