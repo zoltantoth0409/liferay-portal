@@ -30,17 +30,11 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 <aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
 
 <c:if test="<%= !StringUtil.equals(selLayout.getType(), LayoutConstants.TYPE_ASSET_DISPLAY) %>">
-
-	<%
-	String titleInputId = "title";
-	String descriptionInputId = "descriptionSEO";
-	%>
-
-	<aui:input id="<%= titleInputId %>" label="html-title" name="title" placeholder="title" />
+	<aui:input id="title" label="html-title" name="title" placeholder="title" />
 
 	<h4><liferay-ui:message key="meta-tags" /></h4>
 
-	<aui:input id="<%= descriptionInputId %>" name="description" placeholder="description" />
+	<aui:input id="descriptionSEO" name="description" placeholder="description" />
 
 	<aui:input name="keywords" placeholder="keywords" />
 
@@ -53,8 +47,8 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 			Map<String, Object> data = new HashMap<>();
 			Map<String, String> targetsIds = new HashMap<>();
 
-			targetsIds.put("description", descriptionInputId);
-			targetsIds.put("title", titleInputId);
+			targetsIds.put("description", "descriptionSEO");
+			targetsIds.put("title", "title");
 
 			data.put("suffixTitle", StringPool.BLANK);
 			data.put("targetsIds", targetsIds);
