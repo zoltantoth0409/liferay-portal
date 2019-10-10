@@ -44,7 +44,7 @@ definition {
 			siteURL = "${siteURL}"
 		);
 
-		BlogsEntryComment.add(
+		Comments.addPG(
 			entryComment = "Blogs Entry 1 Comment",
 			siteName = "${siteName}",
 			siteURL = "${siteURL}"

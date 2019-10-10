@@ -149,7 +149,7 @@ definition {
 
 		WikiPage.rate4StarsPG(wikiPageTitle = "FrontPage");
 
-		BlogsEntryComment.add(entryComment = "Wiki FrontPage Comment");
+		Comments.addPG(entryComment = "Wiki FrontPage Comment");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page",
@@ -218,7 +218,7 @@ definition {
 
 		AssetPublisherPortlet.viewAverageRatingPG(averageRating = "4");
 
-		BlogsEntryComment.viewPG(
+		Comments.viewPG(
 			commentCount = "1",
 			entryComment = "Wiki FrontPage Comment",
 			userFullName = "Test Test (You)");

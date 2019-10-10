@@ -75,7 +75,7 @@ definition {
 
 		DMDocument.viewPG(dmDocumentTitle = "DM Document Title");
 
-		BlogsEntryComment.add(entryComment = "DM Document Comment");
+		Comments.addPG(entryComment = "DM Document Comment");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging DM Page",

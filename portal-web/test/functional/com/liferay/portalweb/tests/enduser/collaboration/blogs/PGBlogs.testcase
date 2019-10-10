@@ -119,7 +119,7 @@ definition {
 
 		Pause(locator1 = "3000");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment");
+		Comments.addPG(entryComment = "Blogs Entry Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -127,7 +127,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.viewPG(
+		Comments.viewPG(
 			commentCount = "1",
 			entryComment = "Blogs Entry Comment",
 			userFullName = "Test Test (You)");
@@ -715,7 +715,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment");
+		Comments.addPG(entryComment = "Blogs Entry Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -723,7 +723,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.delete(entryComment = "Blogs Entry Comment");
+		Comments.delete(entryComment = "Blogs Entry Comment");
 	}
 
 	@priority = "5"
@@ -769,7 +769,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "Blogs Entry Comment");
+		Comments.addPG(entryComment = "Blogs Entry Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -777,7 +777,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.edit(
+		Comments.edit(
 			entryComment = "Blogs Entry Comment",
 			entryCommentEdit = "Blogs Entry Comment Edit");
 	}
@@ -796,7 +796,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "1st Blog Comment");
+		Comments.addPG(entryComment = "1st Blog Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -804,7 +804,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "2nd Blog Comment");
+		Comments.addPG(entryComment = "2nd Blog Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -812,7 +812,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.add(entryComment = "3rd Blog Comment");
+		Comments.addPG(entryComment = "3rd Blog Comment");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
@@ -820,7 +820,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.edit(
+		Comments.edit(
 			entryComment = "1st Blog Comment",
 			entryCommentEdit = "1st Blog Comment Edit");
 
@@ -830,7 +830,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.edit(
+		Comments.edit(
 			entryComment = "2nd Blog Comment",
 			entryCommentEdit = "2nd Blog Comment Edit");
 
@@ -840,7 +840,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.edit(
+		Comments.edit(
 			entryComment = "3rd Blog Comment",
 			entryCommentEdit = "3rd Blog Comment Edit",
 			entryTitle = "Blogs Entry Title");
@@ -1220,7 +1220,7 @@ definition {
 
 		Comments.subscribePG();
 
-		BlogsEntryComment.viewSubscribedPG();
+		Comments.viewSubscribedPG();
 	}
 
 	@priority = "4"
@@ -1401,7 +1401,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		BlogsEntryComment.addPGAsGuest(
+		Comments.addPGAsGuest(
 			entryComment = "Guest Blogs Entry Comment",
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title",
@@ -1415,7 +1415,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.viewPG(
+		Comments.viewPG(
 			commentCount = "1",
 			entryComment = "Guest Blogs Entry Comment",
 			entryContent = "Blogs Entry Content",
@@ -1448,7 +1448,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		BlogsEntryComment.viewPG(
+		Comments.viewPG(
 			commentCount = "1",
 			entryComment = "Guest Blogs Entry Comment",
 			entryContent = "Blogs Entry Content",
