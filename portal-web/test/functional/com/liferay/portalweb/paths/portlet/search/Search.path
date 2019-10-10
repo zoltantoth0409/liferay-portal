@@ -68,6 +68,11 @@
 	<td>//div[contains(@class,'portlet-options')]/a[contains(@id,'_SearchPortlet') and @title='Options']</td>
 	<td></td>
 </tr>
+<tr>
+	<td>SEARCH_SUGGESTED_SPELLING</td>
+	<td>//div[contains(@class,'search-suggested-spelling')]//li[contains(.,'Did you mean:')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>
