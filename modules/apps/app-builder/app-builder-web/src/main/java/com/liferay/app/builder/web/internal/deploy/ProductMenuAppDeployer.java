@@ -74,7 +74,7 @@ public class ProductMenuAppDeployer implements AppDeployer {
 		JSONObject jsonObject = _jsonFactory.createJSONObject(
 			appBuilderAppDeployment.getSettings());
 
-		JSONArray scopes = jsonObject.getJSONArray("scope");
+		JSONArray scopeJSONArray = jsonObject.getJSONArray("scope");
 
 		AppBuilderApp appBuilderApp =
 			_appBuilderAppLocalService.getAppBuilderApp(appId);
@@ -87,7 +87,7 @@ public class ProductMenuAppDeployer implements AppDeployer {
 		String controlPanelMenuLabel = portletName.concat("controlPanel");
 		String siteMenuLabel = portletName.concat("site");
 
-		if (scopes.length() == 2) {
+		if (scopeJSONArray.length() == 2) {
 			_serviceRegistrationsMap.computeIfAbsent(
 				appId,
 				key -> new ServiceRegistration<?>[] {
@@ -105,7 +105,7 @@ public class ProductMenuAppDeployer implements AppDeployer {
 				});
 		}
 		else {
-			String scope = scopes.getString(0);
+			String scope = scopeJSONArray.getString(0);
 			String menuLabel;
 
 			if (PanelCategoryKeys.CONTROL_PANEL.equals(scope)) {
