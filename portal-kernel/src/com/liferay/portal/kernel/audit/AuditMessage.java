@@ -261,17 +261,17 @@ public class AuditMessage implements Serializable {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put(_ADDITIONAL_INFO, _additionalInfoJSONObject);
-		jsonObject.put(_COMPANY_ID, _companyId);
-		jsonObject.put(_CLASS_PK, _classPK);
 		jsonObject.put(_CLASS_NAME, _className);
+		jsonObject.put(_CLASS_PK, _classPK);
 		jsonObject.put(_CLIENT_HOST, _clientHost);
 		jsonObject.put(_CLIENT_IP, _clientIP);
+		jsonObject.put(_COMPANY_ID, _companyId);
+		jsonObject.put(_EVENT_TYPE, _eventType);
 		jsonObject.put(_MESSAGE, _message);
-		jsonObject.put(_SERVER_PORT, _serverPort);
 		jsonObject.put(_SERVER_NAME, _serverName);
+		jsonObject.put(_SERVER_PORT, _serverPort);
 		jsonObject.put(_SESSION_ID, _sessionID);
 		jsonObject.put(_TIMESTAMP, _getDateFormat().format(new Date()));
-		jsonObject.put(_EVENT_TYPE, _eventType);
 		jsonObject.put(_USER_ID, _userId);
 		jsonObject.put(_USER_NAME, _userName);
 

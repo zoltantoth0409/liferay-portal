@@ -489,9 +489,9 @@ public class IndexWriterHelperImpl implements IndexWriterHelper {
 		}
 
 		taskContextMap.put(
-			ReindexBackgroundTaskConstants.COMPANY_IDS, companyIds);
-		taskContextMap.put(
 			BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true);
+		taskContextMap.put(
+			ReindexBackgroundTaskConstants.COMPANY_IDS, companyIds);
 
 		try {
 			return _backgroundTaskManager.addBackgroundTask(
@@ -519,11 +519,11 @@ public class IndexWriterHelperImpl implements IndexWriterHelper {
 		}
 
 		taskContextMap.put(
+			BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true);
+		taskContextMap.put(
 			ReindexBackgroundTaskConstants.CLASS_NAME, className);
 		taskContextMap.put(
 			ReindexBackgroundTaskConstants.COMPANY_IDS, companyIds);
-		taskContextMap.put(
-			BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true);
 
 		try {
 			return _backgroundTaskManager.addBackgroundTask(

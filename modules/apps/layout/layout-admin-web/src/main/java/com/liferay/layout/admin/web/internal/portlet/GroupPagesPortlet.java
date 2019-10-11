@@ -165,10 +165,10 @@ public class GroupPagesPortlet extends MVCPortlet {
 				LayoutAdminWebConfiguration.class.getName(),
 				_layoutAdminWebConfiguration);
 			renderRequest.setAttribute(
+				ApplicationListWebKeys.GROUP_PROVIDER, _groupProvider);
+			renderRequest.setAttribute(
 				LayoutAdminWebKeys.ASSET_DISPLAY_CONTRIBUTOR_TRACKER,
 				_assetDisplayContributorTracker);
-			renderRequest.setAttribute(
-				ApplicationListWebKeys.GROUP_PROVIDER, _groupProvider);
 			renderRequest.setAttribute(
 				LayoutAdminWebKeys.ITEM_SELECTOR, _itemSelector);
 
