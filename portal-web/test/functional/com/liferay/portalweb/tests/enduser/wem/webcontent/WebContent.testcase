@@ -2435,7 +2435,7 @@ definition {
 
 			WebContentStructures.saveCP(structureName = "${structureName}");
 
-			var n = MathUtil.sum("${n}", "1");
+			var n = ${n} + 1;
 		}
 
 		Navigator.openURL();

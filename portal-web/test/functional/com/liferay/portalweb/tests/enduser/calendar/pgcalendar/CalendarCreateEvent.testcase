@@ -346,7 +346,7 @@ definition {
 
 			AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
 
-			var refreshCount = MathUtil.sum("${refreshCount}", "1");
+			var refreshCount = ${refreshCount} + 1;
 		}
 	}
 

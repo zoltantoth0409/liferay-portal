@@ -430,7 +430,7 @@ definition {
 				userLastName = "userln${count}",
 				userScreenName = "usersn${count}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		ProductMenu.gotoPortlet(
@@ -520,7 +520,7 @@ definition {
 				parentOrgName = "Organization Name 2",
 				subOrgName = "Suborganization Name ${count}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		ProductMenu.gotoPortlet(
