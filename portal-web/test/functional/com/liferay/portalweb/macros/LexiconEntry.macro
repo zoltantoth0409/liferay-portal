@@ -200,7 +200,7 @@ else {
 		''';
 		var managementBarReady = "";
 
-		while (!("${managementBarReady}" == "ready") && (maxIterations = "30")) {
+		while ("${managementBarReady}" != "ready") {
 			var managementBarReady = selenium.getEval("${javaScript}");
 
 			Pause(locator1 = "1000");

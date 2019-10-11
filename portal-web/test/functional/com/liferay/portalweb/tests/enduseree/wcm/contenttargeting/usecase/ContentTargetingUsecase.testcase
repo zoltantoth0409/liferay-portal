@@ -3727,7 +3727,7 @@ definition {
 
 		var count = "0";
 
-		while (!("${count}" == "3")) {
+		while ("${count}" != "3") {
 			Navigator.gotoSitePage(pageName = "Test Page Name", siteName = "Site Name");
 
 			AssetPublisherPortlet.viewAssetDetailsPG(
@@ -3749,7 +3749,7 @@ definition {
 
 		var count = "0";
 
-		while (!("${count}" == "3")) {
+		while ("${count}" != "3") {
 			Navigator.gotoSitePage(pageName = "Test Page Name", siteName = "Site Name");
 
 			AssetPublisherPortlet.viewAssetDetailsPG(
@@ -4008,7 +4008,7 @@ definition {
 
 		var count = "0";
 
-		while (!("${count}" == "3")) {
+		while ("${count}" != "3") {
 			Navigator.gotoSitePage(pageName = "Test Page Name", siteName = "Site Name");
 
 			AssetPublisherPortlet.viewAssetDetailsPG(

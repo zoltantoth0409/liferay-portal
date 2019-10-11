@@ -870,7 +870,7 @@ definition {
 	test AddUsers {
 		var count = "1";
 
-		while (!("${count}" == "4")) {
+		while ("${count}" != "4") {
 			ProductMenu.gotoPortlet(
 				category = "Users",
 				panel = "Control Panel",
@@ -887,7 +887,7 @@ definition {
 
 		var count = "1";
 
-		while (!("${count}" == "4")) {
+		while ("${count}" != "4") {
 			ProductMenu.gotoPortlet(
 				category = "Users",
 				panel = "Control Panel",

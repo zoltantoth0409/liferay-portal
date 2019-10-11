@@ -5,7 +5,7 @@ definition {
 
 		var rowIndexNumber = selenium.getNumberDecrement("${rowNumber}");
 
-		if (!("${rowIndexNumber}" == "0")) {
+		if ("${rowIndexNumber}" != "0") {
 			var key_indexNumber = "${rowIndexNumber}";
 
 			Click(locator1 = "ContentTargeting#PLUS_LINK");
@@ -89,7 +89,7 @@ definition {
 
 				var key_previewEntry = "${previewEntry}";
 
-				if ((isSet(entryContentText)) && (!("${previewEntry}" == "default"))) {
+				if ((isSet(entryContentText)) && ("${previewEntry}" != "default")) {
 					AssertTextEquals(
 						locator1 = "CampaignContentDisplay#ENTRY_CONTENT",
 						value1 = "${entryContentText}");

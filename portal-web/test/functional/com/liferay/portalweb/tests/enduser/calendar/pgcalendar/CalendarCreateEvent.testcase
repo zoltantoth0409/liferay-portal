@@ -337,7 +337,7 @@ definition {
 
 		var refreshCount = "0";
 
-		while (!("${refreshCount}" == "5")) {
+		while ("${refreshCount}" != "5") {
 			Navigator.gotoPage(pageName = "Calendar Page");
 
 			CalendarEvent.view(eventTitle = "Calendar Event Title");

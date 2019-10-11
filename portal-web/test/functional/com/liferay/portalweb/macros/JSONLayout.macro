@@ -50,7 +50,7 @@ definition {
 			fail("Please set 'layoutName'.");
 		}
 
-		if (!("${privateLayout}" == "true")) {
+		if ("${privateLayout}" != "true") {
 			var privateLayout = "false";
 		}
 
@@ -86,7 +86,7 @@ definition {
 			fail("Please set 'layoutName'.");
 		}
 
- 		if (!("${privateLayout}" == "true")) {
+ 		if ("${privateLayout}" != "true") {
 			var privateLayout = "false";
 		}
 
