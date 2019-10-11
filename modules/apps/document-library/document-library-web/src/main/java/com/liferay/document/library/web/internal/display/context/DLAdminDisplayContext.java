@@ -428,18 +428,15 @@ public class DLAdminDisplayContext {
 					_request.getLocale());
 			}
 
-			List<Long> folderIds = new ArrayList<>(1);
-
-			if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-				folderIds.add(folderId);
-			}
-
 			SearchContext searchContext = SearchContextFactory.getInstance(
 				_request);
 
 			searchContext.setAttribute("paginationType", "none");
 			searchContext.setEnd(dlSearchContainer.getEnd());
-			searchContext.setFolderIds(folderIds);
+
+			if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				searchContext.setFolderIds(new long[] {folderId});
+			}
 
 			int type = Sort.STRING_TYPE;
 			String fieldName = orderByCol;
