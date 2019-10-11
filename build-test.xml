@@ -1744,7 +1744,9 @@ jdbc.default.url=${database.url}
 jdbc.default.username=${database.username}
 jdbc.default.password=${database.password}</echo>
 
-			<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-ext.properties">liferay.home=${liferay.home}</echo>
+			<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-ext.properties">
+liferay.home=${liferay.home}
+module.framework.properties.osgi.console=localhost:11311</echo>
 		</sequential>
 	</macrodef>
 
