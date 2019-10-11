@@ -33,10 +33,10 @@ public class WindowStateFactory {
 	private WindowStateFactory() {
 		_windowStates = new HashMap<>();
 
-		_windowStates.put(_NORMAL, LiferayWindowState.NORMAL);
+		_windowStates.put(_EXCLUSIVE, LiferayWindowState.EXCLUSIVE);
 		_windowStates.put(_MAXIMIZED, LiferayWindowState.MAXIMIZED);
 		_windowStates.put(_MINIMIZED, LiferayWindowState.MINIMIZED);
-		_windowStates.put(_EXCLUSIVE, LiferayWindowState.EXCLUSIVE);
+		_windowStates.put(_NORMAL, LiferayWindowState.NORMAL);
 		_windowStates.put(_POP_UP, LiferayWindowState.POP_UP);
 	}
 

@@ -536,8 +536,8 @@ public class CMISStore extends BaseStore {
 		defaultFilterSet.add(PropertyIds.BASE_TYPE_ID);
 		defaultFilterSet.add(PropertyIds.CREATED_BY);
 		defaultFilterSet.add(PropertyIds.CREATION_DATE);
-		defaultFilterSet.add(PropertyIds.LAST_MODIFIED_BY);
 		defaultFilterSet.add(PropertyIds.LAST_MODIFICATION_DATE);
+		defaultFilterSet.add(PropertyIds.LAST_MODIFIED_BY);
 		defaultFilterSet.add(PropertyIds.NAME);
 		defaultFilterSet.add(PropertyIds.OBJECT_ID);
 		defaultFilterSet.add(PropertyIds.OBJECT_TYPE_ID);
@@ -580,9 +580,9 @@ public class CMISStore extends BaseStore {
 		Locale locale = LocaleUtil.getDefault();
 
 		parameters.put(
-			SessionParameter.LOCALE_ISO3166_COUNTRY, locale.getCountry());
-		parameters.put(
 			SessionParameter.LOCALE_ISO639_LANGUAGE, locale.getLanguage());
+		parameters.put(
+			SessionParameter.LOCALE_ISO3166_COUNTRY, locale.getCountry());
 
 		parameters.put(
 			SessionParameter.PASSWORD,

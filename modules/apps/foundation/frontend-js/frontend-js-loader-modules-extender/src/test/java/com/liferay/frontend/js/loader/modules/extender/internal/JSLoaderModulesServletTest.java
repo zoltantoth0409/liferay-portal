@@ -601,8 +601,8 @@ public class JSLoaderModulesServletTest extends PowerMockito {
 
 		Map<String, Object> properties = new HashMap<>();
 
-		properties.put(Details.OSGI_WEBRESOURCE, "jquery");
 		properties.put(Constants.VERSION_ATTRIBUTE, new Version("2.15.3"));
+		properties.put(Details.OSGI_WEBRESOURCE, "jquery");
 
 		doReturn(
 			properties

@@ -2513,14 +2513,14 @@ public class IntrabandProxyUtilTest {
 		_defaultValueMap.put(boolean.class, Boolean.FALSE);
 		_defaultValueMap.put(byte.class, (byte)0);
 		_defaultValueMap.put(char.class, (char)0);
+		_defaultValueMap.put(Date.class, null);
 		_defaultValueMap.put(double.class, (double)0);
 		_defaultValueMap.put(float.class, (float)0);
 		_defaultValueMap.put(int.class, 0);
 		_defaultValueMap.put(long.class, (long)0);
+		_defaultValueMap.put(Object.class, null);
 		_defaultValueMap.put(short.class, (short)0);
 		_defaultValueMap.put(String.class, null);
-		_defaultValueMap.put(Date.class, null);
-		_defaultValueMap.put(Object.class, null);
 		_defaultValueMap.put(void.class, null);
 
 		try {
@@ -2534,14 +2534,14 @@ public class IntrabandProxyUtilTest {
 		_sampleValueMap.put(boolean.class, Boolean.TRUE);
 		_sampleValueMap.put(byte.class, (byte)11);
 		_sampleValueMap.put(char.class, 'X');
+		_sampleValueMap.put(Date.class, new Date());
 		_sampleValueMap.put(double.class, 12.345);
 		_sampleValueMap.put(float.class, 5.325F);
 		_sampleValueMap.put(int.class, 127);
 		_sampleValueMap.put(long.class, (long)82465);
+		_sampleValueMap.put(Object.class, new Locale("en"));
 		_sampleValueMap.put(short.class, (short)-35);
 		_sampleValueMap.put(String.class, "Hello");
-		_sampleValueMap.put(Date.class, new Date());
-		_sampleValueMap.put(Object.class, new Locale("en"));
 		_sampleValueMap.put(void.class, null);
 	}
 

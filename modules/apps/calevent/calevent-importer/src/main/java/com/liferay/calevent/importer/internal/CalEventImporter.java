@@ -1442,17 +1442,17 @@ public class CalEventImporter {
 
 	static {
 		_frequencies.put(TZSRecurrence.DAILY, Frequency.DAILY);
-		_frequencies.put(TZSRecurrence.WEEKLY, Frequency.WEEKLY);
 		_frequencies.put(TZSRecurrence.MONTHLY, Frequency.MONTHLY);
+		_frequencies.put(TZSRecurrence.WEEKLY, Frequency.WEEKLY);
 		_frequencies.put(TZSRecurrence.YEARLY, Frequency.YEARLY);
 
-		_weekdays.put(Calendar.SUNDAY, Weekday.SUNDAY);
+		_weekdays.put(Calendar.FRIDAY, Weekday.FRIDAY);
 		_weekdays.put(Calendar.MONDAY, Weekday.MONDAY);
+		_weekdays.put(Calendar.SATURDAY, Weekday.SATURDAY);
+		_weekdays.put(Calendar.SUNDAY, Weekday.SUNDAY);
+		_weekdays.put(Calendar.THURSDAY, Weekday.THURSDAY);
 		_weekdays.put(Calendar.TUESDAY, Weekday.TUESDAY);
 		_weekdays.put(Calendar.WEDNESDAY, Weekday.WEDNESDAY);
-		_weekdays.put(Calendar.THURSDAY, Weekday.THURSDAY);
-		_weekdays.put(Calendar.FRIDAY, Weekday.FRIDAY);
-		_weekdays.put(Calendar.SATURDAY, Weekday.SATURDAY);
 	}
 
 	private AssetCategoryLocalService _assetCategoryLocalService;

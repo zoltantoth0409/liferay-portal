@@ -33,15 +33,15 @@ public class PortletModeFactory {
 	private PortletModeFactory() {
 		_portletModes = new HashMap<>();
 
-		_portletModes.put(_EDIT, LiferayPortletMode.EDIT);
-		_portletModes.put(_HELP, LiferayPortletMode.HELP);
-		_portletModes.put(_VIEW, LiferayPortletMode.VIEW);
 		_portletModes.put(_ABOUT, LiferayPortletMode.ABOUT);
 		_portletModes.put(_CONFIG, LiferayPortletMode.CONFIG);
+		_portletModes.put(_EDIT, LiferayPortletMode.EDIT);
 		_portletModes.put(_EDIT_DEFAULTS, LiferayPortletMode.EDIT_DEFAULTS);
 		_portletModes.put(_EDIT_GUEST, LiferayPortletMode.EDIT_GUEST);
+		_portletModes.put(_HELP, LiferayPortletMode.HELP);
 		_portletModes.put(_PREVIEW, LiferayPortletMode.PREVIEW);
 		_portletModes.put(_PRINT, LiferayPortletMode.PRINT);
+		_portletModes.put(_VIEW, LiferayPortletMode.VIEW);
 	}
 
 	private PortletMode _getPortletMode(String name) {
