@@ -2,6 +2,7 @@
 /development/alloy-taglib.jar
 /development/annotations.jar
 /development/ant-apache-bsf.jar
+/development/ant-compress.jar
 /development/appium.jar
 /development/biz.aQute.bnd.jar
 /development/catalina.jar
@@ -82,7 +83,6 @@
 /portal/abdera.jar
 /portal/activation.jar
 /portal/ant.jar
-/portal/ant-compress.jar
 /portal/antlr2.jar
 /portal/antlr3-runtime.jar
 /portal/antlr3.jar
