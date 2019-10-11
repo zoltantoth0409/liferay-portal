@@ -863,7 +863,7 @@ definition {
 			}
 
 			AssertElementNotPresent(
-				key_ratingStarPosition = ${ratingPosition} + 1,
+				key_ratingStarPosition = MathUtil.sum("${ratingPosition}", "1"),
 				locator1 = "Ratings#YOUR_RATING_STAR");
 		}
 
@@ -885,7 +885,7 @@ definition {
 			}
 
 			AssertElementNotPresent(
-				key_emptyStarPosition = ${emptyStarPosition} + 1,
+				key_emptyStarPosition = MathUtil.sum("${emptyStarPosition}", "1"),
 				locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
 		}
 	}
@@ -928,7 +928,7 @@ definition {
 			}
 
 			AssertElementNotPresent(
-				key_averageRatingStar = ${ratingPosition} + 1,
+				key_averageRatingStar = MathUtil.sum("${ratingPosition}", "1"),
 				locator1 = "Ratings#AVERAGE_STAR");
 		}
 
@@ -950,7 +950,7 @@ definition {
 			}
 
 			AssertElementNotPresent(
-				key_averageEmptyStar = ${emptyStarPosition} + 1,
+				key_averageEmptyStar = MathUtil.sum("${emptyStarPosition}", "1"),
 				locator1 = "Ratings#AVERAGE_STAR_EMPTY");
 		}
 
