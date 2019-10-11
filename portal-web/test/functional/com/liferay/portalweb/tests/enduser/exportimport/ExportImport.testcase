@@ -1026,6 +1026,8 @@ definition {
 
 		LAR.downloadLar();
 
+		Refresh();
+
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
