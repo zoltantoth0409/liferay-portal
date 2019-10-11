@@ -4370,6 +4370,18 @@
 				</licenses>
 			</library>
 			<library>
+				<file-name>lib/development/ant-compress.jar</file-name>
+				<version>1.5</version>
+				<project-name>Apache Compress Antlib</project-name>
+				<project-url>https://ant.apache.org/antlibs/compress/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
 				<file-name>lib/development/ant-contrib.jar</file-name>
 				<version>1.0 B3</version>
 				<project-name>Ant-Contrib Tasks</project-name>
