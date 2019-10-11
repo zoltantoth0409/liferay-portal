@@ -6049,13 +6049,7 @@ ${output.content}</echo>
 								<delete dir="${liferay.home}" />
 
 								<prepare-release-test-environment
-									test.build.fix.pack.zip.url="${test.build.fix.pack.zip.url}"
-									test.fix.pack.base.url="${test.fix.pack.base.url}"
 									test.license.xml.url="${test.license.xml.url}"
-									test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
-									test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
-									test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
-									test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 									test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 									test.sql.zip.url="${test.sql.zip.url}"
 								/>
