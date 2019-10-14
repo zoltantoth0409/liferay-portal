@@ -17,6 +17,7 @@ package com.liferay.depot.web.internal.util;
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -60,7 +61,7 @@ public class DepotAdminGroupSearchProvider {
 		GroupSearchTerms searchTerms =
 			(GroupSearchTerms)groupSearch.getSearchTerms();
 
-		List results = null;
+		List<Group> results = null;
 
 		if (searchTerms.hasSearchTerms()) {
 			int total = _groupLocalService.searchCount(

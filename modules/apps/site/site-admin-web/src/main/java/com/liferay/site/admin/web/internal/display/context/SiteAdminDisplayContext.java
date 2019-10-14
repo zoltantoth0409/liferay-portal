@@ -172,6 +172,29 @@ public class SiteAdminDisplayContext {
 		return _groupId;
 	}
 
+	public GroupSearch getGroupSearch() throws PortalException {
+		GroupSearch groupSearch = _groupSearchProvider.getGroupSearch(
+			_liferayPortletRequest, getPortletURL());
+
+		groupSearch.setId("sites");
+
+		SiteChecker siteChecker = new SiteChecker(_liferayPortletResponse);
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("^(?!.*");
+		sb.append(_liferayPortletResponse.getNamespace());
+		sb.append("redirect).*(groupId=");
+		sb.append(getGroupId());
+		sb.append(")");
+
+		siteChecker.setRememberCheckBoxStateURLRegex(sb.toString());
+
+		groupSearch.setRowChecker(siteChecker);
+
+		return groupSearch;
+	}
+
 	public int getOrganizationsCount(Group group) {
 		LinkedHashMap<String, Object> organizationParams =
 			new LinkedHashMap<>();
@@ -209,29 +232,6 @@ public class SiteAdminDisplayContext {
 		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		return portletURL;
-	}
-
-	public GroupSearch getGroupSearch() throws PortalException {
-		GroupSearch groupSearch = _groupSearchProvider.getGroupSearch(
-			_liferayPortletRequest, getPortletURL());
-
-		groupSearch.setId("sites");
-
-		SiteChecker siteChecker = new SiteChecker(_liferayPortletResponse);
-
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("^(?!.*");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append("redirect).*(groupId=");
-		sb.append(getGroupId());
-		sb.append(")");
-
-		siteChecker.setRememberCheckBoxStateURLRegex(sb.toString());
-
-		groupSearch.setRowChecker(siteChecker);
-
-		return groupSearch;
 	}
 
 	public int getUserGroupsCount(Group group) {
