@@ -161,24 +161,20 @@ already deprecated in `7.2`.
 
 #### What changed?
 
-The legacy metal+soy `liferay.frontend.ProgressBar` component has been removed.
+Liferay Frontend compat ProgressBar has been removed.
 
 #### Who is affected?
 
-This affects any code that relies on such component, which is usually done via
-`soy` as `{call liferay.frontend.ProgressBar /}`
+This affects any code that relies on such component.
 
 #### How should I update my code?
 
-There's no direct replacement for `liferay.frontend.ProgressBar` component
-which was simply being used as a temporary bridge for legacy behaviour.
-
-If you have a component that relies on it, you can choose to co-locate a copy of
-the old implementation and use it locally within your module.
+There's no direct replacement for this. Clay ProgessBar component can be used
+instead.
 
 #### Why was this change made?
 
-The compatibility `liferay.frontend.ProgessBar` component is no longer used and
-was already deprecated in `7.2`.
+Liferay Frontend compat ProgressBar component is not used and was already
+deprecated in 7.2.
 
 ---------------------------------------
