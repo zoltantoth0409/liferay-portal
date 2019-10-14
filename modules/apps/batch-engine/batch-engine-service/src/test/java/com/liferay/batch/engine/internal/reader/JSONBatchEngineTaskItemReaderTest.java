@@ -39,7 +39,7 @@ public class JSONBatchEngineTaskItemReaderTest
 					new Object[][] {
 						{
 							null, "\"sample description\"", 1,
-							"{\"en\":\"sample name\",\"hr\":\"naziv\"}",
+							"{\"en\": \"sample name\", \"hr\": \"naziv\"}",
 							"\"unknown column\""
 						}
 					})) {
@@ -62,12 +62,12 @@ public class JSONBatchEngineTaskItemReaderTest
 						{
 							"\"" + createDateString + "\"",
 							"\"sample description 1\"", 1,
-							"{\"en\":\"sample name 1\",\"hr\":\"naziv 1\"}"
+							"{\"en\": \"sample name 1\", \"hr\": \"naziv 1\"}"
 						},
 						{
 							"\"" + createDateString + "\"",
 							"\"sample description 2\"", 2,
-							"{\"en\":\"sample name 2\",\"hr\":\"naziv 2\"}"
+							"{\"en\": \"sample name 2\", \"hr\": \"naziv 2\"}"
 						}
 					})) {
 
@@ -95,7 +95,7 @@ public class JSONBatchEngineTaskItemReaderTest
 						{
 							"\"" + createDateString + "\"",
 							"\"hey, here is comma inside\"", 1,
-							"{\"en\":\"sample name\",\"hr\":\"naziv\"}"
+							"{\"en\": \"sample name\", \"hr\": \"naziv\"}"
 						}
 					})) {
 
@@ -130,12 +130,12 @@ public class JSONBatchEngineTaskItemReaderTest
 					new Object[][] {
 						{
 							"\"" + createDateString + "\"", "null", 1,
-							"{\"hr\":\"naziv 1\"}"
+							"{\"hr\": \"naziv 1\"}"
 						},
 						{
 							"\"" + createDateString + "\"",
 							"\"sample description 2\"", 2,
-							"{\"en\":\"sample name 2\",\"hr\":\"naziv 2\"}"
+							"{\"en\": \"sample name 2\", \"hr\": \"naziv 2\"}"
 						}
 					})) {
 
@@ -172,7 +172,7 @@ public class JSONBatchEngineTaskItemReaderTest
 				if (singleRowValues[j] != null) {
 					sb.append("\"");
 					sb.append(_CELL_NAMES[j]);
-					sb.append("\":");
+					sb.append("\": ");
 					sb.append(singleRowValues[j]);
 					sb.append(",");
 				}
