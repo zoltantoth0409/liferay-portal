@@ -20,17 +20,7 @@ import com.liferay.portal.aop.AopService;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The implementation of the depot entry remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.depot.service.DepotEntryService</code> interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see DepotEntryServiceBaseImpl
  */
 @Component(
 	property = {
@@ -40,11 +30,4 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class DepotEntryServiceImpl extends DepotEntryServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use <code>com.liferay.depot.service.DepotEntryServiceUtil</code> to access the depot entry remote service.
-	 */
-
 }
