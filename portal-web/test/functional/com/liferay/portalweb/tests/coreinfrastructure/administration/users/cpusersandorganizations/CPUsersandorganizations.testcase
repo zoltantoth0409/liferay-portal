@@ -933,7 +933,7 @@ definition {
 				userLastName = "userln${count}",
 				userScreenName = "usersn${count}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		var count = "1";
@@ -950,7 +950,7 @@ definition {
 				userLastName = "userln${count}",
 				userScreenName = "usersn${count}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 	}
 

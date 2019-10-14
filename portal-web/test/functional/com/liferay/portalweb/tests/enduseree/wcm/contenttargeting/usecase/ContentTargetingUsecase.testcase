@@ -3676,7 +3676,7 @@ definition {
 				assetTitle = "Blogs Entry Title"
 			);
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		Navigator.gotoSitePage(
@@ -3698,7 +3698,7 @@ definition {
 				assetTitle = "Blogs Entry Title"
 			);
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		Navigator.gotoSitePage(
@@ -3949,7 +3949,7 @@ definition {
 				assetTitle = "Blogs Entry Title"
 			);
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		Navigator.gotoSitePage(

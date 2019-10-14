@@ -1063,7 +1063,7 @@ definition {
 		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "0", "AM");
 		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "1", "PM");
 		var displayDateMinute = selenium.getAttribute("//input[contains(@id,'schedulerStartDateMinute')]@value");
-		var displayDateMinuteFuture = MathUtil.sum("${displayDateMinute}", "2");
+		var displayDateMinuteFuture = ${displayDateMinute} + 2;
 		var displayDateMinuteFutureLength = StringUtil.length("${displayDateMinuteFuture}");
 
 		if ("${displayDateMinuteFutureLength}" == "1") {
@@ -1092,7 +1092,7 @@ definition {
 			}
 
 			var endByDateYear = selenium.getAttribute("//input[contains(@id,'schedulerEndDateYear')]@value");
-			var endByDateYearFuture = MathUtil.sum("${endByDateYear}", "5");
+			var endByDateYearFuture = ${endByDateYear} + 5;
 			var endByDay = "${endByDateMonth}/${endByDateDay}/${endByDateYearFuture}";
 
 			Type(

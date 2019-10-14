@@ -241,7 +241,7 @@ definition {
 	}
 
 	macro addMultipleArticlesCP {
-		var articleCount = MathUtil.sum("${articleCount}", "1");
+		var articleCount = ${articleCount} + 1;
 		var count = "1";
 
 		while ("${count}" != "${articleCount}") {
@@ -249,7 +249,7 @@ definition {
 				webContentContent = "WC Content ${count}",
 				webContentTitle = "WC Title ${count}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 	}
 
@@ -791,7 +791,7 @@ definition {
 					locator1 = "DDMField#TEXT_BOX",
 					value1 = "${webContentTextBox}");
 
-				var count = MathUtil.sum("${count}", "1");
+				var count = ${count} + 1;
 			}
 		}
 
@@ -1638,7 +1638,7 @@ definition {
 				locator1 = "AssetCategorization#VOCABULARY_LIST_ITEM",
 				value1 = "${vocabularyName}");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 	}
 
@@ -2330,7 +2330,7 @@ definition {
 					locator1 = "DDMField#TEXT_BOX",
 					value1 = "${webContentTextBox}");
 
-				var count = MathUtil.sum("${count}", "1");
+				var count = ${count} + 1;
 			}
 		}
 	}

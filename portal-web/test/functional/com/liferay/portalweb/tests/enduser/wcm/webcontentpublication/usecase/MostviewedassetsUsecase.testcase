@@ -82,7 +82,7 @@ definition {
 				assetContent = "Web Content Content",
 				assetTitle = "Web Content Title 1");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		Navigator.gotoSitePage(
@@ -108,7 +108,7 @@ definition {
 				assetContent = "Web Content Content",
 				assetTitle = "Web Content Title 2");
 
-			var count = MathUtil.sum("${count}", "1");
+			var count = ${count} + 1;
 		}
 
 		Navigator.gotoSitePage(

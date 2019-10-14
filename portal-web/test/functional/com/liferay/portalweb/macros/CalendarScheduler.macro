@@ -470,7 +470,7 @@ definition {
 						value1 = "${eventTitle}"
 					);
 
-					var i = MathUtil.sum("${i}", "1");
+					var i = ${i} + 1;
 				}
 
 				AssertClick(
