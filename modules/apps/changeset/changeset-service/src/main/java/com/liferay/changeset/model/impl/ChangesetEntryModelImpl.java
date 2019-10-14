@@ -282,9 +282,11 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object changesetEntryId) {
+					ChangesetEntry changesetEntry,
+					Object changesetEntryIdObject) {
 
-					changesetEntry.setChangesetEntryId((Long)changesetEntryId);
+					changesetEntry.setChangesetEntryId(
+						(Long)changesetEntryIdObject);
 				}
 
 			});
@@ -304,9 +306,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object groupId) {
+					ChangesetEntry changesetEntry, Object groupIdObject) {
 
-					changesetEntry.setGroupId((Long)groupId);
+					changesetEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -326,9 +328,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object companyId) {
+					ChangesetEntry changesetEntry, Object companyIdObject) {
 
-					changesetEntry.setCompanyId((Long)companyId);
+					changesetEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -348,9 +350,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object userId) {
+					ChangesetEntry changesetEntry, Object userIdObject) {
 
-					changesetEntry.setUserId((Long)userId);
+					changesetEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -370,9 +372,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object userName) {
+					ChangesetEntry changesetEntry, Object userNameObject) {
 
-					changesetEntry.setUserName((String)userName);
+					changesetEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -392,9 +394,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object createDate) {
+					ChangesetEntry changesetEntry, Object createDateObject) {
 
-					changesetEntry.setCreateDate((Date)createDate);
+					changesetEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -414,9 +416,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object modifiedDate) {
+					ChangesetEntry changesetEntry, Object modifiedDateObject) {
 
-					changesetEntry.setModifiedDate((Date)modifiedDate);
+					changesetEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -437,10 +439,10 @@ public class ChangesetEntryModelImpl
 				@Override
 				public void accept(
 					ChangesetEntry changesetEntry,
-					Object changesetCollectionId) {
+					Object changesetCollectionIdObject) {
 
 					changesetEntry.setChangesetCollectionId(
-						(Long)changesetCollectionId);
+						(Long)changesetCollectionIdObject);
 				}
 
 			});
@@ -460,9 +462,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object classNameId) {
+					ChangesetEntry changesetEntry, Object classNameIdObject) {
 
-					changesetEntry.setClassNameId((Long)classNameId);
+					changesetEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -482,9 +484,9 @@ public class ChangesetEntryModelImpl
 
 				@Override
 				public void accept(
-					ChangesetEntry changesetEntry, Object classPK) {
+					ChangesetEntry changesetEntry, Object classPKObject) {
 
-					changesetEntry.setClassPK((Long)classPK);
+					changesetEntry.setClassPK((Long)classPKObject);
 				}
 
 			});

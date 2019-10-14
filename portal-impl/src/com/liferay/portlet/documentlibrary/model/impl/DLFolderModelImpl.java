@@ -399,8 +399,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object uuid) {
-					dlFolder.setUuid((String)uuid);
+				public void accept(DLFolder dlFolder, Object uuidObject) {
+					dlFolder.setUuid((String)uuidObject);
 				}
 
 			});
@@ -419,8 +419,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object folderId) {
-					dlFolder.setFolderId((Long)folderId);
+				public void accept(DLFolder dlFolder, Object folderIdObject) {
+					dlFolder.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -439,8 +439,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object groupId) {
-					dlFolder.setGroupId((Long)groupId);
+				public void accept(DLFolder dlFolder, Object groupIdObject) {
+					dlFolder.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -459,8 +459,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object companyId) {
-					dlFolder.setCompanyId((Long)companyId);
+				public void accept(DLFolder dlFolder, Object companyIdObject) {
+					dlFolder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -479,8 +479,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object userId) {
-					dlFolder.setUserId((Long)userId);
+				public void accept(DLFolder dlFolder, Object userIdObject) {
+					dlFolder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -499,8 +499,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object userName) {
-					dlFolder.setUserName((String)userName);
+				public void accept(DLFolder dlFolder, Object userNameObject) {
+					dlFolder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -519,8 +519,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object createDate) {
-					dlFolder.setCreateDate((Date)createDate);
+				public void accept(DLFolder dlFolder, Object createDateObject) {
+					dlFolder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -539,8 +539,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object modifiedDate) {
-					dlFolder.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					DLFolder dlFolder, Object modifiedDateObject) {
+
+					dlFolder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -559,8 +561,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object repositoryId) {
-					dlFolder.setRepositoryId((Long)repositoryId);
+				public void accept(
+					DLFolder dlFolder, Object repositoryIdObject) {
+
+					dlFolder.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -579,8 +583,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object mountPoint) {
-					dlFolder.setMountPoint((Boolean)mountPoint);
+				public void accept(DLFolder dlFolder, Object mountPointObject) {
+					dlFolder.setMountPoint((Boolean)mountPointObject);
 				}
 
 			});
@@ -599,8 +603,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object parentFolderId) {
-					dlFolder.setParentFolderId((Long)parentFolderId);
+				public void accept(
+					DLFolder dlFolder, Object parentFolderIdObject) {
+
+					dlFolder.setParentFolderId((Long)parentFolderIdObject);
 				}
 
 			});
@@ -619,8 +625,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object treePath) {
-					dlFolder.setTreePath((String)treePath);
+				public void accept(DLFolder dlFolder, Object treePathObject) {
+					dlFolder.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -639,8 +645,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object name) {
-					dlFolder.setName((String)name);
+				public void accept(DLFolder dlFolder, Object nameObject) {
+					dlFolder.setName((String)nameObject);
 				}
 
 			});
@@ -659,8 +665,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object description) {
-					dlFolder.setDescription((String)description);
+				public void accept(
+					DLFolder dlFolder, Object descriptionObject) {
+
+					dlFolder.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -679,8 +687,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object lastPostDate) {
-					dlFolder.setLastPostDate((Date)lastPostDate);
+				public void accept(
+					DLFolder dlFolder, Object lastPostDateObject) {
+
+					dlFolder.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});
@@ -700,10 +710,10 @@ public class DLFolderModelImpl
 
 				@Override
 				public void accept(
-					DLFolder dlFolder, Object defaultFileEntryTypeId) {
+					DLFolder dlFolder, Object defaultFileEntryTypeIdObject) {
 
 					dlFolder.setDefaultFileEntryTypeId(
-						(Long)defaultFileEntryTypeId);
+						(Long)defaultFileEntryTypeIdObject);
 				}
 
 			});
@@ -722,8 +732,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object hidden) {
-					dlFolder.setHidden((Boolean)hidden);
+				public void accept(DLFolder dlFolder, Object hiddenObject) {
+					dlFolder.setHidden((Boolean)hiddenObject);
 				}
 
 			});
@@ -742,8 +752,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object restrictionType) {
-					dlFolder.setRestrictionType((Integer)restrictionType);
+				public void accept(
+					DLFolder dlFolder, Object restrictionTypeObject) {
+
+					dlFolder.setRestrictionType((Integer)restrictionTypeObject);
 				}
 
 			});
@@ -762,8 +774,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object lastPublishDate) {
-					dlFolder.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					DLFolder dlFolder, Object lastPublishDateObject) {
+
+					dlFolder.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -782,8 +796,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object status) {
-					dlFolder.setStatus((Integer)status);
+				public void accept(DLFolder dlFolder, Object statusObject) {
+					dlFolder.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -802,8 +816,10 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object statusByUserId) {
-					dlFolder.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					DLFolder dlFolder, Object statusByUserIdObject) {
+
+					dlFolder.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -822,8 +838,11 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object statusByUserName) {
-					dlFolder.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					DLFolder dlFolder, Object statusByUserNameObject) {
+
+					dlFolder.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -842,8 +861,8 @@ public class DLFolderModelImpl
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object statusDate) {
-					dlFolder.setStatusDate((Date)statusDate);
+				public void accept(DLFolder dlFolder, Object statusDateObject) {
+					dlFolder.setStatusDate((Date)statusDateObject);
 				}
 
 			});

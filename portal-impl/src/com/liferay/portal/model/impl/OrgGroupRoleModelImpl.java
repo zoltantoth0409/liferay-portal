@@ -262,9 +262,9 @@ public class OrgGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					OrgGroupRole orgGroupRole, Object mvccVersion) {
+					OrgGroupRole orgGroupRole, Object mvccVersionObject) {
 
-					orgGroupRole.setMvccVersion((Long)mvccVersion);
+					orgGroupRole.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -284,9 +284,9 @@ public class OrgGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					OrgGroupRole orgGroupRole, Object organizationId) {
+					OrgGroupRole orgGroupRole, Object organizationIdObject) {
 
-					orgGroupRole.setOrganizationId((Long)organizationId);
+					orgGroupRole.setOrganizationId((Long)organizationIdObject);
 				}
 
 			});
@@ -305,8 +305,10 @@ public class OrgGroupRoleModelImpl
 			new BiConsumer<OrgGroupRole, Object>() {
 
 				@Override
-				public void accept(OrgGroupRole orgGroupRole, Object groupId) {
-					orgGroupRole.setGroupId((Long)groupId);
+				public void accept(
+					OrgGroupRole orgGroupRole, Object groupIdObject) {
+
+					orgGroupRole.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -325,8 +327,10 @@ public class OrgGroupRoleModelImpl
 			new BiConsumer<OrgGroupRole, Object>() {
 
 				@Override
-				public void accept(OrgGroupRole orgGroupRole, Object roleId) {
-					orgGroupRole.setRoleId((Long)roleId);
+				public void accept(
+					OrgGroupRole orgGroupRole, Object roleIdObject) {
+
+					orgGroupRole.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -346,9 +350,9 @@ public class OrgGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					OrgGroupRole orgGroupRole, Object companyId) {
+					OrgGroupRole orgGroupRole, Object companyIdObject) {
 
-					orgGroupRole.setCompanyId((Long)companyId);
+					orgGroupRole.setCompanyId((Long)companyIdObject);
 				}
 
 			});

@@ -269,9 +269,9 @@ public class TrashVersionModelImpl
 
 				@Override
 				public void accept(
-					TrashVersion trashVersion, Object versionId) {
+					TrashVersion trashVersion, Object versionIdObject) {
 
-					trashVersion.setVersionId((Long)versionId);
+					trashVersion.setVersionId((Long)versionIdObject);
 				}
 
 			});
@@ -291,9 +291,9 @@ public class TrashVersionModelImpl
 
 				@Override
 				public void accept(
-					TrashVersion trashVersion, Object companyId) {
+					TrashVersion trashVersion, Object companyIdObject) {
 
-					trashVersion.setCompanyId((Long)companyId);
+					trashVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -312,8 +312,10 @@ public class TrashVersionModelImpl
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object entryId) {
-					trashVersion.setEntryId((Long)entryId);
+				public void accept(
+					TrashVersion trashVersion, Object entryIdObject) {
+
+					trashVersion.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -333,9 +335,9 @@ public class TrashVersionModelImpl
 
 				@Override
 				public void accept(
-					TrashVersion trashVersion, Object classNameId) {
+					TrashVersion trashVersion, Object classNameIdObject) {
 
-					trashVersion.setClassNameId((Long)classNameId);
+					trashVersion.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -354,8 +356,10 @@ public class TrashVersionModelImpl
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object classPK) {
-					trashVersion.setClassPK((Long)classPK);
+				public void accept(
+					TrashVersion trashVersion, Object classPKObject) {
+
+					trashVersion.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -375,9 +379,9 @@ public class TrashVersionModelImpl
 
 				@Override
 				public void accept(
-					TrashVersion trashVersion, Object typeSettings) {
+					TrashVersion trashVersion, Object typeSettingsObject) {
 
-					trashVersion.setTypeSettings((String)typeSettings);
+					trashVersion.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -396,8 +400,10 @@ public class TrashVersionModelImpl
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object status) {
-					trashVersion.setStatus((Integer)status);
+				public void accept(
+					TrashVersion trashVersion, Object statusObject) {
+
+					trashVersion.setStatus((Integer)statusObject);
 				}
 
 			});

@@ -280,10 +280,10 @@ public class HtmlPreviewEntryModelImpl
 				@Override
 				public void accept(
 					HtmlPreviewEntry htmlPreviewEntry,
-					Object htmlPreviewEntryId) {
+					Object htmlPreviewEntryIdObject) {
 
 					htmlPreviewEntry.setHtmlPreviewEntryId(
-						(Long)htmlPreviewEntryId);
+						(Long)htmlPreviewEntryIdObject);
 				}
 
 			});
@@ -303,9 +303,9 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object groupId) {
+					HtmlPreviewEntry htmlPreviewEntry, Object groupIdObject) {
 
-					htmlPreviewEntry.setGroupId((Long)groupId);
+					htmlPreviewEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -325,9 +325,9 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object companyId) {
+					HtmlPreviewEntry htmlPreviewEntry, Object companyIdObject) {
 
-					htmlPreviewEntry.setCompanyId((Long)companyId);
+					htmlPreviewEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -347,9 +347,9 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object userId) {
+					HtmlPreviewEntry htmlPreviewEntry, Object userIdObject) {
 
-					htmlPreviewEntry.setUserId((Long)userId);
+					htmlPreviewEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -369,9 +369,9 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object userName) {
+					HtmlPreviewEntry htmlPreviewEntry, Object userNameObject) {
 
-					htmlPreviewEntry.setUserName((String)userName);
+					htmlPreviewEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -391,9 +391,10 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object createDate) {
+					HtmlPreviewEntry htmlPreviewEntry,
+					Object createDateObject) {
 
-					htmlPreviewEntry.setCreateDate((Date)createDate);
+					htmlPreviewEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -413,9 +414,10 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object modifiedDate) {
+					HtmlPreviewEntry htmlPreviewEntry,
+					Object modifiedDateObject) {
 
-					htmlPreviewEntry.setModifiedDate((Date)modifiedDate);
+					htmlPreviewEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -435,9 +437,10 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object classNameId) {
+					HtmlPreviewEntry htmlPreviewEntry,
+					Object classNameIdObject) {
 
-					htmlPreviewEntry.setClassNameId((Long)classNameId);
+					htmlPreviewEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -457,9 +460,9 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object classPK) {
+					HtmlPreviewEntry htmlPreviewEntry, Object classPKObject) {
 
-					htmlPreviewEntry.setClassPK((Long)classPK);
+					htmlPreviewEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -479,9 +482,10 @@ public class HtmlPreviewEntryModelImpl
 
 				@Override
 				public void accept(
-					HtmlPreviewEntry htmlPreviewEntry, Object fileEntryId) {
+					HtmlPreviewEntry htmlPreviewEntry,
+					Object fileEntryIdObject) {
 
-					htmlPreviewEntry.setFileEntryId((Long)fileEntryId);
+					htmlPreviewEntry.setFileEntryId((Long)fileEntryIdObject);
 				}
 
 			});

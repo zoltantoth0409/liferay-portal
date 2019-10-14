@@ -354,10 +354,10 @@ public class OAuth2ApplicationModelImpl
 				@Override
 				public void accept(
 					OAuth2Application oAuth2Application,
-					Object oAuth2ApplicationId) {
+					Object oAuth2ApplicationIdObject) {
 
 					oAuth2Application.setOAuth2ApplicationId(
-						(Long)oAuth2ApplicationId);
+						(Long)oAuth2ApplicationIdObject);
 				}
 
 			});
@@ -377,9 +377,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object companyId) {
+					OAuth2Application oAuth2Application,
+					Object companyIdObject) {
 
-					oAuth2Application.setCompanyId((Long)companyId);
+					oAuth2Application.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -399,9 +400,9 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object userId) {
+					OAuth2Application oAuth2Application, Object userIdObject) {
 
-					oAuth2Application.setUserId((Long)userId);
+					oAuth2Application.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -421,9 +422,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object userName) {
+					OAuth2Application oAuth2Application,
+					Object userNameObject) {
 
-					oAuth2Application.setUserName((String)userName);
+					oAuth2Application.setUserName((String)userNameObject);
 				}
 
 			});
@@ -443,9 +445,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object createDate) {
+					OAuth2Application oAuth2Application,
+					Object createDateObject) {
 
-					oAuth2Application.setCreateDate((Date)createDate);
+					oAuth2Application.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -465,9 +468,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object modifiedDate) {
+					OAuth2Application oAuth2Application,
+					Object modifiedDateObject) {
 
-					oAuth2Application.setModifiedDate((Date)modifiedDate);
+					oAuth2Application.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -489,10 +493,10 @@ public class OAuth2ApplicationModelImpl
 				@Override
 				public void accept(
 					OAuth2Application oAuth2Application,
-					Object oAuth2ApplicationScopeAliasesId) {
+					Object oAuth2ApplicationScopeAliasesIdObject) {
 
 					oAuth2Application.setOAuth2ApplicationScopeAliasesId(
-						(Long)oAuth2ApplicationScopeAliasesId);
+						(Long)oAuth2ApplicationScopeAliasesIdObject);
 				}
 
 			});
@@ -513,10 +517,10 @@ public class OAuth2ApplicationModelImpl
 				@Override
 				public void accept(
 					OAuth2Application oAuth2Application,
-					Object allowedGrantTypes) {
+					Object allowedGrantTypesObject) {
 
 					oAuth2Application.setAllowedGrantTypes(
-						(String)allowedGrantTypes);
+						(String)allowedGrantTypesObject);
 				}
 
 			});
@@ -536,9 +540,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object clientId) {
+					OAuth2Application oAuth2Application,
+					Object clientIdObject) {
 
-					oAuth2Application.setClientId((String)clientId);
+					oAuth2Application.setClientId((String)clientIdObject);
 				}
 
 			});
@@ -558,9 +563,11 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object clientProfile) {
+					OAuth2Application oAuth2Application,
+					Object clientProfileObject) {
 
-					oAuth2Application.setClientProfile((Integer)clientProfile);
+					oAuth2Application.setClientProfile(
+						(Integer)clientProfileObject);
 				}
 
 			});
@@ -580,9 +587,11 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object clientSecret) {
+					OAuth2Application oAuth2Application,
+					Object clientSecretObject) {
 
-					oAuth2Application.setClientSecret((String)clientSecret);
+					oAuth2Application.setClientSecret(
+						(String)clientSecretObject);
 				}
 
 			});
@@ -602,9 +611,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object description) {
+					OAuth2Application oAuth2Application,
+					Object descriptionObject) {
 
-					oAuth2Application.setDescription((String)description);
+					oAuth2Application.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -624,9 +634,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object features) {
+					OAuth2Application oAuth2Application,
+					Object featuresObject) {
 
-					oAuth2Application.setFeatures((String)features);
+					oAuth2Application.setFeatures((String)featuresObject);
 				}
 
 			});
@@ -646,9 +657,10 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object homePageURL) {
+					OAuth2Application oAuth2Application,
+					Object homePageURLObject) {
 
-					oAuth2Application.setHomePageURL((String)homePageURL);
+					oAuth2Application.setHomePageURL((String)homePageURLObject);
 				}
 
 			});
@@ -669,9 +681,10 @@ public class OAuth2ApplicationModelImpl
 				@Override
 				public void accept(
 					OAuth2Application oAuth2Application,
-					Object iconFileEntryId) {
+					Object iconFileEntryIdObject) {
 
-					oAuth2Application.setIconFileEntryId((Long)iconFileEntryId);
+					oAuth2Application.setIconFileEntryId(
+						(Long)iconFileEntryIdObject);
 				}
 
 			});
@@ -691,9 +704,9 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object name) {
+					OAuth2Application oAuth2Application, Object nameObject) {
 
-					oAuth2Application.setName((String)name);
+					oAuth2Application.setName((String)nameObject);
 				}
 
 			});
@@ -714,10 +727,10 @@ public class OAuth2ApplicationModelImpl
 				@Override
 				public void accept(
 					OAuth2Application oAuth2Application,
-					Object privacyPolicyURL) {
+					Object privacyPolicyURLObject) {
 
 					oAuth2Application.setPrivacyPolicyURL(
-						(String)privacyPolicyURL);
+						(String)privacyPolicyURLObject);
 				}
 
 			});
@@ -737,9 +750,11 @@ public class OAuth2ApplicationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Application oAuth2Application, Object redirectURIs) {
+					OAuth2Application oAuth2Application,
+					Object redirectURIsObject) {
 
-					oAuth2Application.setRedirectURIs((String)redirectURIs);
+					oAuth2Application.setRedirectURIs(
+						(String)redirectURIsObject);
 				}
 
 			});

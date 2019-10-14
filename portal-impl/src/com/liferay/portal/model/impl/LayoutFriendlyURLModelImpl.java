@@ -294,9 +294,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object mvccVersion) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object mvccVersionObject) {
 
-					layoutFriendlyURL.setMvccVersion((Long)mvccVersion);
+					layoutFriendlyURL.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -316,9 +317,9 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object uuid) {
+					LayoutFriendlyURL layoutFriendlyURL, Object uuidObject) {
 
-					layoutFriendlyURL.setUuid((String)uuid);
+					layoutFriendlyURL.setUuid((String)uuidObject);
 				}
 
 			});
@@ -339,10 +340,10 @@ public class LayoutFriendlyURLModelImpl
 				@Override
 				public void accept(
 					LayoutFriendlyURL layoutFriendlyURL,
-					Object layoutFriendlyURLId) {
+					Object layoutFriendlyURLIdObject) {
 
 					layoutFriendlyURL.setLayoutFriendlyURLId(
-						(Long)layoutFriendlyURLId);
+						(Long)layoutFriendlyURLIdObject);
 				}
 
 			});
@@ -362,9 +363,9 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object groupId) {
+					LayoutFriendlyURL layoutFriendlyURL, Object groupIdObject) {
 
-					layoutFriendlyURL.setGroupId((Long)groupId);
+					layoutFriendlyURL.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -384,9 +385,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object companyId) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object companyIdObject) {
 
-					layoutFriendlyURL.setCompanyId((Long)companyId);
+					layoutFriendlyURL.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -406,9 +408,9 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object userId) {
+					LayoutFriendlyURL layoutFriendlyURL, Object userIdObject) {
 
-					layoutFriendlyURL.setUserId((Long)userId);
+					layoutFriendlyURL.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -428,9 +430,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object userName) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object userNameObject) {
 
-					layoutFriendlyURL.setUserName((String)userName);
+					layoutFriendlyURL.setUserName((String)userNameObject);
 				}
 
 			});
@@ -450,9 +453,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object createDate) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object createDateObject) {
 
-					layoutFriendlyURL.setCreateDate((Date)createDate);
+					layoutFriendlyURL.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -472,9 +476,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object modifiedDate) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object modifiedDateObject) {
 
-					layoutFriendlyURL.setModifiedDate((Date)modifiedDate);
+					layoutFriendlyURL.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -494,9 +499,9 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object plid) {
+					LayoutFriendlyURL layoutFriendlyURL, Object plidObject) {
 
-					layoutFriendlyURL.setPlid((Long)plid);
+					layoutFriendlyURL.setPlid((Long)plidObject);
 				}
 
 			});
@@ -516,9 +521,11 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object privateLayout) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object privateLayoutObject) {
 
-					layoutFriendlyURL.setPrivateLayout((Boolean)privateLayout);
+					layoutFriendlyURL.setPrivateLayout(
+						(Boolean)privateLayoutObject);
 				}
 
 			});
@@ -538,9 +545,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object friendlyURL) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object friendlyURLObject) {
 
-					layoutFriendlyURL.setFriendlyURL((String)friendlyURL);
+					layoutFriendlyURL.setFriendlyURL((String)friendlyURLObject);
 				}
 
 			});
@@ -560,9 +568,10 @@ public class LayoutFriendlyURLModelImpl
 
 				@Override
 				public void accept(
-					LayoutFriendlyURL layoutFriendlyURL, Object languageId) {
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object languageIdObject) {
 
-					layoutFriendlyURL.setLanguageId((String)languageId);
+					layoutFriendlyURL.setLanguageId((String)languageIdObject);
 				}
 
 			});
@@ -583,9 +592,10 @@ public class LayoutFriendlyURLModelImpl
 				@Override
 				public void accept(
 					LayoutFriendlyURL layoutFriendlyURL,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
-					layoutFriendlyURL.setLastPublishDate((Date)lastPublishDate);
+					layoutFriendlyURL.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

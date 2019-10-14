@@ -270,9 +270,9 @@ public class UserIdMapperModelImpl
 
 				@Override
 				public void accept(
-					UserIdMapper userIdMapper, Object mvccVersion) {
+					UserIdMapper userIdMapper, Object mvccVersionObject) {
 
-					userIdMapper.setMvccVersion((Long)mvccVersion);
+					userIdMapper.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -292,9 +292,9 @@ public class UserIdMapperModelImpl
 
 				@Override
 				public void accept(
-					UserIdMapper userIdMapper, Object userIdMapperId) {
+					UserIdMapper userIdMapper, Object userIdMapperIdObject) {
 
-					userIdMapper.setUserIdMapperId((Long)userIdMapperId);
+					userIdMapper.setUserIdMapperId((Long)userIdMapperIdObject);
 				}
 
 			});
@@ -314,9 +314,9 @@ public class UserIdMapperModelImpl
 
 				@Override
 				public void accept(
-					UserIdMapper userIdMapper, Object companyId) {
+					UserIdMapper userIdMapper, Object companyIdObject) {
 
-					userIdMapper.setCompanyId((Long)companyId);
+					userIdMapper.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -335,8 +335,10 @@ public class UserIdMapperModelImpl
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object userId) {
-					userIdMapper.setUserId((Long)userId);
+				public void accept(
+					UserIdMapper userIdMapper, Object userIdObject) {
+
+					userIdMapper.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -355,8 +357,10 @@ public class UserIdMapperModelImpl
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object type) {
-					userIdMapper.setType((String)type);
+				public void accept(
+					UserIdMapper userIdMapper, Object typeObject) {
+
+					userIdMapper.setType((String)typeObject);
 				}
 
 			});
@@ -376,9 +380,9 @@ public class UserIdMapperModelImpl
 
 				@Override
 				public void accept(
-					UserIdMapper userIdMapper, Object description) {
+					UserIdMapper userIdMapper, Object descriptionObject) {
 
-					userIdMapper.setDescription((String)description);
+					userIdMapper.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -398,9 +402,10 @@ public class UserIdMapperModelImpl
 
 				@Override
 				public void accept(
-					UserIdMapper userIdMapper, Object externalUserId) {
+					UserIdMapper userIdMapper, Object externalUserIdObject) {
 
-					userIdMapper.setExternalUserId((String)externalUserId);
+					userIdMapper.setExternalUserId(
+						(String)externalUserIdObject);
 				}
 
 			});

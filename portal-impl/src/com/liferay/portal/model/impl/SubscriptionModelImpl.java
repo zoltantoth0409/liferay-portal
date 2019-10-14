@@ -285,9 +285,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object mvccVersion) {
+					Subscription subscription, Object mvccVersionObject) {
 
-					subscription.setMvccVersion((Long)mvccVersion);
+					subscription.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -307,9 +307,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object subscriptionId) {
+					Subscription subscription, Object subscriptionIdObject) {
 
-					subscription.setSubscriptionId((Long)subscriptionId);
+					subscription.setSubscriptionId((Long)subscriptionIdObject);
 				}
 
 			});
@@ -328,8 +328,10 @@ public class SubscriptionModelImpl
 			new BiConsumer<Subscription, Object>() {
 
 				@Override
-				public void accept(Subscription subscription, Object groupId) {
-					subscription.setGroupId((Long)groupId);
+				public void accept(
+					Subscription subscription, Object groupIdObject) {
+
+					subscription.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -349,9 +351,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object companyId) {
+					Subscription subscription, Object companyIdObject) {
 
-					subscription.setCompanyId((Long)companyId);
+					subscription.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -370,8 +372,10 @@ public class SubscriptionModelImpl
 			new BiConsumer<Subscription, Object>() {
 
 				@Override
-				public void accept(Subscription subscription, Object userId) {
-					subscription.setUserId((Long)userId);
+				public void accept(
+					Subscription subscription, Object userIdObject) {
+
+					subscription.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -390,8 +394,10 @@ public class SubscriptionModelImpl
 			new BiConsumer<Subscription, Object>() {
 
 				@Override
-				public void accept(Subscription subscription, Object userName) {
-					subscription.setUserName((String)userName);
+				public void accept(
+					Subscription subscription, Object userNameObject) {
+
+					subscription.setUserName((String)userNameObject);
 				}
 
 			});
@@ -411,9 +417,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object createDate) {
+					Subscription subscription, Object createDateObject) {
 
-					subscription.setCreateDate((Date)createDate);
+					subscription.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -433,9 +439,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object modifiedDate) {
+					Subscription subscription, Object modifiedDateObject) {
 
-					subscription.setModifiedDate((Date)modifiedDate);
+					subscription.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -455,9 +461,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object classNameId) {
+					Subscription subscription, Object classNameIdObject) {
 
-					subscription.setClassNameId((Long)classNameId);
+					subscription.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -476,8 +482,10 @@ public class SubscriptionModelImpl
 			new BiConsumer<Subscription, Object>() {
 
 				@Override
-				public void accept(Subscription subscription, Object classPK) {
-					subscription.setClassPK((Long)classPK);
+				public void accept(
+					Subscription subscription, Object classPKObject) {
+
+					subscription.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -497,9 +505,9 @@ public class SubscriptionModelImpl
 
 				@Override
 				public void accept(
-					Subscription subscription, Object frequency) {
+					Subscription subscription, Object frequencyObject) {
 
-					subscription.setFrequency((String)frequency);
+					subscription.setFrequency((String)frequencyObject);
 				}
 
 			});

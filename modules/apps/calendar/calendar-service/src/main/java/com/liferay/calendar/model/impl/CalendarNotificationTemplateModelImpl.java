@@ -372,9 +372,9 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object uuid) {
+					Object uuidObject) {
 
-					calendarNotificationTemplate.setUuid((String)uuid);
+					calendarNotificationTemplate.setUuid((String)uuidObject);
 				}
 
 			});
@@ -398,11 +398,11 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object calendarNotificationTemplateId) {
+					Object calendarNotificationTemplateIdObject) {
 
 					calendarNotificationTemplate.
 						setCalendarNotificationTemplateId(
-							(Long)calendarNotificationTemplateId);
+							(Long)calendarNotificationTemplateIdObject);
 				}
 
 			});
@@ -425,9 +425,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object groupId) {
+					Object groupIdObject) {
 
-					calendarNotificationTemplate.setGroupId((Long)groupId);
+					calendarNotificationTemplate.setGroupId(
+						(Long)groupIdObject);
 				}
 
 			});
@@ -450,9 +451,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object companyId) {
+					Object companyIdObject) {
 
-					calendarNotificationTemplate.setCompanyId((Long)companyId);
+					calendarNotificationTemplate.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -475,9 +477,9 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object userId) {
+					Object userIdObject) {
 
-					calendarNotificationTemplate.setUserId((Long)userId);
+					calendarNotificationTemplate.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -500,9 +502,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object userName) {
+					Object userNameObject) {
 
-					calendarNotificationTemplate.setUserName((String)userName);
+					calendarNotificationTemplate.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -525,10 +528,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object createDate) {
+					Object createDateObject) {
 
 					calendarNotificationTemplate.setCreateDate(
-						(Date)createDate);
+						(Date)createDateObject);
 				}
 
 			});
@@ -551,10 +554,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
 					calendarNotificationTemplate.setModifiedDate(
-						(Date)modifiedDate);
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -577,10 +580,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object calendarId) {
+					Object calendarIdObject) {
 
 					calendarNotificationTemplate.setCalendarId(
-						(Long)calendarId);
+						(Long)calendarIdObject);
 				}
 
 			});
@@ -603,10 +606,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object notificationType) {
+					Object notificationTypeObject) {
 
 					calendarNotificationTemplate.setNotificationType(
-						(String)notificationType);
+						(String)notificationTypeObject);
 				}
 
 			});
@@ -630,10 +633,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object notificationTypeSettings) {
+					Object notificationTypeSettingsObject) {
 
 					calendarNotificationTemplate.setNotificationTypeSettings(
-						(String)notificationTypeSettings);
+						(String)notificationTypeSettingsObject);
 				}
 
 			});
@@ -657,10 +660,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object notificationTemplateType) {
+					Object notificationTemplateTypeObject) {
 
 					calendarNotificationTemplate.setNotificationTemplateType(
-						(String)notificationTemplateType);
+						(String)notificationTemplateTypeObject);
 				}
 
 			});
@@ -683,9 +686,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object subject) {
+					Object subjectObject) {
 
-					calendarNotificationTemplate.setSubject((String)subject);
+					calendarNotificationTemplate.setSubject(
+						(String)subjectObject);
 				}
 
 			});
@@ -708,9 +712,9 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object body) {
+					Object bodyObject) {
 
-					calendarNotificationTemplate.setBody((String)body);
+					calendarNotificationTemplate.setBody((String)bodyObject);
 				}
 
 			});
@@ -733,10 +737,10 @@ public class CalendarNotificationTemplateModelImpl
 				@Override
 				public void accept(
 					CalendarNotificationTemplate calendarNotificationTemplate,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					calendarNotificationTemplate.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

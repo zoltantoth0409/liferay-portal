@@ -294,10 +294,10 @@ public class OAuth2ScopeGrantModelImpl
 				@Override
 				public void accept(
 					OAuth2ScopeGrant oAuth2ScopeGrant,
-					Object oAuth2ScopeGrantId) {
+					Object oAuth2ScopeGrantIdObject) {
 
 					oAuth2ScopeGrant.setOAuth2ScopeGrantId(
-						(Long)oAuth2ScopeGrantId);
+						(Long)oAuth2ScopeGrantIdObject);
 				}
 
 			});
@@ -317,9 +317,9 @@ public class OAuth2ScopeGrantModelImpl
 
 				@Override
 				public void accept(
-					OAuth2ScopeGrant oAuth2ScopeGrant, Object companyId) {
+					OAuth2ScopeGrant oAuth2ScopeGrant, Object companyIdObject) {
 
-					oAuth2ScopeGrant.setCompanyId((Long)companyId);
+					oAuth2ScopeGrant.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -341,10 +341,10 @@ public class OAuth2ScopeGrantModelImpl
 				@Override
 				public void accept(
 					OAuth2ScopeGrant oAuth2ScopeGrant,
-					Object oAuth2ApplicationScopeAliasesId) {
+					Object oAuth2ApplicationScopeAliasesIdObject) {
 
 					oAuth2ScopeGrant.setOAuth2ApplicationScopeAliasesId(
-						(Long)oAuth2ApplicationScopeAliasesId);
+						(Long)oAuth2ApplicationScopeAliasesIdObject);
 				}
 
 			});
@@ -364,10 +364,11 @@ public class OAuth2ScopeGrantModelImpl
 
 				@Override
 				public void accept(
-					OAuth2ScopeGrant oAuth2ScopeGrant, Object applicationName) {
+					OAuth2ScopeGrant oAuth2ScopeGrant,
+					Object applicationNameObject) {
 
 					oAuth2ScopeGrant.setApplicationName(
-						(String)applicationName);
+						(String)applicationNameObject);
 				}
 
 			});
@@ -388,10 +389,10 @@ public class OAuth2ScopeGrantModelImpl
 				@Override
 				public void accept(
 					OAuth2ScopeGrant oAuth2ScopeGrant,
-					Object bundleSymbolicName) {
+					Object bundleSymbolicNameObject) {
 
 					oAuth2ScopeGrant.setBundleSymbolicName(
-						(String)bundleSymbolicName);
+						(String)bundleSymbolicNameObject);
 				}
 
 			});
@@ -411,9 +412,9 @@ public class OAuth2ScopeGrantModelImpl
 
 				@Override
 				public void accept(
-					OAuth2ScopeGrant oAuth2ScopeGrant, Object scope) {
+					OAuth2ScopeGrant oAuth2ScopeGrant, Object scopeObject) {
 
-					oAuth2ScopeGrant.setScope((String)scope);
+					oAuth2ScopeGrant.setScope((String)scopeObject);
 				}
 
 			});

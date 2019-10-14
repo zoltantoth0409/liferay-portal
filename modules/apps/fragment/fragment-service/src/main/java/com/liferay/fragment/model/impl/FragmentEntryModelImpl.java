@@ -362,8 +362,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object uuid) {
-					fragmentEntry.setUuid((String)uuid);
+				public void accept(
+					FragmentEntry fragmentEntry, Object uuidObject) {
+
+					fragmentEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -383,9 +385,10 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object fragmentEntryId) {
+					FragmentEntry fragmentEntry, Object fragmentEntryIdObject) {
 
-					fragmentEntry.setFragmentEntryId((Long)fragmentEntryId);
+					fragmentEntry.setFragmentEntryId(
+						(Long)fragmentEntryIdObject);
 				}
 
 			});
@@ -405,9 +408,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object groupId) {
+					FragmentEntry fragmentEntry, Object groupIdObject) {
 
-					fragmentEntry.setGroupId((Long)groupId);
+					fragmentEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -427,9 +430,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object companyId) {
+					FragmentEntry fragmentEntry, Object companyIdObject) {
 
-					fragmentEntry.setCompanyId((Long)companyId);
+					fragmentEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -448,8 +451,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object userId) {
-					fragmentEntry.setUserId((Long)userId);
+				public void accept(
+					FragmentEntry fragmentEntry, Object userIdObject) {
+
+					fragmentEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -469,9 +474,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object userName) {
+					FragmentEntry fragmentEntry, Object userNameObject) {
 
-					fragmentEntry.setUserName((String)userName);
+					fragmentEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -491,9 +496,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object createDate) {
+					FragmentEntry fragmentEntry, Object createDateObject) {
 
-					fragmentEntry.setCreateDate((Date)createDate);
+					fragmentEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -513,9 +518,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object modifiedDate) {
+					FragmentEntry fragmentEntry, Object modifiedDateObject) {
 
-					fragmentEntry.setModifiedDate((Date)modifiedDate);
+					fragmentEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -535,10 +540,11 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object fragmentCollectionId) {
+					FragmentEntry fragmentEntry,
+					Object fragmentCollectionIdObject) {
 
 					fragmentEntry.setFragmentCollectionId(
-						(Long)fragmentCollectionId);
+						(Long)fragmentCollectionIdObject);
 				}
 
 			});
@@ -558,9 +564,11 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object fragmentEntryKey) {
+					FragmentEntry fragmentEntry,
+					Object fragmentEntryKeyObject) {
 
-					fragmentEntry.setFragmentEntryKey((String)fragmentEntryKey);
+					fragmentEntry.setFragmentEntryKey(
+						(String)fragmentEntryKeyObject);
 				}
 
 			});
@@ -579,8 +587,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object name) {
-					fragmentEntry.setName((String)name);
+				public void accept(
+					FragmentEntry fragmentEntry, Object nameObject) {
+
+					fragmentEntry.setName((String)nameObject);
 				}
 
 			});
@@ -599,8 +609,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object css) {
-					fragmentEntry.setCss((String)css);
+				public void accept(
+					FragmentEntry fragmentEntry, Object cssObject) {
+
+					fragmentEntry.setCss((String)cssObject);
 				}
 
 			});
@@ -619,8 +631,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object html) {
-					fragmentEntry.setHtml((String)html);
+				public void accept(
+					FragmentEntry fragmentEntry, Object htmlObject) {
+
+					fragmentEntry.setHtml((String)htmlObject);
 				}
 
 			});
@@ -639,8 +653,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object js) {
-					fragmentEntry.setJs((String)js);
+				public void accept(
+					FragmentEntry fragmentEntry, Object jsObject) {
+
+					fragmentEntry.setJs((String)jsObject);
 				}
 
 			});
@@ -660,10 +676,11 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object previewFileEntryId) {
+					FragmentEntry fragmentEntry,
+					Object previewFileEntryIdObject) {
 
 					fragmentEntry.setPreviewFileEntryId(
-						(Long)previewFileEntryId);
+						(Long)previewFileEntryIdObject);
 				}
 
 			});
@@ -683,9 +700,10 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object lastPublishDate) {
+					FragmentEntry fragmentEntry, Object lastPublishDateObject) {
 
-					fragmentEntry.setLastPublishDate((Date)lastPublishDate);
+					fragmentEntry.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -704,8 +722,10 @@ public class FragmentEntryModelImpl
 			new BiConsumer<FragmentEntry, Object>() {
 
 				@Override
-				public void accept(FragmentEntry fragmentEntry, Object status) {
-					fragmentEntry.setStatus((Integer)status);
+				public void accept(
+					FragmentEntry fragmentEntry, Object statusObject) {
+
+					fragmentEntry.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -725,9 +745,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object statusByUserId) {
+					FragmentEntry fragmentEntry, Object statusByUserIdObject) {
 
-					fragmentEntry.setStatusByUserId((Long)statusByUserId);
+					fragmentEntry.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -747,9 +767,11 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object statusByUserName) {
+					FragmentEntry fragmentEntry,
+					Object statusByUserNameObject) {
 
-					fragmentEntry.setStatusByUserName((String)statusByUserName);
+					fragmentEntry.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -769,9 +791,9 @@ public class FragmentEntryModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntry fragmentEntry, Object statusDate) {
+					FragmentEntry fragmentEntry, Object statusDateObject) {
 
-					fragmentEntry.setStatusDate((Date)statusDate);
+					fragmentEntry.setStatusDate((Date)statusDateObject);
 				}
 
 			});

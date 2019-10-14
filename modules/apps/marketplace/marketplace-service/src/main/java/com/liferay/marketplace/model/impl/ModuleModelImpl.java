@@ -266,8 +266,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object uuid) {
-					module.setUuid((String)uuid);
+				public void accept(Module module, Object uuidObject) {
+					module.setUuid((String)uuidObject);
 				}
 
 			});
@@ -286,8 +286,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object moduleId) {
-					module.setModuleId((Long)moduleId);
+				public void accept(Module module, Object moduleIdObject) {
+					module.setModuleId((Long)moduleIdObject);
 				}
 
 			});
@@ -306,8 +306,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object companyId) {
-					module.setCompanyId((Long)companyId);
+				public void accept(Module module, Object companyIdObject) {
+					module.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -326,8 +326,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object appId) {
-					module.setAppId((Long)appId);
+				public void accept(Module module, Object appIdObject) {
+					module.setAppId((Long)appIdObject);
 				}
 
 			});
@@ -346,8 +346,11 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object bundleSymbolicName) {
-					module.setBundleSymbolicName((String)bundleSymbolicName);
+				public void accept(
+					Module module, Object bundleSymbolicNameObject) {
+
+					module.setBundleSymbolicName(
+						(String)bundleSymbolicNameObject);
 				}
 
 			});
@@ -366,8 +369,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object bundleVersion) {
-					module.setBundleVersion((String)bundleVersion);
+				public void accept(Module module, Object bundleVersionObject) {
+					module.setBundleVersion((String)bundleVersionObject);
 				}
 
 			});
@@ -386,8 +389,8 @@ public class ModuleModelImpl
 			new BiConsumer<Module, Object>() {
 
 				@Override
-				public void accept(Module module, Object contextName) {
-					module.setContextName((String)contextName);
+				public void accept(Module module, Object contextNameObject) {
+					module.setContextName((String)contextNameObject);
 				}
 
 			});

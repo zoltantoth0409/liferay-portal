@@ -347,9 +347,9 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object uuid) {
+					SiteNavigationMenu siteNavigationMenu, Object uuidObject) {
 
-					siteNavigationMenu.setUuid((String)uuid);
+					siteNavigationMenu.setUuid((String)uuidObject);
 				}
 
 			});
@@ -370,10 +370,10 @@ public class SiteNavigationMenuModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenu siteNavigationMenu,
-					Object siteNavigationMenuId) {
+					Object siteNavigationMenuIdObject) {
 
 					siteNavigationMenu.setSiteNavigationMenuId(
-						(Long)siteNavigationMenuId);
+						(Long)siteNavigationMenuIdObject);
 				}
 
 			});
@@ -393,9 +393,10 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object groupId) {
+					SiteNavigationMenu siteNavigationMenu,
+					Object groupIdObject) {
 
-					siteNavigationMenu.setGroupId((Long)groupId);
+					siteNavigationMenu.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -415,9 +416,10 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object companyId) {
+					SiteNavigationMenu siteNavigationMenu,
+					Object companyIdObject) {
 
-					siteNavigationMenu.setCompanyId((Long)companyId);
+					siteNavigationMenu.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -437,9 +439,10 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object userId) {
+					SiteNavigationMenu siteNavigationMenu,
+					Object userIdObject) {
 
-					siteNavigationMenu.setUserId((Long)userId);
+					siteNavigationMenu.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -459,9 +462,10 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object userName) {
+					SiteNavigationMenu siteNavigationMenu,
+					Object userNameObject) {
 
-					siteNavigationMenu.setUserName((String)userName);
+					siteNavigationMenu.setUserName((String)userNameObject);
 				}
 
 			});
@@ -481,9 +485,10 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object createDate) {
+					SiteNavigationMenu siteNavigationMenu,
+					Object createDateObject) {
 
-					siteNavigationMenu.setCreateDate((Date)createDate);
+					siteNavigationMenu.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -504,9 +509,10 @@ public class SiteNavigationMenuModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenu siteNavigationMenu,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					siteNavigationMenu.setModifiedDate((Date)modifiedDate);
+					siteNavigationMenu.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -526,9 +532,9 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object name) {
+					SiteNavigationMenu siteNavigationMenu, Object nameObject) {
 
-					siteNavigationMenu.setName((String)name);
+					siteNavigationMenu.setName((String)nameObject);
 				}
 
 			});
@@ -548,9 +554,9 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object type) {
+					SiteNavigationMenu siteNavigationMenu, Object typeObject) {
 
-					siteNavigationMenu.setType((Integer)type);
+					siteNavigationMenu.setType((Integer)typeObject);
 				}
 
 			});
@@ -570,9 +576,9 @@ public class SiteNavigationMenuModelImpl
 
 				@Override
 				public void accept(
-					SiteNavigationMenu siteNavigationMenu, Object auto) {
+					SiteNavigationMenu siteNavigationMenu, Object autoObject) {
 
-					siteNavigationMenu.setAuto((Boolean)auto);
+					siteNavigationMenu.setAuto((Boolean)autoObject);
 				}
 
 			});
@@ -593,10 +599,10 @@ public class SiteNavigationMenuModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenu siteNavigationMenu,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					siteNavigationMenu.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

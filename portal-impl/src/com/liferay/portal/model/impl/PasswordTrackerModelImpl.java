@@ -267,9 +267,9 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object mvccVersion) {
+					PasswordTracker passwordTracker, Object mvccVersionObject) {
 
-					passwordTracker.setMvccVersion((Long)mvccVersion);
+					passwordTracker.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -289,10 +289,11 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object passwordTrackerId) {
+					PasswordTracker passwordTracker,
+					Object passwordTrackerIdObject) {
 
 					passwordTracker.setPasswordTrackerId(
-						(Long)passwordTrackerId);
+						(Long)passwordTrackerIdObject);
 				}
 
 			});
@@ -312,9 +313,9 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object companyId) {
+					PasswordTracker passwordTracker, Object companyIdObject) {
 
-					passwordTracker.setCompanyId((Long)companyId);
+					passwordTracker.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -334,9 +335,9 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object userId) {
+					PasswordTracker passwordTracker, Object userIdObject) {
 
-					passwordTracker.setUserId((Long)userId);
+					passwordTracker.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -356,9 +357,9 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object createDate) {
+					PasswordTracker passwordTracker, Object createDateObject) {
 
-					passwordTracker.setCreateDate((Date)createDate);
+					passwordTracker.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -378,9 +379,9 @@ public class PasswordTrackerModelImpl
 
 				@Override
 				public void accept(
-					PasswordTracker passwordTracker, Object password) {
+					PasswordTracker passwordTracker, Object passwordObject) {
 
-					passwordTracker.setPassword((String)password);
+					passwordTracker.setPassword((String)passwordObject);
 				}
 
 			});

@@ -361,10 +361,10 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object recordSetVersionId) {
+					Object recordSetVersionIdObject) {
 
 					ddlRecordSetVersion.setRecordSetVersionId(
-						(Long)recordSetVersionId);
+						(Long)recordSetVersionIdObject);
 				}
 
 			});
@@ -384,9 +384,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object groupId) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object groupIdObject) {
 
-					ddlRecordSetVersion.setGroupId((Long)groupId);
+					ddlRecordSetVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -406,9 +407,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object companyId) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object companyIdObject) {
 
-					ddlRecordSetVersion.setCompanyId((Long)companyId);
+					ddlRecordSetVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -428,9 +430,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object userId) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object userIdObject) {
 
-					ddlRecordSetVersion.setUserId((Long)userId);
+					ddlRecordSetVersion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -450,9 +453,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object userName) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object userNameObject) {
 
-					ddlRecordSetVersion.setUserName((String)userName);
+					ddlRecordSetVersion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -473,9 +477,9 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object createDate) {
+					Object createDateObject) {
 
-					ddlRecordSetVersion.setCreateDate((Date)createDate);
+					ddlRecordSetVersion.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -496,9 +500,9 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object recordSetId) {
+					Object recordSetIdObject) {
 
-					ddlRecordSetVersion.setRecordSetId((Long)recordSetId);
+					ddlRecordSetVersion.setRecordSetId((Long)recordSetIdObject);
 				}
 
 			});
@@ -519,10 +523,10 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object DDMStructureVersionId) {
+					Object DDMStructureVersionIdObject) {
 
 					ddlRecordSetVersion.setDDMStructureVersionId(
-						(Long)DDMStructureVersionId);
+						(Long)DDMStructureVersionIdObject);
 				}
 
 			});
@@ -542,9 +546,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object name) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object nameObject) {
 
-					ddlRecordSetVersion.setName((String)name);
+					ddlRecordSetVersion.setName((String)nameObject);
 				}
 
 			});
@@ -565,9 +570,10 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object description) {
+					Object descriptionObject) {
 
-					ddlRecordSetVersion.setDescription((String)description);
+					ddlRecordSetVersion.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -587,9 +593,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object settings) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object settingsObject) {
 
-					ddlRecordSetVersion.setSettings((String)settings);
+					ddlRecordSetVersion.setSettings((String)settingsObject);
 				}
 
 			});
@@ -609,9 +616,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object version) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object versionObject) {
 
-					ddlRecordSetVersion.setVersion((String)version);
+					ddlRecordSetVersion.setVersion((String)versionObject);
 				}
 
 			});
@@ -631,9 +639,10 @@ public class DDLRecordSetVersionModelImpl
 
 				@Override
 				public void accept(
-					DDLRecordSetVersion ddlRecordSetVersion, Object status) {
+					DDLRecordSetVersion ddlRecordSetVersion,
+					Object statusObject) {
 
-					ddlRecordSetVersion.setStatus((Integer)status);
+					ddlRecordSetVersion.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -654,9 +663,10 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
-					ddlRecordSetVersion.setStatusByUserId((Long)statusByUserId);
+					ddlRecordSetVersion.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -677,10 +687,10 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					ddlRecordSetVersion.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -701,9 +711,9 @@ public class DDLRecordSetVersionModelImpl
 				@Override
 				public void accept(
 					DDLRecordSetVersion ddlRecordSetVersion,
-					Object statusDate) {
+					Object statusDateObject) {
 
-					ddlRecordSetVersion.setStatusDate((Date)statusDate);
+					ddlRecordSetVersion.setStatusDate((Date)statusDateObject);
 				}
 
 			});

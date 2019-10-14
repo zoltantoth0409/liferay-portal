@@ -346,8 +346,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object uuid) {
-					mdrRule.setUuid((String)uuid);
+				public void accept(MDRRule mdrRule, Object uuidObject) {
+					mdrRule.setUuid((String)uuidObject);
 				}
 
 			});
@@ -366,8 +366,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object ruleId) {
-					mdrRule.setRuleId((Long)ruleId);
+				public void accept(MDRRule mdrRule, Object ruleIdObject) {
+					mdrRule.setRuleId((Long)ruleIdObject);
 				}
 
 			});
@@ -386,8 +386,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object groupId) {
-					mdrRule.setGroupId((Long)groupId);
+				public void accept(MDRRule mdrRule, Object groupIdObject) {
+					mdrRule.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -406,8 +406,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object companyId) {
-					mdrRule.setCompanyId((Long)companyId);
+				public void accept(MDRRule mdrRule, Object companyIdObject) {
+					mdrRule.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -426,8 +426,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object userId) {
-					mdrRule.setUserId((Long)userId);
+				public void accept(MDRRule mdrRule, Object userIdObject) {
+					mdrRule.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -446,8 +446,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object userName) {
-					mdrRule.setUserName((String)userName);
+				public void accept(MDRRule mdrRule, Object userNameObject) {
+					mdrRule.setUserName((String)userNameObject);
 				}
 
 			});
@@ -466,8 +466,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object createDate) {
-					mdrRule.setCreateDate((Date)createDate);
+				public void accept(MDRRule mdrRule, Object createDateObject) {
+					mdrRule.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -486,8 +486,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object modifiedDate) {
-					mdrRule.setModifiedDate((Date)modifiedDate);
+				public void accept(MDRRule mdrRule, Object modifiedDateObject) {
+					mdrRule.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -506,8 +506,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object ruleGroupId) {
-					mdrRule.setRuleGroupId((Long)ruleGroupId);
+				public void accept(MDRRule mdrRule, Object ruleGroupIdObject) {
+					mdrRule.setRuleGroupId((Long)ruleGroupIdObject);
 				}
 
 			});
@@ -526,8 +526,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object name) {
-					mdrRule.setName((String)name);
+				public void accept(MDRRule mdrRule, Object nameObject) {
+					mdrRule.setName((String)nameObject);
 				}
 
 			});
@@ -546,8 +546,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object description) {
-					mdrRule.setDescription((String)description);
+				public void accept(MDRRule mdrRule, Object descriptionObject) {
+					mdrRule.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -566,8 +566,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object type) {
-					mdrRule.setType((String)type);
+				public void accept(MDRRule mdrRule, Object typeObject) {
+					mdrRule.setType((String)typeObject);
 				}
 
 			});
@@ -586,8 +586,8 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object typeSettings) {
-					mdrRule.setTypeSettings((String)typeSettings);
+				public void accept(MDRRule mdrRule, Object typeSettingsObject) {
+					mdrRule.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -606,8 +606,10 @@ public class MDRRuleModelImpl
 			new BiConsumer<MDRRule, Object>() {
 
 				@Override
-				public void accept(MDRRule mdrRule, Object lastPublishDate) {
-					mdrRule.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					MDRRule mdrRule, Object lastPublishDateObject) {
+
+					mdrRule.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

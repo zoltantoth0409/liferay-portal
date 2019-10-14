@@ -267,8 +267,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object attachmentId) {
-					attachment.setAttachmentId((Long)attachmentId);
+				public void accept(
+					Attachment attachment, Object attachmentIdObject) {
+
+					attachment.setAttachmentId((Long)attachmentIdObject);
 				}
 
 			});
@@ -287,8 +289,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object companyId) {
-					attachment.setCompanyId((Long)companyId);
+				public void accept(
+					Attachment attachment, Object companyIdObject) {
+
+					attachment.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -307,8 +311,8 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object userId) {
-					attachment.setUserId((Long)userId);
+				public void accept(Attachment attachment, Object userIdObject) {
+					attachment.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -327,8 +331,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object accountId) {
-					attachment.setAccountId((Long)accountId);
+				public void accept(
+					Attachment attachment, Object accountIdObject) {
+
+					attachment.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -347,8 +353,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object folderId) {
-					attachment.setFolderId((Long)folderId);
+				public void accept(
+					Attachment attachment, Object folderIdObject) {
+
+					attachment.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -367,8 +375,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object messageId) {
-					attachment.setMessageId((Long)messageId);
+				public void accept(
+					Attachment attachment, Object messageIdObject) {
+
+					attachment.setMessageId((Long)messageIdObject);
 				}
 
 			});
@@ -387,8 +397,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object contentPath) {
-					attachment.setContentPath((String)contentPath);
+				public void accept(
+					Attachment attachment, Object contentPathObject) {
+
+					attachment.setContentPath((String)contentPathObject);
 				}
 
 			});
@@ -407,8 +419,10 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object fileName) {
-					attachment.setFileName((String)fileName);
+				public void accept(
+					Attachment attachment, Object fileNameObject) {
+
+					attachment.setFileName((String)fileNameObject);
 				}
 
 			});
@@ -427,8 +441,8 @@ public class AttachmentModelImpl
 			new BiConsumer<Attachment, Object>() {
 
 				@Override
-				public void accept(Attachment attachment, Object size) {
-					attachment.setSize((Long)size);
+				public void accept(Attachment attachment, Object sizeObject) {
+					attachment.setSize((Long)sizeObject);
 				}
 
 			});

@@ -340,9 +340,9 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object uuid) {
+					ReadingTimeEntry readingTimeEntry, Object uuidObject) {
 
-					readingTimeEntry.setUuid((String)uuid);
+					readingTimeEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -363,10 +363,10 @@ public class ReadingTimeEntryModelImpl
 				@Override
 				public void accept(
 					ReadingTimeEntry readingTimeEntry,
-					Object readingTimeEntryId) {
+					Object readingTimeEntryIdObject) {
 
 					readingTimeEntry.setReadingTimeEntryId(
-						(Long)readingTimeEntryId);
+						(Long)readingTimeEntryIdObject);
 				}
 
 			});
@@ -386,9 +386,9 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object groupId) {
+					ReadingTimeEntry readingTimeEntry, Object groupIdObject) {
 
-					readingTimeEntry.setGroupId((Long)groupId);
+					readingTimeEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -408,9 +408,9 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object companyId) {
+					ReadingTimeEntry readingTimeEntry, Object companyIdObject) {
 
-					readingTimeEntry.setCompanyId((Long)companyId);
+					readingTimeEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -430,9 +430,10 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object createDate) {
+					ReadingTimeEntry readingTimeEntry,
+					Object createDateObject) {
 
-					readingTimeEntry.setCreateDate((Date)createDate);
+					readingTimeEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -452,9 +453,10 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object modifiedDate) {
+					ReadingTimeEntry readingTimeEntry,
+					Object modifiedDateObject) {
 
-					readingTimeEntry.setModifiedDate((Date)modifiedDate);
+					readingTimeEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -474,9 +476,10 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object classNameId) {
+					ReadingTimeEntry readingTimeEntry,
+					Object classNameIdObject) {
 
-					readingTimeEntry.setClassNameId((Long)classNameId);
+					readingTimeEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -496,9 +499,9 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object classPK) {
+					ReadingTimeEntry readingTimeEntry, Object classPKObject) {
 
-					readingTimeEntry.setClassPK((Long)classPK);
+					readingTimeEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -518,9 +521,10 @@ public class ReadingTimeEntryModelImpl
 
 				@Override
 				public void accept(
-					ReadingTimeEntry readingTimeEntry, Object readingTime) {
+					ReadingTimeEntry readingTimeEntry,
+					Object readingTimeObject) {
 
-					readingTimeEntry.setReadingTime((Long)readingTime);
+					readingTimeEntry.setReadingTime((Long)readingTimeObject);
 				}
 
 			});

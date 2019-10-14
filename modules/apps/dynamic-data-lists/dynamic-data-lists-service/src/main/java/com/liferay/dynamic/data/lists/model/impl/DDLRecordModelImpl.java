@@ -348,8 +348,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object uuid) {
-					ddlRecord.setUuid((String)uuid);
+				public void accept(DDLRecord ddlRecord, Object uuidObject) {
+					ddlRecord.setUuid((String)uuidObject);
 				}
 
 			});
@@ -368,8 +368,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object recordId) {
-					ddlRecord.setRecordId((Long)recordId);
+				public void accept(DDLRecord ddlRecord, Object recordIdObject) {
+					ddlRecord.setRecordId((Long)recordIdObject);
 				}
 
 			});
@@ -388,8 +388,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object groupId) {
-					ddlRecord.setGroupId((Long)groupId);
+				public void accept(DDLRecord ddlRecord, Object groupIdObject) {
+					ddlRecord.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -408,8 +408,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object companyId) {
-					ddlRecord.setCompanyId((Long)companyId);
+				public void accept(
+					DDLRecord ddlRecord, Object companyIdObject) {
+
+					ddlRecord.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -428,8 +430,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object userId) {
-					ddlRecord.setUserId((Long)userId);
+				public void accept(DDLRecord ddlRecord, Object userIdObject) {
+					ddlRecord.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -448,8 +450,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object userName) {
-					ddlRecord.setUserName((String)userName);
+				public void accept(DDLRecord ddlRecord, Object userNameObject) {
+					ddlRecord.setUserName((String)userNameObject);
 				}
 
 			});
@@ -468,8 +470,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object versionUserId) {
-					ddlRecord.setVersionUserId((Long)versionUserId);
+				public void accept(
+					DDLRecord ddlRecord, Object versionUserIdObject) {
+
+					ddlRecord.setVersionUserId((Long)versionUserIdObject);
 				}
 
 			});
@@ -489,9 +493,9 @@ public class DDLRecordModelImpl
 
 				@Override
 				public void accept(
-					DDLRecord ddlRecord, Object versionUserName) {
+					DDLRecord ddlRecord, Object versionUserNameObject) {
 
-					ddlRecord.setVersionUserName((String)versionUserName);
+					ddlRecord.setVersionUserName((String)versionUserNameObject);
 				}
 
 			});
@@ -510,8 +514,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object createDate) {
-					ddlRecord.setCreateDate((Date)createDate);
+				public void accept(
+					DDLRecord ddlRecord, Object createDateObject) {
+
+					ddlRecord.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -530,8 +536,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object modifiedDate) {
-					ddlRecord.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					DDLRecord ddlRecord, Object modifiedDateObject) {
+
+					ddlRecord.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -550,8 +558,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object DDMStorageId) {
-					ddlRecord.setDDMStorageId((Long)DDMStorageId);
+				public void accept(
+					DDLRecord ddlRecord, Object DDMStorageIdObject) {
+
+					ddlRecord.setDDMStorageId((Long)DDMStorageIdObject);
 				}
 
 			});
@@ -570,8 +580,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object recordSetId) {
-					ddlRecord.setRecordSetId((Long)recordSetId);
+				public void accept(
+					DDLRecord ddlRecord, Object recordSetIdObject) {
+
+					ddlRecord.setRecordSetId((Long)recordSetIdObject);
 				}
 
 			});
@@ -591,9 +603,10 @@ public class DDLRecordModelImpl
 
 				@Override
 				public void accept(
-					DDLRecord ddlRecord, Object recordSetVersion) {
+					DDLRecord ddlRecord, Object recordSetVersionObject) {
 
-					ddlRecord.setRecordSetVersion((String)recordSetVersion);
+					ddlRecord.setRecordSetVersion(
+						(String)recordSetVersionObject);
 				}
 
 			});
@@ -612,8 +625,8 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object version) {
-					ddlRecord.setVersion((String)version);
+				public void accept(DDLRecord ddlRecord, Object versionObject) {
+					ddlRecord.setVersion((String)versionObject);
 				}
 
 			});
@@ -632,8 +645,10 @@ public class DDLRecordModelImpl
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object displayIndex) {
-					ddlRecord.setDisplayIndex((Integer)displayIndex);
+				public void accept(
+					DDLRecord ddlRecord, Object displayIndexObject) {
+
+					ddlRecord.setDisplayIndex((Integer)displayIndexObject);
 				}
 
 			});
@@ -653,9 +668,9 @@ public class DDLRecordModelImpl
 
 				@Override
 				public void accept(
-					DDLRecord ddlRecord, Object lastPublishDate) {
+					DDLRecord ddlRecord, Object lastPublishDateObject) {
 
-					ddlRecord.setLastPublishDate((Date)lastPublishDate);
+					ddlRecord.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

@@ -332,9 +332,9 @@ public class AnnouncementsDeliveryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsDelivery announcementsDelivery,
-					Object deliveryId) {
+					Object deliveryIdObject) {
 
-					announcementsDelivery.setDeliveryId((Long)deliveryId);
+					announcementsDelivery.setDeliveryId((Long)deliveryIdObject);
 				}
 
 			});
@@ -357,9 +357,9 @@ public class AnnouncementsDeliveryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsDelivery announcementsDelivery,
-					Object companyId) {
+					Object companyIdObject) {
 
-					announcementsDelivery.setCompanyId((Long)companyId);
+					announcementsDelivery.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -382,9 +382,9 @@ public class AnnouncementsDeliveryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsDelivery announcementsDelivery,
-					Object userId) {
+					Object userIdObject) {
 
-					announcementsDelivery.setUserId((Long)userId);
+					announcementsDelivery.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -406,9 +406,10 @@ public class AnnouncementsDeliveryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsDelivery announcementsDelivery, Object type) {
+					AnnouncementsDelivery announcementsDelivery,
+					Object typeObject) {
 
-					announcementsDelivery.setType((String)type);
+					announcementsDelivery.setType((String)typeObject);
 				}
 
 			});
@@ -430,9 +431,10 @@ public class AnnouncementsDeliveryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsDelivery announcementsDelivery, Object email) {
+					AnnouncementsDelivery announcementsDelivery,
+					Object emailObject) {
 
-					announcementsDelivery.setEmail((Boolean)email);
+					announcementsDelivery.setEmail((Boolean)emailObject);
 				}
 
 			});
@@ -454,9 +456,10 @@ public class AnnouncementsDeliveryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsDelivery announcementsDelivery, Object sms) {
+					AnnouncementsDelivery announcementsDelivery,
+					Object smsObject) {
 
-					announcementsDelivery.setSms((Boolean)sms);
+					announcementsDelivery.setSms((Boolean)smsObject);
 				}
 
 			});
@@ -479,9 +482,9 @@ public class AnnouncementsDeliveryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsDelivery announcementsDelivery,
-					Object website) {
+					Object websiteObject) {
 
-					announcementsDelivery.setWebsite((Boolean)website);
+					announcementsDelivery.setWebsite((Boolean)websiteObject);
 				}
 
 			});

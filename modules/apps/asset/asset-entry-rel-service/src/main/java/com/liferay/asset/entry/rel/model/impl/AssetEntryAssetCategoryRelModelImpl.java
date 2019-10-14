@@ -275,10 +275,10 @@ public class AssetEntryAssetCategoryRelModelImpl
 				@Override
 				public void accept(
 					AssetEntryAssetCategoryRel assetEntryAssetCategoryRel,
-					Object assetEntryAssetCategoryRelId) {
+					Object assetEntryAssetCategoryRelIdObject) {
 
 					assetEntryAssetCategoryRel.setAssetEntryAssetCategoryRelId(
-						(Long)assetEntryAssetCategoryRelId);
+						(Long)assetEntryAssetCategoryRelIdObject);
 				}
 
 			});
@@ -301,10 +301,10 @@ public class AssetEntryAssetCategoryRelModelImpl
 				@Override
 				public void accept(
 					AssetEntryAssetCategoryRel assetEntryAssetCategoryRel,
-					Object assetEntryId) {
+					Object assetEntryIdObject) {
 
 					assetEntryAssetCategoryRel.setAssetEntryId(
-						(Long)assetEntryId);
+						(Long)assetEntryIdObject);
 				}
 
 			});
@@ -327,10 +327,10 @@ public class AssetEntryAssetCategoryRelModelImpl
 				@Override
 				public void accept(
 					AssetEntryAssetCategoryRel assetEntryAssetCategoryRel,
-					Object assetCategoryId) {
+					Object assetCategoryIdObject) {
 
 					assetEntryAssetCategoryRel.setAssetCategoryId(
-						(Long)assetCategoryId);
+						(Long)assetCategoryIdObject);
 				}
 
 			});
@@ -353,9 +353,10 @@ public class AssetEntryAssetCategoryRelModelImpl
 				@Override
 				public void accept(
 					AssetEntryAssetCategoryRel assetEntryAssetCategoryRel,
-					Object priority) {
+					Object priorityObject) {
 
-					assetEntryAssetCategoryRel.setPriority((Integer)priority);
+					assetEntryAssetCategoryRel.setPriority(
+						(Integer)priorityObject);
 				}
 
 			});

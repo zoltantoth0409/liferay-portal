@@ -393,9 +393,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object uuid) {
+					Object uuidObject) {
 
-					layoutPageTemplateEntry.setUuid((String)uuid);
+					layoutPageTemplateEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -419,10 +419,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object layoutPageTemplateEntryId) {
+					Object layoutPageTemplateEntryIdObject) {
 
 					layoutPageTemplateEntry.setLayoutPageTemplateEntryId(
-						(Long)layoutPageTemplateEntryId);
+						(Long)layoutPageTemplateEntryIdObject);
 				}
 
 			});
@@ -445,9 +445,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object groupId) {
+					Object groupIdObject) {
 
-					layoutPageTemplateEntry.setGroupId((Long)groupId);
+					layoutPageTemplateEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -470,9 +470,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object companyId) {
+					Object companyIdObject) {
 
-					layoutPageTemplateEntry.setCompanyId((Long)companyId);
+					layoutPageTemplateEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -495,9 +495,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object userId) {
+					Object userIdObject) {
 
-					layoutPageTemplateEntry.setUserId((Long)userId);
+					layoutPageTemplateEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -520,9 +520,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object userName) {
+					Object userNameObject) {
 
-					layoutPageTemplateEntry.setUserName((String)userName);
+					layoutPageTemplateEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -545,9 +545,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object createDate) {
+					Object createDateObject) {
 
-					layoutPageTemplateEntry.setCreateDate((Date)createDate);
+					layoutPageTemplateEntry.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -570,9 +571,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					layoutPageTemplateEntry.setModifiedDate((Date)modifiedDate);
+					layoutPageTemplateEntry.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -596,10 +598,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object layoutPageTemplateCollectionId) {
+					Object layoutPageTemplateCollectionIdObject) {
 
 					layoutPageTemplateEntry.setLayoutPageTemplateCollectionId(
-						(Long)layoutPageTemplateCollectionId);
+						(Long)layoutPageTemplateCollectionIdObject);
 				}
 
 			});
@@ -622,9 +624,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					layoutPageTemplateEntry.setClassNameId((Long)classNameId);
+					layoutPageTemplateEntry.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -647,9 +650,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object classTypeId) {
+					Object classTypeIdObject) {
 
-					layoutPageTemplateEntry.setClassTypeId((Long)classTypeId);
+					layoutPageTemplateEntry.setClassTypeId(
+						(Long)classTypeIdObject);
 				}
 
 			});
@@ -672,9 +676,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object name) {
+					Object nameObject) {
 
-					layoutPageTemplateEntry.setName((String)name);
+					layoutPageTemplateEntry.setName((String)nameObject);
 				}
 
 			});
@@ -697,9 +701,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object type) {
+					Object typeObject) {
 
-					layoutPageTemplateEntry.setType((Integer)type);
+					layoutPageTemplateEntry.setType((Integer)typeObject);
 				}
 
 			});
@@ -722,10 +726,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object previewFileEntryId) {
+					Object previewFileEntryIdObject) {
 
 					layoutPageTemplateEntry.setPreviewFileEntryId(
-						(Long)previewFileEntryId);
+						(Long)previewFileEntryIdObject);
 				}
 
 			});
@@ -748,10 +752,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object defaultTemplate) {
+					Object defaultTemplateObject) {
 
 					layoutPageTemplateEntry.setDefaultTemplate(
-						(Boolean)defaultTemplate);
+						(Boolean)defaultTemplateObject);
 				}
 
 			});
@@ -774,10 +778,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object layoutPrototypeId) {
+					Object layoutPrototypeIdObject) {
 
 					layoutPageTemplateEntry.setLayoutPrototypeId(
-						(Long)layoutPrototypeId);
+						(Long)layoutPrototypeIdObject);
 				}
 
 			});
@@ -800,10 +804,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					layoutPageTemplateEntry.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -826,9 +830,9 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object status) {
+					Object statusObject) {
 
-					layoutPageTemplateEntry.setStatus((Integer)status);
+					layoutPageTemplateEntry.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -851,10 +855,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
 					layoutPageTemplateEntry.setStatusByUserId(
-						(Long)statusByUserId);
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -877,10 +881,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					layoutPageTemplateEntry.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -903,9 +907,10 @@ public class LayoutPageTemplateEntryModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateEntry layoutPageTemplateEntry,
-					Object statusDate) {
+					Object statusDateObject) {
 
-					layoutPageTemplateEntry.setStatusDate((Date)statusDate);
+					layoutPageTemplateEntry.setStatusDate(
+						(Date)statusDateObject);
 				}
 
 			});

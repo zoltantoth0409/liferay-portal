@@ -344,9 +344,10 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object powwowMeetingId) {
+					PowwowMeeting powwowMeeting, Object powwowMeetingIdObject) {
 
-					powwowMeeting.setPowwowMeetingId((Long)powwowMeetingId);
+					powwowMeeting.setPowwowMeetingId(
+						(Long)powwowMeetingIdObject);
 				}
 
 			});
@@ -366,9 +367,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object groupId) {
+					PowwowMeeting powwowMeeting, Object groupIdObject) {
 
-					powwowMeeting.setGroupId((Long)groupId);
+					powwowMeeting.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -388,9 +389,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object companyId) {
+					PowwowMeeting powwowMeeting, Object companyIdObject) {
 
-					powwowMeeting.setCompanyId((Long)companyId);
+					powwowMeeting.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -409,8 +410,10 @@ public class PowwowMeetingModelImpl
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object userId) {
-					powwowMeeting.setUserId((Long)userId);
+				public void accept(
+					PowwowMeeting powwowMeeting, Object userIdObject) {
+
+					powwowMeeting.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -430,9 +433,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object userName) {
+					PowwowMeeting powwowMeeting, Object userNameObject) {
 
-					powwowMeeting.setUserName((String)userName);
+					powwowMeeting.setUserName((String)userNameObject);
 				}
 
 			});
@@ -452,9 +455,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object createDate) {
+					PowwowMeeting powwowMeeting, Object createDateObject) {
 
-					powwowMeeting.setCreateDate((Date)createDate);
+					powwowMeeting.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -474,9 +477,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object modifiedDate) {
+					PowwowMeeting powwowMeeting, Object modifiedDateObject) {
 
-					powwowMeeting.setModifiedDate((Date)modifiedDate);
+					powwowMeeting.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -496,9 +499,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object powwowServerId) {
+					PowwowMeeting powwowMeeting, Object powwowServerIdObject) {
 
-					powwowMeeting.setPowwowServerId((Long)powwowServerId);
+					powwowMeeting.setPowwowServerId((Long)powwowServerIdObject);
 				}
 
 			});
@@ -517,8 +520,10 @@ public class PowwowMeetingModelImpl
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object name) {
-					powwowMeeting.setName((String)name);
+				public void accept(
+					PowwowMeeting powwowMeeting, Object nameObject) {
+
+					powwowMeeting.setName((String)nameObject);
 				}
 
 			});
@@ -538,9 +543,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object description) {
+					PowwowMeeting powwowMeeting, Object descriptionObject) {
 
-					powwowMeeting.setDescription((String)description);
+					powwowMeeting.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -560,9 +565,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object providerType) {
+					PowwowMeeting powwowMeeting, Object providerTypeObject) {
 
-					powwowMeeting.setProviderType((String)providerType);
+					powwowMeeting.setProviderType((String)providerTypeObject);
 				}
 
 			});
@@ -582,10 +587,11 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object providerTypeMetadata) {
+					PowwowMeeting powwowMeeting,
+					Object providerTypeMetadataObject) {
 
 					powwowMeeting.setProviderTypeMetadata(
-						(String)providerTypeMetadata);
+						(String)providerTypeMetadataObject);
 				}
 
 			});
@@ -605,9 +611,9 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object languageId) {
+					PowwowMeeting powwowMeeting, Object languageIdObject) {
 
-					powwowMeeting.setLanguageId((String)languageId);
+					powwowMeeting.setLanguageId((String)languageIdObject);
 				}
 
 			});
@@ -627,9 +633,11 @@ public class PowwowMeetingModelImpl
 
 				@Override
 				public void accept(
-					PowwowMeeting powwowMeeting, Object calendarBookingId) {
+					PowwowMeeting powwowMeeting,
+					Object calendarBookingIdObject) {
 
-					powwowMeeting.setCalendarBookingId((Long)calendarBookingId);
+					powwowMeeting.setCalendarBookingId(
+						(Long)calendarBookingIdObject);
 				}
 
 			});
@@ -648,8 +656,10 @@ public class PowwowMeetingModelImpl
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object status) {
-					powwowMeeting.setStatus((Integer)status);
+				public void accept(
+					PowwowMeeting powwowMeeting, Object statusObject) {
+
+					powwowMeeting.setStatus((Integer)statusObject);
 				}
 
 			});

@@ -366,9 +366,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object uuid) {
+					Object uuidObject) {
 
-					siteNavigationMenuItem.setUuid((String)uuid);
+					siteNavigationMenuItem.setUuid((String)uuidObject);
 				}
 
 			});
@@ -391,10 +391,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object siteNavigationMenuItemId) {
+					Object siteNavigationMenuItemIdObject) {
 
 					siteNavigationMenuItem.setSiteNavigationMenuItemId(
-						(Long)siteNavigationMenuItemId);
+						(Long)siteNavigationMenuItemIdObject);
 				}
 
 			});
@@ -417,9 +417,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object groupId) {
+					Object groupIdObject) {
 
-					siteNavigationMenuItem.setGroupId((Long)groupId);
+					siteNavigationMenuItem.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -442,9 +442,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object companyId) {
+					Object companyIdObject) {
 
-					siteNavigationMenuItem.setCompanyId((Long)companyId);
+					siteNavigationMenuItem.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -467,9 +467,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object userId) {
+					Object userIdObject) {
 
-					siteNavigationMenuItem.setUserId((Long)userId);
+					siteNavigationMenuItem.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -492,9 +492,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object userName) {
+					Object userNameObject) {
 
-					siteNavigationMenuItem.setUserName((String)userName);
+					siteNavigationMenuItem.setUserName((String)userNameObject);
 				}
 
 			});
@@ -517,9 +517,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object createDate) {
+					Object createDateObject) {
 
-					siteNavigationMenuItem.setCreateDate((Date)createDate);
+					siteNavigationMenuItem.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -542,9 +543,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					siteNavigationMenuItem.setModifiedDate((Date)modifiedDate);
+					siteNavigationMenuItem.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -567,10 +569,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object siteNavigationMenuId) {
+					Object siteNavigationMenuIdObject) {
 
 					siteNavigationMenuItem.setSiteNavigationMenuId(
-						(Long)siteNavigationMenuId);
+						(Long)siteNavigationMenuIdObject);
 				}
 
 			});
@@ -594,10 +596,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object parentSiteNavigationMenuItemId) {
+					Object parentSiteNavigationMenuItemIdObject) {
 
 					siteNavigationMenuItem.setParentSiteNavigationMenuItemId(
-						(Long)parentSiteNavigationMenuItemId);
+						(Long)parentSiteNavigationMenuItemIdObject);
 				}
 
 			});
@@ -620,9 +622,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object name) {
+					Object nameObject) {
 
-					siteNavigationMenuItem.setName((String)name);
+					siteNavigationMenuItem.setName((String)nameObject);
 				}
 
 			});
@@ -645,9 +647,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object type) {
+					Object typeObject) {
 
-					siteNavigationMenuItem.setType((String)type);
+					siteNavigationMenuItem.setType((String)typeObject);
 				}
 
 			});
@@ -670,10 +672,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object typeSettings) {
+					Object typeSettingsObject) {
 
 					siteNavigationMenuItem.setTypeSettings(
-						(String)typeSettings);
+						(String)typeSettingsObject);
 				}
 
 			});
@@ -696,9 +698,9 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object order) {
+					Object orderObject) {
 
-					siteNavigationMenuItem.setOrder((Integer)order);
+					siteNavigationMenuItem.setOrder((Integer)orderObject);
 				}
 
 			});
@@ -721,10 +723,10 @@ public class SiteNavigationMenuItemModelImpl
 				@Override
 				public void accept(
 					SiteNavigationMenuItem siteNavigationMenuItem,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					siteNavigationMenuItem.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

@@ -281,9 +281,10 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object memberRequestId) {
+					MemberRequest memberRequest, Object memberRequestIdObject) {
 
-					memberRequest.setMemberRequestId((Long)memberRequestId);
+					memberRequest.setMemberRequestId(
+						(Long)memberRequestIdObject);
 				}
 
 			});
@@ -303,9 +304,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object groupId) {
+					MemberRequest memberRequest, Object groupIdObject) {
 
-					memberRequest.setGroupId((Long)groupId);
+					memberRequest.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -325,9 +326,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object companyId) {
+					MemberRequest memberRequest, Object companyIdObject) {
 
-					memberRequest.setCompanyId((Long)companyId);
+					memberRequest.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -346,8 +347,10 @@ public class MemberRequestModelImpl
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object userId) {
-					memberRequest.setUserId((Long)userId);
+				public void accept(
+					MemberRequest memberRequest, Object userIdObject) {
+
+					memberRequest.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -367,9 +370,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object userName) {
+					MemberRequest memberRequest, Object userNameObject) {
 
-					memberRequest.setUserName((String)userName);
+					memberRequest.setUserName((String)userNameObject);
 				}
 
 			});
@@ -389,9 +392,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object createDate) {
+					MemberRequest memberRequest, Object createDateObject) {
 
-					memberRequest.setCreateDate((Date)createDate);
+					memberRequest.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -411,9 +414,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object modifiedDate) {
+					MemberRequest memberRequest, Object modifiedDateObject) {
 
-					memberRequest.setModifiedDate((Date)modifiedDate);
+					memberRequest.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -432,8 +435,10 @@ public class MemberRequestModelImpl
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object key) {
-					memberRequest.setKey((String)key);
+				public void accept(
+					MemberRequest memberRequest, Object keyObject) {
+
+					memberRequest.setKey((String)keyObject);
 				}
 
 			});
@@ -453,9 +458,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object receiverUserId) {
+					MemberRequest memberRequest, Object receiverUserIdObject) {
 
-					memberRequest.setReceiverUserId((Long)receiverUserId);
+					memberRequest.setReceiverUserId((Long)receiverUserIdObject);
 				}
 
 			});
@@ -475,9 +480,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object invitedRoleId) {
+					MemberRequest memberRequest, Object invitedRoleIdObject) {
 
-					memberRequest.setInvitedRoleId((Long)invitedRoleId);
+					memberRequest.setInvitedRoleId((Long)invitedRoleIdObject);
 				}
 
 			});
@@ -497,9 +502,9 @@ public class MemberRequestModelImpl
 
 				@Override
 				public void accept(
-					MemberRequest memberRequest, Object invitedTeamId) {
+					MemberRequest memberRequest, Object invitedTeamIdObject) {
 
-					memberRequest.setInvitedTeamId((Long)invitedTeamId);
+					memberRequest.setInvitedTeamId((Long)invitedTeamIdObject);
 				}
 
 			});
@@ -518,8 +523,10 @@ public class MemberRequestModelImpl
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object status) {
-					memberRequest.setStatus((Integer)status);
+				public void accept(
+					MemberRequest memberRequest, Object statusObject) {
+
+					memberRequest.setStatus((Integer)statusObject);
 				}
 
 			});

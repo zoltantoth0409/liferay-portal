@@ -443,8 +443,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object mvccVersion) {
-					group.setMvccVersion((Long)mvccVersion);
+				public void accept(Group group, Object mvccVersionObject) {
+					group.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -463,8 +463,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object uuid) {
-					group.setUuid((String)uuid);
+				public void accept(Group group, Object uuidObject) {
+					group.setUuid((String)uuidObject);
 				}
 
 			});
@@ -483,8 +483,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object groupId) {
-					group.setGroupId((Long)groupId);
+				public void accept(Group group, Object groupIdObject) {
+					group.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -503,8 +503,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object companyId) {
-					group.setCompanyId((Long)companyId);
+				public void accept(Group group, Object companyIdObject) {
+					group.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -523,8 +523,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object creatorUserId) {
-					group.setCreatorUserId((Long)creatorUserId);
+				public void accept(Group group, Object creatorUserIdObject) {
+					group.setCreatorUserId((Long)creatorUserIdObject);
 				}
 
 			});
@@ -543,8 +543,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object classNameId) {
-					group.setClassNameId((Long)classNameId);
+				public void accept(Group group, Object classNameIdObject) {
+					group.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -563,8 +563,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object classPK) {
-					group.setClassPK((Long)classPK);
+				public void accept(Group group, Object classPKObject) {
+					group.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -583,8 +583,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object parentGroupId) {
-					group.setParentGroupId((Long)parentGroupId);
+				public void accept(Group group, Object parentGroupIdObject) {
+					group.setParentGroupId((Long)parentGroupIdObject);
 				}
 
 			});
@@ -603,8 +603,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object liveGroupId) {
-					group.setLiveGroupId((Long)liveGroupId);
+				public void accept(Group group, Object liveGroupIdObject) {
+					group.setLiveGroupId((Long)liveGroupIdObject);
 				}
 
 			});
@@ -623,8 +623,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object treePath) {
-					group.setTreePath((String)treePath);
+				public void accept(Group group, Object treePathObject) {
+					group.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -643,8 +643,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object groupKey) {
-					group.setGroupKey((String)groupKey);
+				public void accept(Group group, Object groupKeyObject) {
+					group.setGroupKey((String)groupKeyObject);
 				}
 
 			});
@@ -663,8 +663,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object name) {
-					group.setName((String)name);
+				public void accept(Group group, Object nameObject) {
+					group.setName((String)nameObject);
 				}
 
 			});
@@ -683,8 +683,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object description) {
-					group.setDescription((String)description);
+				public void accept(Group group, Object descriptionObject) {
+					group.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -703,8 +703,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object type) {
-					group.setType((Integer)type);
+				public void accept(Group group, Object typeObject) {
+					group.setType((Integer)typeObject);
 				}
 
 			});
@@ -723,8 +723,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object typeSettings) {
-					group.setTypeSettings((String)typeSettings);
+				public void accept(Group group, Object typeSettingsObject) {
+					group.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -743,8 +743,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object manualMembership) {
-					group.setManualMembership((Boolean)manualMembership);
+				public void accept(Group group, Object manualMembershipObject) {
+					group.setManualMembership((Boolean)manualMembershipObject);
 				}
 
 			});
@@ -763,9 +763,11 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object membershipRestriction) {
+				public void accept(
+					Group group, Object membershipRestrictionObject) {
+
 					group.setMembershipRestriction(
-						(Integer)membershipRestriction);
+						(Integer)membershipRestrictionObject);
 				}
 
 			});
@@ -784,8 +786,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object friendlyURL) {
-					group.setFriendlyURL((String)friendlyURL);
+				public void accept(Group group, Object friendlyURLObject) {
+					group.setFriendlyURL((String)friendlyURLObject);
 				}
 
 			});
@@ -804,8 +806,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object site) {
-					group.setSite((Boolean)site);
+				public void accept(Group group, Object siteObject) {
+					group.setSite((Boolean)siteObject);
 				}
 
 			});
@@ -825,10 +827,10 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 
 				@Override
 				public void accept(
-					Group group, Object remoteStagingGroupCount) {
+					Group group, Object remoteStagingGroupCountObject) {
 
 					group.setRemoteStagingGroupCount(
-						(Integer)remoteStagingGroupCount);
+						(Integer)remoteStagingGroupCountObject);
 				}
 
 			});
@@ -847,8 +849,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object inheritContent) {
-					group.setInheritContent((Boolean)inheritContent);
+				public void accept(Group group, Object inheritContentObject) {
+					group.setInheritContent((Boolean)inheritContentObject);
 				}
 
 			});
@@ -867,8 +869,8 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			new BiConsumer<Group, Object>() {
 
 				@Override
-				public void accept(Group group, Object active) {
-					group.setActive((Boolean)active);
+				public void accept(Group group, Object activeObject) {
+					group.setActive((Boolean)activeObject);
 				}
 
 			});

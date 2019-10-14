@@ -282,10 +282,10 @@ public class ChangesetCollectionModelImpl
 				@Override
 				public void accept(
 					ChangesetCollection changesetCollection,
-					Object changesetCollectionId) {
+					Object changesetCollectionIdObject) {
 
 					changesetCollection.setChangesetCollectionId(
-						(Long)changesetCollectionId);
+						(Long)changesetCollectionIdObject);
 				}
 
 			});
@@ -305,9 +305,10 @@ public class ChangesetCollectionModelImpl
 
 				@Override
 				public void accept(
-					ChangesetCollection changesetCollection, Object groupId) {
+					ChangesetCollection changesetCollection,
+					Object groupIdObject) {
 
-					changesetCollection.setGroupId((Long)groupId);
+					changesetCollection.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -327,9 +328,10 @@ public class ChangesetCollectionModelImpl
 
 				@Override
 				public void accept(
-					ChangesetCollection changesetCollection, Object companyId) {
+					ChangesetCollection changesetCollection,
+					Object companyIdObject) {
 
-					changesetCollection.setCompanyId((Long)companyId);
+					changesetCollection.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -349,9 +351,10 @@ public class ChangesetCollectionModelImpl
 
 				@Override
 				public void accept(
-					ChangesetCollection changesetCollection, Object userId) {
+					ChangesetCollection changesetCollection,
+					Object userIdObject) {
 
-					changesetCollection.setUserId((Long)userId);
+					changesetCollection.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -371,9 +374,10 @@ public class ChangesetCollectionModelImpl
 
 				@Override
 				public void accept(
-					ChangesetCollection changesetCollection, Object userName) {
+					ChangesetCollection changesetCollection,
+					Object userNameObject) {
 
-					changesetCollection.setUserName((String)userName);
+					changesetCollection.setUserName((String)userNameObject);
 				}
 
 			});
@@ -394,9 +398,9 @@ public class ChangesetCollectionModelImpl
 				@Override
 				public void accept(
 					ChangesetCollection changesetCollection,
-					Object createDate) {
+					Object createDateObject) {
 
-					changesetCollection.setCreateDate((Date)createDate);
+					changesetCollection.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -417,9 +421,10 @@ public class ChangesetCollectionModelImpl
 				@Override
 				public void accept(
 					ChangesetCollection changesetCollection,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					changesetCollection.setModifiedDate((Date)modifiedDate);
+					changesetCollection.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -439,9 +444,10 @@ public class ChangesetCollectionModelImpl
 
 				@Override
 				public void accept(
-					ChangesetCollection changesetCollection, Object name) {
+					ChangesetCollection changesetCollection,
+					Object nameObject) {
 
-					changesetCollection.setName((String)name);
+					changesetCollection.setName((String)nameObject);
 				}
 
 			});
@@ -462,9 +468,10 @@ public class ChangesetCollectionModelImpl
 				@Override
 				public void accept(
 					ChangesetCollection changesetCollection,
-					Object description) {
+					Object descriptionObject) {
 
-					changesetCollection.setDescription((String)description);
+					changesetCollection.setDescription(
+						(String)descriptionObject);
 				}
 
 			});

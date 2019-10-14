@@ -364,10 +364,10 @@ public class DDMTemplateVersionModelImpl
 				@Override
 				public void accept(
 					DDMTemplateVersion ddmTemplateVersion,
-					Object templateVersionId) {
+					Object templateVersionIdObject) {
 
 					ddmTemplateVersion.setTemplateVersionId(
-						(Long)templateVersionId);
+						(Long)templateVersionIdObject);
 				}
 
 			});
@@ -387,9 +387,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object groupId) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object groupIdObject) {
 
-					ddmTemplateVersion.setGroupId((Long)groupId);
+					ddmTemplateVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -409,9 +410,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object companyId) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object companyIdObject) {
 
-					ddmTemplateVersion.setCompanyId((Long)companyId);
+					ddmTemplateVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -431,9 +433,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object userId) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object userIdObject) {
 
-					ddmTemplateVersion.setUserId((Long)userId);
+					ddmTemplateVersion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -453,9 +456,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object userName) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object userNameObject) {
 
-					ddmTemplateVersion.setUserName((String)userName);
+					ddmTemplateVersion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -475,9 +479,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object createDate) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object createDateObject) {
 
-					ddmTemplateVersion.setCreateDate((Date)createDate);
+					ddmTemplateVersion.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -497,9 +502,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object classNameId) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object classNameIdObject) {
 
-					ddmTemplateVersion.setClassNameId((Long)classNameId);
+					ddmTemplateVersion.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -519,9 +525,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object classPK) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object classPKObject) {
 
-					ddmTemplateVersion.setClassPK((Long)classPK);
+					ddmTemplateVersion.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -541,9 +548,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object templateId) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object templateIdObject) {
 
-					ddmTemplateVersion.setTemplateId((Long)templateId);
+					ddmTemplateVersion.setTemplateId((Long)templateIdObject);
 				}
 
 			});
@@ -563,9 +571,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object version) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object versionObject) {
 
-					ddmTemplateVersion.setVersion((String)version);
+					ddmTemplateVersion.setVersion((String)versionObject);
 				}
 
 			});
@@ -585,9 +594,9 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object name) {
+					DDMTemplateVersion ddmTemplateVersion, Object nameObject) {
 
-					ddmTemplateVersion.setName((String)name);
+					ddmTemplateVersion.setName((String)nameObject);
 				}
 
 			});
@@ -607,9 +616,11 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object description) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object descriptionObject) {
 
-					ddmTemplateVersion.setDescription((String)description);
+					ddmTemplateVersion.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -629,9 +640,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object language) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object languageObject) {
 
-					ddmTemplateVersion.setLanguage((String)language);
+					ddmTemplateVersion.setLanguage((String)languageObject);
 				}
 
 			});
@@ -651,9 +663,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object script) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object scriptObject) {
 
-					ddmTemplateVersion.setScript((String)script);
+					ddmTemplateVersion.setScript((String)scriptObject);
 				}
 
 			});
@@ -673,9 +686,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object status) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object statusObject) {
 
-					ddmTemplateVersion.setStatus((Integer)status);
+					ddmTemplateVersion.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -696,9 +710,10 @@ public class DDMTemplateVersionModelImpl
 				@Override
 				public void accept(
 					DDMTemplateVersion ddmTemplateVersion,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
-					ddmTemplateVersion.setStatusByUserId((Long)statusByUserId);
+					ddmTemplateVersion.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -719,10 +734,10 @@ public class DDMTemplateVersionModelImpl
 				@Override
 				public void accept(
 					DDMTemplateVersion ddmTemplateVersion,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					ddmTemplateVersion.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -742,9 +757,10 @@ public class DDMTemplateVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateVersion ddmTemplateVersion, Object statusDate) {
+					DDMTemplateVersion ddmTemplateVersion,
+					Object statusDateObject) {
 
-					ddmTemplateVersion.setStatusDate((Date)statusDate);
+					ddmTemplateVersion.setStatusDate((Date)statusDateObject);
 				}
 
 			});

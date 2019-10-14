@@ -269,8 +269,10 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object contentId) {
-					dlContent.setContentId((Long)contentId);
+				public void accept(
+					DLContent dlContent, Object contentIdObject) {
+
+					dlContent.setContentId((Long)contentIdObject);
 				}
 
 			});
@@ -289,8 +291,8 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object groupId) {
-					dlContent.setGroupId((Long)groupId);
+				public void accept(DLContent dlContent, Object groupIdObject) {
+					dlContent.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -309,8 +311,10 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object companyId) {
-					dlContent.setCompanyId((Long)companyId);
+				public void accept(
+					DLContent dlContent, Object companyIdObject) {
+
+					dlContent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -329,8 +333,10 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object repositoryId) {
-					dlContent.setRepositoryId((Long)repositoryId);
+				public void accept(
+					DLContent dlContent, Object repositoryIdObject) {
+
+					dlContent.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -349,8 +355,8 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object path) {
-					dlContent.setPath((String)path);
+				public void accept(DLContent dlContent, Object pathObject) {
+					dlContent.setPath((String)pathObject);
 				}
 
 			});
@@ -369,8 +375,8 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object version) {
-					dlContent.setVersion((String)version);
+				public void accept(DLContent dlContent, Object versionObject) {
+					dlContent.setVersion((String)versionObject);
 				}
 
 			});
@@ -389,8 +395,8 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object data) {
-					dlContent.setData((Blob)data);
+				public void accept(DLContent dlContent, Object dataObject) {
+					dlContent.setData((Blob)dataObject);
 				}
 
 			});
@@ -409,8 +415,8 @@ public class DLContentModelImpl
 			new BiConsumer<DLContent, Object>() {
 
 				@Override
-				public void accept(DLContent dlContent, Object size) {
-					dlContent.setSize((Long)size);
+				public void accept(DLContent dlContent, Object sizeObject) {
+					dlContent.setSize((Long)sizeObject);
 				}
 
 			});

@@ -317,8 +317,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object uuid) {
-					gadget.setUuid((String)uuid);
+				public void accept(Gadget gadget, Object uuidObject) {
+					gadget.setUuid((String)uuidObject);
 				}
 
 			});
@@ -337,8 +337,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object gadgetId) {
-					gadget.setGadgetId((Long)gadgetId);
+				public void accept(Gadget gadget, Object gadgetIdObject) {
+					gadget.setGadgetId((Long)gadgetIdObject);
 				}
 
 			});
@@ -357,8 +357,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object companyId) {
-					gadget.setCompanyId((Long)companyId);
+				public void accept(Gadget gadget, Object companyIdObject) {
+					gadget.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -377,8 +377,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object createDate) {
-					gadget.setCreateDate((Date)createDate);
+				public void accept(Gadget gadget, Object createDateObject) {
+					gadget.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -397,8 +397,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object modifiedDate) {
-					gadget.setModifiedDate((Date)modifiedDate);
+				public void accept(Gadget gadget, Object modifiedDateObject) {
+					gadget.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -417,8 +417,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object name) {
-					gadget.setName((String)name);
+				public void accept(Gadget gadget, Object nameObject) {
+					gadget.setName((String)nameObject);
 				}
 
 			});
@@ -437,8 +437,8 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object url) {
-					gadget.setUrl((String)url);
+				public void accept(Gadget gadget, Object urlObject) {
+					gadget.setUrl((String)urlObject);
 				}
 
 			});
@@ -457,9 +457,11 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object portletCategoryNames) {
+				public void accept(
+					Gadget gadget, Object portletCategoryNamesObject) {
+
 					gadget.setPortletCategoryNames(
-						(String)portletCategoryNames);
+						(String)portletCategoryNamesObject);
 				}
 
 			});
@@ -478,8 +480,10 @@ public class GadgetModelImpl
 			new BiConsumer<Gadget, Object>() {
 
 				@Override
-				public void accept(Gadget gadget, Object lastPublishDate) {
-					gadget.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					Gadget gadget, Object lastPublishDateObject) {
+
+					gadget.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

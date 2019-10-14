@@ -264,8 +264,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object folderId) {
-					folder.setFolderId((Long)folderId);
+				public void accept(Folder folder, Object folderIdObject) {
+					folder.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -284,8 +284,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object companyId) {
-					folder.setCompanyId((Long)companyId);
+				public void accept(Folder folder, Object companyIdObject) {
+					folder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -304,8 +304,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object userId) {
-					folder.setUserId((Long)userId);
+				public void accept(Folder folder, Object userIdObject) {
+					folder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -324,8 +324,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object userName) {
-					folder.setUserName((String)userName);
+				public void accept(Folder folder, Object userNameObject) {
+					folder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -344,8 +344,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object createDate) {
-					folder.setCreateDate((Date)createDate);
+				public void accept(Folder folder, Object createDateObject) {
+					folder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -364,8 +364,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object modifiedDate) {
-					folder.setModifiedDate((Date)modifiedDate);
+				public void accept(Folder folder, Object modifiedDateObject) {
+					folder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -384,8 +384,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object accountId) {
-					folder.setAccountId((Long)accountId);
+				public void accept(Folder folder, Object accountIdObject) {
+					folder.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -404,8 +404,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object fullName) {
-					folder.setFullName((String)fullName);
+				public void accept(Folder folder, Object fullNameObject) {
+					folder.setFullName((String)fullNameObject);
 				}
 
 			});
@@ -424,8 +424,8 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object displayName) {
-					folder.setDisplayName((String)displayName);
+				public void accept(Folder folder, Object displayNameObject) {
+					folder.setDisplayName((String)displayNameObject);
 				}
 
 			});
@@ -444,8 +444,11 @@ public class FolderModelImpl
 			new BiConsumer<Folder, Object>() {
 
 				@Override
-				public void accept(Folder folder, Object remoteMessageCount) {
-					folder.setRemoteMessageCount((Integer)remoteMessageCount);
+				public void accept(
+					Folder folder, Object remoteMessageCountObject) {
+
+					folder.setRemoteMessageCount(
+						(Integer)remoteMessageCountObject);
 				}
 
 			});

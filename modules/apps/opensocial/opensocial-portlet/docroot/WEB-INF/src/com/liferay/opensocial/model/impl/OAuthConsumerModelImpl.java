@@ -268,9 +268,10 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object oAuthConsumerId) {
+					OAuthConsumer oAuthConsumer, Object oAuthConsumerIdObject) {
 
-					oAuthConsumer.setOAuthConsumerId((Long)oAuthConsumerId);
+					oAuthConsumer.setOAuthConsumerId(
+						(Long)oAuthConsumerIdObject);
 				}
 
 			});
@@ -290,9 +291,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object companyId) {
+					OAuthConsumer oAuthConsumer, Object companyIdObject) {
 
-					oAuthConsumer.setCompanyId((Long)companyId);
+					oAuthConsumer.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -312,9 +313,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object createDate) {
+					OAuthConsumer oAuthConsumer, Object createDateObject) {
 
-					oAuthConsumer.setCreateDate((Date)createDate);
+					oAuthConsumer.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -334,9 +335,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object modifiedDate) {
+					OAuthConsumer oAuthConsumer, Object modifiedDateObject) {
 
-					oAuthConsumer.setModifiedDate((Date)modifiedDate);
+					oAuthConsumer.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -356,9 +357,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object gadgetKey) {
+					OAuthConsumer oAuthConsumer, Object gadgetKeyObject) {
 
-					oAuthConsumer.setGadgetKey((String)gadgetKey);
+					oAuthConsumer.setGadgetKey((String)gadgetKeyObject);
 				}
 
 			});
@@ -378,9 +379,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object serviceName) {
+					OAuthConsumer oAuthConsumer, Object serviceNameObject) {
 
-					oAuthConsumer.setServiceName((String)serviceName);
+					oAuthConsumer.setServiceName((String)serviceNameObject);
 				}
 
 			});
@@ -400,9 +401,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object consumerKey) {
+					OAuthConsumer oAuthConsumer, Object consumerKeyObject) {
 
-					oAuthConsumer.setConsumerKey((String)consumerKey);
+					oAuthConsumer.setConsumerKey((String)consumerKeyObject);
 				}
 
 			});
@@ -422,9 +423,10 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object consumerSecret) {
+					OAuthConsumer oAuthConsumer, Object consumerSecretObject) {
 
-					oAuthConsumer.setConsumerSecret((String)consumerSecret);
+					oAuthConsumer.setConsumerSecret(
+						(String)consumerSecretObject);
 				}
 
 			});
@@ -444,9 +446,9 @@ public class OAuthConsumerModelImpl
 
 				@Override
 				public void accept(
-					OAuthConsumer oAuthConsumer, Object keyType) {
+					OAuthConsumer oAuthConsumer, Object keyTypeObject) {
 
-					oAuthConsumer.setKeyType((String)keyType);
+					oAuthConsumer.setKeyType((String)keyTypeObject);
 				}
 
 			});

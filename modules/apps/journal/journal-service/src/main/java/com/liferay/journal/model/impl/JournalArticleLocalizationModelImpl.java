@@ -277,10 +277,10 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object articleLocalizationId) {
+					Object articleLocalizationIdObject) {
 
 					journalArticleLocalization.setArticleLocalizationId(
-						(Long)articleLocalizationId);
+						(Long)articleLocalizationIdObject);
 				}
 
 			});
@@ -303,9 +303,10 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object companyId) {
+					Object companyIdObject) {
 
-					journalArticleLocalization.setCompanyId((Long)companyId);
+					journalArticleLocalization.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -328,9 +329,10 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object articlePK) {
+					Object articlePKObject) {
 
-					journalArticleLocalization.setArticlePK((Long)articlePK);
+					journalArticleLocalization.setArticlePK(
+						(Long)articlePKObject);
 				}
 
 			});
@@ -353,9 +355,9 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object title) {
+					Object titleObject) {
 
-					journalArticleLocalization.setTitle((String)title);
+					journalArticleLocalization.setTitle((String)titleObject);
 				}
 
 			});
@@ -378,10 +380,10 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object description) {
+					Object descriptionObject) {
 
 					journalArticleLocalization.setDescription(
-						(String)description);
+						(String)descriptionObject);
 				}
 
 			});
@@ -404,10 +406,10 @@ public class JournalArticleLocalizationModelImpl
 				@Override
 				public void accept(
 					JournalArticleLocalization journalArticleLocalization,
-					Object languageId) {
+					Object languageIdObject) {
 
 					journalArticleLocalization.setLanguageId(
-						(String)languageId);
+						(String)languageIdObject);
 				}
 
 			});

@@ -292,10 +292,11 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object kaleoTransitionId) {
+					KaleoTransition kaleoTransition,
+					Object kaleoTransitionIdObject) {
 
 					kaleoTransition.setKaleoTransitionId(
-						(Long)kaleoTransitionId);
+						(Long)kaleoTransitionIdObject);
 				}
 
 			});
@@ -315,9 +316,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object groupId) {
+					KaleoTransition kaleoTransition, Object groupIdObject) {
 
-					kaleoTransition.setGroupId((Long)groupId);
+					kaleoTransition.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -337,9 +338,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object companyId) {
+					KaleoTransition kaleoTransition, Object companyIdObject) {
 
-					kaleoTransition.setCompanyId((Long)companyId);
+					kaleoTransition.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -359,9 +360,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object userId) {
+					KaleoTransition kaleoTransition, Object userIdObject) {
 
-					kaleoTransition.setUserId((Long)userId);
+					kaleoTransition.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -381,9 +382,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object userName) {
+					KaleoTransition kaleoTransition, Object userNameObject) {
 
-					kaleoTransition.setUserName((String)userName);
+					kaleoTransition.setUserName((String)userNameObject);
 				}
 
 			});
@@ -403,9 +404,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object createDate) {
+					KaleoTransition kaleoTransition, Object createDateObject) {
 
-					kaleoTransition.setCreateDate((Date)createDate);
+					kaleoTransition.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -425,9 +426,10 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object modifiedDate) {
+					KaleoTransition kaleoTransition,
+					Object modifiedDateObject) {
 
-					kaleoTransition.setModifiedDate((Date)modifiedDate);
+					kaleoTransition.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -448,10 +450,10 @@ public class KaleoTransitionModelImpl
 				@Override
 				public void accept(
 					KaleoTransition kaleoTransition,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTransition.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -471,9 +473,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object kaleoNodeId) {
+					KaleoTransition kaleoTransition, Object kaleoNodeIdObject) {
 
-					kaleoTransition.setKaleoNodeId((Long)kaleoNodeId);
+					kaleoTransition.setKaleoNodeId((Long)kaleoNodeIdObject);
 				}
 
 			});
@@ -493,9 +495,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object name) {
+					KaleoTransition kaleoTransition, Object nameObject) {
 
-					kaleoTransition.setName((String)name);
+					kaleoTransition.setName((String)nameObject);
 				}
 
 			});
@@ -515,9 +517,9 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object description) {
+					KaleoTransition kaleoTransition, Object descriptionObject) {
 
-					kaleoTransition.setDescription((String)description);
+					kaleoTransition.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -537,10 +539,11 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object sourceKaleoNodeId) {
+					KaleoTransition kaleoTransition,
+					Object sourceKaleoNodeIdObject) {
 
 					kaleoTransition.setSourceKaleoNodeId(
-						(Long)sourceKaleoNodeId);
+						(Long)sourceKaleoNodeIdObject);
 				}
 
 			});
@@ -561,10 +564,10 @@ public class KaleoTransitionModelImpl
 				@Override
 				public void accept(
 					KaleoTransition kaleoTransition,
-					Object sourceKaleoNodeName) {
+					Object sourceKaleoNodeNameObject) {
 
 					kaleoTransition.setSourceKaleoNodeName(
-						(String)sourceKaleoNodeName);
+						(String)sourceKaleoNodeNameObject);
 				}
 
 			});
@@ -584,10 +587,11 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object targetKaleoNodeId) {
+					KaleoTransition kaleoTransition,
+					Object targetKaleoNodeIdObject) {
 
 					kaleoTransition.setTargetKaleoNodeId(
-						(Long)targetKaleoNodeId);
+						(Long)targetKaleoNodeIdObject);
 				}
 
 			});
@@ -608,10 +612,10 @@ public class KaleoTransitionModelImpl
 				@Override
 				public void accept(
 					KaleoTransition kaleoTransition,
-					Object targetKaleoNodeName) {
+					Object targetKaleoNodeNameObject) {
 
 					kaleoTransition.setTargetKaleoNodeName(
-						(String)targetKaleoNodeName);
+						(String)targetKaleoNodeNameObject);
 				}
 
 			});
@@ -631,10 +635,11 @@ public class KaleoTransitionModelImpl
 
 				@Override
 				public void accept(
-					KaleoTransition kaleoTransition, Object defaultTransition) {
+					KaleoTransition kaleoTransition,
+					Object defaultTransitionObject) {
 
 					kaleoTransition.setDefaultTransition(
-						(Boolean)defaultTransition);
+						(Boolean)defaultTransitionObject);
 				}
 
 			});

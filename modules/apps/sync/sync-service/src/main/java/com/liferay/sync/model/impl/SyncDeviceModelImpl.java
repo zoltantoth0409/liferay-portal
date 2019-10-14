@@ -334,8 +334,8 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object uuid) {
-					syncDevice.setUuid((String)uuid);
+				public void accept(SyncDevice syncDevice, Object uuidObject) {
+					syncDevice.setUuid((String)uuidObject);
 				}
 
 			});
@@ -354,8 +354,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object syncDeviceId) {
-					syncDevice.setSyncDeviceId((Long)syncDeviceId);
+				public void accept(
+					SyncDevice syncDevice, Object syncDeviceIdObject) {
+
+					syncDevice.setSyncDeviceId((Long)syncDeviceIdObject);
 				}
 
 			});
@@ -374,8 +376,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object companyId) {
-					syncDevice.setCompanyId((Long)companyId);
+				public void accept(
+					SyncDevice syncDevice, Object companyIdObject) {
+
+					syncDevice.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -394,8 +398,8 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object userId) {
-					syncDevice.setUserId((Long)userId);
+				public void accept(SyncDevice syncDevice, Object userIdObject) {
+					syncDevice.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -414,8 +418,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object userName) {
-					syncDevice.setUserName((String)userName);
+				public void accept(
+					SyncDevice syncDevice, Object userNameObject) {
+
+					syncDevice.setUserName((String)userNameObject);
 				}
 
 			});
@@ -434,8 +440,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object createDate) {
-					syncDevice.setCreateDate((Date)createDate);
+				public void accept(
+					SyncDevice syncDevice, Object createDateObject) {
+
+					syncDevice.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -454,8 +462,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object modifiedDate) {
-					syncDevice.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					SyncDevice syncDevice, Object modifiedDateObject) {
+
+					syncDevice.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -474,8 +484,8 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object type) {
-					syncDevice.setType((String)type);
+				public void accept(SyncDevice syncDevice, Object typeObject) {
+					syncDevice.setType((String)typeObject);
 				}
 
 			});
@@ -494,8 +504,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object buildNumber) {
-					syncDevice.setBuildNumber((Long)buildNumber);
+				public void accept(
+					SyncDevice syncDevice, Object buildNumberObject) {
+
+					syncDevice.setBuildNumber((Long)buildNumberObject);
 				}
 
 			});
@@ -514,8 +526,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object featureSet) {
-					syncDevice.setFeatureSet((Integer)featureSet);
+				public void accept(
+					SyncDevice syncDevice, Object featureSetObject) {
+
+					syncDevice.setFeatureSet((Integer)featureSetObject);
 				}
 
 			});
@@ -534,8 +548,10 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object hostname) {
-					syncDevice.setHostname((String)hostname);
+				public void accept(
+					SyncDevice syncDevice, Object hostnameObject) {
+
+					syncDevice.setHostname((String)hostnameObject);
 				}
 
 			});
@@ -554,8 +570,8 @@ public class SyncDeviceModelImpl
 			new BiConsumer<SyncDevice, Object>() {
 
 				@Override
-				public void accept(SyncDevice syncDevice, Object status) {
-					syncDevice.setStatus((Integer)status);
+				public void accept(SyncDevice syncDevice, Object statusObject) {
+					syncDevice.setStatus((Integer)statusObject);
 				}
 
 			});

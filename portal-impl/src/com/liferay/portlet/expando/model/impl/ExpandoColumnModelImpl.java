@@ -310,9 +310,9 @@ public class ExpandoColumnModelImpl
 
 				@Override
 				public void accept(
-					ExpandoColumn expandoColumn, Object columnId) {
+					ExpandoColumn expandoColumn, Object columnIdObject) {
 
-					expandoColumn.setColumnId((Long)columnId);
+					expandoColumn.setColumnId((Long)columnIdObject);
 				}
 
 			});
@@ -332,9 +332,9 @@ public class ExpandoColumnModelImpl
 
 				@Override
 				public void accept(
-					ExpandoColumn expandoColumn, Object companyId) {
+					ExpandoColumn expandoColumn, Object companyIdObject) {
 
-					expandoColumn.setCompanyId((Long)companyId);
+					expandoColumn.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -354,9 +354,9 @@ public class ExpandoColumnModelImpl
 
 				@Override
 				public void accept(
-					ExpandoColumn expandoColumn, Object tableId) {
+					ExpandoColumn expandoColumn, Object tableIdObject) {
 
-					expandoColumn.setTableId((Long)tableId);
+					expandoColumn.setTableId((Long)tableIdObject);
 				}
 
 			});
@@ -375,8 +375,10 @@ public class ExpandoColumnModelImpl
 			new BiConsumer<ExpandoColumn, Object>() {
 
 				@Override
-				public void accept(ExpandoColumn expandoColumn, Object name) {
-					expandoColumn.setName((String)name);
+				public void accept(
+					ExpandoColumn expandoColumn, Object nameObject) {
+
+					expandoColumn.setName((String)nameObject);
 				}
 
 			});
@@ -395,8 +397,10 @@ public class ExpandoColumnModelImpl
 			new BiConsumer<ExpandoColumn, Object>() {
 
 				@Override
-				public void accept(ExpandoColumn expandoColumn, Object type) {
-					expandoColumn.setType((Integer)type);
+				public void accept(
+					ExpandoColumn expandoColumn, Object typeObject) {
+
+					expandoColumn.setType((Integer)typeObject);
 				}
 
 			});
@@ -416,9 +420,9 @@ public class ExpandoColumnModelImpl
 
 				@Override
 				public void accept(
-					ExpandoColumn expandoColumn, Object defaultData) {
+					ExpandoColumn expandoColumn, Object defaultDataObject) {
 
-					expandoColumn.setDefaultData((String)defaultData);
+					expandoColumn.setDefaultData((String)defaultDataObject);
 				}
 
 			});
@@ -438,9 +442,9 @@ public class ExpandoColumnModelImpl
 
 				@Override
 				public void accept(
-					ExpandoColumn expandoColumn, Object typeSettings) {
+					ExpandoColumn expandoColumn, Object typeSettingsObject) {
 
-					expandoColumn.setTypeSettings((String)typeSettings);
+					expandoColumn.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});

@@ -281,9 +281,10 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					resourceTypePermission.setMvccVersion((Long)mvccVersion);
+					resourceTypePermission.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -306,10 +307,10 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object resourceTypePermissionId) {
+					Object resourceTypePermissionIdObject) {
 
 					resourceTypePermission.setResourceTypePermissionId(
-						(Long)resourceTypePermissionId);
+						(Long)resourceTypePermissionIdObject);
 				}
 
 			});
@@ -332,9 +333,9 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object companyId) {
+					Object companyIdObject) {
 
-					resourceTypePermission.setCompanyId((Long)companyId);
+					resourceTypePermission.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -357,9 +358,9 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object groupId) {
+					Object groupIdObject) {
 
-					resourceTypePermission.setGroupId((Long)groupId);
+					resourceTypePermission.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -382,9 +383,9 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object name) {
+					Object nameObject) {
 
-					resourceTypePermission.setName((String)name);
+					resourceTypePermission.setName((String)nameObject);
 				}
 
 			});
@@ -407,9 +408,9 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object roleId) {
+					Object roleIdObject) {
 
-					resourceTypePermission.setRoleId((Long)roleId);
+					resourceTypePermission.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -432,9 +433,9 @@ public class ResourceTypePermissionModelImpl
 				@Override
 				public void accept(
 					ResourceTypePermission resourceTypePermission,
-					Object actionIds) {
+					Object actionIdsObject) {
 
-					resourceTypePermission.setActionIds((Long)actionIds);
+					resourceTypePermission.setActionIds((Long)actionIdsObject);
 				}
 
 			});

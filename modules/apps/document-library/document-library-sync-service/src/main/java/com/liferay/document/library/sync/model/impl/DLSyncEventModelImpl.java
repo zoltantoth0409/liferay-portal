@@ -261,9 +261,9 @@ public class DLSyncEventModelImpl
 
 				@Override
 				public void accept(
-					DLSyncEvent dlSyncEvent, Object syncEventId) {
+					DLSyncEvent dlSyncEvent, Object syncEventIdObject) {
 
-					dlSyncEvent.setSyncEventId((Long)syncEventId);
+					dlSyncEvent.setSyncEventId((Long)syncEventIdObject);
 				}
 
 			});
@@ -282,8 +282,10 @@ public class DLSyncEventModelImpl
 			new BiConsumer<DLSyncEvent, Object>() {
 
 				@Override
-				public void accept(DLSyncEvent dlSyncEvent, Object companyId) {
-					dlSyncEvent.setCompanyId((Long)companyId);
+				public void accept(
+					DLSyncEvent dlSyncEvent, Object companyIdObject) {
+
+					dlSyncEvent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -303,9 +305,9 @@ public class DLSyncEventModelImpl
 
 				@Override
 				public void accept(
-					DLSyncEvent dlSyncEvent, Object modifiedTime) {
+					DLSyncEvent dlSyncEvent, Object modifiedTimeObject) {
 
-					dlSyncEvent.setModifiedTime((Long)modifiedTime);
+					dlSyncEvent.setModifiedTime((Long)modifiedTimeObject);
 				}
 
 			});
@@ -324,8 +326,10 @@ public class DLSyncEventModelImpl
 			new BiConsumer<DLSyncEvent, Object>() {
 
 				@Override
-				public void accept(DLSyncEvent dlSyncEvent, Object event) {
-					dlSyncEvent.setEvent((String)event);
+				public void accept(
+					DLSyncEvent dlSyncEvent, Object eventObject) {
+
+					dlSyncEvent.setEvent((String)eventObject);
 				}
 
 			});
@@ -344,8 +348,8 @@ public class DLSyncEventModelImpl
 			new BiConsumer<DLSyncEvent, Object>() {
 
 				@Override
-				public void accept(DLSyncEvent dlSyncEvent, Object type) {
-					dlSyncEvent.setType((String)type);
+				public void accept(DLSyncEvent dlSyncEvent, Object typeObject) {
+					dlSyncEvent.setType((String)typeObject);
 				}
 
 			});
@@ -364,8 +368,10 @@ public class DLSyncEventModelImpl
 			new BiConsumer<DLSyncEvent, Object>() {
 
 				@Override
-				public void accept(DLSyncEvent dlSyncEvent, Object typePK) {
-					dlSyncEvent.setTypePK((Long)typePK);
+				public void accept(
+					DLSyncEvent dlSyncEvent, Object typePKObject) {
+
+					dlSyncEvent.setTypePK((Long)typePKObject);
 				}
 
 			});

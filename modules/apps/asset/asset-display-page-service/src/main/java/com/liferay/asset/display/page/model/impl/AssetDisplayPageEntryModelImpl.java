@@ -357,9 +357,10 @@ public class AssetDisplayPageEntryModelImpl
 
 				@Override
 				public void accept(
-					AssetDisplayPageEntry assetDisplayPageEntry, Object uuid) {
+					AssetDisplayPageEntry assetDisplayPageEntry,
+					Object uuidObject) {
 
-					assetDisplayPageEntry.setUuid((String)uuid);
+					assetDisplayPageEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -382,10 +383,10 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object assetDisplayPageEntryId) {
+					Object assetDisplayPageEntryIdObject) {
 
 					assetDisplayPageEntry.setAssetDisplayPageEntryId(
-						(Long)assetDisplayPageEntryId);
+						(Long)assetDisplayPageEntryIdObject);
 				}
 
 			});
@@ -408,9 +409,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object groupId) {
+					Object groupIdObject) {
 
-					assetDisplayPageEntry.setGroupId((Long)groupId);
+					assetDisplayPageEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -433,9 +434,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object companyId) {
+					Object companyIdObject) {
 
-					assetDisplayPageEntry.setCompanyId((Long)companyId);
+					assetDisplayPageEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -458,9 +459,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object userId) {
+					Object userIdObject) {
 
-					assetDisplayPageEntry.setUserId((Long)userId);
+					assetDisplayPageEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -483,9 +484,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object userName) {
+					Object userNameObject) {
 
-					assetDisplayPageEntry.setUserName((String)userName);
+					assetDisplayPageEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -508,9 +509,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object createDate) {
+					Object createDateObject) {
 
-					assetDisplayPageEntry.setCreateDate((Date)createDate);
+					assetDisplayPageEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -533,9 +534,10 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					assetDisplayPageEntry.setModifiedDate((Date)modifiedDate);
+					assetDisplayPageEntry.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -558,9 +560,10 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					assetDisplayPageEntry.setClassNameId((Long)classNameId);
+					assetDisplayPageEntry.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -583,9 +586,9 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object classPK) {
+					Object classPKObject) {
 
-					assetDisplayPageEntry.setClassPK((Long)classPK);
+					assetDisplayPageEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -608,10 +611,10 @@ public class AssetDisplayPageEntryModelImpl
 				@Override
 				public void accept(
 					AssetDisplayPageEntry assetDisplayPageEntry,
-					Object layoutPageTemplateEntryId) {
+					Object layoutPageTemplateEntryIdObject) {
 
 					assetDisplayPageEntry.setLayoutPageTemplateEntryId(
-						(Long)layoutPageTemplateEntryId);
+						(Long)layoutPageTemplateEntryIdObject);
 				}
 
 			});
@@ -633,9 +636,10 @@ public class AssetDisplayPageEntryModelImpl
 
 				@Override
 				public void accept(
-					AssetDisplayPageEntry assetDisplayPageEntry, Object type) {
+					AssetDisplayPageEntry assetDisplayPageEntry,
+					Object typeObject) {
 
-					assetDisplayPageEntry.setType((Integer)type);
+					assetDisplayPageEntry.setType((Integer)typeObject);
 				}
 
 			});

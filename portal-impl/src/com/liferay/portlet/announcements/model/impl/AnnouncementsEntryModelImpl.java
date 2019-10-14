@@ -364,9 +364,9 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object uuid) {
+					AnnouncementsEntry announcementsEntry, Object uuidObject) {
 
-					announcementsEntry.setUuid((String)uuid);
+					announcementsEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -386,9 +386,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object entryId) {
+					AnnouncementsEntry announcementsEntry,
+					Object entryIdObject) {
 
-					announcementsEntry.setEntryId((Long)entryId);
+					announcementsEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -408,9 +409,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object companyId) {
+					AnnouncementsEntry announcementsEntry,
+					Object companyIdObject) {
 
-					announcementsEntry.setCompanyId((Long)companyId);
+					announcementsEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -430,9 +432,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object userId) {
+					AnnouncementsEntry announcementsEntry,
+					Object userIdObject) {
 
-					announcementsEntry.setUserId((Long)userId);
+					announcementsEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -452,9 +455,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object userName) {
+					AnnouncementsEntry announcementsEntry,
+					Object userNameObject) {
 
-					announcementsEntry.setUserName((String)userName);
+					announcementsEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -474,9 +478,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object createDate) {
+					AnnouncementsEntry announcementsEntry,
+					Object createDateObject) {
 
-					announcementsEntry.setCreateDate((Date)createDate);
+					announcementsEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -497,9 +502,10 @@ public class AnnouncementsEntryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsEntry announcementsEntry,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					announcementsEntry.setModifiedDate((Date)modifiedDate);
+					announcementsEntry.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -519,9 +525,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object classNameId) {
+					AnnouncementsEntry announcementsEntry,
+					Object classNameIdObject) {
 
-					announcementsEntry.setClassNameId((Long)classNameId);
+					announcementsEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -541,9 +548,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object classPK) {
+					AnnouncementsEntry announcementsEntry,
+					Object classPKObject) {
 
-					announcementsEntry.setClassPK((Long)classPK);
+					announcementsEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -563,9 +571,9 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object title) {
+					AnnouncementsEntry announcementsEntry, Object titleObject) {
 
-					announcementsEntry.setTitle((String)title);
+					announcementsEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -585,9 +593,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object content) {
+					AnnouncementsEntry announcementsEntry,
+					Object contentObject) {
 
-					announcementsEntry.setContent((String)content);
+					announcementsEntry.setContent((String)contentObject);
 				}
 
 			});
@@ -607,9 +616,9 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object url) {
+					AnnouncementsEntry announcementsEntry, Object urlObject) {
 
-					announcementsEntry.setUrl((String)url);
+					announcementsEntry.setUrl((String)urlObject);
 				}
 
 			});
@@ -629,9 +638,9 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object type) {
+					AnnouncementsEntry announcementsEntry, Object typeObject) {
 
-					announcementsEntry.setType((String)type);
+					announcementsEntry.setType((String)typeObject);
 				}
 
 			});
@@ -651,9 +660,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object displayDate) {
+					AnnouncementsEntry announcementsEntry,
+					Object displayDateObject) {
 
-					announcementsEntry.setDisplayDate((Date)displayDate);
+					announcementsEntry.setDisplayDate((Date)displayDateObject);
 				}
 
 			});
@@ -674,9 +684,10 @@ public class AnnouncementsEntryModelImpl
 				@Override
 				public void accept(
 					AnnouncementsEntry announcementsEntry,
-					Object expirationDate) {
+					Object expirationDateObject) {
 
-					announcementsEntry.setExpirationDate((Date)expirationDate);
+					announcementsEntry.setExpirationDate(
+						(Date)expirationDateObject);
 				}
 
 			});
@@ -696,9 +707,10 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object priority) {
+					AnnouncementsEntry announcementsEntry,
+					Object priorityObject) {
 
-					announcementsEntry.setPriority((Integer)priority);
+					announcementsEntry.setPriority((Integer)priorityObject);
 				}
 
 			});
@@ -718,9 +730,9 @@ public class AnnouncementsEntryModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsEntry announcementsEntry, Object alert) {
+					AnnouncementsEntry announcementsEntry, Object alertObject) {
 
-					announcementsEntry.setAlert((Boolean)alert);
+					announcementsEntry.setAlert((Boolean)alertObject);
 				}
 
 			});

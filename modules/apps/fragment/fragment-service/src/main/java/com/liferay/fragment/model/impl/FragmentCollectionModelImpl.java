@@ -343,9 +343,9 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object uuid) {
+					FragmentCollection fragmentCollection, Object uuidObject) {
 
-					fragmentCollection.setUuid((String)uuid);
+					fragmentCollection.setUuid((String)uuidObject);
 				}
 
 			});
@@ -366,10 +366,10 @@ public class FragmentCollectionModelImpl
 				@Override
 				public void accept(
 					FragmentCollection fragmentCollection,
-					Object fragmentCollectionId) {
+					Object fragmentCollectionIdObject) {
 
 					fragmentCollection.setFragmentCollectionId(
-						(Long)fragmentCollectionId);
+						(Long)fragmentCollectionIdObject);
 				}
 
 			});
@@ -389,9 +389,10 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object groupId) {
+					FragmentCollection fragmentCollection,
+					Object groupIdObject) {
 
-					fragmentCollection.setGroupId((Long)groupId);
+					fragmentCollection.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -411,9 +412,10 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object companyId) {
+					FragmentCollection fragmentCollection,
+					Object companyIdObject) {
 
-					fragmentCollection.setCompanyId((Long)companyId);
+					fragmentCollection.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -433,9 +435,10 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object userId) {
+					FragmentCollection fragmentCollection,
+					Object userIdObject) {
 
-					fragmentCollection.setUserId((Long)userId);
+					fragmentCollection.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -455,9 +458,10 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object userName) {
+					FragmentCollection fragmentCollection,
+					Object userNameObject) {
 
-					fragmentCollection.setUserName((String)userName);
+					fragmentCollection.setUserName((String)userNameObject);
 				}
 
 			});
@@ -477,9 +481,10 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object createDate) {
+					FragmentCollection fragmentCollection,
+					Object createDateObject) {
 
-					fragmentCollection.setCreateDate((Date)createDate);
+					fragmentCollection.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -500,9 +505,10 @@ public class FragmentCollectionModelImpl
 				@Override
 				public void accept(
 					FragmentCollection fragmentCollection,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					fragmentCollection.setModifiedDate((Date)modifiedDate);
+					fragmentCollection.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -523,10 +529,10 @@ public class FragmentCollectionModelImpl
 				@Override
 				public void accept(
 					FragmentCollection fragmentCollection,
-					Object fragmentCollectionKey) {
+					Object fragmentCollectionKeyObject) {
 
 					fragmentCollection.setFragmentCollectionKey(
-						(String)fragmentCollectionKey);
+						(String)fragmentCollectionKeyObject);
 				}
 
 			});
@@ -546,9 +552,9 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object name) {
+					FragmentCollection fragmentCollection, Object nameObject) {
 
-					fragmentCollection.setName((String)name);
+					fragmentCollection.setName((String)nameObject);
 				}
 
 			});
@@ -568,9 +574,11 @@ public class FragmentCollectionModelImpl
 
 				@Override
 				public void accept(
-					FragmentCollection fragmentCollection, Object description) {
+					FragmentCollection fragmentCollection,
+					Object descriptionObject) {
 
-					fragmentCollection.setDescription((String)description);
+					fragmentCollection.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -591,10 +599,10 @@ public class FragmentCollectionModelImpl
 				@Override
 				public void accept(
 					FragmentCollection fragmentCollection,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					fragmentCollection.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

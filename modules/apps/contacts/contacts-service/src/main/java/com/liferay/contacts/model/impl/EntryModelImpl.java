@@ -264,8 +264,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object entryId) {
-					entry.setEntryId((Long)entryId);
+				public void accept(Entry entry, Object entryIdObject) {
+					entry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -284,8 +284,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object groupId) {
-					entry.setGroupId((Long)groupId);
+				public void accept(Entry entry, Object groupIdObject) {
+					entry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -304,8 +304,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object companyId) {
-					entry.setCompanyId((Long)companyId);
+				public void accept(Entry entry, Object companyIdObject) {
+					entry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -324,8 +324,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object userId) {
-					entry.setUserId((Long)userId);
+				public void accept(Entry entry, Object userIdObject) {
+					entry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -344,8 +344,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object userName) {
-					entry.setUserName((String)userName);
+				public void accept(Entry entry, Object userNameObject) {
+					entry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -364,8 +364,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object createDate) {
-					entry.setCreateDate((Date)createDate);
+				public void accept(Entry entry, Object createDateObject) {
+					entry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -384,8 +384,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object modifiedDate) {
-					entry.setModifiedDate((Date)modifiedDate);
+				public void accept(Entry entry, Object modifiedDateObject) {
+					entry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -404,8 +404,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object fullName) {
-					entry.setFullName((String)fullName);
+				public void accept(Entry entry, Object fullNameObject) {
+					entry.setFullName((String)fullNameObject);
 				}
 
 			});
@@ -424,8 +424,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object emailAddress) {
-					entry.setEmailAddress((String)emailAddress);
+				public void accept(Entry entry, Object emailAddressObject) {
+					entry.setEmailAddress((String)emailAddressObject);
 				}
 
 			});
@@ -444,8 +444,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object comments) {
-					entry.setComments((String)comments);
+				public void accept(Entry entry, Object commentsObject) {
+					entry.setComments((String)commentsObject);
 				}
 
 			});

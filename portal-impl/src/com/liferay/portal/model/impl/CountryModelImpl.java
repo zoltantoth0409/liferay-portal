@@ -315,8 +315,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object mvccVersion) {
-					country.setMvccVersion((Long)mvccVersion);
+				public void accept(Country country, Object mvccVersionObject) {
+					country.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -335,8 +335,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object countryId) {
-					country.setCountryId((Long)countryId);
+				public void accept(Country country, Object countryIdObject) {
+					country.setCountryId((Long)countryIdObject);
 				}
 
 			});
@@ -355,8 +355,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object name) {
-					country.setName((String)name);
+				public void accept(Country country, Object nameObject) {
+					country.setName((String)nameObject);
 				}
 
 			});
@@ -375,8 +375,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object a2) {
-					country.setA2((String)a2);
+				public void accept(Country country, Object a2Object) {
+					country.setA2((String)a2Object);
 				}
 
 			});
@@ -395,8 +395,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object a3) {
-					country.setA3((String)a3);
+				public void accept(Country country, Object a3Object) {
+					country.setA3((String)a3Object);
 				}
 
 			});
@@ -415,8 +415,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object number) {
-					country.setNumber((String)number);
+				public void accept(Country country, Object numberObject) {
+					country.setNumber((String)numberObject);
 				}
 
 			});
@@ -435,8 +435,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object idd) {
-					country.setIdd((String)idd);
+				public void accept(Country country, Object iddObject) {
+					country.setIdd((String)iddObject);
 				}
 
 			});
@@ -455,8 +455,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object zipRequired) {
-					country.setZipRequired((Boolean)zipRequired);
+				public void accept(Country country, Object zipRequiredObject) {
+					country.setZipRequired((Boolean)zipRequiredObject);
 				}
 
 			});
@@ -475,8 +475,8 @@ public class CountryModelImpl
 			new BiConsumer<Country, Object>() {
 
 				@Override
-				public void accept(Country country, Object active) {
-					country.setActive((Boolean)active);
+				public void accept(Country country, Object activeObject) {
+					country.setActive((Boolean)activeObject);
 				}
 
 			});

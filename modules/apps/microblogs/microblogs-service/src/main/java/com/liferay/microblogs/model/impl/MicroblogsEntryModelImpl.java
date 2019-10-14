@@ -347,10 +347,11 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object microblogsEntryId) {
+					MicroblogsEntry microblogsEntry,
+					Object microblogsEntryIdObject) {
 
 					microblogsEntry.setMicroblogsEntryId(
-						(Long)microblogsEntryId);
+						(Long)microblogsEntryIdObject);
 				}
 
 			});
@@ -370,9 +371,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object companyId) {
+					MicroblogsEntry microblogsEntry, Object companyIdObject) {
 
-					microblogsEntry.setCompanyId((Long)companyId);
+					microblogsEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -392,9 +393,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object userId) {
+					MicroblogsEntry microblogsEntry, Object userIdObject) {
 
-					microblogsEntry.setUserId((Long)userId);
+					microblogsEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -414,9 +415,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object userName) {
+					MicroblogsEntry microblogsEntry, Object userNameObject) {
 
-					microblogsEntry.setUserName((String)userName);
+					microblogsEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -436,9 +437,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object createDate) {
+					MicroblogsEntry microblogsEntry, Object createDateObject) {
 
-					microblogsEntry.setCreateDate((Date)createDate);
+					microblogsEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -458,9 +459,10 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object modifiedDate) {
+					MicroblogsEntry microblogsEntry,
+					Object modifiedDateObject) {
 
-					microblogsEntry.setModifiedDate((Date)modifiedDate);
+					microblogsEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -481,10 +483,10 @@ public class MicroblogsEntryModelImpl
 				@Override
 				public void accept(
 					MicroblogsEntry microblogsEntry,
-					Object creatorClassNameId) {
+					Object creatorClassNameIdObject) {
 
 					microblogsEntry.setCreatorClassNameId(
-						(Long)creatorClassNameId);
+						(Long)creatorClassNameIdObject);
 				}
 
 			});
@@ -504,9 +506,11 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object creatorClassPK) {
+					MicroblogsEntry microblogsEntry,
+					Object creatorClassPKObject) {
 
-					microblogsEntry.setCreatorClassPK((Long)creatorClassPK);
+					microblogsEntry.setCreatorClassPK(
+						(Long)creatorClassPKObject);
 				}
 
 			});
@@ -526,9 +530,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object content) {
+					MicroblogsEntry microblogsEntry, Object contentObject) {
 
-					microblogsEntry.setContent((String)content);
+					microblogsEntry.setContent((String)contentObject);
 				}
 
 			});
@@ -548,9 +552,9 @@ public class MicroblogsEntryModelImpl
 
 				@Override
 				public void accept(
-					MicroblogsEntry microblogsEntry, Object type) {
+					MicroblogsEntry microblogsEntry, Object typeObject) {
 
-					microblogsEntry.setType((Integer)type);
+					microblogsEntry.setType((Integer)typeObject);
 				}
 
 			});
@@ -571,10 +575,10 @@ public class MicroblogsEntryModelImpl
 				@Override
 				public void accept(
 					MicroblogsEntry microblogsEntry,
-					Object parentMicroblogsEntryId) {
+					Object parentMicroblogsEntryIdObject) {
 
 					microblogsEntry.setParentMicroblogsEntryId(
-						(Long)parentMicroblogsEntryId);
+						(Long)parentMicroblogsEntryIdObject);
 				}
 
 			});
@@ -595,10 +599,10 @@ public class MicroblogsEntryModelImpl
 				@Override
 				public void accept(
 					MicroblogsEntry microblogsEntry,
-					Object socialRelationType) {
+					Object socialRelationTypeObject) {
 
 					microblogsEntry.setSocialRelationType(
-						(Integer)socialRelationType);
+						(Integer)socialRelationTypeObject);
 				}
 
 			});

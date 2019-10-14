@@ -344,8 +344,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object tasksEntryId) {
-					tasksEntry.setTasksEntryId((Long)tasksEntryId);
+				public void accept(
+					TasksEntry tasksEntry, Object tasksEntryIdObject) {
+
+					tasksEntry.setTasksEntryId((Long)tasksEntryIdObject);
 				}
 
 			});
@@ -364,8 +366,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object groupId) {
-					tasksEntry.setGroupId((Long)groupId);
+				public void accept(
+					TasksEntry tasksEntry, Object groupIdObject) {
+
+					tasksEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -384,8 +388,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object companyId) {
-					tasksEntry.setCompanyId((Long)companyId);
+				public void accept(
+					TasksEntry tasksEntry, Object companyIdObject) {
+
+					tasksEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -404,8 +410,8 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object userId) {
-					tasksEntry.setUserId((Long)userId);
+				public void accept(TasksEntry tasksEntry, Object userIdObject) {
+					tasksEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -424,8 +430,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object userName) {
-					tasksEntry.setUserName((String)userName);
+				public void accept(
+					TasksEntry tasksEntry, Object userNameObject) {
+
+					tasksEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -444,8 +452,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object createDate) {
-					tasksEntry.setCreateDate((Date)createDate);
+				public void accept(
+					TasksEntry tasksEntry, Object createDateObject) {
+
+					tasksEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -464,8 +474,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object modifiedDate) {
-					tasksEntry.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					TasksEntry tasksEntry, Object modifiedDateObject) {
+
+					tasksEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -484,8 +496,8 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object title) {
-					tasksEntry.setTitle((String)title);
+				public void accept(TasksEntry tasksEntry, Object titleObject) {
+					tasksEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -504,8 +516,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object priority) {
-					tasksEntry.setPriority((Integer)priority);
+				public void accept(
+					TasksEntry tasksEntry, Object priorityObject) {
+
+					tasksEntry.setPriority((Integer)priorityObject);
 				}
 
 			});
@@ -525,9 +539,9 @@ public class TasksEntryModelImpl
 
 				@Override
 				public void accept(
-					TasksEntry tasksEntry, Object assigneeUserId) {
+					TasksEntry tasksEntry, Object assigneeUserIdObject) {
 
-					tasksEntry.setAssigneeUserId((Long)assigneeUserId);
+					tasksEntry.setAssigneeUserId((Long)assigneeUserIdObject);
 				}
 
 			});
@@ -547,9 +561,9 @@ public class TasksEntryModelImpl
 
 				@Override
 				public void accept(
-					TasksEntry tasksEntry, Object resolverUserId) {
+					TasksEntry tasksEntry, Object resolverUserIdObject) {
 
-					tasksEntry.setResolverUserId((Long)resolverUserId);
+					tasksEntry.setResolverUserId((Long)resolverUserIdObject);
 				}
 
 			});
@@ -568,8 +582,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object dueDate) {
-					tasksEntry.setDueDate((Date)dueDate);
+				public void accept(
+					TasksEntry tasksEntry, Object dueDateObject) {
+
+					tasksEntry.setDueDate((Date)dueDateObject);
 				}
 
 			});
@@ -588,8 +604,10 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object finishDate) {
-					tasksEntry.setFinishDate((Date)finishDate);
+				public void accept(
+					TasksEntry tasksEntry, Object finishDateObject) {
+
+					tasksEntry.setFinishDate((Date)finishDateObject);
 				}
 
 			});
@@ -608,8 +626,8 @@ public class TasksEntryModelImpl
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object status) {
-					tasksEntry.setStatus((Integer)status);
+				public void accept(TasksEntry tasksEntry, Object statusObject) {
+					tasksEntry.setStatus((Integer)statusObject);
 				}
 
 			});

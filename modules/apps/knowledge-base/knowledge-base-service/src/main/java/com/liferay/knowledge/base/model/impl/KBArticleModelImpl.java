@@ -397,8 +397,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object uuid) {
-					kbArticle.setUuid((String)uuid);
+				public void accept(KBArticle kbArticle, Object uuidObject) {
+					kbArticle.setUuid((String)uuidObject);
 				}
 
 			});
@@ -417,8 +417,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object kbArticleId) {
-					kbArticle.setKbArticleId((Long)kbArticleId);
+				public void accept(
+					KBArticle kbArticle, Object kbArticleIdObject) {
+
+					kbArticle.setKbArticleId((Long)kbArticleIdObject);
 				}
 
 			});
@@ -438,9 +440,9 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object resourcePrimKey) {
+					KBArticle kbArticle, Object resourcePrimKeyObject) {
 
-					kbArticle.setResourcePrimKey((Long)resourcePrimKey);
+					kbArticle.setResourcePrimKey((Long)resourcePrimKeyObject);
 				}
 
 			});
@@ -459,8 +461,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object groupId) {
-					kbArticle.setGroupId((Long)groupId);
+				public void accept(KBArticle kbArticle, Object groupIdObject) {
+					kbArticle.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -479,8 +481,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object companyId) {
-					kbArticle.setCompanyId((Long)companyId);
+				public void accept(
+					KBArticle kbArticle, Object companyIdObject) {
+
+					kbArticle.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -499,8 +503,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object userId) {
-					kbArticle.setUserId((Long)userId);
+				public void accept(KBArticle kbArticle, Object userIdObject) {
+					kbArticle.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -519,8 +523,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object userName) {
-					kbArticle.setUserName((String)userName);
+				public void accept(KBArticle kbArticle, Object userNameObject) {
+					kbArticle.setUserName((String)userNameObject);
 				}
 
 			});
@@ -539,8 +543,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object createDate) {
-					kbArticle.setCreateDate((Date)createDate);
+				public void accept(
+					KBArticle kbArticle, Object createDateObject) {
+
+					kbArticle.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -559,8 +565,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object modifiedDate) {
-					kbArticle.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KBArticle kbArticle, Object modifiedDateObject) {
+
+					kbArticle.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -580,9 +588,10 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object rootResourcePrimKey) {
+					KBArticle kbArticle, Object rootResourcePrimKeyObject) {
 
-					kbArticle.setRootResourcePrimKey((Long)rootResourcePrimKey);
+					kbArticle.setRootResourcePrimKey(
+						(Long)rootResourcePrimKeyObject);
 				}
 
 			});
@@ -602,10 +611,11 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object parentResourceClassNameId) {
+					KBArticle kbArticle,
+					Object parentResourceClassNameIdObject) {
 
 					kbArticle.setParentResourceClassNameId(
-						(Long)parentResourceClassNameId);
+						(Long)parentResourceClassNameIdObject);
 				}
 
 			});
@@ -625,10 +635,10 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object parentResourcePrimKey) {
+					KBArticle kbArticle, Object parentResourcePrimKeyObject) {
 
 					kbArticle.setParentResourcePrimKey(
-						(Long)parentResourcePrimKey);
+						(Long)parentResourcePrimKeyObject);
 				}
 
 			});
@@ -647,8 +657,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object kbFolderId) {
-					kbArticle.setKbFolderId((Long)kbFolderId);
+				public void accept(
+					KBArticle kbArticle, Object kbFolderIdObject) {
+
+					kbArticle.setKbFolderId((Long)kbFolderIdObject);
 				}
 
 			});
@@ -667,8 +679,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object version) {
-					kbArticle.setVersion((Integer)version);
+				public void accept(KBArticle kbArticle, Object versionObject) {
+					kbArticle.setVersion((Integer)versionObject);
 				}
 
 			});
@@ -687,8 +699,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object title) {
-					kbArticle.setTitle((String)title);
+				public void accept(KBArticle kbArticle, Object titleObject) {
+					kbArticle.setTitle((String)titleObject);
 				}
 
 			});
@@ -707,8 +719,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object urlTitle) {
-					kbArticle.setUrlTitle((String)urlTitle);
+				public void accept(KBArticle kbArticle, Object urlTitleObject) {
+					kbArticle.setUrlTitle((String)urlTitleObject);
 				}
 
 			});
@@ -727,8 +739,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object content) {
-					kbArticle.setContent((String)content);
+				public void accept(KBArticle kbArticle, Object contentObject) {
+					kbArticle.setContent((String)contentObject);
 				}
 
 			});
@@ -747,8 +759,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object description) {
-					kbArticle.setDescription((String)description);
+				public void accept(
+					KBArticle kbArticle, Object descriptionObject) {
+
+					kbArticle.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -767,8 +781,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object priority) {
-					kbArticle.setPriority((Double)priority);
+				public void accept(KBArticle kbArticle, Object priorityObject) {
+					kbArticle.setPriority((Double)priorityObject);
 				}
 
 			});
@@ -787,8 +801,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object sections) {
-					kbArticle.setSections((String)sections);
+				public void accept(KBArticle kbArticle, Object sectionsObject) {
+					kbArticle.setSections((String)sectionsObject);
 				}
 
 			});
@@ -807,8 +821,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object viewCount) {
-					kbArticle.setViewCount((Integer)viewCount);
+				public void accept(
+					KBArticle kbArticle, Object viewCountObject) {
+
+					kbArticle.setViewCount((Integer)viewCountObject);
 				}
 
 			});
@@ -827,8 +843,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object latest) {
-					kbArticle.setLatest((Boolean)latest);
+				public void accept(KBArticle kbArticle, Object latestObject) {
+					kbArticle.setLatest((Boolean)latestObject);
 				}
 
 			});
@@ -847,8 +863,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object main) {
-					kbArticle.setMain((Boolean)main);
+				public void accept(KBArticle kbArticle, Object mainObject) {
+					kbArticle.setMain((Boolean)mainObject);
 				}
 
 			});
@@ -867,8 +883,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object sourceURL) {
-					kbArticle.setSourceURL((String)sourceURL);
+				public void accept(
+					KBArticle kbArticle, Object sourceURLObject) {
+
+					kbArticle.setSourceURL((String)sourceURLObject);
 				}
 
 			});
@@ -888,9 +906,9 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object lastPublishDate) {
+					KBArticle kbArticle, Object lastPublishDateObject) {
 
-					kbArticle.setLastPublishDate((Date)lastPublishDate);
+					kbArticle.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -909,8 +927,8 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object status) {
-					kbArticle.setStatus((Integer)status);
+				public void accept(KBArticle kbArticle, Object statusObject) {
+					kbArticle.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -929,8 +947,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object statusByUserId) {
-					kbArticle.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					KBArticle kbArticle, Object statusByUserIdObject) {
+
+					kbArticle.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -950,9 +970,10 @@ public class KBArticleModelImpl
 
 				@Override
 				public void accept(
-					KBArticle kbArticle, Object statusByUserName) {
+					KBArticle kbArticle, Object statusByUserNameObject) {
 
-					kbArticle.setStatusByUserName((String)statusByUserName);
+					kbArticle.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -971,8 +992,10 @@ public class KBArticleModelImpl
 			new BiConsumer<KBArticle, Object>() {
 
 				@Override
-				public void accept(KBArticle kbArticle, Object statusDate) {
-					kbArticle.setStatusDate((Date)statusDate);
+				public void accept(
+					KBArticle kbArticle, Object statusDateObject) {
+
+					kbArticle.setStatusDate((Date)statusDateObject);
 				}
 
 			});

@@ -269,9 +269,9 @@ public class WebDAVPropsModelImpl
 
 				@Override
 				public void accept(
-					WebDAVProps webDAVProps, Object mvccVersion) {
+					WebDAVProps webDAVProps, Object mvccVersionObject) {
 
-					webDAVProps.setMvccVersion((Long)mvccVersion);
+					webDAVProps.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -291,9 +291,9 @@ public class WebDAVPropsModelImpl
 
 				@Override
 				public void accept(
-					WebDAVProps webDAVProps, Object webDavPropsId) {
+					WebDAVProps webDAVProps, Object webDavPropsIdObject) {
 
-					webDAVProps.setWebDavPropsId((Long)webDavPropsId);
+					webDAVProps.setWebDavPropsId((Long)webDavPropsIdObject);
 				}
 
 			});
@@ -312,8 +312,10 @@ public class WebDAVPropsModelImpl
 			new BiConsumer<WebDAVProps, Object>() {
 
 				@Override
-				public void accept(WebDAVProps webDAVProps, Object companyId) {
-					webDAVProps.setCompanyId((Long)companyId);
+				public void accept(
+					WebDAVProps webDAVProps, Object companyIdObject) {
+
+					webDAVProps.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -332,8 +334,10 @@ public class WebDAVPropsModelImpl
 			new BiConsumer<WebDAVProps, Object>() {
 
 				@Override
-				public void accept(WebDAVProps webDAVProps, Object createDate) {
-					webDAVProps.setCreateDate((Date)createDate);
+				public void accept(
+					WebDAVProps webDAVProps, Object createDateObject) {
+
+					webDAVProps.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -353,9 +357,9 @@ public class WebDAVPropsModelImpl
 
 				@Override
 				public void accept(
-					WebDAVProps webDAVProps, Object modifiedDate) {
+					WebDAVProps webDAVProps, Object modifiedDateObject) {
 
-					webDAVProps.setModifiedDate((Date)modifiedDate);
+					webDAVProps.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -375,9 +379,9 @@ public class WebDAVPropsModelImpl
 
 				@Override
 				public void accept(
-					WebDAVProps webDAVProps, Object classNameId) {
+					WebDAVProps webDAVProps, Object classNameIdObject) {
 
-					webDAVProps.setClassNameId((Long)classNameId);
+					webDAVProps.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -396,8 +400,10 @@ public class WebDAVPropsModelImpl
 			new BiConsumer<WebDAVProps, Object>() {
 
 				@Override
-				public void accept(WebDAVProps webDAVProps, Object classPK) {
-					webDAVProps.setClassPK((Long)classPK);
+				public void accept(
+					WebDAVProps webDAVProps, Object classPKObject) {
+
+					webDAVProps.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -416,8 +422,10 @@ public class WebDAVPropsModelImpl
 			new BiConsumer<WebDAVProps, Object>() {
 
 				@Override
-				public void accept(WebDAVProps webDAVProps, Object props) {
-					webDAVProps.setProps((String)props);
+				public void accept(
+					WebDAVProps webDAVProps, Object propsObject) {
+
+					webDAVProps.setProps((String)propsObject);
 				}
 
 			});

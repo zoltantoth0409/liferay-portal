@@ -256,8 +256,8 @@ public class ExpandoRowModelImpl
 			new BiConsumer<ExpandoRow, Object>() {
 
 				@Override
-				public void accept(ExpandoRow expandoRow, Object rowId) {
-					expandoRow.setRowId((Long)rowId);
+				public void accept(ExpandoRow expandoRow, Object rowIdObject) {
+					expandoRow.setRowId((Long)rowIdObject);
 				}
 
 			});
@@ -276,8 +276,10 @@ public class ExpandoRowModelImpl
 			new BiConsumer<ExpandoRow, Object>() {
 
 				@Override
-				public void accept(ExpandoRow expandoRow, Object companyId) {
-					expandoRow.setCompanyId((Long)companyId);
+				public void accept(
+					ExpandoRow expandoRow, Object companyIdObject) {
+
+					expandoRow.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -296,8 +298,10 @@ public class ExpandoRowModelImpl
 			new BiConsumer<ExpandoRow, Object>() {
 
 				@Override
-				public void accept(ExpandoRow expandoRow, Object modifiedDate) {
-					expandoRow.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					ExpandoRow expandoRow, Object modifiedDateObject) {
+
+					expandoRow.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -316,8 +320,10 @@ public class ExpandoRowModelImpl
 			new BiConsumer<ExpandoRow, Object>() {
 
 				@Override
-				public void accept(ExpandoRow expandoRow, Object tableId) {
-					expandoRow.setTableId((Long)tableId);
+				public void accept(
+					ExpandoRow expandoRow, Object tableIdObject) {
+
+					expandoRow.setTableId((Long)tableIdObject);
 				}
 
 			});
@@ -336,8 +342,10 @@ public class ExpandoRowModelImpl
 			new BiConsumer<ExpandoRow, Object>() {
 
 				@Override
-				public void accept(ExpandoRow expandoRow, Object classPK) {
-					expandoRow.setClassPK((Long)classPK);
+				public void accept(
+					ExpandoRow expandoRow, Object classPKObject) {
+
+					expandoRow.setClassPK((Long)classPKObject);
 				}
 
 			});

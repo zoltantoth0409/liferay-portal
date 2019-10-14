@@ -291,10 +291,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
 					friendlyURLEntryLocalization.setMvccVersion(
-						(Long)mvccVersion);
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -318,11 +318,11 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object friendlyURLEntryLocalizationId) {
+					Object friendlyURLEntryLocalizationIdObject) {
 
 					friendlyURLEntryLocalization.
 						setFriendlyURLEntryLocalizationId(
-							(Long)friendlyURLEntryLocalizationId);
+							(Long)friendlyURLEntryLocalizationIdObject);
 				}
 
 			});
@@ -345,9 +345,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object companyId) {
+					Object companyIdObject) {
 
-					friendlyURLEntryLocalization.setCompanyId((Long)companyId);
+					friendlyURLEntryLocalization.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -370,10 +371,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object friendlyURLEntryId) {
+					Object friendlyURLEntryIdObject) {
 
 					friendlyURLEntryLocalization.setFriendlyURLEntryId(
-						(Long)friendlyURLEntryId);
+						(Long)friendlyURLEntryIdObject);
 				}
 
 			});
@@ -396,10 +397,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object languageId) {
+					Object languageIdObject) {
 
 					friendlyURLEntryLocalization.setLanguageId(
-						(String)languageId);
+						(String)languageIdObject);
 				}
 
 			});
@@ -422,9 +423,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object urlTitle) {
+					Object urlTitleObject) {
 
-					friendlyURLEntryLocalization.setUrlTitle((String)urlTitle);
+					friendlyURLEntryLocalization.setUrlTitle(
+						(String)urlTitleObject);
 				}
 
 			});
@@ -447,9 +449,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object groupId) {
+					Object groupIdObject) {
 
-					friendlyURLEntryLocalization.setGroupId((Long)groupId);
+					friendlyURLEntryLocalization.setGroupId(
+						(Long)groupIdObject);
 				}
 
 			});
@@ -472,10 +475,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object classNameId) {
+					Object classNameIdObject) {
 
 					friendlyURLEntryLocalization.setClassNameId(
-						(Long)classNameId);
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -498,9 +501,10 @@ public class FriendlyURLEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryLocalization friendlyURLEntryLocalization,
-					Object classPK) {
+					Object classPKObject) {
 
-					friendlyURLEntryLocalization.setClassPK((Long)classPK);
+					friendlyURLEntryLocalization.setClassPK(
+						(Long)classPKObject);
 				}
 
 			});

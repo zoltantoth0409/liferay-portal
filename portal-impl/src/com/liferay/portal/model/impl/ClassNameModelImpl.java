@@ -302,8 +302,10 @@ public class ClassNameModelImpl
 			new BiConsumer<ClassName, Object>() {
 
 				@Override
-				public void accept(ClassName className, Object mvccVersion) {
-					className.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					ClassName className, Object mvccVersionObject) {
+
+					className.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -322,8 +324,10 @@ public class ClassNameModelImpl
 			new BiConsumer<ClassName, Object>() {
 
 				@Override
-				public void accept(ClassName className, Object classNameId) {
-					className.setClassNameId((Long)classNameId);
+				public void accept(
+					ClassName className, Object classNameIdObject) {
+
+					className.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -342,8 +346,8 @@ public class ClassNameModelImpl
 			new BiConsumer<ClassName, Object>() {
 
 				@Override
-				public void accept(ClassName className, Object value) {
-					className.setValue((String)value);
+				public void accept(ClassName className, Object valueObject) {
+					className.setValue((String)valueObject);
 				}
 
 			});

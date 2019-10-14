@@ -309,10 +309,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoTimerInstanceTokenId) {
+					Object kaleoTimerInstanceTokenIdObject) {
 
 					kaleoTimerInstanceToken.setKaleoTimerInstanceTokenId(
-						(Long)kaleoTimerInstanceTokenId);
+						(Long)kaleoTimerInstanceTokenIdObject);
 				}
 
 			});
@@ -335,9 +335,9 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoTimerInstanceToken.setGroupId((Long)groupId);
+					kaleoTimerInstanceToken.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -360,9 +360,9 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoTimerInstanceToken.setCompanyId((Long)companyId);
+					kaleoTimerInstanceToken.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -385,9 +385,9 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoTimerInstanceToken.setUserId((Long)userId);
+					kaleoTimerInstanceToken.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -410,9 +410,9 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoTimerInstanceToken.setUserName((String)userName);
+					kaleoTimerInstanceToken.setUserName((String)userNameObject);
 				}
 
 			});
@@ -435,9 +435,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoTimerInstanceToken.setCreateDate((Date)createDate);
+					kaleoTimerInstanceToken.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -460,9 +461,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					kaleoTimerInstanceToken.setModifiedDate((Date)modifiedDate);
+					kaleoTimerInstanceToken.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -485,10 +487,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoClassName) {
+					Object kaleoClassNameObject) {
 
 					kaleoTimerInstanceToken.setKaleoClassName(
-						(String)kaleoClassName);
+						(String)kaleoClassNameObject);
 				}
 
 			});
@@ -511,9 +513,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoClassPK) {
+					Object kaleoClassPKObject) {
 
-					kaleoTimerInstanceToken.setKaleoClassPK((Long)kaleoClassPK);
+					kaleoTimerInstanceToken.setKaleoClassPK(
+						(Long)kaleoClassPKObject);
 				}
 
 			});
@@ -537,10 +540,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTimerInstanceToken.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -563,10 +566,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoInstanceId) {
+					Object kaleoInstanceIdObject) {
 
 					kaleoTimerInstanceToken.setKaleoInstanceId(
-						(Long)kaleoInstanceId);
+						(Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -589,10 +592,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoInstanceTokenId) {
+					Object kaleoInstanceTokenIdObject) {
 
 					kaleoTimerInstanceToken.setKaleoInstanceTokenId(
-						(Long)kaleoInstanceTokenId);
+						(Long)kaleoInstanceTokenIdObject);
 				}
 
 			});
@@ -616,10 +619,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoTaskInstanceTokenId) {
+					Object kaleoTaskInstanceTokenIdObject) {
 
 					kaleoTimerInstanceToken.setKaleoTaskInstanceTokenId(
-						(Long)kaleoTaskInstanceTokenId);
+						(Long)kaleoTaskInstanceTokenIdObject);
 				}
 
 			});
@@ -642,9 +645,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoTimerId) {
+					Object kaleoTimerIdObject) {
 
-					kaleoTimerInstanceToken.setKaleoTimerId((Long)kaleoTimerId);
+					kaleoTimerInstanceToken.setKaleoTimerId(
+						(Long)kaleoTimerIdObject);
 				}
 
 			});
@@ -667,10 +671,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object kaleoTimerName) {
+					Object kaleoTimerNameObject) {
 
 					kaleoTimerInstanceToken.setKaleoTimerName(
-						(String)kaleoTimerName);
+						(String)kaleoTimerNameObject);
 				}
 
 			});
@@ -693,9 +697,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object blocking) {
+					Object blockingObject) {
 
-					kaleoTimerInstanceToken.setBlocking((Boolean)blocking);
+					kaleoTimerInstanceToken.setBlocking(
+						(Boolean)blockingObject);
 				}
 
 			});
@@ -718,10 +723,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object completionUserId) {
+					Object completionUserIdObject) {
 
 					kaleoTimerInstanceToken.setCompletionUserId(
-						(Long)completionUserId);
+						(Long)completionUserIdObject);
 				}
 
 			});
@@ -744,9 +749,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object completed) {
+					Object completedObject) {
 
-					kaleoTimerInstanceToken.setCompleted((Boolean)completed);
+					kaleoTimerInstanceToken.setCompleted(
+						(Boolean)completedObject);
 				}
 
 			});
@@ -769,10 +775,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object completionDate) {
+					Object completionDateObject) {
 
 					kaleoTimerInstanceToken.setCompletionDate(
-						(Date)completionDate);
+						(Date)completionDateObject);
 				}
 
 			});
@@ -795,10 +801,10 @@ public class KaleoTimerInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTimerInstanceToken kaleoTimerInstanceToken,
-					Object workflowContext) {
+					Object workflowContextObject) {
 
 					kaleoTimerInstanceToken.setWorkflowContext(
-						(String)workflowContext);
+						(String)workflowContextObject);
 				}
 
 			});

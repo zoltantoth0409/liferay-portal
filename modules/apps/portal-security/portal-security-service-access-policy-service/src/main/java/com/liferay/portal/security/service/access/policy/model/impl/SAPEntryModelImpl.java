@@ -347,8 +347,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object uuid) {
-					sapEntry.setUuid((String)uuid);
+				public void accept(SAPEntry sapEntry, Object uuidObject) {
+					sapEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -367,8 +367,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object sapEntryId) {
-					sapEntry.setSapEntryId((Long)sapEntryId);
+				public void accept(SAPEntry sapEntry, Object sapEntryIdObject) {
+					sapEntry.setSapEntryId((Long)sapEntryIdObject);
 				}
 
 			});
@@ -387,8 +387,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object companyId) {
-					sapEntry.setCompanyId((Long)companyId);
+				public void accept(SAPEntry sapEntry, Object companyIdObject) {
+					sapEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -407,8 +407,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object userId) {
-					sapEntry.setUserId((Long)userId);
+				public void accept(SAPEntry sapEntry, Object userIdObject) {
+					sapEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -427,8 +427,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object userName) {
-					sapEntry.setUserName((String)userName);
+				public void accept(SAPEntry sapEntry, Object userNameObject) {
+					sapEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -447,8 +447,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object createDate) {
-					sapEntry.setCreateDate((Date)createDate);
+				public void accept(SAPEntry sapEntry, Object createDateObject) {
+					sapEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -467,8 +467,10 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object modifiedDate) {
-					sapEntry.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					SAPEntry sapEntry, Object modifiedDateObject) {
+
+					sapEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -488,10 +490,10 @@ public class SAPEntryModelImpl
 
 				@Override
 				public void accept(
-					SAPEntry sapEntry, Object allowedServiceSignatures) {
+					SAPEntry sapEntry, Object allowedServiceSignaturesObject) {
 
 					sapEntry.setAllowedServiceSignatures(
-						(String)allowedServiceSignatures);
+						(String)allowedServiceSignaturesObject);
 				}
 
 			});
@@ -510,8 +512,10 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object defaultSAPEntry) {
-					sapEntry.setDefaultSAPEntry((Boolean)defaultSAPEntry);
+				public void accept(
+					SAPEntry sapEntry, Object defaultSAPEntryObject) {
+
+					sapEntry.setDefaultSAPEntry((Boolean)defaultSAPEntryObject);
 				}
 
 			});
@@ -530,8 +534,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object enabled) {
-					sapEntry.setEnabled((Boolean)enabled);
+				public void accept(SAPEntry sapEntry, Object enabledObject) {
+					sapEntry.setEnabled((Boolean)enabledObject);
 				}
 
 			});
@@ -550,8 +554,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object name) {
-					sapEntry.setName((String)name);
+				public void accept(SAPEntry sapEntry, Object nameObject) {
+					sapEntry.setName((String)nameObject);
 				}
 
 			});
@@ -570,8 +574,8 @@ public class SAPEntryModelImpl
 			new BiConsumer<SAPEntry, Object>() {
 
 				@Override
-				public void accept(SAPEntry sapEntry, Object title) {
-					sapEntry.setTitle((String)title);
+				public void accept(SAPEntry sapEntry, Object titleObject) {
+					sapEntry.setTitle((String)titleObject);
 				}
 
 			});

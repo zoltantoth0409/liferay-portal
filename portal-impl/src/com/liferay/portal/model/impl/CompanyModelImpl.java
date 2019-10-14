@@ -323,8 +323,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object mvccVersion) {
-					company.setMvccVersion((Long)mvccVersion);
+				public void accept(Company company, Object mvccVersionObject) {
+					company.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -343,8 +343,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object companyId) {
-					company.setCompanyId((Long)companyId);
+				public void accept(Company company, Object companyIdObject) {
+					company.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -363,8 +363,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object accountId) {
-					company.setAccountId((Long)accountId);
+				public void accept(Company company, Object accountIdObject) {
+					company.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -383,8 +383,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object webId) {
-					company.setWebId((String)webId);
+				public void accept(Company company, Object webIdObject) {
+					company.setWebId((String)webIdObject);
 				}
 
 			});
@@ -403,8 +403,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object key) {
-					company.setKey((String)key);
+				public void accept(Company company, Object keyObject) {
+					company.setKey((String)keyObject);
 				}
 
 			});
@@ -423,8 +423,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object mx) {
-					company.setMx((String)mx);
+				public void accept(Company company, Object mxObject) {
+					company.setMx((String)mxObject);
 				}
 
 			});
@@ -443,8 +443,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object homeURL) {
-					company.setHomeURL((String)homeURL);
+				public void accept(Company company, Object homeURLObject) {
+					company.setHomeURL((String)homeURLObject);
 				}
 
 			});
@@ -463,8 +463,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object logoId) {
-					company.setLogoId((Long)logoId);
+				public void accept(Company company, Object logoIdObject) {
+					company.setLogoId((Long)logoIdObject);
 				}
 
 			});
@@ -483,8 +483,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object system) {
-					company.setSystem((Boolean)system);
+				public void accept(Company company, Object systemObject) {
+					company.setSystem((Boolean)systemObject);
 				}
 
 			});
@@ -503,8 +503,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object maxUsers) {
-					company.setMaxUsers((Integer)maxUsers);
+				public void accept(Company company, Object maxUsersObject) {
+					company.setMaxUsers((Integer)maxUsersObject);
 				}
 
 			});
@@ -523,8 +523,8 @@ public class CompanyModelImpl
 			new BiConsumer<Company, Object>() {
 
 				@Override
-				public void accept(Company company, Object active) {
-					company.setActive((Boolean)active);
+				public void accept(Company company, Object activeObject) {
+					company.setActive((Boolean)activeObject);
 				}
 
 			});

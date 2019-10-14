@@ -281,9 +281,9 @@ public class PortletItemModelImpl
 
 				@Override
 				public void accept(
-					PortletItem portletItem, Object mvccVersion) {
+					PortletItem portletItem, Object mvccVersionObject) {
 
-					portletItem.setMvccVersion((Long)mvccVersion);
+					portletItem.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -303,9 +303,9 @@ public class PortletItemModelImpl
 
 				@Override
 				public void accept(
-					PortletItem portletItem, Object portletItemId) {
+					PortletItem portletItem, Object portletItemIdObject) {
 
-					portletItem.setPortletItemId((Long)portletItemId);
+					portletItem.setPortletItemId((Long)portletItemIdObject);
 				}
 
 			});
@@ -324,8 +324,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object groupId) {
-					portletItem.setGroupId((Long)groupId);
+				public void accept(
+					PortletItem portletItem, Object groupIdObject) {
+
+					portletItem.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -344,8 +346,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object companyId) {
-					portletItem.setCompanyId((Long)companyId);
+				public void accept(
+					PortletItem portletItem, Object companyIdObject) {
+
+					portletItem.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -364,8 +368,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object userId) {
-					portletItem.setUserId((Long)userId);
+				public void accept(
+					PortletItem portletItem, Object userIdObject) {
+
+					portletItem.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -384,8 +390,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object userName) {
-					portletItem.setUserName((String)userName);
+				public void accept(
+					PortletItem portletItem, Object userNameObject) {
+
+					portletItem.setUserName((String)userNameObject);
 				}
 
 			});
@@ -404,8 +412,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object createDate) {
-					portletItem.setCreateDate((Date)createDate);
+				public void accept(
+					PortletItem portletItem, Object createDateObject) {
+
+					portletItem.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -425,9 +435,9 @@ public class PortletItemModelImpl
 
 				@Override
 				public void accept(
-					PortletItem portletItem, Object modifiedDate) {
+					PortletItem portletItem, Object modifiedDateObject) {
 
-					portletItem.setModifiedDate((Date)modifiedDate);
+					portletItem.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -446,8 +456,8 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object name) {
-					portletItem.setName((String)name);
+				public void accept(PortletItem portletItem, Object nameObject) {
+					portletItem.setName((String)nameObject);
 				}
 
 			});
@@ -466,8 +476,10 @@ public class PortletItemModelImpl
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object portletId) {
-					portletItem.setPortletId((String)portletId);
+				public void accept(
+					PortletItem portletItem, Object portletIdObject) {
+
+					portletItem.setPortletId((String)portletIdObject);
 				}
 
 			});
@@ -487,9 +499,9 @@ public class PortletItemModelImpl
 
 				@Override
 				public void accept(
-					PortletItem portletItem, Object classNameId) {
+					PortletItem portletItem, Object classNameIdObject) {
 
-					portletItem.setClassNameId((Long)classNameId);
+					portletItem.setClassNameId((Long)classNameIdObject);
 				}
 
 			});

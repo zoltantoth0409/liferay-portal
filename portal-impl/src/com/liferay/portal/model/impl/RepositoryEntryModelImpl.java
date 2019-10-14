@@ -287,9 +287,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object mvccVersion) {
+					RepositoryEntry repositoryEntry, Object mvccVersionObject) {
 
-					repositoryEntry.setMvccVersion((Long)mvccVersion);
+					repositoryEntry.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -309,9 +309,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object uuid) {
+					RepositoryEntry repositoryEntry, Object uuidObject) {
 
-					repositoryEntry.setUuid((String)uuid);
+					repositoryEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -331,10 +331,11 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object repositoryEntryId) {
+					RepositoryEntry repositoryEntry,
+					Object repositoryEntryIdObject) {
 
 					repositoryEntry.setRepositoryEntryId(
-						(Long)repositoryEntryId);
+						(Long)repositoryEntryIdObject);
 				}
 
 			});
@@ -354,9 +355,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object groupId) {
+					RepositoryEntry repositoryEntry, Object groupIdObject) {
 
-					repositoryEntry.setGroupId((Long)groupId);
+					repositoryEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -376,9 +377,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object companyId) {
+					RepositoryEntry repositoryEntry, Object companyIdObject) {
 
-					repositoryEntry.setCompanyId((Long)companyId);
+					repositoryEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -398,9 +399,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object userId) {
+					RepositoryEntry repositoryEntry, Object userIdObject) {
 
-					repositoryEntry.setUserId((Long)userId);
+					repositoryEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -420,9 +421,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object userName) {
+					RepositoryEntry repositoryEntry, Object userNameObject) {
 
-					repositoryEntry.setUserName((String)userName);
+					repositoryEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -442,9 +443,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object createDate) {
+					RepositoryEntry repositoryEntry, Object createDateObject) {
 
-					repositoryEntry.setCreateDate((Date)createDate);
+					repositoryEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -464,9 +465,10 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object modifiedDate) {
+					RepositoryEntry repositoryEntry,
+					Object modifiedDateObject) {
 
-					repositoryEntry.setModifiedDate((Date)modifiedDate);
+					repositoryEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -486,9 +488,10 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object repositoryId) {
+					RepositoryEntry repositoryEntry,
+					Object repositoryIdObject) {
 
-					repositoryEntry.setRepositoryId((Long)repositoryId);
+					repositoryEntry.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -508,9 +511,9 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object mappedId) {
+					RepositoryEntry repositoryEntry, Object mappedIdObject) {
 
-					repositoryEntry.setMappedId((String)mappedId);
+					repositoryEntry.setMappedId((String)mappedIdObject);
 				}
 
 			});
@@ -531,10 +534,10 @@ public class RepositoryEntryModelImpl
 				@Override
 				public void accept(
 					RepositoryEntry repositoryEntry,
-					Object manualCheckInRequired) {
+					Object manualCheckInRequiredObject) {
 
 					repositoryEntry.setManualCheckInRequired(
-						(Boolean)manualCheckInRequired);
+						(Boolean)manualCheckInRequiredObject);
 				}
 
 			});
@@ -554,9 +557,11 @@ public class RepositoryEntryModelImpl
 
 				@Override
 				public void accept(
-					RepositoryEntry repositoryEntry, Object lastPublishDate) {
+					RepositoryEntry repositoryEntry,
+					Object lastPublishDateObject) {
 
-					repositoryEntry.setLastPublishDate((Date)lastPublishDate);
+					repositoryEntry.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

@@ -270,8 +270,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object mvccVersion) {
-					ticket.setMvccVersion((Long)mvccVersion);
+				public void accept(Ticket ticket, Object mvccVersionObject) {
+					ticket.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -290,8 +290,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object ticketId) {
-					ticket.setTicketId((Long)ticketId);
+				public void accept(Ticket ticket, Object ticketIdObject) {
+					ticket.setTicketId((Long)ticketIdObject);
 				}
 
 			});
@@ -310,8 +310,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object companyId) {
-					ticket.setCompanyId((Long)companyId);
+				public void accept(Ticket ticket, Object companyIdObject) {
+					ticket.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -330,8 +330,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object createDate) {
-					ticket.setCreateDate((Date)createDate);
+				public void accept(Ticket ticket, Object createDateObject) {
+					ticket.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -350,8 +350,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object classNameId) {
-					ticket.setClassNameId((Long)classNameId);
+				public void accept(Ticket ticket, Object classNameIdObject) {
+					ticket.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -370,8 +370,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object classPK) {
-					ticket.setClassPK((Long)classPK);
+				public void accept(Ticket ticket, Object classPKObject) {
+					ticket.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -390,8 +390,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object key) {
-					ticket.setKey((String)key);
+				public void accept(Ticket ticket, Object keyObject) {
+					ticket.setKey((String)keyObject);
 				}
 
 			});
@@ -410,8 +410,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object type) {
-					ticket.setType((Integer)type);
+				public void accept(Ticket ticket, Object typeObject) {
+					ticket.setType((Integer)typeObject);
 				}
 
 			});
@@ -430,8 +430,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object extraInfo) {
-					ticket.setExtraInfo((String)extraInfo);
+				public void accept(Ticket ticket, Object extraInfoObject) {
+					ticket.setExtraInfo((String)extraInfoObject);
 				}
 
 			});
@@ -450,8 +450,8 @@ public class TicketModelImpl
 			new BiConsumer<Ticket, Object>() {
 
 				@Override
-				public void accept(Ticket ticket, Object expirationDate) {
-					ticket.setExpirationDate((Date)expirationDate);
+				public void accept(Ticket ticket, Object expirationDateObject) {
+					ticket.setExpirationDate((Date)expirationDateObject);
 				}
 
 			});

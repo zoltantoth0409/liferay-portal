@@ -272,8 +272,10 @@ public class DDMStorageLinkModelImpl
 			new BiConsumer<DDMStorageLink, Object>() {
 
 				@Override
-				public void accept(DDMStorageLink ddmStorageLink, Object uuid) {
-					ddmStorageLink.setUuid((String)uuid);
+				public void accept(
+					DDMStorageLink ddmStorageLink, Object uuidObject) {
+
+					ddmStorageLink.setUuid((String)uuidObject);
 				}
 
 			});
@@ -293,9 +295,9 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object storageLinkId) {
+					DDMStorageLink ddmStorageLink, Object storageLinkIdObject) {
 
-					ddmStorageLink.setStorageLinkId((Long)storageLinkId);
+					ddmStorageLink.setStorageLinkId((Long)storageLinkIdObject);
 				}
 
 			});
@@ -315,9 +317,9 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object companyId) {
+					DDMStorageLink ddmStorageLink, Object companyIdObject) {
 
-					ddmStorageLink.setCompanyId((Long)companyId);
+					ddmStorageLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -337,9 +339,9 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object classNameId) {
+					DDMStorageLink ddmStorageLink, Object classNameIdObject) {
 
-					ddmStorageLink.setClassNameId((Long)classNameId);
+					ddmStorageLink.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -359,9 +361,9 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object classPK) {
+					DDMStorageLink ddmStorageLink, Object classPKObject) {
 
-					ddmStorageLink.setClassPK((Long)classPK);
+					ddmStorageLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -381,9 +383,9 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object structureId) {
+					DDMStorageLink ddmStorageLink, Object structureIdObject) {
 
-					ddmStorageLink.setStructureId((Long)structureId);
+					ddmStorageLink.setStructureId((Long)structureIdObject);
 				}
 
 			});
@@ -403,10 +405,11 @@ public class DDMStorageLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStorageLink ddmStorageLink, Object structureVersionId) {
+					DDMStorageLink ddmStorageLink,
+					Object structureVersionIdObject) {
 
 					ddmStorageLink.setStructureVersionId(
-						(Long)structureVersionId);
+						(Long)structureVersionIdObject);
 				}
 
 			});

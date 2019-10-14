@@ -282,9 +282,10 @@ public class RecentLayoutRevisionModelImpl
 				@Override
 				public void accept(
 					RecentLayoutRevision recentLayoutRevision,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					recentLayoutRevision.setMvccVersion((Long)mvccVersion);
+					recentLayoutRevision.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -305,10 +306,10 @@ public class RecentLayoutRevisionModelImpl
 				@Override
 				public void accept(
 					RecentLayoutRevision recentLayoutRevision,
-					Object recentLayoutRevisionId) {
+					Object recentLayoutRevisionIdObject) {
 
 					recentLayoutRevision.setRecentLayoutRevisionId(
-						(Long)recentLayoutRevisionId);
+						(Long)recentLayoutRevisionIdObject);
 				}
 
 			});
@@ -328,9 +329,10 @@ public class RecentLayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					RecentLayoutRevision recentLayoutRevision, Object groupId) {
+					RecentLayoutRevision recentLayoutRevision,
+					Object groupIdObject) {
 
-					recentLayoutRevision.setGroupId((Long)groupId);
+					recentLayoutRevision.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -351,9 +353,9 @@ public class RecentLayoutRevisionModelImpl
 				@Override
 				public void accept(
 					RecentLayoutRevision recentLayoutRevision,
-					Object companyId) {
+					Object companyIdObject) {
 
-					recentLayoutRevision.setCompanyId((Long)companyId);
+					recentLayoutRevision.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -373,9 +375,10 @@ public class RecentLayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					RecentLayoutRevision recentLayoutRevision, Object userId) {
+					RecentLayoutRevision recentLayoutRevision,
+					Object userIdObject) {
 
-					recentLayoutRevision.setUserId((Long)userId);
+					recentLayoutRevision.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -396,10 +399,10 @@ public class RecentLayoutRevisionModelImpl
 				@Override
 				public void accept(
 					RecentLayoutRevision recentLayoutRevision,
-					Object layoutRevisionId) {
+					Object layoutRevisionIdObject) {
 
 					recentLayoutRevision.setLayoutRevisionId(
-						(Long)layoutRevisionId);
+						(Long)layoutRevisionIdObject);
 				}
 
 			});
@@ -420,10 +423,10 @@ public class RecentLayoutRevisionModelImpl
 				@Override
 				public void accept(
 					RecentLayoutRevision recentLayoutRevision,
-					Object layoutSetBranchId) {
+					Object layoutSetBranchIdObject) {
 
 					recentLayoutRevision.setLayoutSetBranchId(
-						(Long)layoutSetBranchId);
+						(Long)layoutSetBranchIdObject);
 				}
 
 			});
@@ -443,9 +446,10 @@ public class RecentLayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					RecentLayoutRevision recentLayoutRevision, Object plid) {
+					RecentLayoutRevision recentLayoutRevision,
+					Object plidObject) {
 
-					recentLayoutRevision.setPlid((Long)plid);
+					recentLayoutRevision.setPlid((Long)plidObject);
 				}
 
 			});

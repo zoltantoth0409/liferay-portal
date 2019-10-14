@@ -263,9 +263,9 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object mvccVersion) {
+					UserTrackerPath userTrackerPath, Object mvccVersionObject) {
 
-					userTrackerPath.setMvccVersion((Long)mvccVersion);
+					userTrackerPath.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -285,10 +285,11 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object userTrackerPathId) {
+					UserTrackerPath userTrackerPath,
+					Object userTrackerPathIdObject) {
 
 					userTrackerPath.setUserTrackerPathId(
-						(Long)userTrackerPathId);
+						(Long)userTrackerPathIdObject);
 				}
 
 			});
@@ -308,9 +309,9 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object companyId) {
+					UserTrackerPath userTrackerPath, Object companyIdObject) {
 
-					userTrackerPath.setCompanyId((Long)companyId);
+					userTrackerPath.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -330,9 +331,10 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object userTrackerId) {
+					UserTrackerPath userTrackerPath,
+					Object userTrackerIdObject) {
 
-					userTrackerPath.setUserTrackerId((Long)userTrackerId);
+					userTrackerPath.setUserTrackerId((Long)userTrackerIdObject);
 				}
 
 			});
@@ -352,9 +354,9 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object path) {
+					UserTrackerPath userTrackerPath, Object pathObject) {
 
-					userTrackerPath.setPath((String)path);
+					userTrackerPath.setPath((String)pathObject);
 				}
 
 			});
@@ -374,9 +376,9 @@ public class UserTrackerPathModelImpl
 
 				@Override
 				public void accept(
-					UserTrackerPath userTrackerPath, Object pathDate) {
+					UserTrackerPath userTrackerPath, Object pathDateObject) {
 
-					userTrackerPath.setPathDate((Date)pathDate);
+					userTrackerPath.setPathDate((Date)pathDateObject);
 				}
 
 			});

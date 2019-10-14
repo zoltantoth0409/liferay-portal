@@ -304,10 +304,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoTaskFormInstanceId) {
+					Object kaleoTaskFormInstanceIdObject) {
 
 					kaleoTaskFormInstance.setKaleoTaskFormInstanceId(
-						(Long)kaleoTaskFormInstanceId);
+						(Long)kaleoTaskFormInstanceIdObject);
 				}
 
 			});
@@ -330,9 +330,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoTaskFormInstance.setGroupId((Long)groupId);
+					kaleoTaskFormInstance.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -355,9 +355,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoTaskFormInstance.setCompanyId((Long)companyId);
+					kaleoTaskFormInstance.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -380,9 +380,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoTaskFormInstance.setUserId((Long)userId);
+					kaleoTaskFormInstance.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -405,9 +405,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoTaskFormInstance.setUserName((String)userName);
+					kaleoTaskFormInstance.setUserName((String)userNameObject);
 				}
 
 			});
@@ -430,9 +430,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoTaskFormInstance.setCreateDate((Date)createDate);
+					kaleoTaskFormInstance.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -455,9 +455,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					kaleoTaskFormInstance.setModifiedDate((Date)modifiedDate);
+					kaleoTaskFormInstance.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -480,10 +481,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTaskFormInstance.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -506,10 +507,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoInstanceId) {
+					Object kaleoInstanceIdObject) {
 
 					kaleoTaskFormInstance.setKaleoInstanceId(
-						(Long)kaleoInstanceId);
+						(Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -532,9 +533,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoTaskId) {
+					Object kaleoTaskIdObject) {
 
-					kaleoTaskFormInstance.setKaleoTaskId((Long)kaleoTaskId);
+					kaleoTaskFormInstance.setKaleoTaskId(
+						(Long)kaleoTaskIdObject);
 				}
 
 			});
@@ -557,10 +559,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoTaskInstanceTokenId) {
+					Object kaleoTaskInstanceTokenIdObject) {
 
 					kaleoTaskFormInstance.setKaleoTaskInstanceTokenId(
-						(Long)kaleoTaskInstanceTokenId);
+						(Long)kaleoTaskInstanceTokenIdObject);
 				}
 
 			});
@@ -583,10 +585,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object kaleoTaskFormId) {
+					Object kaleoTaskFormIdObject) {
 
 					kaleoTaskFormInstance.setKaleoTaskFormId(
-						(Long)kaleoTaskFormId);
+						(Long)kaleoTaskFormIdObject);
 				}
 
 			});
@@ -609,9 +611,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object formValues) {
+					Object formValuesObject) {
 
-					kaleoTaskFormInstance.setFormValues((String)formValues);
+					kaleoTaskFormInstance.setFormValues(
+						(String)formValuesObject);
 				}
 
 			});
@@ -634,10 +637,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object formValueEntryGroupId) {
+					Object formValueEntryGroupIdObject) {
 
 					kaleoTaskFormInstance.setFormValueEntryGroupId(
-						(Long)formValueEntryGroupId);
+						(Long)formValueEntryGroupIdObject);
 				}
 
 			});
@@ -660,10 +663,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object formValueEntryId) {
+					Object formValueEntryIdObject) {
 
 					kaleoTaskFormInstance.setFormValueEntryId(
-						(Long)formValueEntryId);
+						(Long)formValueEntryIdObject);
 				}
 
 			});
@@ -686,10 +689,10 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object formValueEntryUuid) {
+					Object formValueEntryUuidObject) {
 
 					kaleoTaskFormInstance.setFormValueEntryUuid(
-						(String)formValueEntryUuid);
+						(String)formValueEntryUuidObject);
 				}
 
 			});
@@ -712,9 +715,9 @@ public class KaleoTaskFormInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskFormInstance kaleoTaskFormInstance,
-					Object metadata) {
+					Object metadataObject) {
 
-					kaleoTaskFormInstance.setMetadata((String)metadata);
+					kaleoTaskFormInstance.setMetadata((String)metadataObject);
 				}
 
 			});

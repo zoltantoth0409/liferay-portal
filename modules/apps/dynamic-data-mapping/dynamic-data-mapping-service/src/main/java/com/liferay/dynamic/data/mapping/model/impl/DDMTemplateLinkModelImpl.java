@@ -267,9 +267,11 @@ public class DDMTemplateLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateLink ddmTemplateLink, Object templateLinkId) {
+					DDMTemplateLink ddmTemplateLink,
+					Object templateLinkIdObject) {
 
-					ddmTemplateLink.setTemplateLinkId((Long)templateLinkId);
+					ddmTemplateLink.setTemplateLinkId(
+						(Long)templateLinkIdObject);
 				}
 
 			});
@@ -289,9 +291,9 @@ public class DDMTemplateLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateLink ddmTemplateLink, Object companyId) {
+					DDMTemplateLink ddmTemplateLink, Object companyIdObject) {
 
-					ddmTemplateLink.setCompanyId((Long)companyId);
+					ddmTemplateLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -311,9 +313,9 @@ public class DDMTemplateLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateLink ddmTemplateLink, Object classNameId) {
+					DDMTemplateLink ddmTemplateLink, Object classNameIdObject) {
 
-					ddmTemplateLink.setClassNameId((Long)classNameId);
+					ddmTemplateLink.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -333,9 +335,9 @@ public class DDMTemplateLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateLink ddmTemplateLink, Object classPK) {
+					DDMTemplateLink ddmTemplateLink, Object classPKObject) {
 
-					ddmTemplateLink.setClassPK((Long)classPK);
+					ddmTemplateLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -355,9 +357,9 @@ public class DDMTemplateLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplateLink ddmTemplateLink, Object templateId) {
+					DDMTemplateLink ddmTemplateLink, Object templateIdObject) {
 
-					ddmTemplateLink.setTemplateId((Long)templateId);
+					ddmTemplateLink.setTemplateId((Long)templateIdObject);
 				}
 
 			});

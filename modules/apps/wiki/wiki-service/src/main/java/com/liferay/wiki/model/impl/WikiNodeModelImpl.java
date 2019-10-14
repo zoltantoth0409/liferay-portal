@@ -347,8 +347,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object uuid) {
-					wikiNode.setUuid((String)uuid);
+				public void accept(WikiNode wikiNode, Object uuidObject) {
+					wikiNode.setUuid((String)uuidObject);
 				}
 
 			});
@@ -367,8 +367,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object nodeId) {
-					wikiNode.setNodeId((Long)nodeId);
+				public void accept(WikiNode wikiNode, Object nodeIdObject) {
+					wikiNode.setNodeId((Long)nodeIdObject);
 				}
 
 			});
@@ -387,8 +387,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object groupId) {
-					wikiNode.setGroupId((Long)groupId);
+				public void accept(WikiNode wikiNode, Object groupIdObject) {
+					wikiNode.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -407,8 +407,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object companyId) {
-					wikiNode.setCompanyId((Long)companyId);
+				public void accept(WikiNode wikiNode, Object companyIdObject) {
+					wikiNode.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -427,8 +427,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object userId) {
-					wikiNode.setUserId((Long)userId);
+				public void accept(WikiNode wikiNode, Object userIdObject) {
+					wikiNode.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -447,8 +447,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object userName) {
-					wikiNode.setUserName((String)userName);
+				public void accept(WikiNode wikiNode, Object userNameObject) {
+					wikiNode.setUserName((String)userNameObject);
 				}
 
 			});
@@ -467,8 +467,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object createDate) {
-					wikiNode.setCreateDate((Date)createDate);
+				public void accept(WikiNode wikiNode, Object createDateObject) {
+					wikiNode.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -487,8 +487,10 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object modifiedDate) {
-					wikiNode.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					WikiNode wikiNode, Object modifiedDateObject) {
+
+					wikiNode.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -507,8 +509,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object name) {
-					wikiNode.setName((String)name);
+				public void accept(WikiNode wikiNode, Object nameObject) {
+					wikiNode.setName((String)nameObject);
 				}
 
 			});
@@ -527,8 +529,10 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object description) {
-					wikiNode.setDescription((String)description);
+				public void accept(
+					WikiNode wikiNode, Object descriptionObject) {
+
+					wikiNode.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -547,8 +551,10 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object lastPostDate) {
-					wikiNode.setLastPostDate((Date)lastPostDate);
+				public void accept(
+					WikiNode wikiNode, Object lastPostDateObject) {
+
+					wikiNode.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});
@@ -567,8 +573,10 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object lastPublishDate) {
-					wikiNode.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					WikiNode wikiNode, Object lastPublishDateObject) {
+
+					wikiNode.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -587,8 +595,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object status) {
-					wikiNode.setStatus((Integer)status);
+				public void accept(WikiNode wikiNode, Object statusObject) {
+					wikiNode.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -607,8 +615,10 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object statusByUserId) {
-					wikiNode.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					WikiNode wikiNode, Object statusByUserIdObject) {
+
+					wikiNode.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -627,8 +637,11 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object statusByUserName) {
-					wikiNode.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					WikiNode wikiNode, Object statusByUserNameObject) {
+
+					wikiNode.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -647,8 +660,8 @@ public class WikiNodeModelImpl
 			new BiConsumer<WikiNode, Object>() {
 
 				@Override
-				public void accept(WikiNode wikiNode, Object statusDate) {
-					wikiNode.setStatusDate((Date)statusDate);
+				public void accept(WikiNode wikiNode, Object statusDateObject) {
+					wikiNode.setStatusDate((Date)statusDateObject);
 				}
 
 			});

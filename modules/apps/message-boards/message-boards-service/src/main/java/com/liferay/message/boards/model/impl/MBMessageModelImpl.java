@@ -391,8 +391,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object uuid) {
-					mbMessage.setUuid((String)uuid);
+				public void accept(MBMessage mbMessage, Object uuidObject) {
+					mbMessage.setUuid((String)uuidObject);
 				}
 
 			});
@@ -411,8 +411,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object messageId) {
-					mbMessage.setMessageId((Long)messageId);
+				public void accept(
+					MBMessage mbMessage, Object messageIdObject) {
+
+					mbMessage.setMessageId((Long)messageIdObject);
 				}
 
 			});
@@ -431,8 +433,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object groupId) {
-					mbMessage.setGroupId((Long)groupId);
+				public void accept(MBMessage mbMessage, Object groupIdObject) {
+					mbMessage.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -451,8 +453,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object companyId) {
-					mbMessage.setCompanyId((Long)companyId);
+				public void accept(
+					MBMessage mbMessage, Object companyIdObject) {
+
+					mbMessage.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -471,8 +475,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object userId) {
-					mbMessage.setUserId((Long)userId);
+				public void accept(MBMessage mbMessage, Object userIdObject) {
+					mbMessage.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -491,8 +495,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object userName) {
-					mbMessage.setUserName((String)userName);
+				public void accept(MBMessage mbMessage, Object userNameObject) {
+					mbMessage.setUserName((String)userNameObject);
 				}
 
 			});
@@ -511,8 +515,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object createDate) {
-					mbMessage.setCreateDate((Date)createDate);
+				public void accept(
+					MBMessage mbMessage, Object createDateObject) {
+
+					mbMessage.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -531,8 +537,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object modifiedDate) {
-					mbMessage.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					MBMessage mbMessage, Object modifiedDateObject) {
+
+					mbMessage.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -551,8 +559,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object classNameId) {
-					mbMessage.setClassNameId((Long)classNameId);
+				public void accept(
+					MBMessage mbMessage, Object classNameIdObject) {
+
+					mbMessage.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -571,8 +581,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object classPK) {
-					mbMessage.setClassPK((Long)classPK);
+				public void accept(MBMessage mbMessage, Object classPKObject) {
+					mbMessage.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -591,8 +601,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object categoryId) {
-					mbMessage.setCategoryId((Long)categoryId);
+				public void accept(
+					MBMessage mbMessage, Object categoryIdObject) {
+
+					mbMessage.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -611,8 +623,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object threadId) {
-					mbMessage.setThreadId((Long)threadId);
+				public void accept(MBMessage mbMessage, Object threadIdObject) {
+					mbMessage.setThreadId((Long)threadIdObject);
 				}
 
 			});
@@ -631,8 +643,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object rootMessageId) {
-					mbMessage.setRootMessageId((Long)rootMessageId);
+				public void accept(
+					MBMessage mbMessage, Object rootMessageIdObject) {
+
+					mbMessage.setRootMessageId((Long)rootMessageIdObject);
 				}
 
 			});
@@ -652,9 +666,9 @@ public class MBMessageModelImpl
 
 				@Override
 				public void accept(
-					MBMessage mbMessage, Object parentMessageId) {
+					MBMessage mbMessage, Object parentMessageIdObject) {
 
-					mbMessage.setParentMessageId((Long)parentMessageId);
+					mbMessage.setParentMessageId((Long)parentMessageIdObject);
 				}
 
 			});
@@ -673,8 +687,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object subject) {
-					mbMessage.setSubject((String)subject);
+				public void accept(MBMessage mbMessage, Object subjectObject) {
+					mbMessage.setSubject((String)subjectObject);
 				}
 
 			});
@@ -693,8 +707,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object body) {
-					mbMessage.setBody((String)body);
+				public void accept(MBMessage mbMessage, Object bodyObject) {
+					mbMessage.setBody((String)bodyObject);
 				}
 
 			});
@@ -713,8 +727,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object format) {
-					mbMessage.setFormat((String)format);
+				public void accept(MBMessage mbMessage, Object formatObject) {
+					mbMessage.setFormat((String)formatObject);
 				}
 
 			});
@@ -733,8 +747,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object anonymous) {
-					mbMessage.setAnonymous((Boolean)anonymous);
+				public void accept(
+					MBMessage mbMessage, Object anonymousObject) {
+
+					mbMessage.setAnonymous((Boolean)anonymousObject);
 				}
 
 			});
@@ -753,8 +769,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object priority) {
-					mbMessage.setPriority((Double)priority);
+				public void accept(MBMessage mbMessage, Object priorityObject) {
+					mbMessage.setPriority((Double)priorityObject);
 				}
 
 			});
@@ -773,8 +789,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object allowPingbacks) {
-					mbMessage.setAllowPingbacks((Boolean)allowPingbacks);
+				public void accept(
+					MBMessage mbMessage, Object allowPingbacksObject) {
+
+					mbMessage.setAllowPingbacks((Boolean)allowPingbacksObject);
 				}
 
 			});
@@ -793,8 +811,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object answer) {
-					mbMessage.setAnswer((Boolean)answer);
+				public void accept(MBMessage mbMessage, Object answerObject) {
+					mbMessage.setAnswer((Boolean)answerObject);
 				}
 
 			});
@@ -814,9 +832,9 @@ public class MBMessageModelImpl
 
 				@Override
 				public void accept(
-					MBMessage mbMessage, Object lastPublishDate) {
+					MBMessage mbMessage, Object lastPublishDateObject) {
 
-					mbMessage.setLastPublishDate((Date)lastPublishDate);
+					mbMessage.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -835,8 +853,8 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object status) {
-					mbMessage.setStatus((Integer)status);
+				public void accept(MBMessage mbMessage, Object statusObject) {
+					mbMessage.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -855,8 +873,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object statusByUserId) {
-					mbMessage.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					MBMessage mbMessage, Object statusByUserIdObject) {
+
+					mbMessage.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -876,9 +896,10 @@ public class MBMessageModelImpl
 
 				@Override
 				public void accept(
-					MBMessage mbMessage, Object statusByUserName) {
+					MBMessage mbMessage, Object statusByUserNameObject) {
 
-					mbMessage.setStatusByUserName((String)statusByUserName);
+					mbMessage.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -897,8 +918,10 @@ public class MBMessageModelImpl
 			new BiConsumer<MBMessage, Object>() {
 
 				@Override
-				public void accept(MBMessage mbMessage, Object statusDate) {
-					mbMessage.setStatusDate((Date)statusDate);
+				public void accept(
+					MBMessage mbMessage, Object statusDateObject) {
+
+					mbMessage.setStatusDate((Date)statusDateObject);
 				}
 
 			});

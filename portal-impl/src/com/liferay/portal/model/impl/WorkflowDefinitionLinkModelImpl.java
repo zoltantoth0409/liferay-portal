@@ -299,9 +299,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					workflowDefinitionLink.setMvccVersion((Long)mvccVersion);
+					workflowDefinitionLink.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -324,10 +325,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object workflowDefinitionLinkId) {
+					Object workflowDefinitionLinkIdObject) {
 
 					workflowDefinitionLink.setWorkflowDefinitionLinkId(
-						(Long)workflowDefinitionLinkId);
+						(Long)workflowDefinitionLinkIdObject);
 				}
 
 			});
@@ -350,9 +351,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object groupId) {
+					Object groupIdObject) {
 
-					workflowDefinitionLink.setGroupId((Long)groupId);
+					workflowDefinitionLink.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -375,9 +376,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object companyId) {
+					Object companyIdObject) {
 
-					workflowDefinitionLink.setCompanyId((Long)companyId);
+					workflowDefinitionLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -400,9 +401,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object userId) {
+					Object userIdObject) {
 
-					workflowDefinitionLink.setUserId((Long)userId);
+					workflowDefinitionLink.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -425,9 +426,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object userName) {
+					Object userNameObject) {
 
-					workflowDefinitionLink.setUserName((String)userName);
+					workflowDefinitionLink.setUserName((String)userNameObject);
 				}
 
 			});
@@ -450,9 +451,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object createDate) {
+					Object createDateObject) {
 
-					workflowDefinitionLink.setCreateDate((Date)createDate);
+					workflowDefinitionLink.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -475,9 +477,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					workflowDefinitionLink.setModifiedDate((Date)modifiedDate);
+					workflowDefinitionLink.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -500,9 +503,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					workflowDefinitionLink.setClassNameId((Long)classNameId);
+					workflowDefinitionLink.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -525,9 +529,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object classPK) {
+					Object classPKObject) {
 
-					workflowDefinitionLink.setClassPK((Long)classPK);
+					workflowDefinitionLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -550,9 +554,9 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object typePK) {
+					Object typePKObject) {
 
-					workflowDefinitionLink.setTypePK((Long)typePK);
+					workflowDefinitionLink.setTypePK((Long)typePKObject);
 				}
 
 			});
@@ -575,10 +579,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object workflowDefinitionName) {
+					Object workflowDefinitionNameObject) {
 
 					workflowDefinitionLink.setWorkflowDefinitionName(
-						(String)workflowDefinitionName);
+						(String)workflowDefinitionNameObject);
 				}
 
 			});
@@ -602,10 +606,10 @@ public class WorkflowDefinitionLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowDefinitionLink workflowDefinitionLink,
-					Object workflowDefinitionVersion) {
+					Object workflowDefinitionVersionObject) {
 
 					workflowDefinitionLink.setWorkflowDefinitionVersion(
-						(Integer)workflowDefinitionVersion);
+						(Integer)workflowDefinitionVersionObject);
 				}
 
 			});

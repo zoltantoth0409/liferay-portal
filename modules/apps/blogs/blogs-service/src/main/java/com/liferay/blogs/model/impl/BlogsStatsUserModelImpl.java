@@ -277,9 +277,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object statsUserId) {
+					BlogsStatsUser blogsStatsUser, Object statsUserIdObject) {
 
-					blogsStatsUser.setStatsUserId((Long)statsUserId);
+					blogsStatsUser.setStatsUserId((Long)statsUserIdObject);
 				}
 
 			});
@@ -299,9 +299,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object groupId) {
+					BlogsStatsUser blogsStatsUser, Object groupIdObject) {
 
-					blogsStatsUser.setGroupId((Long)groupId);
+					blogsStatsUser.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -321,9 +321,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object companyId) {
+					BlogsStatsUser blogsStatsUser, Object companyIdObject) {
 
-					blogsStatsUser.setCompanyId((Long)companyId);
+					blogsStatsUser.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -343,9 +343,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object userId) {
+					BlogsStatsUser blogsStatsUser, Object userIdObject) {
 
-					blogsStatsUser.setUserId((Long)userId);
+					blogsStatsUser.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -365,9 +365,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object entryCount) {
+					BlogsStatsUser blogsStatsUser, Object entryCountObject) {
 
-					blogsStatsUser.setEntryCount((Integer)entryCount);
+					blogsStatsUser.setEntryCount((Integer)entryCountObject);
 				}
 
 			});
@@ -387,9 +387,9 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object lastPostDate) {
+					BlogsStatsUser blogsStatsUser, Object lastPostDateObject) {
 
-					blogsStatsUser.setLastPostDate((Date)lastPostDate);
+					blogsStatsUser.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});
@@ -409,10 +409,11 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object ratingsTotalEntries) {
+					BlogsStatsUser blogsStatsUser,
+					Object ratingsTotalEntriesObject) {
 
 					blogsStatsUser.setRatingsTotalEntries(
-						(Integer)ratingsTotalEntries);
+						(Integer)ratingsTotalEntriesObject);
 				}
 
 			});
@@ -432,10 +433,11 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object ratingsTotalScore) {
+					BlogsStatsUser blogsStatsUser,
+					Object ratingsTotalScoreObject) {
 
 					blogsStatsUser.setRatingsTotalScore(
-						(Double)ratingsTotalScore);
+						(Double)ratingsTotalScoreObject);
 				}
 
 			});
@@ -455,10 +457,11 @@ public class BlogsStatsUserModelImpl
 
 				@Override
 				public void accept(
-					BlogsStatsUser blogsStatsUser, Object ratingsAverageScore) {
+					BlogsStatsUser blogsStatsUser,
+					Object ratingsAverageScoreObject) {
 
 					blogsStatsUser.setRatingsAverageScore(
-						(Double)ratingsAverageScore);
+						(Double)ratingsAverageScoreObject);
 				}
 
 			});

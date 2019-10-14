@@ -268,9 +268,11 @@ public class DDMStructureLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLink ddmStructureLink, Object structureLinkId) {
+					DDMStructureLink ddmStructureLink,
+					Object structureLinkIdObject) {
 
-					ddmStructureLink.setStructureLinkId((Long)structureLinkId);
+					ddmStructureLink.setStructureLinkId(
+						(Long)structureLinkIdObject);
 				}
 
 			});
@@ -290,9 +292,9 @@ public class DDMStructureLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLink ddmStructureLink, Object companyId) {
+					DDMStructureLink ddmStructureLink, Object companyIdObject) {
 
-					ddmStructureLink.setCompanyId((Long)companyId);
+					ddmStructureLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -312,9 +314,10 @@ public class DDMStructureLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLink ddmStructureLink, Object classNameId) {
+					DDMStructureLink ddmStructureLink,
+					Object classNameIdObject) {
 
-					ddmStructureLink.setClassNameId((Long)classNameId);
+					ddmStructureLink.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -334,9 +337,9 @@ public class DDMStructureLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLink ddmStructureLink, Object classPK) {
+					DDMStructureLink ddmStructureLink, Object classPKObject) {
 
-					ddmStructureLink.setClassPK((Long)classPK);
+					ddmStructureLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -356,9 +359,10 @@ public class DDMStructureLinkModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLink ddmStructureLink, Object structureId) {
+					DDMStructureLink ddmStructureLink,
+					Object structureIdObject) {
 
-					ddmStructureLink.setStructureId((Long)structureId);
+					ddmStructureLink.setStructureId((Long)structureIdObject);
 				}
 
 			});

@@ -291,9 +291,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					userNotificationDelivery.setMvccVersion((Long)mvccVersion);
+					userNotificationDelivery.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -317,10 +318,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object userNotificationDeliveryId) {
+					Object userNotificationDeliveryIdObject) {
 
 					userNotificationDelivery.setUserNotificationDeliveryId(
-						(Long)userNotificationDeliveryId);
+						(Long)userNotificationDeliveryIdObject);
 				}
 
 			});
@@ -343,9 +344,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object companyId) {
+					Object companyIdObject) {
 
-					userNotificationDelivery.setCompanyId((Long)companyId);
+					userNotificationDelivery.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -368,9 +370,9 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object userId) {
+					Object userIdObject) {
 
-					userNotificationDelivery.setUserId((Long)userId);
+					userNotificationDelivery.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -393,9 +395,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object portletId) {
+					Object portletIdObject) {
 
-					userNotificationDelivery.setPortletId((String)portletId);
+					userNotificationDelivery.setPortletId(
+						(String)portletIdObject);
 				}
 
 			});
@@ -418,9 +421,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					userNotificationDelivery.setClassNameId((Long)classNameId);
+					userNotificationDelivery.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -443,10 +447,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object notificationType) {
+					Object notificationTypeObject) {
 
 					userNotificationDelivery.setNotificationType(
-						(Integer)notificationType);
+						(Integer)notificationTypeObject);
 				}
 
 			});
@@ -469,10 +473,10 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object deliveryType) {
+					Object deliveryTypeObject) {
 
 					userNotificationDelivery.setDeliveryType(
-						(Integer)deliveryType);
+						(Integer)deliveryTypeObject);
 				}
 
 			});
@@ -495,9 +499,9 @@ public class UserNotificationDeliveryModelImpl
 				@Override
 				public void accept(
 					UserNotificationDelivery userNotificationDelivery,
-					Object deliver) {
+					Object deliverObject) {
 
-					userNotificationDelivery.setDeliver((Boolean)deliver);
+					userNotificationDelivery.setDeliver((Boolean)deliverObject);
 				}
 
 			});

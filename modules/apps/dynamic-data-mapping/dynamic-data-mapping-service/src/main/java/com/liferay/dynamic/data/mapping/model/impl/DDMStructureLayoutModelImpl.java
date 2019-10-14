@@ -283,9 +283,9 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object uuid) {
+					DDMStructureLayout ddmStructureLayout, Object uuidObject) {
 
-					ddmStructureLayout.setUuid((String)uuid);
+					ddmStructureLayout.setUuid((String)uuidObject);
 				}
 
 			});
@@ -306,10 +306,10 @@ public class DDMStructureLayoutModelImpl
 				@Override
 				public void accept(
 					DDMStructureLayout ddmStructureLayout,
-					Object structureLayoutId) {
+					Object structureLayoutIdObject) {
 
 					ddmStructureLayout.setStructureLayoutId(
-						(Long)structureLayoutId);
+						(Long)structureLayoutIdObject);
 				}
 
 			});
@@ -329,9 +329,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object groupId) {
+					DDMStructureLayout ddmStructureLayout,
+					Object groupIdObject) {
 
-					ddmStructureLayout.setGroupId((Long)groupId);
+					ddmStructureLayout.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -351,9 +352,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object companyId) {
+					DDMStructureLayout ddmStructureLayout,
+					Object companyIdObject) {
 
-					ddmStructureLayout.setCompanyId((Long)companyId);
+					ddmStructureLayout.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -373,9 +375,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object userId) {
+					DDMStructureLayout ddmStructureLayout,
+					Object userIdObject) {
 
-					ddmStructureLayout.setUserId((Long)userId);
+					ddmStructureLayout.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -395,9 +398,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object userName) {
+					DDMStructureLayout ddmStructureLayout,
+					Object userNameObject) {
 
-					ddmStructureLayout.setUserName((String)userName);
+					ddmStructureLayout.setUserName((String)userNameObject);
 				}
 
 			});
@@ -417,9 +421,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object createDate) {
+					DDMStructureLayout ddmStructureLayout,
+					Object createDateObject) {
 
-					ddmStructureLayout.setCreateDate((Date)createDate);
+					ddmStructureLayout.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -440,9 +445,10 @@ public class DDMStructureLayoutModelImpl
 				@Override
 				public void accept(
 					DDMStructureLayout ddmStructureLayout,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					ddmStructureLayout.setModifiedDate((Date)modifiedDate);
+					ddmStructureLayout.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -463,10 +469,10 @@ public class DDMStructureLayoutModelImpl
 				@Override
 				public void accept(
 					DDMStructureLayout ddmStructureLayout,
-					Object structureVersionId) {
+					Object structureVersionIdObject) {
 
 					ddmStructureLayout.setStructureVersionId(
-						(Long)structureVersionId);
+						(Long)structureVersionIdObject);
 				}
 
 			});
@@ -486,9 +492,10 @@ public class DDMStructureLayoutModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureLayout ddmStructureLayout, Object definition) {
+					DDMStructureLayout ddmStructureLayout,
+					Object definitionObject) {
 
-					ddmStructureLayout.setDefinition((String)definition);
+					ddmStructureLayout.setDefinition((String)definitionObject);
 				}
 
 			});

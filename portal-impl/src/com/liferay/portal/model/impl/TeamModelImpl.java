@@ -357,8 +357,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object mvccVersion) {
-					team.setMvccVersion((Long)mvccVersion);
+				public void accept(Team team, Object mvccVersionObject) {
+					team.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -377,8 +377,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object uuid) {
-					team.setUuid((String)uuid);
+				public void accept(Team team, Object uuidObject) {
+					team.setUuid((String)uuidObject);
 				}
 
 			});
@@ -397,8 +397,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object teamId) {
-					team.setTeamId((Long)teamId);
+				public void accept(Team team, Object teamIdObject) {
+					team.setTeamId((Long)teamIdObject);
 				}
 
 			});
@@ -417,8 +417,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object companyId) {
-					team.setCompanyId((Long)companyId);
+				public void accept(Team team, Object companyIdObject) {
+					team.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -437,8 +437,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object userId) {
-					team.setUserId((Long)userId);
+				public void accept(Team team, Object userIdObject) {
+					team.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -457,8 +457,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object userName) {
-					team.setUserName((String)userName);
+				public void accept(Team team, Object userNameObject) {
+					team.setUserName((String)userNameObject);
 				}
 
 			});
@@ -477,8 +477,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object createDate) {
-					team.setCreateDate((Date)createDate);
+				public void accept(Team team, Object createDateObject) {
+					team.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -497,8 +497,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object modifiedDate) {
-					team.setModifiedDate((Date)modifiedDate);
+				public void accept(Team team, Object modifiedDateObject) {
+					team.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -517,8 +517,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object groupId) {
-					team.setGroupId((Long)groupId);
+				public void accept(Team team, Object groupIdObject) {
+					team.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -537,8 +537,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object name) {
-					team.setName((String)name);
+				public void accept(Team team, Object nameObject) {
+					team.setName((String)nameObject);
 				}
 
 			});
@@ -557,8 +557,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object description) {
-					team.setDescription((String)description);
+				public void accept(Team team, Object descriptionObject) {
+					team.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -577,8 +577,8 @@ public class TeamModelImpl extends BaseModelImpl<Team> implements TeamModel {
 			new BiConsumer<Team, Object>() {
 
 				@Override
-				public void accept(Team team, Object lastPublishDate) {
-					team.setLastPublishDate((Date)lastPublishDate);
+				public void accept(Team team, Object lastPublishDateObject) {
+					team.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

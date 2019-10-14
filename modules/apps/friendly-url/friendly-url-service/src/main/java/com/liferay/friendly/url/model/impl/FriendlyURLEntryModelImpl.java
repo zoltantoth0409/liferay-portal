@@ -286,9 +286,10 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object mvccVersion) {
+					FriendlyURLEntry friendlyURLEntry,
+					Object mvccVersionObject) {
 
-					friendlyURLEntry.setMvccVersion((Long)mvccVersion);
+					friendlyURLEntry.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -308,9 +309,9 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object uuid) {
+					FriendlyURLEntry friendlyURLEntry, Object uuidObject) {
 
-					friendlyURLEntry.setUuid((String)uuid);
+					friendlyURLEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -331,10 +332,10 @@ public class FriendlyURLEntryModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntry friendlyURLEntry,
-					Object defaultLanguageId) {
+					Object defaultLanguageIdObject) {
 
 					friendlyURLEntry.setDefaultLanguageId(
-						(String)defaultLanguageId);
+						(String)defaultLanguageIdObject);
 				}
 
 			});
@@ -355,10 +356,10 @@ public class FriendlyURLEntryModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntry friendlyURLEntry,
-					Object friendlyURLEntryId) {
+					Object friendlyURLEntryIdObject) {
 
 					friendlyURLEntry.setFriendlyURLEntryId(
-						(Long)friendlyURLEntryId);
+						(Long)friendlyURLEntryIdObject);
 				}
 
 			});
@@ -378,9 +379,9 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object groupId) {
+					FriendlyURLEntry friendlyURLEntry, Object groupIdObject) {
 
-					friendlyURLEntry.setGroupId((Long)groupId);
+					friendlyURLEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -400,9 +401,9 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object companyId) {
+					FriendlyURLEntry friendlyURLEntry, Object companyIdObject) {
 
-					friendlyURLEntry.setCompanyId((Long)companyId);
+					friendlyURLEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -422,9 +423,10 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object createDate) {
+					FriendlyURLEntry friendlyURLEntry,
+					Object createDateObject) {
 
-					friendlyURLEntry.setCreateDate((Date)createDate);
+					friendlyURLEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -444,9 +446,10 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object modifiedDate) {
+					FriendlyURLEntry friendlyURLEntry,
+					Object modifiedDateObject) {
 
-					friendlyURLEntry.setModifiedDate((Date)modifiedDate);
+					friendlyURLEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -466,9 +469,10 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object classNameId) {
+					FriendlyURLEntry friendlyURLEntry,
+					Object classNameIdObject) {
 
-					friendlyURLEntry.setClassNameId((Long)classNameId);
+					friendlyURLEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -488,9 +492,9 @@ public class FriendlyURLEntryModelImpl
 
 				@Override
 				public void accept(
-					FriendlyURLEntry friendlyURLEntry, Object classPK) {
+					FriendlyURLEntry friendlyURLEntry, Object classPKObject) {
 
-					friendlyURLEntry.setClassPK((Long)classPK);
+					friendlyURLEntry.setClassPK((Long)classPKObject);
 				}
 
 			});

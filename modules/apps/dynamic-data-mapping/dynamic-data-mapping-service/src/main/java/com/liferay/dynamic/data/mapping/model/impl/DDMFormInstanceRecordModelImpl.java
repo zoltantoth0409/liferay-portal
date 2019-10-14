@@ -362,9 +362,10 @@ public class DDMFormInstanceRecordModelImpl
 
 				@Override
 				public void accept(
-					DDMFormInstanceRecord ddmFormInstanceRecord, Object uuid) {
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object uuidObject) {
 
-					ddmFormInstanceRecord.setUuid((String)uuid);
+					ddmFormInstanceRecord.setUuid((String)uuidObject);
 				}
 
 			});
@@ -387,10 +388,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object formInstanceRecordId) {
+					Object formInstanceRecordIdObject) {
 
 					ddmFormInstanceRecord.setFormInstanceRecordId(
-						(Long)formInstanceRecordId);
+						(Long)formInstanceRecordIdObject);
 				}
 
 			});
@@ -413,9 +414,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object groupId) {
+					Object groupIdObject) {
 
-					ddmFormInstanceRecord.setGroupId((Long)groupId);
+					ddmFormInstanceRecord.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -438,9 +439,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object companyId) {
+					Object companyIdObject) {
 
-					ddmFormInstanceRecord.setCompanyId((Long)companyId);
+					ddmFormInstanceRecord.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -463,9 +464,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object userId) {
+					Object userIdObject) {
 
-					ddmFormInstanceRecord.setUserId((Long)userId);
+					ddmFormInstanceRecord.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -488,9 +489,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object userName) {
+					Object userNameObject) {
 
-					ddmFormInstanceRecord.setUserName((String)userName);
+					ddmFormInstanceRecord.setUserName((String)userNameObject);
 				}
 
 			});
@@ -513,9 +514,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object versionUserId) {
+					Object versionUserIdObject) {
 
-					ddmFormInstanceRecord.setVersionUserId((Long)versionUserId);
+					ddmFormInstanceRecord.setVersionUserId(
+						(Long)versionUserIdObject);
 				}
 
 			});
@@ -538,10 +540,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object versionUserName) {
+					Object versionUserNameObject) {
 
 					ddmFormInstanceRecord.setVersionUserName(
-						(String)versionUserName);
+						(String)versionUserNameObject);
 				}
 
 			});
@@ -564,9 +566,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object createDate) {
+					Object createDateObject) {
 
-					ddmFormInstanceRecord.setCreateDate((Date)createDate);
+					ddmFormInstanceRecord.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -589,9 +591,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					ddmFormInstanceRecord.setModifiedDate((Date)modifiedDate);
+					ddmFormInstanceRecord.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -614,10 +617,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object formInstanceId) {
+					Object formInstanceIdObject) {
 
 					ddmFormInstanceRecord.setFormInstanceId(
-						(Long)formInstanceId);
+						(Long)formInstanceIdObject);
 				}
 
 			});
@@ -640,10 +643,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object formInstanceVersion) {
+					Object formInstanceVersionObject) {
 
 					ddmFormInstanceRecord.setFormInstanceVersion(
-						(String)formInstanceVersion);
+						(String)formInstanceVersionObject);
 				}
 
 			});
@@ -666,9 +669,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object storageId) {
+					Object storageIdObject) {
 
-					ddmFormInstanceRecord.setStorageId((Long)storageId);
+					ddmFormInstanceRecord.setStorageId((Long)storageIdObject);
 				}
 
 			});
@@ -691,9 +694,9 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object version) {
+					Object versionObject) {
 
-					ddmFormInstanceRecord.setVersion((String)version);
+					ddmFormInstanceRecord.setVersion((String)versionObject);
 				}
 
 			});
@@ -716,10 +719,10 @@ public class DDMFormInstanceRecordModelImpl
 				@Override
 				public void accept(
 					DDMFormInstanceRecord ddmFormInstanceRecord,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					ddmFormInstanceRecord.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

@@ -288,11 +288,11 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object oAuth2ApplicationScopeAliasesId) {
+					Object oAuth2ApplicationScopeAliasesIdObject) {
 
 					oAuth2ApplicationScopeAliases.
 						setOAuth2ApplicationScopeAliasesId(
-							(Long)oAuth2ApplicationScopeAliasesId);
+							(Long)oAuth2ApplicationScopeAliasesIdObject);
 				}
 
 			});
@@ -316,9 +316,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object companyId) {
+					Object companyIdObject) {
 
-					oAuth2ApplicationScopeAliases.setCompanyId((Long)companyId);
+					oAuth2ApplicationScopeAliases.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -342,9 +343,9 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object userId) {
+					Object userIdObject) {
 
-					oAuth2ApplicationScopeAliases.setUserId((Long)userId);
+					oAuth2ApplicationScopeAliases.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -368,9 +369,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object userName) {
+					Object userNameObject) {
 
-					oAuth2ApplicationScopeAliases.setUserName((String)userName);
+					oAuth2ApplicationScopeAliases.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -394,10 +396,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object createDate) {
+					Object createDateObject) {
 
 					oAuth2ApplicationScopeAliases.setCreateDate(
-						(Date)createDate);
+						(Date)createDateObject);
 				}
 
 			});
@@ -422,10 +424,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object oAuth2ApplicationId) {
+					Object oAuth2ApplicationIdObject) {
 
 					oAuth2ApplicationScopeAliases.setOAuth2ApplicationId(
-						(Long)oAuth2ApplicationId);
+						(Long)oAuth2ApplicationIdObject);
 				}
 
 			});
@@ -449,10 +451,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object scopeAliases) {
+					Object scopeAliasesObject) {
 
 					oAuth2ApplicationScopeAliases.setScopeAliases(
-						(String)scopeAliases);
+						(String)scopeAliasesObject);
 				}
 
 			});
@@ -476,10 +478,10 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 				@Override
 				public void accept(
 					OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases,
-					Object scopeAliasesHash) {
+					Object scopeAliasesHashObject) {
 
 					oAuth2ApplicationScopeAliases.setScopeAliasesHash(
-						(Long)scopeAliasesHash);
+						(Long)scopeAliasesHashObject);
 				}
 
 			});

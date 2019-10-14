@@ -284,8 +284,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object kaleoTimerId) {
-					kaleoTimer.setKaleoTimerId((Long)kaleoTimerId);
+				public void accept(
+					KaleoTimer kaleoTimer, Object kaleoTimerIdObject) {
+
+					kaleoTimer.setKaleoTimerId((Long)kaleoTimerIdObject);
 				}
 
 			});
@@ -304,8 +306,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object groupId) {
-					kaleoTimer.setGroupId((Long)groupId);
+				public void accept(
+					KaleoTimer kaleoTimer, Object groupIdObject) {
+
+					kaleoTimer.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -324,8 +328,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object companyId) {
-					kaleoTimer.setCompanyId((Long)companyId);
+				public void accept(
+					KaleoTimer kaleoTimer, Object companyIdObject) {
+
+					kaleoTimer.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -344,8 +350,8 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object userId) {
-					kaleoTimer.setUserId((Long)userId);
+				public void accept(KaleoTimer kaleoTimer, Object userIdObject) {
+					kaleoTimer.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -364,8 +370,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object userName) {
-					kaleoTimer.setUserName((String)userName);
+				public void accept(
+					KaleoTimer kaleoTimer, Object userNameObject) {
+
+					kaleoTimer.setUserName((String)userNameObject);
 				}
 
 			});
@@ -384,8 +392,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object createDate) {
-					kaleoTimer.setCreateDate((Date)createDate);
+				public void accept(
+					KaleoTimer kaleoTimer, Object createDateObject) {
+
+					kaleoTimer.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -404,8 +414,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object modifiedDate) {
-					kaleoTimer.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KaleoTimer kaleoTimer, Object modifiedDateObject) {
+
+					kaleoTimer.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -425,9 +437,9 @@ public class KaleoTimerModelImpl
 
 				@Override
 				public void accept(
-					KaleoTimer kaleoTimer, Object kaleoClassName) {
+					KaleoTimer kaleoTimer, Object kaleoClassNameObject) {
 
-					kaleoTimer.setKaleoClassName((String)kaleoClassName);
+					kaleoTimer.setKaleoClassName((String)kaleoClassNameObject);
 				}
 
 			});
@@ -446,8 +458,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object kaleoClassPK) {
-					kaleoTimer.setKaleoClassPK((Long)kaleoClassPK);
+				public void accept(
+					KaleoTimer kaleoTimer, Object kaleoClassPKObject) {
+
+					kaleoTimer.setKaleoClassPK((Long)kaleoClassPKObject);
 				}
 
 			});
@@ -467,10 +481,11 @@ public class KaleoTimerModelImpl
 
 				@Override
 				public void accept(
-					KaleoTimer kaleoTimer, Object kaleoDefinitionVersionId) {
+					KaleoTimer kaleoTimer,
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTimer.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -489,8 +504,8 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object name) {
-					kaleoTimer.setName((String)name);
+				public void accept(KaleoTimer kaleoTimer, Object nameObject) {
+					kaleoTimer.setName((String)nameObject);
 				}
 
 			});
@@ -509,8 +524,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object blocking) {
-					kaleoTimer.setBlocking((Boolean)blocking);
+				public void accept(
+					KaleoTimer kaleoTimer, Object blockingObject) {
+
+					kaleoTimer.setBlocking((Boolean)blockingObject);
 				}
 
 			});
@@ -529,8 +546,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object description) {
-					kaleoTimer.setDescription((String)description);
+				public void accept(
+					KaleoTimer kaleoTimer, Object descriptionObject) {
+
+					kaleoTimer.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -549,8 +568,10 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object duration) {
-					kaleoTimer.setDuration((Double)duration);
+				public void accept(
+					KaleoTimer kaleoTimer, Object durationObject) {
+
+					kaleoTimer.setDuration((Double)durationObject);
 				}
 
 			});
@@ -569,8 +590,8 @@ public class KaleoTimerModelImpl
 			new BiConsumer<KaleoTimer, Object>() {
 
 				@Override
-				public void accept(KaleoTimer kaleoTimer, Object scale) {
-					kaleoTimer.setScale((String)scale);
+				public void accept(KaleoTimer kaleoTimer, Object scaleObject) {
+					kaleoTimer.setScale((String)scaleObject);
 				}
 
 			});
@@ -590,10 +611,10 @@ public class KaleoTimerModelImpl
 
 				@Override
 				public void accept(
-					KaleoTimer kaleoTimer, Object recurrenceDuration) {
+					KaleoTimer kaleoTimer, Object recurrenceDurationObject) {
 
 					kaleoTimer.setRecurrenceDuration(
-						(Double)recurrenceDuration);
+						(Double)recurrenceDurationObject);
 				}
 
 			});
@@ -613,9 +634,10 @@ public class KaleoTimerModelImpl
 
 				@Override
 				public void accept(
-					KaleoTimer kaleoTimer, Object recurrenceScale) {
+					KaleoTimer kaleoTimer, Object recurrenceScaleObject) {
 
-					kaleoTimer.setRecurrenceScale((String)recurrenceScale);
+					kaleoTimer.setRecurrenceScale(
+						(String)recurrenceScaleObject);
 				}
 
 			});

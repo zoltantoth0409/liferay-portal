@@ -295,9 +295,10 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object kaleoTaskFormId) {
+					KaleoTaskForm kaleoTaskForm, Object kaleoTaskFormIdObject) {
 
-					kaleoTaskForm.setKaleoTaskFormId((Long)kaleoTaskFormId);
+					kaleoTaskForm.setKaleoTaskFormId(
+						(Long)kaleoTaskFormIdObject);
 				}
 
 			});
@@ -317,9 +318,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object groupId) {
+					KaleoTaskForm kaleoTaskForm, Object groupIdObject) {
 
-					kaleoTaskForm.setGroupId((Long)groupId);
+					kaleoTaskForm.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -339,9 +340,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object companyId) {
+					KaleoTaskForm kaleoTaskForm, Object companyIdObject) {
 
-					kaleoTaskForm.setCompanyId((Long)companyId);
+					kaleoTaskForm.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -360,8 +361,10 @@ public class KaleoTaskFormModelImpl
 			new BiConsumer<KaleoTaskForm, Object>() {
 
 				@Override
-				public void accept(KaleoTaskForm kaleoTaskForm, Object userId) {
-					kaleoTaskForm.setUserId((Long)userId);
+				public void accept(
+					KaleoTaskForm kaleoTaskForm, Object userIdObject) {
+
+					kaleoTaskForm.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -381,9 +384,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object userName) {
+					KaleoTaskForm kaleoTaskForm, Object userNameObject) {
 
-					kaleoTaskForm.setUserName((String)userName);
+					kaleoTaskForm.setUserName((String)userNameObject);
 				}
 
 			});
@@ -403,9 +406,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object createDate) {
+					KaleoTaskForm kaleoTaskForm, Object createDateObject) {
 
-					kaleoTaskForm.setCreateDate((Date)createDate);
+					kaleoTaskForm.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -425,9 +428,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object modifiedDate) {
+					KaleoTaskForm kaleoTaskForm, Object modifiedDateObject) {
 
-					kaleoTaskForm.setModifiedDate((Date)modifiedDate);
+					kaleoTaskForm.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -448,10 +451,10 @@ public class KaleoTaskFormModelImpl
 				@Override
 				public void accept(
 					KaleoTaskForm kaleoTaskForm,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTaskForm.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -471,9 +474,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object kaleoNodeId) {
+					KaleoTaskForm kaleoTaskForm, Object kaleoNodeIdObject) {
 
-					kaleoTaskForm.setKaleoNodeId((Long)kaleoNodeId);
+					kaleoTaskForm.setKaleoNodeId((Long)kaleoNodeIdObject);
 				}
 
 			});
@@ -493,9 +496,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object kaleoTaskId) {
+					KaleoTaskForm kaleoTaskForm, Object kaleoTaskIdObject) {
 
-					kaleoTaskForm.setKaleoTaskId((Long)kaleoTaskId);
+					kaleoTaskForm.setKaleoTaskId((Long)kaleoTaskIdObject);
 				}
 
 			});
@@ -515,9 +518,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object kaleoTaskName) {
+					KaleoTaskForm kaleoTaskForm, Object kaleoTaskNameObject) {
 
-					kaleoTaskForm.setKaleoTaskName((String)kaleoTaskName);
+					kaleoTaskForm.setKaleoTaskName((String)kaleoTaskNameObject);
 				}
 
 			});
@@ -536,8 +539,10 @@ public class KaleoTaskFormModelImpl
 			new BiConsumer<KaleoTaskForm, Object>() {
 
 				@Override
-				public void accept(KaleoTaskForm kaleoTaskForm, Object name) {
-					kaleoTaskForm.setName((String)name);
+				public void accept(
+					KaleoTaskForm kaleoTaskForm, Object nameObject) {
+
+					kaleoTaskForm.setName((String)nameObject);
 				}
 
 			});
@@ -557,9 +562,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object description) {
+					KaleoTaskForm kaleoTaskForm, Object descriptionObject) {
 
-					kaleoTaskForm.setDescription((String)description);
+					kaleoTaskForm.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -579,9 +584,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object formCompanyId) {
+					KaleoTaskForm kaleoTaskForm, Object formCompanyIdObject) {
 
-					kaleoTaskForm.setFormCompanyId((Long)formCompanyId);
+					kaleoTaskForm.setFormCompanyId((Long)formCompanyIdObject);
 				}
 
 			});
@@ -601,9 +606,10 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object formDefinition) {
+					KaleoTaskForm kaleoTaskForm, Object formDefinitionObject) {
 
-					kaleoTaskForm.setFormDefinition((String)formDefinition);
+					kaleoTaskForm.setFormDefinition(
+						(String)formDefinitionObject);
 				}
 
 			});
@@ -623,9 +629,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object formGroupId) {
+					KaleoTaskForm kaleoTaskForm, Object formGroupIdObject) {
 
-					kaleoTaskForm.setFormGroupId((Long)formGroupId);
+					kaleoTaskForm.setFormGroupId((Long)formGroupIdObject);
 				}
 
 			});
@@ -644,8 +650,10 @@ public class KaleoTaskFormModelImpl
 			new BiConsumer<KaleoTaskForm, Object>() {
 
 				@Override
-				public void accept(KaleoTaskForm kaleoTaskForm, Object formId) {
-					kaleoTaskForm.setFormId((Long)formId);
+				public void accept(
+					KaleoTaskForm kaleoTaskForm, Object formIdObject) {
+
+					kaleoTaskForm.setFormId((Long)formIdObject);
 				}
 
 			});
@@ -665,9 +673,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object formUuid) {
+					KaleoTaskForm kaleoTaskForm, Object formUuidObject) {
 
-					kaleoTaskForm.setFormUuid((String)formUuid);
+					kaleoTaskForm.setFormUuid((String)formUuidObject);
 				}
 
 			});
@@ -687,9 +695,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object metadata) {
+					KaleoTaskForm kaleoTaskForm, Object metadataObject) {
 
-					kaleoTaskForm.setMetadata((String)metadata);
+					kaleoTaskForm.setMetadata((String)metadataObject);
 				}
 
 			});
@@ -709,9 +717,9 @@ public class KaleoTaskFormModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskForm kaleoTaskForm, Object priority) {
+					KaleoTaskForm kaleoTaskForm, Object priorityObject) {
 
-					kaleoTaskForm.setPriority((Integer)priority);
+					kaleoTaskForm.setPriority((Integer)priorityObject);
 				}
 
 			});

@@ -285,8 +285,8 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object uuid) {
-					ddmContent.setUuid((String)uuid);
+				public void accept(DDMContent ddmContent, Object uuidObject) {
+					ddmContent.setUuid((String)uuidObject);
 				}
 
 			});
@@ -305,8 +305,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object contentId) {
-					ddmContent.setContentId((Long)contentId);
+				public void accept(
+					DDMContent ddmContent, Object contentIdObject) {
+
+					ddmContent.setContentId((Long)contentIdObject);
 				}
 
 			});
@@ -325,8 +327,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object groupId) {
-					ddmContent.setGroupId((Long)groupId);
+				public void accept(
+					DDMContent ddmContent, Object groupIdObject) {
+
+					ddmContent.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -345,8 +349,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object companyId) {
-					ddmContent.setCompanyId((Long)companyId);
+				public void accept(
+					DDMContent ddmContent, Object companyIdObject) {
+
+					ddmContent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -365,8 +371,8 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object userId) {
-					ddmContent.setUserId((Long)userId);
+				public void accept(DDMContent ddmContent, Object userIdObject) {
+					ddmContent.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -385,8 +391,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object userName) {
-					ddmContent.setUserName((String)userName);
+				public void accept(
+					DDMContent ddmContent, Object userNameObject) {
+
+					ddmContent.setUserName((String)userNameObject);
 				}
 
 			});
@@ -405,8 +413,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object createDate) {
-					ddmContent.setCreateDate((Date)createDate);
+				public void accept(
+					DDMContent ddmContent, Object createDateObject) {
+
+					ddmContent.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -425,8 +435,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object modifiedDate) {
-					ddmContent.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					DDMContent ddmContent, Object modifiedDateObject) {
+
+					ddmContent.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -445,8 +457,8 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object name) {
-					ddmContent.setName((String)name);
+				public void accept(DDMContent ddmContent, Object nameObject) {
+					ddmContent.setName((String)nameObject);
 				}
 
 			});
@@ -465,8 +477,10 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object description) {
-					ddmContent.setDescription((String)description);
+				public void accept(
+					DDMContent ddmContent, Object descriptionObject) {
+
+					ddmContent.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -485,8 +499,8 @@ public class DDMContentModelImpl
 			new BiConsumer<DDMContent, Object>() {
 
 				@Override
-				public void accept(DDMContent ddmContent, Object data) {
-					ddmContent.setData((String)data);
+				public void accept(DDMContent ddmContent, Object dataObject) {
+					ddmContent.setData((String)dataObject);
 				}
 
 			});

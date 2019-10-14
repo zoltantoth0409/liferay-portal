@@ -270,9 +270,10 @@ public class PasswordPolicyRelModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicyRel passwordPolicyRel, Object mvccVersion) {
+					PasswordPolicyRel passwordPolicyRel,
+					Object mvccVersionObject) {
 
-					passwordPolicyRel.setMvccVersion((Long)mvccVersion);
+					passwordPolicyRel.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -293,10 +294,10 @@ public class PasswordPolicyRelModelImpl
 				@Override
 				public void accept(
 					PasswordPolicyRel passwordPolicyRel,
-					Object passwordPolicyRelId) {
+					Object passwordPolicyRelIdObject) {
 
 					passwordPolicyRel.setPasswordPolicyRelId(
-						(Long)passwordPolicyRelId);
+						(Long)passwordPolicyRelIdObject);
 				}
 
 			});
@@ -316,9 +317,10 @@ public class PasswordPolicyRelModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicyRel passwordPolicyRel, Object companyId) {
+					PasswordPolicyRel passwordPolicyRel,
+					Object companyIdObject) {
 
-					passwordPolicyRel.setCompanyId((Long)companyId);
+					passwordPolicyRel.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -339,10 +341,10 @@ public class PasswordPolicyRelModelImpl
 				@Override
 				public void accept(
 					PasswordPolicyRel passwordPolicyRel,
-					Object passwordPolicyId) {
+					Object passwordPolicyIdObject) {
 
 					passwordPolicyRel.setPasswordPolicyId(
-						(Long)passwordPolicyId);
+						(Long)passwordPolicyIdObject);
 				}
 
 			});
@@ -362,9 +364,10 @@ public class PasswordPolicyRelModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicyRel passwordPolicyRel, Object classNameId) {
+					PasswordPolicyRel passwordPolicyRel,
+					Object classNameIdObject) {
 
-					passwordPolicyRel.setClassNameId((Long)classNameId);
+					passwordPolicyRel.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -384,9 +387,9 @@ public class PasswordPolicyRelModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicyRel passwordPolicyRel, Object classPK) {
+					PasswordPolicyRel passwordPolicyRel, Object classPKObject) {
 
-					passwordPolicyRel.setClassPK((Long)classPK);
+					passwordPolicyRel.setClassPK((Long)classPKObject);
 				}
 
 			});

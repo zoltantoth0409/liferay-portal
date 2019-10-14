@@ -270,8 +270,10 @@ public class SocialRelationModelImpl
 			new BiConsumer<SocialRelation, Object>() {
 
 				@Override
-				public void accept(SocialRelation socialRelation, Object uuid) {
-					socialRelation.setUuid((String)uuid);
+				public void accept(
+					SocialRelation socialRelation, Object uuidObject) {
+
+					socialRelation.setUuid((String)uuidObject);
 				}
 
 			});
@@ -291,9 +293,9 @@ public class SocialRelationModelImpl
 
 				@Override
 				public void accept(
-					SocialRelation socialRelation, Object relationId) {
+					SocialRelation socialRelation, Object relationIdObject) {
 
-					socialRelation.setRelationId((Long)relationId);
+					socialRelation.setRelationId((Long)relationIdObject);
 				}
 
 			});
@@ -313,9 +315,9 @@ public class SocialRelationModelImpl
 
 				@Override
 				public void accept(
-					SocialRelation socialRelation, Object companyId) {
+					SocialRelation socialRelation, Object companyIdObject) {
 
-					socialRelation.setCompanyId((Long)companyId);
+					socialRelation.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -335,9 +337,9 @@ public class SocialRelationModelImpl
 
 				@Override
 				public void accept(
-					SocialRelation socialRelation, Object createDate) {
+					SocialRelation socialRelation, Object createDateObject) {
 
-					socialRelation.setCreateDate((Long)createDate);
+					socialRelation.setCreateDate((Long)createDateObject);
 				}
 
 			});
@@ -357,9 +359,9 @@ public class SocialRelationModelImpl
 
 				@Override
 				public void accept(
-					SocialRelation socialRelation, Object userId1) {
+					SocialRelation socialRelation, Object userId1Object) {
 
-					socialRelation.setUserId1((Long)userId1);
+					socialRelation.setUserId1((Long)userId1Object);
 				}
 
 			});
@@ -379,9 +381,9 @@ public class SocialRelationModelImpl
 
 				@Override
 				public void accept(
-					SocialRelation socialRelation, Object userId2) {
+					SocialRelation socialRelation, Object userId2Object) {
 
-					socialRelation.setUserId2((Long)userId2);
+					socialRelation.setUserId2((Long)userId2Object);
 				}
 
 			});
@@ -400,8 +402,10 @@ public class SocialRelationModelImpl
 			new BiConsumer<SocialRelation, Object>() {
 
 				@Override
-				public void accept(SocialRelation socialRelation, Object type) {
-					socialRelation.setType((Integer)type);
+				public void accept(
+					SocialRelation socialRelation, Object typeObject) {
+
+					socialRelation.setType((Integer)typeObject);
 				}
 
 			});

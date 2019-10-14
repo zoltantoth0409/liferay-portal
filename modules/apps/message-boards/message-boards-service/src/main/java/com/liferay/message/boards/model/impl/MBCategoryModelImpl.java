@@ -363,8 +363,8 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object uuid) {
-					mbCategory.setUuid((String)uuid);
+				public void accept(MBCategory mbCategory, Object uuidObject) {
+					mbCategory.setUuid((String)uuidObject);
 				}
 
 			});
@@ -383,8 +383,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object categoryId) {
-					mbCategory.setCategoryId((Long)categoryId);
+				public void accept(
+					MBCategory mbCategory, Object categoryIdObject) {
+
+					mbCategory.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -403,8 +405,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object groupId) {
-					mbCategory.setGroupId((Long)groupId);
+				public void accept(
+					MBCategory mbCategory, Object groupIdObject) {
+
+					mbCategory.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -423,8 +427,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object companyId) {
-					mbCategory.setCompanyId((Long)companyId);
+				public void accept(
+					MBCategory mbCategory, Object companyIdObject) {
+
+					mbCategory.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -443,8 +449,8 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object userId) {
-					mbCategory.setUserId((Long)userId);
+				public void accept(MBCategory mbCategory, Object userIdObject) {
+					mbCategory.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -463,8 +469,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object userName) {
-					mbCategory.setUserName((String)userName);
+				public void accept(
+					MBCategory mbCategory, Object userNameObject) {
+
+					mbCategory.setUserName((String)userNameObject);
 				}
 
 			});
@@ -483,8 +491,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object createDate) {
-					mbCategory.setCreateDate((Date)createDate);
+				public void accept(
+					MBCategory mbCategory, Object createDateObject) {
+
+					mbCategory.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -503,8 +513,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object modifiedDate) {
-					mbCategory.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					MBCategory mbCategory, Object modifiedDateObject) {
+
+					mbCategory.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -524,9 +536,10 @@ public class MBCategoryModelImpl
 
 				@Override
 				public void accept(
-					MBCategory mbCategory, Object parentCategoryId) {
+					MBCategory mbCategory, Object parentCategoryIdObject) {
 
-					mbCategory.setParentCategoryId((Long)parentCategoryId);
+					mbCategory.setParentCategoryId(
+						(Long)parentCategoryIdObject);
 				}
 
 			});
@@ -545,8 +558,8 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object name) {
-					mbCategory.setName((String)name);
+				public void accept(MBCategory mbCategory, Object nameObject) {
+					mbCategory.setName((String)nameObject);
 				}
 
 			});
@@ -565,8 +578,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object description) {
-					mbCategory.setDescription((String)description);
+				public void accept(
+					MBCategory mbCategory, Object descriptionObject) {
+
+					mbCategory.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -585,8 +600,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object displayStyle) {
-					mbCategory.setDisplayStyle((String)displayStyle);
+				public void accept(
+					MBCategory mbCategory, Object displayStyleObject) {
+
+					mbCategory.setDisplayStyle((String)displayStyleObject);
 				}
 
 			});
@@ -605,8 +622,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object threadCount) {
-					mbCategory.setThreadCount((Integer)threadCount);
+				public void accept(
+					MBCategory mbCategory, Object threadCountObject) {
+
+					mbCategory.setThreadCount((Integer)threadCountObject);
 				}
 
 			});
@@ -625,8 +644,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object messageCount) {
-					mbCategory.setMessageCount((Integer)messageCount);
+				public void accept(
+					MBCategory mbCategory, Object messageCountObject) {
+
+					mbCategory.setMessageCount((Integer)messageCountObject);
 				}
 
 			});
@@ -645,8 +666,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object lastPostDate) {
-					mbCategory.setLastPostDate((Date)lastPostDate);
+				public void accept(
+					MBCategory mbCategory, Object lastPostDateObject) {
+
+					mbCategory.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});
@@ -666,9 +689,9 @@ public class MBCategoryModelImpl
 
 				@Override
 				public void accept(
-					MBCategory mbCategory, Object lastPublishDate) {
+					MBCategory mbCategory, Object lastPublishDateObject) {
 
-					mbCategory.setLastPublishDate((Date)lastPublishDate);
+					mbCategory.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -687,8 +710,8 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object status) {
-					mbCategory.setStatus((Integer)status);
+				public void accept(MBCategory mbCategory, Object statusObject) {
+					mbCategory.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -708,9 +731,9 @@ public class MBCategoryModelImpl
 
 				@Override
 				public void accept(
-					MBCategory mbCategory, Object statusByUserId) {
+					MBCategory mbCategory, Object statusByUserIdObject) {
 
-					mbCategory.setStatusByUserId((Long)statusByUserId);
+					mbCategory.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -730,9 +753,10 @@ public class MBCategoryModelImpl
 
 				@Override
 				public void accept(
-					MBCategory mbCategory, Object statusByUserName) {
+					MBCategory mbCategory, Object statusByUserNameObject) {
 
-					mbCategory.setStatusByUserName((String)statusByUserName);
+					mbCategory.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -751,8 +775,10 @@ public class MBCategoryModelImpl
 			new BiConsumer<MBCategory, Object>() {
 
 				@Override
-				public void accept(MBCategory mbCategory, Object statusDate) {
-					mbCategory.setStatusDate((Date)statusDate);
+				public void accept(
+					MBCategory mbCategory, Object statusDateObject) {
+
+					mbCategory.setStatusDate((Date)statusDateObject);
 				}
 
 			});

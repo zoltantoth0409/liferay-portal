@@ -380,8 +380,10 @@ public class AssetCategoryModelImpl
 			new BiConsumer<AssetCategory, Object>() {
 
 				@Override
-				public void accept(AssetCategory assetCategory, Object uuid) {
-					assetCategory.setUuid((String)uuid);
+				public void accept(
+					AssetCategory assetCategory, Object uuidObject) {
+
+					assetCategory.setUuid((String)uuidObject);
 				}
 
 			});
@@ -401,10 +403,11 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object externalReferenceCode) {
+					AssetCategory assetCategory,
+					Object externalReferenceCodeObject) {
 
 					assetCategory.setExternalReferenceCode(
-						(String)externalReferenceCode);
+						(String)externalReferenceCodeObject);
 				}
 
 			});
@@ -424,9 +427,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object categoryId) {
+					AssetCategory assetCategory, Object categoryIdObject) {
 
-					assetCategory.setCategoryId((Long)categoryId);
+					assetCategory.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -446,9 +449,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object groupId) {
+					AssetCategory assetCategory, Object groupIdObject) {
 
-					assetCategory.setGroupId((Long)groupId);
+					assetCategory.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -468,9 +471,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object companyId) {
+					AssetCategory assetCategory, Object companyIdObject) {
 
-					assetCategory.setCompanyId((Long)companyId);
+					assetCategory.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -489,8 +492,10 @@ public class AssetCategoryModelImpl
 			new BiConsumer<AssetCategory, Object>() {
 
 				@Override
-				public void accept(AssetCategory assetCategory, Object userId) {
-					assetCategory.setUserId((Long)userId);
+				public void accept(
+					AssetCategory assetCategory, Object userIdObject) {
+
+					assetCategory.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -510,9 +515,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object userName) {
+					AssetCategory assetCategory, Object userNameObject) {
 
-					assetCategory.setUserName((String)userName);
+					assetCategory.setUserName((String)userNameObject);
 				}
 
 			});
@@ -532,9 +537,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object createDate) {
+					AssetCategory assetCategory, Object createDateObject) {
 
-					assetCategory.setCreateDate((Date)createDate);
+					assetCategory.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -554,9 +559,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object modifiedDate) {
+					AssetCategory assetCategory, Object modifiedDateObject) {
 
-					assetCategory.setModifiedDate((Date)modifiedDate);
+					assetCategory.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -576,9 +581,11 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object parentCategoryId) {
+					AssetCategory assetCategory,
+					Object parentCategoryIdObject) {
 
-					assetCategory.setParentCategoryId((Long)parentCategoryId);
+					assetCategory.setParentCategoryId(
+						(Long)parentCategoryIdObject);
 				}
 
 			});
@@ -598,9 +605,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object leftCategoryId) {
+					AssetCategory assetCategory, Object leftCategoryIdObject) {
 
-					assetCategory.setLeftCategoryId((Long)leftCategoryId);
+					assetCategory.setLeftCategoryId((Long)leftCategoryIdObject);
 				}
 
 			});
@@ -620,9 +627,10 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object rightCategoryId) {
+					AssetCategory assetCategory, Object rightCategoryIdObject) {
 
-					assetCategory.setRightCategoryId((Long)rightCategoryId);
+					assetCategory.setRightCategoryId(
+						(Long)rightCategoryIdObject);
 				}
 
 			});
@@ -641,8 +649,10 @@ public class AssetCategoryModelImpl
 			new BiConsumer<AssetCategory, Object>() {
 
 				@Override
-				public void accept(AssetCategory assetCategory, Object name) {
-					assetCategory.setName((String)name);
+				public void accept(
+					AssetCategory assetCategory, Object nameObject) {
+
+					assetCategory.setName((String)nameObject);
 				}
 
 			});
@@ -661,8 +671,10 @@ public class AssetCategoryModelImpl
 			new BiConsumer<AssetCategory, Object>() {
 
 				@Override
-				public void accept(AssetCategory assetCategory, Object title) {
-					assetCategory.setTitle((String)title);
+				public void accept(
+					AssetCategory assetCategory, Object titleObject) {
+
+					assetCategory.setTitle((String)titleObject);
 				}
 
 			});
@@ -682,9 +694,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object description) {
+					AssetCategory assetCategory, Object descriptionObject) {
 
-					assetCategory.setDescription((String)description);
+					assetCategory.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -704,9 +716,9 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object vocabularyId) {
+					AssetCategory assetCategory, Object vocabularyIdObject) {
 
-					assetCategory.setVocabularyId((Long)vocabularyId);
+					assetCategory.setVocabularyId((Long)vocabularyIdObject);
 				}
 
 			});
@@ -726,9 +738,10 @@ public class AssetCategoryModelImpl
 
 				@Override
 				public void accept(
-					AssetCategory assetCategory, Object lastPublishDate) {
+					AssetCategory assetCategory, Object lastPublishDateObject) {
 
-					assetCategory.setLastPublishDate((Date)lastPublishDate);
+					assetCategory.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

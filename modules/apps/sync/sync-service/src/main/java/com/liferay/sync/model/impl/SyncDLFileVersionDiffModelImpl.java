@@ -281,10 +281,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object syncDLFileVersionDiffId) {
+					Object syncDLFileVersionDiffIdObject) {
 
 					syncDLFileVersionDiff.setSyncDLFileVersionDiffId(
-						(Long)syncDLFileVersionDiffId);
+						(Long)syncDLFileVersionDiffIdObject);
 				}
 
 			});
@@ -307,9 +307,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object fileEntryId) {
+					Object fileEntryIdObject) {
 
-					syncDLFileVersionDiff.setFileEntryId((Long)fileEntryId);
+					syncDLFileVersionDiff.setFileEntryId(
+						(Long)fileEntryIdObject);
 				}
 
 			});
@@ -332,10 +333,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object sourceFileVersionId) {
+					Object sourceFileVersionIdObject) {
 
 					syncDLFileVersionDiff.setSourceFileVersionId(
-						(Long)sourceFileVersionId);
+						(Long)sourceFileVersionIdObject);
 				}
 
 			});
@@ -358,10 +359,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object targetFileVersionId) {
+					Object targetFileVersionIdObject) {
 
 					syncDLFileVersionDiff.setTargetFileVersionId(
-						(Long)targetFileVersionId);
+						(Long)targetFileVersionIdObject);
 				}
 
 			});
@@ -384,10 +385,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object dataFileEntryId) {
+					Object dataFileEntryIdObject) {
 
 					syncDLFileVersionDiff.setDataFileEntryId(
-						(Long)dataFileEntryId);
+						(Long)dataFileEntryIdObject);
 				}
 
 			});
@@ -409,9 +410,10 @@ public class SyncDLFileVersionDiffModelImpl
 
 				@Override
 				public void accept(
-					SyncDLFileVersionDiff syncDLFileVersionDiff, Object size) {
+					SyncDLFileVersionDiff syncDLFileVersionDiff,
+					Object sizeObject) {
 
-					syncDLFileVersionDiff.setSize((Long)size);
+					syncDLFileVersionDiff.setSize((Long)sizeObject);
 				}
 
 			});
@@ -434,10 +436,10 @@ public class SyncDLFileVersionDiffModelImpl
 				@Override
 				public void accept(
 					SyncDLFileVersionDiff syncDLFileVersionDiff,
-					Object expirationDate) {
+					Object expirationDateObject) {
 
 					syncDLFileVersionDiff.setExpirationDate(
-						(Date)expirationDate);
+						(Date)expirationDateObject);
 				}
 
 			});

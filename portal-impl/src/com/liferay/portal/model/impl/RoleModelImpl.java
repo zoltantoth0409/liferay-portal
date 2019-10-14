@@ -377,8 +377,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object mvccVersion) {
-					role.setMvccVersion((Long)mvccVersion);
+				public void accept(Role role, Object mvccVersionObject) {
+					role.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -397,8 +397,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object uuid) {
-					role.setUuid((String)uuid);
+				public void accept(Role role, Object uuidObject) {
+					role.setUuid((String)uuidObject);
 				}
 
 			});
@@ -417,8 +417,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object roleId) {
-					role.setRoleId((Long)roleId);
+				public void accept(Role role, Object roleIdObject) {
+					role.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -437,8 +437,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object companyId) {
-					role.setCompanyId((Long)companyId);
+				public void accept(Role role, Object companyIdObject) {
+					role.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -457,8 +457,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object userId) {
-					role.setUserId((Long)userId);
+				public void accept(Role role, Object userIdObject) {
+					role.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -477,8 +477,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object userName) {
-					role.setUserName((String)userName);
+				public void accept(Role role, Object userNameObject) {
+					role.setUserName((String)userNameObject);
 				}
 
 			});
@@ -497,8 +497,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object createDate) {
-					role.setCreateDate((Date)createDate);
+				public void accept(Role role, Object createDateObject) {
+					role.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -517,8 +517,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object modifiedDate) {
-					role.setModifiedDate((Date)modifiedDate);
+				public void accept(Role role, Object modifiedDateObject) {
+					role.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -537,8 +537,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object classNameId) {
-					role.setClassNameId((Long)classNameId);
+				public void accept(Role role, Object classNameIdObject) {
+					role.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -557,8 +557,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object classPK) {
-					role.setClassPK((Long)classPK);
+				public void accept(Role role, Object classPKObject) {
+					role.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -577,8 +577,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object name) {
-					role.setName((String)name);
+				public void accept(Role role, Object nameObject) {
+					role.setName((String)nameObject);
 				}
 
 			});
@@ -597,8 +597,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object title) {
-					role.setTitle((String)title);
+				public void accept(Role role, Object titleObject) {
+					role.setTitle((String)titleObject);
 				}
 
 			});
@@ -617,8 +617,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object description) {
-					role.setDescription((String)description);
+				public void accept(Role role, Object descriptionObject) {
+					role.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -637,8 +637,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object type) {
-					role.setType((Integer)type);
+				public void accept(Role role, Object typeObject) {
+					role.setType((Integer)typeObject);
 				}
 
 			});
@@ -657,8 +657,8 @@ public class RoleModelImpl extends BaseModelImpl<Role> implements RoleModel {
 			new BiConsumer<Role, Object>() {
 
 				@Override
-				public void accept(Role role, Object subtype) {
-					role.setSubtype((String)subtype);
+				public void accept(Role role, Object subtypeObject) {
+					role.setSubtype((String)subtypeObject);
 				}
 
 			});

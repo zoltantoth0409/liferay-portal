@@ -341,8 +341,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object uuid) {
-					kbFolder.setUuid((String)uuid);
+				public void accept(KBFolder kbFolder, Object uuidObject) {
+					kbFolder.setUuid((String)uuidObject);
 				}
 
 			});
@@ -361,8 +361,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object kbFolderId) {
-					kbFolder.setKbFolderId((Long)kbFolderId);
+				public void accept(KBFolder kbFolder, Object kbFolderIdObject) {
+					kbFolder.setKbFolderId((Long)kbFolderIdObject);
 				}
 
 			});
@@ -381,8 +381,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object groupId) {
-					kbFolder.setGroupId((Long)groupId);
+				public void accept(KBFolder kbFolder, Object groupIdObject) {
+					kbFolder.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -401,8 +401,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object companyId) {
-					kbFolder.setCompanyId((Long)companyId);
+				public void accept(KBFolder kbFolder, Object companyIdObject) {
+					kbFolder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -421,8 +421,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object userId) {
-					kbFolder.setUserId((Long)userId);
+				public void accept(KBFolder kbFolder, Object userIdObject) {
+					kbFolder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -441,8 +441,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object userName) {
-					kbFolder.setUserName((String)userName);
+				public void accept(KBFolder kbFolder, Object userNameObject) {
+					kbFolder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -461,8 +461,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object createDate) {
-					kbFolder.setCreateDate((Date)createDate);
+				public void accept(KBFolder kbFolder, Object createDateObject) {
+					kbFolder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -481,8 +481,10 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object modifiedDate) {
-					kbFolder.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KBFolder kbFolder, Object modifiedDateObject) {
+
+					kbFolder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -501,8 +503,10 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object parentKBFolderId) {
-					kbFolder.setParentKBFolderId((Long)parentKBFolderId);
+				public void accept(
+					KBFolder kbFolder, Object parentKBFolderIdObject) {
+
+					kbFolder.setParentKBFolderId((Long)parentKBFolderIdObject);
 				}
 
 			});
@@ -521,8 +525,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object name) {
-					kbFolder.setName((String)name);
+				public void accept(KBFolder kbFolder, Object nameObject) {
+					kbFolder.setName((String)nameObject);
 				}
 
 			});
@@ -541,8 +545,8 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object urlTitle) {
-					kbFolder.setUrlTitle((String)urlTitle);
+				public void accept(KBFolder kbFolder, Object urlTitleObject) {
+					kbFolder.setUrlTitle((String)urlTitleObject);
 				}
 
 			});
@@ -561,8 +565,10 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object description) {
-					kbFolder.setDescription((String)description);
+				public void accept(
+					KBFolder kbFolder, Object descriptionObject) {
+
+					kbFolder.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -581,8 +587,10 @@ public class KBFolderModelImpl
 			new BiConsumer<KBFolder, Object>() {
 
 				@Override
-				public void accept(KBFolder kbFolder, Object lastPublishDate) {
-					kbFolder.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					KBFolder kbFolder, Object lastPublishDateObject) {
+
+					kbFolder.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

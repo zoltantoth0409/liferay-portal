@@ -424,8 +424,10 @@ public class JournalArticleModelImpl
 			new BiConsumer<JournalArticle, Object>() {
 
 				@Override
-				public void accept(JournalArticle journalArticle, Object uuid) {
-					journalArticle.setUuid((String)uuid);
+				public void accept(
+					JournalArticle journalArticle, Object uuidObject) {
+
+					journalArticle.setUuid((String)uuidObject);
 				}
 
 			});
@@ -444,8 +446,10 @@ public class JournalArticleModelImpl
 			new BiConsumer<JournalArticle, Object>() {
 
 				@Override
-				public void accept(JournalArticle journalArticle, Object id) {
-					journalArticle.setId((Long)id);
+				public void accept(
+					JournalArticle journalArticle, Object idObject) {
+
+					journalArticle.setId((Long)idObject);
 				}
 
 			});
@@ -465,9 +469,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object resourcePrimKey) {
+					JournalArticle journalArticle,
+					Object resourcePrimKeyObject) {
 
-					journalArticle.setResourcePrimKey((Long)resourcePrimKey);
+					journalArticle.setResourcePrimKey(
+						(Long)resourcePrimKeyObject);
 				}
 
 			});
@@ -487,9 +493,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object groupId) {
+					JournalArticle journalArticle, Object groupIdObject) {
 
-					journalArticle.setGroupId((Long)groupId);
+					journalArticle.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -509,9 +515,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object companyId) {
+					JournalArticle journalArticle, Object companyIdObject) {
 
-					journalArticle.setCompanyId((Long)companyId);
+					journalArticle.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -531,9 +537,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object userId) {
+					JournalArticle journalArticle, Object userIdObject) {
 
-					journalArticle.setUserId((Long)userId);
+					journalArticle.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -553,9 +559,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object userName) {
+					JournalArticle journalArticle, Object userNameObject) {
 
-					journalArticle.setUserName((String)userName);
+					journalArticle.setUserName((String)userNameObject);
 				}
 
 			});
@@ -575,9 +581,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object createDate) {
+					JournalArticle journalArticle, Object createDateObject) {
 
-					journalArticle.setCreateDate((Date)createDate);
+					journalArticle.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -597,9 +603,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object modifiedDate) {
+					JournalArticle journalArticle, Object modifiedDateObject) {
 
-					journalArticle.setModifiedDate((Date)modifiedDate);
+					journalArticle.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -619,9 +625,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object folderId) {
+					JournalArticle journalArticle, Object folderIdObject) {
 
-					journalArticle.setFolderId((Long)folderId);
+					journalArticle.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -641,9 +647,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object classNameId) {
+					JournalArticle journalArticle, Object classNameIdObject) {
 
-					journalArticle.setClassNameId((Long)classNameId);
+					journalArticle.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -663,9 +669,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object classPK) {
+					JournalArticle journalArticle, Object classPKObject) {
 
-					journalArticle.setClassPK((Long)classPK);
+					journalArticle.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -685,9 +691,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object treePath) {
+					JournalArticle journalArticle, Object treePathObject) {
 
-					journalArticle.setTreePath((String)treePath);
+					journalArticle.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -707,9 +713,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object articleId) {
+					JournalArticle journalArticle, Object articleIdObject) {
 
-					journalArticle.setArticleId((String)articleId);
+					journalArticle.setArticleId((String)articleIdObject);
 				}
 
 			});
@@ -729,9 +735,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object version) {
+					JournalArticle journalArticle, Object versionObject) {
 
-					journalArticle.setVersion((Double)version);
+					journalArticle.setVersion((Double)versionObject);
 				}
 
 			});
@@ -751,9 +757,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object urlTitle) {
+					JournalArticle journalArticle, Object urlTitleObject) {
 
-					journalArticle.setUrlTitle((String)urlTitle);
+					journalArticle.setUrlTitle((String)urlTitleObject);
 				}
 
 			});
@@ -773,9 +779,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object content) {
+					JournalArticle journalArticle, Object contentObject) {
 
-					journalArticle.setContent((String)content);
+					journalArticle.setContent((String)contentObject);
 				}
 
 			});
@@ -795,9 +801,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object DDMStructureKey) {
+					JournalArticle journalArticle,
+					Object DDMStructureKeyObject) {
 
-					journalArticle.setDDMStructureKey((String)DDMStructureKey);
+					journalArticle.setDDMStructureKey(
+						(String)DDMStructureKeyObject);
 				}
 
 			});
@@ -817,9 +825,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object DDMTemplateKey) {
+					JournalArticle journalArticle,
+					Object DDMTemplateKeyObject) {
 
-					journalArticle.setDDMTemplateKey((String)DDMTemplateKey);
+					journalArticle.setDDMTemplateKey(
+						(String)DDMTemplateKeyObject);
 				}
 
 			});
@@ -839,10 +849,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object defaultLanguageId) {
+					JournalArticle journalArticle,
+					Object defaultLanguageIdObject) {
 
 					journalArticle.setDefaultLanguageId(
-						(String)defaultLanguageId);
+						(String)defaultLanguageIdObject);
 				}
 
 			});
@@ -862,9 +873,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object layoutUuid) {
+					JournalArticle journalArticle, Object layoutUuidObject) {
 
-					journalArticle.setLayoutUuid((String)layoutUuid);
+					journalArticle.setLayoutUuid((String)layoutUuidObject);
 				}
 
 			});
@@ -884,9 +895,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object displayDate) {
+					JournalArticle journalArticle, Object displayDateObject) {
 
-					journalArticle.setDisplayDate((Date)displayDate);
+					journalArticle.setDisplayDate((Date)displayDateObject);
 				}
 
 			});
@@ -906,9 +917,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object expirationDate) {
+					JournalArticle journalArticle,
+					Object expirationDateObject) {
 
-					journalArticle.setExpirationDate((Date)expirationDate);
+					journalArticle.setExpirationDate(
+						(Date)expirationDateObject);
 				}
 
 			});
@@ -928,9 +941,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object reviewDate) {
+					JournalArticle journalArticle, Object reviewDateObject) {
 
-					journalArticle.setReviewDate((Date)reviewDate);
+					journalArticle.setReviewDate((Date)reviewDateObject);
 				}
 
 			});
@@ -950,9 +963,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object indexable) {
+					JournalArticle journalArticle, Object indexableObject) {
 
-					journalArticle.setIndexable((Boolean)indexable);
+					journalArticle.setIndexable((Boolean)indexableObject);
 				}
 
 			});
@@ -972,9 +985,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object smallImage) {
+					JournalArticle journalArticle, Object smallImageObject) {
 
-					journalArticle.setSmallImage((Boolean)smallImage);
+					journalArticle.setSmallImage((Boolean)smallImageObject);
 				}
 
 			});
@@ -994,9 +1007,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object smallImageId) {
+					JournalArticle journalArticle, Object smallImageIdObject) {
 
-					journalArticle.setSmallImageId((Long)smallImageId);
+					journalArticle.setSmallImageId((Long)smallImageIdObject);
 				}
 
 			});
@@ -1016,9 +1029,10 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object smallImageURL) {
+					JournalArticle journalArticle, Object smallImageURLObject) {
 
-					journalArticle.setSmallImageURL((String)smallImageURL);
+					journalArticle.setSmallImageURL(
+						(String)smallImageURLObject);
 				}
 
 			});
@@ -1038,9 +1052,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object lastPublishDate) {
+					JournalArticle journalArticle,
+					Object lastPublishDateObject) {
 
-					journalArticle.setLastPublishDate((Date)lastPublishDate);
+					journalArticle.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -1060,9 +1076,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object status) {
+					JournalArticle journalArticle, Object statusObject) {
 
-					journalArticle.setStatus((Integer)status);
+					journalArticle.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -1082,9 +1098,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object statusByUserId) {
+					JournalArticle journalArticle,
+					Object statusByUserIdObject) {
 
-					journalArticle.setStatusByUserId((Long)statusByUserId);
+					journalArticle.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -1104,10 +1122,11 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object statusByUserName) {
+					JournalArticle journalArticle,
+					Object statusByUserNameObject) {
 
 					journalArticle.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -1127,9 +1146,9 @@ public class JournalArticleModelImpl
 
 				@Override
 				public void accept(
-					JournalArticle journalArticle, Object statusDate) {
+					JournalArticle journalArticle, Object statusDateObject) {
 
-					journalArticle.setStatusDate((Date)statusDate);
+					journalArticle.setStatusDate((Date)statusDateObject);
 				}
 
 			});

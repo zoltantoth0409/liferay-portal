@@ -304,8 +304,10 @@ public class MBMailingListModelImpl
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object uuid) {
-					mbMailingList.setUuid((String)uuid);
+				public void accept(
+					MBMailingList mbMailingList, Object uuidObject) {
+
+					mbMailingList.setUuid((String)uuidObject);
 				}
 
 			});
@@ -325,9 +327,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object mailingListId) {
+					MBMailingList mbMailingList, Object mailingListIdObject) {
 
-					mbMailingList.setMailingListId((Long)mailingListId);
+					mbMailingList.setMailingListId((Long)mailingListIdObject);
 				}
 
 			});
@@ -347,9 +349,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object groupId) {
+					MBMailingList mbMailingList, Object groupIdObject) {
 
-					mbMailingList.setGroupId((Long)groupId);
+					mbMailingList.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -369,9 +371,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object companyId) {
+					MBMailingList mbMailingList, Object companyIdObject) {
 
-					mbMailingList.setCompanyId((Long)companyId);
+					mbMailingList.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -390,8 +392,10 @@ public class MBMailingListModelImpl
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object userId) {
-					mbMailingList.setUserId((Long)userId);
+				public void accept(
+					MBMailingList mbMailingList, Object userIdObject) {
+
+					mbMailingList.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -411,9 +415,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object userName) {
+					MBMailingList mbMailingList, Object userNameObject) {
 
-					mbMailingList.setUserName((String)userName);
+					mbMailingList.setUserName((String)userNameObject);
 				}
 
 			});
@@ -433,9 +437,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object createDate) {
+					MBMailingList mbMailingList, Object createDateObject) {
 
-					mbMailingList.setCreateDate((Date)createDate);
+					mbMailingList.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -455,9 +459,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object modifiedDate) {
+					MBMailingList mbMailingList, Object modifiedDateObject) {
 
-					mbMailingList.setModifiedDate((Date)modifiedDate);
+					mbMailingList.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -477,9 +481,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object categoryId) {
+					MBMailingList mbMailingList, Object categoryIdObject) {
 
-					mbMailingList.setCategoryId((Long)categoryId);
+					mbMailingList.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -499,9 +503,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object emailAddress) {
+					MBMailingList mbMailingList, Object emailAddressObject) {
 
-					mbMailingList.setEmailAddress((String)emailAddress);
+					mbMailingList.setEmailAddress((String)emailAddressObject);
 				}
 
 			});
@@ -521,9 +525,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inProtocol) {
+					MBMailingList mbMailingList, Object inProtocolObject) {
 
-					mbMailingList.setInProtocol((String)inProtocol);
+					mbMailingList.setInProtocol((String)inProtocolObject);
 				}
 
 			});
@@ -543,9 +547,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inServerName) {
+					MBMailingList mbMailingList, Object inServerNameObject) {
 
-					mbMailingList.setInServerName((String)inServerName);
+					mbMailingList.setInServerName((String)inServerNameObject);
 				}
 
 			});
@@ -565,9 +569,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inServerPort) {
+					MBMailingList mbMailingList, Object inServerPortObject) {
 
-					mbMailingList.setInServerPort((Integer)inServerPort);
+					mbMailingList.setInServerPort((Integer)inServerPortObject);
 				}
 
 			});
@@ -587,9 +591,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inUseSSL) {
+					MBMailingList mbMailingList, Object inUseSSLObject) {
 
-					mbMailingList.setInUseSSL((Boolean)inUseSSL);
+					mbMailingList.setInUseSSL((Boolean)inUseSSLObject);
 				}
 
 			});
@@ -609,9 +613,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inUserName) {
+					MBMailingList mbMailingList, Object inUserNameObject) {
 
-					mbMailingList.setInUserName((String)inUserName);
+					mbMailingList.setInUserName((String)inUserNameObject);
 				}
 
 			});
@@ -631,9 +635,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inPassword) {
+					MBMailingList mbMailingList, Object inPasswordObject) {
 
-					mbMailingList.setInPassword((String)inPassword);
+					mbMailingList.setInPassword((String)inPasswordObject);
 				}
 
 			});
@@ -653,9 +657,10 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object inReadInterval) {
+					MBMailingList mbMailingList, Object inReadIntervalObject) {
 
-					mbMailingList.setInReadInterval((Integer)inReadInterval);
+					mbMailingList.setInReadInterval(
+						(Integer)inReadIntervalObject);
 				}
 
 			});
@@ -675,9 +680,10 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outEmailAddress) {
+					MBMailingList mbMailingList, Object outEmailAddressObject) {
 
-					mbMailingList.setOutEmailAddress((String)outEmailAddress);
+					mbMailingList.setOutEmailAddress(
+						(String)outEmailAddressObject);
 				}
 
 			});
@@ -697,9 +703,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outCustom) {
+					MBMailingList mbMailingList, Object outCustomObject) {
 
-					mbMailingList.setOutCustom((Boolean)outCustom);
+					mbMailingList.setOutCustom((Boolean)outCustomObject);
 				}
 
 			});
@@ -719,9 +725,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outServerName) {
+					MBMailingList mbMailingList, Object outServerNameObject) {
 
-					mbMailingList.setOutServerName((String)outServerName);
+					mbMailingList.setOutServerName((String)outServerNameObject);
 				}
 
 			});
@@ -741,9 +747,10 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outServerPort) {
+					MBMailingList mbMailingList, Object outServerPortObject) {
 
-					mbMailingList.setOutServerPort((Integer)outServerPort);
+					mbMailingList.setOutServerPort(
+						(Integer)outServerPortObject);
 				}
 
 			});
@@ -763,9 +770,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outUseSSL) {
+					MBMailingList mbMailingList, Object outUseSSLObject) {
 
-					mbMailingList.setOutUseSSL((Boolean)outUseSSL);
+					mbMailingList.setOutUseSSL((Boolean)outUseSSLObject);
 				}
 
 			});
@@ -785,9 +792,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outUserName) {
+					MBMailingList mbMailingList, Object outUserNameObject) {
 
-					mbMailingList.setOutUserName((String)outUserName);
+					mbMailingList.setOutUserName((String)outUserNameObject);
 				}
 
 			});
@@ -807,9 +814,9 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object outPassword) {
+					MBMailingList mbMailingList, Object outPasswordObject) {
 
-					mbMailingList.setOutPassword((String)outPassword);
+					mbMailingList.setOutPassword((String)outPasswordObject);
 				}
 
 			});
@@ -829,9 +836,10 @@ public class MBMailingListModelImpl
 
 				@Override
 				public void accept(
-					MBMailingList mbMailingList, Object allowAnonymous) {
+					MBMailingList mbMailingList, Object allowAnonymousObject) {
 
-					mbMailingList.setAllowAnonymous((Boolean)allowAnonymous);
+					mbMailingList.setAllowAnonymous(
+						(Boolean)allowAnonymousObject);
 				}
 
 			});
@@ -850,8 +858,10 @@ public class MBMailingListModelImpl
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object active) {
-					mbMailingList.setActive((Boolean)active);
+				public void accept(
+					MBMailingList mbMailingList, Object activeObject) {
+
+					mbMailingList.setActive((Boolean)activeObject);
 				}
 
 			});

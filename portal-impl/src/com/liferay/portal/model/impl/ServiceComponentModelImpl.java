@@ -263,9 +263,10 @@ public class ServiceComponentModelImpl
 
 				@Override
 				public void accept(
-					ServiceComponent serviceComponent, Object mvccVersion) {
+					ServiceComponent serviceComponent,
+					Object mvccVersionObject) {
 
-					serviceComponent.setMvccVersion((Long)mvccVersion);
+					serviceComponent.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -286,10 +287,10 @@ public class ServiceComponentModelImpl
 				@Override
 				public void accept(
 					ServiceComponent serviceComponent,
-					Object serviceComponentId) {
+					Object serviceComponentIdObject) {
 
 					serviceComponent.setServiceComponentId(
-						(Long)serviceComponentId);
+						(Long)serviceComponentIdObject);
 				}
 
 			});
@@ -309,9 +310,11 @@ public class ServiceComponentModelImpl
 
 				@Override
 				public void accept(
-					ServiceComponent serviceComponent, Object buildNamespace) {
+					ServiceComponent serviceComponent,
+					Object buildNamespaceObject) {
 
-					serviceComponent.setBuildNamespace((String)buildNamespace);
+					serviceComponent.setBuildNamespace(
+						(String)buildNamespaceObject);
 				}
 
 			});
@@ -331,9 +334,10 @@ public class ServiceComponentModelImpl
 
 				@Override
 				public void accept(
-					ServiceComponent serviceComponent, Object buildNumber) {
+					ServiceComponent serviceComponent,
+					Object buildNumberObject) {
 
-					serviceComponent.setBuildNumber((Long)buildNumber);
+					serviceComponent.setBuildNumber((Long)buildNumberObject);
 				}
 
 			});
@@ -353,9 +357,9 @@ public class ServiceComponentModelImpl
 
 				@Override
 				public void accept(
-					ServiceComponent serviceComponent, Object buildDate) {
+					ServiceComponent serviceComponent, Object buildDateObject) {
 
-					serviceComponent.setBuildDate((Long)buildDate);
+					serviceComponent.setBuildDate((Long)buildDateObject);
 				}
 
 			});
@@ -375,9 +379,9 @@ public class ServiceComponentModelImpl
 
 				@Override
 				public void accept(
-					ServiceComponent serviceComponent, Object data) {
+					ServiceComponent serviceComponent, Object dataObject) {
 
-					serviceComponent.setData((String)data);
+					serviceComponent.setData((String)dataObject);
 				}
 
 			});

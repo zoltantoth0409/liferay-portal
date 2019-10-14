@@ -388,8 +388,10 @@ public class DLFileVersionModelImpl
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object uuid) {
-					dlFileVersion.setUuid((String)uuid);
+				public void accept(
+					DLFileVersion dlFileVersion, Object uuidObject) {
+
+					dlFileVersion.setUuid((String)uuidObject);
 				}
 
 			});
@@ -409,9 +411,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object fileVersionId) {
+					DLFileVersion dlFileVersion, Object fileVersionIdObject) {
 
-					dlFileVersion.setFileVersionId((Long)fileVersionId);
+					dlFileVersion.setFileVersionId((Long)fileVersionIdObject);
 				}
 
 			});
@@ -431,9 +433,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object groupId) {
+					DLFileVersion dlFileVersion, Object groupIdObject) {
 
-					dlFileVersion.setGroupId((Long)groupId);
+					dlFileVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -453,9 +455,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object companyId) {
+					DLFileVersion dlFileVersion, Object companyIdObject) {
 
-					dlFileVersion.setCompanyId((Long)companyId);
+					dlFileVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -474,8 +476,10 @@ public class DLFileVersionModelImpl
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object userId) {
-					dlFileVersion.setUserId((Long)userId);
+				public void accept(
+					DLFileVersion dlFileVersion, Object userIdObject) {
+
+					dlFileVersion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -495,9 +499,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object userName) {
+					DLFileVersion dlFileVersion, Object userNameObject) {
 
-					dlFileVersion.setUserName((String)userName);
+					dlFileVersion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -517,9 +521,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object createDate) {
+					DLFileVersion dlFileVersion, Object createDateObject) {
 
-					dlFileVersion.setCreateDate((Date)createDate);
+					dlFileVersion.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -539,9 +543,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object modifiedDate) {
+					DLFileVersion dlFileVersion, Object modifiedDateObject) {
 
-					dlFileVersion.setModifiedDate((Date)modifiedDate);
+					dlFileVersion.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -561,9 +565,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object repositoryId) {
+					DLFileVersion dlFileVersion, Object repositoryIdObject) {
 
-					dlFileVersion.setRepositoryId((Long)repositoryId);
+					dlFileVersion.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -583,9 +587,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object folderId) {
+					DLFileVersion dlFileVersion, Object folderIdObject) {
 
-					dlFileVersion.setFolderId((Long)folderId);
+					dlFileVersion.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -605,9 +609,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object fileEntryId) {
+					DLFileVersion dlFileVersion, Object fileEntryIdObject) {
 
-					dlFileVersion.setFileEntryId((Long)fileEntryId);
+					dlFileVersion.setFileEntryId((Long)fileEntryIdObject);
 				}
 
 			});
@@ -627,9 +631,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object treePath) {
+					DLFileVersion dlFileVersion, Object treePathObject) {
 
-					dlFileVersion.setTreePath((String)treePath);
+					dlFileVersion.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -649,9 +653,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object fileName) {
+					DLFileVersion dlFileVersion, Object fileNameObject) {
 
-					dlFileVersion.setFileName((String)fileName);
+					dlFileVersion.setFileName((String)fileNameObject);
 				}
 
 			});
@@ -671,9 +675,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object extension) {
+					DLFileVersion dlFileVersion, Object extensionObject) {
 
-					dlFileVersion.setExtension((String)extension);
+					dlFileVersion.setExtension((String)extensionObject);
 				}
 
 			});
@@ -693,9 +697,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object mimeType) {
+					DLFileVersion dlFileVersion, Object mimeTypeObject) {
 
-					dlFileVersion.setMimeType((String)mimeType);
+					dlFileVersion.setMimeType((String)mimeTypeObject);
 				}
 
 			});
@@ -714,8 +718,10 @@ public class DLFileVersionModelImpl
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object title) {
-					dlFileVersion.setTitle((String)title);
+				public void accept(
+					DLFileVersion dlFileVersion, Object titleObject) {
+
+					dlFileVersion.setTitle((String)titleObject);
 				}
 
 			});
@@ -735,9 +741,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object description) {
+					DLFileVersion dlFileVersion, Object descriptionObject) {
 
-					dlFileVersion.setDescription((String)description);
+					dlFileVersion.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -757,9 +763,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object changeLog) {
+					DLFileVersion dlFileVersion, Object changeLogObject) {
 
-					dlFileVersion.setChangeLog((String)changeLog);
+					dlFileVersion.setChangeLog((String)changeLogObject);
 				}
 
 			});
@@ -779,9 +785,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object extraSettings) {
+					DLFileVersion dlFileVersion, Object extraSettingsObject) {
 
-					dlFileVersion.setExtraSettings((String)extraSettings);
+					dlFileVersion.setExtraSettings((String)extraSettingsObject);
 				}
 
 			});
@@ -801,9 +807,10 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object fileEntryTypeId) {
+					DLFileVersion dlFileVersion, Object fileEntryTypeIdObject) {
 
-					dlFileVersion.setFileEntryTypeId((Long)fileEntryTypeId);
+					dlFileVersion.setFileEntryTypeId(
+						(Long)fileEntryTypeIdObject);
 				}
 
 			});
@@ -823,9 +830,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object version) {
+					DLFileVersion dlFileVersion, Object versionObject) {
 
-					dlFileVersion.setVersion((String)version);
+					dlFileVersion.setVersion((String)versionObject);
 				}
 
 			});
@@ -844,8 +851,10 @@ public class DLFileVersionModelImpl
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object size) {
-					dlFileVersion.setSize((Long)size);
+				public void accept(
+					DLFileVersion dlFileVersion, Object sizeObject) {
+
+					dlFileVersion.setSize((Long)sizeObject);
 				}
 
 			});
@@ -865,9 +874,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object checksum) {
+					DLFileVersion dlFileVersion, Object checksumObject) {
 
-					dlFileVersion.setChecksum((String)checksum);
+					dlFileVersion.setChecksum((String)checksumObject);
 				}
 
 			});
@@ -887,9 +896,10 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object lastPublishDate) {
+					DLFileVersion dlFileVersion, Object lastPublishDateObject) {
 
-					dlFileVersion.setLastPublishDate((Date)lastPublishDate);
+					dlFileVersion.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -908,8 +918,10 @@ public class DLFileVersionModelImpl
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object status) {
-					dlFileVersion.setStatus((Integer)status);
+				public void accept(
+					DLFileVersion dlFileVersion, Object statusObject) {
+
+					dlFileVersion.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -929,9 +941,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object statusByUserId) {
+					DLFileVersion dlFileVersion, Object statusByUserIdObject) {
 
-					dlFileVersion.setStatusByUserId((Long)statusByUserId);
+					dlFileVersion.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -951,9 +963,11 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object statusByUserName) {
+					DLFileVersion dlFileVersion,
+					Object statusByUserNameObject) {
 
-					dlFileVersion.setStatusByUserName((String)statusByUserName);
+					dlFileVersion.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -973,9 +987,9 @@ public class DLFileVersionModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersion dlFileVersion, Object statusDate) {
+					DLFileVersion dlFileVersion, Object statusDateObject) {
 
-					dlFileVersion.setStatusDate((Date)statusDate);
+					dlFileVersion.setStatusDate((Date)statusDateObject);
 				}
 
 			});

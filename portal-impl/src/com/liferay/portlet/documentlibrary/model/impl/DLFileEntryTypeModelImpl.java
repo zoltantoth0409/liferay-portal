@@ -366,9 +366,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object uuid) {
+					DLFileEntryType dlFileEntryType, Object uuidObject) {
 
-					dlFileEntryType.setUuid((String)uuid);
+					dlFileEntryType.setUuid((String)uuidObject);
 				}
 
 			});
@@ -388,9 +388,11 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object fileEntryTypeId) {
+					DLFileEntryType dlFileEntryType,
+					Object fileEntryTypeIdObject) {
 
-					dlFileEntryType.setFileEntryTypeId((Long)fileEntryTypeId);
+					dlFileEntryType.setFileEntryTypeId(
+						(Long)fileEntryTypeIdObject);
 				}
 
 			});
@@ -410,9 +412,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object groupId) {
+					DLFileEntryType dlFileEntryType, Object groupIdObject) {
 
-					dlFileEntryType.setGroupId((Long)groupId);
+					dlFileEntryType.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -432,9 +434,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object companyId) {
+					DLFileEntryType dlFileEntryType, Object companyIdObject) {
 
-					dlFileEntryType.setCompanyId((Long)companyId);
+					dlFileEntryType.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -454,9 +456,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object userId) {
+					DLFileEntryType dlFileEntryType, Object userIdObject) {
 
-					dlFileEntryType.setUserId((Long)userId);
+					dlFileEntryType.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -476,9 +478,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object userName) {
+					DLFileEntryType dlFileEntryType, Object userNameObject) {
 
-					dlFileEntryType.setUserName((String)userName);
+					dlFileEntryType.setUserName((String)userNameObject);
 				}
 
 			});
@@ -498,9 +500,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object createDate) {
+					DLFileEntryType dlFileEntryType, Object createDateObject) {
 
-					dlFileEntryType.setCreateDate((Date)createDate);
+					dlFileEntryType.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -520,9 +522,10 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object modifiedDate) {
+					DLFileEntryType dlFileEntryType,
+					Object modifiedDateObject) {
 
-					dlFileEntryType.setModifiedDate((Date)modifiedDate);
+					dlFileEntryType.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -542,10 +545,11 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object fileEntryTypeKey) {
+					DLFileEntryType dlFileEntryType,
+					Object fileEntryTypeKeyObject) {
 
 					dlFileEntryType.setFileEntryTypeKey(
-						(String)fileEntryTypeKey);
+						(String)fileEntryTypeKeyObject);
 				}
 
 			});
@@ -565,9 +569,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object name) {
+					DLFileEntryType dlFileEntryType, Object nameObject) {
 
-					dlFileEntryType.setName((String)name);
+					dlFileEntryType.setName((String)nameObject);
 				}
 
 			});
@@ -587,9 +591,9 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object description) {
+					DLFileEntryType dlFileEntryType, Object descriptionObject) {
 
-					dlFileEntryType.setDescription((String)description);
+					dlFileEntryType.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -609,9 +613,11 @@ public class DLFileEntryTypeModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryType dlFileEntryType, Object lastPublishDate) {
+					DLFileEntryType dlFileEntryType,
+					Object lastPublishDateObject) {
 
-					dlFileEntryType.setLastPublishDate((Date)lastPublishDate);
+					dlFileEntryType.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

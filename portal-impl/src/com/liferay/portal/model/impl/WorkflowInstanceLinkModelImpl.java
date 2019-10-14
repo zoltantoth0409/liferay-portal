@@ -289,9 +289,10 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					workflowInstanceLink.setMvccVersion((Long)mvccVersion);
+					workflowInstanceLink.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -312,10 +313,10 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object workflowInstanceLinkId) {
+					Object workflowInstanceLinkIdObject) {
 
 					workflowInstanceLink.setWorkflowInstanceLinkId(
-						(Long)workflowInstanceLinkId);
+						(Long)workflowInstanceLinkIdObject);
 				}
 
 			});
@@ -335,9 +336,10 @@ public class WorkflowInstanceLinkModelImpl
 
 				@Override
 				public void accept(
-					WorkflowInstanceLink workflowInstanceLink, Object groupId) {
+					WorkflowInstanceLink workflowInstanceLink,
+					Object groupIdObject) {
 
-					workflowInstanceLink.setGroupId((Long)groupId);
+					workflowInstanceLink.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -358,9 +360,9 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object companyId) {
+					Object companyIdObject) {
 
-					workflowInstanceLink.setCompanyId((Long)companyId);
+					workflowInstanceLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -380,9 +382,10 @@ public class WorkflowInstanceLinkModelImpl
 
 				@Override
 				public void accept(
-					WorkflowInstanceLink workflowInstanceLink, Object userId) {
+					WorkflowInstanceLink workflowInstanceLink,
+					Object userIdObject) {
 
-					workflowInstanceLink.setUserId((Long)userId);
+					workflowInstanceLink.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -403,9 +406,9 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object userName) {
+					Object userNameObject) {
 
-					workflowInstanceLink.setUserName((String)userName);
+					workflowInstanceLink.setUserName((String)userNameObject);
 				}
 
 			});
@@ -426,9 +429,9 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object createDate) {
+					Object createDateObject) {
 
-					workflowInstanceLink.setCreateDate((Date)createDate);
+					workflowInstanceLink.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -449,9 +452,10 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					workflowInstanceLink.setModifiedDate((Date)modifiedDate);
+					workflowInstanceLink.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -472,9 +476,10 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					workflowInstanceLink.setClassNameId((Long)classNameId);
+					workflowInstanceLink.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -494,9 +499,10 @@ public class WorkflowInstanceLinkModelImpl
 
 				@Override
 				public void accept(
-					WorkflowInstanceLink workflowInstanceLink, Object classPK) {
+					WorkflowInstanceLink workflowInstanceLink,
+					Object classPKObject) {
 
-					workflowInstanceLink.setClassPK((Long)classPK);
+					workflowInstanceLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -517,10 +523,10 @@ public class WorkflowInstanceLinkModelImpl
 				@Override
 				public void accept(
 					WorkflowInstanceLink workflowInstanceLink,
-					Object workflowInstanceId) {
+					Object workflowInstanceIdObject) {
 
 					workflowInstanceLink.setWorkflowInstanceId(
-						(Long)workflowInstanceId);
+						(Long)workflowInstanceIdObject);
 				}
 
 			});

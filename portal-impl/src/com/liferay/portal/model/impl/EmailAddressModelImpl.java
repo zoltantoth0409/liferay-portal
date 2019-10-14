@@ -346,9 +346,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object mvccVersion) {
+					EmailAddress emailAddress, Object mvccVersionObject) {
 
-					emailAddress.setMvccVersion((Long)mvccVersion);
+					emailAddress.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -367,8 +367,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object uuid) {
-					emailAddress.setUuid((String)uuid);
+				public void accept(
+					EmailAddress emailAddress, Object uuidObject) {
+
+					emailAddress.setUuid((String)uuidObject);
 				}
 
 			});
@@ -388,9 +390,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object emailAddressId) {
+					EmailAddress emailAddress, Object emailAddressIdObject) {
 
-					emailAddress.setEmailAddressId((Long)emailAddressId);
+					emailAddress.setEmailAddressId((Long)emailAddressIdObject);
 				}
 
 			});
@@ -410,9 +412,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object companyId) {
+					EmailAddress emailAddress, Object companyIdObject) {
 
-					emailAddress.setCompanyId((Long)companyId);
+					emailAddress.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -431,8 +433,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object userId) {
-					emailAddress.setUserId((Long)userId);
+				public void accept(
+					EmailAddress emailAddress, Object userIdObject) {
+
+					emailAddress.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -451,8 +455,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object userName) {
-					emailAddress.setUserName((String)userName);
+				public void accept(
+					EmailAddress emailAddress, Object userNameObject) {
+
+					emailAddress.setUserName((String)userNameObject);
 				}
 
 			});
@@ -472,9 +478,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object createDate) {
+					EmailAddress emailAddress, Object createDateObject) {
 
-					emailAddress.setCreateDate((Date)createDate);
+					emailAddress.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -494,9 +500,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object modifiedDate) {
+					EmailAddress emailAddress, Object modifiedDateObject) {
 
-					emailAddress.setModifiedDate((Date)modifiedDate);
+					emailAddress.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -516,9 +522,9 @@ public class EmailAddressModelImpl
 
 				@Override
 				public void accept(
-					EmailAddress emailAddress, Object classNameId) {
+					EmailAddress emailAddress, Object classNameIdObject) {
 
-					emailAddress.setClassNameId((Long)classNameId);
+					emailAddress.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -537,8 +543,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object classPK) {
-					emailAddress.setClassPK((Long)classPK);
+				public void accept(
+					EmailAddress emailAddress, Object classPKObject) {
+
+					emailAddress.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -557,8 +565,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object address) {
-					emailAddress.setAddress((String)address);
+				public void accept(
+					EmailAddress emailAddress, Object addressObject) {
+
+					emailAddress.setAddress((String)addressObject);
 				}
 
 			});
@@ -577,8 +587,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object typeId) {
-					emailAddress.setTypeId((Long)typeId);
+				public void accept(
+					EmailAddress emailAddress, Object typeIdObject) {
+
+					emailAddress.setTypeId((Long)typeIdObject);
 				}
 
 			});
@@ -597,8 +609,10 @@ public class EmailAddressModelImpl
 			new BiConsumer<EmailAddress, Object>() {
 
 				@Override
-				public void accept(EmailAddress emailAddress, Object primary) {
-					emailAddress.setPrimary((Boolean)primary);
+				public void accept(
+					EmailAddress emailAddress, Object primaryObject) {
+
+					emailAddress.setPrimary((Boolean)primaryObject);
 				}
 
 			});

@@ -291,9 +291,9 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object mvccVersion) {
+					SystemEvent systemEvent, Object mvccVersionObject) {
 
-					systemEvent.setMvccVersion((Long)mvccVersion);
+					systemEvent.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -313,9 +313,9 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object systemEventId) {
+					SystemEvent systemEvent, Object systemEventIdObject) {
 
-					systemEvent.setSystemEventId((Long)systemEventId);
+					systemEvent.setSystemEventId((Long)systemEventIdObject);
 				}
 
 			});
@@ -334,8 +334,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object groupId) {
-					systemEvent.setGroupId((Long)groupId);
+				public void accept(
+					SystemEvent systemEvent, Object groupIdObject) {
+
+					systemEvent.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -354,8 +356,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object companyId) {
-					systemEvent.setCompanyId((Long)companyId);
+				public void accept(
+					SystemEvent systemEvent, Object companyIdObject) {
+
+					systemEvent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -374,8 +378,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object userId) {
-					systemEvent.setUserId((Long)userId);
+				public void accept(
+					SystemEvent systemEvent, Object userIdObject) {
+
+					systemEvent.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -394,8 +400,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object userName) {
-					systemEvent.setUserName((String)userName);
+				public void accept(
+					SystemEvent systemEvent, Object userNameObject) {
+
+					systemEvent.setUserName((String)userNameObject);
 				}
 
 			});
@@ -414,8 +422,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object createDate) {
-					systemEvent.setCreateDate((Date)createDate);
+				public void accept(
+					SystemEvent systemEvent, Object createDateObject) {
+
+					systemEvent.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -435,9 +445,9 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object classNameId) {
+					SystemEvent systemEvent, Object classNameIdObject) {
 
-					systemEvent.setClassNameId((Long)classNameId);
+					systemEvent.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -456,8 +466,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object classPK) {
-					systemEvent.setClassPK((Long)classPK);
+				public void accept(
+					SystemEvent systemEvent, Object classPKObject) {
+
+					systemEvent.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -476,8 +488,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object classUuid) {
-					systemEvent.setClassUuid((String)classUuid);
+				public void accept(
+					SystemEvent systemEvent, Object classUuidObject) {
+
+					systemEvent.setClassUuid((String)classUuidObject);
 				}
 
 			});
@@ -497,10 +511,10 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object referrerClassNameId) {
+					SystemEvent systemEvent, Object referrerClassNameIdObject) {
 
 					systemEvent.setReferrerClassNameId(
-						(Long)referrerClassNameId);
+						(Long)referrerClassNameIdObject);
 				}
 
 			});
@@ -520,10 +534,10 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object parentSystemEventId) {
+					SystemEvent systemEvent, Object parentSystemEventIdObject) {
 
 					systemEvent.setParentSystemEventId(
-						(Long)parentSystemEventId);
+						(Long)parentSystemEventIdObject);
 				}
 
 			});
@@ -543,9 +557,10 @@ public class SystemEventModelImpl
 
 				@Override
 				public void accept(
-					SystemEvent systemEvent, Object systemEventSetKey) {
+					SystemEvent systemEvent, Object systemEventSetKeyObject) {
 
-					systemEvent.setSystemEventSetKey((Long)systemEventSetKey);
+					systemEvent.setSystemEventSetKey(
+						(Long)systemEventSetKeyObject);
 				}
 
 			});
@@ -564,8 +579,8 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object type) {
-					systemEvent.setType((Integer)type);
+				public void accept(SystemEvent systemEvent, Object typeObject) {
+					systemEvent.setType((Integer)typeObject);
 				}
 
 			});
@@ -584,8 +599,10 @@ public class SystemEventModelImpl
 			new BiConsumer<SystemEvent, Object>() {
 
 				@Override
-				public void accept(SystemEvent systemEvent, Object extraData) {
-					systemEvent.setExtraData((String)extraData);
+				public void accept(
+					SystemEvent systemEvent, Object extraDataObject) {
+
+					systemEvent.setExtraData((String)extraDataObject);
 				}
 
 			});

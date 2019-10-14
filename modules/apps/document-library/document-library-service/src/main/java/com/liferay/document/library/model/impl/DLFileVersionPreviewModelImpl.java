@@ -271,10 +271,10 @@ public class DLFileVersionPreviewModelImpl
 				@Override
 				public void accept(
 					DLFileVersionPreview dlFileVersionPreview,
-					Object dlFileVersionPreviewId) {
+					Object dlFileVersionPreviewIdObject) {
 
 					dlFileVersionPreview.setDlFileVersionPreviewId(
-						(Long)dlFileVersionPreviewId);
+						(Long)dlFileVersionPreviewIdObject);
 				}
 
 			});
@@ -294,9 +294,10 @@ public class DLFileVersionPreviewModelImpl
 
 				@Override
 				public void accept(
-					DLFileVersionPreview dlFileVersionPreview, Object groupId) {
+					DLFileVersionPreview dlFileVersionPreview,
+					Object groupIdObject) {
 
-					dlFileVersionPreview.setGroupId((Long)groupId);
+					dlFileVersionPreview.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -317,9 +318,10 @@ public class DLFileVersionPreviewModelImpl
 				@Override
 				public void accept(
 					DLFileVersionPreview dlFileVersionPreview,
-					Object fileEntryId) {
+					Object fileEntryIdObject) {
 
-					dlFileVersionPreview.setFileEntryId((Long)fileEntryId);
+					dlFileVersionPreview.setFileEntryId(
+						(Long)fileEntryIdObject);
 				}
 
 			});
@@ -340,9 +342,10 @@ public class DLFileVersionPreviewModelImpl
 				@Override
 				public void accept(
 					DLFileVersionPreview dlFileVersionPreview,
-					Object fileVersionId) {
+					Object fileVersionIdObject) {
 
-					dlFileVersionPreview.setFileVersionId((Long)fileVersionId);
+					dlFileVersionPreview.setFileVersionId(
+						(Long)fileVersionIdObject);
 				}
 
 			});
@@ -363,10 +366,10 @@ public class DLFileVersionPreviewModelImpl
 				@Override
 				public void accept(
 					DLFileVersionPreview dlFileVersionPreview,
-					Object previewStatus) {
+					Object previewStatusObject) {
 
 					dlFileVersionPreview.setPreviewStatus(
-						(Integer)previewStatus);
+						(Integer)previewStatusObject);
 				}
 
 			});

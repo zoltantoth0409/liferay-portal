@@ -409,9 +409,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object uuid) {
+					CalendarBooking calendarBooking, Object uuidObject) {
 
-					calendarBooking.setUuid((String)uuid);
+					calendarBooking.setUuid((String)uuidObject);
 				}
 
 			});
@@ -431,10 +431,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object calendarBookingId) {
+					CalendarBooking calendarBooking,
+					Object calendarBookingIdObject) {
 
 					calendarBooking.setCalendarBookingId(
-						(Long)calendarBookingId);
+						(Long)calendarBookingIdObject);
 				}
 
 			});
@@ -454,9 +455,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object groupId) {
+					CalendarBooking calendarBooking, Object groupIdObject) {
 
-					calendarBooking.setGroupId((Long)groupId);
+					calendarBooking.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -476,9 +477,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object companyId) {
+					CalendarBooking calendarBooking, Object companyIdObject) {
 
-					calendarBooking.setCompanyId((Long)companyId);
+					calendarBooking.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -498,9 +499,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object userId) {
+					CalendarBooking calendarBooking, Object userIdObject) {
 
-					calendarBooking.setUserId((Long)userId);
+					calendarBooking.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -520,9 +521,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object userName) {
+					CalendarBooking calendarBooking, Object userNameObject) {
 
-					calendarBooking.setUserName((String)userName);
+					calendarBooking.setUserName((String)userNameObject);
 				}
 
 			});
@@ -542,9 +543,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object createDate) {
+					CalendarBooking calendarBooking, Object createDateObject) {
 
-					calendarBooking.setCreateDate((Date)createDate);
+					calendarBooking.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -564,9 +565,10 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object modifiedDate) {
+					CalendarBooking calendarBooking,
+					Object modifiedDateObject) {
 
-					calendarBooking.setModifiedDate((Date)modifiedDate);
+					calendarBooking.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -586,9 +588,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object calendarId) {
+					CalendarBooking calendarBooking, Object calendarIdObject) {
 
-					calendarBooking.setCalendarId((Long)calendarId);
+					calendarBooking.setCalendarId((Long)calendarIdObject);
 				}
 
 			});
@@ -609,10 +611,10 @@ public class CalendarBookingModelImpl
 				@Override
 				public void accept(
 					CalendarBooking calendarBooking,
-					Object calendarResourceId) {
+					Object calendarResourceIdObject) {
 
 					calendarBooking.setCalendarResourceId(
-						(Long)calendarResourceId);
+						(Long)calendarResourceIdObject);
 				}
 
 			});
@@ -633,10 +635,10 @@ public class CalendarBookingModelImpl
 				@Override
 				public void accept(
 					CalendarBooking calendarBooking,
-					Object parentCalendarBookingId) {
+					Object parentCalendarBookingIdObject) {
 
 					calendarBooking.setParentCalendarBookingId(
-						(Long)parentCalendarBookingId);
+						(Long)parentCalendarBookingIdObject);
 				}
 
 			});
@@ -657,10 +659,10 @@ public class CalendarBookingModelImpl
 				@Override
 				public void accept(
 					CalendarBooking calendarBooking,
-					Object recurringCalendarBookingId) {
+					Object recurringCalendarBookingIdObject) {
 
 					calendarBooking.setRecurringCalendarBookingId(
-						(Long)recurringCalendarBookingId);
+						(Long)recurringCalendarBookingIdObject);
 				}
 
 			});
@@ -680,9 +682,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object vEventUid) {
+					CalendarBooking calendarBooking, Object vEventUidObject) {
 
-					calendarBooking.setVEventUid((String)vEventUid);
+					calendarBooking.setVEventUid((String)vEventUidObject);
 				}
 
 			});
@@ -702,9 +704,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object title) {
+					CalendarBooking calendarBooking, Object titleObject) {
 
-					calendarBooking.setTitle((String)title);
+					calendarBooking.setTitle((String)titleObject);
 				}
 
 			});
@@ -724,9 +726,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object description) {
+					CalendarBooking calendarBooking, Object descriptionObject) {
 
-					calendarBooking.setDescription((String)description);
+					calendarBooking.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -746,9 +748,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object location) {
+					CalendarBooking calendarBooking, Object locationObject) {
 
-					calendarBooking.setLocation((String)location);
+					calendarBooking.setLocation((String)locationObject);
 				}
 
 			});
@@ -768,9 +770,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object startTime) {
+					CalendarBooking calendarBooking, Object startTimeObject) {
 
-					calendarBooking.setStartTime((Long)startTime);
+					calendarBooking.setStartTime((Long)startTimeObject);
 				}
 
 			});
@@ -790,9 +792,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object endTime) {
+					CalendarBooking calendarBooking, Object endTimeObject) {
 
-					calendarBooking.setEndTime((Long)endTime);
+					calendarBooking.setEndTime((Long)endTimeObject);
 				}
 
 			});
@@ -812,9 +814,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object allDay) {
+					CalendarBooking calendarBooking, Object allDayObject) {
 
-					calendarBooking.setAllDay((Boolean)allDay);
+					calendarBooking.setAllDay((Boolean)allDayObject);
 				}
 
 			});
@@ -834,9 +836,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object recurrence) {
+					CalendarBooking calendarBooking, Object recurrenceObject) {
 
-					calendarBooking.setRecurrence((String)recurrence);
+					calendarBooking.setRecurrence((String)recurrenceObject);
 				}
 
 			});
@@ -856,9 +858,10 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object firstReminder) {
+					CalendarBooking calendarBooking,
+					Object firstReminderObject) {
 
-					calendarBooking.setFirstReminder((Long)firstReminder);
+					calendarBooking.setFirstReminder((Long)firstReminderObject);
 				}
 
 			});
@@ -878,10 +881,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object firstReminderType) {
+					CalendarBooking calendarBooking,
+					Object firstReminderTypeObject) {
 
 					calendarBooking.setFirstReminderType(
-						(String)firstReminderType);
+						(String)firstReminderTypeObject);
 				}
 
 			});
@@ -901,9 +905,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object secondReminder) {
+					CalendarBooking calendarBooking,
+					Object secondReminderObject) {
 
-					calendarBooking.setSecondReminder((Long)secondReminder);
+					calendarBooking.setSecondReminder(
+						(Long)secondReminderObject);
 				}
 
 			});
@@ -924,10 +930,10 @@ public class CalendarBookingModelImpl
 				@Override
 				public void accept(
 					CalendarBooking calendarBooking,
-					Object secondReminderType) {
+					Object secondReminderTypeObject) {
 
 					calendarBooking.setSecondReminderType(
-						(String)secondReminderType);
+						(String)secondReminderTypeObject);
 				}
 
 			});
@@ -947,9 +953,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object lastPublishDate) {
+					CalendarBooking calendarBooking,
+					Object lastPublishDateObject) {
 
-					calendarBooking.setLastPublishDate((Date)lastPublishDate);
+					calendarBooking.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -969,9 +977,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object status) {
+					CalendarBooking calendarBooking, Object statusObject) {
 
-					calendarBooking.setStatus((Integer)status);
+					calendarBooking.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -991,9 +999,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object statusByUserId) {
+					CalendarBooking calendarBooking,
+					Object statusByUserIdObject) {
 
-					calendarBooking.setStatusByUserId((Long)statusByUserId);
+					calendarBooking.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -1013,10 +1023,11 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object statusByUserName) {
+					CalendarBooking calendarBooking,
+					Object statusByUserNameObject) {
 
 					calendarBooking.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -1036,9 +1047,9 @@ public class CalendarBookingModelImpl
 
 				@Override
 				public void accept(
-					CalendarBooking calendarBooking, Object statusDate) {
+					CalendarBooking calendarBooking, Object statusDateObject) {
 
-					calendarBooking.setStatusDate((Date)statusDate);
+					calendarBooking.setStatusDate((Date)statusDateObject);
 				}
 
 			});

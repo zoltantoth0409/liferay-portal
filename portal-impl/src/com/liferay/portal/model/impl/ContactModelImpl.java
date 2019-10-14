@@ -376,8 +376,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object mvccVersion) {
-					contact.setMvccVersion((Long)mvccVersion);
+				public void accept(Contact contact, Object mvccVersionObject) {
+					contact.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -396,8 +396,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object contactId) {
-					contact.setContactId((Long)contactId);
+				public void accept(Contact contact, Object contactIdObject) {
+					contact.setContactId((Long)contactIdObject);
 				}
 
 			});
@@ -416,8 +416,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object companyId) {
-					contact.setCompanyId((Long)companyId);
+				public void accept(Contact contact, Object companyIdObject) {
+					contact.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -436,8 +436,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object userId) {
-					contact.setUserId((Long)userId);
+				public void accept(Contact contact, Object userIdObject) {
+					contact.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -456,8 +456,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object userName) {
-					contact.setUserName((String)userName);
+				public void accept(Contact contact, Object userNameObject) {
+					contact.setUserName((String)userNameObject);
 				}
 
 			});
@@ -476,8 +476,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object createDate) {
-					contact.setCreateDate((Date)createDate);
+				public void accept(Contact contact, Object createDateObject) {
+					contact.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -496,8 +496,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object modifiedDate) {
-					contact.setModifiedDate((Date)modifiedDate);
+				public void accept(Contact contact, Object modifiedDateObject) {
+					contact.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -516,8 +516,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object classNameId) {
-					contact.setClassNameId((Long)classNameId);
+				public void accept(Contact contact, Object classNameIdObject) {
+					contact.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -536,8 +536,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object classPK) {
-					contact.setClassPK((Long)classPK);
+				public void accept(Contact contact, Object classPKObject) {
+					contact.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -556,8 +556,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object accountId) {
-					contact.setAccountId((Long)accountId);
+				public void accept(Contact contact, Object accountIdObject) {
+					contact.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -576,8 +576,10 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object parentContactId) {
-					contact.setParentContactId((Long)parentContactId);
+				public void accept(
+					Contact contact, Object parentContactIdObject) {
+
+					contact.setParentContactId((Long)parentContactIdObject);
 				}
 
 			});
@@ -596,8 +598,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object emailAddress) {
-					contact.setEmailAddress((String)emailAddress);
+				public void accept(Contact contact, Object emailAddressObject) {
+					contact.setEmailAddress((String)emailAddressObject);
 				}
 
 			});
@@ -616,8 +618,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object firstName) {
-					contact.setFirstName((String)firstName);
+				public void accept(Contact contact, Object firstNameObject) {
+					contact.setFirstName((String)firstNameObject);
 				}
 
 			});
@@ -636,8 +638,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object middleName) {
-					contact.setMiddleName((String)middleName);
+				public void accept(Contact contact, Object middleNameObject) {
+					contact.setMiddleName((String)middleNameObject);
 				}
 
 			});
@@ -656,8 +658,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object lastName) {
-					contact.setLastName((String)lastName);
+				public void accept(Contact contact, Object lastNameObject) {
+					contact.setLastName((String)lastNameObject);
 				}
 
 			});
@@ -676,8 +678,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object prefixId) {
-					contact.setPrefixId((Long)prefixId);
+				public void accept(Contact contact, Object prefixIdObject) {
+					contact.setPrefixId((Long)prefixIdObject);
 				}
 
 			});
@@ -696,8 +698,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object suffixId) {
-					contact.setSuffixId((Long)suffixId);
+				public void accept(Contact contact, Object suffixIdObject) {
+					contact.setSuffixId((Long)suffixIdObject);
 				}
 
 			});
@@ -716,8 +718,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object male) {
-					contact.setMale((Boolean)male);
+				public void accept(Contact contact, Object maleObject) {
+					contact.setMale((Boolean)maleObject);
 				}
 
 			});
@@ -736,8 +738,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object birthday) {
-					contact.setBirthday((Date)birthday);
+				public void accept(Contact contact, Object birthdayObject) {
+					contact.setBirthday((Date)birthdayObject);
 				}
 
 			});
@@ -756,8 +758,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object smsSn) {
-					contact.setSmsSn((String)smsSn);
+				public void accept(Contact contact, Object smsSnObject) {
+					contact.setSmsSn((String)smsSnObject);
 				}
 
 			});
@@ -776,8 +778,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object facebookSn) {
-					contact.setFacebookSn((String)facebookSn);
+				public void accept(Contact contact, Object facebookSnObject) {
+					contact.setFacebookSn((String)facebookSnObject);
 				}
 
 			});
@@ -796,8 +798,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object jabberSn) {
-					contact.setJabberSn((String)jabberSn);
+				public void accept(Contact contact, Object jabberSnObject) {
+					contact.setJabberSn((String)jabberSnObject);
 				}
 
 			});
@@ -816,8 +818,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object skypeSn) {
-					contact.setSkypeSn((String)skypeSn);
+				public void accept(Contact contact, Object skypeSnObject) {
+					contact.setSkypeSn((String)skypeSnObject);
 				}
 
 			});
@@ -836,8 +838,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object twitterSn) {
-					contact.setTwitterSn((String)twitterSn);
+				public void accept(Contact contact, Object twitterSnObject) {
+					contact.setTwitterSn((String)twitterSnObject);
 				}
 
 			});
@@ -856,8 +858,10 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object employeeStatusId) {
-					contact.setEmployeeStatusId((String)employeeStatusId);
+				public void accept(
+					Contact contact, Object employeeStatusIdObject) {
+
+					contact.setEmployeeStatusId((String)employeeStatusIdObject);
 				}
 
 			});
@@ -876,8 +880,10 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object employeeNumber) {
-					contact.setEmployeeNumber((String)employeeNumber);
+				public void accept(
+					Contact contact, Object employeeNumberObject) {
+
+					contact.setEmployeeNumber((String)employeeNumberObject);
 				}
 
 			});
@@ -896,8 +902,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object jobTitle) {
-					contact.setJobTitle((String)jobTitle);
+				public void accept(Contact contact, Object jobTitleObject) {
+					contact.setJobTitle((String)jobTitleObject);
 				}
 
 			});
@@ -916,8 +922,8 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object jobClass) {
-					contact.setJobClass((String)jobClass);
+				public void accept(Contact contact, Object jobClassObject) {
+					contact.setJobClass((String)jobClassObject);
 				}
 
 			});
@@ -936,8 +942,10 @@ public class ContactModelImpl
 			new BiConsumer<Contact, Object>() {
 
 				@Override
-				public void accept(Contact contact, Object hoursOfOperation) {
-					contact.setHoursOfOperation((String)hoursOfOperation);
+				public void accept(
+					Contact contact, Object hoursOfOperationObject) {
+
+					contact.setHoursOfOperation((String)hoursOfOperationObject);
 				}
 
 			});

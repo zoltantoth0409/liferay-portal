@@ -332,9 +332,9 @@ public class LayoutBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutBranch layoutBranch, Object mvccVersion) {
+					LayoutBranch layoutBranch, Object mvccVersionObject) {
 
-					layoutBranch.setMvccVersion((Long)mvccVersion);
+					layoutBranch.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -354,9 +354,9 @@ public class LayoutBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutBranch layoutBranch, Object layoutBranchId) {
+					LayoutBranch layoutBranch, Object layoutBranchIdObject) {
 
-					layoutBranch.setLayoutBranchId((Long)layoutBranchId);
+					layoutBranch.setLayoutBranchId((Long)layoutBranchIdObject);
 				}
 
 			});
@@ -375,8 +375,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object groupId) {
-					layoutBranch.setGroupId((Long)groupId);
+				public void accept(
+					LayoutBranch layoutBranch, Object groupIdObject) {
+
+					layoutBranch.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -396,9 +398,9 @@ public class LayoutBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutBranch layoutBranch, Object companyId) {
+					LayoutBranch layoutBranch, Object companyIdObject) {
 
-					layoutBranch.setCompanyId((Long)companyId);
+					layoutBranch.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -417,8 +419,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object userId) {
-					layoutBranch.setUserId((Long)userId);
+				public void accept(
+					LayoutBranch layoutBranch, Object userIdObject) {
+
+					layoutBranch.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -437,8 +441,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object userName) {
-					layoutBranch.setUserName((String)userName);
+				public void accept(
+					LayoutBranch layoutBranch, Object userNameObject) {
+
+					layoutBranch.setUserName((String)userNameObject);
 				}
 
 			});
@@ -458,9 +464,10 @@ public class LayoutBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutBranch layoutBranch, Object layoutSetBranchId) {
+					LayoutBranch layoutBranch, Object layoutSetBranchIdObject) {
 
-					layoutBranch.setLayoutSetBranchId((Long)layoutSetBranchId);
+					layoutBranch.setLayoutSetBranchId(
+						(Long)layoutSetBranchIdObject);
 				}
 
 			});
@@ -479,8 +486,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object plid) {
-					layoutBranch.setPlid((Long)plid);
+				public void accept(
+					LayoutBranch layoutBranch, Object plidObject) {
+
+					layoutBranch.setPlid((Long)plidObject);
 				}
 
 			});
@@ -499,8 +508,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object name) {
-					layoutBranch.setName((String)name);
+				public void accept(
+					LayoutBranch layoutBranch, Object nameObject) {
+
+					layoutBranch.setName((String)nameObject);
 				}
 
 			});
@@ -520,9 +531,9 @@ public class LayoutBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutBranch layoutBranch, Object description) {
+					LayoutBranch layoutBranch, Object descriptionObject) {
 
-					layoutBranch.setDescription((String)description);
+					layoutBranch.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -541,8 +552,10 @@ public class LayoutBranchModelImpl
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object master) {
-					layoutBranch.setMaster((Boolean)master);
+				public void accept(
+					LayoutBranch layoutBranch, Object masterObject) {
+
+					layoutBranch.setMaster((Boolean)masterObject);
 				}
 
 			});

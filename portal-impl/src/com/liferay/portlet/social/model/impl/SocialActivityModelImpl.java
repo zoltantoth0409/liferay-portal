@@ -353,9 +353,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object activityId) {
+					SocialActivity socialActivity, Object activityIdObject) {
 
-					socialActivity.setActivityId((Long)activityId);
+					socialActivity.setActivityId((Long)activityIdObject);
 				}
 
 			});
@@ -375,9 +375,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object groupId) {
+					SocialActivity socialActivity, Object groupIdObject) {
 
-					socialActivity.setGroupId((Long)groupId);
+					socialActivity.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -397,9 +397,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object companyId) {
+					SocialActivity socialActivity, Object companyIdObject) {
 
-					socialActivity.setCompanyId((Long)companyId);
+					socialActivity.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -419,9 +419,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object userId) {
+					SocialActivity socialActivity, Object userIdObject) {
 
-					socialActivity.setUserId((Long)userId);
+					socialActivity.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -441,9 +441,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object createDate) {
+					SocialActivity socialActivity, Object createDateObject) {
 
-					socialActivity.setCreateDate((Long)createDate);
+					socialActivity.setCreateDate((Long)createDateObject);
 				}
 
 			});
@@ -463,9 +463,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object activitySetId) {
+					SocialActivity socialActivity, Object activitySetIdObject) {
 
-					socialActivity.setActivitySetId((Long)activitySetId);
+					socialActivity.setActivitySetId((Long)activitySetIdObject);
 				}
 
 			});
@@ -485,9 +485,11 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object mirrorActivityId) {
+					SocialActivity socialActivity,
+					Object mirrorActivityIdObject) {
 
-					socialActivity.setMirrorActivityId((Long)mirrorActivityId);
+					socialActivity.setMirrorActivityId(
+						(Long)mirrorActivityIdObject);
 				}
 
 			});
@@ -507,9 +509,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object classNameId) {
+					SocialActivity socialActivity, Object classNameIdObject) {
 
-					socialActivity.setClassNameId((Long)classNameId);
+					socialActivity.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -529,9 +531,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object classPK) {
+					SocialActivity socialActivity, Object classPKObject) {
 
-					socialActivity.setClassPK((Long)classPK);
+					socialActivity.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -551,10 +553,11 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object parentClassNameId) {
+					SocialActivity socialActivity,
+					Object parentClassNameIdObject) {
 
 					socialActivity.setParentClassNameId(
-						(Long)parentClassNameId);
+						(Long)parentClassNameIdObject);
 				}
 
 			});
@@ -574,9 +577,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object parentClassPK) {
+					SocialActivity socialActivity, Object parentClassPKObject) {
 
-					socialActivity.setParentClassPK((Long)parentClassPK);
+					socialActivity.setParentClassPK((Long)parentClassPKObject);
 				}
 
 			});
@@ -595,8 +598,10 @@ public class SocialActivityModelImpl
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object type) {
-					socialActivity.setType((Integer)type);
+				public void accept(
+					SocialActivity socialActivity, Object typeObject) {
+
+					socialActivity.setType((Integer)typeObject);
 				}
 
 			});
@@ -616,9 +621,9 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object extraData) {
+					SocialActivity socialActivity, Object extraDataObject) {
 
-					socialActivity.setExtraData((String)extraData);
+					socialActivity.setExtraData((String)extraDataObject);
 				}
 
 			});
@@ -638,9 +643,11 @@ public class SocialActivityModelImpl
 
 				@Override
 				public void accept(
-					SocialActivity socialActivity, Object receiverUserId) {
+					SocialActivity socialActivity,
+					Object receiverUserIdObject) {
 
-					socialActivity.setReceiverUserId((Long)receiverUserId);
+					socialActivity.setReceiverUserId(
+						(Long)receiverUserIdObject);
 				}
 
 			});

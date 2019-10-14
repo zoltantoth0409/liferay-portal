@@ -271,9 +271,9 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object uuid) {
+					WikiPageResource wikiPageResource, Object uuidObject) {
 
-					wikiPageResource.setUuid((String)uuid);
+					wikiPageResource.setUuid((String)uuidObject);
 				}
 
 			});
@@ -293,9 +293,11 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object resourcePrimKey) {
+					WikiPageResource wikiPageResource,
+					Object resourcePrimKeyObject) {
 
-					wikiPageResource.setResourcePrimKey((Long)resourcePrimKey);
+					wikiPageResource.setResourcePrimKey(
+						(Long)resourcePrimKeyObject);
 				}
 
 			});
@@ -315,9 +317,9 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object groupId) {
+					WikiPageResource wikiPageResource, Object groupIdObject) {
 
-					wikiPageResource.setGroupId((Long)groupId);
+					wikiPageResource.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -337,9 +339,9 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object companyId) {
+					WikiPageResource wikiPageResource, Object companyIdObject) {
 
-					wikiPageResource.setCompanyId((Long)companyId);
+					wikiPageResource.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -359,9 +361,9 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object nodeId) {
+					WikiPageResource wikiPageResource, Object nodeIdObject) {
 
-					wikiPageResource.setNodeId((Long)nodeId);
+					wikiPageResource.setNodeId((Long)nodeIdObject);
 				}
 
 			});
@@ -381,9 +383,9 @@ public class WikiPageResourceModelImpl
 
 				@Override
 				public void accept(
-					WikiPageResource wikiPageResource, Object title) {
+					WikiPageResource wikiPageResource, Object titleObject) {
 
-					wikiPageResource.setTitle((String)title);
+					wikiPageResource.setTitle((String)titleObject);
 				}
 
 			});

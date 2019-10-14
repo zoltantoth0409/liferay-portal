@@ -505,8 +505,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object mvccVersion) {
-					user.setMvccVersion((Long)mvccVersion);
+				public void accept(User user, Object mvccVersionObject) {
+					user.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -525,8 +525,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object uuid) {
-					user.setUuid((String)uuid);
+				public void accept(User user, Object uuidObject) {
+					user.setUuid((String)uuidObject);
 				}
 
 			});
@@ -545,9 +545,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object externalReferenceCode) {
+				public void accept(
+					User user, Object externalReferenceCodeObject) {
+
 					user.setExternalReferenceCode(
-						(String)externalReferenceCode);
+						(String)externalReferenceCodeObject);
 				}
 
 			});
@@ -566,8 +568,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object userId) {
-					user.setUserId((Long)userId);
+				public void accept(User user, Object userIdObject) {
+					user.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -586,8 +588,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object companyId) {
-					user.setCompanyId((Long)companyId);
+				public void accept(User user, Object companyIdObject) {
+					user.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -606,8 +608,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object createDate) {
-					user.setCreateDate((Date)createDate);
+				public void accept(User user, Object createDateObject) {
+					user.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -626,8 +628,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object modifiedDate) {
-					user.setModifiedDate((Date)modifiedDate);
+				public void accept(User user, Object modifiedDateObject) {
+					user.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -646,8 +648,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object defaultUser) {
-					user.setDefaultUser((Boolean)defaultUser);
+				public void accept(User user, Object defaultUserObject) {
+					user.setDefaultUser((Boolean)defaultUserObject);
 				}
 
 			});
@@ -666,8 +668,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object contactId) {
-					user.setContactId((Long)contactId);
+				public void accept(User user, Object contactIdObject) {
+					user.setContactId((Long)contactIdObject);
 				}
 
 			});
@@ -686,8 +688,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object password) {
-					user.setPassword((String)password);
+				public void accept(User user, Object passwordObject) {
+					user.setPassword((String)passwordObject);
 				}
 
 			});
@@ -706,8 +708,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object passwordEncrypted) {
-					user.setPasswordEncrypted((Boolean)passwordEncrypted);
+				public void accept(User user, Object passwordEncryptedObject) {
+					user.setPasswordEncrypted((Boolean)passwordEncryptedObject);
 				}
 
 			});
@@ -726,8 +728,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object passwordReset) {
-					user.setPasswordReset((Boolean)passwordReset);
+				public void accept(User user, Object passwordResetObject) {
+					user.setPasswordReset((Boolean)passwordResetObject);
 				}
 
 			});
@@ -746,8 +748,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object passwordModifiedDate) {
-					user.setPasswordModifiedDate((Date)passwordModifiedDate);
+				public void accept(
+					User user, Object passwordModifiedDateObject) {
+
+					user.setPasswordModifiedDate(
+						(Date)passwordModifiedDateObject);
 				}
 
 			});
@@ -766,8 +771,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object digest) {
-					user.setDigest((String)digest);
+				public void accept(User user, Object digestObject) {
+					user.setDigest((String)digestObject);
 				}
 
 			});
@@ -786,9 +791,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object reminderQueryQuestion) {
+				public void accept(
+					User user, Object reminderQueryQuestionObject) {
+
 					user.setReminderQueryQuestion(
-						(String)reminderQueryQuestion);
+						(String)reminderQueryQuestionObject);
 				}
 
 			});
@@ -807,8 +814,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object reminderQueryAnswer) {
-					user.setReminderQueryAnswer((String)reminderQueryAnswer);
+				public void accept(
+					User user, Object reminderQueryAnswerObject) {
+
+					user.setReminderQueryAnswer(
+						(String)reminderQueryAnswerObject);
 				}
 
 			});
@@ -827,8 +837,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object graceLoginCount) {
-					user.setGraceLoginCount((Integer)graceLoginCount);
+				public void accept(User user, Object graceLoginCountObject) {
+					user.setGraceLoginCount((Integer)graceLoginCountObject);
 				}
 
 			});
@@ -847,8 +857,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object screenName) {
-					user.setScreenName((String)screenName);
+				public void accept(User user, Object screenNameObject) {
+					user.setScreenName((String)screenNameObject);
 				}
 
 			});
@@ -867,8 +877,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object emailAddress) {
-					user.setEmailAddress((String)emailAddress);
+				public void accept(User user, Object emailAddressObject) {
+					user.setEmailAddress((String)emailAddressObject);
 				}
 
 			});
@@ -887,8 +897,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object facebookId) {
-					user.setFacebookId((Long)facebookId);
+				public void accept(User user, Object facebookIdObject) {
+					user.setFacebookId((Long)facebookIdObject);
 				}
 
 			});
@@ -907,8 +917,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object googleUserId) {
-					user.setGoogleUserId((String)googleUserId);
+				public void accept(User user, Object googleUserIdObject) {
+					user.setGoogleUserId((String)googleUserIdObject);
 				}
 
 			});
@@ -927,8 +937,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object ldapServerId) {
-					user.setLdapServerId((Long)ldapServerId);
+				public void accept(User user, Object ldapServerIdObject) {
+					user.setLdapServerId((Long)ldapServerIdObject);
 				}
 
 			});
@@ -947,8 +957,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object openId) {
-					user.setOpenId((String)openId);
+				public void accept(User user, Object openIdObject) {
+					user.setOpenId((String)openIdObject);
 				}
 
 			});
@@ -967,8 +977,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object portraitId) {
-					user.setPortraitId((Long)portraitId);
+				public void accept(User user, Object portraitIdObject) {
+					user.setPortraitId((Long)portraitIdObject);
 				}
 
 			});
@@ -987,8 +997,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object languageId) {
-					user.setLanguageId((String)languageId);
+				public void accept(User user, Object languageIdObject) {
+					user.setLanguageId((String)languageIdObject);
 				}
 
 			});
@@ -1007,8 +1017,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object timeZoneId) {
-					user.setTimeZoneId((String)timeZoneId);
+				public void accept(User user, Object timeZoneIdObject) {
+					user.setTimeZoneId((String)timeZoneIdObject);
 				}
 
 			});
@@ -1027,8 +1037,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object greeting) {
-					user.setGreeting((String)greeting);
+				public void accept(User user, Object greetingObject) {
+					user.setGreeting((String)greetingObject);
 				}
 
 			});
@@ -1047,8 +1057,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object comments) {
-					user.setComments((String)comments);
+				public void accept(User user, Object commentsObject) {
+					user.setComments((String)commentsObject);
 				}
 
 			});
@@ -1067,8 +1077,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object firstName) {
-					user.setFirstName((String)firstName);
+				public void accept(User user, Object firstNameObject) {
+					user.setFirstName((String)firstNameObject);
 				}
 
 			});
@@ -1087,8 +1097,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object middleName) {
-					user.setMiddleName((String)middleName);
+				public void accept(User user, Object middleNameObject) {
+					user.setMiddleName((String)middleNameObject);
 				}
 
 			});
@@ -1107,8 +1117,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lastName) {
-					user.setLastName((String)lastName);
+				public void accept(User user, Object lastNameObject) {
+					user.setLastName((String)lastNameObject);
 				}
 
 			});
@@ -1127,8 +1137,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object jobTitle) {
-					user.setJobTitle((String)jobTitle);
+				public void accept(User user, Object jobTitleObject) {
+					user.setJobTitle((String)jobTitleObject);
 				}
 
 			});
@@ -1147,8 +1157,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object loginDate) {
-					user.setLoginDate((Date)loginDate);
+				public void accept(User user, Object loginDateObject) {
+					user.setLoginDate((Date)loginDateObject);
 				}
 
 			});
@@ -1167,8 +1177,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object loginIP) {
-					user.setLoginIP((String)loginIP);
+				public void accept(User user, Object loginIPObject) {
+					user.setLoginIP((String)loginIPObject);
 				}
 
 			});
@@ -1187,8 +1197,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lastLoginDate) {
-					user.setLastLoginDate((Date)lastLoginDate);
+				public void accept(User user, Object lastLoginDateObject) {
+					user.setLastLoginDate((Date)lastLoginDateObject);
 				}
 
 			});
@@ -1207,8 +1217,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lastLoginIP) {
-					user.setLastLoginIP((String)lastLoginIP);
+				public void accept(User user, Object lastLoginIPObject) {
+					user.setLastLoginIP((String)lastLoginIPObject);
 				}
 
 			});
@@ -1227,8 +1237,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lastFailedLoginDate) {
-					user.setLastFailedLoginDate((Date)lastFailedLoginDate);
+				public void accept(
+					User user, Object lastFailedLoginDateObject) {
+
+					user.setLastFailedLoginDate(
+						(Date)lastFailedLoginDateObject);
 				}
 
 			});
@@ -1247,8 +1260,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object failedLoginAttempts) {
-					user.setFailedLoginAttempts((Integer)failedLoginAttempts);
+				public void accept(
+					User user, Object failedLoginAttemptsObject) {
+
+					user.setFailedLoginAttempts(
+						(Integer)failedLoginAttemptsObject);
 				}
 
 			});
@@ -1267,8 +1283,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lockout) {
-					user.setLockout((Boolean)lockout);
+				public void accept(User user, Object lockoutObject) {
+					user.setLockout((Boolean)lockoutObject);
 				}
 
 			});
@@ -1287,8 +1303,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object lockoutDate) {
-					user.setLockoutDate((Date)lockoutDate);
+				public void accept(User user, Object lockoutDateObject) {
+					user.setLockoutDate((Date)lockoutDateObject);
 				}
 
 			});
@@ -1307,8 +1323,9 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object agreedToTermsOfUse) {
-					user.setAgreedToTermsOfUse((Boolean)agreedToTermsOfUse);
+				public void accept(User user, Object agreedToTermsOfUseObject) {
+					user.setAgreedToTermsOfUse(
+						(Boolean)agreedToTermsOfUseObject);
 				}
 
 			});
@@ -1327,8 +1344,11 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object emailAddressVerified) {
-					user.setEmailAddressVerified((Boolean)emailAddressVerified);
+				public void accept(
+					User user, Object emailAddressVerifiedObject) {
+
+					user.setEmailAddressVerified(
+						(Boolean)emailAddressVerifiedObject);
 				}
 
 			});
@@ -1347,8 +1367,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 			new BiConsumer<User, Object>() {
 
 				@Override
-				public void accept(User user, Object status) {
-					user.setStatus((Integer)status);
+				public void accept(User user, Object statusObject) {
+					user.setStatus((Integer)statusObject);
 				}
 
 			});

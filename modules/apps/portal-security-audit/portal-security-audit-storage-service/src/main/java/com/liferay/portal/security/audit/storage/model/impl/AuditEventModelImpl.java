@@ -335,8 +335,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object auditEventId) {
-					auditEvent.setAuditEventId((Long)auditEventId);
+				public void accept(
+					AuditEvent auditEvent, Object auditEventIdObject) {
+
+					auditEvent.setAuditEventId((Long)auditEventIdObject);
 				}
 
 			});
@@ -355,8 +357,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object companyId) {
-					auditEvent.setCompanyId((Long)companyId);
+				public void accept(
+					AuditEvent auditEvent, Object companyIdObject) {
+
+					auditEvent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -375,8 +379,8 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object userId) {
-					auditEvent.setUserId((Long)userId);
+				public void accept(AuditEvent auditEvent, Object userIdObject) {
+					auditEvent.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -395,8 +399,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object userName) {
-					auditEvent.setUserName((String)userName);
+				public void accept(
+					AuditEvent auditEvent, Object userNameObject) {
+
+					auditEvent.setUserName((String)userNameObject);
 				}
 
 			});
@@ -415,8 +421,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object createDate) {
-					auditEvent.setCreateDate((Date)createDate);
+				public void accept(
+					AuditEvent auditEvent, Object createDateObject) {
+
+					auditEvent.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -435,8 +443,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object eventType) {
-					auditEvent.setEventType((String)eventType);
+				public void accept(
+					AuditEvent auditEvent, Object eventTypeObject) {
+
+					auditEvent.setEventType((String)eventTypeObject);
 				}
 
 			});
@@ -455,8 +465,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object className) {
-					auditEvent.setClassName((String)className);
+				public void accept(
+					AuditEvent auditEvent, Object classNameObject) {
+
+					auditEvent.setClassName((String)classNameObject);
 				}
 
 			});
@@ -475,8 +487,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object classPK) {
-					auditEvent.setClassPK((String)classPK);
+				public void accept(
+					AuditEvent auditEvent, Object classPKObject) {
+
+					auditEvent.setClassPK((String)classPKObject);
 				}
 
 			});
@@ -495,8 +509,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object message) {
-					auditEvent.setMessage((String)message);
+				public void accept(
+					AuditEvent auditEvent, Object messageObject) {
+
+					auditEvent.setMessage((String)messageObject);
 				}
 
 			});
@@ -515,8 +531,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object clientHost) {
-					auditEvent.setClientHost((String)clientHost);
+				public void accept(
+					AuditEvent auditEvent, Object clientHostObject) {
+
+					auditEvent.setClientHost((String)clientHostObject);
 				}
 
 			});
@@ -535,8 +553,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object clientIP) {
-					auditEvent.setClientIP((String)clientIP);
+				public void accept(
+					AuditEvent auditEvent, Object clientIPObject) {
+
+					auditEvent.setClientIP((String)clientIPObject);
 				}
 
 			});
@@ -555,8 +575,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object serverName) {
-					auditEvent.setServerName((String)serverName);
+				public void accept(
+					AuditEvent auditEvent, Object serverNameObject) {
+
+					auditEvent.setServerName((String)serverNameObject);
 				}
 
 			});
@@ -575,8 +597,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object serverPort) {
-					auditEvent.setServerPort((Integer)serverPort);
+				public void accept(
+					AuditEvent auditEvent, Object serverPortObject) {
+
+					auditEvent.setServerPort((Integer)serverPortObject);
 				}
 
 			});
@@ -595,8 +619,10 @@ public class AuditEventModelImpl
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object sessionID) {
-					auditEvent.setSessionID((String)sessionID);
+				public void accept(
+					AuditEvent auditEvent, Object sessionIDObject) {
+
+					auditEvent.setSessionID((String)sessionIDObject);
 				}
 
 			});
@@ -616,9 +642,9 @@ public class AuditEventModelImpl
 
 				@Override
 				public void accept(
-					AuditEvent auditEvent, Object additionalInfo) {
+					AuditEvent auditEvent, Object additionalInfoObject) {
 
-					auditEvent.setAdditionalInfo((String)additionalInfo);
+					auditEvent.setAdditionalInfo((String)additionalInfoObject);
 				}
 
 			});

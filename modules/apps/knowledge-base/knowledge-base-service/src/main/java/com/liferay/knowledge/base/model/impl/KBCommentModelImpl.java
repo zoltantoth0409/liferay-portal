@@ -347,8 +347,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object uuid) {
-					kbComment.setUuid((String)uuid);
+				public void accept(KBComment kbComment, Object uuidObject) {
+					kbComment.setUuid((String)uuidObject);
 				}
 
 			});
@@ -367,8 +367,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object kbCommentId) {
-					kbComment.setKbCommentId((Long)kbCommentId);
+				public void accept(
+					KBComment kbComment, Object kbCommentIdObject) {
+
+					kbComment.setKbCommentId((Long)kbCommentIdObject);
 				}
 
 			});
@@ -387,8 +389,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object groupId) {
-					kbComment.setGroupId((Long)groupId);
+				public void accept(KBComment kbComment, Object groupIdObject) {
+					kbComment.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -407,8 +409,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object companyId) {
-					kbComment.setCompanyId((Long)companyId);
+				public void accept(
+					KBComment kbComment, Object companyIdObject) {
+
+					kbComment.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -427,8 +431,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object userId) {
-					kbComment.setUserId((Long)userId);
+				public void accept(KBComment kbComment, Object userIdObject) {
+					kbComment.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -447,8 +451,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object userName) {
-					kbComment.setUserName((String)userName);
+				public void accept(KBComment kbComment, Object userNameObject) {
+					kbComment.setUserName((String)userNameObject);
 				}
 
 			});
@@ -467,8 +471,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object createDate) {
-					kbComment.setCreateDate((Date)createDate);
+				public void accept(
+					KBComment kbComment, Object createDateObject) {
+
+					kbComment.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -487,8 +493,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object modifiedDate) {
-					kbComment.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KBComment kbComment, Object modifiedDateObject) {
+
+					kbComment.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -507,8 +515,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object classNameId) {
-					kbComment.setClassNameId((Long)classNameId);
+				public void accept(
+					KBComment kbComment, Object classNameIdObject) {
+
+					kbComment.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -527,8 +537,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object classPK) {
-					kbComment.setClassPK((Long)classPK);
+				public void accept(KBComment kbComment, Object classPKObject) {
+					kbComment.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -547,8 +557,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object content) {
-					kbComment.setContent((String)content);
+				public void accept(KBComment kbComment, Object contentObject) {
+					kbComment.setContent((String)contentObject);
 				}
 
 			});
@@ -567,8 +577,10 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object userRating) {
-					kbComment.setUserRating((Integer)userRating);
+				public void accept(
+					KBComment kbComment, Object userRatingObject) {
+
+					kbComment.setUserRating((Integer)userRatingObject);
 				}
 
 			});
@@ -588,9 +600,9 @@ public class KBCommentModelImpl
 
 				@Override
 				public void accept(
-					KBComment kbComment, Object lastPublishDate) {
+					KBComment kbComment, Object lastPublishDateObject) {
 
-					kbComment.setLastPublishDate((Date)lastPublishDate);
+					kbComment.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -609,8 +621,8 @@ public class KBCommentModelImpl
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object status) {
-					kbComment.setStatus((Integer)status);
+				public void accept(KBComment kbComment, Object statusObject) {
+					kbComment.setStatus((Integer)statusObject);
 				}
 
 			});

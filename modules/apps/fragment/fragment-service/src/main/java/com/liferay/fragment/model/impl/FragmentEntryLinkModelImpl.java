@@ -303,9 +303,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object uuid) {
+					FragmentEntryLink fragmentEntryLink, Object uuidObject) {
 
-					fragmentEntryLink.setUuid((String)uuid);
+					fragmentEntryLink.setUuid((String)uuidObject);
 				}
 
 			});
@@ -326,10 +326,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object fragmentEntryLinkId) {
+					Object fragmentEntryLinkIdObject) {
 
 					fragmentEntryLink.setFragmentEntryLinkId(
-						(Long)fragmentEntryLinkId);
+						(Long)fragmentEntryLinkIdObject);
 				}
 
 			});
@@ -349,9 +349,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object groupId) {
+					FragmentEntryLink fragmentEntryLink, Object groupIdObject) {
 
-					fragmentEntryLink.setGroupId((Long)groupId);
+					fragmentEntryLink.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -371,9 +371,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object companyId) {
+					FragmentEntryLink fragmentEntryLink,
+					Object companyIdObject) {
 
-					fragmentEntryLink.setCompanyId((Long)companyId);
+					fragmentEntryLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -393,9 +394,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object userId) {
+					FragmentEntryLink fragmentEntryLink, Object userIdObject) {
 
-					fragmentEntryLink.setUserId((Long)userId);
+					fragmentEntryLink.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -415,9 +416,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object userName) {
+					FragmentEntryLink fragmentEntryLink,
+					Object userNameObject) {
 
-					fragmentEntryLink.setUserName((String)userName);
+					fragmentEntryLink.setUserName((String)userNameObject);
 				}
 
 			});
@@ -437,9 +439,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object createDate) {
+					FragmentEntryLink fragmentEntryLink,
+					Object createDateObject) {
 
-					fragmentEntryLink.setCreateDate((Date)createDate);
+					fragmentEntryLink.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -459,9 +462,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object modifiedDate) {
+					FragmentEntryLink fragmentEntryLink,
+					Object modifiedDateObject) {
 
-					fragmentEntryLink.setModifiedDate((Date)modifiedDate);
+					fragmentEntryLink.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -482,10 +486,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object originalFragmentEntryLinkId) {
+					Object originalFragmentEntryLinkIdObject) {
 
 					fragmentEntryLink.setOriginalFragmentEntryLinkId(
-						(Long)originalFragmentEntryLinkId);
+						(Long)originalFragmentEntryLinkIdObject);
 				}
 
 			});
@@ -506,9 +510,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object fragmentEntryId) {
+					Object fragmentEntryIdObject) {
 
-					fragmentEntryLink.setFragmentEntryId((Long)fragmentEntryId);
+					fragmentEntryLink.setFragmentEntryId(
+						(Long)fragmentEntryIdObject);
 				}
 
 			});
@@ -528,9 +533,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object classNameId) {
+					FragmentEntryLink fragmentEntryLink,
+					Object classNameIdObject) {
 
-					fragmentEntryLink.setClassNameId((Long)classNameId);
+					fragmentEntryLink.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -550,9 +556,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object classPK) {
+					FragmentEntryLink fragmentEntryLink, Object classPKObject) {
 
-					fragmentEntryLink.setClassPK((Long)classPK);
+					fragmentEntryLink.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -572,9 +578,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object css) {
+					FragmentEntryLink fragmentEntryLink, Object cssObject) {
 
-					fragmentEntryLink.setCss((String)css);
+					fragmentEntryLink.setCss((String)cssObject);
 				}
 
 			});
@@ -594,9 +600,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object html) {
+					FragmentEntryLink fragmentEntryLink, Object htmlObject) {
 
-					fragmentEntryLink.setHtml((String)html);
+					fragmentEntryLink.setHtml((String)htmlObject);
 				}
 
 			});
@@ -616,9 +622,9 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object js) {
+					FragmentEntryLink fragmentEntryLink, Object jsObject) {
 
-					fragmentEntryLink.setJs((String)js);
+					fragmentEntryLink.setJs((String)jsObject);
 				}
 
 			});
@@ -639,9 +645,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object editableValues) {
+					Object editableValuesObject) {
 
-					fragmentEntryLink.setEditableValues((String)editableValues);
+					fragmentEntryLink.setEditableValues(
+						(String)editableValuesObject);
 				}
 
 			});
@@ -661,9 +668,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object position) {
+					FragmentEntryLink fragmentEntryLink,
+					Object positionObject) {
 
-					fragmentEntryLink.setPosition((Integer)position);
+					fragmentEntryLink.setPosition((Integer)positionObject);
 				}
 
 			});
@@ -684,10 +692,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object lastPropagationDate) {
+					Object lastPropagationDateObject) {
 
 					fragmentEntryLink.setLastPropagationDate(
-						(Date)lastPropagationDate);
+						(Date)lastPropagationDateObject);
 				}
 
 			});
@@ -707,9 +715,10 @@ public class FragmentEntryLinkModelImpl
 
 				@Override
 				public void accept(
-					FragmentEntryLink fragmentEntryLink, Object namespace) {
+					FragmentEntryLink fragmentEntryLink,
+					Object namespaceObject) {
 
-					fragmentEntryLink.setNamespace((String)namespace);
+					fragmentEntryLink.setNamespace((String)namespaceObject);
 				}
 
 			});
@@ -730,9 +739,10 @@ public class FragmentEntryLinkModelImpl
 				@Override
 				public void accept(
 					FragmentEntryLink fragmentEntryLink,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
-					fragmentEntryLink.setLastPublishDate((Date)lastPublishDate);
+					fragmentEntryLink.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

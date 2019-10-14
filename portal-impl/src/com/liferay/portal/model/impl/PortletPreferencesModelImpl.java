@@ -329,9 +329,10 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object mvccVersion) {
+					PortletPreferences portletPreferences,
+					Object mvccVersionObject) {
 
-					portletPreferences.setMvccVersion((Long)mvccVersion);
+					portletPreferences.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -352,10 +353,10 @@ public class PortletPreferencesModelImpl
 				@Override
 				public void accept(
 					PortletPreferences portletPreferences,
-					Object portletPreferencesId) {
+					Object portletPreferencesIdObject) {
 
 					portletPreferences.setPortletPreferencesId(
-						(Long)portletPreferencesId);
+						(Long)portletPreferencesIdObject);
 				}
 
 			});
@@ -375,9 +376,10 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object companyId) {
+					PortletPreferences portletPreferences,
+					Object companyIdObject) {
 
-					portletPreferences.setCompanyId((Long)companyId);
+					portletPreferences.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -397,9 +399,10 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object ownerId) {
+					PortletPreferences portletPreferences,
+					Object ownerIdObject) {
 
-					portletPreferences.setOwnerId((Long)ownerId);
+					portletPreferences.setOwnerId((Long)ownerIdObject);
 				}
 
 			});
@@ -419,9 +422,10 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object ownerType) {
+					PortletPreferences portletPreferences,
+					Object ownerTypeObject) {
 
-					portletPreferences.setOwnerType((Integer)ownerType);
+					portletPreferences.setOwnerType((Integer)ownerTypeObject);
 				}
 
 			});
@@ -441,9 +445,9 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object plid) {
+					PortletPreferences portletPreferences, Object plidObject) {
 
-					portletPreferences.setPlid((Long)plid);
+					portletPreferences.setPlid((Long)plidObject);
 				}
 
 			});
@@ -463,9 +467,10 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object portletId) {
+					PortletPreferences portletPreferences,
+					Object portletIdObject) {
 
-					portletPreferences.setPortletId((String)portletId);
+					portletPreferences.setPortletId((String)portletIdObject);
 				}
 
 			});
@@ -485,9 +490,11 @@ public class PortletPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortletPreferences portletPreferences, Object preferences) {
+					PortletPreferences portletPreferences,
+					Object preferencesObject) {
 
-					portletPreferences.setPreferences((String)preferences);
+					portletPreferences.setPreferences(
+						(String)preferencesObject);
 				}
 
 			});

@@ -426,8 +426,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object entryId) {
-					assetEntry.setEntryId((Long)entryId);
+				public void accept(
+					AssetEntry assetEntry, Object entryIdObject) {
+
+					assetEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -446,8 +448,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object groupId) {
-					assetEntry.setGroupId((Long)groupId);
+				public void accept(
+					AssetEntry assetEntry, Object groupIdObject) {
+
+					assetEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -466,8 +470,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object companyId) {
-					assetEntry.setCompanyId((Long)companyId);
+				public void accept(
+					AssetEntry assetEntry, Object companyIdObject) {
+
+					assetEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -486,8 +492,8 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object userId) {
-					assetEntry.setUserId((Long)userId);
+				public void accept(AssetEntry assetEntry, Object userIdObject) {
+					assetEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -506,8 +512,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object userName) {
-					assetEntry.setUserName((String)userName);
+				public void accept(
+					AssetEntry assetEntry, Object userNameObject) {
+
+					assetEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -526,8 +534,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object createDate) {
-					assetEntry.setCreateDate((Date)createDate);
+				public void accept(
+					AssetEntry assetEntry, Object createDateObject) {
+
+					assetEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -546,8 +556,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object modifiedDate) {
-					assetEntry.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					AssetEntry assetEntry, Object modifiedDateObject) {
+
+					assetEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -566,8 +578,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object classNameId) {
-					assetEntry.setClassNameId((Long)classNameId);
+				public void accept(
+					AssetEntry assetEntry, Object classNameIdObject) {
+
+					assetEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -586,8 +600,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object classPK) {
-					assetEntry.setClassPK((Long)classPK);
+				public void accept(
+					AssetEntry assetEntry, Object classPKObject) {
+
+					assetEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -606,8 +622,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object classUuid) {
-					assetEntry.setClassUuid((String)classUuid);
+				public void accept(
+					AssetEntry assetEntry, Object classUuidObject) {
+
+					assetEntry.setClassUuid((String)classUuidObject);
 				}
 
 			});
@@ -626,8 +644,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object classTypeId) {
-					assetEntry.setClassTypeId((Long)classTypeId);
+				public void accept(
+					AssetEntry assetEntry, Object classTypeIdObject) {
+
+					assetEntry.setClassTypeId((Long)classTypeIdObject);
 				}
 
 			});
@@ -646,8 +666,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object listable) {
-					assetEntry.setListable((Boolean)listable);
+				public void accept(
+					AssetEntry assetEntry, Object listableObject) {
+
+					assetEntry.setListable((Boolean)listableObject);
 				}
 
 			});
@@ -666,8 +688,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object visible) {
-					assetEntry.setVisible((Boolean)visible);
+				public void accept(
+					AssetEntry assetEntry, Object visibleObject) {
+
+					assetEntry.setVisible((Boolean)visibleObject);
 				}
 
 			});
@@ -686,8 +710,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object startDate) {
-					assetEntry.setStartDate((Date)startDate);
+				public void accept(
+					AssetEntry assetEntry, Object startDateObject) {
+
+					assetEntry.setStartDate((Date)startDateObject);
 				}
 
 			});
@@ -706,8 +732,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object endDate) {
-					assetEntry.setEndDate((Date)endDate);
+				public void accept(
+					AssetEntry assetEntry, Object endDateObject) {
+
+					assetEntry.setEndDate((Date)endDateObject);
 				}
 
 			});
@@ -726,8 +754,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object publishDate) {
-					assetEntry.setPublishDate((Date)publishDate);
+				public void accept(
+					AssetEntry assetEntry, Object publishDateObject) {
+
+					assetEntry.setPublishDate((Date)publishDateObject);
 				}
 
 			});
@@ -747,9 +777,9 @@ public class AssetEntryModelImpl
 
 				@Override
 				public void accept(
-					AssetEntry assetEntry, Object expirationDate) {
+					AssetEntry assetEntry, Object expirationDateObject) {
 
-					assetEntry.setExpirationDate((Date)expirationDate);
+					assetEntry.setExpirationDate((Date)expirationDateObject);
 				}
 
 			});
@@ -768,8 +798,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object mimeType) {
-					assetEntry.setMimeType((String)mimeType);
+				public void accept(
+					AssetEntry assetEntry, Object mimeTypeObject) {
+
+					assetEntry.setMimeType((String)mimeTypeObject);
 				}
 
 			});
@@ -788,8 +820,8 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object title) {
-					assetEntry.setTitle((String)title);
+				public void accept(AssetEntry assetEntry, Object titleObject) {
+					assetEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -808,8 +840,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object description) {
-					assetEntry.setDescription((String)description);
+				public void accept(
+					AssetEntry assetEntry, Object descriptionObject) {
+
+					assetEntry.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -828,8 +862,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object summary) {
-					assetEntry.setSummary((String)summary);
+				public void accept(
+					AssetEntry assetEntry, Object summaryObject) {
+
+					assetEntry.setSummary((String)summaryObject);
 				}
 
 			});
@@ -848,8 +884,8 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object url) {
-					assetEntry.setUrl((String)url);
+				public void accept(AssetEntry assetEntry, Object urlObject) {
+					assetEntry.setUrl((String)urlObject);
 				}
 
 			});
@@ -868,8 +904,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object layoutUuid) {
-					assetEntry.setLayoutUuid((String)layoutUuid);
+				public void accept(
+					AssetEntry assetEntry, Object layoutUuidObject) {
+
+					assetEntry.setLayoutUuid((String)layoutUuidObject);
 				}
 
 			});
@@ -888,8 +926,8 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object height) {
-					assetEntry.setHeight((Integer)height);
+				public void accept(AssetEntry assetEntry, Object heightObject) {
+					assetEntry.setHeight((Integer)heightObject);
 				}
 
 			});
@@ -908,8 +946,8 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object width) {
-					assetEntry.setWidth((Integer)width);
+				public void accept(AssetEntry assetEntry, Object widthObject) {
+					assetEntry.setWidth((Integer)widthObject);
 				}
 
 			});
@@ -928,8 +966,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object priority) {
-					assetEntry.setPriority((Double)priority);
+				public void accept(
+					AssetEntry assetEntry, Object priorityObject) {
+
+					assetEntry.setPriority((Double)priorityObject);
 				}
 
 			});
@@ -948,8 +988,10 @@ public class AssetEntryModelImpl
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object viewCount) {
-					assetEntry.setViewCount((Integer)viewCount);
+				public void accept(
+					AssetEntry assetEntry, Object viewCountObject) {
+
+					assetEntry.setViewCount((Integer)viewCountObject);
 				}
 
 			});

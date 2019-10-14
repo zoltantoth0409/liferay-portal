@@ -279,10 +279,10 @@ public class WeDeployAuthTokenModelImpl
 				@Override
 				public void accept(
 					WeDeployAuthToken weDeployAuthToken,
-					Object weDeployAuthTokenId) {
+					Object weDeployAuthTokenIdObject) {
 
 					weDeployAuthToken.setWeDeployAuthTokenId(
-						(Long)weDeployAuthTokenId);
+						(Long)weDeployAuthTokenIdObject);
 				}
 
 			});
@@ -302,9 +302,10 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object companyId) {
+					WeDeployAuthToken weDeployAuthToken,
+					Object companyIdObject) {
 
-					weDeployAuthToken.setCompanyId((Long)companyId);
+					weDeployAuthToken.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -324,9 +325,9 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object userId) {
+					WeDeployAuthToken weDeployAuthToken, Object userIdObject) {
 
-					weDeployAuthToken.setUserId((Long)userId);
+					weDeployAuthToken.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -346,9 +347,10 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object userName) {
+					WeDeployAuthToken weDeployAuthToken,
+					Object userNameObject) {
 
-					weDeployAuthToken.setUserName((String)userName);
+					weDeployAuthToken.setUserName((String)userNameObject);
 				}
 
 			});
@@ -368,9 +370,10 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object createDate) {
+					WeDeployAuthToken weDeployAuthToken,
+					Object createDateObject) {
 
-					weDeployAuthToken.setCreateDate((Date)createDate);
+					weDeployAuthToken.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -390,9 +393,10 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object modifiedDate) {
+					WeDeployAuthToken weDeployAuthToken,
+					Object modifiedDateObject) {
 
-					weDeployAuthToken.setModifiedDate((Date)modifiedDate);
+					weDeployAuthToken.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -412,9 +416,10 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object clientId) {
+					WeDeployAuthToken weDeployAuthToken,
+					Object clientIdObject) {
 
-					weDeployAuthToken.setClientId((String)clientId);
+					weDeployAuthToken.setClientId((String)clientIdObject);
 				}
 
 			});
@@ -434,9 +439,9 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object token) {
+					WeDeployAuthToken weDeployAuthToken, Object tokenObject) {
 
-					weDeployAuthToken.setToken((String)token);
+					weDeployAuthToken.setToken((String)tokenObject);
 				}
 
 			});
@@ -456,9 +461,9 @@ public class WeDeployAuthTokenModelImpl
 
 				@Override
 				public void accept(
-					WeDeployAuthToken weDeployAuthToken, Object type) {
+					WeDeployAuthToken weDeployAuthToken, Object typeObject) {
 
-					weDeployAuthToken.setType((Integer)type);
+					weDeployAuthToken.setType((Integer)typeObject);
 				}
 
 			});

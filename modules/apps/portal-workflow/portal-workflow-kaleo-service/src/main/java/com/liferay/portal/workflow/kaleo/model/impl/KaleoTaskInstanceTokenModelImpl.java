@@ -306,10 +306,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoTaskInstanceTokenId) {
+					Object kaleoTaskInstanceTokenIdObject) {
 
 					kaleoTaskInstanceToken.setKaleoTaskInstanceTokenId(
-						(Long)kaleoTaskInstanceTokenId);
+						(Long)kaleoTaskInstanceTokenIdObject);
 				}
 
 			});
@@ -332,9 +332,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoTaskInstanceToken.setGroupId((Long)groupId);
+					kaleoTaskInstanceToken.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -357,9 +357,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoTaskInstanceToken.setCompanyId((Long)companyId);
+					kaleoTaskInstanceToken.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -382,9 +382,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoTaskInstanceToken.setUserId((Long)userId);
+					kaleoTaskInstanceToken.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -407,9 +407,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoTaskInstanceToken.setUserName((String)userName);
+					kaleoTaskInstanceToken.setUserName((String)userNameObject);
 				}
 
 			});
@@ -432,9 +432,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoTaskInstanceToken.setCreateDate((Date)createDate);
+					kaleoTaskInstanceToken.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -457,9 +458,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					kaleoTaskInstanceToken.setModifiedDate((Date)modifiedDate);
+					kaleoTaskInstanceToken.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -482,10 +484,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoTaskInstanceToken.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -508,10 +510,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoInstanceId) {
+					Object kaleoInstanceIdObject) {
 
 					kaleoTaskInstanceToken.setKaleoInstanceId(
-						(Long)kaleoInstanceId);
+						(Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -534,10 +536,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoInstanceTokenId) {
+					Object kaleoInstanceTokenIdObject) {
 
 					kaleoTaskInstanceToken.setKaleoInstanceTokenId(
-						(Long)kaleoInstanceTokenId);
+						(Long)kaleoInstanceTokenIdObject);
 				}
 
 			});
@@ -560,9 +562,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoTaskId) {
+					Object kaleoTaskIdObject) {
 
-					kaleoTaskInstanceToken.setKaleoTaskId((Long)kaleoTaskId);
+					kaleoTaskInstanceToken.setKaleoTaskId(
+						(Long)kaleoTaskIdObject);
 				}
 
 			});
@@ -585,10 +588,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object kaleoTaskName) {
+					Object kaleoTaskNameObject) {
 
 					kaleoTaskInstanceToken.setKaleoTaskName(
-						(String)kaleoTaskName);
+						(String)kaleoTaskNameObject);
 				}
 
 			});
@@ -611,9 +614,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object className) {
+					Object classNameObject) {
 
-					kaleoTaskInstanceToken.setClassName((String)className);
+					kaleoTaskInstanceToken.setClassName(
+						(String)classNameObject);
 				}
 
 			});
@@ -636,9 +640,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object classPK) {
+					Object classPKObject) {
 
-					kaleoTaskInstanceToken.setClassPK((Long)classPK);
+					kaleoTaskInstanceToken.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -661,10 +665,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object completionUserId) {
+					Object completionUserIdObject) {
 
 					kaleoTaskInstanceToken.setCompletionUserId(
-						(Long)completionUserId);
+						(Long)completionUserIdObject);
 				}
 
 			});
@@ -687,9 +691,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object completed) {
+					Object completedObject) {
 
-					kaleoTaskInstanceToken.setCompleted((Boolean)completed);
+					kaleoTaskInstanceToken.setCompleted(
+						(Boolean)completedObject);
 				}
 
 			});
@@ -712,10 +717,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object completionDate) {
+					Object completionDateObject) {
 
 					kaleoTaskInstanceToken.setCompletionDate(
-						(Date)completionDate);
+						(Date)completionDateObject);
 				}
 
 			});
@@ -738,9 +743,9 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object dueDate) {
+					Object dueDateObject) {
 
-					kaleoTaskInstanceToken.setDueDate((Date)dueDate);
+					kaleoTaskInstanceToken.setDueDate((Date)dueDateObject);
 				}
 
 			});
@@ -763,10 +768,10 @@ public class KaleoTaskInstanceTokenModelImpl
 				@Override
 				public void accept(
 					KaleoTaskInstanceToken kaleoTaskInstanceToken,
-					Object workflowContext) {
+					Object workflowContextObject) {
 
 					kaleoTaskInstanceToken.setWorkflowContext(
-						(String)workflowContext);
+						(String)workflowContextObject);
 				}
 
 			});

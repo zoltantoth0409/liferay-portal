@@ -305,10 +305,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object kaleoDefinitionVersionId) {
+					Object kaleoDefinitionVersionIdObject) {
 
 					kaleoDefinitionVersion.setKaleoDefinitionVersionId(
-						(Long)kaleoDefinitionVersionId);
+						(Long)kaleoDefinitionVersionIdObject);
 				}
 
 			});
@@ -331,9 +331,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoDefinitionVersion.setGroupId((Long)groupId);
+					kaleoDefinitionVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -356,9 +356,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoDefinitionVersion.setCompanyId((Long)companyId);
+					kaleoDefinitionVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -381,9 +381,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoDefinitionVersion.setUserId((Long)userId);
+					kaleoDefinitionVersion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -406,9 +406,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoDefinitionVersion.setUserName((String)userName);
+					kaleoDefinitionVersion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -431,10 +431,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
 					kaleoDefinitionVersion.setStatusByUserId(
-						(Long)statusByUserId);
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -457,10 +457,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					kaleoDefinitionVersion.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -483,9 +483,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object statusDate) {
+					Object statusDateObject) {
 
-					kaleoDefinitionVersion.setStatusDate((Date)statusDate);
+					kaleoDefinitionVersion.setStatusDate(
+						(Date)statusDateObject);
 				}
 
 			});
@@ -508,9 +509,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoDefinitionVersion.setCreateDate((Date)createDate);
+					kaleoDefinitionVersion.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -533,9 +535,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					kaleoDefinitionVersion.setModifiedDate((Date)modifiedDate);
+					kaleoDefinitionVersion.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -558,9 +561,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object name) {
+					Object nameObject) {
 
-					kaleoDefinitionVersion.setName((String)name);
+					kaleoDefinitionVersion.setName((String)nameObject);
 				}
 
 			});
@@ -583,9 +586,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object title) {
+					Object titleObject) {
 
-					kaleoDefinitionVersion.setTitle((String)title);
+					kaleoDefinitionVersion.setTitle((String)titleObject);
 				}
 
 			});
@@ -608,9 +611,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object description) {
+					Object descriptionObject) {
 
-					kaleoDefinitionVersion.setDescription((String)description);
+					kaleoDefinitionVersion.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -633,9 +637,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object content) {
+					Object contentObject) {
 
-					kaleoDefinitionVersion.setContent((String)content);
+					kaleoDefinitionVersion.setContent((String)contentObject);
 				}
 
 			});
@@ -658,9 +662,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object version) {
+					Object versionObject) {
 
-					kaleoDefinitionVersion.setVersion((String)version);
+					kaleoDefinitionVersion.setVersion((String)versionObject);
 				}
 
 			});
@@ -683,10 +687,10 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object startKaleoNodeId) {
+					Object startKaleoNodeIdObject) {
 
 					kaleoDefinitionVersion.setStartKaleoNodeId(
-						(Long)startKaleoNodeId);
+						(Long)startKaleoNodeIdObject);
 				}
 
 			});
@@ -709,9 +713,9 @@ public class KaleoDefinitionVersionModelImpl
 				@Override
 				public void accept(
 					KaleoDefinitionVersion kaleoDefinitionVersion,
-					Object status) {
+					Object statusObject) {
 
-					kaleoDefinitionVersion.setStatus((Integer)status);
+					kaleoDefinitionVersion.setStatus((Integer)statusObject);
 				}
 
 			});

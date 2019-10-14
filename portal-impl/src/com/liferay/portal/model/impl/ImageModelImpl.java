@@ -305,8 +305,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object mvccVersion) {
-					image.setMvccVersion((Long)mvccVersion);
+				public void accept(Image image, Object mvccVersionObject) {
+					image.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -325,8 +325,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object imageId) {
-					image.setImageId((Long)imageId);
+				public void accept(Image image, Object imageIdObject) {
+					image.setImageId((Long)imageIdObject);
 				}
 
 			});
@@ -345,8 +345,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object companyId) {
-					image.setCompanyId((Long)companyId);
+				public void accept(Image image, Object companyIdObject) {
+					image.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -365,8 +365,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object modifiedDate) {
-					image.setModifiedDate((Date)modifiedDate);
+				public void accept(Image image, Object modifiedDateObject) {
+					image.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -385,8 +385,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object type) {
-					image.setType((String)type);
+				public void accept(Image image, Object typeObject) {
+					image.setType((String)typeObject);
 				}
 
 			});
@@ -405,8 +405,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object height) {
-					image.setHeight((Integer)height);
+				public void accept(Image image, Object heightObject) {
+					image.setHeight((Integer)heightObject);
 				}
 
 			});
@@ -425,8 +425,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object width) {
-					image.setWidth((Integer)width);
+				public void accept(Image image, Object widthObject) {
+					image.setWidth((Integer)widthObject);
 				}
 
 			});
@@ -445,8 +445,8 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 			new BiConsumer<Image, Object>() {
 
 				@Override
-				public void accept(Image image, Object size) {
-					image.setSize((Integer)size);
+				public void accept(Image image, Object sizeObject) {
+					image.setSize((Integer)sizeObject);
 				}
 
 			});

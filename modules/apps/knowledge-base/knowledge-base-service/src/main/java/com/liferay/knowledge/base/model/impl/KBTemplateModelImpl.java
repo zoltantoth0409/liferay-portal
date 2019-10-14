@@ -331,8 +331,8 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object uuid) {
-					kbTemplate.setUuid((String)uuid);
+				public void accept(KBTemplate kbTemplate, Object uuidObject) {
+					kbTemplate.setUuid((String)uuidObject);
 				}
 
 			});
@@ -351,8 +351,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object kbTemplateId) {
-					kbTemplate.setKbTemplateId((Long)kbTemplateId);
+				public void accept(
+					KBTemplate kbTemplate, Object kbTemplateIdObject) {
+
+					kbTemplate.setKbTemplateId((Long)kbTemplateIdObject);
 				}
 
 			});
@@ -371,8 +373,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object groupId) {
-					kbTemplate.setGroupId((Long)groupId);
+				public void accept(
+					KBTemplate kbTemplate, Object groupIdObject) {
+
+					kbTemplate.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -391,8 +395,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object companyId) {
-					kbTemplate.setCompanyId((Long)companyId);
+				public void accept(
+					KBTemplate kbTemplate, Object companyIdObject) {
+
+					kbTemplate.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -411,8 +417,8 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object userId) {
-					kbTemplate.setUserId((Long)userId);
+				public void accept(KBTemplate kbTemplate, Object userIdObject) {
+					kbTemplate.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -431,8 +437,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object userName) {
-					kbTemplate.setUserName((String)userName);
+				public void accept(
+					KBTemplate kbTemplate, Object userNameObject) {
+
+					kbTemplate.setUserName((String)userNameObject);
 				}
 
 			});
@@ -451,8 +459,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object createDate) {
-					kbTemplate.setCreateDate((Date)createDate);
+				public void accept(
+					KBTemplate kbTemplate, Object createDateObject) {
+
+					kbTemplate.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -471,8 +481,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object modifiedDate) {
-					kbTemplate.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KBTemplate kbTemplate, Object modifiedDateObject) {
+
+					kbTemplate.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -491,8 +503,8 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object title) {
-					kbTemplate.setTitle((String)title);
+				public void accept(KBTemplate kbTemplate, Object titleObject) {
+					kbTemplate.setTitle((String)titleObject);
 				}
 
 			});
@@ -511,8 +523,10 @@ public class KBTemplateModelImpl
 			new BiConsumer<KBTemplate, Object>() {
 
 				@Override
-				public void accept(KBTemplate kbTemplate, Object content) {
-					kbTemplate.setContent((String)content);
+				public void accept(
+					KBTemplate kbTemplate, Object contentObject) {
+
+					kbTemplate.setContent((String)contentObject);
 				}
 
 			});
@@ -532,9 +546,9 @@ public class KBTemplateModelImpl
 
 				@Override
 				public void accept(
-					KBTemplate kbTemplate, Object lastPublishDate) {
+					KBTemplate kbTemplate, Object lastPublishDateObject) {
 
-					kbTemplate.setLastPublishDate((Date)lastPublishDate);
+					kbTemplate.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

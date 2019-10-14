@@ -337,9 +337,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object mvccVersion) {
+					MembershipRequest membershipRequest,
+					Object mvccVersionObject) {
 
-					membershipRequest.setMvccVersion((Long)mvccVersion);
+					membershipRequest.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -360,10 +361,10 @@ public class MembershipRequestModelImpl
 				@Override
 				public void accept(
 					MembershipRequest membershipRequest,
-					Object membershipRequestId) {
+					Object membershipRequestIdObject) {
 
 					membershipRequest.setMembershipRequestId(
-						(Long)membershipRequestId);
+						(Long)membershipRequestIdObject);
 				}
 
 			});
@@ -383,9 +384,9 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object groupId) {
+					MembershipRequest membershipRequest, Object groupIdObject) {
 
-					membershipRequest.setGroupId((Long)groupId);
+					membershipRequest.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -405,9 +406,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object companyId) {
+					MembershipRequest membershipRequest,
+					Object companyIdObject) {
 
-					membershipRequest.setCompanyId((Long)companyId);
+					membershipRequest.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -427,9 +429,9 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object userId) {
+					MembershipRequest membershipRequest, Object userIdObject) {
 
-					membershipRequest.setUserId((Long)userId);
+					membershipRequest.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -449,9 +451,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object createDate) {
+					MembershipRequest membershipRequest,
+					Object createDateObject) {
 
-					membershipRequest.setCreateDate((Date)createDate);
+					membershipRequest.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -471,9 +474,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object comments) {
+					MembershipRequest membershipRequest,
+					Object commentsObject) {
 
-					membershipRequest.setComments((String)comments);
+					membershipRequest.setComments((String)commentsObject);
 				}
 
 			});
@@ -493,9 +497,11 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object replyComments) {
+					MembershipRequest membershipRequest,
+					Object replyCommentsObject) {
 
-					membershipRequest.setReplyComments((String)replyComments);
+					membershipRequest.setReplyComments(
+						(String)replyCommentsObject);
 				}
 
 			});
@@ -515,9 +521,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object replyDate) {
+					MembershipRequest membershipRequest,
+					Object replyDateObject) {
 
-					membershipRequest.setReplyDate((Date)replyDate);
+					membershipRequest.setReplyDate((Date)replyDateObject);
 				}
 
 			});
@@ -537,9 +544,11 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object replierUserId) {
+					MembershipRequest membershipRequest,
+					Object replierUserIdObject) {
 
-					membershipRequest.setReplierUserId((Long)replierUserId);
+					membershipRequest.setReplierUserId(
+						(Long)replierUserIdObject);
 				}
 
 			});
@@ -559,9 +568,10 @@ public class MembershipRequestModelImpl
 
 				@Override
 				public void accept(
-					MembershipRequest membershipRequest, Object statusId) {
+					MembershipRequest membershipRequest,
+					Object statusIdObject) {
 
-					membershipRequest.setStatusId((Long)statusId);
+					membershipRequest.setStatusId((Long)statusIdObject);
 				}
 
 			});

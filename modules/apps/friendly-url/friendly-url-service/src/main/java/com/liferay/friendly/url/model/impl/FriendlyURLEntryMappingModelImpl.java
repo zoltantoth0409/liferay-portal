@@ -276,9 +276,10 @@ public class FriendlyURLEntryMappingModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryMapping friendlyURLEntryMapping,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					friendlyURLEntryMapping.setMvccVersion((Long)mvccVersion);
+					friendlyURLEntryMapping.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -302,10 +303,10 @@ public class FriendlyURLEntryMappingModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryMapping friendlyURLEntryMapping,
-					Object friendlyURLEntryMappingId) {
+					Object friendlyURLEntryMappingIdObject) {
 
 					friendlyURLEntryMapping.setFriendlyURLEntryMappingId(
-						(Long)friendlyURLEntryMappingId);
+						(Long)friendlyURLEntryMappingIdObject);
 				}
 
 			});
@@ -328,9 +329,10 @@ public class FriendlyURLEntryMappingModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryMapping friendlyURLEntryMapping,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					friendlyURLEntryMapping.setClassNameId((Long)classNameId);
+					friendlyURLEntryMapping.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -353,9 +355,9 @@ public class FriendlyURLEntryMappingModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryMapping friendlyURLEntryMapping,
-					Object classPK) {
+					Object classPKObject) {
 
-					friendlyURLEntryMapping.setClassPK((Long)classPK);
+					friendlyURLEntryMapping.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -378,10 +380,10 @@ public class FriendlyURLEntryMappingModelImpl
 				@Override
 				public void accept(
 					FriendlyURLEntryMapping friendlyURLEntryMapping,
-					Object friendlyURLEntryId) {
+					Object friendlyURLEntryIdObject) {
 
 					friendlyURLEntryMapping.setFriendlyURLEntryId(
-						(Long)friendlyURLEntryId);
+						(Long)friendlyURLEntryIdObject);
 				}
 
 			});

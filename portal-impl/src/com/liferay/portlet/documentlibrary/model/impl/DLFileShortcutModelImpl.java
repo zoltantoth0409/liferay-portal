@@ -364,8 +364,10 @@ public class DLFileShortcutModelImpl
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object uuid) {
-					dlFileShortcut.setUuid((String)uuid);
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object uuidObject) {
+
+					dlFileShortcut.setUuid((String)uuidObject);
 				}
 
 			});
@@ -385,9 +387,11 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object fileShortcutId) {
+					DLFileShortcut dlFileShortcut,
+					Object fileShortcutIdObject) {
 
-					dlFileShortcut.setFileShortcutId((Long)fileShortcutId);
+					dlFileShortcut.setFileShortcutId(
+						(Long)fileShortcutIdObject);
 				}
 
 			});
@@ -407,9 +411,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object groupId) {
+					DLFileShortcut dlFileShortcut, Object groupIdObject) {
 
-					dlFileShortcut.setGroupId((Long)groupId);
+					dlFileShortcut.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -429,9 +433,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object companyId) {
+					DLFileShortcut dlFileShortcut, Object companyIdObject) {
 
-					dlFileShortcut.setCompanyId((Long)companyId);
+					dlFileShortcut.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -451,9 +455,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object userId) {
+					DLFileShortcut dlFileShortcut, Object userIdObject) {
 
-					dlFileShortcut.setUserId((Long)userId);
+					dlFileShortcut.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -473,9 +477,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object userName) {
+					DLFileShortcut dlFileShortcut, Object userNameObject) {
 
-					dlFileShortcut.setUserName((String)userName);
+					dlFileShortcut.setUserName((String)userNameObject);
 				}
 
 			});
@@ -495,9 +499,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object createDate) {
+					DLFileShortcut dlFileShortcut, Object createDateObject) {
 
-					dlFileShortcut.setCreateDate((Date)createDate);
+					dlFileShortcut.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -517,9 +521,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object modifiedDate) {
+					DLFileShortcut dlFileShortcut, Object modifiedDateObject) {
 
-					dlFileShortcut.setModifiedDate((Date)modifiedDate);
+					dlFileShortcut.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -539,9 +543,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object repositoryId) {
+					DLFileShortcut dlFileShortcut, Object repositoryIdObject) {
 
-					dlFileShortcut.setRepositoryId((Long)repositoryId);
+					dlFileShortcut.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -561,9 +565,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object folderId) {
+					DLFileShortcut dlFileShortcut, Object folderIdObject) {
 
-					dlFileShortcut.setFolderId((Long)folderId);
+					dlFileShortcut.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -583,9 +587,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object toFileEntryId) {
+					DLFileShortcut dlFileShortcut, Object toFileEntryIdObject) {
 
-					dlFileShortcut.setToFileEntryId((Long)toFileEntryId);
+					dlFileShortcut.setToFileEntryId((Long)toFileEntryIdObject);
 				}
 
 			});
@@ -605,9 +609,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object treePath) {
+					DLFileShortcut dlFileShortcut, Object treePathObject) {
 
-					dlFileShortcut.setTreePath((String)treePath);
+					dlFileShortcut.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -627,9 +631,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object active) {
+					DLFileShortcut dlFileShortcut, Object activeObject) {
 
-					dlFileShortcut.setActive((Boolean)active);
+					dlFileShortcut.setActive((Boolean)activeObject);
 				}
 
 			});
@@ -649,9 +653,11 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object lastPublishDate) {
+					DLFileShortcut dlFileShortcut,
+					Object lastPublishDateObject) {
 
-					dlFileShortcut.setLastPublishDate((Date)lastPublishDate);
+					dlFileShortcut.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -671,9 +677,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object status) {
+					DLFileShortcut dlFileShortcut, Object statusObject) {
 
-					dlFileShortcut.setStatus((Integer)status);
+					dlFileShortcut.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -693,9 +699,11 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object statusByUserId) {
+					DLFileShortcut dlFileShortcut,
+					Object statusByUserIdObject) {
 
-					dlFileShortcut.setStatusByUserId((Long)statusByUserId);
+					dlFileShortcut.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -715,10 +723,11 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object statusByUserName) {
+					DLFileShortcut dlFileShortcut,
+					Object statusByUserNameObject) {
 
 					dlFileShortcut.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -738,9 +747,9 @@ public class DLFileShortcutModelImpl
 
 				@Override
 				public void accept(
-					DLFileShortcut dlFileShortcut, Object statusDate) {
+					DLFileShortcut dlFileShortcut, Object statusDateObject) {
 
-					dlFileShortcut.setStatusDate((Date)statusDate);
+					dlFileShortcut.setStatusDate((Date)statusDateObject);
 				}
 
 			});

@@ -353,9 +353,9 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object uuid) {
+					Object uuidObject) {
 
-					layoutPageTemplateCollection.setUuid((String)uuid);
+					layoutPageTemplateCollection.setUuid((String)uuidObject);
 				}
 
 			});
@@ -379,11 +379,11 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object layoutPageTemplateCollectionId) {
+					Object layoutPageTemplateCollectionIdObject) {
 
 					layoutPageTemplateCollection.
 						setLayoutPageTemplateCollectionId(
-							(Long)layoutPageTemplateCollectionId);
+							(Long)layoutPageTemplateCollectionIdObject);
 				}
 
 			});
@@ -406,9 +406,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object groupId) {
+					Object groupIdObject) {
 
-					layoutPageTemplateCollection.setGroupId((Long)groupId);
+					layoutPageTemplateCollection.setGroupId(
+						(Long)groupIdObject);
 				}
 
 			});
@@ -431,9 +432,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object companyId) {
+					Object companyIdObject) {
 
-					layoutPageTemplateCollection.setCompanyId((Long)companyId);
+					layoutPageTemplateCollection.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -456,9 +458,9 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object userId) {
+					Object userIdObject) {
 
-					layoutPageTemplateCollection.setUserId((Long)userId);
+					layoutPageTemplateCollection.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -481,9 +483,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object userName) {
+					Object userNameObject) {
 
-					layoutPageTemplateCollection.setUserName((String)userName);
+					layoutPageTemplateCollection.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -506,10 +509,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object createDate) {
+					Object createDateObject) {
 
 					layoutPageTemplateCollection.setCreateDate(
-						(Date)createDate);
+						(Date)createDateObject);
 				}
 
 			});
@@ -532,10 +535,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
 					layoutPageTemplateCollection.setModifiedDate(
-						(Date)modifiedDate);
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -558,9 +561,9 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object name) {
+					Object nameObject) {
 
-					layoutPageTemplateCollection.setName((String)name);
+					layoutPageTemplateCollection.setName((String)nameObject);
 				}
 
 			});
@@ -583,10 +586,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object description) {
+					Object descriptionObject) {
 
 					layoutPageTemplateCollection.setDescription(
-						(String)description);
+						(String)descriptionObject);
 				}
 
 			});
@@ -609,10 +612,10 @@ public class LayoutPageTemplateCollectionModelImpl
 				@Override
 				public void accept(
 					LayoutPageTemplateCollection layoutPageTemplateCollection,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					layoutPageTemplateCollection.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

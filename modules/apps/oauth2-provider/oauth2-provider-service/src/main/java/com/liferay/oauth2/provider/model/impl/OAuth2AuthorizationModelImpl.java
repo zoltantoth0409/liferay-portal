@@ -381,10 +381,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object oAuth2AuthorizationId) {
+					Object oAuth2AuthorizationIdObject) {
 
 					oAuth2Authorization.setOAuth2AuthorizationId(
-						(Long)oAuth2AuthorizationId);
+						(Long)oAuth2AuthorizationIdObject);
 				}
 
 			});
@@ -404,9 +404,10 @@ public class OAuth2AuthorizationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Authorization oAuth2Authorization, Object companyId) {
+					OAuth2Authorization oAuth2Authorization,
+					Object companyIdObject) {
 
-					oAuth2Authorization.setCompanyId((Long)companyId);
+					oAuth2Authorization.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -426,9 +427,10 @@ public class OAuth2AuthorizationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Authorization oAuth2Authorization, Object userId) {
+					OAuth2Authorization oAuth2Authorization,
+					Object userIdObject) {
 
-					oAuth2Authorization.setUserId((Long)userId);
+					oAuth2Authorization.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -448,9 +450,10 @@ public class OAuth2AuthorizationModelImpl
 
 				@Override
 				public void accept(
-					OAuth2Authorization oAuth2Authorization, Object userName) {
+					OAuth2Authorization oAuth2Authorization,
+					Object userNameObject) {
 
-					oAuth2Authorization.setUserName((String)userName);
+					oAuth2Authorization.setUserName((String)userNameObject);
 				}
 
 			});
@@ -471,9 +474,9 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object createDate) {
+					Object createDateObject) {
 
-					oAuth2Authorization.setCreateDate((Date)createDate);
+					oAuth2Authorization.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -494,10 +497,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object oAuth2ApplicationId) {
+					Object oAuth2ApplicationIdObject) {
 
 					oAuth2Authorization.setOAuth2ApplicationId(
-						(Long)oAuth2ApplicationId);
+						(Long)oAuth2ApplicationIdObject);
 				}
 
 			});
@@ -519,10 +522,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object oAuth2ApplicationScopeAliasesId) {
+					Object oAuth2ApplicationScopeAliasesIdObject) {
 
 					oAuth2Authorization.setOAuth2ApplicationScopeAliasesId(
-						(Long)oAuth2ApplicationScopeAliasesId);
+						(Long)oAuth2ApplicationScopeAliasesIdObject);
 				}
 
 			});
@@ -543,10 +546,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object accessTokenContent) {
+					Object accessTokenContentObject) {
 
 					oAuth2Authorization.setAccessTokenContent(
-						(String)accessTokenContent);
+						(String)accessTokenContentObject);
 				}
 
 			});
@@ -567,10 +570,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object accessTokenContentHash) {
+					Object accessTokenContentHashObject) {
 
 					oAuth2Authorization.setAccessTokenContentHash(
-						(Long)accessTokenContentHash);
+						(Long)accessTokenContentHashObject);
 				}
 
 			});
@@ -591,10 +594,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object accessTokenCreateDate) {
+					Object accessTokenCreateDateObject) {
 
 					oAuth2Authorization.setAccessTokenCreateDate(
-						(Date)accessTokenCreateDate);
+						(Date)accessTokenCreateDateObject);
 				}
 
 			});
@@ -615,10 +618,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object accessTokenExpirationDate) {
+					Object accessTokenExpirationDateObject) {
 
 					oAuth2Authorization.setAccessTokenExpirationDate(
-						(Date)accessTokenExpirationDate);
+						(Date)accessTokenExpirationDateObject);
 				}
 
 			});
@@ -639,9 +642,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object remoteIPInfo) {
+					Object remoteIPInfoObject) {
 
-					oAuth2Authorization.setRemoteIPInfo((String)remoteIPInfo);
+					oAuth2Authorization.setRemoteIPInfo(
+						(String)remoteIPInfoObject);
 				}
 
 			});
@@ -662,10 +666,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object refreshTokenContent) {
+					Object refreshTokenContentObject) {
 
 					oAuth2Authorization.setRefreshTokenContent(
-						(String)refreshTokenContent);
+						(String)refreshTokenContentObject);
 				}
 
 			});
@@ -686,10 +690,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object refreshTokenContentHash) {
+					Object refreshTokenContentHashObject) {
 
 					oAuth2Authorization.setRefreshTokenContentHash(
-						(Long)refreshTokenContentHash);
+						(Long)refreshTokenContentHashObject);
 				}
 
 			});
@@ -710,10 +714,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object refreshTokenCreateDate) {
+					Object refreshTokenCreateDateObject) {
 
 					oAuth2Authorization.setRefreshTokenCreateDate(
-						(Date)refreshTokenCreateDate);
+						(Date)refreshTokenCreateDateObject);
 				}
 
 			});
@@ -734,10 +738,10 @@ public class OAuth2AuthorizationModelImpl
 				@Override
 				public void accept(
 					OAuth2Authorization oAuth2Authorization,
-					Object refreshTokenExpirationDate) {
+					Object refreshTokenExpirationDateObject) {
 
 					oAuth2Authorization.setRefreshTokenExpirationDate(
-						(Date)refreshTokenExpirationDate);
+						(Date)refreshTokenExpirationDateObject);
 				}
 
 			});

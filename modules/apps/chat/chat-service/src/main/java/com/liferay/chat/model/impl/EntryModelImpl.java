@@ -260,8 +260,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object entryId) {
-					entry.setEntryId((Long)entryId);
+				public void accept(Entry entry, Object entryIdObject) {
+					entry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -280,8 +280,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object createDate) {
-					entry.setCreateDate((Long)createDate);
+				public void accept(Entry entry, Object createDateObject) {
+					entry.setCreateDate((Long)createDateObject);
 				}
 
 			});
@@ -300,8 +300,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object fromUserId) {
-					entry.setFromUserId((Long)fromUserId);
+				public void accept(Entry entry, Object fromUserIdObject) {
+					entry.setFromUserId((Long)fromUserIdObject);
 				}
 
 			});
@@ -320,8 +320,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object toUserId) {
-					entry.setToUserId((Long)toUserId);
+				public void accept(Entry entry, Object toUserIdObject) {
+					entry.setToUserId((Long)toUserIdObject);
 				}
 
 			});
@@ -340,8 +340,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object content) {
-					entry.setContent((String)content);
+				public void accept(Entry entry, Object contentObject) {
+					entry.setContent((String)contentObject);
 				}
 
 			});
@@ -360,8 +360,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			new BiConsumer<Entry, Object>() {
 
 				@Override
-				public void accept(Entry entry, Object flag) {
-					entry.setFlag((Integer)flag);
+				public void accept(Entry entry, Object flagObject) {
+					entry.setFlag((Integer)flagObject);
 				}
 
 			});

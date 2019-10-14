@@ -266,8 +266,10 @@ public class RatingsStatsModelImpl
 			new BiConsumer<RatingsStats, Object>() {
 
 				@Override
-				public void accept(RatingsStats ratingsStats, Object statsId) {
-					ratingsStats.setStatsId((Long)statsId);
+				public void accept(
+					RatingsStats ratingsStats, Object statsIdObject) {
+
+					ratingsStats.setStatsId((Long)statsIdObject);
 				}
 
 			});
@@ -287,9 +289,9 @@ public class RatingsStatsModelImpl
 
 				@Override
 				public void accept(
-					RatingsStats ratingsStats, Object companyId) {
+					RatingsStats ratingsStats, Object companyIdObject) {
 
-					ratingsStats.setCompanyId((Long)companyId);
+					ratingsStats.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -309,9 +311,9 @@ public class RatingsStatsModelImpl
 
 				@Override
 				public void accept(
-					RatingsStats ratingsStats, Object classNameId) {
+					RatingsStats ratingsStats, Object classNameIdObject) {
 
-					ratingsStats.setClassNameId((Long)classNameId);
+					ratingsStats.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -330,8 +332,10 @@ public class RatingsStatsModelImpl
 			new BiConsumer<RatingsStats, Object>() {
 
 				@Override
-				public void accept(RatingsStats ratingsStats, Object classPK) {
-					ratingsStats.setClassPK((Long)classPK);
+				public void accept(
+					RatingsStats ratingsStats, Object classPKObject) {
+
+					ratingsStats.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -351,9 +355,9 @@ public class RatingsStatsModelImpl
 
 				@Override
 				public void accept(
-					RatingsStats ratingsStats, Object totalEntries) {
+					RatingsStats ratingsStats, Object totalEntriesObject) {
 
-					ratingsStats.setTotalEntries((Integer)totalEntries);
+					ratingsStats.setTotalEntries((Integer)totalEntriesObject);
 				}
 
 			});
@@ -373,9 +377,9 @@ public class RatingsStatsModelImpl
 
 				@Override
 				public void accept(
-					RatingsStats ratingsStats, Object totalScore) {
+					RatingsStats ratingsStats, Object totalScoreObject) {
 
-					ratingsStats.setTotalScore((Double)totalScore);
+					ratingsStats.setTotalScore((Double)totalScoreObject);
 				}
 
 			});
@@ -395,9 +399,9 @@ public class RatingsStatsModelImpl
 
 				@Override
 				public void accept(
-					RatingsStats ratingsStats, Object averageScore) {
+					RatingsStats ratingsStats, Object averageScoreObject) {
 
-					ratingsStats.setAverageScore((Double)averageScore);
+					ratingsStats.setAverageScore((Double)averageScoreObject);
 				}
 
 			});

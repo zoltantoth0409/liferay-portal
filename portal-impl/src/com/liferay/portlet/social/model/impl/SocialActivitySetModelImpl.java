@@ -285,9 +285,11 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object activitySetId) {
+					SocialActivitySet socialActivitySet,
+					Object activitySetIdObject) {
 
-					socialActivitySet.setActivitySetId((Long)activitySetId);
+					socialActivitySet.setActivitySetId(
+						(Long)activitySetIdObject);
 				}
 
 			});
@@ -307,9 +309,9 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object groupId) {
+					SocialActivitySet socialActivitySet, Object groupIdObject) {
 
-					socialActivitySet.setGroupId((Long)groupId);
+					socialActivitySet.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -329,9 +331,10 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object companyId) {
+					SocialActivitySet socialActivitySet,
+					Object companyIdObject) {
 
-					socialActivitySet.setCompanyId((Long)companyId);
+					socialActivitySet.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -351,9 +354,9 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object userId) {
+					SocialActivitySet socialActivitySet, Object userIdObject) {
 
-					socialActivitySet.setUserId((Long)userId);
+					socialActivitySet.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -373,9 +376,10 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object createDate) {
+					SocialActivitySet socialActivitySet,
+					Object createDateObject) {
 
-					socialActivitySet.setCreateDate((Long)createDate);
+					socialActivitySet.setCreateDate((Long)createDateObject);
 				}
 
 			});
@@ -395,9 +399,10 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object modifiedDate) {
+					SocialActivitySet socialActivitySet,
+					Object modifiedDateObject) {
 
-					socialActivitySet.setModifiedDate((Long)modifiedDate);
+					socialActivitySet.setModifiedDate((Long)modifiedDateObject);
 				}
 
 			});
@@ -417,9 +422,10 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object classNameId) {
+					SocialActivitySet socialActivitySet,
+					Object classNameIdObject) {
 
-					socialActivitySet.setClassNameId((Long)classNameId);
+					socialActivitySet.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -439,9 +445,9 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object classPK) {
+					SocialActivitySet socialActivitySet, Object classPKObject) {
 
-					socialActivitySet.setClassPK((Long)classPK);
+					socialActivitySet.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -461,9 +467,9 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object type) {
+					SocialActivitySet socialActivitySet, Object typeObject) {
 
-					socialActivitySet.setType((Integer)type);
+					socialActivitySet.setType((Integer)typeObject);
 				}
 
 			});
@@ -483,9 +489,10 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object extraData) {
+					SocialActivitySet socialActivitySet,
+					Object extraDataObject) {
 
-					socialActivitySet.setExtraData((String)extraData);
+					socialActivitySet.setExtraData((String)extraDataObject);
 				}
 
 			});
@@ -505,9 +512,11 @@ public class SocialActivitySetModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySet socialActivitySet, Object activityCount) {
+					SocialActivitySet socialActivitySet,
+					Object activityCountObject) {
 
-					socialActivitySet.setActivityCount((Integer)activityCount);
+					socialActivitySet.setActivityCount(
+						(Integer)activityCountObject);
 				}
 
 			});

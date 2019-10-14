@@ -344,8 +344,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object mvccVersion) {
-					website.setMvccVersion((Long)mvccVersion);
+				public void accept(Website website, Object mvccVersionObject) {
+					website.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -364,8 +364,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object uuid) {
-					website.setUuid((String)uuid);
+				public void accept(Website website, Object uuidObject) {
+					website.setUuid((String)uuidObject);
 				}
 
 			});
@@ -384,8 +384,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object websiteId) {
-					website.setWebsiteId((Long)websiteId);
+				public void accept(Website website, Object websiteIdObject) {
+					website.setWebsiteId((Long)websiteIdObject);
 				}
 
 			});
@@ -404,8 +404,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object companyId) {
-					website.setCompanyId((Long)companyId);
+				public void accept(Website website, Object companyIdObject) {
+					website.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -424,8 +424,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object userId) {
-					website.setUserId((Long)userId);
+				public void accept(Website website, Object userIdObject) {
+					website.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -444,8 +444,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object userName) {
-					website.setUserName((String)userName);
+				public void accept(Website website, Object userNameObject) {
+					website.setUserName((String)userNameObject);
 				}
 
 			});
@@ -464,8 +464,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object createDate) {
-					website.setCreateDate((Date)createDate);
+				public void accept(Website website, Object createDateObject) {
+					website.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -484,8 +484,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object modifiedDate) {
-					website.setModifiedDate((Date)modifiedDate);
+				public void accept(Website website, Object modifiedDateObject) {
+					website.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -504,8 +504,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object classNameId) {
-					website.setClassNameId((Long)classNameId);
+				public void accept(Website website, Object classNameIdObject) {
+					website.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -524,8 +524,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object classPK) {
-					website.setClassPK((Long)classPK);
+				public void accept(Website website, Object classPKObject) {
+					website.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -544,8 +544,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object url) {
-					website.setUrl((String)url);
+				public void accept(Website website, Object urlObject) {
+					website.setUrl((String)urlObject);
 				}
 
 			});
@@ -564,8 +564,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object typeId) {
-					website.setTypeId((Long)typeId);
+				public void accept(Website website, Object typeIdObject) {
+					website.setTypeId((Long)typeIdObject);
 				}
 
 			});
@@ -584,8 +584,8 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object primary) {
-					website.setPrimary((Boolean)primary);
+				public void accept(Website website, Object primaryObject) {
+					website.setPrimary((Boolean)primaryObject);
 				}
 
 			});
@@ -604,8 +604,10 @@ public class WebsiteModelImpl
 			new BiConsumer<Website, Object>() {
 
 				@Override
-				public void accept(Website website, Object lastPublishDate) {
-					website.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					Website website, Object lastPublishDateObject) {
+
+					website.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

@@ -352,9 +352,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object uuid) {
+					AssetVocabulary assetVocabulary, Object uuidObject) {
 
-					assetVocabulary.setUuid((String)uuid);
+					assetVocabulary.setUuid((String)uuidObject);
 				}
 
 			});
@@ -375,10 +375,10 @@ public class AssetVocabularyModelImpl
 				@Override
 				public void accept(
 					AssetVocabulary assetVocabulary,
-					Object externalReferenceCode) {
+					Object externalReferenceCodeObject) {
 
 					assetVocabulary.setExternalReferenceCode(
-						(String)externalReferenceCode);
+						(String)externalReferenceCodeObject);
 				}
 
 			});
@@ -398,9 +398,10 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object vocabularyId) {
+					AssetVocabulary assetVocabulary,
+					Object vocabularyIdObject) {
 
-					assetVocabulary.setVocabularyId((Long)vocabularyId);
+					assetVocabulary.setVocabularyId((Long)vocabularyIdObject);
 				}
 
 			});
@@ -420,9 +421,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object groupId) {
+					AssetVocabulary assetVocabulary, Object groupIdObject) {
 
-					assetVocabulary.setGroupId((Long)groupId);
+					assetVocabulary.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -442,9 +443,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object companyId) {
+					AssetVocabulary assetVocabulary, Object companyIdObject) {
 
-					assetVocabulary.setCompanyId((Long)companyId);
+					assetVocabulary.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -464,9 +465,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object userId) {
+					AssetVocabulary assetVocabulary, Object userIdObject) {
 
-					assetVocabulary.setUserId((Long)userId);
+					assetVocabulary.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -486,9 +487,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object userName) {
+					AssetVocabulary assetVocabulary, Object userNameObject) {
 
-					assetVocabulary.setUserName((String)userName);
+					assetVocabulary.setUserName((String)userNameObject);
 				}
 
 			});
@@ -508,9 +509,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object createDate) {
+					AssetVocabulary assetVocabulary, Object createDateObject) {
 
-					assetVocabulary.setCreateDate((Date)createDate);
+					assetVocabulary.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -530,9 +531,10 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object modifiedDate) {
+					AssetVocabulary assetVocabulary,
+					Object modifiedDateObject) {
 
-					assetVocabulary.setModifiedDate((Date)modifiedDate);
+					assetVocabulary.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -552,9 +554,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object name) {
+					AssetVocabulary assetVocabulary, Object nameObject) {
 
-					assetVocabulary.setName((String)name);
+					assetVocabulary.setName((String)nameObject);
 				}
 
 			});
@@ -574,9 +576,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object title) {
+					AssetVocabulary assetVocabulary, Object titleObject) {
 
-					assetVocabulary.setTitle((String)title);
+					assetVocabulary.setTitle((String)titleObject);
 				}
 
 			});
@@ -596,9 +598,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object description) {
+					AssetVocabulary assetVocabulary, Object descriptionObject) {
 
-					assetVocabulary.setDescription((String)description);
+					assetVocabulary.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -618,9 +620,9 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object settings) {
+					AssetVocabulary assetVocabulary, Object settingsObject) {
 
-					assetVocabulary.setSettings((String)settings);
+					assetVocabulary.setSettings((String)settingsObject);
 				}
 
 			});
@@ -640,9 +642,11 @@ public class AssetVocabularyModelImpl
 
 				@Override
 				public void accept(
-					AssetVocabulary assetVocabulary, Object lastPublishDate) {
+					AssetVocabulary assetVocabulary,
+					Object lastPublishDateObject) {
 
-					assetVocabulary.setLastPublishDate((Date)lastPublishDate);
+					assetVocabulary.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

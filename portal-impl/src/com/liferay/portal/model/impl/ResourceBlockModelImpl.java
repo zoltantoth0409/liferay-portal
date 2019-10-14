@@ -321,9 +321,9 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object mvccVersion) {
+					ResourceBlock resourceBlock, Object mvccVersionObject) {
 
-					resourceBlock.setMvccVersion((Long)mvccVersion);
+					resourceBlock.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -343,9 +343,10 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object resourceBlockId) {
+					ResourceBlock resourceBlock, Object resourceBlockIdObject) {
 
-					resourceBlock.setResourceBlockId((Long)resourceBlockId);
+					resourceBlock.setResourceBlockId(
+						(Long)resourceBlockIdObject);
 				}
 
 			});
@@ -365,9 +366,9 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object companyId) {
+					ResourceBlock resourceBlock, Object companyIdObject) {
 
-					resourceBlock.setCompanyId((Long)companyId);
+					resourceBlock.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -387,9 +388,9 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object groupId) {
+					ResourceBlock resourceBlock, Object groupIdObject) {
 
-					resourceBlock.setGroupId((Long)groupId);
+					resourceBlock.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -408,8 +409,10 @@ public class ResourceBlockModelImpl
 			new BiConsumer<ResourceBlock, Object>() {
 
 				@Override
-				public void accept(ResourceBlock resourceBlock, Object name) {
-					resourceBlock.setName((String)name);
+				public void accept(
+					ResourceBlock resourceBlock, Object nameObject) {
+
+					resourceBlock.setName((String)nameObject);
 				}
 
 			});
@@ -429,9 +432,10 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object permissionsHash) {
+					ResourceBlock resourceBlock, Object permissionsHashObject) {
 
-					resourceBlock.setPermissionsHash((String)permissionsHash);
+					resourceBlock.setPermissionsHash(
+						(String)permissionsHashObject);
 				}
 
 			});
@@ -451,9 +455,9 @@ public class ResourceBlockModelImpl
 
 				@Override
 				public void accept(
-					ResourceBlock resourceBlock, Object referenceCount) {
+					ResourceBlock resourceBlock, Object referenceCountObject) {
 
-					resourceBlock.setReferenceCount((Long)referenceCount);
+					resourceBlock.setReferenceCount((Long)referenceCountObject);
 				}
 
 			});
