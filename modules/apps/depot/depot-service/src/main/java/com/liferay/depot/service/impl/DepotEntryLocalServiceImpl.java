@@ -55,10 +55,6 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 			counterLocalService.increment());
 
 		depotEntry.setUuid(serviceContext.getUuid());
-		depotEntry.setCompanyId(serviceContext.getCompanyId());
-		depotEntry.setUserId(serviceContext.getUserId());
-
-		depotEntry = depotEntryPersistence.update(depotEntry);
 
 		Group group = _groupLocalService.addGroup(
 			depotEntry.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
@@ -69,6 +65,9 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 			true, serviceContext);
 
 		depotEntry.setGroupId(group.getGroupId());
+
+		depotEntry.setCompanyId(serviceContext.getCompanyId());
+		depotEntry.setUserId(serviceContext.getUserId());
 
 		return depotEntryPersistence.update(depotEntry);
 	}
