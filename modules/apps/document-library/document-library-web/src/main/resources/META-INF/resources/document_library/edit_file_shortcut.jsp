@@ -243,16 +243,16 @@ if (portletTitleBasedNavigation) {
 			url += '&<portlet:namespace />groupId=' + toGroupIdElement.value;
 		}
 
-		var toFileEntryIdElement = Liferay.Util.getFormElement(form, 'toFileEntryId');
-
-		if (toFileEntryIdElement) {
-			url += '&<portlet:namespace />fileEntryId=' + toFileEntryIdElement.value;
-		}
-
 		var scopeGroupId = <%= themeDisplay.getScopeGroupId() %>;
 
 		if (scopeGroupId != toGroupIdElement.value) {
 			url += '&<portlet:namespace />folderId=<%= DLFolderConstants.DEFAULT_PARENT_FOLDER_ID %>';
+		}
+
+		var toFileEntryIdElement = Liferay.Util.getFormElement(form, 'toFileEntryId');
+
+		if (toFileEntryIdElement) {
+			url += '&<portlet:namespace />fileEntryId=' + toFileEntryIdElement.value;
 		}
 
 		return url;
