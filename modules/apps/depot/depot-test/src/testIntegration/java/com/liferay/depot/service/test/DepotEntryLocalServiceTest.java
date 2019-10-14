@@ -138,16 +138,17 @@ public class DepotEntryLocalServiceTest {
 	private DepotEntry _addDepotEntry(String name, String description)
 		throws Exception {
 
-		Map<Locale, String> descriptionMap = new HashMap<>();
-
-		descriptionMap.put(LocaleUtil.getDefault(), description);
-
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(LocaleUtil.getDefault(), name);
-
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
-			nameMap, descriptionMap,
+			new HashMap<Locale, String>() {
+				{
+					put(LocaleUtil.getDefault(), name);
+				}
+			},
+			new HashMap<Locale, String>() {
+				{
+					put(LocaleUtil.getDefault(), description);
+				}
+			},
 			ServiceContextTestUtil.getServiceContext());
 
 		_depotEntries.add(depotEntry);
