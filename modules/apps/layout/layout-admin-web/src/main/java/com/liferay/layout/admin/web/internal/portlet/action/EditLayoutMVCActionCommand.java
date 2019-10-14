@@ -149,19 +149,18 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "useCustomCanonicalURL");
 		Map<Locale, String> canonicalURLMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "canonicalURL");
-		boolean useCustomTitle = ParamUtil.getBoolean(
-			actionRequest, "useCustomTitle");
-		Map<Locale, String> openGraphTitleMap =
-			LocalizationUtil.getLocalizationMap(
-				actionRequest, "openGraphTitle");
 		boolean useCustomDescription = ParamUtil.getBoolean(
 			actionRequest, "useCustomDescription");
 		Map<Locale, String> openGraphDescriptionMap =
 			LocalizationUtil.getLocalizationMap(
 				actionRequest, "openGraphDescription");
-
 		long openGraphImageFileEntryId = ParamUtil.getLong(
 			actionRequest, "openGraphImageFileEntryId");
+		boolean useCustomTitle = ParamUtil.getBoolean(
+			actionRequest, "useCustomTitle");
+		Map<Locale, String> openGraphTitleMap =
+			LocalizationUtil.getLocalizationMap(
+				actionRequest, "openGraphTitle");
 
 		_layoutSEOEntryService.updateLayoutSEOEntry(
 			groupId, privateLayout, layoutId, useCustomCanonicalURL,
