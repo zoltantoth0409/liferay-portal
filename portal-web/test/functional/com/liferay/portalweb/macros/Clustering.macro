@@ -3,7 +3,7 @@ definition {
 	@description = "Get cluster node outgoing ip address in console"
 	macro getClusterNodeOutgoingIPAddress {
 		var leadingPortNumber = StringUtil.replace("${nodePort}", "080", "");
-		var bundleIndex = MathUtil.difference("${leadingPortNumber}", "8");
+		var bundleIndex = ${leadingPortNumber} - 8;
 
 		AntCommand(
 			locator1 = "build-test.xml",
