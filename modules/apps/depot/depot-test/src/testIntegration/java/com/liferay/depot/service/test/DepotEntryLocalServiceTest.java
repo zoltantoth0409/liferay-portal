@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
@@ -88,38 +87,39 @@ public class DepotEntryLocalServiceTest {
 		_groupLocalService.getGroup(depotEntry.getGroupId());
 	}
 
-	@Test(expected = DepotEntryNameException.class)
-	public void testUpdateDepotEntryFailsWithAnEmptyName() throws Exception {
-		DepotEntry depotEntry = _addDepotEntry("name", "description");
-
-		_depotEntryLocalService.updateDepotEntry(
-			depotEntry.getDepotEntryId(), new HashMap<>(), new HashMap<>(),
-			ServiceContextTestUtil.getServiceContext());
-	}
-
 	@Test
-	public void testUpdateDepotEntryUpdatesTheNameAndDescription()
-		throws Exception {
-
+	public void testUpdateDepotEntry() throws Exception {
 		DepotEntry depotEntry = _addDepotEntry("name", "description");
 
-		Map<Locale, String> descriptionMap = new HashMap<>();
+		try {
+			_depotEntryLocalService.updateDepotEntry(
+				depotEntry.getDepotEntryId(), new HashMap<>(), new HashMap<>(),
+				ServiceContextTestUtil.getServiceContext());
 
-		descriptionMap.put(LocaleUtil.getDefault(), "newDescription");
-
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(LocaleUtil.getDefault(), "newName");
+			Assert.fail();
+		}
+		catch (DepotEntryNameException dene) {
+		}
 
 		_depotEntryLocalService.updateDepotEntry(
-			depotEntry.getDepotEntryId(), nameMap, descriptionMap,
+			depotEntry.getDepotEntryId(),
+			new HashMap<Locale, String>() {
+				{
+					put(LocaleUtil.getDefault(), "newName");
+				}
+			},
+			new HashMap<Locale, String>() {
+				{
+					put(LocaleUtil.getDefault(), "newDescription");
+				}
+			},
 			ServiceContextTestUtil.getServiceContext());
 
 		Group group = _groupLocalService.getGroup(depotEntry.getGroupId());
 
-		Assert.assertEquals("newName", group.getName(LocaleUtil.getDefault()));
 		Assert.assertEquals(
 			"newDescription", group.getDescription(LocaleUtil.getDefault()));
+		Assert.assertEquals("newName", group.getName(LocaleUtil.getDefault()));
 	}
 
 	private DepotEntry _addDepotEntry(String name, String description)
