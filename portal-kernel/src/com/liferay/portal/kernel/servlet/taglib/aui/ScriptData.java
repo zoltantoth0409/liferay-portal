@@ -198,28 +198,30 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 		Set<String> usedVariables = new HashSet<>();
 
 		for (PortletData portletData : portletDataCollection) {
-			if (!portletData._es6TagInvocationDatas.isEmpty()) {
-				for (TagInvocationData tagInvocationData :
-						portletData._es6TagInvocationDatas) {
+			if (portletData._es6TagInvocationDatas.isEmpty()) {
+				continue;
+			}
 
-					List<String> modules = tagInvocationData.getModules();
+			for (TagInvocationData tagInvocationData :
+					portletData._es6TagInvocationDatas) {
 
-					Stream<String> stream = modules.stream();
+				List<String> modules = tagInvocationData.getModules();
 
-					List<String> variables = stream.map(
-						module -> VariableUtil.generateVariable(
-							module, usedVariables)
-					).collect(
-						Collectors.toList()
-					);
+				Stream<String> stream = modules.stream();
 
-					es6Modules.addAll(modules);
-					es6Variables.addAll(variables);
+				List<String> variables = stream.map(
+					module -> VariableUtil.generateVariable(
+						module, usedVariables)
+				).collect(
+					Collectors.toList()
+				);
 
-					es6CallbacksSB.append(
-						tagInvocationData.getContent(variables));
-					es6CallbacksSB.append(StringPool.NEW_LINE);
-				}
+				es6Modules.addAll(modules);
+				es6Variables.addAll(variables);
+
+				es6CallbacksSB.append(
+					tagInvocationData.getContent(variables));
+				es6CallbacksSB.append(StringPool.NEW_LINE);
 			}
 		}
 
