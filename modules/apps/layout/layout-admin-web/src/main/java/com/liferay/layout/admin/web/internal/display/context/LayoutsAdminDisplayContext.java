@@ -131,27 +131,25 @@ public class LayoutsAdminDisplayContext {
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 
-		_themeDisplay = (ThemeDisplay)liferayPortletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		_httpServletRequest = PortalUtil.getHttpServletRequest(
 			_liferayPortletRequest);
 
 		_groupDisplayContextHelper = new GroupDisplayContextHelper(
 			_httpServletRequest);
 
+		_itemSelector = (ItemSelector)_liferayPortletRequest.getAttribute(
+			LayoutAdminWebKeys.ITEM_SELECTOR);
 		_layoutConverterConfiguration =
 			(LayoutConverterConfiguration)_liferayPortletRequest.getAttribute(
 				LayoutConverterConfiguration.class.getName());
-
-		_itemSelector = (ItemSelector)_liferayPortletRequest.getAttribute(
-			LayoutAdminWebKeys.ITEM_SELECTOR);
 		_layoutCopyHelper =
 			(LayoutCopyHelper)_liferayPortletRequest.getAttribute(
 				LayoutAdminWebKeys.LAYOUT_COPY_HELPER);
 		_layoutConverterRegistry =
 			(LayoutConverterRegistry)_liferayPortletRequest.getAttribute(
 				LayoutAdminWebKeys.LAYOUT_TEMPLATE_CONVERTER_REGISTRY);
+		_themeDisplay = (ThemeDisplay)liferayPortletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	public List<DropdownItem> getAddLayoutDropdownItems() {
