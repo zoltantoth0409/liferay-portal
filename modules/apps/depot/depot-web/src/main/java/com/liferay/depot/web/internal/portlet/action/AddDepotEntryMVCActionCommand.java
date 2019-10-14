@@ -65,12 +65,13 @@ public class AddDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 		String name = ParamUtil.getString(actionRequest, "name");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		if (Validator.isNotNull(name)) {
 			nameMap.put(LocaleUtil.getDefault(), name);
 		}
+
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		try {
 			DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
