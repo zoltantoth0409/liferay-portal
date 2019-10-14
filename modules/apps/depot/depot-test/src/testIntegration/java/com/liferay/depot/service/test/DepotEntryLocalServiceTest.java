@@ -77,7 +77,7 @@ public class DepotEntryLocalServiceTest {
 			"description", group.getDescription(LocaleUtil.getDefault()));
 	}
 
-	@Test(expected = DepotEntryNameException.MustNotBeNull.class)
+	@Test(expected = DepotEntryNameException.class)
 	public void testAddDepotEntryFailsWithAnEmptyName() throws Exception {
 		_addDepotEntry(null, null);
 	}
@@ -101,7 +101,7 @@ public class DepotEntryLocalServiceTest {
 		_groupLocalService.getGroup(depotEntry.getGroupId());
 	}
 
-	@Test(expected = DepotEntryNameException.MustNotBeNull.class)
+	@Test(expected = DepotEntryNameException.class)
 	public void testUpdateDepotEntryFailsWithAnEmptyName() throws Exception {
 		DepotEntry depotEntry = _addDepotEntry("name", "description");
 
