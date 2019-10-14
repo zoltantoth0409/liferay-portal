@@ -57,6 +57,18 @@
 				th {
 					height: auto;
 				}
+
+				@include sm {
+					th {
+						background-color: $bg-color;
+						padding: 10px;
+					}
+
+					td {
+						padding-bottom: 25px;
+						padding-top: 25px;
+					}
+				}
 			}
 		}
 	}
