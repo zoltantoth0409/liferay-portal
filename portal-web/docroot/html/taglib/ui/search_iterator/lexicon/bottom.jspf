@@ -99,18 +99,18 @@
 
 			if (contentBox) {
 				var mainContent = contentBox.ancestor('#main-content');
-				var horizontalScrollingContainer = document.querySelector('.lfr-search-container-fixed-first-column .table-responsive');
+
 				var fixedHeaderScrollingContainer = document.querySelector('.lfr-search-iterator-fixed-header-inner-wrapper');
+				var horizontalScrollingContainer = document.querySelector('.lfr-search-container-fixed-first-column .table-responsive');
 
 				if (mainContent && horizontalScrollingContainer && fixedHeaderScrollingContainer) {
 					var verticalScrollingContainer = window === Liferay.Util.getOpener() ? window : mainContent._node;
 
-					var table = fixedHeader.parentElement.parentElement;
 					var trDomRect = fixedHeader.previousElementSibling.getBoundingClientRect();
 
 					var syncScrollingContainers = function(event) {
 						fixedHeaderScrollingContainer.scrollLeft = horizontalScrollingContainer.scrollLeft;
-					}
+					};
 
 					var fixedHeaderEventHandler = function(event) {
 						var scrollTop = verticalScrollingContainer.scrollTop;
