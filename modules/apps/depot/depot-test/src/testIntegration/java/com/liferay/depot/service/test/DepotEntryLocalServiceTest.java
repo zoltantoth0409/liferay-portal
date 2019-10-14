@@ -59,22 +59,16 @@ public class DepotEntryLocalServiceTest {
 
 		Group group = _groupLocalService.getGroup(depotEntry.getGroupId());
 
-		Assert.assertFalse(group.isSite());
-
-		Assert.assertEquals(
-			DepotEntryConstants.GROUP_TYPE_DEPOT, group.getType());
-
-		Assert.assertEquals(
-			GroupConstants.DEFAULT_PARENT_GROUP_ID, group.getParentGroupId());
-
 		Assert.assertEquals(DepotEntry.class.getName(), group.getClassName());
-
 		Assert.assertEquals(depotEntry.getDepotEntryId(), group.getClassPK());
-
-		Assert.assertEquals("name", group.getName(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"description", group.getDescription(LocaleUtil.getDefault()));
+		Assert.assertEquals("name", group.getName(LocaleUtil.getDefault()));
+		Assert.assertEquals(
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, group.getParentGroupId());
+		Assert.assertEquals(
+			DepotEntryConstants.GROUP_TYPE_DEPOT, group.getType());
+		Assert.assertFalse(group.isSite());
 	}
 
 	@Test(expected = DepotEntryNameException.class)
