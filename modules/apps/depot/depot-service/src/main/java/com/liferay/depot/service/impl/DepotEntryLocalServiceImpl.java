@@ -51,26 +51,26 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 
 		_validateNameMap(nameMap);
 
-		DepotEntry entry = depotEntryPersistence.create(
+		DepotEntry depotEntry = depotEntryPersistence.create(
 			counterLocalService.increment());
 
-		entry.setUuid(serviceContext.getUuid());
-		entry.setCompanyId(serviceContext.getCompanyId());
-		entry.setUserId(serviceContext.getUserId());
+		depotEntry.setUuid(serviceContext.getUuid());
+		depotEntry.setCompanyId(serviceContext.getCompanyId());
+		depotEntry.setUserId(serviceContext.getUserId());
 
-		entry = depotEntryPersistence.update(entry);
+		depotEntry = depotEntryPersistence.update(depotEntry);
 
 		Group group = _groupLocalService.addGroup(
-			entry.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
-			DepotEntry.class.getName(), entry.getDepotEntryId(),
+			depotEntry.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
+			DepotEntry.class.getName(), depotEntry.getDepotEntryId(),
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, descriptionMap,
 			DepotEntryConstants.GROUP_TYPE_DEPOT, false,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, false, false,
 			true, serviceContext);
 
-		entry.setGroupId(group.getGroupId());
+		depotEntry.setGroupId(group.getGroupId());
 
-		return depotEntryPersistence.update(entry);
+		return depotEntryPersistence.update(depotEntry);
 	}
 
 	@Override
@@ -81,17 +81,17 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 
 		_validateNameMap(nameMap);
 
-		DepotEntry entry = getDepotEntry(depotEntryId);
+		DepotEntry depotEntry = getDepotEntry(depotEntryId);
 
-		Group group = _groupLocalService.getGroup(entry.getGroupId());
+		Group group = _groupLocalService.getGroup(depotEntry.getGroupId());
 
 		_groupLocalService.updateGroup(
-			entry.getGroupId(), group.getParentGroupId(), nameMap,
+			depotEntry.getGroupId(), group.getParentGroupId(), nameMap,
 			descriptionMap, group.getType(), group.isManualMembership(),
 			group.getMembershipRestriction(), group.getFriendlyURL(),
 			group.isInheritContent(), group.isActive(), serviceContext);
 
-		return depotEntryPersistence.update(entry);
+		return depotEntryPersistence.update(depotEntry);
 	}
 
 	private void _validateNameMap(Map<Locale, String> nameMap)
