@@ -1538,13 +1538,6 @@ definition {
 				locator1 = "TextInput#DDM",
 				value1 = "${webContentText}");
 		}
-
-		if (isSet(webContentDocumentsAndMedia)) {
-			AssertTextEquals(
-				key_fieldName = "DocumentsAndMedia",
-				locator1 = "TextInput#DDM",
-				value1 = "${webContentDocumentsAndMedia}");
-		}
 		else {
 			AssertTextEquals(
 				key_editor = "content",
@@ -1552,6 +1545,13 @@ definition {
 				value1 = "${webContentContent}");
 
 			SelectFrame(value1 = "relative=top");
+		}
+
+		if (isSet(webContentDocumentsAndMedia)) {
+			AssertTextEquals(
+				key_fieldName = "DocumentsAndMedia",
+				locator1 = "TextInput#DDM",
+				value1 = "${webContentDocumentsAndMedia}");
 		}
 	}
 
