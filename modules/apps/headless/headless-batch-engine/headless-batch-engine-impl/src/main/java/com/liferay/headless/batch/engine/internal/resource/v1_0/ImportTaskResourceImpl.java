@@ -152,9 +152,8 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 
 		byte[] content = null;
 		String extension = null;
-		String fileName = binaryFile.getFileName();
 
-		if (fileName.endsWith("zip")) {
+		if (StringUtil.endsWith(binaryFile.getFileName(), "zip")) {
 			Map.Entry<byte[], String> entry =
 				_getContentAndExtensionFromCompressedFile(
 					binaryFile.getInputStream());
