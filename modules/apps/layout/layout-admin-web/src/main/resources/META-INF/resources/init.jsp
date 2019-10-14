@@ -122,6 +122,7 @@ page import="com.liferay.portal.kernel.template.StringTemplateResource" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
+page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.LocaleUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
@@ -140,8 +141,7 @@ page import="com.liferay.portal.util.PropsValues" %><%@
 page import="com.liferay.portal.util.RobotsUtil" %><%@
 page import="com.liferay.segments.exception.RequiredSegmentsExperienceException" %><%@
 page import="com.liferay.site.navigation.model.SiteNavigationMenu" %><%@
-page import="com.liferay.sites.kernel.util.SitesUtil" %><%@
-page import="com.liferay.taglib.aui.AUIUtil" %>
+page import="com.liferay.sites.kernel.util.SitesUtil" %>
 
 <%@ page import="java.util.HashMap" %><%@
 page import="java.util.List" %><%@
