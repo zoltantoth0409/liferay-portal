@@ -264,9 +264,9 @@ public class VirtualHostModelImpl
 
 				@Override
 				public void accept(
-					VirtualHost virtualHost, Object mvccVersion) {
+					VirtualHost virtualHost, Object mvccVersionObject) {
 
-					virtualHost.setMvccVersion((Long)mvccVersion);
+					virtualHost.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -286,9 +286,9 @@ public class VirtualHostModelImpl
 
 				@Override
 				public void accept(
-					VirtualHost virtualHost, Object virtualHostId) {
+					VirtualHost virtualHost, Object virtualHostIdObject) {
 
-					virtualHost.setVirtualHostId((Long)virtualHostId);
+					virtualHost.setVirtualHostId((Long)virtualHostIdObject);
 				}
 
 			});
@@ -307,8 +307,10 @@ public class VirtualHostModelImpl
 			new BiConsumer<VirtualHost, Object>() {
 
 				@Override
-				public void accept(VirtualHost virtualHost, Object companyId) {
-					virtualHost.setCompanyId((Long)companyId);
+				public void accept(
+					VirtualHost virtualHost, Object companyIdObject) {
+
+					virtualHost.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -328,9 +330,9 @@ public class VirtualHostModelImpl
 
 				@Override
 				public void accept(
-					VirtualHost virtualHost, Object layoutSetId) {
+					VirtualHost virtualHost, Object layoutSetIdObject) {
 
-					virtualHost.setLayoutSetId((Long)layoutSetId);
+					virtualHost.setLayoutSetId((Long)layoutSetIdObject);
 				}
 
 			});
@@ -349,8 +351,10 @@ public class VirtualHostModelImpl
 			new BiConsumer<VirtualHost, Object>() {
 
 				@Override
-				public void accept(VirtualHost virtualHost, Object hostname) {
-					virtualHost.setHostname((String)hostname);
+				public void accept(
+					VirtualHost virtualHost, Object hostnameObject) {
+
+					virtualHost.setHostname((String)hostnameObject);
 				}
 
 			});

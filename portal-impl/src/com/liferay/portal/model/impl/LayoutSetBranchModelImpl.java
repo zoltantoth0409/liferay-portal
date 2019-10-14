@@ -355,9 +355,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object mvccVersion) {
+					LayoutSetBranch layoutSetBranch, Object mvccVersionObject) {
 
-					layoutSetBranch.setMvccVersion((Long)mvccVersion);
+					layoutSetBranch.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -377,10 +377,11 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object layoutSetBranchId) {
+					LayoutSetBranch layoutSetBranch,
+					Object layoutSetBranchIdObject) {
 
 					layoutSetBranch.setLayoutSetBranchId(
-						(Long)layoutSetBranchId);
+						(Long)layoutSetBranchIdObject);
 				}
 
 			});
@@ -400,9 +401,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object groupId) {
+					LayoutSetBranch layoutSetBranch, Object groupIdObject) {
 
-					layoutSetBranch.setGroupId((Long)groupId);
+					layoutSetBranch.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -422,9 +423,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object companyId) {
+					LayoutSetBranch layoutSetBranch, Object companyIdObject) {
 
-					layoutSetBranch.setCompanyId((Long)companyId);
+					layoutSetBranch.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -444,9 +445,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object userId) {
+					LayoutSetBranch layoutSetBranch, Object userIdObject) {
 
-					layoutSetBranch.setUserId((Long)userId);
+					layoutSetBranch.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -466,9 +467,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object userName) {
+					LayoutSetBranch layoutSetBranch, Object userNameObject) {
 
-					layoutSetBranch.setUserName((String)userName);
+					layoutSetBranch.setUserName((String)userNameObject);
 				}
 
 			});
@@ -488,9 +489,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object createDate) {
+					LayoutSetBranch layoutSetBranch, Object createDateObject) {
 
-					layoutSetBranch.setCreateDate((Date)createDate);
+					layoutSetBranch.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -510,9 +511,10 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object modifiedDate) {
+					LayoutSetBranch layoutSetBranch,
+					Object modifiedDateObject) {
 
-					layoutSetBranch.setModifiedDate((Date)modifiedDate);
+					layoutSetBranch.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -532,9 +534,11 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object privateLayout) {
+					LayoutSetBranch layoutSetBranch,
+					Object privateLayoutObject) {
 
-					layoutSetBranch.setPrivateLayout((Boolean)privateLayout);
+					layoutSetBranch.setPrivateLayout(
+						(Boolean)privateLayoutObject);
 				}
 
 			});
@@ -554,9 +558,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object name) {
+					LayoutSetBranch layoutSetBranch, Object nameObject) {
 
-					layoutSetBranch.setName((String)name);
+					layoutSetBranch.setName((String)nameObject);
 				}
 
 			});
@@ -576,9 +580,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object description) {
+					LayoutSetBranch layoutSetBranch, Object descriptionObject) {
 
-					layoutSetBranch.setDescription((String)description);
+					layoutSetBranch.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -598,9 +602,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object master) {
+					LayoutSetBranch layoutSetBranch, Object masterObject) {
 
-					layoutSetBranch.setMaster((Boolean)master);
+					layoutSetBranch.setMaster((Boolean)masterObject);
 				}
 
 			});
@@ -620,9 +624,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object logoId) {
+					LayoutSetBranch layoutSetBranch, Object logoIdObject) {
 
-					layoutSetBranch.setLogoId((Long)logoId);
+					layoutSetBranch.setLogoId((Long)logoIdObject);
 				}
 
 			});
@@ -642,9 +646,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object themeId) {
+					LayoutSetBranch layoutSetBranch, Object themeIdObject) {
 
-					layoutSetBranch.setThemeId((String)themeId);
+					layoutSetBranch.setThemeId((String)themeIdObject);
 				}
 
 			});
@@ -664,9 +668,11 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object colorSchemeId) {
+					LayoutSetBranch layoutSetBranch,
+					Object colorSchemeIdObject) {
 
-					layoutSetBranch.setColorSchemeId((String)colorSchemeId);
+					layoutSetBranch.setColorSchemeId(
+						(String)colorSchemeIdObject);
 				}
 
 			});
@@ -686,9 +692,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object css) {
+					LayoutSetBranch layoutSetBranch, Object cssObject) {
 
-					layoutSetBranch.setCss((String)css);
+					layoutSetBranch.setCss((String)cssObject);
 				}
 
 			});
@@ -708,9 +714,9 @@ public class LayoutSetBranchModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetBranch layoutSetBranch, Object settings) {
+					LayoutSetBranch layoutSetBranch, Object settingsObject) {
 
-					layoutSetBranch.setSettings((String)settings);
+					layoutSetBranch.setSettings((String)settingsObject);
 				}
 
 			});
@@ -731,10 +737,10 @@ public class LayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					LayoutSetBranch layoutSetBranch,
-					Object layoutSetPrototypeUuid) {
+					Object layoutSetPrototypeUuidObject) {
 
 					layoutSetBranch.setLayoutSetPrototypeUuid(
-						(String)layoutSetPrototypeUuid);
+						(String)layoutSetPrototypeUuidObject);
 				}
 
 			});
@@ -755,10 +761,10 @@ public class LayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					LayoutSetBranch layoutSetBranch,
-					Object layoutSetPrototypeLinkEnabled) {
+					Object layoutSetPrototypeLinkEnabledObject) {
 
 					layoutSetBranch.setLayoutSetPrototypeLinkEnabled(
-						(Boolean)layoutSetPrototypeLinkEnabled);
+						(Boolean)layoutSetPrototypeLinkEnabledObject);
 				}
 
 			});

@@ -264,9 +264,9 @@ public class AssetTagStatsModelImpl
 
 				@Override
 				public void accept(
-					AssetTagStats assetTagStats, Object tagStatsId) {
+					AssetTagStats assetTagStats, Object tagStatsIdObject) {
 
-					assetTagStats.setTagStatsId((Long)tagStatsId);
+					assetTagStats.setTagStatsId((Long)tagStatsIdObject);
 				}
 
 			});
@@ -286,9 +286,9 @@ public class AssetTagStatsModelImpl
 
 				@Override
 				public void accept(
-					AssetTagStats assetTagStats, Object companyId) {
+					AssetTagStats assetTagStats, Object companyIdObject) {
 
-					assetTagStats.setCompanyId((Long)companyId);
+					assetTagStats.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -307,8 +307,10 @@ public class AssetTagStatsModelImpl
 			new BiConsumer<AssetTagStats, Object>() {
 
 				@Override
-				public void accept(AssetTagStats assetTagStats, Object tagId) {
-					assetTagStats.setTagId((Long)tagId);
+				public void accept(
+					AssetTagStats assetTagStats, Object tagIdObject) {
+
+					assetTagStats.setTagId((Long)tagIdObject);
 				}
 
 			});
@@ -328,9 +330,9 @@ public class AssetTagStatsModelImpl
 
 				@Override
 				public void accept(
-					AssetTagStats assetTagStats, Object classNameId) {
+					AssetTagStats assetTagStats, Object classNameIdObject) {
 
-					assetTagStats.setClassNameId((Long)classNameId);
+					assetTagStats.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -350,9 +352,9 @@ public class AssetTagStatsModelImpl
 
 				@Override
 				public void accept(
-					AssetTagStats assetTagStats, Object assetCount) {
+					AssetTagStats assetTagStats, Object assetCountObject) {
 
-					assetTagStats.setAssetCount((Integer)assetCount);
+					assetTagStats.setAssetCount((Integer)assetCountObject);
 				}
 
 			});

@@ -371,8 +371,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object uuid) {
-					mbThread.setUuid((String)uuid);
+				public void accept(MBThread mbThread, Object uuidObject) {
+					mbThread.setUuid((String)uuidObject);
 				}
 
 			});
@@ -391,8 +391,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object threadId) {
-					mbThread.setThreadId((Long)threadId);
+				public void accept(MBThread mbThread, Object threadIdObject) {
+					mbThread.setThreadId((Long)threadIdObject);
 				}
 
 			});
@@ -411,8 +411,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object groupId) {
-					mbThread.setGroupId((Long)groupId);
+				public void accept(MBThread mbThread, Object groupIdObject) {
+					mbThread.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -431,8 +431,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object companyId) {
-					mbThread.setCompanyId((Long)companyId);
+				public void accept(MBThread mbThread, Object companyIdObject) {
+					mbThread.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -451,8 +451,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object userId) {
-					mbThread.setUserId((Long)userId);
+				public void accept(MBThread mbThread, Object userIdObject) {
+					mbThread.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -471,8 +471,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object userName) {
-					mbThread.setUserName((String)userName);
+				public void accept(MBThread mbThread, Object userNameObject) {
+					mbThread.setUserName((String)userNameObject);
 				}
 
 			});
@@ -491,8 +491,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object createDate) {
-					mbThread.setCreateDate((Date)createDate);
+				public void accept(MBThread mbThread, Object createDateObject) {
+					mbThread.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -511,8 +511,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object modifiedDate) {
-					mbThread.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					MBThread mbThread, Object modifiedDateObject) {
+
+					mbThread.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -531,8 +533,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object categoryId) {
-					mbThread.setCategoryId((Long)categoryId);
+				public void accept(MBThread mbThread, Object categoryIdObject) {
+					mbThread.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -551,8 +553,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object rootMessageId) {
-					mbThread.setRootMessageId((Long)rootMessageId);
+				public void accept(
+					MBThread mbThread, Object rootMessageIdObject) {
+
+					mbThread.setRootMessageId((Long)rootMessageIdObject);
 				}
 
 			});
@@ -572,9 +576,10 @@ public class MBThreadModelImpl
 
 				@Override
 				public void accept(
-					MBThread mbThread, Object rootMessageUserId) {
+					MBThread mbThread, Object rootMessageUserIdObject) {
 
-					mbThread.setRootMessageUserId((Long)rootMessageUserId);
+					mbThread.setRootMessageUserId(
+						(Long)rootMessageUserIdObject);
 				}
 
 			});
@@ -593,8 +598,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object messageCount) {
-					mbThread.setMessageCount((Integer)messageCount);
+				public void accept(
+					MBThread mbThread, Object messageCountObject) {
+
+					mbThread.setMessageCount((Integer)messageCountObject);
 				}
 
 			});
@@ -613,8 +620,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object viewCount) {
-					mbThread.setViewCount((Integer)viewCount);
+				public void accept(MBThread mbThread, Object viewCountObject) {
+					mbThread.setViewCount((Integer)viewCountObject);
 				}
 
 			});
@@ -633,8 +640,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object lastPostByUserId) {
-					mbThread.setLastPostByUserId((Long)lastPostByUserId);
+				public void accept(
+					MBThread mbThread, Object lastPostByUserIdObject) {
+
+					mbThread.setLastPostByUserId((Long)lastPostByUserIdObject);
 				}
 
 			});
@@ -653,8 +662,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object lastPostDate) {
-					mbThread.setLastPostDate((Date)lastPostDate);
+				public void accept(
+					MBThread mbThread, Object lastPostDateObject) {
+
+					mbThread.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});
@@ -673,8 +684,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object priority) {
-					mbThread.setPriority((Double)priority);
+				public void accept(MBThread mbThread, Object priorityObject) {
+					mbThread.setPriority((Double)priorityObject);
 				}
 
 			});
@@ -693,8 +704,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object question) {
-					mbThread.setQuestion((Boolean)question);
+				public void accept(MBThread mbThread, Object questionObject) {
+					mbThread.setQuestion((Boolean)questionObject);
 				}
 
 			});
@@ -713,8 +724,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object lastPublishDate) {
-					mbThread.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					MBThread mbThread, Object lastPublishDateObject) {
+
+					mbThread.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -733,8 +746,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object status) {
-					mbThread.setStatus((Integer)status);
+				public void accept(MBThread mbThread, Object statusObject) {
+					mbThread.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -753,8 +766,10 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object statusByUserId) {
-					mbThread.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					MBThread mbThread, Object statusByUserIdObject) {
+
+					mbThread.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -773,8 +788,11 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object statusByUserName) {
-					mbThread.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					MBThread mbThread, Object statusByUserNameObject) {
+
+					mbThread.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -793,8 +811,8 @@ public class MBThreadModelImpl
 			new BiConsumer<MBThread, Object>() {
 
 				@Override
-				public void accept(MBThread mbThread, Object statusDate) {
-					mbThread.setStatusDate((Date)statusDate);
+				public void accept(MBThread mbThread, Object statusDateObject) {
+					mbThread.setStatusDate((Date)statusDateObject);
 				}
 
 			});

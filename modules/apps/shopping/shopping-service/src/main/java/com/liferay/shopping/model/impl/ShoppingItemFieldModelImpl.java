@@ -264,9 +264,10 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object itemFieldId) {
+					ShoppingItemField shoppingItemField,
+					Object itemFieldIdObject) {
 
-					shoppingItemField.setItemFieldId((Long)itemFieldId);
+					shoppingItemField.setItemFieldId((Long)itemFieldIdObject);
 				}
 
 			});
@@ -286,9 +287,10 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object companyId) {
+					ShoppingItemField shoppingItemField,
+					Object companyIdObject) {
 
-					shoppingItemField.setCompanyId((Long)companyId);
+					shoppingItemField.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -308,9 +310,9 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object itemId) {
+					ShoppingItemField shoppingItemField, Object itemIdObject) {
 
-					shoppingItemField.setItemId((Long)itemId);
+					shoppingItemField.setItemId((Long)itemIdObject);
 				}
 
 			});
@@ -330,9 +332,9 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object name) {
+					ShoppingItemField shoppingItemField, Object nameObject) {
 
-					shoppingItemField.setName((String)name);
+					shoppingItemField.setName((String)nameObject);
 				}
 
 			});
@@ -352,9 +354,9 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object values) {
+					ShoppingItemField shoppingItemField, Object valuesObject) {
 
-					shoppingItemField.setValues((String)values);
+					shoppingItemField.setValues((String)valuesObject);
 				}
 
 			});
@@ -374,9 +376,10 @@ public class ShoppingItemFieldModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemField shoppingItemField, Object description) {
+					ShoppingItemField shoppingItemField,
+					Object descriptionObject) {
 
-					shoppingItemField.setDescription((String)description);
+					shoppingItemField.setDescription((String)descriptionObject);
 				}
 
 			});

@@ -348,8 +348,10 @@ public class SocialRequestModelImpl
 			new BiConsumer<SocialRequest, Object>() {
 
 				@Override
-				public void accept(SocialRequest socialRequest, Object uuid) {
-					socialRequest.setUuid((String)uuid);
+				public void accept(
+					SocialRequest socialRequest, Object uuidObject) {
+
+					socialRequest.setUuid((String)uuidObject);
 				}
 
 			});
@@ -369,9 +371,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object requestId) {
+					SocialRequest socialRequest, Object requestIdObject) {
 
-					socialRequest.setRequestId((Long)requestId);
+					socialRequest.setRequestId((Long)requestIdObject);
 				}
 
 			});
@@ -391,9 +393,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object groupId) {
+					SocialRequest socialRequest, Object groupIdObject) {
 
-					socialRequest.setGroupId((Long)groupId);
+					socialRequest.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -413,9 +415,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object companyId) {
+					SocialRequest socialRequest, Object companyIdObject) {
 
-					socialRequest.setCompanyId((Long)companyId);
+					socialRequest.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -434,8 +436,10 @@ public class SocialRequestModelImpl
 			new BiConsumer<SocialRequest, Object>() {
 
 				@Override
-				public void accept(SocialRequest socialRequest, Object userId) {
-					socialRequest.setUserId((Long)userId);
+				public void accept(
+					SocialRequest socialRequest, Object userIdObject) {
+
+					socialRequest.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -455,9 +459,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object createDate) {
+					SocialRequest socialRequest, Object createDateObject) {
 
-					socialRequest.setCreateDate((Long)createDate);
+					socialRequest.setCreateDate((Long)createDateObject);
 				}
 
 			});
@@ -477,9 +481,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object modifiedDate) {
+					SocialRequest socialRequest, Object modifiedDateObject) {
 
-					socialRequest.setModifiedDate((Long)modifiedDate);
+					socialRequest.setModifiedDate((Long)modifiedDateObject);
 				}
 
 			});
@@ -499,9 +503,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object classNameId) {
+					SocialRequest socialRequest, Object classNameIdObject) {
 
-					socialRequest.setClassNameId((Long)classNameId);
+					socialRequest.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -521,9 +525,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object classPK) {
+					SocialRequest socialRequest, Object classPKObject) {
 
-					socialRequest.setClassPK((Long)classPK);
+					socialRequest.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -542,8 +546,10 @@ public class SocialRequestModelImpl
 			new BiConsumer<SocialRequest, Object>() {
 
 				@Override
-				public void accept(SocialRequest socialRequest, Object type) {
-					socialRequest.setType((Integer)type);
+				public void accept(
+					SocialRequest socialRequest, Object typeObject) {
+
+					socialRequest.setType((Integer)typeObject);
 				}
 
 			});
@@ -563,9 +569,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object extraData) {
+					SocialRequest socialRequest, Object extraDataObject) {
 
-					socialRequest.setExtraData((String)extraData);
+					socialRequest.setExtraData((String)extraDataObject);
 				}
 
 			});
@@ -585,9 +591,9 @@ public class SocialRequestModelImpl
 
 				@Override
 				public void accept(
-					SocialRequest socialRequest, Object receiverUserId) {
+					SocialRequest socialRequest, Object receiverUserIdObject) {
 
-					socialRequest.setReceiverUserId((Long)receiverUserId);
+					socialRequest.setReceiverUserId((Long)receiverUserIdObject);
 				}
 
 			});
@@ -606,8 +612,10 @@ public class SocialRequestModelImpl
 			new BiConsumer<SocialRequest, Object>() {
 
 				@Override
-				public void accept(SocialRequest socialRequest, Object status) {
-					socialRequest.setStatus((Integer)status);
+				public void accept(
+					SocialRequest socialRequest, Object statusObject) {
+
+					socialRequest.setStatus((Integer)statusObject);
 				}
 
 			});

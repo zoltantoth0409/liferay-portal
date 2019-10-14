@@ -277,8 +277,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object uuid) {
-					amImageEntry.setUuid((String)uuid);
+				public void accept(
+					AMImageEntry amImageEntry, Object uuidObject) {
+
+					amImageEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -298,9 +300,9 @@ public class AMImageEntryModelImpl
 
 				@Override
 				public void accept(
-					AMImageEntry amImageEntry, Object amImageEntryId) {
+					AMImageEntry amImageEntry, Object amImageEntryIdObject) {
 
-					amImageEntry.setAmImageEntryId((Long)amImageEntryId);
+					amImageEntry.setAmImageEntryId((Long)amImageEntryIdObject);
 				}
 
 			});
@@ -319,8 +321,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object groupId) {
-					amImageEntry.setGroupId((Long)groupId);
+				public void accept(
+					AMImageEntry amImageEntry, Object groupIdObject) {
+
+					amImageEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -340,9 +344,9 @@ public class AMImageEntryModelImpl
 
 				@Override
 				public void accept(
-					AMImageEntry amImageEntry, Object companyId) {
+					AMImageEntry amImageEntry, Object companyIdObject) {
 
-					amImageEntry.setCompanyId((Long)companyId);
+					amImageEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -362,9 +366,9 @@ public class AMImageEntryModelImpl
 
 				@Override
 				public void accept(
-					AMImageEntry amImageEntry, Object createDate) {
+					AMImageEntry amImageEntry, Object createDateObject) {
 
-					amImageEntry.setCreateDate((Date)createDate);
+					amImageEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -384,10 +388,10 @@ public class AMImageEntryModelImpl
 
 				@Override
 				public void accept(
-					AMImageEntry amImageEntry, Object configurationUuid) {
+					AMImageEntry amImageEntry, Object configurationUuidObject) {
 
 					amImageEntry.setConfigurationUuid(
-						(String)configurationUuid);
+						(String)configurationUuidObject);
 				}
 
 			});
@@ -407,9 +411,9 @@ public class AMImageEntryModelImpl
 
 				@Override
 				public void accept(
-					AMImageEntry amImageEntry, Object fileVersionId) {
+					AMImageEntry amImageEntry, Object fileVersionIdObject) {
 
-					amImageEntry.setFileVersionId((Long)fileVersionId);
+					amImageEntry.setFileVersionId((Long)fileVersionIdObject);
 				}
 
 			});
@@ -428,8 +432,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object mimeType) {
-					amImageEntry.setMimeType((String)mimeType);
+				public void accept(
+					AMImageEntry amImageEntry, Object mimeTypeObject) {
+
+					amImageEntry.setMimeType((String)mimeTypeObject);
 				}
 
 			});
@@ -448,8 +454,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object height) {
-					amImageEntry.setHeight((Integer)height);
+				public void accept(
+					AMImageEntry amImageEntry, Object heightObject) {
+
+					amImageEntry.setHeight((Integer)heightObject);
 				}
 
 			});
@@ -468,8 +476,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object width) {
-					amImageEntry.setWidth((Integer)width);
+				public void accept(
+					AMImageEntry amImageEntry, Object widthObject) {
+
+					amImageEntry.setWidth((Integer)widthObject);
 				}
 
 			});
@@ -488,8 +498,10 @@ public class AMImageEntryModelImpl
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object size) {
-					amImageEntry.setSize((Long)size);
+				public void accept(
+					AMImageEntry amImageEntry, Object sizeObject) {
+
+					amImageEntry.setSize((Long)sizeObject);
 				}
 
 			});

@@ -340,8 +340,10 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object mvccVersion) {
-					orgLabor.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					OrgLabor orgLabor, Object mvccVersionObject) {
+
+					orgLabor.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -360,8 +362,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object orgLaborId) {
-					orgLabor.setOrgLaborId((Long)orgLaborId);
+				public void accept(OrgLabor orgLabor, Object orgLaborIdObject) {
+					orgLabor.setOrgLaborId((Long)orgLaborIdObject);
 				}
 
 			});
@@ -380,8 +382,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object companyId) {
-					orgLabor.setCompanyId((Long)companyId);
+				public void accept(OrgLabor orgLabor, Object companyIdObject) {
+					orgLabor.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -400,8 +402,10 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object organizationId) {
-					orgLabor.setOrganizationId((Long)organizationId);
+				public void accept(
+					OrgLabor orgLabor, Object organizationIdObject) {
+
+					orgLabor.setOrganizationId((Long)organizationIdObject);
 				}
 
 			});
@@ -420,8 +424,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object typeId) {
-					orgLabor.setTypeId((Long)typeId);
+				public void accept(OrgLabor orgLabor, Object typeIdObject) {
+					orgLabor.setTypeId((Long)typeIdObject);
 				}
 
 			});
@@ -440,8 +444,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object sunOpen) {
-					orgLabor.setSunOpen((Integer)sunOpen);
+				public void accept(OrgLabor orgLabor, Object sunOpenObject) {
+					orgLabor.setSunOpen((Integer)sunOpenObject);
 				}
 
 			});
@@ -460,8 +464,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object sunClose) {
-					orgLabor.setSunClose((Integer)sunClose);
+				public void accept(OrgLabor orgLabor, Object sunCloseObject) {
+					orgLabor.setSunClose((Integer)sunCloseObject);
 				}
 
 			});
@@ -480,8 +484,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object monOpen) {
-					orgLabor.setMonOpen((Integer)monOpen);
+				public void accept(OrgLabor orgLabor, Object monOpenObject) {
+					orgLabor.setMonOpen((Integer)monOpenObject);
 				}
 
 			});
@@ -500,8 +504,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object monClose) {
-					orgLabor.setMonClose((Integer)monClose);
+				public void accept(OrgLabor orgLabor, Object monCloseObject) {
+					orgLabor.setMonClose((Integer)monCloseObject);
 				}
 
 			});
@@ -520,8 +524,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object tueOpen) {
-					orgLabor.setTueOpen((Integer)tueOpen);
+				public void accept(OrgLabor orgLabor, Object tueOpenObject) {
+					orgLabor.setTueOpen((Integer)tueOpenObject);
 				}
 
 			});
@@ -540,8 +544,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object tueClose) {
-					orgLabor.setTueClose((Integer)tueClose);
+				public void accept(OrgLabor orgLabor, Object tueCloseObject) {
+					orgLabor.setTueClose((Integer)tueCloseObject);
 				}
 
 			});
@@ -560,8 +564,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object wedOpen) {
-					orgLabor.setWedOpen((Integer)wedOpen);
+				public void accept(OrgLabor orgLabor, Object wedOpenObject) {
+					orgLabor.setWedOpen((Integer)wedOpenObject);
 				}
 
 			});
@@ -580,8 +584,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object wedClose) {
-					orgLabor.setWedClose((Integer)wedClose);
+				public void accept(OrgLabor orgLabor, Object wedCloseObject) {
+					orgLabor.setWedClose((Integer)wedCloseObject);
 				}
 
 			});
@@ -600,8 +604,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object thuOpen) {
-					orgLabor.setThuOpen((Integer)thuOpen);
+				public void accept(OrgLabor orgLabor, Object thuOpenObject) {
+					orgLabor.setThuOpen((Integer)thuOpenObject);
 				}
 
 			});
@@ -620,8 +624,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object thuClose) {
-					orgLabor.setThuClose((Integer)thuClose);
+				public void accept(OrgLabor orgLabor, Object thuCloseObject) {
+					orgLabor.setThuClose((Integer)thuCloseObject);
 				}
 
 			});
@@ -640,8 +644,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object friOpen) {
-					orgLabor.setFriOpen((Integer)friOpen);
+				public void accept(OrgLabor orgLabor, Object friOpenObject) {
+					orgLabor.setFriOpen((Integer)friOpenObject);
 				}
 
 			});
@@ -660,8 +664,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object friClose) {
-					orgLabor.setFriClose((Integer)friClose);
+				public void accept(OrgLabor orgLabor, Object friCloseObject) {
+					orgLabor.setFriClose((Integer)friCloseObject);
 				}
 
 			});
@@ -680,8 +684,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object satOpen) {
-					orgLabor.setSatOpen((Integer)satOpen);
+				public void accept(OrgLabor orgLabor, Object satOpenObject) {
+					orgLabor.setSatOpen((Integer)satOpenObject);
 				}
 
 			});
@@ -700,8 +704,8 @@ public class OrgLaborModelImpl
 			new BiConsumer<OrgLabor, Object>() {
 
 				@Override
-				public void accept(OrgLabor orgLabor, Object satClose) {
-					orgLabor.setSatClose((Integer)satClose);
+				public void accept(OrgLabor orgLabor, Object satCloseObject) {
+					orgLabor.setSatClose((Integer)satCloseObject);
 				}
 
 			});

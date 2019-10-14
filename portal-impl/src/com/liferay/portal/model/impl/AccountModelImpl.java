@@ -331,8 +331,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object mvccVersion) {
-					account.setMvccVersion((Long)mvccVersion);
+				public void accept(Account account, Object mvccVersionObject) {
+					account.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -351,8 +351,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object accountId) {
-					account.setAccountId((Long)accountId);
+				public void accept(Account account, Object accountIdObject) {
+					account.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -371,8 +371,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object companyId) {
-					account.setCompanyId((Long)companyId);
+				public void accept(Account account, Object companyIdObject) {
+					account.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -391,8 +391,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object userId) {
-					account.setUserId((Long)userId);
+				public void accept(Account account, Object userIdObject) {
+					account.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -411,8 +411,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object userName) {
-					account.setUserName((String)userName);
+				public void accept(Account account, Object userNameObject) {
+					account.setUserName((String)userNameObject);
 				}
 
 			});
@@ -431,8 +431,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object createDate) {
-					account.setCreateDate((Date)createDate);
+				public void accept(Account account, Object createDateObject) {
+					account.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -451,8 +451,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object modifiedDate) {
-					account.setModifiedDate((Date)modifiedDate);
+				public void accept(Account account, Object modifiedDateObject) {
+					account.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -471,8 +471,10 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object parentAccountId) {
-					account.setParentAccountId((Long)parentAccountId);
+				public void accept(
+					Account account, Object parentAccountIdObject) {
+
+					account.setParentAccountId((Long)parentAccountIdObject);
 				}
 
 			});
@@ -491,8 +493,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object name) {
-					account.setName((String)name);
+				public void accept(Account account, Object nameObject) {
+					account.setName((String)nameObject);
 				}
 
 			});
@@ -511,8 +513,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object legalName) {
-					account.setLegalName((String)legalName);
+				public void accept(Account account, Object legalNameObject) {
+					account.setLegalName((String)legalNameObject);
 				}
 
 			});
@@ -531,8 +533,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object legalId) {
-					account.setLegalId((String)legalId);
+				public void accept(Account account, Object legalIdObject) {
+					account.setLegalId((String)legalIdObject);
 				}
 
 			});
@@ -551,8 +553,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object legalType) {
-					account.setLegalType((String)legalType);
+				public void accept(Account account, Object legalTypeObject) {
+					account.setLegalType((String)legalTypeObject);
 				}
 
 			});
@@ -571,8 +573,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object sicCode) {
-					account.setSicCode((String)sicCode);
+				public void accept(Account account, Object sicCodeObject) {
+					account.setSicCode((String)sicCodeObject);
 				}
 
 			});
@@ -591,8 +593,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object tickerSymbol) {
-					account.setTickerSymbol((String)tickerSymbol);
+				public void accept(Account account, Object tickerSymbolObject) {
+					account.setTickerSymbol((String)tickerSymbolObject);
 				}
 
 			});
@@ -611,8 +613,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object industry) {
-					account.setIndustry((String)industry);
+				public void accept(Account account, Object industryObject) {
+					account.setIndustry((String)industryObject);
 				}
 
 			});
@@ -631,8 +633,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object type) {
-					account.setType((String)type);
+				public void accept(Account account, Object typeObject) {
+					account.setType((String)typeObject);
 				}
 
 			});
@@ -651,8 +653,8 @@ public class AccountModelImpl
 			new BiConsumer<Account, Object>() {
 
 				@Override
-				public void accept(Account account, Object size) {
-					account.setSize((String)size);
+				public void accept(Account account, Object sizeObject) {
+					account.setSize((String)sizeObject);
 				}
 
 			});

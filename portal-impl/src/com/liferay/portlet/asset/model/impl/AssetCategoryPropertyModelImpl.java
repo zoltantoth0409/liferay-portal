@@ -338,10 +338,10 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object categoryPropertyId) {
+					Object categoryPropertyIdObject) {
 
 					assetCategoryProperty.setCategoryPropertyId(
-						(Long)categoryPropertyId);
+						(Long)categoryPropertyIdObject);
 				}
 
 			});
@@ -364,9 +364,9 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object companyId) {
+					Object companyIdObject) {
 
-					assetCategoryProperty.setCompanyId((Long)companyId);
+					assetCategoryProperty.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -389,9 +389,9 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object userId) {
+					Object userIdObject) {
 
-					assetCategoryProperty.setUserId((Long)userId);
+					assetCategoryProperty.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -414,9 +414,9 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object userName) {
+					Object userNameObject) {
 
-					assetCategoryProperty.setUserName((String)userName);
+					assetCategoryProperty.setUserName((String)userNameObject);
 				}
 
 			});
@@ -439,9 +439,9 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object createDate) {
+					Object createDateObject) {
 
-					assetCategoryProperty.setCreateDate((Date)createDate);
+					assetCategoryProperty.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -464,9 +464,10 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					assetCategoryProperty.setModifiedDate((Date)modifiedDate);
+					assetCategoryProperty.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -489,9 +490,9 @@ public class AssetCategoryPropertyModelImpl
 				@Override
 				public void accept(
 					AssetCategoryProperty assetCategoryProperty,
-					Object categoryId) {
+					Object categoryIdObject) {
 
-					assetCategoryProperty.setCategoryId((Long)categoryId);
+					assetCategoryProperty.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -513,9 +514,10 @@ public class AssetCategoryPropertyModelImpl
 
 				@Override
 				public void accept(
-					AssetCategoryProperty assetCategoryProperty, Object key) {
+					AssetCategoryProperty assetCategoryProperty,
+					Object keyObject) {
 
-					assetCategoryProperty.setKey((String)key);
+					assetCategoryProperty.setKey((String)keyObject);
 				}
 
 			});
@@ -537,9 +539,10 @@ public class AssetCategoryPropertyModelImpl
 
 				@Override
 				public void accept(
-					AssetCategoryProperty assetCategoryProperty, Object value) {
+					AssetCategoryProperty assetCategoryProperty,
+					Object valueObject) {
 
-					assetCategoryProperty.setValue((String)value);
+					assetCategoryProperty.setValue((String)valueObject);
 				}
 
 			});

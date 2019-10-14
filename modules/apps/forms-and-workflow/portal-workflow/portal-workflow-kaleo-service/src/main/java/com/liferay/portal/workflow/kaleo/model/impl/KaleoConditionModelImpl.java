@@ -279,9 +279,11 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object kaleoConditionId) {
+					KaleoCondition kaleoCondition,
+					Object kaleoConditionIdObject) {
 
-					kaleoCondition.setKaleoConditionId((Long)kaleoConditionId);
+					kaleoCondition.setKaleoConditionId(
+						(Long)kaleoConditionIdObject);
 				}
 
 			});
@@ -301,9 +303,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object groupId) {
+					KaleoCondition kaleoCondition, Object groupIdObject) {
 
-					kaleoCondition.setGroupId((Long)groupId);
+					kaleoCondition.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -323,9 +325,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object companyId) {
+					KaleoCondition kaleoCondition, Object companyIdObject) {
 
-					kaleoCondition.setCompanyId((Long)companyId);
+					kaleoCondition.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -345,9 +347,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object userId) {
+					KaleoCondition kaleoCondition, Object userIdObject) {
 
-					kaleoCondition.setUserId((Long)userId);
+					kaleoCondition.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -367,9 +369,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object userName) {
+					KaleoCondition kaleoCondition, Object userNameObject) {
 
-					kaleoCondition.setUserName((String)userName);
+					kaleoCondition.setUserName((String)userNameObject);
 				}
 
 			});
@@ -389,9 +391,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object createDate) {
+					KaleoCondition kaleoCondition, Object createDateObject) {
 
-					kaleoCondition.setCreateDate((Date)createDate);
+					kaleoCondition.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -411,9 +413,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object modifiedDate) {
+					KaleoCondition kaleoCondition, Object modifiedDateObject) {
 
-					kaleoCondition.setModifiedDate((Date)modifiedDate);
+					kaleoCondition.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -433,10 +435,11 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object kaleoDefinitionId) {
+					KaleoCondition kaleoCondition,
+					Object kaleoDefinitionIdObject) {
 
 					kaleoCondition.setKaleoDefinitionId(
-						(Long)kaleoDefinitionId);
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -456,9 +459,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object kaleoNodeId) {
+					KaleoCondition kaleoCondition, Object kaleoNodeIdObject) {
 
-					kaleoCondition.setKaleoNodeId((Long)kaleoNodeId);
+					kaleoCondition.setKaleoNodeId((Long)kaleoNodeIdObject);
 				}
 
 			});
@@ -478,9 +481,9 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object script) {
+					KaleoCondition kaleoCondition, Object scriptObject) {
 
-					kaleoCondition.setScript((String)script);
+					kaleoCondition.setScript((String)scriptObject);
 				}
 
 			});
@@ -500,9 +503,11 @@ public class KaleoConditionModelImpl
 
 				@Override
 				public void accept(
-					KaleoCondition kaleoCondition, Object scriptLanguage) {
+					KaleoCondition kaleoCondition,
+					Object scriptLanguageObject) {
 
-					kaleoCondition.setScriptLanguage((String)scriptLanguage);
+					kaleoCondition.setScriptLanguage(
+						(String)scriptLanguageObject);
 				}
 
 			});
@@ -523,10 +528,10 @@ public class KaleoConditionModelImpl
 				@Override
 				public void accept(
 					KaleoCondition kaleoCondition,
-					Object scriptRequiredContexts) {
+					Object scriptRequiredContextsObject) {
 
 					kaleoCondition.setScriptRequiredContexts(
-						(String)scriptRequiredContexts);
+						(String)scriptRequiredContextsObject);
 				}
 
 			});

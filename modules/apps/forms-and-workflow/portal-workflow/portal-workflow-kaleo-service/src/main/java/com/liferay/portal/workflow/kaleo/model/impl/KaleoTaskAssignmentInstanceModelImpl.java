@@ -310,11 +310,11 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoTaskAssignmentInstanceId) {
+					Object kaleoTaskAssignmentInstanceIdObject) {
 
 					kaleoTaskAssignmentInstance.
 						setKaleoTaskAssignmentInstanceId(
-							(Long)kaleoTaskAssignmentInstanceId);
+							(Long)kaleoTaskAssignmentInstanceIdObject);
 				}
 
 			});
@@ -337,9 +337,9 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoTaskAssignmentInstance.setGroupId((Long)groupId);
+					kaleoTaskAssignmentInstance.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -362,9 +362,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoTaskAssignmentInstance.setCompanyId((Long)companyId);
+					kaleoTaskAssignmentInstance.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -387,9 +388,9 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoTaskAssignmentInstance.setUserId((Long)userId);
+					kaleoTaskAssignmentInstance.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -412,9 +413,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoTaskAssignmentInstance.setUserName((String)userName);
+					kaleoTaskAssignmentInstance.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -437,9 +439,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoTaskAssignmentInstance.setCreateDate((Date)createDate);
+					kaleoTaskAssignmentInstance.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -462,10 +465,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
 					kaleoTaskAssignmentInstance.setModifiedDate(
-						(Date)modifiedDate);
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -488,10 +491,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoDefinitionId) {
+					Object kaleoDefinitionIdObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoDefinitionId(
-						(Long)kaleoDefinitionId);
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -514,10 +517,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoInstanceId) {
+					Object kaleoInstanceIdObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoInstanceId(
-						(Long)kaleoInstanceId);
+						(Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -541,10 +544,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoInstanceTokenId) {
+					Object kaleoInstanceTokenIdObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoInstanceTokenId(
-						(Long)kaleoInstanceTokenId);
+						(Long)kaleoInstanceTokenIdObject);
 				}
 
 			});
@@ -568,10 +571,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoTaskInstanceTokenId) {
+					Object kaleoTaskInstanceTokenIdObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoTaskInstanceTokenId(
-						(Long)kaleoTaskInstanceTokenId);
+						(Long)kaleoTaskInstanceTokenIdObject);
 				}
 
 			});
@@ -594,10 +597,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoTaskId) {
+					Object kaleoTaskIdObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoTaskId(
-						(Long)kaleoTaskId);
+						(Long)kaleoTaskIdObject);
 				}
 
 			});
@@ -620,10 +623,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object kaleoTaskName) {
+					Object kaleoTaskNameObject) {
 
 					kaleoTaskAssignmentInstance.setKaleoTaskName(
-						(String)kaleoTaskName);
+						(String)kaleoTaskNameObject);
 				}
 
 			});
@@ -646,10 +649,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object assigneeClassName) {
+					Object assigneeClassNameObject) {
 
 					kaleoTaskAssignmentInstance.setAssigneeClassName(
-						(String)assigneeClassName);
+						(String)assigneeClassNameObject);
 				}
 
 			});
@@ -672,10 +675,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object assigneeClassPK) {
+					Object assigneeClassPKObject) {
 
 					kaleoTaskAssignmentInstance.setAssigneeClassPK(
-						(Long)assigneeClassPK);
+						(Long)assigneeClassPKObject);
 				}
 
 			});
@@ -698,10 +701,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object completed) {
+					Object completedObject) {
 
 					kaleoTaskAssignmentInstance.setCompleted(
-						(Boolean)completed);
+						(Boolean)completedObject);
 				}
 
 			});
@@ -724,10 +727,10 @@ public class KaleoTaskAssignmentInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-					Object completionDate) {
+					Object completionDateObject) {
 
 					kaleoTaskAssignmentInstance.setCompletionDate(
-						(Date)completionDate);
+						(Date)completionDateObject);
 				}
 
 			});

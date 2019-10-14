@@ -337,8 +337,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object mvccVersion) {
-					phone.setMvccVersion((Long)mvccVersion);
+				public void accept(Phone phone, Object mvccVersionObject) {
+					phone.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -357,8 +357,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object uuid) {
-					phone.setUuid((String)uuid);
+				public void accept(Phone phone, Object uuidObject) {
+					phone.setUuid((String)uuidObject);
 				}
 
 			});
@@ -377,8 +377,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object phoneId) {
-					phone.setPhoneId((Long)phoneId);
+				public void accept(Phone phone, Object phoneIdObject) {
+					phone.setPhoneId((Long)phoneIdObject);
 				}
 
 			});
@@ -397,8 +397,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object companyId) {
-					phone.setCompanyId((Long)companyId);
+				public void accept(Phone phone, Object companyIdObject) {
+					phone.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -417,8 +417,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object userId) {
-					phone.setUserId((Long)userId);
+				public void accept(Phone phone, Object userIdObject) {
+					phone.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -437,8 +437,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object userName) {
-					phone.setUserName((String)userName);
+				public void accept(Phone phone, Object userNameObject) {
+					phone.setUserName((String)userNameObject);
 				}
 
 			});
@@ -457,8 +457,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object createDate) {
-					phone.setCreateDate((Date)createDate);
+				public void accept(Phone phone, Object createDateObject) {
+					phone.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -477,8 +477,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object modifiedDate) {
-					phone.setModifiedDate((Date)modifiedDate);
+				public void accept(Phone phone, Object modifiedDateObject) {
+					phone.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -497,8 +497,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object classNameId) {
-					phone.setClassNameId((Long)classNameId);
+				public void accept(Phone phone, Object classNameIdObject) {
+					phone.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -517,8 +517,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object classPK) {
-					phone.setClassPK((Long)classPK);
+				public void accept(Phone phone, Object classPKObject) {
+					phone.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -537,8 +537,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object number) {
-					phone.setNumber((String)number);
+				public void accept(Phone phone, Object numberObject) {
+					phone.setNumber((String)numberObject);
 				}
 
 			});
@@ -557,8 +557,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object extension) {
-					phone.setExtension((String)extension);
+				public void accept(Phone phone, Object extensionObject) {
+					phone.setExtension((String)extensionObject);
 				}
 
 			});
@@ -577,8 +577,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object typeId) {
-					phone.setTypeId((Long)typeId);
+				public void accept(Phone phone, Object typeIdObject) {
+					phone.setTypeId((Long)typeIdObject);
 				}
 
 			});
@@ -597,8 +597,8 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 			new BiConsumer<Phone, Object>() {
 
 				@Override
-				public void accept(Phone phone, Object primary) {
-					phone.setPrimary((Boolean)primary);
+				public void accept(Phone phone, Object primaryObject) {
+					phone.setPrimary((Boolean)primaryObject);
 				}
 
 			});

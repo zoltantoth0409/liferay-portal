@@ -333,8 +333,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object entryId) {
-					trashEntry.setEntryId((Long)entryId);
+				public void accept(
+					TrashEntry trashEntry, Object entryIdObject) {
+
+					trashEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -353,8 +355,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object groupId) {
-					trashEntry.setGroupId((Long)groupId);
+				public void accept(
+					TrashEntry trashEntry, Object groupIdObject) {
+
+					trashEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -373,8 +377,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object companyId) {
-					trashEntry.setCompanyId((Long)companyId);
+				public void accept(
+					TrashEntry trashEntry, Object companyIdObject) {
+
+					trashEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -393,8 +399,8 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object userId) {
-					trashEntry.setUserId((Long)userId);
+				public void accept(TrashEntry trashEntry, Object userIdObject) {
+					trashEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -413,8 +419,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object userName) {
-					trashEntry.setUserName((String)userName);
+				public void accept(
+					TrashEntry trashEntry, Object userNameObject) {
+
+					trashEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -433,8 +441,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object createDate) {
-					trashEntry.setCreateDate((Date)createDate);
+				public void accept(
+					TrashEntry trashEntry, Object createDateObject) {
+
+					trashEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -453,8 +463,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object classNameId) {
-					trashEntry.setClassNameId((Long)classNameId);
+				public void accept(
+					TrashEntry trashEntry, Object classNameIdObject) {
+
+					trashEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -473,8 +485,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object classPK) {
-					trashEntry.setClassPK((Long)classPK);
+				public void accept(
+					TrashEntry trashEntry, Object classPKObject) {
+
+					trashEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -494,9 +508,10 @@ public class TrashEntryModelImpl
 
 				@Override
 				public void accept(
-					TrashEntry trashEntry, Object systemEventSetKey) {
+					TrashEntry trashEntry, Object systemEventSetKeyObject) {
 
-					trashEntry.setSystemEventSetKey((Long)systemEventSetKey);
+					trashEntry.setSystemEventSetKey(
+						(Long)systemEventSetKeyObject);
 				}
 
 			});
@@ -515,8 +530,10 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object typeSettings) {
-					trashEntry.setTypeSettings((String)typeSettings);
+				public void accept(
+					TrashEntry trashEntry, Object typeSettingsObject) {
+
+					trashEntry.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -535,8 +552,8 @@ public class TrashEntryModelImpl
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object status) {
-					trashEntry.setStatus((Integer)status);
+				public void accept(TrashEntry trashEntry, Object statusObject) {
+					trashEntry.setStatus((Integer)statusObject);
 				}
 
 			});

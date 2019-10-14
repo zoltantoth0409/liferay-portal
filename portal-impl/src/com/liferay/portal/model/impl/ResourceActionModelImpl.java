@@ -262,9 +262,9 @@ public class ResourceActionModelImpl
 
 				@Override
 				public void accept(
-					ResourceAction resourceAction, Object mvccVersion) {
+					ResourceAction resourceAction, Object mvccVersionObject) {
 
-					resourceAction.setMvccVersion((Long)mvccVersion);
+					resourceAction.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -284,9 +284,11 @@ public class ResourceActionModelImpl
 
 				@Override
 				public void accept(
-					ResourceAction resourceAction, Object resourceActionId) {
+					ResourceAction resourceAction,
+					Object resourceActionIdObject) {
 
-					resourceAction.setResourceActionId((Long)resourceActionId);
+					resourceAction.setResourceActionId(
+						(Long)resourceActionIdObject);
 				}
 
 			});
@@ -305,8 +307,10 @@ public class ResourceActionModelImpl
 			new BiConsumer<ResourceAction, Object>() {
 
 				@Override
-				public void accept(ResourceAction resourceAction, Object name) {
-					resourceAction.setName((String)name);
+				public void accept(
+					ResourceAction resourceAction, Object nameObject) {
+
+					resourceAction.setName((String)nameObject);
 				}
 
 			});
@@ -326,9 +330,9 @@ public class ResourceActionModelImpl
 
 				@Override
 				public void accept(
-					ResourceAction resourceAction, Object actionId) {
+					ResourceAction resourceAction, Object actionIdObject) {
 
-					resourceAction.setActionId((String)actionId);
+					resourceAction.setActionId((String)actionIdObject);
 				}
 
 			});
@@ -348,9 +352,9 @@ public class ResourceActionModelImpl
 
 				@Override
 				public void accept(
-					ResourceAction resourceAction, Object bitwiseValue) {
+					ResourceAction resourceAction, Object bitwiseValueObject) {
 
-					resourceAction.setBitwiseValue((Long)bitwiseValue);
+					resourceAction.setBitwiseValue((Long)bitwiseValueObject);
 				}
 
 			});

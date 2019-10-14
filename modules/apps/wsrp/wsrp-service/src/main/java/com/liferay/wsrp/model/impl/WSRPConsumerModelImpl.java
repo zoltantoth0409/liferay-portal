@@ -279,8 +279,10 @@ public class WSRPConsumerModelImpl
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object uuid) {
-					wsrpConsumer.setUuid((String)uuid);
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object uuidObject) {
+
+					wsrpConsumer.setUuid((String)uuidObject);
 				}
 
 			});
@@ -300,9 +302,9 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object wsrpConsumerId) {
+					WSRPConsumer wsrpConsumer, Object wsrpConsumerIdObject) {
 
-					wsrpConsumer.setWsrpConsumerId((Long)wsrpConsumerId);
+					wsrpConsumer.setWsrpConsumerId((Long)wsrpConsumerIdObject);
 				}
 
 			});
@@ -322,9 +324,9 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object companyId) {
+					WSRPConsumer wsrpConsumer, Object companyIdObject) {
 
-					wsrpConsumer.setCompanyId((Long)companyId);
+					wsrpConsumer.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -344,9 +346,9 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object createDate) {
+					WSRPConsumer wsrpConsumer, Object createDateObject) {
 
-					wsrpConsumer.setCreateDate((Date)createDate);
+					wsrpConsumer.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -366,9 +368,9 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object modifiedDate) {
+					WSRPConsumer wsrpConsumer, Object modifiedDateObject) {
 
-					wsrpConsumer.setModifiedDate((Date)modifiedDate);
+					wsrpConsumer.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -387,8 +389,10 @@ public class WSRPConsumerModelImpl
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object name) {
-					wsrpConsumer.setName((String)name);
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object nameObject) {
+
+					wsrpConsumer.setName((String)nameObject);
 				}
 
 			});
@@ -407,8 +411,10 @@ public class WSRPConsumerModelImpl
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object url) {
-					wsrpConsumer.setUrl((String)url);
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object urlObject) {
+
+					wsrpConsumer.setUrl((String)urlObject);
 				}
 
 			});
@@ -427,8 +433,10 @@ public class WSRPConsumerModelImpl
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object wsdl) {
-					wsrpConsumer.setWsdl((String)wsdl);
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object wsdlObject) {
+
+					wsrpConsumer.setWsdl((String)wsdlObject);
 				}
 
 			});
@@ -449,10 +457,10 @@ public class WSRPConsumerModelImpl
 				@Override
 				public void accept(
 					WSRPConsumer wsrpConsumer,
-					Object registrationContextString) {
+					Object registrationContextStringObject) {
 
 					wsrpConsumer.setRegistrationContextString(
-						(String)registrationContextString);
+						(String)registrationContextStringObject);
 				}
 
 			});
@@ -473,10 +481,10 @@ public class WSRPConsumerModelImpl
 				@Override
 				public void accept(
 					WSRPConsumer wsrpConsumer,
-					Object registrationPropertiesString) {
+					Object registrationPropertiesStringObject) {
 
 					wsrpConsumer.setRegistrationPropertiesString(
-						(String)registrationPropertiesString);
+						(String)registrationPropertiesStringObject);
 				}
 
 			});
@@ -496,9 +504,10 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object forwardCookies) {
+					WSRPConsumer wsrpConsumer, Object forwardCookiesObject) {
 
-					wsrpConsumer.setForwardCookies((String)forwardCookies);
+					wsrpConsumer.setForwardCookies(
+						(String)forwardCookiesObject);
 				}
 
 			});
@@ -518,9 +527,10 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object forwardHeaders) {
+					WSRPConsumer wsrpConsumer, Object forwardHeadersObject) {
 
-					wsrpConsumer.setForwardHeaders((String)forwardHeaders);
+					wsrpConsumer.setForwardHeaders(
+						(String)forwardHeadersObject);
 				}
 
 			});
@@ -540,10 +550,11 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object markupCharacterSets) {
+					WSRPConsumer wsrpConsumer,
+					Object markupCharacterSetsObject) {
 
 					wsrpConsumer.setMarkupCharacterSets(
-						(String)markupCharacterSets);
+						(String)markupCharacterSetsObject);
 				}
 
 			});
@@ -563,9 +574,10 @@ public class WSRPConsumerModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumer wsrpConsumer, Object lastPublishDate) {
+					WSRPConsumer wsrpConsumer, Object lastPublishDateObject) {
 
-					wsrpConsumer.setLastPublishDate((Date)lastPublishDate);
+					wsrpConsumer.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

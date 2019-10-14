@@ -313,9 +313,9 @@ public class UserGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupRole userGroupRole, Object mvccVersion) {
+					UserGroupRole userGroupRole, Object mvccVersionObject) {
 
-					userGroupRole.setMvccVersion((Long)mvccVersion);
+					userGroupRole.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -334,8 +334,10 @@ public class UserGroupRoleModelImpl
 			new BiConsumer<UserGroupRole, Object>() {
 
 				@Override
-				public void accept(UserGroupRole userGroupRole, Object userId) {
-					userGroupRole.setUserId((Long)userId);
+				public void accept(
+					UserGroupRole userGroupRole, Object userIdObject) {
+
+					userGroupRole.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -355,9 +357,9 @@ public class UserGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupRole userGroupRole, Object groupId) {
+					UserGroupRole userGroupRole, Object groupIdObject) {
 
-					userGroupRole.setGroupId((Long)groupId);
+					userGroupRole.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -376,8 +378,10 @@ public class UserGroupRoleModelImpl
 			new BiConsumer<UserGroupRole, Object>() {
 
 				@Override
-				public void accept(UserGroupRole userGroupRole, Object roleId) {
-					userGroupRole.setRoleId((Long)roleId);
+				public void accept(
+					UserGroupRole userGroupRole, Object roleIdObject) {
+
+					userGroupRole.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -397,9 +401,9 @@ public class UserGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupRole userGroupRole, Object companyId) {
+					UserGroupRole userGroupRole, Object companyIdObject) {
 
-					userGroupRole.setCompanyId((Long)companyId);
+					userGroupRole.setCompanyId((Long)companyIdObject);
 				}
 
 			});

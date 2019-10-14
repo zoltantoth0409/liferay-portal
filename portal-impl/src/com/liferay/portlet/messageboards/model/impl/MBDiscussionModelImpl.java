@@ -286,8 +286,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object uuid) {
-					mbDiscussion.setUuid((String)uuid);
+				public void accept(
+					MBDiscussion mbDiscussion, Object uuidObject) {
+
+					mbDiscussion.setUuid((String)uuidObject);
 				}
 
 			});
@@ -307,9 +309,9 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object discussionId) {
+					MBDiscussion mbDiscussion, Object discussionIdObject) {
 
-					mbDiscussion.setDiscussionId((Long)discussionId);
+					mbDiscussion.setDiscussionId((Long)discussionIdObject);
 				}
 
 			});
@@ -328,8 +330,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object groupId) {
-					mbDiscussion.setGroupId((Long)groupId);
+				public void accept(
+					MBDiscussion mbDiscussion, Object groupIdObject) {
+
+					mbDiscussion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -349,9 +353,9 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object companyId) {
+					MBDiscussion mbDiscussion, Object companyIdObject) {
 
-					mbDiscussion.setCompanyId((Long)companyId);
+					mbDiscussion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -370,8 +374,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object userId) {
-					mbDiscussion.setUserId((Long)userId);
+				public void accept(
+					MBDiscussion mbDiscussion, Object userIdObject) {
+
+					mbDiscussion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -390,8 +396,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object userName) {
-					mbDiscussion.setUserName((String)userName);
+				public void accept(
+					MBDiscussion mbDiscussion, Object userNameObject) {
+
+					mbDiscussion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -411,9 +419,9 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object createDate) {
+					MBDiscussion mbDiscussion, Object createDateObject) {
 
-					mbDiscussion.setCreateDate((Date)createDate);
+					mbDiscussion.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -433,9 +441,9 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object modifiedDate) {
+					MBDiscussion mbDiscussion, Object modifiedDateObject) {
 
-					mbDiscussion.setModifiedDate((Date)modifiedDate);
+					mbDiscussion.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -455,9 +463,9 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object classNameId) {
+					MBDiscussion mbDiscussion, Object classNameIdObject) {
 
-					mbDiscussion.setClassNameId((Long)classNameId);
+					mbDiscussion.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -476,8 +484,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object classPK) {
-					mbDiscussion.setClassPK((Long)classPK);
+				public void accept(
+					MBDiscussion mbDiscussion, Object classPKObject) {
+
+					mbDiscussion.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -496,8 +506,10 @@ public class MBDiscussionModelImpl
 			new BiConsumer<MBDiscussion, Object>() {
 
 				@Override
-				public void accept(MBDiscussion mbDiscussion, Object threadId) {
-					mbDiscussion.setThreadId((Long)threadId);
+				public void accept(
+					MBDiscussion mbDiscussion, Object threadIdObject) {
+
+					mbDiscussion.setThreadId((Long)threadIdObject);
 				}
 
 			});
@@ -517,9 +529,10 @@ public class MBDiscussionModelImpl
 
 				@Override
 				public void accept(
-					MBDiscussion mbDiscussion, Object lastPublishDate) {
+					MBDiscussion mbDiscussion, Object lastPublishDateObject) {
 
-					mbDiscussion.setLastPublishDate((Date)lastPublishDate);
+					mbDiscussion.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

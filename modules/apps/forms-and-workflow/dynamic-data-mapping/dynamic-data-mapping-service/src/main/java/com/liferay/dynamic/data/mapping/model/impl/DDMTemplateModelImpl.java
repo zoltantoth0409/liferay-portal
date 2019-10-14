@@ -390,8 +390,8 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object uuid) {
-					ddmTemplate.setUuid((String)uuid);
+				public void accept(DDMTemplate ddmTemplate, Object uuidObject) {
+					ddmTemplate.setUuid((String)uuidObject);
 				}
 
 			});
@@ -410,8 +410,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object templateId) {
-					ddmTemplate.setTemplateId((Long)templateId);
+				public void accept(
+					DDMTemplate ddmTemplate, Object templateIdObject) {
+
+					ddmTemplate.setTemplateId((Long)templateIdObject);
 				}
 
 			});
@@ -430,8 +432,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object groupId) {
-					ddmTemplate.setGroupId((Long)groupId);
+				public void accept(
+					DDMTemplate ddmTemplate, Object groupIdObject) {
+
+					ddmTemplate.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -450,8 +454,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object companyId) {
-					ddmTemplate.setCompanyId((Long)companyId);
+				public void accept(
+					DDMTemplate ddmTemplate, Object companyIdObject) {
+
+					ddmTemplate.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -470,8 +476,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object userId) {
-					ddmTemplate.setUserId((Long)userId);
+				public void accept(
+					DDMTemplate ddmTemplate, Object userIdObject) {
+
+					ddmTemplate.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -490,8 +498,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object userName) {
-					ddmTemplate.setUserName((String)userName);
+				public void accept(
+					DDMTemplate ddmTemplate, Object userNameObject) {
+
+					ddmTemplate.setUserName((String)userNameObject);
 				}
 
 			});
@@ -511,9 +521,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object versionUserId) {
+					DDMTemplate ddmTemplate, Object versionUserIdObject) {
 
-					ddmTemplate.setVersionUserId((Long)versionUserId);
+					ddmTemplate.setVersionUserId((Long)versionUserIdObject);
 				}
 
 			});
@@ -533,9 +543,10 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object versionUserName) {
+					DDMTemplate ddmTemplate, Object versionUserNameObject) {
 
-					ddmTemplate.setVersionUserName((String)versionUserName);
+					ddmTemplate.setVersionUserName(
+						(String)versionUserNameObject);
 				}
 
 			});
@@ -554,8 +565,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object createDate) {
-					ddmTemplate.setCreateDate((Date)createDate);
+				public void accept(
+					DDMTemplate ddmTemplate, Object createDateObject) {
+
+					ddmTemplate.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -575,9 +588,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object modifiedDate) {
+					DDMTemplate ddmTemplate, Object modifiedDateObject) {
 
-					ddmTemplate.setModifiedDate((Date)modifiedDate);
+					ddmTemplate.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -597,9 +610,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object classNameId) {
+					DDMTemplate ddmTemplate, Object classNameIdObject) {
 
-					ddmTemplate.setClassNameId((Long)classNameId);
+					ddmTemplate.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -618,8 +631,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object classPK) {
-					ddmTemplate.setClassPK((Long)classPK);
+				public void accept(
+					DDMTemplate ddmTemplate, Object classPKObject) {
+
+					ddmTemplate.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -639,10 +654,10 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object resourceClassNameId) {
+					DDMTemplate ddmTemplate, Object resourceClassNameIdObject) {
 
 					ddmTemplate.setResourceClassNameId(
-						(Long)resourceClassNameId);
+						(Long)resourceClassNameIdObject);
 				}
 
 			});
@@ -662,9 +677,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object templateKey) {
+					DDMTemplate ddmTemplate, Object templateKeyObject) {
 
-					ddmTemplate.setTemplateKey((String)templateKey);
+					ddmTemplate.setTemplateKey((String)templateKeyObject);
 				}
 
 			});
@@ -683,8 +698,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object version) {
-					ddmTemplate.setVersion((String)version);
+				public void accept(
+					DDMTemplate ddmTemplate, Object versionObject) {
+
+					ddmTemplate.setVersion((String)versionObject);
 				}
 
 			});
@@ -703,8 +720,8 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object name) {
-					ddmTemplate.setName((String)name);
+				public void accept(DDMTemplate ddmTemplate, Object nameObject) {
+					ddmTemplate.setName((String)nameObject);
 				}
 
 			});
@@ -724,9 +741,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object description) {
+					DDMTemplate ddmTemplate, Object descriptionObject) {
 
-					ddmTemplate.setDescription((String)description);
+					ddmTemplate.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -745,8 +762,8 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object type) {
-					ddmTemplate.setType((String)type);
+				public void accept(DDMTemplate ddmTemplate, Object typeObject) {
+					ddmTemplate.setType((String)typeObject);
 				}
 
 			});
@@ -765,8 +782,8 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object mode) {
-					ddmTemplate.setMode((String)mode);
+				public void accept(DDMTemplate ddmTemplate, Object modeObject) {
+					ddmTemplate.setMode((String)modeObject);
 				}
 
 			});
@@ -785,8 +802,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object language) {
-					ddmTemplate.setLanguage((String)language);
+				public void accept(
+					DDMTemplate ddmTemplate, Object languageObject) {
+
+					ddmTemplate.setLanguage((String)languageObject);
 				}
 
 			});
@@ -805,8 +824,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object script) {
-					ddmTemplate.setScript((String)script);
+				public void accept(
+					DDMTemplate ddmTemplate, Object scriptObject) {
+
+					ddmTemplate.setScript((String)scriptObject);
 				}
 
 			});
@@ -825,8 +846,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object cacheable) {
-					ddmTemplate.setCacheable((Boolean)cacheable);
+				public void accept(
+					DDMTemplate ddmTemplate, Object cacheableObject) {
+
+					ddmTemplate.setCacheable((Boolean)cacheableObject);
 				}
 
 			});
@@ -845,8 +868,10 @@ public class DDMTemplateModelImpl
 			new BiConsumer<DDMTemplate, Object>() {
 
 				@Override
-				public void accept(DDMTemplate ddmTemplate, Object smallImage) {
-					ddmTemplate.setSmallImage((Boolean)smallImage);
+				public void accept(
+					DDMTemplate ddmTemplate, Object smallImageObject) {
+
+					ddmTemplate.setSmallImage((Boolean)smallImageObject);
 				}
 
 			});
@@ -866,9 +891,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object smallImageId) {
+					DDMTemplate ddmTemplate, Object smallImageIdObject) {
 
-					ddmTemplate.setSmallImageId((Long)smallImageId);
+					ddmTemplate.setSmallImageId((Long)smallImageIdObject);
 				}
 
 			});
@@ -888,9 +913,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object smallImageURL) {
+					DDMTemplate ddmTemplate, Object smallImageURLObject) {
 
-					ddmTemplate.setSmallImageURL((String)smallImageURL);
+					ddmTemplate.setSmallImageURL((String)smallImageURLObject);
 				}
 
 			});
@@ -910,9 +935,9 @@ public class DDMTemplateModelImpl
 
 				@Override
 				public void accept(
-					DDMTemplate ddmTemplate, Object lastPublishDate) {
+					DDMTemplate ddmTemplate, Object lastPublishDateObject) {
 
-					ddmTemplate.setLastPublishDate((Date)lastPublishDate);
+					ddmTemplate.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

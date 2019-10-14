@@ -286,8 +286,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object messageId) {
-					message.setMessageId((Long)messageId);
+				public void accept(Message message, Object messageIdObject) {
+					message.setMessageId((Long)messageIdObject);
 				}
 
 			});
@@ -306,8 +306,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object companyId) {
-					message.setCompanyId((Long)companyId);
+				public void accept(Message message, Object companyIdObject) {
+					message.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -326,8 +326,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object userId) {
-					message.setUserId((Long)userId);
+				public void accept(Message message, Object userIdObject) {
+					message.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -346,8 +346,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object userName) {
-					message.setUserName((String)userName);
+				public void accept(Message message, Object userNameObject) {
+					message.setUserName((String)userNameObject);
 				}
 
 			});
@@ -366,8 +366,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object createDate) {
-					message.setCreateDate((Date)createDate);
+				public void accept(Message message, Object createDateObject) {
+					message.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -386,8 +386,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object modifiedDate) {
-					message.setModifiedDate((Date)modifiedDate);
+				public void accept(Message message, Object modifiedDateObject) {
+					message.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -406,8 +406,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object accountId) {
-					message.setAccountId((Long)accountId);
+				public void accept(Message message, Object accountIdObject) {
+					message.setAccountId((Long)accountIdObject);
 				}
 
 			});
@@ -426,8 +426,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object folderId) {
-					message.setFolderId((Long)folderId);
+				public void accept(Message message, Object folderIdObject) {
+					message.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -446,8 +446,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object sender) {
-					message.setSender((String)sender);
+				public void accept(Message message, Object senderObject) {
+					message.setSender((String)senderObject);
 				}
 
 			});
@@ -466,8 +466,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object to) {
-					message.setTo((String)to);
+				public void accept(Message message, Object toObject) {
+					message.setTo((String)toObject);
 				}
 
 			});
@@ -486,8 +486,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object cc) {
-					message.setCc((String)cc);
+				public void accept(Message message, Object ccObject) {
+					message.setCc((String)ccObject);
 				}
 
 			});
@@ -506,8 +506,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object bcc) {
-					message.setBcc((String)bcc);
+				public void accept(Message message, Object bccObject) {
+					message.setBcc((String)bccObject);
 				}
 
 			});
@@ -526,8 +526,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object sentDate) {
-					message.setSentDate((Date)sentDate);
+				public void accept(Message message, Object sentDateObject) {
+					message.setSentDate((Date)sentDateObject);
 				}
 
 			});
@@ -546,8 +546,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object subject) {
-					message.setSubject((String)subject);
+				public void accept(Message message, Object subjectObject) {
+					message.setSubject((String)subjectObject);
 				}
 
 			});
@@ -566,8 +566,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object preview) {
-					message.setPreview((String)preview);
+				public void accept(Message message, Object previewObject) {
+					message.setPreview((String)previewObject);
 				}
 
 			});
@@ -586,8 +586,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object body) {
-					message.setBody((String)body);
+				public void accept(Message message, Object bodyObject) {
+					message.setBody((String)bodyObject);
 				}
 
 			});
@@ -606,8 +606,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object flags) {
-					message.setFlags((String)flags);
+				public void accept(Message message, Object flagsObject) {
+					message.setFlags((String)flagsObject);
 				}
 
 			});
@@ -626,8 +626,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object size) {
-					message.setSize((Long)size);
+				public void accept(Message message, Object sizeObject) {
+					message.setSize((Long)sizeObject);
 				}
 
 			});
@@ -646,8 +646,10 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object remoteMessageId) {
-					message.setRemoteMessageId((Long)remoteMessageId);
+				public void accept(
+					Message message, Object remoteMessageIdObject) {
+
+					message.setRemoteMessageId((Long)remoteMessageIdObject);
 				}
 
 			});
@@ -666,8 +668,8 @@ public class MessageModelImpl
 			new BiConsumer<Message, Object>() {
 
 				@Override
-				public void accept(Message message, Object contentType) {
-					message.setContentType((String)contentType);
+				public void accept(Message message, Object contentTypeObject) {
+					message.setContentType((String)contentTypeObject);
 				}
 
 			});

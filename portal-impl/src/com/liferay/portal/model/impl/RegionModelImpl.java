@@ -305,8 +305,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object mvccVersion) {
-					region.setMvccVersion((Long)mvccVersion);
+				public void accept(Region region, Object mvccVersionObject) {
+					region.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -325,8 +325,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object regionId) {
-					region.setRegionId((Long)regionId);
+				public void accept(Region region, Object regionIdObject) {
+					region.setRegionId((Long)regionIdObject);
 				}
 
 			});
@@ -345,8 +345,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object countryId) {
-					region.setCountryId((Long)countryId);
+				public void accept(Region region, Object countryIdObject) {
+					region.setCountryId((Long)countryIdObject);
 				}
 
 			});
@@ -365,8 +365,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object regionCode) {
-					region.setRegionCode((String)regionCode);
+				public void accept(Region region, Object regionCodeObject) {
+					region.setRegionCode((String)regionCodeObject);
 				}
 
 			});
@@ -385,8 +385,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object name) {
-					region.setName((String)name);
+				public void accept(Region region, Object nameObject) {
+					region.setName((String)nameObject);
 				}
 
 			});
@@ -405,8 +405,8 @@ public class RegionModelImpl
 			new BiConsumer<Region, Object>() {
 
 				@Override
-				public void accept(Region region, Object active) {
-					region.setActive((Boolean)active);
+				public void accept(Region region, Object activeObject) {
+					region.setActive((Boolean)activeObject);
 				}
 
 			});

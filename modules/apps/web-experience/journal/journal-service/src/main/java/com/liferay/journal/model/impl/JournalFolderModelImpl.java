@@ -361,8 +361,10 @@ public class JournalFolderModelImpl
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object uuid) {
-					journalFolder.setUuid((String)uuid);
+				public void accept(
+					JournalFolder journalFolder, Object uuidObject) {
+
+					journalFolder.setUuid((String)uuidObject);
 				}
 
 			});
@@ -382,9 +384,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object folderId) {
+					JournalFolder journalFolder, Object folderIdObject) {
 
-					journalFolder.setFolderId((Long)folderId);
+					journalFolder.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -404,9 +406,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object groupId) {
+					JournalFolder journalFolder, Object groupIdObject) {
 
-					journalFolder.setGroupId((Long)groupId);
+					journalFolder.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -426,9 +428,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object companyId) {
+					JournalFolder journalFolder, Object companyIdObject) {
 
-					journalFolder.setCompanyId((Long)companyId);
+					journalFolder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -447,8 +449,10 @@ public class JournalFolderModelImpl
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object userId) {
-					journalFolder.setUserId((Long)userId);
+				public void accept(
+					JournalFolder journalFolder, Object userIdObject) {
+
+					journalFolder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -468,9 +472,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object userName) {
+					JournalFolder journalFolder, Object userNameObject) {
 
-					journalFolder.setUserName((String)userName);
+					journalFolder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -490,9 +494,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object createDate) {
+					JournalFolder journalFolder, Object createDateObject) {
 
-					journalFolder.setCreateDate((Date)createDate);
+					journalFolder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -512,9 +516,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object modifiedDate) {
+					JournalFolder journalFolder, Object modifiedDateObject) {
 
-					journalFolder.setModifiedDate((Date)modifiedDate);
+					journalFolder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -534,9 +538,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object parentFolderId) {
+					JournalFolder journalFolder, Object parentFolderIdObject) {
 
-					journalFolder.setParentFolderId((Long)parentFolderId);
+					journalFolder.setParentFolderId((Long)parentFolderIdObject);
 				}
 
 			});
@@ -556,9 +560,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object treePath) {
+					JournalFolder journalFolder, Object treePathObject) {
 
-					journalFolder.setTreePath((String)treePath);
+					journalFolder.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -577,8 +581,10 @@ public class JournalFolderModelImpl
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object name) {
-					journalFolder.setName((String)name);
+				public void accept(
+					JournalFolder journalFolder, Object nameObject) {
+
+					journalFolder.setName((String)nameObject);
 				}
 
 			});
@@ -598,9 +604,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object description) {
+					JournalFolder journalFolder, Object descriptionObject) {
 
-					journalFolder.setDescription((String)description);
+					journalFolder.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -620,9 +626,10 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object restrictionType) {
+					JournalFolder journalFolder, Object restrictionTypeObject) {
 
-					journalFolder.setRestrictionType((Integer)restrictionType);
+					journalFolder.setRestrictionType(
+						(Integer)restrictionTypeObject);
 				}
 
 			});
@@ -642,9 +649,10 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object lastPublishDate) {
+					JournalFolder journalFolder, Object lastPublishDateObject) {
 
-					journalFolder.setLastPublishDate((Date)lastPublishDate);
+					journalFolder.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -663,8 +671,10 @@ public class JournalFolderModelImpl
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object status) {
-					journalFolder.setStatus((Integer)status);
+				public void accept(
+					JournalFolder journalFolder, Object statusObject) {
+
+					journalFolder.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -684,9 +694,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object statusByUserId) {
+					JournalFolder journalFolder, Object statusByUserIdObject) {
 
-					journalFolder.setStatusByUserId((Long)statusByUserId);
+					journalFolder.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -706,9 +716,11 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object statusByUserName) {
+					JournalFolder journalFolder,
+					Object statusByUserNameObject) {
 
-					journalFolder.setStatusByUserName((String)statusByUserName);
+					journalFolder.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -728,9 +740,9 @@ public class JournalFolderModelImpl
 
 				@Override
 				public void accept(
-					JournalFolder journalFolder, Object statusDate) {
+					JournalFolder journalFolder, Object statusDateObject) {
 
-					journalFolder.setStatusDate((Date)statusDate);
+					journalFolder.setStatusDate((Date)statusDateObject);
 				}
 
 			});

@@ -282,9 +282,10 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					recentLayoutSetBranch.setMvccVersion((Long)mvccVersion);
+					recentLayoutSetBranch.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -307,10 +308,10 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object recentLayoutSetBranchId) {
+					Object recentLayoutSetBranchIdObject) {
 
 					recentLayoutSetBranch.setRecentLayoutSetBranchId(
-						(Long)recentLayoutSetBranchId);
+						(Long)recentLayoutSetBranchIdObject);
 				}
 
 			});
@@ -333,9 +334,9 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object groupId) {
+					Object groupIdObject) {
 
-					recentLayoutSetBranch.setGroupId((Long)groupId);
+					recentLayoutSetBranch.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -358,9 +359,9 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object companyId) {
+					Object companyIdObject) {
 
-					recentLayoutSetBranch.setCompanyId((Long)companyId);
+					recentLayoutSetBranch.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -383,9 +384,9 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object userId) {
+					Object userIdObject) {
 
-					recentLayoutSetBranch.setUserId((Long)userId);
+					recentLayoutSetBranch.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -408,10 +409,10 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object layoutSetBranchId) {
+					Object layoutSetBranchIdObject) {
 
 					recentLayoutSetBranch.setLayoutSetBranchId(
-						(Long)layoutSetBranchId);
+						(Long)layoutSetBranchIdObject);
 				}
 
 			});
@@ -434,9 +435,10 @@ public class RecentLayoutSetBranchModelImpl
 				@Override
 				public void accept(
 					RecentLayoutSetBranch recentLayoutSetBranch,
-					Object layoutSetId) {
+					Object layoutSetIdObject) {
 
-					recentLayoutSetBranch.setLayoutSetId((Long)layoutSetId);
+					recentLayoutSetBranch.setLayoutSetId(
+						(Long)layoutSetIdObject);
 				}
 
 			});

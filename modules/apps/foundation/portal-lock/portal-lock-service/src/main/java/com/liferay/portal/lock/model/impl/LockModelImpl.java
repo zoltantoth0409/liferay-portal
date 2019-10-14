@@ -272,8 +272,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object mvccVersion) {
-					lock.setMvccVersion((Long)mvccVersion);
+				public void accept(Lock lock, Object mvccVersionObject) {
+					lock.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -292,8 +292,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object uuid) {
-					lock.setUuid((String)uuid);
+				public void accept(Lock lock, Object uuidObject) {
+					lock.setUuid((String)uuidObject);
 				}
 
 			});
@@ -312,8 +312,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object lockId) {
-					lock.setLockId((Long)lockId);
+				public void accept(Lock lock, Object lockIdObject) {
+					lock.setLockId((Long)lockIdObject);
 				}
 
 			});
@@ -332,8 +332,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object companyId) {
-					lock.setCompanyId((Long)companyId);
+				public void accept(Lock lock, Object companyIdObject) {
+					lock.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -352,8 +352,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object userId) {
-					lock.setUserId((Long)userId);
+				public void accept(Lock lock, Object userIdObject) {
+					lock.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -372,8 +372,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object userName) {
-					lock.setUserName((String)userName);
+				public void accept(Lock lock, Object userNameObject) {
+					lock.setUserName((String)userNameObject);
 				}
 
 			});
@@ -392,8 +392,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object createDate) {
-					lock.setCreateDate((Date)createDate);
+				public void accept(Lock lock, Object createDateObject) {
+					lock.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -412,8 +412,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object className) {
-					lock.setClassName((String)className);
+				public void accept(Lock lock, Object classNameObject) {
+					lock.setClassName((String)classNameObject);
 				}
 
 			});
@@ -432,8 +432,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object key) {
-					lock.setKey((String)key);
+				public void accept(Lock lock, Object keyObject) {
+					lock.setKey((String)keyObject);
 				}
 
 			});
@@ -452,8 +452,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object owner) {
-					lock.setOwner((String)owner);
+				public void accept(Lock lock, Object ownerObject) {
+					lock.setOwner((String)ownerObject);
 				}
 
 			});
@@ -472,8 +472,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object inheritable) {
-					lock.setInheritable((Boolean)inheritable);
+				public void accept(Lock lock, Object inheritableObject) {
+					lock.setInheritable((Boolean)inheritableObject);
 				}
 
 			});
@@ -492,8 +492,8 @@ public class LockModelImpl extends BaseModelImpl<Lock> implements LockModel {
 			new BiConsumer<Lock, Object>() {
 
 				@Override
-				public void accept(Lock lock, Object expirationDate) {
-					lock.setExpirationDate((Date)expirationDate);
+				public void accept(Lock lock, Object expirationDateObject) {
+					lock.setExpirationDate((Date)expirationDateObject);
 				}
 
 			});

@@ -338,8 +338,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object mvccVersion) {
-					layoutSet.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					LayoutSet layoutSet, Object mvccVersionObject) {
+
+					layoutSet.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -358,8 +360,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object layoutSetId) {
-					layoutSet.setLayoutSetId((Long)layoutSetId);
+				public void accept(
+					LayoutSet layoutSet, Object layoutSetIdObject) {
+
+					layoutSet.setLayoutSetId((Long)layoutSetIdObject);
 				}
 
 			});
@@ -378,8 +382,8 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object groupId) {
-					layoutSet.setGroupId((Long)groupId);
+				public void accept(LayoutSet layoutSet, Object groupIdObject) {
+					layoutSet.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -398,8 +402,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object companyId) {
-					layoutSet.setCompanyId((Long)companyId);
+				public void accept(
+					LayoutSet layoutSet, Object companyIdObject) {
+
+					layoutSet.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -418,8 +424,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object createDate) {
-					layoutSet.setCreateDate((Date)createDate);
+				public void accept(
+					LayoutSet layoutSet, Object createDateObject) {
+
+					layoutSet.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -438,8 +446,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object modifiedDate) {
-					layoutSet.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					LayoutSet layoutSet, Object modifiedDateObject) {
+
+					layoutSet.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -458,8 +468,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object privateLayout) {
-					layoutSet.setPrivateLayout((Boolean)privateLayout);
+				public void accept(
+					LayoutSet layoutSet, Object privateLayoutObject) {
+
+					layoutSet.setPrivateLayout((Boolean)privateLayoutObject);
 				}
 
 			});
@@ -478,8 +490,8 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object logoId) {
-					layoutSet.setLogoId((Long)logoId);
+				public void accept(LayoutSet layoutSet, Object logoIdObject) {
+					layoutSet.setLogoId((Long)logoIdObject);
 				}
 
 			});
@@ -498,8 +510,8 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object themeId) {
-					layoutSet.setThemeId((String)themeId);
+				public void accept(LayoutSet layoutSet, Object themeIdObject) {
+					layoutSet.setThemeId((String)themeIdObject);
 				}
 
 			});
@@ -518,8 +530,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object colorSchemeId) {
-					layoutSet.setColorSchemeId((String)colorSchemeId);
+				public void accept(
+					LayoutSet layoutSet, Object colorSchemeIdObject) {
+
+					layoutSet.setColorSchemeId((String)colorSchemeIdObject);
 				}
 
 			});
@@ -538,8 +552,8 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object css) {
-					layoutSet.setCss((String)css);
+				public void accept(LayoutSet layoutSet, Object cssObject) {
+					layoutSet.setCss((String)cssObject);
 				}
 
 			});
@@ -558,8 +572,10 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object pageCount) {
-					layoutSet.setPageCount((Integer)pageCount);
+				public void accept(
+					LayoutSet layoutSet, Object pageCountObject) {
+
+					layoutSet.setPageCount((Integer)pageCountObject);
 				}
 
 			});
@@ -578,8 +594,8 @@ public class LayoutSetModelImpl
 			new BiConsumer<LayoutSet, Object>() {
 
 				@Override
-				public void accept(LayoutSet layoutSet, Object settings) {
-					layoutSet.setSettings((String)settings);
+				public void accept(LayoutSet layoutSet, Object settingsObject) {
+					layoutSet.setSettings((String)settingsObject);
 				}
 
 			});
@@ -599,10 +615,10 @@ public class LayoutSetModelImpl
 
 				@Override
 				public void accept(
-					LayoutSet layoutSet, Object layoutSetPrototypeUuid) {
+					LayoutSet layoutSet, Object layoutSetPrototypeUuidObject) {
 
 					layoutSet.setLayoutSetPrototypeUuid(
-						(String)layoutSetPrototypeUuid);
+						(String)layoutSetPrototypeUuidObject);
 				}
 
 			});
@@ -622,10 +638,11 @@ public class LayoutSetModelImpl
 
 				@Override
 				public void accept(
-					LayoutSet layoutSet, Object layoutSetPrototypeLinkEnabled) {
+					LayoutSet layoutSet,
+					Object layoutSetPrototypeLinkEnabledObject) {
 
 					layoutSet.setLayoutSetPrototypeLinkEnabled(
-						(Boolean)layoutSetPrototypeLinkEnabled);
+						(Boolean)layoutSetPrototypeLinkEnabledObject);
 				}
 
 			});

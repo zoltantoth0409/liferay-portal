@@ -275,9 +275,9 @@ public class PowwowServerModelImpl
 
 				@Override
 				public void accept(
-					PowwowServer powwowServer, Object powwowServerId) {
+					PowwowServer powwowServer, Object powwowServerIdObject) {
 
-					powwowServer.setPowwowServerId((Long)powwowServerId);
+					powwowServer.setPowwowServerId((Long)powwowServerIdObject);
 				}
 
 			});
@@ -297,9 +297,9 @@ public class PowwowServerModelImpl
 
 				@Override
 				public void accept(
-					PowwowServer powwowServer, Object companyId) {
+					PowwowServer powwowServer, Object companyIdObject) {
 
-					powwowServer.setCompanyId((Long)companyId);
+					powwowServer.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -318,8 +318,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object userId) {
-					powwowServer.setUserId((Long)userId);
+				public void accept(
+					PowwowServer powwowServer, Object userIdObject) {
+
+					powwowServer.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -338,8 +340,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object userName) {
-					powwowServer.setUserName((String)userName);
+				public void accept(
+					PowwowServer powwowServer, Object userNameObject) {
+
+					powwowServer.setUserName((String)userNameObject);
 				}
 
 			});
@@ -359,9 +363,9 @@ public class PowwowServerModelImpl
 
 				@Override
 				public void accept(
-					PowwowServer powwowServer, Object createDate) {
+					PowwowServer powwowServer, Object createDateObject) {
 
-					powwowServer.setCreateDate((Date)createDate);
+					powwowServer.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -381,9 +385,9 @@ public class PowwowServerModelImpl
 
 				@Override
 				public void accept(
-					PowwowServer powwowServer, Object modifiedDate) {
+					PowwowServer powwowServer, Object modifiedDateObject) {
 
-					powwowServer.setModifiedDate((Date)modifiedDate);
+					powwowServer.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -402,8 +406,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object name) {
-					powwowServer.setName((String)name);
+				public void accept(
+					PowwowServer powwowServer, Object nameObject) {
+
+					powwowServer.setName((String)nameObject);
 				}
 
 			});
@@ -423,9 +429,9 @@ public class PowwowServerModelImpl
 
 				@Override
 				public void accept(
-					PowwowServer powwowServer, Object providerType) {
+					PowwowServer powwowServer, Object providerTypeObject) {
 
-					powwowServer.setProviderType((String)providerType);
+					powwowServer.setProviderType((String)providerTypeObject);
 				}
 
 			});
@@ -444,8 +450,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object url) {
-					powwowServer.setUrl((String)url);
+				public void accept(
+					PowwowServer powwowServer, Object urlObject) {
+
+					powwowServer.setUrl((String)urlObject);
 				}
 
 			});
@@ -464,8 +472,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object apiKey) {
-					powwowServer.setApiKey((String)apiKey);
+				public void accept(
+					PowwowServer powwowServer, Object apiKeyObject) {
+
+					powwowServer.setApiKey((String)apiKeyObject);
 				}
 
 			});
@@ -484,8 +494,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object secret) {
-					powwowServer.setSecret((String)secret);
+				public void accept(
+					PowwowServer powwowServer, Object secretObject) {
+
+					powwowServer.setSecret((String)secretObject);
 				}
 
 			});
@@ -504,8 +516,10 @@ public class PowwowServerModelImpl
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object active) {
-					powwowServer.setActive((Boolean)active);
+				public void accept(
+					PowwowServer powwowServer, Object activeObject) {
+
+					powwowServer.setActive((Boolean)activeObject);
 				}
 
 			});

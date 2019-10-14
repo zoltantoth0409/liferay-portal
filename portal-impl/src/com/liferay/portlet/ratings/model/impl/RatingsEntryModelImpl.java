@@ -336,8 +336,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object uuid) {
-					ratingsEntry.setUuid((String)uuid);
+				public void accept(
+					RatingsEntry ratingsEntry, Object uuidObject) {
+
+					ratingsEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -356,8 +358,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object entryId) {
-					ratingsEntry.setEntryId((Long)entryId);
+				public void accept(
+					RatingsEntry ratingsEntry, Object entryIdObject) {
+
+					ratingsEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -377,9 +381,9 @@ public class RatingsEntryModelImpl
 
 				@Override
 				public void accept(
-					RatingsEntry ratingsEntry, Object companyId) {
+					RatingsEntry ratingsEntry, Object companyIdObject) {
 
-					ratingsEntry.setCompanyId((Long)companyId);
+					ratingsEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -398,8 +402,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object userId) {
-					ratingsEntry.setUserId((Long)userId);
+				public void accept(
+					RatingsEntry ratingsEntry, Object userIdObject) {
+
+					ratingsEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -418,8 +424,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object userName) {
-					ratingsEntry.setUserName((String)userName);
+				public void accept(
+					RatingsEntry ratingsEntry, Object userNameObject) {
+
+					ratingsEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -439,9 +447,9 @@ public class RatingsEntryModelImpl
 
 				@Override
 				public void accept(
-					RatingsEntry ratingsEntry, Object createDate) {
+					RatingsEntry ratingsEntry, Object createDateObject) {
 
-					ratingsEntry.setCreateDate((Date)createDate);
+					ratingsEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -461,9 +469,9 @@ public class RatingsEntryModelImpl
 
 				@Override
 				public void accept(
-					RatingsEntry ratingsEntry, Object modifiedDate) {
+					RatingsEntry ratingsEntry, Object modifiedDateObject) {
 
-					ratingsEntry.setModifiedDate((Date)modifiedDate);
+					ratingsEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -483,9 +491,9 @@ public class RatingsEntryModelImpl
 
 				@Override
 				public void accept(
-					RatingsEntry ratingsEntry, Object classNameId) {
+					RatingsEntry ratingsEntry, Object classNameIdObject) {
 
-					ratingsEntry.setClassNameId((Long)classNameId);
+					ratingsEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -504,8 +512,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object classPK) {
-					ratingsEntry.setClassPK((Long)classPK);
+				public void accept(
+					RatingsEntry ratingsEntry, Object classPKObject) {
+
+					ratingsEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -524,8 +534,10 @@ public class RatingsEntryModelImpl
 			new BiConsumer<RatingsEntry, Object>() {
 
 				@Override
-				public void accept(RatingsEntry ratingsEntry, Object score) {
-					ratingsEntry.setScore((Double)score);
+				public void accept(
+					RatingsEntry ratingsEntry, Object scoreObject) {
+
+					ratingsEntry.setScore((Double)scoreObject);
 				}
 
 			});

@@ -267,9 +267,9 @@ public class MBStatsUserModelImpl
 
 				@Override
 				public void accept(
-					MBStatsUser mbStatsUser, Object statsUserId) {
+					MBStatsUser mbStatsUser, Object statsUserIdObject) {
 
-					mbStatsUser.setStatsUserId((Long)statsUserId);
+					mbStatsUser.setStatsUserId((Long)statsUserIdObject);
 				}
 
 			});
@@ -288,8 +288,10 @@ public class MBStatsUserModelImpl
 			new BiConsumer<MBStatsUser, Object>() {
 
 				@Override
-				public void accept(MBStatsUser mbStatsUser, Object groupId) {
-					mbStatsUser.setGroupId((Long)groupId);
+				public void accept(
+					MBStatsUser mbStatsUser, Object groupIdObject) {
+
+					mbStatsUser.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -308,8 +310,10 @@ public class MBStatsUserModelImpl
 			new BiConsumer<MBStatsUser, Object>() {
 
 				@Override
-				public void accept(MBStatsUser mbStatsUser, Object companyId) {
-					mbStatsUser.setCompanyId((Long)companyId);
+				public void accept(
+					MBStatsUser mbStatsUser, Object companyIdObject) {
+
+					mbStatsUser.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -328,8 +332,10 @@ public class MBStatsUserModelImpl
 			new BiConsumer<MBStatsUser, Object>() {
 
 				@Override
-				public void accept(MBStatsUser mbStatsUser, Object userId) {
-					mbStatsUser.setUserId((Long)userId);
+				public void accept(
+					MBStatsUser mbStatsUser, Object userIdObject) {
+
+					mbStatsUser.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -349,9 +355,9 @@ public class MBStatsUserModelImpl
 
 				@Override
 				public void accept(
-					MBStatsUser mbStatsUser, Object messageCount) {
+					MBStatsUser mbStatsUser, Object messageCountObject) {
 
-					mbStatsUser.setMessageCount((Integer)messageCount);
+					mbStatsUser.setMessageCount((Integer)messageCountObject);
 				}
 
 			});
@@ -371,9 +377,9 @@ public class MBStatsUserModelImpl
 
 				@Override
 				public void accept(
-					MBStatsUser mbStatsUser, Object lastPostDate) {
+					MBStatsUser mbStatsUser, Object lastPostDateObject) {
 
-					mbStatsUser.setLastPostDate((Date)lastPostDate);
+					mbStatsUser.setLastPostDate((Date)lastPostDateObject);
 				}
 
 			});

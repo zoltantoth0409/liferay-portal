@@ -272,9 +272,10 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object itemPriceId) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object itemPriceIdObject) {
 
-					shoppingItemPrice.setItemPriceId((Long)itemPriceId);
+					shoppingItemPrice.setItemPriceId((Long)itemPriceIdObject);
 				}
 
 			});
@@ -294,9 +295,10 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object companyId) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object companyIdObject) {
 
-					shoppingItemPrice.setCompanyId((Long)companyId);
+					shoppingItemPrice.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -316,9 +318,9 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object itemId) {
+					ShoppingItemPrice shoppingItemPrice, Object itemIdObject) {
 
-					shoppingItemPrice.setItemId((Long)itemId);
+					shoppingItemPrice.setItemId((Long)itemIdObject);
 				}
 
 			});
@@ -338,9 +340,11 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object minQuantity) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object minQuantityObject) {
 
-					shoppingItemPrice.setMinQuantity((Integer)minQuantity);
+					shoppingItemPrice.setMinQuantity(
+						(Integer)minQuantityObject);
 				}
 
 			});
@@ -360,9 +364,11 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object maxQuantity) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object maxQuantityObject) {
 
-					shoppingItemPrice.setMaxQuantity((Integer)maxQuantity);
+					shoppingItemPrice.setMaxQuantity(
+						(Integer)maxQuantityObject);
 				}
 
 			});
@@ -382,9 +388,9 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object price) {
+					ShoppingItemPrice shoppingItemPrice, Object priceObject) {
 
-					shoppingItemPrice.setPrice((Double)price);
+					shoppingItemPrice.setPrice((Double)priceObject);
 				}
 
 			});
@@ -404,9 +410,10 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object discount) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object discountObject) {
 
-					shoppingItemPrice.setDiscount((Double)discount);
+					shoppingItemPrice.setDiscount((Double)discountObject);
 				}
 
 			});
@@ -426,9 +433,9 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object taxable) {
+					ShoppingItemPrice shoppingItemPrice, Object taxableObject) {
 
-					shoppingItemPrice.setTaxable((Boolean)taxable);
+					shoppingItemPrice.setTaxable((Boolean)taxableObject);
 				}
 
 			});
@@ -448,9 +455,10 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object shipping) {
+					ShoppingItemPrice shoppingItemPrice,
+					Object shippingObject) {
 
-					shoppingItemPrice.setShipping((Double)shipping);
+					shoppingItemPrice.setShipping((Double)shippingObject);
 				}
 
 			});
@@ -471,10 +479,10 @@ public class ShoppingItemPriceModelImpl
 				@Override
 				public void accept(
 					ShoppingItemPrice shoppingItemPrice,
-					Object useShippingFormula) {
+					Object useShippingFormulaObject) {
 
 					shoppingItemPrice.setUseShippingFormula(
-						(Boolean)useShippingFormula);
+						(Boolean)useShippingFormulaObject);
 				}
 
 			});
@@ -494,9 +502,9 @@ public class ShoppingItemPriceModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItemPrice shoppingItemPrice, Object status) {
+					ShoppingItemPrice shoppingItemPrice, Object statusObject) {
 
-					shoppingItemPrice.setStatus((Integer)status);
+					shoppingItemPrice.setStatus((Integer)statusObject);
 				}
 
 			});

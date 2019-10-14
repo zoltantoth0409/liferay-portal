@@ -299,9 +299,10 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					userNotificationEvent.setMvccVersion((Long)mvccVersion);
+					userNotificationEvent.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -323,9 +324,10 @@ public class UserNotificationEventModelImpl
 
 				@Override
 				public void accept(
-					UserNotificationEvent userNotificationEvent, Object uuid) {
+					UserNotificationEvent userNotificationEvent,
+					Object uuidObject) {
 
-					userNotificationEvent.setUuid((String)uuid);
+					userNotificationEvent.setUuid((String)uuidObject);
 				}
 
 			});
@@ -348,10 +350,10 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object userNotificationEventId) {
+					Object userNotificationEventIdObject) {
 
 					userNotificationEvent.setUserNotificationEventId(
-						(Long)userNotificationEventId);
+						(Long)userNotificationEventIdObject);
 				}
 
 			});
@@ -374,9 +376,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object companyId) {
+					Object companyIdObject) {
 
-					userNotificationEvent.setCompanyId((Long)companyId);
+					userNotificationEvent.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -399,9 +401,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object userId) {
+					Object userIdObject) {
 
-					userNotificationEvent.setUserId((Long)userId);
+					userNotificationEvent.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -423,9 +425,10 @@ public class UserNotificationEventModelImpl
 
 				@Override
 				public void accept(
-					UserNotificationEvent userNotificationEvent, Object type) {
+					UserNotificationEvent userNotificationEvent,
+					Object typeObject) {
 
-					userNotificationEvent.setType((String)type);
+					userNotificationEvent.setType((String)typeObject);
 				}
 
 			});
@@ -448,9 +451,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object timestamp) {
+					Object timestampObject) {
 
-					userNotificationEvent.setTimestamp((Long)timestamp);
+					userNotificationEvent.setTimestamp((Long)timestampObject);
 				}
 
 			});
@@ -473,10 +476,10 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object deliveryType) {
+					Object deliveryTypeObject) {
 
 					userNotificationEvent.setDeliveryType(
-						(Integer)deliveryType);
+						(Integer)deliveryTypeObject);
 				}
 
 			});
@@ -499,9 +502,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object deliverBy) {
+					Object deliverByObject) {
 
-					userNotificationEvent.setDeliverBy((Long)deliverBy);
+					userNotificationEvent.setDeliverBy((Long)deliverByObject);
 				}
 
 			});
@@ -524,9 +527,10 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object delivered) {
+					Object deliveredObject) {
 
-					userNotificationEvent.setDelivered((Boolean)delivered);
+					userNotificationEvent.setDelivered(
+						(Boolean)deliveredObject);
 				}
 
 			});
@@ -549,9 +553,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object payload) {
+					Object payloadObject) {
 
-					userNotificationEvent.setPayload((String)payload);
+					userNotificationEvent.setPayload((String)payloadObject);
 				}
 
 			});
@@ -574,10 +578,10 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object actionRequired) {
+					Object actionRequiredObject) {
 
 					userNotificationEvent.setActionRequired(
-						(Boolean)actionRequired);
+						(Boolean)actionRequiredObject);
 				}
 
 			});
@@ -600,9 +604,9 @@ public class UserNotificationEventModelImpl
 				@Override
 				public void accept(
 					UserNotificationEvent userNotificationEvent,
-					Object archived) {
+					Object archivedObject) {
 
-					userNotificationEvent.setArchived((Boolean)archived);
+					userNotificationEvent.setArchived((Boolean)archivedObject);
 				}
 
 			});

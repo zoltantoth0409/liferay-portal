@@ -372,8 +372,10 @@ public class BookmarksEntryModelImpl
 			new BiConsumer<BookmarksEntry, Object>() {
 
 				@Override
-				public void accept(BookmarksEntry bookmarksEntry, Object uuid) {
-					bookmarksEntry.setUuid((String)uuid);
+				public void accept(
+					BookmarksEntry bookmarksEntry, Object uuidObject) {
+
+					bookmarksEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -393,9 +395,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object entryId) {
+					BookmarksEntry bookmarksEntry, Object entryIdObject) {
 
-					bookmarksEntry.setEntryId((Long)entryId);
+					bookmarksEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -415,9 +417,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object groupId) {
+					BookmarksEntry bookmarksEntry, Object groupIdObject) {
 
-					bookmarksEntry.setGroupId((Long)groupId);
+					bookmarksEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -437,9 +439,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object companyId) {
+					BookmarksEntry bookmarksEntry, Object companyIdObject) {
 
-					bookmarksEntry.setCompanyId((Long)companyId);
+					bookmarksEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -459,9 +461,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object userId) {
+					BookmarksEntry bookmarksEntry, Object userIdObject) {
 
-					bookmarksEntry.setUserId((Long)userId);
+					bookmarksEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -481,9 +483,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object userName) {
+					BookmarksEntry bookmarksEntry, Object userNameObject) {
 
-					bookmarksEntry.setUserName((String)userName);
+					bookmarksEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -503,9 +505,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object createDate) {
+					BookmarksEntry bookmarksEntry, Object createDateObject) {
 
-					bookmarksEntry.setCreateDate((Date)createDate);
+					bookmarksEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -525,9 +527,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object modifiedDate) {
+					BookmarksEntry bookmarksEntry, Object modifiedDateObject) {
 
-					bookmarksEntry.setModifiedDate((Date)modifiedDate);
+					bookmarksEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -547,9 +549,11 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object resourceBlockId) {
+					BookmarksEntry bookmarksEntry,
+					Object resourceBlockIdObject) {
 
-					bookmarksEntry.setResourceBlockId((Long)resourceBlockId);
+					bookmarksEntry.setResourceBlockId(
+						(Long)resourceBlockIdObject);
 				}
 
 			});
@@ -569,9 +573,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object folderId) {
+					BookmarksEntry bookmarksEntry, Object folderIdObject) {
 
-					bookmarksEntry.setFolderId((Long)folderId);
+					bookmarksEntry.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -591,9 +595,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object treePath) {
+					BookmarksEntry bookmarksEntry, Object treePathObject) {
 
-					bookmarksEntry.setTreePath((String)treePath);
+					bookmarksEntry.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -612,8 +616,10 @@ public class BookmarksEntryModelImpl
 			new BiConsumer<BookmarksEntry, Object>() {
 
 				@Override
-				public void accept(BookmarksEntry bookmarksEntry, Object name) {
-					bookmarksEntry.setName((String)name);
+				public void accept(
+					BookmarksEntry bookmarksEntry, Object nameObject) {
+
+					bookmarksEntry.setName((String)nameObject);
 				}
 
 			});
@@ -632,8 +638,10 @@ public class BookmarksEntryModelImpl
 			new BiConsumer<BookmarksEntry, Object>() {
 
 				@Override
-				public void accept(BookmarksEntry bookmarksEntry, Object url) {
-					bookmarksEntry.setUrl((String)url);
+				public void accept(
+					BookmarksEntry bookmarksEntry, Object urlObject) {
+
+					bookmarksEntry.setUrl((String)urlObject);
 				}
 
 			});
@@ -653,9 +661,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object description) {
+					BookmarksEntry bookmarksEntry, Object descriptionObject) {
 
-					bookmarksEntry.setDescription((String)description);
+					bookmarksEntry.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -675,9 +683,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object visits) {
+					BookmarksEntry bookmarksEntry, Object visitsObject) {
 
-					bookmarksEntry.setVisits((Integer)visits);
+					bookmarksEntry.setVisits((Integer)visitsObject);
 				}
 
 			});
@@ -697,9 +705,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object priority) {
+					BookmarksEntry bookmarksEntry, Object priorityObject) {
 
-					bookmarksEntry.setPriority((Integer)priority);
+					bookmarksEntry.setPriority((Integer)priorityObject);
 				}
 
 			});
@@ -719,9 +727,11 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object lastPublishDate) {
+					BookmarksEntry bookmarksEntry,
+					Object lastPublishDateObject) {
 
-					bookmarksEntry.setLastPublishDate((Date)lastPublishDate);
+					bookmarksEntry.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -741,9 +751,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object status) {
+					BookmarksEntry bookmarksEntry, Object statusObject) {
 
-					bookmarksEntry.setStatus((Integer)status);
+					bookmarksEntry.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -763,9 +773,11 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object statusByUserId) {
+					BookmarksEntry bookmarksEntry,
+					Object statusByUserIdObject) {
 
-					bookmarksEntry.setStatusByUserId((Long)statusByUserId);
+					bookmarksEntry.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -785,10 +797,11 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object statusByUserName) {
+					BookmarksEntry bookmarksEntry,
+					Object statusByUserNameObject) {
 
 					bookmarksEntry.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -808,9 +821,9 @@ public class BookmarksEntryModelImpl
 
 				@Override
 				public void accept(
-					BookmarksEntry bookmarksEntry, Object statusDate) {
+					BookmarksEntry bookmarksEntry, Object statusDateObject) {
 
-					bookmarksEntry.setStatusDate((Date)statusDate);
+					bookmarksEntry.setStatusDate((Date)statusDateObject);
 				}
 
 			});

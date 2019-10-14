@@ -348,9 +348,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object mvccVersion) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object mvccVersionObject) {
 
-					layoutSetPrototype.setMvccVersion((Long)mvccVersion);
+					layoutSetPrototype.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -370,9 +371,9 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object uuid) {
+					LayoutSetPrototype layoutSetPrototype, Object uuidObject) {
 
-					layoutSetPrototype.setUuid((String)uuid);
+					layoutSetPrototype.setUuid((String)uuidObject);
 				}
 
 			});
@@ -393,10 +394,10 @@ public class LayoutSetPrototypeModelImpl
 				@Override
 				public void accept(
 					LayoutSetPrototype layoutSetPrototype,
-					Object layoutSetPrototypeId) {
+					Object layoutSetPrototypeIdObject) {
 
 					layoutSetPrototype.setLayoutSetPrototypeId(
-						(Long)layoutSetPrototypeId);
+						(Long)layoutSetPrototypeIdObject);
 				}
 
 			});
@@ -416,9 +417,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object companyId) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object companyIdObject) {
 
-					layoutSetPrototype.setCompanyId((Long)companyId);
+					layoutSetPrototype.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -438,9 +440,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object userId) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object userIdObject) {
 
-					layoutSetPrototype.setUserId((Long)userId);
+					layoutSetPrototype.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -460,9 +463,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object userName) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object userNameObject) {
 
-					layoutSetPrototype.setUserName((String)userName);
+					layoutSetPrototype.setUserName((String)userNameObject);
 				}
 
 			});
@@ -482,9 +486,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object createDate) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object createDateObject) {
 
-					layoutSetPrototype.setCreateDate((Date)createDate);
+					layoutSetPrototype.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -505,9 +510,10 @@ public class LayoutSetPrototypeModelImpl
 				@Override
 				public void accept(
 					LayoutSetPrototype layoutSetPrototype,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					layoutSetPrototype.setModifiedDate((Date)modifiedDate);
+					layoutSetPrototype.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -527,9 +533,9 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object name) {
+					LayoutSetPrototype layoutSetPrototype, Object nameObject) {
 
-					layoutSetPrototype.setName((String)name);
+					layoutSetPrototype.setName((String)nameObject);
 				}
 
 			});
@@ -549,9 +555,11 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object description) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object descriptionObject) {
 
-					layoutSetPrototype.setDescription((String)description);
+					layoutSetPrototype.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -571,9 +579,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object settings) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object settingsObject) {
 
-					layoutSetPrototype.setSettings((String)settings);
+					layoutSetPrototype.setSettings((String)settingsObject);
 				}
 
 			});
@@ -593,9 +602,10 @@ public class LayoutSetPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutSetPrototype layoutSetPrototype, Object active) {
+					LayoutSetPrototype layoutSetPrototype,
+					Object activeObject) {
 
-					layoutSetPrototype.setActive((Boolean)active);
+					layoutSetPrototype.setActive((Boolean)activeObject);
 				}
 
 			});

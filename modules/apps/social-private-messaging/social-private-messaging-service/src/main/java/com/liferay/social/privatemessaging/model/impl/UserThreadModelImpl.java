@@ -328,8 +328,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object userThreadId) {
-					userThread.setUserThreadId((Long)userThreadId);
+				public void accept(
+					UserThread userThread, Object userThreadIdObject) {
+
+					userThread.setUserThreadId((Long)userThreadIdObject);
 				}
 
 			});
@@ -348,8 +350,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object companyId) {
-					userThread.setCompanyId((Long)companyId);
+				public void accept(
+					UserThread userThread, Object companyIdObject) {
+
+					userThread.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -368,8 +372,8 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object userId) {
-					userThread.setUserId((Long)userId);
+				public void accept(UserThread userThread, Object userIdObject) {
+					userThread.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -388,8 +392,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object userName) {
-					userThread.setUserName((String)userName);
+				public void accept(
+					UserThread userThread, Object userNameObject) {
+
+					userThread.setUserName((String)userNameObject);
 				}
 
 			});
@@ -408,8 +414,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object createDate) {
-					userThread.setCreateDate((Date)createDate);
+				public void accept(
+					UserThread userThread, Object createDateObject) {
+
+					userThread.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -428,8 +436,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object modifiedDate) {
-					userThread.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					UserThread userThread, Object modifiedDateObject) {
+
+					userThread.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -448,8 +458,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object mbThreadId) {
-					userThread.setMbThreadId((Long)mbThreadId);
+				public void accept(
+					UserThread userThread, Object mbThreadIdObject) {
+
+					userThread.setMbThreadId((Long)mbThreadIdObject);
 				}
 
 			});
@@ -469,9 +481,9 @@ public class UserThreadModelImpl
 
 				@Override
 				public void accept(
-					UserThread userThread, Object topMBMessageId) {
+					UserThread userThread, Object topMBMessageIdObject) {
 
-					userThread.setTopMBMessageId((Long)topMBMessageId);
+					userThread.setTopMBMessageId((Long)topMBMessageIdObject);
 				}
 
 			});
@@ -490,8 +502,8 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object read) {
-					userThread.setRead((Boolean)read);
+				public void accept(UserThread userThread, Object readObject) {
+					userThread.setRead((Boolean)readObject);
 				}
 
 			});
@@ -510,8 +522,10 @@ public class UserThreadModelImpl
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object deleted) {
-					userThread.setDeleted((Boolean)deleted);
+				public void accept(
+					UserThread userThread, Object deletedObject) {
+
+					userThread.setDeleted((Boolean)deletedObject);
 				}
 
 			});

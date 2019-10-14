@@ -280,8 +280,10 @@ public class MBThreadFlagModelImpl
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object uuid) {
-					mbThreadFlag.setUuid((String)uuid);
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object uuidObject) {
+
+					mbThreadFlag.setUuid((String)uuidObject);
 				}
 
 			});
@@ -301,9 +303,9 @@ public class MBThreadFlagModelImpl
 
 				@Override
 				public void accept(
-					MBThreadFlag mbThreadFlag, Object threadFlagId) {
+					MBThreadFlag mbThreadFlag, Object threadFlagIdObject) {
 
-					mbThreadFlag.setThreadFlagId((Long)threadFlagId);
+					mbThreadFlag.setThreadFlagId((Long)threadFlagIdObject);
 				}
 
 			});
@@ -322,8 +324,10 @@ public class MBThreadFlagModelImpl
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object groupId) {
-					mbThreadFlag.setGroupId((Long)groupId);
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object groupIdObject) {
+
+					mbThreadFlag.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -343,9 +347,9 @@ public class MBThreadFlagModelImpl
 
 				@Override
 				public void accept(
-					MBThreadFlag mbThreadFlag, Object companyId) {
+					MBThreadFlag mbThreadFlag, Object companyIdObject) {
 
-					mbThreadFlag.setCompanyId((Long)companyId);
+					mbThreadFlag.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -364,8 +368,10 @@ public class MBThreadFlagModelImpl
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object userId) {
-					mbThreadFlag.setUserId((Long)userId);
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object userIdObject) {
+
+					mbThreadFlag.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -384,8 +390,10 @@ public class MBThreadFlagModelImpl
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object userName) {
-					mbThreadFlag.setUserName((String)userName);
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object userNameObject) {
+
+					mbThreadFlag.setUserName((String)userNameObject);
 				}
 
 			});
@@ -405,9 +413,9 @@ public class MBThreadFlagModelImpl
 
 				@Override
 				public void accept(
-					MBThreadFlag mbThreadFlag, Object createDate) {
+					MBThreadFlag mbThreadFlag, Object createDateObject) {
 
-					mbThreadFlag.setCreateDate((Date)createDate);
+					mbThreadFlag.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -427,9 +435,9 @@ public class MBThreadFlagModelImpl
 
 				@Override
 				public void accept(
-					MBThreadFlag mbThreadFlag, Object modifiedDate) {
+					MBThreadFlag mbThreadFlag, Object modifiedDateObject) {
 
-					mbThreadFlag.setModifiedDate((Date)modifiedDate);
+					mbThreadFlag.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -448,8 +456,10 @@ public class MBThreadFlagModelImpl
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object threadId) {
-					mbThreadFlag.setThreadId((Long)threadId);
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object threadIdObject) {
+
+					mbThreadFlag.setThreadId((Long)threadIdObject);
 				}
 
 			});
@@ -469,9 +479,10 @@ public class MBThreadFlagModelImpl
 
 				@Override
 				public void accept(
-					MBThreadFlag mbThreadFlag, Object lastPublishDate) {
+					MBThreadFlag mbThreadFlag, Object lastPublishDateObject) {
 
-					mbThreadFlag.setLastPublishDate((Date)lastPublishDate);
+					mbThreadFlag.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

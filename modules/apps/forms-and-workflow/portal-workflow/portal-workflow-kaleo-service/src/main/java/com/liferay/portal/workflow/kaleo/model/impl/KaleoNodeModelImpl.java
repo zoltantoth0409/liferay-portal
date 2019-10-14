@@ -277,8 +277,10 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object kaleoNodeId) {
-					kaleoNode.setKaleoNodeId((Long)kaleoNodeId);
+				public void accept(
+					KaleoNode kaleoNode, Object kaleoNodeIdObject) {
+
+					kaleoNode.setKaleoNodeId((Long)kaleoNodeIdObject);
 				}
 
 			});
@@ -297,8 +299,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object groupId) {
-					kaleoNode.setGroupId((Long)groupId);
+				public void accept(KaleoNode kaleoNode, Object groupIdObject) {
+					kaleoNode.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -317,8 +319,10 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object companyId) {
-					kaleoNode.setCompanyId((Long)companyId);
+				public void accept(
+					KaleoNode kaleoNode, Object companyIdObject) {
+
+					kaleoNode.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -337,8 +341,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object userId) {
-					kaleoNode.setUserId((Long)userId);
+				public void accept(KaleoNode kaleoNode, Object userIdObject) {
+					kaleoNode.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -357,8 +361,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object userName) {
-					kaleoNode.setUserName((String)userName);
+				public void accept(KaleoNode kaleoNode, Object userNameObject) {
+					kaleoNode.setUserName((String)userNameObject);
 				}
 
 			});
@@ -377,8 +381,10 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object createDate) {
-					kaleoNode.setCreateDate((Date)createDate);
+				public void accept(
+					KaleoNode kaleoNode, Object createDateObject) {
+
+					kaleoNode.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -397,8 +403,10 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object modifiedDate) {
-					kaleoNode.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KaleoNode kaleoNode, Object modifiedDateObject) {
+
+					kaleoNode.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -418,9 +426,10 @@ public class KaleoNodeModelImpl
 
 				@Override
 				public void accept(
-					KaleoNode kaleoNode, Object kaleoDefinitionId) {
+					KaleoNode kaleoNode, Object kaleoDefinitionIdObject) {
 
-					kaleoNode.setKaleoDefinitionId((Long)kaleoDefinitionId);
+					kaleoNode.setKaleoDefinitionId(
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -439,8 +448,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object name) {
-					kaleoNode.setName((String)name);
+				public void accept(KaleoNode kaleoNode, Object nameObject) {
+					kaleoNode.setName((String)nameObject);
 				}
 
 			});
@@ -459,8 +468,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object metadata) {
-					kaleoNode.setMetadata((String)metadata);
+				public void accept(KaleoNode kaleoNode, Object metadataObject) {
+					kaleoNode.setMetadata((String)metadataObject);
 				}
 
 			});
@@ -479,8 +488,10 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object description) {
-					kaleoNode.setDescription((String)description);
+				public void accept(
+					KaleoNode kaleoNode, Object descriptionObject) {
+
+					kaleoNode.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -499,8 +510,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object type) {
-					kaleoNode.setType((String)type);
+				public void accept(KaleoNode kaleoNode, Object typeObject) {
+					kaleoNode.setType((String)typeObject);
 				}
 
 			});
@@ -519,8 +530,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object initial) {
-					kaleoNode.setInitial((Boolean)initial);
+				public void accept(KaleoNode kaleoNode, Object initialObject) {
+					kaleoNode.setInitial((Boolean)initialObject);
 				}
 
 			});
@@ -539,8 +550,8 @@ public class KaleoNodeModelImpl
 			new BiConsumer<KaleoNode, Object>() {
 
 				@Override
-				public void accept(KaleoNode kaleoNode, Object terminal) {
-					kaleoNode.setTerminal((Boolean)terminal);
+				public void accept(KaleoNode kaleoNode, Object terminalObject) {
+					kaleoNode.setTerminal((Boolean)terminalObject);
 				}
 
 			});

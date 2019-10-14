@@ -274,8 +274,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object cartId) {
-					shoppingCart.setCartId((Long)cartId);
+				public void accept(
+					ShoppingCart shoppingCart, Object cartIdObject) {
+
+					shoppingCart.setCartId((Long)cartIdObject);
 				}
 
 			});
@@ -294,8 +296,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object groupId) {
-					shoppingCart.setGroupId((Long)groupId);
+				public void accept(
+					ShoppingCart shoppingCart, Object groupIdObject) {
+
+					shoppingCart.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -315,9 +319,9 @@ public class ShoppingCartModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCart shoppingCart, Object companyId) {
+					ShoppingCart shoppingCart, Object companyIdObject) {
 
-					shoppingCart.setCompanyId((Long)companyId);
+					shoppingCart.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -336,8 +340,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object userId) {
-					shoppingCart.setUserId((Long)userId);
+				public void accept(
+					ShoppingCart shoppingCart, Object userIdObject) {
+
+					shoppingCart.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -356,8 +362,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object userName) {
-					shoppingCart.setUserName((String)userName);
+				public void accept(
+					ShoppingCart shoppingCart, Object userNameObject) {
+
+					shoppingCart.setUserName((String)userNameObject);
 				}
 
 			});
@@ -377,9 +385,9 @@ public class ShoppingCartModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCart shoppingCart, Object createDate) {
+					ShoppingCart shoppingCart, Object createDateObject) {
 
-					shoppingCart.setCreateDate((Date)createDate);
+					shoppingCart.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -399,9 +407,9 @@ public class ShoppingCartModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCart shoppingCart, Object modifiedDate) {
+					ShoppingCart shoppingCart, Object modifiedDateObject) {
 
-					shoppingCart.setModifiedDate((Date)modifiedDate);
+					shoppingCart.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -420,8 +428,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object itemIds) {
-					shoppingCart.setItemIds((String)itemIds);
+				public void accept(
+					ShoppingCart shoppingCart, Object itemIdsObject) {
+
+					shoppingCart.setItemIds((String)itemIdsObject);
 				}
 
 			});
@@ -441,9 +451,9 @@ public class ShoppingCartModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCart shoppingCart, Object couponCodes) {
+					ShoppingCart shoppingCart, Object couponCodesObject) {
 
-					shoppingCart.setCouponCodes((String)couponCodes);
+					shoppingCart.setCouponCodes((String)couponCodesObject);
 				}
 
 			});
@@ -463,9 +473,9 @@ public class ShoppingCartModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCart shoppingCart, Object altShipping) {
+					ShoppingCart shoppingCart, Object altShippingObject) {
 
-					shoppingCart.setAltShipping((Integer)altShipping);
+					shoppingCart.setAltShipping((Integer)altShippingObject);
 				}
 
 			});
@@ -484,8 +494,10 @@ public class ShoppingCartModelImpl
 			new BiConsumer<ShoppingCart, Object>() {
 
 				@Override
-				public void accept(ShoppingCart shoppingCart, Object insure) {
-					shoppingCart.setInsure((Boolean)insure);
+				public void accept(
+					ShoppingCart shoppingCart, Object insureObject) {
+
+					shoppingCart.setInsure((Boolean)insureObject);
 				}
 
 			});

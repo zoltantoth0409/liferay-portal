@@ -284,9 +284,10 @@ public class JournalArticleImageModelImpl
 				@Override
 				public void accept(
 					JournalArticleImage journalArticleImage,
-					Object articleImageId) {
+					Object articleImageIdObject) {
 
-					journalArticleImage.setArticleImageId((Long)articleImageId);
+					journalArticleImage.setArticleImageId(
+						(Long)articleImageIdObject);
 				}
 
 			});
@@ -306,9 +307,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object groupId) {
+					JournalArticleImage journalArticleImage,
+					Object groupIdObject) {
 
-					journalArticleImage.setGroupId((Long)groupId);
+					journalArticleImage.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -328,9 +330,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object companyId) {
+					JournalArticleImage journalArticleImage,
+					Object companyIdObject) {
 
-					journalArticleImage.setCompanyId((Long)companyId);
+					journalArticleImage.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -350,9 +353,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object articleId) {
+					JournalArticleImage journalArticleImage,
+					Object articleIdObject) {
 
-					journalArticleImage.setArticleId((String)articleId);
+					journalArticleImage.setArticleId((String)articleIdObject);
 				}
 
 			});
@@ -372,9 +376,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object version) {
+					JournalArticleImage journalArticleImage,
+					Object versionObject) {
 
-					journalArticleImage.setVersion((Double)version);
+					journalArticleImage.setVersion((Double)versionObject);
 				}
 
 			});
@@ -395,9 +400,10 @@ public class JournalArticleImageModelImpl
 				@Override
 				public void accept(
 					JournalArticleImage journalArticleImage,
-					Object elInstanceId) {
+					Object elInstanceIdObject) {
 
-					journalArticleImage.setElInstanceId((String)elInstanceId);
+					journalArticleImage.setElInstanceId(
+						(String)elInstanceIdObject);
 				}
 
 			});
@@ -417,9 +423,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object elName) {
+					JournalArticleImage journalArticleImage,
+					Object elNameObject) {
 
-					journalArticleImage.setElName((String)elName);
+					journalArticleImage.setElName((String)elNameObject);
 				}
 
 			});
@@ -440,9 +447,9 @@ public class JournalArticleImageModelImpl
 				@Override
 				public void accept(
 					JournalArticleImage journalArticleImage,
-					Object languageId) {
+					Object languageIdObject) {
 
-					journalArticleImage.setLanguageId((String)languageId);
+					journalArticleImage.setLanguageId((String)languageIdObject);
 				}
 
 			});
@@ -462,9 +469,10 @@ public class JournalArticleImageModelImpl
 
 				@Override
 				public void accept(
-					JournalArticleImage journalArticleImage, Object tempImage) {
+					JournalArticleImage journalArticleImage,
+					Object tempImageObject) {
 
-					journalArticleImage.setTempImage((Boolean)tempImage);
+					journalArticleImage.setTempImage((Boolean)tempImageObject);
 				}
 
 			});

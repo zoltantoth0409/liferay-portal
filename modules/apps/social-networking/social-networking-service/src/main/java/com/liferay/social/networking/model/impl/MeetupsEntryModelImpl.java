@@ -280,9 +280,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object meetupsEntryId) {
+					MeetupsEntry meetupsEntry, Object meetupsEntryIdObject) {
 
-					meetupsEntry.setMeetupsEntryId((Long)meetupsEntryId);
+					meetupsEntry.setMeetupsEntryId((Long)meetupsEntryIdObject);
 				}
 
 			});
@@ -302,9 +302,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object companyId) {
+					MeetupsEntry meetupsEntry, Object companyIdObject) {
 
-					meetupsEntry.setCompanyId((Long)companyId);
+					meetupsEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -323,8 +323,10 @@ public class MeetupsEntryModelImpl
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object userId) {
-					meetupsEntry.setUserId((Long)userId);
+				public void accept(
+					MeetupsEntry meetupsEntry, Object userIdObject) {
+
+					meetupsEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -343,8 +345,10 @@ public class MeetupsEntryModelImpl
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object userName) {
-					meetupsEntry.setUserName((String)userName);
+				public void accept(
+					MeetupsEntry meetupsEntry, Object userNameObject) {
+
+					meetupsEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -364,9 +368,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object createDate) {
+					MeetupsEntry meetupsEntry, Object createDateObject) {
 
-					meetupsEntry.setCreateDate((Date)createDate);
+					meetupsEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -386,9 +390,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object modifiedDate) {
+					MeetupsEntry meetupsEntry, Object modifiedDateObject) {
 
-					meetupsEntry.setModifiedDate((Date)modifiedDate);
+					meetupsEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -407,8 +411,10 @@ public class MeetupsEntryModelImpl
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object title) {
-					meetupsEntry.setTitle((String)title);
+				public void accept(
+					MeetupsEntry meetupsEntry, Object titleObject) {
+
+					meetupsEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -428,9 +434,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object description) {
+					MeetupsEntry meetupsEntry, Object descriptionObject) {
 
-					meetupsEntry.setDescription((String)description);
+					meetupsEntry.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -450,9 +456,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object startDate) {
+					MeetupsEntry meetupsEntry, Object startDateObject) {
 
-					meetupsEntry.setStartDate((Date)startDate);
+					meetupsEntry.setStartDate((Date)startDateObject);
 				}
 
 			});
@@ -471,8 +477,10 @@ public class MeetupsEntryModelImpl
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object endDate) {
-					meetupsEntry.setEndDate((Date)endDate);
+				public void accept(
+					MeetupsEntry meetupsEntry, Object endDateObject) {
+
+					meetupsEntry.setEndDate((Date)endDateObject);
 				}
 
 			});
@@ -492,9 +500,10 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object totalAttendees) {
+					MeetupsEntry meetupsEntry, Object totalAttendeesObject) {
 
-					meetupsEntry.setTotalAttendees((Integer)totalAttendees);
+					meetupsEntry.setTotalAttendees(
+						(Integer)totalAttendeesObject);
 				}
 
 			});
@@ -514,9 +523,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object maxAttendees) {
+					MeetupsEntry meetupsEntry, Object maxAttendeesObject) {
 
-					meetupsEntry.setMaxAttendees((Integer)maxAttendees);
+					meetupsEntry.setMaxAttendees((Integer)maxAttendeesObject);
 				}
 
 			});
@@ -535,8 +544,10 @@ public class MeetupsEntryModelImpl
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object price) {
-					meetupsEntry.setPrice((Double)price);
+				public void accept(
+					MeetupsEntry meetupsEntry, Object priceObject) {
+
+					meetupsEntry.setPrice((Double)priceObject);
 				}
 
 			});
@@ -556,9 +567,9 @@ public class MeetupsEntryModelImpl
 
 				@Override
 				public void accept(
-					MeetupsEntry meetupsEntry, Object thumbnailId) {
+					MeetupsEntry meetupsEntry, Object thumbnailIdObject) {
 
-					meetupsEntry.setThumbnailId((Long)thumbnailId);
+					meetupsEntry.setThumbnailId((Long)thumbnailIdObject);
 				}
 
 			});

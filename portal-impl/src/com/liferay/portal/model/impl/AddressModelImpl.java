@@ -361,8 +361,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object mvccVersion) {
-					address.setMvccVersion((Long)mvccVersion);
+				public void accept(Address address, Object mvccVersionObject) {
+					address.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -381,8 +381,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object uuid) {
-					address.setUuid((String)uuid);
+				public void accept(Address address, Object uuidObject) {
+					address.setUuid((String)uuidObject);
 				}
 
 			});
@@ -401,8 +401,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object addressId) {
-					address.setAddressId((Long)addressId);
+				public void accept(Address address, Object addressIdObject) {
+					address.setAddressId((Long)addressIdObject);
 				}
 
 			});
@@ -421,8 +421,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object companyId) {
-					address.setCompanyId((Long)companyId);
+				public void accept(Address address, Object companyIdObject) {
+					address.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -441,8 +441,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object userId) {
-					address.setUserId((Long)userId);
+				public void accept(Address address, Object userIdObject) {
+					address.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -461,8 +461,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object userName) {
-					address.setUserName((String)userName);
+				public void accept(Address address, Object userNameObject) {
+					address.setUserName((String)userNameObject);
 				}
 
 			});
@@ -481,8 +481,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object createDate) {
-					address.setCreateDate((Date)createDate);
+				public void accept(Address address, Object createDateObject) {
+					address.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -501,8 +501,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object modifiedDate) {
-					address.setModifiedDate((Date)modifiedDate);
+				public void accept(Address address, Object modifiedDateObject) {
+					address.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -521,8 +521,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object classNameId) {
-					address.setClassNameId((Long)classNameId);
+				public void accept(Address address, Object classNameIdObject) {
+					address.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -541,8 +541,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object classPK) {
-					address.setClassPK((Long)classPK);
+				public void accept(Address address, Object classPKObject) {
+					address.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -561,8 +561,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object street1) {
-					address.setStreet1((String)street1);
+				public void accept(Address address, Object street1Object) {
+					address.setStreet1((String)street1Object);
 				}
 
 			});
@@ -581,8 +581,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object street2) {
-					address.setStreet2((String)street2);
+				public void accept(Address address, Object street2Object) {
+					address.setStreet2((String)street2Object);
 				}
 
 			});
@@ -601,8 +601,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object street3) {
-					address.setStreet3((String)street3);
+				public void accept(Address address, Object street3Object) {
+					address.setStreet3((String)street3Object);
 				}
 
 			});
@@ -621,8 +621,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object city) {
-					address.setCity((String)city);
+				public void accept(Address address, Object cityObject) {
+					address.setCity((String)cityObject);
 				}
 
 			});
@@ -641,8 +641,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object zip) {
-					address.setZip((String)zip);
+				public void accept(Address address, Object zipObject) {
+					address.setZip((String)zipObject);
 				}
 
 			});
@@ -661,8 +661,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object regionId) {
-					address.setRegionId((Long)regionId);
+				public void accept(Address address, Object regionIdObject) {
+					address.setRegionId((Long)regionIdObject);
 				}
 
 			});
@@ -681,8 +681,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object countryId) {
-					address.setCountryId((Long)countryId);
+				public void accept(Address address, Object countryIdObject) {
+					address.setCountryId((Long)countryIdObject);
 				}
 
 			});
@@ -701,8 +701,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object typeId) {
-					address.setTypeId((Long)typeId);
+				public void accept(Address address, Object typeIdObject) {
+					address.setTypeId((Long)typeIdObject);
 				}
 
 			});
@@ -721,8 +721,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object mailing) {
-					address.setMailing((Boolean)mailing);
+				public void accept(Address address, Object mailingObject) {
+					address.setMailing((Boolean)mailingObject);
 				}
 
 			});
@@ -741,8 +741,8 @@ public class AddressModelImpl
 			new BiConsumer<Address, Object>() {
 
 				@Override
-				public void accept(Address address, Object primary) {
-					address.setPrimary((Boolean)primary);
+				public void accept(Address address, Object primaryObject) {
+					address.setPrimary((Boolean)primaryObject);
 				}
 
 			});

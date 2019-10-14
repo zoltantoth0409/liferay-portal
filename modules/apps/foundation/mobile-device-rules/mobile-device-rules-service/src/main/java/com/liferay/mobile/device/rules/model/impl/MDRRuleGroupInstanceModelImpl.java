@@ -355,9 +355,10 @@ public class MDRRuleGroupInstanceModelImpl
 
 				@Override
 				public void accept(
-					MDRRuleGroupInstance mdrRuleGroupInstance, Object uuid) {
+					MDRRuleGroupInstance mdrRuleGroupInstance,
+					Object uuidObject) {
 
-					mdrRuleGroupInstance.setUuid((String)uuid);
+					mdrRuleGroupInstance.setUuid((String)uuidObject);
 				}
 
 			});
@@ -378,10 +379,10 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object ruleGroupInstanceId) {
+					Object ruleGroupInstanceIdObject) {
 
 					mdrRuleGroupInstance.setRuleGroupInstanceId(
-						(Long)ruleGroupInstanceId);
+						(Long)ruleGroupInstanceIdObject);
 				}
 
 			});
@@ -401,9 +402,10 @@ public class MDRRuleGroupInstanceModelImpl
 
 				@Override
 				public void accept(
-					MDRRuleGroupInstance mdrRuleGroupInstance, Object groupId) {
+					MDRRuleGroupInstance mdrRuleGroupInstance,
+					Object groupIdObject) {
 
-					mdrRuleGroupInstance.setGroupId((Long)groupId);
+					mdrRuleGroupInstance.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -424,9 +426,9 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object companyId) {
+					Object companyIdObject) {
 
-					mdrRuleGroupInstance.setCompanyId((Long)companyId);
+					mdrRuleGroupInstance.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -446,9 +448,10 @@ public class MDRRuleGroupInstanceModelImpl
 
 				@Override
 				public void accept(
-					MDRRuleGroupInstance mdrRuleGroupInstance, Object userId) {
+					MDRRuleGroupInstance mdrRuleGroupInstance,
+					Object userIdObject) {
 
-					mdrRuleGroupInstance.setUserId((Long)userId);
+					mdrRuleGroupInstance.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -469,9 +472,9 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object userName) {
+					Object userNameObject) {
 
-					mdrRuleGroupInstance.setUserName((String)userName);
+					mdrRuleGroupInstance.setUserName((String)userNameObject);
 				}
 
 			});
@@ -492,9 +495,9 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object createDate) {
+					Object createDateObject) {
 
-					mdrRuleGroupInstance.setCreateDate((Date)createDate);
+					mdrRuleGroupInstance.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -515,9 +518,10 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					mdrRuleGroupInstance.setModifiedDate((Date)modifiedDate);
+					mdrRuleGroupInstance.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -538,9 +542,10 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					mdrRuleGroupInstance.setClassNameId((Long)classNameId);
+					mdrRuleGroupInstance.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -560,9 +565,10 @@ public class MDRRuleGroupInstanceModelImpl
 
 				@Override
 				public void accept(
-					MDRRuleGroupInstance mdrRuleGroupInstance, Object classPK) {
+					MDRRuleGroupInstance mdrRuleGroupInstance,
+					Object classPKObject) {
 
-					mdrRuleGroupInstance.setClassPK((Long)classPK);
+					mdrRuleGroupInstance.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -583,9 +589,10 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object ruleGroupId) {
+					Object ruleGroupIdObject) {
 
-					mdrRuleGroupInstance.setRuleGroupId((Long)ruleGroupId);
+					mdrRuleGroupInstance.setRuleGroupId(
+						(Long)ruleGroupIdObject);
 				}
 
 			});
@@ -606,9 +613,9 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object priority) {
+					Object priorityObject) {
 
-					mdrRuleGroupInstance.setPriority((Integer)priority);
+					mdrRuleGroupInstance.setPriority((Integer)priorityObject);
 				}
 
 			});
@@ -629,10 +636,10 @@ public class MDRRuleGroupInstanceModelImpl
 				@Override
 				public void accept(
 					MDRRuleGroupInstance mdrRuleGroupInstance,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					mdrRuleGroupInstance.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

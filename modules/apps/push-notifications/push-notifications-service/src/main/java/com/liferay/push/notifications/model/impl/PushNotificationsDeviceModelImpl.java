@@ -336,10 +336,10 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object pushNotificationsDeviceId) {
+					Object pushNotificationsDeviceIdObject) {
 
 					pushNotificationsDevice.setPushNotificationsDeviceId(
-						(Long)pushNotificationsDeviceId);
+						(Long)pushNotificationsDeviceIdObject);
 				}
 
 			});
@@ -362,9 +362,9 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object companyId) {
+					Object companyIdObject) {
 
-					pushNotificationsDevice.setCompanyId((Long)companyId);
+					pushNotificationsDevice.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -387,9 +387,9 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object userId) {
+					Object userIdObject) {
 
-					pushNotificationsDevice.setUserId((Long)userId);
+					pushNotificationsDevice.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -412,9 +412,10 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object createDate) {
+					Object createDateObject) {
 
-					pushNotificationsDevice.setCreateDate((Date)createDate);
+					pushNotificationsDevice.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -437,9 +438,9 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object platform) {
+					Object platformObject) {
 
-					pushNotificationsDevice.setPlatform((String)platform);
+					pushNotificationsDevice.setPlatform((String)platformObject);
 				}
 
 			});
@@ -462,9 +463,9 @@ public class PushNotificationsDeviceModelImpl
 				@Override
 				public void accept(
 					PushNotificationsDevice pushNotificationsDevice,
-					Object token) {
+					Object tokenObject) {
 
-					pushNotificationsDevice.setToken((String)token);
+					pushNotificationsDevice.setToken((String)tokenObject);
 				}
 
 			});

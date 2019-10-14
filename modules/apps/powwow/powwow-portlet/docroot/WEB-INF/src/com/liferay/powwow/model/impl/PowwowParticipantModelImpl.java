@@ -344,10 +344,10 @@ public class PowwowParticipantModelImpl
 				@Override
 				public void accept(
 					PowwowParticipant powwowParticipant,
-					Object powwowParticipantId) {
+					Object powwowParticipantIdObject) {
 
 					powwowParticipant.setPowwowParticipantId(
-						(Long)powwowParticipantId);
+						(Long)powwowParticipantIdObject);
 				}
 
 			});
@@ -367,9 +367,9 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object groupId) {
+					PowwowParticipant powwowParticipant, Object groupIdObject) {
 
-					powwowParticipant.setGroupId((Long)groupId);
+					powwowParticipant.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -389,9 +389,10 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object companyId) {
+					PowwowParticipant powwowParticipant,
+					Object companyIdObject) {
 
-					powwowParticipant.setCompanyId((Long)companyId);
+					powwowParticipant.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -411,9 +412,9 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object userId) {
+					PowwowParticipant powwowParticipant, Object userIdObject) {
 
-					powwowParticipant.setUserId((Long)userId);
+					powwowParticipant.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -433,9 +434,10 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object userName) {
+					PowwowParticipant powwowParticipant,
+					Object userNameObject) {
 
-					powwowParticipant.setUserName((String)userName);
+					powwowParticipant.setUserName((String)userNameObject);
 				}
 
 			});
@@ -455,9 +457,10 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object createDate) {
+					PowwowParticipant powwowParticipant,
+					Object createDateObject) {
 
-					powwowParticipant.setCreateDate((Date)createDate);
+					powwowParticipant.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -477,9 +480,10 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object modifiedDate) {
+					PowwowParticipant powwowParticipant,
+					Object modifiedDateObject) {
 
-					powwowParticipant.setModifiedDate((Date)modifiedDate);
+					powwowParticipant.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -500,9 +504,10 @@ public class PowwowParticipantModelImpl
 				@Override
 				public void accept(
 					PowwowParticipant powwowParticipant,
-					Object powwowMeetingId) {
+					Object powwowMeetingIdObject) {
 
-					powwowParticipant.setPowwowMeetingId((Long)powwowMeetingId);
+					powwowParticipant.setPowwowMeetingId(
+						(Long)powwowMeetingIdObject);
 				}
 
 			});
@@ -522,9 +527,9 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object name) {
+					PowwowParticipant powwowParticipant, Object nameObject) {
 
-					powwowParticipant.setName((String)name);
+					powwowParticipant.setName((String)nameObject);
 				}
 
 			});
@@ -545,10 +550,10 @@ public class PowwowParticipantModelImpl
 				@Override
 				public void accept(
 					PowwowParticipant powwowParticipant,
-					Object participantUserId) {
+					Object participantUserIdObject) {
 
 					powwowParticipant.setParticipantUserId(
-						(Long)participantUserId);
+						(Long)participantUserIdObject);
 				}
 
 			});
@@ -568,9 +573,11 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object emailAddress) {
+					PowwowParticipant powwowParticipant,
+					Object emailAddressObject) {
 
-					powwowParticipant.setEmailAddress((String)emailAddress);
+					powwowParticipant.setEmailAddress(
+						(String)emailAddressObject);
 				}
 
 			});
@@ -590,9 +597,9 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object type) {
+					PowwowParticipant powwowParticipant, Object typeObject) {
 
-					powwowParticipant.setType((Integer)type);
+					powwowParticipant.setType((Integer)typeObject);
 				}
 
 			});
@@ -612,9 +619,9 @@ public class PowwowParticipantModelImpl
 
 				@Override
 				public void accept(
-					PowwowParticipant powwowParticipant, Object status) {
+					PowwowParticipant powwowParticipant, Object statusObject) {
 
-					powwowParticipant.setStatus((Integer)status);
+					powwowParticipant.setStatus((Integer)statusObject);
 				}
 
 			});

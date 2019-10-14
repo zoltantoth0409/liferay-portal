@@ -385,8 +385,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object uuid) {
-					wikiPage.setUuid((String)uuid);
+				public void accept(WikiPage wikiPage, Object uuidObject) {
+					wikiPage.setUuid((String)uuidObject);
 				}
 
 			});
@@ -405,8 +405,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object pageId) {
-					wikiPage.setPageId((Long)pageId);
+				public void accept(WikiPage wikiPage, Object pageIdObject) {
+					wikiPage.setPageId((Long)pageIdObject);
 				}
 
 			});
@@ -425,8 +425,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object resourcePrimKey) {
-					wikiPage.setResourcePrimKey((Long)resourcePrimKey);
+				public void accept(
+					WikiPage wikiPage, Object resourcePrimKeyObject) {
+
+					wikiPage.setResourcePrimKey((Long)resourcePrimKeyObject);
 				}
 
 			});
@@ -445,8 +447,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object groupId) {
-					wikiPage.setGroupId((Long)groupId);
+				public void accept(WikiPage wikiPage, Object groupIdObject) {
+					wikiPage.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -465,8 +467,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object companyId) {
-					wikiPage.setCompanyId((Long)companyId);
+				public void accept(WikiPage wikiPage, Object companyIdObject) {
+					wikiPage.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -485,8 +487,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object userId) {
-					wikiPage.setUserId((Long)userId);
+				public void accept(WikiPage wikiPage, Object userIdObject) {
+					wikiPage.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -505,8 +507,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object userName) {
-					wikiPage.setUserName((String)userName);
+				public void accept(WikiPage wikiPage, Object userNameObject) {
+					wikiPage.setUserName((String)userNameObject);
 				}
 
 			});
@@ -525,8 +527,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object createDate) {
-					wikiPage.setCreateDate((Date)createDate);
+				public void accept(WikiPage wikiPage, Object createDateObject) {
+					wikiPage.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -545,8 +547,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object modifiedDate) {
-					wikiPage.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					WikiPage wikiPage, Object modifiedDateObject) {
+
+					wikiPage.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -565,8 +569,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object nodeId) {
-					wikiPage.setNodeId((Long)nodeId);
+				public void accept(WikiPage wikiPage, Object nodeIdObject) {
+					wikiPage.setNodeId((Long)nodeIdObject);
 				}
 
 			});
@@ -585,8 +589,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object title) {
-					wikiPage.setTitle((String)title);
+				public void accept(WikiPage wikiPage, Object titleObject) {
+					wikiPage.setTitle((String)titleObject);
 				}
 
 			});
@@ -605,8 +609,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object version) {
-					wikiPage.setVersion((Double)version);
+				public void accept(WikiPage wikiPage, Object versionObject) {
+					wikiPage.setVersion((Double)versionObject);
 				}
 
 			});
@@ -625,8 +629,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object minorEdit) {
-					wikiPage.setMinorEdit((Boolean)minorEdit);
+				public void accept(WikiPage wikiPage, Object minorEditObject) {
+					wikiPage.setMinorEdit((Boolean)minorEditObject);
 				}
 
 			});
@@ -645,8 +649,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object content) {
-					wikiPage.setContent((String)content);
+				public void accept(WikiPage wikiPage, Object contentObject) {
+					wikiPage.setContent((String)contentObject);
 				}
 
 			});
@@ -665,8 +669,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object summary) {
-					wikiPage.setSummary((String)summary);
+				public void accept(WikiPage wikiPage, Object summaryObject) {
+					wikiPage.setSummary((String)summaryObject);
 				}
 
 			});
@@ -685,8 +689,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object format) {
-					wikiPage.setFormat((String)format);
+				public void accept(WikiPage wikiPage, Object formatObject) {
+					wikiPage.setFormat((String)formatObject);
 				}
 
 			});
@@ -705,8 +709,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object head) {
-					wikiPage.setHead((Boolean)head);
+				public void accept(WikiPage wikiPage, Object headObject) {
+					wikiPage.setHead((Boolean)headObject);
 				}
 
 			});
@@ -725,8 +729,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object parentTitle) {
-					wikiPage.setParentTitle((String)parentTitle);
+				public void accept(
+					WikiPage wikiPage, Object parentTitleObject) {
+
+					wikiPage.setParentTitle((String)parentTitleObject);
 				}
 
 			});
@@ -745,8 +751,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object redirectTitle) {
-					wikiPage.setRedirectTitle((String)redirectTitle);
+				public void accept(
+					WikiPage wikiPage, Object redirectTitleObject) {
+
+					wikiPage.setRedirectTitle((String)redirectTitleObject);
 				}
 
 			});
@@ -765,8 +773,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object lastPublishDate) {
-					wikiPage.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					WikiPage wikiPage, Object lastPublishDateObject) {
+
+					wikiPage.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -785,8 +795,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object status) {
-					wikiPage.setStatus((Integer)status);
+				public void accept(WikiPage wikiPage, Object statusObject) {
+					wikiPage.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -805,8 +815,10 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object statusByUserId) {
-					wikiPage.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					WikiPage wikiPage, Object statusByUserIdObject) {
+
+					wikiPage.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -825,8 +837,11 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object statusByUserName) {
-					wikiPage.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					WikiPage wikiPage, Object statusByUserNameObject) {
+
+					wikiPage.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -845,8 +860,8 @@ public class WikiPageModelImpl
 			new BiConsumer<WikiPage, Object>() {
 
 				@Override
-				public void accept(WikiPage wikiPage, Object statusDate) {
-					wikiPage.setStatusDate((Date)statusDate);
+				public void accept(WikiPage wikiPage, Object statusDateObject) {
+					wikiPage.setStatusDate((Date)statusDateObject);
 				}
 
 			});

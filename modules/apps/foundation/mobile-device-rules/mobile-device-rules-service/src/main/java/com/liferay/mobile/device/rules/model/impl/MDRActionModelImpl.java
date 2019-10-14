@@ -351,8 +351,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object uuid) {
-					mdrAction.setUuid((String)uuid);
+				public void accept(MDRAction mdrAction, Object uuidObject) {
+					mdrAction.setUuid((String)uuidObject);
 				}
 
 			});
@@ -371,8 +371,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object actionId) {
-					mdrAction.setActionId((Long)actionId);
+				public void accept(MDRAction mdrAction, Object actionIdObject) {
+					mdrAction.setActionId((Long)actionIdObject);
 				}
 
 			});
@@ -391,8 +391,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object groupId) {
-					mdrAction.setGroupId((Long)groupId);
+				public void accept(MDRAction mdrAction, Object groupIdObject) {
+					mdrAction.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -411,8 +411,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object companyId) {
-					mdrAction.setCompanyId((Long)companyId);
+				public void accept(
+					MDRAction mdrAction, Object companyIdObject) {
+
+					mdrAction.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -431,8 +433,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object userId) {
-					mdrAction.setUserId((Long)userId);
+				public void accept(MDRAction mdrAction, Object userIdObject) {
+					mdrAction.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -451,8 +453,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object userName) {
-					mdrAction.setUserName((String)userName);
+				public void accept(MDRAction mdrAction, Object userNameObject) {
+					mdrAction.setUserName((String)userNameObject);
 				}
 
 			});
@@ -471,8 +473,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object createDate) {
-					mdrAction.setCreateDate((Date)createDate);
+				public void accept(
+					MDRAction mdrAction, Object createDateObject) {
+
+					mdrAction.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -491,8 +495,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object modifiedDate) {
-					mdrAction.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					MDRAction mdrAction, Object modifiedDateObject) {
+
+					mdrAction.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -511,8 +517,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object classNameId) {
-					mdrAction.setClassNameId((Long)classNameId);
+				public void accept(
+					MDRAction mdrAction, Object classNameIdObject) {
+
+					mdrAction.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -531,8 +539,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object classPK) {
-					mdrAction.setClassPK((Long)classPK);
+				public void accept(MDRAction mdrAction, Object classPKObject) {
+					mdrAction.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -552,9 +560,10 @@ public class MDRActionModelImpl
 
 				@Override
 				public void accept(
-					MDRAction mdrAction, Object ruleGroupInstanceId) {
+					MDRAction mdrAction, Object ruleGroupInstanceIdObject) {
 
-					mdrAction.setRuleGroupInstanceId((Long)ruleGroupInstanceId);
+					mdrAction.setRuleGroupInstanceId(
+						(Long)ruleGroupInstanceIdObject);
 				}
 
 			});
@@ -573,8 +582,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object name) {
-					mdrAction.setName((String)name);
+				public void accept(MDRAction mdrAction, Object nameObject) {
+					mdrAction.setName((String)nameObject);
 				}
 
 			});
@@ -593,8 +602,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object description) {
-					mdrAction.setDescription((String)description);
+				public void accept(
+					MDRAction mdrAction, Object descriptionObject) {
+
+					mdrAction.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -613,8 +624,8 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object type) {
-					mdrAction.setType((String)type);
+				public void accept(MDRAction mdrAction, Object typeObject) {
+					mdrAction.setType((String)typeObject);
 				}
 
 			});
@@ -633,8 +644,10 @@ public class MDRActionModelImpl
 			new BiConsumer<MDRAction, Object>() {
 
 				@Override
-				public void accept(MDRAction mdrAction, Object typeSettings) {
-					mdrAction.setTypeSettings((String)typeSettings);
+				public void accept(
+					MDRAction mdrAction, Object typeSettingsObject) {
+
+					mdrAction.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -654,9 +667,9 @@ public class MDRActionModelImpl
 
 				@Override
 				public void accept(
-					MDRAction mdrAction, Object lastPublishDate) {
+					MDRAction mdrAction, Object lastPublishDateObject) {
 
-					mdrAction.setLastPublishDate((Date)lastPublishDate);
+					mdrAction.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

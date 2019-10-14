@@ -281,10 +281,10 @@ public class MeetupsRegistrationModelImpl
 				@Override
 				public void accept(
 					MeetupsRegistration meetupsRegistration,
-					Object meetupsRegistrationId) {
+					Object meetupsRegistrationIdObject) {
 
 					meetupsRegistration.setMeetupsRegistrationId(
-						(Long)meetupsRegistrationId);
+						(Long)meetupsRegistrationIdObject);
 				}
 
 			});
@@ -304,9 +304,10 @@ public class MeetupsRegistrationModelImpl
 
 				@Override
 				public void accept(
-					MeetupsRegistration meetupsRegistration, Object companyId) {
+					MeetupsRegistration meetupsRegistration,
+					Object companyIdObject) {
 
-					meetupsRegistration.setCompanyId((Long)companyId);
+					meetupsRegistration.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -326,9 +327,10 @@ public class MeetupsRegistrationModelImpl
 
 				@Override
 				public void accept(
-					MeetupsRegistration meetupsRegistration, Object userId) {
+					MeetupsRegistration meetupsRegistration,
+					Object userIdObject) {
 
-					meetupsRegistration.setUserId((Long)userId);
+					meetupsRegistration.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -348,9 +350,10 @@ public class MeetupsRegistrationModelImpl
 
 				@Override
 				public void accept(
-					MeetupsRegistration meetupsRegistration, Object userName) {
+					MeetupsRegistration meetupsRegistration,
+					Object userNameObject) {
 
-					meetupsRegistration.setUserName((String)userName);
+					meetupsRegistration.setUserName((String)userNameObject);
 				}
 
 			});
@@ -371,9 +374,9 @@ public class MeetupsRegistrationModelImpl
 				@Override
 				public void accept(
 					MeetupsRegistration meetupsRegistration,
-					Object createDate) {
+					Object createDateObject) {
 
-					meetupsRegistration.setCreateDate((Date)createDate);
+					meetupsRegistration.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -394,9 +397,10 @@ public class MeetupsRegistrationModelImpl
 				@Override
 				public void accept(
 					MeetupsRegistration meetupsRegistration,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					meetupsRegistration.setModifiedDate((Date)modifiedDate);
+					meetupsRegistration.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -417,9 +421,10 @@ public class MeetupsRegistrationModelImpl
 				@Override
 				public void accept(
 					MeetupsRegistration meetupsRegistration,
-					Object meetupsEntryId) {
+					Object meetupsEntryIdObject) {
 
-					meetupsRegistration.setMeetupsEntryId((Long)meetupsEntryId);
+					meetupsRegistration.setMeetupsEntryId(
+						(Long)meetupsEntryIdObject);
 				}
 
 			});
@@ -439,9 +444,10 @@ public class MeetupsRegistrationModelImpl
 
 				@Override
 				public void accept(
-					MeetupsRegistration meetupsRegistration, Object comments) {
+					MeetupsRegistration meetupsRegistration,
+					Object commentsObject) {
 
-					meetupsRegistration.setComments((String)comments);
+					meetupsRegistration.setComments((String)commentsObject);
 				}
 
 			});
@@ -461,9 +467,10 @@ public class MeetupsRegistrationModelImpl
 
 				@Override
 				public void accept(
-					MeetupsRegistration meetupsRegistration, Object status) {
+					MeetupsRegistration meetupsRegistration,
+					Object statusObject) {
 
-					meetupsRegistration.setStatus((Integer)status);
+					meetupsRegistration.setStatus((Integer)statusObject);
 				}
 
 			});

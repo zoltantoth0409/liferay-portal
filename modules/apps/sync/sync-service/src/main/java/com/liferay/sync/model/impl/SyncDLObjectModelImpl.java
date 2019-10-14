@@ -383,9 +383,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object syncDLObjectId) {
+					SyncDLObject syncDLObject, Object syncDLObjectIdObject) {
 
-					syncDLObject.setSyncDLObjectId((Long)syncDLObjectId);
+					syncDLObject.setSyncDLObjectId((Long)syncDLObjectIdObject);
 				}
 
 			});
@@ -405,9 +405,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object companyId) {
+					SyncDLObject syncDLObject, Object companyIdObject) {
 
-					syncDLObject.setCompanyId((Long)companyId);
+					syncDLObject.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -426,8 +426,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object userId) {
-					syncDLObject.setUserId((Long)userId);
+				public void accept(
+					SyncDLObject syncDLObject, Object userIdObject) {
+
+					syncDLObject.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -446,8 +448,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object userName) {
-					syncDLObject.setUserName((String)userName);
+				public void accept(
+					SyncDLObject syncDLObject, Object userNameObject) {
+
+					syncDLObject.setUserName((String)userNameObject);
 				}
 
 			});
@@ -467,9 +471,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object createTime) {
+					SyncDLObject syncDLObject, Object createTimeObject) {
 
-					syncDLObject.setCreateTime((Long)createTime);
+					syncDLObject.setCreateTime((Long)createTimeObject);
 				}
 
 			});
@@ -489,9 +493,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object modifiedTime) {
+					SyncDLObject syncDLObject, Object modifiedTimeObject) {
 
-					syncDLObject.setModifiedTime((Long)modifiedTime);
+					syncDLObject.setModifiedTime((Long)modifiedTimeObject);
 				}
 
 			});
@@ -511,9 +515,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object repositoryId) {
+					SyncDLObject syncDLObject, Object repositoryIdObject) {
 
-					syncDLObject.setRepositoryId((Long)repositoryId);
+					syncDLObject.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -533,9 +537,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object parentFolderId) {
+					SyncDLObject syncDLObject, Object parentFolderIdObject) {
 
-					syncDLObject.setParentFolderId((Long)parentFolderId);
+					syncDLObject.setParentFolderId((Long)parentFolderIdObject);
 				}
 
 			});
@@ -554,8 +558,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object treePath) {
-					syncDLObject.setTreePath((String)treePath);
+				public void accept(
+					SyncDLObject syncDLObject, Object treePathObject) {
+
+					syncDLObject.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -574,8 +580,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object name) {
-					syncDLObject.setName((String)name);
+				public void accept(
+					SyncDLObject syncDLObject, Object nameObject) {
+
+					syncDLObject.setName((String)nameObject);
 				}
 
 			});
@@ -595,9 +603,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object extension) {
+					SyncDLObject syncDLObject, Object extensionObject) {
 
-					syncDLObject.setExtension((String)extension);
+					syncDLObject.setExtension((String)extensionObject);
 				}
 
 			});
@@ -616,8 +624,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object mimeType) {
-					syncDLObject.setMimeType((String)mimeType);
+				public void accept(
+					SyncDLObject syncDLObject, Object mimeTypeObject) {
+
+					syncDLObject.setMimeType((String)mimeTypeObject);
 				}
 
 			});
@@ -637,9 +647,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object description) {
+					SyncDLObject syncDLObject, Object descriptionObject) {
 
-					syncDLObject.setDescription((String)description);
+					syncDLObject.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -659,9 +669,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object changeLog) {
+					SyncDLObject syncDLObject, Object changeLogObject) {
 
-					syncDLObject.setChangeLog((String)changeLog);
+					syncDLObject.setChangeLog((String)changeLogObject);
 				}
 
 			});
@@ -681,9 +691,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object extraSettings) {
+					SyncDLObject syncDLObject, Object extraSettingsObject) {
 
-					syncDLObject.setExtraSettings((String)extraSettings);
+					syncDLObject.setExtraSettings((String)extraSettingsObject);
 				}
 
 			});
@@ -702,8 +712,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object version) {
-					syncDLObject.setVersion((String)version);
+				public void accept(
+					SyncDLObject syncDLObject, Object versionObject) {
+
+					syncDLObject.setVersion((String)versionObject);
 				}
 
 			});
@@ -723,9 +735,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object versionId) {
+					SyncDLObject syncDLObject, Object versionIdObject) {
 
-					syncDLObject.setVersionId((Long)versionId);
+					syncDLObject.setVersionId((Long)versionIdObject);
 				}
 
 			});
@@ -744,8 +756,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object size) {
-					syncDLObject.setSize((Long)size);
+				public void accept(
+					SyncDLObject syncDLObject, Object sizeObject) {
+
+					syncDLObject.setSize((Long)sizeObject);
 				}
 
 			});
@@ -764,8 +778,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object checksum) {
-					syncDLObject.setChecksum((String)checksum);
+				public void accept(
+					SyncDLObject syncDLObject, Object checksumObject) {
+
+					syncDLObject.setChecksum((String)checksumObject);
 				}
 
 			});
@@ -784,8 +800,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object event) {
-					syncDLObject.setEvent((String)event);
+				public void accept(
+					SyncDLObject syncDLObject, Object eventObject) {
+
+					syncDLObject.setEvent((String)eventObject);
 				}
 
 			});
@@ -805,9 +823,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object lanTokenKey) {
+					SyncDLObject syncDLObject, Object lanTokenKeyObject) {
 
-					syncDLObject.setLanTokenKey((String)lanTokenKey);
+					syncDLObject.setLanTokenKey((String)lanTokenKeyObject);
 				}
 
 			});
@@ -828,10 +846,10 @@ public class SyncDLObjectModelImpl
 				@Override
 				public void accept(
 					SyncDLObject syncDLObject,
-					Object lastPermissionChangeDate) {
+					Object lastPermissionChangeDateObject) {
 
 					syncDLObject.setLastPermissionChangeDate(
-						(Date)lastPermissionChangeDate);
+						(Date)lastPermissionChangeDateObject);
 				}
 
 			});
@@ -851,10 +869,11 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object lockExpirationDate) {
+					SyncDLObject syncDLObject,
+					Object lockExpirationDateObject) {
 
 					syncDLObject.setLockExpirationDate(
-						(Date)lockExpirationDate);
+						(Date)lockExpirationDateObject);
 				}
 
 			});
@@ -874,9 +893,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object lockUserId) {
+					SyncDLObject syncDLObject, Object lockUserIdObject) {
 
-					syncDLObject.setLockUserId((Long)lockUserId);
+					syncDLObject.setLockUserId((Long)lockUserIdObject);
 				}
 
 			});
@@ -896,9 +915,9 @@ public class SyncDLObjectModelImpl
 
 				@Override
 				public void accept(
-					SyncDLObject syncDLObject, Object lockUserName) {
+					SyncDLObject syncDLObject, Object lockUserNameObject) {
 
-					syncDLObject.setLockUserName((String)lockUserName);
+					syncDLObject.setLockUserName((String)lockUserNameObject);
 				}
 
 			});
@@ -917,8 +936,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object type) {
-					syncDLObject.setType((String)type);
+				public void accept(
+					SyncDLObject syncDLObject, Object typeObject) {
+
+					syncDLObject.setType((String)typeObject);
 				}
 
 			});
@@ -937,8 +958,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object typePK) {
-					syncDLObject.setTypePK((Long)typePK);
+				public void accept(
+					SyncDLObject syncDLObject, Object typePKObject) {
+
+					syncDLObject.setTypePK((Long)typePKObject);
 				}
 
 			});
@@ -957,8 +980,10 @@ public class SyncDLObjectModelImpl
 			new BiConsumer<SyncDLObject, Object>() {
 
 				@Override
-				public void accept(SyncDLObject syncDLObject, Object typeUuid) {
-					syncDLObject.setTypeUuid((String)typeUuid);
+				public void accept(
+					SyncDLObject syncDLObject, Object typeUuidObject) {
+
+					syncDLObject.setTypeUuid((String)typeUuidObject);
 				}
 
 			});

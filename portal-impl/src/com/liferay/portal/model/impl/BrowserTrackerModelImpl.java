@@ -263,9 +263,9 @@ public class BrowserTrackerModelImpl
 
 				@Override
 				public void accept(
-					BrowserTracker browserTracker, Object mvccVersion) {
+					BrowserTracker browserTracker, Object mvccVersionObject) {
 
-					browserTracker.setMvccVersion((Long)mvccVersion);
+					browserTracker.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -285,9 +285,11 @@ public class BrowserTrackerModelImpl
 
 				@Override
 				public void accept(
-					BrowserTracker browserTracker, Object browserTrackerId) {
+					BrowserTracker browserTracker,
+					Object browserTrackerIdObject) {
 
-					browserTracker.setBrowserTrackerId((Long)browserTrackerId);
+					browserTracker.setBrowserTrackerId(
+						(Long)browserTrackerIdObject);
 				}
 
 			});
@@ -307,9 +309,9 @@ public class BrowserTrackerModelImpl
 
 				@Override
 				public void accept(
-					BrowserTracker browserTracker, Object companyId) {
+					BrowserTracker browserTracker, Object companyIdObject) {
 
-					browserTracker.setCompanyId((Long)companyId);
+					browserTracker.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -329,9 +331,9 @@ public class BrowserTrackerModelImpl
 
 				@Override
 				public void accept(
-					BrowserTracker browserTracker, Object userId) {
+					BrowserTracker browserTracker, Object userIdObject) {
 
-					browserTracker.setUserId((Long)userId);
+					browserTracker.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -351,9 +353,9 @@ public class BrowserTrackerModelImpl
 
 				@Override
 				public void accept(
-					BrowserTracker browserTracker, Object browserKey) {
+					BrowserTracker browserTracker, Object browserKeyObject) {
 
-					browserTracker.setBrowserKey((Long)browserKey);
+					browserTracker.setBrowserKey((Long)browserKeyObject);
 				}
 
 			});

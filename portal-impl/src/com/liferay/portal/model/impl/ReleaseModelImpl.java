@@ -267,8 +267,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object mvccVersion) {
-					release.setMvccVersion((Long)mvccVersion);
+				public void accept(Release release, Object mvccVersionObject) {
+					release.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -287,8 +287,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object releaseId) {
-					release.setReleaseId((Long)releaseId);
+				public void accept(Release release, Object releaseIdObject) {
+					release.setReleaseId((Long)releaseIdObject);
 				}
 
 			});
@@ -307,8 +307,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object createDate) {
-					release.setCreateDate((Date)createDate);
+				public void accept(Release release, Object createDateObject) {
+					release.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -327,8 +327,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object modifiedDate) {
-					release.setModifiedDate((Date)modifiedDate);
+				public void accept(Release release, Object modifiedDateObject) {
+					release.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -347,8 +347,11 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object servletContextName) {
-					release.setServletContextName((String)servletContextName);
+				public void accept(
+					Release release, Object servletContextNameObject) {
+
+					release.setServletContextName(
+						(String)servletContextNameObject);
 				}
 
 			});
@@ -367,8 +370,10 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object schemaVersion) {
-					release.setSchemaVersion((String)schemaVersion);
+				public void accept(
+					Release release, Object schemaVersionObject) {
+
+					release.setSchemaVersion((String)schemaVersionObject);
 				}
 
 			});
@@ -387,8 +392,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object buildNumber) {
-					release.setBuildNumber((Integer)buildNumber);
+				public void accept(Release release, Object buildNumberObject) {
+					release.setBuildNumber((Integer)buildNumberObject);
 				}
 
 			});
@@ -407,8 +412,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object buildDate) {
-					release.setBuildDate((Date)buildDate);
+				public void accept(Release release, Object buildDateObject) {
+					release.setBuildDate((Date)buildDateObject);
 				}
 
 			});
@@ -427,8 +432,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object verified) {
-					release.setVerified((Boolean)verified);
+				public void accept(Release release, Object verifiedObject) {
+					release.setVerified((Boolean)verifiedObject);
 				}
 
 			});
@@ -447,8 +452,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object state) {
-					release.setState((Integer)state);
+				public void accept(Release release, Object stateObject) {
+					release.setState((Integer)stateObject);
 				}
 
 			});
@@ -467,8 +472,8 @@ public class ReleaseModelImpl
 			new BiConsumer<Release, Object>() {
 
 				@Override
-				public void accept(Release release, Object testString) {
-					release.setTestString((String)testString);
+				public void accept(Release release, Object testStringObject) {
+					release.setTestString((String)testStringObject);
 				}
 
 			});

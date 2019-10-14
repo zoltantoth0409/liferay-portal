@@ -274,8 +274,10 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object fileRankId) {
-					dlFileRank.setFileRankId((Long)fileRankId);
+				public void accept(
+					DLFileRank dlFileRank, Object fileRankIdObject) {
+
+					dlFileRank.setFileRankId((Long)fileRankIdObject);
 				}
 
 			});
@@ -294,8 +296,10 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object groupId) {
-					dlFileRank.setGroupId((Long)groupId);
+				public void accept(
+					DLFileRank dlFileRank, Object groupIdObject) {
+
+					dlFileRank.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -314,8 +318,10 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object companyId) {
-					dlFileRank.setCompanyId((Long)companyId);
+				public void accept(
+					DLFileRank dlFileRank, Object companyIdObject) {
+
+					dlFileRank.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -334,8 +340,8 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object userId) {
-					dlFileRank.setUserId((Long)userId);
+				public void accept(DLFileRank dlFileRank, Object userIdObject) {
+					dlFileRank.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -354,8 +360,10 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object createDate) {
-					dlFileRank.setCreateDate((Date)createDate);
+				public void accept(
+					DLFileRank dlFileRank, Object createDateObject) {
+
+					dlFileRank.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -374,8 +382,10 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object fileEntryId) {
-					dlFileRank.setFileEntryId((Long)fileEntryId);
+				public void accept(
+					DLFileRank dlFileRank, Object fileEntryIdObject) {
+
+					dlFileRank.setFileEntryId((Long)fileEntryIdObject);
 				}
 
 			});
@@ -394,8 +404,8 @@ public class DLFileRankModelImpl
 			new BiConsumer<DLFileRank, Object>() {
 
 				@Override
-				public void accept(DLFileRank dlFileRank, Object active) {
-					dlFileRank.setActive((Boolean)active);
+				public void accept(DLFileRank dlFileRank, Object activeObject) {
+					dlFileRank.setActive((Boolean)activeObject);
 				}
 
 			});

@@ -369,9 +369,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					exportImportConfiguration.setMvccVersion((Long)mvccVersion);
+					exportImportConfiguration.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -395,10 +396,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object exportImportConfigurationId) {
+					Object exportImportConfigurationIdObject) {
 
 					exportImportConfiguration.setExportImportConfigurationId(
-						(Long)exportImportConfigurationId);
+						(Long)exportImportConfigurationIdObject);
 				}
 
 			});
@@ -421,9 +422,9 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object groupId) {
+					Object groupIdObject) {
 
-					exportImportConfiguration.setGroupId((Long)groupId);
+					exportImportConfiguration.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -446,9 +447,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object companyId) {
+					Object companyIdObject) {
 
-					exportImportConfiguration.setCompanyId((Long)companyId);
+					exportImportConfiguration.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -471,9 +473,9 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object userId) {
+					Object userIdObject) {
 
-					exportImportConfiguration.setUserId((Long)userId);
+					exportImportConfiguration.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -496,9 +498,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object userName) {
+					Object userNameObject) {
 
-					exportImportConfiguration.setUserName((String)userName);
+					exportImportConfiguration.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -521,9 +524,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object createDate) {
+					Object createDateObject) {
 
-					exportImportConfiguration.setCreateDate((Date)createDate);
+					exportImportConfiguration.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -546,10 +550,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
 					exportImportConfiguration.setModifiedDate(
-						(Date)modifiedDate);
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -572,9 +576,9 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object name) {
+					Object nameObject) {
 
-					exportImportConfiguration.setName((String)name);
+					exportImportConfiguration.setName((String)nameObject);
 				}
 
 			});
@@ -597,10 +601,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object description) {
+					Object descriptionObject) {
 
 					exportImportConfiguration.setDescription(
-						(String)description);
+						(String)descriptionObject);
 				}
 
 			});
@@ -623,9 +627,9 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object type) {
+					Object typeObject) {
 
-					exportImportConfiguration.setType((Integer)type);
+					exportImportConfiguration.setType((Integer)typeObject);
 				}
 
 			});
@@ -648,9 +652,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object settings) {
+					Object settingsObject) {
 
-					exportImportConfiguration.setSettings((String)settings);
+					exportImportConfiguration.setSettings(
+						(String)settingsObject);
 				}
 
 			});
@@ -673,9 +678,9 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object status) {
+					Object statusObject) {
 
-					exportImportConfiguration.setStatus((Integer)status);
+					exportImportConfiguration.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -698,10 +703,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
 					exportImportConfiguration.setStatusByUserId(
-						(Long)statusByUserId);
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -724,10 +729,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					exportImportConfiguration.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -750,9 +755,10 @@ public class ExportImportConfigurationModelImpl
 				@Override
 				public void accept(
 					ExportImportConfiguration exportImportConfiguration,
-					Object statusDate) {
+					Object statusDateObject) {
 
-					exportImportConfiguration.setStatusDate((Date)statusDate);
+					exportImportConfiguration.setStatusDate(
+						(Date)statusDateObject);
 				}
 
 			});

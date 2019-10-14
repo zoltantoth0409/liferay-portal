@@ -335,10 +335,10 @@ public class SocialActivitySettingModelImpl
 				@Override
 				public void accept(
 					SocialActivitySetting socialActivitySetting,
-					Object activitySettingId) {
+					Object activitySettingIdObject) {
 
 					socialActivitySetting.setActivitySettingId(
-						(Long)activitySettingId);
+						(Long)activitySettingIdObject);
 				}
 
 			});
@@ -361,9 +361,9 @@ public class SocialActivitySettingModelImpl
 				@Override
 				public void accept(
 					SocialActivitySetting socialActivitySetting,
-					Object groupId) {
+					Object groupIdObject) {
 
-					socialActivitySetting.setGroupId((Long)groupId);
+					socialActivitySetting.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -386,9 +386,9 @@ public class SocialActivitySettingModelImpl
 				@Override
 				public void accept(
 					SocialActivitySetting socialActivitySetting,
-					Object companyId) {
+					Object companyIdObject) {
 
-					socialActivitySetting.setCompanyId((Long)companyId);
+					socialActivitySetting.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -411,9 +411,10 @@ public class SocialActivitySettingModelImpl
 				@Override
 				public void accept(
 					SocialActivitySetting socialActivitySetting,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					socialActivitySetting.setClassNameId((Long)classNameId);
+					socialActivitySetting.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -436,10 +437,10 @@ public class SocialActivitySettingModelImpl
 				@Override
 				public void accept(
 					SocialActivitySetting socialActivitySetting,
-					Object activityType) {
+					Object activityTypeObject) {
 
 					socialActivitySetting.setActivityType(
-						(Integer)activityType);
+						(Integer)activityTypeObject);
 				}
 
 			});
@@ -461,9 +462,10 @@ public class SocialActivitySettingModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySetting socialActivitySetting, Object name) {
+					SocialActivitySetting socialActivitySetting,
+					Object nameObject) {
 
-					socialActivitySetting.setName((String)name);
+					socialActivitySetting.setName((String)nameObject);
 				}
 
 			});
@@ -485,9 +487,10 @@ public class SocialActivitySettingModelImpl
 
 				@Override
 				public void accept(
-					SocialActivitySetting socialActivitySetting, Object value) {
+					SocialActivitySetting socialActivitySetting,
+					Object valueObject) {
 
-					socialActivitySetting.setValue((String)value);
+					socialActivitySetting.setValue((String)valueObject);
 				}
 
 			});

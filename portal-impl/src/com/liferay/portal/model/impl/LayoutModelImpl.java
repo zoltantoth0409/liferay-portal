@@ -400,8 +400,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object mvccVersion) {
-					layout.setMvccVersion((Long)mvccVersion);
+				public void accept(Layout layout, Object mvccVersionObject) {
+					layout.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -420,8 +420,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object uuid) {
-					layout.setUuid((String)uuid);
+				public void accept(Layout layout, Object uuidObject) {
+					layout.setUuid((String)uuidObject);
 				}
 
 			});
@@ -440,8 +440,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object plid) {
-					layout.setPlid((Long)plid);
+				public void accept(Layout layout, Object plidObject) {
+					layout.setPlid((Long)plidObject);
 				}
 
 			});
@@ -460,8 +460,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object groupId) {
-					layout.setGroupId((Long)groupId);
+				public void accept(Layout layout, Object groupIdObject) {
+					layout.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -480,8 +480,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object companyId) {
-					layout.setCompanyId((Long)companyId);
+				public void accept(Layout layout, Object companyIdObject) {
+					layout.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -500,8 +500,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object userId) {
-					layout.setUserId((Long)userId);
+				public void accept(Layout layout, Object userIdObject) {
+					layout.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -520,8 +520,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object userName) {
-					layout.setUserName((String)userName);
+				public void accept(Layout layout, Object userNameObject) {
+					layout.setUserName((String)userNameObject);
 				}
 
 			});
@@ -540,8 +540,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object createDate) {
-					layout.setCreateDate((Date)createDate);
+				public void accept(Layout layout, Object createDateObject) {
+					layout.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -560,8 +560,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object modifiedDate) {
-					layout.setModifiedDate((Date)modifiedDate);
+				public void accept(Layout layout, Object modifiedDateObject) {
+					layout.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -580,8 +580,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object privateLayout) {
-					layout.setPrivateLayout((Boolean)privateLayout);
+				public void accept(Layout layout, Object privateLayoutObject) {
+					layout.setPrivateLayout((Boolean)privateLayoutObject);
 				}
 
 			});
@@ -600,8 +600,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object layoutId) {
-					layout.setLayoutId((Long)layoutId);
+				public void accept(Layout layout, Object layoutIdObject) {
+					layout.setLayoutId((Long)layoutIdObject);
 				}
 
 			});
@@ -620,8 +620,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object parentLayoutId) {
-					layout.setParentLayoutId((Long)parentLayoutId);
+				public void accept(Layout layout, Object parentLayoutIdObject) {
+					layout.setParentLayoutId((Long)parentLayoutIdObject);
 				}
 
 			});
@@ -640,8 +640,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object name) {
-					layout.setName((String)name);
+				public void accept(Layout layout, Object nameObject) {
+					layout.setName((String)nameObject);
 				}
 
 			});
@@ -660,8 +660,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object title) {
-					layout.setTitle((String)title);
+				public void accept(Layout layout, Object titleObject) {
+					layout.setTitle((String)titleObject);
 				}
 
 			});
@@ -680,8 +680,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object description) {
-					layout.setDescription((String)description);
+				public void accept(Layout layout, Object descriptionObject) {
+					layout.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -700,8 +700,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object keywords) {
-					layout.setKeywords((String)keywords);
+				public void accept(Layout layout, Object keywordsObject) {
+					layout.setKeywords((String)keywordsObject);
 				}
 
 			});
@@ -720,8 +720,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object robots) {
-					layout.setRobots((String)robots);
+				public void accept(Layout layout, Object robotsObject) {
+					layout.setRobots((String)robotsObject);
 				}
 
 			});
@@ -740,8 +740,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object type) {
-					layout.setType((String)type);
+				public void accept(Layout layout, Object typeObject) {
+					layout.setType((String)typeObject);
 				}
 
 			});
@@ -760,8 +760,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object typeSettings) {
-					layout.setTypeSettings((String)typeSettings);
+				public void accept(Layout layout, Object typeSettingsObject) {
+					layout.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -780,8 +780,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object hidden) {
-					layout.setHidden((Boolean)hidden);
+				public void accept(Layout layout, Object hiddenObject) {
+					layout.setHidden((Boolean)hiddenObject);
 				}
 
 			});
@@ -800,8 +800,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object friendlyURL) {
-					layout.setFriendlyURL((String)friendlyURL);
+				public void accept(Layout layout, Object friendlyURLObject) {
+					layout.setFriendlyURL((String)friendlyURLObject);
 				}
 
 			});
@@ -820,8 +820,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object iconImageId) {
-					layout.setIconImageId((Long)iconImageId);
+				public void accept(Layout layout, Object iconImageIdObject) {
+					layout.setIconImageId((Long)iconImageIdObject);
 				}
 
 			});
@@ -840,8 +840,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object themeId) {
-					layout.setThemeId((String)themeId);
+				public void accept(Layout layout, Object themeIdObject) {
+					layout.setThemeId((String)themeIdObject);
 				}
 
 			});
@@ -860,8 +860,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object colorSchemeId) {
-					layout.setColorSchemeId((String)colorSchemeId);
+				public void accept(Layout layout, Object colorSchemeIdObject) {
+					layout.setColorSchemeId((String)colorSchemeIdObject);
 				}
 
 			});
@@ -880,8 +880,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object css) {
-					layout.setCss((String)css);
+				public void accept(Layout layout, Object cssObject) {
+					layout.setCss((String)cssObject);
 				}
 
 			});
@@ -900,8 +900,8 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object priority) {
-					layout.setPriority((Integer)priority);
+				public void accept(Layout layout, Object priorityObject) {
+					layout.setPriority((Integer)priorityObject);
 				}
 
 			});
@@ -920,8 +920,11 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object layoutPrototypeUuid) {
-					layout.setLayoutPrototypeUuid((String)layoutPrototypeUuid);
+				public void accept(
+					Layout layout, Object layoutPrototypeUuidObject) {
+
+					layout.setLayoutPrototypeUuid(
+						(String)layoutPrototypeUuidObject);
 				}
 
 			});
@@ -941,10 +944,10 @@ public class LayoutModelImpl
 
 				@Override
 				public void accept(
-					Layout layout, Object layoutPrototypeLinkEnabled) {
+					Layout layout, Object layoutPrototypeLinkEnabledObject) {
 
 					layout.setLayoutPrototypeLinkEnabled(
-						(Boolean)layoutPrototypeLinkEnabled);
+						(Boolean)layoutPrototypeLinkEnabledObject);
 				}
 
 			});
@@ -964,10 +967,10 @@ public class LayoutModelImpl
 
 				@Override
 				public void accept(
-					Layout layout, Object sourcePrototypeLayoutUuid) {
+					Layout layout, Object sourcePrototypeLayoutUuidObject) {
 
 					layout.setSourcePrototypeLayoutUuid(
-						(String)sourcePrototypeLayoutUuid);
+						(String)sourcePrototypeLayoutUuidObject);
 				}
 
 			});
@@ -986,8 +989,10 @@ public class LayoutModelImpl
 			new BiConsumer<Layout, Object>() {
 
 				@Override
-				public void accept(Layout layout, Object lastPublishDate) {
-					layout.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					Layout layout, Object lastPublishDateObject) {
+
+					layout.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

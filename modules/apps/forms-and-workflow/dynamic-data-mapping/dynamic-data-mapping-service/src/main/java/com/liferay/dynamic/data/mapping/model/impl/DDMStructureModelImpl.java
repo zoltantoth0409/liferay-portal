@@ -371,8 +371,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object uuid) {
-					ddmStructure.setUuid((String)uuid);
+				public void accept(
+					DDMStructure ddmStructure, Object uuidObject) {
+
+					ddmStructure.setUuid((String)uuidObject);
 				}
 
 			});
@@ -392,9 +394,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object structureId) {
+					DDMStructure ddmStructure, Object structureIdObject) {
 
-					ddmStructure.setStructureId((Long)structureId);
+					ddmStructure.setStructureId((Long)structureIdObject);
 				}
 
 			});
@@ -413,8 +415,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object groupId) {
-					ddmStructure.setGroupId((Long)groupId);
+				public void accept(
+					DDMStructure ddmStructure, Object groupIdObject) {
+
+					ddmStructure.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -434,9 +438,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object companyId) {
+					DDMStructure ddmStructure, Object companyIdObject) {
 
-					ddmStructure.setCompanyId((Long)companyId);
+					ddmStructure.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -455,8 +459,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object userId) {
-					ddmStructure.setUserId((Long)userId);
+				public void accept(
+					DDMStructure ddmStructure, Object userIdObject) {
+
+					ddmStructure.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -475,8 +481,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object userName) {
-					ddmStructure.setUserName((String)userName);
+				public void accept(
+					DDMStructure ddmStructure, Object userNameObject) {
+
+					ddmStructure.setUserName((String)userNameObject);
 				}
 
 			});
@@ -496,9 +504,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object versionUserId) {
+					DDMStructure ddmStructure, Object versionUserIdObject) {
 
-					ddmStructure.setVersionUserId((Long)versionUserId);
+					ddmStructure.setVersionUserId((Long)versionUserIdObject);
 				}
 
 			});
@@ -518,9 +526,10 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object versionUserName) {
+					DDMStructure ddmStructure, Object versionUserNameObject) {
 
-					ddmStructure.setVersionUserName((String)versionUserName);
+					ddmStructure.setVersionUserName(
+						(String)versionUserNameObject);
 				}
 
 			});
@@ -540,9 +549,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object createDate) {
+					DDMStructure ddmStructure, Object createDateObject) {
 
-					ddmStructure.setCreateDate((Date)createDate);
+					ddmStructure.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -562,9 +571,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object modifiedDate) {
+					DDMStructure ddmStructure, Object modifiedDateObject) {
 
-					ddmStructure.setModifiedDate((Date)modifiedDate);
+					ddmStructure.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -584,9 +593,10 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object parentStructureId) {
+					DDMStructure ddmStructure, Object parentStructureIdObject) {
 
-					ddmStructure.setParentStructureId((Long)parentStructureId);
+					ddmStructure.setParentStructureId(
+						(Long)parentStructureIdObject);
 				}
 
 			});
@@ -606,9 +616,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object classNameId) {
+					DDMStructure ddmStructure, Object classNameIdObject) {
 
-					ddmStructure.setClassNameId((Long)classNameId);
+					ddmStructure.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -628,9 +638,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object structureKey) {
+					DDMStructure ddmStructure, Object structureKeyObject) {
 
-					ddmStructure.setStructureKey((String)structureKey);
+					ddmStructure.setStructureKey((String)structureKeyObject);
 				}
 
 			});
@@ -649,8 +659,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object version) {
-					ddmStructure.setVersion((String)version);
+				public void accept(
+					DDMStructure ddmStructure, Object versionObject) {
+
+					ddmStructure.setVersion((String)versionObject);
 				}
 
 			});
@@ -669,8 +681,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object name) {
-					ddmStructure.setName((String)name);
+				public void accept(
+					DDMStructure ddmStructure, Object nameObject) {
+
+					ddmStructure.setName((String)nameObject);
 				}
 
 			});
@@ -690,9 +704,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object description) {
+					DDMStructure ddmStructure, Object descriptionObject) {
 
-					ddmStructure.setDescription((String)description);
+					ddmStructure.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -712,9 +726,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object definition) {
+					DDMStructure ddmStructure, Object definitionObject) {
 
-					ddmStructure.setDefinition((String)definition);
+					ddmStructure.setDefinition((String)definitionObject);
 				}
 
 			});
@@ -734,9 +748,9 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object storageType) {
+					DDMStructure ddmStructure, Object storageTypeObject) {
 
-					ddmStructure.setStorageType((String)storageType);
+					ddmStructure.setStorageType((String)storageTypeObject);
 				}
 
 			});
@@ -755,8 +769,10 @@ public class DDMStructureModelImpl
 			new BiConsumer<DDMStructure, Object>() {
 
 				@Override
-				public void accept(DDMStructure ddmStructure, Object type) {
-					ddmStructure.setType((Integer)type);
+				public void accept(
+					DDMStructure ddmStructure, Object typeObject) {
+
+					ddmStructure.setType((Integer)typeObject);
 				}
 
 			});
@@ -776,9 +792,10 @@ public class DDMStructureModelImpl
 
 				@Override
 				public void accept(
-					DDMStructure ddmStructure, Object lastPublishDate) {
+					DDMStructure ddmStructure, Object lastPublishDateObject) {
 
-					ddmStructure.setLastPublishDate((Date)lastPublishDate);
+					ddmStructure.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

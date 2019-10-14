@@ -300,8 +300,10 @@ public class ListTypeModelImpl
 			new BiConsumer<ListType, Object>() {
 
 				@Override
-				public void accept(ListType listType, Object mvccVersion) {
-					listType.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					ListType listType, Object mvccVersionObject) {
+
+					listType.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -320,8 +322,8 @@ public class ListTypeModelImpl
 			new BiConsumer<ListType, Object>() {
 
 				@Override
-				public void accept(ListType listType, Object listTypeId) {
-					listType.setListTypeId((Long)listTypeId);
+				public void accept(ListType listType, Object listTypeIdObject) {
+					listType.setListTypeId((Long)listTypeIdObject);
 				}
 
 			});
@@ -340,8 +342,8 @@ public class ListTypeModelImpl
 			new BiConsumer<ListType, Object>() {
 
 				@Override
-				public void accept(ListType listType, Object name) {
-					listType.setName((String)name);
+				public void accept(ListType listType, Object nameObject) {
+					listType.setName((String)nameObject);
 				}
 
 			});
@@ -360,8 +362,8 @@ public class ListTypeModelImpl
 			new BiConsumer<ListType, Object>() {
 
 				@Override
-				public void accept(ListType listType, Object type) {
-					listType.setType((String)type);
+				public void accept(ListType listType, Object typeObject) {
+					listType.setType((String)typeObject);
 				}
 
 			});

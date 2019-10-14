@@ -276,9 +276,9 @@ public class JournalArticleResourceModelImpl
 				@Override
 				public void accept(
 					JournalArticleResource journalArticleResource,
-					Object uuid) {
+					Object uuidObject) {
 
-					journalArticleResource.setUuid((String)uuid);
+					journalArticleResource.setUuid((String)uuidObject);
 				}
 
 			});
@@ -301,10 +301,10 @@ public class JournalArticleResourceModelImpl
 				@Override
 				public void accept(
 					JournalArticleResource journalArticleResource,
-					Object resourcePrimKey) {
+					Object resourcePrimKeyObject) {
 
 					journalArticleResource.setResourcePrimKey(
-						(Long)resourcePrimKey);
+						(Long)resourcePrimKeyObject);
 				}
 
 			});
@@ -327,9 +327,9 @@ public class JournalArticleResourceModelImpl
 				@Override
 				public void accept(
 					JournalArticleResource journalArticleResource,
-					Object groupId) {
+					Object groupIdObject) {
 
-					journalArticleResource.setGroupId((Long)groupId);
+					journalArticleResource.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -352,9 +352,9 @@ public class JournalArticleResourceModelImpl
 				@Override
 				public void accept(
 					JournalArticleResource journalArticleResource,
-					Object companyId) {
+					Object companyIdObject) {
 
-					journalArticleResource.setCompanyId((Long)companyId);
+					journalArticleResource.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -377,9 +377,10 @@ public class JournalArticleResourceModelImpl
 				@Override
 				public void accept(
 					JournalArticleResource journalArticleResource,
-					Object articleId) {
+					Object articleIdObject) {
 
-					journalArticleResource.setArticleId((String)articleId);
+					journalArticleResource.setArticleId(
+						(String)articleIdObject);
 				}
 
 			});

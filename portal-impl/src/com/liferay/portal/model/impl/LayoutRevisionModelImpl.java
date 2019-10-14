@@ -393,9 +393,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object mvccVersion) {
+					LayoutRevision layoutRevision, Object mvccVersionObject) {
 
-					layoutRevision.setMvccVersion((Long)mvccVersion);
+					layoutRevision.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -415,9 +415,11 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object layoutRevisionId) {
+					LayoutRevision layoutRevision,
+					Object layoutRevisionIdObject) {
 
-					layoutRevision.setLayoutRevisionId((Long)layoutRevisionId);
+					layoutRevision.setLayoutRevisionId(
+						(Long)layoutRevisionIdObject);
 				}
 
 			});
@@ -437,9 +439,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object groupId) {
+					LayoutRevision layoutRevision, Object groupIdObject) {
 
-					layoutRevision.setGroupId((Long)groupId);
+					layoutRevision.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -459,9 +461,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object companyId) {
+					LayoutRevision layoutRevision, Object companyIdObject) {
 
-					layoutRevision.setCompanyId((Long)companyId);
+					layoutRevision.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -481,9 +483,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object userId) {
+					LayoutRevision layoutRevision, Object userIdObject) {
 
-					layoutRevision.setUserId((Long)userId);
+					layoutRevision.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -503,9 +505,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object userName) {
+					LayoutRevision layoutRevision, Object userNameObject) {
 
-					layoutRevision.setUserName((String)userName);
+					layoutRevision.setUserName((String)userNameObject);
 				}
 
 			});
@@ -525,9 +527,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object createDate) {
+					LayoutRevision layoutRevision, Object createDateObject) {
 
-					layoutRevision.setCreateDate((Date)createDate);
+					layoutRevision.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -547,9 +549,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object modifiedDate) {
+					LayoutRevision layoutRevision, Object modifiedDateObject) {
 
-					layoutRevision.setModifiedDate((Date)modifiedDate);
+					layoutRevision.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -569,10 +571,11 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object layoutSetBranchId) {
+					LayoutRevision layoutRevision,
+					Object layoutSetBranchIdObject) {
 
 					layoutRevision.setLayoutSetBranchId(
-						(Long)layoutSetBranchId);
+						(Long)layoutSetBranchIdObject);
 				}
 
 			});
@@ -592,9 +595,11 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object layoutBranchId) {
+					LayoutRevision layoutRevision,
+					Object layoutBranchIdObject) {
 
-					layoutRevision.setLayoutBranchId((Long)layoutBranchId);
+					layoutRevision.setLayoutBranchId(
+						(Long)layoutBranchIdObject);
 				}
 
 			});
@@ -615,10 +620,10 @@ public class LayoutRevisionModelImpl
 				@Override
 				public void accept(
 					LayoutRevision layoutRevision,
-					Object parentLayoutRevisionId) {
+					Object parentLayoutRevisionIdObject) {
 
 					layoutRevision.setParentLayoutRevisionId(
-						(Long)parentLayoutRevisionId);
+						(Long)parentLayoutRevisionIdObject);
 				}
 
 			});
@@ -637,8 +642,10 @@ public class LayoutRevisionModelImpl
 			new BiConsumer<LayoutRevision, Object>() {
 
 				@Override
-				public void accept(LayoutRevision layoutRevision, Object head) {
-					layoutRevision.setHead((Boolean)head);
+				public void accept(
+					LayoutRevision layoutRevision, Object headObject) {
+
+					layoutRevision.setHead((Boolean)headObject);
 				}
 
 			});
@@ -658,9 +665,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object major) {
+					LayoutRevision layoutRevision, Object majorObject) {
 
-					layoutRevision.setMajor((Boolean)major);
+					layoutRevision.setMajor((Boolean)majorObject);
 				}
 
 			});
@@ -679,8 +686,10 @@ public class LayoutRevisionModelImpl
 			new BiConsumer<LayoutRevision, Object>() {
 
 				@Override
-				public void accept(LayoutRevision layoutRevision, Object plid) {
-					layoutRevision.setPlid((Long)plid);
+				public void accept(
+					LayoutRevision layoutRevision, Object plidObject) {
+
+					layoutRevision.setPlid((Long)plidObject);
 				}
 
 			});
@@ -700,9 +709,10 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object privateLayout) {
+					LayoutRevision layoutRevision, Object privateLayoutObject) {
 
-					layoutRevision.setPrivateLayout((Boolean)privateLayout);
+					layoutRevision.setPrivateLayout(
+						(Boolean)privateLayoutObject);
 				}
 
 			});
@@ -721,8 +731,10 @@ public class LayoutRevisionModelImpl
 			new BiConsumer<LayoutRevision, Object>() {
 
 				@Override
-				public void accept(LayoutRevision layoutRevision, Object name) {
-					layoutRevision.setName((String)name);
+				public void accept(
+					LayoutRevision layoutRevision, Object nameObject) {
+
+					layoutRevision.setName((String)nameObject);
 				}
 
 			});
@@ -742,9 +754,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object title) {
+					LayoutRevision layoutRevision, Object titleObject) {
 
-					layoutRevision.setTitle((String)title);
+					layoutRevision.setTitle((String)titleObject);
 				}
 
 			});
@@ -764,9 +776,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object description) {
+					LayoutRevision layoutRevision, Object descriptionObject) {
 
-					layoutRevision.setDescription((String)description);
+					layoutRevision.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -786,9 +798,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object keywords) {
+					LayoutRevision layoutRevision, Object keywordsObject) {
 
-					layoutRevision.setKeywords((String)keywords);
+					layoutRevision.setKeywords((String)keywordsObject);
 				}
 
 			});
@@ -808,9 +820,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object robots) {
+					LayoutRevision layoutRevision, Object robotsObject) {
 
-					layoutRevision.setRobots((String)robots);
+					layoutRevision.setRobots((String)robotsObject);
 				}
 
 			});
@@ -830,9 +842,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object typeSettings) {
+					LayoutRevision layoutRevision, Object typeSettingsObject) {
 
-					layoutRevision.setTypeSettings((String)typeSettings);
+					layoutRevision.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -852,9 +864,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object iconImageId) {
+					LayoutRevision layoutRevision, Object iconImageIdObject) {
 
-					layoutRevision.setIconImageId((Long)iconImageId);
+					layoutRevision.setIconImageId((Long)iconImageIdObject);
 				}
 
 			});
@@ -874,9 +886,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object themeId) {
+					LayoutRevision layoutRevision, Object themeIdObject) {
 
-					layoutRevision.setThemeId((String)themeId);
+					layoutRevision.setThemeId((String)themeIdObject);
 				}
 
 			});
@@ -896,9 +908,10 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object colorSchemeId) {
+					LayoutRevision layoutRevision, Object colorSchemeIdObject) {
 
-					layoutRevision.setColorSchemeId((String)colorSchemeId);
+					layoutRevision.setColorSchemeId(
+						(String)colorSchemeIdObject);
 				}
 
 			});
@@ -917,8 +930,10 @@ public class LayoutRevisionModelImpl
 			new BiConsumer<LayoutRevision, Object>() {
 
 				@Override
-				public void accept(LayoutRevision layoutRevision, Object css) {
-					layoutRevision.setCss((String)css);
+				public void accept(
+					LayoutRevision layoutRevision, Object cssObject) {
+
+					layoutRevision.setCss((String)cssObject);
 				}
 
 			});
@@ -938,9 +953,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object status) {
+					LayoutRevision layoutRevision, Object statusObject) {
 
-					layoutRevision.setStatus((Integer)status);
+					layoutRevision.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -960,9 +975,11 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object statusByUserId) {
+					LayoutRevision layoutRevision,
+					Object statusByUserIdObject) {
 
-					layoutRevision.setStatusByUserId((Long)statusByUserId);
+					layoutRevision.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -982,10 +999,11 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object statusByUserName) {
+					LayoutRevision layoutRevision,
+					Object statusByUserNameObject) {
 
 					layoutRevision.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -1005,9 +1023,9 @@ public class LayoutRevisionModelImpl
 
 				@Override
 				public void accept(
-					LayoutRevision layoutRevision, Object statusDate) {
+					LayoutRevision layoutRevision, Object statusDateObject) {
 
-					layoutRevision.setStatusDate((Date)statusDate);
+					layoutRevision.setStatusDate((Date)statusDateObject);
 				}
 
 			});

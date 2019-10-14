@@ -386,9 +386,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object mvccVersion) {
+					Organization organization, Object mvccVersionObject) {
 
-					organization.setMvccVersion((Long)mvccVersion);
+					organization.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -407,8 +407,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object uuid) {
-					organization.setUuid((String)uuid);
+				public void accept(
+					Organization organization, Object uuidObject) {
+
+					organization.setUuid((String)uuidObject);
 				}
 
 			});
@@ -428,9 +430,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object organizationId) {
+					Organization organization, Object organizationIdObject) {
 
-					organization.setOrganizationId((Long)organizationId);
+					organization.setOrganizationId((Long)organizationIdObject);
 				}
 
 			});
@@ -450,9 +452,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object companyId) {
+					Organization organization, Object companyIdObject) {
 
-					organization.setCompanyId((Long)companyId);
+					organization.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -471,8 +473,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object userId) {
-					organization.setUserId((Long)userId);
+				public void accept(
+					Organization organization, Object userIdObject) {
+
+					organization.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -491,8 +495,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object userName) {
-					organization.setUserName((String)userName);
+				public void accept(
+					Organization organization, Object userNameObject) {
+
+					organization.setUserName((String)userNameObject);
 				}
 
 			});
@@ -512,9 +518,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object createDate) {
+					Organization organization, Object createDateObject) {
 
-					organization.setCreateDate((Date)createDate);
+					organization.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -534,9 +540,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object modifiedDate) {
+					Organization organization, Object modifiedDateObject) {
 
-					organization.setModifiedDate((Date)modifiedDate);
+					organization.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -556,10 +562,11 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object parentOrganizationId) {
+					Organization organization,
+					Object parentOrganizationIdObject) {
 
 					organization.setParentOrganizationId(
-						(Long)parentOrganizationId);
+						(Long)parentOrganizationIdObject);
 				}
 
 			});
@@ -578,8 +585,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object treePath) {
-					organization.setTreePath((String)treePath);
+				public void accept(
+					Organization organization, Object treePathObject) {
+
+					organization.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -598,8 +607,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object name) {
-					organization.setName((String)name);
+				public void accept(
+					Organization organization, Object nameObject) {
+
+					organization.setName((String)nameObject);
 				}
 
 			});
@@ -618,8 +629,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object type) {
-					organization.setType((String)type);
+				public void accept(
+					Organization organization, Object typeObject) {
+
+					organization.setType((String)typeObject);
 				}
 
 			});
@@ -639,9 +652,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object recursable) {
+					Organization organization, Object recursableObject) {
 
-					organization.setRecursable((Boolean)recursable);
+					organization.setRecursable((Boolean)recursableObject);
 				}
 
 			});
@@ -660,8 +673,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object regionId) {
-					organization.setRegionId((Long)regionId);
+				public void accept(
+					Organization organization, Object regionIdObject) {
+
+					organization.setRegionId((Long)regionIdObject);
 				}
 
 			});
@@ -681,9 +696,9 @@ public class OrganizationModelImpl
 
 				@Override
 				public void accept(
-					Organization organization, Object countryId) {
+					Organization organization, Object countryIdObject) {
 
-					organization.setCountryId((Long)countryId);
+					organization.setCountryId((Long)countryIdObject);
 				}
 
 			});
@@ -702,8 +717,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object statusId) {
-					organization.setStatusId((Long)statusId);
+				public void accept(
+					Organization organization, Object statusIdObject) {
+
+					organization.setStatusId((Long)statusIdObject);
 				}
 
 			});
@@ -722,8 +739,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object comments) {
-					organization.setComments((String)comments);
+				public void accept(
+					Organization organization, Object commentsObject) {
+
+					organization.setComments((String)commentsObject);
 				}
 
 			});
@@ -742,8 +761,10 @@ public class OrganizationModelImpl
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object logoId) {
-					organization.setLogoId((Long)logoId);
+				public void accept(
+					Organization organization, Object logoIdObject) {
+
+					organization.setLogoId((Long)logoIdObject);
 				}
 
 			});

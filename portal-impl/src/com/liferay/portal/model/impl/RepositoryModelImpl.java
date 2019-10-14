@@ -347,8 +347,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object mvccVersion) {
-					repository.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					Repository repository, Object mvccVersionObject) {
+
+					repository.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -367,8 +369,8 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object uuid) {
-					repository.setUuid((String)uuid);
+				public void accept(Repository repository, Object uuidObject) {
+					repository.setUuid((String)uuidObject);
 				}
 
 			});
@@ -387,8 +389,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object repositoryId) {
-					repository.setRepositoryId((Long)repositoryId);
+				public void accept(
+					Repository repository, Object repositoryIdObject) {
+
+					repository.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -407,8 +411,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object groupId) {
-					repository.setGroupId((Long)groupId);
+				public void accept(
+					Repository repository, Object groupIdObject) {
+
+					repository.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -427,8 +433,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object companyId) {
-					repository.setCompanyId((Long)companyId);
+				public void accept(
+					Repository repository, Object companyIdObject) {
+
+					repository.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -447,8 +455,8 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object userId) {
-					repository.setUserId((Long)userId);
+				public void accept(Repository repository, Object userIdObject) {
+					repository.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -467,8 +475,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object userName) {
-					repository.setUserName((String)userName);
+				public void accept(
+					Repository repository, Object userNameObject) {
+
+					repository.setUserName((String)userNameObject);
 				}
 
 			});
@@ -487,8 +497,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object createDate) {
-					repository.setCreateDate((Date)createDate);
+				public void accept(
+					Repository repository, Object createDateObject) {
+
+					repository.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -507,8 +519,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object modifiedDate) {
-					repository.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					Repository repository, Object modifiedDateObject) {
+
+					repository.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -527,8 +541,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object classNameId) {
-					repository.setClassNameId((Long)classNameId);
+				public void accept(
+					Repository repository, Object classNameIdObject) {
+
+					repository.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -547,8 +563,8 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object name) {
-					repository.setName((String)name);
+				public void accept(Repository repository, Object nameObject) {
+					repository.setName((String)nameObject);
 				}
 
 			});
@@ -567,8 +583,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object description) {
-					repository.setDescription((String)description);
+				public void accept(
+					Repository repository, Object descriptionObject) {
+
+					repository.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -587,8 +605,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object portletId) {
-					repository.setPortletId((String)portletId);
+				public void accept(
+					Repository repository, Object portletIdObject) {
+
+					repository.setPortletId((String)portletIdObject);
 				}
 
 			});
@@ -607,8 +627,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object typeSettings) {
-					repository.setTypeSettings((String)typeSettings);
+				public void accept(
+					Repository repository, Object typeSettingsObject) {
+
+					repository.setTypeSettings((String)typeSettingsObject);
 				}
 
 			});
@@ -627,8 +649,10 @@ public class RepositoryModelImpl
 			new BiConsumer<Repository, Object>() {
 
 				@Override
-				public void accept(Repository repository, Object dlFolderId) {
-					repository.setDlFolderId((Long)dlFolderId);
+				public void accept(
+					Repository repository, Object dlFolderIdObject) {
+
+					repository.setDlFolderId((Long)dlFolderIdObject);
 				}
 
 			});
@@ -648,9 +672,9 @@ public class RepositoryModelImpl
 
 				@Override
 				public void accept(
-					Repository repository, Object lastPublishDate) {
+					Repository repository, Object lastPublishDateObject) {
 
-					repository.setLastPublishDate((Date)lastPublishDate);
+					repository.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

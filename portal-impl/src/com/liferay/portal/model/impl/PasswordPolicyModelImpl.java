@@ -397,9 +397,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object mvccVersion) {
+					PasswordPolicy passwordPolicy, Object mvccVersionObject) {
 
-					passwordPolicy.setMvccVersion((Long)mvccVersion);
+					passwordPolicy.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -418,8 +418,10 @@ public class PasswordPolicyModelImpl
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object uuid) {
-					passwordPolicy.setUuid((String)uuid);
+				public void accept(
+					PasswordPolicy passwordPolicy, Object uuidObject) {
+
+					passwordPolicy.setUuid((String)uuidObject);
 				}
 
 			});
@@ -439,9 +441,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object passwordPolicyId) {
+					PasswordPolicy passwordPolicy,
+					Object passwordPolicyIdObject) {
 
-					passwordPolicy.setPasswordPolicyId((Long)passwordPolicyId);
+					passwordPolicy.setPasswordPolicyId(
+						(Long)passwordPolicyIdObject);
 				}
 
 			});
@@ -461,9 +465,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object companyId) {
+					PasswordPolicy passwordPolicy, Object companyIdObject) {
 
-					passwordPolicy.setCompanyId((Long)companyId);
+					passwordPolicy.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -483,9 +487,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object userId) {
+					PasswordPolicy passwordPolicy, Object userIdObject) {
 
-					passwordPolicy.setUserId((Long)userId);
+					passwordPolicy.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -505,9 +509,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object userName) {
+					PasswordPolicy passwordPolicy, Object userNameObject) {
 
-					passwordPolicy.setUserName((String)userName);
+					passwordPolicy.setUserName((String)userNameObject);
 				}
 
 			});
@@ -527,9 +531,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object createDate) {
+					PasswordPolicy passwordPolicy, Object createDateObject) {
 
-					passwordPolicy.setCreateDate((Date)createDate);
+					passwordPolicy.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -549,9 +553,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object modifiedDate) {
+					PasswordPolicy passwordPolicy, Object modifiedDateObject) {
 
-					passwordPolicy.setModifiedDate((Date)modifiedDate);
+					passwordPolicy.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -571,9 +575,10 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object defaultPolicy) {
+					PasswordPolicy passwordPolicy, Object defaultPolicyObject) {
 
-					passwordPolicy.setDefaultPolicy((Boolean)defaultPolicy);
+					passwordPolicy.setDefaultPolicy(
+						(Boolean)defaultPolicyObject);
 				}
 
 			});
@@ -592,8 +597,10 @@ public class PasswordPolicyModelImpl
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object name) {
-					passwordPolicy.setName((String)name);
+				public void accept(
+					PasswordPolicy passwordPolicy, Object nameObject) {
+
+					passwordPolicy.setName((String)nameObject);
 				}
 
 			});
@@ -613,9 +620,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object description) {
+					PasswordPolicy passwordPolicy, Object descriptionObject) {
 
-					passwordPolicy.setDescription((String)description);
+					passwordPolicy.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -635,9 +642,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object changeable) {
+					PasswordPolicy passwordPolicy, Object changeableObject) {
 
-					passwordPolicy.setChangeable((Boolean)changeable);
+					passwordPolicy.setChangeable((Boolean)changeableObject);
 				}
 
 			});
@@ -657,9 +664,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object changeRequired) {
+					PasswordPolicy passwordPolicy,
+					Object changeRequiredObject) {
 
-					passwordPolicy.setChangeRequired((Boolean)changeRequired);
+					passwordPolicy.setChangeRequired(
+						(Boolean)changeRequiredObject);
 				}
 
 			});
@@ -679,9 +688,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minAge) {
+					PasswordPolicy passwordPolicy, Object minAgeObject) {
 
-					passwordPolicy.setMinAge((Long)minAge);
+					passwordPolicy.setMinAge((Long)minAgeObject);
 				}
 
 			});
@@ -701,9 +710,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object checkSyntax) {
+					PasswordPolicy passwordPolicy, Object checkSyntaxObject) {
 
-					passwordPolicy.setCheckSyntax((Boolean)checkSyntax);
+					passwordPolicy.setCheckSyntax((Boolean)checkSyntaxObject);
 				}
 
 			});
@@ -724,10 +733,10 @@ public class PasswordPolicyModelImpl
 				@Override
 				public void accept(
 					PasswordPolicy passwordPolicy,
-					Object allowDictionaryWords) {
+					Object allowDictionaryWordsObject) {
 
 					passwordPolicy.setAllowDictionaryWords(
-						(Boolean)allowDictionaryWords);
+						(Boolean)allowDictionaryWordsObject);
 				}
 
 			});
@@ -747,9 +756,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minAlphanumeric) {
+					PasswordPolicy passwordPolicy,
+					Object minAlphanumericObject) {
 
-					passwordPolicy.setMinAlphanumeric((Integer)minAlphanumeric);
+					passwordPolicy.setMinAlphanumeric(
+						(Integer)minAlphanumericObject);
 				}
 
 			});
@@ -769,9 +780,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minLength) {
+					PasswordPolicy passwordPolicy, Object minLengthObject) {
 
-					passwordPolicy.setMinLength((Integer)minLength);
+					passwordPolicy.setMinLength((Integer)minLengthObject);
 				}
 
 			});
@@ -791,9 +802,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minLowerCase) {
+					PasswordPolicy passwordPolicy, Object minLowerCaseObject) {
 
-					passwordPolicy.setMinLowerCase((Integer)minLowerCase);
+					passwordPolicy.setMinLowerCase((Integer)minLowerCaseObject);
 				}
 
 			});
@@ -813,9 +824,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minNumbers) {
+					PasswordPolicy passwordPolicy, Object minNumbersObject) {
 
-					passwordPolicy.setMinNumbers((Integer)minNumbers);
+					passwordPolicy.setMinNumbers((Integer)minNumbersObject);
 				}
 
 			});
@@ -835,9 +846,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minSymbols) {
+					PasswordPolicy passwordPolicy, Object minSymbolsObject) {
 
-					passwordPolicy.setMinSymbols((Integer)minSymbols);
+					passwordPolicy.setMinSymbols((Integer)minSymbolsObject);
 				}
 
 			});
@@ -857,9 +868,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object minUpperCase) {
+					PasswordPolicy passwordPolicy, Object minUpperCaseObject) {
 
-					passwordPolicy.setMinUpperCase((Integer)minUpperCase);
+					passwordPolicy.setMinUpperCase((Integer)minUpperCaseObject);
 				}
 
 			});
@@ -879,9 +890,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object regex) {
+					PasswordPolicy passwordPolicy, Object regexObject) {
 
-					passwordPolicy.setRegex((String)regex);
+					passwordPolicy.setRegex((String)regexObject);
 				}
 
 			});
@@ -901,9 +912,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object history) {
+					PasswordPolicy passwordPolicy, Object historyObject) {
 
-					passwordPolicy.setHistory((Boolean)history);
+					passwordPolicy.setHistory((Boolean)historyObject);
 				}
 
 			});
@@ -923,9 +934,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object historyCount) {
+					PasswordPolicy passwordPolicy, Object historyCountObject) {
 
-					passwordPolicy.setHistoryCount((Integer)historyCount);
+					passwordPolicy.setHistoryCount((Integer)historyCountObject);
 				}
 
 			});
@@ -945,9 +956,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object expireable) {
+					PasswordPolicy passwordPolicy, Object expireableObject) {
 
-					passwordPolicy.setExpireable((Boolean)expireable);
+					passwordPolicy.setExpireable((Boolean)expireableObject);
 				}
 
 			});
@@ -967,9 +978,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object maxAge) {
+					PasswordPolicy passwordPolicy, Object maxAgeObject) {
 
-					passwordPolicy.setMaxAge((Long)maxAge);
+					passwordPolicy.setMaxAge((Long)maxAgeObject);
 				}
 
 			});
@@ -989,9 +1000,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object warningTime) {
+					PasswordPolicy passwordPolicy, Object warningTimeObject) {
 
-					passwordPolicy.setWarningTime((Long)warningTime);
+					passwordPolicy.setWarningTime((Long)warningTimeObject);
 				}
 
 			});
@@ -1011,9 +1022,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object graceLimit) {
+					PasswordPolicy passwordPolicy, Object graceLimitObject) {
 
-					passwordPolicy.setGraceLimit((Integer)graceLimit);
+					passwordPolicy.setGraceLimit((Integer)graceLimitObject);
 				}
 
 			});
@@ -1033,9 +1044,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object lockout) {
+					PasswordPolicy passwordPolicy, Object lockoutObject) {
 
-					passwordPolicy.setLockout((Boolean)lockout);
+					passwordPolicy.setLockout((Boolean)lockoutObject);
 				}
 
 			});
@@ -1055,9 +1066,9 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object maxFailure) {
+					PasswordPolicy passwordPolicy, Object maxFailureObject) {
 
-					passwordPolicy.setMaxFailure((Integer)maxFailure);
+					passwordPolicy.setMaxFailure((Integer)maxFailureObject);
 				}
 
 			});
@@ -1077,9 +1088,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object lockoutDuration) {
+					PasswordPolicy passwordPolicy,
+					Object lockoutDurationObject) {
 
-					passwordPolicy.setLockoutDuration((Long)lockoutDuration);
+					passwordPolicy.setLockoutDuration(
+						(Long)lockoutDurationObject);
 				}
 
 			});
@@ -1099,9 +1112,10 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object requireUnlock) {
+					PasswordPolicy passwordPolicy, Object requireUnlockObject) {
 
-					passwordPolicy.setRequireUnlock((Boolean)requireUnlock);
+					passwordPolicy.setRequireUnlock(
+						(Boolean)requireUnlockObject);
 				}
 
 			});
@@ -1121,10 +1135,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object resetFailureCount) {
+					PasswordPolicy passwordPolicy,
+					Object resetFailureCountObject) {
 
 					passwordPolicy.setResetFailureCount(
-						(Long)resetFailureCount);
+						(Long)resetFailureCountObject);
 				}
 
 			});
@@ -1144,10 +1159,11 @@ public class PasswordPolicyModelImpl
 
 				@Override
 				public void accept(
-					PasswordPolicy passwordPolicy, Object resetTicketMaxAge) {
+					PasswordPolicy passwordPolicy,
+					Object resetTicketMaxAgeObject) {
 
 					passwordPolicy.setResetTicketMaxAge(
-						(Long)resetTicketMaxAge);
+						(Long)resetTicketMaxAgeObject);
 				}
 
 			});

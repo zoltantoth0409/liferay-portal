@@ -345,9 +345,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object mvccVersion) {
+					LayoutPrototype layoutPrototype, Object mvccVersionObject) {
 
-					layoutPrototype.setMvccVersion((Long)mvccVersion);
+					layoutPrototype.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -367,9 +367,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object uuid) {
+					LayoutPrototype layoutPrototype, Object uuidObject) {
 
-					layoutPrototype.setUuid((String)uuid);
+					layoutPrototype.setUuid((String)uuidObject);
 				}
 
 			});
@@ -389,10 +389,11 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object layoutPrototypeId) {
+					LayoutPrototype layoutPrototype,
+					Object layoutPrototypeIdObject) {
 
 					layoutPrototype.setLayoutPrototypeId(
-						(Long)layoutPrototypeId);
+						(Long)layoutPrototypeIdObject);
 				}
 
 			});
@@ -412,9 +413,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object companyId) {
+					LayoutPrototype layoutPrototype, Object companyIdObject) {
 
-					layoutPrototype.setCompanyId((Long)companyId);
+					layoutPrototype.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -434,9 +435,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object userId) {
+					LayoutPrototype layoutPrototype, Object userIdObject) {
 
-					layoutPrototype.setUserId((Long)userId);
+					layoutPrototype.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -456,9 +457,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object userName) {
+					LayoutPrototype layoutPrototype, Object userNameObject) {
 
-					layoutPrototype.setUserName((String)userName);
+					layoutPrototype.setUserName((String)userNameObject);
 				}
 
 			});
@@ -478,9 +479,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object createDate) {
+					LayoutPrototype layoutPrototype, Object createDateObject) {
 
-					layoutPrototype.setCreateDate((Date)createDate);
+					layoutPrototype.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -500,9 +501,10 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object modifiedDate) {
+					LayoutPrototype layoutPrototype,
+					Object modifiedDateObject) {
 
-					layoutPrototype.setModifiedDate((Date)modifiedDate);
+					layoutPrototype.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -522,9 +524,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object name) {
+					LayoutPrototype layoutPrototype, Object nameObject) {
 
-					layoutPrototype.setName((String)name);
+					layoutPrototype.setName((String)nameObject);
 				}
 
 			});
@@ -544,9 +546,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object description) {
+					LayoutPrototype layoutPrototype, Object descriptionObject) {
 
-					layoutPrototype.setDescription((String)description);
+					layoutPrototype.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -566,9 +568,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object settings) {
+					LayoutPrototype layoutPrototype, Object settingsObject) {
 
-					layoutPrototype.setSettings((String)settings);
+					layoutPrototype.setSettings((String)settingsObject);
 				}
 
 			});
@@ -588,9 +590,9 @@ public class LayoutPrototypeModelImpl
 
 				@Override
 				public void accept(
-					LayoutPrototype layoutPrototype, Object active) {
+					LayoutPrototype layoutPrototype, Object activeObject) {
 
-					layoutPrototype.setActive((Boolean)active);
+					layoutPrototype.setActive((Boolean)activeObject);
 				}
 
 			});

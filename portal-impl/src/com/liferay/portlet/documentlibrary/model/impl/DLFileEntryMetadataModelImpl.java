@@ -276,9 +276,10 @@ public class DLFileEntryMetadataModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryMetadata dlFileEntryMetadata, Object uuid) {
+					DLFileEntryMetadata dlFileEntryMetadata,
+					Object uuidObject) {
 
-					dlFileEntryMetadata.setUuid((String)uuid);
+					dlFileEntryMetadata.setUuid((String)uuidObject);
 				}
 
 			});
@@ -299,10 +300,10 @@ public class DLFileEntryMetadataModelImpl
 				@Override
 				public void accept(
 					DLFileEntryMetadata dlFileEntryMetadata,
-					Object fileEntryMetadataId) {
+					Object fileEntryMetadataIdObject) {
 
 					dlFileEntryMetadata.setFileEntryMetadataId(
-						(Long)fileEntryMetadataId);
+						(Long)fileEntryMetadataIdObject);
 				}
 
 			});
@@ -322,9 +323,10 @@ public class DLFileEntryMetadataModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntryMetadata dlFileEntryMetadata, Object companyId) {
+					DLFileEntryMetadata dlFileEntryMetadata,
+					Object companyIdObject) {
 
-					dlFileEntryMetadata.setCompanyId((Long)companyId);
+					dlFileEntryMetadata.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -345,9 +347,10 @@ public class DLFileEntryMetadataModelImpl
 				@Override
 				public void accept(
 					DLFileEntryMetadata dlFileEntryMetadata,
-					Object DDMStorageId) {
+					Object DDMStorageIdObject) {
 
-					dlFileEntryMetadata.setDDMStorageId((Long)DDMStorageId);
+					dlFileEntryMetadata.setDDMStorageId(
+						(Long)DDMStorageIdObject);
 				}
 
 			});
@@ -368,9 +371,10 @@ public class DLFileEntryMetadataModelImpl
 				@Override
 				public void accept(
 					DLFileEntryMetadata dlFileEntryMetadata,
-					Object DDMStructureId) {
+					Object DDMStructureIdObject) {
 
-					dlFileEntryMetadata.setDDMStructureId((Long)DDMStructureId);
+					dlFileEntryMetadata.setDDMStructureId(
+						(Long)DDMStructureIdObject);
 				}
 
 			});
@@ -391,9 +395,9 @@ public class DLFileEntryMetadataModelImpl
 				@Override
 				public void accept(
 					DLFileEntryMetadata dlFileEntryMetadata,
-					Object fileEntryId) {
+					Object fileEntryIdObject) {
 
-					dlFileEntryMetadata.setFileEntryId((Long)fileEntryId);
+					dlFileEntryMetadata.setFileEntryId((Long)fileEntryIdObject);
 				}
 
 			});
@@ -414,9 +418,10 @@ public class DLFileEntryMetadataModelImpl
 				@Override
 				public void accept(
 					DLFileEntryMetadata dlFileEntryMetadata,
-					Object fileVersionId) {
+					Object fileVersionIdObject) {
 
-					dlFileEntryMetadata.setFileVersionId((Long)fileVersionId);
+					dlFileEntryMetadata.setFileVersionId(
+						(Long)fileVersionIdObject);
 				}
 
 			});

@@ -240,8 +240,8 @@ public class CounterModelImpl
 			new BiConsumer<Counter, Object>() {
 
 				@Override
-				public void accept(Counter counter, Object name) {
-					counter.setName((String)name);
+				public void accept(Counter counter, Object nameObject) {
+					counter.setName((String)nameObject);
 				}
 
 			});
@@ -260,8 +260,8 @@ public class CounterModelImpl
 			new BiConsumer<Counter, Object>() {
 
 				@Override
-				public void accept(Counter counter, Object currentId) {
-					counter.setCurrentId((Long)currentId);
+				public void accept(Counter counter, Object currentIdObject) {
+					counter.setCurrentId((Long)currentIdObject);
 				}
 
 			});

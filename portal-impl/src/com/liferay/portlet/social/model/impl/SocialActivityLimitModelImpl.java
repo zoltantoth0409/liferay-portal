@@ -287,10 +287,10 @@ public class SocialActivityLimitModelImpl
 				@Override
 				public void accept(
 					SocialActivityLimit socialActivityLimit,
-					Object activityLimitId) {
+					Object activityLimitIdObject) {
 
 					socialActivityLimit.setActivityLimitId(
-						(Long)activityLimitId);
+						(Long)activityLimitIdObject);
 				}
 
 			});
@@ -310,9 +310,10 @@ public class SocialActivityLimitModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityLimit socialActivityLimit, Object groupId) {
+					SocialActivityLimit socialActivityLimit,
+					Object groupIdObject) {
 
-					socialActivityLimit.setGroupId((Long)groupId);
+					socialActivityLimit.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -332,9 +333,10 @@ public class SocialActivityLimitModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityLimit socialActivityLimit, Object companyId) {
+					SocialActivityLimit socialActivityLimit,
+					Object companyIdObject) {
 
-					socialActivityLimit.setCompanyId((Long)companyId);
+					socialActivityLimit.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -354,9 +356,10 @@ public class SocialActivityLimitModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityLimit socialActivityLimit, Object userId) {
+					SocialActivityLimit socialActivityLimit,
+					Object userIdObject) {
 
-					socialActivityLimit.setUserId((Long)userId);
+					socialActivityLimit.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -377,9 +380,9 @@ public class SocialActivityLimitModelImpl
 				@Override
 				public void accept(
 					SocialActivityLimit socialActivityLimit,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					socialActivityLimit.setClassNameId((Long)classNameId);
+					socialActivityLimit.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -399,9 +402,10 @@ public class SocialActivityLimitModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityLimit socialActivityLimit, Object classPK) {
+					SocialActivityLimit socialActivityLimit,
+					Object classPKObject) {
 
-					socialActivityLimit.setClassPK((Long)classPK);
+					socialActivityLimit.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -422,9 +426,10 @@ public class SocialActivityLimitModelImpl
 				@Override
 				public void accept(
 					SocialActivityLimit socialActivityLimit,
-					Object activityType) {
+					Object activityTypeObject) {
 
-					socialActivityLimit.setActivityType((Integer)activityType);
+					socialActivityLimit.setActivityType(
+						(Integer)activityTypeObject);
 				}
 
 			});
@@ -445,10 +450,10 @@ public class SocialActivityLimitModelImpl
 				@Override
 				public void accept(
 					SocialActivityLimit socialActivityLimit,
-					Object activityCounterName) {
+					Object activityCounterNameObject) {
 
 					socialActivityLimit.setActivityCounterName(
-						(String)activityCounterName);
+						(String)activityCounterNameObject);
 				}
 
 			});
@@ -468,9 +473,10 @@ public class SocialActivityLimitModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityLimit socialActivityLimit, Object value) {
+					SocialActivityLimit socialActivityLimit,
+					Object valueObject) {
 
-					socialActivityLimit.setValue((String)value);
+					socialActivityLimit.setValue((String)valueObject);
 				}
 
 			});

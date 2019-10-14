@@ -358,8 +358,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object uuid) {
-					calendar.setUuid((String)uuid);
+				public void accept(Calendar calendar, Object uuidObject) {
+					calendar.setUuid((String)uuidObject);
 				}
 
 			});
@@ -378,8 +378,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object calendarId) {
-					calendar.setCalendarId((Long)calendarId);
+				public void accept(Calendar calendar, Object calendarIdObject) {
+					calendar.setCalendarId((Long)calendarIdObject);
 				}
 
 			});
@@ -398,8 +398,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object groupId) {
-					calendar.setGroupId((Long)groupId);
+				public void accept(Calendar calendar, Object groupIdObject) {
+					calendar.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -418,8 +418,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object companyId) {
-					calendar.setCompanyId((Long)companyId);
+				public void accept(Calendar calendar, Object companyIdObject) {
+					calendar.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -438,8 +438,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object userId) {
-					calendar.setUserId((Long)userId);
+				public void accept(Calendar calendar, Object userIdObject) {
+					calendar.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -458,8 +458,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object userName) {
-					calendar.setUserName((String)userName);
+				public void accept(Calendar calendar, Object userNameObject) {
+					calendar.setUserName((String)userNameObject);
 				}
 
 			});
@@ -478,8 +478,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object createDate) {
-					calendar.setCreateDate((Date)createDate);
+				public void accept(Calendar calendar, Object createDateObject) {
+					calendar.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -498,8 +498,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object modifiedDate) {
-					calendar.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					Calendar calendar, Object modifiedDateObject) {
+
+					calendar.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -518,8 +520,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object resourceBlockId) {
-					calendar.setResourceBlockId((Long)resourceBlockId);
+				public void accept(
+					Calendar calendar, Object resourceBlockIdObject) {
+
+					calendar.setResourceBlockId((Long)resourceBlockIdObject);
 				}
 
 			});
@@ -539,9 +543,10 @@ public class CalendarModelImpl
 
 				@Override
 				public void accept(
-					Calendar calendar, Object calendarResourceId) {
+					Calendar calendar, Object calendarResourceIdObject) {
 
-					calendar.setCalendarResourceId((Long)calendarResourceId);
+					calendar.setCalendarResourceId(
+						(Long)calendarResourceIdObject);
 				}
 
 			});
@@ -560,8 +565,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object name) {
-					calendar.setName((String)name);
+				public void accept(Calendar calendar, Object nameObject) {
+					calendar.setName((String)nameObject);
 				}
 
 			});
@@ -580,8 +585,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object description) {
-					calendar.setDescription((String)description);
+				public void accept(
+					Calendar calendar, Object descriptionObject) {
+
+					calendar.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -600,8 +607,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object timeZoneId) {
-					calendar.setTimeZoneId((String)timeZoneId);
+				public void accept(Calendar calendar, Object timeZoneIdObject) {
+					calendar.setTimeZoneId((String)timeZoneIdObject);
 				}
 
 			});
@@ -620,8 +627,8 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object color) {
-					calendar.setColor((Integer)color);
+				public void accept(Calendar calendar, Object colorObject) {
+					calendar.setColor((Integer)colorObject);
 				}
 
 			});
@@ -640,8 +647,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object defaultCalendar) {
-					calendar.setDefaultCalendar((Boolean)defaultCalendar);
+				public void accept(
+					Calendar calendar, Object defaultCalendarObject) {
+
+					calendar.setDefaultCalendar((Boolean)defaultCalendarObject);
 				}
 
 			});
@@ -660,8 +669,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object enableComments) {
-					calendar.setEnableComments((Boolean)enableComments);
+				public void accept(
+					Calendar calendar, Object enableCommentsObject) {
+
+					calendar.setEnableComments((Boolean)enableCommentsObject);
 				}
 
 			});
@@ -680,8 +691,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object enableRatings) {
-					calendar.setEnableRatings((Boolean)enableRatings);
+				public void accept(
+					Calendar calendar, Object enableRatingsObject) {
+
+					calendar.setEnableRatings((Boolean)enableRatingsObject);
 				}
 
 			});
@@ -700,8 +713,10 @@ public class CalendarModelImpl
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object lastPublishDate) {
-					calendar.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					Calendar calendar, Object lastPublishDateObject) {
+
+					calendar.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

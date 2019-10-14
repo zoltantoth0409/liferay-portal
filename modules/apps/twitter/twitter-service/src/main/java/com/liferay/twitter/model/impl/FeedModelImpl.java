@@ -263,8 +263,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object feedId) {
-					feed.setFeedId((Long)feedId);
+				public void accept(Feed feed, Object feedIdObject) {
+					feed.setFeedId((Long)feedIdObject);
 				}
 
 			});
@@ -283,8 +283,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object companyId) {
-					feed.setCompanyId((Long)companyId);
+				public void accept(Feed feed, Object companyIdObject) {
+					feed.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -303,8 +303,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object userId) {
-					feed.setUserId((Long)userId);
+				public void accept(Feed feed, Object userIdObject) {
+					feed.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -323,8 +323,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object userName) {
-					feed.setUserName((String)userName);
+				public void accept(Feed feed, Object userNameObject) {
+					feed.setUserName((String)userNameObject);
 				}
 
 			});
@@ -343,8 +343,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object createDate) {
-					feed.setCreateDate((Date)createDate);
+				public void accept(Feed feed, Object createDateObject) {
+					feed.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -363,8 +363,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object modifiedDate) {
-					feed.setModifiedDate((Date)modifiedDate);
+				public void accept(Feed feed, Object modifiedDateObject) {
+					feed.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -383,8 +383,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object twitterUserId) {
-					feed.setTwitterUserId((Long)twitterUserId);
+				public void accept(Feed feed, Object twitterUserIdObject) {
+					feed.setTwitterUserId((Long)twitterUserIdObject);
 				}
 
 			});
@@ -403,8 +403,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object twitterScreenName) {
-					feed.setTwitterScreenName((String)twitterScreenName);
+				public void accept(Feed feed, Object twitterScreenNameObject) {
+					feed.setTwitterScreenName((String)twitterScreenNameObject);
 				}
 
 			});
@@ -423,8 +423,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			new BiConsumer<Feed, Object>() {
 
 				@Override
-				public void accept(Feed feed, Object lastStatusId) {
-					feed.setLastStatusId((Long)lastStatusId);
+				public void accept(Feed feed, Object lastStatusIdObject) {
+					feed.setLastStatusId((Long)lastStatusIdObject);
 				}
 
 			});

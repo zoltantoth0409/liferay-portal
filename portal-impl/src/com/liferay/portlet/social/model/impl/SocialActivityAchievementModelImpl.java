@@ -284,10 +284,10 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object activityAchievementId) {
+					Object activityAchievementIdObject) {
 
 					socialActivityAchievement.setActivityAchievementId(
-						(Long)activityAchievementId);
+						(Long)activityAchievementIdObject);
 				}
 
 			});
@@ -310,9 +310,9 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object groupId) {
+					Object groupIdObject) {
 
-					socialActivityAchievement.setGroupId((Long)groupId);
+					socialActivityAchievement.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -335,9 +335,10 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object companyId) {
+					Object companyIdObject) {
 
-					socialActivityAchievement.setCompanyId((Long)companyId);
+					socialActivityAchievement.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -360,9 +361,9 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object userId) {
+					Object userIdObject) {
 
-					socialActivityAchievement.setUserId((Long)userId);
+					socialActivityAchievement.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -385,9 +386,10 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object createDate) {
+					Object createDateObject) {
 
-					socialActivityAchievement.setCreateDate((Long)createDate);
+					socialActivityAchievement.setCreateDate(
+						(Long)createDateObject);
 				}
 
 			});
@@ -410,9 +412,9 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object name) {
+					Object nameObject) {
 
-					socialActivityAchievement.setName((String)name);
+					socialActivityAchievement.setName((String)nameObject);
 				}
 
 			});
@@ -435,10 +437,10 @@ public class SocialActivityAchievementModelImpl
 				@Override
 				public void accept(
 					SocialActivityAchievement socialActivityAchievement,
-					Object firstInGroup) {
+					Object firstInGroupObject) {
 
 					socialActivityAchievement.setFirstInGroup(
-						(Boolean)firstInGroup);
+						(Boolean)firstInGroupObject);
 				}
 
 			});

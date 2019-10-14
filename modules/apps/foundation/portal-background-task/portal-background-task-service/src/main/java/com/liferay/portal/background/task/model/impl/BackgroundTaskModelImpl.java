@@ -353,9 +353,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object mvccVersion) {
+					BackgroundTask backgroundTask, Object mvccVersionObject) {
 
-					backgroundTask.setMvccVersion((Long)mvccVersion);
+					backgroundTask.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -375,9 +375,11 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object backgroundTaskId) {
+					BackgroundTask backgroundTask,
+					Object backgroundTaskIdObject) {
 
-					backgroundTask.setBackgroundTaskId((Long)backgroundTaskId);
+					backgroundTask.setBackgroundTaskId(
+						(Long)backgroundTaskIdObject);
 				}
 
 			});
@@ -397,9 +399,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object groupId) {
+					BackgroundTask backgroundTask, Object groupIdObject) {
 
-					backgroundTask.setGroupId((Long)groupId);
+					backgroundTask.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -419,9 +421,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object companyId) {
+					BackgroundTask backgroundTask, Object companyIdObject) {
 
-					backgroundTask.setCompanyId((Long)companyId);
+					backgroundTask.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -441,9 +443,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object userId) {
+					BackgroundTask backgroundTask, Object userIdObject) {
 
-					backgroundTask.setUserId((Long)userId);
+					backgroundTask.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -463,9 +465,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object userName) {
+					BackgroundTask backgroundTask, Object userNameObject) {
 
-					backgroundTask.setUserName((String)userName);
+					backgroundTask.setUserName((String)userNameObject);
 				}
 
 			});
@@ -485,9 +487,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object createDate) {
+					BackgroundTask backgroundTask, Object createDateObject) {
 
-					backgroundTask.setCreateDate((Date)createDate);
+					backgroundTask.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -507,9 +509,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object modifiedDate) {
+					BackgroundTask backgroundTask, Object modifiedDateObject) {
 
-					backgroundTask.setModifiedDate((Date)modifiedDate);
+					backgroundTask.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -528,8 +530,10 @@ public class BackgroundTaskModelImpl
 			new BiConsumer<BackgroundTask, Object>() {
 
 				@Override
-				public void accept(BackgroundTask backgroundTask, Object name) {
-					backgroundTask.setName((String)name);
+				public void accept(
+					BackgroundTask backgroundTask, Object nameObject) {
+
+					backgroundTask.setName((String)nameObject);
 				}
 
 			});
@@ -549,10 +553,11 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object servletContextNames) {
+					BackgroundTask backgroundTask,
+					Object servletContextNamesObject) {
 
 					backgroundTask.setServletContextNames(
-						(String)servletContextNames);
+						(String)servletContextNamesObject);
 				}
 
 			});
@@ -573,10 +578,10 @@ public class BackgroundTaskModelImpl
 				@Override
 				public void accept(
 					BackgroundTask backgroundTask,
-					Object taskExecutorClassName) {
+					Object taskExecutorClassNameObject) {
 
 					backgroundTask.setTaskExecutorClassName(
-						(String)taskExecutorClassName);
+						(String)taskExecutorClassNameObject);
 				}
 
 			});
@@ -596,10 +601,11 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object taskContextMap) {
+					BackgroundTask backgroundTask,
+					Object taskContextMapObject) {
 
 					backgroundTask.setTaskContextMap(
-						(Map<String, Serializable>)taskContextMap);
+						(Map<String, Serializable>)taskContextMapObject);
 				}
 
 			});
@@ -619,9 +625,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object completed) {
+					BackgroundTask backgroundTask, Object completedObject) {
 
-					backgroundTask.setCompleted((Boolean)completed);
+					backgroundTask.setCompleted((Boolean)completedObject);
 				}
 
 			});
@@ -641,9 +647,11 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object completionDate) {
+					BackgroundTask backgroundTask,
+					Object completionDateObject) {
 
-					backgroundTask.setCompletionDate((Date)completionDate);
+					backgroundTask.setCompletionDate(
+						(Date)completionDateObject);
 				}
 
 			});
@@ -663,9 +671,9 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object status) {
+					BackgroundTask backgroundTask, Object statusObject) {
 
-					backgroundTask.setStatus((Integer)status);
+					backgroundTask.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -685,9 +693,10 @@ public class BackgroundTaskModelImpl
 
 				@Override
 				public void accept(
-					BackgroundTask backgroundTask, Object statusMessage) {
+					BackgroundTask backgroundTask, Object statusMessageObject) {
 
-					backgroundTask.setStatusMessage((String)statusMessage);
+					backgroundTask.setStatusMessage(
+						(String)statusMessageObject);
 				}
 
 			});

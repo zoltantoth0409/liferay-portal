@@ -367,9 +367,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object uuid) {
+					CalendarResource calendarResource, Object uuidObject) {
 
-					calendarResource.setUuid((String)uuid);
+					calendarResource.setUuid((String)uuidObject);
 				}
 
 			});
@@ -390,10 +390,10 @@ public class CalendarResourceModelImpl
 				@Override
 				public void accept(
 					CalendarResource calendarResource,
-					Object calendarResourceId) {
+					Object calendarResourceIdObject) {
 
 					calendarResource.setCalendarResourceId(
-						(Long)calendarResourceId);
+						(Long)calendarResourceIdObject);
 				}
 
 			});
@@ -413,9 +413,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object groupId) {
+					CalendarResource calendarResource, Object groupIdObject) {
 
-					calendarResource.setGroupId((Long)groupId);
+					calendarResource.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -435,9 +435,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object companyId) {
+					CalendarResource calendarResource, Object companyIdObject) {
 
-					calendarResource.setCompanyId((Long)companyId);
+					calendarResource.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -457,9 +457,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object userId) {
+					CalendarResource calendarResource, Object userIdObject) {
 
-					calendarResource.setUserId((Long)userId);
+					calendarResource.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -479,9 +479,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object userName) {
+					CalendarResource calendarResource, Object userNameObject) {
 
-					calendarResource.setUserName((String)userName);
+					calendarResource.setUserName((String)userNameObject);
 				}
 
 			});
@@ -501,9 +501,10 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object createDate) {
+					CalendarResource calendarResource,
+					Object createDateObject) {
 
-					calendarResource.setCreateDate((Date)createDate);
+					calendarResource.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -523,9 +524,10 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object modifiedDate) {
+					CalendarResource calendarResource,
+					Object modifiedDateObject) {
 
-					calendarResource.setModifiedDate((Date)modifiedDate);
+					calendarResource.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -545,9 +547,11 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object resourceBlockId) {
+					CalendarResource calendarResource,
+					Object resourceBlockIdObject) {
 
-					calendarResource.setResourceBlockId((Long)resourceBlockId);
+					calendarResource.setResourceBlockId(
+						(Long)resourceBlockIdObject);
 				}
 
 			});
@@ -567,9 +571,10 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object classNameId) {
+					CalendarResource calendarResource,
+					Object classNameIdObject) {
 
-					calendarResource.setClassNameId((Long)classNameId);
+					calendarResource.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -589,9 +594,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object classPK) {
+					CalendarResource calendarResource, Object classPKObject) {
 
-					calendarResource.setClassPK((Long)classPK);
+					calendarResource.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -611,9 +616,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object classUuid) {
+					CalendarResource calendarResource, Object classUuidObject) {
 
-					calendarResource.setClassUuid((String)classUuid);
+					calendarResource.setClassUuid((String)classUuidObject);
 				}
 
 			});
@@ -633,9 +638,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object code) {
+					CalendarResource calendarResource, Object codeObject) {
 
-					calendarResource.setCode((String)code);
+					calendarResource.setCode((String)codeObject);
 				}
 
 			});
@@ -655,9 +660,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object name) {
+					CalendarResource calendarResource, Object nameObject) {
 
-					calendarResource.setName((String)name);
+					calendarResource.setName((String)nameObject);
 				}
 
 			});
@@ -677,9 +682,10 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object description) {
+					CalendarResource calendarResource,
+					Object descriptionObject) {
 
-					calendarResource.setDescription((String)description);
+					calendarResource.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -699,9 +705,9 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object active) {
+					CalendarResource calendarResource, Object activeObject) {
 
-					calendarResource.setActive((Boolean)active);
+					calendarResource.setActive((Boolean)activeObject);
 				}
 
 			});
@@ -721,9 +727,11 @@ public class CalendarResourceModelImpl
 
 				@Override
 				public void accept(
-					CalendarResource calendarResource, Object lastPublishDate) {
+					CalendarResource calendarResource,
+					Object lastPublishDateObject) {
 
-					calendarResource.setLastPublishDate((Date)lastPublishDate);
+					calendarResource.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

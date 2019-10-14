@@ -330,9 +330,10 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object categoryId) {
+					ShoppingCategory shoppingCategory,
+					Object categoryIdObject) {
 
-					shoppingCategory.setCategoryId((Long)categoryId);
+					shoppingCategory.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -352,9 +353,9 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object groupId) {
+					ShoppingCategory shoppingCategory, Object groupIdObject) {
 
-					shoppingCategory.setGroupId((Long)groupId);
+					shoppingCategory.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -374,9 +375,9 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object companyId) {
+					ShoppingCategory shoppingCategory, Object companyIdObject) {
 
-					shoppingCategory.setCompanyId((Long)companyId);
+					shoppingCategory.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -396,9 +397,9 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object userId) {
+					ShoppingCategory shoppingCategory, Object userIdObject) {
 
-					shoppingCategory.setUserId((Long)userId);
+					shoppingCategory.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -418,9 +419,9 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object userName) {
+					ShoppingCategory shoppingCategory, Object userNameObject) {
 
-					shoppingCategory.setUserName((String)userName);
+					shoppingCategory.setUserName((String)userNameObject);
 				}
 
 			});
@@ -440,9 +441,10 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object createDate) {
+					ShoppingCategory shoppingCategory,
+					Object createDateObject) {
 
-					shoppingCategory.setCreateDate((Date)createDate);
+					shoppingCategory.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -462,9 +464,10 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object modifiedDate) {
+					ShoppingCategory shoppingCategory,
+					Object modifiedDateObject) {
 
-					shoppingCategory.setModifiedDate((Date)modifiedDate);
+					shoppingCategory.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -485,10 +488,10 @@ public class ShoppingCategoryModelImpl
 				@Override
 				public void accept(
 					ShoppingCategory shoppingCategory,
-					Object parentCategoryId) {
+					Object parentCategoryIdObject) {
 
 					shoppingCategory.setParentCategoryId(
-						(Long)parentCategoryId);
+						(Long)parentCategoryIdObject);
 				}
 
 			});
@@ -508,9 +511,9 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object name) {
+					ShoppingCategory shoppingCategory, Object nameObject) {
 
-					shoppingCategory.setName((String)name);
+					shoppingCategory.setName((String)nameObject);
 				}
 
 			});
@@ -530,9 +533,10 @@ public class ShoppingCategoryModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCategory shoppingCategory, Object description) {
+					ShoppingCategory shoppingCategory,
+					Object descriptionObject) {
 
-					shoppingCategory.setDescription((String)description);
+					shoppingCategory.setDescription((String)descriptionObject);
 				}
 
 			});

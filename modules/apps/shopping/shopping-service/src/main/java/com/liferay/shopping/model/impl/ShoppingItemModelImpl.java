@@ -396,8 +396,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object itemId) {
-					shoppingItem.setItemId((Long)itemId);
+				public void accept(
+					ShoppingItem shoppingItem, Object itemIdObject) {
+
+					shoppingItem.setItemId((Long)itemIdObject);
 				}
 
 			});
@@ -416,8 +418,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object groupId) {
-					shoppingItem.setGroupId((Long)groupId);
+				public void accept(
+					ShoppingItem shoppingItem, Object groupIdObject) {
+
+					shoppingItem.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -437,9 +441,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object companyId) {
+					ShoppingItem shoppingItem, Object companyIdObject) {
 
-					shoppingItem.setCompanyId((Long)companyId);
+					shoppingItem.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -458,8 +462,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object userId) {
-					shoppingItem.setUserId((Long)userId);
+				public void accept(
+					ShoppingItem shoppingItem, Object userIdObject) {
+
+					shoppingItem.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -478,8 +484,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object userName) {
-					shoppingItem.setUserName((String)userName);
+				public void accept(
+					ShoppingItem shoppingItem, Object userNameObject) {
+
+					shoppingItem.setUserName((String)userNameObject);
 				}
 
 			});
@@ -499,9 +507,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object createDate) {
+					ShoppingItem shoppingItem, Object createDateObject) {
 
-					shoppingItem.setCreateDate((Date)createDate);
+					shoppingItem.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -521,9 +529,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object modifiedDate) {
+					ShoppingItem shoppingItem, Object modifiedDateObject) {
 
-					shoppingItem.setModifiedDate((Date)modifiedDate);
+					shoppingItem.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -543,9 +551,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object categoryId) {
+					ShoppingItem shoppingItem, Object categoryIdObject) {
 
-					shoppingItem.setCategoryId((Long)categoryId);
+					shoppingItem.setCategoryId((Long)categoryIdObject);
 				}
 
 			});
@@ -564,8 +572,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object sku) {
-					shoppingItem.setSku((String)sku);
+				public void accept(
+					ShoppingItem shoppingItem, Object skuObject) {
+
+					shoppingItem.setSku((String)skuObject);
 				}
 
 			});
@@ -584,8 +594,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object name) {
-					shoppingItem.setName((String)name);
+				public void accept(
+					ShoppingItem shoppingItem, Object nameObject) {
+
+					shoppingItem.setName((String)nameObject);
 				}
 
 			});
@@ -605,9 +617,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object description) {
+					ShoppingItem shoppingItem, Object descriptionObject) {
 
-					shoppingItem.setDescription((String)description);
+					shoppingItem.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -627,9 +639,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object properties) {
+					ShoppingItem shoppingItem, Object propertiesObject) {
 
-					shoppingItem.setProperties((String)properties);
+					shoppingItem.setProperties((String)propertiesObject);
 				}
 
 			});
@@ -648,8 +660,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object fields) {
-					shoppingItem.setFields((Boolean)fields);
+				public void accept(
+					ShoppingItem shoppingItem, Object fieldsObject) {
+
+					shoppingItem.setFields((Boolean)fieldsObject);
 				}
 
 			});
@@ -669,9 +683,10 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object fieldsQuantities) {
+					ShoppingItem shoppingItem, Object fieldsQuantitiesObject) {
 
-					shoppingItem.setFieldsQuantities((String)fieldsQuantities);
+					shoppingItem.setFieldsQuantities(
+						(String)fieldsQuantitiesObject);
 				}
 
 			});
@@ -691,9 +706,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object minQuantity) {
+					ShoppingItem shoppingItem, Object minQuantityObject) {
 
-					shoppingItem.setMinQuantity((Integer)minQuantity);
+					shoppingItem.setMinQuantity((Integer)minQuantityObject);
 				}
 
 			});
@@ -713,9 +728,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object maxQuantity) {
+					ShoppingItem shoppingItem, Object maxQuantityObject) {
 
-					shoppingItem.setMaxQuantity((Integer)maxQuantity);
+					shoppingItem.setMaxQuantity((Integer)maxQuantityObject);
 				}
 
 			});
@@ -734,8 +749,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object price) {
-					shoppingItem.setPrice((Double)price);
+				public void accept(
+					ShoppingItem shoppingItem, Object priceObject) {
+
+					shoppingItem.setPrice((Double)priceObject);
 				}
 
 			});
@@ -754,8 +771,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object discount) {
-					shoppingItem.setDiscount((Double)discount);
+				public void accept(
+					ShoppingItem shoppingItem, Object discountObject) {
+
+					shoppingItem.setDiscount((Double)discountObject);
 				}
 
 			});
@@ -774,8 +793,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object taxable) {
-					shoppingItem.setTaxable((Boolean)taxable);
+				public void accept(
+					ShoppingItem shoppingItem, Object taxableObject) {
+
+					shoppingItem.setTaxable((Boolean)taxableObject);
 				}
 
 			});
@@ -794,8 +815,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object shipping) {
-					shoppingItem.setShipping((Double)shipping);
+				public void accept(
+					ShoppingItem shoppingItem, Object shippingObject) {
+
+					shoppingItem.setShipping((Double)shippingObject);
 				}
 
 			});
@@ -815,10 +838,11 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object useShippingFormula) {
+					ShoppingItem shoppingItem,
+					Object useShippingFormulaObject) {
 
 					shoppingItem.setUseShippingFormula(
-						(Boolean)useShippingFormula);
+						(Boolean)useShippingFormulaObject);
 				}
 
 			});
@@ -838,9 +862,10 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object requiresShipping) {
+					ShoppingItem shoppingItem, Object requiresShippingObject) {
 
-					shoppingItem.setRequiresShipping((Boolean)requiresShipping);
+					shoppingItem.setRequiresShipping(
+						(Boolean)requiresShippingObject);
 				}
 
 			});
@@ -860,9 +885,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object stockQuantity) {
+					ShoppingItem shoppingItem, Object stockQuantityObject) {
 
-					shoppingItem.setStockQuantity((Integer)stockQuantity);
+					shoppingItem.setStockQuantity((Integer)stockQuantityObject);
 				}
 
 			});
@@ -881,8 +906,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object featured) {
-					shoppingItem.setFeatured((Boolean)featured);
+				public void accept(
+					ShoppingItem shoppingItem, Object featuredObject) {
+
+					shoppingItem.setFeatured((Boolean)featuredObject);
 				}
 
 			});
@@ -901,8 +928,10 @@ public class ShoppingItemModelImpl
 			new BiConsumer<ShoppingItem, Object>() {
 
 				@Override
-				public void accept(ShoppingItem shoppingItem, Object sale) {
-					shoppingItem.setSale((Boolean)sale);
+				public void accept(
+					ShoppingItem shoppingItem, Object saleObject) {
+
+					shoppingItem.setSale((Boolean)saleObject);
 				}
 
 			});
@@ -922,9 +951,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object smallImage) {
+					ShoppingItem shoppingItem, Object smallImageObject) {
 
-					shoppingItem.setSmallImage((Boolean)smallImage);
+					shoppingItem.setSmallImage((Boolean)smallImageObject);
 				}
 
 			});
@@ -944,9 +973,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object smallImageId) {
+					ShoppingItem shoppingItem, Object smallImageIdObject) {
 
-					shoppingItem.setSmallImageId((Long)smallImageId);
+					shoppingItem.setSmallImageId((Long)smallImageIdObject);
 				}
 
 			});
@@ -966,9 +995,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object smallImageURL) {
+					ShoppingItem shoppingItem, Object smallImageURLObject) {
 
-					shoppingItem.setSmallImageURL((String)smallImageURL);
+					shoppingItem.setSmallImageURL((String)smallImageURLObject);
 				}
 
 			});
@@ -988,9 +1017,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object mediumImage) {
+					ShoppingItem shoppingItem, Object mediumImageObject) {
 
-					shoppingItem.setMediumImage((Boolean)mediumImage);
+					shoppingItem.setMediumImage((Boolean)mediumImageObject);
 				}
 
 			});
@@ -1010,9 +1039,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object mediumImageId) {
+					ShoppingItem shoppingItem, Object mediumImageIdObject) {
 
-					shoppingItem.setMediumImageId((Long)mediumImageId);
+					shoppingItem.setMediumImageId((Long)mediumImageIdObject);
 				}
 
 			});
@@ -1032,9 +1061,10 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object mediumImageURL) {
+					ShoppingItem shoppingItem, Object mediumImageURLObject) {
 
-					shoppingItem.setMediumImageURL((String)mediumImageURL);
+					shoppingItem.setMediumImageURL(
+						(String)mediumImageURLObject);
 				}
 
 			});
@@ -1054,9 +1084,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object largeImage) {
+					ShoppingItem shoppingItem, Object largeImageObject) {
 
-					shoppingItem.setLargeImage((Boolean)largeImage);
+					shoppingItem.setLargeImage((Boolean)largeImageObject);
 				}
 
 			});
@@ -1076,9 +1106,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object largeImageId) {
+					ShoppingItem shoppingItem, Object largeImageIdObject) {
 
-					shoppingItem.setLargeImageId((Long)largeImageId);
+					shoppingItem.setLargeImageId((Long)largeImageIdObject);
 				}
 
 			});
@@ -1098,9 +1128,9 @@ public class ShoppingItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingItem shoppingItem, Object largeImageURL) {
+					ShoppingItem shoppingItem, Object largeImageURLObject) {
 
-					shoppingItem.setLargeImageURL((String)largeImageURL);
+					shoppingItem.setLargeImageURL((String)largeImageURLObject);
 				}
 
 			});

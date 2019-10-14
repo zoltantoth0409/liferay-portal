@@ -278,10 +278,10 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object contentSearchId) {
+					Object contentSearchIdObject) {
 
 					journalContentSearch.setContentSearchId(
-						(Long)contentSearchId);
+						(Long)contentSearchIdObject);
 				}
 
 			});
@@ -301,9 +301,10 @@ public class JournalContentSearchModelImpl
 
 				@Override
 				public void accept(
-					JournalContentSearch journalContentSearch, Object groupId) {
+					JournalContentSearch journalContentSearch,
+					Object groupIdObject) {
 
-					journalContentSearch.setGroupId((Long)groupId);
+					journalContentSearch.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -324,9 +325,9 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object companyId) {
+					Object companyIdObject) {
 
-					journalContentSearch.setCompanyId((Long)companyId);
+					journalContentSearch.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -347,10 +348,10 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object privateLayout) {
+					Object privateLayoutObject) {
 
 					journalContentSearch.setPrivateLayout(
-						(Boolean)privateLayout);
+						(Boolean)privateLayoutObject);
 				}
 
 			});
@@ -371,9 +372,9 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object layoutId) {
+					Object layoutIdObject) {
 
-					journalContentSearch.setLayoutId((Long)layoutId);
+					journalContentSearch.setLayoutId((Long)layoutIdObject);
 				}
 
 			});
@@ -394,9 +395,9 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object portletId) {
+					Object portletIdObject) {
 
-					journalContentSearch.setPortletId((String)portletId);
+					journalContentSearch.setPortletId((String)portletIdObject);
 				}
 
 			});
@@ -417,9 +418,9 @@ public class JournalContentSearchModelImpl
 				@Override
 				public void accept(
 					JournalContentSearch journalContentSearch,
-					Object articleId) {
+					Object articleIdObject) {
 
-					journalContentSearch.setArticleId((String)articleId);
+					journalContentSearch.setArticleId((String)articleIdObject);
 				}
 
 			});

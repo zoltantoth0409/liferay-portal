@@ -280,9 +280,10 @@ public class WSRPConsumerPortletModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumerPortlet wsrpConsumerPortlet, Object uuid) {
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object uuidObject) {
 
-					wsrpConsumerPortlet.setUuid((String)uuid);
+					wsrpConsumerPortlet.setUuid((String)uuidObject);
 				}
 
 			});
@@ -303,10 +304,10 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object wsrpConsumerPortletId) {
+					Object wsrpConsumerPortletIdObject) {
 
 					wsrpConsumerPortlet.setWsrpConsumerPortletId(
-						(Long)wsrpConsumerPortletId);
+						(Long)wsrpConsumerPortletIdObject);
 				}
 
 			});
@@ -326,9 +327,10 @@ public class WSRPConsumerPortletModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumerPortlet wsrpConsumerPortlet, Object companyId) {
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object companyIdObject) {
 
-					wsrpConsumerPortlet.setCompanyId((Long)companyId);
+					wsrpConsumerPortlet.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -349,9 +351,9 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object createDate) {
+					Object createDateObject) {
 
-					wsrpConsumerPortlet.setCreateDate((Date)createDate);
+					wsrpConsumerPortlet.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -372,9 +374,10 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					wsrpConsumerPortlet.setModifiedDate((Date)modifiedDate);
+					wsrpConsumerPortlet.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -395,9 +398,10 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object wsrpConsumerId) {
+					Object wsrpConsumerIdObject) {
 
-					wsrpConsumerPortlet.setWsrpConsumerId((Long)wsrpConsumerId);
+					wsrpConsumerPortlet.setWsrpConsumerId(
+						(Long)wsrpConsumerIdObject);
 				}
 
 			});
@@ -417,9 +421,10 @@ public class WSRPConsumerPortletModelImpl
 
 				@Override
 				public void accept(
-					WSRPConsumerPortlet wsrpConsumerPortlet, Object name) {
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object nameObject) {
 
-					wsrpConsumerPortlet.setName((String)name);
+					wsrpConsumerPortlet.setName((String)nameObject);
 				}
 
 			});
@@ -440,9 +445,10 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object portletHandle) {
+					Object portletHandleObject) {
 
-					wsrpConsumerPortlet.setPortletHandle((String)portletHandle);
+					wsrpConsumerPortlet.setPortletHandle(
+						(String)portletHandleObject);
 				}
 
 			});
@@ -463,10 +469,10 @@ public class WSRPConsumerPortletModelImpl
 				@Override
 				public void accept(
 					WSRPConsumerPortlet wsrpConsumerPortlet,
-					Object lastPublishDate) {
+					Object lastPublishDateObject) {
 
 					wsrpConsumerPortlet.setLastPublishDate(
-						(Date)lastPublishDate);
+						(Date)lastPublishDateObject);
 				}
 
 			});

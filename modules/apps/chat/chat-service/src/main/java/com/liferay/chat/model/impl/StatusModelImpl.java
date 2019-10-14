@@ -264,8 +264,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object statusId) {
-					status.setStatusId((Long)statusId);
+				public void accept(Status status, Object statusIdObject) {
+					status.setStatusId((Long)statusIdObject);
 				}
 
 			});
@@ -284,8 +284,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object userId) {
-					status.setUserId((Long)userId);
+				public void accept(Status status, Object userIdObject) {
+					status.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -304,8 +304,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object modifiedDate) {
-					status.setModifiedDate((Long)modifiedDate);
+				public void accept(Status status, Object modifiedDateObject) {
+					status.setModifiedDate((Long)modifiedDateObject);
 				}
 
 			});
@@ -324,8 +324,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object online) {
-					status.setOnline((Boolean)online);
+				public void accept(Status status, Object onlineObject) {
+					status.setOnline((Boolean)onlineObject);
 				}
 
 			});
@@ -344,8 +344,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object awake) {
-					status.setAwake((Boolean)awake);
+				public void accept(Status status, Object awakeObject) {
+					status.setAwake((Boolean)awakeObject);
 				}
 
 			});
@@ -364,8 +364,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object activePanelIds) {
-					status.setActivePanelIds((String)activePanelIds);
+				public void accept(Status status, Object activePanelIdsObject) {
+					status.setActivePanelIds((String)activePanelIdsObject);
 				}
 
 			});
@@ -384,8 +384,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object message) {
-					status.setMessage((String)message);
+				public void accept(Status status, Object messageObject) {
+					status.setMessage((String)messageObject);
 				}
 
 			});
@@ -404,8 +404,8 @@ public class StatusModelImpl
 			new BiConsumer<Status, Object>() {
 
 				@Override
-				public void accept(Status status, Object playSound) {
-					status.setPlaySound((Boolean)playSound);
+				public void accept(Status status, Object playSoundObject) {
+					status.setPlaySound((Boolean)playSoundObject);
 				}
 
 			});

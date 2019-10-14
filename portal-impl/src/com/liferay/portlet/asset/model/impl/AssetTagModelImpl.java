@@ -346,8 +346,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object uuid) {
-					assetTag.setUuid((String)uuid);
+				public void accept(AssetTag assetTag, Object uuidObject) {
+					assetTag.setUuid((String)uuidObject);
 				}
 
 			});
@@ -366,8 +366,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object tagId) {
-					assetTag.setTagId((Long)tagId);
+				public void accept(AssetTag assetTag, Object tagIdObject) {
+					assetTag.setTagId((Long)tagIdObject);
 				}
 
 			});
@@ -386,8 +386,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object groupId) {
-					assetTag.setGroupId((Long)groupId);
+				public void accept(AssetTag assetTag, Object groupIdObject) {
+					assetTag.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -406,8 +406,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object companyId) {
-					assetTag.setCompanyId((Long)companyId);
+				public void accept(AssetTag assetTag, Object companyIdObject) {
+					assetTag.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -426,8 +426,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object userId) {
-					assetTag.setUserId((Long)userId);
+				public void accept(AssetTag assetTag, Object userIdObject) {
+					assetTag.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -446,8 +446,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object userName) {
-					assetTag.setUserName((String)userName);
+				public void accept(AssetTag assetTag, Object userNameObject) {
+					assetTag.setUserName((String)userNameObject);
 				}
 
 			});
@@ -466,8 +466,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object createDate) {
-					assetTag.setCreateDate((Date)createDate);
+				public void accept(AssetTag assetTag, Object createDateObject) {
+					assetTag.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -486,8 +486,10 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object modifiedDate) {
-					assetTag.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					AssetTag assetTag, Object modifiedDateObject) {
+
+					assetTag.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -506,8 +508,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object name) {
-					assetTag.setName((String)name);
+				public void accept(AssetTag assetTag, Object nameObject) {
+					assetTag.setName((String)nameObject);
 				}
 
 			});
@@ -526,8 +528,8 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object assetCount) {
-					assetTag.setAssetCount((Integer)assetCount);
+				public void accept(AssetTag assetTag, Object assetCountObject) {
+					assetTag.setAssetCount((Integer)assetCountObject);
 				}
 
 			});
@@ -546,8 +548,10 @@ public class AssetTagModelImpl
 			new BiConsumer<AssetTag, Object>() {
 
 				@Override
-				public void accept(AssetTag assetTag, Object lastPublishDate) {
-					assetTag.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					AssetTag assetTag, Object lastPublishDateObject) {
+
+					assetTag.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

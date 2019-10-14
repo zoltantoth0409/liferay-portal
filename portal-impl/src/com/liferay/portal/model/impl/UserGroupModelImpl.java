@@ -383,8 +383,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object mvccVersion) {
-					userGroup.setMvccVersion((Long)mvccVersion);
+				public void accept(
+					UserGroup userGroup, Object mvccVersionObject) {
+
+					userGroup.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -403,8 +405,8 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object uuid) {
-					userGroup.setUuid((String)uuid);
+				public void accept(UserGroup userGroup, Object uuidObject) {
+					userGroup.setUuid((String)uuidObject);
 				}
 
 			});
@@ -423,8 +425,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object userGroupId) {
-					userGroup.setUserGroupId((Long)userGroupId);
+				public void accept(
+					UserGroup userGroup, Object userGroupIdObject) {
+
+					userGroup.setUserGroupId((Long)userGroupIdObject);
 				}
 
 			});
@@ -443,8 +447,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object companyId) {
-					userGroup.setCompanyId((Long)companyId);
+				public void accept(
+					UserGroup userGroup, Object companyIdObject) {
+
+					userGroup.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -463,8 +469,8 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object userId) {
-					userGroup.setUserId((Long)userId);
+				public void accept(UserGroup userGroup, Object userIdObject) {
+					userGroup.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -483,8 +489,8 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object userName) {
-					userGroup.setUserName((String)userName);
+				public void accept(UserGroup userGroup, Object userNameObject) {
+					userGroup.setUserName((String)userNameObject);
 				}
 
 			});
@@ -503,8 +509,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object createDate) {
-					userGroup.setCreateDate((Date)createDate);
+				public void accept(
+					UserGroup userGroup, Object createDateObject) {
+
+					userGroup.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -523,8 +531,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object modifiedDate) {
-					userGroup.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					UserGroup userGroup, Object modifiedDateObject) {
+
+					userGroup.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -544,9 +554,10 @@ public class UserGroupModelImpl
 
 				@Override
 				public void accept(
-					UserGroup userGroup, Object parentUserGroupId) {
+					UserGroup userGroup, Object parentUserGroupIdObject) {
 
-					userGroup.setParentUserGroupId((Long)parentUserGroupId);
+					userGroup.setParentUserGroupId(
+						(Long)parentUserGroupIdObject);
 				}
 
 			});
@@ -565,8 +576,8 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object name) {
-					userGroup.setName((String)name);
+				public void accept(UserGroup userGroup, Object nameObject) {
+					userGroup.setName((String)nameObject);
 				}
 
 			});
@@ -585,8 +596,10 @@ public class UserGroupModelImpl
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object description) {
-					userGroup.setDescription((String)description);
+				public void accept(
+					UserGroup userGroup, Object descriptionObject) {
+
+					userGroup.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -606,9 +619,10 @@ public class UserGroupModelImpl
 
 				@Override
 				public void accept(
-					UserGroup userGroup, Object addedByLDAPImport) {
+					UserGroup userGroup, Object addedByLDAPImportObject) {
 
-					userGroup.setAddedByLDAPImport((Boolean)addedByLDAPImport);
+					userGroup.setAddedByLDAPImport(
+						(Boolean)addedByLDAPImportObject);
 				}
 
 			});

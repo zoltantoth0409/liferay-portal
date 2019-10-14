@@ -275,9 +275,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object orderItemId) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object orderItemIdObject) {
 
-					shoppingOrderItem.setOrderItemId((Long)orderItemId);
+					shoppingOrderItem.setOrderItemId((Long)orderItemIdObject);
 				}
 
 			});
@@ -297,9 +298,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object companyId) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object companyIdObject) {
 
-					shoppingOrderItem.setCompanyId((Long)companyId);
+					shoppingOrderItem.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -319,9 +321,9 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object orderId) {
+					ShoppingOrderItem shoppingOrderItem, Object orderIdObject) {
 
-					shoppingOrderItem.setOrderId((Long)orderId);
+					shoppingOrderItem.setOrderId((Long)orderIdObject);
 				}
 
 			});
@@ -341,9 +343,9 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object itemId) {
+					ShoppingOrderItem shoppingOrderItem, Object itemIdObject) {
 
-					shoppingOrderItem.setItemId((String)itemId);
+					shoppingOrderItem.setItemId((String)itemIdObject);
 				}
 
 			});
@@ -363,9 +365,9 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object sku) {
+					ShoppingOrderItem shoppingOrderItem, Object skuObject) {
 
-					shoppingOrderItem.setSku((String)sku);
+					shoppingOrderItem.setSku((String)skuObject);
 				}
 
 			});
@@ -385,9 +387,9 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object name) {
+					ShoppingOrderItem shoppingOrderItem, Object nameObject) {
 
-					shoppingOrderItem.setName((String)name);
+					shoppingOrderItem.setName((String)nameObject);
 				}
 
 			});
@@ -407,9 +409,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object description) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object descriptionObject) {
 
-					shoppingOrderItem.setDescription((String)description);
+					shoppingOrderItem.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -429,9 +432,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object properties) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object propertiesObject) {
 
-					shoppingOrderItem.setProperties((String)properties);
+					shoppingOrderItem.setProperties((String)propertiesObject);
 				}
 
 			});
@@ -451,9 +455,9 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object price) {
+					ShoppingOrderItem shoppingOrderItem, Object priceObject) {
 
-					shoppingOrderItem.setPrice((Double)price);
+					shoppingOrderItem.setPrice((Double)priceObject);
 				}
 
 			});
@@ -473,9 +477,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object quantity) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object quantityObject) {
 
-					shoppingOrderItem.setQuantity((Integer)quantity);
+					shoppingOrderItem.setQuantity((Integer)quantityObject);
 				}
 
 			});
@@ -495,9 +500,10 @@ public class ShoppingOrderItemModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrderItem shoppingOrderItem, Object shippedDate) {
+					ShoppingOrderItem shoppingOrderItem,
+					Object shippedDateObject) {
 
-					shoppingOrderItem.setShippedDate((Date)shippedDate);
+					shoppingOrderItem.setShippedDate((Date)shippedDateObject);
 				}
 
 			});

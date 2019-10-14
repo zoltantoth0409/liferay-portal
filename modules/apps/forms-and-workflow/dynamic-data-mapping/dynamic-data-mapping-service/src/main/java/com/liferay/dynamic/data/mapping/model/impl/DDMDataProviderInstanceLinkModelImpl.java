@@ -275,10 +275,10 @@ public class DDMDataProviderInstanceLinkModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
-					Object dataProviderInstanceLinkId) {
+					Object dataProviderInstanceLinkIdObject) {
 
 					ddmDataProviderInstanceLink.setDataProviderInstanceLinkId(
-						(Long)dataProviderInstanceLinkId);
+						(Long)dataProviderInstanceLinkIdObject);
 				}
 
 			});
@@ -301,9 +301,10 @@ public class DDMDataProviderInstanceLinkModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
-					Object companyId) {
+					Object companyIdObject) {
 
-					ddmDataProviderInstanceLink.setCompanyId((Long)companyId);
+					ddmDataProviderInstanceLink.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -327,10 +328,10 @@ public class DDMDataProviderInstanceLinkModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
-					Object dataProviderInstanceId) {
+					Object dataProviderInstanceIdObject) {
 
 					ddmDataProviderInstanceLink.setDataProviderInstanceId(
-						(Long)dataProviderInstanceId);
+						(Long)dataProviderInstanceIdObject);
 				}
 
 			});
@@ -353,10 +354,10 @@ public class DDMDataProviderInstanceLinkModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
-					Object structureId) {
+					Object structureIdObject) {
 
 					ddmDataProviderInstanceLink.setStructureId(
-						(Long)structureId);
+						(Long)structureIdObject);
 				}
 
 			});

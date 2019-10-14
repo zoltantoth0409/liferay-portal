@@ -294,10 +294,10 @@ public class KaleoNotificationModelImpl
 				@Override
 				public void accept(
 					KaleoNotification kaleoNotification,
-					Object kaleoNotificationId) {
+					Object kaleoNotificationIdObject) {
 
 					kaleoNotification.setKaleoNotificationId(
-						(Long)kaleoNotificationId);
+						(Long)kaleoNotificationIdObject);
 				}
 
 			});
@@ -317,9 +317,9 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object groupId) {
+					KaleoNotification kaleoNotification, Object groupIdObject) {
 
-					kaleoNotification.setGroupId((Long)groupId);
+					kaleoNotification.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -339,9 +339,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object companyId) {
+					KaleoNotification kaleoNotification,
+					Object companyIdObject) {
 
-					kaleoNotification.setCompanyId((Long)companyId);
+					kaleoNotification.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -361,9 +362,9 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object userId) {
+					KaleoNotification kaleoNotification, Object userIdObject) {
 
-					kaleoNotification.setUserId((Long)userId);
+					kaleoNotification.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -383,9 +384,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object userName) {
+					KaleoNotification kaleoNotification,
+					Object userNameObject) {
 
-					kaleoNotification.setUserName((String)userName);
+					kaleoNotification.setUserName((String)userNameObject);
 				}
 
 			});
@@ -405,9 +407,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object createDate) {
+					KaleoNotification kaleoNotification,
+					Object createDateObject) {
 
-					kaleoNotification.setCreateDate((Date)createDate);
+					kaleoNotification.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -427,9 +430,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object modifiedDate) {
+					KaleoNotification kaleoNotification,
+					Object modifiedDateObject) {
 
-					kaleoNotification.setModifiedDate((Date)modifiedDate);
+					kaleoNotification.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -450,9 +454,10 @@ public class KaleoNotificationModelImpl
 				@Override
 				public void accept(
 					KaleoNotification kaleoNotification,
-					Object kaleoClassName) {
+					Object kaleoClassNameObject) {
 
-					kaleoNotification.setKaleoClassName((String)kaleoClassName);
+					kaleoNotification.setKaleoClassName(
+						(String)kaleoClassNameObject);
 				}
 
 			});
@@ -472,9 +477,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object kaleoClassPK) {
+					KaleoNotification kaleoNotification,
+					Object kaleoClassPKObject) {
 
-					kaleoNotification.setKaleoClassPK((Long)kaleoClassPK);
+					kaleoNotification.setKaleoClassPK((Long)kaleoClassPKObject);
 				}
 
 			});
@@ -495,10 +501,10 @@ public class KaleoNotificationModelImpl
 				@Override
 				public void accept(
 					KaleoNotification kaleoNotification,
-					Object kaleoDefinitionId) {
+					Object kaleoDefinitionIdObject) {
 
 					kaleoNotification.setKaleoDefinitionId(
-						(Long)kaleoDefinitionId);
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -518,9 +524,11 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object kaleoNodeName) {
+					KaleoNotification kaleoNotification,
+					Object kaleoNodeNameObject) {
 
-					kaleoNotification.setKaleoNodeName((String)kaleoNodeName);
+					kaleoNotification.setKaleoNodeName(
+						(String)kaleoNodeNameObject);
 				}
 
 			});
@@ -540,9 +548,9 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object name) {
+					KaleoNotification kaleoNotification, Object nameObject) {
 
-					kaleoNotification.setName((String)name);
+					kaleoNotification.setName((String)nameObject);
 				}
 
 			});
@@ -562,9 +570,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object description) {
+					KaleoNotification kaleoNotification,
+					Object descriptionObject) {
 
-					kaleoNotification.setDescription((String)description);
+					kaleoNotification.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -584,9 +593,11 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object executionType) {
+					KaleoNotification kaleoNotification,
+					Object executionTypeObject) {
 
-					kaleoNotification.setExecutionType((String)executionType);
+					kaleoNotification.setExecutionType(
+						(String)executionTypeObject);
 				}
 
 			});
@@ -606,9 +617,10 @@ public class KaleoNotificationModelImpl
 
 				@Override
 				public void accept(
-					KaleoNotification kaleoNotification, Object template) {
+					KaleoNotification kaleoNotification,
+					Object templateObject) {
 
-					kaleoNotification.setTemplate((String)template);
+					kaleoNotification.setTemplate((String)templateObject);
 				}
 
 			});
@@ -629,10 +641,10 @@ public class KaleoNotificationModelImpl
 				@Override
 				public void accept(
 					KaleoNotification kaleoNotification,
-					Object templateLanguage) {
+					Object templateLanguageObject) {
 
 					kaleoNotification.setTemplateLanguage(
-						(String)templateLanguage);
+						(String)templateLanguageObject);
 				}
 
 			});
@@ -653,10 +665,10 @@ public class KaleoNotificationModelImpl
 				@Override
 				public void accept(
 					KaleoNotification kaleoNotification,
-					Object notificationTypes) {
+					Object notificationTypesObject) {
 
 					kaleoNotification.setNotificationTypes(
-						(String)notificationTypes);
+						(String)notificationTypesObject);
 				}
 
 			});

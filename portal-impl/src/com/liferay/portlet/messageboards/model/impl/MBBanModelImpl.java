@@ -323,8 +323,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object uuid) {
-					mbBan.setUuid((String)uuid);
+				public void accept(MBBan mbBan, Object uuidObject) {
+					mbBan.setUuid((String)uuidObject);
 				}
 
 			});
@@ -343,8 +343,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object banId) {
-					mbBan.setBanId((Long)banId);
+				public void accept(MBBan mbBan, Object banIdObject) {
+					mbBan.setBanId((Long)banIdObject);
 				}
 
 			});
@@ -363,8 +363,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object groupId) {
-					mbBan.setGroupId((Long)groupId);
+				public void accept(MBBan mbBan, Object groupIdObject) {
+					mbBan.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -383,8 +383,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object companyId) {
-					mbBan.setCompanyId((Long)companyId);
+				public void accept(MBBan mbBan, Object companyIdObject) {
+					mbBan.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -403,8 +403,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object userId) {
-					mbBan.setUserId((Long)userId);
+				public void accept(MBBan mbBan, Object userIdObject) {
+					mbBan.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -423,8 +423,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object userName) {
-					mbBan.setUserName((String)userName);
+				public void accept(MBBan mbBan, Object userNameObject) {
+					mbBan.setUserName((String)userNameObject);
 				}
 
 			});
@@ -443,8 +443,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object createDate) {
-					mbBan.setCreateDate((Date)createDate);
+				public void accept(MBBan mbBan, Object createDateObject) {
+					mbBan.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -463,8 +463,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object modifiedDate) {
-					mbBan.setModifiedDate((Date)modifiedDate);
+				public void accept(MBBan mbBan, Object modifiedDateObject) {
+					mbBan.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -483,8 +483,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object banUserId) {
-					mbBan.setBanUserId((Long)banUserId);
+				public void accept(MBBan mbBan, Object banUserIdObject) {
+					mbBan.setBanUserId((Long)banUserIdObject);
 				}
 
 			});
@@ -503,8 +503,8 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			new BiConsumer<MBBan, Object>() {
 
 				@Override
-				public void accept(MBBan mbBan, Object lastPublishDate) {
-					mbBan.setLastPublishDate((Date)lastPublishDate);
+				public void accept(MBBan mbBan, Object lastPublishDateObject) {
+					mbBan.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

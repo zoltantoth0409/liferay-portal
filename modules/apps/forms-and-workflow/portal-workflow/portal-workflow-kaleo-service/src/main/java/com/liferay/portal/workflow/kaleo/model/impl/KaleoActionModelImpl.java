@@ -291,9 +291,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object kaleoActionId) {
+					KaleoAction kaleoAction, Object kaleoActionIdObject) {
 
-					kaleoAction.setKaleoActionId((Long)kaleoActionId);
+					kaleoAction.setKaleoActionId((Long)kaleoActionIdObject);
 				}
 
 			});
@@ -312,8 +312,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object groupId) {
-					kaleoAction.setGroupId((Long)groupId);
+				public void accept(
+					KaleoAction kaleoAction, Object groupIdObject) {
+
+					kaleoAction.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -332,8 +334,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object companyId) {
-					kaleoAction.setCompanyId((Long)companyId);
+				public void accept(
+					KaleoAction kaleoAction, Object companyIdObject) {
+
+					kaleoAction.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -352,8 +356,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object userId) {
-					kaleoAction.setUserId((Long)userId);
+				public void accept(
+					KaleoAction kaleoAction, Object userIdObject) {
+
+					kaleoAction.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -372,8 +378,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object userName) {
-					kaleoAction.setUserName((String)userName);
+				public void accept(
+					KaleoAction kaleoAction, Object userNameObject) {
+
+					kaleoAction.setUserName((String)userNameObject);
 				}
 
 			});
@@ -392,8 +400,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object createDate) {
-					kaleoAction.setCreateDate((Date)createDate);
+				public void accept(
+					KaleoAction kaleoAction, Object createDateObject) {
+
+					kaleoAction.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -413,9 +423,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object modifiedDate) {
+					KaleoAction kaleoAction, Object modifiedDateObject) {
 
-					kaleoAction.setModifiedDate((Date)modifiedDate);
+					kaleoAction.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -435,9 +445,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object kaleoClassName) {
+					KaleoAction kaleoAction, Object kaleoClassNameObject) {
 
-					kaleoAction.setKaleoClassName((String)kaleoClassName);
+					kaleoAction.setKaleoClassName((String)kaleoClassNameObject);
 				}
 
 			});
@@ -457,9 +467,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object kaleoClassPK) {
+					KaleoAction kaleoAction, Object kaleoClassPKObject) {
 
-					kaleoAction.setKaleoClassPK((Long)kaleoClassPK);
+					kaleoAction.setKaleoClassPK((Long)kaleoClassPKObject);
 				}
 
 			});
@@ -479,9 +489,10 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object kaleoDefinitionId) {
+					KaleoAction kaleoAction, Object kaleoDefinitionIdObject) {
 
-					kaleoAction.setKaleoDefinitionId((Long)kaleoDefinitionId);
+					kaleoAction.setKaleoDefinitionId(
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -501,9 +512,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object kaleoNodeName) {
+					KaleoAction kaleoAction, Object kaleoNodeNameObject) {
 
-					kaleoAction.setKaleoNodeName((String)kaleoNodeName);
+					kaleoAction.setKaleoNodeName((String)kaleoNodeNameObject);
 				}
 
 			});
@@ -522,8 +533,8 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object name) {
-					kaleoAction.setName((String)name);
+				public void accept(KaleoAction kaleoAction, Object nameObject) {
+					kaleoAction.setName((String)nameObject);
 				}
 
 			});
@@ -543,9 +554,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object description) {
+					KaleoAction kaleoAction, Object descriptionObject) {
 
-					kaleoAction.setDescription((String)description);
+					kaleoAction.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -565,9 +576,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object executionType) {
+					KaleoAction kaleoAction, Object executionTypeObject) {
 
-					kaleoAction.setExecutionType((String)executionType);
+					kaleoAction.setExecutionType((String)executionTypeObject);
 				}
 
 			});
@@ -586,8 +597,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object script) {
-					kaleoAction.setScript((String)script);
+				public void accept(
+					KaleoAction kaleoAction, Object scriptObject) {
+
+					kaleoAction.setScript((String)scriptObject);
 				}
 
 			});
@@ -607,9 +620,9 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object scriptLanguage) {
+					KaleoAction kaleoAction, Object scriptLanguageObject) {
 
-					kaleoAction.setScriptLanguage((String)scriptLanguage);
+					kaleoAction.setScriptLanguage((String)scriptLanguageObject);
 				}
 
 			});
@@ -629,10 +642,11 @@ public class KaleoActionModelImpl
 
 				@Override
 				public void accept(
-					KaleoAction kaleoAction, Object scriptRequiredContexts) {
+					KaleoAction kaleoAction,
+					Object scriptRequiredContextsObject) {
 
 					kaleoAction.setScriptRequiredContexts(
-						(String)scriptRequiredContexts);
+						(String)scriptRequiredContextsObject);
 				}
 
 			});
@@ -651,8 +665,10 @@ public class KaleoActionModelImpl
 			new BiConsumer<KaleoAction, Object>() {
 
 				@Override
-				public void accept(KaleoAction kaleoAction, Object priority) {
-					kaleoAction.setPriority((Integer)priority);
+				public void accept(
+					KaleoAction kaleoAction, Object priorityObject) {
+
+					kaleoAction.setPriority((Integer)priorityObject);
 				}
 
 			});

@@ -366,9 +366,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object uuid) {
+					BookmarksFolder bookmarksFolder, Object uuidObject) {
 
-					bookmarksFolder.setUuid((String)uuid);
+					bookmarksFolder.setUuid((String)uuidObject);
 				}
 
 			});
@@ -388,9 +388,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object folderId) {
+					BookmarksFolder bookmarksFolder, Object folderIdObject) {
 
-					bookmarksFolder.setFolderId((Long)folderId);
+					bookmarksFolder.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -410,9 +410,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object groupId) {
+					BookmarksFolder bookmarksFolder, Object groupIdObject) {
 
-					bookmarksFolder.setGroupId((Long)groupId);
+					bookmarksFolder.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -432,9 +432,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object companyId) {
+					BookmarksFolder bookmarksFolder, Object companyIdObject) {
 
-					bookmarksFolder.setCompanyId((Long)companyId);
+					bookmarksFolder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -454,9 +454,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object userId) {
+					BookmarksFolder bookmarksFolder, Object userIdObject) {
 
-					bookmarksFolder.setUserId((Long)userId);
+					bookmarksFolder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -476,9 +476,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object userName) {
+					BookmarksFolder bookmarksFolder, Object userNameObject) {
 
-					bookmarksFolder.setUserName((String)userName);
+					bookmarksFolder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -498,9 +498,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object createDate) {
+					BookmarksFolder bookmarksFolder, Object createDateObject) {
 
-					bookmarksFolder.setCreateDate((Date)createDate);
+					bookmarksFolder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -520,9 +520,10 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object modifiedDate) {
+					BookmarksFolder bookmarksFolder,
+					Object modifiedDateObject) {
 
-					bookmarksFolder.setModifiedDate((Date)modifiedDate);
+					bookmarksFolder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -542,9 +543,11 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object resourceBlockId) {
+					BookmarksFolder bookmarksFolder,
+					Object resourceBlockIdObject) {
 
-					bookmarksFolder.setResourceBlockId((Long)resourceBlockId);
+					bookmarksFolder.setResourceBlockId(
+						(Long)resourceBlockIdObject);
 				}
 
 			});
@@ -564,9 +567,11 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object parentFolderId) {
+					BookmarksFolder bookmarksFolder,
+					Object parentFolderIdObject) {
 
-					bookmarksFolder.setParentFolderId((Long)parentFolderId);
+					bookmarksFolder.setParentFolderId(
+						(Long)parentFolderIdObject);
 				}
 
 			});
@@ -586,9 +591,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object treePath) {
+					BookmarksFolder bookmarksFolder, Object treePathObject) {
 
-					bookmarksFolder.setTreePath((String)treePath);
+					bookmarksFolder.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -608,9 +613,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object name) {
+					BookmarksFolder bookmarksFolder, Object nameObject) {
 
-					bookmarksFolder.setName((String)name);
+					bookmarksFolder.setName((String)nameObject);
 				}
 
 			});
@@ -630,9 +635,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object description) {
+					BookmarksFolder bookmarksFolder, Object descriptionObject) {
 
-					bookmarksFolder.setDescription((String)description);
+					bookmarksFolder.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -652,9 +657,11 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object lastPublishDate) {
+					BookmarksFolder bookmarksFolder,
+					Object lastPublishDateObject) {
 
-					bookmarksFolder.setLastPublishDate((Date)lastPublishDate);
+					bookmarksFolder.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});
@@ -674,9 +681,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object status) {
+					BookmarksFolder bookmarksFolder, Object statusObject) {
 
-					bookmarksFolder.setStatus((Integer)status);
+					bookmarksFolder.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -696,9 +703,11 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object statusByUserId) {
+					BookmarksFolder bookmarksFolder,
+					Object statusByUserIdObject) {
 
-					bookmarksFolder.setStatusByUserId((Long)statusByUserId);
+					bookmarksFolder.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -718,10 +727,11 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object statusByUserName) {
+					BookmarksFolder bookmarksFolder,
+					Object statusByUserNameObject) {
 
 					bookmarksFolder.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -741,9 +751,9 @@ public class BookmarksFolderModelImpl
 
 				@Override
 				public void accept(
-					BookmarksFolder bookmarksFolder, Object statusDate) {
+					BookmarksFolder bookmarksFolder, Object statusDateObject) {
 
-					bookmarksFolder.setStatusDate((Date)statusDate);
+					bookmarksFolder.setStatusDate((Date)statusDateObject);
 				}
 
 			});

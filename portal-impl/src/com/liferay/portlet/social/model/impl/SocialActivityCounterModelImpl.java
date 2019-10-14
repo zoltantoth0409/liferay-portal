@@ -296,10 +296,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object activityCounterId) {
+					Object activityCounterIdObject) {
 
 					socialActivityCounter.setActivityCounterId(
-						(Long)activityCounterId);
+						(Long)activityCounterIdObject);
 				}
 
 			});
@@ -322,9 +322,9 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object groupId) {
+					Object groupIdObject) {
 
-					socialActivityCounter.setGroupId((Long)groupId);
+					socialActivityCounter.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -347,9 +347,9 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object companyId) {
+					Object companyIdObject) {
 
-					socialActivityCounter.setCompanyId((Long)companyId);
+					socialActivityCounter.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -372,9 +372,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object classNameId) {
+					Object classNameIdObject) {
 
-					socialActivityCounter.setClassNameId((Long)classNameId);
+					socialActivityCounter.setClassNameId(
+						(Long)classNameIdObject);
 				}
 
 			});
@@ -397,9 +398,9 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object classPK) {
+					Object classPKObject) {
 
-					socialActivityCounter.setClassPK((Long)classPK);
+					socialActivityCounter.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -421,9 +422,10 @@ public class SocialActivityCounterModelImpl
 
 				@Override
 				public void accept(
-					SocialActivityCounter socialActivityCounter, Object name) {
+					SocialActivityCounter socialActivityCounter,
+					Object nameObject) {
 
-					socialActivityCounter.setName((String)name);
+					socialActivityCounter.setName((String)nameObject);
 				}
 
 			});
@@ -446,9 +448,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object ownerType) {
+					Object ownerTypeObject) {
 
-					socialActivityCounter.setOwnerType((Integer)ownerType);
+					socialActivityCounter.setOwnerType(
+						(Integer)ownerTypeObject);
 				}
 
 			});
@@ -471,10 +474,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object currentValue) {
+					Object currentValueObject) {
 
 					socialActivityCounter.setCurrentValue(
-						(Integer)currentValue);
+						(Integer)currentValueObject);
 				}
 
 			});
@@ -497,9 +500,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object totalValue) {
+					Object totalValueObject) {
 
-					socialActivityCounter.setTotalValue((Integer)totalValue);
+					socialActivityCounter.setTotalValue(
+						(Integer)totalValueObject);
 				}
 
 			});
@@ -522,9 +526,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object graceValue) {
+					Object graceValueObject) {
 
-					socialActivityCounter.setGraceValue((Integer)graceValue);
+					socialActivityCounter.setGraceValue(
+						(Integer)graceValueObject);
 				}
 
 			});
@@ -547,9 +552,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object startPeriod) {
+					Object startPeriodObject) {
 
-					socialActivityCounter.setStartPeriod((Integer)startPeriod);
+					socialActivityCounter.setStartPeriod(
+						(Integer)startPeriodObject);
 				}
 
 			});
@@ -572,9 +578,10 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object endPeriod) {
+					Object endPeriodObject) {
 
-					socialActivityCounter.setEndPeriod((Integer)endPeriod);
+					socialActivityCounter.setEndPeriod(
+						(Integer)endPeriodObject);
 				}
 
 			});
@@ -597,9 +604,9 @@ public class SocialActivityCounterModelImpl
 				@Override
 				public void accept(
 					SocialActivityCounter socialActivityCounter,
-					Object active) {
+					Object activeObject) {
 
-					socialActivityCounter.setActive((Boolean)active);
+					socialActivityCounter.setActive((Boolean)activeObject);
 				}
 
 			});

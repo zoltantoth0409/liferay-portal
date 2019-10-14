@@ -269,8 +269,10 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object wallEntryId) {
-					wallEntry.setWallEntryId((Long)wallEntryId);
+				public void accept(
+					WallEntry wallEntry, Object wallEntryIdObject) {
+
+					wallEntry.setWallEntryId((Long)wallEntryIdObject);
 				}
 
 			});
@@ -289,8 +291,8 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object groupId) {
-					wallEntry.setGroupId((Long)groupId);
+				public void accept(WallEntry wallEntry, Object groupIdObject) {
+					wallEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -309,8 +311,10 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object companyId) {
-					wallEntry.setCompanyId((Long)companyId);
+				public void accept(
+					WallEntry wallEntry, Object companyIdObject) {
+
+					wallEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -329,8 +333,8 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object userId) {
-					wallEntry.setUserId((Long)userId);
+				public void accept(WallEntry wallEntry, Object userIdObject) {
+					wallEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -349,8 +353,8 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object userName) {
-					wallEntry.setUserName((String)userName);
+				public void accept(WallEntry wallEntry, Object userNameObject) {
+					wallEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -369,8 +373,10 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object createDate) {
-					wallEntry.setCreateDate((Date)createDate);
+				public void accept(
+					WallEntry wallEntry, Object createDateObject) {
+
+					wallEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -389,8 +395,10 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object modifiedDate) {
-					wallEntry.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					WallEntry wallEntry, Object modifiedDateObject) {
+
+					wallEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -409,8 +417,8 @@ public class WallEntryModelImpl
 			new BiConsumer<WallEntry, Object>() {
 
 				@Override
-				public void accept(WallEntry wallEntry, Object comments) {
-					wallEntry.setComments((String)comments);
+				public void accept(WallEntry wallEntry, Object commentsObject) {
+					wallEntry.setComments((String)commentsObject);
 				}
 
 			});

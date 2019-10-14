@@ -275,9 +275,10 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					resourceBlockPermission.setMvccVersion((Long)mvccVersion);
+					resourceBlockPermission.setMvccVersion(
+						(Long)mvccVersionObject);
 				}
 
 			});
@@ -301,10 +302,10 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object resourceBlockPermissionId) {
+					Object resourceBlockPermissionIdObject) {
 
 					resourceBlockPermission.setResourceBlockPermissionId(
-						(Long)resourceBlockPermissionId);
+						(Long)resourceBlockPermissionIdObject);
 				}
 
 			});
@@ -327,9 +328,9 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object companyId) {
+					Object companyIdObject) {
 
-					resourceBlockPermission.setCompanyId((Long)companyId);
+					resourceBlockPermission.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -352,10 +353,10 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object resourceBlockId) {
+					Object resourceBlockIdObject) {
 
 					resourceBlockPermission.setResourceBlockId(
-						(Long)resourceBlockId);
+						(Long)resourceBlockIdObject);
 				}
 
 			});
@@ -378,9 +379,9 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object roleId) {
+					Object roleIdObject) {
 
-					resourceBlockPermission.setRoleId((Long)roleId);
+					resourceBlockPermission.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -403,9 +404,9 @@ public class ResourceBlockPermissionModelImpl
 				@Override
 				public void accept(
 					ResourceBlockPermission resourceBlockPermission,
-					Object actionIds) {
+					Object actionIdsObject) {
 
-					resourceBlockPermission.setActionIds((Long)actionIds);
+					resourceBlockPermission.setActionIds((Long)actionIdsObject);
 				}
 
 			});

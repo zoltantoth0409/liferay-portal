@@ -303,10 +303,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object kaleoNotificationRecipientId) {
+					Object kaleoNotificationRecipientIdObject) {
 
 					kaleoNotificationRecipient.setKaleoNotificationRecipientId(
-						(Long)kaleoNotificationRecipientId);
+						(Long)kaleoNotificationRecipientIdObject);
 				}
 
 			});
@@ -329,9 +329,9 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object groupId) {
+					Object groupIdObject) {
 
-					kaleoNotificationRecipient.setGroupId((Long)groupId);
+					kaleoNotificationRecipient.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -354,9 +354,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object companyId) {
+					Object companyIdObject) {
 
-					kaleoNotificationRecipient.setCompanyId((Long)companyId);
+					kaleoNotificationRecipient.setCompanyId(
+						(Long)companyIdObject);
 				}
 
 			});
@@ -379,9 +380,9 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object userId) {
+					Object userIdObject) {
 
-					kaleoNotificationRecipient.setUserId((Long)userId);
+					kaleoNotificationRecipient.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -404,9 +405,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object userName) {
+					Object userNameObject) {
 
-					kaleoNotificationRecipient.setUserName((String)userName);
+					kaleoNotificationRecipient.setUserName(
+						(String)userNameObject);
 				}
 
 			});
@@ -429,9 +431,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoNotificationRecipient.setCreateDate((Date)createDate);
+					kaleoNotificationRecipient.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -454,10 +457,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
 					kaleoNotificationRecipient.setModifiedDate(
-						(Date)modifiedDate);
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -480,10 +483,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object kaleoDefinitionId) {
+					Object kaleoDefinitionIdObject) {
 
 					kaleoNotificationRecipient.setKaleoDefinitionId(
-						(Long)kaleoDefinitionId);
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -506,10 +509,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object kaleoNotificationId) {
+					Object kaleoNotificationIdObject) {
 
 					kaleoNotificationRecipient.setKaleoNotificationId(
-						(Long)kaleoNotificationId);
+						(Long)kaleoNotificationIdObject);
 				}
 
 			});
@@ -532,10 +535,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientClassName) {
+					Object recipientClassNameObject) {
 
 					kaleoNotificationRecipient.setRecipientClassName(
-						(String)recipientClassName);
+						(String)recipientClassNameObject);
 				}
 
 			});
@@ -558,10 +561,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientClassPK) {
+					Object recipientClassPKObject) {
 
 					kaleoNotificationRecipient.setRecipientClassPK(
-						(Long)recipientClassPK);
+						(Long)recipientClassPKObject);
 				}
 
 			});
@@ -584,10 +587,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientRoleType) {
+					Object recipientRoleTypeObject) {
 
 					kaleoNotificationRecipient.setRecipientRoleType(
-						(Integer)recipientRoleType);
+						(Integer)recipientRoleTypeObject);
 				}
 
 			});
@@ -610,10 +613,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientScript) {
+					Object recipientScriptObject) {
 
 					kaleoNotificationRecipient.setRecipientScript(
-						(String)recipientScript);
+						(String)recipientScriptObject);
 				}
 
 			});
@@ -637,10 +640,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientScriptLanguage) {
+					Object recipientScriptLanguageObject) {
 
 					kaleoNotificationRecipient.setRecipientScriptLanguage(
-						(String)recipientScriptLanguage);
+						(String)recipientScriptLanguageObject);
 				}
 
 			});
@@ -664,10 +667,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object recipientScriptContexts) {
+					Object recipientScriptContextsObject) {
 
 					kaleoNotificationRecipient.setRecipientScriptContexts(
-						(String)recipientScriptContexts);
+						(String)recipientScriptContextsObject);
 				}
 
 			});
@@ -690,9 +693,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object address) {
+					Object addressObject) {
 
-					kaleoNotificationRecipient.setAddress((String)address);
+					kaleoNotificationRecipient.setAddress(
+						(String)addressObject);
 				}
 
 			});
@@ -716,10 +720,10 @@ public class KaleoNotificationRecipientModelImpl
 				@Override
 				public void accept(
 					KaleoNotificationRecipient kaleoNotificationRecipient,
-					Object notificationReceptionType) {
+					Object notificationReceptionTypeObject) {
 
 					kaleoNotificationRecipient.setNotificationReceptionType(
-						(String)notificationReceptionType);
+						(String)notificationReceptionTypeObject);
 				}
 
 			});

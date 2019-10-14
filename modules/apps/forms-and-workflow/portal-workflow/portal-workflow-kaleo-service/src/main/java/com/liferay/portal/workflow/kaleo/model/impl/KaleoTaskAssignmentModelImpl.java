@@ -297,10 +297,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object kaleoTaskAssignmentId) {
+					Object kaleoTaskAssignmentIdObject) {
 
 					kaleoTaskAssignment.setKaleoTaskAssignmentId(
-						(Long)kaleoTaskAssignmentId);
+						(Long)kaleoTaskAssignmentIdObject);
 				}
 
 			});
@@ -320,9 +320,10 @@ public class KaleoTaskAssignmentModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskAssignment kaleoTaskAssignment, Object groupId) {
+					KaleoTaskAssignment kaleoTaskAssignment,
+					Object groupIdObject) {
 
-					kaleoTaskAssignment.setGroupId((Long)groupId);
+					kaleoTaskAssignment.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -342,9 +343,10 @@ public class KaleoTaskAssignmentModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskAssignment kaleoTaskAssignment, Object companyId) {
+					KaleoTaskAssignment kaleoTaskAssignment,
+					Object companyIdObject) {
 
-					kaleoTaskAssignment.setCompanyId((Long)companyId);
+					kaleoTaskAssignment.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -364,9 +366,10 @@ public class KaleoTaskAssignmentModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskAssignment kaleoTaskAssignment, Object userId) {
+					KaleoTaskAssignment kaleoTaskAssignment,
+					Object userIdObject) {
 
-					kaleoTaskAssignment.setUserId((Long)userId);
+					kaleoTaskAssignment.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -386,9 +389,10 @@ public class KaleoTaskAssignmentModelImpl
 
 				@Override
 				public void accept(
-					KaleoTaskAssignment kaleoTaskAssignment, Object userName) {
+					KaleoTaskAssignment kaleoTaskAssignment,
+					Object userNameObject) {
 
-					kaleoTaskAssignment.setUserName((String)userName);
+					kaleoTaskAssignment.setUserName((String)userNameObject);
 				}
 
 			});
@@ -409,9 +413,9 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object createDate) {
+					Object createDateObject) {
 
-					kaleoTaskAssignment.setCreateDate((Date)createDate);
+					kaleoTaskAssignment.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -432,9 +436,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					kaleoTaskAssignment.setModifiedDate((Date)modifiedDate);
+					kaleoTaskAssignment.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -455,10 +460,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object kaleoClassName) {
+					Object kaleoClassNameObject) {
 
 					kaleoTaskAssignment.setKaleoClassName(
-						(String)kaleoClassName);
+						(String)kaleoClassNameObject);
 				}
 
 			});
@@ -479,9 +484,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object kaleoClassPK) {
+					Object kaleoClassPKObject) {
 
-					kaleoTaskAssignment.setKaleoClassPK((Long)kaleoClassPK);
+					kaleoTaskAssignment.setKaleoClassPK(
+						(Long)kaleoClassPKObject);
 				}
 
 			});
@@ -502,10 +508,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object kaleoDefinitionId) {
+					Object kaleoDefinitionIdObject) {
 
 					kaleoTaskAssignment.setKaleoDefinitionId(
-						(Long)kaleoDefinitionId);
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -526,9 +532,9 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object kaleoNodeId) {
+					Object kaleoNodeIdObject) {
 
-					kaleoTaskAssignment.setKaleoNodeId((Long)kaleoNodeId);
+					kaleoTaskAssignment.setKaleoNodeId((Long)kaleoNodeIdObject);
 				}
 
 			});
@@ -549,10 +555,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeClassName) {
+					Object assigneeClassNameObject) {
 
 					kaleoTaskAssignment.setAssigneeClassName(
-						(String)assigneeClassName);
+						(String)assigneeClassNameObject);
 				}
 
 			});
@@ -573,10 +579,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeClassPK) {
+					Object assigneeClassPKObject) {
 
 					kaleoTaskAssignment.setAssigneeClassPK(
-						(Long)assigneeClassPK);
+						(Long)assigneeClassPKObject);
 				}
 
 			});
@@ -597,10 +603,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeActionId) {
+					Object assigneeActionIdObject) {
 
 					kaleoTaskAssignment.setAssigneeActionId(
-						(String)assigneeActionId);
+						(String)assigneeActionIdObject);
 				}
 
 			});
@@ -621,10 +627,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeScript) {
+					Object assigneeScriptObject) {
 
 					kaleoTaskAssignment.setAssigneeScript(
-						(String)assigneeScript);
+						(String)assigneeScriptObject);
 				}
 
 			});
@@ -645,10 +651,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeScriptLanguage) {
+					Object assigneeScriptLanguageObject) {
 
 					kaleoTaskAssignment.setAssigneeScriptLanguage(
-						(String)assigneeScriptLanguage);
+						(String)assigneeScriptLanguageObject);
 				}
 
 			});
@@ -670,10 +676,10 @@ public class KaleoTaskAssignmentModelImpl
 				@Override
 				public void accept(
 					KaleoTaskAssignment kaleoTaskAssignment,
-					Object assigneeScriptRequiredContexts) {
+					Object assigneeScriptRequiredContextsObject) {
 
 					kaleoTaskAssignment.setAssigneeScriptRequiredContexts(
-						(String)assigneeScriptRequiredContexts);
+						(String)assigneeScriptRequiredContextsObject);
 				}
 
 			});

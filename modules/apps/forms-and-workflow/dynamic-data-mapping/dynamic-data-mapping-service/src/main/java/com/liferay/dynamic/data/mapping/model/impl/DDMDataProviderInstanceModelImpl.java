@@ -357,9 +357,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object uuid) {
+					Object uuidObject) {
 
-					ddmDataProviderInstance.setUuid((String)uuid);
+					ddmDataProviderInstance.setUuid((String)uuidObject);
 				}
 
 			});
@@ -382,10 +382,10 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object dataProviderInstanceId) {
+					Object dataProviderInstanceIdObject) {
 
 					ddmDataProviderInstance.setDataProviderInstanceId(
-						(Long)dataProviderInstanceId);
+						(Long)dataProviderInstanceIdObject);
 				}
 
 			});
@@ -408,9 +408,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object groupId) {
+					Object groupIdObject) {
 
-					ddmDataProviderInstance.setGroupId((Long)groupId);
+					ddmDataProviderInstance.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -433,9 +433,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object companyId) {
+					Object companyIdObject) {
 
-					ddmDataProviderInstance.setCompanyId((Long)companyId);
+					ddmDataProviderInstance.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -458,9 +458,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object userId) {
+					Object userIdObject) {
 
-					ddmDataProviderInstance.setUserId((Long)userId);
+					ddmDataProviderInstance.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -483,9 +483,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object userName) {
+					Object userNameObject) {
 
-					ddmDataProviderInstance.setUserName((String)userName);
+					ddmDataProviderInstance.setUserName((String)userNameObject);
 				}
 
 			});
@@ -508,9 +508,10 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object createDate) {
+					Object createDateObject) {
 
-					ddmDataProviderInstance.setCreateDate((Date)createDate);
+					ddmDataProviderInstance.setCreateDate(
+						(Date)createDateObject);
 				}
 
 			});
@@ -533,9 +534,10 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object modifiedDate) {
+					Object modifiedDateObject) {
 
-					ddmDataProviderInstance.setModifiedDate((Date)modifiedDate);
+					ddmDataProviderInstance.setModifiedDate(
+						(Date)modifiedDateObject);
 				}
 
 			});
@@ -558,9 +560,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object name) {
+					Object nameObject) {
 
-					ddmDataProviderInstance.setName((String)name);
+					ddmDataProviderInstance.setName((String)nameObject);
 				}
 
 			});
@@ -583,9 +585,10 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object description) {
+					Object descriptionObject) {
 
-					ddmDataProviderInstance.setDescription((String)description);
+					ddmDataProviderInstance.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -608,9 +611,10 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object definition) {
+					Object definitionObject) {
 
-					ddmDataProviderInstance.setDefinition((String)definition);
+					ddmDataProviderInstance.setDefinition(
+						(String)definitionObject);
 				}
 
 			});
@@ -633,9 +637,9 @@ public class DDMDataProviderInstanceModelImpl
 				@Override
 				public void accept(
 					DDMDataProviderInstance ddmDataProviderInstance,
-					Object type) {
+					Object typeObject) {
 
-					ddmDataProviderInstance.setType((String)type);
+					ddmDataProviderInstance.setType((String)typeObject);
 				}
 
 			});

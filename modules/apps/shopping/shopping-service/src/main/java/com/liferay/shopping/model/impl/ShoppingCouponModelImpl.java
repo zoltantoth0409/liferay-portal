@@ -349,9 +349,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object couponId) {
+					ShoppingCoupon shoppingCoupon, Object couponIdObject) {
 
-					shoppingCoupon.setCouponId((Long)couponId);
+					shoppingCoupon.setCouponId((Long)couponIdObject);
 				}
 
 			});
@@ -371,9 +371,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object groupId) {
+					ShoppingCoupon shoppingCoupon, Object groupIdObject) {
 
-					shoppingCoupon.setGroupId((Long)groupId);
+					shoppingCoupon.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -393,9 +393,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object companyId) {
+					ShoppingCoupon shoppingCoupon, Object companyIdObject) {
 
-					shoppingCoupon.setCompanyId((Long)companyId);
+					shoppingCoupon.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -415,9 +415,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object userId) {
+					ShoppingCoupon shoppingCoupon, Object userIdObject) {
 
-					shoppingCoupon.setUserId((Long)userId);
+					shoppingCoupon.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -437,9 +437,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object userName) {
+					ShoppingCoupon shoppingCoupon, Object userNameObject) {
 
-					shoppingCoupon.setUserName((String)userName);
+					shoppingCoupon.setUserName((String)userNameObject);
 				}
 
 			});
@@ -459,9 +459,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object createDate) {
+					ShoppingCoupon shoppingCoupon, Object createDateObject) {
 
-					shoppingCoupon.setCreateDate((Date)createDate);
+					shoppingCoupon.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -481,9 +481,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object modifiedDate) {
+					ShoppingCoupon shoppingCoupon, Object modifiedDateObject) {
 
-					shoppingCoupon.setModifiedDate((Date)modifiedDate);
+					shoppingCoupon.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -502,8 +502,10 @@ public class ShoppingCouponModelImpl
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object code) {
-					shoppingCoupon.setCode((String)code);
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object codeObject) {
+
+					shoppingCoupon.setCode((String)codeObject);
 				}
 
 			});
@@ -522,8 +524,10 @@ public class ShoppingCouponModelImpl
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object name) {
-					shoppingCoupon.setName((String)name);
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object nameObject) {
+
+					shoppingCoupon.setName((String)nameObject);
 				}
 
 			});
@@ -543,9 +547,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object description) {
+					ShoppingCoupon shoppingCoupon, Object descriptionObject) {
 
-					shoppingCoupon.setDescription((String)description);
+					shoppingCoupon.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -565,9 +569,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object startDate) {
+					ShoppingCoupon shoppingCoupon, Object startDateObject) {
 
-					shoppingCoupon.setStartDate((Date)startDate);
+					shoppingCoupon.setStartDate((Date)startDateObject);
 				}
 
 			});
@@ -587,9 +591,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object endDate) {
+					ShoppingCoupon shoppingCoupon, Object endDateObject) {
 
-					shoppingCoupon.setEndDate((Date)endDate);
+					shoppingCoupon.setEndDate((Date)endDateObject);
 				}
 
 			});
@@ -609,9 +613,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object active) {
+					ShoppingCoupon shoppingCoupon, Object activeObject) {
 
-					shoppingCoupon.setActive((Boolean)active);
+					shoppingCoupon.setActive((Boolean)activeObject);
 				}
 
 			});
@@ -631,9 +635,11 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object limitCategories) {
+					ShoppingCoupon shoppingCoupon,
+					Object limitCategoriesObject) {
 
-					shoppingCoupon.setLimitCategories((String)limitCategories);
+					shoppingCoupon.setLimitCategories(
+						(String)limitCategoriesObject);
 				}
 
 			});
@@ -653,9 +659,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object limitSkus) {
+					ShoppingCoupon shoppingCoupon, Object limitSkusObject) {
 
-					shoppingCoupon.setLimitSkus((String)limitSkus);
+					shoppingCoupon.setLimitSkus((String)limitSkusObject);
 				}
 
 			});
@@ -675,9 +681,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object minOrder) {
+					ShoppingCoupon shoppingCoupon, Object minOrderObject) {
 
-					shoppingCoupon.setMinOrder((Double)minOrder);
+					shoppingCoupon.setMinOrder((Double)minOrderObject);
 				}
 
 			});
@@ -697,9 +703,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object discount) {
+					ShoppingCoupon shoppingCoupon, Object discountObject) {
 
-					shoppingCoupon.setDiscount((Double)discount);
+					shoppingCoupon.setDiscount((Double)discountObject);
 				}
 
 			});
@@ -719,9 +725,9 @@ public class ShoppingCouponModelImpl
 
 				@Override
 				public void accept(
-					ShoppingCoupon shoppingCoupon, Object discountType) {
+					ShoppingCoupon shoppingCoupon, Object discountTypeObject) {
 
-					shoppingCoupon.setDiscountType((String)discountType);
+					shoppingCoupon.setDiscountType((String)discountTypeObject);
 				}
 
 			});

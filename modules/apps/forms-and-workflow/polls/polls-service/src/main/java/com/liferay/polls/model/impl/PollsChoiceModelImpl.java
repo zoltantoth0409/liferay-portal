@@ -343,8 +343,8 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object uuid) {
-					pollsChoice.setUuid((String)uuid);
+				public void accept(PollsChoice pollsChoice, Object uuidObject) {
+					pollsChoice.setUuid((String)uuidObject);
 				}
 
 			});
@@ -363,8 +363,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object choiceId) {
-					pollsChoice.setChoiceId((Long)choiceId);
+				public void accept(
+					PollsChoice pollsChoice, Object choiceIdObject) {
+
+					pollsChoice.setChoiceId((Long)choiceIdObject);
 				}
 
 			});
@@ -383,8 +385,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object groupId) {
-					pollsChoice.setGroupId((Long)groupId);
+				public void accept(
+					PollsChoice pollsChoice, Object groupIdObject) {
+
+					pollsChoice.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -403,8 +407,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object companyId) {
-					pollsChoice.setCompanyId((Long)companyId);
+				public void accept(
+					PollsChoice pollsChoice, Object companyIdObject) {
+
+					pollsChoice.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -423,8 +429,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object userId) {
-					pollsChoice.setUserId((Long)userId);
+				public void accept(
+					PollsChoice pollsChoice, Object userIdObject) {
+
+					pollsChoice.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -443,8 +451,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object userName) {
-					pollsChoice.setUserName((String)userName);
+				public void accept(
+					PollsChoice pollsChoice, Object userNameObject) {
+
+					pollsChoice.setUserName((String)userNameObject);
 				}
 
 			});
@@ -463,8 +473,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object createDate) {
-					pollsChoice.setCreateDate((Date)createDate);
+				public void accept(
+					PollsChoice pollsChoice, Object createDateObject) {
+
+					pollsChoice.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -484,9 +496,9 @@ public class PollsChoiceModelImpl
 
 				@Override
 				public void accept(
-					PollsChoice pollsChoice, Object modifiedDate) {
+					PollsChoice pollsChoice, Object modifiedDateObject) {
 
-					pollsChoice.setModifiedDate((Date)modifiedDate);
+					pollsChoice.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -505,8 +517,10 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object questionId) {
-					pollsChoice.setQuestionId((Long)questionId);
+				public void accept(
+					PollsChoice pollsChoice, Object questionIdObject) {
+
+					pollsChoice.setQuestionId((Long)questionIdObject);
 				}
 
 			});
@@ -525,8 +539,8 @@ public class PollsChoiceModelImpl
 			new BiConsumer<PollsChoice, Object>() {
 
 				@Override
-				public void accept(PollsChoice pollsChoice, Object name) {
-					pollsChoice.setName((String)name);
+				public void accept(PollsChoice pollsChoice, Object nameObject) {
+					pollsChoice.setName((String)nameObject);
 				}
 
 			});
@@ -546,9 +560,9 @@ public class PollsChoiceModelImpl
 
 				@Override
 				public void accept(
-					PollsChoice pollsChoice, Object description) {
+					PollsChoice pollsChoice, Object descriptionObject) {
 
-					pollsChoice.setDescription((String)description);
+					pollsChoice.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -568,9 +582,9 @@ public class PollsChoiceModelImpl
 
 				@Override
 				public void accept(
-					PollsChoice pollsChoice, Object lastPublishDate) {
+					PollsChoice pollsChoice, Object lastPublishDateObject) {
 
-					pollsChoice.setLastPublishDate((Date)lastPublishDate);
+					pollsChoice.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

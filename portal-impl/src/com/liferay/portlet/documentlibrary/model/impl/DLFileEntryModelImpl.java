@@ -407,8 +407,8 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object uuid) {
-					dlFileEntry.setUuid((String)uuid);
+				public void accept(DLFileEntry dlFileEntry, Object uuidObject) {
+					dlFileEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -428,9 +428,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object fileEntryId) {
+					DLFileEntry dlFileEntry, Object fileEntryIdObject) {
 
-					dlFileEntry.setFileEntryId((Long)fileEntryId);
+					dlFileEntry.setFileEntryId((Long)fileEntryIdObject);
 				}
 
 			});
@@ -449,8 +449,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object groupId) {
-					dlFileEntry.setGroupId((Long)groupId);
+				public void accept(
+					DLFileEntry dlFileEntry, Object groupIdObject) {
+
+					dlFileEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -469,8 +471,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object companyId) {
-					dlFileEntry.setCompanyId((Long)companyId);
+				public void accept(
+					DLFileEntry dlFileEntry, Object companyIdObject) {
+
+					dlFileEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -489,8 +493,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object userId) {
-					dlFileEntry.setUserId((Long)userId);
+				public void accept(
+					DLFileEntry dlFileEntry, Object userIdObject) {
+
+					dlFileEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -509,8 +515,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object userName) {
-					dlFileEntry.setUserName((String)userName);
+				public void accept(
+					DLFileEntry dlFileEntry, Object userNameObject) {
+
+					dlFileEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -529,8 +537,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object createDate) {
-					dlFileEntry.setCreateDate((Date)createDate);
+				public void accept(
+					DLFileEntry dlFileEntry, Object createDateObject) {
+
+					dlFileEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -550,9 +560,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object modifiedDate) {
+					DLFileEntry dlFileEntry, Object modifiedDateObject) {
 
-					dlFileEntry.setModifiedDate((Date)modifiedDate);
+					dlFileEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -572,9 +582,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object classNameId) {
+					DLFileEntry dlFileEntry, Object classNameIdObject) {
 
-					dlFileEntry.setClassNameId((Long)classNameId);
+					dlFileEntry.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -593,8 +603,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object classPK) {
-					dlFileEntry.setClassPK((Long)classPK);
+				public void accept(
+					DLFileEntry dlFileEntry, Object classPKObject) {
+
+					dlFileEntry.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -614,9 +626,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object repositoryId) {
+					DLFileEntry dlFileEntry, Object repositoryIdObject) {
 
-					dlFileEntry.setRepositoryId((Long)repositoryId);
+					dlFileEntry.setRepositoryId((Long)repositoryIdObject);
 				}
 
 			});
@@ -635,8 +647,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object folderId) {
-					dlFileEntry.setFolderId((Long)folderId);
+				public void accept(
+					DLFileEntry dlFileEntry, Object folderIdObject) {
+
+					dlFileEntry.setFolderId((Long)folderIdObject);
 				}
 
 			});
@@ -655,8 +669,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object treePath) {
-					dlFileEntry.setTreePath((String)treePath);
+				public void accept(
+					DLFileEntry dlFileEntry, Object treePathObject) {
+
+					dlFileEntry.setTreePath((String)treePathObject);
 				}
 
 			});
@@ -675,8 +691,8 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object name) {
-					dlFileEntry.setName((String)name);
+				public void accept(DLFileEntry dlFileEntry, Object nameObject) {
+					dlFileEntry.setName((String)nameObject);
 				}
 
 			});
@@ -695,8 +711,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object fileName) {
-					dlFileEntry.setFileName((String)fileName);
+				public void accept(
+					DLFileEntry dlFileEntry, Object fileNameObject) {
+
+					dlFileEntry.setFileName((String)fileNameObject);
 				}
 
 			});
@@ -715,8 +733,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object extension) {
-					dlFileEntry.setExtension((String)extension);
+				public void accept(
+					DLFileEntry dlFileEntry, Object extensionObject) {
+
+					dlFileEntry.setExtension((String)extensionObject);
 				}
 
 			});
@@ -735,8 +755,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object mimeType) {
-					dlFileEntry.setMimeType((String)mimeType);
+				public void accept(
+					DLFileEntry dlFileEntry, Object mimeTypeObject) {
+
+					dlFileEntry.setMimeType((String)mimeTypeObject);
 				}
 
 			});
@@ -755,8 +777,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object title) {
-					dlFileEntry.setTitle((String)title);
+				public void accept(
+					DLFileEntry dlFileEntry, Object titleObject) {
+
+					dlFileEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -776,9 +800,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object description) {
+					DLFileEntry dlFileEntry, Object descriptionObject) {
 
-					dlFileEntry.setDescription((String)description);
+					dlFileEntry.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -798,9 +822,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object extraSettings) {
+					DLFileEntry dlFileEntry, Object extraSettingsObject) {
 
-					dlFileEntry.setExtraSettings((String)extraSettings);
+					dlFileEntry.setExtraSettings((String)extraSettingsObject);
 				}
 
 			});
@@ -820,9 +844,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object fileEntryTypeId) {
+					DLFileEntry dlFileEntry, Object fileEntryTypeIdObject) {
 
-					dlFileEntry.setFileEntryTypeId((Long)fileEntryTypeId);
+					dlFileEntry.setFileEntryTypeId((Long)fileEntryTypeIdObject);
 				}
 
 			});
@@ -841,8 +865,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object version) {
-					dlFileEntry.setVersion((String)version);
+				public void accept(
+					DLFileEntry dlFileEntry, Object versionObject) {
+
+					dlFileEntry.setVersion((String)versionObject);
 				}
 
 			});
@@ -861,8 +887,8 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object size) {
-					dlFileEntry.setSize((Long)size);
+				public void accept(DLFileEntry dlFileEntry, Object sizeObject) {
+					dlFileEntry.setSize((Long)sizeObject);
 				}
 
 			});
@@ -881,8 +907,10 @@ public class DLFileEntryModelImpl
 			new BiConsumer<DLFileEntry, Object>() {
 
 				@Override
-				public void accept(DLFileEntry dlFileEntry, Object readCount) {
-					dlFileEntry.setReadCount((Integer)readCount);
+				public void accept(
+					DLFileEntry dlFileEntry, Object readCountObject) {
+
+					dlFileEntry.setReadCount((Integer)readCountObject);
 				}
 
 			});
@@ -902,9 +930,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object smallImageId) {
+					DLFileEntry dlFileEntry, Object smallImageIdObject) {
 
-					dlFileEntry.setSmallImageId((Long)smallImageId);
+					dlFileEntry.setSmallImageId((Long)smallImageIdObject);
 				}
 
 			});
@@ -924,9 +952,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object largeImageId) {
+					DLFileEntry dlFileEntry, Object largeImageIdObject) {
 
-					dlFileEntry.setLargeImageId((Long)largeImageId);
+					dlFileEntry.setLargeImageId((Long)largeImageIdObject);
 				}
 
 			});
@@ -946,9 +974,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object custom1ImageId) {
+					DLFileEntry dlFileEntry, Object custom1ImageIdObject) {
 
-					dlFileEntry.setCustom1ImageId((Long)custom1ImageId);
+					dlFileEntry.setCustom1ImageId((Long)custom1ImageIdObject);
 				}
 
 			});
@@ -968,9 +996,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object custom2ImageId) {
+					DLFileEntry dlFileEntry, Object custom2ImageIdObject) {
 
-					dlFileEntry.setCustom2ImageId((Long)custom2ImageId);
+					dlFileEntry.setCustom2ImageId((Long)custom2ImageIdObject);
 				}
 
 			});
@@ -990,10 +1018,11 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object manualCheckInRequired) {
+					DLFileEntry dlFileEntry,
+					Object manualCheckInRequiredObject) {
 
 					dlFileEntry.setManualCheckInRequired(
-						(Boolean)manualCheckInRequired);
+						(Boolean)manualCheckInRequiredObject);
 				}
 
 			});
@@ -1013,9 +1042,9 @@ public class DLFileEntryModelImpl
 
 				@Override
 				public void accept(
-					DLFileEntry dlFileEntry, Object lastPublishDate) {
+					DLFileEntry dlFileEntry, Object lastPublishDateObject) {
 
-					dlFileEntry.setLastPublishDate((Date)lastPublishDate);
+					dlFileEntry.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

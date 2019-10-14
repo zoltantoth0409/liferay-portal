@@ -273,8 +273,10 @@ public class WSRPProducerModelImpl
 			new BiConsumer<WSRPProducer, Object>() {
 
 				@Override
-				public void accept(WSRPProducer wsrpProducer, Object uuid) {
-					wsrpProducer.setUuid((String)uuid);
+				public void accept(
+					WSRPProducer wsrpProducer, Object uuidObject) {
+
+					wsrpProducer.setUuid((String)uuidObject);
 				}
 
 			});
@@ -294,9 +296,9 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object wsrpProducerId) {
+					WSRPProducer wsrpProducer, Object wsrpProducerIdObject) {
 
-					wsrpProducer.setWsrpProducerId((Long)wsrpProducerId);
+					wsrpProducer.setWsrpProducerId((Long)wsrpProducerIdObject);
 				}
 
 			});
@@ -315,8 +317,10 @@ public class WSRPProducerModelImpl
 			new BiConsumer<WSRPProducer, Object>() {
 
 				@Override
-				public void accept(WSRPProducer wsrpProducer, Object groupId) {
-					wsrpProducer.setGroupId((Long)groupId);
+				public void accept(
+					WSRPProducer wsrpProducer, Object groupIdObject) {
+
+					wsrpProducer.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -336,9 +340,9 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object companyId) {
+					WSRPProducer wsrpProducer, Object companyIdObject) {
 
-					wsrpProducer.setCompanyId((Long)companyId);
+					wsrpProducer.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -358,9 +362,9 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object createDate) {
+					WSRPProducer wsrpProducer, Object createDateObject) {
 
-					wsrpProducer.setCreateDate((Date)createDate);
+					wsrpProducer.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -380,9 +384,9 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object modifiedDate) {
+					WSRPProducer wsrpProducer, Object modifiedDateObject) {
 
-					wsrpProducer.setModifiedDate((Date)modifiedDate);
+					wsrpProducer.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -401,8 +405,10 @@ public class WSRPProducerModelImpl
 			new BiConsumer<WSRPProducer, Object>() {
 
 				@Override
-				public void accept(WSRPProducer wsrpProducer, Object name) {
-					wsrpProducer.setName((String)name);
+				public void accept(
+					WSRPProducer wsrpProducer, Object nameObject) {
+
+					wsrpProducer.setName((String)nameObject);
 				}
 
 			});
@@ -421,8 +427,10 @@ public class WSRPProducerModelImpl
 			new BiConsumer<WSRPProducer, Object>() {
 
 				@Override
-				public void accept(WSRPProducer wsrpProducer, Object version) {
-					wsrpProducer.setVersion((String)version);
+				public void accept(
+					WSRPProducer wsrpProducer, Object versionObject) {
+
+					wsrpProducer.setVersion((String)versionObject);
 				}
 
 			});
@@ -442,9 +450,9 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object portletIds) {
+					WSRPProducer wsrpProducer, Object portletIdsObject) {
 
-					wsrpProducer.setPortletIds((String)portletIds);
+					wsrpProducer.setPortletIds((String)portletIdsObject);
 				}
 
 			});
@@ -464,9 +472,10 @@ public class WSRPProducerModelImpl
 
 				@Override
 				public void accept(
-					WSRPProducer wsrpProducer, Object lastPublishDate) {
+					WSRPProducer wsrpProducer, Object lastPublishDateObject) {
 
-					wsrpProducer.setLastPublishDate((Date)lastPublishDate);
+					wsrpProducer.setLastPublishDate(
+						(Date)lastPublishDateObject);
 				}
 
 			});

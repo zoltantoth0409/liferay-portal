@@ -262,8 +262,10 @@ public class ExpandoTableModelImpl
 			new BiConsumer<ExpandoTable, Object>() {
 
 				@Override
-				public void accept(ExpandoTable expandoTable, Object tableId) {
-					expandoTable.setTableId((Long)tableId);
+				public void accept(
+					ExpandoTable expandoTable, Object tableIdObject) {
+
+					expandoTable.setTableId((Long)tableIdObject);
 				}
 
 			});
@@ -283,9 +285,9 @@ public class ExpandoTableModelImpl
 
 				@Override
 				public void accept(
-					ExpandoTable expandoTable, Object companyId) {
+					ExpandoTable expandoTable, Object companyIdObject) {
 
-					expandoTable.setCompanyId((Long)companyId);
+					expandoTable.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -305,9 +307,9 @@ public class ExpandoTableModelImpl
 
 				@Override
 				public void accept(
-					ExpandoTable expandoTable, Object classNameId) {
+					ExpandoTable expandoTable, Object classNameIdObject) {
 
-					expandoTable.setClassNameId((Long)classNameId);
+					expandoTable.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -326,8 +328,10 @@ public class ExpandoTableModelImpl
 			new BiConsumer<ExpandoTable, Object>() {
 
 				@Override
-				public void accept(ExpandoTable expandoTable, Object name) {
-					expandoTable.setName((String)name);
+				public void accept(
+					ExpandoTable expandoTable, Object nameObject) {
+
+					expandoTable.setName((String)nameObject);
 				}
 
 			});

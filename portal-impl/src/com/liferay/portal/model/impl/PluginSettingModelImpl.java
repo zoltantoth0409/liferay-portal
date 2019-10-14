@@ -317,9 +317,9 @@ public class PluginSettingModelImpl
 
 				@Override
 				public void accept(
-					PluginSetting pluginSetting, Object mvccVersion) {
+					PluginSetting pluginSetting, Object mvccVersionObject) {
 
-					pluginSetting.setMvccVersion((Long)mvccVersion);
+					pluginSetting.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -339,9 +339,10 @@ public class PluginSettingModelImpl
 
 				@Override
 				public void accept(
-					PluginSetting pluginSetting, Object pluginSettingId) {
+					PluginSetting pluginSetting, Object pluginSettingIdObject) {
 
-					pluginSetting.setPluginSettingId((Long)pluginSettingId);
+					pluginSetting.setPluginSettingId(
+						(Long)pluginSettingIdObject);
 				}
 
 			});
@@ -361,9 +362,9 @@ public class PluginSettingModelImpl
 
 				@Override
 				public void accept(
-					PluginSetting pluginSetting, Object companyId) {
+					PluginSetting pluginSetting, Object companyIdObject) {
 
-					pluginSetting.setCompanyId((Long)companyId);
+					pluginSetting.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -383,9 +384,9 @@ public class PluginSettingModelImpl
 
 				@Override
 				public void accept(
-					PluginSetting pluginSetting, Object pluginId) {
+					PluginSetting pluginSetting, Object pluginIdObject) {
 
-					pluginSetting.setPluginId((String)pluginId);
+					pluginSetting.setPluginId((String)pluginIdObject);
 				}
 
 			});
@@ -405,9 +406,9 @@ public class PluginSettingModelImpl
 
 				@Override
 				public void accept(
-					PluginSetting pluginSetting, Object pluginType) {
+					PluginSetting pluginSetting, Object pluginTypeObject) {
 
-					pluginSetting.setPluginType((String)pluginType);
+					pluginSetting.setPluginType((String)pluginTypeObject);
 				}
 
 			});
@@ -426,8 +427,10 @@ public class PluginSettingModelImpl
 			new BiConsumer<PluginSetting, Object>() {
 
 				@Override
-				public void accept(PluginSetting pluginSetting, Object roles) {
-					pluginSetting.setRoles((String)roles);
+				public void accept(
+					PluginSetting pluginSetting, Object rolesObject) {
+
+					pluginSetting.setRoles((String)rolesObject);
 				}
 
 			});
@@ -446,8 +449,10 @@ public class PluginSettingModelImpl
 			new BiConsumer<PluginSetting, Object>() {
 
 				@Override
-				public void accept(PluginSetting pluginSetting, Object active) {
-					pluginSetting.setActive((Boolean)active);
+				public void accept(
+					PluginSetting pluginSetting, Object activeObject) {
+
+					pluginSetting.setActive((Boolean)activeObject);
 				}
 
 			});

@@ -366,10 +366,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object structureVersionId) {
+					Object structureVersionIdObject) {
 
 					ddmStructureVersion.setStructureVersionId(
-						(Long)structureVersionId);
+						(Long)structureVersionIdObject);
 				}
 
 			});
@@ -389,9 +389,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object groupId) {
+					DDMStructureVersion ddmStructureVersion,
+					Object groupIdObject) {
 
-					ddmStructureVersion.setGroupId((Long)groupId);
+					ddmStructureVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -411,9 +412,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object companyId) {
+					DDMStructureVersion ddmStructureVersion,
+					Object companyIdObject) {
 
-					ddmStructureVersion.setCompanyId((Long)companyId);
+					ddmStructureVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -433,9 +435,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object userId) {
+					DDMStructureVersion ddmStructureVersion,
+					Object userIdObject) {
 
-					ddmStructureVersion.setUserId((Long)userId);
+					ddmStructureVersion.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -455,9 +458,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object userName) {
+					DDMStructureVersion ddmStructureVersion,
+					Object userNameObject) {
 
-					ddmStructureVersion.setUserName((String)userName);
+					ddmStructureVersion.setUserName((String)userNameObject);
 				}
 
 			});
@@ -478,9 +482,9 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object createDate) {
+					Object createDateObject) {
 
-					ddmStructureVersion.setCreateDate((Date)createDate);
+					ddmStructureVersion.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -501,9 +505,9 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object structureId) {
+					Object structureIdObject) {
 
-					ddmStructureVersion.setStructureId((Long)structureId);
+					ddmStructureVersion.setStructureId((Long)structureIdObject);
 				}
 
 			});
@@ -523,9 +527,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object version) {
+					DDMStructureVersion ddmStructureVersion,
+					Object versionObject) {
 
-					ddmStructureVersion.setVersion((String)version);
+					ddmStructureVersion.setVersion((String)versionObject);
 				}
 
 			});
@@ -546,10 +551,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object parentStructureId) {
+					Object parentStructureIdObject) {
 
 					ddmStructureVersion.setParentStructureId(
-						(Long)parentStructureId);
+						(Long)parentStructureIdObject);
 				}
 
 			});
@@ -569,9 +574,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object name) {
+					DDMStructureVersion ddmStructureVersion,
+					Object nameObject) {
 
-					ddmStructureVersion.setName((String)name);
+					ddmStructureVersion.setName((String)nameObject);
 				}
 
 			});
@@ -592,9 +598,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object description) {
+					Object descriptionObject) {
 
-					ddmStructureVersion.setDescription((String)description);
+					ddmStructureVersion.setDescription(
+						(String)descriptionObject);
 				}
 
 			});
@@ -615,9 +622,9 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object definition) {
+					Object definitionObject) {
 
-					ddmStructureVersion.setDefinition((String)definition);
+					ddmStructureVersion.setDefinition((String)definitionObject);
 				}
 
 			});
@@ -638,9 +645,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object storageType) {
+					Object storageTypeObject) {
 
-					ddmStructureVersion.setStorageType((String)storageType);
+					ddmStructureVersion.setStorageType(
+						(String)storageTypeObject);
 				}
 
 			});
@@ -660,9 +668,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object type) {
+					DDMStructureVersion ddmStructureVersion,
+					Object typeObject) {
 
-					ddmStructureVersion.setType((Integer)type);
+					ddmStructureVersion.setType((Integer)typeObject);
 				}
 
 			});
@@ -682,9 +691,10 @@ public class DDMStructureVersionModelImpl
 
 				@Override
 				public void accept(
-					DDMStructureVersion ddmStructureVersion, Object status) {
+					DDMStructureVersion ddmStructureVersion,
+					Object statusObject) {
 
-					ddmStructureVersion.setStatus((Integer)status);
+					ddmStructureVersion.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -705,9 +715,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object statusByUserId) {
+					Object statusByUserIdObject) {
 
-					ddmStructureVersion.setStatusByUserId((Long)statusByUserId);
+					ddmStructureVersion.setStatusByUserId(
+						(Long)statusByUserIdObject);
 				}
 
 			});
@@ -728,10 +739,10 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object statusByUserName) {
+					Object statusByUserNameObject) {
 
 					ddmStructureVersion.setStatusByUserName(
-						(String)statusByUserName);
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -752,9 +763,9 @@ public class DDMStructureVersionModelImpl
 				@Override
 				public void accept(
 					DDMStructureVersion ddmStructureVersion,
-					Object statusDate) {
+					Object statusDateObject) {
 
-					ddmStructureVersion.setStatusDate((Date)statusDate);
+					ddmStructureVersion.setStatusDate((Date)statusDateObject);
 				}
 
 			});

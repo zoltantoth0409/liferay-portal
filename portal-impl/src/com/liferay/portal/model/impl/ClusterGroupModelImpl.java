@@ -253,9 +253,9 @@ public class ClusterGroupModelImpl
 
 				@Override
 				public void accept(
-					ClusterGroup clusterGroup, Object mvccVersion) {
+					ClusterGroup clusterGroup, Object mvccVersionObject) {
 
-					clusterGroup.setMvccVersion((Long)mvccVersion);
+					clusterGroup.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -275,9 +275,9 @@ public class ClusterGroupModelImpl
 
 				@Override
 				public void accept(
-					ClusterGroup clusterGroup, Object clusterGroupId) {
+					ClusterGroup clusterGroup, Object clusterGroupIdObject) {
 
-					clusterGroup.setClusterGroupId((Long)clusterGroupId);
+					clusterGroup.setClusterGroupId((Long)clusterGroupIdObject);
 				}
 
 			});
@@ -296,8 +296,10 @@ public class ClusterGroupModelImpl
 			new BiConsumer<ClusterGroup, Object>() {
 
 				@Override
-				public void accept(ClusterGroup clusterGroup, Object name) {
-					clusterGroup.setName((String)name);
+				public void accept(
+					ClusterGroup clusterGroup, Object nameObject) {
+
+					clusterGroup.setName((String)nameObject);
 				}
 
 			});
@@ -317,9 +319,10 @@ public class ClusterGroupModelImpl
 
 				@Override
 				public void accept(
-					ClusterGroup clusterGroup, Object clusterNodeIds) {
+					ClusterGroup clusterGroup, Object clusterNodeIdsObject) {
 
-					clusterGroup.setClusterNodeIds((String)clusterNodeIds);
+					clusterGroup.setClusterNodeIds(
+						(String)clusterNodeIdsObject);
 				}
 
 			});
@@ -339,9 +342,9 @@ public class ClusterGroupModelImpl
 
 				@Override
 				public void accept(
-					ClusterGroup clusterGroup, Object wholeCluster) {
+					ClusterGroup clusterGroup, Object wholeClusterObject) {
 
-					clusterGroup.setWholeCluster((Boolean)wholeCluster);
+					clusterGroup.setWholeCluster((Boolean)wholeClusterObject);
 				}
 
 			});

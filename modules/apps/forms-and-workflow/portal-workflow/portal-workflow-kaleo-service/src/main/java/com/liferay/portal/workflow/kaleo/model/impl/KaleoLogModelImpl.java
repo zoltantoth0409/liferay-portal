@@ -318,8 +318,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoLogId) {
-					kaleoLog.setKaleoLogId((Long)kaleoLogId);
+				public void accept(KaleoLog kaleoLog, Object kaleoLogIdObject) {
+					kaleoLog.setKaleoLogId((Long)kaleoLogIdObject);
 				}
 
 			});
@@ -338,8 +338,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object groupId) {
-					kaleoLog.setGroupId((Long)groupId);
+				public void accept(KaleoLog kaleoLog, Object groupIdObject) {
+					kaleoLog.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -358,8 +358,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object companyId) {
-					kaleoLog.setCompanyId((Long)companyId);
+				public void accept(KaleoLog kaleoLog, Object companyIdObject) {
+					kaleoLog.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -378,8 +378,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object userId) {
-					kaleoLog.setUserId((Long)userId);
+				public void accept(KaleoLog kaleoLog, Object userIdObject) {
+					kaleoLog.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -398,8 +398,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object userName) {
-					kaleoLog.setUserName((String)userName);
+				public void accept(KaleoLog kaleoLog, Object userNameObject) {
+					kaleoLog.setUserName((String)userNameObject);
 				}
 
 			});
@@ -418,8 +418,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object createDate) {
-					kaleoLog.setCreateDate((Date)createDate);
+				public void accept(KaleoLog kaleoLog, Object createDateObject) {
+					kaleoLog.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -438,8 +438,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object modifiedDate) {
-					kaleoLog.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					KaleoLog kaleoLog, Object modifiedDateObject) {
+
+					kaleoLog.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -458,8 +460,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoClassName) {
-					kaleoLog.setKaleoClassName((String)kaleoClassName);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoClassNameObject) {
+
+					kaleoLog.setKaleoClassName((String)kaleoClassNameObject);
 				}
 
 			});
@@ -478,8 +482,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoClassPK) {
-					kaleoLog.setKaleoClassPK((Long)kaleoClassPK);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoClassPKObject) {
+
+					kaleoLog.setKaleoClassPK((Long)kaleoClassPKObject);
 				}
 
 			});
@@ -499,9 +505,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object kaleoDefinitionId) {
+					KaleoLog kaleoLog, Object kaleoDefinitionIdObject) {
 
-					kaleoLog.setKaleoDefinitionId((Long)kaleoDefinitionId);
+					kaleoLog.setKaleoDefinitionId(
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -520,8 +527,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoInstanceId) {
-					kaleoLog.setKaleoInstanceId((Long)kaleoInstanceId);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoInstanceIdObject) {
+
+					kaleoLog.setKaleoInstanceId((Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -541,10 +550,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object kaleoInstanceTokenId) {
+					KaleoLog kaleoLog, Object kaleoInstanceTokenIdObject) {
 
 					kaleoLog.setKaleoInstanceTokenId(
-						(Long)kaleoInstanceTokenId);
+						(Long)kaleoInstanceTokenIdObject);
 				}
 
 			});
@@ -564,10 +573,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object kaleoTaskInstanceTokenId) {
+					KaleoLog kaleoLog, Object kaleoTaskInstanceTokenIdObject) {
 
 					kaleoLog.setKaleoTaskInstanceTokenId(
-						(Long)kaleoTaskInstanceTokenId);
+						(Long)kaleoTaskInstanceTokenIdObject);
 				}
 
 			});
@@ -586,8 +595,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoNodeName) {
-					kaleoLog.setKaleoNodeName((String)kaleoNodeName);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoNodeNameObject) {
+
+					kaleoLog.setKaleoNodeName((String)kaleoNodeNameObject);
 				}
 
 			});
@@ -607,9 +618,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object terminalKaleoNode) {
+					KaleoLog kaleoLog, Object terminalKaleoNodeObject) {
 
-					kaleoLog.setTerminalKaleoNode((Boolean)terminalKaleoNode);
+					kaleoLog.setTerminalKaleoNode(
+						(Boolean)terminalKaleoNodeObject);
 				}
 
 			});
@@ -628,8 +640,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoActionId) {
-					kaleoLog.setKaleoActionId((Long)kaleoActionId);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoActionIdObject) {
+
+					kaleoLog.setKaleoActionId((Long)kaleoActionIdObject);
 				}
 
 			});
@@ -648,8 +662,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoActionName) {
-					kaleoLog.setKaleoActionName((String)kaleoActionName);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoActionNameObject) {
+
+					kaleoLog.setKaleoActionName((String)kaleoActionNameObject);
 				}
 
 			});
@@ -669,10 +685,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object kaleoActionDescription) {
+					KaleoLog kaleoLog, Object kaleoActionDescriptionObject) {
 
 					kaleoLog.setKaleoActionDescription(
-						(String)kaleoActionDescription);
+						(String)kaleoActionDescriptionObject);
 				}
 
 			});
@@ -692,9 +708,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object previousKaleoNodeId) {
+					KaleoLog kaleoLog, Object previousKaleoNodeIdObject) {
 
-					kaleoLog.setPreviousKaleoNodeId((Long)previousKaleoNodeId);
+					kaleoLog.setPreviousKaleoNodeId(
+						(Long)previousKaleoNodeIdObject);
 				}
 
 			});
@@ -714,10 +731,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object previousKaleoNodeName) {
+					KaleoLog kaleoLog, Object previousKaleoNodeNameObject) {
 
 					kaleoLog.setPreviousKaleoNodeName(
-						(String)previousKaleoNodeName);
+						(String)previousKaleoNodeNameObject);
 				}
 
 			});
@@ -737,10 +754,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object previousAssigneeClassName) {
+					KaleoLog kaleoLog, Object previousAssigneeClassNameObject) {
 
 					kaleoLog.setPreviousAssigneeClassName(
-						(String)previousAssigneeClassName);
+						(String)previousAssigneeClassNameObject);
 				}
 
 			});
@@ -760,10 +777,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object previousAssigneeClassPK) {
+					KaleoLog kaleoLog, Object previousAssigneeClassPKObject) {
 
 					kaleoLog.setPreviousAssigneeClassPK(
-						(Long)previousAssigneeClassPK);
+						(Long)previousAssigneeClassPKObject);
 				}
 
 			});
@@ -783,10 +800,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object currentAssigneeClassName) {
+					KaleoLog kaleoLog, Object currentAssigneeClassNameObject) {
 
 					kaleoLog.setCurrentAssigneeClassName(
-						(String)currentAssigneeClassName);
+						(String)currentAssigneeClassNameObject);
 				}
 
 			});
@@ -806,10 +823,10 @@ public class KaleoLogModelImpl
 
 				@Override
 				public void accept(
-					KaleoLog kaleoLog, Object currentAssigneeClassPK) {
+					KaleoLog kaleoLog, Object currentAssigneeClassPKObject) {
 
 					kaleoLog.setCurrentAssigneeClassPK(
-						(Long)currentAssigneeClassPK);
+						(Long)currentAssigneeClassPKObject);
 				}
 
 			});
@@ -828,8 +845,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object type) {
-					kaleoLog.setType((String)type);
+				public void accept(KaleoLog kaleoLog, Object typeObject) {
+					kaleoLog.setType((String)typeObject);
 				}
 
 			});
@@ -848,8 +865,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object comment) {
-					kaleoLog.setComment((String)comment);
+				public void accept(KaleoLog kaleoLog, Object commentObject) {
+					kaleoLog.setComment((String)commentObject);
 				}
 
 			});
@@ -868,8 +885,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object startDate) {
-					kaleoLog.setStartDate((Date)startDate);
+				public void accept(KaleoLog kaleoLog, Object startDateObject) {
+					kaleoLog.setStartDate((Date)startDateObject);
 				}
 
 			});
@@ -888,8 +905,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object endDate) {
-					kaleoLog.setEndDate((Date)endDate);
+				public void accept(KaleoLog kaleoLog, Object endDateObject) {
+					kaleoLog.setEndDate((Date)endDateObject);
 				}
 
 			});
@@ -908,8 +925,8 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object duration) {
-					kaleoLog.setDuration((Long)duration);
+				public void accept(KaleoLog kaleoLog, Object durationObject) {
+					kaleoLog.setDuration((Long)durationObject);
 				}
 
 			});
@@ -928,8 +945,10 @@ public class KaleoLogModelImpl
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object workflowContext) {
-					kaleoLog.setWorkflowContext((String)workflowContext);
+				public void accept(
+					KaleoLog kaleoLog, Object workflowContextObject) {
+
+					kaleoLog.setWorkflowContext((String)workflowContextObject);
 				}
 
 			});

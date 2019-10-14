@@ -274,9 +274,9 @@ public class UserTrackerModelImpl
 
 				@Override
 				public void accept(
-					UserTracker userTracker, Object mvccVersion) {
+					UserTracker userTracker, Object mvccVersionObject) {
 
-					userTracker.setMvccVersion((Long)mvccVersion);
+					userTracker.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -296,9 +296,9 @@ public class UserTrackerModelImpl
 
 				@Override
 				public void accept(
-					UserTracker userTracker, Object userTrackerId) {
+					UserTracker userTracker, Object userTrackerIdObject) {
 
-					userTracker.setUserTrackerId((Long)userTrackerId);
+					userTracker.setUserTrackerId((Long)userTrackerIdObject);
 				}
 
 			});
@@ -317,8 +317,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object companyId) {
-					userTracker.setCompanyId((Long)companyId);
+				public void accept(
+					UserTracker userTracker, Object companyIdObject) {
+
+					userTracker.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -337,8 +339,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object userId) {
-					userTracker.setUserId((Long)userId);
+				public void accept(
+					UserTracker userTracker, Object userIdObject) {
+
+					userTracker.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -358,9 +362,9 @@ public class UserTrackerModelImpl
 
 				@Override
 				public void accept(
-					UserTracker userTracker, Object modifiedDate) {
+					UserTracker userTracker, Object modifiedDateObject) {
 
-					userTracker.setModifiedDate((Date)modifiedDate);
+					userTracker.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -379,8 +383,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object sessionId) {
-					userTracker.setSessionId((String)sessionId);
+				public void accept(
+					UserTracker userTracker, Object sessionIdObject) {
+
+					userTracker.setSessionId((String)sessionIdObject);
 				}
 
 			});
@@ -399,8 +405,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object remoteAddr) {
-					userTracker.setRemoteAddr((String)remoteAddr);
+				public void accept(
+					UserTracker userTracker, Object remoteAddrObject) {
+
+					userTracker.setRemoteAddr((String)remoteAddrObject);
 				}
 
 			});
@@ -419,8 +427,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object remoteHost) {
-					userTracker.setRemoteHost((String)remoteHost);
+				public void accept(
+					UserTracker userTracker, Object remoteHostObject) {
+
+					userTracker.setRemoteHost((String)remoteHostObject);
 				}
 
 			});
@@ -439,8 +449,10 @@ public class UserTrackerModelImpl
 			new BiConsumer<UserTracker, Object>() {
 
 				@Override
-				public void accept(UserTracker userTracker, Object userAgent) {
-					userTracker.setUserAgent((String)userAgent);
+				public void accept(
+					UserTracker userTracker, Object userAgentObject) {
+
+					userTracker.setUserAgent((String)userAgentObject);
 				}
 
 			});

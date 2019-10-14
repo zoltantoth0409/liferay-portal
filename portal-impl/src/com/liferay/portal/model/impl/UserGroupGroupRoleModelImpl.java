@@ -316,9 +316,10 @@ public class UserGroupGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupGroupRole userGroupGroupRole, Object mvccVersion) {
+					UserGroupGroupRole userGroupGroupRole,
+					Object mvccVersionObject) {
 
-					userGroupGroupRole.setMvccVersion((Long)mvccVersion);
+					userGroupGroupRole.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -338,9 +339,10 @@ public class UserGroupGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupGroupRole userGroupGroupRole, Object userGroupId) {
+					UserGroupGroupRole userGroupGroupRole,
+					Object userGroupIdObject) {
 
-					userGroupGroupRole.setUserGroupId((Long)userGroupId);
+					userGroupGroupRole.setUserGroupId((Long)userGroupIdObject);
 				}
 
 			});
@@ -360,9 +362,10 @@ public class UserGroupGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupGroupRole userGroupGroupRole, Object groupId) {
+					UserGroupGroupRole userGroupGroupRole,
+					Object groupIdObject) {
 
-					userGroupGroupRole.setGroupId((Long)groupId);
+					userGroupGroupRole.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -382,9 +385,10 @@ public class UserGroupGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupGroupRole userGroupGroupRole, Object roleId) {
+					UserGroupGroupRole userGroupGroupRole,
+					Object roleIdObject) {
 
-					userGroupGroupRole.setRoleId((Long)roleId);
+					userGroupGroupRole.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -404,9 +408,10 @@ public class UserGroupGroupRoleModelImpl
 
 				@Override
 				public void accept(
-					UserGroupGroupRole userGroupGroupRole, Object companyId) {
+					UserGroupGroupRole userGroupGroupRole,
+					Object companyIdObject) {
 
-					userGroupGroupRole.setCompanyId((Long)companyId);
+					userGroupGroupRole.setCompanyId((Long)companyIdObject);
 				}
 
 			});

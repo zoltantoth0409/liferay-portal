@@ -438,9 +438,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object orderId) {
+					ShoppingOrder shoppingOrder, Object orderIdObject) {
 
-					shoppingOrder.setOrderId((Long)orderId);
+					shoppingOrder.setOrderId((Long)orderIdObject);
 				}
 
 			});
@@ -460,9 +460,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object groupId) {
+					ShoppingOrder shoppingOrder, Object groupIdObject) {
 
-					shoppingOrder.setGroupId((Long)groupId);
+					shoppingOrder.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -482,9 +482,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object companyId) {
+					ShoppingOrder shoppingOrder, Object companyIdObject) {
 
-					shoppingOrder.setCompanyId((Long)companyId);
+					shoppingOrder.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -503,8 +503,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object userId) {
-					shoppingOrder.setUserId((Long)userId);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object userIdObject) {
+
+					shoppingOrder.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -524,9 +526,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object userName) {
+					ShoppingOrder shoppingOrder, Object userNameObject) {
 
-					shoppingOrder.setUserName((String)userName);
+					shoppingOrder.setUserName((String)userNameObject);
 				}
 
 			});
@@ -546,9 +548,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object createDate) {
+					ShoppingOrder shoppingOrder, Object createDateObject) {
 
-					shoppingOrder.setCreateDate((Date)createDate);
+					shoppingOrder.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -568,9 +570,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object modifiedDate) {
+					ShoppingOrder shoppingOrder, Object modifiedDateObject) {
 
-					shoppingOrder.setModifiedDate((Date)modifiedDate);
+					shoppingOrder.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -589,8 +591,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object number) {
-					shoppingOrder.setNumber((String)number);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object numberObject) {
+
+					shoppingOrder.setNumber((String)numberObject);
 				}
 
 			});
@@ -609,8 +613,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object tax) {
-					shoppingOrder.setTax((Double)tax);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object taxObject) {
+
+					shoppingOrder.setTax((Double)taxObject);
 				}
 
 			});
@@ -630,9 +636,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shipping) {
+					ShoppingOrder shoppingOrder, Object shippingObject) {
 
-					shoppingOrder.setShipping((Double)shipping);
+					shoppingOrder.setShipping((Double)shippingObject);
 				}
 
 			});
@@ -652,9 +658,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object altShipping) {
+					ShoppingOrder shoppingOrder, Object altShippingObject) {
 
-					shoppingOrder.setAltShipping((String)altShipping);
+					shoppingOrder.setAltShipping((String)altShippingObject);
 				}
 
 			});
@@ -674,10 +680,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object requiresShipping) {
+					ShoppingOrder shoppingOrder,
+					Object requiresShippingObject) {
 
 					shoppingOrder.setRequiresShipping(
-						(Boolean)requiresShipping);
+						(Boolean)requiresShippingObject);
 				}
 
 			});
@@ -696,8 +703,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object insure) {
-					shoppingOrder.setInsure((Boolean)insure);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object insureObject) {
+
+					shoppingOrder.setInsure((Boolean)insureObject);
 				}
 
 			});
@@ -717,9 +726,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object insurance) {
+					ShoppingOrder shoppingOrder, Object insuranceObject) {
 
-					shoppingOrder.setInsurance((Double)insurance);
+					shoppingOrder.setInsurance((Double)insuranceObject);
 				}
 
 			});
@@ -739,9 +748,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object couponCodes) {
+					ShoppingOrder shoppingOrder, Object couponCodesObject) {
 
-					shoppingOrder.setCouponCodes((String)couponCodes);
+					shoppingOrder.setCouponCodes((String)couponCodesObject);
 				}
 
 			});
@@ -761,9 +770,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object couponDiscount) {
+					ShoppingOrder shoppingOrder, Object couponDiscountObject) {
 
-					shoppingOrder.setCouponDiscount((Double)couponDiscount);
+					shoppingOrder.setCouponDiscount(
+						(Double)couponDiscountObject);
 				}
 
 			});
@@ -783,9 +793,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingFirstName) {
+					ShoppingOrder shoppingOrder,
+					Object billingFirstNameObject) {
 
-					shoppingOrder.setBillingFirstName((String)billingFirstName);
+					shoppingOrder.setBillingFirstName(
+						(String)billingFirstNameObject);
 				}
 
 			});
@@ -805,9 +817,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingLastName) {
+					ShoppingOrder shoppingOrder, Object billingLastNameObject) {
 
-					shoppingOrder.setBillingLastName((String)billingLastName);
+					shoppingOrder.setBillingLastName(
+						(String)billingLastNameObject);
 				}
 
 			});
@@ -827,10 +840,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingEmailAddress) {
+					ShoppingOrder shoppingOrder,
+					Object billingEmailAddressObject) {
 
 					shoppingOrder.setBillingEmailAddress(
-						(String)billingEmailAddress);
+						(String)billingEmailAddressObject);
 				}
 
 			});
@@ -850,9 +864,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingCompany) {
+					ShoppingOrder shoppingOrder, Object billingCompanyObject) {
 
-					shoppingOrder.setBillingCompany((String)billingCompany);
+					shoppingOrder.setBillingCompany(
+						(String)billingCompanyObject);
 				}
 
 			});
@@ -872,9 +887,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingStreet) {
+					ShoppingOrder shoppingOrder, Object billingStreetObject) {
 
-					shoppingOrder.setBillingStreet((String)billingStreet);
+					shoppingOrder.setBillingStreet((String)billingStreetObject);
 				}
 
 			});
@@ -894,9 +909,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingCity) {
+					ShoppingOrder shoppingOrder, Object billingCityObject) {
 
-					shoppingOrder.setBillingCity((String)billingCity);
+					shoppingOrder.setBillingCity((String)billingCityObject);
 				}
 
 			});
@@ -916,9 +931,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingState) {
+					ShoppingOrder shoppingOrder, Object billingStateObject) {
 
-					shoppingOrder.setBillingState((String)billingState);
+					shoppingOrder.setBillingState((String)billingStateObject);
 				}
 
 			});
@@ -938,9 +953,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingZip) {
+					ShoppingOrder shoppingOrder, Object billingZipObject) {
 
-					shoppingOrder.setBillingZip((String)billingZip);
+					shoppingOrder.setBillingZip((String)billingZipObject);
 				}
 
 			});
@@ -960,9 +975,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingCountry) {
+					ShoppingOrder shoppingOrder, Object billingCountryObject) {
 
-					shoppingOrder.setBillingCountry((String)billingCountry);
+					shoppingOrder.setBillingCountry(
+						(String)billingCountryObject);
 				}
 
 			});
@@ -982,9 +998,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object billingPhone) {
+					ShoppingOrder shoppingOrder, Object billingPhoneObject) {
 
-					shoppingOrder.setBillingPhone((String)billingPhone);
+					shoppingOrder.setBillingPhone((String)billingPhoneObject);
 				}
 
 			});
@@ -1004,9 +1020,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shipToBilling) {
+					ShoppingOrder shoppingOrder, Object shipToBillingObject) {
 
-					shoppingOrder.setShipToBilling((Boolean)shipToBilling);
+					shoppingOrder.setShipToBilling(
+						(Boolean)shipToBillingObject);
 				}
 
 			});
@@ -1026,10 +1043,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingFirstName) {
+					ShoppingOrder shoppingOrder,
+					Object shippingFirstNameObject) {
 
 					shoppingOrder.setShippingFirstName(
-						(String)shippingFirstName);
+						(String)shippingFirstNameObject);
 				}
 
 			});
@@ -1049,9 +1067,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingLastName) {
+					ShoppingOrder shoppingOrder,
+					Object shippingLastNameObject) {
 
-					shoppingOrder.setShippingLastName((String)shippingLastName);
+					shoppingOrder.setShippingLastName(
+						(String)shippingLastNameObject);
 				}
 
 			});
@@ -1071,10 +1091,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingEmailAddress) {
+					ShoppingOrder shoppingOrder,
+					Object shippingEmailAddressObject) {
 
 					shoppingOrder.setShippingEmailAddress(
-						(String)shippingEmailAddress);
+						(String)shippingEmailAddressObject);
 				}
 
 			});
@@ -1094,9 +1115,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingCompany) {
+					ShoppingOrder shoppingOrder, Object shippingCompanyObject) {
 
-					shoppingOrder.setShippingCompany((String)shippingCompany);
+					shoppingOrder.setShippingCompany(
+						(String)shippingCompanyObject);
 				}
 
 			});
@@ -1116,9 +1138,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingStreet) {
+					ShoppingOrder shoppingOrder, Object shippingStreetObject) {
 
-					shoppingOrder.setShippingStreet((String)shippingStreet);
+					shoppingOrder.setShippingStreet(
+						(String)shippingStreetObject);
 				}
 
 			});
@@ -1138,9 +1161,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingCity) {
+					ShoppingOrder shoppingOrder, Object shippingCityObject) {
 
-					shoppingOrder.setShippingCity((String)shippingCity);
+					shoppingOrder.setShippingCity((String)shippingCityObject);
 				}
 
 			});
@@ -1160,9 +1183,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingState) {
+					ShoppingOrder shoppingOrder, Object shippingStateObject) {
 
-					shoppingOrder.setShippingState((String)shippingState);
+					shoppingOrder.setShippingState((String)shippingStateObject);
 				}
 
 			});
@@ -1182,9 +1205,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingZip) {
+					ShoppingOrder shoppingOrder, Object shippingZipObject) {
 
-					shoppingOrder.setShippingZip((String)shippingZip);
+					shoppingOrder.setShippingZip((String)shippingZipObject);
 				}
 
 			});
@@ -1204,9 +1227,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingCountry) {
+					ShoppingOrder shoppingOrder, Object shippingCountryObject) {
 
-					shoppingOrder.setShippingCountry((String)shippingCountry);
+					shoppingOrder.setShippingCountry(
+						(String)shippingCountryObject);
 				}
 
 			});
@@ -1226,9 +1250,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object shippingPhone) {
+					ShoppingOrder shoppingOrder, Object shippingPhoneObject) {
 
-					shoppingOrder.setShippingPhone((String)shippingPhone);
+					shoppingOrder.setShippingPhone((String)shippingPhoneObject);
 				}
 
 			});
@@ -1247,8 +1271,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccName) {
-					shoppingOrder.setCcName((String)ccName);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccNameObject) {
+
+					shoppingOrder.setCcName((String)ccNameObject);
 				}
 
 			});
@@ -1267,8 +1293,10 @@ public class ShoppingOrderModelImpl
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccType) {
-					shoppingOrder.setCcType((String)ccType);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccTypeObject) {
+
+					shoppingOrder.setCcType((String)ccTypeObject);
 				}
 
 			});
@@ -1288,9 +1316,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ccNumber) {
+					ShoppingOrder shoppingOrder, Object ccNumberObject) {
 
-					shoppingOrder.setCcNumber((String)ccNumber);
+					shoppingOrder.setCcNumber((String)ccNumberObject);
 				}
 
 			});
@@ -1310,9 +1338,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ccExpMonth) {
+					ShoppingOrder shoppingOrder, Object ccExpMonthObject) {
 
-					shoppingOrder.setCcExpMonth((Integer)ccExpMonth);
+					shoppingOrder.setCcExpMonth((Integer)ccExpMonthObject);
 				}
 
 			});
@@ -1332,9 +1360,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ccExpYear) {
+					ShoppingOrder shoppingOrder, Object ccExpYearObject) {
 
-					shoppingOrder.setCcExpYear((Integer)ccExpYear);
+					shoppingOrder.setCcExpYear((Integer)ccExpYearObject);
 				}
 
 			});
@@ -1354,9 +1382,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ccVerNumber) {
+					ShoppingOrder shoppingOrder, Object ccVerNumberObject) {
 
-					shoppingOrder.setCcVerNumber((String)ccVerNumber);
+					shoppingOrder.setCcVerNumber((String)ccVerNumberObject);
 				}
 
 			});
@@ -1376,9 +1404,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object comments) {
+					ShoppingOrder shoppingOrder, Object commentsObject) {
 
-					shoppingOrder.setComments((String)comments);
+					shoppingOrder.setComments((String)commentsObject);
 				}
 
 			});
@@ -1398,9 +1426,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ppTxnId) {
+					ShoppingOrder shoppingOrder, Object ppTxnIdObject) {
 
-					shoppingOrder.setPpTxnId((String)ppTxnId);
+					shoppingOrder.setPpTxnId((String)ppTxnIdObject);
 				}
 
 			});
@@ -1420,9 +1448,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ppPaymentStatus) {
+					ShoppingOrder shoppingOrder, Object ppPaymentStatusObject) {
 
-					shoppingOrder.setPpPaymentStatus((String)ppPaymentStatus);
+					shoppingOrder.setPpPaymentStatus(
+						(String)ppPaymentStatusObject);
 				}
 
 			});
@@ -1442,9 +1471,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ppPaymentGross) {
+					ShoppingOrder shoppingOrder, Object ppPaymentGrossObject) {
 
-					shoppingOrder.setPpPaymentGross((Double)ppPaymentGross);
+					shoppingOrder.setPpPaymentGross(
+						(Double)ppPaymentGrossObject);
 				}
 
 			});
@@ -1464,9 +1494,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ppReceiverEmail) {
+					ShoppingOrder shoppingOrder, Object ppReceiverEmailObject) {
 
-					shoppingOrder.setPpReceiverEmail((String)ppReceiverEmail);
+					shoppingOrder.setPpReceiverEmail(
+						(String)ppReceiverEmailObject);
 				}
 
 			});
@@ -1486,9 +1517,9 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object ppPayerEmail) {
+					ShoppingOrder shoppingOrder, Object ppPayerEmailObject) {
 
-					shoppingOrder.setPpPayerEmail((String)ppPayerEmail);
+					shoppingOrder.setPpPayerEmail((String)ppPayerEmailObject);
 				}
 
 			});
@@ -1508,9 +1539,10 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object sendOrderEmail) {
+					ShoppingOrder shoppingOrder, Object sendOrderEmailObject) {
 
-					shoppingOrder.setSendOrderEmail((Boolean)sendOrderEmail);
+					shoppingOrder.setSendOrderEmail(
+						(Boolean)sendOrderEmailObject);
 				}
 
 			});
@@ -1530,10 +1562,11 @@ public class ShoppingOrderModelImpl
 
 				@Override
 				public void accept(
-					ShoppingOrder shoppingOrder, Object sendShippingEmail) {
+					ShoppingOrder shoppingOrder,
+					Object sendShippingEmailObject) {
 
 					shoppingOrder.setSendShippingEmail(
-						(Boolean)sendShippingEmail);
+						(Boolean)sendShippingEmailObject);
 				}
 
 			});

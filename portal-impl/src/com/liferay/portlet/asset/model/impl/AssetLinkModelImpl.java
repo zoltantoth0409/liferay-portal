@@ -270,8 +270,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object linkId) {
-					assetLink.setLinkId((Long)linkId);
+				public void accept(AssetLink assetLink, Object linkIdObject) {
+					assetLink.setLinkId((Long)linkIdObject);
 				}
 
 			});
@@ -290,8 +290,10 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object companyId) {
-					assetLink.setCompanyId((Long)companyId);
+				public void accept(
+					AssetLink assetLink, Object companyIdObject) {
+
+					assetLink.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -310,8 +312,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object userId) {
-					assetLink.setUserId((Long)userId);
+				public void accept(AssetLink assetLink, Object userIdObject) {
+					assetLink.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -330,8 +332,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object userName) {
-					assetLink.setUserName((String)userName);
+				public void accept(AssetLink assetLink, Object userNameObject) {
+					assetLink.setUserName((String)userNameObject);
 				}
 
 			});
@@ -350,8 +352,10 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object createDate) {
-					assetLink.setCreateDate((Date)createDate);
+				public void accept(
+					AssetLink assetLink, Object createDateObject) {
+
+					assetLink.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -370,8 +374,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object entryId1) {
-					assetLink.setEntryId1((Long)entryId1);
+				public void accept(AssetLink assetLink, Object entryId1Object) {
+					assetLink.setEntryId1((Long)entryId1Object);
 				}
 
 			});
@@ -390,8 +394,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object entryId2) {
-					assetLink.setEntryId2((Long)entryId2);
+				public void accept(AssetLink assetLink, Object entryId2Object) {
+					assetLink.setEntryId2((Long)entryId2Object);
 				}
 
 			});
@@ -410,8 +414,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object type) {
-					assetLink.setType((Integer)type);
+				public void accept(AssetLink assetLink, Object typeObject) {
+					assetLink.setType((Integer)typeObject);
 				}
 
 			});
@@ -430,8 +434,8 @@ public class AssetLinkModelImpl
 			new BiConsumer<AssetLink, Object>() {
 
 				@Override
-				public void accept(AssetLink assetLink, Object weight) {
-					assetLink.setWeight((Integer)weight);
+				public void accept(AssetLink assetLink, Object weightObject) {
+					assetLink.setWeight((Integer)weightObject);
 				}
 
 			});

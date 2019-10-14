@@ -364,8 +364,8 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object uuid) {
-					journalFeed.setUuid((String)uuid);
+				public void accept(JournalFeed journalFeed, Object uuidObject) {
+					journalFeed.setUuid((String)uuidObject);
 				}
 
 			});
@@ -384,8 +384,8 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object id) {
-					journalFeed.setId((Long)id);
+				public void accept(JournalFeed journalFeed, Object idObject) {
+					journalFeed.setId((Long)idObject);
 				}
 
 			});
@@ -404,8 +404,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object groupId) {
-					journalFeed.setGroupId((Long)groupId);
+				public void accept(
+					JournalFeed journalFeed, Object groupIdObject) {
+
+					journalFeed.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -424,8 +426,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object companyId) {
-					journalFeed.setCompanyId((Long)companyId);
+				public void accept(
+					JournalFeed journalFeed, Object companyIdObject) {
+
+					journalFeed.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -444,8 +448,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object userId) {
-					journalFeed.setUserId((Long)userId);
+				public void accept(
+					JournalFeed journalFeed, Object userIdObject) {
+
+					journalFeed.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -464,8 +470,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object userName) {
-					journalFeed.setUserName((String)userName);
+				public void accept(
+					JournalFeed journalFeed, Object userNameObject) {
+
+					journalFeed.setUserName((String)userNameObject);
 				}
 
 			});
@@ -484,8 +492,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object createDate) {
-					journalFeed.setCreateDate((Date)createDate);
+				public void accept(
+					JournalFeed journalFeed, Object createDateObject) {
+
+					journalFeed.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -505,9 +515,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object modifiedDate) {
+					JournalFeed journalFeed, Object modifiedDateObject) {
 
-					journalFeed.setModifiedDate((Date)modifiedDate);
+					journalFeed.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -526,8 +536,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object feedId) {
-					journalFeed.setFeedId((String)feedId);
+				public void accept(
+					JournalFeed journalFeed, Object feedIdObject) {
+
+					journalFeed.setFeedId((String)feedIdObject);
 				}
 
 			});
@@ -546,8 +558,8 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object name) {
-					journalFeed.setName((String)name);
+				public void accept(JournalFeed journalFeed, Object nameObject) {
+					journalFeed.setName((String)nameObject);
 				}
 
 			});
@@ -567,9 +579,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object description) {
+					JournalFeed journalFeed, Object descriptionObject) {
 
-					journalFeed.setDescription((String)description);
+					journalFeed.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -589,9 +601,10 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object DDMStructureKey) {
+					JournalFeed journalFeed, Object DDMStructureKeyObject) {
 
-					journalFeed.setDDMStructureKey((String)DDMStructureKey);
+					journalFeed.setDDMStructureKey(
+						(String)DDMStructureKeyObject);
 				}
 
 			});
@@ -611,9 +624,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object DDMTemplateKey) {
+					JournalFeed journalFeed, Object DDMTemplateKeyObject) {
 
-					journalFeed.setDDMTemplateKey((String)DDMTemplateKey);
+					journalFeed.setDDMTemplateKey((String)DDMTemplateKeyObject);
 				}
 
 			});
@@ -633,10 +646,11 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object DDMRendererTemplateKey) {
+					JournalFeed journalFeed,
+					Object DDMRendererTemplateKeyObject) {
 
 					journalFeed.setDDMRendererTemplateKey(
-						(String)DDMRendererTemplateKey);
+						(String)DDMRendererTemplateKeyObject);
 				}
 
 			});
@@ -655,8 +669,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object delta) {
-					journalFeed.setDelta((Integer)delta);
+				public void accept(
+					JournalFeed journalFeed, Object deltaObject) {
+
+					journalFeed.setDelta((Integer)deltaObject);
 				}
 
 			});
@@ -675,8 +691,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object orderByCol) {
-					journalFeed.setOrderByCol((String)orderByCol);
+				public void accept(
+					JournalFeed journalFeed, Object orderByColObject) {
+
+					journalFeed.setOrderByCol((String)orderByColObject);
 				}
 
 			});
@@ -696,9 +714,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object orderByType) {
+					JournalFeed journalFeed, Object orderByTypeObject) {
 
-					journalFeed.setOrderByType((String)orderByType);
+					journalFeed.setOrderByType((String)orderByTypeObject);
 				}
 
 			});
@@ -718,10 +736,11 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object targetLayoutFriendlyUrl) {
+					JournalFeed journalFeed,
+					Object targetLayoutFriendlyUrlObject) {
 
 					journalFeed.setTargetLayoutFriendlyUrl(
-						(String)targetLayoutFriendlyUrl);
+						(String)targetLayoutFriendlyUrlObject);
 				}
 
 			});
@@ -741,9 +760,10 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object targetPortletId) {
+					JournalFeed journalFeed, Object targetPortletIdObject) {
 
-					journalFeed.setTargetPortletId((String)targetPortletId);
+					journalFeed.setTargetPortletId(
+						(String)targetPortletIdObject);
 				}
 
 			});
@@ -763,9 +783,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object contentField) {
+					JournalFeed journalFeed, Object contentFieldObject) {
 
-					journalFeed.setContentField((String)contentField);
+					journalFeed.setContentField((String)contentFieldObject);
 				}
 
 			});
@@ -784,8 +804,10 @@ public class JournalFeedModelImpl
 			new BiConsumer<JournalFeed, Object>() {
 
 				@Override
-				public void accept(JournalFeed journalFeed, Object feedFormat) {
-					journalFeed.setFeedFormat((String)feedFormat);
+				public void accept(
+					JournalFeed journalFeed, Object feedFormatObject) {
+
+					journalFeed.setFeedFormat((String)feedFormatObject);
 				}
 
 			});
@@ -805,9 +827,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object feedVersion) {
+					JournalFeed journalFeed, Object feedVersionObject) {
 
-					journalFeed.setFeedVersion((Double)feedVersion);
+					journalFeed.setFeedVersion((Double)feedVersionObject);
 				}
 
 			});
@@ -827,9 +849,9 @@ public class JournalFeedModelImpl
 
 				@Override
 				public void accept(
-					JournalFeed journalFeed, Object lastPublishDate) {
+					JournalFeed journalFeed, Object lastPublishDateObject) {
 
-					journalFeed.setLastPublishDate((Date)lastPublishDate);
+					journalFeed.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});

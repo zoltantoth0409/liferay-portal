@@ -265,9 +265,10 @@ public class PortalPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortalPreferences portalPreferences, Object mvccVersion) {
+					PortalPreferences portalPreferences,
+					Object mvccVersionObject) {
 
-					portalPreferences.setMvccVersion((Long)mvccVersion);
+					portalPreferences.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -288,10 +289,10 @@ public class PortalPreferencesModelImpl
 				@Override
 				public void accept(
 					PortalPreferences portalPreferences,
-					Object portalPreferencesId) {
+					Object portalPreferencesIdObject) {
 
 					portalPreferences.setPortalPreferencesId(
-						(Long)portalPreferencesId);
+						(Long)portalPreferencesIdObject);
 				}
 
 			});
@@ -311,9 +312,9 @@ public class PortalPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortalPreferences portalPreferences, Object ownerId) {
+					PortalPreferences portalPreferences, Object ownerIdObject) {
 
-					portalPreferences.setOwnerId((Long)ownerId);
+					portalPreferences.setOwnerId((Long)ownerIdObject);
 				}
 
 			});
@@ -333,9 +334,10 @@ public class PortalPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortalPreferences portalPreferences, Object ownerType) {
+					PortalPreferences portalPreferences,
+					Object ownerTypeObject) {
 
-					portalPreferences.setOwnerType((Integer)ownerType);
+					portalPreferences.setOwnerType((Integer)ownerTypeObject);
 				}
 
 			});
@@ -355,9 +357,10 @@ public class PortalPreferencesModelImpl
 
 				@Override
 				public void accept(
-					PortalPreferences portalPreferences, Object preferences) {
+					PortalPreferences portalPreferences,
+					Object preferencesObject) {
 
-					portalPreferences.setPreferences((String)preferences);
+					portalPreferences.setPreferences((String)preferencesObject);
 				}
 
 			});

@@ -389,8 +389,8 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object uuid) {
-					blogsEntry.setUuid((String)uuid);
+				public void accept(BlogsEntry blogsEntry, Object uuidObject) {
+					blogsEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -409,8 +409,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object entryId) {
-					blogsEntry.setEntryId((Long)entryId);
+				public void accept(
+					BlogsEntry blogsEntry, Object entryIdObject) {
+
+					blogsEntry.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -429,8 +431,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object groupId) {
-					blogsEntry.setGroupId((Long)groupId);
+				public void accept(
+					BlogsEntry blogsEntry, Object groupIdObject) {
+
+					blogsEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -449,8 +453,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object companyId) {
-					blogsEntry.setCompanyId((Long)companyId);
+				public void accept(
+					BlogsEntry blogsEntry, Object companyIdObject) {
+
+					blogsEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -469,8 +475,8 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object userId) {
-					blogsEntry.setUserId((Long)userId);
+				public void accept(BlogsEntry blogsEntry, Object userIdObject) {
+					blogsEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -489,8 +495,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object userName) {
-					blogsEntry.setUserName((String)userName);
+				public void accept(
+					BlogsEntry blogsEntry, Object userNameObject) {
+
+					blogsEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -509,8 +517,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object createDate) {
-					blogsEntry.setCreateDate((Date)createDate);
+				public void accept(
+					BlogsEntry blogsEntry, Object createDateObject) {
+
+					blogsEntry.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -529,8 +539,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object modifiedDate) {
-					blogsEntry.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					BlogsEntry blogsEntry, Object modifiedDateObject) {
+
+					blogsEntry.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -549,8 +561,8 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object title) {
-					blogsEntry.setTitle((String)title);
+				public void accept(BlogsEntry blogsEntry, Object titleObject) {
+					blogsEntry.setTitle((String)titleObject);
 				}
 
 			});
@@ -569,8 +581,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object subtitle) {
-					blogsEntry.setSubtitle((String)subtitle);
+				public void accept(
+					BlogsEntry blogsEntry, Object subtitleObject) {
+
+					blogsEntry.setSubtitle((String)subtitleObject);
 				}
 
 			});
@@ -589,8 +603,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object urlTitle) {
-					blogsEntry.setUrlTitle((String)urlTitle);
+				public void accept(
+					BlogsEntry blogsEntry, Object urlTitleObject) {
+
+					blogsEntry.setUrlTitle((String)urlTitleObject);
 				}
 
 			});
@@ -609,8 +625,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object description) {
-					blogsEntry.setDescription((String)description);
+				public void accept(
+					BlogsEntry blogsEntry, Object descriptionObject) {
+
+					blogsEntry.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -629,8 +647,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object content) {
-					blogsEntry.setContent((String)content);
+				public void accept(
+					BlogsEntry blogsEntry, Object contentObject) {
+
+					blogsEntry.setContent((String)contentObject);
 				}
 
 			});
@@ -649,8 +669,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object displayDate) {
-					blogsEntry.setDisplayDate((Date)displayDate);
+				public void accept(
+					BlogsEntry blogsEntry, Object displayDateObject) {
+
+					blogsEntry.setDisplayDate((Date)displayDateObject);
 				}
 
 			});
@@ -670,9 +692,9 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object allowPingbacks) {
+					BlogsEntry blogsEntry, Object allowPingbacksObject) {
 
-					blogsEntry.setAllowPingbacks((Boolean)allowPingbacks);
+					blogsEntry.setAllowPingbacks((Boolean)allowPingbacksObject);
 				}
 
 			});
@@ -692,9 +714,10 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object allowTrackbacks) {
+					BlogsEntry blogsEntry, Object allowTrackbacksObject) {
 
-					blogsEntry.setAllowTrackbacks((Boolean)allowTrackbacks);
+					blogsEntry.setAllowTrackbacks(
+						(Boolean)allowTrackbacksObject);
 				}
 
 			});
@@ -713,8 +736,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object trackbacks) {
-					blogsEntry.setTrackbacks((String)trackbacks);
+				public void accept(
+					BlogsEntry blogsEntry, Object trackbacksObject) {
+
+					blogsEntry.setTrackbacks((String)trackbacksObject);
 				}
 
 			});
@@ -734,9 +759,10 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object coverImageCaption) {
+					BlogsEntry blogsEntry, Object coverImageCaptionObject) {
 
-					blogsEntry.setCoverImageCaption((String)coverImageCaption);
+					blogsEntry.setCoverImageCaption(
+						(String)coverImageCaptionObject);
 				}
 
 			});
@@ -756,10 +782,10 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object coverImageFileEntryId) {
+					BlogsEntry blogsEntry, Object coverImageFileEntryIdObject) {
 
 					blogsEntry.setCoverImageFileEntryId(
-						(Long)coverImageFileEntryId);
+						(Long)coverImageFileEntryIdObject);
 				}
 
 			});
@@ -779,9 +805,9 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object coverImageURL) {
+					BlogsEntry blogsEntry, Object coverImageURLObject) {
 
-					blogsEntry.setCoverImageURL((String)coverImageURL);
+					blogsEntry.setCoverImageURL((String)coverImageURLObject);
 				}
 
 			});
@@ -800,8 +826,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object smallImage) {
-					blogsEntry.setSmallImage((Boolean)smallImage);
+				public void accept(
+					BlogsEntry blogsEntry, Object smallImageObject) {
+
+					blogsEntry.setSmallImage((Boolean)smallImageObject);
 				}
 
 			});
@@ -821,10 +849,10 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object smallImageFileEntryId) {
+					BlogsEntry blogsEntry, Object smallImageFileEntryIdObject) {
 
 					blogsEntry.setSmallImageFileEntryId(
-						(Long)smallImageFileEntryId);
+						(Long)smallImageFileEntryIdObject);
 				}
 
 			});
@@ -843,8 +871,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object smallImageId) {
-					blogsEntry.setSmallImageId((Long)smallImageId);
+				public void accept(
+					BlogsEntry blogsEntry, Object smallImageIdObject) {
+
+					blogsEntry.setSmallImageId((Long)smallImageIdObject);
 				}
 
 			});
@@ -864,9 +894,9 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object smallImageURL) {
+					BlogsEntry blogsEntry, Object smallImageURLObject) {
 
-					blogsEntry.setSmallImageURL((String)smallImageURL);
+					blogsEntry.setSmallImageURL((String)smallImageURLObject);
 				}
 
 			});
@@ -886,9 +916,9 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object lastPublishDate) {
+					BlogsEntry blogsEntry, Object lastPublishDateObject) {
 
-					blogsEntry.setLastPublishDate((Date)lastPublishDate);
+					blogsEntry.setLastPublishDate((Date)lastPublishDateObject);
 				}
 
 			});
@@ -907,8 +937,8 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object status) {
-					blogsEntry.setStatus((Integer)status);
+				public void accept(BlogsEntry blogsEntry, Object statusObject) {
+					blogsEntry.setStatus((Integer)statusObject);
 				}
 
 			});
@@ -928,9 +958,9 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object statusByUserId) {
+					BlogsEntry blogsEntry, Object statusByUserIdObject) {
 
-					blogsEntry.setStatusByUserId((Long)statusByUserId);
+					blogsEntry.setStatusByUserId((Long)statusByUserIdObject);
 				}
 
 			});
@@ -950,9 +980,10 @@ public class BlogsEntryModelImpl
 
 				@Override
 				public void accept(
-					BlogsEntry blogsEntry, Object statusByUserName) {
+					BlogsEntry blogsEntry, Object statusByUserNameObject) {
 
-					blogsEntry.setStatusByUserName((String)statusByUserName);
+					blogsEntry.setStatusByUserName(
+						(String)statusByUserNameObject);
 				}
 
 			});
@@ -971,8 +1002,10 @@ public class BlogsEntryModelImpl
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object statusDate) {
-					blogsEntry.setStatusDate((Date)statusDate);
+				public void accept(
+					BlogsEntry blogsEntry, Object statusDateObject) {
+
+					blogsEntry.setStatusDate((Date)statusDateObject);
 				}
 
 			});

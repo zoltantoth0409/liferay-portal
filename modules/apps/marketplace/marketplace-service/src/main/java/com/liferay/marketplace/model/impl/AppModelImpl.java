@@ -332,8 +332,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object uuid) {
-					app.setUuid((String)uuid);
+				public void accept(App app, Object uuidObject) {
+					app.setUuid((String)uuidObject);
 				}
 
 			});
@@ -352,8 +352,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object appId) {
-					app.setAppId((Long)appId);
+				public void accept(App app, Object appIdObject) {
+					app.setAppId((Long)appIdObject);
 				}
 
 			});
@@ -372,8 +372,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object companyId) {
-					app.setCompanyId((Long)companyId);
+				public void accept(App app, Object companyIdObject) {
+					app.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -392,8 +392,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object userId) {
-					app.setUserId((Long)userId);
+				public void accept(App app, Object userIdObject) {
+					app.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -412,8 +412,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object userName) {
-					app.setUserName((String)userName);
+				public void accept(App app, Object userNameObject) {
+					app.setUserName((String)userNameObject);
 				}
 
 			});
@@ -432,8 +432,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object createDate) {
-					app.setCreateDate((Date)createDate);
+				public void accept(App app, Object createDateObject) {
+					app.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -452,8 +452,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object modifiedDate) {
-					app.setModifiedDate((Date)modifiedDate);
+				public void accept(App app, Object modifiedDateObject) {
+					app.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -472,8 +472,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object remoteAppId) {
-					app.setRemoteAppId((Long)remoteAppId);
+				public void accept(App app, Object remoteAppIdObject) {
+					app.setRemoteAppId((Long)remoteAppIdObject);
 				}
 
 			});
@@ -492,8 +492,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object title) {
-					app.setTitle((String)title);
+				public void accept(App app, Object titleObject) {
+					app.setTitle((String)titleObject);
 				}
 
 			});
@@ -512,8 +512,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object description) {
-					app.setDescription((String)description);
+				public void accept(App app, Object descriptionObject) {
+					app.setDescription((String)descriptionObject);
 				}
 
 			});
@@ -532,8 +532,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object category) {
-					app.setCategory((String)category);
+				public void accept(App app, Object categoryObject) {
+					app.setCategory((String)categoryObject);
 				}
 
 			});
@@ -552,8 +552,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object iconURL) {
-					app.setIconURL((String)iconURL);
+				public void accept(App app, Object iconURLObject) {
+					app.setIconURL((String)iconURLObject);
 				}
 
 			});
@@ -572,8 +572,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object version) {
-					app.setVersion((String)version);
+				public void accept(App app, Object versionObject) {
+					app.setVersion((String)versionObject);
 				}
 
 			});
@@ -592,8 +592,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			new BiConsumer<App, Object>() {
 
 				@Override
-				public void accept(App app, Object required) {
-					app.setRequired((Boolean)required);
+				public void accept(App app, Object requiredObject) {
+					app.setRequired((Boolean)requiredObject);
 				}
 
 			});

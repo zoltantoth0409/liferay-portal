@@ -306,8 +306,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object mvccVersion) {
-					portlet.setMvccVersion((Long)mvccVersion);
+				public void accept(Portlet portlet, Object mvccVersionObject) {
+					portlet.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -326,8 +326,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object id) {
-					portlet.setId((Long)id);
+				public void accept(Portlet portlet, Object idObject) {
+					portlet.setId((Long)idObject);
 				}
 
 			});
@@ -346,8 +346,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object companyId) {
-					portlet.setCompanyId((Long)companyId);
+				public void accept(Portlet portlet, Object companyIdObject) {
+					portlet.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -366,8 +366,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object portletId) {
-					portlet.setPortletId((String)portletId);
+				public void accept(Portlet portlet, Object portletIdObject) {
+					portlet.setPortletId((String)portletIdObject);
 				}
 
 			});
@@ -386,8 +386,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object roles) {
-					portlet.setRoles((String)roles);
+				public void accept(Portlet portlet, Object rolesObject) {
+					portlet.setRoles((String)rolesObject);
 				}
 
 			});
@@ -406,8 +406,8 @@ public class PortletModelImpl
 			new BiConsumer<Portlet, Object>() {
 
 				@Override
-				public void accept(Portlet portlet, Object active) {
-					portlet.setActive((Boolean)active);
+				public void accept(Portlet portlet, Object activeObject) {
+					portlet.setActive((Boolean)activeObject);
 				}
 
 			});

@@ -321,8 +321,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object valueId) {
-					expandoValue.setValueId((Long)valueId);
+				public void accept(
+					ExpandoValue expandoValue, Object valueIdObject) {
+
+					expandoValue.setValueId((Long)valueIdObject);
 				}
 
 			});
@@ -342,9 +344,9 @@ public class ExpandoValueModelImpl
 
 				@Override
 				public void accept(
-					ExpandoValue expandoValue, Object companyId) {
+					ExpandoValue expandoValue, Object companyIdObject) {
 
-					expandoValue.setCompanyId((Long)companyId);
+					expandoValue.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -363,8 +365,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object tableId) {
-					expandoValue.setTableId((Long)tableId);
+				public void accept(
+					ExpandoValue expandoValue, Object tableIdObject) {
+
+					expandoValue.setTableId((Long)tableIdObject);
 				}
 
 			});
@@ -383,8 +387,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object columnId) {
-					expandoValue.setColumnId((Long)columnId);
+				public void accept(
+					ExpandoValue expandoValue, Object columnIdObject) {
+
+					expandoValue.setColumnId((Long)columnIdObject);
 				}
 
 			});
@@ -403,8 +409,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object rowId) {
-					expandoValue.setRowId((Long)rowId);
+				public void accept(
+					ExpandoValue expandoValue, Object rowIdObject) {
+
+					expandoValue.setRowId((Long)rowIdObject);
 				}
 
 			});
@@ -424,9 +432,9 @@ public class ExpandoValueModelImpl
 
 				@Override
 				public void accept(
-					ExpandoValue expandoValue, Object classNameId) {
+					ExpandoValue expandoValue, Object classNameIdObject) {
 
-					expandoValue.setClassNameId((Long)classNameId);
+					expandoValue.setClassNameId((Long)classNameIdObject);
 				}
 
 			});
@@ -445,8 +453,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object classPK) {
-					expandoValue.setClassPK((Long)classPK);
+				public void accept(
+					ExpandoValue expandoValue, Object classPKObject) {
+
+					expandoValue.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -465,8 +475,10 @@ public class ExpandoValueModelImpl
 			new BiConsumer<ExpandoValue, Object>() {
 
 				@Override
-				public void accept(ExpandoValue expandoValue, Object data) {
-					expandoValue.setData((String)data);
+				public void accept(
+					ExpandoValue expandoValue, Object dataObject) {
+
+					expandoValue.setData((String)dataObject);
 				}
 
 			});

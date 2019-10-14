@@ -341,9 +341,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object mvccVersion) {
+					ResourcePermission resourcePermission,
+					Object mvccVersionObject) {
 
-					resourcePermission.setMvccVersion((Long)mvccVersion);
+					resourcePermission.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -364,10 +365,10 @@ public class ResourcePermissionModelImpl
 				@Override
 				public void accept(
 					ResourcePermission resourcePermission,
-					Object resourcePermissionId) {
+					Object resourcePermissionIdObject) {
 
 					resourcePermission.setResourcePermissionId(
-						(Long)resourcePermissionId);
+						(Long)resourcePermissionIdObject);
 				}
 
 			});
@@ -387,9 +388,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object companyId) {
+					ResourcePermission resourcePermission,
+					Object companyIdObject) {
 
-					resourcePermission.setCompanyId((Long)companyId);
+					resourcePermission.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -409,9 +411,9 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object name) {
+					ResourcePermission resourcePermission, Object nameObject) {
 
-					resourcePermission.setName((String)name);
+					resourcePermission.setName((String)nameObject);
 				}
 
 			});
@@ -431,9 +433,9 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object scope) {
+					ResourcePermission resourcePermission, Object scopeObject) {
 
-					resourcePermission.setScope((Integer)scope);
+					resourcePermission.setScope((Integer)scopeObject);
 				}
 
 			});
@@ -453,9 +455,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object primKey) {
+					ResourcePermission resourcePermission,
+					Object primKeyObject) {
 
-					resourcePermission.setPrimKey((String)primKey);
+					resourcePermission.setPrimKey((String)primKeyObject);
 				}
 
 			});
@@ -475,9 +478,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object primKeyId) {
+					ResourcePermission resourcePermission,
+					Object primKeyIdObject) {
 
-					resourcePermission.setPrimKeyId((Long)primKeyId);
+					resourcePermission.setPrimKeyId((Long)primKeyIdObject);
 				}
 
 			});
@@ -497,9 +501,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object roleId) {
+					ResourcePermission resourcePermission,
+					Object roleIdObject) {
 
-					resourcePermission.setRoleId((Long)roleId);
+					resourcePermission.setRoleId((Long)roleIdObject);
 				}
 
 			});
@@ -519,9 +524,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object ownerId) {
+					ResourcePermission resourcePermission,
+					Object ownerIdObject) {
 
-					resourcePermission.setOwnerId((Long)ownerId);
+					resourcePermission.setOwnerId((Long)ownerIdObject);
 				}
 
 			});
@@ -541,9 +547,10 @@ public class ResourcePermissionModelImpl
 
 				@Override
 				public void accept(
-					ResourcePermission resourcePermission, Object actionIds) {
+					ResourcePermission resourcePermission,
+					Object actionIdsObject) {
 
-					resourcePermission.setActionIds((Long)actionIds);
+					resourcePermission.setActionIds((Long)actionIdsObject);
 				}
 
 			});
@@ -564,9 +571,10 @@ public class ResourcePermissionModelImpl
 				@Override
 				public void accept(
 					ResourcePermission resourcePermission,
-					Object viewActionId) {
+					Object viewActionIdObject) {
 
-					resourcePermission.setViewActionId((Boolean)viewActionId);
+					resourcePermission.setViewActionId(
+						(Boolean)viewActionIdObject);
 				}
 
 			});

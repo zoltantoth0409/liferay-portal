@@ -298,9 +298,10 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object kaleoInstanceId) {
+					KaleoInstance kaleoInstance, Object kaleoInstanceIdObject) {
 
-					kaleoInstance.setKaleoInstanceId((Long)kaleoInstanceId);
+					kaleoInstance.setKaleoInstanceId(
+						(Long)kaleoInstanceIdObject);
 				}
 
 			});
@@ -320,9 +321,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object groupId) {
+					KaleoInstance kaleoInstance, Object groupIdObject) {
 
-					kaleoInstance.setGroupId((Long)groupId);
+					kaleoInstance.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -342,9 +343,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object companyId) {
+					KaleoInstance kaleoInstance, Object companyIdObject) {
 
-					kaleoInstance.setCompanyId((Long)companyId);
+					kaleoInstance.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -363,8 +364,10 @@ public class KaleoInstanceModelImpl
 			new BiConsumer<KaleoInstance, Object>() {
 
 				@Override
-				public void accept(KaleoInstance kaleoInstance, Object userId) {
-					kaleoInstance.setUserId((Long)userId);
+				public void accept(
+					KaleoInstance kaleoInstance, Object userIdObject) {
+
+					kaleoInstance.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -384,9 +387,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object userName) {
+					KaleoInstance kaleoInstance, Object userNameObject) {
 
-					kaleoInstance.setUserName((String)userName);
+					kaleoInstance.setUserName((String)userNameObject);
 				}
 
 			});
@@ -406,9 +409,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object createDate) {
+					KaleoInstance kaleoInstance, Object createDateObject) {
 
-					kaleoInstance.setCreateDate((Date)createDate);
+					kaleoInstance.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -428,9 +431,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object modifiedDate) {
+					KaleoInstance kaleoInstance, Object modifiedDateObject) {
 
-					kaleoInstance.setModifiedDate((Date)modifiedDate);
+					kaleoInstance.setModifiedDate((Date)modifiedDateObject);
 				}
 
 			});
@@ -450,9 +453,11 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object kaleoDefinitionId) {
+					KaleoInstance kaleoInstance,
+					Object kaleoDefinitionIdObject) {
 
-					kaleoInstance.setKaleoDefinitionId((Long)kaleoDefinitionId);
+					kaleoInstance.setKaleoDefinitionId(
+						(Long)kaleoDefinitionIdObject);
 				}
 
 			});
@@ -472,10 +477,11 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object kaleoDefinitionName) {
+					KaleoInstance kaleoInstance,
+					Object kaleoDefinitionNameObject) {
 
 					kaleoInstance.setKaleoDefinitionName(
-						(String)kaleoDefinitionName);
+						(String)kaleoDefinitionNameObject);
 				}
 
 			});
@@ -496,10 +502,10 @@ public class KaleoInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoInstance kaleoInstance,
-					Object kaleoDefinitionVersion) {
+					Object kaleoDefinitionVersionObject) {
 
 					kaleoInstance.setKaleoDefinitionVersion(
-						(Integer)kaleoDefinitionVersion);
+						(Integer)kaleoDefinitionVersionObject);
 				}
 
 			});
@@ -520,10 +526,10 @@ public class KaleoInstanceModelImpl
 				@Override
 				public void accept(
 					KaleoInstance kaleoInstance,
-					Object rootKaleoInstanceTokenId) {
+					Object rootKaleoInstanceTokenIdObject) {
 
 					kaleoInstance.setRootKaleoInstanceTokenId(
-						(Long)rootKaleoInstanceTokenId);
+						(Long)rootKaleoInstanceTokenIdObject);
 				}
 
 			});
@@ -543,9 +549,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object className) {
+					KaleoInstance kaleoInstance, Object classNameObject) {
 
-					kaleoInstance.setClassName((String)className);
+					kaleoInstance.setClassName((String)classNameObject);
 				}
 
 			});
@@ -565,9 +571,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object classPK) {
+					KaleoInstance kaleoInstance, Object classPKObject) {
 
-					kaleoInstance.setClassPK((Long)classPK);
+					kaleoInstance.setClassPK((Long)classPKObject);
 				}
 
 			});
@@ -587,9 +593,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object completed) {
+					KaleoInstance kaleoInstance, Object completedObject) {
 
-					kaleoInstance.setCompleted((Boolean)completed);
+					kaleoInstance.setCompleted((Boolean)completedObject);
 				}
 
 			});
@@ -609,9 +615,9 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object completionDate) {
+					KaleoInstance kaleoInstance, Object completionDateObject) {
 
-					kaleoInstance.setCompletionDate((Date)completionDate);
+					kaleoInstance.setCompletionDate((Date)completionDateObject);
 				}
 
 			});
@@ -631,9 +637,10 @@ public class KaleoInstanceModelImpl
 
 				@Override
 				public void accept(
-					KaleoInstance kaleoInstance, Object workflowContext) {
+					KaleoInstance kaleoInstance, Object workflowContextObject) {
 
-					kaleoInstance.setWorkflowContext((String)workflowContext);
+					kaleoInstance.setWorkflowContext(
+						(String)workflowContextObject);
 				}
 
 			});

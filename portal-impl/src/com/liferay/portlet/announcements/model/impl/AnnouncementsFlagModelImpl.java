@@ -324,9 +324,9 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object flagId) {
+					AnnouncementsFlag announcementsFlag, Object flagIdObject) {
 
-					announcementsFlag.setFlagId((Long)flagId);
+					announcementsFlag.setFlagId((Long)flagIdObject);
 				}
 
 			});
@@ -346,9 +346,10 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object companyId) {
+					AnnouncementsFlag announcementsFlag,
+					Object companyIdObject) {
 
-					announcementsFlag.setCompanyId((Long)companyId);
+					announcementsFlag.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -368,9 +369,9 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object userId) {
+					AnnouncementsFlag announcementsFlag, Object userIdObject) {
 
-					announcementsFlag.setUserId((Long)userId);
+					announcementsFlag.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -390,9 +391,10 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object createDate) {
+					AnnouncementsFlag announcementsFlag,
+					Object createDateObject) {
 
-					announcementsFlag.setCreateDate((Date)createDate);
+					announcementsFlag.setCreateDate((Date)createDateObject);
 				}
 
 			});
@@ -412,9 +414,9 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object entryId) {
+					AnnouncementsFlag announcementsFlag, Object entryIdObject) {
 
-					announcementsFlag.setEntryId((Long)entryId);
+					announcementsFlag.setEntryId((Long)entryIdObject);
 				}
 
 			});
@@ -434,9 +436,9 @@ public class AnnouncementsFlagModelImpl
 
 				@Override
 				public void accept(
-					AnnouncementsFlag announcementsFlag, Object value) {
+					AnnouncementsFlag announcementsFlag, Object valueObject) {
 
-					announcementsFlag.setValue((Integer)value);
+					announcementsFlag.setValue((Integer)valueObject);
 				}
 
 			});
