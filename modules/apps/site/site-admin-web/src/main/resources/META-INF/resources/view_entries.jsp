@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-ui:search-container
-	searchContainer="<%= siteAdminDisplayContext.getSearchContainer() %>"
+	searchContainer="<%= siteAdminDisplayContext.getGroupSearch() %>"
 >
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.kernel.model.Group"

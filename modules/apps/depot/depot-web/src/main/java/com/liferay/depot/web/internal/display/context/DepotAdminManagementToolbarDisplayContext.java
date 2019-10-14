@@ -44,7 +44,7 @@ public class DepotAdminManagementToolbarDisplayContext
 
 		super(
 			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
-			depotAdminDisplayContext.getSearchContainer());
+			depotAdminDisplayContext.getGroupSearch());
 	}
 
 	@Override

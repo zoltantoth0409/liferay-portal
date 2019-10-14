@@ -52,7 +52,7 @@ public class SiteAdminManagementToolbarDisplayContext
 
 		super(
 			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
-			siteAdminDisplayContext.getSearchContainer());
+			siteAdminDisplayContext.getGroupSearch());
 
 		_siteAdminDisplayContext = siteAdminDisplayContext;
 	}

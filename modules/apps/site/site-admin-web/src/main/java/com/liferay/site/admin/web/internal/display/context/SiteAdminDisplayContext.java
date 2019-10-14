@@ -211,7 +211,7 @@ public class SiteAdminDisplayContext {
 		return portletURL;
 	}
 
-	public GroupSearch getSearchContainer() throws PortalException {
+	public GroupSearch getGroupSearch() throws PortalException {
 		GroupSearch groupSearch = _groupSearchProvider.getGroupSearch(
 			_liferayPortletRequest, getPortletURL());
 

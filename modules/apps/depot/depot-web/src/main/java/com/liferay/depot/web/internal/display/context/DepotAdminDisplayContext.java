@@ -44,7 +44,7 @@ public class DepotAdminDisplayContext {
 		return "icon";
 	}
 
-	public GroupSearch getSearchContainer() {
+	public GroupSearch getGroupSearch() {
 		GroupSearch groupSearch = _depotAdminGroupSearchProvider.getGroupSearch(
 			_liferayPortletRequest, _liferayPortletResponse.createRenderURL());
 

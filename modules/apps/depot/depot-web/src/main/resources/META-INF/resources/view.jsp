@@ -34,7 +34,7 @@ DepotAdminManagementToolbarDisplayContext depotAdminManagementToolbarDisplayCont
 			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 			<liferay-ui:search-container
-				searchContainer="<%= depotAdminDisplayContext.getSearchContainer() %>"
+				searchContainer="<%= depotAdminDisplayContext.getGroupSearch() %>"
 			>
 				<liferay-ui:search-container-row
 					className="com.liferay.portal.kernel.model.Group"
