@@ -150,6 +150,10 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 				"Unknown class name: " + className);
 		}
 
+		ExecutorService executorService =
+			_portalExecutorManager.getPortalExecutor(
+				ImportTaskResourceImpl.class.getName());
+
 		byte[] content = null;
 		String extension = null;
 
@@ -174,10 +178,6 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 				StringUtil.upperCase(extension),
 				BatchEngineTaskExecuteStatus.INITIAL.name(),
 				batchEngineTaskOperation.name(), version);
-
-		ExecutorService executorService =
-			_portalExecutorManager.getPortalExecutor(
-				ImportTaskResourceImpl.class.getName());
 
 		executorService.submit(
 			() -> _batchEngineTaskExecutor.execute(batchEngineTask));
