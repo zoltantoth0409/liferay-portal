@@ -1571,7 +1571,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public List<Layout> getLayouts(
 		long groupId, long masterLayoutPageTemplateEntryId) {
 
-		return layoutPersistence.findByG_M(
+		return layoutPersistence.findByG_MLPTEI(
 			groupId, masterLayoutPageTemplateEntryId);
 	}
 
@@ -1789,7 +1789,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public int getLayoutsCount(
 		long groupId, long masterLayoutPageTemplateEntryId) {
 
-		return layoutPersistence.countByG_M(
+		return layoutPersistence.countByG_MLPTEI(
 			groupId, masterLayoutPageTemplateEntryId);
 	}
 
