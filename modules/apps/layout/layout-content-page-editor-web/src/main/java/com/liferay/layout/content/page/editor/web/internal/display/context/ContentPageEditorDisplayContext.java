@@ -240,12 +240,12 @@ public class ContentPageEditorDisplayContext {
 			"getAssetMappingFieldsURL",
 			_getResourceURL("/content_layout/get_asset_mapping_fields")
 		).put(
+			"getAvailableTemplatesURL",
+			_getResourceURL("/content_layout/get_available_templates")
+		).put(
 			"getContentStructureMappingFieldsURL",
 			_getResourceURL(
 				"/content_layout/get_content_structure_mapping_fields")
-		).put(
-			"getAvailableTemplatesURL",
-			_getResourceURL("/content_layout/get_available_templates")
 		).put(
 			"getContentStructuresURL",
 			_getResourceURL("/content_layout/get_content_structures")
