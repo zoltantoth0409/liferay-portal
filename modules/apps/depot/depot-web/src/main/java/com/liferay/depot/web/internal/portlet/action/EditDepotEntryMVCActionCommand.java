@@ -53,9 +53,6 @@ public class EditDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DepotEntry.class.getName(), actionRequest);
-
 		long depotEntryId = ParamUtil.getLong(actionRequest, "depotEntryId");
 
 		DepotEntry depotEntry = _depotEntryLocalService.getDepotEntry(
@@ -68,6 +65,9 @@ public class EditDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(
 				actionRequest, "description", group.getDescriptionMap());
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DepotEntry.class.getName(), actionRequest);
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntryId, nameMap, descriptionMap, serviceContext);

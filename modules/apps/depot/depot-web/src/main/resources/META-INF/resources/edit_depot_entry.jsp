@@ -17,14 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String backURL = ParamUtil.getString(request, "redirect");
+
 DepotEntry depotEntry = (DepotEntry)request.getAttribute("depotEntry");
 
 Group group = GroupServiceUtil.getGroup(depotEntry.getGroupId());
 
 portletDisplay.setShowBackIcon(true);
-
-String backURL = ParamUtil.getString(request, "redirect");
-
 portletDisplay.setURLBack(backURL);
 
 renderResponse.setTitle(HtmlUtil.escape(group.getDescriptiveName(locale)));
