@@ -54,7 +54,7 @@ public class DepotEntryLocalServiceTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testAddDepotEntryAddsADepotEntry() throws Exception {
+	public void testAddDepotEntry() throws Exception {
 		DepotEntry depotEntry = _addDepotEntry("name", "description");
 
 		Group group = _groupLocalService.getGroup(depotEntry.getGroupId());
@@ -69,15 +69,18 @@ public class DepotEntryLocalServiceTest {
 		Assert.assertEquals(
 			DepotEntryConstants.GROUP_TYPE_DEPOT, group.getType());
 		Assert.assertFalse(group.isSite());
-	}
 
-	@Test(expected = DepotEntryNameException.class)
-	public void testAddDepotEntryFailsWithAnEmptyName() throws Exception {
-		_addDepotEntry(null, null);
+		try {
+			_addDepotEntry(null, null);
+
+			Assert.fail();
+		}
+		catch (DepotEntryNameException dene) {
+		}
 	}
 
 	@Test(expected = NoSuchGroupException.class)
-	public void testDeleteDepotEntryDeletesTheGroupToo() throws Exception {
+	public void testDeleteDepotEntry() throws Exception {
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(LocaleUtil.getDefault(), "description");
