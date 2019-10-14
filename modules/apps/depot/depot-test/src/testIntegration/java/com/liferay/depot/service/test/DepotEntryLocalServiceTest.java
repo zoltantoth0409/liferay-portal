@@ -81,17 +81,7 @@ public class DepotEntryLocalServiceTest {
 
 	@Test(expected = NoSuchGroupException.class)
 	public void testDeleteDepotEntry() throws Exception {
-		Map<Locale, String> descriptionMap = new HashMap<>();
-
-		descriptionMap.put(LocaleUtil.getDefault(), "description");
-
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(LocaleUtil.getDefault(), "name");
-
-		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
-			nameMap, descriptionMap,
-			ServiceContextTestUtil.getServiceContext());
+		DepotEntry depotEntry = _addDepotEntry("name", "description");
 
 		_depotEntryLocalService.deleteDepotEntry(depotEntry);
 
