@@ -2316,14 +2316,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			return null;
 		}
 
-		boolean hasImage = true;
-
-		if (bytes == null) {
-			hasImage = false;
-		}
-
 		PortalUtil.updateImageId(
-			layout, hasImage, bytes, "iconImageId", 0, 0, 0);
+			layout, (bytes != null), bytes, "iconImageId", 0, 0, 0);
 
 		return layoutLocalService.updateLayout(layout);
 	}
