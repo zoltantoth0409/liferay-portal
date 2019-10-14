@@ -60,10 +60,10 @@ public class GetAvailableTemplatesMVCResourceCommand
 
 		String className = ParamUtil.getString(resourceRequest, "className");
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		List<InfoItemRenderer> infoItemRenderers =
 			_infoItemRendererTracker.getInfoItemRenderers(className);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (InfoItemRenderer infoItemRenderer : infoItemRenderers) {
 			JSONObject jsonObject = JSONUtil.put(
