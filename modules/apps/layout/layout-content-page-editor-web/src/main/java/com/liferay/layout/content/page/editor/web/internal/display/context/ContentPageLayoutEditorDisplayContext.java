@@ -191,11 +191,6 @@ public class ContentPageLayoutEditorDisplayContext
 		SoyContext availableSegmentsExperiencesSoyContext =
 			SoyContextFactoryUtil.createSoyContext();
 
-		List<SegmentsExperience> segmentsExperiences =
-			SegmentsExperienceServiceUtil.getSegmentsExperiences(
-				getGroupId(), PortalUtil.getClassNameId(Layout.class.getName()),
-				themeDisplay.getPlid(), true);
-
 		Layout draftLayout = themeDisplay.getLayout();
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(
@@ -203,6 +198,11 @@ public class ContentPageLayoutEditorDisplayContext
 
 		String layoutFullURL = PortalUtil.getLayoutFullURL(
 			layout, themeDisplay);
+
+		List<SegmentsExperience> segmentsExperiences =
+			SegmentsExperienceServiceUtil.getSegmentsExperiences(
+				getGroupId(), PortalUtil.getClassNameId(Layout.class.getName()),
+				themeDisplay.getPlid(), true);
 
 		for (SegmentsExperience segmentsExperience : segmentsExperiences) {
 			SoyContext segmentsExperienceSoyContext =
