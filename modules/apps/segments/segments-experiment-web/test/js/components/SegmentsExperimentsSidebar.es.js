@@ -618,7 +618,7 @@ describe('Winner declared', () => {
 		expect(global.confirm).toHaveBeenCalledTimes(1);
 
 		/**
-		 * API hasn't been called
+		 * API has not been called
 		 */
 		expect(publishExperience).toHaveBeenCalledTimes(0);
 	});
