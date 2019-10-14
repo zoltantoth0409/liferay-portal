@@ -350,7 +350,7 @@ definition {
 				value1 = "Velocity");
 		}
 
-		if (!("${userEditPermission}" == "noEditPermission")) {
+		if ("${userEditPermission}" != "noEditPermission") {
 			WebContentNavigator.gotoViewTemplate(templateName = "${templateName}");
 
 			AssertTextEquals(

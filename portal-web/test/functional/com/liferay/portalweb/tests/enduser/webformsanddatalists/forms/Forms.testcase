@@ -1063,7 +1063,7 @@ definition {
 				fieldValue = "${fieldValue}");
 
 			for (var fieldValueNotVisible : list "${fieldValueList}") {
-				if (!("${fieldValueNotVisible}" == "${fieldValue}")) {
+				if ("${fieldValueNotVisible}" != "${fieldValue}") {
 					FormsAdmin.viewTableEntryNotPresent(
 						fieldLabel = "Text Field",
 						fieldValue = "${fieldValueNotVisible}");

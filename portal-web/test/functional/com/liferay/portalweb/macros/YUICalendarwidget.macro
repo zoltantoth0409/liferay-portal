@@ -9,7 +9,7 @@ definition {
 		var currentDateMonth = DateUtil.getCurrentMonth();
 		var currentDateYear = DateUtil.getCurrentYear();
 
-		if (!("${currentDateMonth}" == "12")) {
+		if ("${currentDateMonth}" != "12") {
 			while (IsElementNotPresent(locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_MONTH_YEAR", key_month = "December", key_year = "${currentDateYear}")) {
 				Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
 			}

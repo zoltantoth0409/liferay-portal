@@ -73,7 +73,7 @@ definition {
 
 		var count = "0";
 
-		while (!("${count}" == "3")) {
+		while ("${count}" != "3") {
 			Navigator.gotoSitePage(
 				pageName = "Test Page 2",
 				siteName = "Site Name");
@@ -99,7 +99,7 @@ definition {
 
 		var count = "0";
 
-		while (!("${count}" == "5")) {
+		while ("${count}" != "5") {
 			Navigator.gotoSitePage(
 				pageName = "Test Page 2",
 				siteName = "Site Name");

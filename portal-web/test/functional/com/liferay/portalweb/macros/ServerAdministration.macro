@@ -189,7 +189,7 @@ definition {
 		var pauseCount = "0";
 
 		if ("${actionsDescription}" == "Reindex all search indexes.") {
-			while ((IsElementPresent(locator1 = "ControlMenu#RELOAD_TOOLTIP")) && (!("${pauseCount}" == "24")) && (maxIterations = "30")) {
+			while ((IsElementPresent(locator1 = "ControlMenu#RELOAD_TOOLTIP")) && ("${pauseCount}" != "24")) {
 				Pause(locator1 = "5000");
 
 				var pauseCount = MathUtil.sum("${pauseCount}", "1");

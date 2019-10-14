@@ -1128,7 +1128,7 @@ definition {
 		var i = "0";
 		var refreshCount = "5";
 
-		while (!("${i}" == "${refreshCount}")) {
+		while ("${i}" != "${refreshCount}") {
 			Navigator.gotoPage(pageName = "Calendar Page");
 
 			CalendarEvent.view(eventTitle = "Calendar Event Title");

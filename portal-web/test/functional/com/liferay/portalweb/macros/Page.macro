@@ -132,7 +132,7 @@ definition {
 			locator1 = "Button#ADD_PAGE_BTN",
 			value1 = "Add Page");
 
-		if (!("${sitePageType}" == "Page Set")) {
+		if ("${sitePageType}" != "Page Set") {
 			if (contains("${pageName}", "'")) {
 				AssertVisible(
 					key_pageName = "${pageName}",

@@ -483,7 +483,7 @@ definition {
 				locator1 = "EditUserSegment#USER_SEGMENT_RULE_APPLIED",
 				value1 = "${usersegmentRuleName}");
 
-			if (!("${ruleInstance}" == "1")) {
+			if ("${ruleInstance}" != "1") {
 				ContentTargetingUserSegment.openFormField(usersegmentRuleName = "${usersegmentRuleName}");
 			}
 

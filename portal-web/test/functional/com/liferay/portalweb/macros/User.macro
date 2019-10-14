@@ -1498,7 +1498,7 @@ definition {
 			Alert.closePortalLocalizationWarning();
 		}
 
-		if (!("${samlEnabled}" == "true")) {
+		if ("${samlEnabled}" != "true") {
 			User.loginLocalizationPG(localization = "${localization}");
 		}
 
@@ -1951,7 +1951,7 @@ definition {
 
 		Button.clickSave();
 
-		if (!("${newPassword1}" == "${newPassword2}")) {
+		if ("${newPassword1}" != "${newPassword2}") {
 			AssertTextEquals.assertPartialText(
 				locator1 = "TextInput#REQUIRED_ALERT",
 				value1 = "Please enter the same value again.");
@@ -2278,7 +2278,7 @@ definition {
 
 			var i = "0";
 
-			while (!("${i}" == "${emailAddressCount}")) {
+			while ("${i}" != "${emailAddressCount}") {
 				var i = MathUtil.sum("${i}", "1");
 
 				var key_emailAddress = "${emailAddressPrefix}${i}@liferay.com";
