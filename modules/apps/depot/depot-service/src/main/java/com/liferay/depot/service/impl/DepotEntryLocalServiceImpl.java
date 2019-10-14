@@ -51,9 +51,8 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 
 		_validateNameMap(nameMap);
 
-		long entryId = counterLocalService.increment();
-
-		DepotEntry entry = depotEntryPersistence.create(entryId);
+		DepotEntry entry = depotEntryPersistence.create(
+			counterLocalService.increment());
 
 		entry.setUuid(serviceContext.getUuid());
 		entry.setCompanyId(serviceContext.getCompanyId());
