@@ -250,7 +250,7 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 			es6CallbacksSB.writeTo(writer);
 
 			writer.write("} catch (err) {\n");
-			writer.write("  console.error(err);\n");
+			writer.write("\tconsole.error(err);\n");
 			writer.write("}\n");
 
 			writer.write("});");
