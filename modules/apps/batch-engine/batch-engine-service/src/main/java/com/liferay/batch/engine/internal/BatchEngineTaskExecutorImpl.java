@@ -64,10 +64,12 @@ public class BatchEngineTaskExecutorImpl implements BatchEngineTaskExecutor {
 			ConfigurableUtil.createConfigurable(
 				BatchEngineTaskConfiguration.class, properties);
 
+		_csvFileColumnDelimiter =
+			batchEngineTaskConfiguration.csvFileColumnDelimiter();
+
 		_batchEngineTaskItemReaderFactory =
 			new BatchEngineTaskItemReaderFactory(
-				_batchEngineTaskMethodServiceRegistry,
-				batchEngineTaskConfiguration.csvFileColumnDelimiter());
+				_batchEngineTaskMethodServiceRegistry, _csvFileColumnDelimiter);
 
 		_batchEngineTaskItemWriterFactory =
 			new BatchEngineTaskItemWriterFactory(
@@ -192,6 +194,8 @@ public class BatchEngineTaskExecutorImpl implements BatchEngineTaskExecutor {
 
 	@Reference
 	private CompanyLocalService _companyLocalService;
+
+	private String _csvFileColumnDelimiter;
 
 	@Reference
 	private UserLocalService _userLocalService;
