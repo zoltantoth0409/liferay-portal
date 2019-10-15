@@ -15,6 +15,7 @@
 package com.liferay.portal.osgi.web.servlet.jsp.compiler;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -39,12 +40,8 @@ import java.net.URL;
 
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,7 +77,6 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.jsp.JspFactory;
 
-import org.apache.felix.utils.log.Logger;
 import org.apache.jasper.Constants;
 import org.apache.jasper.runtime.JspFactoryImpl;
 import org.apache.jasper.runtime.TagHandlerPool;
@@ -265,8 +261,6 @@ public class JspServlet extends HttpServlet {
 		bundles.add(_bundle);
 
 		bundles.add(_jspBundle);
-
-		_logger = new Logger(_bundle.getBundleContext());
 
 		collectTaglibProviderBundles(bundles);
 
@@ -584,20 +578,13 @@ public class JspServlet extends HttpServlet {
 		return methods;
 	}
 
-	private void _deleteOutdatedJspFiles(String dir, List<Path> paths) {
+	private void _deleteOutdatedJspFiles(String dir) {
 		FileSystem fileSystem = FileSystems.getDefault();
 
 		Path dirPath = fileSystem.getPath(dir);
 
-		if (Files.exists(dirPath) && !paths.isEmpty()) {
-			try {
-				Files.walkFileTree(dirPath, new DeleteFileVisitor(paths));
-			}
-			catch (IOException ioe) {
-				_logger.log(
-					Logger.LOG_WARNING,
-					"Unable to delete outdated files: " + paths);
-			}
+		if (Files.exists(dirPath)) {
+			FileUtil.deltree(dirPath.toFile());
 		}
 	}
 
@@ -629,43 +616,19 @@ public class JspServlet extends HttpServlet {
 
 	private Bundle[] _allParticipatingBundles;
 	private Bundle _bundle;
-	private BundleTracker<List<Path>> _bundleTracker;
+	private BundleTracker<String> _bundleTracker;
 	private JspBundleClassloader _jspBundleClassloader;
 	private final HttpServlet _jspServlet =
 		new org.apache.jasper.servlet.JspServlet();
-	private Logger _logger;
 	private boolean _logVerbosityLevelDebug;
 	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new CopyOnWriteArrayList<>();
 
-	private class DeleteFileVisitor extends SimpleFileVisitor<Path> {
-
-		public DeleteFileVisitor(List<Path> paths) {
-			_paths = paths;
-		}
-
-		@Override
-		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-			throws IOException {
-
-			if (_paths.contains(file.toAbsolutePath())) {
-				Files.delete(file);
-			}
-
-			return FileVisitResult.CONTINUE;
-		}
-
-		private final List<Path> _paths;
-
-	}
-
 	private class JspFragmentTrackerCustomizer
-		implements BundleTrackerCustomizer<List<Path>> {
+		implements BundleTrackerCustomizer<String> {
 
 		@Override
-		public List<Path> addingBundle(Bundle bundle, BundleEvent bundleEvent) {
-			List<Path> paths = new ArrayList<>();
-
+		public String addingBundle(Bundle bundle, BundleEvent bundleEvent) {
 			Dictionary<String, String> headers = bundle.getHeaders();
 
 			String fragmentHost = headers.get("Fragment-Host");
@@ -689,54 +652,27 @@ public class JspServlet extends HttpServlet {
 				_DIR_NAME_RESOURCES, "*.jsp", true);
 
 			if (enumeration == null) {
-				return paths;
+				return null;
 			}
 
 			String scratchDirName = _jspServlet.getInitParameter(
 				_INIT_PARAMETER_NAME_SCRATCH_DIR);
 
-			while (enumeration.hasMoreElements()) {
-				URL url = enumeration.nextElement();
+			_deleteOutdatedJspFiles(scratchDirName);
 
-				String pathString = url.getPath();
-
-				if (pathString.startsWith(_DIR_NAME_RESOURCES)) {
-					pathString = pathString.substring(
-						_DIR_NAME_RESOURCES.length() + 1,
-						pathString.length() - 4);
-				}
-				else {
-					pathString = pathString.substring(
-						1, pathString.length() - 4);
-				}
-
-				pathString = StringUtil.replace(
-					pathString, CharPool.UNDERLINE, "_005f");
-
-				paths.add(
-					Paths.get(
-						scratchDirName,
-						"/org/apache/jsp/" + pathString + "_jsp.class"));
-			}
-
-			_deleteOutdatedJspFiles(scratchDirName, paths);
-
-			return paths;
+			return scratchDirName;
 		}
 
 		@Override
 		public void modifiedBundle(
-			Bundle bundle, BundleEvent bundleEvent, List<Path> paths) {
+			Bundle bundle, BundleEvent bundleEvent, String scratchDirName) {
 		}
 
 		@Override
 		public void removedBundle(
-			Bundle bundle, BundleEvent bundleEvent, final List<Path> paths) {
+			Bundle bundle, BundleEvent bundleEvent, String scratchDirName) {
 
-			String scratchDirName = _jspServlet.getInitParameter(
-				_INIT_PARAMETER_NAME_SCRATCH_DIR);
-
-			_deleteOutdatedJspFiles(scratchDirName, paths);
+			_deleteOutdatedJspFiles(scratchDirName);
 		}
 
 	}
