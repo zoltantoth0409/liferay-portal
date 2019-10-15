@@ -80,9 +80,11 @@ public class DepotEntryLocalServiceTest {
 
 	@Test(expected = NoSuchGroupException.class)
 	public void testDeleteDepotEntry() throws Exception {
-		DepotEntry depotEntry = _addDepotEntry("name", "description", false);
+		DepotEntry depotEntry = _addDepotEntry("name", "description");
 
 		_depotEntryLocalService.deleteDepotEntry(depotEntry);
+
+		_depotEntries.remove(depotEntry);
 
 		_groupLocalService.getGroup(depotEntry.getGroupId());
 	}
@@ -125,13 +127,6 @@ public class DepotEntryLocalServiceTest {
 	private DepotEntry _addDepotEntry(String name, String description)
 		throws Exception {
 
-		return _addDepotEntry(name, description, true);
-	}
-
-	private DepotEntry _addDepotEntry(
-			String name, String description, boolean deleteAfterTestRun)
-		throws Exception {
-
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
 			new HashMap<Locale, String>() {
 				{
@@ -145,9 +140,7 @@ public class DepotEntryLocalServiceTest {
 			},
 			ServiceContextTestUtil.getServiceContext());
 
-		if (deleteAfterTestRun) {
-			_depotEntries.add(depotEntry);
-		}
+		_depotEntries.add(depotEntry);
 
 		return depotEntry;
 	}
