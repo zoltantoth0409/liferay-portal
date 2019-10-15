@@ -163,26 +163,26 @@ public class DepotPanelAppControllerTest {
 			PanelCategoryKeys.SITE_ADMINISTRATION_RECYCLE_BIN);
 	}
 
-	private void _assertIsDisplayed(long groupId, String categoryKey)
+	private void _assertIsDisplayed(long groupId, String parentPanelCategoryKey)
 		throws PortalException {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
-			categoryKey, PermissionThreadLocal.getPermissionChecker(),
+			parentPanelCategoryKey, PermissionThreadLocal.getPermissionChecker(),
 			_groupLocalService.getGroup(groupId));
 
 		Assert.assertFalse(panelApps.isEmpty());
 	}
 
-	private void _assertIsHiddenForADepotGroup(String categoryKey)
+	private void _assertIsHiddenForADepotGroup(String parentPanelCategoryKey)
 		throws PortalException {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
-			categoryKey, PermissionThreadLocal.getPermissionChecker(),
+			parentPanelCategoryKey, PermissionThreadLocal.getPermissionChecker(),
 			_groupLocalService.getGroup(_depotEntry.getGroupId()));
 
 		Assert.assertTrue(panelApps.isEmpty());
 
-		_assertIsDisplayed(TestPropsValues.getGroupId(), categoryKey);
+		_assertIsDisplayed(TestPropsValues.getGroupId(), parentPanelCategoryKey);
 	}
 
 	@DeleteAfterTestRun
