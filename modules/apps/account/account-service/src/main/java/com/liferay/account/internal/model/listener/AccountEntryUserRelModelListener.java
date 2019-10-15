@@ -44,7 +44,7 @@ public class AccountEntryUserRelModelListener
 	public void onAfterCreate(AccountEntryUserRel accountEntryUserRel)
 		throws ModelListenerException {
 
-		_updateDefaultAccountAssignment(accountEntryUserRel.getAccountUserId());
+		_updateDefaultAccountEntry(accountEntryUserRel.getAccountUserId());
 
 		_reindexUser(accountEntryUserRel.getAccountUserId());
 	}
@@ -53,7 +53,7 @@ public class AccountEntryUserRelModelListener
 	public void onAfterRemove(AccountEntryUserRel accountEntryUserRel)
 		throws ModelListenerException {
 
-		_updateDefaultAccountAssignment(accountEntryUserRel.getAccountUserId());
+		_updateDefaultAccountEntry(accountEntryUserRel.getAccountUserId());
 
 		_reindexUser(accountEntryUserRel.getAccountUserId());
 	}
@@ -70,7 +70,7 @@ public class AccountEntryUserRelModelListener
 		}
 	}
 
-	private void _updateDefaultAccountAssignment(long accountUserId)
+	private void _updateDefaultAccountEntry(long accountUserId)
 		throws ModelListenerException {
 
 		List<AccountEntryUserRel> accountEntryUserRels =
