@@ -55,7 +55,7 @@ public class AccountEntryUserRelModelListenerTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRelsForUserWithDefaultAccount()
+	public void testAddAccountEntryUserRelsForUserWithDefaultAccountEntry()
 		throws Exception {
 
 		AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(
@@ -80,7 +80,7 @@ public class AccountEntryUserRelModelListenerTest {
 	}
 
 	@Test
-	public void testDeleteAccountEntryUserRelsForUserWithMultipleAccounts()
+	public void testDeleteAccountEntryUserRelsForUserWithMultipleAccountEntries()
 		throws Exception {
 
 		AccountEntry accountEntry1 = AccountEntryTestUtil.addAccountEntry(
@@ -114,7 +114,7 @@ public class AccountEntryUserRelModelListenerTest {
 	}
 
 	@Test
-	public void testDeleteAccountEntryUserRelsForUserWithSingleAccount()
+	public void testDeleteAccountEntryUserRelsForUserWithSingleAccountEntry()
 		throws Exception {
 
 		AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(
