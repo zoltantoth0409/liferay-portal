@@ -1080,6 +1080,9 @@ definition {
 				value1 = "Please enter a unique name.");
 		}
 		else if ("${siteNameInvalid}" == "Null") {
+			Alert.viewErrorMessage(errorMessage = "Your request failed to complete.");
+			Alert.viewSecondErrorMessage(errorMessage = "The Site Name cannot be blank, numeric or a reserved word such as null. The Site Name cannot contain the following invalid characters: *.");
+
 			AssertTextEquals(
 				locator1 = "Message#REQUIRED_INFO",
 				value1 = "This field is required.");
