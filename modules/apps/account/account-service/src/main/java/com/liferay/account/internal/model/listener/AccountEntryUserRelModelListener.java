@@ -87,15 +87,16 @@ public class AccountEntryUserRelModelListener
 			}
 		}
 		else if (accountEntryUserRels.size() > 1) {
-			Stream<AccountEntryUserRel> stream = accountEntryUserRels.stream();
+			for (AccountEntryUserRel accountEntryUserRel :
+					accountEntryUserRels) {
 
-			stream.filter(
-				accountEntryUserRel ->
-					accountEntryUserRel.getAccountEntryId() ==
-						AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT
-			).forEach(
-				_accountEntryUserRelLocalService::deleteAccountEntryUserRel
-			);
+				if (accountEntryUserRel.getAccountEntryId() ==
+						AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
+
+					_accountEntryUserRelLocalService.deleteAccountEntryUserRel(
+						accountEntryUserRel);
+				}
+			}
 		}
 	}
 
