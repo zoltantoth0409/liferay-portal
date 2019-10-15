@@ -44,6 +44,14 @@ definition {
 			value1 = "This field is required.");
 	}
 
+	macro viewSecondErrorMessage {
+		AssertTextEquals(
+			locator1 = "Message#ERROR_2",
+			value1 = "${errorMessage}");
+
+		Alert._closeMessage(messageType = "ERROR");
+	}
+
 	macro viewSuccessMessage {
 		AssertVisible(locator1 = "Message#SUCCESS");
 
