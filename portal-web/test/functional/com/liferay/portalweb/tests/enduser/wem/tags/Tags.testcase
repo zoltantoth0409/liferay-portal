@@ -218,7 +218,7 @@ definition {
 			var index = ${index} + 1;
 		}
 
-		while ("${index}" != "26") {
+		while ("${index}" != "25") {
 			Tag.addCP(tagName = "tagname${index}");
 
 			var index = ${index} + 1;
@@ -228,11 +228,11 @@ definition {
 			locator1 = "Pagination#ITEMS_PER_PAGE_SELECT",
 			value1 = "20 Entries");
 
-		Pagination.viewResults(results = "Showing 1 to 20 of 25 entries.");
+		Pagination.viewResults(results = "Showing 1 to 20 of 24 entries.");
 
 		Pagination.changePagination(itemsPerPage = "5");
 
-		Pagination.viewResults(results = "Showing 1 to 5 of 25 entries.");
+		Pagination.viewResults(results = "Showing 1 to 5 of 24 entries.");
 	}
 
 }
