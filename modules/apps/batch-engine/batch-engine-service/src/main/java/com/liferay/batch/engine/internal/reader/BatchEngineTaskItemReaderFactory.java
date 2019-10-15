@@ -17,6 +17,7 @@ package com.liferay.batch.engine.internal.reader;
 import com.liferay.batch.engine.BatchEngineTaskContentType;
 import com.liferay.batch.engine.internal.BatchEngineTaskMethodRegistry;
 import com.liferay.batch.engine.model.BatchEngineTask;
+import com.liferay.petra.string.StringPool;
 
 import java.sql.Blob;
 
@@ -27,11 +28,9 @@ import java.sql.Blob;
 public class BatchEngineTaskItemReaderFactory {
 
 	public BatchEngineTaskItemReaderFactory(
-		BatchEngineTaskMethodRegistry batchEngineTaskMethodRegistry,
-		String csvFileColumnDelimiter) {
+		BatchEngineTaskMethodRegistry batchEngineTaskMethodRegistry) {
 
 		_batchEngineTaskMethodRegistry = batchEngineTaskMethodRegistry;
-		_csvFileColumnDelimiter = csvFileColumnDelimiter;
 	}
 
 	public BatchEngineTaskItemReader create(BatchEngineTask batchEngineTask)
@@ -47,7 +46,7 @@ public class BatchEngineTaskItemReaderFactory {
 
 		if (batchEngineTaskContentType == BatchEngineTaskContentType.CSV) {
 			return new CSVBatchEngineTaskItemReader(
-				_csvFileColumnDelimiter, content.getBinaryStream(), itemClass);
+				StringPool.COMMA, content.getBinaryStream(), itemClass);
 		}
 
 		if (batchEngineTaskContentType == BatchEngineTaskContentType.JSON) {
@@ -73,6 +72,5 @@ public class BatchEngineTaskItemReaderFactory {
 	}
 
 	private final BatchEngineTaskMethodRegistry _batchEngineTaskMethodRegistry;
-	private final String _csvFileColumnDelimiter;
 
 }
