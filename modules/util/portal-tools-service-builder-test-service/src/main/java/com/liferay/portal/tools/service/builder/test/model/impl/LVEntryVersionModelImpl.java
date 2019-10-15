@@ -298,9 +298,11 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object lvEntryVersionId) {
+					LVEntryVersion lvEntryVersion,
+					Object lvEntryVersionIdObject) {
 
-					lvEntryVersion.setLvEntryVersionId((Long)lvEntryVersionId);
+					lvEntryVersion.setLvEntryVersionId(
+						(Long)lvEntryVersionIdObject);
 				}
 
 			});
@@ -320,9 +322,9 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object version) {
+					LVEntryVersion lvEntryVersion, Object versionObject) {
 
-					lvEntryVersion.setVersion((Integer)version);
+					lvEntryVersion.setVersion((Integer)versionObject);
 				}
 
 			});
@@ -341,8 +343,10 @@ public class LVEntryVersionModelImpl
 			new BiConsumer<LVEntryVersion, Object>() {
 
 				@Override
-				public void accept(LVEntryVersion lvEntryVersion, Object uuid) {
-					lvEntryVersion.setUuid((String)uuid);
+				public void accept(
+					LVEntryVersion lvEntryVersion, Object uuidObject) {
+
+					lvEntryVersion.setUuid((String)uuidObject);
 				}
 
 			});
@@ -362,10 +366,11 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object defaultLanguageId) {
+					LVEntryVersion lvEntryVersion,
+					Object defaultLanguageIdObject) {
 
 					lvEntryVersion.setDefaultLanguageId(
-						(String)defaultLanguageId);
+						(String)defaultLanguageIdObject);
 				}
 
 			});
@@ -385,9 +390,9 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object lvEntryId) {
+					LVEntryVersion lvEntryVersion, Object lvEntryIdObject) {
 
-					lvEntryVersion.setLvEntryId((Long)lvEntryId);
+					lvEntryVersion.setLvEntryId((Long)lvEntryIdObject);
 				}
 
 			});
@@ -407,9 +412,9 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object companyId) {
+					LVEntryVersion lvEntryVersion, Object companyIdObject) {
 
-					lvEntryVersion.setCompanyId((Long)companyId);
+					lvEntryVersion.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -429,9 +434,9 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object groupId) {
+					LVEntryVersion lvEntryVersion, Object groupIdObject) {
 
-					lvEntryVersion.setGroupId((Long)groupId);
+					lvEntryVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -451,9 +456,11 @@ public class LVEntryVersionModelImpl
 
 				@Override
 				public void accept(
-					LVEntryVersion lvEntryVersion, Object uniqueGroupKey) {
+					LVEntryVersion lvEntryVersion,
+					Object uniqueGroupKeyObject) {
 
-					lvEntryVersion.setUniqueGroupKey((String)uniqueGroupKey);
+					lvEntryVersion.setUniqueGroupKey(
+						(String)uniqueGroupKeyObject);
 				}
 
 			});

@@ -255,10 +255,11 @@ public class LocalizedEntryModelImpl
 
 				@Override
 				public void accept(
-					LocalizedEntry localizedEntry, Object defaultLanguageId) {
+					LocalizedEntry localizedEntry,
+					Object defaultLanguageIdObject) {
 
 					localizedEntry.setDefaultLanguageId(
-						(String)defaultLanguageId);
+						(String)defaultLanguageIdObject);
 				}
 
 			});
@@ -278,9 +279,11 @@ public class LocalizedEntryModelImpl
 
 				@Override
 				public void accept(
-					LocalizedEntry localizedEntry, Object localizedEntryId) {
+					LocalizedEntry localizedEntry,
+					Object localizedEntryIdObject) {
 
-					localizedEntry.setLocalizedEntryId((Long)localizedEntryId);
+					localizedEntry.setLocalizedEntryId(
+						(Long)localizedEntryIdObject);
 				}
 
 			});

@@ -263,10 +263,10 @@ public class NestedSetsTreeEntryModelImpl
 				@Override
 				public void accept(
 					NestedSetsTreeEntry nestedSetsTreeEntry,
-					Object nestedSetsTreeEntryId) {
+					Object nestedSetsTreeEntryIdObject) {
 
 					nestedSetsTreeEntry.setNestedSetsTreeEntryId(
-						(Long)nestedSetsTreeEntryId);
+						(Long)nestedSetsTreeEntryIdObject);
 				}
 
 			});
@@ -286,9 +286,10 @@ public class NestedSetsTreeEntryModelImpl
 
 				@Override
 				public void accept(
-					NestedSetsTreeEntry nestedSetsTreeEntry, Object groupId) {
+					NestedSetsTreeEntry nestedSetsTreeEntry,
+					Object groupIdObject) {
 
-					nestedSetsTreeEntry.setGroupId((Long)groupId);
+					nestedSetsTreeEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -309,10 +310,10 @@ public class NestedSetsTreeEntryModelImpl
 				@Override
 				public void accept(
 					NestedSetsTreeEntry nestedSetsTreeEntry,
-					Object parentNestedSetsTreeEntryId) {
+					Object parentNestedSetsTreeEntryIdObject) {
 
 					nestedSetsTreeEntry.setParentNestedSetsTreeEntryId(
-						(Long)parentNestedSetsTreeEntryId);
+						(Long)parentNestedSetsTreeEntryIdObject);
 				}
 
 			});
@@ -333,10 +334,10 @@ public class NestedSetsTreeEntryModelImpl
 				@Override
 				public void accept(
 					NestedSetsTreeEntry nestedSetsTreeEntry,
-					Object leftNestedSetsTreeEntryId) {
+					Object leftNestedSetsTreeEntryIdObject) {
 
 					nestedSetsTreeEntry.setLeftNestedSetsTreeEntryId(
-						(Long)leftNestedSetsTreeEntryId);
+						(Long)leftNestedSetsTreeEntryIdObject);
 				}
 
 			});
@@ -357,10 +358,10 @@ public class NestedSetsTreeEntryModelImpl
 				@Override
 				public void accept(
 					NestedSetsTreeEntry nestedSetsTreeEntry,
-					Object rightNestedSetsTreeEntryId) {
+					Object rightNestedSetsTreeEntryIdObject) {
 
 					nestedSetsTreeEntry.setRightNestedSetsTreeEntryId(
-						(Long)rightNestedSetsTreeEntryId);
+						(Long)rightNestedSetsTreeEntryIdObject);
 				}
 
 			});

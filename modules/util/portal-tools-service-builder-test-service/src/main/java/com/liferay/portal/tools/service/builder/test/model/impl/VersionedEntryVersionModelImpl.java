@@ -275,10 +275,10 @@ public class VersionedEntryVersionModelImpl
 				@Override
 				public void accept(
 					VersionedEntryVersion versionedEntryVersion,
-					Object versionedEntryVersionId) {
+					Object versionedEntryVersionIdObject) {
 
 					versionedEntryVersion.setVersionedEntryVersionId(
-						(Long)versionedEntryVersionId);
+						(Long)versionedEntryVersionIdObject);
 				}
 
 			});
@@ -301,9 +301,9 @@ public class VersionedEntryVersionModelImpl
 				@Override
 				public void accept(
 					VersionedEntryVersion versionedEntryVersion,
-					Object version) {
+					Object versionObject) {
 
-					versionedEntryVersion.setVersion((Integer)version);
+					versionedEntryVersion.setVersion((Integer)versionObject);
 				}
 
 			});
@@ -326,10 +326,10 @@ public class VersionedEntryVersionModelImpl
 				@Override
 				public void accept(
 					VersionedEntryVersion versionedEntryVersion,
-					Object versionedEntryId) {
+					Object versionedEntryIdObject) {
 
 					versionedEntryVersion.setVersionedEntryId(
-						(Long)versionedEntryId);
+						(Long)versionedEntryIdObject);
 				}
 
 			});
@@ -352,9 +352,9 @@ public class VersionedEntryVersionModelImpl
 				@Override
 				public void accept(
 					VersionedEntryVersion versionedEntryVersion,
-					Object groupId) {
+					Object groupIdObject) {
 
-					versionedEntryVersion.setGroupId((Long)groupId);
+					versionedEntryVersion.setGroupId((Long)groupIdObject);
 				}
 
 			});

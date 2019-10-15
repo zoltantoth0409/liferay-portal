@@ -307,10 +307,11 @@ public class UADPartialEntryModelImpl
 
 				@Override
 				public void accept(
-					UADPartialEntry uadPartialEntry, Object uadPartialEntryId) {
+					UADPartialEntry uadPartialEntry,
+					Object uadPartialEntryIdObject) {
 
 					uadPartialEntry.setUadPartialEntryId(
-						(Long)uadPartialEntryId);
+						(Long)uadPartialEntryIdObject);
 				}
 
 			});
@@ -330,9 +331,9 @@ public class UADPartialEntryModelImpl
 
 				@Override
 				public void accept(
-					UADPartialEntry uadPartialEntry, Object userId) {
+					UADPartialEntry uadPartialEntry, Object userIdObject) {
 
-					uadPartialEntry.setUserId((Long)userId);
+					uadPartialEntry.setUserId((Long)userIdObject);
 				}
 
 			});
@@ -352,9 +353,9 @@ public class UADPartialEntryModelImpl
 
 				@Override
 				public void accept(
-					UADPartialEntry uadPartialEntry, Object userName) {
+					UADPartialEntry uadPartialEntry, Object userNameObject) {
 
-					uadPartialEntry.setUserName((String)userName);
+					uadPartialEntry.setUserName((String)userNameObject);
 				}
 
 			});
@@ -374,9 +375,9 @@ public class UADPartialEntryModelImpl
 
 				@Override
 				public void accept(
-					UADPartialEntry uadPartialEntry, Object message) {
+					UADPartialEntry uadPartialEntry, Object messageObject) {
 
-					uadPartialEntry.setMessage((String)message);
+					uadPartialEntry.setMessage((String)messageObject);
 				}
 
 			});

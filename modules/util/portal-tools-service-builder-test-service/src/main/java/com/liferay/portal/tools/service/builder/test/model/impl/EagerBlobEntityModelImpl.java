@@ -295,9 +295,9 @@ public class EagerBlobEntityModelImpl
 
 				@Override
 				public void accept(
-					EagerBlobEntity eagerBlobEntity, Object uuid) {
+					EagerBlobEntity eagerBlobEntity, Object uuidObject) {
 
-					eagerBlobEntity.setUuid((String)uuid);
+					eagerBlobEntity.setUuid((String)uuidObject);
 				}
 
 			});
@@ -317,10 +317,11 @@ public class EagerBlobEntityModelImpl
 
 				@Override
 				public void accept(
-					EagerBlobEntity eagerBlobEntity, Object eagerBlobEntityId) {
+					EagerBlobEntity eagerBlobEntity,
+					Object eagerBlobEntityIdObject) {
 
 					eagerBlobEntity.setEagerBlobEntityId(
-						(Long)eagerBlobEntityId);
+						(Long)eagerBlobEntityIdObject);
 				}
 
 			});
@@ -340,9 +341,9 @@ public class EagerBlobEntityModelImpl
 
 				@Override
 				public void accept(
-					EagerBlobEntity eagerBlobEntity, Object groupId) {
+					EagerBlobEntity eagerBlobEntity, Object groupIdObject) {
 
-					eagerBlobEntity.setGroupId((Long)groupId);
+					eagerBlobEntity.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -362,9 +363,9 @@ public class EagerBlobEntityModelImpl
 
 				@Override
 				public void accept(
-					EagerBlobEntity eagerBlobEntity, Object blob) {
+					EagerBlobEntity eagerBlobEntity, Object blobObject) {
 
-					eagerBlobEntity.setBlob((Blob)blob);
+					eagerBlobEntity.setBlob((Blob)blobObject);
 				}
 
 			});

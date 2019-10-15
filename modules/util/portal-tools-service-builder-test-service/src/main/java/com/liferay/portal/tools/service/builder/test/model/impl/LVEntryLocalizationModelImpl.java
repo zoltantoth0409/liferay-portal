@@ -283,9 +283,9 @@ public class LVEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					LVEntryLocalization lvEntryLocalization,
-					Object mvccVersion) {
+					Object mvccVersionObject) {
 
-					lvEntryLocalization.setMvccVersion((Long)mvccVersion);
+					lvEntryLocalization.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -305,9 +305,10 @@ public class LVEntryLocalizationModelImpl
 
 				@Override
 				public void accept(
-					LVEntryLocalization lvEntryLocalization, Object headId) {
+					LVEntryLocalization lvEntryLocalization,
+					Object headIdObject) {
 
-					lvEntryLocalization.setHeadId((Long)headId);
+					lvEntryLocalization.setHeadId((Long)headIdObject);
 				}
 
 			});
@@ -328,10 +329,10 @@ public class LVEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					LVEntryLocalization lvEntryLocalization,
-					Object lvEntryLocalizationId) {
+					Object lvEntryLocalizationIdObject) {
 
 					lvEntryLocalization.setLvEntryLocalizationId(
-						(Long)lvEntryLocalizationId);
+						(Long)lvEntryLocalizationIdObject);
 				}
 
 			});
@@ -351,9 +352,10 @@ public class LVEntryLocalizationModelImpl
 
 				@Override
 				public void accept(
-					LVEntryLocalization lvEntryLocalization, Object companyId) {
+					LVEntryLocalization lvEntryLocalization,
+					Object companyIdObject) {
 
-					lvEntryLocalization.setCompanyId((Long)companyId);
+					lvEntryLocalization.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -373,9 +375,10 @@ public class LVEntryLocalizationModelImpl
 
 				@Override
 				public void accept(
-					LVEntryLocalization lvEntryLocalization, Object lvEntryId) {
+					LVEntryLocalization lvEntryLocalization,
+					Object lvEntryIdObject) {
 
-					lvEntryLocalization.setLvEntryId((Long)lvEntryId);
+					lvEntryLocalization.setLvEntryId((Long)lvEntryIdObject);
 				}
 
 			});
@@ -396,9 +399,9 @@ public class LVEntryLocalizationModelImpl
 				@Override
 				public void accept(
 					LVEntryLocalization lvEntryLocalization,
-					Object languageId) {
+					Object languageIdObject) {
 
-					lvEntryLocalization.setLanguageId((String)languageId);
+					lvEntryLocalization.setLanguageId((String)languageIdObject);
 				}
 
 			});
@@ -418,9 +421,10 @@ public class LVEntryLocalizationModelImpl
 
 				@Override
 				public void accept(
-					LVEntryLocalization lvEntryLocalization, Object title) {
+					LVEntryLocalization lvEntryLocalization,
+					Object titleObject) {
 
-					lvEntryLocalization.setTitle((String)title);
+					lvEntryLocalization.setTitle((String)titleObject);
 				}
 
 			});
@@ -440,9 +444,10 @@ public class LVEntryLocalizationModelImpl
 
 				@Override
 				public void accept(
-					LVEntryLocalization lvEntryLocalization, Object content) {
+					LVEntryLocalization lvEntryLocalization,
+					Object contentObject) {
 
-					lvEntryLocalization.setContent((String)content);
+					lvEntryLocalization.setContent((String)contentObject);
 				}
 
 			});

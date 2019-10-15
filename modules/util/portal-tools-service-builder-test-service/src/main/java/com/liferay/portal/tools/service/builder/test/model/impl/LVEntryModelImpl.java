@@ -302,8 +302,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object mvccVersion) {
-					lvEntry.setMvccVersion((Long)mvccVersion);
+				public void accept(LVEntry lvEntry, Object mvccVersionObject) {
+					lvEntry.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -322,8 +322,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object uuid) {
-					lvEntry.setUuid((String)uuid);
+				public void accept(LVEntry lvEntry, Object uuidObject) {
+					lvEntry.setUuid((String)uuidObject);
 				}
 
 			});
@@ -342,8 +342,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object headId) {
-					lvEntry.setHeadId((Long)headId);
+				public void accept(LVEntry lvEntry, Object headIdObject) {
+					lvEntry.setHeadId((Long)headIdObject);
 				}
 
 			});
@@ -362,8 +362,11 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object defaultLanguageId) {
-					lvEntry.setDefaultLanguageId((String)defaultLanguageId);
+				public void accept(
+					LVEntry lvEntry, Object defaultLanguageIdObject) {
+
+					lvEntry.setDefaultLanguageId(
+						(String)defaultLanguageIdObject);
 				}
 
 			});
@@ -382,8 +385,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object lvEntryId) {
-					lvEntry.setLvEntryId((Long)lvEntryId);
+				public void accept(LVEntry lvEntry, Object lvEntryIdObject) {
+					lvEntry.setLvEntryId((Long)lvEntryIdObject);
 				}
 
 			});
@@ -402,8 +405,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object companyId) {
-					lvEntry.setCompanyId((Long)companyId);
+				public void accept(LVEntry lvEntry, Object companyIdObject) {
+					lvEntry.setCompanyId((Long)companyIdObject);
 				}
 
 			});
@@ -422,8 +425,8 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object groupId) {
-					lvEntry.setGroupId((Long)groupId);
+				public void accept(LVEntry lvEntry, Object groupIdObject) {
+					lvEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
@@ -442,8 +445,10 @@ public class LVEntryModelImpl
 			new BiConsumer<LVEntry, Object>() {
 
 				@Override
-				public void accept(LVEntry lvEntry, Object uniqueGroupKey) {
-					lvEntry.setUniqueGroupKey((String)uniqueGroupKey);
+				public void accept(
+					LVEntry lvEntry, Object uniqueGroupKeyObject) {
+
+					lvEntry.setUniqueGroupKey((String)uniqueGroupKeyObject);
 				}
 
 			});

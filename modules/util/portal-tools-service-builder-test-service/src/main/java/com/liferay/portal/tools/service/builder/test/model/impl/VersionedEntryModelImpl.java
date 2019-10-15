@@ -269,9 +269,9 @@ public class VersionedEntryModelImpl
 
 				@Override
 				public void accept(
-					VersionedEntry versionedEntry, Object mvccVersion) {
+					VersionedEntry versionedEntry, Object mvccVersionObject) {
 
-					versionedEntry.setMvccVersion((Long)mvccVersion);
+					versionedEntry.setMvccVersion((Long)mvccVersionObject);
 				}
 
 			});
@@ -291,9 +291,9 @@ public class VersionedEntryModelImpl
 
 				@Override
 				public void accept(
-					VersionedEntry versionedEntry, Object headId) {
+					VersionedEntry versionedEntry, Object headIdObject) {
 
-					versionedEntry.setHeadId((Long)headId);
+					versionedEntry.setHeadId((Long)headIdObject);
 				}
 
 			});
@@ -313,9 +313,11 @@ public class VersionedEntryModelImpl
 
 				@Override
 				public void accept(
-					VersionedEntry versionedEntry, Object versionedEntryId) {
+					VersionedEntry versionedEntry,
+					Object versionedEntryIdObject) {
 
-					versionedEntry.setVersionedEntryId((Long)versionedEntryId);
+					versionedEntry.setVersionedEntryId(
+						(Long)versionedEntryIdObject);
 				}
 
 			});
@@ -335,9 +337,9 @@ public class VersionedEntryModelImpl
 
 				@Override
 				public void accept(
-					VersionedEntry versionedEntry, Object groupId) {
+					VersionedEntry versionedEntry, Object groupIdObject) {
 
-					versionedEntry.setGroupId((Long)groupId);
+					versionedEntry.setGroupId((Long)groupIdObject);
 				}
 
 			});
