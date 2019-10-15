@@ -70,7 +70,7 @@ public class AccountEntryUserRelModelListenerTest {
 			accountEntry.getAccountEntryId(), new long[] {_user.getUserId()});
 
 		_assertAccountEntryUserRelByAccountUserId(
-			_user.getUserId(), AccountConstants.DEFAULT_ACCOUNT_ENTRY_ID);
+			_user.getUserId(), AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), _user.getUserId());
@@ -137,7 +137,7 @@ public class AccountEntryUserRelModelListenerTest {
 			accountEntry.getAccountEntryId(), new long[] {_user.getUserId()});
 
 		_assertAccountEntryUserRelByAccountUserId(
-			_user.getUserId(), AccountConstants.DEFAULT_ACCOUNT_ENTRY_ID);
+			_user.getUserId(), AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
 	}
 
 	private void _assertAccountEntryUserRelByAccountUserId(

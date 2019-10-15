@@ -56,7 +56,7 @@ public class AccountEntryUserRelLocalServiceImpl
 			throw new DuplicateAccountEntryUserRelException();
 		}
 
-		if (accountEntryId != AccountConstants.DEFAULT_ACCOUNT_ENTRY_ID) {
+		if (accountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
 			accountEntryLocalService.getAccountEntry(accountEntryId);
 		}
 

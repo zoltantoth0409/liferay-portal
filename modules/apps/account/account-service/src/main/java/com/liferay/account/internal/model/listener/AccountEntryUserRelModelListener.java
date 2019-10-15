@@ -80,7 +80,7 @@ public class AccountEntryUserRelModelListener
 		if (ListUtil.isEmpty(accountEntryUserRels)) {
 			try {
 				_accountEntryUserRelLocalService.addAccountEntryUserRel(
-					AccountConstants.DEFAULT_ACCOUNT_ENTRY_ID, accountUserId);
+					AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT, accountUserId);
 			}
 			catch (PortalException pe) {
 				throw new ModelListenerException(pe);
@@ -93,7 +93,7 @@ public class AccountEntryUserRelModelListener
 			accountEntryUserRelsStream.filter(
 				accountEntryUserRel ->
 					accountEntryUserRel.getAccountEntryId() ==
-						AccountConstants.DEFAULT_ACCOUNT_ENTRY_ID
+						AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT
 			).forEach(
 				_accountEntryUserRelLocalService::deleteAccountEntryUserRel
 			);
