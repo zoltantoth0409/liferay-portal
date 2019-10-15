@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
