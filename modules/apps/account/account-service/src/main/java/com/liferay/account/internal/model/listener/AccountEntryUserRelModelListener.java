@@ -87,10 +87,9 @@ public class AccountEntryUserRelModelListener
 			}
 		}
 		else if (accountEntryUserRels.size() > 1) {
-			Stream<AccountEntryUserRel> accountEntryUserRelsStream =
-				accountEntryUserRels.stream();
+			Stream<AccountEntryUserRel> stream = accountEntryUserRels.stream();
 
-			accountEntryUserRelsStream.filter(
+			stream.filter(
 				accountEntryUserRel ->
 					accountEntryUserRel.getAccountEntryId() ==
 						AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT
