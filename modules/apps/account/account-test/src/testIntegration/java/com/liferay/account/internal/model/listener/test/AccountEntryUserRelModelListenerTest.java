@@ -69,13 +69,13 @@ public class AccountEntryUserRelModelListenerTest {
 		_accountEntryUserRelLocalService.deleteAccountEntryUserRels(
 			accountEntry.getAccountEntryId(), new long[] {_user.getUserId()});
 
-		_assertAccountEntryUserRelByAccountUserId(
+		_assertGetAccountEntryUserRelByAccountUserId(
 			_user.getUserId(), AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), _user.getUserId());
 
-		_assertAccountEntryUserRelByAccountUserId(
+		_assertGetAccountEntryUserRelByAccountUserId(
 			_user.getUserId(), accountEntry.getAccountEntryId());
 	}
 
@@ -109,7 +109,7 @@ public class AccountEntryUserRelModelListenerTest {
 		_accountEntryUserRelLocalService.deleteAccountEntryUserRels(
 			accountEntry1.getAccountEntryId(), new long[] {_user.getUserId()});
 
-		_assertAccountEntryUserRelByAccountUserId(
+		_assertGetAccountEntryUserRelByAccountUserId(
 			_user.getUserId(), accountEntry2.getAccountEntryId());
 	}
 
@@ -136,11 +136,11 @@ public class AccountEntryUserRelModelListenerTest {
 		_accountEntryUserRelLocalService.deleteAccountEntryUserRels(
 			accountEntry.getAccountEntryId(), new long[] {_user.getUserId()});
 
-		_assertAccountEntryUserRelByAccountUserId(
+		_assertGetAccountEntryUserRelByAccountUserId(
 			_user.getUserId(), AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
 	}
 
-	private void _assertAccountEntryUserRelByAccountUserId(
+	private void _assertGetAccountEntryUserRelByAccountUserId(
 		long accountUserId, long expectedAccountEntryId) {
 
 		List<AccountEntryUserRel> accountEntryUserRels =
