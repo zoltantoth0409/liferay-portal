@@ -220,7 +220,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchEntryUserRelException.class)
-	public void testDeleteAccountEntryUserRelsThrowsNSEURException()
+	public void testDeleteAccountEntryUserRelsThrowsNoSuchEntryUserRelException()
 		throws Exception {
 
 		_accountEntryUserRelLocalService.deleteAccountEntryUserRels(
