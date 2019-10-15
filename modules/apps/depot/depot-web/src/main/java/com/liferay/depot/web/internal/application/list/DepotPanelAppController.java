@@ -226,12 +226,12 @@ public class DepotPanelAppController {
 		}
 
 		@Override
-		public boolean equals(Object o) {
-			if (this == o) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			return Objects.equals(_panelApp, o);
+			return Objects.equals(_panelApp, object);
 		}
 
 		@Override

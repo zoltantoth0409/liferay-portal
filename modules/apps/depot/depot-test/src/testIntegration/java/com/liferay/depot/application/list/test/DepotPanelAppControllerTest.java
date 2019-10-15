@@ -167,7 +167,8 @@ public class DepotPanelAppControllerTest {
 		throws PortalException {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
-			parentPanelCategoryKey, PermissionThreadLocal.getPermissionChecker(),
+			parentPanelCategoryKey,
+			PermissionThreadLocal.getPermissionChecker(),
 			_groupLocalService.getGroup(groupId));
 
 		Assert.assertFalse(panelApps.isEmpty());
@@ -177,12 +178,14 @@ public class DepotPanelAppControllerTest {
 		throws PortalException {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
-			parentPanelCategoryKey, PermissionThreadLocal.getPermissionChecker(),
+			parentPanelCategoryKey,
+			PermissionThreadLocal.getPermissionChecker(),
 			_groupLocalService.getGroup(_depotEntry.getGroupId()));
 
 		Assert.assertTrue(panelApps.isEmpty());
 
-		_assertIsDisplayed(TestPropsValues.getGroupId(), parentPanelCategoryKey);
+		_assertIsDisplayed(
+			TestPropsValues.getGroupId(), parentPanelCategoryKey);
 	}
 
 	@DeleteAfterTestRun
