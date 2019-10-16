@@ -4,7 +4,12 @@ Bundle-Version: 1.6.44
 Export-Package:\
 	com.liferay.sync.service.configuration,\
 	com.liferay.sync.util
+Import-Package:\
+	!junit.framework,\
+	\
+	*
 Liferay-Releng-Module-Group-Title: Sync Connector
 Liferay-Require-SchemaVersion: 1.0.4
 Liferay-Service: true
 -dsannotations-options: inherit
+-fixupmessages: Classes found in the wrong directory: ...;is:=ignore
