@@ -30,6 +30,8 @@ if (!fileVersion.isApproved() && !fileVersion.getVersion().equals(DLFileEntryCon
 else {
 	assetClassPK = fileEntry.getFileEntryId();
 }
+
+long groupId = BeanParamUtil.getLong(fileEntry, request, "groupId");
 %>
 
 <div class="sidebar-header">
@@ -345,7 +347,7 @@ if (dlViewFileVersionDisplayContext.isVersionInfoVisible()) {
 										classPK="<%= ddmStructure.getPrimaryKey() %>"
 										ddmFormValues="<%= ddmFormValues %>"
 										fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
-										groupId="<%= fileVersion.getGroupId() %>"
+										groupId="<%= groupId %>"
 										readOnly="<%= true %>"
 										requestedLocale="<%= locale %>"
 										showEmptyFieldLabel="<%= false %>"

@@ -27,6 +27,8 @@ FileEntry fileEntry = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_F
 
 long fileEntryId = BeanParamUtil.getLong(fileEntry, request, "fileEntryId");
 
+long groupId = BeanParamUtil.getLong(fileEntry, request, "groupId");
+
 long repositoryId = BeanParamUtil.getLong(fileEntry, request, "repositoryId");
 
 if (repositoryId <= 0) {
@@ -405,7 +407,7 @@ if (portletTitleBasedNavigation) {
 											classPK="<%= ddmStructure.getPrimaryKey() %>"
 											ddmFormValues="<%= ddmFormValues %>"
 											fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
-											groupId="<%= fileEntry.getGroupId() %>"
+											groupId="<%= groupId %>"
 											localizable="<%= localizable %>"
 											requestedLocale="<%= locale %>"
 										/>
