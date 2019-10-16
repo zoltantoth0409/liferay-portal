@@ -46,10 +46,9 @@ public class DepotEntryURLUtil {
 
 		deleteDepotEntryActionURL.setParameter(
 			ActionRequest.ACTION_NAME, "/depot_entry/delete");
+		deleteDepotEntryActionURL.setParameter("redirect", redirect);
 		deleteDepotEntryActionURL.setParameter(
 			"depotEntryId", String.valueOf(depotEntryId));
-
-		deleteDepotEntryActionURL.setParameter("redirect", redirect);
 
 		return deleteDepotEntryActionURL;
 	}
@@ -74,10 +73,9 @@ public class DepotEntryURLUtil {
 
 		editDepotEntryURL.setParameter(
 			"mvcRenderCommandName", "/depot_entry/edit");
+		editDepotEntryURL.setParameter("redirect", redirect);
 		editDepotEntryURL.setParameter(
 			"depotEntryId", String.valueOf(depotEntryId));
-
-		editDepotEntryURL.setParameter("redirect", redirect);
 
 		return editDepotEntryURL;
 	}
