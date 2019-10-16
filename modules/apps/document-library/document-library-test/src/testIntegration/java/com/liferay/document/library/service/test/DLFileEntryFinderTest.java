@@ -138,10 +138,10 @@ public class DLFileEntryFinderTest {
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_APPROVED);
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_group.getGroupId()});
 
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {DLFolderConstants.DEFAULT_PARENT_FOLDER_ID});
 
 		Assert.assertEquals(
@@ -982,10 +982,10 @@ public class DLFileEntryFinderTest {
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_APPROVED);
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_group.getGroupId()});
 
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {DLFolderConstants.DEFAULT_PARENT_FOLDER_ID});
 
 		List<DLFileEntry> dlFileEntries = doFindBy_G_U_R_F_M(
@@ -1294,7 +1294,7 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getFolderId()});
 
 		String[] mimeTypes = null;
@@ -1328,12 +1328,12 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {
 				_defaultRepositoryFolder.getRepositoryId(),
 				_newRepositoryFolder.getRepositoryId()
 			});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {
 				_defaultRepositoryFolder.getFolderId(),
 				_newRepositoryFolder.getFolderId()
@@ -1348,9 +1348,9 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getRepositoryId()});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getFolderId()});
 
 		return doCountBy_G_U_R_F_M(
@@ -1374,9 +1374,9 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_newRepositoryFolder.getRepositoryId()});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_newRepositoryFolder.getFolderId()});
 
 		return doCountBy_G_U_R_F_M(
@@ -1388,7 +1388,7 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getFolderId()});
 
 		String[] mimeTypes = null;
@@ -1422,12 +1422,12 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {
 				_defaultRepositoryFolder.getRepositoryId(),
 				_newRepositoryFolder.getRepositoryId()
 			});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {
 				_defaultRepositoryFolder.getFolderId(),
 				_newRepositoryFolder.getFolderId()
@@ -1442,9 +1442,9 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getRepositoryId()});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_defaultRepositoryFolder.getFolderId()});
 
 		return doFindBy_G_U_R_F_M(
@@ -1468,9 +1468,9 @@ public class DLFileEntryFinderTest {
 			QueryDefinition<DLFileEntry> queryDefinition)
 		throws Exception {
 
-		List<Long> repositoryIds = ListUtil.toList(
+		List<Long> repositoryIds = ListUtil.fromArray(
 			new long[] {_newRepositoryFolder.getRepositoryId()});
-		List<Long> folderIds = ListUtil.toList(
+		List<Long> folderIds = ListUtil.fromArray(
 			new long[] {_newRepositoryFolder.getFolderId()});
 
 		return doFindBy_G_U_R_F_M(

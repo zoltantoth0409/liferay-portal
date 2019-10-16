@@ -64,7 +64,7 @@ public class TeamLocalServiceTest {
 
 		typeSettingsProperties = _group.getTypeSettingsProperties();
 
-		List<Long> defaultTeamIds = ListUtil.toList(
+		List<Long> defaultTeamIds = ListUtil.fromArray(
 			StringUtil.split(
 				typeSettingsProperties.getProperty("defaultTeamIds"), 0L));
 
