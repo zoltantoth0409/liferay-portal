@@ -29,8 +29,6 @@ const Collapse = props => {
 		setOpen(!open);
 	};
 
-	// "key" here in ClayIcon works around a bug caused by svg4everybody
-	// wherein the icon doesn't update when "symbol" changes.
 	const iconKey = icon;
 
 	return (
