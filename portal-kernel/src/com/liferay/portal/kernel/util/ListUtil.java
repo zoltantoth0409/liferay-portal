@@ -158,12 +158,110 @@ public class ListUtil {
 			inputList, new ArrayList<T>(inputList.size()), predicateFilter);
 	}
 
+	public static List<Boolean> fromArray(boolean[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Boolean> list = new ArrayList<>(array.length);
+
+		for (boolean value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
+	public static List<Character> fromArray(char[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Character> list = new ArrayList<>(array.length);
+
+		for (char value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
+	public static List<Double> fromArray(double[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Double> list = new ArrayList<>(array.length);
+
+		for (double value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
 	public static <E> List<E> fromArray(E[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
 		}
 
 		return new ArrayList<>(Arrays.asList(array));
+	}
+
+	public static List<Float> fromArray(float[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Float> list = new ArrayList<>(array.length);
+
+		for (float value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
+	public static List<Integer> fromArray(int[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Integer> list = new ArrayList<>(array.length);
+
+		for (int value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
+	public static List<Long> fromArray(long[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Long> list = new ArrayList<>(array.length);
+
+		for (long value : array) {
+			list.add(value);
+		}
+
+		return list;
+	}
+
+	public static List<Short> fromArray(short[] array) {
+		if (ArrayUtil.isEmpty(array)) {
+			return new ArrayList<>();
+		}
+
+		List<Short> list = new ArrayList<>(array.length);
+
+		for (short value : array) {
+			list.add(value);
+		}
+
+		return list;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -367,6 +465,11 @@ public class ListUtil {
 		return array;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(boolean[])}
+	 */
+	@Deprecated
 	public static List<Boolean> toList(boolean[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -381,6 +484,11 @@ public class ListUtil {
 		return list;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(char[])}
+	 */
+	@Deprecated
 	public static List<Character> toList(char[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -395,6 +503,11 @@ public class ListUtil {
 		return list;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(double[])}
+	 */
+	@Deprecated
 	public static List<Double> toList(double[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -413,6 +526,10 @@ public class ListUtil {
 		return new ArrayList<>(Arrays.asList(value));
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #fromArray(E[])}
+	 */
+	@Deprecated
 	public static <E> List<E> toList(E[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -421,6 +538,11 @@ public class ListUtil {
 		return new ArrayList<>(Arrays.asList(array));
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(float[])}
+	 */
+	@Deprecated
 	public static List<Float> toList(float[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -435,6 +557,11 @@ public class ListUtil {
 		return list;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(int[])}
+	 */
+	@Deprecated
 	public static List<Integer> toList(int[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -473,6 +600,11 @@ public class ListUtil {
 		return new ArrayList<T>(vlist);
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(long[])}
+	 */
+	@Deprecated
 	public static List<Long> toList(long[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
@@ -487,6 +619,11 @@ public class ListUtil {
 		return list;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(short[])}
+	 */
+	@Deprecated
 	public static List<Short> toList(short[] array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
