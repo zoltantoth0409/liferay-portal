@@ -102,6 +102,10 @@ if (fileEntryTypeId >= 0) {
 	searchContext.setAttribute("paginationType", "none");
 	searchContext.setEnd(dlSearchContainer.getEnd());
 
+	if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+		searchContext.setFolderIds(new long[] {folderId});
+	}
+
 	if (orderByCol.equals("creationDate")) {
 		orderByCol = "createDate";
 	}
