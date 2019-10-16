@@ -107,9 +107,9 @@ public class DropZoneFragmentRenderer implements FragmentRenderer {
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		PrintWriter writer = httpServletResponse.getWriter();
+		PrintWriter printWriter = httpServletResponse.getWriter();
 
-		writer.write(
+		printWriter.write(
 			"<div data-drop-zone style=\"min-height: 400px;\"></div>");
 	}
 
