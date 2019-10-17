@@ -549,6 +549,8 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			!StringUtil.equalsIgnoreCase(oldEmailAddress, emailAddress)) {
 
 			SessionMessages.add(actionRequest, "verificationEmailSent");
+
+			hideDefaultSuccessMessage(actionRequest);
 		}
 
 		return new Object[] {user, oldScreenName, updateLanguageId};
