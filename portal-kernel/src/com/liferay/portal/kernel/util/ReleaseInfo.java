@@ -272,15 +272,15 @@ public class ReleaseInfo {
 		return _VERSION;
 	}
 
-	private static final String _BUILD = "7102";
+	private static final String _BUILD = "@release.info.build@";
 
 	private static final int _BUILD_NUMBER = GetterUtil.getInteger(_BUILD);
 
 	private static final String _CODE_NAME = "Judson";
 
-	private static final String _DATE = "January 7, 2019";
+	private static final String _DATE = "@release.info.date@";
 
-	private static final String _NAME = "Liferay Community Edition Portal";
+	private static final String _NAME = "@release.info.name@";
 
 	private static final int _PARENT_BUILD_NUMBER = _BUILD_NUMBER;
 
@@ -292,9 +292,10 @@ public class ReleaseInfo {
 
 	private static final String _VENDOR = "Liferay, Inc.";
 
-	private static final String _VERSION = "7.1.2";
+	private static final String _VERSION = "@release.info.version@";
 
-	private static final String _VERSION_DISPLAY_NAME = "7.1.2 CE GA3";
+	private static final String _VERSION_DISPLAY_NAME =
+		"@release.info.version.display.name@";
 
 	private static String _releaseInfo;
 	private static String _serverInfo;
