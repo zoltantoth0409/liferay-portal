@@ -206,18 +206,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.configuration.admin.web.jar!org.apache.felix.fileinstall.jar</file-name>
-				<version>3.5.4.LIFERAY-PATCHED-4</version>
-				<project-name>Apache Felix File Install</project-name>
-				<project-url>http://felix.apache.org/site/apache-felix-file-install.html</project-url>
-				<licenses>
-					<license>
-						<license-name>LGPL 2.1</license-name>
-						<license-url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.document.library.google.docs.jar!org.freemarker.jar</file-name>
 				<version>2.3.23.LIFERAY-PATCHED-4</version>
 				<project-name>org.freemarker.freemarker</project-name>
@@ -1098,18 +1086,6 @@
 					<license>
 						<license-name>LGPL 2.1</license-name>
 						<license-url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.portal.osgi.web.servlet.jsp.compiler.jar!javax.servlet.jsp.jstl.jar</file-name>
-				<version>1.2.3</version>
-				<project-name>JavaServer Pages (TM) TagLib Implementation</project-name>
-				<project-url>http://jstl.java.net</project-url>
-				<licenses>
-					<license>
-						<license-name>CDDL + GPLv2 with classpath exception</license-name>
-						<license-url>http://glassfish.dev.java.net/nonav/public/CDDL+GPL.html</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -2745,18 +2721,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.portal.template.freemarker.jar!javax.servlet.jsp.jstl.jar</file-name>
-				<version>1.2.3</version>
-				<project-name>JavaServer Pages (TM) TagLib Implementation</project-name>
-				<project-url>http://jstl.java.net</project-url>
-				<licenses>
-					<license>
-						<license-name>CDDL + GPLv2 with classpath exception</license-name>
-						<license-url>http://glassfish.dev.java.net/nonav/public/CDDL+GPL.html</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.portal.template.freemarker.jar!org.freemarker.jar</file-name>
 				<version>2.3.23.LIFERAY-PATCHED-4</version>
 				<project-name>org.freemarker.freemarker</project-name>
@@ -2791,6 +2755,18 @@
 				</licenses>
 			</library>
 			<library>
+				<file-name>com.liferay.portal.template.soy.jar!checker-qual.jar</file-name>
+				<version>2.5.2</version>
+				<project-name>Checker Qual</project-name>
+				<project-url>https://checkerframework.org</project-url>
+				<licenses>
+					<license>
+						<license-name>The MIT License</license-name>
+						<license-url>http://opensource.org/licenses/MIT</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
 				<file-name>com.liferay.portal.template.soy.jar!commons-lang3.jar</file-name>
 				<version>3.4</version>
 				<project-name>Apache Commons Lang</project-name>
@@ -2803,9 +2779,21 @@
 				</licenses>
 			</library>
 			<library>
+				<file-name>com.liferay.portal.template.soy.jar!error_prone_annotations.jar</file-name>
+				<version>2.2.0</version>
+				<project-name>error-prone annotations</project-name>
+				<licenses>
+					<license>
+						<license-name>Apache 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
 				<file-name>com.liferay.portal.template.soy.jar!guava.jar</file-name>
-				<version>17.0</version>
+				<version>25.1-jre</version>
 				<project-name>Guava: Google Core Libraries for Java</project-name>
+				<project-url>https://github.com/google/guava/</project-url>
 				<licenses>
 					<license>
 						<license-name>The Apache Software License, Version 2.0</license-name>
@@ -3202,17 +3190,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.registry.api.jar!biz.aQute.bndlib.jar</file-name>
-				<version>3.1.0</version>
-				<project-name>bndlib</project-name>
-				<project-url>http://bnd.bndtools.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>http://www.opensource.org/licenses/apache2.0.php; description="Apache License, Version 2.0"; link="http://www.apache.org/licenses/LICENSE-2.0"</license-name>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.rss.util.jar!icu4j.jar</file-name>
 				<version>54.1.1</version>
 				<project-name>ICU4J</project-name>
@@ -3486,17 +3463,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.wiki.service.jar!biz.aQute.bndlib.jar</file-name>
-				<version>3.1.0</version>
-				<project-name>bndlib</project-name>
-				<project-url>http://bnd.bndtools.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>http://www.opensource.org/licenses/apache2.0.php; description="Apache License, Version 2.0"; link="http://www.apache.org/licenses/LICENSE-2.0"</license-name>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.wiki.service.jar!jericho-html.jar</file-name>
 				<version>3.1</version>
 				<project-name>Jericho HTML Parser</project-name>
@@ -3551,17 +3517,6 @@
 					<license>
 						<license-name>Bouncy Castle Licence</license-name>
 						<license-url>http://www.bouncycastle.org/licence.html</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.wsrp.service.jar!oasis.names.tc.wsrp.jar</file-name>
-				<version>1.0.1</version>
-				<project-name>oasis.names.tc.wsrp</project-name>
-				<licenses>
-					<license>
-						<license-name>LGPL 2.1</license-name>
-						<license-url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</license-url>
 					</license>
 				</licenses>
 			</library>
