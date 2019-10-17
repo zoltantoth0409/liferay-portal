@@ -132,10 +132,8 @@ public class JournalItemSelectorView
 	private static final List<ItemSelectorReturnType>
 		_supportedItemSelectorReturnTypes = Collections.unmodifiableList(
 			ListUtil.fromArray(
-				new ItemSelectorReturnType[] {
-					new FileEntryItemSelectorReturnType(),
-					new URLItemSelectorReturnType()
-				}));
+				new FileEntryItemSelectorReturnType(),
+				new URLItemSelectorReturnType()));
 
 	@Reference(
 		cardinality = ReferenceCardinality.OPTIONAL,
