@@ -184,7 +184,7 @@ public class BasePersistenceImpl<TT extends BaseModel, TID>
 
 		sb.append(PropsValues.SYNC_DATABASE_NAME);
 		sb.append(";AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;");
-		sb.append("LOCK_TIMEOUT=120000;MVCC=TRUE;");
+		sb.append("LOCK_TIMEOUT=120000;");
 
 		_connectionSource = new JdbcPooledConnectionSource(sb.toString());
 
