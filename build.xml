@@ -1049,10 +1049,12 @@ This target has been renamed to "snapshot-bundle". Please call "snapshot-bundle"
 	</target>
 
 	<target name="setup-profile-portal">
-		<delete file="${project.dir}/build.profile-dxp.properties" />
-		<delete file="${project.dir}/release.profile-dxp.properties" />
-		<delete file="${project.dir}/sql/sql.profile-dxp.properties" />
-		<delete file="${project.dir}/test.profile-dxp.properties" />
+		<delete>
+			<fileset
+				dir="${project.dir}"
+				includes="*.profile-dxp.properties"
+			/>
+		</delete>
 	</target>
 
 	<target name="setup-sdk">
