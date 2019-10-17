@@ -117,6 +117,10 @@ class SelectLayout extends Component {
 			);
 		}
 	}
+
+	_handleSearchFormSubmit(event) {
+		event.preventDefault();
+	}
 }
 
 /**
