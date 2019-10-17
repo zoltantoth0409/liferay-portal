@@ -63,6 +63,9 @@ public class UpdateByQueryDocumentRequestExecutorImpl
 
 		UpdateByQueryRequest updateByQueryRequest = new UpdateByQueryRequest();
 
+		updateByQueryRequest.indices(
+			updateByQueryDocumentRequest.getIndexNames());
+
 		QueryBuilder queryBuilder = _queryTranslator.translate(
 			updateByQueryDocumentRequest.getQuery(), null);
 
@@ -79,9 +82,6 @@ public class UpdateByQueryDocumentRequestExecutorImpl
 
 			updateByQueryRequest.setScript(script);
 		}
-
-		updateByQueryRequest.indices(
-			updateByQueryDocumentRequest.getIndexNames());
 
 		return updateByQueryRequest;
 	}
