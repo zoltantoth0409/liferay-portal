@@ -115,6 +115,7 @@
 		<suppress checks="PropertiesWhitespaceCheck" files="sql/lportal\.properties" />
 		<suppress checks="ResourceBundleCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ClassResourceBundleLoader\.java" />
 		<suppress checks="ResourceBundleCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ResourceBundleUtil\.java" />
+		<suppress checks="XMLBuildFileCheck" files="build\.xml" />
 		<suppress checks="XMLIndentationCheck" files="tools/jalopy\.xml" />
 		<suppress checks="XMLServiceEntityNameCheck" files="portal-impl/src/com/liferay/counter/service\.xml" />
 		<suppress checks="XMLServiceEntityNameCheck" files="portal-impl/src/com/liferay/mail/service\.xml" />
