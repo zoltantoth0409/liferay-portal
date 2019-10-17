@@ -191,15 +191,15 @@ public class ElasticsearchPipelineAggregationResultTranslator
 		PercentilesBucketPipelineAggregation
 			percentilesBucketPipelineAggregation) {
 
-		ParsedPercentilesBucket percentilesBucket =
+		ParsedPercentilesBucket parsedPercentilesBucket =
 			(ParsedPercentilesBucket)_elasticsearchAggregation;
 
 		PercentilesBucketPipelineAggregationResult
 			percentilesBucketPipelineAggregationResult =
 				_aggregationResults.percentilesBucket(
-					percentilesBucket.getName());
+					parsedPercentilesBucket.getName());
 
-		percentilesBucket.forEach(
+		parsedPercentilesBucket.forEach(
 			percentile ->
 				percentilesBucketPipelineAggregationResult.addPercentile(
 					percentile.getPercent(), percentile.getValue()));
