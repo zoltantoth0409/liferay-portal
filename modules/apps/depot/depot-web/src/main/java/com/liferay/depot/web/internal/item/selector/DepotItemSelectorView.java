@@ -92,9 +92,8 @@ public class DepotItemSelectorView
 		SitesItemSelectorViewDisplayContext
 			depotSiteItemSelectorViewDisplayContext =
 				new DepotSiteItemSelectorViewDisplayContext(
-					(HttpServletRequest)servletRequest,
-					siteItemSelectorCriterion, itemSelectedEventName,
-					portletURL);
+					(HttpServletRequest)servletRequest, itemSelectedEventName,
+					portletURL, siteItemSelectorCriterion);
 
 		_siteItemSelectorViewRenderer.renderHTML(
 			depotSiteItemSelectorViewDisplayContext);
@@ -121,14 +120,14 @@ public class DepotItemSelectorView
 		implements SitesItemSelectorViewDisplayContext {
 
 		public DepotSiteItemSelectorViewDisplayContext(
-			HttpServletRequest httpServletRequest,
-			SiteItemSelectorCriterion siteItemSelectorCriterion,
-			String itemSelectedEventName, PortletURL portletURL) {
+			HttpServletRequest httpServletRequest, String itemSelectedEventName,
+			PortletURL portletURL,
+			SiteItemSelectorCriterion siteItemSelectorCriterion) {
 
 			_httpServletRequest = httpServletRequest;
-			_siteItemSelectorCriterion = siteItemSelectorCriterion;
 			_itemSelectedEventName = itemSelectedEventName;
 			_portletURL = portletURL;
+			_siteItemSelectorCriterion = siteItemSelectorCriterion;
 		}
 
 		@Override
