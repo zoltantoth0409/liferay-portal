@@ -61,6 +61,9 @@ public class DeleteByQueryDocumentRequestExecutorImpl
 
 		DeleteByQueryRequest deleteByQueryRequest = new DeleteByQueryRequest();
 
+		deleteByQueryRequest.indices(
+			deleteByQueryDocumentRequest.getIndexNames());
+
 		QueryBuilder queryBuilder = _queryTranslator.translate(
 			deleteByQueryDocumentRequest.getQuery(), null);
 
@@ -68,8 +71,6 @@ public class DeleteByQueryDocumentRequestExecutorImpl
 
 		deleteByQueryRequest.setRefresh(
 			deleteByQueryDocumentRequest.isRefresh());
-		deleteByQueryRequest.indices(
-			deleteByQueryDocumentRequest.getIndexNames());
 
 		return deleteByQueryRequest;
 	}
