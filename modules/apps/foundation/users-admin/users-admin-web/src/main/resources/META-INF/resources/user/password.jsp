@@ -21,10 +21,11 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 PasswordPolicy passwordPolicy = (PasswordPolicy)request.getAttribute("user.passwordPolicy");
 
+boolean ldapPasswordPolicyEnabled = LDAPSettingsUtil.isPasswordPolicyEnabled(company.getCompanyId());
 boolean passwordReset = false;
 boolean passwordResetDisabled = false;
 
-if (((selUser == null) || (selUser.getLastLoginDate() == null)) && ((passwordPolicy == null) || (passwordPolicy.isChangeable() && passwordPolicy.isChangeRequired()))) {
+if (((selUser == null) || (selUser.getLastLoginDate() == null)) && (((passwordPolicy == null) && !ldapPasswordPolicyEnabled) || ((passwordPolicy != null) && passwordPolicy.isChangeable() && passwordPolicy.isChangeRequired()))) {
 	passwordReset = true;
 	passwordResetDisabled = true;
 }
