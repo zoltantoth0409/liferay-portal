@@ -443,6 +443,20 @@ definition {
 		PortletEntry.save();
 	}
 
+	macro editConfigurationUsersEmailNotificationsSenderCP {
+		Panel.expandPanel(panel = "Email Notifications");
+
+		Type(
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_NAME_FIELD",
+			value1 = "${emailSenderName}");
+
+		Type(
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_ADDRESS_FIELD",
+			value1 = "${emailAddress}");
+
+		PortletEntry.save();
+	}
+
 	macro editConfigurationUsersEmailVerificationNotificationsCP {
 		Panel.expandPanel(panelHeading = "Email Notifications");
 
