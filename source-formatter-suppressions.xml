@@ -83,6 +83,7 @@
 		<suppress checks="JavaMultiPlusConcatCheck" files=".*/test/.*" />
 		<suppress checks="JavaMultiPlusConcatCheck" files=".*/testIntegration/.*" />
 		<suppress checks="JavaPackagePathCheck" files=".*/ServletContextUtil\.java" />
+		<suppress checks="JavaReleaseInfoCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ReleaseInfo\.java" />
 		<suppress checks="JavaStringBundlerConcatCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/StringBundlerTest\.java" />
 		<suppress checks="JavaStringBundlerInitialCapacityCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/StringBundlerTest\.java" />
 		<suppress checks="JavaUnsafeCastingCheck" files="portal-impl/src/com/liferay/portal/util/PortalImpl\.java" />
