@@ -47,7 +47,7 @@ public class DepotEntryGroupRelLocalServiceImpl
 		long depotEntryId, long toGroupId) {
 
 		DepotEntryGroupRel depotEntryGroupRel =
-			depotEntryGroupRelPersistence.fetchByD_G(depotEntryId, toGroupId);
+			depotEntryGroupRelPersistence.fetchByD_TGI(depotEntryId, toGroupId);
 
 		if (depotEntryGroupRel != null) {
 			return depotEntryGroupRel;
