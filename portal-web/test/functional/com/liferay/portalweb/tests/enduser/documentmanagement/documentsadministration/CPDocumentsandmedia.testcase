@@ -206,6 +206,45 @@ definition {
 			value1 = "Version 1.1");
 	}
 
+	@description = "This test covers LPS-92145. It ensures that a user can check in a document with special version notes."
+	@priority = "4"
+	test CheckInDocumentWithSpecialVersionNotes {
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+
+		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
+		DMDocument.addCP(
+			dmDocumentFile = "Document_1.doc",
+			dmDocumentTitle = "Check in as minor version");
+
+		DMDocument.checkoutCP(dmDocumentTitle = "Check in as minor version");
+
+		Refresh();
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+
+		DMDocument.saveAndCheckinEditedDocumentPG(
+			dmDocumentTitle = "Check in as minor version",
+			revision = "Minor Version",
+			versionNotes = '''<!DOCTYPE html> <html class="ltr" dir="ltr" lang="en-US"> <head> <title>''');
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+
+		AssertElementNotPresent(
+			key_dmDocumentTitle = "Check in as minor version",
+			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
+
+		DMDocument.checkDocumentCheckboxCP(dmDocumentTitle = "Check in as minor version");
+
+		Click(locator1 = "Icon#INFO");
+
+		DMDocument.selectVersion();
+
+		AssertTextEquals(
+			locator1 = "DocumentsAndMedia#SIDEBAR_LATEST_VERSION",
+			value1 = "Version 1.1");
+	}
+
 	@priority = "5"
 	test EditDocument {
 		property app.server.types = "jboss,resin,tcserver,tomcat,weblogic,websphere,wildfly";
