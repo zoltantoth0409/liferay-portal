@@ -144,18 +144,14 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 
 		MockActionRequest mockActionRequest = new MockActionRequest();
 
-		mockActionRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, _getThemeDisplay());
-
 		mockActionRequest.addParameter(
 			"classNameId", String.valueOf(classNameId));
-
 		mockActionRequest.addParameter("classPK", String.valueOf(classPK));
-
 		mockActionRequest.addParameter("name", name);
-
 		mockActionRequest.addParameter(
 			"segmentsEntryId", String.valueOf(segmentsEntryId));
+		mockActionRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		return mockActionRequest;
 	}
