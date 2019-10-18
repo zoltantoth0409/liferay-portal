@@ -596,8 +596,8 @@ public class DepotEntryGroupRelPersistenceImpl
 	private static final String _FINDER_COLUMN_DEPOTENTRYID_DEPOTENTRYID_2 =
 		"depotEntryGroupRel.depotEntryId = ?";
 
-	private FinderPath _finderPathFetchByD_G;
-	private FinderPath _finderPathCountByD_G;
+	private FinderPath _finderPathFetchByD_TGI;
+	private FinderPath _finderPathCountByD_TGI;
 
 	/**
 	 * Returns the depot entry group rel where depotEntryId = &#63; and toGroupId = &#63; or throws a <code>NoSuchEntryGroupRelException</code> if it could not be found.
@@ -608,10 +608,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel findByD_G(long depotEntryId, long toGroupId)
+	public DepotEntryGroupRel findByD_TGI(long depotEntryId, long toGroupId)
 		throws NoSuchEntryGroupRelException {
 
-		DepotEntryGroupRel depotEntryGroupRel = fetchByD_G(
+		DepotEntryGroupRel depotEntryGroupRel = fetchByD_TGI(
 			depotEntryId, toGroupId);
 
 		if (depotEntryGroupRel == null) {
@@ -645,8 +645,8 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel fetchByD_G(long depotEntryId, long toGroupId) {
-		return fetchByD_G(depotEntryId, toGroupId, true);
+	public DepotEntryGroupRel fetchByD_TGI(long depotEntryId, long toGroupId) {
+		return fetchByD_TGI(depotEntryId, toGroupId, true);
 	}
 
 	/**
@@ -658,7 +658,7 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel fetchByD_G(
+	public DepotEntryGroupRel fetchByD_TGI(
 		long depotEntryId, long toGroupId, boolean useFinderCache) {
 
 		Object[] finderArgs = null;
@@ -671,7 +671,7 @@ public class DepotEntryGroupRelPersistenceImpl
 
 		if (useFinderCache) {
 			result = finderCache.getResult(
-				_finderPathFetchByD_G, finderArgs, this);
+				_finderPathFetchByD_TGI, finderArgs, this);
 		}
 
 		if (result instanceof DepotEntryGroupRel) {
@@ -689,9 +689,9 @@ public class DepotEntryGroupRelPersistenceImpl
 
 			query.append(_SQL_SELECT_DEPOTENTRYGROUPREL_WHERE);
 
-			query.append(_FINDER_COLUMN_D_G_DEPOTENTRYID_2);
+			query.append(_FINDER_COLUMN_D_TGI_DEPOTENTRYID_2);
 
-			query.append(_FINDER_COLUMN_D_G_TOGROUPID_2);
+			query.append(_FINDER_COLUMN_D_TGI_TOGROUPID_2);
 
 			String sql = query.toString();
 
@@ -713,7 +713,7 @@ public class DepotEntryGroupRelPersistenceImpl
 				if (list.isEmpty()) {
 					if (useFinderCache) {
 						finderCache.putResult(
-							_finderPathFetchByD_G, finderArgs, list);
+							_finderPathFetchByD_TGI, finderArgs, list);
 					}
 				}
 				else {
@@ -726,7 +726,8 @@ public class DepotEntryGroupRelPersistenceImpl
 			}
 			catch (Exception e) {
 				if (useFinderCache) {
-					finderCache.removeResult(_finderPathFetchByD_G, finderArgs);
+					finderCache.removeResult(
+						_finderPathFetchByD_TGI, finderArgs);
 				}
 
 				throw processException(e);
@@ -752,10 +753,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the depot entry group rel that was removed
 	 */
 	@Override
-	public DepotEntryGroupRel removeByD_G(long depotEntryId, long toGroupId)
+	public DepotEntryGroupRel removeByD_TGI(long depotEntryId, long toGroupId)
 		throws NoSuchEntryGroupRelException {
 
-		DepotEntryGroupRel depotEntryGroupRel = findByD_G(
+		DepotEntryGroupRel depotEntryGroupRel = findByD_TGI(
 			depotEntryId, toGroupId);
 
 		return remove(depotEntryGroupRel);
@@ -769,8 +770,8 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the number of matching depot entry group rels
 	 */
 	@Override
-	public int countByD_G(long depotEntryId, long toGroupId) {
-		FinderPath finderPath = _finderPathCountByD_G;
+	public int countByD_TGI(long depotEntryId, long toGroupId) {
+		FinderPath finderPath = _finderPathCountByD_TGI;
 
 		Object[] finderArgs = new Object[] {depotEntryId, toGroupId};
 
@@ -781,9 +782,9 @@ public class DepotEntryGroupRelPersistenceImpl
 
 			query.append(_SQL_COUNT_DEPOTENTRYGROUPREL_WHERE);
 
-			query.append(_FINDER_COLUMN_D_G_DEPOTENTRYID_2);
+			query.append(_FINDER_COLUMN_D_TGI_DEPOTENTRYID_2);
 
-			query.append(_FINDER_COLUMN_D_G_TOGROUPID_2);
+			query.append(_FINDER_COLUMN_D_TGI_TOGROUPID_2);
 
 			String sql = query.toString();
 
@@ -817,10 +818,10 @@ public class DepotEntryGroupRelPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_D_G_DEPOTENTRYID_2 =
+	private static final String _FINDER_COLUMN_D_TGI_DEPOTENTRYID_2 =
 		"depotEntryGroupRel.depotEntryId = ? AND ";
 
-	private static final String _FINDER_COLUMN_D_G_TOGROUPID_2 =
+	private static final String _FINDER_COLUMN_D_TGI_TOGROUPID_2 =
 		"depotEntryGroupRel.toGroupId = ?";
 
 	public DepotEntryGroupRelPersistenceImpl() {
@@ -842,7 +843,7 @@ public class DepotEntryGroupRelPersistenceImpl
 			depotEntryGroupRel.getPrimaryKey(), depotEntryGroupRel);
 
 		finderCache.putResult(
-			_finderPathFetchByD_G,
+			_finderPathFetchByD_TGI,
 			new Object[] {
 				depotEntryGroupRel.getDepotEntryId(),
 				depotEntryGroupRel.getToGroupId()
@@ -932,9 +933,9 @@ public class DepotEntryGroupRelPersistenceImpl
 		};
 
 		finderCache.putResult(
-			_finderPathCountByD_G, args, Long.valueOf(1), false);
+			_finderPathCountByD_TGI, args, Long.valueOf(1), false);
 		finderCache.putResult(
-			_finderPathFetchByD_G, args, depotEntryGroupRelModelImpl, false);
+			_finderPathFetchByD_TGI, args, depotEntryGroupRelModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
@@ -947,20 +948,20 @@ public class DepotEntryGroupRelPersistenceImpl
 				depotEntryGroupRelModelImpl.getToGroupId()
 			};
 
-			finderCache.removeResult(_finderPathCountByD_G, args);
-			finderCache.removeResult(_finderPathFetchByD_G, args);
+			finderCache.removeResult(_finderPathCountByD_TGI, args);
+			finderCache.removeResult(_finderPathFetchByD_TGI, args);
 		}
 
 		if ((depotEntryGroupRelModelImpl.getColumnBitmask() &
-			 _finderPathFetchByD_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByD_TGI.getColumnBitmask()) != 0) {
 
 			Object[] args = new Object[] {
 				depotEntryGroupRelModelImpl.getOriginalDepotEntryId(),
 				depotEntryGroupRelModelImpl.getOriginalToGroupId()
 			};
 
-			finderCache.removeResult(_finderPathCountByD_G, args);
-			finderCache.removeResult(_finderPathFetchByD_G, args);
+			finderCache.removeResult(_finderPathCountByD_TGI, args);
+			finderCache.removeResult(_finderPathFetchByD_TGI, args);
 		}
 	}
 
@@ -1473,17 +1474,17 @@ public class DepotEntryGroupRelPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByDepotEntryId",
 			new String[] {Long.class.getName()});
 
-		_finderPathFetchByD_G = new FinderPath(
+		_finderPathFetchByD_TGI = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled,
 			DepotEntryGroupRelImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByD_G",
+			"fetchByD_TGI",
 			new String[] {Long.class.getName(), Long.class.getName()},
 			DepotEntryGroupRelModelImpl.DEPOTENTRYID_COLUMN_BITMASK |
 			DepotEntryGroupRelModelImpl.TOGROUPID_COLUMN_BITMASK);
 
-		_finderPathCountByD_G = new FinderPath(
+		_finderPathCountByD_TGI = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByD_G",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByD_TGI",
 			new String[] {Long.class.getName(), Long.class.getName()});
 	}
 

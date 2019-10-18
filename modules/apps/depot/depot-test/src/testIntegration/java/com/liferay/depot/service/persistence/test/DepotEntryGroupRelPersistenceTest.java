@@ -157,11 +157,11 @@ public class DepotEntryGroupRelPersistenceTest {
 	}
 
 	@Test
-	public void testCountByD_G() throws Exception {
-		_persistence.countByD_G(
+	public void testCountByD_TGI() throws Exception {
+		_persistence.countByD_TGI(
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
 
-		_persistence.countByD_G(0L, 0L);
+		_persistence.countByD_TGI(0L, 0L);
 	}
 
 	@Test

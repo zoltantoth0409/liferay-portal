@@ -308,11 +308,11 @@ public class DepotEntryGroupRelUtil {
 	 * @return the matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel findByD_G(
+	public static DepotEntryGroupRel findByD_TGI(
 			long depotEntryId, long toGroupId)
 		throws com.liferay.depot.exception.NoSuchEntryGroupRelException {
 
-		return getPersistence().findByD_G(depotEntryId, toGroupId);
+		return getPersistence().findByD_TGI(depotEntryId, toGroupId);
 	}
 
 	/**
@@ -322,10 +322,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param toGroupId the to group ID
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel fetchByD_G(
+	public static DepotEntryGroupRel fetchByD_TGI(
 		long depotEntryId, long toGroupId) {
 
-		return getPersistence().fetchByD_G(depotEntryId, toGroupId);
+		return getPersistence().fetchByD_TGI(depotEntryId, toGroupId);
 	}
 
 	/**
@@ -336,10 +336,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel fetchByD_G(
+	public static DepotEntryGroupRel fetchByD_TGI(
 		long depotEntryId, long toGroupId, boolean useFinderCache) {
 
-		return getPersistence().fetchByD_G(
+		return getPersistence().fetchByD_TGI(
 			depotEntryId, toGroupId, useFinderCache);
 	}
 
@@ -350,11 +350,11 @@ public class DepotEntryGroupRelUtil {
 	 * @param toGroupId the to group ID
 	 * @return the depot entry group rel that was removed
 	 */
-	public static DepotEntryGroupRel removeByD_G(
+	public static DepotEntryGroupRel removeByD_TGI(
 			long depotEntryId, long toGroupId)
 		throws com.liferay.depot.exception.NoSuchEntryGroupRelException {
 
-		return getPersistence().removeByD_G(depotEntryId, toGroupId);
+		return getPersistence().removeByD_TGI(depotEntryId, toGroupId);
 	}
 
 	/**
@@ -364,8 +364,8 @@ public class DepotEntryGroupRelUtil {
 	 * @param toGroupId the to group ID
 	 * @return the number of matching depot entry group rels
 	 */
-	public static int countByD_G(long depotEntryId, long toGroupId) {
-		return getPersistence().countByD_G(depotEntryId, toGroupId);
+	public static int countByD_TGI(long depotEntryId, long toGroupId) {
+		return getPersistence().countByD_TGI(depotEntryId, toGroupId);
 	}
 
 	/**

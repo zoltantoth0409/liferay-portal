@@ -193,7 +193,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @return the matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel findByD_G(long depotEntryId, long toGroupId)
+	public DepotEntryGroupRel findByD_TGI(long depotEntryId, long toGroupId)
 		throws NoSuchEntryGroupRelException;
 
 	/**
@@ -203,7 +203,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param toGroupId the to group ID
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel fetchByD_G(long depotEntryId, long toGroupId);
+	public DepotEntryGroupRel fetchByD_TGI(long depotEntryId, long toGroupId);
 
 	/**
 	 * Returns the depot entry group rel where depotEntryId = &#63; and toGroupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -213,7 +213,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel fetchByD_G(
+	public DepotEntryGroupRel fetchByD_TGI(
 		long depotEntryId, long toGroupId, boolean useFinderCache);
 
 	/**
@@ -223,7 +223,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param toGroupId the to group ID
 	 * @return the depot entry group rel that was removed
 	 */
-	public DepotEntryGroupRel removeByD_G(long depotEntryId, long toGroupId)
+	public DepotEntryGroupRel removeByD_TGI(long depotEntryId, long toGroupId)
 		throws NoSuchEntryGroupRelException;
 
 	/**
@@ -233,7 +233,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param toGroupId the to group ID
 	 * @return the number of matching depot entry group rels
 	 */
-	public int countByD_G(long depotEntryId, long toGroupId);
+	public int countByD_TGI(long depotEntryId, long toGroupId);
 
 	/**
 	 * Caches the depot entry group rel in the entity cache if it is enabled.
