@@ -187,12 +187,11 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 				return;
 			}
 
+			String portletResource = ParamUtil.getString(
+				actionRequest, "portletResource");
 			int workflowAction = ParamUtil.getInteger(
 				actionRequest, "workflowAction",
 				WorkflowConstants.ACTION_SAVE_DRAFT);
-
-			String portletResource = ParamUtil.getString(
-				actionRequest, "portletResource");
 
 			if (Validator.isNotNull(portletResource) &&
 				(workflowAction != WorkflowConstants.ACTION_SAVE_DRAFT)) {
