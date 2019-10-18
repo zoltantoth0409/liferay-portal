@@ -178,7 +178,6 @@ public class ContentPageEditorDisplayContext {
 		Map<String, Object> reactContext = new HashMap<>();
 
 		reactContext.putAll(getEditorSoyContext());
-
 		reactContext.putAll(getFragmentsEditorToolbarSoyContext());
 
 		return reactContext;
