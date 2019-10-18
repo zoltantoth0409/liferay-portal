@@ -203,6 +203,7 @@ class FragmentEditableField extends PortletBase {
 		const eventName = this.type === 'image' ? 'dblclick' : 'click';
 
 		if (
+			this.hasUpdatePermissions &&
 			this._getItemId() === this.activeItemId &&
 			this.activeItemType === FRAGMENTS_EDITOR_ITEM_TYPES.editable
 		) {
@@ -704,6 +705,7 @@ const ConnectedFragmentEditableField = getConnectedComponent(
 		'defaultSegmentsExperienceId',
 		'getAssetFieldValueURL',
 		'getAssetMappingFieldsURL',
+		'hasUpdatePermissions',
 		'hoveredItemId',
 		'hoveredItemType',
 		'languageId',
