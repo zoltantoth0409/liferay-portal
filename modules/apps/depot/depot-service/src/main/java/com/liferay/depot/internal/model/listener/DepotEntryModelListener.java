@@ -37,8 +37,6 @@ public class DepotEntryModelListener extends BaseModelListener<DepotEntry> {
 		throws ModelListenerException {
 
 		try {
-			_groupLocalService.deleteGroup(depotEntry.getGroupId());
-
 			for (DepotEntryGroupRel depotEntryGroupRel :
 					_depotEntryGroupRelLocalService.getDepotEntryGroupRels(
 						depotEntry)) {
@@ -46,6 +44,8 @@ public class DepotEntryModelListener extends BaseModelListener<DepotEntry> {
 				_depotEntryGroupRelLocalService.deleteDepotEntryGroupRel(
 					depotEntryGroupRel);
 			}
+
+			_groupLocalService.deleteGroup(depotEntry.getGroupId());
 		}
 		catch (PortalException pe) {
 			throw new ModelListenerException(pe);
