@@ -15,7 +15,9 @@
 package com.liferay.dynamic.data.mapping.data.provider;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,8 +46,28 @@ public class DDMDataProviderRequest {
 		return _httpServletRequest;
 	}
 
+	public Locale getLocale() {
+		return _httpServletRequest.getLocale();
+	}
+
 	public String getParameter(String name) {
 		return _parameters.get(name);
+	}
+
+	public <T> Optional<T> getParameterOptional(String name, Class<?> clazz) {
+		Object value = _parameters.get(name);
+
+		if (value == null) {
+			return Optional.empty();
+		}
+
+		Class<?> valueClass = value.getClass();
+
+		if (clazz.isAssignableFrom(valueClass)) {
+			return Optional.of((T)value);
+		}
+
+		return Optional.empty();
 	}
 
 	public Map<String, String> getParameters() {
