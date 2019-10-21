@@ -244,7 +244,7 @@ public class ServiceComponentLocalServiceImpl
 			final String indexesSQL)
 		throws Exception {
 
-		_doUpgradeDB(
+		_upgradeDB(
 			classLoader, buildNamespace, buildNumber, previousServiceComponent,
 			tablesSQL, sequencesSQL, indexesSQL);
 	}
@@ -483,7 +483,7 @@ public class ServiceComponentLocalServiceImpl
 		}
 	}
 
-	private void _doUpgradeDB(
+	private void _upgradeDB(
 			ClassLoader classLoader, String buildNamespace, long buildNumber,
 			ServiceComponent previousServiceComponent, String tablesSQL,
 			String sequencesSQL, String indexesSQL)
