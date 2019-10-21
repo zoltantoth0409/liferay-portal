@@ -207,7 +207,7 @@ definition {
 	}
 
 	@description = "This test covers LPS-92145. It ensures that a user can check in a document with special version notes."
-	@priority = "4"
+	@priority = "3"
 	test CheckInDocumentWithSpecialVersionNotes {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
