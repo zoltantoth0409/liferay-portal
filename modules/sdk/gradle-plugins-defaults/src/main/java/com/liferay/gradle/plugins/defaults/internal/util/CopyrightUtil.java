@@ -51,7 +51,9 @@ public class CopyrightUtil {
 
 		absoluteFileName = absoluteFileName.replace('\\', '/');
 
-		if (absoluteFileName.contains("/modules/private/apps/")) {
+		if (absoluteFileName.contains("/modules/dxp/apps/") ||
+			absoluteFileName.contains("/modules/private/apps/")) {
+
 			return true;
 		}
 

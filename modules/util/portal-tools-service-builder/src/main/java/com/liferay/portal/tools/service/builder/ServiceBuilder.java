@@ -5372,7 +5372,9 @@ public class ServiceBuilder {
 
 		String absoluteFileName = _normalize(absolutePath.toString());
 
-		if (absoluteFileName.contains("/modules/private/apps/")) {
+		if (absoluteFileName.contains("/modules/dxp/apps/") ||
+			absoluteFileName.contains("/modules/private/apps/")) {
+
 			return true;
 		}
 
