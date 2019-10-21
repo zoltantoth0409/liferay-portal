@@ -18,7 +18,7 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.depot.web.internal.constants.DepotPortletKeys;
 import com.liferay.depot.web.internal.util.DepotEntryURLUtil;
-import com.liferay.portal.kernel.exception.LocaleException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -61,6 +61,10 @@ public class EditDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		long depotEntryId = ParamUtil.getLong(actionRequest, "depotEntryId");
 
+		UnicodeProperties formTypeSettingsProperties =
+			PropertiesParamUtil.getProperties(
+				actionRequest, "TypeSettingsProperties--");
+
 		DepotEntry depotEntry = _depotEntryLocalService.getDepotEntry(
 			depotEntryId);
 
@@ -75,17 +79,13 @@ public class EditDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DepotEntry.class.getName(), actionRequest);
 
-		UnicodeProperties formTypeSettingsProperties =
-			PropertiesParamUtil.getProperties(
-				actionRequest, "TypeSettingsProperties--");
-
 		try {
 			_depotEntryLocalService.updateDepotEntry(
 				depotEntryId, formTypeSettingsProperties, nameMap,
 				descriptionMap, serviceContext);
 		}
-		catch (LocaleException le) {
-			SessionErrors.add(actionRequest, le.getClass(), le);
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass(), pe);
 
 			RenderURL editDepotEntryRenderURL =
 				DepotEntryURLUtil.getEditDepotEntryRenderURL(
