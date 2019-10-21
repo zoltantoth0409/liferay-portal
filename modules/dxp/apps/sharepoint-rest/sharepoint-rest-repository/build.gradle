@@ -20,5 +20,5 @@ dependencies {
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":private:apps:sharepoint-rest:sharepoint-rest-oauth2-api")
+	compileOnly project(":dxp:apps:sharepoint-rest:sharepoint-rest-oauth2-api")
 }

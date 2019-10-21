@@ -17,5 +17,5 @@ dependencies {
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
-	compileOnly project(":private:apps:oauth:oauth-api")
+	compileOnly project(":dxp:apps:oauth:oauth-api")
 }

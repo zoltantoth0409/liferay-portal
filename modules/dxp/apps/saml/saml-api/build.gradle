@@ -10,5 +10,5 @@ dependencies {
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":private:apps:saml:saml-persistence-api")
+	compileOnly project(":dxp:apps:saml:saml-persistence-api")
 }
