@@ -10,7 +10,6 @@ import templates from './SidebarAddedFragments.soy';
  */
 
 class SidebarAddedFragments extends Component {
-
 	/**
 	 * Callback executed when the fragment remove button is clicked.
 	 * It emits a 'fragmentRemoveButtonClick' event with the fragment index.
@@ -20,12 +19,9 @@ class SidebarAddedFragments extends Component {
 	 */
 
 	_handleFragmentRemoveButtonClick(event) {
-		this.emit(
-			'fragmentRemoveButtonClick',
-			{
-				fragmentEntryLinkId: event.itemId
-			}
-		);
+		this.emit('fragmentRemoveButtonClick', {
+			fragmentEntryLinkId: event.itemId
+		});
 	}
 }
 
@@ -37,7 +33,6 @@ class SidebarAddedFragments extends Component {
  */
 
 SidebarAddedFragments.STATE = {
-
 	/**
 	 * List of FragmentEntryLinks
 	 * @default []
@@ -51,12 +46,10 @@ SidebarAddedFragments.STATE = {
 	 */
 
 	fragmentEntryLinks: Config.arrayOf(
-		Config.shapeOf(
-			{
-				fragmentEntryLinkId: Config.string().required(),
-				name: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			fragmentEntryLinkId: Config.string().required(),
+			name: Config.string().required()
+		})
 	).value([]),
 
 	/**

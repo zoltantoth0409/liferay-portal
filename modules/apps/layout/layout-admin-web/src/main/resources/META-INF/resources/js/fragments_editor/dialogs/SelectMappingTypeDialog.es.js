@@ -10,7 +10,6 @@ import templates from './SelectMappingTypeDialog.soy';
  */
 
 class SelectMappingTypeDialog extends PortletBase {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -125,22 +124,16 @@ class SelectMappingTypeDialog extends PortletBase {
 	_handleSubmitButtonClick() {
 		this._savingChanges = true;
 
-		return this.fetch(
-			this.updateLayoutPageTemplateEntryAssetTypeURL,
-			{
-				classNameId: this._selectedMappingTypeId,
-				classPK: this.classPK,
-				classTypeId: this._selectedMappingSubtypeId
-			}
-		)
-			.then(
-				response => response.json()
-			).then(
-				() => {
-					this._emitSelectedMappingLabels();
-					this.visible = false;
-				}
-			);
+		return this.fetch(this.updateLayoutPageTemplateEntryAssetTypeURL, {
+			classNameId: this._selectedMappingTypeId,
+			classPK: this.classPK,
+			classTypeId: this._selectedMappingSubtypeId
+		})
+			.then(response => response.json())
+			.then(() => {
+				this._emitSelectedMappingLabels();
+				this.visible = false;
+			});
 	}
 
 	/**
@@ -172,17 +165,13 @@ class SelectMappingTypeDialog extends PortletBase {
 	_loadMappingSubtypes() {
 		this._mappingSubtypes = null;
 
-		return this.fetch(
-			this.getAssetClassTypesURL,
-			{classNameId: this._selectedMappingTypeId}
-		)
-			.then(
-				response => response.json()
-			).then(
-				response => {
-					this._mappingSubtypes = response;
-				}
-			);
+		return this.fetch(this.getAssetClassTypesURL, {
+			classNameId: this._selectedMappingTypeId
+		})
+			.then(response => response.json())
+			.then(response => {
+				this._mappingSubtypes = response;
+			});
 	}
 
 	/**
@@ -193,13 +182,10 @@ class SelectMappingTypeDialog extends PortletBase {
 
 	_loadMappingTypes() {
 		return this.fetch(this.getAssetDisplayContributorsURL, {})
-			.then(
-				response => response.json()
-			).then(
-				response => {
-					this._mappingTypes = response;
-				}
-			);
+			.then(response => response.json())
+			.then(response => {
+				this._mappingTypes = response;
+			});
 	}
 }
 
@@ -211,7 +197,6 @@ class SelectMappingTypeDialog extends PortletBase {
  */
 
 SelectMappingTypeDialog.STATE = {
-
 	/**
 	 * Class primary key used for storing changes.
 	 * @default undefined
@@ -304,16 +289,12 @@ SelectMappingTypeDialog.STATE = {
 	 * }>}
 	 */
 
-	_mappingTypes: Config
-		.arrayOf(
-			Config.shapeOf(
-				{
-					id: Config.string().required(),
-					label: Config.string().required()
-				}
-			)
-		)
-		.value(null),
+	_mappingTypes: Config.arrayOf(
+		Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	).value(null),
 
 	/**
 	 * List of available mapping subtypes
@@ -328,16 +309,12 @@ SelectMappingTypeDialog.STATE = {
 	 * }>}
 	 */
 
-	_mappingSubtypes: Config
-		.arrayOf(
-			Config.shapeOf(
-				{
-					id: Config.string().required(),
-					label: Config.string().required()
-				}
-			)
-		)
-		.value([]),
+	_mappingSubtypes: Config.arrayOf(
+		Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	).value([]),
 
 	/**
 	 * Flag indicating if changes are being sent to the server
@@ -349,8 +326,7 @@ SelectMappingTypeDialog.STATE = {
 	 * @type {boolean}
 	 */
 
-	_savingChanges: Config
-		.bool()
+	_savingChanges: Config.bool()
 		.internal()
 		.value(false),
 
@@ -364,8 +340,7 @@ SelectMappingTypeDialog.STATE = {
 	 * @type {string}
 	 */
 
-	_selectedMappingTypeId: Config
-		.string()
+	_selectedMappingTypeId: Config.string()
 		.internal()
 		.value(''),
 
@@ -379,11 +354,9 @@ SelectMappingTypeDialog.STATE = {
 	 * @type {string}
 	 */
 
-	_selectedMappingSubtypeId: Config
-		.string()
+	_selectedMappingSubtypeId: Config.string()
 		.internal()
 		.value('')
-
 };
 
 Soy.register(SelectMappingTypeDialog, templates);

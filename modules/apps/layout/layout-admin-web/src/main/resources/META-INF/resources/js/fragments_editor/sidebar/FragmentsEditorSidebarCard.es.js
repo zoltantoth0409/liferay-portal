@@ -9,7 +9,6 @@ import templates from './FragmentsEditorSidebarCard.soy';
  */
 
 class FragmentsEditorSidebarCard extends Component {
-
 	/**
 	 * Callback that is executed when a item entry is clicked.
 	 * It propagates a itemClick event with the item information.
@@ -21,13 +20,10 @@ class FragmentsEditorSidebarCard extends Component {
 	_handleClick(event) {
 		const {itemId, itemName} = event.delegateTarget.dataset;
 
-		this.emit(
-			'itemClick',
-			{
-				itemId,
-				itemName
-			}
-		);
+		this.emit('itemClick', {
+			itemId,
+			itemName
+		});
 	}
 }
 

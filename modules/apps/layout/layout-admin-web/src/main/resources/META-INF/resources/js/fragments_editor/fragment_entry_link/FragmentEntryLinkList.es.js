@@ -11,7 +11,6 @@ import templates from './FragmentEntryLinkList.soy';
  */
 
 class FragmentEntryLinkList extends Component {
-
 	/**
 	 * Gives focus to the specified fragmentEntryLinkId
 	 * @param {string} fragmentEntryLinkId
@@ -19,26 +18,24 @@ class FragmentEntryLinkList extends Component {
 	 */
 
 	focusFragmentEntryLink(fragmentEntryLinkId) {
-		requestAnimationFrame(
-			() => {
-				const index = this.fragmentEntryLinks.indexOf(
-					this.fragmentEntryLinks.find(
-						fragmentEntryLink => (
-							fragmentEntryLink.fragmentEntryLinkId === fragmentEntryLinkId
-						)
-					)
-				);
+		requestAnimationFrame(() => {
+			const index = this.fragmentEntryLinks.indexOf(
+				this.fragmentEntryLinks.find(
+					fragmentEntryLink =>
+						fragmentEntryLink.fragmentEntryLinkId ===
+						fragmentEntryLinkId
+				)
+			);
 
-				const fragmentEntryLinkElement = this.refs.fragmentEntryLinks.querySelectorAll(
-					'.fragment-entry-link-wrapper'
-				)[index];
+			const fragmentEntryLinkElement = this.refs.fragmentEntryLinks.querySelectorAll(
+				'.fragment-entry-link-wrapper'
+			)[index];
 
-				if (fragmentEntryLinkElement) {
-					fragmentEntryLinkElement.focus();
-					fragmentEntryLinkElement.scrollIntoView();
-				}
+			if (fragmentEntryLinkElement) {
+				fragmentEntryLinkElement.focus();
+				fragmentEntryLinkElement.scrollIntoView();
 			}
-		);
+		});
 	}
 
 	/**
@@ -90,7 +87,6 @@ class FragmentEntryLinkList extends Component {
  */
 
 FragmentEntryLinkList.STATE = {
-
 	/**
 	 * CSS class for the fragments drop target.
 	 * @default undefined
@@ -121,17 +117,15 @@ FragmentEntryLinkList.STATE = {
 	 */
 
 	fragmentEntryLinks: Config.arrayOf(
-		Config.shapeOf(
-			{
-				config: Config.object().value({}),
-				content: Config.any().value(''),
-				editableValues: Config.object().value({}),
-				fragmentEntryId: Config.string().required(),
-				fragmentEntryLinkId: Config.string().required(),
-				name: Config.string().required(),
-				position: Config.number().required()
-			}
-		)
+		Config.shapeOf({
+			config: Config.object().value({}),
+			content: Config.any().value(''),
+			editableValues: Config.object().value({}),
+			fragmentEntryId: Config.string().required(),
+			fragmentEntryLinkId: Config.string().required(),
+			name: Config.string().required(),
+			position: Config.number().required()
+		})
 	).value([])
 };
 

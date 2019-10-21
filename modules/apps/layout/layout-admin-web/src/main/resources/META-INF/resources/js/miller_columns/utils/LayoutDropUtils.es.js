@@ -39,23 +39,18 @@ function dropIsValid(
 			sourceItemColumnIndex
 		);
 
-		const sourceColumnHasActiveItem = getColumnActiveItem(
-			layoutColumns,
-			sourceItemColumnIndex
-		) !== null;
+		const sourceColumnHasActiveItem =
+			getColumnActiveItem(layoutColumns, sourceItemColumnIndex) !== null;
 
 		const targetColumnHasItems = layoutColumns[targetId].length > 0;
 
-		targetColumnHasLayoutAssociated = (
-			sourceColumnHasActiveItem ||
-			targetColumnHasItems
-		);
-	}
-	else if (targetType === DROP_TARGET_TYPES.item) {
-		targetEqualsSource = (sourceItem.plid === targetId);
+		targetColumnHasLayoutAssociated =
+			sourceColumnHasActiveItem || targetColumnHasItems;
+	} else if (targetType === DROP_TARGET_TYPES.item) {
+		targetEqualsSource = sourceItem.plid === targetId;
 	}
 
-	const targetExists = (targetId !== null);
+	const targetExists = targetId !== null;
 
 	return (
 		targetColumnHasLayoutAssociated &&
@@ -154,20 +149,30 @@ function dropItemInsideItem(
  * @review
  */
 
-function dropItemNextToItem(layoutColumns, sourceItem, dropPosition, targetItem) {
+function dropItemNextToItem(
+	layoutColumns,
+	sourceItem,
+	dropPosition,
+	targetItem
+) {
 	const nextLayoutColumns = removeItem(sourceItem.plid, layoutColumns);
 
 	const targetColumn = getItemColumn(nextLayoutColumns, targetItem.plid);
 	const targetColumnIndex = nextLayoutColumns.indexOf(targetColumn);
 
-	const parentPlid = getColumnActiveItem(nextLayoutColumns, targetColumnIndex - 1).plid;
+	const parentPlid = getColumnActiveItem(
+		nextLayoutColumns,
+		targetColumnIndex - 1
+	).plid;
 
 	const targetItemIndex = targetColumn.findIndex(
-		(targetColumnItem) => targetColumnItem.plid === targetItem.plid
+		targetColumnItem => targetColumnItem.plid === targetItem.plid
 	);
 
-	const priority = (dropPosition === DRAG_POSITIONS.bottom) ?
-		(targetItemIndex + 1) : targetItemIndex;
+	const priority =
+		dropPosition === DRAG_POSITIONS.bottom
+			? targetItemIndex + 1
+			: targetItemIndex;
 
 	const nextTargetColumn = [...targetColumn];
 

@@ -23,10 +23,7 @@ const COMPATIBLE_TYPES = {
 		'textarea'
 	],
 
-	image: [
-		'ddm-image',
-		'image'
-	],
+	image: ['ddm-image', 'image'],
 
 	'rich-text': [
 		'ddm-date',
@@ -53,7 +50,6 @@ const COMPATIBLE_TYPES = {
  */
 
 class SelectMappingDialog extends PortletBase {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -62,26 +58,19 @@ class SelectMappingDialog extends PortletBase {
 	prepareStateForRender(state) {
 		const editableType = state.editableType;
 
-		const mappeableFields = state._mappeableFields ?
-			state._mappeableFields.map(
-				mappeableField => (
-					{
-						enabled: (
-							COMPATIBLE_TYPES[editableType] &&
-							COMPATIBLE_TYPES[editableType]
-								.indexOf(mappeableField.type) !== -1
-						),
-						key: mappeableField.key,
-						label: mappeableField.label
-					}
-				)
-			) : null;
+		const mappeableFields = state._mappeableFields
+			? state._mappeableFields.map(mappeableField => ({
+					enabled:
+						COMPATIBLE_TYPES[editableType] &&
+						COMPATIBLE_TYPES[editableType].indexOf(
+							mappeableField.type
+						) !== -1,
+					key: mappeableField.key,
+					label: mappeableField.label
+			  }))
+			: null;
 
-		return Object.assign(
-			{},
-			state,
-			{_mappeableFields: mappeableFields}
-		);
+		return Object.assign({}, state, {_mappeableFields: mappeableFields});
 	}
 
 	/**
@@ -107,14 +96,11 @@ class SelectMappingDialog extends PortletBase {
 	 */
 
 	_emitMappeableFieldSelected(key = '') {
-		this.emit(
-			'mappeableFieldSelected',
-			{
-				editableId: this.editableId,
-				fragmentEntryLinkId: this.fragmentEntryLinkId,
-				key
-			}
-		);
+		this.emit('mappeableFieldSelected', {
+			editableId: this.editableId,
+			fragmentEntryLinkId: this.fragmentEntryLinkId,
+			key
+		});
 
 		this.visible = false;
 	}
@@ -147,9 +133,7 @@ class SelectMappingDialog extends PortletBase {
 	 */
 
 	_handleMappeableFieldLinkClick(event) {
-		this._emitMappeableFieldSelected(
-			event.delegateTarget.dataset.key
-		);
+		this._emitMappeableFieldSelected(event.delegateTarget.dataset.key);
 	}
 
 	/**
@@ -171,31 +155,27 @@ class SelectMappingDialog extends PortletBase {
 	 */
 
 	_loadMappeableFields() {
-		const classNameId = this.selectedMappingTypes.type ?
-			this.selectedMappingTypes.type.id : '';
+		const classNameId = this.selectedMappingTypes.type
+			? this.selectedMappingTypes.type.id
+			: '';
 
-		const classTypeId = this.selectedMappingTypes.subtype ?
-			this.selectedMappingTypes.subtype.id : '';
+		const classTypeId = this.selectedMappingTypes.subtype
+			? this.selectedMappingTypes.subtype.id
+			: '';
 
 		this._loadingMappeableFields = true;
 		this._mappeableFields = null;
 
-		return this.fetch(
-			this.mappingFieldsURL,
-			{
-				classNameId,
-				classTypeId
-			}
-		).then(
-			response => response.json()
-		).then(
-			responseContent => {
+		return this.fetch(this.mappingFieldsURL, {
+			classNameId,
+			classTypeId
+		})
+			.then(response => response.json())
+			.then(responseContent => {
 				this._loadingMappeableFields = false;
 				this._mappeableFields = responseContent;
-			}
-		);
+			});
 	}
-
 }
 
 /**
@@ -206,7 +186,6 @@ class SelectMappingDialog extends PortletBase {
  */
 
 SelectMappingDialog.STATE = {
-
 	/**
 	 * EditableId of the field that is being mapped
 	 * @default ''
@@ -216,9 +195,7 @@ SelectMappingDialog.STATE = {
 	 * @type {string}
 	 */
 
-	editableId: Config
-		.string()
-		.value(''),
+	editableId: Config.string().value(''),
 
 	/**
 	 * Editable type that is being mapped.
@@ -231,9 +208,7 @@ SelectMappingDialog.STATE = {
 	 * @type {string}
 	 */
 
-	editableType: Config
-		.string()
-		.value(''),
+	editableType: Config.string().value(''),
 
 	/**
 	 * FragmentEntryLinkId of the field that is being mapped
@@ -244,9 +219,7 @@ SelectMappingDialog.STATE = {
 	 * @type {string}
 	 */
 
-	fragmentEntryLinkId: Config
-		.string()
-		.value(''),
+	fragmentEntryLinkId: Config.string().value(''),
 
 	/**
 	 * Mapped field ID of the field that is being mapped
@@ -258,9 +231,7 @@ SelectMappingDialog.STATE = {
 	 * @type {string}
 	 */
 
-	mappedFieldId: Config
-		.string()
-		.value(''),
+	mappedFieldId: Config.string().value(''),
 
 	/**
 	 * URL for getting the list of mapping fields
@@ -291,24 +262,16 @@ SelectMappingDialog.STATE = {
 	 * }}
 	 */
 
-	selectedMappingTypes: Config
-		.shapeOf(
-			{
-				subtype: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				),
-				type: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				)
-			}
-		)
-		.value({}),
+	selectedMappingTypes: Config.shapeOf({
+		subtype: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		}),
+		type: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	}).value({}),
 
 	/**
 	 * Path of the available icons.
@@ -319,9 +282,7 @@ SelectMappingDialog.STATE = {
 	 * @type {!string}
 	 */
 
-	spritemap: Config
-		.string()
-		.required(),
+	spritemap: Config.string().required(),
 
 	/**
 	 * Flag indicating if the SelectMappingDialog should be shown
@@ -332,9 +293,7 @@ SelectMappingDialog.STATE = {
 	 * @type {boolean}
 	 */
 
-	visible: Config
-		.bool()
-		.value(false),
+	visible: Config.bool().value(false),
 
 	/**
 	 * Flag indicating if mappeable fields are being loaded
@@ -346,9 +305,7 @@ SelectMappingDialog.STATE = {
 	 * @type {boolean}
 	 */
 
-	_loadingMappeableFields: Config
-		.bool()
-		.value(false),
+	_loadingMappeableFields: Config.bool().value(false),
 
 	/**
 	 * List of mappeable fields being shown as options
@@ -363,18 +320,13 @@ SelectMappingDialog.STATE = {
 	 * }>}
 	 */
 
-	_mappeableFields: Config
-		.arrayOf(
-			Config.shapeOf(
-				{
-					key: Config.string().required(),
-					label: Config.string().required(),
-					type: Config.string().required()
-				}
-			)
-		)
-		.value(null)
-
+	_mappeableFields: Config.arrayOf(
+		Config.shapeOf({
+			key: Config.string().required(),
+			label: Config.string().required(),
+			type: Config.string().required()
+		})
+	).value(null)
 };
 
 Soy.register(SelectMappingDialog, templates);

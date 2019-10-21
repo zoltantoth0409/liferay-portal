@@ -1,13 +1,14 @@
-@import "bourbon";
+@import 'bourbon';
 
-@import "mixins";
+@import 'mixins';
 
-@import "mixins/fragment_entry_link_states";
+@import 'mixins/fragment_entry_link_states';
 
-@import "variables";
+@import 'variables';
 
 .fragment-entry-link-wrapper {
-	box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth fade_out($fragmentEntryLinkBorderColor, 1);
+	box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth
+		fade_out($fragmentEntryLinkBorderColor, 1);
 	position: relative;
 	transition: box-shadow ease 0.3s;
 
@@ -27,7 +28,8 @@
 		}
 
 		@include sm {
-			&:hover, &.focus {
+			&:hover,
+			&.focus {
 				> .portlet-topper {
 					opacity: 1;
 					pointer-events: all;
@@ -44,9 +46,11 @@
 
 	.fragment-entry-link-control {
 		background-color: $fragmentEntryLinkControlBackgroundColor;
-		border-radius: $fragmentEntryLinkBorderRadius $fragmentEntryLinkBorderRadius 0 0;
+		border-radius: $fragmentEntryLinkBorderRadius
+			$fragmentEntryLinkBorderRadius 0 0;
 		bottom: 100%;
-		box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth $fragmentEntryLinkBorderColor;
+		box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth
+			$fragmentEntryLinkBorderColor;
 		color: $fragmentEntryLinkControlColor;
 		left: 0;
 		opacity: 0;

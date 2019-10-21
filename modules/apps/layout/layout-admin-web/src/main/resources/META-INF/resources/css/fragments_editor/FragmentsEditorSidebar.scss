@@ -1,4 +1,4 @@
-@import "./variables";
+@import './variables';
 
 body:not(.has-contextual-sidebar) .contextual-sidebar-content {
 	padding-right: $contextualSidebarContentPadding;
@@ -44,12 +44,14 @@ body:not(.has-contextual-sidebar) .contextual-sidebar-content {
 	}
 
 	.sidebar-body > .sidebar-section:first-child {
-		border-bottom: solid thin #CDCED9;
+		border-bottom: solid thin #cdced9;
 	}
 
 	@media (min-width: 768px) {
 		& {
-			height: calc(100vh - #{$desktopControlMenuHeight} - #{$managementBarHeight});
+			height: calc(
+				100vh - #{$desktopControlMenuHeight} - #{$managementBarHeight}
+			);
 			top: $desktopControlMenuHeight + $managementBarHeight;
 		}
 	}

@@ -10,7 +10,6 @@ import templates from './LayoutColumn.soy';
  */
 
 class LayoutColumn extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -23,10 +22,10 @@ class LayoutColumn extends Component {
 	}
 
 	/**
-     * Handle copy layout click in order to show simple input modal.
-     * @param {Event} event
-     * @private
-     */
+	 * Handle copy layout click in order to show simple input modal.
+	 * @param {Event} event
+	 * @private
+	 */
 
 	_handleCopyLayoutClick(event) {
 		event.preventDefault();
@@ -41,8 +40,12 @@ class LayoutColumn extends Component {
 		};
 
 		if (this.siteNavigationMenuNames !== '') {
-			config.checkboxFieldLabel = Liferay.Util.sub(Liferay.Language.get('add-this-page-to-the-following-menus-x'), this.siteNavigationMenuNames);
-			config.checkboxFieldName = 'TypeSettingsProperties--addToAutoMenus--';
+			config.checkboxFieldLabel = Liferay.Util.sub(
+				Liferay.Language.get('add-this-page-to-the-following-menus-x'),
+				this.siteNavigationMenuNames
+			);
+			config.checkboxFieldName =
+				'TypeSettingsProperties--addToAutoMenus--';
 			config.checkboxFieldValue = true;
 		}
 
@@ -57,8 +60,10 @@ class LayoutColumn extends Component {
 	 */
 
 	_handleMarkAsHomePageLayoutClick(event) {
-		let confirmMessage = Liferay.Util.sub(
-			Liferay.Language.get('do-you-want-to-replace-x-for-x-as-the-home-page'),
+		const confirmMessage = Liferay.Util.sub(
+			Liferay.Language.get(
+				'do-you-want-to-replace-x-for-x-as-the-home-page'
+			),
 			event.delegateTarget.dataset.homePageTitle,
 			event.delegateTarget.dataset.title
 		);
@@ -76,18 +81,15 @@ class LayoutColumn extends Component {
 	 */
 
 	_handlePermissionLinkClick(event) {
-		Liferay.Util.openInDialog(
-			event,
-			{
-				dialog: {
-					destroyOnHide: true
-				},
-				dialogIframe: {
-					bodyCssClass: 'dialog-with-footer'
-				},
-				uri: event.delegateTarget.href
-			}
-		);
+		Liferay.Util.openInDialog(event, {
+			dialog: {
+				destroyOnHide: true
+			},
+			dialogIframe: {
+				bodyCssClass: 'dialog-with-footer'
+			},
+			uri: event.delegateTarget.href
+		});
 	}
 
 	/**
@@ -115,7 +117,6 @@ class LayoutColumn extends Component {
  */
 
 LayoutColumn.STATE = {
-
 	/**
 	 * List of layouts in the current column
 	 * @default undefined
@@ -125,20 +126,18 @@ LayoutColumn.STATE = {
 	 */
 
 	layoutColumn: Config.arrayOf(
-		Config.shapeOf(
-			{
-				actions: Config.string().required(),
-				actionURLs: Config.object().required(),
-				active: Config.bool().required(),
-				description: Config.string().required(),
-				hasChild: Config.bool().required(),
-				homePage: Config.bool().required(),
-				homePageTitle: Config.string().required(),
-				plid: Config.string().required(),
-				title: Config.string().required(),
-				url: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			actions: Config.string().required(),
+			actionURLs: Config.object().required(),
+			active: Config.bool().required(),
+			description: Config.string().required(),
+			hasChild: Config.bool().required(),
+			homePage: Config.bool().required(),
+			homePageTitle: Config.string().required(),
+			plid: Config.string().required(),
+			title: Config.string().required(),
+			url: Config.string().required()
+		})
 	).required(),
 
 	/**
@@ -179,7 +178,6 @@ LayoutColumn.STATE = {
 	 */
 
 	styleModifier: Config.string()
-
 };
 
 Soy.register(LayoutColumn, templates);

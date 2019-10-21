@@ -9,7 +9,6 @@ import templates from './TranslationStatus.soy';
  */
 
 class TranslationStatus extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @param state
@@ -27,17 +26,11 @@ class TranslationStatus extends Component {
 			}
 		);
 
-		return object.mixin(
-			{},
-			state,
-			{
-				translationStatus: object.mixin(
-					{},
-					translationStatus,
-					{languageValues: sortedLanguageValues}
-				)
-			}
-		);
+		return object.mixin({}, state, {
+			translationStatus: object.mixin({}, translationStatus, {
+				languageValues: sortedLanguageValues
+			})
+		});
 	}
 
 	/**
@@ -51,12 +44,10 @@ class TranslationStatus extends Component {
 	_handleLanguageChange(event) {
 		event.preventDefault();
 
-		this.emit(
-			'languageChange',
-			{languageId: event.delegateTarget.getAttribute('data-languageid')}
-		);
+		this.emit('languageChange', {
+			languageId: event.delegateTarget.getAttribute('data-languageid')
+		});
 	}
-
 }
 
 Soy.register(TranslationStatus, templates);

@@ -7,7 +7,7 @@
  */
 
 function columnIsItemChild(columnIndex, item, itemColumnIndex) {
-	return item.active && (itemColumnIndex < columnIndex);
+	return item.active && itemColumnIndex < columnIndex;
 }
 
 /**
@@ -21,13 +21,9 @@ function columnIsItemChild(columnIndex, item, itemColumnIndex) {
 function getColumnActiveItem(layoutColumns, columnIndex) {
 	const column = layoutColumns[columnIndex];
 
-	const activeItem = column.find(
-		(item) => item.active
-	);
+	const activeItem = column.find(item => item.active);
 
-	return (
-		activeItem ? activeItem : null
-	);
+	return activeItem ? activeItem : null;
 }
 
 /**
@@ -56,13 +52,9 @@ function getColumnLastItem(layoutColumns, columnIndex) {
 function getHomeItem(layoutColumns) {
 	let item = null;
 
-	layoutColumns.forEach(
-		(layoutColumn) => {
-			item = item || layoutColumn.find(
-				(_item) => _item.homePage
-			);
-		}
-	);
+	layoutColumns.forEach(layoutColumn => {
+		item = item || layoutColumn.find(_item => _item.homePage);
+	});
 
 	return item;
 }
@@ -79,13 +71,9 @@ function getHomeItem(layoutColumns) {
 function getItem(layoutColumns, itemPlid) {
 	let item = null;
 
-	layoutColumns.forEach(
-		(layoutColumn) => {
-			item = item || layoutColumn.find(
-				(_item) => _item.plid === itemPlid
-			);
-		}
-	);
+	layoutColumns.forEach(layoutColumn => {
+		item = item || layoutColumn.find(_item => _item.plid === itemPlid);
+	});
 
 	return item;
 }
@@ -101,17 +89,13 @@ function getItem(layoutColumns, itemPlid) {
 function getItemColumn(layoutColumns, itemPlid) {
 	let column = null;
 
-	layoutColumns.forEach(
-		(layoutColumn) => {
-			const item = layoutColumn.find(
-				(_item) => _item.plid === itemPlid
-			);
+	layoutColumns.forEach(layoutColumn => {
+		const item = layoutColumn.find(_item => _item.plid === itemPlid);
 
-			if (item) {
-				column = layoutColumn;
-			}
+		if (item) {
+			column = layoutColumn;
 		}
-	);
+	});
 
 	return column;
 }
@@ -149,7 +133,7 @@ function itemIsParent(layoutColumns, childItemPlid, parentItemPlid) {
 		parentItemPlid
 	);
 
-	return parentItem.active && (childItemColumnIndex > parentItemColumnIndex);
+	return parentItem.active && childItemColumnIndex > parentItemColumnIndex;
 }
 
 export {

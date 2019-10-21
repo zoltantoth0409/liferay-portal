@@ -10,7 +10,6 @@ import templates from './SidebarMapping.soy';
  */
 
 class SidebarMapping extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -41,7 +40,6 @@ class SidebarMapping extends Component {
 	_handleSelectAssetTypeButtonClick() {
 		this.emit('selectAssetTypeButtonClick');
 	}
-
 }
 
 /**
@@ -52,7 +50,6 @@ class SidebarMapping extends Component {
  */
 
 SidebarMapping.STATE = {
-
 	/**
 	 * If true, editable values should be highlighted.
 	 * @default false
@@ -63,8 +60,7 @@ SidebarMapping.STATE = {
 	 * @type {boolean}
 	 */
 
-	highlightMapping: Config.bool()
-		.value(false),
+	highlightMapping: Config.bool().value(false),
 
 	/**
 	 * Selected mapping type label
@@ -84,25 +80,16 @@ SidebarMapping.STATE = {
 	 * }}
 	 */
 
-	selectedMappingTypes: Config
-		.shapeOf(
-			{
-				subtype: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				),
-				type: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				)
-			}
-		)
-		.value({})
-
+	selectedMappingTypes: Config.shapeOf({
+		subtype: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		}),
+		type: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	}).value({})
 };
 
 Soy.register(SidebarMapping, templates);

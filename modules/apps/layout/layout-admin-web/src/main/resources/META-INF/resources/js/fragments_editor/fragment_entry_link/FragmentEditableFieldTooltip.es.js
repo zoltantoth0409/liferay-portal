@@ -8,7 +8,6 @@ import Soy from 'metal-soy';
 import templates from './FragmentEditableFieldTooltip.soy';
 
 class FragmentEditableFieldTooltip extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -68,11 +67,7 @@ class FragmentEditableFieldTooltip extends Component {
 	 */
 
 	_alignTooltip() {
-		Align.align(
-			this.refs.tooltip,
-			this.alignElement,
-			Align.Top
-		);
+		Align.align(this.refs.tooltip, this.alignElement, Align.Top);
 	}
 
 	/**
@@ -83,10 +78,7 @@ class FragmentEditableFieldTooltip extends Component {
 		const button = event.delegateTarget;
 		const buttonId = button.dataset.tooltipButtonId;
 
-		this.emit(
-			'buttonClick',
-			{buttonId}
-		);
+		this.emit('buttonClick', {buttonId});
 	}
 
 	/**
@@ -123,7 +115,6 @@ class FragmentEditableFieldTooltip extends Component {
  */
 
 FragmentEditableFieldTooltip.STATE = {
-
 	/**
 	 * Reference element used for aligning the tooltip
 	 * @default undefined
@@ -148,12 +139,10 @@ FragmentEditableFieldTooltip.STATE = {
 	 */
 
 	buttons: Config.arrayOf(
-		Config.shapeOf(
-			{
-				id: Config.string().required(),
-				label: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
 	)
 };
 

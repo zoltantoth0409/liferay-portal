@@ -99,43 +99,28 @@ function init(
 
 	const nativeEditor = _editor.get('nativeEditor');
 
+	_editorEventHandler.add(nativeEditor.on('key', _handleNativeEditorKey));
+
 	_editorEventHandler.add(
-		nativeEditor.on(
-			'key',
-			_handleNativeEditorKey
+		nativeEditor.on('change', () => changedCallback(nativeEditor.getData()))
+	);
+
+	_editorEventHandler.add(
+		nativeEditor.on('actionPerformed', () =>
+			changedCallback(nativeEditor.getData())
 		)
 	);
 
 	_editorEventHandler.add(
-		nativeEditor.on(
-			'change',
-			() => changedCallback(nativeEditor.getData())
-		)
-	);
-
-	_editorEventHandler.add(
-		nativeEditor.on(
-			'actionPerformed',
-			() => changedCallback(nativeEditor.getData())
-		)
-	);
-
-	_editorEventHandler.add(
-		nativeEditor.on(
-			'blur',
-			(event) => {
-				if (_editor._mainUI.state.hidden) {
-					requestAnimationFrame(destroy);
-				}
+		nativeEditor.on('blur', event => {
+			if (_editor._mainUI.state.hidden) {
+				requestAnimationFrame(destroy);
 			}
-		)
+		})
 	);
 
 	_editorEventHandler.add(
-		nativeEditor.on(
-			'instanceReady',
-			() => nativeEditor.focus()
-		)
+		nativeEditor.on('instanceReady', () => nativeEditor.focus())
 	);
 }
 
@@ -154,23 +139,19 @@ function _getEditorConfiguration(
 	defaultEditorConfiguration,
 	editorName
 ) {
-	return object.mixin(
-		{},
-		defaultEditorConfiguration.editorConfig || {},
-		{
-			filebrowserImageBrowseLinkUrl: defaultEditorConfiguration
-				.editorConfig
-				.filebrowserImageBrowseLinkUrl
-				.replace('_EDITOR_NAME_', editorName),
+	return object.mixin({}, defaultEditorConfiguration.editorConfig || {}, {
+		filebrowserImageBrowseLinkUrl: defaultEditorConfiguration.editorConfig.filebrowserImageBrowseLinkUrl.replace(
+			'_EDITOR_NAME_',
+			editorName
+		),
 
-			filebrowserImageBrowseUrl: defaultEditorConfiguration
-				.editorConfig
-				.filebrowserImageBrowseUrl
-				.replace('_EDITOR_NAME_', editorName),
+		filebrowserImageBrowseUrl: defaultEditorConfiguration.editorConfig.filebrowserImageBrowseUrl.replace(
+			'_EDITOR_NAME_',
+			editorName
+		),
 
-			title: editorName
-		}
-	);
+		title: editorName
+	});
 }
 
 /**

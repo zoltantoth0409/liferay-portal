@@ -31,7 +31,6 @@ const DEFAULT_TAB_ID = 'available';
  */
 
 class FragmentsEditorSidebar extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -60,23 +59,15 @@ class FragmentsEditorSidebar extends Component {
 	 */
 
 	prepareStateForRender(state) {
-		return Object.assign(
-			{},
-			state,
-			{
-				sidebarTabs: state.sidebarTabs.map(
-					sidebarTab => {
-						return sidebarTab.id !== ADDED_TAB_ID ?
-							sidebarTab :
-							Object.assign(
-								{},
-								sidebarTab,
-								{enabled: state._addedTabEnabled}
-							);
-					}
-				)
-			}
-		);
+		return Object.assign({}, state, {
+			sidebarTabs: state.sidebarTabs.map(sidebarTab => {
+				return sidebarTab.id !== ADDED_TAB_ID
+					? sidebarTab
+					: Object.assign({}, sidebarTab, {
+							enabled: state._addedTabEnabled
+					  });
+			})
+		});
 	}
 
 	/**
@@ -157,8 +148,8 @@ class FragmentsEditorSidebar extends Component {
 	 */
 
 	_handleTabClick(event) {
-		this._selectedTab = event.delegateTarget.dataset.tabId ||
-			DEFAULT_TAB_ID;
+		this._selectedTab =
+			event.delegateTarget.dataset.tabId || DEFAULT_TAB_ID;
 	}
 
 	/**
@@ -173,8 +164,7 @@ class FragmentsEditorSidebar extends Component {
 	_updateTabEventProxy(sidebarTab) {
 		if (!this._tabEventProxy) {
 			this._tabEventProxy = new EventEmitterProxy(sidebarTab, this);
-		}
-		else {
+		} else {
 			this._tabEventProxy.setOriginEmitter(sidebarTab);
 		}
 	}
@@ -188,7 +178,6 @@ class FragmentsEditorSidebar extends Component {
  */
 
 FragmentsEditorSidebar.STATE = {
-
 	/**
 	 * CSS class for the fragments drop target.
 	 * @default undefined
@@ -214,13 +203,11 @@ FragmentsEditorSidebar.STATE = {
 	 */
 
 	sidebarTabs: Config.arrayOf(
-		Config.shapeOf(
-			{
-				enabled: Config.bool().required(),
-				id: Config.string().required(),
-				label: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			enabled: Config.bool().required(),
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
 	).required(),
 
 	/**
@@ -233,8 +220,7 @@ FragmentsEditorSidebar.STATE = {
 	 * @type {bool}
 	 */
 
-	_addedTabEnabled: Config
-		.bool()
+	_addedTabEnabled: Config.bool()
 		.internal()
 		.value(null),
 
@@ -248,8 +234,7 @@ FragmentsEditorSidebar.STATE = {
 	 * @type {string}
 	 */
 
-	_selectedTab: Config
-		.string()
+	_selectedTab: Config.string()
 		.internal()
 		.value(DEFAULT_TAB_ID),
 
@@ -263,8 +248,7 @@ FragmentsEditorSidebar.STATE = {
 	 * @type {object|null}
 	 */
 
-	_tabEventProxy: Config
-		.object()
+	_tabEventProxy: Config.object()
 		.internal()
 		.value(null)
 };

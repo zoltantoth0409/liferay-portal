@@ -1,9 +1,10 @@
-@import "mixins/lfr_editable_states";
+@import 'mixins/lfr_editable_states';
 
-@import "variables";
+@import 'variables';
 
 lfr-editable {
-	background-size: $fragmentEditableFieldGridSize $fragmentEditableFieldGridSize;
+	background-size: $fragmentEditableFieldGridSize
+		$fragmentEditableFieldGridSize;
 	box-shadow: 0 0 0 1px transparent;
 	cursor: pointer;
 	display: inline-block;
@@ -12,12 +13,13 @@ lfr-editable {
 	position: static;
 	transition: box-shadow ease 0.2s;
 
-	&[type="image"] > img {
+	&[type='image'] > img {
 		max-width: 100%;
 	}
 
 	&:hover {
-		box-shadow: 0 0 0 1px fade_out($fragmentEditableFieldGridAccentColor, 0.6);
+		box-shadow: 0 0 0 1px
+			fade_out($fragmentEditableFieldGridAccentColor, 0.6);
 	}
 
 	&:focus {
@@ -33,12 +35,16 @@ lfr-editable {
 		box-shadow: 0 0 0 1px $fragmentEditableFieldGridDefaultColor;
 
 		&.translated {
-			background-color: fade_out($fragmentEditableFieldGridTranslatedColor, 0.9);
+			background-color: fade_out(
+				$fragmentEditableFieldGridTranslatedColor,
+				0.9
+			);
 			box-shadow: 0 0 0 1px $fragmentEditableFieldGridTranslatedColor;
 		}
 
 		&:hover {
-			box-shadow: 0 0 0 1px fade_out($fragmentEditableFieldGridAccentColor, 0.6);
+			box-shadow: 0 0 0 1px
+				fade_out($fragmentEditableFieldGridAccentColor, 0.6);
 		}
 
 		&:focus {
@@ -51,7 +57,14 @@ lfr-editable {
 	}
 
 	.fragment-entry-link-list.mapping & {
-		background-image: linear-gradient(45deg, transparent 0%, transparent calc(50% - 1px), fade_out($fragmentEditableFieldGridDefaultColor, 0.7) 50%, transparent calc(50% + 1px), transparent 100%);
+		background-image: linear-gradient(
+			45deg,
+			transparent 0%,
+			transparent calc(50% - 1px),
+			fade_out($fragmentEditableFieldGridDefaultColor, 0.7) 50%,
+			transparent calc(50% + 1px),
+			transparent 100%
+		);
 		box-shadow: 0 0 0 1px $fragmentEditableFieldGridDefaultColor;
 
 		&:hover {
@@ -61,13 +74,22 @@ lfr-editable {
 
 	&.mapped,
 	.fragment-entry-link-list.mapping &.mapped {
-		background-image: linear-gradient(45deg, transparent 0%, transparent calc(50% - 1px), fade_out($fragmentEditableFieldGridAccentColor, 0.7) 50%, transparent calc(50% + 1px), transparent 100%);
-		box-shadow: 0 0 0 1px fade_out($fragmentEditableFieldGridAccentColor, 0.7);
+		background-image: linear-gradient(
+			45deg,
+			transparent 0%,
+			transparent calc(50% - 1px),
+			fade_out($fragmentEditableFieldGridAccentColor, 0.7) 50%,
+			transparent calc(50% + 1px),
+			transparent 100%
+		);
+		box-shadow: 0 0 0 1px
+			fade_out($fragmentEditableFieldGridAccentColor, 0.7);
 	}
 
 	&.mapped:hover,
 	.fragment-entry-link-list.mapping &.mapped:hover {
-		box-shadow: 0 0 0 1px fade_out($fragmentEditableFieldGridAccentColor, 0.4);
+		box-shadow: 0 0 0 1px
+			fade_out($fragmentEditableFieldGridAccentColor, 0.4);
 	}
 }
 

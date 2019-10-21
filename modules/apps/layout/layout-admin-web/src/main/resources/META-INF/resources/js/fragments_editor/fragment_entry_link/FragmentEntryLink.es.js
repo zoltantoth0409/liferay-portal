@@ -11,7 +11,8 @@ const ARROW_DOWN_KEYCODE = 40;
 
 const ARROW_UP_KEYCODE = 38;
 
-const EDITABLE_FRAGMENT_ENTRY_PROCESSOR = 'com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor';
+const EDITABLE_FRAGMENT_ENTRY_PROCESSOR =
+	'com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor';
 
 /**
  * FragmentEntryLink
@@ -19,7 +20,6 @@ const EDITABLE_FRAGMENT_ENTRY_PROCESSOR = 'com.liferay.fragment.entry.processor.
  */
 
 class FragmentEntryLink extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -46,13 +46,9 @@ class FragmentEntryLink extends Component {
 	 */
 
 	prepareStateForRender(state) {
-		return Object.assign(
-			{},
-			state,
-			{
-				content: this.content ? Soy.toIncDom(this.content) : null
-			}
-		);
+		return Object.assign({}, state, {
+			content: this.content ? Soy.toIncDom(this.content) : null
+		});
 	}
 
 	/**
@@ -77,17 +73,19 @@ class FragmentEntryLink extends Component {
 
 	syncEditableValues(newEditableValues) {
 		if (this._editables) {
-			this._editables.forEach(
-				editable => {
-					const editableValues = (
-						newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR] &&
-						newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][editable.editableId]
-					) ? newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][editable.editableId] :
-						{defaultValue: editable.content};
+			this._editables.forEach(editable => {
+				const editableValues =
+					newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR] &&
+					newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][
+						editable.editableId
+					]
+						? newEditableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][
+								editable.editableId
+						  ]
+						: {defaultValue: editable.content};
 
-					editable.editableValues = editableValues;
-				}
-			);
+				editable.editableValues = editableValues;
+			});
 		}
 	}
 
@@ -134,11 +132,9 @@ class FragmentEntryLink extends Component {
 
 		editableValues[editableId] = object.mixin({}, editableValue, content);
 
-		this._update(
-			this.languageId,
-			this.defaultLanguageId,
-			[this._updateEditableStatus]
-		);
+		this._update(this.languageId, this.defaultLanguageId, [
+			this._updateEditableStatus
+		]);
 
 		return {
 			[EDITABLE_FRAGMENT_ENTRY_PROCESSOR]: editableValues
@@ -154,46 +150,47 @@ class FragmentEntryLink extends Component {
 
 		this._editables = [
 			...this.refs.content.querySelectorAll('lfr-editable')
-		].map(
-			editable => {
-				let editableValues = (
-					this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR] &&
-					this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][editable.id]
-				) ? this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][editable.id] :
-					{defaultValue: editable.innerHTML};
+		].map(editable => {
+			const editableValues =
+				this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR] &&
+				this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][
+					editable.id
+				]
+					? this.editableValues[EDITABLE_FRAGMENT_ENTRY_PROCESSOR][
+							editable.id
+					  ]
+					: {defaultValue: editable.innerHTML};
 
-				const defaultEditorConfiguration = this
-					.defaultEditorConfigurations[editable.getAttribute('type')] ||
-					this.defaultEditorConfigurations.text;
+			const defaultEditorConfiguration =
+				this.defaultEditorConfigurations[
+					editable.getAttribute('type')
+				] || this.defaultEditorConfigurations.text;
 
-				return new FragmentEditableField(
-					{
-						content: editable.innerHTML,
-						defaultLanguageId: this.defaultLanguageId,
-						editableId: editable.id,
-						editableValues,
-						element: editable,
+			return new FragmentEditableField({
+				content: editable.innerHTML,
+				defaultLanguageId: this.defaultLanguageId,
+				editableId: editable.id,
+				editableValues,
+				element: editable,
 
-						events: {
-							editableChanged: this._handleEditableChanged,
-							mapButtonClicked: this._handleMapButtonClick
-						},
+				events: {
+					editableChanged: this._handleEditableChanged,
+					mapButtonClicked: this._handleMapButtonClick
+				},
 
-						fragmentEntryLinkId: this.fragmentEntryLinkId,
-						languageId: this.languageId,
-						portletNamespace: this.portletNamespace,
+				fragmentEntryLinkId: this.fragmentEntryLinkId,
+				languageId: this.languageId,
+				portletNamespace: this.portletNamespace,
 
-						processorsOptions: {
-							defaultEditorConfiguration,
-							imageSelectorURL: this.imageSelectorURL
-						},
+				processorsOptions: {
+					defaultEditorConfiguration,
+					imageSelectorURL: this.imageSelectorURL
+				},
 
-						showMapping: this.showMapping,
-						type: editable.getAttribute('type')
-					}
-				);
-			}
-		);
+				showMapping: this.showMapping,
+				type: editable.getAttribute('type')
+			});
+		});
 	}
 
 	/**
@@ -202,9 +199,7 @@ class FragmentEntryLink extends Component {
 
 	_destroyEditables() {
 		if (this._editables) {
-			this._editables.forEach(
-				editable => editable.dispose()
-			);
+			this._editables.forEach(editable => editable.dispose());
 
 			this._editables = [];
 		}
@@ -217,13 +212,10 @@ class FragmentEntryLink extends Component {
 	 */
 
 	_emitMoveEvent(direction) {
-		this.emit(
-			'move',
-			{
-				direction,
-				fragmentEntryLinkId: this.fragmentEntryLinkId
-			}
-		);
+		this.emit('move', {
+			direction,
+			fragmentEntryLinkId: this.fragmentEntryLinkId
+		});
 	}
 
 	/**
@@ -234,14 +226,11 @@ class FragmentEntryLink extends Component {
 	 */
 
 	_handleEditableChanged(event) {
-		this.emit(
-			'editableChanged',
-			{
-				editableId: event.editableId,
-				fragmentEntryLinkId: this.fragmentEntryLinkId,
-				value: event.value
-			}
-		);
+		this.emit('editableChanged', {
+			editableId: event.editableId,
+			fragmentEntryLinkId: this.fragmentEntryLinkId,
+			value: event.value
+		});
 	}
 
 	/**
@@ -255,12 +244,12 @@ class FragmentEntryLink extends Component {
 	_handleFragmentKeyUp(event) {
 		if (document.activeElement === this.refs.fragmentEntryLinkWrapper) {
 			switch (event.which) {
-			case ARROW_DOWN_KEYCODE:
-				this._emitMoveEvent(FragmentEntryLink.MOVE_DIRECTIONS.DOWN);
-				break;
-			case ARROW_UP_KEYCODE:
-				this._emitMoveEvent(FragmentEntryLink.MOVE_DIRECTIONS.UP);
-				break;
+				case ARROW_DOWN_KEYCODE:
+					this._emitMoveEvent(FragmentEntryLink.MOVE_DIRECTIONS.DOWN);
+					break;
+				case ARROW_UP_KEYCODE:
+					this._emitMoveEvent(FragmentEntryLink.MOVE_DIRECTIONS.UP);
+					break;
 			}
 		}
 	}
@@ -297,12 +286,9 @@ class FragmentEntryLink extends Component {
 	 */
 
 	_handleFragmentRemoveButtonClick() {
-		this.emit(
-			'remove',
-			{
-				fragmentEntryLinkId: this.fragmentEntryLinkId
-			}
-		);
+		this.emit('remove', {
+			fragmentEntryLinkId: this.fragmentEntryLinkId
+		});
 	}
 
 	/**
@@ -310,15 +296,12 @@ class FragmentEntryLink extends Component {
 	 */
 
 	_handleMapButtonClick(event) {
-		this.emit(
-			'mappeableFieldClicked',
-			{
-				editableId: event.editableId,
-				editableType: event.editableType,
-				fragmentEntryLinkId: this.fragmentEntryLinkId,
-				mappedFieldId: event.mappedFieldId
-			}
-		);
+		this.emit('mappeableFieldClicked', {
+			editableId: event.editableId,
+			editableType: event.editableType,
+			fragmentEntryLinkId: this.fragmentEntryLinkId,
+			mappedFieldId: event.mappedFieldId
+		});
 	}
 
 	/**
@@ -330,22 +313,17 @@ class FragmentEntryLink extends Component {
 
 	_renderContent(content) {
 		if (this.refs.content) {
-			AUI().use(
-				'aui-parse-content',
-				A => {
-					const contentNode = A.one(this.refs.content);
-					contentNode.plug(A.Plugin.ParseContent);
-					contentNode.setContent(content);
+			AUI().use('aui-parse-content', A => {
+				const contentNode = A.one(this.refs.content);
+				contentNode.plug(A.Plugin.ParseContent);
+				contentNode.setContent(content);
 
-					this._createEditables();
+				this._createEditables();
 
-					this._update(
-						this.languageId,
-						this.defaultLanguageId,
-						[this._updateEditableStatus]
-					);
-				}
-			);
+				this._update(this.languageId, this.defaultLanguageId, [
+					this._updateEditableStatus
+				]);
+			});
 		}
 	}
 
@@ -362,24 +340,18 @@ class FragmentEntryLink extends Component {
 	_update(languageId, defaultLanguageId, updateFunctions) {
 		const editableValues = this.getEditableValues();
 
-		Object.keys(editableValues).forEach(
-			editableId => {
-				const editableValue = editableValues[editableId];
+		Object.keys(editableValues).forEach(editableId => {
+			const editableValue = editableValues[editableId];
 
-				const defaultValue = editableValue[defaultLanguageId] || editableValue.defaultValue;
-				const mappedField = editableValue.mappedField || '';
-				const value = editableValue[languageId];
+			const defaultValue =
+				editableValue[defaultLanguageId] || editableValue.defaultValue;
+			const mappedField = editableValue.mappedField || '';
+			const value = editableValue[languageId];
 
-				updateFunctions.forEach(
-					updateFunction => updateFunction(
-						editableId,
-						value,
-						defaultValue,
-						mappedField
-					)
-				);
-			}
-		);
+			updateFunctions.forEach(updateFunction =>
+				updateFunction(editableId, value, defaultValue, mappedField)
+			);
+		});
 	}
 
 	/**
@@ -394,7 +366,9 @@ class FragmentEntryLink extends Component {
 	 */
 
 	_updateEditableStatus(editableId, value, defaultValue, mappedField) {
-		const element = this.element.querySelector(`lfr-editable[id="${editableId}"]`);
+		const element = this.element.querySelector(
+			`lfr-editable[id="${editableId}"]`
+		);
 
 		if (element) {
 			removeClasses(
@@ -434,7 +408,6 @@ FragmentEntryLink.MOVE_DIRECTIONS = {
  */
 
 FragmentEntryLink.STATE = {
-
 	/**
 	 * Fragment content to be rendered
 	 * @default ''
@@ -445,11 +418,11 @@ FragmentEntryLink.STATE = {
 	 */
 
 	content: Config.any()
-		.setter(
-			content => {
-				return !isFunction(content) && isObject(content) ? content.value.content : content;
-			}
-		)
+		.setter(content => {
+			return !isFunction(content) && isObject(content)
+				? content.value.content
+				: content;
+		})
 		.value(''),
 
 	/**
@@ -548,24 +521,16 @@ FragmentEntryLink.STATE = {
 	 * }}
 	 */
 
-	selectedMappingTypes: Config
-		.shapeOf(
-			{
-				subtype: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				),
-				type: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				)
-			}
-		)
-		.value({}),
+	selectedMappingTypes: Config.shapeOf({
+		subtype: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		}),
+		type: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	}).value({}),
 
 	/**
 	 * Shows FragmentEntryLink control toolbar

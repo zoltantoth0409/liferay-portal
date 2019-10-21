@@ -3,7 +3,8 @@
  */
 
 const RETURN_TYPES = {
-	fileEntryItemSelector: 'com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType',
+	fileEntryItemSelector:
+		'com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType',
 	url: 'URL'
 };
 
@@ -32,8 +33,7 @@ function _handleImageEditorChange(
 
 		if (returnType === RETURN_TYPES.url) {
 			url = selectedItem.value;
-		}
-		else if (returnType === RETURN_TYPES.fileEntryItemSelector) {
+		} else if (returnType === RETURN_TYPES.fileEntryItemSelector) {
 			url = JSON.parse(selectedItem.value).url;
 		}
 
@@ -49,8 +49,7 @@ function _handleImageEditorChange(
  * @review
  */
 
-function destroy() {
-}
+function destroy() {}
 
 /**
  * Show the image selector dialog and calls the given callback when an
@@ -76,36 +75,31 @@ function init(
 	const title = Liferay.Language.get('select');
 	const {imageSelectorURL} = options;
 
-	AUI().use(
-		'liferay-item-selector-dialog',
-		A => {
-			const itemSelectorDialog = new A.LiferayItemSelectorDialog(
-				{
-					eventName,
-					on: {
-						selectedItemChange: (changeEvent) => {
-							_handleImageEditorChange(
-								changeEvent,
-								editableElement,
-								fragmentEntryLinkId,
-								changedCallback
-							);
-						},
+	AUI().use('liferay-item-selector-dialog', A => {
+		const itemSelectorDialog = new A.LiferayItemSelectorDialog({
+			eventName,
+			on: {
+				selectedItemChange: changeEvent => {
+					_handleImageEditorChange(
+						changeEvent,
+						editableElement,
+						fragmentEntryLinkId,
+						changedCallback
+					);
+				},
 
-						visibleChange: (change) => {
-							if (change.newVal === false) {
-								destroyedCallback();
-							}
-						}
-					},
-					title,
-					url: imageSelectorURL
+				visibleChange: change => {
+					if (change.newVal === false) {
+						destroyedCallback();
+					}
 				}
-			);
+			},
+			title,
+			url: imageSelectorURL
+		});
 
-			itemSelectorDialog.open();
-		}
-	);
+		itemSelectorDialog.open();
+	});
 }
 
 export {destroy, init};

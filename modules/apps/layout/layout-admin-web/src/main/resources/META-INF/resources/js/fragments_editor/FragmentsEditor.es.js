@@ -16,7 +16,6 @@ import templates from './FragmentsEditor.soy';
  */
 
 class FragmentsEditor extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -25,9 +24,9 @@ class FragmentsEditor extends Component {
 	rendered(firstRender) {
 		if (firstRender) {
 			this._translationStatus = this._getTranslationStatus(
-				Object
-					.keys(this.availableLanguages)
-					.filter(languageId => languageId !== '_INJECTED_DATA_'),
+				Object.keys(this.availableLanguages).filter(
+					languageId => languageId !== '_INJECTED_DATA_'
+				),
 				this._getEditableValues()
 			);
 		}
@@ -52,22 +51,17 @@ class FragmentsEditor extends Component {
 				fragmentEntryLinkId
 			);
 
-			fetch(
-				this.deleteFragmentEntryLinkURL,
-				{
-					body: formData,
-					credentials: 'include',
-					method: 'POST'
-				}
-			).then(
-				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString(
-						Liferay.ThemeDisplay.getBCP47LanguageId()
-					);
+			fetch(this.deleteFragmentEntryLinkURL, {
+				body: formData,
+				credentials: 'include',
+				method: 'POST'
+			}).then(() => {
+				this._lastSaveDate = new Date().toLocaleTimeString(
+					Liferay.ThemeDisplay.getBCP47LanguageId()
+				);
 
-					this._dirty = false;
-				}
-			);
+				this._dirty = false;
+			});
 		}
 	}
 
@@ -87,18 +81,13 @@ class FragmentsEditor extends Component {
 			fragmentEntryLinkId
 		);
 
-		return fetch(
-			this.renderFragmentEntryURL,
-			{
-				body: formData,
-				credentials: 'include',
-				method: 'POST'
-			}
-		).then(
-			response => response.json()
-		).then(
-			response => response.content
-		);
+		return fetch(this.renderFragmentEntryURL, {
+			body: formData,
+			credentials: 'include',
+			method: 'POST'
+		})
+			.then(response => response.json())
+			.then(response => response.content);
 	}
 
 	/**
@@ -122,15 +111,13 @@ class FragmentsEditor extends Component {
 
 	_getEditableValues() {
 		return this.fragmentEntryLinks
-			.map(
-				fragmentEntryLink => {
-					const component = this._getFragmentEntryLinkComponent(
-						fragmentEntryLink.fragmentEntryLinkId
-					);
+			.map(fragmentEntryLink => {
+				const component = this._getFragmentEntryLinkComponent(
+					fragmentEntryLink.fragmentEntryLinkId
+				);
 
-					return component ? component.getEditableValues() : null;
-				}
-			)
+				return component ? component.getEditableValues() : null;
+			})
 			.filter(editableValues => editableValues);
 	}
 
@@ -158,10 +145,9 @@ class FragmentsEditor extends Component {
 	_getFragmentEntryLinkIndex(fragmentEntryLinkId) {
 		return this.fragmentEntryLinks.indexOf(
 			this.fragmentEntryLinks.find(
-				fragmentEntryLink => (
+				fragmentEntryLink =>
 					fragmentEntryLink.fragmentEntryLinkId ===
 					fragmentEntryLinkId
-				)
 			)
 		);
 	}
@@ -194,38 +180,31 @@ class FragmentsEditor extends Component {
 	 */
 
 	_getTranslationStatus(languageIds, editableValues) {
-		const translationKeys = editableValues.map(
-			editableValue => {
+		const translationKeys = editableValues
+			.map(editableValue => {
 				return Object.keys(editableValue).map(
-					editableValueId => editableValue[editableValueId].defaultValue
+					editableValueId =>
+						editableValue[editableValueId].defaultValue
 				);
-			}
-		).reduce(
-			(acc, val) => acc.concat(val),
-			[]
-		);
+			})
+			.reduce((acc, val) => acc.concat(val), []);
 
-		const languageValues = languageIds.map(
-			languageId => {
-				const values = editableValues.map(
-					editableValue => {
-						return Object.keys(editableValue).map(
-							editableValueId => editableValue[editableValueId][languageId]
-						);
-					}
-				).reduce(
-					(acc, val) => acc.concat(val),
-					[]
-				).filter(
-					localeValue => localeValue
-				);
+		const languageValues = languageIds.map(languageId => {
+			const values = editableValues
+				.map(editableValue => {
+					return Object.keys(editableValue).map(
+						editableValueId =>
+							editableValue[editableValueId][languageId]
+					);
+				})
+				.reduce((acc, val) => acc.concat(val), [])
+				.filter(localeValue => localeValue);
 
-				return {
-					languageId,
-					values
-				};
-			}
-		);
+			return {
+				languageId,
+				values
+			};
+		});
 
 		return {
 			languageValues,
@@ -277,29 +256,19 @@ class FragmentsEditor extends Component {
 				this.classNameId
 			);
 
-			formData.append(
-				`${this.portletNamespace}classPK`,
-				this.classPK
-			);
+			formData.append(`${this.portletNamespace}classPK`, this.classPK);
 
-			formData.append(
-				`${this.portletNamespace}position`,
-				position
-			);
+			formData.append(`${this.portletNamespace}position`, position);
 
-			fetch(
-				this.addFragmentEntryLinkURL,
-				{
-					body: formData,
-					credentials: 'include',
-					method: 'POST'
-				}
-			).then(
-				response => {
+			fetch(this.addFragmentEntryLinkURL, {
+				body: formData,
+				credentials: 'include',
+				method: 'POST'
+			})
+				.then(response => {
 					return response.json();
-				}
-			).then(
-				response => {
+				})
+				.then(response => {
 					if (!response.fragmentEntryLinkId) {
 						throw new Error();
 					}
@@ -317,20 +286,20 @@ class FragmentsEditor extends Component {
 						}
 					];
 
-					this._focusFragmentEntryLink(
-						response.fragmentEntryLinkId
-					);
+					this._focusFragmentEntryLink(response.fragmentEntryLinkId);
 
 					return this._fetchFragmentContent(
 						response.fragmentEntryLinkId
-					).then(
-						content => {
+					)
+						.then(content => {
 							const index = this._getFragmentEntryLinkIndex(
 								response.fragmentEntryLinkId
 							);
 
 							if (index !== -1) {
-								const newFragmentEntryLinks = [...this.fragmentEntryLinks];
+								const newFragmentEntryLinks = [
+									...this.fragmentEntryLinks
+								];
 
 								const newFragmentEntryLink = Object.assign(
 									{},
@@ -338,12 +307,13 @@ class FragmentsEditor extends Component {
 									{content}
 								);
 
-								newFragmentEntryLinks[index] = newFragmentEntryLink;
+								newFragmentEntryLinks[
+									index
+								] = newFragmentEntryLink;
 								this.fragmentEntryLinks = newFragmentEntryLinks;
 							}
-						}
-					).then(
-						() => {
+						})
+						.then(() => {
 							this._lastSaveDate = new Date().toLocaleTimeString(
 								Liferay.ThemeDisplay.getBCP47LanguageId()
 							);
@@ -357,10 +327,8 @@ class FragmentsEditor extends Component {
 							this._focusFragmentEntryLink(
 								response.fragmentEntryLinkId
 							);
-						}
-					);
-				}
-			);
+						});
+				});
 		}
 	}
 
@@ -376,12 +344,11 @@ class FragmentsEditor extends Component {
 
 	_handleFragmentMove(data) {
 		const direction = data.direction;
-		const index = this._getFragmentEntryLinkIndex(
-			data.fragmentEntryLinkId
-		);
+		const index = this._getFragmentEntryLinkIndex(data.fragmentEntryLinkId);
 
 		if (
-			(direction === FragmentEntryLink.MOVE_DIRECTIONS.DOWN && index < this.fragmentEntryLinks.length - 1) ||
+			(direction === FragmentEntryLink.MOVE_DIRECTIONS.DOWN &&
+				index < this.fragmentEntryLinks.length - 1) ||
 			(direction === FragmentEntryLink.MOVE_DIRECTIONS.UP && index > 0)
 		) {
 			const formData = new FormData();
@@ -396,22 +363,17 @@ class FragmentsEditor extends Component {
 				this.fragmentEntryLinks[index + direction].fragmentEntryLinkId
 			);
 
-			fetch(
-				this.updateFragmentEntryLinksURL,
-				{
-					body: formData,
-					credentials: 'include',
-					method: 'POST'
-				}
-			).then(
-				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString(
-						Liferay.ThemeDisplay.getBCP47LanguageId()
-					);
+			fetch(this.updateFragmentEntryLinksURL, {
+				body: formData,
+				credentials: 'include',
+				method: 'POST'
+			}).then(() => {
+				this._lastSaveDate = new Date().toLocaleTimeString(
+					Liferay.ThemeDisplay.getBCP47LanguageId()
+				);
 
-					this._dirty = false;
-				}
-			);
+				this._dirty = false;
+			});
 
 			this.fragmentEntryLinks = this._swapListElements(
 				Array.prototype.slice.call(this.fragmentEntryLinks),
@@ -432,9 +394,7 @@ class FragmentsEditor extends Component {
 	 */
 
 	_handleFragmentRemove(data) {
-		const index = this._getFragmentEntryLinkIndex(
-			data.fragmentEntryLinkId
-		);
+		const index = this._getFragmentEntryLinkIndex(data.fragmentEntryLinkId);
 
 		if (index !== -1) {
 			this.fragmentEntryLinks = [
@@ -447,9 +407,9 @@ class FragmentsEditor extends Component {
 			}
 
 			this._translationStatus = this._getTranslationStatus(
-				Object
-					.keys(this.availableLanguages)
-					.filter(languageId => languageId !== '_INJECTED_DATA_'),
+				Object.keys(this.availableLanguages).filter(
+					languageId => languageId !== '_INJECTED_DATA_'
+				),
 				this._getEditableValues()
 			);
 
@@ -477,13 +437,13 @@ class FragmentsEditor extends Component {
 	_handleMappeableFieldClicked(event) {
 		this._selectMappingDialogEditableId = event.editableId;
 		this._selectMappingDialogEditableType = event.editableType;
-		this._selectMappingDialogFragmentEntryLinkId = event.fragmentEntryLinkId;
+		this._selectMappingDialogFragmentEntryLinkId =
+			event.fragmentEntryLinkId;
 		this._selectMappingDialogMappedFieldId = event.mappedFieldId;
 
 		if (this.selectedMappingTypes && this.selectedMappingTypes.type) {
 			this._selectMappingDialogVisible = true;
-		}
-		else {
+		} else {
 			this._handleSelectAssetTypeButtonClick();
 		}
 	}
@@ -520,7 +480,7 @@ class FragmentsEditor extends Component {
 	 *   	  label: !string
 	 *     }
 	 * 	 }
-     * }} event
+	 * }} event
 	 * @private
 	 * @review
 	 */
@@ -528,9 +488,10 @@ class FragmentsEditor extends Component {
 	_handleMappingTypeSelected(event) {
 		this.selectedMappingTypes = event.mappingTypes;
 
-		if (this._selectMappingDialogFragmentEntryLinkId &&
-			this._selectMappingDialogEditableId) {
-
+		if (
+			this._selectMappingDialogFragmentEntryLinkId &&
+			this._selectMappingDialogEditableId
+		) {
 			this._selectMappingDialogVisible = true;
 		}
 	}
@@ -631,9 +592,7 @@ class FragmentsEditor extends Component {
 			fragmentEntryLinkId
 		);
 
-		const index = this._getFragmentEntryLinkIndex(
-			fragmentEntryLinkId
-		);
+		const index = this._getFragmentEntryLinkIndex(fragmentEntryLinkId);
 
 		if (component && index !== -1) {
 			const newEditableValues = component.setEditableValue(
@@ -679,27 +638,24 @@ class FragmentsEditor extends Component {
 				JSON.stringify(fragmentEntryLink.editableValues)
 			);
 
-			fetch(
-				this.editFragmentEntryLinkURL,
-				{
-					body: formData,
-					credentials: 'include',
-					method: 'POST'
-				}
-			).then(
-				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString(
-						Liferay.ThemeDisplay.getBCP47LanguageId()
-					);
+			fetch(this.editFragmentEntryLinkURL, {
+				body: formData,
+				credentials: 'include',
+				method: 'POST'
+			}).then(() => {
+				this._lastSaveDate = new Date().toLocaleTimeString(
+					Liferay.ThemeDisplay.getBCP47LanguageId()
+				);
 
-					this._translationStatus = this._getTranslationStatus(
-						Object.keys(this.availableLanguages).filter(languageId => languageId !== '_INJECTED_DATA_'),
-						this._getEditableValues()
-					);
+				this._translationStatus = this._getTranslationStatus(
+					Object.keys(this.availableLanguages).filter(
+						languageId => languageId !== '_INJECTED_DATA_'
+					),
+					this._getEditableValues()
+				);
 
-					this._dirty = false;
-				}
-			);
+				this._dirty = false;
+			});
 		}
 	}
 }
@@ -712,7 +668,6 @@ class FragmentsEditor extends Component {
  */
 
 FragmentsEditor.STATE = {
-
 	/**
 	 * URL for associating fragment entries to the underlying model.
 	 * @default undefined
@@ -822,20 +777,16 @@ FragmentsEditor.STATE = {
 	 */
 
 	fragmentCollections: Config.arrayOf(
-		Config.shapeOf(
-			{
-				entries: Config.arrayOf(
-					Config.shapeOf(
-						{
-							fragmentEntryId: Config.string().required(),
-							name: Config.string().required()
-						}
-					)
-				).required(),
-				fragmentCollectionId: Config.string().required(),
-				name: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			entries: Config.arrayOf(
+				Config.shapeOf({
+					fragmentEntryId: Config.string().required(),
+					name: Config.string().required()
+				})
+			).required(),
+			fragmentCollectionId: Config.string().required(),
+			name: Config.string().required()
+		})
 	).required(),
 
 	/**
@@ -857,17 +808,15 @@ FragmentsEditor.STATE = {
 	 */
 
 	fragmentEntryLinks: Config.arrayOf(
-		Config.shapeOf(
-			{
-				config: Config.object().value({}),
-				content: Config.any().value(''),
-				editableValues: Config.object().value({}),
-				fragmentEntryId: Config.string().required(),
-				fragmentEntryLinkId: Config.string().required(),
-				name: Config.string().required(),
-				position: Config.number().required()
-			}
-		)
+		Config.shapeOf({
+			config: Config.object().value({}),
+			content: Config.any().value(''),
+			editableValues: Config.object().value({}),
+			fragmentEntryId: Config.string().required(),
+			fragmentEntryLinkId: Config.string().required(),
+			name: Config.string().required(),
+			position: Config.number().required()
+		})
 	).value([]),
 
 	/**
@@ -1000,24 +949,16 @@ FragmentsEditor.STATE = {
 	 * }}
 	 */
 
-	selectedMappingTypes: Config
-		.shapeOf(
-			{
-				subtype: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				),
-				type: Config.shapeOf(
-					{
-						id: Config.string().required(),
-						label: Config.string().required()
-					}
-				)
-			}
-		)
-		.value({}),
+	selectedMappingTypes: Config.shapeOf({
+		subtype: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		}),
+		type: Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	}).value({}),
 
 	/**
 	 * Path of the available icons.
@@ -1031,13 +972,13 @@ FragmentsEditor.STATE = {
 	spritemap: Config.string().required(),
 
 	/**
-     * URL for swapping to fragmentEntryLinks.
-     * @default undefined
-     * @instance
-     * @memberOf FragmentsEditor
-     * @review
-     * @type {!string}
-     */
+	 * URL for swapping to fragmentEntryLinks.
+	 * @default undefined
+	 * @instance
+	 * @memberOf FragmentsEditor
+	 * @review
+	 * @type {!string}
+	 */
 
 	updateFragmentEntryLinksURL: Config.string().required(),
 
@@ -1117,8 +1058,7 @@ FragmentsEditor.STATE = {
 	 * @type {string}
 	 */
 
-	_selectMappingDialogEditableType: Config
-		.string()
+	_selectMappingDialogEditableType: Config.string()
 		.internal()
 		.value(''),
 
@@ -1132,8 +1072,7 @@ FragmentsEditor.STATE = {
 	 * @type {string}
 	 */
 
-	_selectMappingDialogEditableId: Config
-		.string()
+	_selectMappingDialogEditableId: Config.string()
 		.internal()
 		.value(''),
 
@@ -1147,8 +1086,7 @@ FragmentsEditor.STATE = {
 	 * @type {string}
 	 */
 
-	_selectMappingDialogFragmentEntryLinkId: Config
-		.string()
+	_selectMappingDialogFragmentEntryLinkId: Config.string()
 		.internal()
 		.value(''),
 
@@ -1162,8 +1100,7 @@ FragmentsEditor.STATE = {
 	 * @type {string}
 	 */
 
-	_selectMappingDialogMappedFieldId: Config
-		.string()
+	_selectMappingDialogMappedFieldId: Config.string()
 		.internal()
 		.value(''),
 
@@ -1177,8 +1114,7 @@ FragmentsEditor.STATE = {
 	 * @type {boolean}
 	 */
 
-	_selectMappingDialogVisible: Config
-		.bool()
+	_selectMappingDialogVisible: Config.bool()
 		.internal()
 		.value(false),
 
@@ -1192,8 +1128,7 @@ FragmentsEditor.STATE = {
 	 * @type {boolean}
 	 */
 
-	_selectMappingTypeDialogVisible: Config
-		.bool()
+	_selectMappingTypeDialogVisible: Config.bool()
 		.internal()
 		.value(false)
 };

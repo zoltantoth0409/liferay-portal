@@ -1,16 +1,19 @@
-@import "../variables";
+@import '../variables';
 
 @mixin fragment-entry-link-wrapper-focus() {
-	box-shadow: 0 0 0 $fragmentEntryLinkFocusedBorderWidth $fragmentEntryLinkBorderColor;
+	box-shadow: 0 0 0 $fragmentEntryLinkFocusedBorderWidth
+		$fragmentEntryLinkBorderColor;
 	outline: none;
 
 	.fragment-entry-link-control {
-		box-shadow: 0 0 0 $fragmentEntryLinkFocusedBorderWidth $fragmentEntryLinkBorderColor;
+		box-shadow: 0 0 0 $fragmentEntryLinkFocusedBorderWidth
+			$fragmentEntryLinkBorderColor;
 	}
 }
 
 @mixin fragment-entry-link-wrapper-hover() {
-	box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth $fragmentEntryLinkBorderColor;
+	box-shadow: 0 0 0 $fragmentEntryLinkBorderWidth
+		$fragmentEntryLinkBorderColor;
 	z-index: $fragmentEntryLinkControlHoverZIndex;
 
 	.fragment-entry-link-control {

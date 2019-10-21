@@ -31,7 +31,6 @@ const TOOLTIP_BUTTONS = {
 };
 
 class FragmentEditableField extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @review
@@ -40,7 +39,9 @@ class FragmentEditableField extends Component {
 	created() {
 		this._handleBeforeNavigate = this._handleBeforeNavigate.bind(this);
 		this._handleEditableChanged = this._handleEditableChanged.bind(this);
-		this._handleEditableDestroyed = this._handleEditableDestroyed.bind(this);
+		this._handleEditableDestroyed = this._handleEditableDestroyed.bind(
+			this
+		);
 
 		this._beforeNavigateHandler = Liferay.on(
 			'beforeNavigate',
@@ -64,7 +65,8 @@ class FragmentEditableField extends Component {
 	 */
 
 	prepareStateForRender(state) {
-		const translatedContent = this.editableValues[this.languageId] ||
+		const translatedContent =
+			this.editableValues[this.languageId] ||
 			this.editableValues[this.defaultLanguageId] ||
 			this.editableValues.defaultValue;
 
@@ -84,18 +86,12 @@ class FragmentEditableField extends Component {
 			content = Soy.toIncDom(tempContent.innerHTML);
 		}
 
-		const _tooltipButtons = this._getTooltipButtons(
-			this.type
-		);
+		const _tooltipButtons = this._getTooltipButtons(this.type);
 
-		return object.mixin(
-			{},
-			state,
-			{
-				content,
-				_tooltipButtons
-			}
-		);
+		return object.mixin({}, state, {
+			content,
+			_tooltipButtons
+		});
 	}
 
 	/**
@@ -132,8 +128,8 @@ class FragmentEditableField extends Component {
 	 */
 
 	_destroyProcessors() {
-		Object.values(FragmentProcessors).forEach(
-			fragmentProcessor => fragmentProcessor.destroy()
+		Object.values(FragmentProcessors).forEach(fragmentProcessor =>
+			fragmentProcessor.destroy()
 		);
 	}
 
@@ -144,8 +140,8 @@ class FragmentEditableField extends Component {
 	 */
 
 	_enableEditor() {
-		const {init} = FragmentProcessors[this.type] ||
-			FragmentProcessors.fallback;
+		const {init} =
+			FragmentProcessors[this.type] || FragmentProcessors.fallback;
 
 		init(
 			this.refs.editable,
@@ -175,8 +171,7 @@ class FragmentEditableField extends Component {
 
 		if (editableType === 'image') {
 			_tooltipButtons.push(TOOLTIP_BUTTONS.selectImage);
-		}
-		else {
+		} else {
 			_tooltipButtons.push(TOOLTIP_BUTTONS.edit);
 		}
 
@@ -216,13 +211,12 @@ class FragmentEditableField extends Component {
 
 		if (
 			(this.showMapping && !this._editing) ||
-			(getActiveEditableElement() !== this.refs.editable)
+			getActiveEditableElement() !== this.refs.editable
 		) {
 			if (!this.showMapping) {
 				this._showTooltip = false;
 				this._enableEditor();
-			}
-			else {
+			} else {
 				this._showTooltip = !this._showTooltip;
 			}
 
@@ -279,13 +273,10 @@ class FragmentEditableField extends Component {
 	 */
 
 	_handleEditableChanged(newValue) {
-		this.emit(
-			'editableChanged',
-			{
-				editableId: this.editableId,
-				value: newValue
-			}
-		);
+		this.emit('editableChanged', {
+			editableId: this.editableId,
+			value: newValue
+		});
 	}
 
 	/**
@@ -313,16 +304,12 @@ class FragmentEditableField extends Component {
 			buttonId === TOOLTIP_BUTTONS.selectImage.id
 		) {
 			this._showEditor = true;
-		}
-		else if (buttonId === TOOLTIP_BUTTONS.map.id) {
-			this.emit(
-				'mapButtonClicked',
-				{
-					editableId: this.editableId,
-					editableType: this.type,
-					mappedFieldId: this.editableValues.mappedField || ''
-				}
-			);
+		} else if (buttonId === TOOLTIP_BUTTONS.map.id) {
+			this.emit('mapButtonClicked', {
+				editableId: this.editableId,
+				editableType: this.type,
+				mappedFieldId: this.editableValues.mappedField || ''
+			});
 		}
 
 		this._showTooltip = false;
@@ -337,7 +324,6 @@ class FragmentEditableField extends Component {
  */
 
 FragmentEditableField.STATE = {
-
 	/**
 	 * Editable content to be rendered
 	 * @default undefined
@@ -458,7 +444,9 @@ FragmentEditableField.STATE = {
 	 * @type {boolean}
 	 */
 
-	_editing: Config.internal().bool().value(false),
+	_editing: Config.internal()
+		.bool()
+		.value(false),
 
 	/**
 	 * Flag indicating if the editable editor should be enabled.
@@ -470,7 +458,9 @@ FragmentEditableField.STATE = {
 	 * @type {boolean}
 	 */
 
-	_showEditor: Config.internal().bool().value(false),
+	_showEditor: Config.internal()
+		.bool()
+		.value(false),
 
 	/**
 	 * Flag indicating if the click tooltip should be visible.
@@ -482,7 +472,9 @@ FragmentEditableField.STATE = {
 	 * @type {boolean}
 	 */
 
-	_showTooltip: Config.internal().bool().value(false),
+	_showTooltip: Config.internal()
+		.bool()
+		.value(false),
 
 	/**
 	 * Reference element used for aligning the tooltip
@@ -507,16 +499,12 @@ FragmentEditableField.STATE = {
 	 * }>}
 	 */
 
-	_tooltipButtons: Config
-		.internal()
-		.arrayOf(
-			Config.shapeOf(
-				{
-					id: Config.string().required(),
-					label: Config.string().required()
-				}
-			)
-		),
+	_tooltipButtons: Config.internal().arrayOf(
+		Config.shapeOf({
+			id: Config.string().required(),
+			label: Config.string().required()
+		})
+	),
 
 	/**
 	 * Label shown inside editable's tooltip instead of action buttons
@@ -528,8 +516,7 @@ FragmentEditableField.STATE = {
 	 * @type {string}
 	 */
 
-	_tooltipLabel: Config
-		.internal()
+	_tooltipLabel: Config.internal()
 		.string()
 		.value('')
 };

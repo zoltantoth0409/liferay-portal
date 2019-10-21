@@ -10,7 +10,6 @@ import templates from './FragmentsEditorToolbar.soy';
  */
 
 class FragmentsEditorToolbar extends Component {
-
 	/**
 	 * @private
 	 * @review

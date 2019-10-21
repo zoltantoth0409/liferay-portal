@@ -11,7 +11,6 @@ import templates from './SidebarAvailableFragments.soy';
  */
 
 class SidebarAvailableFragments extends Component {
-
 	/**
 	 * @inheritDoc
 	 * @private
@@ -19,19 +18,14 @@ class SidebarAvailableFragments extends Component {
 	 */
 
 	attached() {
-		this._dragDrop = new DragDrop(
-			{
-				dragPlaceholder: Drag.Placeholder.CLONE,
-				handles: '.drag-handler',
-				sources: '.drag-card',
-				targets: `.${this.dropTargetClass}`
-			}
-		);
+		this._dragDrop = new DragDrop({
+			dragPlaceholder: Drag.Placeholder.CLONE,
+			handles: '.drag-handler',
+			sources: '.drag-card',
+			targets: `.${this.dropTargetClass}`
+		});
 
-		this._dragDrop.on(
-			DragDrop.Events.END,
-			this._handleDrop.bind(this)
-		);
+		this._dragDrop.on(DragDrop.Events.END, this._handleDrop.bind(this));
 	}
 
 	/**
@@ -59,13 +53,10 @@ class SidebarAvailableFragments extends Component {
 			const itemId = data.source.dataset.itemId;
 			const itemName = data.source.dataset.itemName;
 
-			this.emit(
-				'fragmentEntryClick',
-				{
-					fragmentEntryId: itemId,
-					fragmentName: itemName
-				}
-			);
+			this.emit('fragmentEntryClick', {
+				fragmentEntryId: itemId,
+				fragmentName: itemName
+			});
 		}
 	}
 
@@ -80,13 +71,10 @@ class SidebarAvailableFragments extends Component {
 	 */
 
 	_handleEntryClick(event) {
-		this.emit(
-			'fragmentEntryClick',
-			{
-				fragmentEntryId: event.itemId,
-				fragmentName: event.itemName
-			}
-		);
+		this.emit('fragmentEntryClick', {
+			fragmentEntryId: event.itemId,
+			fragmentName: event.itemName
+		});
 	}
 }
 
@@ -97,7 +85,6 @@ class SidebarAvailableFragments extends Component {
  */
 
 SidebarAvailableFragments.STATE = {
-
 	/**
 	 * CSS class for the fragments drop target.
 	 * @default undefined
@@ -127,21 +114,17 @@ SidebarAvailableFragments.STATE = {
 	 */
 
 	fragmentCollections: Config.arrayOf(
-		Config.shapeOf(
-			{
-				fragmentCollectionId: Config.string().required(),
-				fragmentEntries: Config.arrayOf(
-					Config.shapeOf(
-						{
-							fragmentEntryId: Config.string().required(),
-							imagePreviewURL: Config.string(),
-							name: Config.string().required()
-						}
-					).required()
-				).required(),
-				name: Config.string().required()
-			}
-		)
+		Config.shapeOf({
+			fragmentCollectionId: Config.string().required(),
+			fragmentEntries: Config.arrayOf(
+				Config.shapeOf({
+					fragmentEntryId: Config.string().required(),
+					imagePreviewURL: Config.string(),
+					name: Config.string().required()
+				}).required()
+			).required(),
+			name: Config.string().required()
+		})
 	),
 
 	/**

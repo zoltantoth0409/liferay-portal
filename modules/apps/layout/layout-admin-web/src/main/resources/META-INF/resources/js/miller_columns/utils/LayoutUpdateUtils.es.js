@@ -43,9 +43,9 @@ function appendItemToColumn(sourceItem, layoutColumns, targetColumnIndex) {
  */
 
 function clearFollowingColumns(layoutColumns, startColumnIndex) {
-	const nextLayoutColumns = layoutColumns.map(
-		(layoutColumn) => [...layoutColumn]
-	);
+	const nextLayoutColumns = layoutColumns.map(layoutColumn => [
+		...layoutColumn
+	]);
 
 	for (let i = startColumnIndex + 1; i < nextLayoutColumns.length; i++) {
 		nextLayoutColumns[i] = [];
@@ -71,23 +71,20 @@ function clearPath(
 	targetId,
 	targetType
 ) {
-	let nextLayoutColumns = layoutColumns.map(
-		(layoutColumn) => [...layoutColumn]
-	);
+	let nextLayoutColumns = layoutColumns.map(layoutColumn => [
+		...layoutColumn
+	]);
 
 	let targetColumnIndex = targetId;
 
 	if (targetType === DROP_TARGET_TYPES.item) {
-		targetColumnIndex = getItemColumnIndex(
-			nextLayoutColumns,
-			targetId
-		);
+		targetColumnIndex = getItemColumnIndex(nextLayoutColumns, targetId);
 	}
 
 	if (
 		sourceItem &&
 		sourceItem.active &&
-		(sourceItemColumnIndex !== targetColumnIndex)
+		sourceItemColumnIndex !== targetColumnIndex
 	) {
 		sourceItem.active = false;
 
@@ -114,8 +111,11 @@ function clearPath(
 function deleteEmptyColumns(layoutColumns) {
 	const nextLayoutColumns = [...layoutColumns];
 
-	for (let i = 3; (i < nextLayoutColumns.length) &&
-		(nextLayoutColumns[i].length === 0); i++) {
+	for (
+		let i = 3;
+		i < nextLayoutColumns.length && nextLayoutColumns[i].length === 0;
+		i++
+	) {
 		nextLayoutColumns.splice(i, 1);
 	}
 
@@ -143,10 +143,7 @@ function moveItemInside(
 ) {
 	let nextLayoutColumns = removeItem(sourceItem.plid, layoutColumns);
 
-	const targetColumn = getItemColumn(
-		nextLayoutColumns,
-		targetItem.plid
-	);
+	const targetColumn = getItemColumn(nextLayoutColumns, targetItem.plid);
 
 	const targetColumnIndex = getItemColumnIndex(
 		nextLayoutColumns,
@@ -159,14 +156,10 @@ function moveItemInside(
 		if (nextColumn) {
 			nextLayoutColumns = setIn(
 				nextLayoutColumns,
-				[
-					targetColumnIndex + 1,
-					nextColumn.length
-				],
+				[targetColumnIndex + 1, nextColumn.length],
 				sourceItem
 			);
-		}
-		else {
+		} else {
 			nextLayoutColumns = setIn(
 				nextLayoutColumns,
 				[targetColumnIndex + 1],
@@ -175,10 +168,7 @@ function moveItemInside(
 
 			nextLayoutColumns = setIn(
 				nextLayoutColumns,
-				[
-					targetColumnIndex + 1,
-					0
-				],
+				[targetColumnIndex + 1, 0],
 				sourceItem
 			);
 		}
@@ -195,11 +185,7 @@ function moveItemInside(
 
 	return setIn(
 		nextLayoutColumns,
-		[
-			targetColumnIndex,
-			targetColumn.indexOf(targetItem),
-			'hasChild'
-		],
+		[targetColumnIndex, targetColumn.indexOf(targetItem), 'hasChild'],
 		true
 	);
 }
@@ -224,7 +210,7 @@ function removeItem(itemPlid, layoutColumns) {
 
 		if (itemColumn) {
 			const itemIndex = itemColumn.findIndex(
-				(_item) => _item.plid === itemPlid
+				_item => _item.plid === itemPlid
 			);
 			const nextItemColumn = [...itemColumn];
 			const nextItemColumnIndex = getItemColumnIndex(
@@ -273,11 +259,7 @@ function setHomePage(layoutColumns) {
 
 			nextLayoutColumns = setIn(
 				nextLayoutColumns,
-				[
-					currentHomeItemColumnIndex,
-					currentHomeItemIndex,
-					'homePage'
-				],
+				[currentHomeItemColumnIndex, currentHomeItemIndex, 'homePage'],
 				false
 			);
 		}
@@ -302,27 +284,17 @@ function setActiveItem(layoutColumns, itemPlid) {
 	const currentActiveItemIndex = column.indexOf(
 		getColumnActiveItem(layoutColumns, columnIndex)
 	);
-	const newActiveItemIndex = column.indexOf(
-		getItem(layoutColumns, itemPlid)
-	);
+	const newActiveItemIndex = column.indexOf(getItem(layoutColumns, itemPlid));
 
 	let nextLayoutColumns = setIn(
 		layoutColumns,
-		[
-			columnIndex,
-			currentActiveItemIndex,
-			'active'
-		],
+		[columnIndex, currentActiveItemIndex, 'active'],
 		false
 	);
 
 	nextLayoutColumns = setIn(
 		nextLayoutColumns,
-		[
-			columnIndex,
-			newActiveItemIndex,
-			'active'
-		],
+		[columnIndex, newActiveItemIndex, 'active'],
 		true
 	);
 
