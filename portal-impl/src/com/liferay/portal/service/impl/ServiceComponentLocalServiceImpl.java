@@ -483,6 +483,41 @@ public class ServiceComponentLocalServiceImpl
 		}
 	}
 
+	private Map<String, ServiceComponent> _getServiceComponents() {
+		if (_serviceComponents != null) {
+			return _serviceComponents;
+		}
+
+		synchronized (this) {
+			if (_serviceComponents != null) {
+				return _serviceComponents;
+			}
+
+			Map<String, ServiceComponent> serviceComponents =
+				new ConcurrentHashMap<>();
+
+			for (ServiceComponent serviceComponent :
+					serviceComponentPersistence.findAll()) {
+
+				String buildNamespace = serviceComponent.getBuildNamespace();
+
+				ServiceComponent previousServiceComponent =
+					serviceComponents.get(buildNamespace);
+
+				if ((previousServiceComponent == null) ||
+					(serviceComponent.getBuildNumber() >
+						previousServiceComponent.getBuildNumber())) {
+
+					serviceComponents.put(buildNamespace, serviceComponent);
+				}
+			}
+
+			_serviceComponents = serviceComponents;
+		}
+
+		return _serviceComponents;
+	}
+
 	private void _upgradeDB(
 			ClassLoader classLoader, String buildNamespace, long buildNumber,
 			ServiceComponent previousServiceComponent, String tablesSQL,
@@ -545,41 +580,6 @@ public class ServiceComponentLocalServiceImpl
 				db.runSQLTemplateString(indexesSQL, true, false);
 			}
 		}
-	}
-
-	private Map<String, ServiceComponent> _getServiceComponents() {
-		if (_serviceComponents != null) {
-			return _serviceComponents;
-		}
-
-		synchronized (this) {
-			if (_serviceComponents != null) {
-				return _serviceComponents;
-			}
-
-			Map<String, ServiceComponent> serviceComponents =
-				new ConcurrentHashMap<>();
-
-			for (ServiceComponent serviceComponent :
-					serviceComponentPersistence.findAll()) {
-
-				String buildNamespace = serviceComponent.getBuildNamespace();
-
-				ServiceComponent previousServiceComponent =
-					serviceComponents.get(buildNamespace);
-
-				if ((previousServiceComponent == null) ||
-					(serviceComponent.getBuildNumber() >
-						previousServiceComponent.getBuildNumber())) {
-
-					serviceComponents.put(buildNamespace, serviceComponent);
-				}
-			}
-
-			_serviceComponents = serviceComponents;
-		}
-
-		return _serviceComponents;
 	}
 
 	private static final String _DATA_SOURCE_DEFAULT = "liferayDataSource";
