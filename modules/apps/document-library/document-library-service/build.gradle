@@ -13,6 +13,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.model.adapter", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
@@ -21,6 +22,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instances.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
@@ -33,8 +35,6 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
-	compileOnly project(":apps:portal:portal-spring-extender-api")
-	compileOnly project(":core:petra:petra-lang")
 
 	testCompile project(":apps:portal-search:portal-search")
 	testCompile project(":core:petra:petra-io")
