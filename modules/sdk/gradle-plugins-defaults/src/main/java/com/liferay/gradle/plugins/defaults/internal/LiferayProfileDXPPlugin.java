@@ -25,9 +25,10 @@ import org.gradle.api.Project;
 /**
  * @author Peter Shin
  */
-public class LiferayDXPPlugin implements Plugin<Project> {
+public class LiferayProfileDXPPlugin implements Plugin<Project> {
 
-	public static final Plugin<Project> INSTANCE = new LiferayDXPPlugin();
+	public static final Plugin<Project> INSTANCE =
+		new LiferayProfileDXPPlugin();
 
 	@Override
 	public void apply(Project project) {
