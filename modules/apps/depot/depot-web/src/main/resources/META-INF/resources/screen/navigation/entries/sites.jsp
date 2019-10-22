@@ -48,7 +48,7 @@ DepotEntry depotEntry = (DepotEntry)request.getAttribute(DepotAdminWebKeys.DEPOT
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
 		cssClass="lfr-search-container-connected-sites"
-		emptyResultsMessage="no-sites-connected-yet"
+		emptyResultsMessage="no-sites-are-connected-yet"
 		headerNames="title,null"
 		id="connectedSitesSearchContainer"
 		iteratorURL="<%= currentURLObj %>"
