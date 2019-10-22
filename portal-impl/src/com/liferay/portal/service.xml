@@ -669,7 +669,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="G_M" return-type="Collection" where="system = [$FALSE$]">
+		<finder name="G_MLP" return-type="Collection" where="system = [$FALSE$]">
 			<finder-column name="groupId" />
 			<finder-column name="masterLayoutPlid" />
 		</finder>

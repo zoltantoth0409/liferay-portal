@@ -1644,7 +1644,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 	@Override
 	public List<Layout> getLayouts(long groupId, long masterLayoutPlid) {
-		return layoutPersistence.findByG_M(groupId, masterLayoutPlid);
+		return layoutPersistence.findByG_MLP(groupId, masterLayoutPlid);
 	}
 
 	/**
@@ -1859,7 +1859,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 	@Override
 	public int getLayoutsCount(long groupId, long masterLayoutPlid) {
-		return layoutPersistence.countByG_M(groupId, masterLayoutPlid);
+		return layoutPersistence.countByG_MLP(groupId, masterLayoutPlid);
 	}
 
 	@Override
