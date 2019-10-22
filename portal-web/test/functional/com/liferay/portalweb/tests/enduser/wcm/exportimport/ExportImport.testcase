@@ -1401,6 +1401,173 @@ definition {
 			uploadFrom = "dependencies");
 	}
 
+	@description = "This is a use case for LPS-97544 and LPS-90886."
+	@priority = "3"
+	test ImportStagedSiteWithCircularReference {
+		JSONGroup.addGroup(groupName = "Site Name");
+
+		JSONLayout.addLayoutByGroupName(
+			groupName = "Site Name",
+			layoutName = "Page A");
+
+		JSONLayout.addLayoutByGroupName(
+			groupName = "Site Name",
+			layoutName = "Page B");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(siteName = "Site Name");
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "Structure Description A",
+			structureName = "Structure Name A");
+
+		DynamicDataMapping.addField(
+			field = "Link to Page",
+			fieldFieldLabel = "Link to Page",
+			fieldName = "LinkToPage");
+
+		WebContentStructures.saveCP(structureName = "Structure Name A");
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "Template Description A",
+			templateLanguage = "ftl",
+			templateName = "Template Name A");
+
+		WebContentTemplates.addStructure(
+			structureName = "Structure Name A",
+			templateFieldNames = "Link to Page",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "Structure Description B",
+			structureName = "Structure Name B");
+
+		DynamicDataMapping.addField(
+			field = "Web Content",
+			fieldFieldLabel = "Web Content",
+			fieldName = "WebContent");
+
+		WebContentStructures.saveCP(structureName = "Structure Name B");
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "Template Description B",
+			templateLanguage = "ftl",
+			templateName = "Template Name B");
+
+		WebContentTemplates.addStructure(
+			structureName = "Structure Name B",
+			templateFieldNames = "Web Content",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "Structure Name A");
+
+		WebContent.addWithStructureCP(
+			linkedPageName = "Page B",
+			linkFieldName = "LinkToPage",
+			structureName = "Structure Name A",
+			templateName = "Template Name A",
+			webContentTitle = "WC WebContent Title 1");
+
+		PortletEntry.publish();
+
+		Navigator.openSiteLanding(siteURLKey = "site-name-staging");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "Structure Name B");
+
+		WebContent.addWithStructureCP(
+			fieldName = "WebContent",
+			structureName = "Structure Name B",
+			templateName = "Template Name B",
+			webContentSelectWCFile = "WC WebContent Title 1",
+			webContentTitle = "WC WebContent Title 2");
+
+		PortletEntry.publish();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Page A",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		WebContentDisplayPortlet.selectWebContent(webContentTitle = "WC WebContent Title 1");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Page B",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		WebContentDisplayPortlet.selectWebContent(webContentTitle = "WC WebContent Title 2");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Page A",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.configurePublishToLive(contentDateRange = "All");
+
+		Staging.publishToLive();
+
+		Navigator.gotoSitePage(
+			pageName = "Page A",
+			siteName = "Site Name");
+
+		WebContent.viewPGViaWCD(
+			linkName = "Link to Page",
+			linkToPage = "true");
+
+		Navigator.gotoSitePage(
+			pageName = "Page B",
+			siteName = "Site Name");
+
+		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Title 1");
+
+		LAR.exportSiteCP();
+
+		var key_larFileName = "${larFileName}";
+
+		var larFileName = LAR.getLarFileName();
+
+		LAR.downloadLar();
+
+		JSONGroup.deleteGroupByName(groupName = "Site Name");
+
+		JSONGroup.addGroup(groupName = "Site Name B");
+
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name B");
+	}
+
 	@description = "This is a use case for LPS-94738."
 	@priority = "4"
 	test ImportWCDReferenceAfterActivateStaging {
