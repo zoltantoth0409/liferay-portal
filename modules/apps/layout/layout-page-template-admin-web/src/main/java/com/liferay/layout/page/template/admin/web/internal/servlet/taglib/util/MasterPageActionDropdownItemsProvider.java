@@ -103,7 +103,6 @@ public class MasterPageActionDropdownItemsProvider {
 		copyMasterPageURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/layout_page_template/copy_layout_page_template_entry");
-
 		copyMasterPageURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		copyMasterPageURL.setParameter(
