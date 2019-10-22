@@ -135,14 +135,14 @@
 					<property name="-sourcepath" value="." />
 				</bnd>
 
-				<if>
+				<!--<if>
 					<not>
 						<equals arg1="${baseline.jar.report.level}" arg2="off" />
 					</not>
 					<then>
 						<gradle-execute forcedcacheenabled="false" task="baseline" />
 					</then>
-				</if>
+				</if>-->
 			</then>
 			<else>
 				<antcall target="manifest" />
