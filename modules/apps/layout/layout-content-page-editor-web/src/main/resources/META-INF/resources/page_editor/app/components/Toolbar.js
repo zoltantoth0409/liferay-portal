@@ -14,14 +14,14 @@
 
 import ClayButton, {ClayButtonWithIcon} from '@clayui/button';
 import {useIsMounted} from 'frontend-js-react-web';
-import React from 'react';
 import ReactDOM from 'react-dom';
+import React from 'react';
 
-import * as Actions from '../actions/index';
-import {ConfigContext} from '../config/index';
-import usePlugins from '../../core/hooks/usePlugins';
 import useLazy from '../../core/hooks/useLazy';
 import useLoad from '../../core/hooks/useLoad';
+import usePlugins from '../../core/hooks/usePlugins';
+import * as Actions from '../actions/index';
+import {ConfigContext} from '../config/index';
 import {DispatchContext} from '../reducers/index';
 import {StoreContext} from '../store/index';
 import UnsafeHTML from './UnsafeHTML';
