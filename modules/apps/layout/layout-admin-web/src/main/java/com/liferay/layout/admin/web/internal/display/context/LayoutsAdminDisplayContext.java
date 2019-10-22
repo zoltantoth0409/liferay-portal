@@ -123,13 +123,13 @@ import javax.servlet.http.HttpServletRequest;
 public class LayoutsAdminDisplayContext {
 
 	public LayoutsAdminDisplayContext(
+		LayoutSEOLinkManager layoutSEOLinkManager,
 		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse,
-		LayoutSEOLinkManager layoutSEOLinkManager) {
+		LiferayPortletResponse liferayPortletResponse) {
 
+		_layoutSEOLinkManager = layoutSEOLinkManager;
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
-		_layoutSEOLinkManager = layoutSEOLinkManager;
 
 		_httpServletRequest = PortalUtil.getHttpServletRequest(
 			_liferayPortletRequest);
