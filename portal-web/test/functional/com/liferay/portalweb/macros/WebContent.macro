@@ -739,7 +739,7 @@ definition {
 				value1 = "${webContentSelect}");
 		}
 
-		if (isSet(WebContentSelectWCFile)) {
+		if (isSet(webContentSelectWCFile)) {
 			AssertClick(
 				key_fieldName = "${fieldName}",
 				locator1 = "Button#FIELD_SELECT",
@@ -748,9 +748,9 @@ definition {
 			IFrame.selectDialogFrame();
 
 			AssertClick(
-				key_webContentTitle = "${WebContentSelectWCFile}",
+				key_webContentTitle = "${webContentSelectWCFile}",
 				locator1 = "Link#WEB_CONTENT_ARTICLE",
-				value1 = "${WebContentSelectWCFile}");
+				value1 = "${webContentSelectWCFile}");
 
 			SelectFrame(value1 = "relative=top");
 		}

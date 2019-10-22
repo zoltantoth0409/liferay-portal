@@ -555,7 +555,7 @@ definition {
 
 		WebContent.addWithStructureCP(
 			fieldName = "WebContent",
-			WebContentSelectWCFile = "WC WebContent 1 Title",
+			webContentSelectWCFile = "WC WebContent 1 Title",
 			webContentTitle = "WC WebContent 2 Title");
 
 		PortletEntry.publish();
