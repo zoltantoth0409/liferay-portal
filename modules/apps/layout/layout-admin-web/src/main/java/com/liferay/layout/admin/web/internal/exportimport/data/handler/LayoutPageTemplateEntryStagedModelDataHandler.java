@@ -167,10 +167,10 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 			referenceElement.attributeValue("class-pk"));
 		String name = GetterUtil.getString(
 			referenceElement.attributeValue("name"));
-		boolean preloaded = GetterUtil.getBoolean(
-			referenceElement.attributeValue("preloaded"));
 		int type = GetterUtil.getInteger(
 			referenceElement.attributeValue("type"));
+		boolean preloaded = GetterUtil.getBoolean(
+			referenceElement.attributeValue("preloaded"));
 
 		LayoutPageTemplateEntry existingLayoutPageTemplateEntry = null;
 
