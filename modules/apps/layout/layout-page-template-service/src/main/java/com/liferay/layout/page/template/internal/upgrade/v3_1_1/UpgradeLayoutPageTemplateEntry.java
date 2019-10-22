@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Pavel Savinov
  */
-public class UpgradeLayoutPageTemplateEntryIndex extends UpgradeProcess {
+public class UpgradeLayoutPageTemplateEntry extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
