@@ -1105,9 +1105,11 @@ definition {
 			value1 = "Forbidden");
 	}
 
-	@description = "This is a use case for LPS-88831 and LPS-88889."
+	@description = "This is a use case for LPS-88831, LPS-88889 and LPS-88890."
 	@priority = "4"
 	test ExportWebContentWithDeletedReference {
+		property test.name.skip.portal.instance = "ExportImport#ExportWebContentWithDeletedReference";
+
 		JSONGroup.addGroup(groupName = "Site Name");
 
 		JSONLayout.addLayoutByGroupName(
@@ -1129,7 +1131,7 @@ definition {
 			structureDescription = "WC Structure Description",
 			structureName = "WC Structure Name");
 
-		for (var structureFieldName : list "Documents and Media,Link to Page") {
+		for (var structureFieldName : list "Documents and Media,Link to Page,Image") {
 			DynamicDataMapping.addField(
 				field = "${structureFieldName}",
 				fieldFieldLabel = "${structureFieldName}",
@@ -1149,7 +1151,7 @@ definition {
 
 		WebContentTemplates.addStructure(
 			structureName = "WC Structure Name",
-			templateFieldNames = "Documents and Media,Link to Page",
+			templateFieldNames = "Documents and Media,Link to Page,Image",
 			templateLanguage = "ftl");
 
 		DDLDataDefinition.save();
@@ -1165,6 +1167,7 @@ definition {
 			structureName = "WC Structure Name",
 			templateName = "WC Template Name",
 			webContentDocumentsAndMedia = "DM Document Title.txt",
+			webContentImageUnderDocumentsAndMedia = "Document_1.jpg",
 			webContentTitle = "WC WebContent Title");
 
 		PortletEntry.publish();
@@ -1174,6 +1177,10 @@ definition {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
 
 		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+
+		DMDocument.deleteCP(dmDocumentTitle = "Document_1.jpg");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page",
