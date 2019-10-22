@@ -154,6 +154,69 @@ definition {
 			siteName = "Site Name");
 	}
 
+	@description = "This is a use case for LPS-90127."
+	@priority = "3"
+	test ConfigureDDMStructureViaAPWhenNotStagedAssets {
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Asset Publisher");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(
+			noContent = "true",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		Staging.viewNotStagedAssetMessageOnStaging();
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "WC Structure Description",
+			structureName = "WC Structure Name");
+
+		DynamicDataMapping.addField(
+			field = "Text",
+			fieldFieldLabel = "Text",
+			fieldName = "Text");
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "WC Template Description",
+			templateLanguage = "ftl",
+			templateName = "WC Template Name");
+
+		WebContentTemplates.addStructure(
+			structureName = "WC Structure Name",
+			templateFieldNames = "Text",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name");
+
+		AssetPublisherPortlet.configureAssetTypePG(
+			assetSubtype = "WC Structure Name",
+			selectedAsset = "Web Content Article");
+	}
+
 	@description = "This is a use case for LPS-92039 and LPS-92636."
 	@priority = "3"
 	test CreateWidgetTemplateWhenNotStagedADT {
