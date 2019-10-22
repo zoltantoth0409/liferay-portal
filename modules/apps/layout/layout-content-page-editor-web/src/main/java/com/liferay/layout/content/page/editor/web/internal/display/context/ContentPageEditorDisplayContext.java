@@ -905,6 +905,8 @@ public class ContentPageEditorDisplayContext {
 			soyContext.put(
 				"fragmentEntryId", fragmentEntry.getFragmentEntryId()
 			).put(
+				"fragmentEntryKey", fragmentEntry.getFragmentEntryKey()
+			).put(
 				"name", fragmentEntry.getName()
 			);
 
@@ -930,6 +932,8 @@ public class ContentPageEditorDisplayContext {
 			if (fragmentRenderer != null) {
 				soyContext.put(
 					"fragmentEntryId", 0
+				).put(
+					"fragmentEntryKey", fragmentRenderer.getKey()
 				).put(
 					"name", fragmentRenderer.getLabel(themeDisplay.getLocale())
 				);
