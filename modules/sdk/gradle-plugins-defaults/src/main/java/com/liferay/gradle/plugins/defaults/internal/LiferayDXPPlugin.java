@@ -45,7 +45,8 @@ public class LiferayDXPPlugin implements Plugin<Project> {
 		if (!buildProfileDXPPropertiesFile.exists()) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Please run the following command to setup DXP:\n");
+			sb.append("Please run the following command to setup the build ");
+			sb.append("profile for DXP:\n");
 			sb.append(portalRootDir);
 			sb.append("$ ant setup-profile-dxp");
 
