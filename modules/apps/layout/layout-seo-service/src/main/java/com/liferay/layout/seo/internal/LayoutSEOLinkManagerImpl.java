@@ -71,7 +71,6 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 		String layoutTitle = _getPageTitle(
 			layout, portletId, tilesTitle, titleListMergeable,
 			subtitleListMergeable, locale);
-
 		String siteAndCompanyName = _getPageTitleSuffix(layout, companyName);
 
 		return _html.escape(_merge(layoutTitle, siteAndCompanyName));

@@ -143,7 +143,6 @@ public class LayoutSEOLinkManagerPageTitleTest {
 	@Test
 	public void testGetFullPageTitleUsesTilesTitle() throws Exception {
 		String tilesTitle = RandomTestUtil.randomString();
-
 		String companyName = RandomTestUtil.randomString();
 
 		Assert.assertEquals(
@@ -159,7 +158,6 @@ public class LayoutSEOLinkManagerPageTitleTest {
 		throws Exception {
 
 		String tilesTitle = RandomTestUtil.randomString();
-
 		String companyName = _group.getName();
 
 		Assert.assertEquals(
