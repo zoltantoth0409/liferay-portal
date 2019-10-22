@@ -1094,6 +1094,8 @@ This target has been renamed to "snapshot-bundle". Please call "snapshot-bundle"
 		<gradle-execute setupbinariescache="false" task="removeDXPScript">
 			<arg value="--build-file=${project.dir}/modules/profile-dxp.gradle" />
 		</gradle-execute>
+
+		<update-gradle-properties />
 	</target>
 
 	<target name="setup-profile-portal">
@@ -1103,6 +1105,8 @@ This target has been renamed to "snapshot-bundle". Please call "snapshot-bundle"
 				includes="*.profile-dxp.properties"
 			/>
 		</delete>
+
+		<update-gradle-properties />
 	</target>
 
 	<target name="setup-sdk">
