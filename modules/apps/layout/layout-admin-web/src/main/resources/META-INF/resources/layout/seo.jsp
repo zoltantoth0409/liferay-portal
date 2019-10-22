@@ -20,8 +20,6 @@
 Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 
 UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
-
-String canonicalURL = layoutsAdminDisplayContext.getCanonicalLayoutURL();
 %>
 
 <liferay-ui:error-marker
@@ -144,7 +142,7 @@ String canonicalURL = layoutsAdminDisplayContext.getCanonicalLayoutURL();
 			<aui:input checked="<%= selLayoutSEOEntry.isCanonicalURLEnabled() %>" helpMessage="use-custom-canonical-url-help" label="use-custom-canonical-url" name="canonicalURLEnabled" type="toggle-switch" />
 
 			<div id="<portlet:namespace />customCanonicalURLSettings">
-				<aui:input name="canonicalURL" placeholder="<%= canonicalURL %>">
+				<aui:input name="canonicalURL" placeholder="<%= layoutsAdminDisplayContext.getCanonicalLayoutURL() %>">
 					<aui:validator name="url" />
 				</aui:input>
 			</div>
@@ -153,7 +151,7 @@ String canonicalURL = layoutsAdminDisplayContext.getCanonicalLayoutURL();
 			<aui:input checked="<%= false %>" helpMessage="use-custom-canonical-url-help" label="use-custom-canonical-url" name="canonicalURLEnabled" type="toggle-switch" />
 
 			<div id="<portlet:namespace />customCanonicalURLSettings">
-				<aui:input localized="<%= true %>" name="canonicalURL" placeholder="<%= canonicalURL %>" type="text">
+				<aui:input localized="<%= true %>" name="canonicalURL" placeholder="<%= layoutsAdminDisplayContext.getCanonicalLayoutURL() %>" type="text">
 					<aui:validator name="url" />
 				</aui:input>
 			</div>
