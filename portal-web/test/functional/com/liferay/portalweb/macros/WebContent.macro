@@ -1029,6 +1029,22 @@ definition {
 			AlloyEditor.addContent(content = "${webContentContentEdit}");
 		}
 
+		if (isSet(webContentSelectWCFile)) {
+			AssertClick(
+				key_fieldName = "${fieldName}",
+				locator1 = "Button#FIELD_SELECT",
+				value1 = "Select");
+
+			IFrame.selectDialogFrame();
+
+			AssertClick(
+				key_webContentTitle = "${webContentSelectWCFile}",
+				locator1 = "Link#WEB_CONTENT_ARTICLE",
+				value1 = "${webContentSelectWCFile}");
+
+			SelectFrame(value1 = "relative=top");
+		}
+
 		if ("${saveAsDraft}" == "true") {
 			Button.clickSaveAsDraft();
 
