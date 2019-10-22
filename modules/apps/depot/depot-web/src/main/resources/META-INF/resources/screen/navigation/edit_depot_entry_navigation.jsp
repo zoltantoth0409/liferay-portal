@@ -17,14 +17,14 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String backURL = ParamUtil.getString(request, "redirect");
+
 String actionCommandName = (String)request.getAttribute(DepotAdminWebKeys.ACTION_COMMAND_NAME);
 String formDescription = (String)request.getAttribute(DepotAdminWebKeys.FORM_DESCRIPTION);
 String formLabel = (String)request.getAttribute(DepotAdminWebKeys.FORM_LABEL);
 String jspPath = (String)request.getAttribute(DepotAdminWebKeys.JSP_PATH);
 
 portletDisplay.setShowBackIcon(true);
-
-String backURL = ParamUtil.getString(request, "redirect");
 
 portletDisplay.setURLBack(backURL);
 
