@@ -688,6 +688,14 @@ definition {
 				uploadFileName = "${webContentImage}");
 		}
 
+		if (isSet(webContentImageUnderDocumentsAndMedia)) {
+			Click(locator1 = "Button#SELECT");
+
+			ItemSelector.uploadFile(
+				navTab = "Documents and Media",
+				uploadFileName = "${webContentImageUnderDocumentsAndMedia}");
+		}
+
 		if (isSet(webContentInteger)) {
 			Type(
 				key_fieldName = "Integer",
