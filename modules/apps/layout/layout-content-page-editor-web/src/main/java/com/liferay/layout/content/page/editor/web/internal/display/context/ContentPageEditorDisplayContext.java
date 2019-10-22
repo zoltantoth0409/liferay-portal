@@ -785,11 +785,11 @@ public class ContentPageEditorDisplayContext {
 
 		Layout layout = themeDisplay.getLayout();
 
-		if (layout.getMasterLayoutPageTemplateEntryId() > 0) {
+		if (layout.getMasterLayoutPlid() > 0) {
 			LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 				LayoutPageTemplateEntryLocalServiceUtil.
-					fetchLayoutPageTemplateEntry(
-						layout.getMasterLayoutPageTemplateEntryId());
+					fetchLayoutPageTemplateEntryByPlid(
+						layout.getMasterLayoutPlid());
 
 			fragmentEntryLinks.addAll(
 				FragmentEntryLinkLocalServiceUtil.getFragmentEntryLinks(
@@ -1073,14 +1073,14 @@ public class ContentPageEditorDisplayContext {
 	private String _getMasterPageLayoutData() {
 		Layout layout = themeDisplay.getLayout();
 
-		if (layout.getMasterLayoutPageTemplateEntryId() <= 0) {
+		if (layout.getMasterLayoutPlid() <= 0) {
 			return null;
 		}
 
 		LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 			LayoutPageTemplateEntryLocalServiceUtil.
-				fetchLayoutPageTemplateEntry(
-					layout.getMasterLayoutPageTemplateEntryId());
+				fetchLayoutPageTemplateEntryByPlid(
+					layout.getMasterLayoutPlid());
 
 		if (masterLayoutPageTemplateEntry == null) {
 			return null;
