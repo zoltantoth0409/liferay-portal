@@ -5349,6 +5349,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		Company company = companyPersistence.findByPrimaryKey(
 			user.getCompanyId());
+
 		String oldFullName = user.getFullName();
 
 		if (!PropsValues.USERS_EMAIL_ADDRESS_REQUIRED &&
