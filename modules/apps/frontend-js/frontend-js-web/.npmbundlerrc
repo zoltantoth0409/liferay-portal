@@ -27,6 +27,5 @@
 		"**/*.js",
 		"!**/*.es.js",
 		"!**/*.soy.js"
-	],
-	"output": "classes/META-INF/resources/"
+	]
 }

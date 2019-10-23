@@ -24,6 +24,5 @@
 		"safer-buffer": [
 			"tests.js"
 		]
-    },
-    "output": "classes/META-INF/resources"
+    }
 }

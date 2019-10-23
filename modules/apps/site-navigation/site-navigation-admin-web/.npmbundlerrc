@@ -13,6 +13,5 @@
 				"metal-web-component": ">=2.16.5"
 			}
 		}
-	},
-	"output": "classes/META-INF/resources/"
+	}
 }
