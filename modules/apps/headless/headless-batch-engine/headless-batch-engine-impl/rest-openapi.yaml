@@ -309,7 +309,7 @@ paths:
                       format: int64
                       type: integer
             responses:
-                202:
+                200:
                     content:
                         application/json:
                             schema:
@@ -318,5 +318,5 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
                     description:
-                        Async
+                        ""
             tags: ["ImportTask"]
