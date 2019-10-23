@@ -1,10 +1,10 @@
-${dataFactory.toInsertSQL(dataFactory.commerceCurrencyModel)}
-
 ${dataFactory.toInsertSQL(dataFactory.commerceCatalogModel)}
 
 ${dataFactory.toInsertSQL(dataFactory.commerceCatalogResourcePermission())}
 
 ${dataFactory.toInsertSQL(dataFactory.commerceChannelModel)}
+
+${dataFactory.toInsertSQL(dataFactory.commerceCurrencyModel)}
 
 <#list dataFactory.CPDefinitionLocalizationModels as cpDefinitionLocalizationModel>
 	${dataFactory.toInsertSQL(cpDefinitionLocalizationModel)}
