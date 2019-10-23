@@ -69,6 +69,9 @@ public class AppBuilderAppDeploymentLocalServiceImpl
 					appBuilderAppDeployment.getAppBuilderAppId());
 			}
 		}
+		catch (PortalException pe) {
+			throw pe;
+		}
 		catch (Exception e) {
 			throw new PortalException(e);
 		}
