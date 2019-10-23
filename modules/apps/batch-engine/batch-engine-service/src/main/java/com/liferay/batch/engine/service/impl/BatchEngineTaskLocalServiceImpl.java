@@ -38,7 +38,6 @@ public class BatchEngineTaskLocalServiceImpl
 	extends BatchEngineTaskLocalServiceBaseImpl {
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public BatchEngineTask addBatchEngineTask(
 		long companyId, long userId, long batchSize, String callbackURL,
 		String className, byte[] content, String contentType,

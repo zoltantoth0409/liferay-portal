@@ -57,7 +57,6 @@ public class BatchEngineTaskItemReaderUtil {
 		return item;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void handleMapField(
 		String fieldName, Map<String, Object> fieldNameValueMap,
 		int lastDelimiterIndex, String value) {
