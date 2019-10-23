@@ -109,10 +109,7 @@ public class DataDefinitionResourceImpl
 		_ddlRecordSetLocalService.deleteDDMStructureRecordSets(
 			dataDefinitionId);
 
-		_deDataDefinitionFieldLinkLocalService.deleteDEDataDefinitionFieldLinks(
-			dataDefinitionId);
-
-		_deDataListViewLocalService.deleteDEDataListViews(dataDefinitionId);
+		_ddmStructureLocalService.deleteDDMStructure(dataDefinitionId);
 
 		List<DDMStructureVersion> ddmStructureVersions =
 			_ddmStructureVersionLocalService.getStructureVersions(
@@ -127,7 +124,10 @@ public class DataDefinitionResourceImpl
 				ddmStructureVersion);
 		}
 
-		_ddmStructureLocalService.deleteDDMStructure(dataDefinitionId);
+		_deDataDefinitionFieldLinkLocalService.deleteDEDataDefinitionFieldLinks(
+			dataDefinitionId);
+
+		_deDataListViewLocalService.deleteDEDataListViews(dataDefinitionId);
 	}
 
 	@Override
