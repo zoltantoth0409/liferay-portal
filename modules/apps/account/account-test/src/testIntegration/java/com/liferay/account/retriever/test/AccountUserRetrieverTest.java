@@ -125,7 +125,9 @@ public class AccountUserRetrieverTest {
 	}
 
 	@Test
-	public void testSearchAccountUsersWithMultipleAccounts() throws Exception {
+	public void testSearchAccountUsersWithMultipleAccountEntries()
+		throws Exception {
+
 		User user1 = UserTestUtil.addUser();
 
 		_users.add(user1);
