@@ -1,3 +1,7 @@
+<#list dataFactory.assetEntryModels as assetEntryModel>
+	${dataFactory.toInsertSQL(assetEntryModel)}
+</#list>
+
 ${dataFactory.toInsertSQL(dataFactory.commerceCatalogModel)}
 
 ${dataFactory.toInsertSQL(dataFactory.commerceCatalogResourcePermission())}
@@ -12,10 +16,6 @@ ${dataFactory.toInsertSQL(dataFactory.commerceCurrencyModel)}
 
 <#list dataFactory.CPDefinitionModels as cpDefinitionModel>
 	${dataFactory.toInsertSQL(cpDefinitionModel)}
-</#list>
-
-<#list dataFactory.assetEntryModels as assetEntryModel>
-	${dataFactory.toInsertSQL(assetEntryModel)}
 </#list>
 
 <#list dataFactory.CPFriendlyURLEntryModels as cpFriendlyURLEntryModel>
