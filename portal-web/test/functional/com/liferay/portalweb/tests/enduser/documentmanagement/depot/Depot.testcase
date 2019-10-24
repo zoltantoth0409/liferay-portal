@@ -54,10 +54,7 @@ definition {
 	@description = "This ensures that a depot can be edited."
 	@priority = "5"
 	test EditDepot {
-		ProductMenu.gotoPortlet(
-			category = "Repositories",
-			panel = "Control Panel",
-			portlet = "Repositories");
+		DepotNavigator.openDepotAdmin();
 
 		Depot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -111,10 +108,7 @@ definition {
 	@description = "This ensures that a depot's description can be searched."
 	@priority = "5"
 	test SearchForDepotDescription {
-		ProductMenu.gotoPortlet(
-			category = "Repositories",
-			panel = "Control Panel",
-			portlet = "Repositories");
+		DepotNavigator.openDepotAdmin();
 
 		Depot.addDepot(
 			depotDescription = "Description 1",
@@ -144,10 +138,7 @@ definition {
 	@description = "This ensures that a depot's title can be searched."
 	@priority = "5"
 	test SearchForDepotTitle {
-		ProductMenu.gotoPortlet(
-			category = "Repositories",
-			panel = "Control Panel",
-			portlet = "Repositories");
+		DepotNavigator.openDepotAdmin();
 
 		Depot.addDepot(depotName = "Depo 1");
 
