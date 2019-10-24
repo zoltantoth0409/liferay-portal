@@ -4567,7 +4567,7 @@ ${output.content}</echo>
 				<echo>tar --extract --file=liferay-portal-source.tar.gz modules/core/portal-bootstrap/build/system.packages.extra.mf --gzip --to-stdout --verbose > modules/core/portal-bootstrap/system.packages.extra.mf
 
 tar -zxvf liferay-portal-source.tar.gz --wildcards '*.profile-dxp.properties'
-</echo>
+				</echo>
 
 				<execute>
 					<![CDATA[
