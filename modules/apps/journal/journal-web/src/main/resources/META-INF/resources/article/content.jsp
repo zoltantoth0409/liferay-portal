@@ -29,7 +29,7 @@ String newArticleId = ParamUtil.getString(request, "newArticleId");
 
 DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 
-DDMTemplate ddmTemplate = (DDMTemplate)request.getAttribute("edit_article.jsp-template");
+DDMTemplate ddmTemplate = journalEditArticleDisplayContext.getDDMTemplate();
 %>
 
 <liferay-ui:error-marker
