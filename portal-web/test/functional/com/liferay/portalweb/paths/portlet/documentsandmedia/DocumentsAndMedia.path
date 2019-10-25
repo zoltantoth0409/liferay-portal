@@ -248,6 +248,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>SIDEBAR_INFO_ACTIVE</td>
+	<td>//div[contains(@class,'contextual-sidebar-visible')] | //div[contains(@class,'open')]/div[contains(@class,'info-panel')]/div[contains(@class,'sidebar')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>SIDEBAR_LATEST_VERSION</td>
 	<td>//div[contains(@class,'sidebar-body')]//div[@class='h5']</td>
 	<td></td>

@@ -909,7 +909,7 @@ definition {
 	macro expandInfo {
 		Click(locator1 = "Icon#INFO");
 
-		AssertVisible(locator1 = "Icon#INFO_ACTIVE");
+		AssertVisible(locator1 = "DocumentsAndMedia#SIDEBAR_INFO_ACTIVE");
 	}
 
 	macro getDMLatestVersionURL {
