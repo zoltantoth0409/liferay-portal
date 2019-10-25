@@ -203,6 +203,12 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--NAVBAR-->
+<tr>
+	<td>NAVBAR_MENU_ITEM</td>
+	<td>//ul[contains(@class,'dropdown-menu-right')]//*[normalize-space(text())='${key_menuItem}']</td>
+	<td></td>
+</tr>
 <!--TOOLBAR-->
 <tr>
 	<td>TOOLBAR_ACTIONS</td>
@@ -244,6 +250,11 @@
 <tr>
 	<td>SIDEBAR_LATEST_VERSION</td>
 	<td>//div[contains(@class,'sidebar-body')]//div[@class='h5']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SIDEBAR_MENU_ITEM</td>
+	<td>//div[contains(@class,'lfr-icon-menu-open')]//*[normalize-space(text())='${key_menuItem}']</td>
 	<td></td>
 </tr>
 <tr>
