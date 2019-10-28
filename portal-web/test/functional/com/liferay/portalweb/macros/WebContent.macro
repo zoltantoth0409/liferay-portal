@@ -209,13 +209,17 @@ definition {
 
 		Panel.expandPanel(panelHeading = "Presentation Settings");
 
-		Select(
-			locator1 = "Select#FEED_ITEM_CONTENT",
-			value1 = "${feedContent}");
+		if (isSet(feedContent)) {
+			Select(
+				locator1 = "Select#FEED_ITEM_CONTENT",
+				value1 = "${feedContent}");
+		}
 
-		Select(
-			locator1 = "Select#FEED_TYPE",
-			value1 = "${feedType}");
+		if (isSet(feedType)) {
+			Select(
+				locator1 = "Select#FEED_TYPE",
+				value1 = "${feedType}");
+		}
 
 		PortletEntry.save();
 	}
