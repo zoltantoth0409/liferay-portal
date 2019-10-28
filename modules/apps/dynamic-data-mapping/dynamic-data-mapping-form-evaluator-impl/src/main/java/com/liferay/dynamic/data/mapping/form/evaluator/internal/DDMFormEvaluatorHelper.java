@@ -698,6 +698,14 @@ public class DDMFormEvaluatorHelper {
 			return;
 		}
 
+		if (newValue instanceof JSONArray) {
+			JSONArray valueJSONArray = (JSONArray)newValue;
+
+			if (valueJSONArray.length() == 0) {
+				return;
+			}
+		}
+
 		Locale locale = value.getDefaultLocale();
 
 		if (value.isLocalized()) {
