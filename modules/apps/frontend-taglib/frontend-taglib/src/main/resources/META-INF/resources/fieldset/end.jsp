@@ -29,6 +29,7 @@
 		) {
 			if (event.target.id === '<%= id %>Content') {
 				var task = {};
+
 				task['<%= id %>'] = event.type === 'hide';
 
 				storeTask(task);
