@@ -44,10 +44,9 @@ public class AccountEntryImpl extends AccountEntryBaseImpl {
 
 	private Group _getAccountEntryGroup() {
 		return GroupLocalServiceUtil.fetchGroup(
-			getCompanyId(), _accountEntryClassNameId, getAccountEntryId());
+			getCompanyId(),
+			ClassNameLocalServiceUtil.getClassNameId(AccountEntry.class),
+			getAccountEntryId());
 	}
-
-	private long _accountEntryClassNameId =
-		ClassNameLocalServiceUtil.getClassNameId(AccountEntry.class);
 
 }
