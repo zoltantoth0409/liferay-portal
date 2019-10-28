@@ -29,8 +29,10 @@ import org.talend.components.api.container.RuntimeContainer;
  */
 public class LiferayBatchFileWriteOperation implements WriteOperation<Result> {
 
-	public LiferayBatchFileWriteOperation(LiferayBatchFileSink fileSink) {
-		_liferayBatchFileSink = fileSink;
+	public LiferayBatchFileWriteOperation(
+		LiferayBatchFileSink liferayBatchFileSink) {
+
+		_liferayBatchFileSink = liferayBatchFileSink;
 	}
 
 	@Override
@@ -42,9 +44,9 @@ public class LiferayBatchFileWriteOperation implements WriteOperation<Result> {
 
 	@Override
 	public Map<String, Object> finalize(
-		Iterable<Result> writerResults, RuntimeContainer adaptor) {
+		Iterable<Result> iterable, RuntimeContainer runtimeContainer) {
 
-		return Result.accumulateAndReturnMap(writerResults);
+		return Result.accumulateAndReturnMap(iterable);
 	}
 
 	@Override
@@ -53,7 +55,7 @@ public class LiferayBatchFileWriteOperation implements WriteOperation<Result> {
 	}
 
 	@Override
-	public void initialize(RuntimeContainer adaptor) {
+	public void initialize(RuntimeContainer runtimeContainer) {
 	}
 
 	private final LiferayBatchFileSink _liferayBatchFileSink;
