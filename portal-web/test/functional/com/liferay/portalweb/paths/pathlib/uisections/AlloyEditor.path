@@ -126,6 +126,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>TEXT_FORMATTING_LINK_INPUT_CONFIRM</td>
+	<td>//button[contains(@aria-label,'Confirm')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>

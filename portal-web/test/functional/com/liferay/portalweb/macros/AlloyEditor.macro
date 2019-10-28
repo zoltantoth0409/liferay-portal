@@ -6,6 +6,18 @@ definition {
 			value1 = "${content}");
 	}
 
+	macro addEntryExternalURL {
+		SelectFieldText(locator1 = "AlloyEditor#CONTENT_FIELD");
+
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+
+		Type(
+			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
+			value1 = "${entryExternalURL}");
+
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT_CONFIRM");
+	}
+
 	macro addLocalizedContent {
 		Type.typeEditor(
 			locator1 = "AlloyEditor#CONTENT_FIELD_LOCALIZED_1",
