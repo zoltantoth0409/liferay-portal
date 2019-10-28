@@ -225,7 +225,6 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 						eventName: '<portlet:namespace />openGraphImageSelectedItem',
 						on: {
 							selectedItemChange: function(event) {
-								debugger;
 								var selectedItem = event.newVal;
 
 								if (selectedItem) {
@@ -243,8 +242,6 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 									var openGraphImageURL = document.getElementById(
 										'<portlet:namespace />openGraphImageURL'
 									);
-
-									debugger;
 
 									if (openGraphImageURL) {
 										openGraphImageURL.value = itemValue.url;
