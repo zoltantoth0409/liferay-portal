@@ -188,6 +188,7 @@ public class CTCollectionLocalServiceImpl
 					Session session = ctPersistence.getCurrentSession();
 
 					session.flush();
+
 					session.clear();
 
 					return null;
