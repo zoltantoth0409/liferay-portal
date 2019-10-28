@@ -96,23 +96,6 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 				_toLogTypes(types)));
 	}
 
-	private WorkflowLog.Type _toWorkflowLogType(String type) {
-		if (type == LogType.NODE_EXIT.name()) {
-			return WorkflowLog.Type.TRANSITION;
-		}
-		else if (type == LogType.TASK_ASSIGNMENT.name()) {
-			return WorkflowLog.Type.TASK_ASSIGN;
-		}
-		else if (type == LogType.TASK_COMPLETION.name()) {
-			return WorkflowLog.Type.TASK_COMPLETION;
-		}
-		else if (type == LogType.TASK_UPDATE.name()) {
-			return WorkflowLog.Type.TASK_UPDATE;
-		}
-
-		return null;
-	}
-
 	private String _toLogTypeName(WorkflowLog.Type type) {
 		if (type == WorkflowLog.Type.TASK_ASSIGN) {
 			return LogType.TASK_ASSIGNMENT.name();
@@ -199,6 +182,23 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 					KaleoLogUtil.convert(workflowLog.getType()));
 			}
 		};
+	}
+
+	private WorkflowLog.Type _toWorkflowLogType(String type) {
+		if (type == LogType.NODE_EXIT.name()) {
+			return WorkflowLog.Type.TRANSITION;
+		}
+		else if (type == LogType.TASK_ASSIGNMENT.name()) {
+			return WorkflowLog.Type.TASK_ASSIGN;
+		}
+		else if (type == LogType.TASK_COMPLETION.name()) {
+			return WorkflowLog.Type.TASK_COMPLETION;
+		}
+		else if (type == LogType.TASK_UPDATE.name()) {
+			return WorkflowLog.Type.TASK_UPDATE;
+		}
+
+		return null;
 	}
 
 	@Reference
