@@ -58,7 +58,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 			transform(
 				_workflowLogManager.getWorkflowLogsByWorkflowInstance(
 					contextCompany.getCompanyId(), workflowInstanceId,
-					_getLogTypes(types), pagination.getStartPosition(),
+					_toLogTypes(types), pagination.getStartPosition(),
 					pagination.getEndPosition(),
 					WorkflowComparatorFactoryUtil.getLogCreateDateComparator(
 						false)),
@@ -66,7 +66,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 			pagination,
 			_workflowLogManager.getWorkflowLogCountByWorkflowInstance(
 				contextCompany.getCompanyId(), workflowInstanceId,
-				_getLogTypes(types)));
+				_toLogTypes(types)));
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 			transform(
 				_workflowLogManager.getWorkflowLogsByWorkflowTask(
 					contextCompany.getCompanyId(), workflowTaskId,
-					_getLogTypes(types), pagination.getStartPosition(),
+					_toLogTypes(types), pagination.getStartPosition(),
 					pagination.getEndPosition(),
 					WorkflowComparatorFactoryUtil.getLogCreateDateComparator(
 						false)),
@@ -93,10 +93,10 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 			pagination,
 			_workflowLogManager.getWorkflowLogCountByWorkflowTask(
 				contextCompany.getCompanyId(), workflowTaskId,
-				_getLogTypes(types)));
+				_toLogTypes(types)));
 	}
 
-	private WorkflowLog.Type _convertWorkflowLogType(String type) {
+	private WorkflowLog.Type _toWorkflowLogType(String type) {
 		if (type == LogType.NODE_EXIT.name()) {
 			return WorkflowLog.Type.TRANSITION;
 		}
@@ -130,7 +130,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 		return null;
 	}
 
-	private List<Integer> _getLogTypes(String[] types) {
+	private List<Integer> _toLogTypes(String[] types) {
 		return Stream.of(
 			types
 		).map(
@@ -195,7 +195,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 				role = _toRole(workflowLog.getRoleId());
 				state = workflowLog.getState();
 				taskId = workflowLog.getWorkflowTaskId();
-				type = _convertWorkflowLogType(
+				type = _toWorkflowLogType(
 					KaleoLogUtil.convert(workflowLog.getType()));
 			}
 		};
