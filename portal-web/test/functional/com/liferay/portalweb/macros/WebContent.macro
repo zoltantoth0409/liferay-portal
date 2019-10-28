@@ -2135,6 +2135,14 @@ definition {
 			value1 = "${structureName}");
 	}
 
+	macro viewTableEntryCP {
+		var key_feedName = "${feedName}";
+
+		AssertTextEquals(
+			locator1 = "DDMSelectFeed#FEED_TABLE_NAME",
+			value1 = "${feedName}");
+	}
+
 	macro viewTitle {
 		if (!(contains("${webContentTitleEscapeCharacter}", "{webContentTitleEscapeCharacter}"))) {
 			var key_webContentTitle = "${webContentTitleEscapeCharacter}";
