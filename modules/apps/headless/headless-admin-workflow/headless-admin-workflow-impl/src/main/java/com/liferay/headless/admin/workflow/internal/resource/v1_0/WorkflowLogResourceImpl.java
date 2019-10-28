@@ -113,7 +113,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 		return null;
 	}
 
-	private String _convertWorkflowLogType(WorkflowLog.Type type) {
+	private String _toLogTypeName(WorkflowLog.Type type) {
 		if (type == WorkflowLog.Type.TASK_ASSIGN) {
 			return LogType.TASK_ASSIGNMENT.name();
 		}
@@ -136,7 +136,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 		).map(
 			WorkflowLog.Type::create
 		).map(
-			this::_convertWorkflowLogType
+			this::_toLogTypeName
 		).map(
 			KaleoLogUtil::convert
 		).distinct(
