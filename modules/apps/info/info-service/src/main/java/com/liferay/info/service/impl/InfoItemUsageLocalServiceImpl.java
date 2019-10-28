@@ -53,10 +53,8 @@ public class InfoItemUsageLocalServiceImpl
 		long containerType, long plid, int type,
 		ServiceContext serviceContext) {
 
-		long infoItemUsageId = counterLocalService.increment();
-
 		InfoItemUsage infoItemUsage = infoItemUsagePersistence.create(
-			infoItemUsageId);
+			counterLocalService.increment());
 
 		infoItemUsage.setUuid(serviceContext.getUuid());
 		infoItemUsage.setGroupId(groupId);
