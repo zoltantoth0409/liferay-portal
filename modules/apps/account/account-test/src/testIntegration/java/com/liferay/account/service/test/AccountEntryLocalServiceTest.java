@@ -61,29 +61,20 @@ public class AccountEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testAccountEntryGroupCreated() throws Exception {
+	public void testAccountEntryGroup() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
 		Group group = accountEntry.getAccountEntryGroup();
 
-		// Finds group
-
 		Assert.assertNotNull(group);
-
-		// Group classNameId is for AccountEntry
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			AccountEntry.class);
 
 		Assert.assertEquals(classNameId, group.getClassNameId());
 
-		// Group classPK is the accountEntryId
-
 		Assert.assertEquals(
 			accountEntry.getAccountEntryId(), group.getClassPK());
-
-		// AccountEntry group groupId is the same as the one returned by
-		// getAccountEntryGroupId
 
 		long accountEntryGroupId = accountEntry.getAccountEntryGroupId();
 
@@ -91,13 +82,6 @@ public class AccountEntryLocalServiceTest {
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, accountEntryGroupId);
 
 		Assert.assertEquals(group.getGroupId(), accountEntryGroupId);
-	}
-
-	@Test
-	public void testAccountEntryGroupDeleted() throws Exception {
-		AccountEntry accountEntry = _addAccountEntry();
-
-		Assert.assertNotNull(accountEntry.getAccountEntryGroup());
 
 		_accountEntryLocalService.deleteAccountEntry(accountEntry);
 
