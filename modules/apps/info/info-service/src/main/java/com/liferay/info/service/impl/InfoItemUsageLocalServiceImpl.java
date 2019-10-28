@@ -49,8 +49,8 @@ public class InfoItemUsageLocalServiceImpl
 
 	@Override
 	public InfoItemUsage addInfoItemUsage(
-		long groupId, long classNameId, long classPK, long containerType,
-		String containerKey, long plid, int type,
+		long groupId, long classNameId, long classPK, String containerKey,
+		long containerType, long plid, int type,
 		ServiceContext serviceContext) {
 
 		long infoItemUsageId = counterLocalService.increment();
