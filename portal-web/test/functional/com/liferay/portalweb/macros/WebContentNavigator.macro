@@ -114,6 +114,12 @@ definition {
 		Portlet.gotoPortletOptions(portletOption = "${localizedPortletOption}");
 	}
 
+	macro gotoManageFeeds {
+		LexiconEntry.gotoHeaderMenuItem(menuItem = "Feeds");
+
+		SiteAdmin.viewPortletTitle(portletTitle = "Feeds");
+	}
+
 	macro gotoManageStructures {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Structures");
 
