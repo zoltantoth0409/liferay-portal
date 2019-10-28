@@ -143,11 +143,11 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 		long accountEntryId = ParamUtil.getLong(
 			liferayPortletRequest, "accountEntryId");
 
-		long accountUsersCount =
+		long count =
 			AccountEntryUserRelLocalServiceUtil.
 				getAccountEntryUserRelsCountByAccountEntryId(accountEntryId);
 
-		if (accountUsersCount > 0) {
+		if (count > 0) {
 			return false;
 		}
 
