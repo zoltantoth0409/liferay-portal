@@ -178,26 +178,23 @@ public class DataDefinitionResourceImpl
 			Long dataDefinitionId, String fieldName)
 		throws Exception {
 
-		List<DEDataDefinitionFieldLink> deDataLayoutFieldLinks =
+		List<DEDataDefinitionFieldLink> deDataDefinitionFieldLinks =
 			_deDataDefinitionFieldLinkLocalService.
 				getDEDataDefinitionFieldLinks(
 					_portal.getClassNameId(InternalDataLayout.class),
 					dataDefinitionId, fieldName);
 
-		String[] dataLayoutNames = {};
+		String[] dataLayoutNames = transformToArray(
+			deDataDefinitionFieldLinks,
+			deDataDefinitionFieldLink -> {
+				DDMStructureLayout ddmStructureLayout =
+					_ddmStructureLayoutLocalService.getDDMStructureLayout(
+						deDataDefinitionFieldLink.getClassPK());
 
-		for (DEDataDefinitionFieldLink deDataDefinitionFieldLink :
-				deDataLayoutFieldLinks) {
-
-			DDMStructureLayout ddmStructureLayout =
-				_ddmStructureLayoutLocalService.getDDMStructureLayout(
-					deDataDefinitionFieldLink.getClassPK());
-
-			dataLayoutNames = ArrayUtil.append(
-				dataLayoutNames,
-				ddmStructureLayout.getName(
-					ddmStructureLayout.getDefaultLanguageId()));
-		}
+				return ddmStructureLayout.getName(
+					ddmStructureLayout.getDefaultLanguageId());
+			},
+			String.class);
 
 		List<DEDataDefinitionFieldLink> deDataListViewFieldLinks =
 			_deDataDefinitionFieldLinkLocalService.
