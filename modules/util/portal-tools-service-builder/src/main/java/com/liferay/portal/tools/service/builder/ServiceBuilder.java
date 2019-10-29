@@ -1698,12 +1698,12 @@ public class ServiceBuilder {
 			methodName.equals("deactivate") || methodName.equals("destroy") ||
 			methodName.equals("equals") ||
 			methodName.equals("getAopInterfaces") ||
+			methodName.equals("getCTIgnoredAttributeNames") ||
+			methodName.equals("getCTMergeableAttributeNames") ||
 			methodName.equals("getCTPersistence") ||
 			methodName.equals("getClass") ||
 			methodName.equals("getModelClass") ||
 			methodName.equals("getService") ||
-			methodName.equals("getCTIgnoredAttributeNames") ||
-			methodName.equals("getCTMergeableAttributeNames") ||
 			methodName.equals("getUniqueIndexColumnNames") ||
 			methodName.equals("getWrappedService") ||
 			methodName.equals("hashCode") || methodName.equals("notify") ||
