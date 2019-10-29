@@ -402,6 +402,22 @@ public class DataLayoutResourceImpl
 		_modelResourcePermission = modelResourcePermission;
 	}
 
+	private void _addDataDefinitionFieldLinks(
+		long dataDefinitionId, long dataLayoutId, String dataLayoutJSON,
+		long groupId) {
+
+		DocumentContext documentContext = JsonPath.parse(dataLayoutJSON);
+
+		List<String> fieldNames = documentContext.read(
+			"$[\"pages\"][*][\"rows\"][*][\"columns\"][*][\"fieldNames\"][*]");
+
+		for (String fieldName : fieldNames) {
+			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
+				groupId, _getClassNameId(), dataLayoutId, dataDefinitionId,
+				fieldName);
+		}
+	}
+
 	private long _getClassNameId() {
 		return _portal.getClassNameId(InternalDataLayout.class);
 	}
@@ -426,22 +442,6 @@ public class DataLayoutResourceImpl
 				deDataDefinitionId);
 
 		return ddmStructureVersion.getStructureVersionId();
-	}
-
-	private void _addDataDefinitionFieldLinks(
-		long dataDefinitionId, long dataLayoutId, String dataLayoutJSON,
-		long groupId) {
-
-		DocumentContext documentContext = JsonPath.parse(dataLayoutJSON);
-
-		List<String> fieldNames = documentContext.read(
-			"$[\"pages\"][*][\"rows\"][*][\"columns\"][*][\"fieldNames\"][*]");
-
-		for (String fieldName : fieldNames) {
-			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
-				groupId, _getClassNameId(), dataLayoutId, dataDefinitionId,
-				fieldName);
-		}
 	}
 
 	private DataLayout _toDataLayout(DDMStructureLayout ddmStructureLayout)

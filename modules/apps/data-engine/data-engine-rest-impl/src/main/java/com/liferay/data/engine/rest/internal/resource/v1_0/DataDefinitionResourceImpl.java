@@ -17,7 +17,6 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 import com.liferay.data.engine.field.type.FieldType;
 import com.liferay.data.engine.field.type.FieldTypeTracker;
 import com.liferay.data.engine.field.type.util.LocalizedValueUtil;
-import com.liferay.data.engine.model.DEDataDefinitionFieldLink;
 import com.liferay.data.engine.model.DEDataListView;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionPermission;
@@ -196,7 +195,7 @@ public class DataDefinitionResourceImpl
 				String.class)
 		).put(
 			"dataListViews",
-				transformToArray(
+			transformToArray(
 				_deDataDefinitionFieldLinkLocalService.
 					getDEDataDefinitionFieldLinks(
 						_portal.getClassNameId(DEDataListView.class),
