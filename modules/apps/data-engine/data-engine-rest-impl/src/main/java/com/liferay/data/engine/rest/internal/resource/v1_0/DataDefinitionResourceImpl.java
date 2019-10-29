@@ -193,25 +193,20 @@ public class DataDefinitionResourceImpl
 			},
 			String.class);
 
-		List<DEDataDefinitionFieldLink> deDataDefinitionFieldLinks =
+		String[] dataListViewNames = transformToArray(
 			_deDataDefinitionFieldLinkLocalService.
 				getDEDataDefinitionFieldLinks(
 					_portal.getClassNameId(DEDataListView.class),
-					dataDefinitionId, fieldName);
+					dataDefinitionId, fieldName),
+			deDataDefinitionFieldLink -> {
+				DEDataListView deDataListView =
+					_deDataListViewLocalService.getDEDataListView(
+						deDataDefinitionFieldLink.getClassPK());
 
-		String[] dataListViewNames = {};
-
-		for (DEDataDefinitionFieldLink deDataDefinitionFieldLink :
-				deDataDefinitionFieldLinks) {
-
-			DEDataListView deDataListView =
-				_deDataListViewLocalService.getDEDataListView(
-					deDataDefinitionFieldLink.getClassPK());
-
-			dataListViewNames = ArrayUtil.append(
-				dataListViewNames,
-				deDataListView.getName(deDataListView.getDefaultLanguageId()));
-		}
+				return deDataListView.getName(
+					deDataListView.getDefaultLanguageId());
+			},
+			String.class);
 
 		return JSONUtil.put(
 			"dataLayouts", dataLayoutNames
