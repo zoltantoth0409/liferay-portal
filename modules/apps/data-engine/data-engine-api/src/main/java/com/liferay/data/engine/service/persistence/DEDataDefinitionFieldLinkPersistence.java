@@ -541,7 +541,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param fieldName the field name
 	 * @return the matching de data definition field links
 	 */
-	public java.util.List<DEDataDefinitionFieldLink> findByC_D_F(
+	public java.util.List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName);
 
 	/**
@@ -558,7 +558,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param end the upper bound of the range of de data definition field links (not inclusive)
 	 * @return the range of matching de data definition field links
 	 */
-	public java.util.List<DEDataDefinitionFieldLink> findByC_D_F(
+	public java.util.List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end);
 
@@ -577,7 +577,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching de data definition field links
 	 */
-	public java.util.List<DEDataDefinitionFieldLink> findByC_D_F(
+	public java.util.List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator
@@ -599,7 +599,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching de data definition field links
 	 */
-	public java.util.List<DEDataDefinitionFieldLink> findByC_D_F(
+	public java.util.List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator
@@ -616,7 +616,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @return the first matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink findByC_D_F_First(
+	public DEDataDefinitionFieldLink findByC_DDMSI_F_First(
 			long classNameId, long ddmStructureId, String fieldName,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<DEDataDefinitionFieldLink> orderByComparator)
@@ -631,7 +631,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink fetchByC_D_F_First(
+	public DEDataDefinitionFieldLink fetchByC_DDMSI_F_First(
 		long classNameId, long ddmStructureId, String fieldName,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<DEDataDefinitionFieldLink> orderByComparator);
@@ -646,7 +646,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @return the last matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink findByC_D_F_Last(
+	public DEDataDefinitionFieldLink findByC_DDMSI_F_Last(
 			long classNameId, long ddmStructureId, String fieldName,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<DEDataDefinitionFieldLink> orderByComparator)
@@ -661,7 +661,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink fetchByC_D_F_Last(
+	public DEDataDefinitionFieldLink fetchByC_DDMSI_F_Last(
 		long classNameId, long ddmStructureId, String fieldName,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<DEDataDefinitionFieldLink> orderByComparator);
@@ -677,7 +677,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @return the previous, current, and next de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a de data definition field link with the primary key could not be found
 	 */
-	public DEDataDefinitionFieldLink[] findByC_D_F_PrevAndNext(
+	public DEDataDefinitionFieldLink[] findByC_DDMSI_F_PrevAndNext(
 			long deDataDefinitionFieldLinkId, long classNameId,
 			long ddmStructureId, String fieldName,
 			com.liferay.portal.kernel.util.OrderByComparator
@@ -691,7 +691,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param ddmStructureId the ddm structure ID
 	 * @param fieldName the field name
 	 */
-	public void removeByC_D_F(
+	public void removeByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName);
 
 	/**
@@ -702,7 +702,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param fieldName the field name
 	 * @return the number of matching de data definition field links
 	 */
-	public int countByC_D_F(
+	public int countByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName);
 
 	/**
@@ -715,7 +715,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @return the matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink findByC_C_D_F(
+	public DEDataDefinitionFieldLink findByC_C_DDMSI_F(
 			long classNameId, long classPK, long ddmStructureId,
 			String fieldName)
 		throws NoSuchDataDefinitionFieldLinkException;
@@ -729,7 +729,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param fieldName the field name
 	 * @return the matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink fetchByC_C_D_F(
+	public DEDataDefinitionFieldLink fetchByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName);
 
 	/**
@@ -742,7 +742,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public DEDataDefinitionFieldLink fetchByC_C_D_F(
+	public DEDataDefinitionFieldLink fetchByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName,
 		boolean useFinderCache);
 
@@ -755,7 +755,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param fieldName the field name
 	 * @return the de data definition field link that was removed
 	 */
-	public DEDataDefinitionFieldLink removeByC_C_D_F(
+	public DEDataDefinitionFieldLink removeByC_C_DDMSI_F(
 			long classNameId, long classPK, long ddmStructureId,
 			String fieldName)
 		throws NoSuchDataDefinitionFieldLinkException;
@@ -769,7 +769,7 @@ public interface DEDataDefinitionFieldLinkPersistence
 	 * @param fieldName the field name
 	 * @return the number of matching de data definition field links
 	 */
-	public int countByC_C_D_F(
+	public int countByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName);
 
 	/**

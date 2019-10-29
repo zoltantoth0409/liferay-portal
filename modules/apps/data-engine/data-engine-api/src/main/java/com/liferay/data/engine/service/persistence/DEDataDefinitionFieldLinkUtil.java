@@ -747,10 +747,10 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param fieldName the field name
 	 * @return the matching de data definition field links
 	 */
-	public static List<DEDataDefinitionFieldLink> findByC_D_F(
+	public static List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName) {
 
-		return getPersistence().findByC_D_F(
+		return getPersistence().findByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName);
 	}
 
@@ -768,11 +768,11 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param end the upper bound of the range of de data definition field links (not inclusive)
 	 * @return the range of matching de data definition field links
 	 */
-	public static List<DEDataDefinitionFieldLink> findByC_D_F(
+	public static List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end) {
 
-		return getPersistence().findByC_D_F(
+		return getPersistence().findByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName, start, end);
 	}
 
@@ -791,12 +791,12 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching de data definition field links
 	 */
-	public static List<DEDataDefinitionFieldLink> findByC_D_F(
+	public static List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end,
 		OrderByComparator<DEDataDefinitionFieldLink> orderByComparator) {
 
-		return getPersistence().findByC_D_F(
+		return getPersistence().findByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName, start, end,
 			orderByComparator);
 	}
@@ -817,12 +817,12 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching de data definition field links
 	 */
-	public static List<DEDataDefinitionFieldLink> findByC_D_F(
+	public static List<DEDataDefinitionFieldLink> findByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName, int start,
 		int end, OrderByComparator<DEDataDefinitionFieldLink> orderByComparator,
 		boolean useFinderCache) {
 
-		return getPersistence().findByC_D_F(
+		return getPersistence().findByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName, start, end,
 			orderByComparator, useFinderCache);
 	}
@@ -837,13 +837,13 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @return the first matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink findByC_D_F_First(
+	public static DEDataDefinitionFieldLink findByC_DDMSI_F_First(
 			long classNameId, long ddmStructureId, String fieldName,
 			OrderByComparator<DEDataDefinitionFieldLink> orderByComparator)
 		throws com.liferay.data.engine.exception.
 			NoSuchDataDefinitionFieldLinkException {
 
-		return getPersistence().findByC_D_F_First(
+		return getPersistence().findByC_DDMSI_F_First(
 			classNameId, ddmStructureId, fieldName, orderByComparator);
 	}
 
@@ -856,11 +856,11 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink fetchByC_D_F_First(
+	public static DEDataDefinitionFieldLink fetchByC_DDMSI_F_First(
 		long classNameId, long ddmStructureId, String fieldName,
 		OrderByComparator<DEDataDefinitionFieldLink> orderByComparator) {
 
-		return getPersistence().fetchByC_D_F_First(
+		return getPersistence().fetchByC_DDMSI_F_First(
 			classNameId, ddmStructureId, fieldName, orderByComparator);
 	}
 
@@ -874,13 +874,13 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @return the last matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink findByC_D_F_Last(
+	public static DEDataDefinitionFieldLink findByC_DDMSI_F_Last(
 			long classNameId, long ddmStructureId, String fieldName,
 			OrderByComparator<DEDataDefinitionFieldLink> orderByComparator)
 		throws com.liferay.data.engine.exception.
 			NoSuchDataDefinitionFieldLinkException {
 
-		return getPersistence().findByC_D_F_Last(
+		return getPersistence().findByC_DDMSI_F_Last(
 			classNameId, ddmStructureId, fieldName, orderByComparator);
 	}
 
@@ -893,11 +893,11 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink fetchByC_D_F_Last(
+	public static DEDataDefinitionFieldLink fetchByC_DDMSI_F_Last(
 		long classNameId, long ddmStructureId, String fieldName,
 		OrderByComparator<DEDataDefinitionFieldLink> orderByComparator) {
 
-		return getPersistence().fetchByC_D_F_Last(
+		return getPersistence().fetchByC_DDMSI_F_Last(
 			classNameId, ddmStructureId, fieldName, orderByComparator);
 	}
 
@@ -912,14 +912,14 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @return the previous, current, and next de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a de data definition field link with the primary key could not be found
 	 */
-	public static DEDataDefinitionFieldLink[] findByC_D_F_PrevAndNext(
+	public static DEDataDefinitionFieldLink[] findByC_DDMSI_F_PrevAndNext(
 			long deDataDefinitionFieldLinkId, long classNameId,
 			long ddmStructureId, String fieldName,
 			OrderByComparator<DEDataDefinitionFieldLink> orderByComparator)
 		throws com.liferay.data.engine.exception.
 			NoSuchDataDefinitionFieldLinkException {
 
-		return getPersistence().findByC_D_F_PrevAndNext(
+		return getPersistence().findByC_DDMSI_F_PrevAndNext(
 			deDataDefinitionFieldLinkId, classNameId, ddmStructureId, fieldName,
 			orderByComparator);
 	}
@@ -931,10 +931,11 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param ddmStructureId the ddm structure ID
 	 * @param fieldName the field name
 	 */
-	public static void removeByC_D_F(
+	public static void removeByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName) {
 
-		getPersistence().removeByC_D_F(classNameId, ddmStructureId, fieldName);
+		getPersistence().removeByC_DDMSI_F(
+			classNameId, ddmStructureId, fieldName);
 	}
 
 	/**
@@ -945,10 +946,10 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param fieldName the field name
 	 * @return the number of matching de data definition field links
 	 */
-	public static int countByC_D_F(
+	public static int countByC_DDMSI_F(
 		long classNameId, long ddmStructureId, String fieldName) {
 
-		return getPersistence().countByC_D_F(
+		return getPersistence().countByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName);
 	}
 
@@ -962,13 +963,13 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @return the matching de data definition field link
 	 * @throws NoSuchDataDefinitionFieldLinkException if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink findByC_C_D_F(
+	public static DEDataDefinitionFieldLink findByC_C_DDMSI_F(
 			long classNameId, long classPK, long ddmStructureId,
 			String fieldName)
 		throws com.liferay.data.engine.exception.
 			NoSuchDataDefinitionFieldLinkException {
 
-		return getPersistence().findByC_C_D_F(
+		return getPersistence().findByC_C_DDMSI_F(
 			classNameId, classPK, ddmStructureId, fieldName);
 	}
 
@@ -981,10 +982,10 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param fieldName the field name
 	 * @return the matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink fetchByC_C_D_F(
+	public static DEDataDefinitionFieldLink fetchByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName) {
 
-		return getPersistence().fetchByC_C_D_F(
+		return getPersistence().fetchByC_C_DDMSI_F(
 			classNameId, classPK, ddmStructureId, fieldName);
 	}
 
@@ -998,11 +999,11 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching de data definition field link, or <code>null</code> if a matching de data definition field link could not be found
 	 */
-	public static DEDataDefinitionFieldLink fetchByC_C_D_F(
+	public static DEDataDefinitionFieldLink fetchByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName,
 		boolean useFinderCache) {
 
-		return getPersistence().fetchByC_C_D_F(
+		return getPersistence().fetchByC_C_DDMSI_F(
 			classNameId, classPK, ddmStructureId, fieldName, useFinderCache);
 	}
 
@@ -1015,13 +1016,13 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param fieldName the field name
 	 * @return the de data definition field link that was removed
 	 */
-	public static DEDataDefinitionFieldLink removeByC_C_D_F(
+	public static DEDataDefinitionFieldLink removeByC_C_DDMSI_F(
 			long classNameId, long classPK, long ddmStructureId,
 			String fieldName)
 		throws com.liferay.data.engine.exception.
 			NoSuchDataDefinitionFieldLinkException {
 
-		return getPersistence().removeByC_C_D_F(
+		return getPersistence().removeByC_C_DDMSI_F(
 			classNameId, classPK, ddmStructureId, fieldName);
 	}
 
@@ -1034,10 +1035,10 @@ public class DEDataDefinitionFieldLinkUtil {
 	 * @param fieldName the field name
 	 * @return the number of matching de data definition field links
 	 */
-	public static int countByC_C_D_F(
+	public static int countByC_C_DDMSI_F(
 		long classNameId, long classPK, long ddmStructureId, String fieldName) {
 
-		return getPersistence().countByC_C_D_F(
+		return getPersistence().countByC_C_DDMSI_F(
 			classNameId, classPK, ddmStructureId, fieldName);
 	}
 
