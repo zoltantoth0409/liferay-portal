@@ -178,40 +178,38 @@ public class DataDefinitionResourceImpl
 			Long dataDefinitionId, String fieldName)
 		throws Exception {
 
-		String[] dataLayoutNames = transformToArray(
-			_deDataDefinitionFieldLinkLocalService.
-				getDEDataDefinitionFieldLinks(
-					_portal.getClassNameId(InternalDataLayout.class),
-					dataDefinitionId, fieldName),
-			deDataDefinitionFieldLink -> {
-				DDMStructureLayout ddmStructureLayout =
-					_ddmStructureLayoutLocalService.getDDMStructureLayout(
-						deDataDefinitionFieldLink.getClassPK());
-
-				return ddmStructureLayout.getName(
-					ddmStructureLayout.getDefaultLanguageId());
-			},
-			String.class);
-
-		String[] dataListViewNames = transformToArray(
-			_deDataDefinitionFieldLinkLocalService.
-				getDEDataDefinitionFieldLinks(
-					_portal.getClassNameId(DEDataListView.class),
-					dataDefinitionId, fieldName),
-			deDataDefinitionFieldLink -> {
-				DEDataListView deDataListView =
-					_deDataListViewLocalService.getDEDataListView(
-						deDataDefinitionFieldLink.getClassPK());
-
-				return deDataListView.getName(
-					deDataListView.getDefaultLanguageId());
-			},
-			String.class);
-
 		return JSONUtil.put(
-			"dataLayouts", dataLayoutNames
+			"dataLayouts",
+			transformToArray(
+				_deDataDefinitionFieldLinkLocalService.
+					getDEDataDefinitionFieldLinks(
+						_portal.getClassNameId(InternalDataLayout.class),
+						dataDefinitionId, fieldName),
+				deDataDefinitionFieldLink -> {
+					DDMStructureLayout ddmStructureLayout =
+						_ddmStructureLayoutLocalService.getDDMStructureLayout(
+							deDataDefinitionFieldLink.getClassPK());
+
+					return ddmStructureLayout.getName(
+						ddmStructureLayout.getDefaultLanguageId());
+				},
+				String.class)
 		).put(
-			"dataListViews", dataListViewNames
+			"dataListViews",
+				transformToArray(
+				_deDataDefinitionFieldLinkLocalService.
+					getDEDataDefinitionFieldLinks(
+						_portal.getClassNameId(DEDataListView.class),
+						dataDefinitionId, fieldName),
+				deDataDefinitionFieldLink -> {
+					DEDataListView deDataListView =
+						_deDataListViewLocalService.getDEDataListView(
+							deDataDefinitionFieldLink.getClassPK());
+
+					return deDataListView.getName(
+						deDataListView.getDefaultLanguageId());
+				},
+				String.class)
 		).toString();
 	}
 
