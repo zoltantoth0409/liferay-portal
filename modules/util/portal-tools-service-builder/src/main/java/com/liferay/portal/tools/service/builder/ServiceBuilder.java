@@ -5831,19 +5831,8 @@ public class ServiceBuilder {
 				}
 			}
 
-			String changeTrackingMode = "strict";
-
-			if (columnName.equals("modifiedDate") &&
-				columnType.equals("Date")) {
-
-				changeTrackingMode = "ignore";
-			}
-
 			String idType = columnElement.attributeValue("id-type");
 			String idParam = columnElement.attributeValue("id-param");
-			changeTrackingMode = GetterUtil.getString(
-				columnElement.attributeValue("change-tracking-mode"),
-				changeTrackingMode);
 			boolean convertNull = GetterUtil.getBoolean(
 				columnElement.attributeValue("convert-null"), true);
 			boolean lazy = GetterUtil.getBoolean(
@@ -5852,6 +5841,19 @@ public class ServiceBuilder {
 				columnElement.attributeValue("localized"));
 			boolean colJsonEnabled = GetterUtil.getBoolean(
 				columnElement.attributeValue("json-enabled"), jsonEnabled);
+
+			String changeTrackingMode = "strict";
+
+			if (columnName.equals("modifiedDate") &&
+				columnType.equals("Date")) {
+
+				changeTrackingMode = "ignore";
+			}
+
+			changeTrackingMode = GetterUtil.getString(
+				columnElement.attributeValue("change-tracking-mode"),
+				changeTrackingMode);
+
 			boolean containerModel = GetterUtil.getBoolean(
 				columnElement.attributeValue("container-model"));
 			boolean parentContainerModel = GetterUtil.getBoolean(
