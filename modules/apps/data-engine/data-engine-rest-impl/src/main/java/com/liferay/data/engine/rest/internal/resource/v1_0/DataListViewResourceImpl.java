@@ -171,8 +171,9 @@ public class DataListViewResourceImpl
 				dataListView.getSortField()));
 
 		_saveDataDefinitionFieldLinks(
-			dataListView.getSiteId(), dataListView.getDataDefinitionId(),
-			dataListView.getId(), dataListView.getFieldNames());
+			dataListView.getDataDefinitionId(),
+			dataListView.getId(), dataListView.getFieldNames(),
+			dataListView.getSiteId());
 
 		return dataListView;
 	}
@@ -194,8 +195,9 @@ public class DataListViewResourceImpl
 			_getClassNameId(), dataListViewId);
 
 		_saveDataDefinitionFieldLinks(
-			dataListView.getSiteId(), dataListView.getDataDefinitionId(),
-			dataListView.getId(), dataListView.getFieldNames());
+			dataListView.getDataDefinitionId(),
+			dataListView.getId(), dataListView.getFieldNames(),
+			dataListView.getSiteId());
 
 		return dataListView;
 	}
@@ -205,8 +207,8 @@ public class DataListViewResourceImpl
 	}
 
 	private void _saveDataDefinitionFieldLinks(
-		long groupId, long dataDefinitionId, long dataListViewId,
-		String[] fieldNames) {
+		long dataDefinitionId, long dataListViewId,
+		String[] fieldNames, long groupId) {
 
 		for (String fieldName : fieldNames) {
 			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(

@@ -285,8 +285,8 @@ public class DataLayoutResourceImpl
 			serviceContext.getModelPermissions());
 
 		_saveDataDefinitionFieldLinks(
-			dataLayout.getSiteId(), dataDefinitionId, dataLayout.getId(),
-			dataLayoutJSON);
+			dataDefinitionId, dataLayout.getId(), dataLayoutJSON,
+			dataLayout.getSiteId());
 
 		return dataLayout;
 	}
@@ -385,8 +385,8 @@ public class DataLayoutResourceImpl
 			_getClassNameId(), dataLayoutId);
 
 		_saveDataDefinitionFieldLinks(
-			dataLayout.getSiteId(), dataLayout.getDataDefinitionId(),
-			dataLayoutId, dataLayoutJSON);
+			dataLayout.getDataDefinitionId(), dataLayoutId, dataLayoutJSON,
+			dataLayout.getSiteId());
 
 		return dataLayout;
 	}
@@ -429,8 +429,8 @@ public class DataLayoutResourceImpl
 	}
 
 	private void _saveDataDefinitionFieldLinks(
-		long groupId, long dataDefinitionId, long dataLayoutId,
-		String dataLayoutJSON) {
+		long dataDefinitionId, long dataLayoutId, String dataLayoutJSON,
+		long groupId) {
 
 		DocumentContext documentContext = JsonPath.parse(dataLayoutJSON);
 
