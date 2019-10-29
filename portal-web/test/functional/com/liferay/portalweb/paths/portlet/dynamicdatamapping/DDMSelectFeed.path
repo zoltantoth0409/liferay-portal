@@ -14,11 +14,6 @@
 	<td>//div[contains(@id,'feedsSearchContainer')]//tr[contains(.,'${key_feedName}')]/td[count(//th[contains(.,'Name')]//preceding-sibling::th) + 1][1]</td>
 	<td></td>
 </tr>
-<tr>
-	<td>FEED_TABLE_NAME_LINK</td>
-	<td>//div[contains(@id,'feedsSearchContainer')]//tr[contains(.,'${key_feedName}')]/td[count(//th[contains(.,'Name')]//preceding-sibling::th) + 1]//a[1]</td>
-	<td></td>
-</tr>
 </tbody>
 </table>
 </body>
