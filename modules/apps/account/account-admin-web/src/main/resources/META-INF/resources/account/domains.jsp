@@ -62,7 +62,7 @@ if (accountDisplay != null) {
 
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
-		emptyResultsMessage="this-account-does-not-have-any-valid-domain"
+		emptyResultsMessage="this-account-does-not-have-a-valid-domain"
 		headerNames="title,null"
 		id="accountDomainsSearchContainer"
 		iteratorURL="<%= currentURLObj %>"
