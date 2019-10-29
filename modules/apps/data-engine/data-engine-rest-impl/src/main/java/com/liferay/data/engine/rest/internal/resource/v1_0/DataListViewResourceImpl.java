@@ -170,7 +170,7 @@ public class DataListViewResourceImpl
 				LocalizedValueUtil.toLocaleStringMap(dataListView.getName()),
 				dataListView.getSortField()));
 
-		_saveDataDefinitionFieldLinks(
+		_addDataDefinitionFieldLinks(
 			dataListView.getDataDefinitionId(),
 			dataListView.getId(), dataListView.getFieldNames(),
 			dataListView.getSiteId());
@@ -194,7 +194,7 @@ public class DataListViewResourceImpl
 		_deDataDefinitionFieldLinkLocalService.deleteDEDataDefinitionFieldLinks(
 			_getClassNameId(), dataListViewId);
 
-		_saveDataDefinitionFieldLinks(
+		_addDataDefinitionFieldLinks(
 			dataListView.getDataDefinitionId(),
 			dataListView.getId(), dataListView.getFieldNames(),
 			dataListView.getSiteId());
@@ -206,7 +206,7 @@ public class DataListViewResourceImpl
 		return _portal.getClassNameId(DEDataListView.class);
 	}
 
-	private void _saveDataDefinitionFieldLinks(
+	private void _addDataDefinitionFieldLinks(
 		long dataDefinitionId, long dataListViewId,
 		String[] fieldNames, long groupId) {
 

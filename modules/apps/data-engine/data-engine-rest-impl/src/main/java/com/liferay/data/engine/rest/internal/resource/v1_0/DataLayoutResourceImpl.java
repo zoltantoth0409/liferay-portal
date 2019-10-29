@@ -284,7 +284,7 @@ public class DataLayoutResourceImpl
 			InternalDataLayout.class.getName(), dataLayout.getId(),
 			serviceContext.getModelPermissions());
 
-		_saveDataDefinitionFieldLinks(
+		_addDataDefinitionFieldLinks(
 			dataDefinitionId, dataLayout.getId(), dataLayoutJSON,
 			dataLayout.getSiteId());
 
@@ -384,7 +384,7 @@ public class DataLayoutResourceImpl
 		_deDataDefinitionFieldLinkLocalService.deleteDEDataDefinitionFieldLinks(
 			_getClassNameId(), dataLayoutId);
 
-		_saveDataDefinitionFieldLinks(
+		_addDataDefinitionFieldLinks(
 			dataLayout.getDataDefinitionId(), dataLayoutId, dataLayoutJSON,
 			dataLayout.getSiteId());
 
@@ -428,7 +428,7 @@ public class DataLayoutResourceImpl
 		return ddmStructureVersion.getStructureVersionId();
 	}
 
-	private void _saveDataDefinitionFieldLinks(
+	private void _addDataDefinitionFieldLinks(
 		long dataDefinitionId, long dataLayoutId, String dataLayoutJSON,
 		long groupId) {
 
