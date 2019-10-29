@@ -50,13 +50,8 @@ public final class Field implements Comparable<Field>, Serializable {
 		_options = options;
 		_selectEntity = selectEntity;
 
-		Locale defaultLocale = LocaleThreadLocal.getThemeDisplayLocale();
-
-		if (defaultLocale == null) {
-			defaultLocale = LocaleUtil.getDefault();
-		}
-
-		_collator = CollatorUtil.getInstance(defaultLocale);
+		_collator = CollatorUtil.getInstance(
+			LocaleThreadLocal.getThemeDisplayLocale());
 	}
 
 	@Override
