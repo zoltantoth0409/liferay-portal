@@ -87,6 +87,7 @@ public class CTServicePublisher<T extends CTModel<T>> {
 		Session session = ctPersistence.getCurrentSession();
 
 		session.flush();
+
 		session.clear();
 	}
 
