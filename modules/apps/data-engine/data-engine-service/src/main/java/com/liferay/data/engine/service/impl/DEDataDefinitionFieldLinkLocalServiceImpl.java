@@ -68,7 +68,7 @@ public class DEDataDefinitionFieldLinkLocalServiceImpl
 	public List<DEDataDefinitionFieldLink> getDEDataDefinitionFieldLinks(
 		long classNameId, long ddmStructureId, String fieldName) {
 
-		return deDataDefinitionFieldLinkPersistence.findByC_D_F(
+		return deDataDefinitionFieldLinkPersistence.findByC_DDMSI_F(
 			classNameId, ddmStructureId, fieldName);
 	}
 
