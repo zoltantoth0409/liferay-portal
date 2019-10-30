@@ -99,7 +99,7 @@ public class JournalContentAddPortletProvider
 
 		_addLayoutClassedModelUsage(layout, portletId, article);
 
-		_journalContentSearchLocal.updateContentSearch(
+		_journalContentSearchLocalService.updateContentSearch(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			portletId, article.getArticleId(), true);
 	}
@@ -128,7 +128,7 @@ public class JournalContentAddPortletProvider
 	private AssetEntryLocalService _assetEntryLocalService;
 
 	@Reference
-	private JournalContentSearchLocalService _journalContentSearchLocal;
+	private JournalContentSearchLocalService _journalContentSearchLocalService;
 
 	@Reference
 	private LayoutClassedModelUsageLocalService
