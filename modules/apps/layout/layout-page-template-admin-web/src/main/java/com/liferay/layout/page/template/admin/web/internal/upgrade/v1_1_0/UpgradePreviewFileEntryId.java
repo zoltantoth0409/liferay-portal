@@ -131,14 +131,14 @@ public class UpgradePreviewFileEntryId extends UpgradeProcess {
 			LayoutPageTemplateEntry layoutPageTemplateEntry)
 		throws PortalException {
 
+		DLFileEntry originalDLFileEntry =
+			_dlFileEntryLocalService.getDLFileEntry(
+				layoutPageTemplateEntry.getPreviewFileEntryId());
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-
-		DLFileEntry originalDLFileEntry =
-			_dlFileEntryLocalService.getDLFileEntry(
-				layoutPageTemplateEntry.getPreviewFileEntryId());
 
 		Repository repository = _getOrCreateRepository(
 			originalDLFileEntry.getGroupId(), serviceContext);
