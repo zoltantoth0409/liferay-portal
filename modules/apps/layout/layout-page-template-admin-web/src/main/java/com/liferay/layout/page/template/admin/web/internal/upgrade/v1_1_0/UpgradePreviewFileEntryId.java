@@ -62,7 +62,6 @@ public class UpgradePreviewFileEntryId extends UpgradeProcess {
 			actionableDynamicQuery.setAddCriteriaMethod(
 				dynamicQuery -> dynamicQuery.add(
 					RestrictionsFactoryUtil.gt("previewFileEntryId", 0L)));
-
 			actionableDynamicQuery.setPerformActionMethod(
 				(LayoutPageTemplateEntry layoutPageTemplateEntry) ->
 					_upgradePreviewFileEntry(layoutPageTemplateEntry));
