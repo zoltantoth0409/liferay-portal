@@ -43,6 +43,8 @@ public class EditorDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
+		Map<String, Object> parameters = new HashMap<>();
+
 		LocalizedValue placeholder = (LocalizedValue)ddmFormField.getProperty(
 			"placeholder");
 
@@ -52,8 +54,6 @@ public class EditorDDMFormFieldTemplateContextContributor
 			placeholderString = placeholder.getString(
 				ddmFormFieldRenderingContext.getLocale());
 		}
-
-		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put("placeholder", placeholderString);
 

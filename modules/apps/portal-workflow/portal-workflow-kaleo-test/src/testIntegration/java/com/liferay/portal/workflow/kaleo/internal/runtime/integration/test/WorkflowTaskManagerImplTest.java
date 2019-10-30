@@ -170,9 +170,9 @@ public class WorkflowTaskManagerImplTest
 	public void testApproveDLFileEntryInDLFolderWithSpecificType()
 		throws Exception {
 
-		DLFileEntryType fileEntryType = addFileEntryType();
-
 		Map<String, String> dlFileEntryTypeMap = new HashMap<>();
+
+		DLFileEntryType fileEntryType = addFileEntryType();
 
 		dlFileEntryTypeMap.put(
 			String.valueOf(fileEntryType.getFileEntryTypeId()),

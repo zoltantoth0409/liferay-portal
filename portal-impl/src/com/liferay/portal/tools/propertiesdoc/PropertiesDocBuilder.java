@@ -64,9 +64,9 @@ public class PropertiesDocBuilder {
 
 		File propertiesFile = new File(propertiesFileName);
 
-		String title = GetterUtil.getString(arguments.get("properties.title"));
-
 		Map<String, Object> context = new HashMap<>();
+
+		String title = GetterUtil.getString(arguments.get("properties.title"));
 
 		context.put("pageTitle", title);
 

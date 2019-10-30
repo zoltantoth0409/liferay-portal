@@ -55,6 +55,8 @@ public class CaptchaDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
+		Map<String, Object> parameters = new HashMap<>();
+
 		String html = StringPool.BLANK;
 
 		try {
@@ -63,8 +65,6 @@ public class CaptchaDDMFormFieldTemplateContextContributor
 		catch (Exception e) {
 			_log.error(e, e);
 		}
-
-		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put("html", _soyHTMLSanitizer.sanitize(html));
 

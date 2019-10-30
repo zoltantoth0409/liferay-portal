@@ -263,9 +263,9 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			ExpandoColumnConstants.STRING_LOCALIZED,
 			ExpandoColumnConstants.INDEX_TYPE_KEYWORD);
 
-		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
-
 		Map<Locale, String> columnValueMap = new HashMap<>();
+
+		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
 		columnValueMap.put(esLocale, RandomTestUtil.randomString());
 
@@ -307,9 +307,9 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			ExpandoColumnConstants.STRING_LOCALIZED,
 			ExpandoColumnConstants.INDEX_TYPE_TEXT);
 
-		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
-
 		Map<Locale, String> columnValueMap = new HashMap<>();
+
+		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
 		columnValueMap.put(esLocale, "Hola Mundo!");
 

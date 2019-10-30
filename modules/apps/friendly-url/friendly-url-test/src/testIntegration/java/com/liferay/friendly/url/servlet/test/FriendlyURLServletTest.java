@@ -231,9 +231,9 @@ public class FriendlyURLServletTest {
 
 		long groupId = _group.getGroupId();
 
-		Locale locale = LocaleUtil.getSiteDefault();
-
 		Map<Locale, String> nameMap = new HashMap<>();
+
+		Locale locale = LocaleUtil.getSiteDefault();
 
 		nameMap.put(locale, "careers");
 

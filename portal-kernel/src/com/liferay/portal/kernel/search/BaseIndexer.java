@@ -902,9 +902,9 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			boolean like)
 		throws Exception {
 
-		Query query = addSearchTerm(searchQuery, searchContext, field, like);
-
 		Map<String, Query> queries = new HashMap<>();
+
+		Query query = addSearchTerm(searchQuery, searchContext, field, like);
 
 		queries.put(field, query);
 

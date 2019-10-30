@@ -47,6 +47,8 @@ public class GridDDMFormFieldContextHelper {
 		}
 
 		for (String optionValue : _ddmFormFieldOptions.getOptionsValues()) {
+			Map<String, String> optionMap = new HashMap<>();
+
 			LocalizedValue optionLabel = _ddmFormFieldOptions.getOptionLabels(
 				optionValue);
 
@@ -55,8 +57,6 @@ public class GridDDMFormFieldContextHelper {
 			if (ddmFormFieldRenderingContext.isViewMode()) {
 				optionLabelString = HtmlUtil.extractText(optionLabelString);
 			}
-
-			Map<String, String> optionMap = new HashMap<>();
 
 			optionMap.put("label", optionLabelString);
 

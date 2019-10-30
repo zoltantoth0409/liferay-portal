@@ -128,9 +128,9 @@ public class AssetPublisherPortletToolbarContributor
 
 		URLMenuItem urlMenuItem = new URLMenuItem();
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		Map<String, Object> data = new HashMap<>();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		data.put(
 			"id", HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset");
@@ -184,9 +184,9 @@ public class AssetPublisherPortletToolbarContributor
 
 		URLMenuItem urlMenuItem = new URLMenuItem();
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		Map<String, Object> data = new HashMap<>();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		data.put(
 			"id", HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset");

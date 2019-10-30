@@ -54,6 +54,8 @@ public class CheckboxMultipleDDMFormFieldContextHelper {
 		List<Object> options = new ArrayList<>();
 
 		for (String optionValue : _ddmFormFieldOptions.getOptionsValues()) {
+			Map<String, String> optionMap = new HashMap<>();
+
 			LocalizedValue optionLabel = _ddmFormFieldOptions.getOptionLabels(
 				optionValue);
 
@@ -62,8 +64,6 @@ public class CheckboxMultipleDDMFormFieldContextHelper {
 			if (ddmFormFieldRenderingContext.isViewMode()) {
 				optionLabelString = HtmlUtil.extractText(optionLabelString);
 			}
-
-			Map<String, String> optionMap = new HashMap<>();
 
 			optionMap.put("label", optionLabelString);
 

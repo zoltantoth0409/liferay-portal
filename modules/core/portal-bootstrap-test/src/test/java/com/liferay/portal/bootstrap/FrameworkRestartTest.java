@@ -70,9 +70,9 @@ public class FrameworkRestartTest {
 
 		System.setSecurityManager(new SecurityManager());
 
-		Path frameworkStoragePath = Files.createTempDirectory(null);
-
 		Map<String, String> properties = new HashMap<>();
+
+		Path frameworkStoragePath = Files.createTempDirectory(null);
 
 		properties.put(
 			Constants.FRAMEWORK_STORAGE, frameworkStoragePath.toString());

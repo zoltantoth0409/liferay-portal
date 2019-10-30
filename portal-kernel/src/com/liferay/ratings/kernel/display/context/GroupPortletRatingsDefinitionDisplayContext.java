@@ -80,6 +80,8 @@ public class GroupPortletRatingsDefinitionDisplayContext {
 
 			String className = entry.getKey();
 
+			Map<String, RatingsType> ratingsTypeMap = new HashMap<>();
+
 			String groupRatingsTypeString = PropertiesParamUtil.getString(
 				groupTypeSettings, httpServletRequest,
 				RatingsDataTransformerUtil.getPropertyKey(className));
@@ -89,8 +91,6 @@ public class GroupPortletRatingsDefinitionDisplayContext {
 			if (Validator.isNotNull(groupRatingsTypeString)) {
 				ratingsType = RatingsType.parse(groupRatingsTypeString);
 			}
-
-			Map<String, RatingsType> ratingsTypeMap = new HashMap<>();
 
 			ratingsTypeMap.put(className, ratingsType);
 

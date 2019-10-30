@@ -47,9 +47,9 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 
 	@Test
 	public void testSamlProviderPropertyMapping() throws Exception {
-		long samlIdpSsoSessionMaxAge = RandomTestUtil.randomLong();
-
 		Map<String, Object> properties = new HashMap<>();
+
+		long samlIdpSsoSessionMaxAge = RandomTestUtil.randomLong();
 
 		properties.put(
 			LegacySamlPropsKeys.SAML_IDP_SESSION_MAXIMUM_AGE,
