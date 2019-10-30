@@ -45,7 +45,7 @@ public class DBInitUtil {
 		DB db = DBManagerUtil.getDB();
 
 		if (_checkDefaultRelease()) {
-			_setSupportsStringCaseSensitiveQuery(db);
+			_testSupportsStringCaseSensitiveQuery(db);
 
 			return;
 		}
@@ -70,7 +70,7 @@ public class DBInitUtil {
 		}
 
 		if (_checkDefaultRelease()) {
-			_setSupportsStringCaseSensitiveQuery(db);
+			_testSupportsStringCaseSensitiveQuery(db);
 
 			return;
 		}
@@ -82,7 +82,7 @@ public class DBInitUtil {
 
 			_createTablesAndPopulate(db);
 
-			_setSupportsStringCaseSensitiveQuery(db);
+			_testSupportsStringCaseSensitiveQuery(db);
 		}
 	}
 
@@ -159,8 +159,11 @@ public class DBInitUtil {
 		}
 	}
 
-	private static void _setSupportsStringCaseSensitiveQuery(DB db) {
-		if (!_hasDefaultReleaseWithTestString(ReleaseConstants.TEST_STRING)) {
+	private static void _testSupportsStringCaseSensitiveQuery(DB db) {
+		int count = _testSupportsStringCaseSensitiveQuery(
+			ReleaseConstants.TEST_STRING);
+
+		if (count == 0) {
 			try {
 				db.runSQL(
 					"alter table Release_ add testString VARCHAR(1024) null");
@@ -182,25 +185,29 @@ public class DBInitUtil {
 				}
 			}
 
-			if (!_hasDefaultReleaseWithTestString(
-					ReleaseConstants.TEST_STRING)) {
+			count = _testSupportsStringCaseSensitiveQuery(
+				ReleaseConstants.TEST_STRING);
 
+			if (count == 0) {
 				throw new SystemException(
 					"Release_ table was not initialized properly");
 			}
 		}
 
-		if (_hasDefaultReleaseWithTestString(
-				StringUtil.toUpperCase(ReleaseConstants.TEST_STRING))) {
+		count = _testSupportsStringCaseSensitiveQuery(
+			StringUtil.toUpperCase(ReleaseConstants.TEST_STRING));
 
-			db.setSupportsStringCaseSensitiveQuery(false);
+		if (count == 0) {
+			db.setSupportsStringCaseSensitiveQuery(true);
 		}
 		else {
-			db.setSupportsStringCaseSensitiveQuery(true);
+			db.setSupportsStringCaseSensitiveQuery(false);
 		}
 	}
 
-	private static boolean _hasDefaultReleaseWithTestString(String testString) {
+	private static int _testSupportsStringCaseSensitiveQuery(
+		String testString) {
+
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select count(*) from Release_ where releaseId = ? and " +
@@ -210,8 +217,8 @@ public class DBInitUtil {
 			ps.setString(2, testString);
 
 			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next() && (rs.getInt(1) > 0)) {
-					return true;
+				if (rs.next()) {
+					return rs.getInt(1);
 				}
 			}
 		}
@@ -221,7 +228,7 @@ public class DBInitUtil {
 			}
 		}
 
-		return false;
+		return 0;
 	}
 
 	private DBInitUtil() {
