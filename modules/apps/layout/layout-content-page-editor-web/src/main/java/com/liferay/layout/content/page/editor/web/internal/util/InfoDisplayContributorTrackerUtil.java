@@ -34,7 +34,7 @@ public class InfoDisplayContributorTrackerUtil {
 	}
 
 	@Reference(unbind = "-")
-	protected void setAdminUtilHelper(
+	protected void setsInfoDisplayContributorTracker(
 		InfoDisplayContributorTracker infoDisplayContributorTracker) {
 
 		_infoDisplayContributorTracker = infoDisplayContributorTracker;
