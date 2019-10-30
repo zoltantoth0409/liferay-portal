@@ -145,15 +145,15 @@ public class UpgradePreviewFileEntryId extends UpgradeProcess {
 
 		Folder folder = _getOrCreateFolder(repository, serviceContext);
 
-		serviceContext.setAttribute(
-			"className", originalDLFileEntry.getClassName());
-		serviceContext.setAttribute(
-			"classPK", originalDLFileEntry.getClassPK());
-
 		InputStream inputStream = DLStoreUtil.getFileAsStream(
 			originalDLFileEntry.getCompanyId(),
 			originalDLFileEntry.getDataRepositoryId(),
 			originalDLFileEntry.getName());
+
+		serviceContext.setAttribute(
+			"className", originalDLFileEntry.getClassName());
+		serviceContext.setAttribute(
+			"classPK", originalDLFileEntry.getClassPK());
 
 		DLFileEntry newDLFileEntry = _dlFileEntryLocalService.addFileEntry(
 			originalDLFileEntry.getUserId(), originalDLFileEntry.getGroupId(),
