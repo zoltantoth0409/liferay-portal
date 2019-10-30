@@ -103,9 +103,9 @@ public class AssetPublisherPortletLayoutListener
 				_assetPublisherWebUtil.getSubscriptionClassPK(
 					ownerId, ownerType, plid, portletId));
 
-			_removeInfoItemUsages(layout, portletId);
+			_deleteLayoutClassedModelUsages(layout, portletId);
 
-			_removeAssetListEntryUsage(plid, portletId);
+			_deleteAssetListEntryUsage(plid, portletId);
 		}
 		catch (Exception e) {
 			throw new PortletLayoutListenerException(e);
@@ -136,16 +136,16 @@ public class AssetPublisherPortletLayoutListener
 			_addAssetListEntryUsage(assetListEntryId, plid, portletId);
 		}
 		else if (Objects.equals(selectionStyle, "manual")) {
-			_removeInfoItemUsages(layout, portletId);
+			_deleteLayoutClassedModelUsages(layout, portletId);
 
-			_addInfoItemUsages(plid, portletId, portletPreferences);
+			_addLayoutClassedModelUsages(plid, portletId, portletPreferences);
 		}
 		else {
-			_removeAssetListEntryUsage(plid, portletId);
+			_deleteAssetListEntryUsage(plid, portletId);
 		}
 
 		if (!Objects.equals(selectionStyle, "manual")) {
-			_removeInfoItemUsages(layout, portletId);
+			_deleteLayoutClassedModelUsages(layout, portletId);
 		}
 	}
 
@@ -195,7 +195,7 @@ public class AssetPublisherPortletLayoutListener
 		}
 	}
 
-	private void _addInfoItemUsages(
+	private void _addLayoutClassedModelUsages(
 			long plid, String portletId,
 			javax.portlet.PortletPreferences portletPreferences)
 		throws PortletLayoutListenerException {
@@ -231,7 +231,7 @@ public class AssetPublisherPortletLayoutListener
 		}
 	}
 
-	private void _removeAssetListEntryUsage(long plid, String portletId) {
+	private void _deleteAssetListEntryUsage(long plid, String portletId) {
 		AssetListEntryUsage assetListEntryUsage =
 			_assetListEntryUsageLocalService.fetchAssetListEntryUsage(
 				_portal.getClassNameId(Layout.class), plid, portletId);
@@ -242,7 +242,7 @@ public class AssetPublisherPortletLayoutListener
 		}
 	}
 
-	private void _removeInfoItemUsages(Layout layout, String portletId) {
+	private void _deleteLayoutClassedModelUsages(Layout layout, String portletId) {
 		_layoutClassedModelUsageLocalService.deleteLayoutClassedModelUsages(
 			portletId, _portal.getClassNameId(Portlet.class), layout.getPlid());
 	}
