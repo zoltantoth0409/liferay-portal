@@ -109,13 +109,15 @@ public class DropZoneFragmentComponentRenderer implements FragmentRenderer {
 
 		PrintWriter printWriter = httpServletResponse.getWriter();
 
+		printWriter.write("<div class=\"fragments-editor__drop-zone\">");
+		printWriter.write("<p>");
+
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", fragmentRendererContext.getLocale(),
 			getClass());
 
-		printWriter.write("<div class=\"fragments-editor__drop-zone\">");
-		printWriter.write("<p>");
 		printWriter.write(LanguageUtil.get(resourceBundle, "drop-zone"));
+
 		printWriter.write("</p><p>");
 		printWriter.write(
 			LanguageUtil.get(
