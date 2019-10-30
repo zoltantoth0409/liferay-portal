@@ -242,7 +242,9 @@ public class AssetPublisherPortletLayoutListener
 		}
 	}
 
-	private void _deleteLayoutClassedModelUsages(Layout layout, String portletId) {
+	private void _deleteLayoutClassedModelUsages(
+		Layout layout, String portletId) {
+
 		_layoutClassedModelUsageLocalService.deleteLayoutClassedModelUsages(
 			portletId, _portal.getClassNameId(Portlet.class), layout.getPlid());
 	}
