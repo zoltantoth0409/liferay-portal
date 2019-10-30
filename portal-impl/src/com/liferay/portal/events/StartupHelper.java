@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.patcher.PatcherUtil;
+import com.liferay.portal.kernel.service.ReleaseLocalServiceUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.UpgradeProcessUtil;
@@ -174,6 +175,8 @@ public class StartupHelper {
 	}
 
 	public void verifyRequiredSchemaVersion() throws Exception {
+		ReleaseLocalServiceUtil.getBuildNumberOrCreate();
+
 		if (_log.isDebugEnabled()) {
 			_log.debug("Check the portal's required schema version");
 		}
