@@ -176,11 +176,11 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 				ImageEditorCapability imageEditorCapability =
 					imageEditorCapabilityDescriptor.getImageEditorCapability();
 
-				Map<String, Object> controlContext =
-					HashMapBuilder.<String, Object>put(
-						"label",
-						imageEditorCapability.getLabel(themeDisplay.getLocale())
-					).build();
+				Map<String, Object> controlContext = new HashMap<>();
+
+				controlContext.put(
+					"label",
+					imageEditorCapability.getLabel(themeDisplay.getLocale()));
 
 				ServletContext servletContext =
 					imageEditorCapability.getServletContext();
@@ -209,11 +209,10 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 						"com.liferay.frontend.image.editor.capability.icon"));
 			}
 
-			Map<String, Object> context = HashMapBuilder.<String, Object>put(
-				"controls", controlContexts
-			).put(
-				"icon", icon
-			).build();
+			Map<String, Object> context = new HashMap<>();
+
+			context.put("controls", controlContexts);
+			context.put("icon", icon);
 
 			String category = entry.getKey();
 

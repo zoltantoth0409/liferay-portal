@@ -188,12 +188,11 @@ public class DDMFormPagesTemplateContextFactory {
 
 		LocalizedValue description = ddmFormLayoutPage.getDescription();
 
-		Map<String, Object> pageTemplateContext =
-			HashMapBuilder.<String, Object>put(
-				"description",
-				getValue(
-					_ddmFormRenderingContext, description.getString(_locale))
-			).build();
+		Map<String, Object> pageTemplateContext = new HashMap<>();
+
+		pageTemplateContext.put(
+			"description",
+			getValue(_ddmFormRenderingContext, description.getString(_locale)));
 
 		_pageEnabled = isPageEnabled(pageIndex);
 

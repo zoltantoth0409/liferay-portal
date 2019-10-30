@@ -23,10 +23,10 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.File;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -88,9 +88,11 @@ public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 	protected Map<String, File> getMultipartFiles() throws Exception {
 		String randomString = RandomTestUtil.randomString();
 
-		return HashMapBuilder.<String, File>put(
-			"file", FileUtil.createTempFile(randomString.getBytes())
-		).build();
+		Map<String, File> files = new HashMap<>();
+
+		files.put("file", FileUtil.createTempFile(randomString.getBytes()));
+
+		return files;
 	}
 
 	@Override

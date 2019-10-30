@@ -67,6 +67,7 @@ import java.io.Writer;
 import java.net.URL;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -278,11 +279,12 @@ public class DDMFormEmailNotificationSender {
 			}
 		}
 
-		return HashMapBuilder.<String, Object>put(
-			"label", labelString
-		).put(
-			"value", _soyDataFactory.createSoyRawData(sb.toString())
-		).build();
+		Map<String, Object> fieldMap = new HashMap<>();
+
+		fieldMap.put("label", labelString);
+		fieldMap.put("value", _soyDataFactory.createSoyRawData(sb.toString()));
+
+		return fieldMap;
 	}
 
 	protected List<String> getFieldNames(DDMFormLayoutPage ddmFormLayoutPage) {
@@ -424,13 +426,14 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> params = new HashMap<>();
+
+		params.put(
 			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_records.jsp"}
-		).put(
+			new String[] {"/admin/view_form_instance_records.jsp"});
+		params.put(
 			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
-		).build();
+			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())});
 
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
@@ -446,18 +449,19 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> params = new HashMap<>();
+
+		params.put(
 			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_record.jsp"}
-		).put(
+			new String[] {"/admin/view_form_instance_record.jsp"});
+		params.put(
 			portletNamespace.concat("formInstanceRecordId"),
 			new String[] {
 				String.valueOf(ddmFormInstanceRecord.getFormInstanceRecordId())
-			}
-		).put(
+			});
+		params.put(
 			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
-		).build();
+			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())});
 
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,

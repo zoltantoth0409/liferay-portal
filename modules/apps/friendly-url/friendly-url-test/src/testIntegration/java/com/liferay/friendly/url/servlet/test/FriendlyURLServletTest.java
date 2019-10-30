@@ -56,6 +56,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -232,9 +233,9 @@ public class FriendlyURLServletTest {
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
-			locale, "careers"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(locale, "careers");
 
 		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
 			locale, "/careers"

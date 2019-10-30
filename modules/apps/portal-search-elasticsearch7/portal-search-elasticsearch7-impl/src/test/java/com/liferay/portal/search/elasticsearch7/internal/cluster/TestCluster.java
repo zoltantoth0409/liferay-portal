@@ -15,7 +15,6 @@
 package com.liferay.portal.search.elasticsearch7.internal.cluster;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.search.elasticsearch7.internal.connection.ElasticsearchFixture;
 
 import java.net.InetAddress;
@@ -100,13 +99,13 @@ public class TestCluster {
 			range = range + StringPool.MINUS + endingPort;
 		}
 
-		return HashMapBuilder.<String, Object>put(
-			"clusterName", prefix + "-Cluster"
-		).put(
-			"discoveryZenPingUnicastHostsPort", range
-		).put(
-			"transportTcpPort", range
-		).build();
+		HashMap<String, Object> properties = new HashMap<>();
+
+		properties.put("clusterName", prefix + "-Cluster");
+		properties.put("discoveryZenPingUnicastHostsPort", range);
+		properties.put("transportTcpPort", range);
+
+		return properties;
 	}
 
 	protected String getPrefix(Object object) {

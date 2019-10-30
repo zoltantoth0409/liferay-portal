@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.IncludeTag;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -172,16 +173,16 @@ public class FlagsTag extends IncludeTag {
 			"namespace", PortalUtil.getPortletNamespace(PortletKeys.FLAGS)
 		).build();
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"context", context
-		).build();
+		Map<String, Object> data = new HashMap<>();
+
+		data.put("context", context);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, Object> props = HashMapBuilder.<String, Object>put(
-			"baseData", _getDataJSONObject(themeDisplay)
-		).build();
+		Map<String, Object> props = new HashMap<>();
+
+		props.put("baseData", _getDataJSONObject(themeDisplay));
 
 		Company company = themeDisplay.getCompany();
 

@@ -38,11 +38,11 @@ import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
 import com.liferay.portal.kernel.template.TemplateManager;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -123,11 +123,12 @@ public class FreeMarkerFragmentEntryProcessor
 				fragmentEntryLink.getEditableValues(),
 				fragmentEntryProcessorContext.getSegmentsExperienceIds());
 
-		Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-			"configuration", configurationValuesJSONObject
-		).put(
-			"fragmentEntryLinkNamespace", fragmentEntryLink.getNamespace()
-		).build();
+		Map<String, Object> contextObjects = new HashMap<>();
+
+		contextObjects.put("configuration", configurationValuesJSONObject);
+
+		contextObjects.put(
+			"fragmentEntryLinkNamespace", fragmentEntryLink.getNamespace());
 
 		contextObjects.putAll(
 			FragmentEntryConfigUtil.getContextObjects(
@@ -194,12 +195,13 @@ public class FreeMarkerFragmentEntryProcessor
 					FragmentEntryConfigUtil.
 						getConfigurationDefaultValuesJSONObject(configuration);
 
-				Map<String, Object> contextObjects =
-					HashMapBuilder.<String, Object>put(
-						"configuration", configurationDefaultValuesJSONObject
-					).put(
-						"fragmentEntryLinkNamespace", StringPool.BLANK
-					).build();
+				Map<String, Object> contextObjects = new HashMap<>();
+
+				contextObjects.put(
+					"configuration", configurationDefaultValuesJSONObject);
+
+				contextObjects.put(
+					"fragmentEntryLinkNamespace", StringPool.BLANK);
 
 				contextObjects.putAll(
 					FragmentEntryConfigUtil.getContextObjects(

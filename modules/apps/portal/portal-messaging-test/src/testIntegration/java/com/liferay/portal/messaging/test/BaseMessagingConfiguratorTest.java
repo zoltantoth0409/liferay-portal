@@ -21,11 +21,11 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.config.BaseMessagingConfigurator;
 import com.liferay.portal.kernel.messaging.config.DefaultMessagingConfigurator;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -111,10 +111,9 @@ public class BaseMessagingConfiguratorTest {
 
 		List<MessageListener> messageListenersList = new ArrayList<>();
 
-		Map<String, List<MessageListener>> messageListeners =
-			HashMapBuilder.<String, List<MessageListener>>put(
-				"liferay/plugintest1", messageListenersList
-			).build();
+		Map<String, List<MessageListener>> messageListeners = new HashMap<>();
+
+		messageListeners.put("liferay/plugintest1", messageListenersList);
 
 		messageListenersList.add(
 			new TestClassLoaderMessageListener(testClassLoader));
@@ -191,10 +190,9 @@ public class BaseMessagingConfiguratorTest {
 
 		List<MessageListener> messageListenersList1 = new ArrayList<>();
 
-		Map<String, List<MessageListener>> messageListeners =
-			HashMapBuilder.<String, List<MessageListener>>put(
-				"liferay/portaltest1", messageListenersList1
-			).build();
+		Map<String, List<MessageListener>> messageListeners = new HashMap<>();
+
+		messageListeners.put("liferay/portaltest1", messageListenersList1);
 
 		messageListenersList1.add(
 			new TestMessageListener("liferay/portaltest1"));

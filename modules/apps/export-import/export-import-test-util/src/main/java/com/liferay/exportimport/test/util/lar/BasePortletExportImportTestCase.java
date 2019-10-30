@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.template.TemplateHandler;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -574,13 +573,13 @@ public abstract class BasePortletExportImportTestCase
 			PortletDisplayTemplateManager.DISPLAY_STYLE_PREFIX +
 				ddmTemplate.getTemplateKey();
 
-		Map<String, String[]> preferenceMap =
-			HashMapBuilder.<String, String[]>put(
-				"displayStyle", new String[] {displayStyle}
-			).put(
-				"displayStyleGroupId",
-				new String[] {String.valueOf(ddmTemplate.getGroupId())}
-			).build();
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put("displayStyle", new String[] {displayStyle});
+
+		preferenceMap.put(
+			"displayStyleGroupId",
+			new String[] {String.valueOf(ddmTemplate.getGroupId())});
 
 		if (scopeType.equals("layout")) {
 			preferenceMap.put(

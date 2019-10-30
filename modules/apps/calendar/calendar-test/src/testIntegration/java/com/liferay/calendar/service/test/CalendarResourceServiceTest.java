@@ -30,13 +30,13 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -116,9 +116,11 @@ public class CalendarResourceServiceTest {
 			RandomTestUtil.randomString() + StringPool.SPACE +
 				RandomTestUtil.randomString();
 
-		return HashMapBuilder.<Locale, String>put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), name);
+
+		return nameMap;
 	}
 
 	private static final String[] _CALENDAR_RESOURCE_GROUP_PERMISSIONS = {

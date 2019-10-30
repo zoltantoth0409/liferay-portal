@@ -56,6 +56,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -346,9 +347,9 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 		ddmFormFieldValues.add(ddmFormFieldValue);
 
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap =
-			HashMapBuilder.<String, List<DDMFormFieldValue>>put(
-				"field1", ddmFormFieldValues
-			).build();
+			new HashMap<>();
+
+		ddmFormFieldValueMap.put("field1", ddmFormFieldValues);
 
 		Locale locale = new Locale("pt", "BR");
 
@@ -420,12 +421,10 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(ddmFormField2);
 
-		Map<String, DDMFormField> ddmFormFields =
-			HashMapBuilder.<String, DDMFormField>put(
-				"field1", ddmFormField1
-			).put(
-				"field2", ddmFormField2
-			).build();
+		Map<String, DDMFormField> ddmFormFields = new HashMap<>();
+
+		ddmFormFields.put("field1", ddmFormField1);
+		ddmFormFields.put("field2", ddmFormField2);
 
 		DDMFormValues ddmFormValues1 =
 			DDMFormValuesTestUtil.createDDMFormValues(ddmForm);

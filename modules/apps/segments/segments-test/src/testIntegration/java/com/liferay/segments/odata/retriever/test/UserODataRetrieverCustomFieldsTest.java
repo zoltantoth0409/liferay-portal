@@ -50,6 +50,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -252,11 +253,12 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
-		Map<Locale, String> columnValueMap = HashMapBuilder.<Locale, String>put(
-			esLocale, RandomTestUtil.randomString()
-		).put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> columnValueMap = new HashMap<>();
+
+		columnValueMap.put(esLocale, RandomTestUtil.randomString());
+
+		columnValueMap.put(
+			LocaleUtil.getDefault(), RandomTestUtil.randomString());
 
 		Serializable columnValue = (Serializable)columnValueMap;
 
@@ -294,11 +296,11 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
-		Map<Locale, String> columnValueMap = HashMapBuilder.<Locale, String>put(
-			esLocale, "Hola Mundo!"
-		).put(
-			LocaleUtil.getDefault(), "Hello World!"
-		).build();
+		Map<Locale, String> columnValueMap = new HashMap<>();
+
+		columnValueMap.put(esLocale, "Hola Mundo!");
+
+		columnValueMap.put(LocaleUtil.getDefault(), "Hello World!");
 
 		Serializable columnValue = (Serializable)columnValueMap;
 

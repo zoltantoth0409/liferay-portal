@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -46,6 +45,7 @@ import java.io.Serializable;
 
 import java.text.Format;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
@@ -105,12 +105,11 @@ public class NotificationTemplateContextFactory {
 			userDateTimeFormat.format(calendarBooking.getEndTime()) +
 				StringPool.SPACE + userTimezoneDisplayName;
 
-		Map<String, Serializable> attributes =
-			HashMapBuilder.<String, Serializable>put(
-				"endTime", endTime
-			).put(
-				"location", calendarBooking.getLocation()
-			).build();
+		Map<String, Serializable> attributes = new HashMap<>();
+
+		attributes.put("endTime", endTime);
+
+		attributes.put("location", calendarBooking.getLocation());
 
 		Group group = _groupLocalService.getGroup(
 			user.getCompanyId(), GroupConstants.GUEST);

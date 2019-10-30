@@ -463,13 +463,11 @@ public class DDMFormValuesExportImportContentProcessorTest {
 		_createDDMFormWithJournalField(_stagingGroup, _journalArticle);
 
 		Map<String, com.liferay.dynamic.data.mapping.kernel.DDMFormValues>
-			ddmFormValuesMap =
-				HashMapBuilder.
-					<String,
-					 com.liferay.dynamic.data.mapping.kernel.DDMFormValues>put(
-						_ddmStructure.getStructureKey(),
-						DDMBeanTranslatorUtil.translate(_journalDDMFormValues)
-					).build();
+			ddmFormValuesMap = new HashMap<>();
+
+		ddmFormValuesMap.put(
+			_ddmStructure.getStructureKey(),
+			DDMBeanTranslatorUtil.translate(_journalDDMFormValues));
 
 		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeLocalService.addFileEntryType(
