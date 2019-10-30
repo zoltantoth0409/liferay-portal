@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Html;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -42,6 +41,7 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -272,9 +272,11 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 				"content.Language", themeDisplay.getLocale(), getClass()),
 			_portal.getResourceBundle(themeDisplay.getLocale()));
 
-		return HashMapBuilder.put(
-			"select", LanguageUtil.get(resourceBundle, "select")
-		).build();
+		Map<String, String> values = new HashMap<>();
+
+		values.put("select", LanguageUtil.get(resourceBundle, "select"));
+
+		return values;
 	}
 
 	private JSONObject _toJSONObject(String string) {

@@ -24,7 +24,6 @@ import com.liferay.dynamic.data.mapping.render.DDMFormFieldRenderingContext;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -114,11 +113,11 @@ public class TextDDMFormFieldTemplateContextContributor
 				optionLabelString = HtmlUtil.extractText(optionLabelString);
 			}
 
-			Map<String, String> optionMap = HashMapBuilder.put(
-				"label", optionLabelString
-			).put(
-				"value", optionValue
-			).build();
+			Map<String, String> optionMap = new HashMap<>();
+
+			optionMap.put("label", optionLabelString);
+
+			optionMap.put("value", optionValue);
 
 			options.add(optionMap);
 		}

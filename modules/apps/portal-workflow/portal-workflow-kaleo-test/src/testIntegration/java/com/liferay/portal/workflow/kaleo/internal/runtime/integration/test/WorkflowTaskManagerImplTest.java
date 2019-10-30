@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -171,10 +172,11 @@ public class WorkflowTaskManagerImplTest
 
 		DLFileEntryType fileEntryType = addFileEntryType();
 
-		Map<String, String> dlFileEntryTypeMap = HashMapBuilder.put(
+		Map<String, String> dlFileEntryTypeMap = new HashMap<>();
+
+		dlFileEntryTypeMap.put(
 			String.valueOf(fileEntryType.getFileEntryTypeId()),
-			"Single Approver@1"
-		).build();
+			"Single Approver@1");
 
 		DLFileEntryType basicFileEntryType = getBasicFileEntryType();
 

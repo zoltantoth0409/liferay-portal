@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.SessionClicks;
@@ -43,6 +42,7 @@ import com.liferay.taglib.servlet.PageContextFactoryUtil;
 import java.io.IOException;
 import java.io.Writer;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -107,12 +107,13 @@ public class ProductMenuProductNavigationControlMenuEntry
 			ProductNavigationProductMenuPortletKeys.
 				PRODUCT_NAVIGATION_PRODUCT_MENU);
 
-		Map<String, String> values = HashMapBuilder.put(
-			"portletNamespace", portletNamespace
-		).put(
+		Map<String, String> values = new HashMap<>();
+
+		values.put("portletNamespace", portletNamespace);
+
+		values.put(
 			"title",
-			HtmlUtil.escape(LanguageUtil.get(httpServletRequest, "menu"))
-		).build();
+			HtmlUtil.escape(LanguageUtil.get(httpServletRequest, "menu")));
 
 		String productMenuState = SessionClicks.get(
 			httpServletRequest,

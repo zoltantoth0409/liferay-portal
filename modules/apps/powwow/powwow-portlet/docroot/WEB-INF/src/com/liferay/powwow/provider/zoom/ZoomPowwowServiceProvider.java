@@ -90,11 +90,14 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 		Map<String, Serializable> providerTypeMetadata =
 			powwowMeeting.getProviderTypeMetadataMap();
 
-		return HashMapBuilder.put(
-			"zoomHostId", String.valueOf(providerTypeMetadata.get("host_id"))
-		).put(
-			"zoomMeetingId", String.valueOf(providerTypeMetadata.get("id"))
-		).build();
+		Map<String, String> indexFields = new HashMap<>();
+
+		indexFields.put(
+			"zoomHostId", String.valueOf(providerTypeMetadata.get("host_id")));
+		indexFields.put(
+			"zoomMeetingId", String.valueOf(providerTypeMetadata.get("id")));
+
+		return indexFields;
 	}
 
 	@Override
@@ -178,15 +181,16 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 
 		String hostId = getHostId(user, powwowServer);
 
-		Map<String, String> parameterMap = HashMapBuilder.put(
-			"host_id", hostId
-		).put(
+		Map<String, String> parameterMap = new HashMap<>();
+
+		parameterMap.put("host_id", hostId);
+
+		parameterMap.put(
 			"option_host_video",
-			options.get(PowwowMeetingConstants.OPTION_AUTO_START_VIDEO)
-		).put(
+			options.get(PowwowMeetingConstants.OPTION_AUTO_START_VIDEO));
+		parameterMap.put(
 			"option_participants_video",
-			options.get(PowwowMeetingConstants.OPTION_AUTO_START_VIDEO)
-		).build();
+			options.get(PowwowMeetingConstants.OPTION_AUTO_START_VIDEO));
 
 		String password = options.get(PowwowMeetingConstants.OPTION_PASSWORD);
 
@@ -510,11 +514,14 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 		Map<String, Serializable> providerTypeMetadataMap =
 			powwowMeeting.getProviderTypeMetadataMap();
 
-		return HashMapBuilder.put(
-			"host_id", String.valueOf(providerTypeMetadataMap.get("host_id"))
-		).put(
-			"id", String.valueOf(providerTypeMetadataMap.get("id"))
-		).build();
+		Map<String, String> parameterMap = new HashMap<>();
+
+		parameterMap.put(
+			"host_id", String.valueOf(providerTypeMetadataMap.get("host_id")));
+		parameterMap.put(
+			"id", String.valueOf(providerTypeMetadataMap.get("id")));
+
+		return parameterMap;
 	}
 
 	protected JSONArray getUsersJSONArray(PowwowServer powwowServer) {
@@ -605,9 +612,10 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 		Map<String, Serializable> providerTypeMetadataMap =
 			powwowMeeting.getProviderTypeMetadataMap();
 
-		Map<String, String> parameterMap = HashMapBuilder.put(
-			"id", String.valueOf(providerTypeMetadataMap.get("id"))
-		).build();
+		Map<String, String> parameterMap = new HashMap<>();
+
+		parameterMap.put(
+			"id", String.valueOf(providerTypeMetadataMap.get("id")));
 
 		String hostId = getHostId(user, powwowServer);
 

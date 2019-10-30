@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -91,19 +92,20 @@ public class SelectDDMFormFieldTemplateContextContributor
 
 		ResourceBundle resourceBundle = getResourceBundle(displayLocale);
 
-		Map<String, String> stringsMap = HashMapBuilder.put(
+		Map<String, String> stringsMap = new HashMap<>();
+
+		stringsMap.put(
 			"chooseAnOption",
-			LanguageUtil.get(resourceBundle, "choose-an-option")
-		).put(
-			"chooseOptions", LanguageUtil.get(resourceBundle, "choose-options")
-		).put(
+			LanguageUtil.get(resourceBundle, "choose-an-option"));
+		stringsMap.put(
+			"chooseOptions",
+			LanguageUtil.get(resourceBundle, "choose-options"));
+		stringsMap.put(
 			"dynamicallyLoadedData",
-			LanguageUtil.get(resourceBundle, "dynamically-loaded-data")
-		).put(
-			"emptyList", LanguageUtil.get(resourceBundle, "empty-list")
-		).put(
-			"search", LanguageUtil.get(resourceBundle, "search")
-		).build();
+			LanguageUtil.get(resourceBundle, "dynamically-loaded-data"));
+		stringsMap.put(
+			"emptyList", LanguageUtil.get(resourceBundle, "empty-list"));
+		stringsMap.put("search", LanguageUtil.get(resourceBundle, "search"));
 
 		parameters.put("strings", stringsMap);
 
@@ -166,11 +168,11 @@ public class SelectDDMFormFieldTemplateContextContributor
 				optionLabelString = HtmlUtil.extractText(optionLabelString);
 			}
 
-			Map<String, String> optionMap = HashMapBuilder.put(
-				"label", optionLabelString
-			).put(
-				"value", optionValue
-			).build();
+			Map<String, String> optionMap = new HashMap<>();
+
+			optionMap.put("label", optionLabelString);
+
+			optionMap.put("value", optionValue);
 
 			options.add(optionMap);
 		}
