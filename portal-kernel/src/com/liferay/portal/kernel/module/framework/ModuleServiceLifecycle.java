@@ -19,10 +19,6 @@ package com.liferay.portal.kernel.module.framework;
  */
 public interface ModuleServiceLifecycle {
 
-	/**
-	 * @deprecated As of Mueller (7.2.x), with no direct replacement
-	 */
-	@Deprecated
 	public String DATABASE_INITIALIZED =
 		"(module.service.lifecycle=database.initialized)";
 
@@ -32,10 +28,6 @@ public interface ModuleServiceLifecycle {
 	public String PORTLETS_INITIALIZED =
 		"(module.service.lifecycle=portlets.initialized)";
 
-	/**
-	 * @deprecated As of Mueller (7.2.x), with no direct replacement
-	 */
-	@Deprecated
 	public String SPRING_INITIALIZED =
 		"(module.service.lifecycle=spring.initialized)";
 
