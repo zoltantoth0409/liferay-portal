@@ -15,7 +15,7 @@
 package com.liferay.layout.page.template.admin.web.internal.upgrade;
 
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
-import com.liferay.layout.page.template.admin.web.internal.upgrade.v1_1_0.UpgradePreviewFileEntryId;
+import com.liferay.layout.page.template.admin.web.internal.upgrade.v1_1_0.UpgradeLayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.portal.kernel.repository.RepositoryFactory;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -39,7 +39,7 @@ public class LayoutPageTemplateAdminWebUpgrade
 
 		registry.register(
 			"1.0.0", "1.1.0",
-			new UpgradePreviewFileEntryId(
+			new UpgradeLayoutPageTemplateEntry(
 				_dlFileEntryLocalService,
 				_layoutPageTemplateEntryLocalService));
 	}

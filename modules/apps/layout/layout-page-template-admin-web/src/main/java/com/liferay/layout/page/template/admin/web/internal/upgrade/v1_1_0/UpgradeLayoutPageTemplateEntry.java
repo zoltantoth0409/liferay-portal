@@ -40,9 +40,9 @@ import java.util.Map;
 /**
  * @author Rubén Pulido
  */
-public class UpgradePreviewFileEntryId extends UpgradeProcess {
+public class UpgradeLayoutPageTemplateEntry extends UpgradeProcess {
 
-	public UpgradePreviewFileEntryId(
+	public UpgradeLayoutPageTemplateEntry(
 		DLFileEntryLocalService dlFileEntryLocalService,
 		LayoutPageTemplateEntryLocalService
 			layoutPageTemplateEntryLocalService) {
@@ -178,7 +178,7 @@ public class UpgradePreviewFileEntryId extends UpgradeProcess {
 			"LayoutPageTemplatesPortlet";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradePreviewFileEntryId.class);
+		UpgradeLayoutPageTemplateEntry.class);
 
 	private static final Map<Long, Repository> _groupRepositories =
 		new HashMap<>();
