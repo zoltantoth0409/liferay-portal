@@ -92,7 +92,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 	}
 
 	@Test
-	public void testIncludeCustomCanonicalUrl() throws Exception {
+	public void testIncludeCustomCanonicalURL() throws Exception {
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
