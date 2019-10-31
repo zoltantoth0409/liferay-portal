@@ -128,9 +128,9 @@ public class DepotPanelAppControllerTest {
 
 		Assert.assertEquals(panelApps.toString(), 2, panelApps.size());
 
-		_assertPanelAppsContains(
+		_assertPanelAppsContain(
 			panelApps, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN);
-		_assertPanelAppsContains(panelApps, JournalPortletKeys.JOURNAL);
+		_assertPanelAppsContain(panelApps, JournalPortletKeys.JOURNAL);
 
 		panelApps = _panelAppRegistry.getPanelApps(
 			PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
@@ -200,7 +200,7 @@ public class DepotPanelAppControllerTest {
 			TestPropsValues.getGroupId(), parentPanelCategoryKey);
 	}
 
-	private void _assertPanelAppsContains(
+	private void _assertPanelAppsContain(
 		List<PanelApp> panelApps, String portletId) {
 
 		Stream<PanelApp> stream = panelApps.stream();
@@ -210,7 +210,7 @@ public class DepotPanelAppControllerTest {
 		).findFirst(
 		).orElseThrow(
 			() -> new AssertionError(
-				"Portlet Id not found in panel apps " + portletId)
+				"Panel apps do not contain portlet " + portletId)
 		);
 	}
 
