@@ -59,11 +59,15 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 
 <aui:script>
 	function <portlet:namespace />addReplyToMessage(messageId, quote) {
-		var addQuickReplyContainer = AUI.$('#<portlet:namespace />addReplyToMessage' + messageId);
+		var addQuickReplyContainer = AUI.$(
+			'#<portlet:namespace />addReplyToMessage' + messageId
+		);
 
 		addQuickReplyContainer.removeClass('hide');
 
-		addQuickReplyContainer.find('#<portlet:namespace />parentMessageId').val(messageId);
+		addQuickReplyContainer
+			.find('#<portlet:namespace />parentMessageId')
+			.val(messageId);
 
 		addQuickReplyContainer.scrollTop();
 
@@ -77,14 +81,23 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 		window[editorName].focus();
 
 		if (AUI().UA.mobile) {
-			document.getElementById('<portlet:namespace />addReplyToMessage' + messageId).scrollIntoView(true);
+			document
+				.getElementById(
+					'<portlet:namespace />addReplyToMessage' + messageId
+				)
+				.scrollIntoView(true);
 		}
 
-		Liferay.Util.toggleDisabled('#<portlet:namespace />replyMessageButton' + messageId, true);
+		Liferay.Util.toggleDisabled(
+			'#<portlet:namespace />replyMessageButton' + messageId,
+			true
+		);
 	}
 
 	function <portlet:namespace />hideReplyMessage(messageId) {
-		AUI.$('#<portlet:namespace />addReplyToMessage' + messageId).addClass('hide');
+		AUI.$('#<portlet:namespace />addReplyToMessage' + messageId).addClass(
+			'hide'
+		);
 
 		var editorName = '<portlet:namespace />replyMessageBody' + messageId;
 
@@ -94,7 +107,11 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 	}
 
 	<c:if test="<%= thread.getRootMessageId() != message.getMessageId() %>">
-		document.getElementById('<portlet:namespace />message_' + <%= message.getMessageId() %>).scrollIntoView(true);
+		document
+			.getElementById(
+				'<portlet:namespace />message_' + <%= message.getMessageId() %>
+			)
+			.scrollIntoView(true);
 	</c:if>
 </aui:script>
 

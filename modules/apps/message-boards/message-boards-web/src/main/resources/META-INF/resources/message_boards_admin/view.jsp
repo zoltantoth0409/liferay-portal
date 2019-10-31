@@ -103,13 +103,23 @@ if (category != null) {
 
 <aui:script>
 	var deleteEntries = function() {
-		if (<%= trashHelper.isTrashEnabled(scopeGroupId) %> || confirm('<%= UnicodeLanguageUtil.get(request, trashHelper.isTrashEnabled(scopeGroupId) ? "are-you-sure-you-want-to-move-the-selected-entries-to-the-recycle-bin" : "are-you-sure-you-want-to-delete-the-selected-entries") %>')) {
+		if (
+			<%= trashHelper.isTrashEnabled(scopeGroupId) %> ||
+			confirm(
+				'<%= UnicodeLanguageUtil.get(request, trashHelper.isTrashEnabled(scopeGroupId) ? "are-you-sure-you-want-to-move-the-selected-entries-to-the-recycle-bin" : "are-you-sure-you-want-to-delete-the-selected-entries") %>'
+			)
+		) {
 			var form = AUI.$(document.<portlet:namespace />fm);
 
 			form.attr('method', 'post');
-			form.fm('<%= Constants.CMD %>').val('<%= trashHelper.isTrashEnabled(scopeGroupId) ? Constants.MOVE_TO_TRASH : Constants.DELETE %>');
+			form.fm('<%= Constants.CMD %>').val(
+				'<%= trashHelper.isTrashEnabled(scopeGroupId) ? Constants.MOVE_TO_TRASH : Constants.DELETE %>'
+			);
 
-			submitForm(form, '<portlet:actionURL name="/message_boards/edit_entry" />');
+			submitForm(
+				form,
+				'<portlet:actionURL name="/message_boards/edit_entry" />'
+			);
 		}
 	};
 
@@ -132,23 +142,20 @@ if (category != null) {
 	};
 
 	var ACTIONS = {
-		'deleteEntries': deleteEntries,
-		'lockEntries': lockEntries,
-		'unlockEntries': unlockEntries
+		deleteEntries: deleteEntries,
+		lockEntries: lockEntries,
+		unlockEntries: unlockEntries
 	};
 
-	Liferay.componentReady('mbEntriesManagementToolbar').then(
-		function(managementToolbar) {
-			managementToolbar.on(
-				'actionItemClicked',
-				function(event) {
-					var itemData = event.data.item.data;
+	Liferay.componentReady('mbEntriesManagementToolbar').then(function(
+		managementToolbar
+	) {
+		managementToolbar.on('actionItemClicked', function(event) {
+			var itemData = event.data.item.data;
 
-					if (itemData && itemData.action && ACTIONS[itemData.action]) {
-						ACTIONS[itemData.action]();
-					}
-				}
-			);
-		}
-	);
+			if (itemData && itemData.action && ACTIONS[itemData.action]) {
+				ACTIONS[itemData.action]();
+			}
+		});
+	});
 </aui:script>

@@ -52,18 +52,13 @@ if (message != null) {
 	<aui:script use="liferay-util-window">
 		var viewRemovedAttachmentsLink = A.one('#view-removed-attachments-link');
 
-		viewRemovedAttachmentsLink.on(
-			'click',
-			function(event) {
-				Liferay.Util.openWindow(
-					{
-						id: '<portlet:namespace />openRemovedPageAttachments',
-						title: '<%= LanguageUtil.get(request, "removed-attachments") %>',
-						uri: '<%= viewTrashAttachmentsURL %>'
-					}
-				);
-			}
-		);
+		viewRemovedAttachmentsLink.on('click', function(event) {
+			Liferay.Util.openWindow({
+				id: '<portlet:namespace />openRemovedPageAttachments',
+				title: '<%= LanguageUtil.get(request, "removed-attachments") %>',
+				uri: '<%= viewTrashAttachmentsURL %>'
+			});
+		});
 	</aui:script>
 </c:if>
 
@@ -74,35 +69,36 @@ Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class
 %>
 
 <aui:script use="liferay-portlet-url,liferay-upload">
-	var uploader = new Liferay.Upload(
-		{
-			boundingBox: '#<portlet:namespace />fileUpload',
+	var uploader = new Liferay.Upload({
+		boundingBox: '#<portlet:namespace />fileUpload',
 
-			<%
-			DecimalFormatSymbols decimalFormatSymbols = DecimalFormatSymbols.getInstance(locale);
-			%>
+		<%
+		DecimalFormatSymbols decimalFormatSymbols = DecimalFormatSymbols.getInstance(locale);
+		%>
 
-			decimalSeparator: '<%= decimalFormatSymbols.getDecimalSeparator() %>',
-			deleteFile: '<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" name="/message_boards/edit_message_attachments"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /><portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= MBMessage.class.getName() %>" />',
-			fallback: '#<portlet:namespace />fallback',
+		decimalSeparator: '<%= decimalFormatSymbols.getDecimalSeparator() %>',
+		deleteFile:
+			'<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" name="/message_boards/edit_message_attachments"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /><portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= MBMessage.class.getName() %>" />',
+		fallback: '#<portlet:namespace />fallback',
 
-			<%
-			DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfiguration(DLConfiguration.class);
-			%>
+		<%
+		DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfiguration(DLConfiguration.class);
+		%>
 
-			fileDescription: '<%= StringUtil.merge(dlConfiguration.fileExtensions()) %>',
-			maxFileSize: '<%= dlConfiguration.fileMaxSize() %> ',
-			namespace: '<portlet:namespace />',
-			rootElement: '#<portlet:namespace />uploaderContainer',
-			tempFileURL: {
-				method: Liferay.Service.bind('/mb.mbmessage/get-temp-attachment-names'),
-				params: {
-					groupId: <%= scopeGroupId %>,
-					folderName: '<%= MBMessageConstants.TEMP_FOLDER_NAME %>'
-				}
-			},
-			tempRandomSuffix: '<%= TempFileEntryUtil.TEMP_RANDOM_SUFFIX %>',
-			uploadFile: '<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" name="/message_boards/edit_message_attachments"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= MBMessage.class.getName() %>" />'
-		}
-	);
+		fileDescription:
+			'<%= StringUtil.merge(dlConfiguration.fileExtensions()) %>',
+		maxFileSize: '<%= dlConfiguration.fileMaxSize() %> ',
+		namespace: '<portlet:namespace />',
+		rootElement: '#<portlet:namespace />uploaderContainer',
+		tempFileURL: {
+			method: Liferay.Service.bind('/mb.mbmessage/get-temp-attachment-names'),
+			params: {
+				groupId: <%= scopeGroupId %>,
+				folderName: '<%= MBMessageConstants.TEMP_FOLDER_NAME %>'
+			}
+		},
+		tempRandomSuffix: '<%= TempFileEntryUtil.TEMP_RANDOM_SUFFIX %>',
+		uploadFile:
+			'<liferay-portlet:actionURL doAsUserId="<%= user.getUserId() %>" name="/message_boards/edit_message_attachments"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" /></liferay-portlet:actionURL>&ticketKey=<%= ticket.getKey() %><liferay-ui:input-permissions-params modelName="<%= MBMessage.class.getName() %>" />'
+	});
 </aui:script>

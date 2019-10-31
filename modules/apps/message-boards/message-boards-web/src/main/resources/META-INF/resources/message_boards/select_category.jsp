@@ -137,5 +137,8 @@ else {
 </aui:form>
 
 <aui:script>
-	Liferay.Util.selectEntityHandler('#<portlet:namespace />selectCategoryFm', '<%= HtmlUtil.escapeJS(eventName) %>');
+	Liferay.Util.selectEntityHandler(
+		'#<portlet:namespace />selectCategoryFm',
+		'<%= HtmlUtil.escapeJS(eventName) %>'
+	);
 </aui:script>

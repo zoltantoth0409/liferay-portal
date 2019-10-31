@@ -108,38 +108,42 @@ if (portletTitleBasedNavigation) {
 	}
 
 	function <portlet:namespace />toggleExplanationPost() {
-		if (document.getElementById('<portlet:namespace />addExplanationPost').checked) {
-			document.getElementById('<portlet:namespace />explanationPost').style.display = '';
-		}
-		else {
-			document.getElementById('<portlet:namespace />explanationPost').style.display = 'none';
+		if (
+			document.getElementById('<portlet:namespace />addExplanationPost')
+				.checked
+		) {
+			document.getElementById(
+				'<portlet:namespace />explanationPost'
+			).style.display = '';
+		} else {
+			document.getElementById(
+				'<portlet:namespace />explanationPost'
+			).style.display = 'none';
 		}
 	}
 </aui:script>
 
 <aui:script sandbox="<%= true %>">
-	$('#<portlet:namespace />selectCategoryButton').on(
-		'click',
-		function(event) {
-			Liferay.Util.selectEntity(
-				{
-					dialog: {
-						constrain: true,
-						modal: true,
-						width: 680
-					},
-					id: '<portlet:namespace />selectCategory',
-					title: '<liferay-ui:message arguments="category" key="select-x" />',
-					uri: '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/message_boards/select_category" /><portlet:param name="mbCategoryId" value="<%= String.valueOf(category.getParentCategoryId()) %>" /></portlet:renderURL>'
+	$('#<portlet:namespace />selectCategoryButton').on('click', function(event) {
+		Liferay.Util.selectEntity(
+			{
+				dialog: {
+					constrain: true,
+					modal: true,
+					width: 680
 				},
-				function(event) {
-					var form = $(document.<portlet:namespace />fm);
+				id: '<portlet:namespace />selectCategory',
+				title: '<liferay-ui:message arguments="category" key="select-x" />',
+				uri:
+					'<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/message_boards/select_category" /><portlet:param name="mbCategoryId" value="<%= String.valueOf(category.getParentCategoryId()) %>" /></portlet:renderURL>'
+			},
+			function(event) {
+				var form = $(document.<portlet:namespace />fm);
 
-					form.fm('mbCategoryId').val(event.categoryid);
+				form.fm('mbCategoryId').val(event.categoryid);
 
-					form.fm('categoryName').val(Liferay.Util.unescape(event.name));
-				}
-			);
-		}
-	);
+				form.fm('categoryName').val(Liferay.Util.unescape(event.name));
+			}
+		);
+	});
 </aui:script>

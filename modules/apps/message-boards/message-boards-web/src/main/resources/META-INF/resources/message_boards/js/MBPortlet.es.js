@@ -1,6 +1,6 @@
-import core from 'metal';
-import {EventHandler} from 'metal-events';
 import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
+import {EventHandler} from 'metal-events';
+import core from 'metal';
 
 /**
  * MBPortlet handles the actions of replying or editing a
@@ -11,7 +11,6 @@ import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
  */
 
 class MBPortlet extends PortletBase {
-
 	/**
 	 * @inheritDoc
 	 */
@@ -25,42 +24,33 @@ class MBPortlet extends PortletBase {
 	 */
 
 	attached() {
-		let publishButton = this.one('.button-holder button[type="submit"]');
+		const publishButton = this.one('.button-holder button[type="submit"]');
 
 		if (publishButton) {
 			this.eventHandler_.add(
-				publishButton.addEventListener(
-					'click',
-					(e) => {
-						this.publish_(e);
-					}
-				)
+				publishButton.addEventListener('click', e => {
+					this.publish_(e);
+				})
 			);
 		}
 
-		let saveButton = this.one('#saveButton');
+		const saveButton = this.one('#saveButton');
 
 		if (saveButton) {
 			this.eventHandler_.add(
-				saveButton.addEventListener(
-					'click',
-					(e) => {
-						this.saveDraft_(e);
-					}
-				)
+				saveButton.addEventListener('click', e => {
+					this.saveDraft_(e);
+				})
 			);
 		}
 
-		let advancedReplyLink = this.one('.advanced-reply');
+		const advancedReplyLink = this.one('.advanced-reply');
 
 		if (advancedReplyLink) {
 			this.eventHandler_.add(
-				advancedReplyLink.addEventListener(
-					'click',
-					(e) => {
-						this.openAdvancedReply_(e);
-					}
-				)
+				advancedReplyLink.addEventListener('click', e => {
+					this.openAdvancedReply_(e);
+				})
 			);
 		}
 	}
@@ -82,12 +72,18 @@ class MBPortlet extends PortletBase {
 	 */
 
 	openAdvancedReply_() {
-		let inputNode = this.one('#body');
-		inputNode.value = window[this.ns('replyMessageBody' + this.replyToMessageId)].getHTML();
+		const inputNode = this.one('#body');
+		inputNode.value = window[
+			this.ns('replyMessageBody' + this.replyToMessageId)
+		].getHTML();
 
-		let form = this.one(`[name="${this.ns('advancedReplyFm' + this.replyToMessageId)}"]`);
+		const form = this.one(
+			`[name="${this.ns('advancedReplyFm' + this.replyToMessageId)}"]`
+		);
 
-		let advancedReplyInputNode = form.querySelector(`[name="${this.ns('body')}"]`);
+		const advancedReplyInputNode = form.querySelector(
+			`[name="${this.ns('body')}"]`
+		);
 
 		advancedReplyInputNode.value = inputNode.value;
 
@@ -114,20 +110,17 @@ class MBPortlet extends PortletBase {
 	 */
 
 	save_() {
-		let tempImages = this.all('img[data-random-id]');
+		const tempImages = this.all('img[data-random-id]');
 
 		if (tempImages.length > 0) {
 			if (confirm(this.strings.confirmDiscardImages)) {
-				tempImages.forEach(
-					node => {
-						node.parentElement.remove();
-					}
-				);
+				tempImages.forEach(node => {
+					node.parentElement.remove();
+				});
 
 				this.submitForm_();
 			}
-		}
-		else {
+		} else {
 			this.submitForm_();
 		}
 	}
@@ -139,22 +132,26 @@ class MBPortlet extends PortletBase {
 	 */
 
 	updateMultipleMBMessageAttachments_() {
-		let selectedFileNameContainer = this.one('#selectedFileNameContainer');
+		const selectedFileNameContainer = this.one(
+			'#selectedFileNameContainer'
+		);
 
 		if (selectedFileNameContainer) {
 			const inputName = this.ns('selectUploadedFile');
 
-			const input = [].slice.call(this.all(`input[name=${inputName}]:checked`));
+			const input = [].slice.call(
+				this.all(`input[name=${inputName}]:checked`)
+			);
 
-			const data = input.map(
-				(item, index) => {
+			const data = input
+				.map((item, index) => {
 					const id = index;
 					const namespace = this.namespace;
 					const value = item.value;
 
 					return `<input id="${namespace}selectedFileName${id}" name="${namespace}selectedFileName" type="hidden" value="${value}" />`;
-				}
-			).join('');
+				})
+				.join('');
 
 			selectedFileNameContainer.innerHTML = data;
 		}
@@ -172,11 +169,14 @@ class MBPortlet extends PortletBase {
 		this.updateMultipleMBMessageAttachments_();
 
 		if (this.replyToMessageId) {
-			this.one('#body').value = window[this.ns('replyMessageBody' + this.replyToMessageId)].getHTML();
+			this.one('#body').value = window[
+				this.ns('replyMessageBody' + this.replyToMessageId)
+			].getHTML();
 
-			submitForm(document[this.ns('addQuickReplyFm' + this.replyToMessageId)]);
-		}
-		else {
+			submitForm(
+				document[this.ns('addQuickReplyFm' + this.replyToMessageId)]
+			);
+		} else {
 			this.one('#body').value = window[this.ns('bodyEditor')].getHTML();
 
 			submitForm(document[this.ns('fm')]);
@@ -203,7 +203,6 @@ class MBPortlet extends PortletBase {
  */
 
 MBPortlet.STATE = {
-
 	/**
 	 * Portlet's constants
 	 * @instance
@@ -249,7 +248,9 @@ MBPortlet.STATE = {
 	strings: {
 		validator: core.isObject,
 		value: {
-			confirmDiscardImages: Liferay.Language.get('uploads-are-in-progress-confirmation')
+			confirmDiscardImages: Liferay.Language.get(
+				'uploads-are-in-progress-confirmation'
+			)
 		}
 	}
 };

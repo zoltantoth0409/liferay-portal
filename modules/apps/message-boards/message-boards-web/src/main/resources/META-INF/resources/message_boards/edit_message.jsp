@@ -453,16 +453,15 @@ if (portletTitleBasedNavigation) {
 </div>
 
 <aui:script require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'>
-	new MBPortlet.default(
-		{
-			constants: {
-				'ACTION_PUBLISH': '<%= WorkflowConstants.ACTION_PUBLISH %>',
-				'ACTION_SAVE_DRAFT': '<%= WorkflowConstants.ACTION_SAVE_DRAFT %>',
-				'CMD': '<%= Constants.CMD %>'
-			},
-			currentAction: '<%= (message == null) ? Constants.ADD : Constants.UPDATE %>',
-			namespace: '<portlet:namespace />',
-			rootNode: '#<portlet:namespace />mbEditPageContainer'
-		}
-	);
+	new MBPortlet.default({
+		constants: {
+			ACTION_PUBLISH: '<%= WorkflowConstants.ACTION_PUBLISH %>',
+			ACTION_SAVE_DRAFT: '<%= WorkflowConstants.ACTION_SAVE_DRAFT %>',
+			CMD: '<%= Constants.CMD %>'
+		},
+		currentAction:
+			'<%= (message == null) ? Constants.ADD : Constants.UPDATE %>',
+		namespace: '<portlet:namespace />',
+		rootNode: '#<portlet:namespace />mbEditPageContainer'
+	});
 </aui:script>

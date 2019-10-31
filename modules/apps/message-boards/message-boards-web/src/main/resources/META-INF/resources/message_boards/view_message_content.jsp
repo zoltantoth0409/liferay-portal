@@ -316,36 +316,29 @@ if (portletTitleBasedNavigation) {
 </div>
 
 <aui:script sandbox="<%= true %>">
-	$('#<portlet:namespace />moreMessages').on(
-		'click',
-		function(event) {
-			var form = $('#<portlet:namespace />fm');
+	$('#<portlet:namespace />moreMessages').on('click', function(event) {
+		var form = $('#<portlet:namespace />fm');
 
-			var data = Liferay.Util.ns(
-				'<portlet:namespace />',
-				{
-					index: form.fm('index').val(),
-					rootIndexPage: form.fm('rootIndexPage').val()
-				}
-			);
+		var data = Liferay.Util.ns('<portlet:namespace />', {
+			index: form.fm('index').val(),
+			rootIndexPage: form.fm('rootIndexPage').val()
+		});
 
-			<portlet:resourceURL id="/message_boards/get_messages" var="getMessagesURL">
-				<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
-			</portlet:resourceURL>
+		<portlet:resourceURL id="/message_boards/get_messages" var="getMessagesURL">
+			<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
+		</portlet:resourceURL>
 
-			$.ajax(
-				'<%= getMessagesURL.toString() %>',
-				{
-					data: data,
-					success: function(data) {
-						var messageContainer = $('#<portlet:namespace />messageContainer');
+		$.ajax('<%= getMessagesURL.toString() %>', {
+			data: data,
+			success: function(data) {
+				var messageContainer = $('#<portlet:namespace />messageContainer');
 
-						messageContainer.append(data);
+				messageContainer.append(data);
 
-						messageContainer.append($('#<portlet:namespace />messageContainer > .reply-container'));
-					}
-				}
-			);
-		}
-	);
+				messageContainer.append(
+					$('#<portlet:namespace />messageContainer > .reply-container')
+				);
+			}
+		});
+	});
 </aui:script>

@@ -218,22 +218,25 @@ Boolean showPermanentLink = (Boolean)request.getAttribute("edit-message.jsp-show
 </div>
 
 <aui:script require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'>
-	new MBPortlet.default(
-		{
-			constants: {
-				'ACTION_PUBLISH': '<%= WorkflowConstants.ACTION_PUBLISH %>',
-				'CMD': '<%= Constants.CMD %>'
-			},
-			currentAction: '<%= Constants.ADD %>',
-			namespace: '<portlet:namespace />',
-			replyToMessageId: '<%= replyToMessageId %>',
-			rootNode: '#<portlet:namespace />addQuickReply<%= replyToMessageId %>'
-		}
-	);
+	new MBPortlet.default({
+		constants: {
+			ACTION_PUBLISH: '<%= WorkflowConstants.ACTION_PUBLISH %>',
+			CMD: '<%= Constants.CMD %>'
+		},
+		currentAction: '<%= Constants.ADD %>',
+		namespace: '<portlet:namespace />',
+		replyToMessageId: '<%= replyToMessageId %>',
+		rootNode: '#<portlet:namespace />addQuickReply<%= replyToMessageId %>'
+	});
 </aui:script>
 
 <aui:script>
-	window['<portlet:namespace />replyMessageOnChange' + <%= replyToMessageId %>] = function(html) {
-		Liferay.Util.toggleDisabled('#<portlet:namespace />replyMessageButton<%= replyToMessageId %>', html === '');
+	window[
+		'<portlet:namespace />replyMessageOnChange' + <%= replyToMessageId %>
+	] = function(html) {
+		Liferay.Util.toggleDisabled(
+			'#<portlet:namespace />replyMessageButton<%= replyToMessageId %>',
+			html === ''
+		);
 	};
 </aui:script>

@@ -354,15 +354,34 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 
 						var form = $(document.<portlet:namespace />fm);
 
-						if (<portlet:namespace />prioritiesChanged && (<portlet:namespace />prioritiesLastLanguageId != '<%= defaultLanguageId %>')) {
+						if (
+							<portlet:namespace />prioritiesChanged &&
+							<portlet:namespace />prioritiesLastLanguageId !=
+								'<%= defaultLanguageId %>'
+						) {
 							for (var i = 0; i < 10; i++) {
 								var priorityImage = form.fm('priorityImage' + i + '_temp').val();
 								var priorityName = form.fm('priorityName' + i + '_temp').val();
 								var priorityValue = form.fm('priorityValue' + i + '_temp').val();
 
-								form.fm('priorityName' + i + '_' + <portlet:namespace />prioritiesLastLanguageId).val(priorityName);
-								form.fm('priorityImage' + i + '_' + <portlet:namespace />prioritiesLastLanguageId).val(priorityImage);
-								form.fm('priorityValue' + i + '_' + <portlet:namespace />prioritiesLastLanguageId).val(priorityValue);
+								form.fm(
+									'priorityName' +
+										i +
+										'_' +
+										<portlet:namespace />prioritiesLastLanguageId
+								).val(priorityName);
+								form.fm(
+									'priorityImage' +
+										i +
+										'_' +
+										<portlet:namespace />prioritiesLastLanguageId
+								).val(priorityImage);
+								form.fm(
+									'priorityValue' +
+										i +
+										'_' +
+										<portlet:namespace />prioritiesLastLanguageId
+								).val(priorityValue);
 							}
 
 							<portlet:namespace />prioritiesChanged = false;
@@ -374,7 +393,10 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 							<portlet:namespace />updatePrioritiesLanguageTemps(selLanguageId);
 						}
 
-						$('#<portlet:namespace />localized-priorities-table').toggleClass('hide', !selLanguageId);
+						$('#<portlet:namespace />localized-priorities-table').toggleClass(
+							'hide',
+							!selLanguageId
+						);
 
 						<portlet:namespace />prioritiesLastLanguageId = selLanguageId;
 					}
@@ -384,9 +406,15 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 
 						if (lang != '<%= defaultLanguageId %>') {
 							for (var i = 0; i < 10; i++) {
-								var defaultImage = form.fm('priorityImage' + i + '_<%= defaultLanguageId %>').val();
-								var defaultName = form.fm('priorityName' + i + '_<%= defaultLanguageId %>').val();
-								var defaultValue = form.fm('priorityValue' + i + '_<%= defaultLanguageId %>').val();
+								var defaultImage = form
+									.fm('priorityImage' + i + '_<%= defaultLanguageId %>')
+									.val();
+								var defaultName = form
+									.fm('priorityName' + i + '_<%= defaultLanguageId %>')
+									.val();
+								var defaultValue = form
+									.fm('priorityValue' + i + '_<%= defaultLanguageId %>')
+									.val();
 
 								var priorityImage = form.fm('priorityImage' + i + '_' + lang).val();
 								var priorityName = form.fm('priorityName' + i + '_' + lang).val();
@@ -403,7 +431,9 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 						}
 					}
 
-					<portlet:namespace />updatePrioritiesLanguageTemps(<portlet:namespace />prioritiesLastLanguageId);
+					<portlet:namespace />updatePrioritiesLanguageTemps(
+						<portlet:namespace />prioritiesLastLanguageId
+					);
 				</aui:script>
 			</liferay-ui:section>
 
@@ -475,10 +505,15 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 					function <portlet:namespace />updateRanksLanguage() {
 						var form = AUI.$(document.<portlet:namespace />fm);
 
-						if (<portlet:namespace />ranksChanged && (<portlet:namespace />ranksLastLanguageId != '<%= defaultLanguageId %>')) {
+						if (
+							<portlet:namespace />ranksChanged &&
+							<portlet:namespace />ranksLastLanguageId != '<%= defaultLanguageId %>'
+						) {
 							var ranksValue = form.fm('ranks_temp').val();
 
-							form.fm('ranks_' + <portlet:namespace />ranksLastLanguageId).val(ranksValue);
+							form.fm('ranks_' + <portlet:namespace />ranksLastLanguageId).val(
+								ranksValue
+							);
 
 							<portlet:namespace />ranksChanged = false;
 						}
@@ -508,7 +543,9 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 						}
 					}
 
-					<portlet:namespace />updateRanksLanguageTemps(<portlet:namespace />ranksLastLanguageId);
+					<portlet:namespace />updateRanksLanguageTemps(
+						<portlet:namespace />ranksLastLanguageId
+					);
 				</aui:script>
 			</liferay-ui:section>
 
@@ -549,13 +586,18 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 		var emailMessageAdded = window['<portlet:namespace />emailMessageAdded'];
 
 		if (emailMessageAdded) {
-			form.fm('preferences--emailMessageAddedBody--').val(emailMessageAdded.getHTML());
+			form.fm('preferences--emailMessageAddedBody--').val(
+				emailMessageAdded.getHTML()
+			);
 		}
 
-		var emailMessageUpdated = window['<portlet:namespace />emailMessageUpdated'];
+		var emailMessageUpdated =
+			window['<portlet:namespace />emailMessageUpdated'];
 
 		if (emailMessageUpdated) {
-			form.fm('preferences--emailMessageUpdatedBody--').val(emailMessageUpdated.getHTML());
+			form.fm('preferences--emailMessageUpdatedBody--').val(
+				emailMessageUpdated.getHTML()
+			);
 		}
 	}
 </aui:script>
