@@ -63,7 +63,8 @@ public class JavaStringBundlerConcatCheck extends BaseJavaTermCheck {
 					fileName,
 					"Do not use 'StringBundler.concat' when concatenating " +
 						"less than 3 elements",
-					javaTerm.getLineNumber(matcher1.start()));
+					javaTerm.getLineNumber() - 1 +
+						getLineNumber(content, matcher1.start()));
 			}
 
 			if (!hasPetraStringStringBundler) {

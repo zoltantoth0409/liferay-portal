@@ -16,6 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
@@ -101,10 +102,14 @@ public class JavaComponentActivateCheck extends BaseJavaTermCheck {
 					JavaTerm.ACCESS_MODIFIER_PROTECTED, matcher.start());
 			}
 
+			int lineNumber =
+				javaTerm.getLineNumber() +
+					SourceUtil.getLineNumber(content, matcher.start()) - 1;
+
 			addMessage(
 				fileName,
 				"Method '" + javaTerm.getName() + "' should be protected",
-				javaTerm.getLineNumber(matcher.start()));
+				lineNumber);
 		}
 
 		return content;
