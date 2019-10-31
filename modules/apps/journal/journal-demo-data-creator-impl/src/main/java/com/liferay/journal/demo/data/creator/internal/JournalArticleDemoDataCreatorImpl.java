@@ -53,7 +53,7 @@ public class JournalArticleDemoDataCreatorImpl
 	implements JournalArticleDemoDataCreator {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Collections.addAll(_availableIndexes, new Integer[] {1, 2, 3, 4, 5});
 
 		Collections.shuffle(_availableIndexes);

@@ -85,7 +85,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_ddmDataProviderSettingsProviderServiceTracker =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, DDMDataProviderSettingsProvider.class,
@@ -93,7 +93,7 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_ddmDataProviderSettingsProviderServiceTracker.close();
 	}
 

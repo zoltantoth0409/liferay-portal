@@ -34,7 +34,7 @@ public class WikiPageRenameCreoleContentProcessor
 
 	@Activate
 	@Modified
-	protected void activate() {
+	public void activate() {
 		regexps.put("\\{\\{@old_title@/", "{{@new_title@/");
 	}
 

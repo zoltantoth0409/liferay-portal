@@ -72,7 +72,7 @@ public class AMImageEntryProcessor implements DLProcessor, ImageProcessor {
 
 	@Activate
 	@Modified
-	protected void activate(Map<String, Object> properties) {
+	public void activate(Map<String, Object> properties) {
 		afterPropertiesSet();
 
 		_amSystemImagesConfiguration = ConfigurableUtil.createConfigurable(

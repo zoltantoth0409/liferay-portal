@@ -66,7 +66,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class IndexerRegistryImpl implements IndexerRegistry {
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_indexerServiceTracker.close();
 	}
 

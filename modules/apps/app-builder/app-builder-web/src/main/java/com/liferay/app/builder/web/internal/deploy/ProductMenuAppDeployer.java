@@ -54,12 +54,12 @@ import org.osgi.service.component.annotations.Reference;
 public class ProductMenuAppDeployer implements AppDeployer {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_bundleContext = null;
 
 		_serviceRegistrationsMap.clear();

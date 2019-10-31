@@ -45,7 +45,7 @@ import org.osgi.util.tracker.ServiceTracker;
 public class SystemCheckOSGiCommands {
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	public void activate(final BundleContext bundleContext) {
 		_serviceTracker = new ServiceTracker<>(
 			bundleContext, SystemChecker.class, null);
 

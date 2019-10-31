@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Component;
 public class VersionPurgerImpl implements VersionPurger {
 
 	@Activate
-	protected void activate(
+	public void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
 		_dlConfiguration = ConfigurableUtil.createConfigurable(

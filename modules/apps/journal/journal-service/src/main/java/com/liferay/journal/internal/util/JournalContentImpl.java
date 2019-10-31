@@ -80,7 +80,7 @@ public class JournalContentImpl
 	implements CTEventListener, IdentifiableOSGiService, JournalContent {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_portalCache =
 			(PortalCache<JournalContentKey, JournalArticleDisplay>)
 				_multiVMPool.getPortalCache(CACHE_NAME);
@@ -137,7 +137,7 @@ public class JournalContentImpl
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_multiVMPool.removePortalCache(CACHE_NAME);
 	}
 

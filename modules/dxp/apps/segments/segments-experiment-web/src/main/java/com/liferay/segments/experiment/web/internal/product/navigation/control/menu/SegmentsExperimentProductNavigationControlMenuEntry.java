@@ -93,7 +93,7 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 	extends BaseProductNavigationControlMenuEntry {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_portletNamespace = _portal.getPortletNamespace(
 			SegmentsPortletKeys.SEGMENTS_EXPERIMENT);
 	}

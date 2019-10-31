@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AMMessagingConfigurator {
 
 	@Activate
-	protected void activate(
+	public void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
 		_amConfiguration = ConfigurableUtil.createConfigurable(
@@ -71,7 +71,7 @@ public class AMMessagingConfigurator {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		if (_serviceRegistration != null) {
 			_serviceRegistration.unregister();
 		}

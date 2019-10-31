@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 public class WikiPageModelResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("model.class.name", WikiPage.class.getName());
@@ -103,7 +103,7 @@ public class WikiPageModelResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

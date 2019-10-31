@@ -28,14 +28,14 @@ import org.osgi.service.component.annotations.Deactivate;
 public class VLDAPConfigurator {
 
 	@Activate
-	protected void activate() throws Exception {
+	public void activate() throws Exception {
 		_vldapServer = new VLDAPServer();
 
 		_vldapServer.init();
 	}
 
 	@Deactivate
-	protected void deactivate() throws Exception {
+	public void deactivate() throws Exception {
 		_vldapServer.destroy();
 	}
 

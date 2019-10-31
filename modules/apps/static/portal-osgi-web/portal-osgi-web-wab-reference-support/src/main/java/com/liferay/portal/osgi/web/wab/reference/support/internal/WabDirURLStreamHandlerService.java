@@ -138,7 +138,7 @@ public class WabDirURLStreamHandlerService
 	}
 
 	@Activate
-	protected void start(BundleContext bundleContext) {
+	public void start(BundleContext bundleContext) {
 		Bundle bundle = bundleContext.getBundle(0);
 
 		Class<?> clazz = bundle.getClass();

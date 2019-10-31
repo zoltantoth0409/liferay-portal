@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class AMRequestHandlerLocator {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, AMRequestHandler.class,
 			"(adaptive.media.handler.pattern=*)",
@@ -40,7 +40,7 @@ public class AMRequestHandlerLocator {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceTrackerMap.close();
 	}
 

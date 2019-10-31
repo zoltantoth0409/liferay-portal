@@ -47,7 +47,7 @@ public class PersonalMenuConfigurationTrackerImpl
 
 	@Activate
 	@Modified
-	protected void activate(Map<String, Object> properties) {
+	public void activate(Map<String, Object> properties) {
 		_systemPersonalMenuConfiguration = ConfigurableUtil.createConfigurable(
 			PersonalMenuConfiguration.class, properties);
 	}

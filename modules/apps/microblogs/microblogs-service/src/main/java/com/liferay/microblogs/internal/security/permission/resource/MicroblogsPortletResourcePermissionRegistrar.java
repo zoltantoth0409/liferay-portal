@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class MicroblogsPortletResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("resource.name", MicroblogsConstants.RESOURCE_NAME);
@@ -53,7 +53,7 @@ public class MicroblogsPortletResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

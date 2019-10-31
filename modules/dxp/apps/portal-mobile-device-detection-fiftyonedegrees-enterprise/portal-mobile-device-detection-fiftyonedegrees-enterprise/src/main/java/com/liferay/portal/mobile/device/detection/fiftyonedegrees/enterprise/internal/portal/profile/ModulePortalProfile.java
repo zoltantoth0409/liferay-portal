@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 public class ModulePortalProfile extends BaseDSModulePortalProfile {
 
 	@Activate
-	protected void activate(ComponentContext componentContext) {
+	public void activate(ComponentContext componentContext) {
 		init(
 			componentContext,
 			Collections.singleton(PortalProfile.PORTAL_PROFILE_NAME_DXP),

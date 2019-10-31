@@ -61,7 +61,7 @@ public class MBMailingListLocalServiceImpl
 	extends MBMailingListLocalServiceBaseImpl {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_unregister = _liferayJSONDeserializationWhitelist.register(
 			MailingListRequest.class.getName());
 	}
@@ -126,7 +126,7 @@ public class MBMailingListLocalServiceImpl
 	}
 
 	@Deactivate
-	protected void deactivate() throws Exception {
+	public void deactivate() throws Exception {
 		_unregister.close();
 	}
 

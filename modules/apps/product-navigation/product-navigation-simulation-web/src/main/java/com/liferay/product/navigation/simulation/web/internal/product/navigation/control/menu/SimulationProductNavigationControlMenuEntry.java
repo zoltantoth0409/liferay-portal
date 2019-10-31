@@ -79,7 +79,7 @@ public class SimulationProductNavigationControlMenuEntry
 	extends BaseProductNavigationControlMenuEntry {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_portletNamespace = _portal.getPortletNamespace(
 			ProductNavigationSimulationPortletKeys.
 				PRODUCT_NAVIGATION_SIMULATION);

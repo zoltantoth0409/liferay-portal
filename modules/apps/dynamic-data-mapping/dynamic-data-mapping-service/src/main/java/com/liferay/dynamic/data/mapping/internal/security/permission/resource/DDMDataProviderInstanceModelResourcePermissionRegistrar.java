@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DDMDataProviderInstanceModelResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put(
@@ -60,7 +60,7 @@ public class DDMDataProviderInstanceModelResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

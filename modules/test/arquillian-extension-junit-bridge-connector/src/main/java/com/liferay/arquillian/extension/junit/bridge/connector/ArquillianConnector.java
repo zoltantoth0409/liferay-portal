@@ -38,7 +38,7 @@ import org.osgi.service.log.LoggerFactory;
 public class ArquillianConnector {
 
 	@Activate
-	protected void activate(
+	public void activate(
 		BundleContext bundleContext, Map<String, String> properties) {
 
 		int port = _DEFAULT_PORT;
@@ -70,7 +70,7 @@ public class ArquillianConnector {
 	}
 
 	@Deactivate
-	protected void deacticate() throws Exception {
+	public void deacticate() throws Exception {
 		_arquillianConnectorThread.close();
 
 		_arquillianConnectorThread.join();

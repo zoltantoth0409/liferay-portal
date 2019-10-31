@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class KBTemplateModelResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("model.class.name", KBTemplate.class.getName());
@@ -55,7 +55,7 @@ public class KBTemplateModelResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

@@ -40,7 +40,7 @@ public class SamlSpAuthRequestLocalServiceImpl
 	extends SamlSpAuthRequestLocalServiceBaseImpl {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_samlConfiguration = SamlConfigurationUtil.getSamlConfiguration(
 			_configurationAdmin);
 	}

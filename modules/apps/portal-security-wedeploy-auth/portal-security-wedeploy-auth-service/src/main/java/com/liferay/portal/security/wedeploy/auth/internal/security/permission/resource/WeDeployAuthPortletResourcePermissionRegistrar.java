@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class WeDeployAuthPortletResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("resource.name", WeDeployConstants.RESOURCE_NAME);
@@ -47,7 +47,7 @@ public class WeDeployAuthPortletResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

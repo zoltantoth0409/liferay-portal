@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Modified;
 public class DLProcessorRegistryImpl implements DLProcessorRegistry {
 
 	@Activate
-	protected void activate(
+	public void activate(
 			BundleContext bundleContext, Map<String, Object> properties)
 		throws Exception {
 

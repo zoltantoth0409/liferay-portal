@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 public class BatchEngineTaskExecutorImpl implements BatchEngineTaskExecutor {
 
 	@Activate
-	protected void activate(
+	public void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
 		BatchEngineTaskConfiguration batchEngineTaskConfiguration =

@@ -45,7 +45,7 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 	implements ItemSelectorViewReturnTypeProviderHandler {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
 
 		_serviceTracker = ServiceTrackerFactory.open(

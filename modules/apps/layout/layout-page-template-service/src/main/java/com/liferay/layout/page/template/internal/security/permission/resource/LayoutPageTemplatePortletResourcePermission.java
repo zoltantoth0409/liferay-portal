@@ -46,7 +46,7 @@ public class LayoutPageTemplatePortletResourcePermission
 	implements PortletResourcePermission {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_portletResourcePermission = PortletResourcePermissionFactory.create(
 			LayoutPageTemplateConstants.RESOURCE_NAME,
 			new StagedPortletPermissionLogic(

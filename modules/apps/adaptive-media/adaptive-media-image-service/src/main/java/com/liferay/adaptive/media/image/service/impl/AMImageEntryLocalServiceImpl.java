@@ -69,7 +69,7 @@ public class AMImageEntryLocalServiceImpl
 	extends AMImageEntryLocalServiceBaseImpl {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, AMImageCounter.class, "adaptive.media.key");
 	}
@@ -124,7 +124,7 @@ public class AMImageEntryLocalServiceImpl
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceTrackerMap.close();
 	}
 

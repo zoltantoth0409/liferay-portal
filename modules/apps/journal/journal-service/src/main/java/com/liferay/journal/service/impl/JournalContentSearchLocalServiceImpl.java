@@ -56,7 +56,7 @@ public class JournalContentSearchLocalServiceImpl
 	extends JournalContentSearchLocalServiceBaseImpl {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, DisplayInformationProvider.class,
 			"javax.portlet.name");
@@ -149,7 +149,7 @@ public class JournalContentSearchLocalServiceImpl
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceTrackerMap.close();
 	}
 

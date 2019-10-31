@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class KaleoFormsPortletResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("resource.name", KaleoFormsConstants.RESOURCE_NAME);
@@ -54,7 +54,7 @@ public class KaleoFormsPortletResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

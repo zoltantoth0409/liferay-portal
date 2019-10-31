@@ -47,7 +47,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class ParserRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext, EntityModel.class,
 			new EntityModelTrackerCustomizer(

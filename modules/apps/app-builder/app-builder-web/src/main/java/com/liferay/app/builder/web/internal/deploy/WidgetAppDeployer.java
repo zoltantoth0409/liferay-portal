@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 public class WidgetAppDeployer implements AppDeployer {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
 	}
 

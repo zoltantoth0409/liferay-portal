@@ -88,7 +88,7 @@ import org.osgi.util.tracker.BundleTracker;
 public class DefaultLPKGDeployer implements LPKGDeployer {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		try {
 			_activate(bundleContext);
 		}

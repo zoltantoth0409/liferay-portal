@@ -30,7 +30,7 @@ public class TestItemSelectorCriterionHandler
 
 	@Activate
 	@Override
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		super.activate(bundleContext);
 	}
 

@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class FileSystemKeyStoreManagerImpl extends BaseKeyStoreManagerImpl {
 
 	@Activate
-	protected void activate(Map<String, Object> properties) throws Exception {
+	public void activate(Map<String, Object> properties) throws Exception {
 		updateConfigurations(properties);
 
 		String samlKeyStoreType = getSamlKeyStoreType();

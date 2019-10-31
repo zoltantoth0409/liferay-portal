@@ -75,7 +75,7 @@ import org.osgi.service.component.annotations.Reference;
 public class FlagsRequestMessageListener extends BaseMessageListener {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_defaultMessagingConfigurator = new DefaultMessagingConfigurator();
 
 		_defaultMessagingConfigurator.setDestinationConfigurations(
@@ -88,7 +88,7 @@ public class FlagsRequestMessageListener extends BaseMessageListener {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_defaultMessagingConfigurator.destroy();
 	}
 

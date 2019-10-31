@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 public class KBFolderModelResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("model.class.name", KBFolder.class.getName());
@@ -65,7 +65,7 @@ public class KBFolderModelResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

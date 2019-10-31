@@ -41,7 +41,7 @@ public class WikiPageRenameHTMLContentProcessor
 
 	@Activate
 	@Modified
-	protected void activate() {
+	public void activate() {
 		regexps.put(
 			"(<img [^s]*src=\"[^g]+get_page_attachment\\?[^t]+title=)" +
 				"@old_title@&",

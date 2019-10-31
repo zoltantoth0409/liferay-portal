@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 public class CalendarBookingModelResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("model.class.name", CalendarBooking.class.getName());
@@ -69,7 +69,7 @@ public class CalendarBookingModelResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

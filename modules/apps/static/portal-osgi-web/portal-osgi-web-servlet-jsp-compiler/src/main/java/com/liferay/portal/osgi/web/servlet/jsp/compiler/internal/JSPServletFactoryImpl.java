@@ -51,7 +51,7 @@ import org.osgi.util.tracker.BundleTrackerCustomizer;
 public class JSPServletFactoryImpl implements JSPServletFactory {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_bundleTracker = new BundleTracker<>(
 			bundleContext, Bundle.RESOLVED,
 			new JspFragmentBundleTrackerCustomizer(bundleContext));
@@ -65,7 +65,7 @@ public class JSPServletFactoryImpl implements JSPServletFactory {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_bundleTracker.close();
 	}
 

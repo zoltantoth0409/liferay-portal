@@ -95,7 +95,7 @@ public class OAuth2ApplicationLocalServiceImpl
 	extends OAuth2ApplicationLocalServiceBaseImpl {
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		String ianaRegisteredSchemes = PropsUtil.get(
 			"iana.registered.uri.schemes");
 

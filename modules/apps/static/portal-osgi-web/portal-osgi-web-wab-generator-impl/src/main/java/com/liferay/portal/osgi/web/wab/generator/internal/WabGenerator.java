@@ -91,7 +91,7 @@ public class WabGenerator
 	}
 
 	@Activate
-	protected void start(BundleContext bundleContext) throws Exception {
+	public void start(BundleContext bundleContext) throws Exception {
 		registerURLStreamHandlerService(bundleContext);
 
 		registerArtifactUrlTransformer(bundleContext);
@@ -164,7 +164,7 @@ public class WabGenerator
 	}
 
 	@Deactivate
-	protected void stop(BundleContext bundleContext) throws Exception {
+	public void stop(BundleContext bundleContext) throws Exception {
 		_serviceRegistration.unregister();
 
 		_serviceRegistration = null;

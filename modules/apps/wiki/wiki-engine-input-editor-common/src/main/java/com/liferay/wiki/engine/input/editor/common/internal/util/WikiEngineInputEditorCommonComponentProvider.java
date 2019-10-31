@@ -34,12 +34,12 @@ public class WikiEngineInputEditorCommonComponentProvider {
 	}
 
 	@Activate
-	protected void activate() {
+	public void activate() {
 		_wikiEngineInputEditorCommonComponentProvider = this;
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_wikiEngineInputEditorCommonComponentProvider = null;
 	}
 

@@ -60,13 +60,13 @@ import org.osgi.service.component.annotations.Reference;
 public class DefaultSegmentsEntryProvider implements SegmentsEntryProvider {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, ODataRetriever.class, "model.class.name");
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceTrackerMap.close();
 	}
 

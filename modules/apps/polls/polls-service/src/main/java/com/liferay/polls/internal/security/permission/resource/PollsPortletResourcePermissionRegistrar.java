@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class PollsPortletResourcePermissionRegistrar {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("resource.name", PollsConstants.RESOURCE_NAME);
@@ -53,7 +53,7 @@ public class PollsPortletResourcePermissionRegistrar {
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_serviceRegistration.unregister();
 	}
 

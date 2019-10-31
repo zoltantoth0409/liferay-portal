@@ -69,7 +69,7 @@ public class OrganizationExpandoColumnModelListener
 	extends BaseModelListener<ExpandoColumn> {
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	public void activate(BundleContext bundleContext) {
 		try {
 			_bundleContext = bundleContext;
 
@@ -84,7 +84,7 @@ public class OrganizationExpandoColumnModelListener
 	}
 
 	@Deactivate
-	protected void deactivate() {
+	public void deactivate() {
 		_unregister(_serviceRegistration);
 	}
 

@@ -50,7 +50,7 @@ public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 
 	@Activate
 	@Modified
-	protected void activate(Map<String, Object> properties) {
+	public void activate(Map<String, Object> properties) {
 		_dlFileRankServiceConfiguration = ConfigurableUtil.createConfigurable(
 			DLFileRankServiceConfiguration.class, properties);
 	}
