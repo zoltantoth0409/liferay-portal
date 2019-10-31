@@ -39,6 +39,14 @@ import org.osgi.service.component.annotations.Component;
 )
 public class VersionPurgerImpl implements VersionPurger {
 
+	@Activate
+	protected void activate(
+		BundleContext bundleContext, Map<String, Object> properties) {
+
+		_dlConfiguration = ConfigurableUtil.createConfigurable(
+			DLConfiguration.class, properties);
+	}
+
 	@Override
 	public Collection<FileVersion> getToPurgeFileVersions(FileEntry fileEntry) {
 		int maximumNumberOfVersions =
@@ -64,14 +72,6 @@ public class VersionPurgerImpl implements VersionPurger {
 		}
 
 		return Collections.emptyList();
-	}
-
-	@Activate
-	protected void activate(
-		BundleContext bundleContext, Map<String, Object> properties) {
-
-		_dlConfiguration = ConfigurableUtil.createConfigurable(
-			DLConfiguration.class, properties);
 	}
 
 	private DLConfiguration _dlConfiguration;

@@ -94,6 +94,17 @@ import org.osgi.service.component.annotations.Reference;
 public class OAuth2ApplicationLocalServiceImpl
 	extends OAuth2ApplicationLocalServiceBaseImpl {
 
+	@Activate
+	protected void activate() {
+		String ianaRegisteredSchemes = PropsUtil.get(
+			"iana.registered.uri.schemes");
+
+		if (!Validator.isBlank(ianaRegisteredSchemes)) {
+			_ianaRegisteredUriSchemes = new HashSet<>(
+				Arrays.asList(StringUtil.split(ianaRegisteredSchemes)));
+		}
+	}
+
 	@Override
 	public OAuth2Application addOAuth2Application(
 			long companyId, long userId, String userName,
@@ -477,17 +488,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		}
 
 		return oAuth2Application;
-	}
-
-	@Activate
-	protected void activate() {
-		String ianaRegisteredSchemes = PropsUtil.get(
-			"iana.registered.uri.schemes");
-
-		if (!Validator.isBlank(ianaRegisteredSchemes)) {
-			_ianaRegisteredUriSchemes = new HashSet<>(
-				Arrays.asList(StringUtil.split(ianaRegisteredSchemes)));
-		}
 	}
 
 	protected void validate(

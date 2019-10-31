@@ -47,40 +47,6 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class AsyncAdvice extends ChainableMethodAdvice {
 
-	@Override
-	public Object createMethodContext(
-		Class<?> targetClass, Method method,
-		Map<Class<? extends Annotation>, Annotation> annotations) {
-
-		Annotation annotation = annotations.get(Async.class);
-
-		if (annotation == null) {
-			return null;
-		}
-
-		if (method.getReturnType() != void.class) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Async annotation on method " + method.getName() +
-						" does not return void");
-			}
-
-			return null;
-		}
-
-		String destinationName = null;
-
-		if (_destinationNames != null) {
-			destinationName = _destinationNames.get(targetClass.getName());
-		}
-
-		if (destinationName == null) {
-			return _asyncAdviceConfiguration.defaultDestinationName();
-		}
-
-		return destinationName;
-	}
-
 	@Activate
 	@Modified
 	protected void activate(Map<String, String> properties) {
@@ -117,6 +83,40 @@ public class AsyncAdvice extends ChainableMethodAdvice {
 				_destinationNames = destinationNames;
 			}
 		}
+	}
+
+	@Override
+	public Object createMethodContext(
+		Class<?> targetClass, Method method,
+		Map<Class<? extends Annotation>, Annotation> annotations) {
+
+		Annotation annotation = annotations.get(Async.class);
+
+		if (annotation == null) {
+			return null;
+		}
+
+		if (method.getReturnType() != void.class) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Async annotation on method " + method.getName() +
+						" does not return void");
+			}
+
+			return null;
+		}
+
+		String destinationName = null;
+
+		if (_destinationNames != null) {
+			destinationName = _destinationNames.get(targetClass.getName());
+		}
+
+		if (destinationName == null) {
+			return _asyncAdviceConfiguration.defaultDestinationName();
+		}
+
+		return destinationName;
 	}
 
 	@Override

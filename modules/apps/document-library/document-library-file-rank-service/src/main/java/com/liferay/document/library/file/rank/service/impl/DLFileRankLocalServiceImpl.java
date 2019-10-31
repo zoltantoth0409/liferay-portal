@@ -48,6 +48,13 @@ import org.osgi.service.component.annotations.Modified;
 )
 public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		_dlFileRankServiceConfiguration = ConfigurableUtil.createConfigurable(
+			DLFileRankServiceConfiguration.class, properties);
+	}
+
 	@Override
 	public DLFileRank addFileRank(
 		long groupId, long companyId, long userId, long fileEntryId,
@@ -227,13 +234,6 @@ public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 		}
 
 		return dlFileRank;
-	}
-
-	@Activate
-	@Modified
-	protected void activate(Map<String, Object> properties) {
-		_dlFileRankServiceConfiguration = ConfigurableUtil.createConfigurable(
-			DLFileRankServiceConfiguration.class, properties);
 	}
 
 	protected void updateFileRanks(DLFolder dlFolder, boolean active) {

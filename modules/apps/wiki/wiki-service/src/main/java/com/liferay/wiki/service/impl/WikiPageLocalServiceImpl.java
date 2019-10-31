@@ -178,6 +178,22 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
+	@Activate
+	protected void activate(
+		BundleContext bundleContext, Map<String, Object> properties) {
+
+		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, WikiPageRenameContentProcessor.class,
+			"wiki.format.name");
+
+		_portalCache =
+			(PortalCache<String, Serializable>)_multiVMPool.getPortalCache(
+				WikiPageDisplay.class.getName());
+
+		_wikiFileUploadConfiguration = ConfigurableUtil.createConfigurable(
+			WikiFileUploadConfiguration.class, properties);
+	}
+
 	@Override
 	public WikiPage addPage(
 			long userId, long nodeId, String title, double version,
@@ -568,6 +584,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				templateFileEntry.getContentStream(),
 				templateFileEntry.getMimeType());
 		}
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		_serviceTrackerMap.close();
+
+		_portalCache.removeAll();
 	}
 
 	@Override
@@ -2323,33 +2346,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		_wikiPageTitleValidator.validate(title);
 	}
 
-	@Activate
-	protected void activate(
-		BundleContext bundleContext, Map<String, Object> properties) {
-
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, WikiPageRenameContentProcessor.class,
-			"wiki.format.name");
-
-		_portalCache =
-			(PortalCache<String, Serializable>)_multiVMPool.getPortalCache(
-				WikiPageDisplay.class.getName());
-
-		_wikiFileUploadConfiguration = ConfigurableUtil.createConfigurable(
-			WikiFileUploadConfiguration.class, properties);
-	}
-
 	protected void clearPageCache(WikiPage page) {
 		if (!WikiCacheThreadLocal.isClearCache()) {
 			return;
 		}
-
-		_portalCache.removeAll();
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_serviceTrackerMap.close();
 
 		_portalCache.removeAll();
 	}

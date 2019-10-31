@@ -92,6 +92,46 @@ import org.osgi.service.component.annotations.ReferenceScope;
 public class MetadataManagerImpl
 	implements MetadataManager, SamlHttpRequestUtil {
 
+	@Activate
+	protected void activate() throws ComponentInitializationException {
+		_cachingChainingMetadataResolver.setId(
+			CachingChainingMetadataResolver.class.getName());
+		_cachingChainingMetadataResolver.setParserPool(_parserPool);
+
+		_cachingChainingMetadataResolver.initialize();
+
+		_predicateRoleDescriptorResolver.initialize();
+
+		KeyInfoCredentialResolver keyInfoCredentialResolver =
+			DefaultSecurityConfigurationBootstrap.
+				buildBasicInlineKeyInfoCredentialResolver();
+
+		_metadataCredentialResolver = new MetadataCredentialResolver();
+
+		_metadataCredentialResolver.setKeyInfoCredentialResolver(
+			keyInfoCredentialResolver);
+		_metadataCredentialResolver.setRoleDescriptorResolver(
+			_predicateRoleDescriptorResolver);
+
+		_metadataCredentialResolver.initialize();
+
+		List<SignatureTrustEngine> signatureTrustEngines = new ArrayList<>();
+
+		SignatureTrustEngine signatureTrustEngine =
+			new ExplicitKeySignatureTrustEngine(
+				_metadataCredentialResolver, keyInfoCredentialResolver);
+
+		signatureTrustEngines.add(signatureTrustEngine);
+
+		signatureTrustEngine = new ExplicitKeySignatureTrustEngine(
+			_credentialResolver, keyInfoCredentialResolver);
+
+		signatureTrustEngines.add(signatureTrustEngine);
+
+		_chainingSignatureTrustEngine = new ChainingSignatureTrustEngine(
+			signatureTrustEngines);
+	}
+
 	@Override
 	public int getAssertionLifetime(String entityId) {
 		long companyId = CompanyThreadLocal.getCompanyId();
@@ -518,46 +558,6 @@ public class MetadataManagerImpl
 
 		_cachingChainingMetadataResolver.removeMetadataResolver(
 			metadataResolver);
-	}
-
-	@Activate
-	protected void activate() throws ComponentInitializationException {
-		_cachingChainingMetadataResolver.setId(
-			CachingChainingMetadataResolver.class.getName());
-		_cachingChainingMetadataResolver.setParserPool(_parserPool);
-
-		_cachingChainingMetadataResolver.initialize();
-
-		_predicateRoleDescriptorResolver.initialize();
-
-		KeyInfoCredentialResolver keyInfoCredentialResolver =
-			DefaultSecurityConfigurationBootstrap.
-				buildBasicInlineKeyInfoCredentialResolver();
-
-		_metadataCredentialResolver = new MetadataCredentialResolver();
-
-		_metadataCredentialResolver.setKeyInfoCredentialResolver(
-			keyInfoCredentialResolver);
-		_metadataCredentialResolver.setRoleDescriptorResolver(
-			_predicateRoleDescriptorResolver);
-
-		_metadataCredentialResolver.initialize();
-
-		List<SignatureTrustEngine> signatureTrustEngines = new ArrayList<>();
-
-		SignatureTrustEngine signatureTrustEngine =
-			new ExplicitKeySignatureTrustEngine(
-				_metadataCredentialResolver, keyInfoCredentialResolver);
-
-		signatureTrustEngines.add(signatureTrustEngine);
-
-		signatureTrustEngine = new ExplicitKeySignatureTrustEngine(
-			_credentialResolver, keyInfoCredentialResolver);
-
-		signatureTrustEngines.add(signatureTrustEngine);
-
-		_chainingSignatureTrustEngine = new ChainingSignatureTrustEngine(
-			signatureTrustEngines);
 	}
 
 	@Deactivate

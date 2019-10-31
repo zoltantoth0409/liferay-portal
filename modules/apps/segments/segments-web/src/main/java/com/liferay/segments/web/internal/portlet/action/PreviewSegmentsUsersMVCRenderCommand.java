@@ -52,6 +52,17 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, ODataRetriever.class, "model.class.name");
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		_serviceTrackerMap.close();
+	}
+
 	@Override
 	public String render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -75,17 +86,6 @@ public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
 			previewSegmentsEntryUsersDisplayContext);
 
 		return "/preview_segments_entry_users.jsp";
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ODataRetriever.class, "model.class.name");
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_serviceTrackerMap.close();
 	}
 
 	@Reference

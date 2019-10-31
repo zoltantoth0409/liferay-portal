@@ -40,6 +40,11 @@ import org.osgi.service.component.annotations.Component;
 @Component(immediate = true, service = LPKGVerifier.class)
 public class DefaultLPKGVerifier implements LPKGVerifier {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_bundleContext = bundleContext;
+	}
+
 	@Override
 	public List<Bundle> verify(File lpkgFile) {
 		try (ZipFile zipFile = new ZipFile(lpkgFile)) {
@@ -113,11 +118,6 @@ public class DefaultLPKGVerifier implements LPKGVerifier {
 		catch (Exception e) {
 			throw new LPKGVerifyException(e);
 		}
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
 	}
 
 	private BundleContext _bundleContext;

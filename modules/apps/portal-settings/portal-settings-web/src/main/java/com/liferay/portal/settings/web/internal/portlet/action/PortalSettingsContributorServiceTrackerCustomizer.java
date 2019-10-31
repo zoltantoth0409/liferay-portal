@@ -47,6 +47,14 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 	implements ServiceTrackerCustomizer
 		<PortalSettingsFormContributor, PortalSettingsFormContributor> {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_bundleContext = bundleContext;
+
+		_serviceTracker = ServiceTrackerFactory.open(
+			bundleContext, PortalSettingsFormContributor.class, this);
+	}
+
 	@Override
 	public PortalSettingsFormContributor addingService(
 		ServiceReference<PortalSettingsFormContributor> reference) {
@@ -101,6 +109,13 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 		return portalSettingsFormContributor;
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_bundleContext = null;
+
+		_serviceTracker.close();
+	}
+
 	@Override
 	public void modifiedService(
 		ServiceReference<PortalSettingsFormContributor> reference,
@@ -117,21 +132,6 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 		PortalSettingsFormContributor service) {
 
 		unregister(service);
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
-
-		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, PortalSettingsFormContributor.class, this);
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_bundleContext = null;
-
-		_serviceTracker.close();
 	}
 
 	protected ServiceRegistration<MVCActionCommand> registerMVCActionCommand(

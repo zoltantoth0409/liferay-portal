@@ -44,6 +44,19 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class ItemSelectorViewReturnTypeProviderHandlerImpl
 	implements ItemSelectorViewReturnTypeProviderHandler {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_bundleContext = bundleContext;
+
+		_serviceTracker = ServiceTrackerFactory.open(
+			bundleContext, ItemSelectorView.class,
+			new ItemSelectorViewServiceTrackerCustomizer());
+
+		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
+			bundleContext, ItemSelectorViewReturnTypeProvider.class,
+			"item.selector.view.key");
+	}
+
 	@Override
 	public List<ItemSelectorReturnType> getSupportedItemSelectorReturnTypes(
 		ItemSelectorView itemSelectorView) {
@@ -90,19 +103,6 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 		}
 
 		return supportedItemSelectorReturnTypes;
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
-
-		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, ItemSelectorView.class,
-			new ItemSelectorViewServiceTrackerCustomizer());
-
-		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
-			bundleContext, ItemSelectorViewReturnTypeProvider.class,
-			"item.selector.view.key");
 	}
 
 	@Deactivate

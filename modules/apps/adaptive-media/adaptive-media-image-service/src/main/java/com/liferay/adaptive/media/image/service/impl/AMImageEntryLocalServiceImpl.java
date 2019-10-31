@@ -68,6 +68,12 @@ import org.osgi.service.component.annotations.Reference;
 public class AMImageEntryLocalServiceImpl
 	extends AMImageEntryLocalServiceBaseImpl {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, AMImageCounter.class, "adaptive.media.key");
+	}
+
 	/**
 	 * Adds an adaptive media image entry in the database and stores the image
 	 * bytes in the file store.
@@ -115,6 +121,11 @@ public class AMImageEntryLocalServiceImpl
 			fileVersion, amImageConfigurationEntry.getUUID(), inputStream);
 
 		return amImageEntryPersistence.update(amImageEntry);
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		_serviceTrackerMap.close();
 	}
 
 	/**
@@ -294,17 +305,6 @@ public class AMImageEntryLocalServiceImpl
 			(actualAMImageEntriesCount * 100) / expectedAMImageEntriesCount;
 
 		return Math.min(percentage, 100);
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, AMImageCounter.class, "adaptive.media.key");
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_serviceTrackerMap.close();
 	}
 
 	private void _checkDuplicateAMImageEntry(

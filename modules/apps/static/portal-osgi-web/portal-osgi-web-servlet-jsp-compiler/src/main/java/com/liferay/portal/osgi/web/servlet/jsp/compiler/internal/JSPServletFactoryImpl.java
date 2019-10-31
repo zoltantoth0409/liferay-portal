@@ -50,11 +50,6 @@ import org.osgi.util.tracker.BundleTrackerCustomizer;
 @Component(immediate = true, service = JSPServletFactory.class)
 public class JSPServletFactoryImpl implements JSPServletFactory {
 
-	@Override
-	public Servlet createJSPServlet() {
-		return new JspServlet();
-	}
-
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_bundleTracker = new BundleTracker<>(
@@ -62,6 +57,11 @@ public class JSPServletFactoryImpl implements JSPServletFactory {
 			new JspFragmentBundleTrackerCustomizer(bundleContext));
 
 		_bundleTracker.open();
+	}
+
+	@Override
+	public Servlet createJSPServlet() {
+		return new JspServlet();
 	}
 
 	@Deactivate

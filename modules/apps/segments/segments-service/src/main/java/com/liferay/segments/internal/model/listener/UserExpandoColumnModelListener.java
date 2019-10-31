@@ -66,6 +66,25 @@ import org.osgi.service.component.annotations.Reference;
 public class UserExpandoColumnModelListener
 	extends BaseModelListener<ExpandoColumn> {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		try {
+			_bundleContext = bundleContext;
+
+			_userEntityFields = _getUserEntityFields();
+
+			_serviceRegistration = _register(_bundleContext, _userEntityFields);
+		}
+		catch (PortalException pe) {
+			_log.error(pe, pe);
+		}
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		_unregister(_serviceRegistration);
+	}
+
 	@Override
 	public void onAfterCreate(ExpandoColumn expandoColumn)
 		throws ModelListenerException {
@@ -120,25 +139,6 @@ public class UserExpandoColumnModelListener
 		_userEntityFields.remove(expandoColumn.getColumnId());
 
 		onAfterCreate(expandoColumn);
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		try {
-			_bundleContext = bundleContext;
-
-			_userEntityFields = _getUserEntityFields();
-
-			_serviceRegistration = _register(_bundleContext, _userEntityFields);
-		}
-		catch (PortalException pe) {
-			_log.error(pe, pe);
-		}
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_unregister(_serviceRegistration);
 	}
 
 	private DynamicQuery _getTableDynamicQuery(long classNameId, String name) {

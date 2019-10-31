@@ -65,6 +65,11 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 )
 public class IndexerRegistryImpl implements IndexerRegistry {
 
+	@Deactivate
+	protected void deactivate() {
+		_indexerServiceTracker.close();
+	}
+
 	@Override
 	public <T> Indexer<T> getIndexer(Class<T> clazz) {
 		return getIndexer(clazz.getName());
@@ -230,11 +235,6 @@ public class IndexerRegistryImpl implements IndexerRegistry {
 				}
 			}
 		}
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		_indexerServiceTracker.close();
 	}
 
 	@Modified

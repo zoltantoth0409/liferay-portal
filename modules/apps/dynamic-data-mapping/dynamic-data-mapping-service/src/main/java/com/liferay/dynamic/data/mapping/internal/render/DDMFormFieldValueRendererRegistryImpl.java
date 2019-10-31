@@ -33,13 +33,6 @@ import org.osgi.service.component.annotations.Deactivate;
 public class DDMFormFieldValueRendererRegistryImpl
 	implements DDMFormFieldValueRendererRegistry {
 
-	@Override
-	public DDMFormFieldValueRenderer getDDMFormFieldValueRenderer(
-		String ddmFormFieldType) {
-
-		return _serviceTrackerMap.getService(ddmFormFieldType);
-	}
-
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		for (int i = 0; i < _defaultDDMFormFieldValueRenderers.length; i++) {
@@ -80,6 +73,13 @@ public class DDMFormFieldValueRendererRegistryImpl
 
 			serviceRegistration.unregister();
 		}
+	}
+
+	@Override
+	public DDMFormFieldValueRenderer getDDMFormFieldValueRenderer(
+		String ddmFormFieldType) {
+
+		return _serviceTrackerMap.getService(ddmFormFieldType);
 	}
 
 	private final DDMFormFieldValueRendererRegistryUtil

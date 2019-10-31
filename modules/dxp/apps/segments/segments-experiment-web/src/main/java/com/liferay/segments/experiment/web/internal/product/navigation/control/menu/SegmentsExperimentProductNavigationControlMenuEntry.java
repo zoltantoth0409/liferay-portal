@@ -92,6 +92,12 @@ import org.osgi.service.component.annotations.Reference;
 public class SegmentsExperimentProductNavigationControlMenuEntry
 	extends BaseProductNavigationControlMenuEntry {
 
+	@Activate
+	protected void activate() {
+		_portletNamespace = _portal.getPortletNamespace(
+			SegmentsPortletKeys.SEGMENTS_EXPERIMENT);
+	}
+
 	@Override
 	public String getLabel(Locale locale) {
 		return null;
@@ -268,12 +274,6 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 		}
 
 		return super.isShow(httpServletRequest);
-	}
-
-	@Activate
-	protected void activate() {
-		_portletNamespace = _portal.getPortletNamespace(
-			SegmentsPortletKeys.SEGMENTS_EXPERIMENT);
 	}
 
 	private long _getSegmentsExperienceId(

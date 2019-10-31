@@ -87,6 +87,16 @@ import org.osgi.util.tracker.BundleTracker;
 @Component(immediate = true, service = LPKGDeployer.class)
 public class DefaultLPKGDeployer implements LPKGDeployer {
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		try {
+			_activate(bundleContext);
+		}
+		catch (Throwable t) {
+			_throwableCollector.collect(t);
+		}
+	}
+
 	@Override
 	public List<Bundle> deploy(BundleContext bundleContext, File lpkgFile)
 		throws IOException {
@@ -243,16 +253,6 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 			return new UnsyncByteArrayInputStream(
 				unsyncByteArrayOutputStream.unsafeGetByteArray(), 0,
 				unsyncByteArrayOutputStream.size());
-		}
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		try {
-			_activate(bundleContext);
-		}
-		catch (Throwable t) {
-			_throwableCollector.collect(t);
 		}
 	}
 

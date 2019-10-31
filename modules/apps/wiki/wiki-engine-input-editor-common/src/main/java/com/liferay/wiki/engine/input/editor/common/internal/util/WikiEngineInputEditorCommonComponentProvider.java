@@ -33,10 +33,6 @@ public class WikiEngineInputEditorCommonComponentProvider {
 		return _wikiEngineInputEditorCommonComponentProvider;
 	}
 
-	public ServletContext getServletContext() {
-		return _servletContext;
-	}
-
 	@Activate
 	protected void activate() {
 		_wikiEngineInputEditorCommonComponentProvider = this;
@@ -45,6 +41,10 @@ public class WikiEngineInputEditorCommonComponentProvider {
 	@Deactivate
 	protected void deactivate() {
 		_wikiEngineInputEditorCommonComponentProvider = null;
+	}
+
+	public ServletContext getServletContext() {
+		return _servletContext;
 	}
 
 	@Reference(

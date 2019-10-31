@@ -28,10 +28,6 @@ import org.osgi.service.component.annotations.Deactivate;
 @Component(service = MBMessageFormatUploadHandlerProvider.class)
 public class MBMessageFormatUploadHandlerProvider {
 
-	public MBMessageFormatUploadHandler provide(String format) {
-		return _serviceTrackerMap.getService(format);
-	}
-
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
@@ -41,6 +37,10 @@ public class MBMessageFormatUploadHandlerProvider {
 	@Deactivate
 	protected void deactivate() {
 		_serviceTrackerMap.close();
+	}
+
+	public MBMessageFormatUploadHandler provide(String format) {
+		return _serviceTrackerMap.getService(format);
 	}
 
 	private ServiceTrackerMap<String, MBMessageFormatUploadHandler>
