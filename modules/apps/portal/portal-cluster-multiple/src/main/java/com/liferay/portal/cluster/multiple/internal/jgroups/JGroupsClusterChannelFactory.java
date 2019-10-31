@@ -145,7 +145,7 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	}
 
 	@Deactivate
-	protected synchronized void deactivate() {
+	protected synchronized void deactive() {
 		if (_bundleTracker != null) {
 			_bundleTracker.close();
 		}

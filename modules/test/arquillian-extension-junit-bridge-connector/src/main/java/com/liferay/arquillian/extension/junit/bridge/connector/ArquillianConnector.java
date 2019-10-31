@@ -70,7 +70,7 @@ public class ArquillianConnector {
 	}
 
 	@Deactivate
-	protected void deactivate() throws Exception {
+	protected void deacticate() throws Exception {
 		_arquillianConnectorThread.close();
 
 		_arquillianConnectorThread.join();
