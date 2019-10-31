@@ -38,8 +38,6 @@ public interface JavaTerm {
 
 	public int getLineNumber();
 
-	public int getLineNumber(int pos);
-
 	public String getName();
 
 	public JavaClass getParentJavaClass();
