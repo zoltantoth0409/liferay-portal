@@ -675,6 +675,7 @@ mariadb.executable=${mariadb.executable}]]></echo>
 
 	<macrodef name="prepare-release-test-environment">
 		<attribute default="tomcat" name="app.server.type" />
+		<attribute default="true" name="setup.proxy" />
 		<attribute default="true" name="setup.testable.jboss" />
 		<attribute default="true" name="setup.testable.tomcat" />
 		<attribute default="" name="test.build.fix.pack.zip.url" />
@@ -974,6 +975,8 @@ app.server.type=@{app.server.type}]]></echo>
 
 	<macrodef name="prepare-test-environment">
 		<attribute default="tomcat" name="app.server.type" />
+		<attribute default="true" name="setup.testable.tomcat" />
+		<attribute default="true" name="setup.proxy" />
 
 		<sequential>
 			<antcall inheritAll="false" target="setup-libs" />
@@ -1012,6 +1015,29 @@ app.server.type=@{app.server.type}]]></echo>
 
 			<antcall if:set="env.JENKINS_HOME" inheritAll="false" target="clean-up-db2-processes" />
 			<antcall if:set="env.JENKINS_HOME" inheritAll="false" target="clean-up-java-processes" />
+
+			<if>
+				<and>
+					<equals arg1="@{app.server.type}" arg2="tomcat" />
+					<equals arg1="@{setup.testable.tomcat}" arg2="true" />
+				</and>
+				<then>
+					<copy
+						overwrite="true"
+						todir="${app.server.tomcat.dir}/bin/"
+					>
+						<fileset
+							dir="tools/servers/tomcat/bin/"
+							includes="setenv.*"
+						/>
+					</copy>
+
+					<setup-test-batch-testable-tomcat
+						setup.proxy="@{setup.proxy}"
+						test.portal.bundle.version="${test.portal.bundle.version}"
+					/>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -1301,6 +1327,7 @@ app.server.type=@{app.server.type}]]></echo>
 						<then>
 							<prepare-release-test-environment
 								app.server.type="${app.server.type}"
+								setup.proxy="@{setup.proxy}"
 								setup.testable.jboss="@{setup.testable.jboss}"
 								setup.testable.tomcat="@{setup.testable.tomcat}"
 								test.build.fix.pack.zip.url="${test.build.fix.pack.zip.url}"
@@ -1334,7 +1361,11 @@ app.server.type=@{app.server.type}]]></echo>
 								<available file="liferay-portal-source.tar.gz" />
 							</and>
 							<then>
-								<prepare-test-environment app.server.type="${app.server.type}" />
+								<prepare-test-environment
+									app.server.type="${app.server.type}"
+									setup.proxy="@{setup.proxy}"
+									setup.testable.tomcat="@{setup.testable.tomcat}"
+								/>
 							</then>
 						</elseif>
 						<else>
