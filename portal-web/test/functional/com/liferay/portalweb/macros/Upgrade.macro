@@ -219,9 +219,9 @@ definition {
 			suborgName = "Sub-organization-Pre",
 			suborgType = "Organization");
 
-		Organization.gotoCP(
-			orgName = "Sub-organization-Pre",
-			searchToken = "Sub-organization-Pre");
+		Suborganization.gotoCP(
+			searchToken = "Sub-organization-Pre",
+			suborgName = "Sub-organization-Pre");
 
 		Organization.viewAssignMemberCP(
 			userName = "userfn userln",

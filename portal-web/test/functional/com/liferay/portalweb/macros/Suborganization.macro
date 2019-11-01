@@ -16,6 +16,26 @@ definition {
 			value1 = "${suborgName}");
 	}
 
+	macro gotoCP {
+		Type(
+			locator1 = "TextInput#SEARCH",
+			value1 = "${searchToken}");
+
+		Click(locator1 = "Button#SUBMIT");
+
+		var key_suborgName = "${suborgName}";
+
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME",
+			value1 = "${suborgName}");
+
+		AssertClick(
+			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME",
+			value1 = "${suborgName}");
+
+		Breadcrumb.viewActiveEntry(breadcrumbName = "${suborgName}");
+	}
+
 	macro tearDownCP {
 		Organization.tearDownCP(orgName = "Suborganization*");
 	}
