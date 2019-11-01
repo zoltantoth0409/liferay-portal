@@ -444,7 +444,7 @@ definition {
 	}
 
 	macro editConfigurationUsersEmailNotificationsSenderCP {
-		Panel.expandPanel(panel = "Email Notifications");
+		Panel.expandPanel(panelHeading = "Email Notifications");
 
 		Type(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_NAME_FIELD",
