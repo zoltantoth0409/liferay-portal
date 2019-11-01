@@ -276,7 +276,8 @@ definition {
 
 		Organization.removeMemberCP(
 			orgName = "Sub-organization1 Edit",
-			userFullName = "user2 user2");
+			userFirstName = "user2",
+			userScreenName = "user2");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
