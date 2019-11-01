@@ -175,6 +175,13 @@ definition {
 			userName = "user2 user2",
 			userScreenName = "user2");
 
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		UsersAndOrganizationsNavigator.gotoOrganizations();
+
 		Organization.addMemberCP(
 			orgName = "Sub-organization1",
 			userFirstName = "user2",
