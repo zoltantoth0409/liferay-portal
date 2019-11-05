@@ -162,7 +162,7 @@ definition {
 
 			Click(locator1 = "Icon#DISPLAY_STYLE_ICON");
 
-			AssertElementPresent(locator1 = "Icon#DISPLAY_STYLE_ICON_ACTIVE");
+			AssertElementPresent.pauseAssertVisible(locator1 = "Icon#DISPLAY_STYLE_ICON_ACTIVE");
 		}
 
 		Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_PREVIEW");
