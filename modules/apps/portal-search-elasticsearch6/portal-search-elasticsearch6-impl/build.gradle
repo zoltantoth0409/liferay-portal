@@ -66,7 +66,7 @@ dependencies {
 	compileInclude group: "org.ow2.asm", name: "asm-debug-all", version: "5.1"
 	compileInclude group: "org.yaml", name: "snakeyaml", version: "1.17"
 
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.9"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.10"
 	compileOnly group: "com.ibm.icu", name: "icu4j", version: "61.1"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
@@ -76,7 +76,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.engine.adapter.api", version: "3.6.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi", version: "3.3.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.3.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.34.0"
 	compileOnly group: "commons-collections", name: "commons-collections", version: "3.2.2"
 	compileOnly group: "org.codehaus.woodstox", name: "stax2-api", version: "3.1.4"
 	compileOnly group: "org.codehaus.woodstox", name: "woodstox-core-asl", version: "4.4.1"

@@ -3,7 +3,7 @@
 		"frontend-js-web": "*",
 		"metal": "2.16.8",
 		"metal-dom": "2.16.8",
-		"senna": "2.7.8"
+		"senna": "2.7.9"
 	},
 	"name": "frontend-js-spa-web",
 	"scripts": {
@@ -11,5 +11,5 @@
 		"checkFormat": "liferay-npm-scripts check",
 		"format": "liferay-npm-scripts fix"
 	},
-	"version": "3.0.19"
+	"version": "3.0.23"
 }

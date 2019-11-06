@@ -13,10 +13,10 @@
  */
 
 import * as FormSupport from 'dynamic-data-mapping-form-renderer/js/components/FormRenderer/FormSupport.es';
+import {PagesVisitor} from 'dynamic-data-mapping-form-renderer/js/util/visitors.es';
+import {EventHandler} from 'metal-events';
 import Component from 'metal-jsx';
 import {Config} from 'metal-state';
-import {EventHandler} from 'metal-events';
-import {PagesVisitor} from 'dynamic-data-mapping-form-renderer/js/util/visitors.es';
 
 class StateSyncronizer extends Component {
 	created() {
@@ -216,11 +216,11 @@ class StateSyncronizer extends Component {
 				const {value} = field;
 				const newValue = {};
 
-				for (const locale in value) {
+				Object.keys(value).forEach(locale => {
 					newValue[locale] = value[locale].filter(
 						({value}) => value !== ''
 					);
-				}
+				});
 
 				if (!newValue[defaultLanguageId]) {
 					newValue[defaultLanguageId] = [];

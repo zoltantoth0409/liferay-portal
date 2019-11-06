@@ -32,9 +32,9 @@ dependencies {
 	compileInclude group: "org.yaml", name: "snakeyaml", version: "1.23"
 
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "4.2.0"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.9.3"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.10"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.10"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.10.1"
 	compileOnly group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-json-provider", version: "2.9.8"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
@@ -43,8 +43,9 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.9.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.34.0"
 	compileOnly group: "commons-fileupload", name: "commons-fileupload", version: "1.3.3"
 	compileOnly group: "io.swagger.core.v3", name: "swagger-annotations", version: "2.0.5"
 	compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.1"
@@ -61,7 +62,6 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.util.promise", version: "1.1.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "org.springframework", name: "spring-tx", version: "4.1.9.RELEASE"
-	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 
 	testCompile group: "org.hamcrest", name: "hamcrest-all", version: "1.3"
 }

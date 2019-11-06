@@ -1084,7 +1084,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/axis.jar</file-name>
-				<version>1.4.LIFERAY-PATCHED-3</version>
+				<version>1.4.LIFERAY-PATCHED-4</version>
 				<project-name>Axis</project-name>
 				<project-url>http://ws.apache.org/axis</project-url>
 				<licenses>
@@ -1241,7 +1241,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/commons-beanutils.jar</file-name>
-				<version>1.9.2</version>
+				<version>1.9.4</version>
 				<project-name>Commons Beanutils</project-name>
 				<project-url>http://commons.apache.org/beanutils</project-url>
 				<licenses>
@@ -1313,7 +1313,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/commons-configuration.jar</file-name>
-				<version>1.10.LIFERAY-PATCHED-1</version>
+				<version>1.10.LIFERAY-PATCHED-2</version>
 				<project-name>Commons Configuration</project-name>
 				<project-url>http://commons.apache.org/configuration</project-url>
 				<licenses>

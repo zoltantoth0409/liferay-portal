@@ -12,8 +12,9 @@
  * details.
  */
 
-import {convertToFormData, makeFetch} from './fetch.es';
 import {debounce} from 'frontend-js-web';
+
+import {convertToFormData, makeFetch} from './fetch.es';
 import {PagesVisitor} from './visitors.es';
 
 const EVALUATOR_URL =
@@ -81,7 +82,7 @@ export const evaluate = (fieldName, evaluatorContext) => {
 export const mergeFieldOptions = (field, newField) => {
 	let newValue = {...newField.value};
 
-	for (const languageId in newValue) {
+	Object.keys(newValue).forEach(languageId => {
 		newValue = {
 			...newValue,
 			[languageId]: newValue[languageId].map(option => {
@@ -95,7 +96,7 @@ export const mergeFieldOptions = (field, newField) => {
 				};
 			})
 		};
-	}
+	});
 
 	return newValue;
 };

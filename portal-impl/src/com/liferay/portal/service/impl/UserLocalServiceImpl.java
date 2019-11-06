@@ -6249,18 +6249,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		PortletPreferences companyPortletPreferences =
 			PrefsPropsUtil.getPreferences(companyId, true);
 
-		Company company = null;
-		String portalURL = null;
-
-		try {
-			company = companyLocalService.getCompany(user.getCompanyId());
-
-			portalURL = company.getPortalURL(0);
-		}
-		catch (PortalException pe) {
-			ReflectionUtil.throwException(pe);
-		}
-
 		final String bodyProperty;
 		final String prefix;
 		final String subjectProperty;
@@ -6307,7 +6295,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			"[$FROM_NAME$]", HtmlUtil.escape(fromName));
 		mailTemplateContextBuilder.put(
 			"[$PASSWORD_RESET_URL$]", passwordResetURL);
-		mailTemplateContextBuilder.put("[$PORTAL_URL$]", portalURL);
+		mailTemplateContextBuilder.put(
+			"[$PORTAL_URL$]", serviceContext.getPortalURL());
 		mailTemplateContextBuilder.put(
 			"[$REMOTE_ADDRESS$]", serviceContext.getRemoteAddr());
 		mailTemplateContextBuilder.put(
@@ -6468,7 +6457,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			return;
 		}
 
-		List<Long> oldGroupIds = ListUtil.toList(getGroupPrimaryKeys(userId));
+		List<Long> oldGroupIds = ListUtil.fromArray(
+			getGroupPrimaryKeys(userId));
 
 		for (long newGroupId : newGroupIds) {
 			oldGroupIds.remove(newGroupId);
@@ -6497,7 +6487,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			return;
 		}
 
-		List<Long> oldOrganizationIds = ListUtil.toList(
+		List<Long> oldOrganizationIds = ListUtil.fromArray(
 			getOrganizationPrimaryKeys(userId));
 
 		for (long newOrganizationId : newOrganizationIds) {

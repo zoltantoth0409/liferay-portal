@@ -13,16 +13,19 @@
  */
 
 import '../FieldBase/FieldBase.es';
+
 import '../KeyValue/KeyValue.es';
+
 import './OptionsRegister.soy.js';
 
+import {normalizeFieldName} from 'dynamic-data-mapping-form-renderer/js/util/fields.es';
 import Component from 'metal-component';
 import dom from 'metal-dom';
-import Soy from 'metal-soy';
-import templates from './Options.soy.js';
-import {Config} from 'metal-state';
 import {Drag, DragDrop} from 'metal-drag-drop';
-import {normalizeFieldName} from 'dynamic-data-mapping-form-renderer/js/util/fields.es';
+import Soy from 'metal-soy';
+import {Config} from 'metal-state';
+
+import templates from './Options.soy.js';
 
 /**
  * Options.
@@ -53,14 +56,14 @@ class Options extends Component {
 	deleteOption(deletedIndex) {
 		let {value} = this;
 
-		for (const languageId in value) {
+		Object.keys(value).forEach(languageId => {
 			value = {
 				...value,
 				[languageId]: value[languageId].filter(
 					(option, currentIndex) => currentIndex !== deletedIndex
 				)
 			};
-		}
+		});
 
 		this._handleFieldEdited({}, value);
 	}
@@ -125,7 +128,7 @@ class Options extends Component {
 	moveOption(sourceIndex, targetIndex) {
 		let {value} = this;
 
-		for (const languageId in value) {
+		Object.keys(value).forEach(languageId => {
 			const options = [...value[languageId]];
 
 			if (sourceIndex < options.length) {
@@ -142,7 +145,7 @@ class Options extends Component {
 					})
 				};
 			}
-		}
+		});
 
 		this._handleFieldEdited({}, value);
 	}
@@ -185,11 +188,11 @@ class Options extends Component {
 	normalizeValue(value, force = false) {
 		const newValue = {};
 
-		for (const locale in value) {
+		Object.keys(value).forEach(locale => {
 			const options = value[locale] || [];
 
 			newValue[locale] = this.normalizeOptions(options, force);
-		}
+		});
 
 		return newValue;
 	}
@@ -297,7 +300,7 @@ class Options extends Component {
 		return parseInt(name.replace('option', ''), 10);
 	}
 
-	_handleDragDropEvent({target, source}) {
+	_handleDragDropEvent({source, target}) {
 		const lastSource = document.querySelector('.ddm-source-dragging');
 		const sourceIndex = parseInt(source.dataset.index, 10);
 
@@ -386,16 +389,16 @@ class Options extends Component {
 				});
 			};
 
-			for (const languageId in this.value) {
+			Object.keys(this.value).forEach(languageId => {
 				if (defaultLanguageId === languageId) {
-					continue;
+					return;
 				}
 
 				newValue = {
 					...newValue,
 					[languageId]: generateLabels(languageId, options)
 				};
-			}
+			});
 		}
 
 		this.setState(
@@ -428,13 +431,13 @@ class Options extends Component {
 		const {defaultLanguageId} = this;
 		const formattedValue = {...value};
 
-		for (const languageId in value) {
+		Object.keys(value).forEach(languageId => {
 			if (defaultLanguageId !== languageId) {
 				formattedValue[languageId] = formattedValue[languageId].filter(
 					({value}) => !!value
 				);
 			}
-		}
+		});
 
 		return formattedValue;
 	}
