@@ -856,7 +856,7 @@ definition {
 		Page.add(
 			pageName = "Test Private Page",
 			siteName = "${siteName}",
-			sitePagePrivacy = "Private Pages");
+			sitePagePrivacy = "Private");
 
 		Page.add(pageName = "Blog and Message Board Page");
 

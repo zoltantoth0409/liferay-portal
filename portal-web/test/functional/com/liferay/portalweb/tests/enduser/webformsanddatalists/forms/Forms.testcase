@@ -91,7 +91,7 @@ definition {
 
 		Navigator.gotoPage(
 			pageName = "Private Form Page",
-			sitePagePrivacy = "Private Pages");
+			sitePagePrivacy = "Private");
 
 		Portlet.addPG(
 			pageName = "Private Form Page",
@@ -109,7 +109,7 @@ definition {
 
 		Navigator.gotoPage(
 			pageName = "Private Form Page",
-			sitePagePrivacy = "Private Pages");
+			sitePagePrivacy = "Private");
 
 		FormFields.viewTextLabel(
 			fieldLabel = "Label",
