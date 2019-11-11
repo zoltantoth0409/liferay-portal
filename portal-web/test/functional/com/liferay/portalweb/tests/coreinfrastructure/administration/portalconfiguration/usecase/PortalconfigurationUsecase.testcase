@@ -287,7 +287,7 @@ definition {
 
 		Page.add(
 			pageName = "Private Page",
-			sitePagePrivacy = "Private Pages");
+			sitePagePrivacy = "Private");
 
 		Navigator.openSpecificURL(url = "http://www.charlie.com:8080");
 
