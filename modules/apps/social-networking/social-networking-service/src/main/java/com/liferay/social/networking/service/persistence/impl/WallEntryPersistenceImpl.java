@@ -1693,6 +1693,18 @@ public class WallEntryPersistenceImpl
 		}
 	}
 
+	public void clearCache(Set<Serializable> primaryKeys) {
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Serializable primaryKey : primaryKeys) {
+			entityCache.removeResult(
+				WallEntryModelImpl.ENTITY_CACHE_ENABLED, WallEntryImpl.class,
+				primaryKey);
+		}
+	}
+
 	/**
 	 * Creates a new wall entry with the primary key. Does not add the wall entry to the database.
 	 *

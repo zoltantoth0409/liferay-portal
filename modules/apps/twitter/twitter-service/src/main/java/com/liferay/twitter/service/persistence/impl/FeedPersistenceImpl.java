@@ -446,6 +446,17 @@ public class FeedPersistenceImpl
 		}
 	}
 
+	public void clearCache(Set<Serializable> primaryKeys) {
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Serializable primaryKey : primaryKeys) {
+			entityCache.removeResult(
+				FeedModelImpl.ENTITY_CACHE_ENABLED, FeedImpl.class, primaryKey);
+		}
+	}
+
 	protected void cacheUniqueFindersCache(FeedModelImpl feedModelImpl) {
 		Object[] args = new Object[] {
 			feedModelImpl.getUserId(), feedModelImpl.getTwitterScreenName()
