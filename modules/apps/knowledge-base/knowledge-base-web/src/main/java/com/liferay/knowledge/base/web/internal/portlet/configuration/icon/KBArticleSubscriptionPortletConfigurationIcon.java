@@ -18,7 +18,10 @@ import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.permission.KBArticlePermission;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.SubscriptionLocalService;
@@ -105,11 +108,16 @@ public class KBArticleSubscriptionPortletConfigurationIcon
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if ((kbArticle.isApproved() || !kbArticle.isFirstVersion()) &&
-			KBArticlePermission.contains(
-				permissionChecker, kbArticle, KBActionKeys.SUBSCRIBE)) {
-
-			return true;
+		if (kbArticle.isApproved() || !kbArticle.isFirstVersion()) {
+			try {
+				return KBArticlePermission.contains(
+					permissionChecker, kbArticle, KBActionKeys.SUBSCRIBE);
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(pe, pe);
+				}
+			}
 		}
 
 		return false;
@@ -132,6 +140,9 @@ public class KBArticleSubscriptionPortletConfigurationIcon
 
 		_subscriptionLocalService = subscriptionLocalService;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KBArticleSubscriptionPortletConfigurationIcon.class);
 
 	@Reference
 	private Portal _portal;

@@ -18,7 +18,10 @@ import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.permission.KBArticlePermission;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -91,12 +94,17 @@ public class KBArticlePermissionsPortletConfigurationIcon
 
 		KBArticle kbArticle = getKBArticle(portletRequest);
 
-		if (kbArticle.isRoot() &&
-			KBArticlePermission.contains(
-				themeDisplay.getPermissionChecker(), kbArticle,
-				KBActionKeys.PERMISSIONS)) {
-
-			return true;
+		if (kbArticle.isRoot()) {
+			try {
+				return KBArticlePermission.contains(
+					themeDisplay.getPermissionChecker(), kbArticle,
+					KBActionKeys.PERMISSIONS);
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(pe, pe);
+				}
+			}
 		}
 
 		return false;
@@ -106,5 +114,8 @@ public class KBArticlePermissionsPortletConfigurationIcon
 	public boolean isUseDialog() {
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KBArticlePermissionsPortletConfigurationIcon.class);
 
 }

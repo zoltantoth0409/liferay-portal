@@ -18,7 +18,10 @@ import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.permission.KBArticlePermission;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -91,10 +94,22 @@ public class MoveKBArticlePortletConfigurationIcon
 
 		KBArticle kbArticle = getKBArticle(portletRequest);
 
-		return KBArticlePermission.contains(
-			themeDisplay.getPermissionChecker(), kbArticle,
-			KBActionKeys.MOVE_KB_ARTICLE);
+		try {
+			return KBArticlePermission.contains(
+				themeDisplay.getPermissionChecker(), kbArticle,
+				KBActionKeys.MOVE_KB_ARTICLE);
+		}
+		catch (PortalException pe) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(pe, pe);
+			}
+		}
+
+		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MoveKBArticlePortletConfigurationIcon.class);
 
 	@Reference
 	private Portal _portal;
