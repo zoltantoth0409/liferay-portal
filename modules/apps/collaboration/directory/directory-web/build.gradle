@@ -1,5 +1,4 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade", version: "2.4.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "default"
@@ -10,6 +9,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:foundation:frontend-taglib:frontend-taglib")
+	compileOnly project(":apps:foundation:portal:portal-upgrade-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 }

@@ -1,5 +1,4 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
@@ -10,6 +9,7 @@ dependencies {
 	compileOnly project(":apps:collaboration:flags:flags-api")
 	compileOnly project(":apps:collaboration:flags:flags-taglib")
 	compileOnly project(":apps:foundation:frontend-taglib:frontend-taglib")
+	compileOnly project(":apps:foundation:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence")
 	compileOnly project(":core:petra:petra-lang")
 }

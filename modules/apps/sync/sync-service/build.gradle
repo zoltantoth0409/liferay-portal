@@ -10,7 +10,6 @@ dependencies {
 
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.googlecode.jsontoken", name: "jsontoken", version: "1.1"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
@@ -25,6 +24,7 @@ dependencies {
 	compileOnly project(":apps:foundation:portal:portal-dao-orm-custom-sql")
 	compileOnly project(":apps:foundation:portal:portal-instance-lifecycle")
 	compileOnly project(":apps:foundation:portal:portal-spring-extender")
+	compileOnly project(":apps:foundation:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype")
 	compileOnly project(":apps:sync:sync-api")
 	compileOnly project(":core:osgi-service-tracker-collections")

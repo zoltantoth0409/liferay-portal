@@ -37,9 +37,9 @@ dependencies {
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.test.util", version: "default"
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-test-util")
 
-	testIntegrationCompile group: "com.liferay.arquillian", name: "com.liferay.arquillian.arquillian-deployment-generator-bnd", version: "1.0.3"
+	testIntegrationCompile group: "com.liferay.arquillian", name: "com.liferay.arquillian.arquillian-deployment-generator-bnd", version: "1.0.4"
 	testIntegrationCompile group: "org.apache.felix", name: "org.apache.felix.framework", version: "5.4.0"
 	testIntegrationCompile group: "org.apache.felix", name: "org.apache.felix.main", version: "5.4.0"
 	testIntegrationCompile group: "org.jboss.arquillian.container", name: "arquillian-container-felix-embedded", version: "2.1.0.Final"

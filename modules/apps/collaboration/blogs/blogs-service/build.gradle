@@ -13,6 +13,6 @@ dependencies {
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
 
-	testCompile group: "com.liferay", name: "com.liferay.blogs.web", version: "default"
 	testCompile project(":apps:collaboration:blogs:blogs-test-util")
+	testCompile project(":apps:collaboration:blogs:blogs-web")
 }
