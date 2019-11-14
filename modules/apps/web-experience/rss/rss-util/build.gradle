@@ -1,10 +1,10 @@
 dependencies {
 	compileInclude group: "com.ibm.icu", name: "icu4j", version: "54.1.1"
 
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "1.0.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.26.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "2.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
 	compileOnly group: "jdom", name: "jdom", version: "1.0"
 	compileOnly group: "rome", name: "rome", version: "1.0"
+	compileOnly project(":core:petra:petra-lang")
+	compileOnly project(":core:petra:petra-string")
 }

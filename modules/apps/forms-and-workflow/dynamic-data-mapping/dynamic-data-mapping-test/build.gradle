@@ -10,26 +10,26 @@ dependencies {
 	compileOnly group: "org.json", name: "json", version: "20090211"
 	compileOnly group: "org.skyscreamer", name: "jsonassert", version: "1.2.3"
 
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.data.provider", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.form.evaluator", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.form.field.type", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.io", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.checkbox", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.date", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.key.value", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.paragraph", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.radio", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.select", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.type.text", version: "2.0.0"
-	testCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.validator", version: "2.1.0"
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	testCompile group: "javax.portlet", name: "portlet-api", version: "2.0"
 	testCompile group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-api")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-data-provider")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-form-evaluator")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-form-field-type")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-io")
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-service")
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-test-util")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-checkbox")
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-checkbox-multiple")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-date")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-key-value")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-paragraph")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-radio")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-select")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-type-text")
+	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-validator")
 	testCompile project(":apps:foundation:portal-search:portal-search-test-util")
 	testCompile project(":apps:web-experience:journal:journal-api")
 

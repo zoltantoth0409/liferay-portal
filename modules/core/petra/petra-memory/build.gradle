@@ -1,5 +1,5 @@
 dependencies {
-	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.49.0"
+	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 }
 
 liferay {
