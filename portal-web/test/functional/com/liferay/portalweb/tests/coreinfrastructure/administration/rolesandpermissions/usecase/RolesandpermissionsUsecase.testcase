@@ -2364,4 +2364,33 @@ definition {
 		WebContent.viewWCViewableByPermissions();
 	}
 
+	@description = "This is a use case for LPS-97321."
+	@priority = "4"
+	test ViewUserPermissionSubdirectoryDisplays {
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Roles");
+
+		Role.addCP(roleName = "User Permission");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Define Permissions",
+			rowEntry = "User Permission");
+
+		Role.viewPermissionSubdirectory(
+			navItem = "Control Panel",
+			subItemList = "General Permissions,Users,Sites,Configuration");
+
+		Role.viewPermissionSubdirectory(
+			navItem = "Site Administration",
+			subItemList = "Navigation,Content,Members,Publishing");
+
+		Role.viewPermissionSubdirectory(
+			navItem = "User",
+			subItemList = "My Account");
+	}
+
 }
