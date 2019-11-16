@@ -101,7 +101,7 @@ int weekNumber = 1;
 				dayOfWeek += 6;
 			}
 			else {
-				dayOfWeek --;
+				dayOfWeek--;
 			}
 		}
 
