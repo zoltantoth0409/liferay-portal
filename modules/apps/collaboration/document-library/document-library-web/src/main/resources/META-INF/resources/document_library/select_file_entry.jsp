@@ -73,7 +73,7 @@ dlSearchContainer.setResults(foldersAndFileEntriesAndFileShortcuts);
 						</liferay-portlet:renderURL>
 
 						<%
-						try{
+						try {
 							DLAppServiceUtil.getFoldersFileEntriesCount(curFolder.getRepositoryId(), Arrays.asList(curFolder.getFolderId()), WorkflowConstants.STATUS_APPROVED);
 							DLAppServiceUtil.getFoldersCount(curFolder.getRepositoryId(), curFolder.getFolderId());
 						}

@@ -74,7 +74,7 @@ String fixedHeaderCssClass = "lfr-search-iterator-fixed-header-table";
 							cssClass = (normalizedHeaderName.equals("rowChecker")) ? "lfr-checkbox-column" : "lfr-" + normalizedHeaderName + "-column";
 						}
 						else {
-							normalizedHeaderName = String.valueOf(i +1);
+							normalizedHeaderName = String.valueOf(i + 1);
 
 						cssClass = "lfr-entry-action-column";
 					}
@@ -268,7 +268,7 @@ String fixedHeaderCssClass = "lfr-search-iterator-fixed-header-table";
 							String columnClassName = entry.getCssClass();
 
 							if (!Validator.isBlank(entry.getAlign())) {
-								columnClassName += " text-"+ entry.getAlign();
+								columnClassName += " text-" + entry.getAlign();
 							}
 
 							if (!Validator.isBlank(entry.getValign())) {
