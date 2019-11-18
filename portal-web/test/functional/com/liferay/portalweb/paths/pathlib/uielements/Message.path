@@ -70,7 +70,7 @@
 </tr>
 <tr>
 	<td>ERROR_DISMISSIBLE</td>
-	<td>//div[contains(@class,'alert-danger')][contains(@class,'alert-dismissible')]</td>
+	<td>//div[contains(@class,'alert-danger')][contains(@class,'alert-dismissable')]</td>
 	<td></td>
 </tr>
 <tr>
