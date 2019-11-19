@@ -233,7 +233,7 @@ public class SubscriptionSender implements Serializable {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 *             getCurrentUserId()}
+	 *             #getCurrentUserId()}
 	 */
 	@Deprecated
 	public long getUserId() {

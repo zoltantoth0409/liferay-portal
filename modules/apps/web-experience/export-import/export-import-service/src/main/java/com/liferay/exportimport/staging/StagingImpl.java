@@ -638,8 +638,7 @@ public class StagingImpl implements Staging {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 *             #getErrorMessagesJSONArray(Locale, Map<String,
-	 *             MissingReference>)}
+	 *             #getErrorMessagesJSONArray(Locale, Map)}
 	 */
 	@Deprecated
 	@Override
@@ -1277,8 +1276,7 @@ public class StagingImpl implements Staging {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 *             #getWarningMessagesJSONArray(Locale, Map<String,
-	 *             MissingReference>)}
+	 *             #getWarningMessagesJSONArray(Locale, Map)}
 	 */
 	@Deprecated
 	@Override

@@ -465,8 +465,8 @@ public class PortletImportController implements ImportController {
 
 	/**
 	 * @deprecated As of Judson (7.1.x), replaced by {@link
-	 *             deletePortletData(PortletDataContext portletDataContext,
-	 *             javax.portlet.PortletPreferences portletPreferences)}
+	 *             #deletePortletData(PortletDataContext,
+	 *             javax.portlet.PortletPreferences)}
 	 */
 	@Deprecated
 	protected String deletePortletData(

@@ -168,8 +168,7 @@ public class IndexWriterHelperUtil {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 *             com.liferay.portal.search.index.IndexStatusManager#
-	 *             isIndexReadOnly}
+	 *             com.liferay.portal.search.index.IndexStatusManager#isIndexReadOnly}
 	 */
 	@Deprecated
 	public static boolean isIndexReadOnly() {
@@ -220,8 +219,8 @@ public class IndexWriterHelperUtil {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 *             com.liferay.portal.search.index.IndexStatusManager#
-	 *             setIndexReadOnly(boolean)}
+	 *             com.liferay.portal.search.index.IndexStatusManager#setIndexReadOnly(
+	 *             boolean)}
 	 */
 	@Deprecated
 	public static void setIndexReadOnly(boolean indexReadOnly) {
