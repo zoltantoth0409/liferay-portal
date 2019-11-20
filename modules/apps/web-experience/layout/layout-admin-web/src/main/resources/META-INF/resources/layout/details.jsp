@@ -25,6 +25,7 @@ LayoutType selLayoutType = selLayout.getLayoutType();
 String[] types = LayoutTypeControllerTracker.getTypes();
 
 Locale defaultLocale = LocaleUtil.getDefault();
+
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 %>
 

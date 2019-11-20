@@ -184,8 +184,10 @@ page import="javax.portlet.WindowState" %>
 
 <%
 String currentLanguageId = LanguageUtil.getLanguageId(request);
+
 Locale currentLocale = LocaleUtil.fromLanguageId(currentLanguageId);
 Locale defaultLocale = themeDisplay.getSiteDefaultLocale();
+
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 MBGroupServiceSettings mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSiteGroupId());

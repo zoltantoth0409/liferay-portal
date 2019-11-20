@@ -93,6 +93,7 @@ page import="javax.portlet.WindowState" %>
 
 <%
 AnnouncementsRequestHelper announcementsRequestHelper = new AnnouncementsRequestHelper(request);
+
 AnnouncementsDisplayContext announcementsDisplayContext = new DefaultAnnouncementsDisplayContext(announcementsRequestHelper);
 
 AnnouncementsPortletInstanceConfiguration announcementsPortletInstanceConfiguration = portletDisplay.getPortletInstanceConfiguration(AnnouncementsPortletInstanceConfiguration.class);

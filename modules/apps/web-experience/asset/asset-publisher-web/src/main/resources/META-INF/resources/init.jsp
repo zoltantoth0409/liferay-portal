@@ -133,6 +133,7 @@ page import="javax.portlet.PortletURL" %>
 
 <%
 AssetPublisherCustomizer assetPublisherCustomizer = (AssetPublisherCustomizer)request.getAttribute(AssetPublisherWebKeys.ASSET_PUBLISHER_CUSTOMIZER);
+
 AssetPublisherDisplayContext assetPublisherDisplayContext = new AssetPublisherDisplayContext(assetPublisherCustomizer, liferayPortletRequest, liferayPortletResponse, portletPreferences);
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale, timeZone);

@@ -53,6 +53,7 @@ renderResponse.setTitle(passwordPolicy.getName());
 String[] orderColumns = {"first-name", "screen-name"};
 RowChecker rowChecker = new DeleteUserPasswordPolicyChecker(renderResponse, passwordPolicy);
 PortletURL searchURL = PortletURLUtil.clone(portletURL, renderResponse);
+
 SearchContainer searchContainer = new UserSearch(renderRequest, searchURL);
 
 if (tabs2.equals("organizations")) {
