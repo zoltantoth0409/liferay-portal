@@ -105,8 +105,8 @@ public class JournalArticleIndexerLocalizedContentTest {
 		setContent(
 			new JournalArticleContent() {
 				{
-					name = "content";
 					defaultLocale = LocaleUtil.US;
+					name = "content";
 
 					put(LocaleUtil.US, originalContent);
 					put(LocaleUtil.HUNGARY, translatedContent);
@@ -244,8 +244,8 @@ public class JournalArticleIndexerLocalizedContentTest {
 		setContent(
 			new JournalArticleContent() {
 				{
-					name = "content";
 					defaultLocale = LocaleUtil.JAPAN;
+					name = "content";
 
 					put(LocaleUtil.JAPAN, content);
 				}
@@ -331,8 +331,8 @@ public class JournalArticleIndexerLocalizedContentTest {
 				setContent(
 					new JournalArticleContent() {
 						{
-							name = "content";
 							defaultLocale = LocaleUtil.JAPAN;
+							name = "content";
 
 							put(
 								LocaleUtil.JAPAN,

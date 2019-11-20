@@ -216,11 +216,11 @@ public class ElasticsearchIndexingFixture implements IndexingFixture {
 
 		return new ElasticsearchSpellCheckIndexWriter() {
 			{
+				digester = new DigesterImpl();
 				elasticsearchConnectionManager =
 					elasticsearchConnectionManager1;
 				elasticsearchUpdateDocumentCommand =
 					elasticsearchUpdateDocumentCommand1;
-				digester = new DigesterImpl();
 				indexNameBuilder = indexNameBuilder1;
 				localization = _localization;
 
@@ -259,9 +259,9 @@ public class ElasticsearchIndexingFixture implements IndexingFixture {
 				indexNameBuilder = indexNameBuilder1;
 				props = createProps();
 				queryTranslator = createElasticsearchQueryTranslator();
-				statsTranslator = new DefaultStatsTranslator();
 				searchHitDocumentTranslator =
 					new SearchHitDocumentTranslatorImpl();
+				statsTranslator = new DefaultStatsTranslator();
 
 				setQuerySuggester(
 					createElasticsearchQuerySuggester(

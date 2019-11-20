@@ -147,8 +147,8 @@ public class AssetEntriesFacetedSearcherTest
 		journalArticleBuilder.setContent(
 			new JournalArticleContent() {
 				{
-					name = "content";
 					defaultLocale = LocaleUtil.US;
+					name = "content";
 
 					put(LocaleUtil.US, RandomTestUtil.randomString());
 				}

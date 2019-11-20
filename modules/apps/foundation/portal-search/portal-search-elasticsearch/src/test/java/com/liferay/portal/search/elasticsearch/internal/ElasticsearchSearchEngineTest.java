@@ -83,9 +83,9 @@ public class ElasticsearchSearchEngineTest {
 
 		return new ElasticsearchSearchEngine() {
 			{
-				indexFactory = createCompanyIndexFactory();
 				elasticsearchConnectionManager =
 					elasticsearchConnectionManager2;
+				indexFactory = createCompanyIndexFactory();
 			}
 		};
 	}
