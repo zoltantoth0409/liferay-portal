@@ -994,8 +994,8 @@ public class DLFolderLocalServiceWrapper
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #
-	 updateFolderAndFileEntryTypes(long, long, long, String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #updateFolderAndFileEntryTypes(long, long, long, String,
 	 String, long, List, int, ServiceContext)}
 	 */
 	@Deprecated

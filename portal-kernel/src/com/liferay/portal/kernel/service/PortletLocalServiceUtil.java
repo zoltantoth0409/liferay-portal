@@ -71,7 +71,7 @@ public class PortletLocalServiceUtil {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 #clearPortletsMap)}
+	 #clearPortletsMap}
 	 */
 	@Deprecated
 	public static void clearCompanyPortletsPool() {
@@ -468,7 +468,7 @@ public class PortletLocalServiceUtil {
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 #loadGetPortletsMap(long))}
+	 #loadGetPortletsMap(long)}
 	 */
 	@Deprecated
 	public static java.util.Map<String, com.liferay.portal.kernel.model.Portlet>

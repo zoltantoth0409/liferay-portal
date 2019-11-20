@@ -760,7 +760,7 @@ public class ResourcePermissionLocalServiceWrapper
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getRoles(long,
-	 String, int, String, String}
+	 String, int, String, String)}
 	 */
 	@Deprecated
 	@Override

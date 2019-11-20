@@ -91,7 +91,7 @@ public interface PortletLocalService
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 #clearPortletsMap)}
+	 #clearPortletsMap}
 	 */
 	@Clusterable
 	@Deprecated
@@ -360,7 +360,7 @@ public interface PortletLocalService
 
 	/**
 	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	 #loadGetPortletsMap(long))}
+	 #loadGetPortletsMap(long)}
 	 */
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
