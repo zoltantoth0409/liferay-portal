@@ -28,7 +28,7 @@ import com.liferay.fragment.renderer.FragmentRendererTracker;
 import com.liferay.fragment.service.FragmentCollectionServiceUtil;
 import com.liferay.fragment.service.FragmentEntryLinkLocalServiceUtil;
 import com.liferay.fragment.service.FragmentEntryServiceUtil;
-import com.liferay.fragment.util.FragmentEntryConfigUtil;
+import com.liferay.fragment.util.FragmentEntryConfigurationUtil;
 import com.liferay.fragment.util.comparator.FragmentCollectionContributorNameComparator;
 import com.liferay.info.constants.InfoDisplayWebKeys;
 import com.liferay.info.display.contributor.InfoDisplayContributorTracker;
@@ -170,6 +170,9 @@ public class ContentPageEditorDisplayContext {
 				httpServletRequest.getAttribute(
 					ContentPageEditorWebKeys.
 						FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER);
+		_fragmentEntryConfigurationUtil =
+			(FragmentEntryConfigurationUtil)httpServletRequest.getAttribute(
+				FragmentEntryConfigurationUtil.class.getName());
 		_fragmentRendererTracker =
 			(FragmentRendererTracker)httpServletRequest.getAttribute(
 				FragmentActionKeys.FRAGMENT_RENDERER_TRACKER);
@@ -1010,7 +1013,7 @@ public class ContentPageEditorDisplayContext {
 					"content", content
 				).put(
 					"defaultConfigurationValues",
-					FragmentEntryConfigUtil.
+					_fragmentEntryConfigurationUtil.
 						getConfigurationDefaultValuesJSONObject(configuration)
 				).put(
 					"editableValues", editableValuesJSONObject
@@ -1585,6 +1588,8 @@ public class ContentPageEditorDisplayContext {
 	private SoyContext _editorSoyContext;
 	private final FragmentCollectionContributorTracker
 		_fragmentCollectionContributorTracker;
+	private final FragmentEntryConfigurationUtil
+		_fragmentEntryConfigurationUtil;
 	private final FragmentRendererController _fragmentRendererController;
 	private final FragmentRendererTracker _fragmentRendererTracker;
 	private Long _groupId;
