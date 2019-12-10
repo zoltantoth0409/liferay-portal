@@ -160,6 +160,19 @@ public class ChangeListsDisplayContext {
 		return soyContext;
 	}
 
+	public String getChangeTypeName(CTEntry ctEntry) {
+		if (ctEntry.getChangeType() == CTConstants.CT_CHANGE_TYPE_ADDITION) {
+			return "added";
+		}
+		else if (ctEntry.getChangeType() ==
+				 CTConstants.CT_CHANGE_TYPE_DELETION) {
+
+			return "deleted";
+		}
+
+		return "modified";
+	}
+
 	public String getCheckoutURL(long ctCollectionId) {
 		PortletURL checkoutURL = PortletURLFactoryUtil.create(
 			_httpServletRequest, CTPortletKeys.CHANGE_LISTS,
@@ -171,6 +184,20 @@ public class ChangeListsDisplayContext {
 			"ctCollectionId", String.valueOf(ctCollectionId));
 
 		return checkoutURL.toString();
+	}
+
+	public String getConflictsURL(long ctCollectionId) {
+		PortletURL checkConflictsURl = PortletURLFactoryUtil.create(
+			_httpServletRequest, CTPortletKeys.CHANGE_LISTS,
+			PortletRequest.RENDER_PHASE);
+
+		checkConflictsURl.setParameter(
+			"mvcRenderCommandName", "/change_lists/view_conflicts");
+
+		checkConflictsURl.setParameter(
+			"ctCollectionId", String.valueOf(ctCollectionId));
+
+		return checkConflictsURl.toString();
 	}
 
 	public CreationMenu getCreationMenu() {
@@ -322,7 +349,7 @@ public class ChangeListsDisplayContext {
 		publishURL.setParameter("name", name);
 
 		return StringBundler.concat(
-			"javascript:confirm('",
+			"confirm('",
 			HtmlUtil.escapeJS(
 				LanguageUtil.format(
 					_httpServletRequest,
@@ -454,6 +481,8 @@ public class ChangeListsDisplayContext {
 			ctCollectionChangeTypeCounts.getOrDefault(
 				CTConstants.CT_CHANGE_TYPE_ADDITION, 0L)
 		).put(
+			"conflictsURL", getConflictsURL(_ctCollectionId)
+		).put(
 			"deleteURL", getDeleteURL(_ctCollectionId, ctCollection.getName())
 		).put(
 			"deletionCount",
@@ -467,8 +496,6 @@ public class ChangeListsDisplayContext {
 				CTConstants.CT_CHANGE_TYPE_MODIFICATION, 0L)
 		).put(
 			"name", ctCollection.getName()
-		).put(
-			"publishURL", getPublishURL(_ctCollectionId, ctCollection.getName())
 		);
 	}
 
@@ -518,14 +545,7 @@ public class ChangeListsDisplayContext {
 
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-				String changeTypeKey = "added";
-
-				if (ctEntry.getChangeType() == 1) {
-					changeTypeKey = "deleted";
-				}
-				else if (ctEntry.getChangeType() == 2) {
-					changeTypeKey = "modified";
-				}
+				String changeTypeKey = getChangeTypeName(ctEntry);
 
 				Format format = FastDateFormatFactoryUtil.getDateTime(
 					_themeDisplay.getLocale());
