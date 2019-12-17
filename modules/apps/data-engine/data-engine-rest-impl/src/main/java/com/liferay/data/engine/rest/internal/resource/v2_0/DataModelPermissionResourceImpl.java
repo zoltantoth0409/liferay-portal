@@ -63,12 +63,12 @@ public class DataModelPermissionResourceImpl
 
 		JSONArray actionIdsJSONArray = JSONFactoryUtil.createJSONArray();
 
+		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
+			dataRecordCollectionId);
+
 		List<ResourceAction> resourceActions =
 			_resourceActionLocalService.getResourceActions(
 				DataRecordCollectionConstants.RESOURCE_NAME);
-
-		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
-			dataRecordCollectionId);
 
 		for (ResourceAction resourceAction : resourceActions) {
 			PermissionChecker permissionChecker =
