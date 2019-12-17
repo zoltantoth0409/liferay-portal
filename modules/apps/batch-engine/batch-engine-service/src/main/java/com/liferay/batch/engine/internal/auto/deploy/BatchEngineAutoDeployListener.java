@@ -61,90 +61,8 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 
 		File file = autoDeploymentContext.getFile();
 
-		if (_log.isInfoEnabled()) {
-			_log.info("Deploying batch engine file " + file.getPath());
-		}
-
 		try (ZipFile zipFile = new ZipFile(file)) {
-			Enumeration<? extends ZipEntry> iterator = zipFile.entries();
-
-			BatchEngineImportConfiguration batchEngineImportConfiguration =
-				null;
-			byte[] content = null;
-			String contentType = null;
-
-			while (iterator.hasMoreElements()) {
-				ZipEntry zipEntry = iterator.nextElement();
-
-				if (Objects.equals(zipEntry.getName(), "batch-engine.json")) {
-					try (InputStream inputStream = zipFile.getInputStream(
-							zipEntry)) {
-
-						batchEngineImportConfiguration =
-							_objectMapper.readValue(
-								inputStream,
-								BatchEngineImportConfiguration.class);
-					}
-				}
-				else {
-					UnsyncByteArrayOutputStream
-						compressedUnsyncByteArrayOutputStream =
-							new UnsyncByteArrayOutputStream();
-
-					try (InputStream inputStream = zipFile.getInputStream(
-							zipEntry);
-						ZipOutputStream zipOutputStream = new ZipOutputStream(
-							compressedUnsyncByteArrayOutputStream)) {
-
-						zipOutputStream.putNextEntry(
-							new ZipEntry(zipEntry.getName()));
-
-						StreamUtil.transfer(
-							inputStream, zipOutputStream, false);
-					}
-
-					content =
-						compressedUnsyncByteArrayOutputStream.toByteArray();
-
-					contentType = _file.getExtension(zipEntry.getName());
-				}
-			}
-
-			if ((batchEngineImportConfiguration == null) || (content == null) ||
-				Validator.isNull(contentType)) {
-
-				throw new IllegalStateException(
-					"Invalid batch engine file " + file.getName());
-			}
-
-			ExecutorService executorService =
-				_portalExecutorManager.getPortalExecutor(
-					BatchEngineAutoDeployListener.class.getName());
-
-			BatchEngineImportTask batchEngineImportTask =
-				_batchEngineImportTaskLocalService.addBatchEngineImportTask(
-					batchEngineImportConfiguration.companyId,
-					batchEngineImportConfiguration.userId, 100,
-					batchEngineImportConfiguration.callbackURL,
-					batchEngineImportConfiguration.className, content,
-					StringUtil.toUpperCase(contentType),
-					BatchEngineTaskExecuteStatus.INITIAL.name(),
-					batchEngineImportConfiguration.fieldNameMappingMap,
-					BatchEngineTaskOperation.CREATE.name(),
-					batchEngineImportConfiguration.parameters,
-					batchEngineImportConfiguration.version);
-
-			executorService.submit(
-				() -> {
-					_batchEngineImportTaskExecutor.execute(
-						batchEngineImportTask);
-
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Successfully deployed batch engine file " +
-								file.getPath());
-					}
-				});
+			_deploy(file, zipFile);
 		}
 		catch (Exception e) {
 			throw new AutoDeployException(e);
@@ -200,6 +118,85 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 		}
 
 		return true;
+	}
+
+	private void _deploy(File file, ZipFile zipFile) throws Exception {
+		if (_log.isInfoEnabled()) {
+			_log.info("Deploying batch engine file " + file.getPath());
+		}
+
+		Enumeration<? extends ZipEntry> iterator = zipFile.entries();
+
+		BatchEngineImportConfiguration batchEngineImportConfiguration = null;
+		byte[] content = null;
+		String contentType = null;
+
+		while (iterator.hasMoreElements()) {
+			ZipEntry zipEntry = iterator.nextElement();
+
+			if (Objects.equals(zipEntry.getName(), "batch-engine.json")) {
+				try (InputStream inputStream = zipFile.getInputStream(
+						zipEntry)) {
+
+					batchEngineImportConfiguration = _objectMapper.readValue(
+						inputStream, BatchEngineImportConfiguration.class);
+				}
+			}
+			else {
+				UnsyncByteArrayOutputStream
+					compressedUnsyncByteArrayOutputStream =
+						new UnsyncByteArrayOutputStream();
+
+				try (InputStream inputStream = zipFile.getInputStream(zipEntry);
+					ZipOutputStream zipOutputStream = new ZipOutputStream(
+						compressedUnsyncByteArrayOutputStream)) {
+
+					zipOutputStream.putNextEntry(
+						new ZipEntry(zipEntry.getName()));
+
+					StreamUtil.transfer(inputStream, zipOutputStream, false);
+				}
+
+				content = compressedUnsyncByteArrayOutputStream.toByteArray();
+
+				contentType = _file.getExtension(zipEntry.getName());
+			}
+		}
+
+		if ((batchEngineImportConfiguration == null) || (content == null) ||
+			Validator.isNull(contentType)) {
+
+			throw new IllegalStateException(
+				"Invalid batch engine file " + file.getName());
+		}
+
+		ExecutorService executorService =
+			_portalExecutorManager.getPortalExecutor(
+				BatchEngineAutoDeployListener.class.getName());
+
+		BatchEngineImportTask batchEngineImportTask =
+			_batchEngineImportTaskLocalService.addBatchEngineImportTask(
+				batchEngineImportConfiguration.companyId,
+				batchEngineImportConfiguration.userId, 100,
+				batchEngineImportConfiguration.callbackURL,
+				batchEngineImportConfiguration.className, content,
+				StringUtil.toUpperCase(contentType),
+				BatchEngineTaskExecuteStatus.INITIAL.name(),
+				batchEngineImportConfiguration.fieldNameMappingMap,
+				BatchEngineTaskOperation.CREATE.name(),
+				batchEngineImportConfiguration.parameters,
+				batchEngineImportConfiguration.version);
+
+		executorService.submit(
+			() -> {
+				_batchEngineImportTaskExecutor.execute(batchEngineImportTask);
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Successfully deployed batch engine file " +
+							file.getPath());
+				}
+			});
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
