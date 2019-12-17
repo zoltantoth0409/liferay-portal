@@ -139,26 +139,25 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 					batchEngineImportConfiguration = _objectMapper.readValue(
 						inputStream, BatchEngineImportConfiguration.class);
 				}
+
+				continue;
 			}
-			else {
-				UnsyncByteArrayOutputStream
-					compressedUnsyncByteArrayOutputStream =
-						new UnsyncByteArrayOutputStream();
 
-				try (InputStream inputStream = zipFile.getInputStream(zipEntry);
-					ZipOutputStream zipOutputStream = new ZipOutputStream(
-						compressedUnsyncByteArrayOutputStream)) {
+			UnsyncByteArrayOutputStream compressedUnsyncByteArrayOutputStream =
+				new UnsyncByteArrayOutputStream();
 
-					zipOutputStream.putNextEntry(
-						new ZipEntry(zipEntry.getName()));
+			try (InputStream inputStream = zipFile.getInputStream(zipEntry);
+				ZipOutputStream zipOutputStream = new ZipOutputStream(
+					compressedUnsyncByteArrayOutputStream)) {
 
-					StreamUtil.transfer(inputStream, zipOutputStream, false);
-				}
+				zipOutputStream.putNextEntry(new ZipEntry(zipEntry.getName()));
 
-				content = compressedUnsyncByteArrayOutputStream.toByteArray();
-
-				contentType = _file.getExtension(zipEntry.getName());
+				StreamUtil.transfer(inputStream, zipOutputStream, false);
 			}
+
+			content = compressedUnsyncByteArrayOutputStream.toByteArray();
+
+			contentType = _file.getExtension(zipEntry.getName());
 		}
 
 		if ((batchEngineImportConfiguration == null) || (content == null) ||
