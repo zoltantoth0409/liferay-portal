@@ -71,7 +71,7 @@ public class DataModelPermissionResourceImpl
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
 
-		JSONArray actionIds = JSONFactoryUtil.createJSONArray();
+		JSONArray actionIdsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (ResourceAction resourceAction : resourceActions) {
 			if (permissionChecker.hasPermission(
@@ -79,11 +79,11 @@ public class DataModelPermissionResourceImpl
 					DataRecordCollectionConstants.RESOURCE_NAME,
 					dataRecordCollectionId, resourceAction.getActionId())) {
 
-				actionIds.put(resourceAction.getActionId());
+				actionIdsJSONArray.put(resourceAction.getActionId());
 			}
 		}
 
-		return actionIds.toString();
+		return actionIdsJSONArray.toString();
 	}
 
 	@Override
