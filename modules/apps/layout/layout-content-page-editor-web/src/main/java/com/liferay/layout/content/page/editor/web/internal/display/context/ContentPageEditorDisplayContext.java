@@ -180,33 +180,32 @@ public class ContentPageEditorDisplayContext {
 	public String getDiscardDraftURL() throws PortalException {
 		Layout layout = _getPublishedLayout();
 
-		if (Objects.equals(layout.getType(), LayoutConstants.TYPE_PORTLET)) {
-			PortletURL deleteLayoutURL = PortalUtil.getControlPanelPortletURL(
-				request, LayoutAdminPortletKeys.GROUP_PAGES,
-				PortletRequest.ACTION_PHASE);
-
-			deleteLayoutURL.setParameter(
-				ActionRequest.ACTION_NAME, "/layout/delete_layout");
-
-			PortletURL redirectURL = PortalUtil.getControlPanelPortletURL(
-				request, LayoutAdminPortletKeys.GROUP_PAGES,
-				PortletRequest.RENDER_PHASE);
-
-			redirectURL.setParameter(
-				"selPlid", String.valueOf(layout.getPlid()));
-
-			deleteLayoutURL.setParameter("redirect", redirectURL.toString());
-
-			Layout draftLayout = themeDisplay.getLayout();
-
-			deleteLayoutURL.setParameter(
-				"selPlid", String.valueOf(draftLayout.getPlid()));
-
-			return deleteLayoutURL.toString();
+		if (!Objects.equals(layout.getType(), LayoutConstants.TYPE_PORTLET)) {
+			return getFragmentEntryActionURL(
+				"/content_layout/discard_draft_layout");
 		}
 
-		return getFragmentEntryActionURL(
-			"/content_layout/discard_draft_layout");
+		PortletURL deleteLayoutURL = PortalUtil.getControlPanelPortletURL(
+			request, LayoutAdminPortletKeys.GROUP_PAGES,
+			PortletRequest.ACTION_PHASE);
+
+		deleteLayoutURL.setParameter(
+			ActionRequest.ACTION_NAME, "/layout/delete_layout");
+
+		PortletURL redirectURL = PortalUtil.getControlPanelPortletURL(
+			request, LayoutAdminPortletKeys.GROUP_PAGES,
+			PortletRequest.RENDER_PHASE);
+
+		redirectURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
+
+		deleteLayoutURL.setParameter("redirect", redirectURL.toString());
+
+		Layout draftLayout = themeDisplay.getLayout();
+
+		deleteLayoutURL.setParameter(
+			"selPlid", String.valueOf(draftLayout.getPlid()));
+
+		return deleteLayoutURL.toString();
 	}
 
 	public Map<String, Object> getEditorReactContext() throws Exception {
