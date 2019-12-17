@@ -274,7 +274,9 @@ public class ContentPageEditorDisplayContext {
 				"hasUpdatePermissions",
 				editorSoyContext.get("hasUpdatePermissions")
 			).put(
-				"infoItemSelectorURL", _getInfoItemSelectorURL()
+				"imageSelectorURL", editorSoyContext.get("imageSelectorURL")
+			).put(
+				"infoItemSelectorURL", editorSoyContext.get("infoItemSelectorURL")
 			).put(
 				"moveItemURL",
 				getFragmentEntryActionURL(
@@ -305,6 +307,8 @@ public class ContentPageEditorDisplayContext {
 				"languageId", editorSoyContext.get("languageId")
 			).put(
 				"layoutData", editorSoyContext.get("layoutData")
+			).put(
+				"mappedInfoItems", editorSoyContext.get("mappedInfoItems")
 			).put(
 				"pageContents", editorSoyContext.get("pageContents")
 			).put(
