@@ -128,7 +128,6 @@ public class SegmentsEntryProviderRegistryImpl
 			Collections.reverseOrder(
 				new PropertyServiceReferenceComparator(
 					"segments.entry.provider.order")));
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, SegmentsEntryProvider.class,
 			"segments.entry.provider.source");

@@ -93,8 +93,9 @@ public interface SegmentsEntryProvider {
 	 * @param  classPK the primary key of the entity
 	 * @param  context the context
 	 * @param  segmentsEntryIds the IDs of the group's active segments entries
-	 *         that are currently related to the entity under the given context.
+	 *         that are currently related to the entity under the given context
 	 * @return the IDs of the active segments entries related to the entity
+	 * @review
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public default long[] getSegmentsEntryIds(
