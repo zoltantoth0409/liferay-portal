@@ -1243,6 +1243,7 @@ definition {
 
 		AppBuilderAdmin.searchByItem(itemName = "Apple");
 
+		AppBuilderAdmin.validateIfSearchItemIsNotFound(itemName = "Apple");
 	}
 
 	@description = "Validate empty list state of Apps listing screen"
