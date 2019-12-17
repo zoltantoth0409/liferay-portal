@@ -62,7 +62,7 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 		File file = autoDeploymentContext.getFile();
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Importing batch file " + file.getPath());
+			_log.info("Deploying batch engine file " + file.getPath());
 		}
 
 		try (ZipFile zipFile = new ZipFile(file)) {
@@ -114,7 +114,7 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 				Validator.isNull(contentType)) {
 
 				throw new IllegalStateException(
-					"Batch file " + file.getName() + " is invalid");
+					"Invalid batch engine file " + file.getName());
 			}
 
 			ExecutorService executorService =
@@ -141,8 +141,8 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Importing batch file " + file.getPath() +
-								" has been finished");
+							"Successfully deployed batch engine file " +
+								file.getPath());
 					}
 				});
 		}
