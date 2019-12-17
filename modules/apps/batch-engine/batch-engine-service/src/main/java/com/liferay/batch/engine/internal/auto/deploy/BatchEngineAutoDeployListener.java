@@ -59,10 +59,8 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 	public int deploy(AutoDeploymentContext autoDeploymentContext)
 		throws AutoDeployException {
 
-		File file = autoDeploymentContext.getFile();
-
-		try (ZipFile zipFile = new ZipFile(file)) {
-			_deploy(file, zipFile);
+		try (ZipFile zipFile = new ZipFile(autoDeploymentContext.getFile())) {
+			_deploy(zipFile);
 		}
 		catch (Exception e) {
 			throw new AutoDeployException(e);
@@ -120,9 +118,9 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 		return true;
 	}
 
-	private void _deploy(File file, ZipFile zipFile) throws Exception {
+	private void _deploy(ZipFile zipFile) throws Exception {
 		if (_log.isInfoEnabled()) {
-			_log.info("Deploying batch engine file " + file.getPath());
+			_log.info("Deploying batch engine file " + zipFile.getName());
 		}
 
 		Enumeration<? extends ZipEntry> iterator = zipFile.entries();
@@ -167,7 +165,7 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 			Validator.isNull(contentType)) {
 
 			throw new IllegalStateException(
-				"Invalid batch engine file " + file.getName());
+				"Invalid batch engine file " + zipFile.getName());
 		}
 
 		ExecutorService executorService =
@@ -194,7 +192,7 @@ public class BatchEngineAutoDeployListener implements AutoDeployListener {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Successfully deployed batch engine file " +
-							file.getPath());
+							zipFile.getName());
 				}
 			});
 	}
