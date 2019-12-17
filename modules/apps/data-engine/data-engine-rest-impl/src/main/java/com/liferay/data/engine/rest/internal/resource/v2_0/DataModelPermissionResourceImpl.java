@@ -61,14 +61,14 @@ public class DataModelPermissionResourceImpl
 			Long dataRecordCollectionId)
 		throws Exception {
 
+		JSONArray actionIdsJSONArray = JSONFactoryUtil.createJSONArray();
+
 		List<ResourceAction> resourceActions =
 			_resourceActionLocalService.getResourceActions(
 				DataRecordCollectionConstants.RESOURCE_NAME);
 
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
-
-		JSONArray actionIdsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (ResourceAction resourceAction : resourceActions) {
 			PermissionChecker permissionChecker =
