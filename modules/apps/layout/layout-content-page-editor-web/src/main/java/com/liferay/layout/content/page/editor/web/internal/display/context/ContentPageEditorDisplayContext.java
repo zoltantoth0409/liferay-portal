@@ -276,7 +276,8 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"imageSelectorURL", editorSoyContext.get("imageSelectorURL")
 			).put(
-				"infoItemSelectorURL", editorSoyContext.get("infoItemSelectorURL")
+				"infoItemSelectorURL",
+				editorSoyContext.get("infoItemSelectorURL")
 			).put(
 				"moveItemURL",
 				getFragmentEntryActionURL(
