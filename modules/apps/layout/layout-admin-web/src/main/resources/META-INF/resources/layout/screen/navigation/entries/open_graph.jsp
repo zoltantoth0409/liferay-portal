@@ -132,7 +132,7 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 							HashMapBuilder.<String, Object>put(
 								"customizable", Boolean.TRUE
 							).put(
-								"defaultValue", selLayout.getTitleMap()
+								"defaultValue", layoutsSEODisplayContext.getPageTitleMap()
 							).put(
 								"id", "openGraphTitle"
 							).build()

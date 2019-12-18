@@ -49,6 +49,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -210,6 +211,15 @@ public class LayoutsSEODisplayContext {
 			_selLayout, portletId, _themeDisplay.getTilesTitle(),
 			titleListMergeable, subtitleListMergeable,
 			_themeDisplay.getLocale());
+	}
+
+	public Map<Locale, String> getPageTitleMap() {
+		Map<Locale, String> titleMap = new HashMap<>();
+
+		titleMap.putAll(_selLayout.getNameMap());
+		titleMap.putAll(_selLayout.getTitleMap());
+
+		return titleMap;
 	}
 
 	public String getPageTitleSuffix() throws PortalException {
