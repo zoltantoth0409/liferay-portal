@@ -241,7 +241,6 @@ public class DepotEntryGroupRelLocalServiceTest {
 		Assert.assertEquals(
 			searchableDepotEntryGroupRels.toString(), 1,
 			searchableDepotEntryGroupRels.size());
-
 		Assert.assertEquals(
 			depotEntryGroupRel, searchableDepotEntryGroupRels.get(0));
 	}
