@@ -391,6 +391,10 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAndSearch(false);
+		searchContext.setAttribute("head", Boolean.TRUE);
+		searchContext.setAttribute("latest", Boolean.TRUE);
+		searchContext.setAttribute("params", params);
+		searchContext.setAttribute("showNonindexable", Boolean.TRUE);
 
 		LinkedHashMap<String, Object> params =
 			LinkedHashMapBuilder.<String, Object>put(
@@ -421,15 +425,11 @@ public class JournalArticleItemSelectorViewDisplayContext {
 
 		searchContext.setCompanyId(_themeDisplay.getCompanyId());
 		searchContext.setEnd(end);
+		searchContext.setEnd(end);
+		searchContext.setFolderIds(folderIds);
 		searchContext.setFolderIds(folderIds);
 		searchContext.setGroupIds(new long[] {_themeDisplay.getScopeGroupId()});
 		searchContext.setKeywords(getKeywords());
-		searchContext.setAttribute("head", Boolean.TRUE);
-		searchContext.setAttribute("latest", Boolean.TRUE);
-		searchContext.setAttribute("params", params);
-		searchContext.setAttribute("showNonindexable", Boolean.TRUE);
-		searchContext.setEnd(end);
-		searchContext.setFolderIds(folderIds);
 		searchContext.setStart(start);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
