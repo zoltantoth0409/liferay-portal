@@ -15,6 +15,7 @@
 	{@param? discardDraftRedirectURL: string}
 	{@param? discardDraftURL: string}
 	{@param? draft: bool}
+	{@param? hasUpdateContentPermissions: bool }
 	{@param? hasUpdatePermissions: bool }
 	{@param? lastSaveDate: string}
 	{@param? masterUsed: bool }
@@ -78,7 +79,7 @@
 
 			</ul>
 
-			{if $hasUpdatePermissions}
+			{if $hasUpdateContentPermissions or $hasUpdatePermissions}
 				<ul class="navbar-nav">
 					<li class="d-inline nav-item text-truncate">
 						{let $lastSaveText kind="text"}
