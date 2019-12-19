@@ -425,12 +425,9 @@ public class JournalArticleItemSelectorViewDisplayContext {
 
 		searchContext.setCompanyId(_themeDisplay.getCompanyId());
 		searchContext.setEnd(end);
-		searchContext.setEnd(end);
-		searchContext.setFolderIds(folderIds);
 		searchContext.setFolderIds(folderIds);
 		searchContext.setGroupIds(new long[] {_themeDisplay.getScopeGroupId()});
 		searchContext.setKeywords(getKeywords());
-		searchContext.setStart(start);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
