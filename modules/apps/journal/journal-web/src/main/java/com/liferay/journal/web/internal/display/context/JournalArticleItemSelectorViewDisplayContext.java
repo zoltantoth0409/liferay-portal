@@ -393,8 +393,6 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		searchContext.setAndSearch(false);
 		searchContext.setAttribute("head", Boolean.TRUE);
 		searchContext.setAttribute("latest", Boolean.TRUE);
-		searchContext.setAttribute("params", params);
-		searchContext.setAttribute("showNonindexable", Boolean.TRUE);
 
 		LinkedHashMap<String, Object> params =
 			LinkedHashMapBuilder.<String, Object>put(
@@ -403,6 +401,9 @@ public class JournalArticleItemSelectorViewDisplayContext {
 				"keywords", getKeywords()
 			).build();
 
+		searchContext.setAttribute("params", params);
+
+		searchContext.setAttribute("showNonindexable", Boolean.TRUE);
 		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.ARTICLE_ID, getKeywords()
