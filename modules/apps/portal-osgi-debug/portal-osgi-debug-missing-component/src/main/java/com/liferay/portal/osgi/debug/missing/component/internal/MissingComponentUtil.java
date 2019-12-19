@@ -67,8 +67,8 @@ public class MissingComponentUtil {
 		StringBundler sb = new StringBundler();
 
 		if (componentDescriptionDTO == null) {
-			sb.append("Blacklist Manager not found\n");
-			sb.append("Available components for ");
+			sb.append("Blacklist manager is not available.\n");
+			sb.append("Available components: ");
 			sb.append(blacklistBundle.getSymbolicName());
 
 			for (ComponentDescriptionDTO bundleComponentDescriptionDTO :
