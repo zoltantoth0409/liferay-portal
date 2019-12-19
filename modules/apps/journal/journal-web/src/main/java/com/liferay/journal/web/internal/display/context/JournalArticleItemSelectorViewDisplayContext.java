@@ -62,7 +62,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -400,7 +399,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 				"keywords", getKeywords()
 			).build();
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.ARTICLE_ID, getKeywords()
 			).put(
@@ -418,9 +417,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 				"ddmStructureKey", getDDMStructureKey()
 			).put(
 				"params", params
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(_themeDisplay.getCompanyId());
 		searchContext.setEnd(end);
