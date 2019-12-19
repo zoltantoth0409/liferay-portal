@@ -72,6 +72,15 @@ public class FragmentCollectionLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
+		long companyId = user.getCompanyId();
+
+		if (serviceContext != null) {
+			companyId = serviceContext.getCompanyId();
+		}
+		else {
+			serviceContext = new ServiceContext();
+		}
+
 		validate(name);
 
 		if (Validator.isNull(fragmentCollectionKey)) {
@@ -83,15 +92,6 @@ public class FragmentCollectionLocalServiceImpl
 			fragmentCollectionKey);
 
 		validateFragmentCollectionKey(groupId, fragmentCollectionKey);
-
-		long companyId = user.getCompanyId();
-
-		if (serviceContext != null) {
-			companyId = serviceContext.getCompanyId();
-		}
-		else {
-			serviceContext = new ServiceContext();
-		}
 
 		long fragmentCollectionId = counterLocalService.increment();
 

@@ -102,6 +102,15 @@ public class FragmentEntryLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
+		long companyId = user.getCompanyId();
+
+		if (serviceContext != null) {
+			companyId = serviceContext.getCompanyId();
+		}
+		else {
+			serviceContext = new ServiceContext();
+		}
+
 		if (Validator.isNull(fragmentEntryKey)) {
 			fragmentEntryKey = generateFragmentEntryKey(groupId, name);
 		}
@@ -121,15 +130,6 @@ public class FragmentEntryLocalServiceImpl
 
 		FragmentEntry fragmentEntry = fragmentEntryPersistence.create(
 			fragmentEntryId);
-
-		long companyId = user.getCompanyId();
-
-		if (serviceContext != null) {
-			companyId = serviceContext.getCompanyId();
-		}
-		else {
-			serviceContext = new ServiceContext();
-		}
 
 		fragmentEntry.setUuid(serviceContext.getUuid());
 		fragmentEntry.setGroupId(groupId);
