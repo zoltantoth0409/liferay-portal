@@ -1192,6 +1192,8 @@ definition {
 			isCreatingViaPlusIcon = "true");
 
 		AppBuilderAdmin.gotoBack();
+
+		AppBuilderAdmin.searchByItem(itemName = "object");
 	}
 
 	@description = "Clear Table View search results when clicking the Clear button on the search results banner"
