@@ -107,12 +107,12 @@ public class LayoutColumn {
 	}
 
 	private List<String> _getNestedColumnIds(String portletId) {
+		List<String> portletNestedColumnIds = new ArrayList<>();
+
 		String property = _layout.getTypeSettingsProperty(
 			LayoutTypePortletConstants.NESTED_COLUMN_IDS, StringPool.BLANK);
 
 		String[] nestedColumnIds = property.split(StringPool.COMMA);
-
-		List<String> portletNestedColumnIds = new ArrayList<>();
 
 		for (String nestedColumnId : nestedColumnIds) {
 			if (Validator.isNotNull(nestedColumnId) &&
