@@ -54,7 +54,8 @@ public class JournalArticleDDMTemplateInfoItemTemplatedRenderer
 	public List<InfoItemRendererTemplate> getInfoItemRendererTemplates(
 		JournalArticle article, Locale locale) {
 
-		List<InfoItemRendererTemplate> infoItemTemplates = new ArrayList<>();
+		List<InfoItemRendererTemplate> infoItemRendererTemplates =
+			new ArrayList<>();
 
 		DDMStructure ddmStructure = article.getDDMStructure();
 
@@ -63,12 +64,12 @@ public class JournalArticleDDMTemplateInfoItemTemplatedRenderer
 				continue;
 			}
 
-			infoItemTemplates.add(
+			infoItemRendererTemplates.add(
 				new InfoItemRendererTemplate(
 					ddmTemplate.getName(locale), ddmTemplate.getTemplateKey()));
 		}
 
-		return infoItemTemplates;
+		return infoItemRendererTemplates;
 	}
 
 	@Override
