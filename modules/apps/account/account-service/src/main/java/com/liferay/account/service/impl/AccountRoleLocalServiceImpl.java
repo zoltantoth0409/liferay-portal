@@ -231,10 +231,10 @@ public class AccountRoleLocalServiceImpl
 
 		disjunction.add(
 			RestrictionsFactoryUtil.ilike(
-				"description", StringUtil.quote(keywords, StringPool.PERCENT)));
+				"name", StringUtil.quote(keywords, StringPool.PERCENT)));
 		disjunction.add(
 			RestrictionsFactoryUtil.ilike(
-				"name", StringUtil.quote(keywords, StringPool.PERCENT)));
+				"description", StringUtil.quote(keywords, StringPool.PERCENT)));
 
 		roleDynamicQuery.add(disjunction);
 
