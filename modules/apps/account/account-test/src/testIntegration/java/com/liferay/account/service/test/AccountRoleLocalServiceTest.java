@@ -322,7 +322,6 @@ public class AccountRoleLocalServiceTest {
 
 		_addAccountRole(
 			_accountEntry1.getAccountEntryId(), RandomTestUtil.randomString());
-
 		_addAccountRole(
 			_accountEntry2.getAccountEntryId(),
 			keywords + RandomTestUtil.randomString());
@@ -364,8 +363,6 @@ public class AccountRoleLocalServiceTest {
 
 		Assert.assertEquals(accountRoles.toString(), 2, accountRoles.size());
 		Assert.assertEquals(_accountRoles.subList(0, 2), accountRoles);
-
-		// Test sort
 
 		baseModelSearchResult = AccountRoleLocalServiceUtil.searchAccountRoles(
 			_accountEntry1.getAccountEntryId(), keywords, QueryUtil.ALL_POS,
