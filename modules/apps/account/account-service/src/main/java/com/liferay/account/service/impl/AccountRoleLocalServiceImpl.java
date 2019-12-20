@@ -227,6 +227,8 @@ public class AccountRoleLocalServiceImpl
 
 		DynamicQuery roleDynamicQuery = roleLocalService.dynamicQuery();
 
+		roleDynamicQuery.add(RestrictionsFactoryUtil.in("roleId", roleIds));
+
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
 		disjunction.add(
@@ -237,8 +239,6 @@ public class AccountRoleLocalServiceImpl
 				"description", StringUtil.quote(keywords, StringPool.PERCENT)));
 
 		roleDynamicQuery.add(disjunction);
-
-		roleDynamicQuery.add(RestrictionsFactoryUtil.in("roleId", roleIds));
 
 		if (obc != null) {
 			Order order;
