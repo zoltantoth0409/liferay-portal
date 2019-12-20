@@ -76,15 +76,15 @@ public class GetAvailableTemplatesMVCResourceCommand
 
 		for (InfoItemRenderer infoItemRenderer : infoItemRenderers) {
 			if (infoItemRenderer instanceof InfoItemTemplatedRenderer) {
+				JSONArray templatesJSONArray =
+					JSONFactoryUtil.createJSONArray();
+
 				InfoItemTemplatedRenderer infoItemTemplatedRenderer =
 					(InfoItemTemplatedRenderer)infoItemRenderer;
 
 				List<InfoItemRendererTemplate> infoItemRendererTemplates =
 					infoItemTemplatedRenderer.getInfoItemRendererTemplates(
 						object, themeDisplay.getLocale());
-
-				JSONArray templatesJSONArray =
-					JSONFactoryUtil.createJSONArray();
 
 				Collections.sort(
 					infoItemRendererTemplates,
