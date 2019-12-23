@@ -44,6 +44,8 @@ definition {
 			menuItem = "Convert to Content Page",
 			pageName = "Test Page Name");
 
+		Button.clickPublish();
+
 		AssertElementPresent(
 			key_pageType = "Content Page",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -130,6 +132,8 @@ definition {
 		SitePages.gotoPageMenuItem(
 			menuItem = "Convert to Content Page",
 			pageName = "Test Page Name");
+
+		Button.clickPublish();
 
 		AssertElementPresent(
 			key_pageType = "Content Page",
