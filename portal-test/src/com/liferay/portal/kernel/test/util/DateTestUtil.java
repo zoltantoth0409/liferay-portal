@@ -35,16 +35,16 @@ public class DateTestUtil {
 		Assert.assertEquals(expectedDate.getTime(), actualDate.getTime());
 	}
 
-	public static void assertNotEquals(Date unexpectedDate, Date actualDate) {
+	public static void assertNotEquals(Date expectedDate, Date actualDate) {
 		Assert.assertNotSame(
-			unexpectedDate + " is same as " + actualDate, unexpectedDate,
+			expectedDate + " is same as " + actualDate, expectedDate,
 			actualDate);
 
-		if ((unexpectedDate == null) || (actualDate == null)) {
+		if ((expectedDate == null) || (actualDate == null)) {
 			return;
 		}
 
-		Assert.assertNotEquals(unexpectedDate.getTime(), actualDate.getTime());
+		Assert.assertNotEquals(expectedDate.getTime(), actualDate.getTime());
 	}
 
 }
