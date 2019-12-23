@@ -170,7 +170,7 @@ public class ManageLayoutProductNavigationControlMenuEntry
 			return false;
 		}
 
-		if (_isMasterPage(layout)) {
+		if (_isMasterLayout(layout)) {
 			return false;
 		}
 
@@ -187,7 +187,7 @@ public class ManageLayoutProductNavigationControlMenuEntry
 		return super.isShow(httpServletRequest);
 	}
 
-	private boolean _isMasterPage(Layout layout) {
+	private boolean _isMasterLayout(Layout layout) {
 		if (layout.getMasterLayoutPlid() > 0) {
 			return false;
 		}
