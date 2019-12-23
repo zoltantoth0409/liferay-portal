@@ -159,6 +159,7 @@ if (fixedHeader) {
 							<c:when test="<%= truncate %>">
 								<span class="text-truncate">
 									<%= headerNameValue %>
+
 									<c:if test="<%= Validator.isNotNull(helpMessage) %>">
 										<liferay-ui:icon-help message="<%= helpMessage %>" />
 									</c:if>
@@ -166,6 +167,7 @@ if (fixedHeader) {
 							</c:when>
 							<c:otherwise>
 								<%= headerNameValue %>
+
 								<c:if test="<%= Validator.isNotNull(helpMessage) %>">
 									<liferay-ui:icon-help message="<%= helpMessage %>" />
 								</c:if>
