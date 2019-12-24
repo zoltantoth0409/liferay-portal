@@ -1083,11 +1083,11 @@ public class RESTBuilder {
 		Map<String, Schema> schemas = components.getSchemas();
 
 		for (String schemaName : schemas.keySet()) {
+			Set<String> methodNames = new HashSet<>();
+
 			List<JavaMethodSignature> javaMethodSignatures =
 				freeMarkerTool.getResourceJavaMethodSignatures(
 					_configYAML, openAPIYAML, schemaName);
-
-			Set<String> methodNames = new HashSet<>();
 
 			for (JavaMethodSignature javaMethodSignature :
 					javaMethodSignatures) {
