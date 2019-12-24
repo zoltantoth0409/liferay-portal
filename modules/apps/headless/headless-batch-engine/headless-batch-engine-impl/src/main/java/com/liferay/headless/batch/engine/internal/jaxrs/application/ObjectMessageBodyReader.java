@@ -51,8 +51,8 @@ public class ObjectMessageBodyReader implements MessageBodyReader<Object> {
 	public boolean isReadable(
 		Class clazz, Type type, Annotation[] annotations, MediaType mediaType) {
 
-		if (mediaType.equals(MediaType.valueOf("text/csv")) ||
-			mediaType.equals(MediaType.valueOf("application/x-ndjson"))) {
+		if (mediaType.equals(MediaType.valueOf("application/x-ndjson")) ||
+			mediaType.equals(MediaType.valueOf("text/csv"))) {
 
 			return true;
 		}

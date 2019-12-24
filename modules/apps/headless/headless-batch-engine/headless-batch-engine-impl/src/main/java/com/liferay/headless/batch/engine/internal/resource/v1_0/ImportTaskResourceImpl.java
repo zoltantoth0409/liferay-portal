@@ -250,11 +250,11 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 		if (mediaType.equals(MediaType.APPLICATION_JSON)) {
 			return "json";
 		}
-		else if (mediaType.equals("text/csv")) {
-			return "csv";
-		}
 		else if (mediaType.equals("application/x-ndjson")) {
 			return "jsonl";
+		}
+		else if (mediaType.equals("text/csv")) {
+			return "csv";
 		}
 
 		return mediaType;
