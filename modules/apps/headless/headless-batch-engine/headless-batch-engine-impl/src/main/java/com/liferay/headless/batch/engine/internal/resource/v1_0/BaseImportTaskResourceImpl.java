@@ -62,7 +62,12 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'DELETE' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}/{version}'  -u 'test@liferay.com:test'
 	 */
 	@Override
-	@Consumes({"application/json", "application/x-ndjson", "text/csv"})
+	@Consumes(
+		{
+			"application/json", "application/x-ndjson", "application/xml",
+			"text/csv"
+		}
+	)
 	@DELETE
 	@Operation(description = "Uploads a new file for deleting items in batch.")
 	@Parameters(
@@ -126,7 +131,12 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'POST' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}/{version}'  -u 'test@liferay.com:test'
 	 */
 	@Override
-	@Consumes({"application/json", "application/x-ndjson", "text/csv"})
+	@Consumes(
+		{
+			"application/json", "application/x-ndjson", "application/xml",
+			"text/csv"
+		}
+	)
 	@Operation(
 		description = "Uploads a new file for creating new items in batch."
 	)
@@ -200,7 +210,12 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'PUT' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}/{version}'  -u 'test@liferay.com:test'
 	 */
 	@Override
-	@Consumes({"application/json", "application/x-ndjson", "text/csv"})
+	@Consumes(
+		{
+			"application/json", "application/x-ndjson", "application/xml",
+			"text/csv"
+		}
+	)
 	@Operation(description = "Uploads a new file for updating items in batch.")
 	@PUT
 	@Parameters(
