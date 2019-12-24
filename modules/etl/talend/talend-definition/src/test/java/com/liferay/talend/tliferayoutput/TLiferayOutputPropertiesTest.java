@@ -63,7 +63,6 @@ public class TLiferayOutputPropertiesTest {
 
 		Assert.assertTrue(
 			"Field operation is required", operationProperty.isRequired());
-
 		Assert.assertFalse(
 			"Field operation is nullable", operationProperty.isNullable());
 	}
