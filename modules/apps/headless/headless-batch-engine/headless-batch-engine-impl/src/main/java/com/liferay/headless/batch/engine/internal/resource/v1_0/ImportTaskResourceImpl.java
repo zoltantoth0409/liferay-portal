@@ -92,12 +92,13 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 			String className, String version, String callbackURL, Object object)
 		throws IOException {
 
-		String mediaType = contextHttpServletRequest.getHeader(
+		String contentType = contextHttpServletRequest.getHeader(
 			HttpHeaders.CONTENT_TYPE);
 
 		return _importFile(
-			BatchEngineTaskOperation.DELETE, _getBytes(object, mediaType),
-			callbackURL, className, _getContentType(mediaType), null, version);
+			BatchEngineTaskOperation.DELETE, _getBytes(object, contentType),
+			callbackURL, className, _getContentType(contentType), null,
+			version);
 	}
 
 	@Override
@@ -125,12 +126,12 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 			String fieldNameMapping, Object object)
 		throws Exception {
 
-		String mediaType = contextHttpServletRequest.getHeader(
+		String contentType = contextHttpServletRequest.getHeader(
 			HttpHeaders.CONTENT_TYPE);
 
 		return _importFile(
-			BatchEngineTaskOperation.CREATE, _getBytes(object, mediaType),
-			callbackURL, className, _getContentType(mediaType),
+			BatchEngineTaskOperation.CREATE, _getBytes(object, contentType),
+			callbackURL, className, _getContentType(contentType),
 			fieldNameMapping, version);
 	}
 
@@ -151,12 +152,13 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 			String className, String version, String callbackURL, Object object)
 		throws Exception {
 
-		String mediaType = contextHttpServletRequest.getHeader(
+		String contentType = contextHttpServletRequest.getHeader(
 			HttpHeaders.CONTENT_TYPE);
 
 		return _importFile(
-			BatchEngineTaskOperation.UPDATE, _getBytes(object, mediaType),
-			callbackURL, className, _getContentType(mediaType), null, version);
+			BatchEngineTaskOperation.UPDATE, _getBytes(object, contentType),
+			callbackURL, className, _getContentType(contentType), null,
+			version);
 	}
 
 	@Activate
@@ -181,12 +183,12 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 		}
 	}
 
-	private byte[] _getBytes(Object object, String mediaType)
+	private byte[] _getBytes(Object object, String contentType)
 		throws IOException {
 
 		byte[] bytes = null;
 
-		if (mediaType.equals(MediaType.APPLICATION_JSON)) {
+		if (contentType.equals(MediaType.APPLICATION_JSON)) {
 			ObjectMapper objectMapper = new ObjectMapper();
 
 			bytes = objectMapper.writeValueAsBytes(object);
@@ -237,18 +239,18 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 			_file.getExtension(fileName));
 	}
 
-	private String _getContentType(String mediaType) {
-		if (mediaType.equals(MediaType.APPLICATION_JSON)) {
+	private String _getContentType(String contentType) {
+		if (contentType.equals(MediaType.APPLICATION_JSON)) {
 			return "json";
 		}
-		else if (mediaType.equals("application/x-ndjson")) {
+		else if (contentType.equals("application/x-ndjson")) {
 			return "jsonl";
 		}
-		else if (mediaType.equals("text/csv")) {
+		else if (contentType.equals("text/csv")) {
 			return "csv";
 		}
 
-		return mediaType;
+		return contentType;
 	}
 
 	private UnsyncByteArrayOutputStream _getUnsyncByteArrayOutputStream(
