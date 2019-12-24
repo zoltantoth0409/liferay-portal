@@ -233,19 +233,7 @@ paths:
                     application/x-ndjson:
                         schema:
                             type: object
-                    multipart/form-data:
-                        schema:
-                            properties:
-                                file:
-                                    format: binary
-                                    type: string
-                    text/csv:
-                        schema:
-                            type: object
                     application/xml:
-                        schema:
-                            type: object
-                    application/x-ndjson:
                         schema:
                             type: object
                     multipart/form-data:
@@ -301,19 +289,7 @@ paths:
                     application/x-ndjson:
                         schema:
                             type: object
-                    multipart/form-data:
-                        schema:
-                            properties:
-                                file:
-                                    format: binary
-                                    type: string
-                    text/csv:
-                        schema:
-                            type: object
                     application/xml:
-                        schema:
-                            type: object
-                    application/x-ndjson:
                         schema:
                             type: object
                     multipart/form-data:
@@ -365,19 +341,7 @@ paths:
                     application/x-ndjson:
                         schema:
                             type: object
-                    multipart/form-data:
-                        schema:
-                            properties:
-                                file:
-                                    format: binary
-                                    type: string
-                    text/csv:
-                        schema:
-                            type: object
                     application/xml:
-                        schema:
-                            type: object
-                    application/x-ndjson:
                         schema:
                             type: object
                     multipart/form-data:
