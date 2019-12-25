@@ -1,8 +1,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 4dc1bea83d1734edf24a9c1c72d628ade4628ba6
+	commit = 7a143ad96650933a45a7256d01965529b1bf959e
 	mergebuttonmergecommits = false
 	mode = push
-	parent = e39c420501fa3e2577587125e489bcfaabf59004
+	parent = 639f533f021d5134ca6ed99fb8d4d4b233b72579
 	remote = git@github.com:liferay/com-liferay-analytics.git
