@@ -298,7 +298,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 
 	private ImportTask _importFile(
 		BatchEngineTaskOperation batchEngineTaskOperation, byte[] bytes,
-		String callbackURL, String className, String contentType,
+		String callbackURL, String className, String batchEngineTaskContentType,
 		String fieldNameMappingString, String version) {
 
 		Class<?> clazz = _itemClassRegistry.getItemClass(className);
@@ -317,7 +317,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 				contextCompany.getCompanyId(), contextUser.getUserId(),
 				_itemClassBatchSizeMap.getOrDefault(className, _batchSize),
 				callbackURL, className, bytes,
-				StringUtil.upperCase(contentType),
+				StringUtil.upperCase(batchEngineTaskContentType),
 				BatchEngineTaskExecuteStatus.INITIAL.name(),
 				_toMap(fieldNameMappingString), batchEngineTaskOperation.name(),
 				ParametersUtil.toParameters(contextUriInfo, _ignoredParameters),
