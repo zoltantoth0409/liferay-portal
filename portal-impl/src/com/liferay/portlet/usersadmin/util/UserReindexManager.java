@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.usersadmin.reindexer;
+package com.liferay.portlet.usersadmin.util;
 
 import com.liferay.petra.lang.SafeClosable;
 import com.liferay.petra.string.StringBundler;
@@ -36,16 +36,16 @@ import java.util.function.Function;
 /**
  * @author Minhchau Dang
  */
-public class UserReindexerImpl implements UserReindexer {
+public class UserReindexManager {
 
-	@Override
+	public static final UserReindexManager INSTANCE = new UserReindexManager();
+
 	public void reindex(final List<User> users) throws SearchException {
 		long[] userIds = ListUtil.toLongArray(users, User.USER_ID_ACCESSOR);
 
 		reindex(userIds);
 	}
 
-	@Override
 	public void reindex(long... userIds) throws SearchException {
 		List<UserIndexerRequest> newUserIndexerRequests = new ArrayList<>();
 
@@ -74,7 +74,6 @@ public class UserReindexerImpl implements UserReindexer {
 		}
 	}
 
-	@Override
 	public void reindex(final User user) throws SearchException {
 		reindex(user.getUserId());
 	}
@@ -146,7 +145,7 @@ public class UserReindexerImpl implements UserReindexer {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UserReindexerImpl.class);
+		UserReindexManager.class);
 
 	private final ExecutorService _queuedIndexerRequestExecutorService =
 		Executors.newSingleThreadExecutor();
