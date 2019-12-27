@@ -501,10 +501,10 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 		ActionRequest actionRequest,
 		EditRankingMVCActionRequest editRankingMVCActionRequest) {
 
+		List<Ranking> rankings = new ArrayList<>();
+
 		String[] resultRankingsUids = _getResultRankingsUids(
 			actionRequest, editRankingMVCActionRequest);
-
-		List<Ranking> rankings = new ArrayList<>();
 
 		for (String resultRankingsUid : resultRankingsUids) {
 			Optional<Ranking> optional = rankingIndexReader.fetchOptional(
