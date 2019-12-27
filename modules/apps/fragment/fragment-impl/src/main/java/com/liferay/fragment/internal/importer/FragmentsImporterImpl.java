@@ -475,11 +475,6 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				groupId, FragmentPortletKeys.FRAGMENT);
 
 		if (repository == null) {
-			ServiceContext serviceContext = new ServiceContext();
-
-			serviceContext.setAddGroupPermissions(true);
-			serviceContext.setAddGuestPermissions(true);
-
 			if (groupId == CompanyConstants.SYSTEM) {
 				FragmentEntry fragmentEntry =
 					_fragmentEntryLocalService.getFragmentEntry(
@@ -490,6 +485,11 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 				groupId = company.getGroupId();
 			}
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAddGroupPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
 
 			repository = PortletFileRepositoryUtil.addPortletRepository(
 				groupId, FragmentPortletKeys.FRAGMENT, serviceContext);
