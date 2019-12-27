@@ -175,7 +175,7 @@ public class ModelListenerRegistrationUtil {
 			}
 		}
 
-		private Class<?> _getGenericSupertype(Class<?> clazz) {
+		private Class<?> _getGenericSuperType(Class<?> clazz) {
 			try {
 				ParameterizedType parameterizedType =
 					(ParameterizedType)clazz.getGenericSuperclass();
@@ -209,7 +209,7 @@ public class ModelListenerRegistrationUtil {
 				}
 			}
 
-			return _getGenericSupertype(clazz);
+			return _getGenericSuperType(clazz);
 		}
 
 	}

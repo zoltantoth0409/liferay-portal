@@ -50,16 +50,16 @@ public class TempAttributesServletRequest extends HttpServletRequestWrapper {
 
 	@Override
 	public Enumeration<String> getAttributeNames() {
-		Enumeration<String> superenumeration = super.getAttributeNames();
+		Enumeration<String> superEnumeration = super.getAttributeNames();
 
 		if (_attributes.isEmpty()) {
-			return superenumeration;
+			return superEnumeration;
 		}
 
 		Set<String> names = new HashSet<>();
 
-		while (superenumeration.hasMoreElements()) {
-			names.add(superenumeration.nextElement());
+		while (superEnumeration.hasMoreElements()) {
+			names.add(superEnumeration.nextElement());
 		}
 
 		names.addAll(_attributes.keySet());

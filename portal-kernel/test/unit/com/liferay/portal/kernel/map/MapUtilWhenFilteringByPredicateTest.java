@@ -32,7 +32,7 @@ import org.junit.Test;
 public class MapUtilWhenFilteringByPredicateTest {
 
 	@Test
-	public void testShouldAllowFilterBySupertype() {
+	public void testShouldAllowFilterBySuperType() {
 		Map<String, Integer> inputMap = HashMapBuilder.put(
 			"1", 1
 		).put(
@@ -54,7 +54,7 @@ public class MapUtilWhenFilteringByPredicateTest {
 	}
 
 	@Test
-	public void testShouldAllowFilterBySupertypeAndOutputToSupertype() {
+	public void testShouldAllowFilterBySuperTypeAndOutputToSupertype() {
 		Map<String, Integer> inputMap = HashMapBuilder.put(
 			"1", 1
 		).put(
