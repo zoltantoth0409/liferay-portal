@@ -17,7 +17,6 @@ package com.liferay.layout.content.page.editor.web.internal.portlet.action;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
 import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.portal.aop.AopService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -89,7 +88,22 @@ public class PublishLayoutMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		_checkPublishPermission(layout, draftLayout, themeDisplay);
+		try {
+			LayoutPermissionUtil.check(
+				themeDisplay.getPermissionChecker(), draftLayout,
+				ActionKeys.UPDATE);
+
+			LayoutPermissionUtil.check(
+				themeDisplay.getPermissionChecker(), layout, ActionKeys.UPDATE);
+		}
+		catch (PrincipalException pe) {
+			if (!LayoutPermissionUtil.contains(
+					themeDisplay.getPermissionChecker(), layout,
+					ActionKeys.UPDATE_LAYOUT_CONTENT)) {
+
+				throw pe;
+			}
+		}
 
 		layout = _layoutCopyHelper.copyLayout(draftLayout, layout);
 
@@ -123,28 +137,6 @@ public class PublishLayoutMVCActionCommand
 		MultiSessionMessages.add(actionRequest, "layoutPublished");
 
 		sendRedirect(actionRequest, actionResponse);
-	}
-
-	private void _checkPublishPermission(
-			Layout layout, Layout draftLayout, ThemeDisplay themeDisplay)
-		throws PortalException {
-
-		try {
-			LayoutPermissionUtil.check(
-				themeDisplay.getPermissionChecker(), draftLayout,
-				ActionKeys.UPDATE);
-
-			LayoutPermissionUtil.check(
-				themeDisplay.getPermissionChecker(), layout, ActionKeys.UPDATE);
-		}
-		catch (PrincipalException pe) {
-			if (!LayoutPermissionUtil.contains(
-					themeDisplay.getPermissionChecker(), layout,
-					ActionKeys.UPDATE_LAYOUT_CONTENT)) {
-
-				throw pe;
-			}
-		}
 	}
 
 	@Reference
