@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
@@ -162,22 +161,14 @@ public class UserReindexerImpl implements UserReindexer {
 		}
 
 		@Override
-		public boolean equals(Object object) {
-			if (this == object) {
-				return true;
-			}
-
-			if (!(object instanceof UserIndexerRequest)) {
+		public boolean equals(Object o) {
+			if (!(o instanceof UserIndexerRequest)) {
 				return false;
 			}
 
-			UserIndexerRequest userIndexerRequest = (UserIndexerRequest)object;
+			UserIndexerRequest other = (UserIndexerRequest)o;
 
-			if (Objects.equals(_userId, userIndexerRequest._userId)) {
-				return true;
-			}
-
-			return false;
+			return _userId.equals(other._userId);
 		}
 
 		public void execute() {
