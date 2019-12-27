@@ -524,10 +524,10 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 		ActionRequest actionRequest,
 		EditRankingMVCActionRequest editRankingMVCActionRequest) {
 
+		String[] resultRankingsUids = null;
+
 		String resultRankingsUid =
 			editRankingMVCActionRequest.getResultsRankingUid();
-
-		String[] resultRankingsUids = null;
 
 		if (Validator.isNotNull(resultRankingsUid)) {
 			resultRankingsUids = new String[] {resultRankingsUid};
