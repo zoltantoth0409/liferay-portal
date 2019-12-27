@@ -53,7 +53,7 @@ public class LiferayOASSource implements OASSource {
 		ComponentProperties componentProperties) {
 
 		throw new UnsupportedOperationException(
-			"OAS source object has been already initialized");
+			"OAS source object is already initialized");
 	}
 
 	public boolean isValid() {
