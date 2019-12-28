@@ -210,9 +210,12 @@
 
 		<column name="companyInfoId" primary="true" type="long" />
 
-		<!-- Other fields -->
+		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
+
+		<!-- Other fields -->
+
 		<column name="key" type="String" />
 
 		<!-- Finder methods -->
