@@ -58,12 +58,12 @@ public class CompanyInfoLocalServiceTest {
 
 		_company = null;
 
-		Assert.assertNull(_companyInfoLocalService.fetchByCompanyId(companyId));
+		Assert.assertNull(_companyInfoLocalService.fetchCompany(companyId));
 	}
 
 	@Test
 	public void testGetCompanyInfoKey() {
-		CompanyInfo companyInfo = _companyInfoLocalService.fetchByCompanyId(
+		CompanyInfo companyInfo = _companyInfoLocalService.fetchCompany(
 			_company.getCompanyId());
 
 		Assert.assertEquals(companyInfo.getKey(), _company.getKey());
@@ -71,7 +71,7 @@ public class CompanyInfoLocalServiceTest {
 
 	@Test
 	public void testGetCompanyInfoKeyObj() {
-		CompanyInfo companyInfo = _companyInfoLocalService.fetchByCompanyId(
+		CompanyInfo companyInfo = _companyInfoLocalService.fetchCompany(
 			_company.getCompanyId());
 
 		Assert.assertEquals(
@@ -85,7 +85,7 @@ public class CompanyInfoLocalServiceTest {
 
 		_company = _companyLocalService.updateCompany(_company);
 
-		CompanyInfo companyInfo = _companyInfoLocalService.fetchByCompanyId(
+		CompanyInfo companyInfo = _companyInfoLocalService.fetchCompany(
 			_company.getCompanyId());
 
 		Assert.assertEquals(companyInfo.getKey(), _company.getKey());
@@ -97,7 +97,7 @@ public class CompanyInfoLocalServiceTest {
 
 		_company = _companyLocalService.updateCompany(_company);
 
-		CompanyInfo companyInfo = _companyInfoLocalService.fetchByCompanyId(
+		CompanyInfo companyInfo = _companyInfoLocalService.fetchCompany(
 			_company.getCompanyId());
 
 		Assert.assertEquals(

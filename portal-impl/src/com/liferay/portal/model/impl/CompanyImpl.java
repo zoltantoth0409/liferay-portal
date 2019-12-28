@@ -104,8 +104,8 @@ public class CompanyImpl extends CompanyBaseImpl {
 	@Override
 	public CompanyInfo getCompanyInfo() {
 		if (_companyInfo == null) {
-			CompanyInfo companyInfo =
-				CompanyInfoLocalServiceUtil.fetchByCompanyId(getCompanyId());
+			CompanyInfo companyInfo = CompanyInfoLocalServiceUtil.fetchCompany(
+				getCompanyId());
 
 			if (companyInfo == null) {
 				companyInfo = CompanyInfoLocalServiceUtil.createCompanyInfo(

@@ -18,24 +18,14 @@ import com.liferay.portal.kernel.model.CompanyInfo;
 import com.liferay.portal.service.base.CompanyInfoLocalServiceBaseImpl;
 
 /**
- * Provides the local service for adding, checking, and updating company infos.
- * Each company info refers to a separate portal instance (company).
- *
  * @author Brian Wing Shun Chan
  * @author Alberto Chaparo
  */
 public class CompanyInfoLocalServiceImpl
 	extends CompanyInfoLocalServiceBaseImpl {
 
-	/**
-	 * Returns the company info with the companyId
-	 *
-	 * @param companyId the company ID
-	 * @return the matching company info, or <code>null</code> if a matching
-	 * 			company info could not be found
-	 */
 	@Override
-	public CompanyInfo fetchByCompanyId(long companyId) {
+	public CompanyInfo fetchCompany(long companyId) {
 		return companyInfoPersistence.fetchByCompanyId(companyId);
 	}
 
