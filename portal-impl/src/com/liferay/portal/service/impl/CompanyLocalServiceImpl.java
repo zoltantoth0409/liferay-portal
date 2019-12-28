@@ -255,10 +255,6 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 			company = companyPersistence.update(company);
 
-			// Company info
-
-			companyInfoPersistence.update(company.getCompanyInfo());
-
 			// Account
 
 			String name = webId;
@@ -279,6 +275,10 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			updateAccount(
 				company, name, legalName, legalId, legalType, sicCode,
 				tickerSymbol, industry, type, size);
+
+			// Company info
+
+			companyInfoPersistence.update(company.getCompanyInfo());
 
 			// Virtual host
 
@@ -1299,13 +1299,13 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		companyPersistence.remove(company);
 
-		// Company info
-
-		companyInfoPersistence.remove(company.getCompanyInfo());
-
 		// Account
 
 		accountLocalService.deleteAccount(company.getAccountId());
+
+		// Company info
+
+		companyInfoPersistence.remove(company.getCompanyInfo());
 
 		// Expando
 
