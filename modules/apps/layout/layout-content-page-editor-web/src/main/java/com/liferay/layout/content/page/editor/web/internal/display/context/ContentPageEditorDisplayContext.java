@@ -798,7 +798,7 @@ public class ContentPageEditorDisplayContext {
 				continue;
 			}
 
-			if (!_isAllowedFragmentEntry(fragmentRenderer.getKey())) {
+			if (!_isAllowedFragmentEntryKey(fragmentRenderer.getKey())) {
 				continue;
 			}
 
@@ -886,10 +886,10 @@ public class ContentPageEditorDisplayContext {
 				continue;
 			}
 
-			List<SoyContext> fragmentEntriesSoyContext =
+			List<SoyContext> fragmentEntriesSoyContexts =
 				_getFragmentEntriesSoyContexts(fragmentEntries);
 
-			if (ListUtil.isEmpty(fragmentEntriesSoyContext)) {
+			if (ListUtil.isEmpty(fragmentEntriesSoyContexts)) {
 				continue;
 			}
 
@@ -899,7 +899,7 @@ public class ContentPageEditorDisplayContext {
 				"fragmentCollectionId",
 				fragmentCollectionContributor.getFragmentCollectionKey()
 			).put(
-				"fragmentEntries", fragmentEntriesSoyContext
+				"fragmentEntries", fragmentEntriesSoyContexts
 			).put(
 				"name",
 				fragmentCollectionContributor.getName(themeDisplay.getLocale())
@@ -938,10 +938,10 @@ public class ContentPageEditorDisplayContext {
 
 			SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
-			List<SoyContext> fragmentEntriesSoyContext =
+			List<SoyContext> fragmentEntriesSoyContexts =
 				_getFragmentEntriesSoyContexts(fragmentEntries);
 
-			if (ListUtil.isEmpty(fragmentEntriesSoyContext)) {
+			if (ListUtil.isEmpty(fragmentEntriesSoyContexts)) {
 				continue;
 			}
 
@@ -949,7 +949,7 @@ public class ContentPageEditorDisplayContext {
 				"fragmentCollectionId",
 				fragmentCollection.getFragmentCollectionId()
 			).put(
-				"fragmentEntries", fragmentEntriesSoyContext
+				"fragmentEntries", fragmentEntriesSoyContexts
 			).put(
 				"name", fragmentCollection.getName()
 			);
@@ -968,7 +968,9 @@ public class ContentPageEditorDisplayContext {
 		for (FragmentEntry fragmentEntry : fragmentEntries) {
 			SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
-			if (!_isAllowedFragmentEntry(fragmentEntry.getFragmentEntryKey())) {
+			if (!_isAllowedFragmentEntryKey(
+					fragmentEntry.getFragmentEntryKey())) {
+
 				continue;
 			}
 
@@ -1697,7 +1699,7 @@ public class ContentPageEditorDisplayContext {
 		return false;
 	}
 
-	private boolean _isAllowedFragmentEntry(String fragmentEntryKey) {
+	private boolean _isAllowedFragmentEntryKey(String fragmentEntryKey) {
 		List<String> allowedFragmentEntryKeys = _getAllowedFragmentEntryKeys();
 
 		if (ListUtil.isEmpty(allowedFragmentEntryKeys) ||
