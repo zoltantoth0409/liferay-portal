@@ -78,8 +78,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.trash.service.TrashEntryService;
 import com.liferay.upload.AttachmentContentUpdater;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -354,7 +352,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	private void _sendAddRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			long entryId)
-		throws IOException {
+		throws Exception {
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
