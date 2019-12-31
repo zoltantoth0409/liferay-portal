@@ -51,7 +51,7 @@ public class PortalUpgradeProcessRegistryImpl
 				"LayoutFriendlyURL", "PortletPreferences",
 				"ResourcePermission"));
 
-		upgradeProcesses.put(new Version(8, 0, 0), new UpgradeCompanyInfo());
+		upgradeProcesses.put(new Version(8, 0, 0), new UpgradeSchema());
 	}
 
 }
