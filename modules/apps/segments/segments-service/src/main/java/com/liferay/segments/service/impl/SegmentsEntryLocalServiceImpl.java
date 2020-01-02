@@ -409,6 +409,8 @@ public class SegmentsEntryLocalServiceImpl
 			boolean active, String criteria, ServiceContext serviceContext)
 		throws PortalException {
 
+		// Segments entry
+
 		SegmentsEntry segmentsEntry = segmentsEntryPersistence.findByPrimaryKey(
 			segmentsEntryId);
 
