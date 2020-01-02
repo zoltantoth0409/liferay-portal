@@ -122,21 +122,23 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			for (SiteNavigationMenuItem childSiteNavigationMenuItem :
 					siteNavigationMenuItems) {
 
-				if (parentSiteNavigationMenuItemId ==
+				if (parentSiteNavigationMenuItemId !=
 						childSiteNavigationMenuItem.
 							getParentSiteNavigationMenuItemId()) {
 
-					List<SiteNavigationMenuItem> parentSiteNavigationMenuItems =
-						siteNavigationMenuItemsMap.getOrDefault(
-							parentSiteNavigationMenuItemId, new ArrayList<>());
-
-					parentSiteNavigationMenuItems.add(
-						childSiteNavigationMenuItem);
-
-					siteNavigationMenuItemsMap.put(
-						parentSiteNavigationMenuItemId,
-						parentSiteNavigationMenuItems);
+					continue;
 				}
+
+				List<SiteNavigationMenuItem> parentSiteNavigationMenuItems =
+					siteNavigationMenuItemsMap.getOrDefault(
+						parentSiteNavigationMenuItemId, new ArrayList<>());
+
+				parentSiteNavigationMenuItems.add(
+					childSiteNavigationMenuItem);
+
+				siteNavigationMenuItemsMap.put(
+					parentSiteNavigationMenuItemId,
+					parentSiteNavigationMenuItems);
 			}
 		}
 
