@@ -56,7 +56,9 @@ public class SegmentsEntryProviderRegistryImpl
 
 		if (segmentsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No segments entry found with id " + segmentsEntryId);
+				_log.warn(
+					"No segments entry found with segments entry ID " +
+						segmentsEntryId);
 			}
 
 			return new long[0];
@@ -88,7 +90,9 @@ public class SegmentsEntryProviderRegistryImpl
 
 		if (segmentsEntry == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No segments entry found with id " + segmentsEntryId);
+				_log.warn(
+					"No segments entry found with segments entry ID " +
+						segmentsEntryId);
 			}
 
 			return 0;
