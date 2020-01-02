@@ -175,18 +175,22 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 				dateModified = siteNavigationMenu.getModifiedDate();
 				id = siteNavigationMenu.getSiteNavigationMenuId();
 				name = siteNavigationMenu.getName();
-
-				if (nestNavigationMenuItems) {
-					navigationMenuItems = transformToArray(
-						siteNavigationMenuItemsMap.getOrDefault(
-							0L, new ArrayList<>()),
-						siteNavigationMenuItem -> _toNavigationMenuItem(
-							nestNavigationMenuItems, siteNavigationMenuItem,
-							siteNavigationMenuItemsMap),
-						NavigationMenuItem.class);
-				}
-
 				siteId = siteNavigationMenu.getGroupId();
+
+				setNavigationMenuItems(
+					() -> {
+						if (!nestNavigationMenuItems) {
+							return null;
+						}
+
+						return transformToArray(
+							siteNavigationMenuItemsMap.getOrDefault(
+								0L, new ArrayList<>()),
+							siteNavigationMenuItem -> _toNavigationMenuItem(
+								nestNavigationMenuItems, siteNavigationMenuItem,
+								siteNavigationMenuItemsMap),
+							NavigationMenuItem.class);
+					});
 			}
 		};
 	}
