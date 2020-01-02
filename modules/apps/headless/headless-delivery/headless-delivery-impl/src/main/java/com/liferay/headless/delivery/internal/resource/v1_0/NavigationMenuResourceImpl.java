@@ -234,11 +234,23 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 				type = _toType(siteNavigationMenuItem.getType());
 				url = typeSettingsProperties.getProperty("url");
 
-				if (layout != null) {
-					link = layout.getFriendlyURL();
-					name = layout.getName(
-						contextAcceptLanguage.getPreferredLocale());
-				}
+				setLink(
+					() -> {
+						if (layout != null) {
+							return null;
+						}
+
+						return layout.getFriendlyURL();
+					});
+				setName(
+					() -> {
+						if (layout != null) {
+							return null;
+						}
+
+						return layout.getName(
+							contextAcceptLanguage.getPreferredLocale());
+					});
 			}
 		};
 	}
