@@ -110,27 +110,32 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 		for (SiteNavigationMenuItem siteNavigationMenuItem :
 				siteNavigationMenuItems) {
 
-			long parentId =
+			long parentSiteNavigationMenuItemId =
 				siteNavigationMenuItem.getParentSiteNavigationMenuItemId();
 
-			if (siteNavigationMenuItemsMap.containsKey(parentId)) {
+			if (siteNavigationMenuItemsMap.containsKey(
+					parentSiteNavigationMenuItemId)) {
+
 				continue;
 			}
 
 			for (SiteNavigationMenuItem childSiteNavigationMenuItem :
 					siteNavigationMenuItems) {
 
-				if (parentId ==
+				if (parentSiteNavigationMenuItemId ==
 						childSiteNavigationMenuItem.
 							getParentSiteNavigationMenuItemId()) {
 
-					List<SiteNavigationMenuItem> list =
+					List<SiteNavigationMenuItem> parentSiteNavigationMenuItems =
 						siteNavigationMenuItemsMap.getOrDefault(
-							parentId, new ArrayList<>());
+							parentSiteNavigationMenuItemId, new ArrayList<>());
 
-					list.add(childSiteNavigationMenuItem);
+					parentSiteNavigationMenuItems.add(
+						childSiteNavigationMenuItem);
 
-					siteNavigationMenuItemsMap.put(parentId, list);
+					siteNavigationMenuItemsMap.put(
+						parentSiteNavigationMenuItemId,
+						parentSiteNavigationMenuItems);
 				}
 			}
 		}
@@ -138,7 +143,7 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 		return siteNavigationMenuItemsMap;
 	}
 
-	private String _getType(String siteNavigationMenuItem) {
+	private String _toType(String siteNavigationMenuItem) {
 		if (siteNavigationMenuItem.equals("layout")) {
 			return "page";
 		}
@@ -220,7 +225,7 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 						nestNavigationMenuItems, item,
 						siteNavigationMenuItemsMap),
 					NavigationMenuItem.class);
-				type = _getType(siteNavigationMenuItem.getType());
+				type = _toType(siteNavigationMenuItem.getType());
 				url = typeSettingsProperties.getProperty("url");
 
 				if (layout != null) {
