@@ -92,7 +92,6 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			siteNavigationMenuItem.getTypeSettings());
 
 		String layoutUuid = typeSettingsProperties.get("layoutUuid");
-
 		boolean privateLayout = GetterUtil.getBoolean(
 			typeSettingsProperties.get("privateLayout"));
 
@@ -133,8 +132,7 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 					siteNavigationMenuItemsMap.getOrDefault(
 						parentSiteNavigationMenuItemId, new ArrayList<>());
 
-				parentSiteNavigationMenuItems.add(
-					childSiteNavigationMenuItem);
+				parentSiteNavigationMenuItems.add(childSiteNavigationMenuItem);
 
 				siteNavigationMenuItemsMap.put(
 					parentSiteNavigationMenuItemId,
@@ -143,17 +141,6 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 		}
 
 		return siteNavigationMenuItemsMap;
-	}
-
-	private String _toType(String siteNavigationMenuItem) {
-		if (siteNavigationMenuItem.equals("layout")) {
-			return "page";
-		}
-		else if (siteNavigationMenuItem.equals("node")) {
-			return "navigationMenuItem";
-		}
-
-		return siteNavigationMenuItem;
 	}
 
 	private NavigationMenu _toNavigationMenu(
@@ -253,6 +240,17 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 					});
 			}
 		};
+	}
+
+	private String _toType(String siteNavigationMenuItem) {
+		if (siteNavigationMenuItem.equals("layout")) {
+			return "page";
+		}
+		else if (siteNavigationMenuItem.equals("node")) {
+			return "navigationMenuItem";
+		}
+
+		return siteNavigationMenuItem;
 	}
 
 	@Reference
