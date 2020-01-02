@@ -386,7 +386,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _sendUpdateRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
+		throws Exception {
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
