@@ -228,12 +228,12 @@ public class DataModelPermissionResourceImpl
 			return null;
 		}
 
-		List<ResourceAction> resourceActions =
-			_resourceActionLocalService.getResourceActions(resourceName);
-
 		Set<String> actionsIdsSet = new HashSet<>();
 
 		long actionIds = resourcePermission.getActionIds();
+
+		List<ResourceAction> resourceActions =
+			_resourceActionLocalService.getResourceActions(resourceName);
 
 		for (ResourceAction resourceAction : resourceActions) {
 			long bitwiseValue = resourceAction.getBitwiseValue();
