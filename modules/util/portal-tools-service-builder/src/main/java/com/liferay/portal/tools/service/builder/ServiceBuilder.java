@@ -1968,6 +1968,16 @@ public class ServiceBuilder {
 		return false;
 	}
 
+	public boolean isVersionLTE_7_2_0() {
+		if (_dtdVersion.isPreviousVersionThan("7.2.0") ||
+			_dtdVersion.isSameVersionAs("7.2.0")) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	public String javaAnnotationToString(JavaAnnotation javaAnnotation) {
 		StringBundler sb = new StringBundler();
 
