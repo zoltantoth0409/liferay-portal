@@ -33,8 +33,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Eudaldo Alonso
- * @deprecated As of Athanasius (7.3.x), 
+ * @author     Eudaldo Alonso
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
  *             com.liferay.layout.type.controller.BaseLayoutTypeControllerImpl}
  */
 @Deprecated
