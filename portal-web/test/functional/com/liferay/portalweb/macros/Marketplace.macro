@@ -162,8 +162,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Bookmarks Test Page");
 
-		BookmarksFolder.gotoPG(
-			folderName = "Test Folder");
+		BookmarksFolder.gotoPG(folderName = "Test Folder");
 
 		Bookmark.viewBookmark(
 			bookmarkName = "Test Folder Entry 1",
