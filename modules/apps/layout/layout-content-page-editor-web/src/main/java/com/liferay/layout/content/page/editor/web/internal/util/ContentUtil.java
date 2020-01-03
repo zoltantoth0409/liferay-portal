@@ -131,9 +131,9 @@ public class ContentUtil {
 					_log.debug(
 						StringBundler.concat(
 							"An error occurred while getting mapped content ",
-							"with ClassPK: ",
+							"with class PK ",
 							layoutClassedModelUsage.getClassPK(),
-							" and ClassNameId: ",
+							" and class name ID ",
 							layoutClassedModelUsage.getClassNameId()),
 						e);
 				}
