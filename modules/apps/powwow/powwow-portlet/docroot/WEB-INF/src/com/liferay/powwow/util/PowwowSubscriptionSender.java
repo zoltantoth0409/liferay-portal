@@ -28,9 +28,7 @@ import javax.mail.internet.InternetAddress;
  */
 public class PowwowSubscriptionSender extends SubscriptionSender {
 
-	public MailMessage getMailMessageForPreview(Locale locale)
-		throws Exception {
-
+	public MailMessage getMailMessage(Locale locale) throws Exception {
 		MailMessage mailMessage = new MailMessage(
 			new InternetAddress(), new InternetAddress(),
 			_getEmailNotificationSubject(locale),
