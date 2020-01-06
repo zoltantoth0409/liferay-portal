@@ -270,7 +270,8 @@ public class UserAccountResourceImpl
 						{
 							emailAddresses = transformToArray(
 								user.getEmailAddresses(),
-								EmailAddressUtil::toEmail, EmailAddress.class);
+								EmailAddressUtil::toEmailAddress,
+								EmailAddress.class);
 							facebook = contact.getFacebookSn();
 							jabber = contact.getJabberSn();
 							postalAddresses = transformToArray(
