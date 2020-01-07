@@ -346,34 +346,6 @@ public class DataRecordResourceImpl
 		_modelResourcePermission = modelResourcePermission;
 	}
 
-	private DataStorage _getDataStorage(String dataStorageType) {
-		if (Validator.isNull(dataStorageType)) {
-			throw new ValidationException("Data storage type is null");
-		}
-
-		DataStorage dataStorage = _dataStorageTracker.getDataStorage(
-			dataStorageType);
-
-		if (dataStorage == null) {
-			throw new ValidationException(
-				"Unsupported data storage type: " + dataStorageType);
-		}
-
-		return dataStorage;
-	}
-
-	private long _getDefaultDataRecordCollectionId(Long dataDefinitionId)
-		throws Exception {
-
-		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
-			dataDefinitionId);
-
-		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
-			ddmStructure.getGroupId(), ddmStructure.getStructureKey());
-
-		return ddlRecordSet.getRecordSetId();
-	}
-
 	private BooleanFilter _getBooleanFilter(
 			Long dataListViewId, DDLRecordSet ddlRecordSet)
 		throws PortalException {
@@ -414,6 +386,34 @@ public class DataRecordResourceImpl
 		}
 
 		return booleanFilter;
+	}
+
+	private DataStorage _getDataStorage(String dataStorageType) {
+		if (Validator.isNull(dataStorageType)) {
+			throw new ValidationException("Data storage type is null");
+		}
+
+		DataStorage dataStorage = _dataStorageTracker.getDataStorage(
+			dataStorageType);
+
+		if (dataStorage == null) {
+			throw new ValidationException(
+				"Unsupported data storage type: " + dataStorageType);
+		}
+
+		return dataStorage;
+	}
+
+	private long _getDefaultDataRecordCollectionId(Long dataDefinitionId)
+		throws Exception {
+
+		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
+			dataDefinitionId);
+
+		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
+			ddmStructure.getGroupId(), ddmStructure.getStructureKey());
+
+		return ddlRecordSet.getRecordSetId();
 	}
 
 	private String _getIndexFieldName(
