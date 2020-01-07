@@ -65,7 +65,7 @@ public abstract class LayoutClassedModelUsageLocalServiceBaseImpl
 	implements AopService, IdentifiableOSGiService,
 			   LayoutClassedModelUsageLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>LayoutClassedModelUsageLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.layout.service.LayoutClassedModelUsageLocalServiceUtil</code>.

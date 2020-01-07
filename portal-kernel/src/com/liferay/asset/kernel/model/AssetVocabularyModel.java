@@ -45,7 +45,7 @@ public interface AssetVocabularyModel
 	extends BaseModel<AssetVocabulary>, CTModel<AssetVocabulary>,
 			LocalizedModel, MVCCModel, ShardedModel, StagedGroupedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a asset vocabulary model instance should use the {@link AssetVocabulary} interface instead.

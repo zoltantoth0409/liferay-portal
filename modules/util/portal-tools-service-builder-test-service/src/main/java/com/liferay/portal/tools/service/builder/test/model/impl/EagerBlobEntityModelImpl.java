@@ -61,7 +61,7 @@ import java.util.function.Function;
 public class EagerBlobEntityModelImpl
 	extends BaseModelImpl<EagerBlobEntity> implements EagerBlobEntityModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a eager blob entity model instance should use the <code>EagerBlobEntity</code> interface instead.

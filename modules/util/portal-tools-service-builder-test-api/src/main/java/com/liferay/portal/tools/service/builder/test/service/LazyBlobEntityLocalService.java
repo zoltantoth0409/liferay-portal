@@ -59,7 +59,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LazyBlobEntityLocalService
 	extends BaseLocalService, PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link LazyBlobEntityLocalServiceUtil} to access the lazy blob entity local service. Add custom service methods to <code>com.liferay.portal.tools.service.builder.test.service.impl.LazyBlobEntityLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

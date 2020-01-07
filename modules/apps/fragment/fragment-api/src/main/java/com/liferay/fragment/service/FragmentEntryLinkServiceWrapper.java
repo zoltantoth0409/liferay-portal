@@ -33,11 +33,6 @@ public class FragmentEntryLinkServiceWrapper
 		_fragmentEntryLinkService = fragmentEntryLinkService;
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link FragmentEntryLinkServiceUtil} to access the fragment entry link remote service. Add custom service methods to <code>com.liferay.fragment.service.impl.FragmentEntryLinkServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
-	 */
 	@Override
 	public com.liferay.fragment.model.FragmentEntryLink addFragmentEntryLink(
 			long groupId, long originalFragmentEntryLinkId,

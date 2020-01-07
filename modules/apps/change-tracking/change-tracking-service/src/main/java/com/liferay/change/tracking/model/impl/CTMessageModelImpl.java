@@ -54,7 +54,7 @@ import java.util.function.Function;
 public class CTMessageModelImpl
 	extends BaseModelImpl<CTMessage> implements CTMessageModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ct message model instance should use the <code>CTMessage</code> interface instead.

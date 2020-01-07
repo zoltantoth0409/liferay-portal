@@ -66,7 +66,7 @@ public class ViewCountEntryPersistenceImpl
 	extends BasePersistenceImpl<ViewCountEntry>
 	implements ViewCountEntryPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ViewCountEntryUtil</code> to access the view count entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

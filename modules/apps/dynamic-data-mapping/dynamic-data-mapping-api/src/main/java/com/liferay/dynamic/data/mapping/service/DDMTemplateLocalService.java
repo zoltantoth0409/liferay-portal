@@ -68,7 +68,7 @@ public interface DDMTemplateLocalService
 	extends BaseLocalService, CTService<DDMTemplate>,
 			PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DDMTemplateLocalServiceUtil} to access the ddm template local service. Add custom service methods to <code>com.liferay.dynamic.data.mapping.service.impl.DDMTemplateLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

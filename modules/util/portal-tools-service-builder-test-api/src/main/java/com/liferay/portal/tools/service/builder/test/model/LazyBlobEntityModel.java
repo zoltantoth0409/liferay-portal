@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface LazyBlobEntityModel extends BaseModel<LazyBlobEntity> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a lazy blob entity model instance should use the {@link LazyBlobEntity} interface instead.

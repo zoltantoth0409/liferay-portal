@@ -32,7 +32,7 @@ import com.liferay.portal.tools.service.builder.test.service.EagerBlobEntityLoca
 public abstract class EagerBlobEntityBaseImpl
 	extends EagerBlobEntityModelImpl implements EagerBlobEntity {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a eager blob entity model instance should use the <code>EagerBlobEntity</code> interface instead.

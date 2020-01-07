@@ -58,7 +58,7 @@ import java.util.function.Function;
 public class CTSContentModelImpl
 	extends BaseModelImpl<CTSContent> implements CTSContentModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a cts content model instance should use the <code>CTSContent</code> interface instead.

@@ -30,11 +30,6 @@ public class DepotEntryServiceWrapper
 		_depotEntryService = depotEntryService;
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link DepotEntryServiceUtil} to access the depot entry remote service. Add custom service methods to <code>com.liferay.depot.service.impl.DepotEntryServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
-	 */
 	@Override
 	public com.liferay.depot.model.DepotEntry addDepotEntry(
 			java.util.Map<java.util.Locale, String> nameMap,

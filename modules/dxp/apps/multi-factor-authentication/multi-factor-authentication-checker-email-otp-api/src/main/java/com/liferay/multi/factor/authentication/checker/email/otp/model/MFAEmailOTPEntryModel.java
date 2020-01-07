@@ -39,7 +39,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface MFAEmailOTPEntryModel
 	extends AuditedModel, BaseModel<MFAEmailOTPEntry>, MVCCModel, ShardedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a mfa email otp entry model instance should use the {@link MFAEmailOTPEntry} interface instead.

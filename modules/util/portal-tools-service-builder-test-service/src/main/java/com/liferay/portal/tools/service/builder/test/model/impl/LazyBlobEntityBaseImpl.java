@@ -32,7 +32,7 @@ import com.liferay.portal.tools.service.builder.test.service.LazyBlobEntityLocal
 public abstract class LazyBlobEntityBaseImpl
 	extends LazyBlobEntityModelImpl implements LazyBlobEntity {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a lazy blob entity model instance should use the <code>LazyBlobEntity</code> interface instead.

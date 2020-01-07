@@ -32,7 +32,7 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public class CTSContentLocalServiceUtil {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.change.tracking.store.service.impl.CTSContentLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.

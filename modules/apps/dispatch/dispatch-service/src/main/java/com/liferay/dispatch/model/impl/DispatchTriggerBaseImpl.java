@@ -32,7 +32,7 @@ import com.liferay.dispatch.service.DispatchTriggerLocalServiceUtil;
 public abstract class DispatchTriggerBaseImpl
 	extends DispatchTriggerModelImpl implements DispatchTrigger {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a dispatch trigger model instance should use the <code>DispatchTrigger</code> interface instead.

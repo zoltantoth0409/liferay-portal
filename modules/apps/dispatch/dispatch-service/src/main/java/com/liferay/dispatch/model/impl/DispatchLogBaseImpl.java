@@ -32,7 +32,7 @@ import com.liferay.dispatch.service.DispatchLogLocalServiceUtil;
 public abstract class DispatchLogBaseImpl
 	extends DispatchLogModelImpl implements DispatchLog {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a dispatch log model instance should use the <code>DispatchLog</code> interface instead.

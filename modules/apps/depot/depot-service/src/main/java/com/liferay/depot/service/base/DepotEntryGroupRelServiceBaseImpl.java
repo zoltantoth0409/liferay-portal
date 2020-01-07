@@ -46,7 +46,7 @@ public abstract class DepotEntryGroupRelServiceBaseImpl
 	extends BaseServiceImpl
 	implements AopService, DepotEntryGroupRelService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>DepotEntryGroupRelService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.depot.service.DepotEntryGroupRelServiceUtil</code>.

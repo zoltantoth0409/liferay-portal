@@ -33,11 +33,6 @@ public class SyncDLObjectLocalServiceWrapper
 		_syncDLObjectLocalService = syncDLObjectLocalService;
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link SyncDLObjectLocalServiceUtil} to access the sync dl object local service. Add custom service methods to <code>com.liferay.sync.service.impl.SyncDLObjectLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
-	 */
 	@Override
 	public com.liferay.sync.model.SyncDLObject addSyncDLObject(
 			long companyId, long userId, String userName, long modifiedTime,

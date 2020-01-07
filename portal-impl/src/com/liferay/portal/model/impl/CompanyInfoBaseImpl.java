@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.service.CompanyInfoLocalServiceUtil;
 public abstract class CompanyInfoBaseImpl
 	extends CompanyInfoModelImpl implements CompanyInfo {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a company info model instance should use the <code>CompanyInfo</code> interface instead.

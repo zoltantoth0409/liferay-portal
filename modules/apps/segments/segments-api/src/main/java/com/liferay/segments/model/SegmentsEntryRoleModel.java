@@ -40,7 +40,7 @@ public interface SegmentsEntryRoleModel
 	extends AuditedModel, BaseModel<SegmentsEntryRole>, MVCCModel,
 			ShardedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a segments entry role model instance should use the {@link SegmentsEntryRole} interface instead.

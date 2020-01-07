@@ -32,7 +32,7 @@ import com.liferay.multi.factor.authentication.checker.email.otp.service.MFAEmai
 public abstract class MFAEmailOTPEntryBaseImpl
 	extends MFAEmailOTPEntryModelImpl implements MFAEmailOTPEntry {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a mfa email otp entry model instance should use the <code>MFAEmailOTPEntry</code> interface instead.

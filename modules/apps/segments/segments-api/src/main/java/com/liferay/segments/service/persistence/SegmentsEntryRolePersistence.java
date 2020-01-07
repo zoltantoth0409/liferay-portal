@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface SegmentsEntryRolePersistence
 	extends BasePersistence<SegmentsEntryRole> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SegmentsEntryRoleUtil} to access the segments entry role persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

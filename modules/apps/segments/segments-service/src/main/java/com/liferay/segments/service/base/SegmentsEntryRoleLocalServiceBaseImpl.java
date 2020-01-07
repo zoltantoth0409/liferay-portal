@@ -70,7 +70,7 @@ public abstract class SegmentsEntryRoleLocalServiceBaseImpl
 	implements AopService, IdentifiableOSGiService,
 			   SegmentsEntryRoleLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>SegmentsEntryRoleLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.segments.service.SegmentsEntryRoleLocalServiceUtil</code>.

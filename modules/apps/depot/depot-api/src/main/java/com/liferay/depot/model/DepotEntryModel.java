@@ -39,7 +39,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DepotEntryModel
 	extends BaseModel<DepotEntry>, MVCCModel, ShardedModel, StagedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a depot entry model instance should use the {@link DepotEntry} interface instead.

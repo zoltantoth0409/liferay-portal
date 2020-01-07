@@ -30,11 +30,6 @@ public class ModuleLocalServiceWrapper
 		_moduleLocalService = moduleLocalService;
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link ModuleLocalServiceUtil} to access the module local service. Add custom service methods to <code>com.liferay.marketplace.service.impl.ModuleLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
-	 */
 	@Override
 	public com.liferay.marketplace.model.Module addModule(
 			long appId, String bundleSymbolicName, String bundleVersion,

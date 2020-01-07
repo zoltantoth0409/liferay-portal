@@ -76,7 +76,7 @@ public abstract class CTSContentLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AopService, CTSContentLocalService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>CTSContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.change.tracking.store.service.CTSContentLocalServiceUtil</code>.

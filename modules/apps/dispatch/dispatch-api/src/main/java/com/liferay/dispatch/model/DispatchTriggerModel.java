@@ -39,7 +39,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DispatchTriggerModel
 	extends AuditedModel, BaseModel<DispatchTrigger>, MVCCModel, ShardedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a dispatch trigger model instance should use the {@link DispatchTrigger} interface instead.

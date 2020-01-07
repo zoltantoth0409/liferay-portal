@@ -60,7 +60,7 @@ public interface DDMStructureLinkLocalService
 	extends BaseLocalService, CTService<DDMStructureLink>,
 			PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DDMStructureLinkLocalServiceUtil} to access the ddm structure link local service. Add custom service methods to <code>com.liferay.dynamic.data.mapping.service.impl.DDMStructureLinkLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

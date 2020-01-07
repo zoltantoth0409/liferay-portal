@@ -75,7 +75,7 @@ public class LayoutClassedModelUsagePersistenceImpl
 	extends BasePersistenceImpl<LayoutClassedModelUsage>
 	implements LayoutClassedModelUsagePersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>LayoutClassedModelUsageUtil</code> to access the layout classed model usage persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

@@ -62,7 +62,7 @@ public interface CTSContentLocalService
 	extends BaseLocalService, CTService<CTSContent>,
 			PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CTSContentLocalServiceUtil} to access the cts content local service. Add custom service methods to <code>com.liferay.change.tracking.store.service.impl.CTSContentLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

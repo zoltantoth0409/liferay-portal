@@ -66,7 +66,7 @@ import java.util.function.Function;
 public class DepotEntryModelImpl
 	extends BaseModelImpl<DepotEntry> implements DepotEntryModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a depot entry model instance should use the <code>DepotEntry</code> interface instead.

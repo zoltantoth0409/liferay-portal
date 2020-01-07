@@ -45,7 +45,7 @@ public abstract class EagerBlobEntityServiceBaseImpl
 	extends BaseServiceImpl
 	implements EagerBlobEntityService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>EagerBlobEntityService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.portal.tools.service.builder.test.service.EagerBlobEntityServiceUtil</code>.

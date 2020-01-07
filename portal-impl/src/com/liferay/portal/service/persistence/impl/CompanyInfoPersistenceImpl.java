@@ -58,7 +58,7 @@ import java.util.Set;
 public class CompanyInfoPersistenceImpl
 	extends BasePersistenceImpl<CompanyInfo> implements CompanyInfoPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>CompanyInfoUtil</code> to access the company info persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

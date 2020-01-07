@@ -33,7 +33,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface CompanyInfoModel
 	extends BaseModel<CompanyInfo>, MVCCModel, ShardedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a company info model instance should use the {@link CompanyInfo} interface instead.

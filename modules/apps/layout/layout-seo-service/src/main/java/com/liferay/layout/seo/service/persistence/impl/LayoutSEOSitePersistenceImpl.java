@@ -76,7 +76,7 @@ public class LayoutSEOSitePersistenceImpl
 	extends BasePersistenceImpl<LayoutSEOSite>
 	implements LayoutSEOSitePersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>LayoutSEOSiteUtil</code> to access the layout seo site persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

@@ -364,11 +364,6 @@ public class LayoutSEOSiteWrapper
 		return model.isOpenGraphEnabled();
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a layout seo site model instance should use the <code>LayoutSEOSite</code> interface instead.
-	 */
 	@Override
 	public void persist() {
 		model.persist();

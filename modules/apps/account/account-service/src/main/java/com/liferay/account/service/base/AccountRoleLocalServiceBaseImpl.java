@@ -64,7 +64,7 @@ public abstract class AccountRoleLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AccountRoleLocalService, AopService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>AccountRoleLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.account.service.AccountRoleLocalServiceUtil</code>.

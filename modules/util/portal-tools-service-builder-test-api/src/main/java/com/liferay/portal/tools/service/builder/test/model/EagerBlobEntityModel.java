@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface EagerBlobEntityModel extends BaseModel<EagerBlobEntity> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a eager blob entity model instance should use the {@link EagerBlobEntity} interface instead.

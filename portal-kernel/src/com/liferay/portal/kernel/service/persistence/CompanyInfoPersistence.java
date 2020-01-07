@@ -33,7 +33,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface CompanyInfoPersistence extends BasePersistence<CompanyInfo> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CompanyInfoUtil} to access the company info persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

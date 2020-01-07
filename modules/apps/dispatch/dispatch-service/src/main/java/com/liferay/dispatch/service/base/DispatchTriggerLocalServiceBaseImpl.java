@@ -65,7 +65,7 @@ public abstract class DispatchTriggerLocalServiceBaseImpl
 	implements AopService, DispatchTriggerLocalService,
 			   IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>DispatchTriggerLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.dispatch.service.DispatchTriggerLocalServiceUtil</code>.

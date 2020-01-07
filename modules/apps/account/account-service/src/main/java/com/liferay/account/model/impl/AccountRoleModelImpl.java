@@ -59,7 +59,7 @@ import java.util.function.Function;
 public class AccountRoleModelImpl
 	extends BaseModelImpl<AccountRole> implements AccountRoleModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a account role model instance should use the <code>AccountRole</code> interface instead.

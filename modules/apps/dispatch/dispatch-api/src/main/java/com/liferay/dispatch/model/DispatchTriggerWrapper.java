@@ -344,11 +344,6 @@ public class DispatchTriggerWrapper
 		return model.isSystem();
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a dispatch trigger model instance should use the <code>DispatchTrigger</code> interface instead.
-	 */
 	@Override
 	public void persist() {
 		model.persist();

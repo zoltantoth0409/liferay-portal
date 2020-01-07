@@ -47,7 +47,7 @@ public abstract class DispatchLogServiceBaseImpl
 	extends BaseServiceImpl
 	implements AopService, DispatchLogService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>DispatchLogService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.dispatch.service.DispatchLogServiceUtil</code>.

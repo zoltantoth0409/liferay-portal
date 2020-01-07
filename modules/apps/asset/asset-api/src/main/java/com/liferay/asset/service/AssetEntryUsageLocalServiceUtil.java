@@ -35,7 +35,7 @@ import org.osgi.util.tracker.ServiceTracker;
 @Deprecated
 public class AssetEntryUsageLocalServiceUtil {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.asset.service.impl.AssetEntryUsageLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.

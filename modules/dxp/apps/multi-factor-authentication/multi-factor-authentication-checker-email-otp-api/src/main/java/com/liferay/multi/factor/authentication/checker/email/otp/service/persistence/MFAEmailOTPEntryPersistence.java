@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface MFAEmailOTPEntryPersistence
 	extends BasePersistence<MFAEmailOTPEntry> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MFAEmailOTPEntryUtil} to access the mfa email otp entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

@@ -58,7 +58,7 @@ import java.util.function.Function;
 public class MFAEmailOTPEntryModelImpl
 	extends BaseModelImpl<MFAEmailOTPEntry> implements MFAEmailOTPEntryModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a mfa email otp entry model instance should use the <code>MFAEmailOTPEntry</code> interface instead.

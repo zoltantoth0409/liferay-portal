@@ -72,7 +72,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DispatchLogPersistenceImpl
 	extends BasePersistenceImpl<DispatchLog> implements DispatchLogPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DispatchLogUtil</code> to access the dispatch log persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

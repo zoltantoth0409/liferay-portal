@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DispatchTriggerPersistence
 	extends BasePersistence<DispatchTrigger> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DispatchTriggerUtil} to access the dispatch trigger persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

@@ -74,7 +74,7 @@ public class DispatchTriggerPersistenceImpl
 	extends BasePersistenceImpl<DispatchTrigger>
 	implements DispatchTriggerPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DispatchTriggerUtil</code> to access the dispatch trigger persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

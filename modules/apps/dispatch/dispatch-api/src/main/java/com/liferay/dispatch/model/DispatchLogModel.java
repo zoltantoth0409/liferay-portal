@@ -39,7 +39,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DispatchLogModel
 	extends AuditedModel, BaseModel<DispatchLog>, MVCCModel, ShardedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a dispatch log model instance should use the {@link DispatchLog} interface instead.

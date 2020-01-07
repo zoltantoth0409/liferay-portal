@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LayoutClassedModelUsagePersistence
 	extends BasePersistence<LayoutClassedModelUsage> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link LayoutClassedModelUsageUtil} to access the layout classed model usage persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

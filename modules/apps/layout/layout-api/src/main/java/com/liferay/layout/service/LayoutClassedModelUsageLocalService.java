@@ -56,7 +56,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LayoutClassedModelUsageLocalService
 	extends BaseLocalService, PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link LayoutClassedModelUsageLocalServiceUtil} to access the layout classed model usage local service. Add custom service methods to <code>com.liferay.layout.service.impl.LayoutClassedModelUsageLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

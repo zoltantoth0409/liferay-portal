@@ -58,7 +58,7 @@ import java.util.function.Function;
 public class SegmentsEntryRoleModelImpl
 	extends BaseModelImpl<SegmentsEntryRole> implements SegmentsEntryRoleModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a segments entry role model instance should use the <code>SegmentsEntryRole</code> interface instead.

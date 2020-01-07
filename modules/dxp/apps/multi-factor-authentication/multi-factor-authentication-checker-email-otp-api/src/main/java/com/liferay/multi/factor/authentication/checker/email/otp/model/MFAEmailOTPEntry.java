@@ -34,7 +34,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface MFAEmailOTPEntry
 	extends MFAEmailOTPEntryModel, PersistedModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

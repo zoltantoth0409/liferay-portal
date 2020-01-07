@@ -64,7 +64,7 @@ import java.util.function.Function;
 public class LazyBlobEntityModelImpl
 	extends BaseModelImpl<LazyBlobEntity> implements LazyBlobEntityModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a lazy blob entity model instance should use the <code>LazyBlobEntity</code> interface instead.

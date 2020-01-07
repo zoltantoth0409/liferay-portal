@@ -70,7 +70,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AccountRolePersistenceImpl
 	extends BasePersistenceImpl<AccountRole> implements AccountRolePersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>AccountRoleUtil</code> to access the account role persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

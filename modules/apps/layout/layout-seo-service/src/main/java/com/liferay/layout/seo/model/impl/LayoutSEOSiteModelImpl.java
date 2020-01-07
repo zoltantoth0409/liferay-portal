@@ -73,7 +73,7 @@ import java.util.function.Function;
 public class LayoutSEOSiteModelImpl
 	extends BaseModelImpl<LayoutSEOSite> implements LayoutSEOSiteModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a layout seo site model instance should use the <code>LayoutSEOSite</code> interface instead.

@@ -55,7 +55,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface UADPartialEntryLocalService
 	extends BaseLocalService, PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link UADPartialEntryLocalServiceUtil} to access the uad partial entry local service. Add custom service methods to <code>com.liferay.portal.tools.service.builder.test.service.impl.UADPartialEntryLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

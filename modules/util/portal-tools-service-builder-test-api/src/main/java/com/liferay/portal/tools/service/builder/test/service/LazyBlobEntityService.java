@@ -50,7 +50,7 @@ import org.osgi.annotation.versioning.ProviderType;
 )
 public interface LazyBlobEntityService extends BaseService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link LazyBlobEntityServiceUtil} to access the lazy blob entity remote service. Add custom service methods to <code>com.liferay.portal.tools.service.builder.test.service.impl.LazyBlobEntityServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

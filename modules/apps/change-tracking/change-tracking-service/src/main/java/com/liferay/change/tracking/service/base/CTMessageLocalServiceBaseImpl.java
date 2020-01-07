@@ -63,7 +63,7 @@ public abstract class CTMessageLocalServiceBaseImpl
 	extends BaseLocalServiceImpl
 	implements AopService, CTMessageLocalService, IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>CTMessageLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.change.tracking.service.CTMessageLocalServiceUtil</code>.

@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
 )
 public interface AccountRoleService extends BaseService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AccountRoleServiceUtil} to access the account role remote service. Add custom service methods to <code>com.liferay.account.service.impl.AccountRoleServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

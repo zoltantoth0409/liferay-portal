@@ -71,7 +71,7 @@ public class MFAEmailOTPEntryPersistenceImpl
 	extends BasePersistenceImpl<MFAEmailOTPEntry>
 	implements MFAEmailOTPEntryPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>MFAEmailOTPEntryUtil</code> to access the mfa email otp entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

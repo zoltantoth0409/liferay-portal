@@ -78,7 +78,7 @@ import org.osgi.service.component.annotations.Reference;
 public class CTSContentPersistenceImpl
 	extends BasePersistenceImpl<CTSContent> implements CTSContentPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>CTSContentUtil</code> to access the cts content persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

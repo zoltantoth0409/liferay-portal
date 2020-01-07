@@ -32,16 +32,10 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public class MFAEmailOTPEntryLocalServiceUtil {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.multi.factor.authentication.checker.email.otp.service.impl.MFAEmailOTPEntryLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
-	 */
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link MFAEmailOTPEntryLocalServiceUtil} to access the mfa email otp entry local service. Add custom service methods to <code>com.liferay.multi.factor.authentication.checker.email.otp.service.impl.MFAEmailOTPEntryLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static
 		com.liferay.multi.factor.authentication.checker.email.otp.model.

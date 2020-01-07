@@ -56,7 +56,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DepotEntryGroupRelLocalService
 	extends BaseLocalService, PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DepotEntryGroupRelLocalServiceUtil} to access the depot entry group rel local service. Add custom service methods to <code>com.liferay.depot.service.impl.DepotEntryGroupRelLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

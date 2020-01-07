@@ -35,7 +35,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface EagerBlobEntityPersistence
 	extends BasePersistence<EagerBlobEntity> {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link EagerBlobEntityUtil} to access the eager blob entity persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.

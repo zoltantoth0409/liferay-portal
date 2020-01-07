@@ -50,7 +50,7 @@ import org.osgi.annotation.versioning.ProviderType;
 )
 public interface EagerBlobEntityService extends BaseService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link EagerBlobEntityServiceUtil} to access the eager blob entity remote service. Add custom service methods to <code>com.liferay.portal.tools.service.builder.test.service.impl.EagerBlobEntityServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

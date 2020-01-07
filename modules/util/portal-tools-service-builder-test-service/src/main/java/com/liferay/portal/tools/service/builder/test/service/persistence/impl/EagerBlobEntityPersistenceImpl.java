@@ -61,7 +61,7 @@ public class EagerBlobEntityPersistenceImpl
 	extends BasePersistenceImpl<EagerBlobEntity>
 	implements EagerBlobEntityPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>EagerBlobEntityUtil</code> to access the eager blob entity persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

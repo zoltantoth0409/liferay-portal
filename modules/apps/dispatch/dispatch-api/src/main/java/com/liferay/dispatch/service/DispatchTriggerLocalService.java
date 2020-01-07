@@ -55,7 +55,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface DispatchTriggerLocalService
 	extends BaseLocalService, PersistedModelLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DispatchTriggerLocalServiceUtil} to access the dispatch trigger local service. Add custom service methods to <code>com.liferay.dispatch.service.impl.DispatchTriggerLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

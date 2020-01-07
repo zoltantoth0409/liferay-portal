@@ -64,7 +64,7 @@ public abstract class MFAEmailOTPEntryLocalServiceBaseImpl
 	implements AopService, IdentifiableOSGiService,
 			   MFAEmailOTPEntryLocalService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>MFAEmailOTPEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.multi.factor.authentication.checker.email.otp.service.MFAEmailOTPEntryLocalServiceUtil</code>.

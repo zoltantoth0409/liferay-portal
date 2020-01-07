@@ -71,7 +71,7 @@ public class SegmentsEntryRolePersistenceImpl
 	extends BasePersistenceImpl<SegmentsEntryRole>
 	implements SegmentsEntryRolePersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>SegmentsEntryRoleUtil</code> to access the segments entry role persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

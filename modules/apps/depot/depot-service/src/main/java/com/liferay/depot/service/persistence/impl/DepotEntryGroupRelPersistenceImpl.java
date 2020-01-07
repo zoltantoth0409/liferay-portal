@@ -68,7 +68,7 @@ public class DepotEntryGroupRelPersistenceImpl
 	extends BasePersistenceImpl<DepotEntryGroupRel>
 	implements DepotEntryGroupRelPersistence {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DepotEntryGroupRelUtil</code> to access the depot entry group rel persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.

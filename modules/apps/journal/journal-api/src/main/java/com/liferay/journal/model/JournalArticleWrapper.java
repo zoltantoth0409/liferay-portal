@@ -1128,11 +1128,6 @@ public class JournalArticleWrapper
 		return model.isTemplateDriven();
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a journal article model instance should use the <code>JournalArticle</code> interface instead.
-	 */
 	@Override
 	public void persist() {
 		model.persist();

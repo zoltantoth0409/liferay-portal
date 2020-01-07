@@ -38,7 +38,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LayoutClassedModelUsageModel
 	extends AttachedModel, BaseModel<LayoutClassedModelUsage>, MVCCModel {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. All methods that expect a layout classed model usage model instance should use the {@link LayoutClassedModelUsage} interface instead.

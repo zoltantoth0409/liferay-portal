@@ -49,7 +49,7 @@ import org.osgi.annotation.versioning.ProviderType;
 )
 public interface DepotEntryService extends BaseService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DepotEntryServiceUtil} to access the depot entry remote service. Add custom service methods to <code>com.liferay.depot.service.impl.DepotEntryServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.

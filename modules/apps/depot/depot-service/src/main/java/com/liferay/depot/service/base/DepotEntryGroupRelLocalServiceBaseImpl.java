@@ -64,7 +64,7 @@ public abstract class DepotEntryGroupRelLocalServiceBaseImpl
 	implements AopService, DepotEntryGroupRelLocalService,
 			   IdentifiableOSGiService {
 
-	/**
+	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Use <code>DepotEntryGroupRelLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.depot.service.DepotEntryGroupRelLocalServiceUtil</code>.

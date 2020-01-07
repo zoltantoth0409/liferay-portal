@@ -35,11 +35,6 @@ public class LayoutClassedModelUsageLocalServiceWrapper
 			layoutClassedModelUsageLocalService;
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. Always use {@link LayoutClassedModelUsageLocalServiceUtil} to access the layout classed model usage local service. Add custom service methods to <code>com.liferay.layout.service.impl.LayoutClassedModelUsageLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
-	 */
 	@Override
 	public com.liferay.layout.model.LayoutClassedModelUsage
 		addDefaultLayoutClassedModelUsage(

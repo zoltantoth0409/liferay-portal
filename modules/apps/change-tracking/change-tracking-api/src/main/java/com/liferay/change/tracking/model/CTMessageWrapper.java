@@ -126,11 +126,6 @@ public class CTMessageWrapper
 		return model.getPrimaryKey();
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a ct message model instance should use the <code>CTMessage</code> interface instead.
-	 */
 	@Override
 	public void persist() {
 		model.persist();
