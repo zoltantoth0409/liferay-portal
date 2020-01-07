@@ -406,10 +406,10 @@ public class DataRecordResourceImpl
 				ddmStructure.getStructureId(), fieldName,
 				contextAcceptLanguage.getPreferredLocale());
 
-			String[] filters = JSONUtil.toStringArray(jsonArray);
+			String[] values = JSONUtil.toStringArray(jsonArray);
 
-			for (String filter : filters) {
-				booleanFilter.addTerm(indexFieldName, filter);
+			for (String value : values) {
+				booleanFilter.addTerm(indexFieldName, value);
 			}
 		}
 
