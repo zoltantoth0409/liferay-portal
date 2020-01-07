@@ -183,13 +183,11 @@ public class DataRecordResourceImpl
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getDDLRecordSet(
 			dataRecordCollectionId);
 
-		BooleanFilter booleanFilter = _getFixedFilters(
-			dataListViewId, ddlRecordSet);
-
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			booleanFilter, DDLRecord.class, keywords, pagination,
+			_getFixedFilters(dataListViewId, ddlRecordSet), DDLRecord.class,
+			keywords, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
 			searchContext -> {
