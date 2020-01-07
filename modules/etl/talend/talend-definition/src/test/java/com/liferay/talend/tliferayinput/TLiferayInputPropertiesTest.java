@@ -85,7 +85,7 @@ public class TLiferayInputPropertiesTest extends BasePropertiesTestCase {
 			"itemsPerPage", (Form)connectionNamedThing);
 
 		Assert.assertEquals(
-			"ItemsPerPage widget display component implementation",
+			"Items per page widget display component implementation",
 			Property.class, itemsPerPageNamedThing.getClass());
 
 		NamedThing resourceNamedThing = getNamedThing(

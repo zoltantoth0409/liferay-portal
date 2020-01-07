@@ -83,7 +83,7 @@ public class TLiferayOutputPropertiesTest extends BasePropertiesTestCase {
 			"dieOnError", tLiferayOutputProperties.getForm(Form.ADVANCED));
 
 		Assert.assertEquals(
-			"DieOnError widget display component implementation",
+			"Die on error widget display component implementation",
 			Property.class, dieOnErrorNamedThing.getClass());
 
 		NamedThing resourceNamedThing = getNamedThing(
