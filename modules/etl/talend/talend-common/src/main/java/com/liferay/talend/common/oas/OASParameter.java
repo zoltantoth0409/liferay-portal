@@ -28,8 +28,8 @@ public class OASParameter {
 	public static final List<OASParameter> liferayOASParameters =
 		new ArrayList<OASParameter>() {
 			{
-				add(new OASParameter("nestedFields", "query"));
 				add(new OASParameter("fields", "query"));
+				add(new OASParameter("nestedFields", "query"));
 			}
 		};
 
