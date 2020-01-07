@@ -186,7 +186,7 @@ public class DataRecordResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			_getFixedFilters(dataListViewId, ddlRecordSet), DDLRecord.class,
+			_getBooleanFilter(dataListViewId, ddlRecordSet), DDLRecord.class,
 			keywords, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
@@ -374,7 +374,7 @@ public class DataRecordResourceImpl
 		return ddlRecordSet.getRecordSetId();
 	}
 
-	private BooleanFilter _getFixedFilters(
+	private BooleanFilter _getBooleanFilter(
 			Long dataListViewId, DDLRecordSet ddlRecordSet)
 		throws PortalException {
 
