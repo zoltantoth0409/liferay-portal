@@ -25,8 +25,6 @@ import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.provider.SegmentsEntryProviderRegistry;
 import com.liferay.segments.service.SegmentsEntryLocalService;
 
-import javax.ws.rs.NotFoundException;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -46,24 +44,19 @@ public class SegmentUserResourceImpl extends BaseSegmentUserResourceImpl {
 		throws Exception {
 
 		SegmentsEntry segmentsEntry =
-			_segmentsEntryLocalService.fetchSegmentsEntry(segmentId);
-
-		if (segmentsEntry == null) {
-			throw new NotFoundException(
-				"Segment with ID " + segmentId + " not found");
-		}
+			_segmentsEntryLocalService.getSegmentsEntry(segmentId);
 
 		long[] segmentsEntryClassPKs =
 			_segmentsEntryProviderRegistry.getSegmentsEntryClassPKs(
-				segmentId, pagination.getStartPosition(),
-				pagination.getEndPosition());
+				segmentsEntry.getSegmentsEntryId(),
+				pagination.getStartPosition(), pagination.getEndPosition());
 
 		return Page.of(
 			transformToList(
 				ArrayUtil.toArray(segmentsEntryClassPKs), this::_toSegmentUser),
 			pagination,
 			_segmentsEntryProviderRegistry.getSegmentsEntryClassPKsCount(
-				segmentId));
+				segmentsEntry.getSegmentsEntryId()));
 	}
 
 	private SegmentUser _toSegmentUser(long segmentsEntryClassPK)
