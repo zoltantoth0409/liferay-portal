@@ -183,8 +183,7 @@ public class OpenGraphTopHeadDynamicInclude extends BaseDynamicInclude {
 				_getOpenGraphTag(
 					"og:title",
 					_getTitleTagValue(httpServletRequest, layoutSEOEntry)));
-			printWriter.println(
-				_getOpenGraphTag("og:type", "website"));
+			printWriter.println(_getOpenGraphTag("og:type", "website"));
 
 			LayoutSEOLink layoutSEOLink =
 				_layoutSEOLinkManager.getCanonicalLayoutSEOLink(
