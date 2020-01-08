@@ -136,7 +136,6 @@ public class FragmentPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(
 			FragmentWebKeys.ITEM_SELECTOR, _itemSelector);
-
 		renderRequest.setAttribute(
 			FragmentWebKeys.SYSTEM_FRAGMENT_COLLECTIONS,
 			_fragmentCollectionService.getFragmentCollections(
