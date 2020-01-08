@@ -149,7 +149,7 @@ if (portletTitleBasedNavigation) {
 							contents="<%= HtmlUtil.escape(title) %>"
 							editorName="alloyeditor"
 							name="titleEditor"
-							onChangeMethod='<%= (kbArticle == null) ? "OnChangeEditor" : StringPool.BLANK %>'
+							onChangeMethod='<%= (kbArticle == null) ? "onChangeEditor" : StringPool.BLANK %>'
 							placeholder="title"
 							showSource="<%= false %>"
 						/>
@@ -300,7 +300,7 @@ if (portletTitleBasedNavigation) {
 	<c:if test="<%= kbArticle == null %>">
 		var urlTitleInput = document.getElementById('<portlet:namespace />urlTitle');
 
-		function <portlet:namespace />OnChangeEditor(html) {
+		function <portlet:namespace />onChangeEditor(html) {
 			var customUrl = urlTitleInput.dataset.customUrl;
 
 			if (customUrl === 'false') {

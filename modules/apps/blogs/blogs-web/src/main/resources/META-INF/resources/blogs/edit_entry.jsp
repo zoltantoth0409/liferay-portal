@@ -180,7 +180,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 								contents="<%= HtmlUtil.escape(title) %>"
 								editorName="alloyeditor"
 								name="titleEditor"
-								onChangeMethod="OnChangeTitle"
+								onChangeMethod="onChangeTitle"
 								placeholder="title"
 								required="<%= true %>"
 								showSource="<%= false %>"
@@ -208,7 +208,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 								contents="<%= content %>"
 								editorName='<%= PropsUtil.get("editor.wysiwyg.portal-web.docroot.html.portlet.blogs.edit_entry.jsp") %>'
 								name="contentEditor"
-								onChangeMethod="OnChangeEditor"
+								onChangeMethod="onChangeEditor"
 								placeholder="content"
 								required="<%= true %>"
 							>
@@ -459,7 +459,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 </portlet:actionURL>
 
 <aui:script>
-	function <portlet:namespace />OnChangeEditor(html) {
+	function <portlet:namespace />onChangeEditor(html) {
 		var blogs = Liferay.component('<portlet:namespace />Blogs');
 
 		if (blogs) {
@@ -467,7 +467,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 		}
 	}
 
-	function <portlet:namespace />OnChangeTitle(title) {
+	function <portlet:namespace />onChangeTitle(title) {
 		var blogs = Liferay.component('<portlet:namespace />Blogs');
 
 		if (blogs) {
