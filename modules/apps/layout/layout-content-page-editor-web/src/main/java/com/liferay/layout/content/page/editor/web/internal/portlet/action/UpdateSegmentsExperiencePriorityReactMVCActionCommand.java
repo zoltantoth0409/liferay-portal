@@ -70,6 +70,7 @@ public class UpdateSegmentsExperiencePriorityReactMVCActionCommand
 
 		long segmentsExperienceId = ParamUtil.getLong(
 			actionRequest, "segmentsExperienceId");
+
 		int newPriority = ParamUtil.getInteger(actionRequest, "newPriority");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();

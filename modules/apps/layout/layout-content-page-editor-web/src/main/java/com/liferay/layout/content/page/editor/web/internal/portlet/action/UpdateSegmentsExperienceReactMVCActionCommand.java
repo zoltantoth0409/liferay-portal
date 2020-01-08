@@ -74,6 +74,7 @@ public class UpdateSegmentsExperienceReactMVCActionCommand
 
 		long segmentsExperienceId = ParamUtil.getLong(
 			actionRequest, "segmentsExperienceId");
+
 		long segmentsEntryId = ParamUtil.getLong(
 			actionRequest, "segmentsEntryId");
 		String name = ParamUtil.getString(actionRequest, "name");
