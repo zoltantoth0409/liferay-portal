@@ -59,12 +59,10 @@ public class DispatchTriggerLocalServiceImpl
 
 		validate(user.getCompanyId(), 0, name);
 
-		Company company = companyLocalService.getCompany(user.getCompanyId());
-
 		DispatchTrigger dispatchTrigger = dispatchTriggerPersistence.create(
 			counterLocalService.increment());
 
-		dispatchTrigger.setCompanyId(company.getCompanyId());
+		dispatchTrigger.setCompanyId(user.getCompanyId());
 		dispatchTrigger.setUserId(user.getUserId());
 		dispatchTrigger.setUserName(user.getFullName());
 		dispatchTrigger.setName(name);
@@ -75,7 +73,7 @@ public class DispatchTriggerLocalServiceImpl
 		dispatchTriggerPersistence.update(dispatchTrigger);
 
 		resourceLocalService.addResources(
-			company.getCompanyId(), 0, user.getUserId(),
+			user.getCompanyId(), 0, user.getUserId(),
 			DispatchTrigger.class.getName(),
 			dispatchTrigger.getDispatchTriggerId(), false, true, true);
 
