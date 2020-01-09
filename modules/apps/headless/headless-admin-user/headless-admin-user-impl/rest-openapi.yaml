@@ -1026,9 +1026,6 @@ paths:
                         ""
             tags: ["Organization"]
         patch:
-            description:
-                Updates the organization with the information sent in the request body. Fields not present in the
-                request body are left unchanged.
             operationId: patchOrganization
             parameters:
                 - in: path
@@ -1058,9 +1055,6 @@ paths:
                         "Organization successfully updated"
             tags: ["Organization"]
         put:
-            description:
-                Replaces the organization with information sent in the request body. Any missing fields are deleted
-                unless they are required.
             operationId: putOrganization
             parameters:
                 - in: path
