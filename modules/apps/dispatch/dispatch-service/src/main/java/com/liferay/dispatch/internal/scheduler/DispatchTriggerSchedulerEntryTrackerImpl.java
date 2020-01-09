@@ -41,9 +41,6 @@ import org.osgi.service.component.annotations.Reference;
 public class DispatchTriggerSchedulerEntryTrackerImpl
 	implements DispatchTriggerSchedulerEntryTracker {
 
-	public static final String GROUP_NAME_PREFIX_X =
-		"DISPATCH_TRIGGER_GROUP_%s";
-
 	@Override
 	public void addScheduledTask(
 			long dispatchTriggerId, String cronExpression, Date startDate,
@@ -120,7 +117,7 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 	}
 
 	private String _getGroupName(long dispatchTriggerId) {
-		return String.format(GROUP_NAME_PREFIX_X, dispatchTriggerId);
+		return String.format("DISPATCH_TRIGGER_GROUP_%s", dispatchTriggerId);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
