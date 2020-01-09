@@ -219,8 +219,8 @@ public class DispatchTriggerLocalServiceImpl
 
 		throw new DuplicateDispatchTriggerException(
 			StringBundler.concat(
-				"Dispatch trigger name ", name,
-				" already exists for company ID", String.valueOf(companyId)));
+				"Dispatch trigger name \"", name,
+				"\" already exists for company ID", String.valueOf(companyId)));
 	}
 
 	@Reference
