@@ -165,10 +165,9 @@ public class DispatchTriggerLocalServiceImpl
 		DispatchTrigger dispatchTrigger =
 			dispatchTriggerPersistence.fetchByPrimaryKey(dispatchTriggerId);
 
-		Date startDate = null;
 		Date endDate = null;
 
-		startDate = _portal.getDate(
+		Date startDate = _portal.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, DispatchTriggerStartDateException.class);
 
