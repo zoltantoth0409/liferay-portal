@@ -154,7 +154,7 @@ public class DispatchTriggerLocalServiceImpl
 	}
 
 	@Override
-	public DispatchTrigger updateDispatchTriggerTrigger(
+	public DispatchTrigger updateDispatchTrigger(
 			long dispatchTriggerId, boolean active, String cronExpression,
 			int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 			int endDateMinute, boolean neverEnd, int startDateMonth,
