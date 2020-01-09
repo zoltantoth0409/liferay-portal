@@ -53,12 +53,12 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 			String.valueOf(dispatchTriggerId), _getGroupName(dispatchTriggerId),
 			startDate, endDate, cronExpression);
 
-		JSONObject payLoad = JSONUtil.put(
+		JSONObject jsonObject = JSONUtil.put(
 			"dispatchTriggerId", dispatchTriggerId);
 
 		_schedulerEngineHelper.schedule(
 			trigger, StorageType.PERSISTED, null,
-			DispatchConstants.EXECUTOR_DESTINATION_NAME, payLoad.toString(),
+			DispatchConstants.EXECUTOR_DESTINATION_NAME, jsonObject.toString(),
 			1000);
 	}
 
