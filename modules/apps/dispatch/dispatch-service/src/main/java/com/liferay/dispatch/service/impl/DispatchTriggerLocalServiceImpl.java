@@ -165,22 +165,20 @@ public class DispatchTriggerLocalServiceImpl
 		DispatchTrigger dispatchTrigger =
 			dispatchTriggerPersistence.fetchByPrimaryKey(dispatchTriggerId);
 
-		Date endDate = null;
-
-		Date startDate = _portal.getDate(
-			startDateMonth, startDateDay, startDateYear, startDateHour,
-			startDateMinute, DispatchTriggerStartDateException.class);
-
-		if (!neverEnd) {
-			endDate = _portal.getDate(
-				endDateMonth, endDateDay, endDateYear, endDateHour,
-				endDateMinute, DispatchTriggerEndDateException.class);
-		}
-
 		dispatchTrigger.setActive(active);
 		dispatchTrigger.setCronExpression(cronExpression);
-		dispatchTrigger.setEndDate(endDate);
-		dispatchTrigger.setStartDate(startDate);
+
+		if (!neverEnd) {
+			dispatchTrigger.setEndDate(
+				_portal.getDate(
+					endDateMonth, endDateDay, endDateYear, endDateHour,
+					endDateMinute, DispatchTriggerEndDateException.class));
+		}
+
+		dispatchTrigger.setStartDate(
+			_portal.getDate(
+				startDateMonth, startDateDay, startDateYear, startDateHour,
+				startDateMinute, DispatchTriggerStartDateException.class));
 
 		dispatchTrigger = dispatchTriggerPersistence.update(dispatchTrigger);
 
