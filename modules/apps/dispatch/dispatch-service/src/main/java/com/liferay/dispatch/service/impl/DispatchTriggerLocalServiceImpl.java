@@ -200,8 +200,7 @@ public class DispatchTriggerLocalServiceImpl
 
 		if (Validator.isNull(name)) {
 			throw new DispatchTriggerNameException(
-				"Dispatch trigger name cannot be null for company ID " +
-					companyId);
+				"Dispatch trigger name is null for company ID " + companyId);
 		}
 
 		DispatchTrigger dispatchTrigger = dispatchTriggerPersistence.fetchByC_N(
