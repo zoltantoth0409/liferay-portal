@@ -66,9 +66,10 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 	public void deleteScheduledTask(long dispatchTriggerId)
 		throws SchedulerException {
 
-		SchedulerResponse scheduledJob = getScheduledJob(dispatchTriggerId);
+		SchedulerResponse schedulerResponse = getSchedulerResponse(
+			dispatchTriggerId);
 
-		if (scheduledJob != null) {
+		if (schedulerResponse != null) {
 			_schedulerEngineHelper.delete(
 				String.valueOf(dispatchTriggerId),
 				_getGroupName(dispatchTriggerId), StorageType.PERSISTED);
@@ -76,11 +77,11 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 	}
 
 	@Override
-	public Date getNextFireTime(long dispatchTriggerId) {
-		Date nextFireTime = null;
+	public Date getNextFireDate(long dispatchTriggerId) {
+		Date nextFireDate = null;
 
 		try {
-			nextFireTime = _schedulerEngineHelper.getNextFireTime(
+			nextFireDate = _schedulerEngineHelper.getNextFireTime(
 				String.valueOf(dispatchTriggerId),
 				_getGroupName(dispatchTriggerId), StorageType.PERSISTED);
 		}
@@ -88,15 +89,15 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 			_log.error(se, se);
 		}
 
-		return nextFireTime;
+		return nextFireDate;
 	}
 
 	@Override
-	public Date getPreviousFireTime(long dispatchTriggerId) {
-		Date nextFireTime = null;
+	public Date getPreviousFireDate(long dispatchTriggerId) {
+		Date nextFireDate = null;
 
 		try {
-			nextFireTime = _schedulerEngineHelper.getPreviousFireTime(
+			nextFireDate = _schedulerEngineHelper.getPreviousFireTime(
 				String.valueOf(dispatchTriggerId),
 				_getGroupName(dispatchTriggerId), StorageType.PERSISTED);
 		}
@@ -104,11 +105,11 @@ public class DispatchTriggerSchedulerEntryTrackerImpl
 			_log.error(se, se);
 		}
 
-		return nextFireTime;
+		return nextFireDate;
 	}
 
 	@Override
-	public SchedulerResponse getScheduledJob(long dispatchTriggerId)
+	public SchedulerResponse getSchedulerResponse(long dispatchTriggerId)
 		throws SchedulerException {
 
 		return _schedulerEngineHelper.getScheduledJob(

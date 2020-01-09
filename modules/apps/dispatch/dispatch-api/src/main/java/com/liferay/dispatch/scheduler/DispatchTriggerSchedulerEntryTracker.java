@@ -32,11 +32,11 @@ public interface DispatchTriggerSchedulerEntryTracker {
 	public void deleteScheduledTask(long dispatchTriggerId)
 		throws SchedulerException;
 
-	public Date getNextFireTime(long dispatchTriggerId);
+	public Date getNextFireDate(long dispatchTriggerId);
 
-	public Date getPreviousFireTime(long dispatchTriggerId);
+	public Date getPreviousFireDate(long dispatchTriggerId);
 
-	public SchedulerResponse getScheduledJob(long dispatchTriggerId)
+	public SchedulerResponse getSchedulerResponse(long dispatchTriggerId)
 		throws SchedulerException;
 
 }
