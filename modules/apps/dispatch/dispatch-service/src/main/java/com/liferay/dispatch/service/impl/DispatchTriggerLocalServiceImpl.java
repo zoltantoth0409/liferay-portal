@@ -165,10 +165,10 @@ public class DispatchTriggerLocalServiceImpl
 		DispatchTrigger dispatchTrigger =
 			dispatchTriggerPersistence.fetchByPrimaryKey(dispatchTriggerId);
 
-		Date sartDate = null;
+		Date startDate = null;
 		Date endDate = null;
 
-		sartDate = _portal.getDate(
+		startDate = _portal.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, DispatchTriggerStartDateException.class);
 
@@ -181,13 +181,13 @@ public class DispatchTriggerLocalServiceImpl
 		dispatchTrigger.setActive(active);
 		dispatchTrigger.setCronExpression(cronExpression);
 		dispatchTrigger.setEndDate(endDate);
-		dispatchTrigger.setStartDate(sartDate);
+		dispatchTrigger.setStartDate(startDate);
 
 		dispatchTrigger = dispatchTriggerPersistence.update(dispatchTrigger);
 
 		if (active) {
 			_dispatchTriggerSchedulerEntryTracker.addScheduledTask(
-				dispatchTriggerId, cronExpression, sartDate, endDate);
+				dispatchTriggerId, cronExpression, startDate, endDate);
 		}
 		else {
 			_dispatchTriggerSchedulerEntryTracker.deleteScheduledTask(
