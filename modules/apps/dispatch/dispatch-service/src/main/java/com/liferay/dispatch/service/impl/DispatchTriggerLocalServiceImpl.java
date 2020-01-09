@@ -186,7 +186,8 @@ public class DispatchTriggerLocalServiceImpl
 
 		if (active) {
 			_dispatchTriggerSchedulerEntryTracker.addScheduledTask(
-				dispatchTriggerId, cronExpression, startDate, endDate);
+				dispatchTriggerId, cronExpression,
+				dispatchTrigger.getStartDate(), dispatchTrigger.getEndDate());
 		}
 		else {
 			_dispatchTriggerSchedulerEntryTracker.deleteScheduledTask(
