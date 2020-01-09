@@ -51,8 +51,8 @@ public class DispatchTriggerLocalServiceImpl
 
 	@Override
 	public DispatchTrigger addDispatchTrigger(
-			long userId, String name, String type,
-			UnicodeProperties typeSettingsProperties, boolean system)
+			long userId, String name, boolean system, String type,
+			UnicodeProperties typeSettingsProperties)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
@@ -66,9 +66,9 @@ public class DispatchTriggerLocalServiceImpl
 		dispatchTrigger.setUserId(user.getUserId());
 		dispatchTrigger.setUserName(user.getFullName());
 		dispatchTrigger.setName(name);
+		dispatchTrigger.setSystem(system);
 		dispatchTrigger.setType(type);
 		dispatchTrigger.setTypeSettingsProperties(typeSettingsProperties);
-		dispatchTrigger.setSystem(system);
 
 		dispatchTriggerPersistence.update(dispatchTrigger);
 
