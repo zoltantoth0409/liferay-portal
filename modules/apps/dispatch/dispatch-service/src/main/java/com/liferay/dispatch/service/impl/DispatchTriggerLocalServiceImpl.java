@@ -23,7 +23,6 @@ import com.liferay.dispatch.scheduler.DispatchTriggerSchedulerEntryTracker;
 import com.liferay.dispatch.service.base.DispatchTriggerLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
@@ -33,7 +32,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -138,23 +136,6 @@ public class DispatchTriggerLocalServiceImpl
 
 	@Override
 	public DispatchTrigger updateDispatchTrigger(
-			long dispatchTriggerId, String name,
-			UnicodeProperties typeSettingsProperties)
-		throws PortalException {
-
-		DispatchTrigger dispatchTrigger =
-			dispatchTriggerPersistence.findByPrimaryKey(dispatchTriggerId);
-
-		validate(dispatchTriggerId, dispatchTrigger.getCompanyId(), name);
-
-		dispatchTrigger.setName(name);
-		dispatchTrigger.setTypeSettingsProperties(typeSettingsProperties);
-
-		return dispatchTriggerPersistence.update(dispatchTrigger);
-	}
-
-	@Override
-	public DispatchTrigger updateDispatchTrigger(
 			long dispatchTriggerId, boolean active, String cronExpression,
 			int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 			int endDateMinute, boolean neverEnd, int startDateMonth,
@@ -193,6 +174,23 @@ public class DispatchTriggerLocalServiceImpl
 		}
 
 		return dispatchTrigger;
+	}
+
+	@Override
+	public DispatchTrigger updateDispatchTrigger(
+			long dispatchTriggerId, String name,
+			UnicodeProperties typeSettingsProperties)
+		throws PortalException {
+
+		DispatchTrigger dispatchTrigger =
+			dispatchTriggerPersistence.findByPrimaryKey(dispatchTriggerId);
+
+		validate(dispatchTriggerId, dispatchTrigger.getCompanyId(), name);
+
+		dispatchTrigger.setName(name);
+		dispatchTrigger.setTypeSettingsProperties(typeSettingsProperties);
+
+		return dispatchTriggerPersistence.update(dispatchTrigger);
 	}
 
 	protected void validate(long dispatchTriggerId, long companyId, String name)
