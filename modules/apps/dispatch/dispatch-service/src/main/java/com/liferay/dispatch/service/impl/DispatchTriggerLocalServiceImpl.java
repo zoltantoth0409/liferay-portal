@@ -57,7 +57,7 @@ public class DispatchTriggerLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		validate(user.getCompanyId(), 0, name);
+		validate(0, user.getCompanyId(), name);
 
 		DispatchTrigger dispatchTrigger = dispatchTriggerPersistence.create(
 			counterLocalService.increment());
@@ -145,7 +145,7 @@ public class DispatchTriggerLocalServiceImpl
 		DispatchTrigger dispatchTrigger =
 			dispatchTriggerPersistence.findByPrimaryKey(dispatchTriggerId);
 
-		validate(dispatchTrigger.getCompanyId(), dispatchTriggerId, name);
+		validate(dispatchTriggerId, dispatchTrigger.getCompanyId(), name);
 
 		dispatchTrigger.setName(name);
 		dispatchTrigger.setTypeSettingsProperties(typeSettingsProperties);
@@ -195,7 +195,7 @@ public class DispatchTriggerLocalServiceImpl
 		return dispatchTrigger;
 	}
 
-	protected void validate(long companyId, long dispatchTriggerId, String name)
+	protected void validate(long dispatchTriggerId, long companyId, String name)
 		throws PortalException {
 
 		if (Validator.isNull(name)) {
