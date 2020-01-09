@@ -156,10 +156,10 @@ public class DispatchTriggerLocalServiceImpl
 	@Override
 	public DispatchTrigger updateDispatchTriggerTrigger(
 			long dispatchTriggerId, boolean active, String cronExpression,
-			int startDateMonth, int startDateDay, int startDateYear,
-			int startDateHour, int startDateMinute, int endDateMonth,
-			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
-			boolean neverEnd)
+			int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+			int endDateMinute, boolean neverEnd, int startDateMonth,
+			int startDateDay, int startDateYear, int startDateHour,
+			int startDateMinute)
 		throws PortalException {
 
 		DispatchTrigger dispatchTrigger =
