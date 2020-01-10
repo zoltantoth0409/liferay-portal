@@ -481,6 +481,9 @@ public class ContentPageEditorDisplayContext {
 		).put(
 			"languageId", themeDisplay.getLanguageId()
 		).put(
+			"layoutConversionWarningMessages",
+			_getLayoutConversionWarningMessages()
+		).put(
 			"layoutData", JSONFactoryUtil.createJSONObject(_getLayoutData())
 		).put(
 			"lookAndFeelURL", _getLookAndFeelURL()
@@ -1334,6 +1337,11 @@ public class ContentPageEditorDisplayContext {
 			_getImageItemSelectorCriterion(), _getURLItemSelectorCriterion());
 
 		return itemSelectorURL.toString();
+	}
+
+	private String[] _getLayoutConversionWarningMessages() {
+		return (String[])MultiSessionMessages.get(
+			_portletRequest, "layoutConversionWarningMessages");
 	}
 
 	private String _getLayoutData() throws PortalException {
