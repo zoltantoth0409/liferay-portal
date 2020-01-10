@@ -359,24 +359,20 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 					fragmentEntryLink);
 
 			for (String portletId : portletIds) {
-				List<Role> roles = _roleLocalService.getGroupRelatedRoles(
-					targetLayout.getGroupId());
-
 				Group targetGroup = targetLayout.getGroup();
-
 				String resourceName = PortletIdCodec.decodePortletName(
 					portletId);
-
 				String sourceResourcePrimKey =
 					PortletPermissionUtil.getPrimaryKey(
 						sourceLayout.getPlid(), portletId);
-
 				String targetResourcePrimKey =
 					PortletPermissionUtil.getPrimaryKey(
 						targetLayout.getPlid(), portletId);
-
 				List<String> actionIds =
 					ResourceActionsUtil.getPortletResourceActions(resourceName);
+
+				List<Role> roles = _roleLocalService.getGroupRelatedRoles(
+					targetLayout.getGroupId());
 
 				for (Role role : roles) {
 					String roleName = role.getName();
