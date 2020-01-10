@@ -311,7 +311,11 @@ export default function Topper({
 						{name || Liferay.Language.get('Element')}
 					</TopperListItem>
 					<TopperListItem>
-						<ClayButton displayType="unstyled" small>
+						<ClayButton
+							displayType="unstyled"
+							small
+							title={Liferay.Language.get('comments')}
+						>
 							<ClayIcon
 								className="page-editor-topper__icon"
 								onClick={() => {
@@ -340,6 +344,7 @@ export default function Topper({
 								);
 							}}
 							small
+							title={Liferay.Language.get('remove')}
 						>
 							<ClayIcon
 								className="page-editor-topper__icon"
