@@ -513,7 +513,7 @@ public class ContentUtil {
 					WorkflowConstants.STATUS_APPROVED)
 			).put(
 				"style",
-				LabelItem.getStyleFromWorkflowStatus(
+				WorkflowConstants.getStyleFromWorkflowStatus(
 					WorkflowConstants.STATUS_APPROVED)
 			);
 		}
@@ -546,7 +546,7 @@ public class ContentUtil {
 			WorkflowConstants.getStatusLabel(latestAssetRenderer.getStatus())
 		).put(
 			"style",
-			LabelItem.getStyleFromWorkflowStatus(
+			WorkflowConstants.getStyleFromWorkflowStatus(
 				latestAssetRenderer.getStatus())
 		);
 	}
