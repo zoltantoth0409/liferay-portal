@@ -398,9 +398,8 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _knowledgeBaseArticleDTOConverter.toDTO(
 			new DefaultDTOConverterContext(
-				_dtoConverterRegistry,
-				contextAcceptLanguage.getPreferredLocale(),
-				knowledgeBaseArticleResourcePrimKey, contextUriInfo,
+				_dtoConverterRegistry, knowledgeBaseArticleResourcePrimKey,
+				contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 				contextUser));
 	}
 
