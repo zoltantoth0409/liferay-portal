@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model;
+package com.liferay.multi.factor.authentication.email.otp.model;
 
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.wrapper.BaseModelWrapper;

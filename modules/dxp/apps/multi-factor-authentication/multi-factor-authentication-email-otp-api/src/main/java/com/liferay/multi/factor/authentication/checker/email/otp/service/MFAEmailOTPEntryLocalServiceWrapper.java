@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service;
+package com.liferay.multi.factor.authentication.email.otp.service;
 
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
@@ -34,7 +34,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry addMFAEmailOTPEntry(long userId)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -48,9 +48,9 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @return the mfa email otp entry that was added
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry addMFAEmailOTPEntry(
-			com.liferay.multi.factor.authentication.checker.email.otp.model.
+			com.liferay.multi.factor.authentication.email.otp.model.
 				MFAEmailOTPEntry mfaEmailOTPEntry) {
 
 		return _mfaEmailOTPEntryLocalService.addMFAEmailOTPEntry(
@@ -64,7 +64,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @return the new mfa email otp entry
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry createMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
 
 		return _mfaEmailOTPEntryLocalService.createMFAEmailOTPEntry(
@@ -79,7 +79,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @throws PortalException if a mfa email otp entry with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry deleteMFAEmailOTPEntry(long mfaEmailOTPEntryId)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -94,9 +94,9 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @return the mfa email otp entry that was removed
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry deleteMFAEmailOTPEntry(
-			com.liferay.multi.factor.authentication.checker.email.otp.model.
+			com.liferay.multi.factor.authentication.email.otp.model.
 				MFAEmailOTPEntry mfaEmailOTPEntry) {
 
 		return _mfaEmailOTPEntryLocalService.deleteMFAEmailOTPEntry(
@@ -137,7 +137,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -158,7 +158,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -207,7 +207,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry fetchMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
 
 		return _mfaEmailOTPEntryLocalService.fetchMFAEmailOTPEntry(
@@ -215,7 +215,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry fetchMFAEmailOTPEntryByUserId(long userId) {
 
 		return _mfaEmailOTPEntryLocalService.fetchMFAEmailOTPEntryByUserId(
@@ -241,7 +241,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * Returns a range of all the mfa email otp entries.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of mfa email otp entries
@@ -250,7 +250,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 */
 	@Override
 	public java.util.List
-		<com.liferay.multi.factor.authentication.checker.email.otp.model.
+		<com.liferay.multi.factor.authentication.email.otp.model.
 			MFAEmailOTPEntry> getMFAEmailOTPEntries(int start, int end) {
 
 		return _mfaEmailOTPEntryLocalService.getMFAEmailOTPEntries(start, end);
@@ -274,7 +274,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @throws PortalException if a mfa email otp entry with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry getMFAEmailOTPEntry(long mfaEmailOTPEntryId)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -301,7 +301,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry resetFailedAttempts(long userId)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -309,7 +309,7 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry updateAttempts(long userId, String ip, boolean success)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -324,9 +324,9 @@ public class MFAEmailOTPEntryLocalServiceWrapper
 	 * @return the mfa email otp entry that was updated
 	 */
 	@Override
-	public com.liferay.multi.factor.authentication.checker.email.otp.model.
+	public com.liferay.multi.factor.authentication.email.otp.model.
 		MFAEmailOTPEntry updateMFAEmailOTPEntry(
-			com.liferay.multi.factor.authentication.checker.email.otp.model.
+			com.liferay.multi.factor.authentication.email.otp.model.
 				MFAEmailOTPEntry mfaEmailOTPEntry) {
 
 		return _mfaEmailOTPEntryLocalService.updateMFAEmailOTPEntry(

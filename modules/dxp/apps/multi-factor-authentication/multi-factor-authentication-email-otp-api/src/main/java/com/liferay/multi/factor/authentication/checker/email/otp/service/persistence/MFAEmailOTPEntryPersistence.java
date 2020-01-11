@@ -12,10 +12,10 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service.persistence;
+package com.liferay.multi.factor.authentication.email.otp.service.persistence;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.exception.NoSuchEntryException;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.exception.NoSuchEntryException;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import org.osgi.annotation.versioning.ProviderType;

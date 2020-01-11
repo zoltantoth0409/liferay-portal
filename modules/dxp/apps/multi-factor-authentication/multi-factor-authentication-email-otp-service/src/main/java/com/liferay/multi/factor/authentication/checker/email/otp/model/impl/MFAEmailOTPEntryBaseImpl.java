@@ -12,10 +12,10 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model.impl;
+package com.liferay.multi.factor.authentication.email.otp.model.impl;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
-import com.liferay.multi.factor.authentication.checker.email.otp.service.MFAEmailOTPEntryLocalServiceUtil;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.service.MFAEmailOTPEntryLocalServiceUtil;
 
 /**
  * The extended model base implementation for the MFAEmailOTPEntry service. Represents a row in the &quot;MFAEmailOTPEntry&quot; database table, with each column mapped to a property of this class.

@@ -12,14 +12,14 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service.persistence.impl;
+package com.liferay.multi.factor.authentication.email.otp.service.persistence.impl;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.exception.NoSuchEntryException;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryImpl;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryModelImpl;
-import com.liferay.multi.factor.authentication.checker.email.otp.service.persistence.MFAEmailOTPEntryPersistence;
-import com.liferay.multi.factor.authentication.checker.email.otp.service.persistence.impl.constants.MFAEmailOTPPersistenceConstants;
+import com.liferay.multi.factor.authentication.email.otp.exception.NoSuchEntryException;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryImpl;
+import com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryModelImpl;
+import com.liferay.multi.factor.authentication.email.otp.service.persistence.MFAEmailOTPEntryPersistence;
+import com.liferay.multi.factor.authentication.email.otp.service.persistence.impl.constants.MFAEmailOTPPersistenceConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
@@ -943,7 +943,7 @@ public class MFAEmailOTPEntryPersistenceImpl
 
 		_columnBitmaskEnabled = GetterUtil.getBoolean(
 			configuration.get(
-				"value.object.column.bitmask.enabled.com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry"),
+				"value.object.column.bitmask.enabled.com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry"),
 			true);
 	}
 

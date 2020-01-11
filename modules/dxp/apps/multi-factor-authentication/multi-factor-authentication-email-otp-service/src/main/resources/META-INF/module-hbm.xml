@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
-	<import class="com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry" />
-	<class dynamic-update="true" name="com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryImpl" table="MFAEmailOTPEntry">
+	<import class="com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry" />
+	<class dynamic-update="true" name="com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryImpl" table="MFAEmailOTPEntry">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="mfaEmailOTPEntryId" type="long">
 			<generator class="assigned" />
 		</id>

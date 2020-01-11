@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration.admin.category;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.admin.category;
 
 import com.liferay.configuration.admin.category.ConfigurationCategory;
 

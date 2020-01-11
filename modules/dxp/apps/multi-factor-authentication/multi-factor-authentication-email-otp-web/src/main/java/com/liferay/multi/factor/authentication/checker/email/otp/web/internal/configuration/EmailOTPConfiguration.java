@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -20,7 +20,7 @@ import aQute.bnd.annotation.metatype.Meta;
  * @author Tomas Polesovsky
  */
 @Meta.OCD(
-	id = "com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration.EmailOTPConfiguration",
+	id = "com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.EmailOTPConfiguration",
 	localization = "content/Language", name = "email-otp-configuration-name"
 )
 public interface EmailOTPConfiguration {

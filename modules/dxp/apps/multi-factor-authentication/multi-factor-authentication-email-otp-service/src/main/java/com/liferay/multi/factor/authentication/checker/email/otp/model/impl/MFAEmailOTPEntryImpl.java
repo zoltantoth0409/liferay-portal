@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model.impl;
+package com.liferay.multi.factor.authentication.email.otp.model.impl;
 
 /**
  * @author Arthur Chan

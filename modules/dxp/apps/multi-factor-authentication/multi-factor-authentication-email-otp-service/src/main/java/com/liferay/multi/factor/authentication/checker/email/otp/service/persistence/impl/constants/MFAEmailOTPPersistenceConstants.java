@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service.persistence.impl.constants;
+package com.liferay.multi.factor.authentication.email.otp.service.persistence.impl.constants;
 
 import com.liferay.petra.string.StringBundler;
 
@@ -27,7 +27,7 @@ import org.osgi.framework.FrameworkUtil;
 public class MFAEmailOTPPersistenceConstants {
 
 	public static final String BUNDLE_SYMBOLIC_NAME =
-		"com.liferay.multi.factor.authentication.checker.email.otp.service";
+		"com.liferay.multi.factor.authentication.email.otp.service";
 
 	public static final String ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER =
 		"(origin.bundle.symbolic.name=" + BUNDLE_SYMBOLIC_NAME + ")";

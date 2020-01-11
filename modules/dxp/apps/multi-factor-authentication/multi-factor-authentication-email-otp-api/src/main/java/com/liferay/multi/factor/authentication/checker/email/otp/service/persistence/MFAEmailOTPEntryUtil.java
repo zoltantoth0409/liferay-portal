@@ -12,9 +12,9 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service.persistence;
+package com.liferay.multi.factor.authentication.email.otp.service.persistence;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -30,7 +30,7 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * The persistence utility for the mfa email otp entry service. This utility wraps <code>com.liferay.multi.factor.authentication.checker.email.otp.service.persistence.impl.MFAEmailOTPEntryPersistenceImpl</code> and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the mfa email otp entry service. This utility wraps <code>com.liferay.multi.factor.authentication.email.otp.service.persistence.impl.MFAEmailOTPEntryPersistenceImpl</code> and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -131,7 +131,7 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a matching mfa email otp entry could not be found
 	 */
 	public static MFAEmailOTPEntry findByUserId(long userId)
-		throws com.liferay.multi.factor.authentication.checker.email.otp.
+		throws com.liferay.multi.factor.authentication.email.otp.
 			exception.NoSuchEntryException {
 
 		return getPersistence().findByUserId(userId);
@@ -167,7 +167,7 @@ public class MFAEmailOTPEntryUtil {
 	 * @return the mfa email otp entry that was removed
 	 */
 	public static MFAEmailOTPEntry removeByUserId(long userId)
-		throws com.liferay.multi.factor.authentication.checker.email.otp.
+		throws com.liferay.multi.factor.authentication.email.otp.
 			exception.NoSuchEntryException {
 
 		return getPersistence().removeByUserId(userId);
@@ -219,7 +219,7 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static MFAEmailOTPEntry remove(long mfaEmailOTPEntryId)
-		throws com.liferay.multi.factor.authentication.checker.email.otp.
+		throws com.liferay.multi.factor.authentication.email.otp.
 			exception.NoSuchEntryException {
 
 		return getPersistence().remove(mfaEmailOTPEntryId);
@@ -239,7 +239,7 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static MFAEmailOTPEntry findByPrimaryKey(long mfaEmailOTPEntryId)
-		throws com.liferay.multi.factor.authentication.checker.email.otp.
+		throws com.liferay.multi.factor.authentication.email.otp.
 			exception.NoSuchEntryException {
 
 		return getPersistence().findByPrimaryKey(mfaEmailOTPEntryId);

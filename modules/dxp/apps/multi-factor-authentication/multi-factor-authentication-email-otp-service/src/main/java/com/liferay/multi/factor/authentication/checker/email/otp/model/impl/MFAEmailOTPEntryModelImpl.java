@@ -12,12 +12,12 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model.impl;
+package com.liferay.multi.factor.authentication.email.otp.model.impl;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntryModel;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntryModel;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;

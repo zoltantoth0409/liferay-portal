@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.settings;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.settings;
 
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.util.UnicodeProperties;

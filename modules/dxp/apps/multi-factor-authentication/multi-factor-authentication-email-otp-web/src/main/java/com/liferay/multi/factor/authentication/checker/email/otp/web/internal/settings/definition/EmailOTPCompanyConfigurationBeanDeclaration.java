@@ -12,9 +12,9 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.settings.definition;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.settings.definition;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration.EmailOTPConfiguration;
+import com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.EmailOTPConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;

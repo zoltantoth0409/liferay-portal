@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model;
+package com.liferay.multi.factor.authentication.email.otp.model;
 
 import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.model.PersistedModel;
@@ -28,7 +28,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ImplementationClassName(
-	"com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryImpl"
+	"com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryImpl"
 )
 @ProviderType
 public interface MFAEmailOTPEntry
@@ -37,7 +37,7 @@ public interface MFAEmailOTPEntry
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to <code>com.liferay.multi.factor.authentication.checker.email.otp.model.impl.MFAEmailOTPEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.multi.factor.authentication.email.otp.model.impl.MFAEmailOTPEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<MFAEmailOTPEntry, Long>
 		MFA_EMAIL_OTP_ENTRY_ID_ACCESSOR =

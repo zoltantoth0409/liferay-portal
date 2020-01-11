@@ -12,12 +12,12 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.service.impl;
+package com.liferay.multi.factor.authentication.email.otp.service.impl;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.exception.DuplicateMFAEmailOTPEntryException;
-import com.liferay.multi.factor.authentication.checker.email.otp.exception.NoSuchEntryException;
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
-import com.liferay.multi.factor.authentication.checker.email.otp.service.base.MFAEmailOTPEntryLocalServiceBaseImpl;
+import com.liferay.multi.factor.authentication.email.otp.exception.DuplicateMFAEmailOTPEntryException;
+import com.liferay.multi.factor.authentication.email.otp.exception.NoSuchEntryException;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.service.base.MFAEmailOTPEntryLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Arthur Chan
  */
 @Component(
-	property = "model.class.name=com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry",
+	property = "model.class.name=com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry",
 	service = AopService.class
 )
 public class MFAEmailOTPEntryLocalServiceImpl

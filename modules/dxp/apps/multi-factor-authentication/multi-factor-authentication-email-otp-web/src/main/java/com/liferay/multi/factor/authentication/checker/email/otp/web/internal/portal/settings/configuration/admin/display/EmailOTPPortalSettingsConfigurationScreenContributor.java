@@ -12,10 +12,10 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.portal.settings.configuration.admin.display;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.portal.settings.configuration.admin.display;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration.EmailOTPConfiguration;
-import com.liferay.multi.factor.authentication.checker.email.otp.web.internal.settings.EmailOTPConfigurationLocalizedValuesMap;
+import com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.EmailOTPConfiguration;
+import com.liferay.multi.factor.authentication.email.otp.web.internal.settings.EmailOTPConfigurationLocalizedValuesMap;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -127,7 +127,7 @@ public class EmailOTPPortalSettingsConfigurationScreenContributor
 		EmailOTPPortalSettingsConfigurationScreenContributor.class);
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.multi.factor.authentication.checker.email.otp.web)",
+		target = "(osgi.web.symbolicname=com.liferay.multi.factor.authentication.email.otp.web)",
 		unbind = "-"
 	)
 	private ServletContext _servletContext;

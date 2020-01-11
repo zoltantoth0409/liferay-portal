@@ -12,9 +12,9 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.model.impl;
+package com.liferay.multi.factor.authentication.email.otp.model.impl;
 
-import com.liferay.multi.factor.authentication.checker.email.otp.model.MFAEmailOTPEntry;
+import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.CacheModel;

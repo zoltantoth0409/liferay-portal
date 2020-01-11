@@ -12,10 +12,10 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.web.internal.action;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
-import com.liferay.multi.factor.authentication.checker.email.otp.web.internal.configuration.EmailOTPConfiguration;
+import com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.EmailOTPConfiguration;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;

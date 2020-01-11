@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.checker.email.otp.exception;
+package com.liferay.multi.factor.authentication.email.otp.exception;
 
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
