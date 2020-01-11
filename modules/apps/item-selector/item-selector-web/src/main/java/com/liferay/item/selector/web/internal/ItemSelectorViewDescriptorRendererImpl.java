@@ -52,7 +52,8 @@ public class ItemSelectorViewDescriptorRendererImpl<T>
 				itemSelectedEventName, itemSelectorViewDescriptor));
 
 		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/view_descriptor.jsp");
+			_servletContext.getRequestDispatcher(
+				"/view_item_selector_view_descriptor.jsp");
 
 		requestDispatcher.include(servletRequest, servletResponse);
 	}
