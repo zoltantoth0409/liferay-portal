@@ -48,14 +48,14 @@ if (layoutPageTemplateEntry == null) {
 	layoutPageTemplateEntry = LayoutPageTemplateEntryLocalServiceUtil.fetchLayoutPageTemplateEntryByPlid(selLayout.getClassPK());
 }
 
-boolean allowEditMasterLayout = false;
+boolean editableMasterLayout = false;
 
 if ((Objects.equals(selLayout.getType(), LayoutConstants.TYPE_CONTENT) || Objects.equals(selLayout.getType(), LayoutConstants.TYPE_ASSET_DISPLAY)) && ((layoutPageTemplateEntry == null) || !Objects.equals(layoutPageTemplateEntry.getType(), LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT))) {
-	allowEditMasterLayout = true;
+	editableMasterLayout = true;
 }
 %>
 
-<c:if test="<%= allowEditMasterLayout %>">
+<c:if test="<%= editableMasterLayout %>">
 
 	<%
 	LayoutPageTemplateEntry masterLayoutPageTemplateEntry = null;
@@ -151,7 +151,7 @@ else {
 	);
 </aui:script>
 
-<c:if test="<%= allowEditMasterLayout %>">
+<c:if test="<%= editableMasterLayout %>">
 	<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
 		var changeMasterLayoutButton = document.getElementById(
 			'<portlet:namespace />changeMasterLayoutButton'
