@@ -76,17 +76,16 @@ public class SelectRoleManagementToolbarDisplayContext {
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcPath", "/select_role.jsp");
-
-		portletURL.setParameter(
-			"roleType", String.valueOf(_currentRoleTypeContributor.getType()));
-
 		User selUser = _getSelectedUser();
 
 		if (selUser != null) {
 			portletURL.setParameter(
 				"p_u_i_d", String.valueOf(selUser.getUserId()));
 		}
+
+		portletURL.setParameter("mvcPath", "/select_role.jsp");
+		portletURL.setParameter(
+			"roleType", String.valueOf(_currentRoleTypeContributor.getType()));
 
 		portletURL.setParameter("eventName", _eventName);
 

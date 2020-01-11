@@ -31,8 +31,8 @@ AccountUserDisplay accountUserDisplay = (AccountUserDisplay)row.getObject();
 >
 	<c:if test="<%= UserPermissionUtil.contains(permissionChecker, accountUserDisplay.getUserId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editUserURL">
-			<portlet:param name="mvcPath" value="/account_users_admin/edit_account_user.jsp" />
 			<portlet:param name="p_u_i_d" value="<%= String.valueOf(accountUserDisplay.getUserId()) %>" />
+			<portlet:param name="mvcPath" value="/account_users_admin/edit_account_user.jsp" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon

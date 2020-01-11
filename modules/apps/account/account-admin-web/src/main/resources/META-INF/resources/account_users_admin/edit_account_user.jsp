@@ -21,8 +21,8 @@ User selUser = PortalUtil.getSelectedUser(request);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcPath", "/account_users_admin/edit_account_user.jsp");
 portletURL.setParameter("p_u_i_d", String.valueOf(selUser.getUserId()));
+portletURL.setParameter("mvcPath", "/account_users_admin/edit_account_user.jsp");
 %>
 
 <liferay-frontend:screen-navigation

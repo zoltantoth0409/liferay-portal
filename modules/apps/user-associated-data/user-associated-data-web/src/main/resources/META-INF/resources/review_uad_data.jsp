@@ -212,8 +212,8 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 </div>
 
 <portlet:renderURL var="reviewUADDataURL">
-	<portlet:param name="mvcRenderCommandName" value="/review_uad_data" />
 	<portlet:param name="p_u_i_d" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
+	<portlet:param name="mvcRenderCommandName" value="/review_uad_data" />
 	<portlet:param name="applicationKey" value="<%= viewUADEntitiesDisplay.getApplicationKey() %>" />
 	<portlet:param name="scope" value="<%= scope %>" />
 </portlet:renderURL>

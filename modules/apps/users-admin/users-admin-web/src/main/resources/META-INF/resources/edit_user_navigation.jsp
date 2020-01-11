@@ -53,9 +53,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 if (Validator.isNull(redirect)) {
 	PortletURL redirectURL = renderResponse.createRenderURL();
 
+	redirectURL.setParameter("p_u_i_d", String.valueOf(selUserId));
 	redirectURL.setParameter("mvcRenderCommandName", "/users_admin/edit_user");
 	redirectURL.setParameter("backURL", backURL);
-	redirectURL.setParameter("p_u_i_d", String.valueOf(selUserId));
 
 	redirect = redirectURL.toString();
 }
@@ -69,8 +69,8 @@ redirect = HttpUtil.addParameter(redirect, renderResponse.getNamespace() + "scre
 <portlet:actionURL name="<%= actionCommandName %>" var="actionCommandURL" />
 
 <aui:form action="<%= actionCommandURL %>" cssClass="portlet-users-admin-edit-user" data-senna-off="true" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="p_u_i_d" type="hidden" value="<%= selUserId %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="screenNavigationCategoryKey" type="hidden" value="<%= screenNavigationCategoryKey %>" />
 	<aui:input name="screenNavigationEntryKey" type="hidden" value="<%= screenNavigationEntryKey %>" />
 

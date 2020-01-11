@@ -152,10 +152,10 @@ boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 			rowIdProperty="screenName"
 		>
 			<liferay-portlet:renderURL varImpl="rowURL">
+				<portlet:param name="p_u_i_d" value="<%= String.valueOf(user2.getUserId()) %>" />
 				<portlet:param name="mvcRenderCommandName" value="/directory/view_user" />
 				<portlet:param name="tabs1" value="<%= HtmlUtil.escape(tabs1) %>" />
 				<portlet:param name="redirect" value="<%= userSearchContainer.getIteratorURL().toString() %>" />
-				<portlet:param name="p_u_i_d" value="<%= String.valueOf(user2.getUserId()) %>" />
 			</liferay-portlet:renderURL>
 
 			<%@ include file="/user/search_columns.jspf" %>
