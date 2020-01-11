@@ -49,9 +49,11 @@ SearchContainer searchContainer = itemSelectorViewDescriptor.getSearchContainer(
 
 			ItemSelectorViewDescriptor.ItemDescriptor itemDescriptor = itemSelectorViewDescriptor.getItemDescriptor(row.getObject());
 
-			row.setData(HashMapBuilder.<String, Object>put(
-				"value", itemDescriptor.getPayload()
-			).build());
+			row.setData(
+				HashMapBuilder.<String, Object>put(
+					"value",
+					itemDescriptor.getPayload()
+				).build());
 			%>
 
 			<liferay-ui:search-container-column-text>
