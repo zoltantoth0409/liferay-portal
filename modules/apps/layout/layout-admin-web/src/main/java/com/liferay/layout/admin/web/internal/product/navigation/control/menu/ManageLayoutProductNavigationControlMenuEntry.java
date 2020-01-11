@@ -110,17 +110,17 @@ public class ManageLayoutProductNavigationControlMenuEntry
 		editPageURL.setParameter("redirect", currentURL);
 		editPageURL.setParameter("backURL", currentURL);
 
-		editPageURL.setParameter(
-			"groupId", String.valueOf(layout.getGroupId()));
-		editPageURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
-		editPageURL.setParameter(
-			"privateLayout", String.valueOf(layout.isPrivateLayout()));
-
 		if (layout.isSystem()) {
 			editPageURL.setParameter(
 				"portletResource",
 				LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES);
 		}
+
+		editPageURL.setParameter(
+			"groupId", String.valueOf(layout.getGroupId()));
+		editPageURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
+		editPageURL.setParameter(
+			"privateLayout", String.valueOf(layout.isPrivateLayout()));
 
 		Map<String, String> values = HashMapBuilder.put(
 			"configurePage",

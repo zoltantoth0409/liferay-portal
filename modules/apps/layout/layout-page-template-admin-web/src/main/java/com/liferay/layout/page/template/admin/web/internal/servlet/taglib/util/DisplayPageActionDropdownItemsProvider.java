@@ -142,9 +142,10 @@ public class DisplayPageActionDropdownItemsProvider {
 			dropdownItem.setHref(
 				editPageURL, "mvcRenderCommandName", "/layout/edit_layout",
 				"redirect", _themeDisplay.getURLCurrent(), "backURL",
-				_themeDisplay.getURLCurrent(), "selPlid",
-				_layoutPageTemplateEntry.getPlid(), "portletResource",
-				LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES);
+				_themeDisplay.getURLCurrent(),
+				"portletResource",
+				LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
+				"selPlid", _layoutPageTemplateEntry.getPlid());
 
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "configure"));
