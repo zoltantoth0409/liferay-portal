@@ -1,5 +1,5 @@
 buildService {
-	apiDir = "../multi-factor-authentication-checker-email-otp-api/src/main/java"
+	apiDir = "../multi-factor-authentication-email-otp-api/src/main/java"
 }
 
 dependencies {
@@ -9,5 +9,5 @@ dependencies {
 	compileOnly project(":apps:portal:portal-aop-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":dxp:apps:multi-factor-authentication:multi-factor-authentication-checker-email-otp-api")
+	compileOnly project(":dxp:apps:multi-factor-authentication:multi-factor-authentication-email-otp-api")
 }
