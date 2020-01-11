@@ -73,17 +73,8 @@ if ((Objects.equals(selLayout.getType(), LayoutConstants.TYPE_CONTENT) || Object
 		</p>
 
 		<div class="button-holder">
-
-			<%
-			String elementClasses = "btn-secondary";
-
-			if (masterLayoutPageTemplateEntry == null) {
-				elementClasses = "btn-secondary hide";
-			}
-			%>
-
 			<clay:button
-				elementClasses="<%= elementClasses %>"
+				elementClasses='<%= (masterLayoutPageTemplateEntry == null) ? "btn-secondary" : "btn-secondary hide" %>'
 				id='<%= renderResponse.getNamespace() + "editMasterLayoutButton" %>'
 				label='<%= LanguageUtil.get(request, "edit-master") %>'
 				size="sm"
