@@ -85,9 +85,9 @@ public abstract class BaseAccountUserScreenNavigationEntry
 			PortletRequest.RENDER_PHASE);
 
 		redirect.setParameter(
-			"mvcPath", "/account_users_admin/edit_account_user.jsp");
-		redirect.setParameter(
 			"p_u_i_d", ParamUtil.getString(httpServletRequest, "p_u_i_d"));
+		redirect.setParameter(
+			"mvcPath", "/account_users_admin/edit_account_user.jsp");
 
 		DynamicServletRequest dynamicServletRequest = new DynamicServletRequest(
 			httpServletRequest);
