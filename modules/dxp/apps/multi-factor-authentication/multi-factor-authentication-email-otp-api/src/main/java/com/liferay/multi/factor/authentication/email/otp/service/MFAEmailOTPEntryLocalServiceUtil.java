@@ -38,9 +38,9 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.multi.factor.authentication.email.otp.service.impl.MFAEmailOTPEntryLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry addMFAEmailOTPEntry(long userId)
-				throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+				addMFAEmailOTPEntry(long userId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addMFAEmailOTPEntry(userId);
 	}
@@ -52,8 +52,8 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @return the mfa email otp entry that was added
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry addMFAEmailOTPEntry(
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			addMFAEmailOTPEntry(
 				com.liferay.multi.factor.authentication.email.otp.model.
 					MFAEmailOTPEntry mfaEmailOTPEntry) {
 
@@ -67,8 +67,8 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @return the new mfa email otp entry
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry createMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			createMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
 
 		return getService().createMFAEmailOTPEntry(mfaEmailOTPEntryId);
 	}
@@ -81,9 +81,9 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @throws PortalException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry deleteMFAEmailOTPEntry(long mfaEmailOTPEntryId)
-				throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+				deleteMFAEmailOTPEntry(long mfaEmailOTPEntryId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().deleteMFAEmailOTPEntry(mfaEmailOTPEntryId);
 	}
@@ -95,8 +95,8 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @return the mfa email otp entry that was removed
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry deleteMFAEmailOTPEntry(
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			deleteMFAEmailOTPEntry(
 				com.liferay.multi.factor.authentication.email.otp.model.
 					MFAEmailOTPEntry mfaEmailOTPEntry) {
 
@@ -200,15 +200,15 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	}
 
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry fetchMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			fetchMFAEmailOTPEntry(long mfaEmailOTPEntryId) {
 
 		return getService().fetchMFAEmailOTPEntry(mfaEmailOTPEntryId);
 	}
 
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry fetchMFAEmailOTPEntryByUserId(long userId) {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			fetchMFAEmailOTPEntryByUserId(long userId) {
 
 		return getService().fetchMFAEmailOTPEntryByUserId(userId);
 	}
@@ -261,9 +261,9 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @throws PortalException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry getMFAEmailOTPEntry(long mfaEmailOTPEntryId)
-				throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+				getMFAEmailOTPEntry(long mfaEmailOTPEntryId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getMFAEmailOTPEntry(mfaEmailOTPEntryId);
 	}
@@ -285,18 +285,17 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	}
 
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry resetFailedAttempts(long userId)
-				throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+				resetFailedAttempts(long userId)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().resetFailedAttempts(userId);
 	}
 
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry updateAttempts(
-					long userId, String ip, boolean success)
-				throws com.liferay.portal.kernel.exception.PortalException {
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+				updateAttempts(long userId, String ip, boolean success)
+			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateAttempts(userId, ip, success);
 	}
@@ -308,8 +307,8 @@ public class MFAEmailOTPEntryLocalServiceUtil {
 	 * @return the mfa email otp entry that was updated
 	 */
 	public static
-		com.liferay.multi.factor.authentication.email.otp.model.
-			MFAEmailOTPEntry updateMFAEmailOTPEntry(
+		com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry
+			updateMFAEmailOTPEntry(
 				com.liferay.multi.factor.authentication.email.otp.model.
 					MFAEmailOTPEntry mfaEmailOTPEntry) {
 

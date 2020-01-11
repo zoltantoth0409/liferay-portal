@@ -131,8 +131,8 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a matching mfa email otp entry could not be found
 	 */
 	public static MFAEmailOTPEntry findByUserId(long userId)
-		throws com.liferay.multi.factor.authentication.email.otp.
-			exception.NoSuchEntryException {
+		throws com.liferay.multi.factor.authentication.email.otp.exception.
+			NoSuchEntryException {
 
 		return getPersistence().findByUserId(userId);
 	}
@@ -167,8 +167,8 @@ public class MFAEmailOTPEntryUtil {
 	 * @return the mfa email otp entry that was removed
 	 */
 	public static MFAEmailOTPEntry removeByUserId(long userId)
-		throws com.liferay.multi.factor.authentication.email.otp.
-			exception.NoSuchEntryException {
+		throws com.liferay.multi.factor.authentication.email.otp.exception.
+			NoSuchEntryException {
 
 		return getPersistence().removeByUserId(userId);
 	}
@@ -219,8 +219,8 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static MFAEmailOTPEntry remove(long mfaEmailOTPEntryId)
-		throws com.liferay.multi.factor.authentication.email.otp.
-			exception.NoSuchEntryException {
+		throws com.liferay.multi.factor.authentication.email.otp.exception.
+			NoSuchEntryException {
 
 		return getPersistence().remove(mfaEmailOTPEntryId);
 	}
@@ -239,8 +239,8 @@ public class MFAEmailOTPEntryUtil {
 	 * @throws NoSuchEntryException if a mfa email otp entry with the primary key could not be found
 	 */
 	public static MFAEmailOTPEntry findByPrimaryKey(long mfaEmailOTPEntryId)
-		throws com.liferay.multi.factor.authentication.email.otp.
-			exception.NoSuchEntryException {
+		throws com.liferay.multi.factor.authentication.email.otp.exception.
+			NoSuchEntryException {
 
 		return getPersistence().findByPrimaryKey(mfaEmailOTPEntryId);
 	}
