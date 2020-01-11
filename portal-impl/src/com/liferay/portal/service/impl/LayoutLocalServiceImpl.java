@@ -337,27 +337,16 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setKeywordsMap(keywordsMap);
 		layout.setRobotsMap(robotsMap);
 		layout.setType(type);
-		layout.setHidden(hidden);
-		layout.setSystem(system);
-		layout.setFriendlyURL(friendlyURL);
-		layout.setPriority(priority);
-		layout.setMasterLayoutPlid(masterLayoutPlid);
-		layout.setPublishDate(serviceContext.getModifiedDate(now));
 
-		if (workflowDefinitionLinkLocalService.hasWorkflowDefinitionLink(
-				layout.getCompanyId(), layout.getGroupId(),
-				Layout.class.getName()) &&
-			Objects.equals(type, LayoutConstants.TYPE_CONTENT) && !system) {
+		if (type.equals(LayoutConstants.TYPE_PORTLET)) {
+			LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet)layout.getLayoutType();
 
-			layout.setStatus(WorkflowConstants.STATUS_DRAFT);
+			if (Validator.isNull(layoutTypePortlet.getLayoutTemplateId())) {
+				layoutTypePortlet.setLayoutTemplateId(
+					0, PropsValues.LAYOUT_DEFAULT_TEMPLATE_ID, false);
+			}
 		}
-		else {
-			layout.setStatus(WorkflowConstants.STATUS_APPROVED);
-		}
-
-		layout.setStatusByUserId(userId);
-		layout.setStatusByUserName(user.getFullName());
-		layout.setStatusDate(serviceContext.getCreateDate(now));
 
 		boolean layoutUpdateable = ParamUtil.getBoolean(
 			serviceContext, Sites.LAYOUT_UPDATEABLE, true);
@@ -376,6 +365,12 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layout.setTypeSettingsProperties(typeSettingsProperties);
 
+		layout.setHidden(hidden);
+		layout.setSystem(system);
+		layout.setFriendlyURL(friendlyURL);
+		layout.setPriority(priority);
+		layout.setMasterLayoutPlid(masterLayoutPlid);
+
 		String layoutPrototypeUuid = ParamUtil.getString(
 			serviceContext, "layoutPrototypeUuid");
 		boolean layoutPrototypeLinkEnabled = ParamUtil.getBoolean(
@@ -387,17 +382,23 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.setLayoutPrototypeLinkEnabled(layoutPrototypeLinkEnabled);
 		}
 
-		layout.setExpandoBridgeAttributes(serviceContext);
+		layout.setPublishDate(serviceContext.getModifiedDate(now));
 
-		if (type.equals(LayoutConstants.TYPE_PORTLET)) {
-			LayoutTypePortlet layoutTypePortlet =
-				(LayoutTypePortlet)layout.getLayoutType();
+		if (workflowDefinitionLinkLocalService.hasWorkflowDefinitionLink(
+				layout.getCompanyId(), layout.getGroupId(),
+				Layout.class.getName()) &&
+			Objects.equals(type, LayoutConstants.TYPE_CONTENT) && !system) {
 
-			if (Validator.isNull(layoutTypePortlet.getLayoutTemplateId())) {
-				layoutTypePortlet.setLayoutTemplateId(
-					0, PropsValues.LAYOUT_DEFAULT_TEMPLATE_ID, false);
-			}
+			layout.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
+		else {
+			layout.setStatus(WorkflowConstants.STATUS_APPROVED);
+		}
+
+		layout.setStatusByUserId(userId);
+		layout.setStatusByUserName(user.getFullName());
+		layout.setStatusDate(serviceContext.getCreateDate(now));
+		layout.setExpandoBridgeAttributes(serviceContext);
 
 		layout = layoutLocalService.updateLayout(layout);
 
