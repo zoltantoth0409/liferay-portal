@@ -12,10 +12,6 @@
  * details.
  */
 
-/**
- * Action creators.
- */
-
 export {default as addFragmentEntryLink} from './addFragmentEntryLink';
 export {
 	default as addFragmentEntryLinkComment
