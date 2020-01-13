@@ -118,11 +118,13 @@ public class AuthVerifierPipeline {
 
 		String contextPath = httpServletRequest.getContextPath();
 
+		requestURI = requestURI.substring(contextPath.length());
+
 		for (AuthVerifierConfiguration authVerifierConfiguration :
 				_authVerifierConfigurations) {
 
 			authVerifierConfiguration = _mergeAuthVerifierConfiguration(
-				authVerifierConfiguration, accessControlContext, contextPath);
+				authVerifierConfiguration, accessControlContext);
 
 			if (_isMatchingRequestURI(authVerifierConfiguration, requestURI)) {
 				authVerifierConfigurations.add(authVerifierConfiguration);
@@ -163,7 +165,7 @@ public class AuthVerifierPipeline {
 
 	private AuthVerifierConfiguration _mergeAuthVerifierConfiguration(
 		AuthVerifierConfiguration authVerifierConfiguration,
-		AccessControlContext accessControlContext, String contextPath) {
+		AccessControlContext accessControlContext) {
 
 		Map<String, Object> settings = accessControlContext.getSettings();
 
@@ -209,22 +211,8 @@ public class AuthVerifierPipeline {
 					String propertiesKey = settingsKey.substring(
 						authVerifierSettingsKey.length());
 
-					if (propertiesKey.equals("urls.includes") ||
-						propertiesKey.equals("urls.excludes")) {
-
-						String settingsValueString = (String)settingsValue;
-
-						if (settingsValueString.charAt(0) != '/') {
-							settingsValueString = "/" + settingsValueString;
-						}
-
-						mergedProperties.setProperty(
-							propertiesKey, contextPath + settingsValueString);
-					}
-					else {
-						mergedProperties.setProperty(
-							propertiesKey, (String)settingsValue);
-					}
+					mergedProperties.setProperty(
+						propertiesKey, (String)settingsValue);
 				}
 			}
 		}
