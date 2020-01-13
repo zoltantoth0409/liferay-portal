@@ -39,7 +39,7 @@ MasterLayoutManagementToolbarDisplayContext masterLayoutManagementToolbarDisplay
 
 <aui:form action="<%= deleteMasterLayoutURL %>" cssClass="container-fluid-1280" name="fm">
 	<liferay-ui:error key="<%= PortalException.class.getName() %>" message="one-or-more-entries-could-not-be-deleted" />
-	<liferay-ui:error key="<%= RequiredLayoutPageTemplateEntryException.class.getName() %>" message="you-cannot-delete-master-pages-that-are-used-by-a-page,page-template-or-display-page-template" />
+	<liferay-ui:error key="<%= RequiredLayoutPageTemplateEntryException.class.getName() %>" message="you-cannot-delete-master-pages-that-are-used-by-a-page,-a-page-template,-or-a-display-page-template" />
 
 	<liferay-ui:search-container
 		id="<%= masterLayoutManagementToolbarDisplayContext.getSearchContainerId() %>"
