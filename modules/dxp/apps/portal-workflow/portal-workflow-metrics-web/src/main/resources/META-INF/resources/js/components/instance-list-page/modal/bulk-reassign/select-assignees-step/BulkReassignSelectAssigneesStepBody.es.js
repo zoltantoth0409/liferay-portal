@@ -44,7 +44,7 @@ const ErrorView = ({onClick}) => {
 			actionButton={<RetryButton onClick={onClick} />}
 			className="border-0 pb-8 pt-8"
 			hideAnimation={true}
-			message={Liferay.Language.get('failed-to-retrieve-assignees')}
+			message={Liferay.Language.get('unable-to-retrieve-assignees')}
 			messageClassName="small"
 		/>
 	);

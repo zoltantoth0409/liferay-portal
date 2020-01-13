@@ -59,7 +59,7 @@ const ErrorView = ({onClick}) => {
 			actionButton={<RetryButton onClick={onClick} />}
 			className="border-0 pb-6 pt-8"
 			hideAnimation={true}
-			message={Liferay.Language.get('failed-to-retrieve-data')}
+			message={Liferay.Language.get('unable-to-retrieve-data')}
 			messageClassName="small"
 		/>
 	);

@@ -154,7 +154,7 @@ describe('The BulkReassignModal component should', () => {
 
 		expect(emptyState.children[0].children[1]).toHaveTextContent('retry');
 		expect(emptyState.children[0].children[0]).toHaveTextContent(
-			'failed-to-retrieve-data'
+			'unable-to-retrieve-data'
 		);
 
 		fireEvent.click(retryBtn);
@@ -244,7 +244,7 @@ describe('The BulkReassignModal component should', () => {
 
 		expect(emptyState.children[0].children[1]).toHaveTextContent('retry');
 		expect(emptyState.children[0].children[0]).toHaveTextContent(
-			'failed-to-retrieve-assignees'
+			'unable-to-retrieve-assignees'
 		);
 
 		fireEvent.click(retryBtn);
