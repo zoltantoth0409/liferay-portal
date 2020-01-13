@@ -60,25 +60,30 @@ import org.slf4j.LoggerFactory;
  */
 public class LiferayClient {
 
-	public Response executeDeleteRequest(String targetUri)
-		throws ClientException {
-
-		return _execute(HttpMethod.DELETE, _createBuilder(_toURI(targetUri)));
-	}
-
-	public Response executeGetRequest(String targetUri) throws ClientException {
-		return _execute(HttpMethod.GET, _createBuilder(_toURI(targetUri)));
-	}
-
-	public Response executePatchRequest(String targetUri, JsonObject jsonObject)
+	public Response executeDeleteRequest(String targetURIString)
 		throws ClientException {
 
 		return _execute(
-			HttpMethod.PATCH, _createBuilder(_toURI(targetUri)),
+			HttpMethod.DELETE, _createBuilder(_toURI(targetURIString)));
+	}
+
+	public Response executeGetRequest(String targetURIString)
+		throws ClientException {
+
+		return _execute(
+			HttpMethod.GET, _createBuilder(_toURI(targetURIString)));
+	}
+
+	public Response executePatchRequest(
+			String targetURIString, JsonObject jsonObject)
+		throws ClientException {
+
+		return _execute(
+			HttpMethod.PATCH, _createBuilder(_toURI(targetURIString)),
 			Entity.json(_jsonObjectToPrettyString(jsonObject)));
 	}
 
-	public Response executePostRequest(String targetUri, File file)
+	public Response executePostRequest(String targetURIString, File file)
 		throws ClientException {
 
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
@@ -88,24 +93,26 @@ public class LiferayClient {
 				"file", file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
 
 		return _execute(
-			HttpMethod.POST, _createBuilder(_toURI(targetUri)),
+			HttpMethod.POST, _createBuilder(_toURI(targetURIString)),
 			Entity.entity(
 				formDataMultiPart, MediaType.MULTIPART_FORM_DATA_TYPE));
 	}
 
-	public Response executePostRequest(String targetUri, JsonObject jsonObject)
+	public Response executePostRequest(
+			String targetURIString, JsonObject jsonObject)
 		throws ClientException {
 
 		return _execute(
-			HttpMethod.POST, _createBuilder(_toURI(targetUri)),
+			HttpMethod.POST, _createBuilder(_toURI(targetURIString)),
 			Entity.json(_jsonObjectToPrettyString(jsonObject)));
 	}
 
-	public Response executePutRequest(String targetUri, JsonObject jsonObject)
+	public Response executePutRequest(
+			String targetURIString, JsonObject jsonObject)
 		throws ClientException {
 
 		return _execute(
-			HttpMethod.PUT, _createBuilder(_toURI(targetUri)),
+			HttpMethod.PUT, _createBuilder(_toURI(targetURIString)),
 			Entity.json(_jsonObjectToPrettyString(jsonObject)));
 	}
 
@@ -418,13 +425,14 @@ public class LiferayClient {
 		return targetUrl;
 	}
 
-	private URI _toURI(String targetUri) {
+	private URI _toURI(String targetURIString) {
 		try {
-			return new URI(_hostURL + targetUri);
+			return new URI(_hostURL + targetURIString);
 		}
 		catch (URISyntaxException urise) {
 			_logger.error(
-				"Unable to parse {} as a URI reference", _hostURL + targetUri);
+				"Unable to parse {} as a URI reference",
+				_hostURL + targetURIString);
 		}
 
 		return null;
