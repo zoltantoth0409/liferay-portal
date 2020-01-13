@@ -57,14 +57,16 @@ public class LayoutsTreeDisplayContext {
 			_liferayPortletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.RENDER_PHASE);
 
-		Layout layout = _themeDisplay.getLayout();
-
 		addLayoutURL.setParameter(
 			"mvcPath", "/select_layout_page_template_entry.jsp");
+
+		Layout layout = _themeDisplay.getLayout();
+
 		addLayoutURL.setParameter(
 			"redirect", PortalUtil.getLayoutFullURL(layout, _themeDisplay));
 		addLayoutURL.setParameter(
 			"backURL", PortalUtil.getLayoutFullURL(layout, _themeDisplay));
+
 		addLayoutURL.setParameter(
 			"groupId", String.valueOf(_themeDisplay.getSiteGroupId()));
 		addLayoutURL.setParameter(
