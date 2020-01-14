@@ -74,7 +74,7 @@ if ((layoutPageTemplateEntry == null) || !Objects.equals(layoutPageTemplateEntry
 
 		<div class="button-holder">
 			<clay:button
-				elementClasses='<%= (masterLayoutPageTemplateEntry == null) ? "btn-secondary" : "btn-secondary hide" %>'
+				elementClasses='<%= (masterLayoutPageTemplateEntry == null) ? "btn-secondary hide" : "btn-secondary" %>'
 				id='<%= renderResponse.getNamespace() + "editMasterLayoutButton" %>'
 				label='<%= LanguageUtil.get(request, "edit-master") %>'
 				size="sm"
