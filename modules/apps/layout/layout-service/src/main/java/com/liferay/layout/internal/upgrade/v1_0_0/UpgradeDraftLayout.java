@@ -32,15 +32,15 @@ public class UpgradeDraftLayout extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		String sql =
 			"update Layout set status = ? where classNameId = ? and classPK " +
-				"> 0 and system_ = ? and type_ = ?";
+				"> 0 and type_ = ? and system_ = ?";
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(sql)) {
 
 			ps.setInt(1, WorkflowConstants.STATUS_DRAFT);
 			ps.setLong(2, PortalUtil.getClassNameId(Layout.class));
-			ps.setBoolean(3, true);
-			ps.setString(4, LayoutConstants.TYPE_CONTENT);
+			ps.setString(3, LayoutConstants.TYPE_CONTENT);
+			ps.setBoolean(4, true);
 
 			ps.execute();
 		}
