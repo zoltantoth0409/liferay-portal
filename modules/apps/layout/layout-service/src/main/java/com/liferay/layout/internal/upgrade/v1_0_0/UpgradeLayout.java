@@ -26,7 +26,7 @@ import java.sql.PreparedStatement;
 /**
  * @author Pavel Savinov
  */
-public class UpgradeDraftLayout extends UpgradeProcess {
+public class UpgradeLayout extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
