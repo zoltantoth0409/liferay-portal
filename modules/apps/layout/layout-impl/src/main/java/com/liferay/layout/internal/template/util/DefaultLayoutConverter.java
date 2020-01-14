@@ -147,7 +147,6 @@ public class DefaultLayoutConverter implements LayoutConverter {
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			locale, getClass());
-
 		UnicodeProperties typeSettingsProperties =
 			layout.getTypeSettingsProperties();
 
@@ -182,8 +181,8 @@ public class DefaultLayoutConverter implements LayoutConverter {
 			conversionWarningMessages.add(
 				LanguageUtil.get(
 					resourceBundle,
-					"this-page-uses-a-non-standard-page-layout.-a-best-" +
-						"effort-conversion-has-been-performed.-verify-the-" +
+					"this-page-uses-a-custom-page-layout.-a-best-effort-" +
+						"conversion-has-been-performed.-verify-the-" +
 							"conversion-draft-before-publishing-it"));
 		}
 
@@ -191,9 +190,9 @@ public class DefaultLayoutConverter implements LayoutConverter {
 			conversionWarningMessages.add(
 				LanguageUtil.get(
 					resourceBundle,
-					"this-page-uses-a-non-standard-page-layout.-all-widgets-" +
-						"have-been-placed-in-a-single-column-and-will-" +
-							"require-manual-reorganization"));
+					"this-page-uses-a-custom-page-layout.-all-widgets-have-" +
+						"been-placed-in-a-single-column-and-will-require-" +
+							"manual-reorganization"));
 		}
 
 		return conversionWarningMessages.toArray(new String[0]);
