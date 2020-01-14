@@ -542,6 +542,7 @@ public class SegmentsEntryLocalServiceImpl
 		throws PortalException {
 
 		_reindexSegmentsEntryRels(segmentsEntry);
+
 		_reindexReferredSegmentsEntryRels(segmentsEntry);
 	}
 
