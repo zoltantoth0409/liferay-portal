@@ -358,6 +358,10 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setTypeSettingsProperties(typeSettingsProperties);
 
 		if (type.equals(LayoutConstants.TYPE_PORTLET)) {
+
+			// LPS-106287 Calling layoutTypePortlet#setLayoutTemplateId modifies
+			// typeSettingsProperties
+
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
 
