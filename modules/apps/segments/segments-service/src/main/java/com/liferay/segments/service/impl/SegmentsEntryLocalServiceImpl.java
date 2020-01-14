@@ -541,8 +541,8 @@ public class SegmentsEntryLocalServiceImpl
 	protected void reindexSegmentsEntryRels(SegmentsEntry segmentsEntry)
 		throws PortalException {
 
-		_reindexReferredSegmentsEntryRels(segmentsEntry);
 		_reindexSegmentsEntryRels(segmentsEntry);
+		_reindexReferredSegmentsEntryRels(segmentsEntry);
 	}
 
 	protected void validateKey(
