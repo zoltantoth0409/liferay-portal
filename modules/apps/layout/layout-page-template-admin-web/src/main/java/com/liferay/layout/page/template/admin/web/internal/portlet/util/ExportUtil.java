@@ -86,7 +86,7 @@ public class ExportUtil {
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to get file entry preview ", pe);
+				_log.debug("Unable to get file entry preview", pe);
 			}
 		}
 
