@@ -83,9 +83,9 @@ public class EditLayoutControlMenuDisplayContext {
 			return false;
 		}
 
-		Group selGroup = _themeDisplay.getScopeGroup();
+		Group group = _themeDisplay.getScopeGroup();
 
-		if (selGroup.isLayoutPrototype()) {
+		if (group.isLayoutPrototype()) {
 			return false;
 		}
 
