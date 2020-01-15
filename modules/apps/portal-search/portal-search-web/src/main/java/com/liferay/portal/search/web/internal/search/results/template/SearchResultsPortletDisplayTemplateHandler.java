@@ -92,18 +92,8 @@ public class SearchResultsPortletDisplayTemplateHandler
 		templateVariableGroup.empty();
 
 		templateVariableGroup.addVariable(
-			"search-container", SearchContainer.class, "searchContainer");
-		templateVariableGroup.addVariable(
-			"search-results-display-context",
-			SearchResultsPortletDisplayContext.class,
-			"searchResultsPortletDisplayContext");
-		templateVariableGroup.addCollectionVariable(
-			"documents", List.class, PortletDisplayTemplateConstants.ENTRIES,
-			"document", SearchResultSummaryDisplayContext.class,
-			PortletDisplayTemplateConstants.ENTRY, "getHighlightedTitle()");
-		templateVariableGroup.addVariable(
-			"document-title", SearchResultSummaryDisplayContext.class,
-			PortletDisplayTemplateConstants.ENTRY, "getHighlightedTitle()");
+			"document-content", SearchResultSummaryDisplayContext.class,
+			PortletDisplayTemplateConstants.ENTRY, "getContent()");
 		templateVariableGroup.addVariable(
 			"document-creation-date", SearchResultSummaryDisplayContext.class,
 			PortletDisplayTemplateConstants.ENTRY, "getCreationDateString()");
@@ -112,8 +102,18 @@ public class SearchResultsPortletDisplayTemplateHandler
 			SearchResultSummaryDisplayContext.class,
 			PortletDisplayTemplateConstants.ENTRY, "getCreatorUserName()");
 		templateVariableGroup.addVariable(
-			"document-content", SearchResultSummaryDisplayContext.class,
-			PortletDisplayTemplateConstants.ENTRY, "getContent()");
+			"document-title", SearchResultSummaryDisplayContext.class,
+			PortletDisplayTemplateConstants.ENTRY, "getHighlightedTitle()");
+		templateVariableGroup.addCollectionVariable(
+			"documents", List.class, PortletDisplayTemplateConstants.ENTRIES,
+			"document", SearchResultSummaryDisplayContext.class,
+			PortletDisplayTemplateConstants.ENTRY, "getHighlightedTitle()");
+		templateVariableGroup.addVariable(
+			"search-container", SearchContainer.class, "searchContainer");
+		templateVariableGroup.addVariable(
+			"search-results-display-context",
+			SearchResultsPortletDisplayContext.class,
+			"searchResultsPortletDisplayContext");
 
 		TemplateVariableGroup categoriesServicesTemplateVariableGroup =
 			new TemplateVariableGroup(
