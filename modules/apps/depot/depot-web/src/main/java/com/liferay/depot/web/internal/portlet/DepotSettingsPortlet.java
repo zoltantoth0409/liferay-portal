@@ -66,6 +66,11 @@ public class DepotSettingsPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
+			renderRequest.setAttribute(
+				DepotAdminWebKeys.DEPOT_ADMIN_DETAILS_DISPLAY_CONTEXT,
+				new DepotAdminDetailsDisplayContext(
+					_depotApplicationController, renderRequest));
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
@@ -77,11 +82,6 @@ public class DepotSettingsPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(
 				DepotAdminWebKeys.ITEM_SELECTOR, _itemSelector);
-
-			renderRequest.setAttribute(
-				DepotAdminWebKeys.DEPOT_ADMIN_DETAILS_DISPLAY_CONTEXT,
-				new DepotAdminDetailsDisplayContext(
-					_depotApplicationController, renderRequest));
 
 			super.doView(
 				new DynamicRenderRequest(
