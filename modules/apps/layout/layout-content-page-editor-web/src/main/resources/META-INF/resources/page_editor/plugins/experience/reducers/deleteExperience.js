@@ -1,11 +1,3 @@
-import {
-	selectExperience,
-	deleteExperienceById,
-	removeLayoutDataItemById,
-	switchLayoutData,
-	setExperienceLock
-} from './utils';
-
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -19,6 +11,14 @@ import {
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
+import {
+	selectExperience,
+	deleteExperienceById,
+	removeLayoutDataItemById,
+	switchLayoutData,
+	setExperienceLock
+} from './utils';
 
 function deleteExperienceReducer(state, payload) {
 	let nextState = state;
