@@ -177,13 +177,13 @@ public class SearchResultsPortlet extends MVCPortlet {
 		searchResultsPortletDisplayContext.setSearchResultsSummariesHolder(
 			searchResultsSummariesHolder);
 
-		searchResultsPortletDisplayContext.setTotalHits(
-			searchResponse.getTotalHits());
-
 		searchResultsPortletDisplayContext.
 			setSearchResultSummaryDisplayContexts(
 				searchResultsPortletDisplayContext.
 					translateSearchResultSummaryDisplayContexts(documents));
+
+		searchResultsPortletDisplayContext.setTotalHits(
+			searchResponse.getTotalHits());
 
 		return searchResultsPortletDisplayContext;
 	}
