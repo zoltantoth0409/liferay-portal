@@ -318,10 +318,9 @@ public class MFAEmailOTPChecker {
 		MFAEmailOTPConfiguration mfaEmailOTPConfiguration,
 		MFAEmailOTPEntry mfaEmailOTPEntry) {
 
-		int failedAttemptsAllowed =
-			mfaEmailOTPConfiguration.failedAttemptsAllowed();
+		if (mfaEmailOTPEntry.getFailedAttempts() >=
+				mfaEmailOTPConfiguration.failedAttemptsAllowed()) {
 
-		if (mfaEmailOTPEntry.getFailedAttempts() >= failedAttemptsAllowed) {
 			return true;
 		}
 
