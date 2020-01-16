@@ -139,7 +139,8 @@ public class MFAEmailOTPChecker {
 		MFAEmailOTPConfiguration mfaEmailOTPConfiguration =
 			_getMFAEmailOTPConfiguration(userId);
 
-		if (isThrottlingEnabled(mfaEmailOTPConfiguration) &&
+		if ((mfaEmailOTPConfiguration.failedAttemptsAllowed() >= 0) &&
+			(mfaEmailOTPConfiguration.retryTimeout() >= 0) &&
 			(mfaEmailOTPConfiguration.failedAttemptsAllowed() <=
 				mfaEmailOTPEntry.getFailedAttempts())) {
 
@@ -213,18 +214,6 @@ public class MFAEmailOTPChecker {
 
 		PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES =
 			sessionPhishingProtectedAttributes.toArray(new String[0]);
-	}
-
-	protected boolean isThrottlingEnabled(
-		MFAEmailOTPConfiguration mfaEmailOTPConfiguration) {
-
-		if ((mfaEmailOTPConfiguration.failedAttemptsAllowed() >= 0) &&
-			(mfaEmailOTPConfiguration.retryTimeout() >= 0)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	protected boolean isVerified(HttpSession httpSession, long userId) {
