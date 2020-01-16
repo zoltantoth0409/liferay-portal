@@ -198,38 +198,39 @@ public class MFAEmailOTPChecker {
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		if (PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
-			List<String> sessionPhishingProtectedAttributesList =
-				new ArrayList<>(
-					Arrays.asList(
-						PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
-
-			sessionPhishingProtectedAttributesList.add(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
-			sessionPhishingProtectedAttributesList.add(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
-
-			PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES =
-				sessionPhishingProtectedAttributesList.toArray(new String[0]);
+		if (!PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
+			return;
 		}
+
+		List<String> sessionPhishingProtectedAttributes = new ArrayList<>(
+			Arrays.asList(PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
+
+		sessionPhishingProtectedAttributes.add(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
+		sessionPhishingProtectedAttributes.add(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
+
+		PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES =
+			sessionPhishingProtectedAttributes.toArray(new String[0]);
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		if (PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
-			List<String> sessionPhishingProtectedAttributesList =
-				new ArrayList<>(
-					Arrays.asList(
-						PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
-
-			sessionPhishingProtectedAttributesList.remove(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
-			sessionPhishingProtectedAttributesList.remove(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
-
-			PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES =
-				sessionPhishingProtectedAttributesList.toArray(new String[0]);
+		if (!PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
+			return;
 		}
+
+		List<String> sessionPhishingProtectedAttributes = new ArrayList<>(
+			Arrays.asList(
+				PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
+
+		sessionPhishingProtectedAttributes.remove(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
+		sessionPhishingProtectedAttributes.remove(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
+
+		PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES =
+			sessionPhishingProtectedAttributes.toArray(new String[0]);
 	}
 
 	protected boolean isThrottlingEnabled(
