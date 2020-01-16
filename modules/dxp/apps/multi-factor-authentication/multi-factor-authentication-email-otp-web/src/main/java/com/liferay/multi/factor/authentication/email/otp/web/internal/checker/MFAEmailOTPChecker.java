@@ -285,8 +285,8 @@ public class MFAEmailOTPChecker {
 
 		if (user == null) {
 			throw new IllegalStateException(
-				"Requested Email One-time password verification for a non " +
-					"existent user id: " + userId);
+				"Requested one-time password email verification for a " +
+					"nonexistent user " + userId);
 		}
 
 		try {
