@@ -140,9 +140,9 @@ public class MFAEmailOTPChecker {
 			_getMFAEmailOTPConfiguration(userId);
 
 		if ((mfaEmailOTPConfiguration.failedAttemptsAllowed() >= 0) &&
-			(mfaEmailOTPConfiguration.retryTimeout() >= 0) &&
 			(mfaEmailOTPConfiguration.failedAttemptsAllowed() <=
-				mfaEmailOTPEntry.getFailedAttempts())) {
+				mfaEmailOTPEntry.getFailedAttempts()) &&
+			(mfaEmailOTPConfiguration.retryTimeout() >= 0)) {
 
 			if (_isRetryTimedOut(
 					mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
