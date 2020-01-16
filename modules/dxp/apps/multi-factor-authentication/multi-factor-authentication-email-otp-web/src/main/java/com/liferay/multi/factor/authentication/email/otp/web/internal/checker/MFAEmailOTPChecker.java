@@ -218,13 +218,13 @@ public class MFAEmailOTPChecker {
 	protected boolean isThrottlingEnabled(
 		MFAEmailOTPConfiguration mfaEmailOTPConfiguration) {
 
-		if ((mfaEmailOTPConfiguration.failedAttemptsAllowed() < 0) ||
-			(mfaEmailOTPConfiguration.retryTimeout() < 0)) {
+		if ((mfaEmailOTPConfiguration.failedAttemptsAllowed() >= 0) &&
+			(mfaEmailOTPConfiguration.retryTimeout() >= 0)) {
 
-			return false;
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	protected boolean isVerified(HttpSession httpSession, long userId) {
