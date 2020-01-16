@@ -303,11 +303,11 @@ public class MFAEmailOTPChecker {
 		MFAEmailOTPEntry mfaEmailOTPEntry) {
 
 		Date lastFailDate = mfaEmailOTPEntry.getLastFailDate();
-		long retryTimeout = mfaEmailOTPConfiguration.retryTimeout();
 
-		if ((lastFailDate.getTime() + retryTimeout) >
-				System.currentTimeMillis()) {
+		long time =
+			mfaEmailOTPConfiguration.retryTimeout() + lastFailDate.getTime();
 
+		if (time > System.currentTimeMillis()) {
 			return false;
 		}
 
