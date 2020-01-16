@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -328,10 +329,10 @@ public class MFAEmailOTPChecker {
 	}
 
 	private boolean _verify(HttpSession httpSession, String otp) {
-		String expectedOtp = (String)httpSession.getAttribute(
-			MFAEmailOTPWebKeys.MFA_EMAIL_OTP);
+		if (!Objects.equals(
+				httpSession.getAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP),
+				otp)) {
 
-		if ((expectedOtp == null) || !expectedOtp.equals(otp)) {
 			return false;
 		}
 
