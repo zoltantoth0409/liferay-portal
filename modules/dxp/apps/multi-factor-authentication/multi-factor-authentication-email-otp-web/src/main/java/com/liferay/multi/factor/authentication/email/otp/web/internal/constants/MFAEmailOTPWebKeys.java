@@ -29,12 +29,13 @@ public class MFAEmailOTPWebKeys {
 	public static final String MFA_EMAIL_OTP_SEND_TO_ADDRESS =
 		"MFA_EMAIL_OTP_SEND_TO_ADDRESS";
 
-	public static final String MFA_EMAIL_OTP_SET_AT = "MFA_EMAIL_OTP_SET_AT";
+	public static final String MFA_EMAIL_OTP_SET_AT_TIME =
+		"MFA_EMAIL_OTP_SET_AT_TIME";
 
 	public static final String MFA_EMAIL_OTP_USER_ID = "MFA_EMAIL_OTP_USER_ID";
 
-	public static final String MFA_EMAIL_OTP_VALIDATED_AT =
-		"MFA_EMAIL_OTP_VALIDATED_AT";
+	public static final String MFA_EMAIL_OTP_VALIDATED_AT_TIME =
+		"MFA_EMAIL_OTP_VALIDATED_AT_TIME";
 
 	public static final String MFA_EMAIL_OTP_VALIDATED_USER_ID =
 		"MFA_EMAIL_OTP_VALIDATED_USER_ID";

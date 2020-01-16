@@ -174,7 +174,7 @@ public class MFAEmailOTPChecker {
 
 			if (_verify(httpSession, otp)) {
 				httpSession.setAttribute(
-					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT,
+					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME,
 					System.currentTimeMillis());
 				httpSession.setAttribute(
 					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID, userId);
@@ -207,7 +207,7 @@ public class MFAEmailOTPChecker {
 			Arrays.asList(PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
 
 		sessionPhishingProtectedAttributes.add(
-			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME);
 		sessionPhishingProtectedAttributes.add(
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
 
@@ -226,7 +226,7 @@ public class MFAEmailOTPChecker {
 				PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
 
 		sessionPhishingProtectedAttributes.remove(
-			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME);
 		sessionPhishingProtectedAttributes.remove(
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
 
@@ -268,10 +268,10 @@ public class MFAEmailOTPChecker {
 			return true;
 		}
 
-		long validatedAt = (long)httpSession.getAttribute(
-			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT);
+		long validatedAtTime = (long)httpSession.getAttribute(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME);
 
-		if ((validatedAt + validationExpirationTime * 1000) >
+		if ((validatedAtTime + validationExpirationTime * 1000) >
 				System.currentTimeMillis()) {
 
 			return true;
@@ -337,7 +337,7 @@ public class MFAEmailOTPChecker {
 
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP);
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_PHASE);
-		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_SET_AT);
+		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_SET_AT_TIME);
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_USER_ID);
 
 		return true;
