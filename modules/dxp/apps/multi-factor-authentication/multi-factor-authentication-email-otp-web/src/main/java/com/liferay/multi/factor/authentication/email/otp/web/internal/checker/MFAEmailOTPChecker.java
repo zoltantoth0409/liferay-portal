@@ -144,9 +144,12 @@ public class MFAEmailOTPChecker {
 				mfaEmailOTPEntry.getFailedAttempts()) &&
 			(mfaEmailOTPConfiguration.retryTimeout() >= 0)) {
 
-			if (_isRetryTimedOut(
-					mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
+			Date lastFailDate = mfaEmailOTPEntry.getLastFailDate();
 
+			long time =
+				mfaEmailOTPConfiguration.retryTimeout() + lastFailDate.getTime();
+
+			if (time <= System.currentTimeMillis()) {
 				_mfaEmailOTPEntryLocalService.resetFailedAttempts(userId);
 			}
 			else {
@@ -266,22 +269,6 @@ public class MFAEmailOTPChecker {
 		catch (ConfigurationException ce) {
 			throw new IllegalStateException(ce);
 		}
-	}
-
-	private boolean _isRetryTimedOut(
-		MFAEmailOTPConfiguration mfaEmailOTPConfiguration,
-		MFAEmailOTPEntry mfaEmailOTPEntry) {
-
-		Date lastFailDate = mfaEmailOTPEntry.getLastFailDate();
-
-		long time =
-			mfaEmailOTPConfiguration.retryTimeout() + lastFailDate.getTime();
-
-		if (time <= System.currentTimeMillis()) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private boolean _verify(HttpSession httpSession, String otp) {
