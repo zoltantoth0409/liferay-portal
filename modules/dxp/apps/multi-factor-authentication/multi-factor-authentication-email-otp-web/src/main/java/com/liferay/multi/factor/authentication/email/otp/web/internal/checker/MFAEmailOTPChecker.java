@@ -220,8 +220,7 @@ public class MFAEmailOTPChecker {
 		}
 
 		List<String> sessionPhishingProtectedAttributes = new ArrayList<>(
-			Arrays.asList(
-				PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
+			Arrays.asList(PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES));
 
 		sessionPhishingProtectedAttributes.remove(
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME);
@@ -335,7 +334,8 @@ public class MFAEmailOTPChecker {
 
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP);
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_PHASE);
-		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_SET_AT_TIME);
+		httpSession.removeAttribute(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_SET_AT_TIME);
 		httpSession.removeAttribute(MFAEmailOTPWebKeys.MFA_EMAIL_OTP_USER_ID);
 
 		return true;
