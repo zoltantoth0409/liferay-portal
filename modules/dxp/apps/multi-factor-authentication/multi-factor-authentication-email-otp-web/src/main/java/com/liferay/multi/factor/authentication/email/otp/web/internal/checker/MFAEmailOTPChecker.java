@@ -140,8 +140,8 @@ public class MFAEmailOTPChecker {
 			_getMFAEmailOTPConfiguration(userId);
 
 		if (isThrottlingEnabled(mfaEmailOTPConfiguration) &&
-			_reachedFailedAttemptsAllowed(
-				mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
+			(mfaEmailOTPConfiguration.failedAttemptsAllowed() <=
+				mfaEmailOTPEntry.getFailedAttempts())) {
 
 			if (_isRetryTimedOut(
 					mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
@@ -293,19 +293,6 @@ public class MFAEmailOTPChecker {
 		}
 
 		return true;
-	}
-
-	private boolean _reachedFailedAttemptsAllowed(
-		MFAEmailOTPConfiguration mfaEmailOTPConfiguration,
-		MFAEmailOTPEntry mfaEmailOTPEntry) {
-
-		if (mfaEmailOTPConfiguration.failedAttemptsAllowed() <=
-				mfaEmailOTPEntry.getFailedAttempts()) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private boolean _verify(HttpSession httpSession, String otp) {
