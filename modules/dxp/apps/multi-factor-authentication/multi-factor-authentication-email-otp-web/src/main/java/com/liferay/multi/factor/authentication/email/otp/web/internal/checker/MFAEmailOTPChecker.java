@@ -111,8 +111,9 @@ public class MFAEmailOTPChecker {
 	}
 
 	public boolean verifyBrowserRequest(
-		HttpServletRequest httpServletRequest,
-		HttpServletResponse httpServletResponse, long userId) {
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse, long userId)
+		throws Exception {
 
 		User user = _userLocalService.fetchUser(userId);
 
@@ -131,58 +132,51 @@ public class MFAEmailOTPChecker {
 
 		HttpSession httpSession = originalHttpServletRequest.getSession();
 
-		try {
-			MFAEmailOTPEntry mfaEmailOTPEntry =
-				_mfaEmailOTPEntryLocalService.fetchMFAEmailOTPEntryByUserId(
-					userId);
+		MFAEmailOTPEntry mfaEmailOTPEntry =
+			_mfaEmailOTPEntryLocalService.fetchMFAEmailOTPEntryByUserId(
+				userId);
 
-			if (mfaEmailOTPEntry == null) {
-				mfaEmailOTPEntry =
-					_mfaEmailOTPEntryLocalService.addMFAEmailOTPEntry(userId);
-			}
+		if (mfaEmailOTPEntry == null) {
+			mfaEmailOTPEntry =
+				_mfaEmailOTPEntryLocalService.addMFAEmailOTPEntry(userId);
+		}
 
-			MFAEmailOTPConfiguration mfaEmailOTPConfiguration =
-				_getMFAEmailOTPConfiguration(userId);
+		MFAEmailOTPConfiguration mfaEmailOTPConfiguration =
+			_getMFAEmailOTPConfiguration(userId);
 
-			if (isThrottlingEnabled(mfaEmailOTPConfiguration) &&
-				_reachedFailedAttemptsAllowed(
+		if (isThrottlingEnabled(mfaEmailOTPConfiguration) &&
+			_reachedFailedAttemptsAllowed(
+				mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
+
+			if (_isRetryTimedOut(
 					mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
 
-				if (_isRetryTimedOut(
-						mfaEmailOTPConfiguration, mfaEmailOTPEntry)) {
-
-					_mfaEmailOTPEntryLocalService.resetFailedAttempts(userId);
-				}
-				else {
-					return false;
-				}
+				_mfaEmailOTPEntryLocalService.resetFailedAttempts(userId);
 			}
-
-			String otp = ParamUtil.getString(httpServletRequest, "otp");
-
-			if (_verify(httpSession, otp)) {
-				httpSession.setAttribute(
-					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME,
-					System.currentTimeMillis());
-				httpSession.setAttribute(
-					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID, userId);
-
-				_mfaEmailOTPEntryLocalService.updateAttempts(
-					userId, originalHttpServletRequest.getRemoteAddr(), true);
-
-				return true;
+			else {
+				return false;
 			}
+		}
+
+		String otp = ParamUtil.getString(httpServletRequest, "otp");
+
+		if (_verify(httpSession, otp)) {
+			httpSession.setAttribute(
+				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME,
+				System.currentTimeMillis());
+			httpSession.setAttribute(
+				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID, userId);
 
 			_mfaEmailOTPEntryLocalService.updateAttempts(
-				userId, originalHttpServletRequest.getRemoteAddr(), false);
+				userId, originalHttpServletRequest.getRemoteAddr(), true);
 
-			return false;
+			return true;
 		}
-		catch (Exception e) {
-			_log.error(e, e);
 
-			return false;
-		}
+		_mfaEmailOTPEntryLocalService.updateAttempts(
+			userId, originalHttpServletRequest.getRemoteAddr(), false);
+
+		return false;
 	}
 
 	@Activate
