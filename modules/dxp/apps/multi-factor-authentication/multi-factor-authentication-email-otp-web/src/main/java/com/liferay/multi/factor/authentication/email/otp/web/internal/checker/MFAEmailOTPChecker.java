@@ -73,6 +73,9 @@ public class MFAEmailOTPChecker {
 		}
 
 		httpServletRequest.setAttribute(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_CONFIGURATION,
+			_getMFAEmailOTPConfiguration(userId));
+		httpServletRequest.setAttribute(
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_SEND_TO_ADDRESS,
 			user.getEmailAddress());
 
@@ -80,10 +83,6 @@ public class MFAEmailOTPChecker {
 			_servletContext.getRequestDispatcher("/verify_mfa_email_otp.jsp");
 
 		try {
-			httpServletRequest.setAttribute(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_CONFIGURATION,
-				_getMFAEmailOTPConfiguration(userId));
-
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 
 			HttpServletRequest originalHttpServletRequest =
