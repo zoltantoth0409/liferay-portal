@@ -224,10 +224,11 @@ public class MFAEmailOTPChecker {
 			return false;
 		}
 
-		long validatedUserId = (long)httpSession.getAttribute(
-			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID);
+		if (!Objects.equals(
+				httpSession.getAttribute(
+					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID),
+				userId)) {
 
-		if (userId != validatedUserId) {
 			return false;
 		}
 
