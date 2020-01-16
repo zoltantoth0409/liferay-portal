@@ -127,11 +127,6 @@ public class MFAEmailOTPChecker {
 			return false;
 		}
 
-		HttpServletRequest originalHttpServletRequest =
-			_portal.getOriginalServletRequest(httpServletRequest);
-
-		HttpSession httpSession = originalHttpServletRequest.getSession();
-
 		MFAEmailOTPEntry mfaEmailOTPEntry =
 			_mfaEmailOTPEntryLocalService.fetchMFAEmailOTPEntryByUserId(
 				userId);
@@ -157,6 +152,11 @@ public class MFAEmailOTPChecker {
 				return false;
 			}
 		}
+
+		HttpServletRequest originalHttpServletRequest =
+			_portal.getOriginalServletRequest(httpServletRequest);
+
+		HttpSession httpSession = originalHttpServletRequest.getSession();
 
 		String otp = ParamUtil.getString(httpServletRequest, "otp");
 
