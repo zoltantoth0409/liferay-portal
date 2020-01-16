@@ -277,11 +277,11 @@ public class MFAEmailOTPChecker {
 		long time =
 			mfaEmailOTPConfiguration.retryTimeout() + lastFailDate.getTime();
 
-		if (time > System.currentTimeMillis()) {
-			return false;
+		if (time <= System.currentTimeMillis()) {
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	private boolean _verify(HttpSession httpSession, String otp) {
