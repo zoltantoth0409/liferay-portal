@@ -58,7 +58,7 @@ public class MFAEmailOTPChecker {
 	public void includeBrowserVerification(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long userId)
-		throws IOException {
+		throws Exception {
 
 		User user = _userLocalService.fetchUser(userId);
 
@@ -82,23 +82,17 @@ public class MFAEmailOTPChecker {
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher("/verify_mfa_email_otp.jsp");
 
-		try {
-			requestDispatcher.include(httpServletRequest, httpServletResponse);
+		requestDispatcher.include(httpServletRequest, httpServletResponse);
 
-			HttpServletRequest originalHttpServletRequest =
-				_portal.getOriginalServletRequest(httpServletRequest);
+		HttpServletRequest originalHttpServletRequest =
+			_portal.getOriginalServletRequest(httpServletRequest);
 
-			HttpSession httpSession = originalHttpServletRequest.getSession();
+		HttpSession httpSession = originalHttpServletRequest.getSession();
 
-			httpSession.setAttribute(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_PHASE, "verify");
-			httpSession.setAttribute(
-				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_USER_ID, userId);
-		}
-		catch (ServletException se) {
-			throw new IOException(
-				"Unable to include /verify_mfa_email_otp.jsp", se);
-		}
+		httpSession.setAttribute(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_PHASE, "verify");
+		httpSession.setAttribute(
+			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_USER_ID, userId);
 	}
 
 	public boolean isBrowserVerified(
