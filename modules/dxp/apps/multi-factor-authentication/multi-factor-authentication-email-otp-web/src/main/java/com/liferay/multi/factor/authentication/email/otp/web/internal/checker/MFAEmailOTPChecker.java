@@ -170,8 +170,6 @@ public class MFAEmailOTPChecker {
 
 			String otp = ParamUtil.getString(httpServletRequest, "otp");
 
-			String remoteAddr = originalHttpServletRequest.getRemoteAddr();
-
 			if (_verify(httpSession, otp)) {
 				httpSession.setAttribute(
 					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT_TIME,
@@ -180,13 +178,13 @@ public class MFAEmailOTPChecker {
 					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_USER_ID, userId);
 
 				_mfaEmailOTPEntryLocalService.updateAttempts(
-					userId, remoteAddr, true);
+					userId, originalHttpServletRequest.getRemoteAddr(), true);
 
 				return true;
 			}
 
 			_mfaEmailOTPEntryLocalService.updateAttempts(
-				userId, remoteAddr, false);
+				userId, originalHttpServletRequest.getRemoteAddr(), false);
 
 			return false;
 		}
