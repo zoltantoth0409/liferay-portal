@@ -80,12 +80,9 @@ public class MFAEmailOTPChecker {
 			_servletContext.getRequestDispatcher("/verify_mfa_email_otp.jsp");
 
 		try {
-			MFAEmailOTPConfiguration mfaEmailOTPConfiguration =
-				_getMFAEmailOTPConfiguration(userId);
-
 			httpServletRequest.setAttribute(
 				MFAEmailOTPWebKeys.MFA_EMAIL_OTP_CONFIGURATION,
-				mfaEmailOTPConfiguration);
+				_getMFAEmailOTPConfiguration(userId));
 
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 
