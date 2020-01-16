@@ -236,12 +236,9 @@ public class MFAEmailOTPChecker {
 	protected boolean isThrottlingEnabled(
 		MFAEmailOTPConfiguration mfaEmailOTPConfiguration) {
 
-		long retryTimeout = mfaEmailOTPConfiguration.retryTimeout();
+		if ((mfaEmailOTPConfiguration.retryTimeout() < 0) ||
+			(mfaEmailOTPConfiguration.failedAttemptsAllowed() < 0)) {
 
-		int failedAttemptsAllowed =
-			mfaEmailOTPConfiguration.failedAttemptsAllowed();
-
-		if ((retryTimeout < 0) || (failedAttemptsAllowed < 0)) {
 			return false;
 		}
 
