@@ -64,8 +64,8 @@ public class MFAEmailOTPChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested Email One-time password verification for a " +
-						"non existent user id: " + userId);
+					"Requested one-time password email verification for a " +
+						"nonexistent user " + userId);
 			}
 
 			return;
@@ -76,7 +76,7 @@ public class MFAEmailOTPChecker {
 			user.getEmailAddress());
 
 		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/verify_otp.jsp");
+			_servletContext.getRequestDispatcher("/verify_mfa_email_otp.jsp");
 
 		try {
 			MFAEmailOTPConfiguration mfaEmailOTPConfiguration =
@@ -100,7 +100,7 @@ public class MFAEmailOTPChecker {
 		}
 		catch (ServletException se) {
 			throw new IOException(
-				"Unable to include /verify_otp.jsp: " + se, se);
+				"Unable to include /verify_mfa_email_otp.jsp", se);
 		}
 	}
 
@@ -128,8 +128,8 @@ public class MFAEmailOTPChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested Email One-time password verification for a " +
-						"non existent user id: " + userId);
+					"Requested one-time password email verification for a " +
+						"nonexistent user " + userId);
 			}
 
 			return false;
@@ -169,11 +169,9 @@ public class MFAEmailOTPChecker {
 
 			String otp = ParamUtil.getString(httpServletRequest, "otp");
 
-			boolean verified = _verify(httpSession, otp);
-
 			String remoteAddr = originalHttpServletRequest.getRemoteAddr();
 
-			if (verified) {
+			if (_verify(httpSession, otp)) {
 				httpSession.setAttribute(
 					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_VALIDATED_AT,
 					System.currentTimeMillis());
@@ -192,7 +190,7 @@ public class MFAEmailOTPChecker {
 			return false;
 		}
 		catch (Exception e) {
-			_log.error(e.getMessage(), e);
+			_log.error(e, e);
 
 			return false;
 		}
