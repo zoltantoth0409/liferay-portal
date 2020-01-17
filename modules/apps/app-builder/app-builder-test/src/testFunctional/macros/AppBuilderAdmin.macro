@@ -103,7 +103,7 @@ definition {
 
 		Button.clickNext();
 
-		Button.click(button = "Save");
+		App.saveApp();
 	}
 
 	macro editCustomObjectNameAtPopover {
