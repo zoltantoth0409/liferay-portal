@@ -126,9 +126,10 @@ public class PublishLayoutMVCActionCommand
 		else {
 			layout = _layoutCopyHelper.copyLayout(draftLayout, layout);
 
+			layout.setType(draftLayout.getType());
+
 			String layoutPrototypeUuid = layout.getLayoutPrototypeUuid();
 
-			layout.setType(draftLayout.getType());
 			layout.setLayoutPrototypeUuid(null);
 
 			_layoutLocalService.updateLayout(layout);
@@ -136,12 +137,12 @@ public class PublishLayoutMVCActionCommand
 			UnicodeProperties typeSettingsProperties =
 				draftLayout.getTypeSettingsProperties();
 
-			typeSettingsProperties.setProperty("published", "true");
-
 			if (Validator.isNotNull(layoutPrototypeUuid)) {
 				typeSettingsProperties.setProperty(
 					"layoutPrototypeUuid", layoutPrototypeUuid);
 			}
+
+			typeSettingsProperties.setProperty("published", "true");
 
 			draftLayout = _layoutLocalService.updateLayout(
 				draftLayout.getGroupId(), draftLayout.isPrivateLayout(),
