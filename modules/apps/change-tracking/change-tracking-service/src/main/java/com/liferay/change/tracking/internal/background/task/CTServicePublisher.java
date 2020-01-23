@@ -99,8 +99,8 @@ public class CTServicePublisher<T extends CTModel<T>> {
 		if (primaryKeyNames.size() != 1) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"{tableName=", tableName, ", primaryKeyNames=",
-					primaryKeyNames, "}"));
+					"{primaryKeyNames=", primaryKeyNames, ", tableName=",
+					tableName, "}"));
 		}
 
 		Iterator<String> iterator = primaryKeyNames.iterator();

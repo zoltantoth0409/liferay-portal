@@ -72,8 +72,8 @@ public class CTServiceRegistry {
 			if (primaryKeyNames.size() != 1) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"{tableName=", ctPersistence.getTableName(),
-						", primaryKeyNames=", primaryKeyNames, "}"));
+						"{primaryKeyNames=", primaryKeyNames, ", tableName=",
+						ctPersistence.getTableName(), "}"));
 			}
 
 			Iterator<String> iterator = primaryKeyNames.iterator();
