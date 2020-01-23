@@ -210,7 +210,6 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 					}
 				}
 			});
-
 		dataLayout.setName(
 			HashMapBuilder.<String, Object>put(
 				"en_US", name
