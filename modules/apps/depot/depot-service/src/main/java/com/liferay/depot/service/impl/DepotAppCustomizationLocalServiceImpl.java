@@ -44,7 +44,7 @@ public class DepotAppCustomizationLocalServiceImpl
 
 	@Override
 	public DepotAppCustomization updateDepotAppCustomization(
-			long depotEntryId, String portletId, boolean enabled)
+			long depotEntryId, boolean enabled, String portletId)
 		throws PortalException {
 
 		DepotAppCustomization depotAppCustomization =
@@ -52,7 +52,7 @@ public class DepotAppCustomizationLocalServiceImpl
 				depotEntryId, portletId);
 
 		if (depotAppCustomization == null) {
-			return _addDepotAppCustomization(depotEntryId, portletId, enabled);
+			return _addDepotAppCustomization(depotEntryId, enabled, portletId);
 		}
 
 		depotAppCustomization.setEnabled(enabled);
@@ -61,7 +61,7 @@ public class DepotAppCustomizationLocalServiceImpl
 	}
 
 	private DepotAppCustomization _addDepotAppCustomization(
-			long depotEntryId, String portletId, boolean enabled)
+			long depotEntryId, boolean enabled, String portletId)
 		throws PortalException {
 
 		DepotAppCustomization depotAppCustomization =

@@ -164,7 +164,7 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 				depotAppCustomizationMap.entrySet()) {
 
 			_depotAppCustomizationLocalService.updateDepotAppCustomization(
-				depotEntryId, entry.getKey(), entry.getValue());
+				depotEntryId, entry.getValue(), entry.getKey());
 		}
 
 		return depotEntry;
