@@ -158,13 +158,16 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 	protected String getPermissionCheckerActionsResourceName() {
 		return getPermissionCheckerResourceName();
 	}
+
+	protected Long getPermissionCheckerGroupId(Object id) throws Exception {
+		throw new UnsupportedOperationException("This method needs to be implemented");
+	}
+
 	protected String getPermissionCheckerPortletName() {
 		throw new UnsupportedOperationException("This method needs to be implemented");
 	}
+
 	protected String getPermissionCheckerResourceName() {
-		throw new UnsupportedOperationException("This method needs to be implemented");
-	}
-	protected Long getPermissionCheckerGroupId(Object id) throws Exception {
 		throw new UnsupportedOperationException("This method needs to be implemented");
 	}
 
