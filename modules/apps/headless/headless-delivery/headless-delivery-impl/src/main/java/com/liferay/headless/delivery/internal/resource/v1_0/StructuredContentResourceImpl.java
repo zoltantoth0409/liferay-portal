@@ -528,10 +528,10 @@ public class StructuredContentResourceImpl
 	protected Long getPermissionCheckerGroupId(Object id)
 		throws PortalException {
 
-		JournalArticle article = _journalArticleLocalService.getLatestArticle(
-			(Long)id);
+		JournalArticle journalArticle =
+			_journalArticleLocalService.getLatestArticle((Long)id);
 
-		return article.getGroupId();
+		return journalArticle.getGroupId();
 	}
 
 	@Override
