@@ -56,8 +56,8 @@ public class SearchBarPortletDisplayBuilderTest {
 		MockitoAnnotations.initMocks(this);
 
 		setUpHttp();
-		setUpThemeDisplay();
 		setUpPortal();
+		setUpThemeDisplay();
 	}
 
 	@Test
