@@ -47,6 +47,7 @@
 		var interval = setInterval(function() {
 			if (resendDuration === 0) {
 				sendEmailButton.text(buttonText);
+
 				sendEmailButton.removeAttribute('disabled');
 
 				clearInterval(interval);
@@ -76,6 +77,7 @@
 					var messageContainer = A.one(
 						'#<portlet:namespace />messageContainer'
 					);
+
 					messageContainer.html(
 						'<span class="alert alert-danger"><liferay-ui:message key="failed-to-send-email" /></span>'
 					);
@@ -89,6 +91,7 @@
 					var messageContainer = A.one(
 						'#<portlet:namespace />messageContainer'
 					);
+
 					messageContainer.html(
 						'<span class="alert alert-success"><liferay-ui:message key="your-otp-has-been-sent-by-email" /></span>'
 					);
