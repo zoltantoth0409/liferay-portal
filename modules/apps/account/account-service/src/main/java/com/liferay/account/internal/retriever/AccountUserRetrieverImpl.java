@@ -146,7 +146,7 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 		if (searchHits == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("SearchHits object is null");
+				_log.warn("Search hits is null");
 			}
 
 			return new BaseModelSearchResult<>(
