@@ -248,7 +248,7 @@ public interface DepotAppCustomizationLocalService
 		DepotAppCustomization depotAppCustomization);
 
 	public DepotAppCustomization updateDepotAppCustomization(
-			long depotEntryId, String portletId, boolean enabled)
+			long depotEntryId, boolean enabled, String portletId)
 		throws PortalException;
 
 }

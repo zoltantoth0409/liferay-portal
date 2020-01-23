@@ -287,11 +287,11 @@ public class DepotAppCustomizationLocalServiceUtil {
 
 	public static com.liferay.depot.model.DepotAppCustomization
 			updateDepotAppCustomization(
-				long depotEntryId, String portletId, boolean enabled)
+				long depotEntryId, boolean enabled, String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateDepotAppCustomization(
-			depotEntryId, portletId, enabled);
+			depotEntryId, enabled, portletId);
 	}
 
 	public static DepotAppCustomizationLocalService getService() {

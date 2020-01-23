@@ -314,11 +314,11 @@ public class DepotAppCustomizationLocalServiceWrapper
 	@Override
 	public com.liferay.depot.model.DepotAppCustomization
 			updateDepotAppCustomization(
-				long depotEntryId, String portletId, boolean enabled)
+				long depotEntryId, boolean enabled, String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _depotAppCustomizationLocalService.updateDepotAppCustomization(
-			depotEntryId, portletId, enabled);
+			depotEntryId, enabled, portletId);
 	}
 
 	@Override
