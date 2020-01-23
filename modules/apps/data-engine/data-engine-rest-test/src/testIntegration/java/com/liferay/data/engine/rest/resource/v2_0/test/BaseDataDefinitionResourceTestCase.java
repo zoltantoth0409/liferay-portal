@@ -26,6 +26,7 @@ import com.liferay.data.engine.rest.client.dto.v2_0.DataDefinition;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
 import com.liferay.data.engine.rest.client.pagination.Pagination;
+import com.liferay.data.engine.rest.client.permission.Permission;
 import com.liferay.data.engine.rest.client.resource.v2_0.DataDefinitionResource;
 import com.liferay.data.engine.rest.client.serdes.v2_0.DataDefinitionSerDes;
 import com.liferay.petra.function.UnsafeTriConsumer;
@@ -638,6 +639,84 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		throws Exception {
 
 		Assert.assertTrue(false);
+	}
+
+	@Test
+	public void testPutDataDefinitionPermission() throws Exception {
+		@SuppressWarnings("PMD.UnusedLocalVariable")
+		DataDefinition dataDefinition =
+			testPutDataDefinitionPermission_addDataDefinition();
+
+		assertHttpResponseStatusCode(
+			204,
+			dataDefinitionResource.putDataDefinitionPermissionHttpResponse(
+				dataDefinition.getId(),
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(new String[] {"VIEW"});
+							setRoleName("Guest");
+						}
+					}
+				}));
+
+		assertHttpResponseStatusCode(
+			404,
+			dataDefinitionResource.putDataDefinitionPermissionHttpResponse(
+				0L,
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(new String[] {"-"});
+							setRoleName("-");
+						}
+					}
+				}));
+	}
+
+	protected DataDefinition testPutDataDefinitionPermission_addDataDefinition()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	@Test
+	public void testPutPortletPermission() throws Exception {
+		@SuppressWarnings("PMD.UnusedLocalVariable")
+		DataDefinition dataDefinition =
+			testPutPortletPermission_addDataDefinition();
+
+		assertHttpResponseStatusCode(
+			204,
+			dataDefinitionResource.putPortletPermissionHttpResponse(
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(new String[] {"VIEW"});
+							setRoleName("Guest");
+						}
+					}
+				}));
+
+		assertHttpResponseStatusCode(
+			404,
+			dataDefinitionResource.putPortletPermissionHttpResponse(
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(new String[] {"-"});
+							setRoleName("-");
+						}
+					}
+				}));
+	}
+
+	protected DataDefinition testPutPortletPermission_addDataDefinition()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	@Test

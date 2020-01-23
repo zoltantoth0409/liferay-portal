@@ -140,6 +140,38 @@ public class Mutation {
 	}
 
 	@GraphQLField
+	public boolean updateDataDefinitionPermission(
+			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
+			@GraphQLName("permissions")
+				com.liferay.portal.vulcan.permission.Permission[] permissions)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_dataDefinitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataDefinitionResource ->
+				dataDefinitionResource.putDataDefinitionPermission(
+					dataDefinitionId, permissions));
+
+		return true;
+	}
+
+	@GraphQLField
+	public boolean updatePortletPermission(
+			@GraphQLName("permissions")
+				com.liferay.portal.vulcan.permission.Permission[] permissions)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_dataDefinitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataDefinitionResource ->
+				dataDefinitionResource.putPortletPermission(permissions));
+
+		return true;
+	}
+
+	@GraphQLField
 	public DataDefinition createSiteDataDefinitionByContentType(
 			@GraphQLName("siteKey") @NotEmpty String siteKey,
 			@GraphQLName("contentType") String contentType,
@@ -250,22 +282,6 @@ public class Mutation {
 				dataModelPermissionResource.
 					putDataDefinitionDataModelPermission(
 						dataDefinitionId, dataModelPermissions));
-
-		return true;
-	}
-
-	@GraphQLField
-	public boolean updateDataModelPermission(
-			@GraphQLName("dataModelPermissions") DataModelPermission[]
-				dataModelPermissions)
-		throws Exception {
-
-		_applyVoidComponentServiceObjects(
-			_dataModelPermissionResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			dataModelPermissionResource ->
-				dataModelPermissionResource.putDataModelPermission(
-					dataModelPermissions));
 
 		return true;
 	}
@@ -387,6 +403,23 @@ public class Mutation {
 			dataRecordCollectionResource ->
 				dataRecordCollectionResource.putDataRecordCollection(
 					dataRecordCollectionId, dataRecordCollection));
+	}
+
+	@GraphQLField
+	public boolean updateDataRecordCollectionPermission(
+			@GraphQLName("dataRecordCollectionId") Long dataRecordCollectionId,
+			@GraphQLName("permissions")
+				com.liferay.portal.vulcan.permission.Permission[] permissions)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_dataRecordCollectionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordCollectionResource ->
+				dataRecordCollectionResource.putDataRecordCollectionPermission(
+					dataRecordCollectionId, permissions));
+
+		return true;
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R
