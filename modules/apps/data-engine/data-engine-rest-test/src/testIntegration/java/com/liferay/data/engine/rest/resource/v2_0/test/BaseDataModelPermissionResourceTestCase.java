@@ -52,7 +52,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -188,124 +187,8 @@ public abstract class BaseDataModelPermissionResourceTestCase {
 	}
 
 	@Test
-	public void testGetDataDefinitionDataModelPermissionsPage()
-		throws Exception {
-
-		Page<DataModelPermission> page =
-			dataModelPermissionResource.
-				getDataDefinitionDataModelPermissionsPage(
-					testGetDataDefinitionDataModelPermissionsPage_getDataDefinitionId(),
-					RandomTestUtil.randomString());
-
-		Assert.assertEquals(0, page.getTotalCount());
-
-		Long dataDefinitionId =
-			testGetDataDefinitionDataModelPermissionsPage_getDataDefinitionId();
-		Long irrelevantDataDefinitionId =
-			testGetDataDefinitionDataModelPermissionsPage_getIrrelevantDataDefinitionId();
-
-		if ((irrelevantDataDefinitionId != null)) {
-			DataModelPermission irrelevantDataModelPermission =
-				testGetDataDefinitionDataModelPermissionsPage_addDataModelPermission(
-					irrelevantDataDefinitionId,
-					randomIrrelevantDataModelPermission());
-
-			page =
-				dataModelPermissionResource.
-					getDataDefinitionDataModelPermissionsPage(
-						irrelevantDataDefinitionId, null);
-
-			Assert.assertEquals(1, page.getTotalCount());
-
-			assertEquals(
-				Arrays.asList(irrelevantDataModelPermission),
-				(List<DataModelPermission>)page.getItems());
-			assertValid(page);
-		}
-
-		DataModelPermission dataModelPermission1 =
-			testGetDataDefinitionDataModelPermissionsPage_addDataModelPermission(
-				dataDefinitionId, randomDataModelPermission());
-
-		DataModelPermission dataModelPermission2 =
-			testGetDataDefinitionDataModelPermissionsPage_addDataModelPermission(
-				dataDefinitionId, randomDataModelPermission());
-
-		page =
-			dataModelPermissionResource.
-				getDataDefinitionDataModelPermissionsPage(
-					dataDefinitionId, null);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataModelPermission1, dataModelPermission2),
-			(List<DataModelPermission>)page.getItems());
-		assertValid(page);
-	}
-
-	protected DataModelPermission
-			testGetDataDefinitionDataModelPermissionsPage_addDataModelPermission(
-				Long dataDefinitionId, DataModelPermission dataModelPermission)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetDataDefinitionDataModelPermissionsPage_getDataDefinitionId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetDataDefinitionDataModelPermissionsPage_getIrrelevantDataDefinitionId()
-		throws Exception {
-
-		return null;
-	}
-
-	@Test
 	public void testPutDataDefinitionDataModelPermission() throws Exception {
 		Assert.assertTrue(false);
-	}
-
-	@Test
-	public void testGetDataModelPermissionsPage() throws Exception {
-		Page<DataModelPermission> page =
-			dataModelPermissionResource.getDataModelPermissionsPage(
-				RandomTestUtil.randomString());
-
-		Assert.assertEquals(0, page.getTotalCount());
-
-		DataModelPermission dataModelPermission1 =
-			testGetDataModelPermissionsPage_addDataModelPermission(
-				randomDataModelPermission());
-
-		DataModelPermission dataModelPermission2 =
-			testGetDataModelPermissionsPage_addDataModelPermission(
-				randomDataModelPermission());
-
-		page = dataModelPermissionResource.getDataModelPermissionsPage(null);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataModelPermission1, dataModelPermission2),
-			(List<DataModelPermission>)page.getItems());
-		assertValid(page);
-	}
-
-	protected DataModelPermission
-			testGetDataModelPermissionsPage_addDataModelPermission(
-				DataModelPermission dataModelPermission)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	@Test
@@ -316,88 +199,6 @@ public abstract class BaseDataModelPermissionResourceTestCase {
 	@Test
 	public void testPutDataModelPermission() throws Exception {
 		Assert.assertTrue(false);
-	}
-
-	@Test
-	public void testGetDataRecordCollectionDataModelPermissionsPage()
-		throws Exception {
-
-		Page<DataModelPermission> page =
-			dataModelPermissionResource.
-				getDataRecordCollectionDataModelPermissionsPage(
-					testGetDataRecordCollectionDataModelPermissionsPage_getDataRecordCollectionId(),
-					RandomTestUtil.randomString());
-
-		Assert.assertEquals(0, page.getTotalCount());
-
-		Long dataRecordCollectionId =
-			testGetDataRecordCollectionDataModelPermissionsPage_getDataRecordCollectionId();
-		Long irrelevantDataRecordCollectionId =
-			testGetDataRecordCollectionDataModelPermissionsPage_getIrrelevantDataRecordCollectionId();
-
-		if ((irrelevantDataRecordCollectionId != null)) {
-			DataModelPermission irrelevantDataModelPermission =
-				testGetDataRecordCollectionDataModelPermissionsPage_addDataModelPermission(
-					irrelevantDataRecordCollectionId,
-					randomIrrelevantDataModelPermission());
-
-			page =
-				dataModelPermissionResource.
-					getDataRecordCollectionDataModelPermissionsPage(
-						irrelevantDataRecordCollectionId, null);
-
-			Assert.assertEquals(1, page.getTotalCount());
-
-			assertEquals(
-				Arrays.asList(irrelevantDataModelPermission),
-				(List<DataModelPermission>)page.getItems());
-			assertValid(page);
-		}
-
-		DataModelPermission dataModelPermission1 =
-			testGetDataRecordCollectionDataModelPermissionsPage_addDataModelPermission(
-				dataRecordCollectionId, randomDataModelPermission());
-
-		DataModelPermission dataModelPermission2 =
-			testGetDataRecordCollectionDataModelPermissionsPage_addDataModelPermission(
-				dataRecordCollectionId, randomDataModelPermission());
-
-		page =
-			dataModelPermissionResource.
-				getDataRecordCollectionDataModelPermissionsPage(
-					dataRecordCollectionId, null);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataModelPermission1, dataModelPermission2),
-			(List<DataModelPermission>)page.getItems());
-		assertValid(page);
-	}
-
-	protected DataModelPermission
-			testGetDataRecordCollectionDataModelPermissionsPage_addDataModelPermission(
-				Long dataRecordCollectionId,
-				DataModelPermission dataModelPermission)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetDataRecordCollectionDataModelPermissionsPage_getDataRecordCollectionId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetDataRecordCollectionDataModelPermissionsPage_getIrrelevantDataRecordCollectionId()
-		throws Exception {
-
-		return null;
 	}
 
 	@Test

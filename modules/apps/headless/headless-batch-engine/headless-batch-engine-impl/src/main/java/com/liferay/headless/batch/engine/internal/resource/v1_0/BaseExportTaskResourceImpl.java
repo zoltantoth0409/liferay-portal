@@ -18,6 +18,7 @@ import com.liferay.headless.batch.engine.dto.v1_0.ExportTask;
 import com.liferay.headless.batch.engine.resource.v1_0.ExportTaskResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.GroupedModel;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
@@ -95,28 +96,6 @@ public abstract class BaseExportTaskResourceImpl implements ExportTaskResource {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/headless-batch-engine/v1.0/export-task/{exportTaskId}'  -u 'test@liferay.com:test'
-	 */
-	@Override
-	@GET
-	@Operation(description = "Retrieves the export task.")
-	@Parameters(
-		value = {@Parameter(in = ParameterIn.PATH, name = "exportTaskId")}
-	)
-	@Path("/export-task/{exportTaskId}")
-	@Produces({"application/json", "application/xml"})
-	@Tags(value = {@Tag(name = "ExportTask")})
-	public ExportTask getExportTask(
-			@NotNull @Parameter(hidden = true) @PathParam("exportTaskId") Long
-				exportTaskId)
-		throws Exception {
-
-		return new ExportTask();
-	}
-
-	/**
-	 * Invoke this method with the command line:
-	 *
 	 * curl -X 'GET' 'http://localhost:8080/o/headless-batch-engine/v1.0/export-task/{exportTaskId}/content'  -u 'test@liferay.com:test'
 	 */
 	@Override
@@ -136,6 +115,28 @@ public abstract class BaseExportTaskResourceImpl implements ExportTaskResource {
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -X 'GET' 'http://localhost:8080/o/headless-batch-engine/v1.0/export-task/{exportTaskId}'  -u 'test@liferay.com:test'
+	 */
+	@Override
+	@GET
+	@Operation(description = "Retrieves the export task.")
+	@Parameters(
+		value = {@Parameter(in = ParameterIn.PATH, name = "exportTaskId")}
+	)
+	@Path("/export-task/{exportTaskId}")
+	@Produces({"application/json", "application/xml"})
+	@Tags(value = {@Tag(name = "ExportTask")})
+	public ExportTask getExportTask(
+			@NotNull @Parameter(hidden = true) @PathParam("exportTaskId") Long
+				exportTaskId)
+		throws Exception {
+
+		return new ExportTask();
 	}
 
 	public void setContextAcceptLanguage(AcceptLanguage contextAcceptLanguage) {
@@ -230,6 +231,7 @@ public abstract class BaseExportTaskResourceImpl implements ExportTaskResource {
 	protected AcceptLanguage contextAcceptLanguage;
 	protected com.liferay.portal.kernel.model.Company contextCompany;
 	protected com.liferay.portal.kernel.model.User contextUser;
+	protected GroupLocalService groupLocalService;
 	protected HttpServletRequest contextHttpServletRequest;
 	protected HttpServletResponse contextHttpServletResponse;
 	protected ResourceActionLocalService resourceActionLocalService;

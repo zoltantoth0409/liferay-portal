@@ -17,7 +17,7 @@ package com.liferay.data.engine.rest.client.resource.v2_0;
 import com.liferay.data.engine.rest.client.dto.v2_0.DataModelPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
-import com.liferay.data.engine.rest.client.serdes.v2_0.DataModelPermissionSerDes;
+import com.liferay.data.engine.rest.client.permission.Permission;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -39,7 +39,7 @@ public interface DataModelPermissionResource {
 		return new Builder();
 	}
 
-	public Page<DataModelPermission> getDataDefinitionDataModelPermissionsPage(
+	public Page<Permission> getDataDefinitionDataModelPermissionsPage(
 			Long dataDefinitionId, String roleNames)
 		throws Exception;
 
@@ -58,8 +58,7 @@ public interface DataModelPermissionResource {
 				DataModelPermission[] dataModelPermissions)
 		throws Exception;
 
-	public Page<DataModelPermission> getDataModelPermissionsPage(
-			String roleNames)
+	public Page<Permission> getDataModelPermissionsPage(String roleNames)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getDataModelPermissionsPageHttpResponse(
@@ -74,9 +73,8 @@ public interface DataModelPermissionResource {
 			DataModelPermission[] dataModelPermissions)
 		throws Exception;
 
-	public Page<DataModelPermission>
-			getDataRecordCollectionDataModelPermissionsPage(
-				Long dataRecordCollectionId, String roleNames)
+	public Page<Permission> getDataRecordCollectionDataModelPermissionsPage(
+			Long dataRecordCollectionId, String roleNames)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
@@ -160,9 +158,8 @@ public interface DataModelPermissionResource {
 	public static class DataModelPermissionResourceImpl
 		implements DataModelPermissionResource {
 
-		public Page<DataModelPermission>
-				getDataDefinitionDataModelPermissionsPage(
-					Long dataDefinitionId, String roleNames)
+		public Page<Permission> getDataDefinitionDataModelPermissionsPage(
+				Long dataDefinitionId, String roleNames)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
@@ -177,7 +174,7 @@ public interface DataModelPermissionResource {
 			_logger.fine(
 				"HTTP response status code: " + httpResponse.getStatusCode());
 
-			return Page.of(content, DataModelPermissionSerDes::toDTO);
+			return Page.of(content, Permission::toDTO);
 		}
 
 		public HttpInvoker.HttpResponse
@@ -289,8 +286,7 @@ public interface DataModelPermissionResource {
 			return httpInvoker.invoke();
 		}
 
-		public Page<DataModelPermission> getDataModelPermissionsPage(
-				String roleNames)
+		public Page<Permission> getDataModelPermissionsPage(String roleNames)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
@@ -304,7 +300,7 @@ public interface DataModelPermissionResource {
 			_logger.fine(
 				"HTTP response status code: " + httpResponse.getStatusCode());
 
-			return Page.of(content, DataModelPermissionSerDes::toDTO);
+			return Page.of(content, Permission::toDTO);
 		}
 
 		public HttpInvoker.HttpResponse getDataModelPermissionsPageHttpResponse(
@@ -409,9 +405,8 @@ public interface DataModelPermissionResource {
 			return httpInvoker.invoke();
 		}
 
-		public Page<DataModelPermission>
-				getDataRecordCollectionDataModelPermissionsPage(
-					Long dataRecordCollectionId, String roleNames)
+		public Page<Permission> getDataRecordCollectionDataModelPermissionsPage(
+				Long dataRecordCollectionId, String roleNames)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
@@ -426,7 +421,7 @@ public interface DataModelPermissionResource {
 			_logger.fine(
 				"HTTP response status code: " + httpResponse.getStatusCode());
 
-			return Page.of(content, DataModelPermissionSerDes::toDTO);
+			return Page.of(content, Permission::toDTO);
 		}
 
 		public HttpInvoker.HttpResponse

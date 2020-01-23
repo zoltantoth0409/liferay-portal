@@ -17,7 +17,7 @@ package com.liferay.app.builder.rest.client.resource.v1_0;
 import com.liferay.app.builder.rest.client.dto.v1_0.AppModelPermission;
 import com.liferay.app.builder.rest.client.http.HttpInvoker;
 import com.liferay.app.builder.rest.client.pagination.Page;
-import com.liferay.app.builder.rest.client.serdes.v1_0.AppModelPermissionSerDes;
+import com.liferay.app.builder.rest.client.permission.Permission;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -39,7 +39,7 @@ public interface AppModelPermissionResource {
 		return new Builder();
 	}
 
-	public Page<AppModelPermission> getAppModelPermissionsPage(String roleNames)
+	public Page<Permission> getAppModelPermissionsPage(String roleNames)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getAppModelPermissionsPageHttpResponse(
@@ -109,8 +109,7 @@ public interface AppModelPermissionResource {
 	public static class AppModelPermissionResourceImpl
 		implements AppModelPermissionResource {
 
-		public Page<AppModelPermission> getAppModelPermissionsPage(
-				String roleNames)
+		public Page<Permission> getAppModelPermissionsPage(String roleNames)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
@@ -124,7 +123,7 @@ public interface AppModelPermissionResource {
 			_logger.fine(
 				"HTTP response status code: " + httpResponse.getStatusCode());
 
-			return Page.of(content, AppModelPermissionSerDes::toDTO);
+			return Page.of(content, Permission::toDTO);
 		}
 
 		public HttpInvoker.HttpResponse getAppModelPermissionsPageHttpResponse(

@@ -52,7 +52,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,41 +184,6 @@ public abstract class BaseAppModelPermissionResourceTestCase {
 		appModelPermission = AppModelPermissionSerDes.toDTO(json);
 
 		Assert.assertEquals(regex, appModelPermission.getRoleName());
-	}
-
-	@Test
-	public void testGetAppModelPermissionsPage() throws Exception {
-		Page<AppModelPermission> page =
-			appModelPermissionResource.getAppModelPermissionsPage(
-				RandomTestUtil.randomString());
-
-		Assert.assertEquals(0, page.getTotalCount());
-
-		AppModelPermission appModelPermission1 =
-			testGetAppModelPermissionsPage_addAppModelPermission(
-				randomAppModelPermission());
-
-		AppModelPermission appModelPermission2 =
-			testGetAppModelPermissionsPage_addAppModelPermission(
-				randomAppModelPermission());
-
-		page = appModelPermissionResource.getAppModelPermissionsPage(null);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(appModelPermission1, appModelPermission2),
-			(List<AppModelPermission>)page.getItems());
-		assertValid(page);
-	}
-
-	protected AppModelPermission
-			testGetAppModelPermissionsPage_addAppModelPermission(
-				AppModelPermission appModelPermission)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	@Test

@@ -39,23 +39,24 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface DataModelPermissionResource {
 
-	public Page<DataModelPermission> getDataDefinitionDataModelPermissionsPage(
-			Long dataDefinitionId, String roleNames)
+	public Page<com.liferay.portal.vulcan.permission.Permission>
+			getDataDefinitionDataModelPermissionsPage(
+				Long dataDefinitionId, String roleNames)
 		throws Exception;
 
 	public void putDataDefinitionDataModelPermission(
 			Long dataDefinitionId, DataModelPermission[] dataModelPermissions)
 		throws Exception;
 
-	public Page<DataModelPermission> getDataModelPermissionsPage(
-			String roleNames)
+	public Page<com.liferay.portal.vulcan.permission.Permission>
+			getDataModelPermissionsPage(String roleNames)
 		throws Exception;
 
 	public void putDataModelPermission(
 			DataModelPermission[] dataModelPermissions)
 		throws Exception;
 
-	public Page<DataModelPermission>
+	public Page<com.liferay.portal.vulcan.permission.Permission>
 			getDataRecordCollectionDataModelPermissionsPage(
 				Long dataRecordCollectionId, String roleNames)
 		throws Exception;

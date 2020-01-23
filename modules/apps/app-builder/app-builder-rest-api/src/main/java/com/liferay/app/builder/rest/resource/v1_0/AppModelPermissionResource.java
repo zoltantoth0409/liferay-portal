@@ -39,7 +39,8 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface AppModelPermissionResource {
 
-	public Page<AppModelPermission> getAppModelPermissionsPage(String roleNames)
+	public Page<com.liferay.portal.vulcan.permission.Permission>
+			getAppModelPermissionsPage(String roleNames)
 		throws Exception;
 
 	public void putAppModelPermission(AppModelPermission[] appModelPermissions)
