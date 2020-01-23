@@ -186,10 +186,9 @@ public class LayoutStructure {
 	}
 
 	public JSONObject toJSONObject() {
+		String dropZoneItemId = StringPool.BLANK;
 		JSONObject layoutStructureItemsJSONObject =
 			JSONFactoryUtil.createJSONObject();
-
-		String dropZoneItemId = StringPool.BLANK;
 
 		for (Map.Entry<String, LayoutStructureItem> entry :
 				_layoutStructureItems.entrySet()) {
