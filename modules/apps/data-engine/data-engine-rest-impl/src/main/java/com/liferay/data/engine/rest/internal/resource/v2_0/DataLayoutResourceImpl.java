@@ -238,7 +238,7 @@ public class DataLayoutResourceImpl
 		List<String> fieldNames = _getFieldNames(content);
 
 		if (ListUtil.isEmpty(fieldNames)) {
-			throw new ValidationException("Layout cannot be empty");
+			throw new ValidationException("Layout is empty");
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -291,7 +291,7 @@ public class DataLayoutResourceImpl
 		List<String> fieldNames = _getFieldNames(content);
 
 		if (ListUtil.isEmpty(fieldNames)) {
-			throw new ValidationException("Layout cannot be empty");
+			throw new ValidationException("Layout is empty");
 		}
 
 		dataLayout = _toDataLayout(

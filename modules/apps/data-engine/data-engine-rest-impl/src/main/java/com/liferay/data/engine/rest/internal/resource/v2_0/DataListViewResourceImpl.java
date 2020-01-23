@@ -179,7 +179,7 @@ public class DataListViewResourceImpl
 		throws Exception {
 
 		if (ArrayUtil.isEmpty(dataListView.getFieldNames())) {
-			throw new ValidationException("View cannot be empty");
+			throw new ValidationException("View is empty");
 		}
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
@@ -217,7 +217,7 @@ public class DataListViewResourceImpl
 			ActionKeys.UPDATE);
 
 		if (ArrayUtil.isEmpty(dataListView.getFieldNames())) {
-			throw new ValidationException("View cannot be empty");
+			throw new ValidationException("View is empty");
 		}
 
 		dataListView = _toDataListView(
