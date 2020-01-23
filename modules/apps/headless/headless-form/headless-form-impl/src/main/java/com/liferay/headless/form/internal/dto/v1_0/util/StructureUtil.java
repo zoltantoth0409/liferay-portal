@@ -153,12 +153,10 @@ public class StructureUtil {
 	private static FormField _toFormField(
 		boolean acceptAllLanguages, DDMFormField ddmFormField, Locale locale) {
 
-		String type = ddmFormField.getType();
-
 		LocalizedValue labelLocalizedValue = ddmFormField.getLabel();
-
 		LocalizedValue predefinedLocalizedValue =
 			ddmFormField.getPredefinedValue();
+		String type = ddmFormField.getType();
 
 		return new FormField() {
 			{
