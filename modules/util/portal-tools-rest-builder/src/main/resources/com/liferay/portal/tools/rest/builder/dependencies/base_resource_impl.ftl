@@ -86,6 +86,20 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		public ${javaMethodSignature.returnType} ${javaMethodSignature.methodName}(${freeMarkerTool.getResourceParameters(javaMethodSignature.javaMethodParameters, openAPIYAML, javaMethodSignature.operation, true)}) throws Exception {
 			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
 				return false;
+			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "PermissionsPage")>
+					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerResourceName(), ${schemaVarName}Id, getPermissionCheckerGroupId(${schemaVarName}Id));
+
+					return Page.of(
+						transform(
+							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
+							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), ${schemaVarName}Id, resourceActionLocalService.getResourceActions(getPermissionCheckerActionsResourceName()), getPermissionCheckerResourceName(), resourcePermissionLocalService, role)));
+			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getSite" + schemaName + "PermissionsPage")>
+					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerPortletName(), siteId, siteId);
+
+					return Page.of(
+						transform(
+							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
+							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), siteId, resourceActionLocalService.getResourceActions(getPermissionCheckerPortletName()), getPermissionCheckerPortletName(), resourcePermissionLocalService, role)));
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName + "Permission")>
 					PermissionChecker permissionChecker = PermissionThreadLocal.getPermissionChecker();
 
@@ -106,22 +120,6 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 					}
 
 					resourcePermissionLocalService.updateResourcePermissions(contextCompany.getCompanyId(), siteId, portletName, String.valueOf(siteId), ModelPermissionsUtil.toModelPermissions(contextCompany.getCompanyId(), permissions, siteId, portletName, resourceActionLocalService, resourcePermissionLocalService, roleLocalService));
-			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "PermissionsPage")>
-
-					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerResourceName(), ${schemaVarName}Id, getPermissionCheckerGroupId(${schemaVarName}Id));
-
-					return Page.of(
-						transform(
-							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
-							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), ${schemaVarName}Id, resourceActionLocalService.getResourceActions(getPermissionCheckerActionsResourceName()), getPermissionCheckerResourceName(), resourcePermissionLocalService, role)));
-			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getSite" + schemaName + "PermissionsPage")>
-
-					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerPortletName(), siteId, siteId);
-
-					return Page.of(
-						transform(
-							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
-							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), siteId, resourceActionLocalService.getResourceActions(getPermissionCheckerPortletName()), getPermissionCheckerPortletName(), resourcePermissionLocalService, role)));
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.String")>
 				return StringPool.BLANK;
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "javax.ws.rs.core.Response")>
