@@ -118,6 +118,13 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 
 		depotEntry = depotEntryPersistence.update(depotEntry);
 
+		for (Map.Entry<String, Boolean> entry :
+				depotAppCustomizationMap.entrySet()) {
+
+			_depotAppCustomizationLocalService.updateDepotAppCustomization(
+				depotEntryId, entry.getValue(), entry.getKey());
+		}
+
 		_validateTypeSettingsProperties(depotEntry, typeSettingsProperties);
 
 		Group group = _groupLocalService.getGroup(depotEntry.getGroupId());
@@ -159,13 +166,6 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 
 		_groupLocalService.updateGroup(
 			group.getGroupId(), currentTypeSettingsProperties.toString());
-
-		for (Map.Entry<String, Boolean> entry :
-				depotAppCustomizationMap.entrySet()) {
-
-			_depotAppCustomizationLocalService.updateDepotAppCustomization(
-				depotEntryId, entry.getValue(), entry.getKey());
-		}
 
 		return depotEntry;
 	}
