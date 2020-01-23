@@ -152,12 +152,12 @@ public class OrganizationResourceDTOConverter
 									LanguageUtil.getCompanyAvailableLocales(
 										organization.getCompanyId());
 
-								Stream<Locale> localeStream = locales.stream();
+								Stream<Locale> localesStream = locales.stream();
 
 								Country country = _countryService.getCountry(
 									organization.getCountryId());
 
-								return localeStream.collect(
+								return localesStream.collect(
 									Collectors.toMap(
 										Locale::toLanguageTag,
 										country::getName));
