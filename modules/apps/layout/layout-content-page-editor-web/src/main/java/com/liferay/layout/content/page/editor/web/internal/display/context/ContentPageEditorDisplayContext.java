@@ -1494,7 +1494,7 @@ public class ContentPageEditorDisplayContext {
 					updateLayoutPageTemplateStructure(
 						themeDisplay.getScopeGroupId(),
 						PortalUtil.getClassNameId(Layout.class.getName()),
-						themeDisplay.getPlid(),
+						masterLayoutPageTemplateEntry.getPlid(),
 						SegmentsExperienceConstants.ID_DEFAULT, layoutData);
 			}
 
