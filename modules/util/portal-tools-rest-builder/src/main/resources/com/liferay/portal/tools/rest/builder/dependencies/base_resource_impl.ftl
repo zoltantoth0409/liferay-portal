@@ -89,17 +89,11 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "PermissionsPage")>
 					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerResourceName(), ${schemaVarName}Id, getPermissionCheckerGroupId(${schemaVarName}Id));
 
-					return Page.of(
-						transform(
-							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
-							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), ${schemaVarName}Id, resourceActionLocalService.getResourceActions(getPermissionCheckerActionsResourceName()), getPermissionCheckerResourceName(), resourcePermissionLocalService, role)));
+					return Page.of(transform(PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)), role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), ${schemaVarName}Id, resourceActionLocalService.getResourceActions(getPermissionCheckerActionsResourceName()), getPermissionCheckerResourceName(), resourcePermissionLocalService, role)));
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getSite" + schemaName + "PermissionsPage")>
 					PermissionUtil.checkPermission(ActionKeys.PERMISSIONS, groupLocalService, getPermissionCheckerPortletName(), siteId, siteId);
 
-					return Page.of(
-						transform(
-							PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)),
-							role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), siteId, resourceActionLocalService.getResourceActions(getPermissionCheckerPortletName()), getPermissionCheckerPortletName(), resourcePermissionLocalService, role)));
+					return Page.of(transform(PermissionUtil.getRoles(contextCompany, roleLocalService, StringUtil.split(roleNames)), role -> PermissionUtil.toPermission(contextCompany.getCompanyId(), siteId, resourceActionLocalService.getResourceActions(getPermissionCheckerPortletName()), getPermissionCheckerPortletName(), resourcePermissionLocalService, role)));
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName + "Permission")>
 					PermissionChecker permissionChecker = PermissionThreadLocal.getPermissionChecker();
 
