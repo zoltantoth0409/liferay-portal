@@ -153,9 +153,9 @@ public class DDMFormDisplayContext {
 
 		Set<Locale> availableLocales = ddmForm.getAvailableLocales();
 
-		Stream<Locale> localeStreams = availableLocales.stream();
+		Stream<Locale> availableLocalesStream = availableLocales.stream();
 
-		return localeStreams.filter(
+		return availableLocalesStream.filter(
 			locale -> siteAvailablesLocales.contains(locale)
 		).map(
 			locale -> LanguageUtil.getLanguageId(locale)

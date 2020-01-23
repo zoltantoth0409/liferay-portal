@@ -67,11 +67,11 @@ public class PostalAddressUtil {
 						Set<Locale> locales =
 							LanguageUtil.getCompanyAvailableLocales(companyId);
 
-						Stream<Locale> localeStream = locales.stream();
+						Stream<Locale> localesStream = locales.stream();
 
 						Country country = address.getCountry();
 
-						return localeStream.collect(
+						return localesStream.collect(
 							Collectors.toMap(
 								Locale::toLanguageTag, country::getName));
 					});
