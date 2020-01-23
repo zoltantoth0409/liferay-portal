@@ -15,17 +15,6 @@
 package com.liferay.depot.model.impl;
 
 /**
- * The extended model implementation for the DepotAppCustomization service.
- * Represents a row in the &quot;DepotAppCustomization&quot; database table,
- * with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class.
- * Whenever methods are added, rerun ServiceBuilder to copy their definitions
- * into the <code>com.liferay.depot.model.DepotAppCustomization</code>
- * interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 public class DepotAppCustomizationImpl extends DepotAppCustomizationBaseImpl {
