@@ -94,7 +94,6 @@ public abstract class BaseDepotScreenNavigationEntry
 			DepotAdminWebKeys.JSP_PATH, getJspPath());
 		httpServletRequest.setAttribute(
 			DepotAdminWebKeys.SHOW_CONTROLS, isShowControls());
-
 		httpServletRequest.setAttribute(
 			SharingWebKeys.GROUP_SHARING_CONFIGURATION,
 			sharingConfigurationFactory.getGroupSharingConfiguration(group));
