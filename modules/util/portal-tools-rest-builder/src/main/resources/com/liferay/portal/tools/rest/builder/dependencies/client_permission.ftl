@@ -21,19 +21,19 @@ public class Permission {
 	}
 
 	public String[] getActionIds() {
-		return _actionIds;
+		return actionIds;
 	}
 
 	public String getRoleName() {
-		return _roleName;
+		return roleName;
 	}
 
 	public void setActionIds(String[] actionIds) {
-		this._actionIds = actionIds;
+		this.actionIds = actionIds;
 	}
 
 	public void setRoleName(String roleName) {
-		this._roleName = roleName;
+		this.roleName = roleName;
 	}
 
 	@Override
@@ -42,15 +42,15 @@ public class Permission {
 
 		sb.append("{");
 
-		if (_actionIds != null) {
+		if (actionIds != null) {
 			sb.append("\"actionIds\": [");
 
-			for (int i = 0; i < _actionIds.length; i++) {
+			for (int i = 0; i < actionIds.length; i++) {
 				sb.append("\"");
-				sb.append(_actionIds[i]);
+				sb.append(actionIds[i]);
 				sb.append("\"");
 
-				if ((i + 1) < _actionIds.length) {
+				if ((i + 1) < actionIds.length) {
 					sb.append(", ");
 				}
 			}
@@ -58,13 +58,13 @@ public class Permission {
 			sb.append("]");
 		}
 
-		if (_roleName != null) {
+		if (roleName != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
 			sb.append("\"roleName\": \"");
-			sb.append(_roleName);
+			sb.append(roleName);
 			sb.append("\"");
 		}
 
@@ -73,8 +73,8 @@ public class Permission {
 		return sb.toString();
 	}
 
-	private String[] _actionIds;
-	private String _roleName;
+	protected String[] actionIds;
+	protected String roleName;
 
 	private static class PermissionJSONParser<T> extends BaseJSONParser<Permission> {
 
