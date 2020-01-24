@@ -352,7 +352,9 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		return new DataRecordCollection();
 	}
 
-	protected String getPermissionCheckerActionsResourceName(Object id) {
+	protected String getPermissionCheckerActionsResourceName(Object id)
+		throws Exception {
+
 		return getPermissionCheckerResourceName(id);
 	}
 
@@ -361,12 +363,16 @@ public abstract class BaseDataRecordCollectionResourceImpl
 			"This method needs to be implemented");
 	}
 
-	protected String getPermissionCheckerPortletName(Object id) {
+	protected String getPermissionCheckerPortletName(Object id)
+		throws Exception {
+
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected String getPermissionCheckerResourceName(Object id) {
+	protected String getPermissionCheckerResourceName(Object id)
+		throws Exception {
+
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
