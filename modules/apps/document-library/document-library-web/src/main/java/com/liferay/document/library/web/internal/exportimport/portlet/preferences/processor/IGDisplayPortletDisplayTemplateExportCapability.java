@@ -28,6 +28,7 @@ import org.osgi.service.component.annotations.Component;
  * provided based on the existence of the template handler.
  *
  * @author Laszlo Hudak
+ * @review
  */
 @Component(
 	immediate = true,
