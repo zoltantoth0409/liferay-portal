@@ -165,7 +165,7 @@ public class ChangeListsDisplayContext {
 			return "added";
 		}
 		else if (ctEntry.getChangeType() ==
-				 CTConstants.CT_CHANGE_TYPE_DELETION) {
+					CTConstants.CT_CHANGE_TYPE_DELETION) {
 
 			return "deleted";
 		}
@@ -241,6 +241,10 @@ public class ChangeListsDisplayContext {
 		return ctEntriesStream.collect(
 			Collectors.groupingBy(
 				CTEntry::getChangeType, Collectors.counting()));
+	}
+
+	public CTDisplayRendererRegistry getCtDisplayRendererRegistry() {
+		return _ctDisplayRendererRegistry;
 	}
 
 	public String getDeleteURL(long ctCollectionId, String name) {
