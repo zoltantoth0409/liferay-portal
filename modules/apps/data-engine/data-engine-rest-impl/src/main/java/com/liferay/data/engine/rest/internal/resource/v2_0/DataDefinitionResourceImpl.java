@@ -445,16 +445,13 @@ public class DataDefinitionResourceImpl
 	}
 
 	@Override
-	protected String getPermissionCheckerResourceName(Object id) {
-		try {
-			DDMStructure ddmStructure =
-				_ddmStructureLocalService.getDDMStructure((long)id);
+	protected String getPermissionCheckerResourceName(Object id)
+		throws Exception {
 
-			return _getResourceName(ddmStructure);
-		}
-		catch (PortalException portalException) {
-			return DDMStructure.class.getName();
-		}
+		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
+			(long)id);
+
+		return _getResourceName(ddmStructure);
 	}
 
 	private JSONObject _createFieldContextJSONObject(

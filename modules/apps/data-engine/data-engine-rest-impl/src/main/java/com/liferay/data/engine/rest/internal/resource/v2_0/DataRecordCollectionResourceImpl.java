@@ -219,16 +219,13 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	@Override
-	protected String getPermissionCheckerResourceName(Object id) {
-		try {
-			DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
-				(long)id);
+	protected String getPermissionCheckerResourceName(Object id)
+		throws Exception {
 
-			return _getResourceName(ddlRecordSet);
-		}
-		catch (PortalException portalException) {
-			return DDLRecordSet.class.getName();
-		}
+		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
+			(long)id);
+
+		return _getResourceName(ddlRecordSet);
 	}
 
 	private String _getResourceName(DDLRecordSet ddlRecordSet)
