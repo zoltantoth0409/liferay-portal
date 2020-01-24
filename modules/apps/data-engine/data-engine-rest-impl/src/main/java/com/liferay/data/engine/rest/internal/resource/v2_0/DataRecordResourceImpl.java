@@ -367,11 +367,9 @@ public class DataRecordResourceImpl
 				ddmStructure.getStructureId(), fieldName,
 				contextAcceptLanguage.getPreferredLocale());
 
-			String[] values = JSONUtil.toStringArray(jsonArray);
-
 			BooleanFilter fieldBooleanFilter = new BooleanFilter();
 
-			for (String value : values) {
+			for (String value : JSONUtil.toStringArray(jsonArray)) {
 				fieldBooleanFilter.addTerm(
 					indexFieldName, value, BooleanClauseOccur.SHOULD);
 			}
