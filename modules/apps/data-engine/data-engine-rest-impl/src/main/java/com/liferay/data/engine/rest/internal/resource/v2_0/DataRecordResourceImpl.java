@@ -361,15 +361,15 @@ public class DataRecordResourceImpl
 				continue;
 			}
 
-			DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
-
-			String indexFieldName = _getIndexFieldName(
-				ddmStructure.getStructureId(), fieldName,
-				contextAcceptLanguage.getPreferredLocale());
-
 			BooleanFilter fieldBooleanFilter = new BooleanFilter();
 
 			for (String value : JSONUtil.toStringArray(jsonArray)) {
+				DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+
+				String indexFieldName = _getIndexFieldName(
+					ddmStructure.getStructureId(), fieldName,
+					contextAcceptLanguage.getPreferredLocale());
+
 				fieldBooleanFilter.addTerm(
 					indexFieldName, value, BooleanClauseOccur.SHOULD);
 			}
