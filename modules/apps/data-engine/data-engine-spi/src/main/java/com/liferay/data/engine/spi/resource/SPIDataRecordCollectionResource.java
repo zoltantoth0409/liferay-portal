@@ -150,12 +150,12 @@ public class SPIDataRecordCollectionResource<T> {
 	}
 
 	public T getSiteDataRecordCollection(
-			String dataRecordCollectionKey, long groupId)
+			String dataRecordCollectionKey, long siteId)
 		throws Exception {
 
 		return _transformUnsafeFunction.apply(
 			_ddlRecordSetLocalService.getRecordSet(
-				groupId, dataRecordCollectionKey));
+				siteId, dataRecordCollectionKey));
 	}
 
 	public T updateDataRecordCollection(

@@ -144,12 +144,12 @@ public class SPIDataLayoutResource<T> {
 				dataLayoutId));
 	}
 
-	public T getDataLayout(long classNameId, String dataLayoutKey, long groupId)
+	public T getDataLayout(long classNameId, String dataLayoutKey, long siteId)
 		throws Exception {
 
 		DDMStructureLayout ddmStructureLayout =
 			_ddmStructureLayoutLocalService.getStructureLayout(
-				groupId, classNameId, dataLayoutKey);
+				siteId, classNameId, dataLayoutKey);
 
 		return getDataLayout(ddmStructureLayout.getStructureLayoutId());
 	}
@@ -250,12 +250,11 @@ public class SPIDataLayoutResource<T> {
 
 	private void _addDataDefinitionFieldLinks(
 		long classNameId, long dataDefinitionId, long dataLayoutId,
-		List<String> fieldNames, long groupId) {
+		List<String> fieldNames, long siteId) {
 
 		for (String fieldName : fieldNames) {
 			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
-				groupId, classNameId, dataLayoutId, dataDefinitionId,
-				fieldName);
+				siteId, classNameId, dataLayoutId, dataDefinitionId, fieldName);
 		}
 	}
 
