@@ -19,7 +19,7 @@
 <%
 DepotEntry depotEntry = (DepotEntry)request.getAttribute(DepotAdminWebKeys.DEPOT_ENTRY);
 
-Group group = GroupServiceUtil.getGroup(depotEntry.getGroupId());
+Group group = depotEntry.getGroup();
 
 UnicodeProperties typeSettingsProperties = group.getTypeSettingsProperties();
 
