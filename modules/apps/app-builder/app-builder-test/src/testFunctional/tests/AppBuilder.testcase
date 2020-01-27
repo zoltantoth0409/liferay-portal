@@ -1681,7 +1681,6 @@ definition {
 	@description = "Update an existing deployment"
 	@priority = "5"
 	test UpdateDeployment {
-		property portal.acceptance = "false";
 
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object",
