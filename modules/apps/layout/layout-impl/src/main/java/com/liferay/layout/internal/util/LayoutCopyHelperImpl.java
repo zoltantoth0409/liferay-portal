@@ -695,25 +695,6 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 				_targetLayout.getLayoutId(),
 				_sourceLayout.getMasterLayoutPlid());
 
-			Image image = _imageLocalService.getImage(
-				_sourceLayout.getIconImageId());
-
-			byte[] imageBytes = null;
-
-			if (image != null) {
-				imageBytes = image.getTextObj();
-			}
-
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
-			if (serviceContext == null) {
-				serviceContext = new ServiceContext();
-			}
-
-			serviceContext.setAttribute(
-				"layout.instanceable.allowed", Boolean.TRUE);
-
 			UnicodeProperties properties = new UnicodeProperties();
 
 			properties.load(_sourceLayout.getTypeSettings());
@@ -734,6 +715,25 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 				_targetLayout.getLayoutId(), properties.toString());
 
 			_targetLayout.setType(_sourceLayout.getType());
+
+			Image image = _imageLocalService.getImage(
+				_sourceLayout.getIconImageId());
+
+			byte[] imageBytes = null;
+
+			if (image != null) {
+				imageBytes = image.getTextObj();
+			}
+
+			ServiceContext serviceContext =
+				ServiceContextThreadLocal.getServiceContext();
+
+			if (serviceContext == null) {
+				serviceContext = new ServiceContext();
+			}
+
+			serviceContext.setAttribute(
+				"layout.instanceable.allowed", Boolean.TRUE);
 
 			LayoutSEOEntry layoutSEOEntry =
 				_layoutSEOEntryLocalService.fetchLayoutSEOEntry(
