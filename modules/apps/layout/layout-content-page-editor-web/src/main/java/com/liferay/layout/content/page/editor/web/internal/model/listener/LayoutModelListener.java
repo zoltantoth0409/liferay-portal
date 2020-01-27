@@ -126,8 +126,6 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 					pagetTemplateLayout.getPlid());
 		}
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		draftLayout = _layoutCopyHelper.copyLayout(
 			pagetTemplateLayout, draftLayout);
 
@@ -138,6 +136,8 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		properties.put("published", Boolean.FALSE.toString());
 
 		_layoutLocalService.updateLayout(draftLayout);
+
+		ServiceContext serviceContext = new ServiceContext();
 
 		List<LayoutClassedModelUsage> layoutClassedModelUsages =
 			_layoutClassedModelUsageLocalService.
