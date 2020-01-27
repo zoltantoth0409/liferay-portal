@@ -67,8 +67,7 @@ public class AnalyticsReportsPortlet extends MVCPortlet {
 			renderRequest);
 
 		HttpServletRequest originalHttpServletRequest =
-			_portal.getOriginalServletRequest(
-				_portal.getHttpServletRequest(renderRequest));
+			_portal.getOriginalServletRequest(httpServletRequest);
 
 		String layoutMode = ParamUtil.getString(
 			originalHttpServletRequest, "p_l_mode", Constants.VIEW);
