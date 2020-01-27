@@ -18,6 +18,7 @@ import com.liferay.microblogs.constants.MicroblogsPortletKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -210,8 +211,8 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String screenName = matcher.group();
 
-			screenName = StringUtil.removeSubstring(screenName, "[@");
-			screenName = StringUtil.removeSubstring(screenName, ']');
+			screenName = StringUtil.replace(screenName, "[@", StringPool.BLANK);
+			screenName = StringUtil.replace(screenName, ']', StringPool.BLANK);
 
 			screenNames.add(screenName);
 		}
@@ -410,11 +411,11 @@ public class MicroblogsUtil {
 
 				sb.append("<a href=\"");
 
-				String assetTagScreenName = StringUtil.removeSubstring(
-					result, "[@");
+				String assetTagScreenName = StringUtil.replace(
+					result, "[@", StringPool.BLANK);
 
-				assetTagScreenName = StringUtil.removeSubstring(
-					assetTagScreenName, ']');
+				assetTagScreenName = StringUtil.replace(
+					assetTagScreenName, ']', StringPool.BLANK);
 
 				ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 

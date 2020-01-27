@@ -170,7 +170,7 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 		}
 
 		for (String htmlTag : _HTML_TAGS) {
-			content = StringUtil.removeSubstring(content, htmlTag);
+			content = StringUtil.replace(content, htmlTag, StringPool.BLANK);
 		}
 
 		// Images
@@ -216,8 +216,8 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 			int imageLength = image.length();
 
-			image = StringUtil.removeSubstring(image, "[[");
-			image = StringUtil.removeSubstring(image, "]]");
+			image = StringUtil.replace(image, "[[", StringPool.BLANK);
+			image = StringUtil.replace(image, "]]", StringPool.BLANK);
 
 			sb.replace(
 				matcher.start(0) + offset,
@@ -263,13 +263,14 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 			mediaWikiTable = matcher4.replaceAll("|=$1|");
 
-			mediaWikiTable = StringUtil.removeSubstring(
-				mediaWikiTable, CharPool.NEW_LINE);
-			mediaWikiTable = StringUtil.removeSubstring(
-				mediaWikiTable, CharPool.RETURN);
+			mediaWikiTable = StringUtil.replace(
+				mediaWikiTable, CharPool.NEW_LINE, StringPool.BLANK);
+			mediaWikiTable = StringUtil.replace(
+				mediaWikiTable, CharPool.RETURN, StringPool.BLANK);
 			mediaWikiTable = StringUtil.replace(mediaWikiTable, "|-", "\n\r");
 			mediaWikiTable = StringUtil.replace(mediaWikiTable, "||", "|");
-			mediaWikiTable = StringUtil.removeSubstring(mediaWikiTable, "////");
+			mediaWikiTable = StringUtil.replace(
+				mediaWikiTable, "////", StringPool.BLANK);
 
 			sb.replace(
 				matcher.start(0) + offset,

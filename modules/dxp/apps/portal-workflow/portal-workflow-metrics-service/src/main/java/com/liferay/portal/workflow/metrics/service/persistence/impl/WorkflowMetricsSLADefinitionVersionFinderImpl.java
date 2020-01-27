@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.metrics.service.persistence.impl;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.orm.custom.sql.CustomSQL;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -56,8 +57,9 @@ public class WorkflowMetricsSLADefinitionVersionFinderImpl
 			String sql = _customSQL.get(getClass(), FIND_BY_C_CD_P_S);
 
 			if (processId == null) {
-				sql = StringUtil.removeSubstring(
-					sql, "(WMSLADefinitionVersion.processId = ? ) AND");
+				sql = StringUtil.replace(
+					sql, "(WMSLADefinitionVersion.processId = ? ) AND",
+					StringPool.BLANK);
 			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);

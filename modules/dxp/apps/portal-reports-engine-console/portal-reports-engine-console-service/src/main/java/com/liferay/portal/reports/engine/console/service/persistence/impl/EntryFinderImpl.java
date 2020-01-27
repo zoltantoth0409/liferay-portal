@@ -117,18 +117,20 @@ public class EntryFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			if (createDateGT == null) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.createDate > ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.createDate > ?) AND",
+					StringPool.BLANK);
 			}
 
 			if (createDateLT == null) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.createDate < ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.createDate < ?) AND",
+					StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(
@@ -207,18 +209,20 @@ public class EntryFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			if (createDateGT == null) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.createDate > ?) AND ");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.createDate > ?) AND ",
+					StringPool.BLANK);
 			}
 
 			if (createDateLT == null) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Entry.createDate < ?) AND ");
+				sql = StringUtil.replace(
+					sql, "(Reports_Entry.createDate < ?) AND ",
+					StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(

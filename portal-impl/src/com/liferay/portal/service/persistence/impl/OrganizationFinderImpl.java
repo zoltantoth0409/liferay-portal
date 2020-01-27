@@ -243,11 +243,12 @@ public class OrganizationFinderImpl
 				sql, "LOWER(Address.zip)", StringPool.LIKE, true, zips);
 
 			if (regionId == null) {
-				sql = StringUtil.removeSubstring(sql, _REGION_ID_SQL);
+				sql = StringUtil.replace(sql, _REGION_ID_SQL, StringPool.BLANK);
 			}
 
 			if (countryId == null) {
-				sql = StringUtil.removeSubstring(sql, _COUNTRY_ID_SQL);
+				sql = StringUtil.replace(
+					sql, _COUNTRY_ID_SQL, StringPool.BLANK);
 			}
 
 			sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
@@ -450,8 +451,8 @@ public class OrganizationFinderImpl
 			String sql = CustomSQLUtil.get(FIND_O_BY_C_P);
 
 			if (previousOrganizationId == 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(organizationId > ?) AND");
+				sql = StringUtil.replace(
+					sql, "(organizationId > ?) AND", StringPool.BLANK);
 			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
@@ -563,11 +564,11 @@ public class OrganizationFinderImpl
 		}
 
 		if (regionId == null) {
-			sql = StringUtil.removeSubstring(sql, _REGION_ID_SQL);
+			sql = StringUtil.replace(sql, _REGION_ID_SQL, StringPool.BLANK);
 		}
 
 		if (countryId == null) {
-			sql = StringUtil.removeSubstring(sql, _COUNTRY_ID_SQL);
+			sql = StringUtil.replace(sql, _COUNTRY_ID_SQL, StringPool.BLANK);
 		}
 
 		sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
@@ -804,7 +805,8 @@ public class OrganizationFinderImpl
 		int status = queryDefinition.getStatus();
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			sql = StringUtil.removeSubstring(sql, "(User_.status = ?) AND");
+			sql = StringUtil.replace(
+				sql, "(User_.status = ?) AND", StringPool.BLANK);
 		}
 
 		return sql;

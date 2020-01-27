@@ -15,6 +15,7 @@
 package com.liferay.users.admin.web.internal.display.context;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.model.OrgLabor;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -159,8 +160,9 @@ public class OrgLaborFormDisplay {
 
 		while (calendar.get(Calendar.DATE) == today) {
 			int timeOfDayValue = GetterUtil.getInteger(
-				StringUtil.removeSubstring(
-					timeFormat.format(calendar.getTime()), CharPool.COLON));
+				StringUtil.replace(
+					timeFormat.format(calendar.getTime()), CharPool.COLON,
+					StringPool.BLANK));
 
 			selectOptionDisplays.add(
 				new SelectOptionDisplay(

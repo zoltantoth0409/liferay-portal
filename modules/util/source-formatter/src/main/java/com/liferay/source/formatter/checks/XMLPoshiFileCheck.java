@@ -211,7 +211,7 @@ public class XMLPoshiFileCheck extends BaseFileCheck {
 		if (matcher.find()) {
 			String setUpBlock = matcher.group();
 
-			content = StringUtil.removeSubstring(content, setUpBlock);
+			content = StringUtil.replace(content, setUpBlock, "");
 
 			sb.append(setUpBlock);
 		}
@@ -221,7 +221,7 @@ public class XMLPoshiFileCheck extends BaseFileCheck {
 		if (matcher.find()) {
 			String tearDownBlock = matcher.group();
 
-			content = StringUtil.removeSubstring(content, tearDownBlock);
+			content = StringUtil.replace(content, tearDownBlock, "");
 
 			sb.append(tearDownBlock);
 		}

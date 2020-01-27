@@ -199,8 +199,8 @@ public class DDMFormInstanceFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(DDMFormInstance.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(DDMFormInstance.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(
@@ -269,8 +269,8 @@ public class DDMFormInstanceFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(DDMFormInstance.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(DDMFormInstance.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(

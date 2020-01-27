@@ -110,7 +110,7 @@ public class ContentSetElementResourceImpl
 			else if (key.startsWith("x-")) {
 				context.put(
 					CamelCaseUtil.toCamelCase(
-						StringUtil.removeSubstring(key, "x-")),
+						StringUtil.replace(key, "x-", "")),
 					value);
 			}
 			else {

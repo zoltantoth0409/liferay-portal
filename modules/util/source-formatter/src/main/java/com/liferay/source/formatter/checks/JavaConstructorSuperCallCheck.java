@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
@@ -30,7 +31,8 @@ public class JavaConstructorSuperCallCheck extends BaseJavaTermCheck {
 		String constructorContent = javaTerm.getContent();
 
 		if (constructorContent.contains("\tsuper();")) {
-			return StringUtil.removeSubstring(constructorContent, "\tsuper();");
+			return StringUtil.replace(
+				constructorContent, "\tsuper();", StringPool.BLANK);
 		}
 
 		return constructorContent;

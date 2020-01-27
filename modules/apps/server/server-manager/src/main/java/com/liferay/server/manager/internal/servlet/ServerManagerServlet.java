@@ -98,8 +98,8 @@ public class ServerManagerServlet extends HttpServlet {
 
 		String path = StringUtil.toLowerCase(pathInfo);
 
-		path = StringUtil.removeSubstring(
-			path, matchingExecutorPath + StringPool.SLASH);
+		path = StringUtil.replace(
+			path, matchingExecutorPath + StringPool.SLASH, StringPool.BLANK);
 
 		String[] pathParts = StringUtil.split(path, StringPool.SLASH);
 

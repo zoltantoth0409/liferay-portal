@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.regex.Matcher;
@@ -65,8 +66,8 @@ public class JavaFinderCacheCheck extends BaseFileCheck {
 		if (fileName.contains("/test/integration/") ||
 			fileName.contains("/testIntegration/java")) {
 
-			content = StringUtil.removeSubstring(
-				content, "FinderCacheUtil.clearCache();");
+			content = StringUtil.replace(
+				content, "FinderCacheUtil.clearCache();", StringPool.BLANK);
 		}
 
 		return content;

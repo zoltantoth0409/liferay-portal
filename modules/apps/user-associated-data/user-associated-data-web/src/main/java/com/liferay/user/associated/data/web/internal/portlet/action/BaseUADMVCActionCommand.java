@@ -160,7 +160,7 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 		for (String key : parameterMap.keySet()) {
 			if (key.startsWith("uadRegistryKey__")) {
 				entityTypes.add(
-					StringUtil.removeSubstring(key, "uadRegistryKey__"));
+					StringUtil.replace(key, "uadRegistryKey__", ""));
 			}
 		}
 

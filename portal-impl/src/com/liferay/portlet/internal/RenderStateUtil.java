@@ -121,8 +121,9 @@ public class RenderStateUtil {
 
 		liferayPortletURL.setCacheability(ResourceURL.FULL);
 
-		return StringUtil.removeSubstring(
-			liferayPortletURL.toString(), "&p_p_cacheability=cacheLevelFull");
+		return StringUtil.replace(
+			liferayPortletURL.toString(), "&p_p_cacheability=cacheLevelFull",
+			StringPool.BLANK);
 	}
 
 	private static JSONArray _getAllowedPortletModesJSONArray(Portlet portlet) {

@@ -56,7 +56,7 @@ public class SubstringFieldQueryBuilder implements FieldQueryBuilder {
 			value = StringUtil.unquote(value);
 		}
 
-		value = StringUtil.removeSubstring(value, CharPool.PERCENT);
+		value = StringUtil.replace(value, CharPool.PERCENT, StringPool.BLANK);
 
 		if (value.isEmpty()) {
 			value = StringPool.STAR;

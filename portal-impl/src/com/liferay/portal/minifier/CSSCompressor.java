@@ -525,7 +525,7 @@ public class CSSCompressor {
 				}
 			}
 
-			css = StringUtil.removeSubstring(css, "/*" + placeholder + "*/");
+			css = StringUtil.replace(css, "/*" + placeholder + "*/", "");
 		}
 
 		return css;

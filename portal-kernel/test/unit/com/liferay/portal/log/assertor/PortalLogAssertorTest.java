@@ -105,8 +105,9 @@ public class PortalLogAssertorTest {
 	}
 
 	protected void scanXMLLogFile(Path path) throws IOException {
-		String content = StringUtil.removeSubstring(
-			new String(Files.readAllBytes(path), StringPool.UTF8), "log4j:");
+		String content = StringUtil.replace(
+			new String(Files.readAllBytes(path), StringPool.UTF8), "log4j:",
+			"");
 
 		int index = content.lastIndexOf("</event>");
 

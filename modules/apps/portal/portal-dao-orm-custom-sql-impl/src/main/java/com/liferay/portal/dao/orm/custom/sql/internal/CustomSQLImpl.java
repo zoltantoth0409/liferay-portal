@@ -214,10 +214,11 @@ public class CustomSQLImpl implements CustomSQL {
 			}
 		}
 		else {
-			sql = StringUtil.removeSubstring(sql, _OWNER_USER_ID_KEYWORD);
+			sql = StringUtil.replace(
+				sql, _OWNER_USER_ID_KEYWORD, StringPool.BLANK);
 
-			sql = StringUtil.removeSubstring(
-				sql, _OWNER_USER_ID_AND_OR_CONNECTOR);
+			sql = StringUtil.replace(
+				sql, _OWNER_USER_ID_AND_OR_CONNECTOR, StringPool.BLANK);
 		}
 
 		return sql;
@@ -544,7 +545,8 @@ public class CustomSQLImpl implements CustomSQL {
 		}
 
 		if (ArrayUtil.isEmpty(values)) {
-			return StringUtil.removeSubstring(sql, oldSqlSB.toString());
+			return StringUtil.replace(
+				sql, oldSqlSB.toString(), StringPool.BLANK);
 		}
 
 		StringBundler newSqlSB = new StringBundler(values.length * 4 + 3);
@@ -590,7 +592,8 @@ public class CustomSQLImpl implements CustomSQL {
 		}
 
 		if (ArrayUtil.isEmpty(values)) {
-			return StringUtil.removeSubstring(sql, oldSqlSB.toString());
+			return StringUtil.replace(
+				sql, oldSqlSB.toString(), StringPool.BLANK);
 		}
 
 		StringBundler newSqlSB = new StringBundler(values.length * 4 + 3);

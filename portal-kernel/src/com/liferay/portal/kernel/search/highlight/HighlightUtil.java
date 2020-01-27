@@ -50,8 +50,10 @@ public class HighlightUtil {
 				queryTerms.add(matcher.group(1));
 			}
 
-			snippet = StringUtil.removeSubstring(snippet, HIGHLIGHT_TAG_OPEN);
-			snippet = StringUtil.removeSubstring(snippet, HIGHLIGHT_TAG_CLOSE);
+			snippet = StringUtil.replace(
+				snippet, HIGHLIGHT_TAG_OPEN, StringPool.BLANK);
+			snippet = StringUtil.replace(
+				snippet, HIGHLIGHT_TAG_CLOSE, StringPool.BLANK);
 		}
 
 		document.addText(

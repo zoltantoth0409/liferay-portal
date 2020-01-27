@@ -150,8 +150,9 @@ public final class DLValidatorImpl implements DLValidator {
 				StringUtil.equals(
 					fileNameExtension,
 					StringUtil.toLowerCase(
-						StringUtil.removeSubstring(
-							fileExtension, CharPool.PERIOD)))) {
+						StringUtil.replace(
+							fileExtension, CharPool.PERIOD,
+							StringPool.BLANK)))) {
 
 				validFileExtension = true;
 

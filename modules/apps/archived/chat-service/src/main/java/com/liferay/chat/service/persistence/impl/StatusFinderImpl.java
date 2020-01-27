@@ -179,7 +179,8 @@ public class StatusFinderImpl
 		String sql = _customSQL.get(getClass(), FIND_BY_SOCIAL_RELATION_TYPES);
 
 		if (types.length == 0) {
-			return StringUtil.removeSubstring(sql, "[$SOCIAL_RELATION_TYPES$]");
+			return StringUtil.replace(
+				sql, "[$SOCIAL_RELATION_TYPES$]", StringPool.BLANK);
 		}
 
 		StringBundler sb = new StringBundler(types.length * 2 - 1);

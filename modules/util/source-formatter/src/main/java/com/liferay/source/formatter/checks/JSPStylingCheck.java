@@ -121,7 +121,8 @@ public class JSPStylingCheck extends StylingCheck {
 		Matcher matcher = _emptyJavaSourceTagPattern.matcher(content);
 
 		if (matcher.find()) {
-			return StringUtil.removeSubstring(content, matcher.group());
+			return StringUtil.replace(
+				content, matcher.group(), StringPool.BLANK);
 		}
 
 		return content;

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools.rest.builder.internal.freemarker.tool;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.java.JavaMethodParameter;
@@ -175,11 +176,11 @@ public class FreeMarkerTool {
 
 		schemaName = StringUtil.toLowerCase(schemaName);
 
-		String shortParameterName = StringUtil.removeSubstring(
-			parameterName, schemaName);
+		String shortParameterName = StringUtil.replace(
+			parameterName, schemaName, StringPool.BLANK);
 
-		shortParameterName = StringUtil.removeSubstring(
-			shortParameterName, "parent");
+		shortParameterName = StringUtil.replace(
+			shortParameterName, "parent", StringPool.BLANK);
 
 		for (String propertyKey : properties.keySet()) {
 			if (StringUtil.equalsIgnoreCase(parameterName, propertyKey) ||
@@ -906,7 +907,7 @@ public class FreeMarkerTool {
 
 		String returnType = StringUtil.toLowerCase(
 			javaMethodSignature.getReturnType());
-		String schemaName = StringUtil.removeSubstring(parameterName, "Id");
+		String schemaName = StringUtil.replace(parameterName, "Id", "");
 
 		if (propertyName.equals(parameterName) &&
 			returnType.endsWith(StringUtil.toLowerCase(schemaName))) {

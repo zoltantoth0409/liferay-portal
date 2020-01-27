@@ -384,8 +384,8 @@ public class KaleoProcessFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(KaleoProcess.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(KaleoProcess.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(
@@ -470,8 +470,8 @@ public class KaleoProcessFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(KaleoProcess.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(KaleoProcess.groupId = ?) AND", StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(

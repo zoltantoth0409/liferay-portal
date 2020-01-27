@@ -101,7 +101,7 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 			if (key.startsWith("x-")) {
 				context.put(
 					CamelCaseUtil.toCamelCase(
-						StringUtil.removeSubstring(key, "x-")),
+						StringUtil.replace(key, "x-", "")),
 					value);
 			}
 			else if (key.equals("accept-language")) {

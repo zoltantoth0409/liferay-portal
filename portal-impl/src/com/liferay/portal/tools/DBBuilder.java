@@ -15,6 +15,7 @@
 package com.liferay.portal.tools;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
@@ -139,7 +140,8 @@ public class DBBuilder {
 				String fileName = fileNamePath.toString();
 
 				_generateSQLFile(
-					sqlDir, StringUtil.removeSubstring(fileName, ".sql"));
+					sqlDir,
+					StringUtil.replace(fileName, ".sql", StringPool.BLANK));
 			}
 		}
 	}

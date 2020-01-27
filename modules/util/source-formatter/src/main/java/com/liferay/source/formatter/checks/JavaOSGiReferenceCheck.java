@@ -217,7 +217,8 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 
 				String entireMethod = content.substring(x + 1, y);
 
-				content = StringUtil.removeSubstring(content, entireMethod);
+				content = StringUtil.replace(
+					content, entireMethod, StringPool.BLANK);
 
 				bndInheritRequired = true;
 			}
@@ -248,7 +249,8 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 
 					String entireMethod = content.substring(x + 1, y);
 
-					content = StringUtil.removeSubstring(content, entireMethod);
+					content = StringUtil.replace(
+						content, entireMethod, StringPool.BLANK);
 
 					bndInheritRequired = true;
 				}

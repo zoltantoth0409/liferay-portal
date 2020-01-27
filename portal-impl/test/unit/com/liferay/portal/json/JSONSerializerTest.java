@@ -15,6 +15,7 @@
 package com.liferay.portal.json;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONSerializer;
 import com.liferay.portal.kernel.model.role.RoleConstants;
@@ -70,7 +71,7 @@ public class JSONSerializerTest {
 
 		String json = jsonSerializer.serialize(hits);
 
-		json = StringUtil.removeSubstring(json, CharPool.SPACE);
+		json = StringUtil.replace(json, CharPool.SPACE, StringPool.BLANK);
 
 		Assert.assertTrue(json, json.contains("\"docs\":[]"));
 		Assert.assertFalse(json, json.contains("\"query\""));

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.service.persistence.impl;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
@@ -87,7 +88,7 @@ public class PortletPreferencesFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_O_O_P);
 
 			if (ownerId == -1) {
-				sql = StringUtil.removeSubstring(sql, _OWNER_ID_SQL);
+				sql = StringUtil.replace(sql, _OWNER_ID_SQL, StringPool.BLANK);
 			}
 
 			if (excludeDefaultPreferences) {
@@ -96,7 +97,8 @@ public class PortletPreferencesFinderImpl
 					PortletConstants.DEFAULT_PREFERENCES);
 			}
 			else {
-				sql = StringUtil.removeSubstring(sql, _PREFERENCES_SQL);
+				sql = StringUtil.replace(
+					sql, _PREFERENCES_SQL, StringPool.BLANK);
 			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
@@ -148,14 +150,15 @@ public class PortletPreferencesFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_O_O_P_P_P);
 
 			if (ownerId == -1) {
-				sql = StringUtil.removeSubstring(sql, _OWNER_ID_SQL);
+				sql = StringUtil.replace(sql, _OWNER_ID_SQL, StringPool.BLANK);
 			}
 
 			if (plid == -1) {
-				sql = StringUtil.removeSubstring(sql, _PLID_SQL);
+				sql = StringUtil.replace(sql, _PLID_SQL, StringPool.BLANK);
 			}
 			else {
-				sql = StringUtil.removeSubstring(sql, _PORTLET_ID_INSTANCE_SQL);
+				sql = StringUtil.replace(
+					sql, _PORTLET_ID_INSTANCE_SQL, StringPool.BLANK);
 			}
 
 			if (excludeDefaultPreferences) {
@@ -164,7 +167,8 @@ public class PortletPreferencesFinderImpl
 					PortletConstants.DEFAULT_PREFERENCES);
 			}
 			else {
-				sql = StringUtil.removeSubstring(sql, _PREFERENCES_SQL);
+				sql = StringUtil.replace(
+					sql, _PREFERENCES_SQL, StringPool.BLANK);
 			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);

@@ -119,14 +119,16 @@ public class DefinitionFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Definition.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Definition.groupId = ?) AND",
+					StringPool.BLANK);
 			}
 
 			if (sourceId <= 0) {
-				sql = StringUtil.removeSubstring(
+				sql = StringUtil.replace(
 					sql,
-					"(Reports_Definition.sourceId = ?) [$AND_OR_CONNECTOR$]");
+					"(Reports_Definition.sourceId = ?) [$AND_OR_CONNECTOR$]",
+					StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(
@@ -209,14 +211,16 @@ public class DefinitionFinderImpl
 			}
 
 			if (groupId <= 0) {
-				sql = StringUtil.removeSubstring(
-					sql, "(Reports_Definition.groupId = ?) AND");
+				sql = StringUtil.replace(
+					sql, "(Reports_Definition.groupId = ?) AND",
+					StringPool.BLANK);
 			}
 
 			if (sourceId <= 0) {
-				sql = StringUtil.removeSubstring(
+				sql = StringUtil.replace(
 					sql,
-					"(Reports_Definition.sourceId = ?) [$AND_OR_CONNECTOR$]");
+					"(Reports_Definition.sourceId = ?) [$AND_OR_CONNECTOR$]",
+					StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceKeywords(
