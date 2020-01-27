@@ -1293,7 +1293,7 @@ public class LayoutsAdminDisplayContext {
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			LayoutPageTemplateEntryLocalServiceUtil.
-				fetchLayoutPageTemplateEntryByPlid(layout.getClassPK());
+				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
 
 		if (layout.isTypeAssetDisplay() ||
 			((layoutPageTemplateEntry != null) && layout.isSystem())) {
