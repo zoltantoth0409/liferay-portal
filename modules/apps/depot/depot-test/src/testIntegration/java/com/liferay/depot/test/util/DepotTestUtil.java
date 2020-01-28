@@ -51,7 +51,7 @@ public class DepotTestUtil {
 	}
 
 	public static void withRegularUser(
-			UnsafeBiConsumer<User, Role, Exception> consumer)
+			UnsafeBiConsumer<User, Role, Exception> unsafeBiConsumer)
 		throws Exception {
 
 		User user = UserTestUtil.addUser();
@@ -66,7 +66,7 @@ public class DepotTestUtil {
 			PermissionThreadLocal.setPermissionChecker(
 				PermissionCheckerFactoryUtil.create(user));
 
-			consumer.accept(user, role);
+			unsafeBiConsumer.accept(user, role);
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
