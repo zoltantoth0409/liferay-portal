@@ -2153,7 +2153,7 @@ public class SitesImpl implements Sites {
 					Map<String, String[]> parameterMap =
 						getLayoutSetPrototypesParameters(true);
 
-					boolean mergeLayoutPrototypesThreadLocalIsInProgress =
+					boolean mergeLayoutPrototypesThreadLocalInProgress =
 						MergeLayoutPrototypesThreadLocal.isInProgress();
 
 					try {
@@ -2165,7 +2165,7 @@ public class SitesImpl implements Sites {
 					}
 					finally {
 						MergeLayoutPrototypesThreadLocal.setInProgress(
-							mergeLayoutPrototypesThreadLocalIsInProgress);
+							mergeLayoutPrototypesThreadLocalInProgress);
 					}
 				}
 			}
