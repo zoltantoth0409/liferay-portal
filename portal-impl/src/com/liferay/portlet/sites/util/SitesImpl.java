@@ -2150,9 +2150,6 @@ public class SitesImpl implements Sites {
 				if (!layoutSetPrototypeLinkEnabled &&
 					(layoutSetPrototypeId > 0)) {
 
-					Map<String, String[]> parameterMap =
-						getLayoutSetPrototypesParameters(true);
-
 					boolean mergeLayoutPrototypesThreadLocalInProgress =
 						MergeLayoutPrototypesThreadLocal.isInProgress();
 
@@ -2161,7 +2158,7 @@ public class SitesImpl implements Sites {
 
 						importLayoutSetPrototype(
 							layoutSetPrototype, groupId, privateLayout,
-							parameterMap, true);
+							getLayoutSetPrototypesParameters(true), true);
 					}
 					finally {
 						MergeLayoutPrototypesThreadLocal.setInProgress(
