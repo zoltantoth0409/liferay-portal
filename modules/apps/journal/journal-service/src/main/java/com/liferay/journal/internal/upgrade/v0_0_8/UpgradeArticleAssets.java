@@ -82,9 +82,9 @@ public class UpgradeArticleAssets extends UpgradeProcess {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Journal article with resourcePrimKey ",
+								"Journal article with resource primary key ",
 								resourcePrimKey, " does not have associated ",
-								"AssetEntry"));
+								"asset entry"));
 					}
 
 					continue;
