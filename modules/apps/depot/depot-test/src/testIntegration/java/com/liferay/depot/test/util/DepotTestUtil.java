@@ -54,8 +54,8 @@ public class DepotTestUtil {
 			UnsafeBiConsumer<User, Role, Exception> unsafeBiConsumer)
 		throws Exception {
 
-		User user = UserTestUtil.addUser();
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
+		User user = UserTestUtil.addUser();
 
 		UserLocalServiceUtil.addRoleUser(role.getRoleId(), user);
 
