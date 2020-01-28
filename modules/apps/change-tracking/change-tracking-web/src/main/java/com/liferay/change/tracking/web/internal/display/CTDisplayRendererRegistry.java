@@ -181,7 +181,6 @@ public class CTDisplayRendererRegistry {
 						bundleContext.ungetService(serviceReference);
 					}
 				});
-
 		_ctServiceServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, CTService.class, null,
@@ -198,7 +197,6 @@ public class CTDisplayRendererRegistry {
 	@Deactivate
 	protected void deactivate() {
 		_ctDisplayServiceTrackerMap.close();
-
 		_ctServiceServiceTrackerMap.close();
 	}
 
