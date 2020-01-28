@@ -227,10 +227,10 @@ public class LayoutSEOEntryLocalServiceImpl
 		Set<Locale> availableLocales = new HashSet<>();
 		Set<DDMFormFieldValue> ddmFormFieldValues = new LinkedHashSet<>();
 
-		for (DDMFormFieldValue formFieldValue :
+		for (DDMFormFieldValue ddmFormFieldValue :
 				ddmFormValues.getDDMFormFieldValues()) {
 
-			Value value = formFieldValue.getValue();
+			Value value = ddmFormFieldValue.getValue();
 
 			if (value == null) {
 				continue;
@@ -240,13 +240,13 @@ public class LayoutSEOEntryLocalServiceImpl
 				if (!Validator.isBlank(value.getString(locale))) {
 					availableLocales.add(locale);
 
-					ddmFormFieldValues.add(formFieldValue);
+					ddmFormFieldValues.add(ddmFormFieldValue);
 
 					continue;
 				}
 
 				for (DDMFormFieldValue nestedDDMFormFieldValue :
-						formFieldValue.getNestedDDMFormFieldValues()) {
+						ddmFormFieldValue.getNestedDDMFormFieldValues()) {
 
 					Value nestedDDMFormFieldValueValue =
 						nestedDDMFormFieldValue.getValue();
@@ -256,7 +256,7 @@ public class LayoutSEOEntryLocalServiceImpl
 
 						availableLocales.add(locale);
 
-						ddmFormFieldValues.add(formFieldValue);
+						ddmFormFieldValues.add(ddmFormFieldValue);
 
 						break;
 					}
