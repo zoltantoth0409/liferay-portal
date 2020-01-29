@@ -45,12 +45,12 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 
 		return new Account() {
 			{
-				setDescription(accountEntry.getDescription());
-				setDomains(StringUtil.split(accountEntry.getDomains()));
-				setId(accountEntry.getAccountEntryId());
-				setName(accountEntry.getName());
-				setParentAccountId(accountEntry.getParentAccountEntryId());
-				setStatus(accountEntry.getStatus());
+				description = accountEntry.getDescription();
+				domains = StringUtil.split(accountEntry.getDomains());
+				id = accountEntry.getAccountEntryId();
+				name = accountEntry.getName();
+				parentAccountId = accountEntry.getParentAccountEntryId();
+				status = accountEntry.getStatus();
 			}
 		};
 	}
