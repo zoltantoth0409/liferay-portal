@@ -19,11 +19,11 @@ import com.liferay.account.model.AccountEntry;
 import com.liferay.account.rest.client.dto.v1_0.Account;
 import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.Inject;
 
@@ -69,25 +69,15 @@ public class AccountResourceTest extends BaseAccountResourceTestCase {
 		return accountEntry;
 	}
 
-	private String[] _getDomainsArray(AccountEntry accountEntry) {
-		List<String> domains = StringUtil.split(accountEntry.getDomains());
-
-		return domains.toArray(new String[0]);
-	}
-
 	private Account _toAccount(AccountEntry accountEntry) throws Exception {
-		if (accountEntry == null) {
-			return null;
-		}
-
 		return new Account() {
 			{
-				setDescription(accountEntry.getDescription());
-				setDomains(_getDomainsArray(accountEntry));
-				setId(accountEntry.getAccountEntryId());
-				setName(accountEntry.getName());
-				setParentAccountId(accountEntry.getParentAccountEntryId());
-				setStatus(accountEntry.getStatus());
+				description = accountEntry.getDescription();
+				domains = StringUtil.split(accountEntry.getDomains());
+				id = accountEntry.getAccountEntryId();
+				name = accountEntry.getName();
+				parentAccountId = accountEntry.getParentAccountEntryId();
+				status = accountEntry.getStatus();
 			}
 		};
 	}
