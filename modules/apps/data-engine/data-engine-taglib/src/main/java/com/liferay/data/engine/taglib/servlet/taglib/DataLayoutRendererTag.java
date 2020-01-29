@@ -52,7 +52,7 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 
 			dataLayoutRendererContext.setContainerId(getContainerId());
 
-			if (getDataRecordId() != null) {
+			if (Validator.isNotNull(getDataRecordId())) {
 				dataLayoutRendererContext.setDataRecordValues(
 					DataLayoutTaglibUtil.getDataRecordValues(
 						getDataRecordId(), request));
@@ -69,11 +69,11 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 						JavaConstants.JAVAX_PORTLET_RESPONSE)));
 			dataLayoutRendererContext.setPortletNamespace(getNamespace());
 
-			if (getDataLayoutId() != null) {
+			if (Validator.isNotNull(getDataLayoutId())) {
 				content = DataLayoutTaglibUtil.renderDataLayout(
 					getDataLayoutId(), dataLayoutRendererContext);
 			}
-			else if (getDataDefinitionId() != null) {
+			else if (Validator.isNotNull(getDataDefinitionId())) {
 				DataDefinition dataDefinition =
 					DataLayoutTaglibUtil.getDataDefinition(
 						getDataDefinitionId(), request);
