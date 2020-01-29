@@ -64,8 +64,8 @@ public class DepotEntrySearchTest {
 
 	@Test
 	public void testSearchBothWithoutPermissions() throws Exception {
-		_addDepotEntry(TestPropsValues.getUser(), "depot entry 1");
-		_addDepotEntry(TestPropsValues.getUser(), "depot entry 2");
+		_addDepotEntry(TestPropsValues.getUser(), "Depot Entry 1");
+		_addDepotEntry(TestPropsValues.getUser(), "Depot Entry 2");
 
 		DepotTestUtil.withRegularUser(
 			(user, role) -> {
@@ -76,7 +76,7 @@ public class DepotEntrySearchTest {
 					SearchContextTestUtil.getSearchContext(
 						TestPropsValues.getGroupId());
 
-				searchContext.setKeywords("depot entry");
+				searchContext.setKeywords("Depot Entry");
 
 				Hits hits = indexer.search(searchContext);
 
@@ -87,9 +87,9 @@ public class DepotEntrySearchTest {
 	@Test
 	public void testSearchBothWithPermissions() throws Exception {
 		DepotEntry depotEntry1 = _addDepotEntry(
-			TestPropsValues.getUser(), "depot entry 1");
+			TestPropsValues.getUser(), "Depot Entry 1");
 		DepotEntry depotEntry2 = _addDepotEntry(
-			TestPropsValues.getUser(), "depot entry 2");
+			TestPropsValues.getUser(), "Depot Entry 2");
 
 		DepotTestUtil.withRegularUser(
 			(user, role) -> {
@@ -107,7 +107,7 @@ public class DepotEntrySearchTest {
 						TestPropsValues.getGroupId());
 
 				searchContext.setGroupIds(null);
-				searchContext.setKeywords("depot entry");
+				searchContext.setKeywords("Depot Entry");
 
 				Hits hits = indexer.search(searchContext);
 
@@ -134,8 +134,8 @@ public class DepotEntrySearchTest {
 	@Test
 	public void testSearchOneWithPermissions() throws Exception {
 		DepotEntry depotEntry1 = _addDepotEntry(
-			TestPropsValues.getUser(), "depot entry 1");
-		_addDepotEntry(TestPropsValues.getUser(), "depot entry 2");
+			TestPropsValues.getUser(), "Depot Entry 1");
+		_addDepotEntry(TestPropsValues.getUser(), "Depot Entry 2");
 
 		DepotTestUtil.withRegularUser(
 			(user, role) -> {
