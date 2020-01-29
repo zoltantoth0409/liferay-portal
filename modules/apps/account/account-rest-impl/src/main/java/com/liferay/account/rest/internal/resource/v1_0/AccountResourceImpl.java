@@ -18,9 +18,7 @@ import com.liferay.account.model.AccountEntry;
 import com.liferay.account.rest.dto.v1_0.Account;
 import com.liferay.account.rest.resource.v1_0.AccountResource;
 import com.liferay.account.service.AccountEntryLocalService;
-import com.liferay.petra.string.StringUtil;
-
-import java.util.List;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -41,9 +39,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 	}
 
 	private String[] _getDomainsArray(AccountEntry accountEntry) {
-		List<String> domains = StringUtil.split(accountEntry.getDomains());
-
-		return domains.toArray(new String[0]);
+		return StringUtil.split(accountEntry.getDomains());
 	}
 
 	private Account _toAccount(AccountEntry accountEntry) throws Exception {
