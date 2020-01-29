@@ -39,10 +39,6 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 	}
 
 	private Account _toAccount(AccountEntry accountEntry) throws Exception {
-		if (accountEntry == null) {
-			return null;
-		}
-
 		return new Account() {
 			{
 				description = accountEntry.getDescription();
