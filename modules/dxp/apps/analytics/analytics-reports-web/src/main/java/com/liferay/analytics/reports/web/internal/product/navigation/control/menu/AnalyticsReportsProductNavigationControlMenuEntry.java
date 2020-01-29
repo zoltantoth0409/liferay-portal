@@ -205,7 +205,7 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 			return false;
 		}
 
-		if (!_analyticsReportsInfoItemExists(httpServletRequest)) {
+		if (!_hasAnalyticsReportsInfoItem(httpServletRequest)) {
 			return false;
 		}
 
@@ -244,7 +244,7 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 			AnalyticsReportsPortletKeys.ANALYTICS_REPORTS);
 	}
 
-	private boolean _analyticsReportsInfoItemExists(
+	private boolean _hasAnalyticsReportsInfoItem(
 		HttpServletRequest httpServletRequest) {
 
 		InfoDisplayObjectProvider infoDisplayObjectProvider =
