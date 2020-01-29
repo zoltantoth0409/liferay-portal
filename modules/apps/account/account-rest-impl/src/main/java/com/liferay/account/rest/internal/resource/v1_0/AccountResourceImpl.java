@@ -38,10 +38,6 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		return _toAccount(_accountEntryLocalService.getAccountEntry(accountId));
 	}
 
-	private String[] _getDomainsArray(AccountEntry accountEntry) {
-		return StringUtil.split(accountEntry.getDomains());
-	}
-
 	private Account _toAccount(AccountEntry accountEntry) throws Exception {
 		if (accountEntry == null) {
 			return null;
@@ -50,7 +46,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		return new Account() {
 			{
 				setDescription(accountEntry.getDescription());
-				setDomains(_getDomainsArray(accountEntry));
+				setDomains(StringUtil.split(accountEntry.getDomains()));
 				setId(accountEntry.getAccountEntryId());
 				setName(accountEntry.getName());
 				setParentAccountId(accountEntry.getParentAccountEntryId());
