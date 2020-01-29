@@ -71,8 +71,9 @@ public class DepotTestUtil {
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
-			UserLocalServiceUtil.deleteUser(user);
+
 			RoleLocalServiceUtil.deleteRole(role);
+			UserLocalServiceUtil.deleteUser(user);
 		}
 	}
 
