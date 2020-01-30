@@ -102,7 +102,7 @@ public class DuplicateItemReactMVCActionCommand extends BaseMVCActionCommand {
 			}
 			else if (exception instanceof PortletIdException) {
 				errorMessage =
-					"layouts-that-include-non-instantiable-widgets-cannot-be-" +
+					"layouts-that-include-noninstantiable-widgets-cannot-be-" +
 						"duplicated";
 			}
 

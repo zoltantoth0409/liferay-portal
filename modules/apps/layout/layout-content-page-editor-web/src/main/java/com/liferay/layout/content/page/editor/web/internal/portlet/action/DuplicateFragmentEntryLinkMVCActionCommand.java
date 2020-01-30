@@ -252,7 +252,7 @@ public class DuplicateFragmentEntryLinkMVCActionCommand
 			}
 			else if (portalException instanceof PortletIdException) {
 				errorMessage =
-					"layouts-that-include-non-instantiable-widgets-cannot-be-" +
+					"layouts-that-include-noninstantiable-widgets-cannot-be-" +
 						"duplicated";
 			}
 
