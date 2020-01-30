@@ -39,6 +39,8 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 			<%
 			Map<String, Object> data = new HashMap<String, Object>();
 
+			data.put("id", siteNavigationMenu.getSiteNavigationMenuId());
+
 			String name = siteNavigationMenu.getName();
 
 			if (siteNavigationMenu.getGroupId() != scopeGroupId) {
@@ -47,7 +49,6 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 				name = StringUtil.appendParentheticalSuffix(name, group.getDescriptiveName(locale));
 			}
 
-			data.put("id", siteNavigationMenu.getSiteNavigationMenuId());
 			data.put("name", name);
 			%>
 
