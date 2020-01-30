@@ -420,8 +420,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				fragmentEntryProcessorContext.getSegmentsExperienceIds());
 
 		if (segmentsExperienceIdOptionalLong.isPresent()) {
-			String preferencesPortletId = portletId;
-
 			String defaultPreferencesPortletId = portletId;
 
 			if (!portlet.isInstanceable()) {
@@ -465,7 +463,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			instanceId = SegmentsExperiencePortletUtil.setSegmentsExperienceId(
 				instanceId, segmentsExperienceIdOptionalLong.getAsLong());
 
-			preferencesPortletId = PortletIdCodec.encode(portletId, instanceId);
+			String preferencesPortletId = PortletIdCodec.encode(
+				portletId, instanceId);
 
 			portletPreferences = PortletPreferencesFactoryUtil.getPortletSetup(
 				fragmentEntryProcessorContext.getHttpServletRequest(),
