@@ -94,7 +94,7 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 		String state = ParamUtil.getString(actionRequest, "state");
 
 		if (!Validator.isBlank(state)) {
-			actionRequest = _getActionRequestFromState(actionRequest, state);
+			actionRequest = _getActionRequest(actionRequest, state);
 		}
 
 		String login = ParamUtil.getString(actionRequest, "login");
@@ -122,8 +122,8 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 		_loginMVCActionCommand.processAction(actionRequest, actionResponse);
 	}
 
-	private ActionRequest _getActionRequestFromState(
-			ActionRequest actionRequest, String encryptedStateMap)
+	private ActionRequest _getActionRequest(
+			ActionRequest actionRequest, String state)
 		throws Exception {
 
 		HttpServletRequest httpServletRequest =
@@ -135,17 +135,15 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 		String mfaEmailOTPDigest = (String)httpSession.getAttribute(
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_DIGEST);
 
-		if (!StringUtil.equals(
-				DigesterUtil.digest(encryptedStateMap), mfaEmailOTPDigest)) {
-
-			throw new PrincipalException("User sent unverified data");
+		if (!StringUtil.equals(DigesterUtil.digest(state), mfaEmailOTPDigest)) {
+			throw new PrincipalException("User sent unverified state");
 		}
 
 		Map<String, Object> stateMap = _jsonFactory.looseDeserialize(
 			Encryptor.decrypt(
 				(Key)httpSession.getAttribute(
 					MFAEmailOTPWebKeys.MFA_EMAIL_OTP_KEY),
-				encryptedStateMap),
+				state),
 			Map.class);
 
 		Map<String, Object> requestParameters =
@@ -191,6 +189,7 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 			httpServletRequest);
 
 		long plid = 0;
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -204,12 +203,6 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 			MFAEmailOTPPortletKeys.MFA_EMAIL_OTP_VERIFY_PORTLET, plid,
 			PortletRequest.RENDER_PHASE);
 
-		/*This seems tobe the most common ordering for these parameters across
-		* the portal:
-		* - saveLastPath
-		* - mvc*
-		* - redirect
-		* */
 		liferayPortletURL.setParameter(
 			"saveLastPath", Boolean.FALSE.toString());
 		liferayPortletURL.setParameter(
