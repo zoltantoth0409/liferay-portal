@@ -258,6 +258,18 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		_validateFragmentEntryHTMLDocument(document);
 	}
 
+	private long _getDefaultPlid(ThemeDisplay themeDisplay) {
+		Layout layout = themeDisplay.getLayout();
+
+		long defaultPlid = layout.getPlid();
+
+		if (layout.getMasterLayoutPlid() > 0) {
+			defaultPlid = layout.getMasterLayoutPlid();
+		}
+
+		return defaultPlid;
+	}
+
 	private Document _getDocument(String html) {
 		Document document = Jsoup.parseBodyFragment(html);
 
@@ -396,18 +408,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		).findFirst();
 	}
 
-	private long _getDefaultPlid(ThemeDisplay themeDisplay) {
-		Layout layout = themeDisplay.getLayout();
-
-		long defaultPlid = layout.getPlid();
-
-		if (layout.getMasterLayoutPlid() > 0) {
-			defaultPlid = layout.getMasterLayoutPlid();
-		}
-
-		return defaultPlid;
-	}
-
 	private String _renderWidgetHTML(
 			String editableValues,
 			FragmentEntryProcessorContext fragmentEntryProcessorContext)
@@ -456,8 +456,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 					themeDisplay.getCompanyId(),
 					PortletKeys.PREFS_OWNER_ID_DEFAULT,
 					PortletKeys.PREFS_OWNER_TYPE_LAYOUT,
-					_getDefaultPlid(themeDisplay),
-					defaultPreferencesPortletId);
+					_getDefaultPlid(themeDisplay), defaultPreferencesPortletId);
 
 			if (defaultExperiencePortletPreferences == null) {
 				defaultExperiencePortletPreferences =
