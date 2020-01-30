@@ -432,6 +432,13 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				fragmentEntryProcessorContext.getSegmentsExperienceIds());
 
 		if (segmentsExperienceIdOptionalLong.isPresent()) {
+			HttpServletRequest httpServletRequest =
+				fragmentEntryProcessorContext.getHttpServletRequest();
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)httpServletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
 			String defaultPreferencesPortletId = portletId;
 
 			if (!portlet.isInstanceable()) {
@@ -443,13 +450,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 					SegmentsExperiencePortletUtil.setSegmentsExperienceId(
 						instanceId, SegmentsExperienceConstants.ID_DEFAULT));
 			}
-
-			HttpServletRequest httpServletRequest =
-				fragmentEntryProcessorContext.getHttpServletRequest();
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
 
 			PortletPreferences defaultExperiencePortletPreferences =
 				_portletPreferencesLocalService.fetchPreferences(
