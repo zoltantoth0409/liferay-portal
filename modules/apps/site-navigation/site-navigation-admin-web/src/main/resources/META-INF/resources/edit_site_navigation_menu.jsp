@@ -23,8 +23,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuName());
-
-Group scopeGroup = themeDisplay.getScopeGroup();
 %>
 
 <c:if test="<%= siteNavigationAdminDisplayContext.hasUpdatePermission() %>">
@@ -33,6 +31,11 @@ Group scopeGroup = themeDisplay.getScopeGroup();
 			<ul class="navbar-nav"></ul>
 
 			<ul class="navbar-nav">
+
+				<%
+				Group scopeGroup = themeDisplay.getScopeGroup();
+				%>
+
 				<c:if test="<%= !scopeGroup.isCompany() %>">
 					<li class="nav-item">
 						<button class="btn btn-unstyled nav-link nav-link-monospaced" id="<portlet:namespace />showSiteNavigationMenuSettings" type="button">
