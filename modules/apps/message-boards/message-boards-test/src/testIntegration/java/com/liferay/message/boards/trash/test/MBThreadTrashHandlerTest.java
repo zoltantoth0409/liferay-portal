@@ -352,12 +352,12 @@ public class MBThreadTrashHandlerTest
 
 	@Override
 	protected TrashHandler getTrashHandler(String className) {
-		if (className.equals(MBThread.class.getName())) {
-			return _mbThreadTrashHandler;
-		}
-
 		if (className.equals(MBCategory.class.getName())) {
 			return _mbCategoryTrashHandler;
+		}
+
+		if (className.equals(MBThread.class.getName())) {
+			return _mbThreadTrashHandler;
 		}
 
 		return null;
