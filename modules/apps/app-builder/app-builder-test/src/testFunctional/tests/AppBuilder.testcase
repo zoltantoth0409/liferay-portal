@@ -1,6 +1,5 @@
 @component-name = "app-builder"
 definition {
-
 	property custom.properties = "default.layout.template.id=1_column";
 
 	property portal.release = "true";
@@ -66,7 +65,6 @@ definition {
 	@description = "This is a use case for LPS-104569."
 	@priority = "5"
 	test AddMultipleFormViewsToTheSameObject {
-
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object 1",
 			isCreatingFormView = "false",
@@ -116,7 +114,6 @@ definition {
 	@description = "Add a Form View with a Date field"
 	@priority = "5"
 	test AddSimpleFormViewWithDateField {
-
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object",
 			isCreatingFormView = "true",
@@ -131,7 +128,6 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test AddSimpleFormViewWithGridField {
-
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object",
 			isCreatingFormView = "true",
