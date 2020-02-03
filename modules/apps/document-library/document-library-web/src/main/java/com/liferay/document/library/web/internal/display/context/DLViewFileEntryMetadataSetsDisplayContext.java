@@ -96,10 +96,9 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/document_library/ddm/delete_ddm_structure");
-
-		actionURL.setParameter("navigation", "file_entry_metadata_sets");
 		actionURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
+		actionURL.setParameter("navigation", "file_entry_metadata_sets");
 		actionURL.setParameter(
 			"ddmStructureId", String.valueOf(ddmStructure.getStructureId()));
 

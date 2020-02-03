@@ -135,10 +135,10 @@ public class DLAdminNavigationDisplayContext {
 		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter("navigation", "file_entry_metadata_sets");
+		portletURL.setParameter("redirect", _currentURLObj.toString());
 		portletURL.setParameter("backURL", _themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"groupId", String.valueOf(_themeDisplay.getScopeGroupId()));
-		portletURL.setParameter("redirect", _currentURLObj.toString());
 
 		navigationItem.setHref(portletURL.toString());
 
