@@ -410,6 +410,30 @@ public class DDMFormContextToDDMForm
 
 				@Override
 				public void accept(JSONObject jsonObject) {
+					DDMFormField ddmFormField = createDDMFormField(jsonObject);
+
+					if (jsonObject.has("nestedFields")) {
+						JSONArray nestedFields = jsonObject.getJSONArray(
+							"nestedFields");
+
+						// Needs to be recursive
+
+						for (int i = 0; i < nestedFields.length(); i++) {
+							DDMFormField nestedDDMFormField =
+								createDDMFormField(
+									nestedFields.getJSONObject(i));
+
+							ddmFormField.addNestedDDMFormField(
+								nestedDDMFormField);
+						}
+					}
+
+					ddmForm.addDDMFormField(ddmFormField);
+				}
+
+				protected DDMFormField createDDMFormField(
+					JSONObject jsonObject) {
+
 					String name = jsonObject.getString("name");
 					String type = jsonObject.getString("type");
 
@@ -419,7 +443,7 @@ public class DDMFormContextToDDMForm
 						jsonObject.getJSONObject("settingsContext"), ddmForm,
 						ddmFormField);
 
-					ddmForm.addDDMFormField(ddmFormField);
+					return ddmFormField;
 				}
 
 			});
