@@ -19,7 +19,7 @@ package com.liferay.dynamic.data.mapping.constants;
  */
 public class DDMConstants {
 
-	public static final String DEFAULT_AVAILABLE_FIELDS =
+	public static final String AVAILABLE_FIELDS =
 		"Liferay.FormBuilder.AVAILABLE_FIELDS.DDM_STRUCTURE";
 
 	public static final String EXPRESSION_FUNCTION_FACTORY_NAME =

@@ -65,7 +65,7 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 	@Override
 	public String getAvailableFields() {
-		return DDMConstants.DEFAULT_AVAILABLE_FIELDS;
+		return DDMConstants.AVAILABLE_FIELDS;
 	}
 
 	@Override

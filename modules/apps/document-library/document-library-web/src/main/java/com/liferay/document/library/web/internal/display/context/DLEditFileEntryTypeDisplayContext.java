@@ -57,7 +57,7 @@ public class DLEditFileEntryTypeDisplayContext {
 	}
 
 	public String getAvailableFields() {
-		return DDMConstants.DEFAULT_AVAILABLE_FIELDS;
+		return DDMConstants.AVAILABLE_FIELDS;
 	}
 
 	public Locale[] getAvailableLocales() throws PortalException {
