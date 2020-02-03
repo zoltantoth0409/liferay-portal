@@ -194,11 +194,11 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 						fragmentEntryLink.getOriginalFragmentEntryLinkId());
 			}
 
-			String id = element.attr("id");
-
 			Portlet portlet = _portletLocalService.getPortletById(portletName);
 
 			String instanceId = String.valueOf(CharPool.NUMBER_0);
+
+			String id = element.attr("id");
 
 			if (portlet.isInstanceable()) {
 				instanceId = _getInstanceId(
