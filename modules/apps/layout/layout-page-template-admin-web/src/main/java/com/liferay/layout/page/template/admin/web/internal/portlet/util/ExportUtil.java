@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.dto.v1_0.PageTemplateDefinition;
-import com.liferay.layout.page.template.admin.web.internal.util.PageTemplateDefinitionConverterUtil;
+import com.liferay.layout.page.template.admin.web.internal.headless.delivery.dto.v1_0.PageTemplateDefinitionConverterUtil;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
