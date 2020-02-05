@@ -548,11 +548,11 @@ public class FriendlyURLEntryLocalServiceImpl
 	}
 
 	private Map<String, String> _merge(
-		Map<String, String> master, Map<String, String> copy) {
+		Map<String, String> masterMap, Map<String, String> copyMap) {
 
-		Map<String, String> map = new HashMap<>(copy);
+		Map<String, String> map = new HashMap<>(copyMap);
 
-		MapUtil.merge(master, map);
+		MapUtil.merge(masterMap, map);
 
 		return map;
 	}
