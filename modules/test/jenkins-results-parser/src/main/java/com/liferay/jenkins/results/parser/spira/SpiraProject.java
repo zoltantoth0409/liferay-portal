@@ -68,11 +68,11 @@ public class SpiraProject {
 			this, new SpiraRelease.SearchParameter("ReleaseId", releaseID));
 
 		if (spiraReleases.size() > 1) {
-			throw new RuntimeException("Duplicate Release ID " + releaseID);
+			throw new RuntimeException("Duplicate release ID " + releaseID);
 		}
 
 		if (spiraReleases.isEmpty()) {
-			throw new RuntimeException("Missing Release ID " + releaseID);
+			throw new RuntimeException("Missing release ID " + releaseID);
 		}
 
 		return spiraReleases.get(0);
@@ -84,11 +84,11 @@ public class SpiraProject {
 		List<SpiraRelease> spiraReleases = getSpiraReleasesByPath(releasePath);
 
 		if (spiraReleases.size() > 1) {
-			throw new RuntimeException("Duplicate Release Path " + releasePath);
+			throw new RuntimeException("Duplicate release path " + releasePath);
 		}
 
 		if (spiraReleases.isEmpty()) {
-			throw new RuntimeException("Missing Release Path " + releasePath);
+			throw new RuntimeException("Missing release path " + releasePath);
 		}
 
 		return spiraReleases.get(0);
@@ -121,11 +121,11 @@ public class SpiraProject {
 			this, new SpiraRelease.SearchParameter("IndentLevel", indentLevel));
 
 		if (spiraReleases.size() > 1) {
-			throw new RuntimeException("Duplicate Indent Level " + indentLevel);
+			throw new RuntimeException("Duplicate indent level " + indentLevel);
 		}
 
 		if (spiraReleases.isEmpty()) {
-			throw new RuntimeException("Missing Indent Level " + indentLevel);
+			throw new RuntimeException("Missing indent level " + indentLevel);
 		}
 
 		return spiraReleases.get(0);
