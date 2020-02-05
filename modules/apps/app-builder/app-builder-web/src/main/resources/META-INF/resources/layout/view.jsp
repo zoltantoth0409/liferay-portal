@@ -44,7 +44,7 @@ if (mvcPath.startsWith("/edit_entry.jsp")) {
 					</a>
 				</div>
 
-				<div style="display: none">
+				<div style="display: none;">
 					<liferay-portlet:runtime
 						portletName="<%= PortletKeys.LOGIN %>"
 					/>
