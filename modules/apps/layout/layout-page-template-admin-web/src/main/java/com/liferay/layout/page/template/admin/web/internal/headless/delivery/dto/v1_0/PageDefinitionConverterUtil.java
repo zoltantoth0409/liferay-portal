@@ -93,6 +93,7 @@ public class PageDefinitionConverterUtil {
 									getPaddingHorizontal();
 							paddingTop =
 								containerLayoutStructureItem.getPaddingTop();
+
 							setBackgroundImage(
 								() -> {
 									String backgroundImageTitle =

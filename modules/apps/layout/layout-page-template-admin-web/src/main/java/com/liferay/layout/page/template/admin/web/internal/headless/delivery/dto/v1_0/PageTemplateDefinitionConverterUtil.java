@@ -34,6 +34,7 @@ public class PageTemplateDefinitionConverterUtil {
 				dateCreated = layoutPageTemplateEntry.getCreateDate();
 				dateModified = layoutPageTemplateEntry.getModifiedDate();
 				name = layoutPageTemplateEntry.getName();
+
 				setCollectionName(
 					() -> {
 						LayoutPageTemplateCollection
