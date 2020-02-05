@@ -145,7 +145,7 @@ public class DataRecordValuesUtil {
 
 				if (!(value instanceof Map)) {
 					throw new IllegalArgumentException(
-						"Field's value must be a map");
+						"Field value is not a map");
 				}
 
 				Map<String, Object> localizedValues =
