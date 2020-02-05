@@ -79,7 +79,6 @@ public class RSSConfigurationAction extends DefaultConfigurationAction {
 
 		long entriesPerFeed = GetterUtil.getLong(
 			properties.getProperty("entriesPerFeed"));
-
 		long expandedEntriesPerFeed = GetterUtil.getLong(
 			properties.getProperty("expandedEntriesPerFeed"));
 
