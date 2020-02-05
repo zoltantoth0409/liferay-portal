@@ -265,16 +265,16 @@ public class DuplicateFragmentEntryLinkMVCActionCommand
 					noninstanceablePortletException =
 						(NoninstanceablePortletException)portalException;
 
+				Portlet portlet = _portletLocalService.getPortletById(
+					themeDisplay.getCompanyId(),
+					noninstanceablePortletException.getPortletId());
+
 				HttpServletRequest httpServletRequest =
 					_portal.getHttpServletRequest(actionRequest);
 
 				HttpSession httpSession = httpServletRequest.getSession();
 
 				ServletContext servletContext = httpSession.getServletContext();
-
-				Portlet portlet = _portletLocalService.getPortletById(
-					themeDisplay.getCompanyId(),
-					noninstanceablePortletException.getPortletId());
 
 				errorMessage = LanguageUtil.format(
 					themeDisplay.getRequest(),

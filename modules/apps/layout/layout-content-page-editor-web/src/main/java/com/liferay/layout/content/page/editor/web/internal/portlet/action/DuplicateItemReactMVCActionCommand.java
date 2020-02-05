@@ -113,16 +113,16 @@ public class DuplicateItemReactMVCActionCommand extends BaseMVCActionCommand {
 					noninstanceablePortletException =
 						(NoninstanceablePortletException)exception;
 
-				HttpServletRequest httpServletRequest =
-					_portal.getHttpServletRequest(actionRequest);
-
-				HttpSession session = httpServletRequest.getSession();
-
-				ServletContext servletContext = session.getServletContext();
-
 				Portlet portlet = _portletLocalService.getPortletById(
 					themeDisplay.getCompanyId(),
 					noninstanceablePortletException.getPortletId());
+
+				HttpServletRequest httpServletRequest =
+					_portal.getHttpServletRequest(actionRequest);
+
+				HttpSession httpSession = httpServletRequest.getSession();
+
+				ServletContext servletContext = httpSession.getServletContext();
 
 				errorMessage = LanguageUtil.format(
 					themeDisplay.getRequest(),
