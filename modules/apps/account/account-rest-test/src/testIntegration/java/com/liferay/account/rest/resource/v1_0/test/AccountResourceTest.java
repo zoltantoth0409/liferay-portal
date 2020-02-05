@@ -31,6 +31,7 @@ import com.liferay.portal.test.rule.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.runner.RunWith;
 
 /**
@@ -39,6 +40,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class AccountResourceTest extends BaseAccountResourceTestCase {
 
+	@After
 	@Override
 	public void tearDown() throws Exception {
 		_deleteAccountEntries(_accountEntries);
