@@ -268,9 +268,9 @@ public class DuplicateFragmentEntryLinkMVCActionCommand
 				HttpServletRequest httpServletRequest =
 					_portal.getHttpServletRequest(actionRequest);
 
-				HttpSession session = httpServletRequest.getSession();
+				HttpSession httpSession = httpServletRequest.getSession();
 
-				ServletContext servletContext = session.getServletContext();
+				ServletContext servletContext = httpSession.getServletContext();
 
 				Portlet portlet = _portletLocalService.getPortletById(
 					themeDisplay.getCompanyId(),
