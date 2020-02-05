@@ -14,7 +14,10 @@
 
 package com.liferay.asset.auto.tagger.service;
 
+import com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.persistence.change.tracking.CTPersistence;
 
 /**
  * Provides a wrapper for {@link AssetAutoTaggerEntryLocalService}.
@@ -40,20 +43,17 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @return the asset auto tagger entry that was added
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		addAssetAutoTaggerEntry(
-			com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-				assetAutoTaggerEntry) {
+	public AssetAutoTaggerEntry addAssetAutoTaggerEntry(
+		AssetAutoTaggerEntry assetAutoTaggerEntry) {
 
 		return _assetAutoTaggerEntryLocalService.addAssetAutoTaggerEntry(
 			assetAutoTaggerEntry);
 	}
 
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		addAssetAutoTaggerEntry(
-			com.liferay.asset.kernel.model.AssetEntry assetEntry,
-			com.liferay.asset.kernel.model.AssetTag assetTag) {
+	public AssetAutoTaggerEntry addAssetAutoTaggerEntry(
+		com.liferay.asset.kernel.model.AssetEntry assetEntry,
+		com.liferay.asset.kernel.model.AssetTag assetTag) {
 
 		return _assetAutoTaggerEntryLocalService.addAssetAutoTaggerEntry(
 			assetEntry, assetTag);
@@ -66,8 +66,8 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @return the new asset auto tagger entry
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		createAssetAutoTaggerEntry(long assetAutoTaggerEntryId) {
+	public AssetAutoTaggerEntry createAssetAutoTaggerEntry(
+		long assetAutoTaggerEntryId) {
 
 		return _assetAutoTaggerEntryLocalService.createAssetAutoTaggerEntry(
 			assetAutoTaggerEntryId);
@@ -92,10 +92,8 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @return the asset auto tagger entry that was removed
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		deleteAssetAutoTaggerEntry(
-			com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-				assetAutoTaggerEntry) {
+	public AssetAutoTaggerEntry deleteAssetAutoTaggerEntry(
+		AssetAutoTaggerEntry assetAutoTaggerEntry) {
 
 		return _assetAutoTaggerEntryLocalService.deleteAssetAutoTaggerEntry(
 			assetAutoTaggerEntry);
@@ -109,8 +107,8 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @throws PortalException if a asset auto tagger entry with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-			deleteAssetAutoTaggerEntry(long assetAutoTaggerEntryId)
+	public AssetAutoTaggerEntry deleteAssetAutoTaggerEntry(
+			long assetAutoTaggerEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _assetAutoTaggerEntryLocalService.deleteAssetAutoTaggerEntry(
@@ -222,16 +220,16 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		fetchAssetAutoTaggerEntry(long assetAutoTaggerEntryId) {
+	public AssetAutoTaggerEntry fetchAssetAutoTaggerEntry(
+		long assetAutoTaggerEntryId) {
 
 		return _assetAutoTaggerEntryLocalService.fetchAssetAutoTaggerEntry(
 			assetAutoTaggerEntryId);
 	}
 
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		fetchAssetAutoTaggerEntry(long assetEntryId, long assetTagId) {
+	public AssetAutoTaggerEntry fetchAssetAutoTaggerEntry(
+		long assetEntryId, long assetTagId) {
 
 		return _assetAutoTaggerEntryLocalService.fetchAssetAutoTaggerEntry(
 			assetEntryId, assetTagId);
@@ -245,20 +243,16 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List
-		<com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry>
-			getAssetAutoTaggerEntries(
-				com.liferay.asset.kernel.model.AssetEntry assetEntry) {
+	public java.util.List<AssetAutoTaggerEntry> getAssetAutoTaggerEntries(
+		com.liferay.asset.kernel.model.AssetEntry assetEntry) {
 
 		return _assetAutoTaggerEntryLocalService.getAssetAutoTaggerEntries(
 			assetEntry);
 	}
 
 	@Override
-	public java.util.List
-		<com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry>
-			getAssetAutoTaggerEntries(
-				com.liferay.asset.kernel.model.AssetTag assetTag) {
+	public java.util.List<AssetAutoTaggerEntry> getAssetAutoTaggerEntries(
+		com.liferay.asset.kernel.model.AssetTag assetTag) {
 
 		return _assetAutoTaggerEntryLocalService.getAssetAutoTaggerEntries(
 			assetTag);
@@ -276,9 +270,8 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @return the range of asset auto tagger entries
 	 */
 	@Override
-	public java.util.List
-		<com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry>
-			getAssetAutoTaggerEntries(int start, int end) {
+	public java.util.List<AssetAutoTaggerEntry> getAssetAutoTaggerEntries(
+		int start, int end) {
 
 		return _assetAutoTaggerEntryLocalService.getAssetAutoTaggerEntries(
 			start, end);
@@ -303,8 +296,8 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @throws PortalException if a asset auto tagger entry with the primary key could not be found
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-			getAssetAutoTaggerEntry(long assetAutoTaggerEntryId)
+	public AssetAutoTaggerEntry getAssetAutoTaggerEntry(
+			long assetAutoTaggerEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _assetAutoTaggerEntryLocalService.getAssetAutoTaggerEntry(
@@ -348,13 +341,31 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	 * @return the asset auto tagger entry that was updated
 	 */
 	@Override
-	public com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-		updateAssetAutoTaggerEntry(
-			com.liferay.asset.auto.tagger.model.AssetAutoTaggerEntry
-				assetAutoTaggerEntry) {
+	public AssetAutoTaggerEntry updateAssetAutoTaggerEntry(
+		AssetAutoTaggerEntry assetAutoTaggerEntry) {
 
 		return _assetAutoTaggerEntryLocalService.updateAssetAutoTaggerEntry(
 			assetAutoTaggerEntry);
+	}
+
+	@Override
+	public CTPersistence<AssetAutoTaggerEntry> getCTPersistence() {
+		return _assetAutoTaggerEntryLocalService.getCTPersistence();
+	}
+
+	@Override
+	public Class<AssetAutoTaggerEntry> getModelClass() {
+		return _assetAutoTaggerEntryLocalService.getModelClass();
+	}
+
+	@Override
+	public <R, E extends Throwable> R updateWithUnsafeFunction(
+			UnsafeFunction<CTPersistence<AssetAutoTaggerEntry>, R, E>
+				updateUnsafeFunction)
+		throws E {
+
+		return _assetAutoTaggerEntryLocalService.updateWithUnsafeFunction(
+			updateUnsafeFunction);
 	}
 
 	@Override
