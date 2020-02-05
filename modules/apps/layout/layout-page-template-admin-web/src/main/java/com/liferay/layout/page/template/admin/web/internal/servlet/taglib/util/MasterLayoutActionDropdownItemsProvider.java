@@ -289,7 +289,6 @@ public class MasterLayoutActionDropdownItemsProvider {
 		markAsDefaultMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/layout_page_template/edit_layout_page_template_settings");
-
 		markAsDefaultMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		markAsDefaultMasterLayoutURL.setParameter(
