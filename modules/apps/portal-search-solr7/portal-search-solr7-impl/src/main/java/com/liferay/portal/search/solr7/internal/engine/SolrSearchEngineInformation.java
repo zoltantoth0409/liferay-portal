@@ -147,10 +147,10 @@ public class SolrSearchEngineInformation implements SearchEngineInformation {
 
 		NamedList namedList = response.getResponse();
 
-		NamedList<Object> luceneInfo = (NamedList<Object>)namedList.get(
+		NamedList<Object> luceneNamedList = (NamedList<Object>)namedList.get(
 			"lucene");
 
-		return (String)luceneInfo.get("solr-spec-version");
+		return (String)luceneNamedList.get("solr-spec-version");
 	}
 
 	@Reference
