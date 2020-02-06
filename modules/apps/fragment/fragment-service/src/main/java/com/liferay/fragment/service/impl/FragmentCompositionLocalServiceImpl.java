@@ -109,6 +109,10 @@ public class FragmentCompositionLocalServiceImpl
 			FragmentComposition fragmentComposition)
 		throws PortalException {
 
+		// Fragment composition
+
+		fragmentCompositionPersistence.remove(fragmentComposition);
+
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -123,8 +127,6 @@ public class FragmentCompositionLocalServiceImpl
 			PortletFileRepositoryUtil.deletePortletFileEntry(
 				fragmentComposition.getPreviewFileEntryId());
 		}
-
-		fragmentCompositionPersistence.remove(fragmentComposition);
 
 		return fragmentComposition;
 	}
