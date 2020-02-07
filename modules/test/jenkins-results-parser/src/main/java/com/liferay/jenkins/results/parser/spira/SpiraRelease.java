@@ -203,8 +203,8 @@ public class SpiraRelease {
 
 		Map<String, String> urlParameters = new HashMap<>();
 
-		urlParameters.put("number_rows", String.valueOf(_NUMBER_ROWS));
-		urlParameters.put("start_row", String.valueOf(_START_ROW));
+		urlParameters.put("number_rows", String.valueOf(15000));
+		urlParameters.put("start_row", String.valueOf(1));
 
 		Map<String, String> urlPathReplacements = new HashMap<>();
 
@@ -298,10 +298,6 @@ public class SpiraRelease {
 		return JenkinsResultsParserUtil.combine(
 			"/Date(", String.valueOf(calendar.getTimeInMillis()), ")/");
 	}
-
-	private static final int _NUMBER_ROWS = 15000;
-
-	private static final int _START_ROW = 1;
 
 	private static final Map<String, SpiraRelease> _spiraReleases =
 		new HashMap<>();
