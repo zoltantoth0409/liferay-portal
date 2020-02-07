@@ -790,16 +790,12 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Record
-
 		User user = userLocalService.getUser(userId);
 
 		DDLRecord record = ddlRecordPersistence.findByPrimaryKey(recordId);
 
 		record.setModifiedDate(serviceContext.getModifiedDate(null));
 		record.setDDMStorageId(ddmStorageId);
-
-		// Record version
 
 		DDLRecordVersion ddlRecordVersion = record.getLatestRecordVersion();
 
