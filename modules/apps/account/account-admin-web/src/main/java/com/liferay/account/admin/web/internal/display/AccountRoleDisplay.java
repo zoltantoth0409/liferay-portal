@@ -53,6 +53,7 @@ public class AccountRoleDisplay {
 
 	private AccountRoleDisplay(AccountRole accountRole) throws Exception {
 		_accountRole = accountRole;
+
 		_role = RoleLocalServiceUtil.getRole(accountRole.getRoleId());
 	}
 
