@@ -51,7 +51,7 @@ public class DepotRolesPortalInstanceLifecycleListener
 	public void portalInstanceRegistered(Company company)
 		throws PortalException {
 
-		for (String name : _DEPOT_ROLES) {
+		for (String name : _DEPOT_ROLE_NAMES) {
 			_checkSystemRole(
 				company.getCompanyId(), name,
 				Collections.singletonMap(
@@ -99,7 +99,7 @@ public class DepotRolesPortalInstanceLifecycleListener
 		}
 	}
 
-	private static final String[] _DEPOT_ROLES = {
+	private static final String[] _DEPOT_ROLE_NAMES = {
 		"Depot Administrator", "Depot Member", "Depot Owner"
 	};
 
