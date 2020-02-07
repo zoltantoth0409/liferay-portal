@@ -40,7 +40,6 @@ public class AccountRoleDisplaySearchContainerFactory {
 			null, "there-are-no-roles");
 
 		searchContainer.setId("accountRoles");
-
 		searchContainer.setOrderByCol("name");
 
 		String orderByType = ParamUtil.getString(
@@ -60,10 +59,10 @@ public class AccountRoleDisplaySearchContainerFactory {
 				searchContainer.getEnd(),
 				new RoleNameComparator(orderByType.equals("asc")));
 
-		searchContainer.setTotal(baseModelSearchResult.getLength());
 		searchContainer.setResults(
 			TransformUtil.transform(
 				baseModelSearchResult.getBaseModels(), AccountRoleDisplay::of));
+		searchContainer.setTotal(baseModelSearchResult.getLength());
 
 		return searchContainer;
 	}
