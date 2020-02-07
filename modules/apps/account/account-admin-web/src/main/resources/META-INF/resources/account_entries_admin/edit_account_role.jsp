@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-long accountEntryId = ParamUtil.getLong(request, "accountEntryId");
-long accountRoleId = ParamUtil.getLong(request, "accountRoleId");
 String backURL = ParamUtil.getString(request, "backURL");
+
+long accountEntryId = ParamUtil.getLong(request, "accountEntryId");
 
 if (Validator.isNull(backURL)) {
 	PortletURL viewAccountRolesURL = renderResponse.createRenderURL();
@@ -31,8 +31,7 @@ if (Validator.isNull(backURL)) {
 	backURL = viewAccountRolesURL.toString();
 }
 
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURL);
+long accountRoleId = ParamUtil.getLong(request, "accountRoleId");
 
 AccountRole accountRole = AccountRoleLocalServiceUtil.fetchAccountRole(accountRoleId);
 
@@ -42,13 +41,16 @@ if (accountRole != null) {
 	role = accountRole.getRole();
 }
 
-renderResponse.setTitle((role == null) ? LanguageUtil.get(request, "add-new-role") : role.getTitle(locale));
-
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcPath", "/account_entries_admin/edit_account_role.jsp");
 portletURL.setParameter("accountEntryId", String.valueOf(accountEntryId));
 portletURL.setParameter("accountRoleId", String.valueOf(accountRoleId));
+
+portletDisplay.setShowBackIcon(true);
+portletDisplay.setURLBack(backURL);
+
+renderResponse.setTitle((role == null) ? LanguageUtil.get(request, "add-new-role") : role.getTitle(locale));
 %>
 
 <liferay-frontend:screen-navigation

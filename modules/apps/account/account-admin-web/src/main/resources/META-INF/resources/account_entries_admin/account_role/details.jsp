@@ -18,6 +18,7 @@
 
 <%
 long accountEntryId = ParamUtil.getLong(request, "accountEntryId");
+
 long accountRoleId = ParamUtil.getLong(request, "accountRoleId");
 
 AccountRole accountRole = AccountRoleLocalServiceUtil.fetchAccountRole(accountRoleId);
