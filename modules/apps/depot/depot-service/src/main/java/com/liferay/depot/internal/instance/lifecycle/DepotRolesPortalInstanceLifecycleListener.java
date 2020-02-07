@@ -99,14 +99,8 @@ public class DepotRolesPortalInstanceLifecycleListener
 		}
 	}
 
-	private static final String _DEPOT_ADMINISTRATOR = "Depot Administrator";
-
-	private static final String _DEPOT_MEMBER = "Depot Member";
-
-	private static final String _DEPOT_OWNER = "Depot Owner";
-
 	private static final String[] _DEPOT_ROLES = {
-		_DEPOT_ADMINISTRATOR, _DEPOT_MEMBER, _DEPOT_OWNER
+		"Depot Administrator", "Depot Member", "Depot Owner"
 	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
