@@ -71,8 +71,8 @@ public class SpiraTestCaseObject {
 
 		Map<String, String> urlParameters = new HashMap<>();
 
-		urlParameters.put("number_of_rows", String.valueOf(_NUMBER_OF_ROWS));
-		urlParameters.put("starting_row", String.valueOf(_STARTING_ROW));
+		urlParameters.put("number_of_rows", String.valueOf(15000));
+		urlParameters.put("starting_row", String.valueOf(1));
 
 		JSONArray requestJSONArray = new JSONArray();
 
@@ -115,10 +115,6 @@ public class SpiraTestCaseObject {
 
 		return projectID + "-" + testCaseID;
 	}
-
-	private static final int _NUMBER_OF_ROWS = 15000;
-
-	private static final int _STARTING_ROW = 1;
 
 	private static final Map<String, SpiraTestCaseObject> _spiraTestCases =
 		new HashMap<>();
