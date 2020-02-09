@@ -329,6 +329,8 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"pageType", editorSoyContext.get("pageType")
 			).put(
+				"pending", editorSoyContext.get("pending")
+			).put(
 				"pluginsRootPath",
 				npmResolvedPackageName + "/page_editor/plugins"
 			).put(
@@ -369,6 +371,8 @@ public class ContentPageEditorDisplayContext {
 				"updateSegmentsExperienceURL",
 				getFragmentEntryActionURL(
 					"/content_layout/update_segments_experience")
+			).put(
+				"workflowEnabled", editorSoyContext.get("workflowEnabled")
 			).build()
 		).put(
 			"state",
