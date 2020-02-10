@@ -98,6 +98,12 @@ public interface AssetDisplayPageEntryLocalService
 		long assetDisplayPageEntryId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the asset display page entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetDisplayPageEntry the asset display page entry
@@ -318,6 +324,9 @@ public interface AssetDisplayPageEntryLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

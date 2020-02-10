@@ -91,6 +91,12 @@ public interface DepotEntryLocalService
 	public DepotEntry createDepotEntry(long depotEntryId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the depot entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param depotEntry the depot entry
@@ -290,6 +296,9 @@ public interface DepotEntryLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

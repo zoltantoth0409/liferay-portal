@@ -90,6 +90,12 @@ public interface AssetListEntryUsageLocalService
 		long assetListEntryUsageId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the asset list entry usage from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetListEntryUsage the asset list entry usage
@@ -319,6 +325,9 @@ public interface AssetListEntryUsageLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

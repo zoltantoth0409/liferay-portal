@@ -113,6 +113,12 @@ public interface AssetListEntryLocalService
 	@Transactional(enabled = false)
 	public AssetListEntry createAssetListEntry(long assetListEntryId);
 
+	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
 	public void deleteAssetEntrySelection(
 			long assetListEntryId, long segmentsEntryId, int position)
 		throws PortalException;
@@ -326,6 +332,9 @@ public interface AssetListEntryLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

@@ -74,6 +74,18 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 	}
 
 	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel createPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetAutoTaggerEntryLocalService.createPersistedModel(
+			primaryKeyObj);
+	}
+
+	/**
 	 * Deletes the asset auto tagger entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetAutoTaggerEntry the asset auto tagger entry
@@ -317,6 +329,9 @@ public class AssetAutoTaggerEntryLocalServiceWrapper
 		return _assetAutoTaggerEntryLocalService.getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 			java.io.Serializable primaryKeyObj)

@@ -84,6 +84,18 @@ public class AssetEntryAssetCategoryRelLocalServiceWrapper
 	}
 
 	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel createPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetEntryAssetCategoryRelLocalService.createPersistedModel(
+			primaryKeyObj);
+	}
+
+	/**
 	 * Deletes the asset entry asset category rel from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetEntryAssetCategoryRel the asset entry asset category rel
@@ -422,6 +434,9 @@ public class AssetEntryAssetCategoryRelLocalServiceWrapper
 			getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 			java.io.Serializable primaryKeyObj)

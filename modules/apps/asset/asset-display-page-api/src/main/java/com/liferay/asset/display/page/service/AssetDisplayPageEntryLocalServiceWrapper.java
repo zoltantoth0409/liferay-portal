@@ -90,6 +90,18 @@ public class AssetDisplayPageEntryLocalServiceWrapper
 	}
 
 	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel createPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetDisplayPageEntryLocalService.createPersistedModel(
+			primaryKeyObj);
+	}
+
+	/**
 	 * Deletes the asset display page entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetDisplayPageEntry the asset display page entry
@@ -426,6 +438,9 @@ public class AssetDisplayPageEntryLocalServiceWrapper
 		return _assetDisplayPageEntryLocalService.getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 			java.io.Serializable primaryKeyObj)

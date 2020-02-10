@@ -87,6 +87,12 @@ public interface AssetAutoTaggerEntryLocalService
 		long assetAutoTaggerEntryId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the asset auto tagger entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetAutoTaggerEntry the asset auto tagger entry
@@ -245,6 +251,9 @@ public interface AssetAutoTaggerEntryLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

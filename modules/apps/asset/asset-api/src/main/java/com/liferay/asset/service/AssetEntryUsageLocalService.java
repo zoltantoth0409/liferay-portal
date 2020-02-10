@@ -93,6 +93,12 @@ public interface AssetEntryUsageLocalService
 	public AssetEntryUsage createAssetEntryUsage(long assetEntryUsageId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the asset entry usage from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetEntryUsage the asset entry usage
@@ -322,6 +328,9 @@ public interface AssetEntryUsageLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

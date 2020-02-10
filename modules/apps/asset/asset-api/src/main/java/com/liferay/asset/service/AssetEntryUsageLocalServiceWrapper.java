@@ -84,6 +84,17 @@ public class AssetEntryUsageLocalServiceWrapper
 	}
 
 	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel createPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetEntryUsageLocalService.createPersistedModel(primaryKeyObj);
+	}
+
+	/**
 	 * Deletes the asset entry usage from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetEntryUsage the asset entry usage
@@ -446,6 +457,9 @@ public class AssetEntryUsageLocalServiceWrapper
 		return _assetEntryUsageLocalService.getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 			java.io.Serializable primaryKeyObj)

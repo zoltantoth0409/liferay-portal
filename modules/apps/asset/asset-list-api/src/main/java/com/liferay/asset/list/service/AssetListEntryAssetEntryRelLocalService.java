@@ -97,6 +97,12 @@ public interface AssetListEntryAssetEntryRelLocalService
 		long assetListEntryAssetEntryRelId);
 
 	/**
+	 * @throws PortalException
+	 */
+	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
 	 * Deletes the asset list entry asset entry rel from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetListEntryAssetEntryRel the asset list entry asset entry rel
@@ -324,6 +330,9 @@ public interface AssetListEntryAssetEntryRelLocalService
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
