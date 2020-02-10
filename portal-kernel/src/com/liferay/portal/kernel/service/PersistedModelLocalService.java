@@ -19,9 +19,12 @@ import com.liferay.portal.kernel.model.PersistedModel;
 
 import java.io.Serializable;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public interface PersistedModelLocalService {
 
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
