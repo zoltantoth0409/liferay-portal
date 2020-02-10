@@ -353,7 +353,6 @@ public class FragmentDefinitionConverterUtil {
 							}
 						};
 					});
-
 				setValue(
 					() -> {
 						String type = editableTypes.getOrDefault(
