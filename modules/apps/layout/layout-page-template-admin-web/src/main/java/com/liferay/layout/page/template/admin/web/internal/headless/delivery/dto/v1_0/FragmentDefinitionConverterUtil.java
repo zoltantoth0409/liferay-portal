@@ -302,15 +302,15 @@ public class FragmentDefinitionConverterUtil {
 
 		for (String textId : textIds) {
 			fragmentContentFields.add(
-				_toFragmentContentField(editableTypes, textId, jsonObject));
+				_toFragmentContentField(editableTypes, jsonObject, textId));
 		}
 
 		return fragmentContentFields;
 	}
 
 	private static FragmentContentField _toFragmentContentField(
-		Map<String, String> editableTypes, String textId,
-		JSONObject jsonObject) {
+		Map<String, String> editableTypes, JSONObject jsonObject,
+		String textId) {
 
 		JSONObject textJSONObject = jsonObject.getJSONObject(textId);
 
