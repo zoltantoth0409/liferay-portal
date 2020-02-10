@@ -107,10 +107,10 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 			long groupId, int start, int end)
 		throws PortalException {
 
+		List<DepotEntry> depotEntries = new ArrayList<>();
+
 		List<DepotEntryGroupRel> depotEntryGroupRels =
 			_depotEntryGroupRelPersistence.findByToGroupId(groupId, start, end);
-
-		List<DepotEntry> depotEntries = new ArrayList<>();
 
 		for (DepotEntryGroupRel depotEntryGroupRel : depotEntryGroupRels) {
 			DepotEntry depotEntry = depotEntryLocalService.getDepotEntry(
