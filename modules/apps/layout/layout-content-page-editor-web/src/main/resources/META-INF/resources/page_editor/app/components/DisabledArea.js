@@ -16,7 +16,7 @@ import ClayPopover from '@clayui/popover';
 import {useEventListener} from 'frontend-js-react-web';
 import {match} from 'metal-dom';
 import {Align} from 'metal-position';
-import React, {useEffect, useRef, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 
 import {useSelector} from '../store/index';
