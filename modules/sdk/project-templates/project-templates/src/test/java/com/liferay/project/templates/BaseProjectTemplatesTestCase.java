@@ -730,7 +730,7 @@ public interface BaseProjectTemplatesTestCase {
 
 		List<String> argsList = Arrays.asList(args);
 
-		File workspaceDir;
+		File workspaceDir = null;
 
 		if (argsList.contains("7.0.6")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.0.6");
