@@ -378,7 +378,6 @@ public class FragmentDefinitionConverterUtil {
 						title = HashMapBuilder.<String, Object>put(
 							"value_i18n", _toLocaleMap(jsonObject, "title")
 						).build();
-
 						url = HashMapBuilder.<String, Object>put(
 							"value_i18n", _toLocaleMap(jsonObject, "url")
 						).build();
