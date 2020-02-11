@@ -24,7 +24,6 @@ import com.liferay.headless.admin.workflow.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.admin.workflow.internal.dto.v1_0.util.ObjectReviewedUtil;
 import com.liferay.headless.admin.workflow.internal.dto.v1_0.util.RoleUtil;
 import com.liferay.headless.admin.workflow.resource.v1_0.WorkflowTaskResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.service.RoleLocalService;
@@ -369,7 +368,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 	}
 
 	private Role[] _getRoles(List<WorkflowTaskAssignee> workflowTaskAssignees)
-		throws PortalException {
+		throws Exception {
 
 		List<Role> roles = new ArrayList<>();
 
@@ -427,7 +426,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 	}
 
 	private Role _toRole(com.liferay.portal.kernel.model.Role role)
-		throws PortalException {
+		throws Exception {
 
 		return RoleUtil.toRole(
 			contextAcceptLanguage.isAcceptAllLanguages(),
