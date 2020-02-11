@@ -59,12 +59,11 @@ public class DataDefinitionContentTypeTracker {
 			return;
 		}
 
-		_dataDefinitionContentTypesByContentType.put(
-			MapUtil.getString(properties, "content.type"),
-			dataDefinitionContentType);
-
 		_dataDefinitionContentTypesByClassNameId.put(
 			dataDefinitionContentType.getClassNameId(),
+			dataDefinitionContentType);
+		_dataDefinitionContentTypesByContentType.put(
+			MapUtil.getString(properties, "content.type"),
 			dataDefinitionContentType);
 	}
 
@@ -77,10 +76,10 @@ public class DataDefinitionContentTypeTracker {
 		DataDefinitionContentType dataDefinitionContentType,
 		Map<String, Object> properties) {
 
-		_dataDefinitionContentTypesByContentType.remove(
-			MapUtil.getString(properties, "content.type"));
 		_dataDefinitionContentTypesByClassNameId.remove(
 			dataDefinitionContentType.getClassNameId());
+		_dataDefinitionContentTypesByContentType.remove(
+			MapUtil.getString(properties, "content.type"));
 	}
 
 	private final Map<String, DataDefinitionContentType>
