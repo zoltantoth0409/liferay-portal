@@ -358,6 +358,10 @@ public class DataDefinitionResourceImpl
 			PermissionThreadLocal.getPermissionChecker(), contentType, siteId,
 			DataActionKeys.ADD_DATA_DEFINITION);
 
+		DataDefinitionContentType dataDefinitionContentType =
+			_dataDefinitionContentTypeTracker.getDataDefinitionContentType(
+				contentType);
+
 		DDMFormSerializerSerializeRequest.Builder builder =
 			DDMFormSerializerSerializeRequest.Builder.newBuilder(
 				DataDefinitionUtil.toDDMForm(
@@ -365,10 +369,6 @@ public class DataDefinitionResourceImpl
 
 		DDMFormSerializerSerializeResponse ddmFormSerializerSerializeResponse =
 			_ddmFormSerializer.serialize(builder.build());
-
-		DataDefinitionContentType dataDefinitionContentType =
-			_dataDefinitionContentTypeTracker.getDataDefinitionContentType(
-				contentType);
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.addStructure(
 			PrincipalThreadLocal.getUserId(), siteId,
