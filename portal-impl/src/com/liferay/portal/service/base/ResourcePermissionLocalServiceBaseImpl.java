@@ -296,7 +296,8 @@ public abstract class ResourcePermissionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return resourcePermissionPersistence.create(primaryKeyObj);
+		return resourcePermissionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

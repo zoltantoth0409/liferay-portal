@@ -296,7 +296,8 @@ public abstract class DepotAppCustomizationLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return depotAppCustomizationPersistence.create(primaryKeyObj);
+		return depotAppCustomizationPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

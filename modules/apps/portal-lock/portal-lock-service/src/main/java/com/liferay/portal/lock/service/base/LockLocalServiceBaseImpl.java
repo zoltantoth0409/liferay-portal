@@ -280,7 +280,7 @@ public abstract class LockLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return lockPersistence.create(primaryKeyObj);
+		return lockPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

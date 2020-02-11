@@ -396,7 +396,8 @@ public abstract class BatchEngineImportTaskLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return batchEngineImportTaskPersistence.create(primaryKeyObj);
+		return batchEngineImportTaskPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -277,7 +277,7 @@ public abstract class PortletItemLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return portletItemPersistence.create(primaryKeyObj);
+		return portletItemPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

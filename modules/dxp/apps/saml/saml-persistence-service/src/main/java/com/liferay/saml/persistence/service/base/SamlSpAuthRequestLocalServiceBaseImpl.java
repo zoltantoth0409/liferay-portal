@@ -295,7 +295,8 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return samlSpAuthRequestPersistence.create(primaryKeyObj);
+		return samlSpAuthRequestPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -360,7 +360,7 @@ public abstract class MDRRuleLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mdrRulePersistence.create(primaryKeyObj);
+		return mdrRulePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

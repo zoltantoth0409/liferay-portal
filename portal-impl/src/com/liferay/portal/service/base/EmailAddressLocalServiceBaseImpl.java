@@ -392,7 +392,8 @@ public abstract class EmailAddressLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return emailAddressPersistence.create(primaryKeyObj);
+		return emailAddressPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

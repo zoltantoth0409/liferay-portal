@@ -296,7 +296,8 @@ public abstract class DDMFormInstanceVersionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ddmFormInstanceVersionPersistence.create(primaryKeyObj);
+		return ddmFormInstanceVersionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

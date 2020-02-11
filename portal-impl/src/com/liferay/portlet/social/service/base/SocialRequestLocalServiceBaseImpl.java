@@ -290,7 +290,8 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return socialRequestPersistence.create(primaryKeyObj);
+		return socialRequestPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

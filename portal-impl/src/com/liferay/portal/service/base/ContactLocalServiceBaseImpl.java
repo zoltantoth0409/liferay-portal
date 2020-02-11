@@ -275,7 +275,7 @@ public abstract class ContactLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return contactPersistence.create(primaryKeyObj);
+		return contactPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

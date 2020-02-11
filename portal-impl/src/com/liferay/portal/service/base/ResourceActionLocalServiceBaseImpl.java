@@ -277,7 +277,8 @@ public abstract class ResourceActionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return resourceActionPersistence.create(primaryKeyObj);
+		return resourceActionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

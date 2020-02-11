@@ -280,7 +280,8 @@ public abstract class WeDeployAuthAppLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return weDeployAuthAppPersistence.create(primaryKeyObj);
+		return weDeployAuthAppPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

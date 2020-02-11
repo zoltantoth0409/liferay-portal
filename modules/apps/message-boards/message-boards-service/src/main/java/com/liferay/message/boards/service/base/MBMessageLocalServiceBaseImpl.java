@@ -453,7 +453,7 @@ public abstract class MBMessageLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mbMessagePersistence.create(primaryKeyObj);
+		return mbMessagePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -280,7 +280,8 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return spiDefinitionPersistence.create(primaryKeyObj);
+		return spiDefinitionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

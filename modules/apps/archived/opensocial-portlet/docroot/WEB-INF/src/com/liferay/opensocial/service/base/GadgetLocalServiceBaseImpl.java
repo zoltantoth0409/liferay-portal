@@ -357,7 +357,7 @@ public abstract class GadgetLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return gadgetPersistence.create(primaryKeyObj);
+		return gadgetPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

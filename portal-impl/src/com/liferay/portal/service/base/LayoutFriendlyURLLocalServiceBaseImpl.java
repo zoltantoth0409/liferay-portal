@@ -376,7 +376,8 @@ public abstract class LayoutFriendlyURLLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return layoutFriendlyURLPersistence.create(primaryKeyObj);
+		return layoutFriendlyURLPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

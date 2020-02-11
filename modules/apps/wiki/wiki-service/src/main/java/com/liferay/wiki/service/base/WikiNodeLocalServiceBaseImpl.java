@@ -427,7 +427,7 @@ public abstract class WikiNodeLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return wikiNodePersistence.create(primaryKeyObj);
+		return wikiNodePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

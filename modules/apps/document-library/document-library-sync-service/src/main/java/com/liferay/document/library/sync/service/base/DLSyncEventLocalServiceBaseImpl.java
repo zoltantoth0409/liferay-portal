@@ -274,7 +274,7 @@ public abstract class DLSyncEventLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dlSyncEventPersistence.create(primaryKeyObj);
+		return dlSyncEventPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

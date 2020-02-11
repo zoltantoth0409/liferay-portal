@@ -389,7 +389,8 @@ public abstract class AssetVocabularyLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetVocabularyPersistence.create(primaryKeyObj);
+		return assetVocabularyPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

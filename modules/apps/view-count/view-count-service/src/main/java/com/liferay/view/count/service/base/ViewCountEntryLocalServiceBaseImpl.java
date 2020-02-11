@@ -285,7 +285,8 @@ public abstract class ViewCountEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return viewCountEntryPersistence.create(primaryKeyObj);
+		return viewCountEntryPersistence.create(
+			(ViewCountEntryPK)primaryKeyObj);
 	}
 
 	/**

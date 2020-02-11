@@ -274,7 +274,8 @@ public abstract class UserIdMapperLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return userIdMapperPersistence.create(primaryKeyObj);
+		return userIdMapperPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

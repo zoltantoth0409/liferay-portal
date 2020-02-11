@@ -300,7 +300,8 @@ public abstract class AppBuilderAppDeploymentLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return appBuilderAppDeploymentPersistence.create(primaryKeyObj);
+		return appBuilderAppDeploymentPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

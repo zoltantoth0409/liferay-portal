@@ -298,7 +298,8 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoDefinitionPersistence.create(primaryKeyObj);
+		return kaleoDefinitionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

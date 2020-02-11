@@ -293,7 +293,7 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoTimerPersistence.create(primaryKeyObj);
+		return kaleoTimerPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

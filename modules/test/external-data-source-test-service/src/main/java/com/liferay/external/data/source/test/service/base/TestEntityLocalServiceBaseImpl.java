@@ -270,7 +270,7 @@ public abstract class TestEntityLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return testEntityPersistence.create(primaryKeyObj);
+		return testEntityPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

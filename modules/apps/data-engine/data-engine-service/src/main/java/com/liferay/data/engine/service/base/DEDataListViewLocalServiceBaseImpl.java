@@ -362,7 +362,8 @@ public abstract class DEDataListViewLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return deDataListViewPersistence.create(primaryKeyObj);
+		return deDataListViewPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

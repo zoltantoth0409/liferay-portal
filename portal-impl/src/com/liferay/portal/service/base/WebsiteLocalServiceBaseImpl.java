@@ -384,7 +384,7 @@ public abstract class WebsiteLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return websitePersistence.create(primaryKeyObj);
+		return websitePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

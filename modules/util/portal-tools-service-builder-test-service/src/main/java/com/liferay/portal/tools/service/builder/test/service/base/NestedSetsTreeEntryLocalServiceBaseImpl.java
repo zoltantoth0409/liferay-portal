@@ -294,7 +294,8 @@ public abstract class NestedSetsTreeEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return nestedSetsTreeEntryPersistence.create(primaryKeyObj);
+		return nestedSetsTreeEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -379,7 +379,7 @@ public abstract class PhoneLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return phonePersistence.create(primaryKeyObj);
+		return phonePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

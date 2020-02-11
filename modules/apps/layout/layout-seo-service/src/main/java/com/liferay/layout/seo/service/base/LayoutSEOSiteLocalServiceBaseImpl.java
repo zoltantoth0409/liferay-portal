@@ -362,7 +362,8 @@ public abstract class LayoutSEOSiteLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return layoutSEOSitePersistence.create(primaryKeyObj);
+		return layoutSEOSitePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

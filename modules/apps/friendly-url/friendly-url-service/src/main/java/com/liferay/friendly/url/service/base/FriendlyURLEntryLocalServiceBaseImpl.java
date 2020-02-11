@@ -403,7 +403,8 @@ public abstract class FriendlyURLEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return friendlyURLEntryPersistence.create(primaryKeyObj);
+		return friendlyURLEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

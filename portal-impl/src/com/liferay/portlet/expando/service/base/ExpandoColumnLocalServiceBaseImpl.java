@@ -280,7 +280,8 @@ public abstract class ExpandoColumnLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return expandoColumnPersistence.create(primaryKeyObj);
+		return expandoColumnPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

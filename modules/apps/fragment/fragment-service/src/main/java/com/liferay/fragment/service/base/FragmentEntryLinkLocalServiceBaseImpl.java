@@ -405,7 +405,8 @@ public abstract class FragmentEntryLinkLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return fragmentEntryLinkPersistence.create(primaryKeyObj);
+		return fragmentEntryLinkPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

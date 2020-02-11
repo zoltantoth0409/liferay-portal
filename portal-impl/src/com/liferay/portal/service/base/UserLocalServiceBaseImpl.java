@@ -402,7 +402,7 @@ public abstract class UserLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return userPersistence.create(primaryKeyObj);
+		return userPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -291,7 +291,8 @@ public abstract class SegmentsEntryRoleLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return segmentsEntryRolePersistence.create(primaryKeyObj);
+		return segmentsEntryRolePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -301,7 +301,8 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return syncDLFileVersionDiffPersistence.create(primaryKeyObj);
+		return syncDLFileVersionDiffPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

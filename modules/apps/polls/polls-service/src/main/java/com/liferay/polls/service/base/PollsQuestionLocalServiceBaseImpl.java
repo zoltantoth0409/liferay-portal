@@ -367,7 +367,8 @@ public abstract class PollsQuestionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return pollsQuestionPersistence.create(primaryKeyObj);
+		return pollsQuestionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

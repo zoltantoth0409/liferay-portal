@@ -279,7 +279,7 @@ public abstract class SystemEventLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return systemEventPersistence.create(primaryKeyObj);
+		return systemEventPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

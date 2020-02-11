@@ -280,7 +280,8 @@ public abstract class SubscriptionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return subscriptionPersistence.create(primaryKeyObj);
+		return subscriptionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

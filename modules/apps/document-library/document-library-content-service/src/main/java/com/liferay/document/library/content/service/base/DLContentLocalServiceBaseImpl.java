@@ -284,7 +284,7 @@ public abstract class DLContentLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dlContentPersistence.create(primaryKeyObj);
+		return dlContentPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -286,7 +286,8 @@ public abstract class SocialActivityLimitLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return socialActivityLimitPersistence.create(primaryKeyObj);
+		return socialActivityLimitPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

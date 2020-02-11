@@ -397,7 +397,8 @@ public abstract class ReadingTimeEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return readingTimeEntryPersistence.create(primaryKeyObj);
+		return readingTimeEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

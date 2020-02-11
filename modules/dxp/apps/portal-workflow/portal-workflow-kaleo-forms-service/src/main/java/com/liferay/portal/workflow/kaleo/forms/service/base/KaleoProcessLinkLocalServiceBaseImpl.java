@@ -286,7 +286,8 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoProcessLinkPersistence.create(primaryKeyObj);
+		return kaleoProcessLinkPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -290,7 +290,7 @@ public abstract class KaleoLogLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoLogPersistence.create(primaryKeyObj);
+		return kaleoLogPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

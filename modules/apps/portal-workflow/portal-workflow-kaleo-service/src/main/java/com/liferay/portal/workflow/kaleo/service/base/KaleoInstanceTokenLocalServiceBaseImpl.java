@@ -312,7 +312,8 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoInstanceTokenPersistence.create(primaryKeyObj);
+		return kaleoInstanceTokenPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

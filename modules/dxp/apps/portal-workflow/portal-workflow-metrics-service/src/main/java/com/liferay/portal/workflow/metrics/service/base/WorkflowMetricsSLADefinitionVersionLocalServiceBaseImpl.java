@@ -450,7 +450,7 @@ public abstract class WorkflowMetricsSLADefinitionVersionLocalServiceBaseImpl
 		throws PortalException {
 
 		return workflowMetricsSLADefinitionVersionPersistence.create(
-			primaryKeyObj);
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

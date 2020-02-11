@@ -391,7 +391,8 @@ public abstract class SiteNavigationMenuItemLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return siteNavigationMenuItemPersistence.create(primaryKeyObj);
+		return siteNavigationMenuItemPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

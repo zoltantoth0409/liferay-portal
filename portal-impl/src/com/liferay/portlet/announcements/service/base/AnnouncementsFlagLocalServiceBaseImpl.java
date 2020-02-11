@@ -279,7 +279,8 @@ public abstract class AnnouncementsFlagLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return announcementsFlagPersistence.create(primaryKeyObj);
+		return announcementsFlagPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

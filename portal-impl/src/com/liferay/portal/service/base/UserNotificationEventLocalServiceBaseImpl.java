@@ -310,7 +310,8 @@ public abstract class UserNotificationEventLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return userNotificationEventPersistence.create(primaryKeyObj);
+		return userNotificationEventPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

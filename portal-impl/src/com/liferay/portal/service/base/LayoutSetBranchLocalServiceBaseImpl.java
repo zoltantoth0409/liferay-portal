@@ -287,7 +287,8 @@ public abstract class LayoutSetBranchLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return layoutSetBranchPersistence.create(primaryKeyObj);
+		return layoutSetBranchPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

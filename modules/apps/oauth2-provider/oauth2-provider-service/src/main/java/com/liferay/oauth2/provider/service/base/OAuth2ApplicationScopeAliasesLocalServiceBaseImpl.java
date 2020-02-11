@@ -303,7 +303,8 @@ public abstract class OAuth2ApplicationScopeAliasesLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return oAuth2ApplicationScopeAliasesPersistence.create(primaryKeyObj);
+		return oAuth2ApplicationScopeAliasesPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

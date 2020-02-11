@@ -325,7 +325,7 @@ public abstract class GroupLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return groupPersistence.create(primaryKeyObj);
+		return groupPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

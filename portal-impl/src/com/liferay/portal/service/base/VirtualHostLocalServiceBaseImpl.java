@@ -278,7 +278,7 @@ public abstract class VirtualHostLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return virtualHostPersistence.create(primaryKeyObj);
+		return virtualHostPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

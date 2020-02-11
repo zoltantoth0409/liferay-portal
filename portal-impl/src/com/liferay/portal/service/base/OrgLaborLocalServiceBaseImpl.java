@@ -270,7 +270,7 @@ public abstract class OrgLaborLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return orgLaborPersistence.create(primaryKeyObj);
+		return orgLaborPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

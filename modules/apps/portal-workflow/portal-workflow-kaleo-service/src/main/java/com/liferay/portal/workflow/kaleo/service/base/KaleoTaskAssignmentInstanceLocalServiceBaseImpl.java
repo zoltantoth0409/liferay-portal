@@ -319,7 +319,8 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoTaskAssignmentInstancePersistence.create(primaryKeyObj);
+		return kaleoTaskAssignmentInstancePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

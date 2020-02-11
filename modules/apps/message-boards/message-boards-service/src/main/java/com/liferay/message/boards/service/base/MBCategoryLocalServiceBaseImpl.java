@@ -428,7 +428,7 @@ public abstract class MBCategoryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mbCategoryPersistence.create(primaryKeyObj);
+		return mbCategoryPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

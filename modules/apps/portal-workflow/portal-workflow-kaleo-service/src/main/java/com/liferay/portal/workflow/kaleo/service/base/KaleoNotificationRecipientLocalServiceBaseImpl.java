@@ -319,7 +319,8 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoNotificationRecipientPersistence.create(primaryKeyObj);
+		return kaleoNotificationRecipientPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

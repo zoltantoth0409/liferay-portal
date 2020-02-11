@@ -277,7 +277,8 @@ public abstract class UADPartialEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return uadPartialEntryPersistence.create(primaryKeyObj);
+		return uadPartialEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

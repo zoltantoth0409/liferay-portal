@@ -277,7 +277,7 @@ public abstract class DispatchLogLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dispatchLogPersistence.create(primaryKeyObj);
+		return dispatchLogPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

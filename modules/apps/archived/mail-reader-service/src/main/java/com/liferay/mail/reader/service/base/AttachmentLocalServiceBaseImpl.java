@@ -277,7 +277,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return attachmentPersistence.create(primaryKeyObj);
+		return attachmentPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

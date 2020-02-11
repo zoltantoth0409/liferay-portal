@@ -363,7 +363,7 @@ public abstract class SyncDeviceLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return syncDevicePersistence.create(primaryKeyObj);
+		return syncDevicePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

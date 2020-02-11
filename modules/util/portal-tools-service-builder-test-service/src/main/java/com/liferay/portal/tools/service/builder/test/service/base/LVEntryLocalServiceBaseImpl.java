@@ -305,7 +305,7 @@ public abstract class LVEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return lvEntryPersistence.create(primaryKeyObj);
+		return lvEntryPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

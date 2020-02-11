@@ -293,7 +293,8 @@ public abstract class DepotEntryGroupRelLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return depotEntryGroupRelPersistence.create(primaryKeyObj);
+		return depotEntryGroupRelPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

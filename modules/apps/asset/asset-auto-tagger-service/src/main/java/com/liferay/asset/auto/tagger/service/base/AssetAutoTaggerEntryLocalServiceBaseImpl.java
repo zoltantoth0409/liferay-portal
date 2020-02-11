@@ -299,7 +299,8 @@ public abstract class AssetAutoTaggerEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetAutoTaggerEntryPersistence.create(primaryKeyObj);
+		return assetAutoTaggerEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

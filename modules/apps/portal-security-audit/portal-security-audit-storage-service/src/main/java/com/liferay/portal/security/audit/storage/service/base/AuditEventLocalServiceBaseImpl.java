@@ -274,7 +274,7 @@ public abstract class AuditEventLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return auditEventPersistence.create(primaryKeyObj);
+		return auditEventPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

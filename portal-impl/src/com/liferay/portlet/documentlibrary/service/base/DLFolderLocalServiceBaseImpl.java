@@ -441,7 +441,7 @@ public abstract class DLFolderLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dlFolderPersistence.create(primaryKeyObj);
+		return dlFolderPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

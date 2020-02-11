@@ -363,7 +363,7 @@ public abstract class KBFolderLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kbFolderPersistence.create(primaryKeyObj);
+		return kbFolderPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

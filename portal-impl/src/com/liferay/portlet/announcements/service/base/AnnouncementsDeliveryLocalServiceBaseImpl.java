@@ -284,7 +284,8 @@ public abstract class AnnouncementsDeliveryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return announcementsDeliveryPersistence.create(primaryKeyObj);
+		return announcementsDeliveryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

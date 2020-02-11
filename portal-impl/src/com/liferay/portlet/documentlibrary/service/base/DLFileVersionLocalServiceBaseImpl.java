@@ -434,7 +434,8 @@ public abstract class DLFileVersionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dlFileVersionPersistence.create(primaryKeyObj);
+		return dlFileVersionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

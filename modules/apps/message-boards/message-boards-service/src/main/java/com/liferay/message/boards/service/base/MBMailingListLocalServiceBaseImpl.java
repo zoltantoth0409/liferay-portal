@@ -362,7 +362,8 @@ public abstract class MBMailingListLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mbMailingListPersistence.create(primaryKeyObj);
+		return mbMailingListPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

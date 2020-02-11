@@ -361,7 +361,7 @@ public abstract class TeamLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return teamPersistence.create(primaryKeyObj);
+		return teamPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

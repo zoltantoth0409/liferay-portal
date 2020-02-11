@@ -298,7 +298,8 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return workflowDefinitionLinkPersistence.create(primaryKeyObj);
+		return workflowDefinitionLinkPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

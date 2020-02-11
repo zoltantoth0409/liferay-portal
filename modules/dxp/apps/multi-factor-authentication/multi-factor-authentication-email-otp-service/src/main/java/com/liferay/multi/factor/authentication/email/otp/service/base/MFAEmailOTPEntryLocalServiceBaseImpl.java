@@ -284,7 +284,8 @@ public abstract class MFAEmailOTPEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mfaEmailOTPEntryPersistence.create(primaryKeyObj);
+		return mfaEmailOTPEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

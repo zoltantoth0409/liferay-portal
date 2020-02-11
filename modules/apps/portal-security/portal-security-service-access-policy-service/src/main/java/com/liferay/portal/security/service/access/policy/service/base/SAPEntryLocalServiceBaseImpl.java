@@ -358,7 +358,7 @@ public abstract class SAPEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return sapEntryPersistence.create(primaryKeyObj);
+		return sapEntryPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -368,7 +368,8 @@ public abstract class SiteFriendlyURLLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return siteFriendlyURLPersistence.create(primaryKeyObj);
+		return siteFriendlyURLPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

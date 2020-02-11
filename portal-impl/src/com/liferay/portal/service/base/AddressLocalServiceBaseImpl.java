@@ -385,7 +385,7 @@ public abstract class AddressLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return addressPersistence.create(primaryKeyObj);
+		return addressPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

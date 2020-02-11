@@ -457,7 +457,8 @@ public abstract class FragmentCompositionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return fragmentCompositionPersistence.create(primaryKeyObj);
+		return fragmentCompositionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

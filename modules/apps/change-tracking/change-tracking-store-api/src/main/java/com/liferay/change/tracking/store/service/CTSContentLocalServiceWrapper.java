@@ -67,6 +67,17 @@ public class CTSContentLocalServiceWrapper
 	}
 
 	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel createPersistedModel(
+			java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _ctsContentLocalService.createPersistedModel(primaryKeyObj);
+	}
+
+	/**
 	 * Deletes the cts content from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param ctsContent the cts content

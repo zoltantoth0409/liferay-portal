@@ -386,7 +386,7 @@ public abstract class UserGroupLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return userGroupPersistence.create(primaryKeyObj);
+		return userGroupPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

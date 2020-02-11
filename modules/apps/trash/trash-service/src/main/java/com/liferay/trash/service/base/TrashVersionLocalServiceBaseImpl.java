@@ -273,7 +273,8 @@ public abstract class TrashVersionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return trashVersionPersistence.create(primaryKeyObj);
+		return trashVersionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

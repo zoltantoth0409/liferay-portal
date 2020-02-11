@@ -293,7 +293,8 @@ public abstract class DDLRecordSetVersionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ddlRecordSetVersionPersistence.create(primaryKeyObj);
+		return ddlRecordSetVersionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

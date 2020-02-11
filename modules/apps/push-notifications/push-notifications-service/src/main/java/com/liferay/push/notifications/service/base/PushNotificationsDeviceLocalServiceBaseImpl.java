@@ -300,7 +300,8 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return pushNotificationsDevicePersistence.create(primaryKeyObj);
+		return pushNotificationsDevicePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

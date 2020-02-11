@@ -295,7 +295,8 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kaleoConditionPersistence.create(primaryKeyObj);
+		return kaleoConditionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -272,7 +272,7 @@ public abstract class DLFileRankLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return dlFileRankPersistence.create(primaryKeyObj);
+		return dlFileRankPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

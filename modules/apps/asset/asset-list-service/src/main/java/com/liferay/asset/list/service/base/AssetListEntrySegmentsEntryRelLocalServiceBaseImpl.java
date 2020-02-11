@@ -400,7 +400,8 @@ public abstract class AssetListEntrySegmentsEntryRelLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetListEntrySegmentsEntryRelPersistence.create(primaryKeyObj);
+		return assetListEntrySegmentsEntryRelPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -276,7 +276,7 @@ public abstract class OAuthUserLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return oAuthUserPersistence.create(primaryKeyObj);
+		return oAuthUserPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

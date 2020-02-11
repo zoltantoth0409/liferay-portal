@@ -390,7 +390,8 @@ public abstract class SharingEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return sharingEntryPersistence.create(primaryKeyObj);
+		return sharingEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

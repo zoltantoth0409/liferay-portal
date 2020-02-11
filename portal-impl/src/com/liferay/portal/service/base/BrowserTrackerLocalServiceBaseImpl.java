@@ -274,7 +274,8 @@ public abstract class BrowserTrackerLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return browserTrackerPersistence.create(primaryKeyObj);
+		return browserTrackerPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

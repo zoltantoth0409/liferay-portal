@@ -297,7 +297,8 @@ public abstract class AccountEntryUserRelLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return accountEntryUserRelPersistence.create(primaryKeyObj);
+		return accountEntryUserRelPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

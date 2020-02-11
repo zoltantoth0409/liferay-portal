@@ -369,7 +369,8 @@ public abstract class PasswordPolicyLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return passwordPolicyPersistence.create(primaryKeyObj);
+		return passwordPolicyPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -281,7 +281,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return tasksEntryPersistence.create(primaryKeyObj);
+		return tasksEntryPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -391,7 +391,8 @@ public abstract class RatingsEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ratingsEntryPersistence.create(primaryKeyObj);
+		return ratingsEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

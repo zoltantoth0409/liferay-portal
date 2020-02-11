@@ -292,7 +292,8 @@ public abstract class JournalContentSearchLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return journalContentSearchPersistence.create(primaryKeyObj);
+		return journalContentSearchPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

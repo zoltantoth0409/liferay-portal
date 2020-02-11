@@ -302,7 +302,8 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return samlIdpSpConnectionPersistence.create(primaryKeyObj);
+		return samlIdpSpConnectionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

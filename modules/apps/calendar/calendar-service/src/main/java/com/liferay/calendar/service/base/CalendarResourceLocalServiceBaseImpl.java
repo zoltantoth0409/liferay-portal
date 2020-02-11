@@ -408,7 +408,8 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return calendarResourcePersistence.create(primaryKeyObj);
+		return calendarResourcePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

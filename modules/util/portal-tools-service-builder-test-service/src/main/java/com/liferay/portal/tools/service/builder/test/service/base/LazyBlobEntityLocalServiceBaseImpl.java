@@ -299,7 +299,8 @@ public abstract class LazyBlobEntityLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return lazyBlobEntityPersistence.create(primaryKeyObj);
+		return lazyBlobEntityPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

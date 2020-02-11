@@ -274,7 +274,7 @@ public abstract class CompanyInfoLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return companyInfoPersistence.create(primaryKeyObj);
+		return companyInfoPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

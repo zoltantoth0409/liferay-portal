@@ -371,7 +371,8 @@ public abstract class LayoutPrototypeLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return layoutPrototypePersistence.create(primaryKeyObj);
+		return layoutPrototypePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -280,7 +280,8 @@ public abstract class BackgroundTaskLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return backgroundTaskPersistence.create(primaryKeyObj);
+		return backgroundTaskPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

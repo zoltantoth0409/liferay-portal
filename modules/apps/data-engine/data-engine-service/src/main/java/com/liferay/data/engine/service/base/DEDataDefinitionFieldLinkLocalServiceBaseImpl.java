@@ -316,7 +316,8 @@ public abstract class DEDataDefinitionFieldLinkLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return deDataDefinitionFieldLinkPersistence.create(primaryKeyObj);
+		return deDataDefinitionFieldLinkPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

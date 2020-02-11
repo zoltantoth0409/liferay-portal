@@ -275,7 +275,7 @@ public abstract class WebDAVPropsLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return webDAVPropsPersistence.create(primaryKeyObj);
+		return webDAVPropsPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

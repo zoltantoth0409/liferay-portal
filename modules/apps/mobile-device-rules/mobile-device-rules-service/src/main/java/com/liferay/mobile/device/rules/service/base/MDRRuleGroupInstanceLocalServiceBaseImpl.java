@@ -412,7 +412,8 @@ public abstract class MDRRuleGroupInstanceLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mdrRuleGroupInstancePersistence.create(primaryKeyObj);
+		return mdrRuleGroupInstancePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -403,7 +403,8 @@ public abstract class DDMStructureLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ddmStructurePersistence.create(primaryKeyObj);
+		return ddmStructurePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

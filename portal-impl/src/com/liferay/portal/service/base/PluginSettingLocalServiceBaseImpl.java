@@ -278,7 +278,8 @@ public abstract class PluginSettingLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return pluginSettingPersistence.create(primaryKeyObj);
+		return pluginSettingPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

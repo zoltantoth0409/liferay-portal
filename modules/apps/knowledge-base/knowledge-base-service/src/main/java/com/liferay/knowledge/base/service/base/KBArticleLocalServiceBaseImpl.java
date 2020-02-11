@@ -441,7 +441,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return kbArticlePersistence.create(primaryKeyObj);
+		return kbArticlePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

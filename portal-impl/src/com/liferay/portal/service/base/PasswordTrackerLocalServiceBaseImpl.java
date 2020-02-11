@@ -280,7 +280,8 @@ public abstract class PasswordTrackerLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return passwordTrackerPersistence.create(primaryKeyObj);
+		return passwordTrackerPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

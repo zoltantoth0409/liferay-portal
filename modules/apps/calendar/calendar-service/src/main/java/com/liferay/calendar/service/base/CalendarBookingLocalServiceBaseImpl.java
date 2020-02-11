@@ -443,7 +443,8 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return calendarBookingPersistence.create(primaryKeyObj);
+		return calendarBookingPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

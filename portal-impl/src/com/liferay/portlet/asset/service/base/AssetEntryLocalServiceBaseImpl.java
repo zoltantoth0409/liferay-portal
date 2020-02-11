@@ -285,7 +285,7 @@ public abstract class AssetEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetEntryPersistence.create(primaryKeyObj);
+		return assetEntryPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -291,7 +291,8 @@ public abstract class EagerBlobEntityLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return eagerBlobEntityPersistence.create(primaryKeyObj);
+		return eagerBlobEntityPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -276,7 +276,8 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return memberRequestPersistence.create(primaryKeyObj);
+		return memberRequestPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

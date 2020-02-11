@@ -275,7 +275,7 @@ public abstract class UserTrackerLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return userTrackerPersistence.create(primaryKeyObj);
+		return userTrackerPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -270,7 +270,7 @@ public abstract class ListTypeLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return listTypePersistence.create(primaryKeyObj);
+		return listTypePersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

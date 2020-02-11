@@ -268,7 +268,7 @@ public abstract class TicketLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ticketPersistence.create(primaryKeyObj);
+		return ticketPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

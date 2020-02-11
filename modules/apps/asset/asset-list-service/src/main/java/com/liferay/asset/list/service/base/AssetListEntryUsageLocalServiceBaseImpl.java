@@ -417,7 +417,8 @@ public abstract class AssetListEntryUsageLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetListEntryUsagePersistence.create(primaryKeyObj);
+		return assetListEntryUsagePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -277,7 +277,8 @@ public abstract class ChangesetEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return changesetEntryPersistence.create(primaryKeyObj);
+		return changesetEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

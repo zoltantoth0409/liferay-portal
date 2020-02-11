@@ -279,7 +279,8 @@ public abstract class BlogsStatsUserLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return blogsStatsUserPersistence.create(primaryKeyObj);
+		return blogsStatsUserPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

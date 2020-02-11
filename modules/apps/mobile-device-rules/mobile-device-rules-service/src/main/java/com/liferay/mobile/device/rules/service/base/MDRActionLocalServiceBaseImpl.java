@@ -386,7 +386,7 @@ public abstract class MDRActionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mdrActionPersistence.create(primaryKeyObj);
+		return mdrActionPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -279,7 +279,8 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return syncDLObjectPersistence.create(primaryKeyObj);
+		return syncDLObjectPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

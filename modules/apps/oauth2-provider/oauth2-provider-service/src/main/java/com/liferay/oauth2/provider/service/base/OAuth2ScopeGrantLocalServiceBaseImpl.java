@@ -286,7 +286,8 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return oAuth2ScopeGrantPersistence.create(primaryKeyObj);
+		return oAuth2ScopeGrantPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -440,7 +440,8 @@ public abstract class WorkflowMetricsSLADefinitionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return workflowMetricsSLADefinitionPersistence.create(primaryKeyObj);
+		return workflowMetricsSLADefinitionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

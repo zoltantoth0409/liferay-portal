@@ -290,7 +290,8 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return amImageEntryPersistence.create(primaryKeyObj);
+		return amImageEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

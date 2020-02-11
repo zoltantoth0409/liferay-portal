@@ -282,7 +282,8 @@ public abstract class PowwowMeetingLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return powwowMeetingPersistence.create(primaryKeyObj);
+		return powwowMeetingPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

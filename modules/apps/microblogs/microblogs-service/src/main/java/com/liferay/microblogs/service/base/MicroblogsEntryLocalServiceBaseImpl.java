@@ -282,7 +282,8 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return microblogsEntryPersistence.create(primaryKeyObj);
+		return microblogsEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

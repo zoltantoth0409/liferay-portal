@@ -403,7 +403,8 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return calendarNotificationTemplatePersistence.create(primaryKeyObj);
+		return calendarNotificationTemplatePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

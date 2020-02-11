@@ -286,7 +286,8 @@ public abstract class HtmlPreviewEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return htmlPreviewEntryPersistence.create(primaryKeyObj);
+		return htmlPreviewEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

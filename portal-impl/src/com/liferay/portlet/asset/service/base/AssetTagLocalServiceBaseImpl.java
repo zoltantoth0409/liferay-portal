@@ -366,7 +366,7 @@ public abstract class AssetTagLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return assetTagPersistence.create(primaryKeyObj);
+		return assetTagPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

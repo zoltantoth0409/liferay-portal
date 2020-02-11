@@ -300,7 +300,8 @@ public abstract class SharepointOAuth2TokenEntryLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return sharepointOAuth2TokenEntryPersistence.create(primaryKeyObj);
+		return sharepointOAuth2TokenEntryPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

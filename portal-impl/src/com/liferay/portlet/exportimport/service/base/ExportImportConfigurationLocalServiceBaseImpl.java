@@ -302,7 +302,8 @@ public abstract class ExportImportConfigurationLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return exportImportConfigurationPersistence.create(primaryKeyObj);
+		return exportImportConfigurationPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

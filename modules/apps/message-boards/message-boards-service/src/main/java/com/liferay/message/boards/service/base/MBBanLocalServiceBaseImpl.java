@@ -353,7 +353,7 @@ public abstract class MBBanLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mbBanPersistence.create(primaryKeyObj);
+		return mbBanPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

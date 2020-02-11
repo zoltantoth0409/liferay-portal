@@ -282,7 +282,8 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return samlSpMessagePersistence.create(primaryKeyObj);
+		return samlSpMessagePersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

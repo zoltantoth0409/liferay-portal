@@ -436,7 +436,8 @@ public abstract class BookmarksFolderLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return bookmarksFolderPersistence.create(primaryKeyObj);
+		return bookmarksFolderPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

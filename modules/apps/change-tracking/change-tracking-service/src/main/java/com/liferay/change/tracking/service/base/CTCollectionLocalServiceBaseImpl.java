@@ -281,7 +281,8 @@ public abstract class CTCollectionLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return ctCollectionPersistence.create(primaryKeyObj);
+		return ctCollectionPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -272,7 +272,7 @@ public abstract class StatusLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return statusPersistence.create(primaryKeyObj);
+		return statusPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

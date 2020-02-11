@@ -428,7 +428,7 @@ public abstract class MBThreadLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return mbThreadPersistence.create(primaryKeyObj);
+		return mbThreadPersistence.create(((Long)primaryKeyObj).longValue());
 	}
 
 	/**

@@ -300,7 +300,8 @@ public abstract class PortletPreferencesLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return portletPreferencesPersistence.create(primaryKeyObj);
+		return portletPreferencesPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**

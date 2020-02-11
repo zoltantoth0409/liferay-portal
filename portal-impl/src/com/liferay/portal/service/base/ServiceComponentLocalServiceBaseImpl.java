@@ -283,7 +283,8 @@ public abstract class ServiceComponentLocalServiceBaseImpl
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
-		return serviceComponentPersistence.create(primaryKeyObj);
+		return serviceComponentPersistence.create(
+			((Long)primaryKeyObj).longValue());
 	}
 
 	/**
