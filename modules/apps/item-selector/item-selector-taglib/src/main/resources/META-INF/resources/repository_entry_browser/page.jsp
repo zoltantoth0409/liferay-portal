@@ -417,6 +417,8 @@ ItemSelectorRepositoryEntryManagementToolbarDisplayContext itemSelectorRepositor
 								}
 
 								if (fileEntry != null) {
+									row.setCssClass("item-selector-list-row " + row.getCssClass());
+
 									FileVersion latestFileVersion = fileEntry.getLatestFileVersion();
 
 									String title = DLUtil.getTitleWithExtension(fileEntry);
@@ -424,8 +426,6 @@ ItemSelectorRepositoryEntryManagementToolbarDisplayContext itemSelectorRepositor
 									JSONObject itemMedatadaJSONObject = ItemSelectorRepositoryEntryBrowserUtil.getItemMetadataJSONObject(fileEntry, locale);
 
 									String thumbnailSrc = DLURLHelperUtil.getThumbnailSrc(fileEntry, themeDisplay);
-
-									row.setCssClass("item-selector-list-row " + row.getCssClass());
 								%>
 
 									<c:choose>
