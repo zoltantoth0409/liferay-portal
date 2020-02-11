@@ -82,10 +82,10 @@ public class DataDefinitionContentTypeTracker {
 			MapUtil.getString(properties, "content.type"));
 	}
 
-	private final Map<String, DataDefinitionContentType>
-		_dataDefinitionContentTypesByContentType = new TreeMap<>();
 	private final Map<Long, DataDefinitionContentType>
 		_dataDefinitionContentTypesByClassNameId = new TreeMap<>();
+	private final Map<String, DataDefinitionContentType>
+		_dataDefinitionContentTypesByContentType = new TreeMap<>();
 
 	@Reference
 	private Portal _portal;
