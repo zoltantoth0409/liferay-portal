@@ -128,9 +128,6 @@ public class LayoutsAdminDisplayContext {
 
 		_groupDisplayContextHelper = new GroupDisplayContextHelper(
 			_httpServletRequest);
-		_layoutEditorTypeConfiguration =
-			(LayoutEditorTypeConfiguration)_httpServletRequest.getAttribute(
-				LayoutEditorTypeConfiguration.class.getName());
 
 		_layoutCopyHelper =
 			(LayoutCopyHelper)_liferayPortletRequest.getAttribute(
@@ -138,7 +135,10 @@ public class LayoutsAdminDisplayContext {
 		_layoutConverterRegistry =
 			(LayoutConverterRegistry)_liferayPortletRequest.getAttribute(
 				LayoutAdminWebKeys.LAYOUT_CONVERTER_REGISTRY);
-		_themeDisplay = (ThemeDisplay)liferayPortletRequest.getAttribute(
+		_layoutEditorTypeConfiguration =
+			(LayoutEditorTypeConfiguration)_liferayPortletRequest.getAttribute(
+				LayoutEditorTypeConfiguration.class.getName());
+		_themeDisplay = (ThemeDisplay)_liferayPortletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 

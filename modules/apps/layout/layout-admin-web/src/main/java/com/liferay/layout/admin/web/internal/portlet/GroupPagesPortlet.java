@@ -193,7 +193,7 @@ public class GroupPagesPortlet extends MVCPortlet {
 				_layoutConverterRegistry);
 			renderRequest.setAttribute(
 				LayoutAdminWebKeys.LAYOUT_COPY_HELPER, _layoutCopyHelper);
-			httpServletRequest.setAttribute(
+			renderRequest.setAttribute(
 				LayoutEditorTypeConfiguration.class.getName(),
 				_layoutEditorTypeConfiguration);
 			renderRequest.setAttribute(
