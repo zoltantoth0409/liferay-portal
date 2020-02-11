@@ -43,7 +43,7 @@ public class DataDefinitionContentTypeTracker {
 	public DataDefinitionContentType getDataDefinitionContentType(
 		String contentType) {
 
-		return _dataDefinitionContentTypes.get(contentType);
+		return _dataDefinitionContentTypesByContentType.get(contentType);
 	}
 
 	@Reference(
@@ -59,7 +59,7 @@ public class DataDefinitionContentTypeTracker {
 			return;
 		}
 
-		_dataDefinitionContentTypes.put(
+		_dataDefinitionContentTypesByContentType.put(
 			MapUtil.getString(properties, "content.type"),
 			dataDefinitionContentType);
 
@@ -70,21 +70,21 @@ public class DataDefinitionContentTypeTracker {
 
 	@Deactivate
 	protected void deactivate() {
-		_dataDefinitionContentTypes.clear();
+		_dataDefinitionContentTypesByContentType.clear();
 	}
 
 	protected void removeDataDefinitionContentType(
 		DataDefinitionContentType dataDefinitionContentType,
 		Map<String, Object> properties) {
 
-		_dataDefinitionContentTypes.remove(
+		_dataDefinitionContentTypesByContentType.remove(
 			MapUtil.getString(properties, "content.type"));
 		_dataDefinitionContentTypesByClassNameId.remove(
 			dataDefinitionContentType.getClassNameId());
 	}
 
 	private final Map<String, DataDefinitionContentType>
-		_dataDefinitionContentTypes = new TreeMap<>();
+		_dataDefinitionContentTypesByContentType = new TreeMap<>();
 	private final Map<Long, DataDefinitionContentType>
 		_dataDefinitionContentTypesByClassNameId = new TreeMap<>();
 
