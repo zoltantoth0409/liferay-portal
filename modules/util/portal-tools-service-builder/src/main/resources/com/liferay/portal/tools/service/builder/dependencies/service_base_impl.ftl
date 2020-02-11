@@ -716,7 +716,21 @@ import org.osgi.service.component.annotations.Reference;
 		</#if>
 		<#if serviceBuilder.isVersionGTE_7_3_0()>
 			public PersistedModel createPersistedModel(Serializable primaryKeyObj) throws PortalException {
-				return ${entity.varName}Persistence.create(primaryKeyObj);
+				return ${entity.varName}Persistence.create(
+
+				<#if entity.hasPrimitivePK()>
+					((${serviceBuilder.getPrimitiveObj("${entity.PKClassName}")})
+				<#else>
+					(${entity.PKClassName})
+				</#if>
+
+				primaryKeyObj
+
+				<#if entity.hasPrimitivePK()>
+					)${serviceBuilder.getPrimitiveObjValue(serviceBuilder.getPrimitiveObj("${entity.PKClassName}"))}
+				</#if>
+
+				);
 			}
 		</#if>
 
