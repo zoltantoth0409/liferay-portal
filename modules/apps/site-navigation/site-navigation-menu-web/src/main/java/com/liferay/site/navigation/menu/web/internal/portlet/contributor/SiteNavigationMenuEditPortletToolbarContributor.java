@@ -116,18 +116,18 @@ public class SiteNavigationMenuEditPortletToolbarContributor
 			return null;
 		}
 
+		URLMenuItem urlMenuItem = new URLMenuItem();
+
+		urlMenuItem.setLabel(
+			LanguageUtil.get(
+				_portal.getHttpServletRequest(portletRequest), "edit"));
+
 		SiteNavigationMenu siteNavigationMenu =
 			_siteNavigationMenuLocalService.getSiteNavigationMenu(
 				siteNavigationMenuId);
 
 		Group group = _groupLocalService.getGroup(
 			siteNavigationMenu.getGroupId());
-
-		URLMenuItem urlMenuItem = new URLMenuItem();
-
-		urlMenuItem.setLabel(
-			LanguageUtil.get(
-				_portal.getHttpServletRequest(portletRequest), "edit"));
 
 		PortletURL portletURL = PortletProviderUtil.getPortletURL(
 			portletRequest, group, SiteNavigationMenu.class.getName(),
