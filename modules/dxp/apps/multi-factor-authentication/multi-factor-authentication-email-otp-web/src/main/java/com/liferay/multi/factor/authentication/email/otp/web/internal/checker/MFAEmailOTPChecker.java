@@ -126,11 +126,13 @@ public class MFAEmailOTPChecker {
 						"nonexistent user " + userId);
 			}
 
+			Class<?> clazz = getClass();
+
 			_routeAuditMessage(
 				_mfaEmailOTPAuditMessageBuilder.
 					buildNonexistentUserVerificationFailureAuditMessage(
 						CompanyThreadLocal.getCompanyId(), userId,
-						getClass().getName()));
+						clazz.getName()));
 
 			return false;
 		}
