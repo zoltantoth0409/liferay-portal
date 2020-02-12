@@ -167,7 +167,7 @@ public class MFAEmailOTPChecker {
 					_mfaEmailOTPAuditMessageBuilder.
 						buildVerificationFailureAuditMessage(
 							user, getClass().getName(),
-							"Reached Maximum allowed attempts"));
+							"Reached maximum allowed attempts"));
 
 				return false;
 			}
