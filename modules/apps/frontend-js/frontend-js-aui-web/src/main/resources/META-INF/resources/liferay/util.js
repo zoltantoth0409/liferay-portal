@@ -12,7 +12,7 @@
  * details.
  */
 
-(function(A, $, Liferay) {
+(function(A, Liferay) {
 	A.use('aui-base-lang');
 
 	var AArray = A.Array;
@@ -2103,4 +2103,4 @@
 		TOOLTIP: 10000,
 		WINDOW: 1200,
 	};
-})(AUI(), AUI.$, Liferay);
+})(AUI(), Liferay);
