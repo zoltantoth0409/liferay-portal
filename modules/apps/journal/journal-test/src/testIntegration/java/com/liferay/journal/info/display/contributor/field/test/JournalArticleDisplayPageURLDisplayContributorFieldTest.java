@@ -172,23 +172,6 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 			expectedDisplayPageURL, fieldsValues.get("displayPageURL"));
 	}
 
-	private String _buildFriendlyURL(
-			InfoDisplayContributor infoDisplayContributor,
-			JournalArticle article)
-		throws PortalException {
-
-		StringBundler sb = new StringBundler(4);
-
-		Map<Locale, String> friendlyURLMap = article.getFriendlyURLMap();
-
-		sb.append("/web");
-		sb.append(_group.getFriendlyURL());
-		sb.append(infoDisplayContributor.getInfoURLSeparator());
-		sb.append(friendlyURLMap.get(LocaleUtil.getDefault()));
-
-		return sb.toString();
-	}
-
 	private JournalArticle _addJournalArticle() throws Exception {
 		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), "title"
@@ -206,6 +189,23 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 			PortalUtil.getClassNameId(JournalArticle.class), titleMap, null,
 			contentMap, LocaleUtil.getSiteDefault(), false, true,
 			serviceContext);
+	}
+
+	private String _buildFriendlyURL(
+			InfoDisplayContributor infoDisplayContributor,
+			JournalArticle article)
+		throws PortalException {
+
+		StringBundler sb = new StringBundler(4);
+
+		Map<Locale, String> friendlyURLMap = article.getFriendlyURLMap();
+
+		sb.append("/web");
+		sb.append(_group.getFriendlyURL());
+		sb.append(infoDisplayContributor.getInfoURLSeparator());
+		sb.append(friendlyURLMap.get(LocaleUtil.getDefault()));
+
+		return sb.toString();
 	}
 
 	private LayoutPageTemplateEntry _getLayoutPageTemplateEntry(
