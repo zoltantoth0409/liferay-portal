@@ -112,12 +112,6 @@ public class MFAEmailOTPChecker {
 		return false;
 	}
 
-	private String _getClassName() {
-		Class<?> clazz = getClass();
-
-		return clazz.getName();
-	}
-
 	public boolean verifyBrowserRequest(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long userId)
@@ -323,6 +317,12 @@ public class MFAEmailOTPChecker {
 				user, _getClassName(), "Verification Has Expired"));
 
 		return false;
+	}
+
+	private String _getClassName() {
+		Class<?> clazz = getClass();
+
+		return clazz.getName();
 	}
 
 	private MFAEmailOTPConfiguration _getMFAEmailOTPConfiguration(long userId) {
