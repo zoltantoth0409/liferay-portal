@@ -314,7 +314,7 @@ public class MFAEmailOTPChecker {
 
 		_routeAuditMessage(
 			_mfaEmailOTPAuditMessageBuilder.buildNotVerifiedAuditMessage(
-				user, _getClassName(), "Verification has expired"));
+				user, _getClassName(), "Expired verification"));
 
 		return false;
 	}
