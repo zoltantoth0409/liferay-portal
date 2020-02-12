@@ -193,7 +193,6 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), "title"
 		).build();
-
 		Map<Locale, String> contentMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), "content"
 		).build();
