@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.email.otp.web.internal.util;
+package com.liferay.multi.factor.authentication.email.otp.web.internal.audit;
 
 import com.liferay.multi.factor.authentication.email.otp.web.internal.constants.MFAEmailOTPEventTypes;
 import com.liferay.portal.kernel.audit.AuditException;

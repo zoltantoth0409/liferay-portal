@@ -16,9 +16,9 @@ package com.liferay.multi.factor.authentication.email.otp.web.internal.checker;
 
 import com.liferay.multi.factor.authentication.email.otp.model.MFAEmailOTPEntry;
 import com.liferay.multi.factor.authentication.email.otp.service.MFAEmailOTPEntryLocalService;
+import com.liferay.multi.factor.authentication.email.otp.web.internal.audit.MFAEmailOTPAuditMessageBuilder;
 import com.liferay.multi.factor.authentication.email.otp.web.internal.configuration.MFAEmailOTPConfiguration;
 import com.liferay.multi.factor.authentication.email.otp.web.internal.constants.MFAEmailOTPWebKeys;
-import com.liferay.multi.factor.authentication.email.otp.web.internal.util.MFAEmailOTPAuditMessageBuilder;
 import com.liferay.portal.kernel.audit.AuditMessage;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
