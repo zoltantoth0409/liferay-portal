@@ -101,7 +101,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				JournalArticle.class.getName());
 
-		JournalArticle journalArticle = _getJournalArticle();
+		JournalArticle journalArticle = _addJournalArticle();
 
 		Map<String, Object> fieldsValues =
 			infoDisplayContributor.getInfoDisplayFieldsValues(
@@ -116,7 +116,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				JournalArticle.class.getName());
 
-		JournalArticle article = _getJournalArticle();
+		JournalArticle article = _addJournalArticle();
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_getLayoutPageTemplateEntry(article, true);
@@ -147,7 +147,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				JournalArticle.class.getName());
 
-		JournalArticle article = _getJournalArticle();
+		JournalArticle article = _addJournalArticle();
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_getLayoutPageTemplateEntry(article, false);
@@ -189,7 +189,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 		return sb.toString();
 	}
 
-	private JournalArticle _getJournalArticle() throws Exception {
+	private JournalArticle _addJournalArticle() throws Exception {
 		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), "title"
 		).build();
