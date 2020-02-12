@@ -202,7 +202,7 @@ public class MFAEmailOTPChecker {
 			_mfaEmailOTPAuditMessageBuilder.
 				buildVerificationFailureAuditMessage(
 					user, getClass().getName(),
-					"Incorrect Email One-time Password"));
+					"Incorrect email one-time password"));
 
 		_mfaEmailOTPEntryLocalService.updateAttempts(
 			userId, originalHttpServletRequest.getRemoteAddr(), false);
