@@ -266,7 +266,7 @@ public class MFAEmailOTPChecker {
 		if (httpSession == null) {
 			_routeAuditMessage(
 				_mfaEmailOTPAuditMessageBuilder.buildNotVerifiedAuditMessage(
-					user, _getClassName(), "Empty Session"));
+					user, _getClassName(), "Empty session"));
 
 			return false;
 		}
@@ -277,7 +277,7 @@ public class MFAEmailOTPChecker {
 		if (mfaEmailOTPValidatedUserID == null) {
 			_routeAuditMessage(
 				_mfaEmailOTPAuditMessageBuilder.buildNotVerifiedAuditMessage(
-					user, _getClassName(), "Not Verified Yet"));
+					user, _getClassName(), "Not verified yet"));
 
 			return false;
 		}
@@ -285,7 +285,7 @@ public class MFAEmailOTPChecker {
 		if (!Objects.equals(mfaEmailOTPValidatedUserID, userId)) {
 			_routeAuditMessage(
 				_mfaEmailOTPAuditMessageBuilder.buildNotVerifiedAuditMessage(
-					user, _getClassName(), "Not The Same User"));
+					user, _getClassName(), "Not the same user"));
 
 			return false;
 		}
@@ -314,7 +314,7 @@ public class MFAEmailOTPChecker {
 
 		_routeAuditMessage(
 			_mfaEmailOTPAuditMessageBuilder.buildNotVerifiedAuditMessage(
-				user, _getClassName(), "Verification Has Expired"));
+				user, _getClassName(), "Verification has expired"));
 
 		return false;
 	}
