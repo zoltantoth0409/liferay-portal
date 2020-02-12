@@ -85,9 +85,6 @@ export default function Sidebar() {
 					})
 				);
 			}
-			else {
-				adjustWrapperPadding({sidebarOpen: false});
-			}
 		},
 		/* eslint-disable react-hooks/exhaustive-deps */
 		[panel, sidebarOpen, sidebarPanelId]
@@ -299,23 +296,6 @@ class ErrorBoundary extends React.Component {
 		}
 		else {
 			return this.props.children;
-		}
-	}
-}
-
-function adjustWrapperPadding({sidebarOpen}) {
-	const wrapper = document.getElementById('wrapper');
-
-	if (wrapper) {
-		const classList = wrapper.classList;
-
-		if (sidebarOpen) {
-			classList.add('page-editor__sidebar-padding-open');
-			classList.remove('page-editor__sidebar-padding');
-		}
-		else {
-			classList.add('page-editor__sidebar-padding');
-			classList.remove('page-editor__sidebar-padding-open');
 		}
 	}
 }
