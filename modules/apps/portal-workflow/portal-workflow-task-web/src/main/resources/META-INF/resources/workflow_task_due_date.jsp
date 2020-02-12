@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
-
 String redirect = ParamUtil.getString(request, "redirect");
+
+WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 %>
 
 <liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="updateWorkflowTask" var="updateURL" />
