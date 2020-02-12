@@ -66,7 +66,7 @@ public class MFAEmailOTPChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested one-time password email verification for a " +
+					"Requested one-time password email verification for " +
 						"nonexistent user " + userId);
 			}
 
@@ -122,7 +122,7 @@ public class MFAEmailOTPChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested one-time password email verification for a " +
+					"Requested one-time password email verification for " +
 						"nonexistent user " + userId);
 			}
 
@@ -250,7 +250,7 @@ public class MFAEmailOTPChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested one-time password email verification for a " +
+					"Requested one-time password email verification for " +
 						"nonexistent user " + userId);
 			}
 
@@ -330,7 +330,7 @@ public class MFAEmailOTPChecker {
 
 		if (user == null) {
 			throw new IllegalStateException(
-				"Requested one-time password email verification for a " +
+				"Requested one-time password email verification for " +
 					"nonexistent user " + userId);
 		}
 
