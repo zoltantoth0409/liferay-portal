@@ -91,11 +91,11 @@ public class CTPublishBackgroundTaskExecutor
 		CTCollection ctCollection = _ctCollectionLocalService.getCTCollection(
 			ctCollectionId);
 
-		Map<Long, List<ConflictInfo>> conflictInfoMap =
+		Map<Long, List<ConflictInfo>> conflictInfosMap =
 			_ctCollectionLocalService.checkConflicts(ctCollection);
 
 		for (Map.Entry<Long, List<ConflictInfo>> entry :
-				conflictInfoMap.entrySet()) {
+				conflictInfosMap.entrySet()) {
 
 			for (ConflictInfo conflictInfo : entry.getValue()) {
 				if (conflictInfo.isResolved()) {
