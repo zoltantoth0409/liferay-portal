@@ -27,8 +27,6 @@ com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = (com.liferay.
 
 long ddmStructureId = BeanParamUtil.getLong(ddmStructure, request, "structureId");
 
-DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFileEntryTypeDisplayContext)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_EDIT_EDIT_FILE_ENTRY_TYPE_DISPLAY_CONTEXT);
-
 List<DDMStructure> ddmStructures = null;
 
 if (fileEntryType != null) {
@@ -41,6 +39,8 @@ if (fileEntryType != null) {
 
 String ddmStructureKey = StringPool.BLANK;
 String fileEntryTypeUuid = StringPool.BLANK;
+
+DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFileEntryTypeDisplayContext)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_EDIT_EDIT_FILE_ENTRY_TYPE_DISPLAY_CONTEXT);
 
 if ((ddmStructure == null) && dlEditFileEntryTypeDisplayContext.useDataEngineEditor()) {
 	fileEntryTypeUuid = (fileEntryType != null) ? fileEntryType.getUuid() : PortalUUIDUtil.generate();

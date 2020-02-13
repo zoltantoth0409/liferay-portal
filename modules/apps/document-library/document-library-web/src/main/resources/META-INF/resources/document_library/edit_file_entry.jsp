@@ -17,8 +17,6 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-FFDocumentLibraryDDMEditorConfiguration ffDocumentLibraryDDMEditorConfiguration = (FFDocumentLibraryDDMEditorConfiguration)request.getAttribute(FFDocumentLibraryDDMEditorConfiguration.class.getName());
-
 String cmd = ParamUtil.getString(request, Constants.CMD, Constants.EDIT);
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -389,6 +387,10 @@ renderResponse.setTitle(headerTitle);
 										<c:if test="<%= !dlEditFileEntryDisplayContext.isDDMStructureVisible(ddmStructure) %>">
 											<div class="hide">
 										</c:if>
+
+										<%
+										FFDocumentLibraryDDMEditorConfiguration ffDocumentLibraryDDMEditorConfiguration = (FFDocumentLibraryDDMEditorConfiguration)request.getAttribute(FFDocumentLibraryDDMEditorConfiguration.class.getName());
+										%>
 
 										<c:choose>
 											<c:when test="<%= ffDocumentLibraryDDMEditorConfiguration.useDataEngineEditor() %>">
