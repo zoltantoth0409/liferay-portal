@@ -947,6 +947,10 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			return;
 		}
 
+		String className =
+			com.liferay.dynamic.data.mapping.kernel.DDMFormValues.class.
+				getName();
+
 		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeLocalService.getDLFileEntryType(fileEntryTypeId);
 
@@ -958,10 +962,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		DDMFormValues ddmFormValues = _ddmFormValuesFactory.create(
 			serviceContext.getRequest(), ddmStructure.getDDMForm());
-
-		String className =
-			com.liferay.dynamic.data.mapping.kernel.DDMFormValues.class.
-				getName();
 
 		serviceContext.setAttribute(
 			className + StringPool.POUND + ddmStructure.getStructureId(),
