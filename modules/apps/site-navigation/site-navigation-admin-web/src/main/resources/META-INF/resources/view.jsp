@@ -18,8 +18,6 @@
 
 <%
 SiteNavigationAdminManagementToolbarDisplayContext siteNavigationAdminManagementToolbarDisplayContext = new SiteNavigationAdminManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, siteNavigationAdminDisplayContext);
-
-Group scopeGroup = themeDisplay.getScopeGroup();
 %>
 
 <clay:management-toolbar
@@ -105,6 +103,10 @@ Group scopeGroup = themeDisplay.getScopeGroup();
 						name="title"
 						value="<%= HtmlUtil.escape(siteNavigationMenu.getName()) %>"
 					/>
+
+					<%
+					Group scopeGroup = themeDisplay.getScopeGroup();
+					%>
 
 					<c:if test="<%= !scopeGroup.isCompany() %>">
 						<liferay-ui:search-container-column-text

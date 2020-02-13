@@ -59,16 +59,16 @@ public class AddSiteNavigationMenuMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 		String name = ParamUtil.getString(actionRequest, "name");
 
 		try {
+			Group scopeGroup = themeDisplay.getScopeGroup();
+
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			Group scopeGroup = themeDisplay.getScopeGroup();
 
 			SiteNavigationMenu siteNavigationMenu =
 				_siteNavigationMenuService.addSiteNavigationMenu(
