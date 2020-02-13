@@ -71,8 +71,8 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>" />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 		<aui:input name="fileEntryTypeId" type="hidden" value="<%= fileEntryTypeId %>" />
-		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
 		<aui:input name="fileEntryTypeUuid" type="hidden" value="<%= fileEntryTypeUuid %>" />
+		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
 		<aui:input name="definition" type="hidden" />
 
 		<liferay-ui:error exception="<%= DuplicateFileEntryTypeException.class %>" message="please-enter-a-unique-document-type-name" />
