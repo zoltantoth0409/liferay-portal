@@ -158,7 +158,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	protected void activate(Map<String, Object> properties) {
 		_dlConfiguration = ConfigurableUtil.createConfigurable(
 			DLConfiguration.class, properties);
-
 		_ffDocumentLibraryDDMEditorConfiguration =
 			ConfigurableUtil.createConfigurable(
 				FFDocumentLibraryDDMEditorConfiguration.class, properties);
