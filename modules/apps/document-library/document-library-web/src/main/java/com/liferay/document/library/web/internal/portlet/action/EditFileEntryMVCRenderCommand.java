@@ -58,11 +58,11 @@ public class EditFileEntryMVCRenderCommand
 		throws PortletException {
 
 		renderRequest.setAttribute(
-			FFDocumentLibraryDDMEditorConfiguration.class.getName(),
-			_ffDocumentLibraryDDMEditorConfiguration);
-		renderRequest.setAttribute(
 			DDMFormValuesToMapConverter.class.getName(),
 			_ddmFormValuesToMapConverter);
+		renderRequest.setAttribute(
+			FFDocumentLibraryDDMEditorConfiguration.class.getName(),
+			_ffDocumentLibraryDDMEditorConfiguration);
 
 		return super.render(renderRequest, renderResponse);
 	}
