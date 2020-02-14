@@ -194,6 +194,11 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 			assetListEntryId, segmentsEntryId);
 	}
 
+	public int getAssetListEntryVisibleAssetEntryRelsCount(
+		long assetLIstEntryId, long segmentsEntryId) {
+		return 0;
+	}
+
 	@Override
 	public int getAssetListEntryAssetEntryRelsCount(
 		long assetListEntryId, long[] segmentsEntryIds) {
