@@ -196,7 +196,9 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 
 	public int getAssetListEntryVisibleAssetEntryRelsCount(
 		long assetLIstEntryId, long segmentsEntryId) {
-		return 0;
+
+		return assetListEntryAssetEntryRelFinder.countByA_S_Visible(
+			assetLIstEntryId, segmentsEntryId);
 	}
 
 	@Override
