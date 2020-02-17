@@ -27,9 +27,9 @@ DLEditDDMStructureDisplayContext dlEditDDMStructureDisplayContext = new DLEditDD
 
 com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = dlEditDDMStructureDisplayContext.getDDMStructure();
 
-long groupId = BeanParamUtil.getLong(ddmStructure, request, "groupId", scopeGroupId);
-
 long ddmStructureId = BeanParamUtil.getLong(ddmStructure, request, "structureId");
+
+long groupId = BeanParamUtil.getLong(ddmStructure, request, "groupId", scopeGroupId);
 
 boolean localizeTitle = true;
 String title = LanguageUtil.format(request, "new-x", LanguageUtil.get(resourceBundle, "metadata-set"), false);
@@ -52,8 +52,8 @@ renderResponse.setTitle(title);
 <div class="container-fluid-1280">
 	<aui:form action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
+		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 		<aui:input name="definition" type="hidden" />
 		<aui:input name="status" type="hidden" />
 

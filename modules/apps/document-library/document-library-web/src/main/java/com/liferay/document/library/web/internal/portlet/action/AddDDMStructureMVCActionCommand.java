@@ -59,13 +59,13 @@ public class AddDDMStructureMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		long ddmStructureId = ParamUtil.getLong(
+			actionRequest, "ddmStructureId");
+
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		long parentDDMStructureId = ParamUtil.getLong(
 			actionRequest, "parentDDMStructureId",
 			DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID);
-
-		long ddmStructureId = ParamUtil.getLong(
-			actionRequest, "ddmStructureId");
 		String structureKey = ParamUtil.getString(
 			actionRequest, "structureKey");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
