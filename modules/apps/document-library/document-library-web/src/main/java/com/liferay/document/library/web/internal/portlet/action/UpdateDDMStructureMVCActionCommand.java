@@ -72,9 +72,6 @@ public class UpdateDDMStructureMVCActionCommand extends BaseMVCActionCommand {
 
 		DDMFormLayout ddmFormLayout = _ddm.getDefaultDDMFormLayout(ddmForm);
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDMStructure.class.getName(), actionRequest);
-
 		if (FFDocumentLibraryDDMEditorConfigurationUtil.useDataEngineEditor()) {
 			DDMStructure ddmStructure = _ddmStructureService.getStructure(
 				ddmStructureId);
@@ -82,6 +79,9 @@ public class UpdateDDMStructureMVCActionCommand extends BaseMVCActionCommand {
 			ddmForm = ddmStructure.getDDMForm();
 			ddmFormLayout = ddmStructure.getDDMFormLayout();
 		}
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DDMStructure.class.getName(), actionRequest);
 
 		_ddmStructureService.updateStructure(
 			ddmStructureId, parentDDMStructureId, nameMap, descriptionMap,
