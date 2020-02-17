@@ -14,7 +14,7 @@
 
 package com.liferay.document.library.web.internal.display.context;
 
-import com.liferay.document.library.web.internal.util.FFDocumentLibraryDDMEditorConfigurationUtil;
+import com.liferay.document.library.web.internal.configuration.FFDocumentLibraryDDMEditorConfigurationUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMConstants;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;

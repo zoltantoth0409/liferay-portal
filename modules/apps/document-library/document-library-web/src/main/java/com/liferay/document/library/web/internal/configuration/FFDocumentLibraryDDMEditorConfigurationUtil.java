@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.util;
+package com.liferay.document.library.web.internal.configuration;
 
-import com.liferay.document.library.web.internal.configuration.FFDocumentLibraryDDMEditorConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 
 import java.util.Map;
