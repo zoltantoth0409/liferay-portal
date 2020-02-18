@@ -18,7 +18,7 @@ import {EventHandler} from 'metal-events';
 import Component from 'metal-jsx';
 
 import FieldActionsDropDown, {
-	getFieldContainer
+	getFieldContainer,
 } from './FieldActionsDropDown.es';
 import formBuilderProps from './props.es';
 
@@ -241,7 +241,7 @@ const withActionableFields = ChildComponent => {
 	}
 
 	ActionableFields.PROPS = {
-		...formBuilderProps
+		...formBuilderProps,
 	};
 
 	return ActionableFields;
