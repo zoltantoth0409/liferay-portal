@@ -171,9 +171,10 @@ public class AssetListAssetEntryProviderImpl
 				AssetListEntryTypeConstants.TYPE_MANUAL)) {
 
 			return _assetListEntryAssetEntryRelLocalService.
-				getAssetListEntryVisibleAssetEntryRelsCount(
+				getAssetListEntryAssetEntryRelsCount(
 					assetListEntry.getAssetListEntryId(),
-					_getFirstSegmentsEntryId(assetListEntry, segmentsEntryIds));
+					_getFirstSegmentsEntryId(assetListEntry, segmentsEntryIds),
+					true);
 		}
 
 		return _assetEntryLocalService.getEntriesCount(
