@@ -136,6 +136,8 @@ public class AccountUserResourceImpl
 	}
 
 	private AccountUser _toAccountUser(User user) throws Exception {
+		Contact contact = user.getContact();
+
 		return new AccountUser() {
 			{
 				emailAddress = user.getEmailAddress();
@@ -143,28 +145,34 @@ public class AccountUserResourceImpl
 				id = user.getUserId();
 				lastName = user.getLastName();
 				middleName = user.getMiddleName();
-
-				Contact contact = user.getContact();
-
-				long prefixId = contact.getPrefixId();
-
-				if (prefixId > 0) {
-					ListType prefixListType = _listTypeLocalService.getListType(
-						prefixId);
-
-					prefix = prefixListType.getName();
-				}
-
 				screenName = user.getScreenName();
 
-				long suffixId = contact.getSuffixId();
+				setPrefix(
+					() -> {
+						long prefixId = contact.getPrefixId();
 
-				if (suffixId > 0) {
-					ListType suffixListType = _listTypeLocalService.getListType(
-						suffixId);
+						if (prefixId <= 0) {
+							return null;
+						}
 
-					suffix = suffixListType.getName();
-				}
+						ListType prefixListType =
+							_listTypeLocalService.getListType(prefixId);
+
+						return prefixListType.getName();
+					});
+				setSuffix(
+					() -> {
+						long suffixId = contact.getSuffixId();
+
+						if (suffixId <= 0) {
+							return null;
+						}
+
+						ListType suffixListType =
+							_listTypeLocalService.getListType(suffixId);
+
+						return suffixListType.getName();
+					});
 			}
 		};
 	}
