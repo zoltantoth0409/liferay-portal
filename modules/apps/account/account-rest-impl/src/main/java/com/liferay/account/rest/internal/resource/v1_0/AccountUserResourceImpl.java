@@ -63,7 +63,7 @@ public class AccountUserResourceImpl
 
 	@Override
 	public Page<AccountUser> getAccountUsersPage(
-			@NotNull Long accountId, String search, Filter filter,
+			Long accountId, String search, Filter filter,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
