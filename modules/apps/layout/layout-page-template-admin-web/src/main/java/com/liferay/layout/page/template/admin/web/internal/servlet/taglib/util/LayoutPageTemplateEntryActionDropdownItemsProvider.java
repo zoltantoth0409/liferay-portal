@@ -169,10 +169,10 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		configureLayoutPrototypeURL.setParameter(
 			"mvcPath", "/edit_layout_prototype.jsp");
 		configureLayoutPrototypeURL.setParameter(
+			"redirect", _themeDisplay.getURLCurrent());
+		configureLayoutPrototypeURL.setParameter(
 			"layoutPrototypeId",
 			String.valueOf(_layoutPageTemplateEntry.getLayoutPrototypeId()));
-		configureLayoutPrototypeURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
 
 		return dropdownItem -> {
 			dropdownItem.setHref(configureLayoutPrototypeURL);
