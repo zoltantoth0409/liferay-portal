@@ -19,13 +19,11 @@ import com.liferay.account.rest.dto.v1_0.AccountUser;
 import com.liferay.account.rest.internal.odata.entity.v1_0.AccountUserEntityModel;
 import com.liferay.account.rest.resource.v1_0.AccountUserResource;
 import com.liferay.account.service.AccountEntryUserRelLocalService;
-import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.ListTypeConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
-import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
@@ -42,8 +40,6 @@ import com.liferay.portal.vulcan.util.SearchUtil;
 
 import java.util.Collections;
 import java.util.Optional;
-
-import javax.validation.constraints.NotNull;
 
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -63,11 +59,12 @@ public class AccountUserResourceImpl
 
 	@Override
 	public Page<AccountUser> getAccountUsersPage(
-			Long accountId, String search, Filter filter,
-			Pagination pagination, Sort[] sorts)
+			Long accountId, String search, Filter filter, Pagination pagination,
+			Sort[] sorts)
 		throws Exception {
 
-		return _getUserAccountsPage(
+		return SearchUtil.search(
+			Collections.emptyMap(),
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -77,7 +74,15 @@ public class AccountUserResourceImpl
 						"accountEntryIds", String.valueOf(accountId)),
 					BooleanClauseOccur.MUST);
 			},
-			search, filter, pagination, sorts);
+			filter, User.class, search, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> searchContext.setCompanyId(
+				contextCompany.getCompanyId()),
+			sorts,
+			document -> _toAccountUser(
+				_userLocalService.getUserById(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))));
 	}
 
 	@Override
@@ -128,24 +133,6 @@ public class AccountUserResourceImpl
 		).orElse(
 			0L
 		);
-	}
-
-	private Page<AccountUser> _getUserAccountsPage(
-			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
-			String search, Filter filter, Pagination pagination, Sort[] sorts)
-		throws Exception {
-
-		return SearchUtil.search(
-			Collections.emptyMap(), booleanQueryUnsafeConsumer, filter,
-			User.class, search, pagination,
-			queryConfig -> queryConfig.setSelectedFieldNames(
-				Field.ENTRY_CLASS_PK),
-			searchContext -> searchContext.setCompanyId(
-				contextCompany.getCompanyId()),
-			sorts,
-			document -> _toAccountUser(
-				_userLocalService.getUserById(
-					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))));
 	}
 
 	private AccountUser _toAccountUser(User user) throws Exception {
