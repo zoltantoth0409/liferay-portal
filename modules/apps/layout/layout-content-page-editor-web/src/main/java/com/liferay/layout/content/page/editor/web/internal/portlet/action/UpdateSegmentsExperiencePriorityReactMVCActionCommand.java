@@ -42,7 +42,7 @@ public class UpdateSegmentsExperiencePriorityReactMVCActionCommand
 	extends BaseContentPageEditorTransactionalMVCActionCommand {
 
 	@Override
-	protected JSONObject executeTransactionalMVCActionCommand(
+	protected JSONObject doTransactionalCommand(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 

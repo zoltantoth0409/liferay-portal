@@ -47,9 +47,8 @@ public abstract class BaseContentPageEditorTransactionalMVCActionCommand
 		JSONObject jsonObject = null;
 
 		try {
-			Callable<JSONObject> callable =
-				() -> executeTransactionalMVCActionCommand(
-					actionRequest, actionResponse);
+			Callable<JSONObject> callable = () -> doTransactionalCommand(
+				actionRequest, actionResponse);
 
 			jsonObject = TransactionInvokerUtil.invoke(
 				_transactionConfig, callable);
@@ -77,7 +76,7 @@ public abstract class BaseContentPageEditorTransactionalMVCActionCommand
 			actionRequest, actionResponse, jsonObject);
 	}
 
-	protected abstract JSONObject executeTransactionalMVCActionCommand(
+	protected abstract JSONObject doTransactionalCommand(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception;
 

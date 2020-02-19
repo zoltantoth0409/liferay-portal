@@ -128,7 +128,7 @@ public class AddSegmentsExperienceMVCActionCommand
 	}
 
 	@Override
-	protected JSONObject executeTransactionalMVCActionCommand(
+	protected JSONObject doTransactionalCommand(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 

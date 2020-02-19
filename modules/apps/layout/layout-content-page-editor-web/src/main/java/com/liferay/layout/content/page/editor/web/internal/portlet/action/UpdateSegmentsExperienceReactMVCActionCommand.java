@@ -45,7 +45,7 @@ public class UpdateSegmentsExperienceReactMVCActionCommand
 	extends BaseContentPageEditorTransactionalMVCActionCommand {
 
 	@Override
-	protected JSONObject executeTransactionalMVCActionCommand(
+	protected JSONObject doTransactionalCommand(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
