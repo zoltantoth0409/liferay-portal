@@ -28,10 +28,10 @@ public class AccountUserEntityModel implements EntityModel {
 
 	public AccountUserEntityModel() {
 		_entityFieldsMap = EntityModel.toEntityFieldsMap(
+			new StringEntityField("emailAddress", locale -> "emailAddress"),
 			new StringEntityField(
 				"screenName",
-				locale -> Field.getSortableFieldName("screenName")),
-			new StringEntityField("emailAddress", locale -> "emailAddress"));
+				locale -> Field.getSortableFieldName("screenName")));
 	}
 
 	@Override
