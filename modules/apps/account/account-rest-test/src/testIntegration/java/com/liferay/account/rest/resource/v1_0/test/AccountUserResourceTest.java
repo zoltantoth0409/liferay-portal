@@ -123,7 +123,7 @@ public class AccountUserResourceTest extends BaseAccountUserResourceTestCase {
 		return accountEntry;
 	}
 
-	private AccountUser _addAccountUser(long accountId, AccountUser accountUser)
+	private AccountUser _addAccountUser(Long accountId, AccountUser accountUser)
 		throws Exception {
 
 		return accountUserResource.postAccountUser(accountId, accountUser);
