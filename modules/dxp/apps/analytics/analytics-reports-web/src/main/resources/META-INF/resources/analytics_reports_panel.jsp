@@ -78,11 +78,11 @@ AnalyticsReportsDisplayContext analyticsReportsDisplayContext = (AnalyticsReport
 							label="<%= true %>"
 							linkCssClass="d-block font-weight-bold mb-3 mt-5"
 							markupView="lexicon"
-							message="dont-show-me-this-again"
+							message="do-not-show-me-this-again"
 							url="<%= hideAnalyticsReportsPanelURL %>"
 						/>
 
-						<p class="text-secondary"><liferay-ui:message key="dont-show-me-this-again-help" /></p>
+						<p class="text-secondary"><liferay-ui:message key="do-not-show-me-this-again-help" /></p>
 					</c:otherwise>
 				</c:choose>
 			</div>
