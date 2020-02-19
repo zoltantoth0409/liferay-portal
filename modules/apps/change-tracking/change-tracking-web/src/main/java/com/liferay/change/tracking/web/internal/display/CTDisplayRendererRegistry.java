@@ -213,16 +213,16 @@ public class CTDisplayRendererRegistry {
 
 			PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
+			portletURL.setParameter(
+				"ctEntryId", String.valueOf(ctEntry.getCtEntryId()));
+			portletURL.setParameter("mvcPath", "/change_lists/view_entry.jsp");
+
 			try {
 				portletURL.setWindowState(LiferayWindowState.POP_UP);
 			}
 			catch (WindowStateException windowStateException) {
 				ReflectionUtil.throwException(windowStateException);
 			}
-
-			portletURL.setParameter(
-				"ctEntryId", String.valueOf(ctEntry.getCtEntryId()));
-			portletURL.setParameter("mvcPath", "/change_lists/view_entry.jsp");
 
 			return StringBundler.concat(
 				"javascript:Liferay.Util.openWindow({dialog: {destroyOnHide: ",
