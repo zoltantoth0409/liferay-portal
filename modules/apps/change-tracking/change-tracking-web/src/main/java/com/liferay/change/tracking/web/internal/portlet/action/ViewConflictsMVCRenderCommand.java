@@ -60,13 +60,13 @@ public class ViewConflictsMVCRenderCommand implements MVCRenderCommand {
 			CTCollection ctCollection =
 				_ctCollectionLocalService.getCTCollection(ctCollectionId);
 
-			renderRequest.setAttribute(CTWebKeys.CT_COLLECTION, ctCollection);
-
 			Map<Long, List<ConflictInfo>> conflictInfoMap =
 				_ctCollectionLocalService.checkConflicts(ctCollection);
 
 			renderRequest.setAttribute(
 				CTWebKeys.CONFLICT_INFO_MAP, conflictInfoMap);
+
+			renderRequest.setAttribute(CTWebKeys.CT_COLLECTION, ctCollection);
 
 			return "/change_lists/conflicts.jsp";
 		}
