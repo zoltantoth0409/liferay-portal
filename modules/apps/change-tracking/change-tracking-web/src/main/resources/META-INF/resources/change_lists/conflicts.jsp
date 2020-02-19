@@ -26,13 +26,8 @@ CTCollection ctCollection = (CTCollection)request.getAttribute(CTWebKeys.CT_COLL
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
+
 renderResponse.setTitle(StringBundler.concat(LanguageUtil.get(request, "publish"), ": ", ctCollection.getName()));
-
-String conflictingChangesDescriptionKey = "the-following-conflicts-need-to-be-resolved-before-publishing";
-
-if (conflictInfoMap.isEmpty()) {
-	conflictingChangesDescriptionKey = "no-conflicts-were-found-ready-to-publish";
-}
 %>
 
 <div class="container-fluid container-fluid-max-xl container-form-lg">
@@ -41,6 +36,14 @@ if (conflictInfoMap.isEmpty()) {
 			<tr>
 				<td>
 					<h2><%= LanguageUtil.get(request, "conflicting-changes") %></h2>
+
+					<%
+					String conflictingChangesDescriptionKey = "the-following-conflicts-need-to-be-resolved-before-publishing";
+
+					if (conflictInfoMap.isEmpty()) {
+						conflictingChangesDescriptionKey = "no-conflicts-were-found-ready-to-publish";
+					}
+					%>
 
 					<h5 class="text-muted"><%= LanguageUtil.get(request, conflictingChangesDescriptionKey) %></h5>
 				</td>
