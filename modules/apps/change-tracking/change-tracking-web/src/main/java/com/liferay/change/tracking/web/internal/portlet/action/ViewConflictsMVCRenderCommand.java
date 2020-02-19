@@ -53,10 +53,10 @@ public class ViewConflictsMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		long ctCollectionId = ParamUtil.getLong(
-			renderRequest, "ctCollectionId");
-
 		try {
+			long ctCollectionId = ParamUtil.getLong(
+				renderRequest, "ctCollectionId");
+
 			CTCollection ctCollection =
 				_ctCollectionLocalService.getCTCollection(ctCollectionId);
 
