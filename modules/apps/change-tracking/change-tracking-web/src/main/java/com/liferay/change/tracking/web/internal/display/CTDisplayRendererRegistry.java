@@ -225,11 +225,11 @@ public class CTDisplayRendererRegistry {
 			portletURL.setParameter("mvcPath", "/change_lists/view_entry.jsp");
 
 			return StringBundler.concat(
-				"javascript:Liferay.Util.openWindow({dialog:{destroyOnHide:",
-				"true},title:'",
+				"javascript:Liferay.Util.openWindow({dialog: {destroyOnHide: ",
+				"true}, title: '",
 				getEntryTitle(
 					ctEntry, liferayPortletRequest.getHttpServletRequest()),
-				"',uri:'", portletURL.toString(), "'});");
+				"', uri: '", portletURL.toString(), "'});");
 		}
 	}
 
