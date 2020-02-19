@@ -98,8 +98,8 @@ renderResponse.setTitle(StringBundler.concat(LanguageUtil.get(request, "publish"
 									</div>
 
 									<liferay-portlet:actionURL name="/change_lists/delete_ct_auto_resolution_info" var="dismissURL">
-										<liferay-portlet:param name="ctAutoResolutionInfoId" value="<%= String.valueOf(conflictInfo.getCTAutoResolutionInfoId()) %>" />
 										<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+										<liferay-portlet:param name="ctAutoResolutionInfoId" value="<%= String.valueOf(conflictInfo.getCTAutoResolutionInfoId()) %>" />
 									</liferay-portlet:actionURL>
 
 									<div class="autofit-col">
