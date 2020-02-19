@@ -73,15 +73,10 @@ public class UpgradeLayoutPageTemplateCollection extends UpgradeProcess {
 	}
 
 	private String _generateLayoutPageTemplateCollectionKey(String name) {
-		String layoutPageTemplateCollectionKey = StringUtil.toLowerCase(
-			name.trim());
-
-		layoutPageTemplateCollectionKey = StringUtil.replace(
-			layoutPageTemplateCollectionKey, CharPool.FORWARD_SLASH,
-			CharPool.DASH);
-
 		return StringUtil.replace(
-			layoutPageTemplateCollectionKey, CharPool.SPACE, CharPool.DASH);
+			StringUtil.toLowerCase(name.trim()),
+			new char[] {CharPool.FORWARD_SLASH, CharPool.SPACE},
+			new char[] {CharPool.DASH, CharPool.DASH});
 	}
 
 }
