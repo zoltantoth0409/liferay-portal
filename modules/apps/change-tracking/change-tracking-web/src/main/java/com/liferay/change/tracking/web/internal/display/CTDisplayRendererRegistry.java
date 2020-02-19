@@ -213,9 +213,9 @@ public class CTDisplayRendererRegistry {
 
 			PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
+			portletURL.setParameter("mvcPath", "/change_lists/view_entry.jsp");
 			portletURL.setParameter(
 				"ctEntryId", String.valueOf(ctEntry.getCtEntryId()));
-			portletURL.setParameter("mvcPath", "/change_lists/view_entry.jsp");
 
 			try {
 				portletURL.setWindowState(LiferayWindowState.POP_UP);
