@@ -213,14 +213,14 @@ public class FragmentsImporterTest {
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
 		URL collectionURL = _bundle.getEntry(
-			path + FragmentExportImportConstants.FILE_NAME_COLLECTION_CONFIG);
+			path + FragmentExportImportConstants.FILE_NAME_COLLECTION);
 
 		zipWriter.addEntry(
-			FragmentExportImportConstants.FILE_NAME_COLLECTION_CONFIG,
+			FragmentExportImportConstants.FILE_NAME_COLLECTION,
 			collectionURL.openStream());
 
 		Enumeration<URL> enumeration = _bundle.findEntries(
-			path, FragmentExportImportConstants.FILE_NAME_FRAGMENT_CONFIG,
+			path, FragmentExportImportConstants.FILE_NAME_FRAGMENT,
 			true);
 
 		try {
@@ -291,7 +291,7 @@ public class FragmentsImporterTest {
 
 		_addZipWriterEntry(
 			zipWriter, path,
-			FragmentExportImportConstants.FILE_NAME_FRAGMENT_CONFIG);
+			FragmentExportImportConstants.FILE_NAME_FRAGMENT);
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("cssPath"));
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("htmlPath"));
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("jsPath"));

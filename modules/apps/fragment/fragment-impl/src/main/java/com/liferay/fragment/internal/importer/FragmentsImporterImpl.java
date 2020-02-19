@@ -333,7 +333,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				String fragmentCollectionFileName =
 					fragmentCollectionPath +
 						FragmentExportImportConstants.
-							FILE_NAME_COLLECTION_CONFIG;
+							FILE_NAME_COLLECTION;
 
 				ZipEntry fragmentCollectionZipEntry = zipFile.getEntry(
 					fragmentCollectionFileName);
@@ -434,7 +434,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 		}
 		else if (fileName.equals(
 					FragmentExportImportConstants.
-						FILE_NAME_COLLECTION_CONFIG)) {
+						FILE_NAME_COLLECTION)) {
 
 			JSONObject collectionJSONObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.read(
@@ -444,7 +444,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				groupId, collectionJSONObject.getString("name"));
 		}
 		else if (fileName.equals(
-					FragmentExportImportConstants.FILE_NAME_FRAGMENT_CONFIG)) {
+					FragmentExportImportConstants.FILE_NAME_FRAGMENT)) {
 
 			JSONObject fragmentJSONObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.read(
@@ -591,10 +591,10 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 				return name.endsWith(
 					FragmentExportImportConstants.
-						FILE_NAME_COLLECTION_CONFIG) ||
+						FILE_NAME_COLLECTION) ||
 					   name.endsWith(
 						   FragmentExportImportConstants.
-							   FILE_NAME_FRAGMENT_CONFIG);
+							   FILE_NAME_FRAGMENT);
 			}
 		).flatMap(
 			zipEntry -> {
@@ -605,7 +605,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 				if (name.endsWith(
 						FragmentExportImportConstants.
-							FILE_NAME_COLLECTION_CONFIG)) {
+							FILE_NAME_COLLECTION)) {
 
 					return Arrays.stream(new String[] {name});
 				}
@@ -674,7 +674,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 	private boolean _isFragmentCollection(String fileName) {
 		if (Objects.equals(
 				_getFileName(fileName),
-				FragmentExportImportConstants.FILE_NAME_COLLECTION_CONFIG)) {
+				FragmentExportImportConstants.FILE_NAME_COLLECTION)) {
 
 			return true;
 		}
@@ -685,7 +685,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 	private boolean _isFragmentEntry(String fileName) {
 		if (Objects.equals(
 				_getFileName(fileName),
-				FragmentExportImportConstants.FILE_NAME_FRAGMENT_CONFIG)) {
+				FragmentExportImportConstants.FILE_NAME_FRAGMENT)) {
 
 			return true;
 		}
