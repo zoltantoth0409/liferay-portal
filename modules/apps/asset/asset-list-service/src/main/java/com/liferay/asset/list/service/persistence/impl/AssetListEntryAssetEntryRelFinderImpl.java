@@ -48,9 +48,6 @@ public class AssetListEntryAssetEntryRelFinderImpl
 
 			String sql = _customSQL.get(getClass(), COUNT_BY_A_S);
 
-			sql = StringUtil.replace(
-				sql, "[$VISIBLE$]", visible ? "[$TRUE$]" : "[$FALSE$]");
-
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
@@ -59,6 +56,7 @@ public class AssetListEntryAssetEntryRelFinderImpl
 
 			qPos.add(assetListEntryId);
 			qPos.add(segmentsEntryId);
+			qPos.add(visible);
 
 			Long count = (Long)q.uniqueResult();
 
