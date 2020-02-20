@@ -34,14 +34,14 @@ public class PoshiScriptParserException extends Exception {
 		"Poshi Script syntax is not preserved in translation";
 
 	public static void throwExceptions() throws Exception {
-		if (!_instances.isEmpty()) {
+		if (!_poshiScriptParserExceptions.isEmpty()) {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("\n\n");
-			sb.append(_instances.size());
+			sb.append(_poshiScriptParserExceptions.size());
 			sb.append(" errors in Poshi Script syntax\n\n");
 
-			for (Exception exception : _instances) {
+			for (Exception exception : _poshiScriptParserExceptions) {
 				sb.append(exception.getMessage());
 				sb.append("\n\n");
 			}
@@ -55,7 +55,7 @@ public class PoshiScriptParserException extends Exception {
 	public PoshiScriptParserException(String msg) {
 		super(msg);
 
-		_instances.add(this);
+		_poshiScriptParserExceptions.add(this);
 	}
 
 	public PoshiScriptParserException(String msg, PoshiNode poshiNode) {
@@ -209,8 +209,9 @@ public class PoshiScriptParserException extends Exception {
 
 	private static final int _ERROR_SNIPPET_PREFIX_SIZE = 10;
 
-	private static final Set<PoshiScriptParserException> _instances =
-		Collections.synchronizedSet(new HashSet<>());
+	private static final Set<PoshiScriptParserException>
+		_poshiScriptParserExceptions =
+			Collections.synchronizedSet(new HashSet<>());
 
 	private int _errorLineNumber;
 	private String _filePath = "Unknown file";
