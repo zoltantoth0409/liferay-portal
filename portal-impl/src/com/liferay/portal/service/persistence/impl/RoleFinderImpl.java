@@ -169,10 +169,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -204,11 +204,11 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
 				getCountByR_U_SQL());
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (int i = 0; i < 6; i++) {
-				qPos.add(roleId);
-				qPos.add(userId);
+				queryPos.add(roleId);
+				queryPos.add(userId);
 			}
 
 			List<Role> roles = sqlQuery.list();
@@ -236,11 +236,11 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(roleId);
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(roleId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -451,9 +451,9 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			return sqlQuery.list(true);
 		}
@@ -478,12 +478,12 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			return sqlQuery.list(true);
 		}
@@ -516,10 +516,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(groupId);
 
 			return (List<Role>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -545,10 +545,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(groupId);
 
 			return sqlQuery.list(true);
 		}
@@ -577,10 +577,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
+			queryPos.add(companyId);
+			queryPos.add(name);
 
 			List<Role> roles = sqlQuery.list();
 
@@ -640,10 +640,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(groupIds);
+			queryPos.add(userId);
+			queryPos.add(groupIds);
 
 			return sqlQuery.list(true);
 		}
@@ -696,12 +696,12 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			sqlQuery.addScalar("roleName", Type.STRING);
 			sqlQuery.addScalar("actionId", Type.STRING);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(scope);
-			qPos.add(primKey);
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(scope);
+			queryPos.add(primKey);
 
 			Map<String, List<String>> roleMap = new HashMap<>();
 
@@ -750,19 +750,19 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(scope);
-			qPos.add(primKey);
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(scope);
+			queryPos.add(primKey);
 
 			ResourceAction resourceAction =
 				ResourceActionLocalServiceUtil.getResourceAction(
 					name, actionId);
 
-			qPos.add(resourceAction.getBitwiseValue());
-			qPos.add(resourceAction.getBitwiseValue());
+			queryPos.add(resourceAction.getBitwiseValue());
+			queryPos.add(resourceAction.getBitwiseValue());
 
 			return sqlQuery.list(true);
 		}
@@ -824,22 +824,22 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(keywordsArray, 2);
-			qPos.add(keywordsArray, 2);
+			queryPos.add(companyId);
+			queryPos.add(keywordsArray, 2);
+			queryPos.add(keywordsArray, 2);
 
 			for (String excludedName : excludedNames) {
-				qPos.add(excludedName);
+				queryPos.add(excludedName);
 			}
 
-			qPos.add(types);
-			qPos.add(ClassNameLocalServiceUtil.getClassNameId(Team.class));
-			qPos.add(excludedTeamRoleId);
-			qPos.add(teamGroupId);
-			qPos.add(keywordsArray, 2);
-			qPos.add(keywordsArray, 2);
+			queryPos.add(types);
+			queryPos.add(ClassNameLocalServiceUtil.getClassNameId(Team.class));
+			queryPos.add(excludedTeamRoleId);
+			queryPos.add(teamGroupId);
+			queryPos.add(keywordsArray, 2);
+			queryPos.add(keywordsArray, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -909,14 +909,14 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(companyId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(types);
+			queryPos.add(companyId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(types);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -988,22 +988,22 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(keywordsArray, 2);
-			qPos.add(keywordsArray, 2);
+			queryPos.add(companyId);
+			queryPos.add(keywordsArray, 2);
+			queryPos.add(keywordsArray, 2);
 
 			for (String excludedName : excludedNames) {
-				qPos.add(excludedName);
+				queryPos.add(excludedName);
 			}
 
-			qPos.add(types);
-			qPos.add(ClassNameLocalServiceUtil.getClassNameId(Team.class));
-			qPos.add(excludedTeamRoleId);
-			qPos.add(teamGroupId);
-			qPos.add(keywordsArray, 2);
-			qPos.add(keywordsArray, 2);
+			queryPos.add(types);
+			queryPos.add(ClassNameLocalServiceUtil.getClassNameId(Team.class));
+			queryPos.add(excludedTeamRoleId);
+			queryPos.add(teamGroupId);
+			queryPos.add(keywordsArray, 2);
+			queryPos.add(keywordsArray, 2);
 
 			return (List<Role>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -1065,14 +1065,14 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			sqlQuery.addEntity("Role_", RoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(companyId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(types);
+			queryPos.add(companyId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(types);
 
 			return (List<Role>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -1238,7 +1238,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 	}
 
 	protected void setJoin(
-		QueryPos qPos, LinkedHashMap<String, Object> params) {
+		QueryPos queryPos, LinkedHashMap<String, Object> params) {
 
 		if (params == null) {
 			return;
@@ -1255,14 +1255,14 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 				Long valueLong = (Long)value;
 
 				if (Validator.isNotNull(valueLong)) {
-					qPos.add(valueLong);
+					queryPos.add(valueLong);
 				}
 			}
 			else if (value instanceof String) {
 				String valueString = (String)value;
 
 				if (Validator.isNotNull(valueString)) {
-					qPos.add(valueString);
+					queryPos.add(valueString);
 				}
 			}
 		}
