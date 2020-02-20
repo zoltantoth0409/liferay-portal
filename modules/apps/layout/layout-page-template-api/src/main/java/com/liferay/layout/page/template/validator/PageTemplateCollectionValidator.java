@@ -25,16 +25,16 @@ import com.liferay.portal.kernel.util.Validator;
 public class PageTemplateCollectionValidator {
 
 	public static void validatePageTemplateCollection(
-			String pageTemplateCollection)
+			String pageTemplateCollectionJSON)
 		throws PageTemplateCollectionValidatorException {
 
-		if (Validator.isNull(pageTemplateCollection)) {
+		if (Validator.isNull(pageTemplateCollectionJSON)) {
 			return;
 		}
 
 		try {
 			JSONValidator.validate(
-				pageTemplateCollection,
+				pageTemplateCollectionJSON,
 				PageTemplateCollectionValidator.class.getResourceAsStream(
 					"dependencies/page_template_collection_json_schema.json"));
 		}
