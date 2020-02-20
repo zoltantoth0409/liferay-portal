@@ -206,7 +206,7 @@ public class NavItemUtil {
 	}
 
 	@Reference(unbind = "-")
-	protected void setSiteNavigationMenuItemLocalService(
+	protected void setSiteNavigationMenuItemService(
 		SiteNavigationMenuItemService siteNavigationMenuItemService) {
 
 		_siteNavigationMenuItemService = siteNavigationMenuItemService;
