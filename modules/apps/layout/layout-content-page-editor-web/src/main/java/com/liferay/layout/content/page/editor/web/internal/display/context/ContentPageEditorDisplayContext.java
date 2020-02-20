@@ -1080,15 +1080,14 @@ public class ContentPageEditorDisplayContext {
 						"masterLayout",
 						layout.getMasterLayoutPlid() ==
 							fragmentEntryLink.getClassPK()
+					).putAll(
+						_getFragmentEntry(
+							fragmentEntryLink, fragmentEntry, content)
+					).put(
+						String.valueOf(
+							fragmentEntryLink.getFragmentEntryLinkId()),
+						fragmentEntryLinkMap
 					).build();
-
-				fragmentEntryLinkMap.putAll(
-					_getFragmentEntry(
-						fragmentEntryLink, fragmentEntry, content));
-
-				fragmentEntryLinksMap.put(
-					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()),
-					fragmentEntryLinkMap);
 			}
 		}
 		finally {
