@@ -71,7 +71,7 @@ public class LayoutServiceTest {
 	}
 
 	@Test
-	public void testFetchInvalidLayout() throws Exception {
+	public void testFetchLayout() throws Exception {
 		Layout newLayout = LayoutTestUtil.addLayout(_group);
 
 		Layout layout = _layoutService.fetchLayout(
@@ -89,6 +89,14 @@ public class LayoutServiceTest {
 			_group.getGroupId(), newLayout.isPrivateLayout(), 0L);
 
 		Assert.assertNull(layout);
+
+		layout = _layoutService.fetchLayout(
+			_group.getGroupId(), newLayout.isPrivateLayout(),
+			newLayout.getLayoutId());
+
+		Assert.assertNotNull(layout);
+
+		Assert.assertEquals(layout.getPlid(), newLayout.getPlid());
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
@@ -117,19 +125,6 @@ public class LayoutServiceTest {
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
 		}
-	}
-
-	@Test
-	public void testFetchValidLayout() throws Exception {
-		Layout newLayout = LayoutTestUtil.addLayout(_group);
-
-		Layout layout = _layoutService.fetchLayout(
-			_group.getGroupId(), newLayout.isPrivateLayout(),
-			newLayout.getLayoutId());
-
-		Assert.assertNotNull(layout);
-
-		Assert.assertEquals(layout.getPlid(), newLayout.getPlid());
 	}
 
 	@Test
