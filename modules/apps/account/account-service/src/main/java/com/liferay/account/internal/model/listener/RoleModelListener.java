@@ -45,30 +45,33 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 	@Override
 	public void onAfterCreate(Role role) throws ModelListenerException {
-		if (Objects.equals(
+		if (!Objects.equals(
 				role.getClassNameId(),
 				_portal.getClassNameId(AccountRole.class))) {
 
-			AccountRole accountRole =
-				_accountRoleLocalService.fetchAccountRoleByRoleId(
-					role.getRoleId());
-
-			if (accountRole == null) {
-				accountRole = _accountRoleLocalService.createAccountRole(
-					_counterLocalService.increment());
-
-				accountRole.setCompanyId(role.getCompanyId());
-				accountRole.setAccountEntryId(
-					AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
-				accountRole.setRoleId(role.getRoleId());
-
-				_accountRoleLocalService.addAccountRole(accountRole);
-
-				role.setClassPK(accountRole.getAccountRoleId());
-
-				_roleLocalService.updateRole(role);
-			}
+			return;
 		}
+
+		AccountRole accountRole =
+			_accountRoleLocalService.fetchAccountRoleByRoleId(role.getRoleId());
+
+		if (accountRole != null) {
+			return;
+		}
+
+		accountRole = _accountRoleLocalService.createAccountRole(
+			_counterLocalService.increment());
+
+		accountRole.setCompanyId(role.getCompanyId());
+		accountRole.setAccountEntryId(
+			AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
+		accountRole.setRoleId(role.getRoleId());
+
+		_accountRoleLocalService.addAccountRole(accountRole);
+
+		role.setClassPK(accountRole.getAccountRoleId());
+
+		_roleLocalService.updateRole(role);
 	}
 
 	@Override
