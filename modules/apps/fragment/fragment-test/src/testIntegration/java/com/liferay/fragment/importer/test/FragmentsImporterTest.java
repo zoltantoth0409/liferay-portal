@@ -220,8 +220,7 @@ public class FragmentsImporterTest {
 			collectionURL.openStream());
 
 		Enumeration<URL> enumeration = _bundle.findEntries(
-			path, FragmentExportImportConstants.FILE_NAME_FRAGMENT,
-			true);
+			path, FragmentExportImportConstants.FILE_NAME_FRAGMENT, true);
 
 		try {
 			while (enumeration.hasMoreElements()) {
@@ -290,8 +289,7 @@ public class FragmentsImporterTest {
 		String path = FileUtil.getPath(url.getPath());
 
 		_addZipWriterEntry(
-			zipWriter, path,
-			FragmentExportImportConstants.FILE_NAME_FRAGMENT);
+			zipWriter, path, FragmentExportImportConstants.FILE_NAME_FRAGMENT);
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("cssPath"));
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("htmlPath"));
 		_addZipWriterEntry(zipWriter, path, jsonObject.getString("jsPath"));

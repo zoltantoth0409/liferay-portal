@@ -332,8 +332,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 				String fragmentCollectionFileName =
 					fragmentCollectionPath +
-						FragmentExportImportConstants.
-							FILE_NAME_COLLECTION;
+						FragmentExportImportConstants.FILE_NAME_COLLECTION;
 
 				ZipEntry fragmentCollectionZipEntry = zipFile.getEntry(
 					fragmentCollectionFileName);
@@ -433,8 +432,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 			key = path.substring(path.lastIndexOf(CharPool.SLASH) + 1);
 		}
 		else if (fileName.equals(
-					FragmentExportImportConstants.
-						FILE_NAME_COLLECTION)) {
+					FragmentExportImportConstants.FILE_NAME_COLLECTION)) {
 
 			JSONObject collectionJSONObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.read(
@@ -590,11 +588,9 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				String name = zipEntry.getName();
 
 				return name.endsWith(
-					FragmentExportImportConstants.
-						FILE_NAME_COLLECTION) ||
+					FragmentExportImportConstants.FILE_NAME_COLLECTION) ||
 					   name.endsWith(
-						   FragmentExportImportConstants.
-							   FILE_NAME_FRAGMENT);
+						   FragmentExportImportConstants.FILE_NAME_FRAGMENT);
 			}
 		).flatMap(
 			zipEntry -> {
@@ -604,8 +600,7 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 					0, name.lastIndexOf(StringPool.SLASH) + 1);
 
 				if (name.endsWith(
-						FragmentExportImportConstants.
-							FILE_NAME_COLLECTION)) {
+						FragmentExportImportConstants.FILE_NAME_COLLECTION)) {
 
 					return Arrays.stream(new String[] {name});
 				}

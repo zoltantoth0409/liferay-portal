@@ -210,8 +210,8 @@ public class PoshiScriptParserException extends Exception {
 	private static final int _ERROR_SNIPPET_PREFIX_SIZE = 10;
 
 	private static final Set<PoshiScriptParserException>
-		_poshiScriptParserExceptions =
-			Collections.synchronizedSet(new HashSet<>());
+		_poshiScriptParserExceptions = Collections.synchronizedSet(
+			new HashSet<>());
 
 	private int _errorLineNumber;
 	private String _filePath = "Unknown file";
