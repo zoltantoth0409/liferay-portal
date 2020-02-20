@@ -100,7 +100,7 @@ public class LayoutServiceTest {
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
-	public void testFetchLayoutPermissions() throws Exception {
+	public void testFetchLayoutWithoutPermissions() throws Exception {
 		Layout newLayout = LayoutTestUtil.addLayout(_group, true);
 
 		PermissionChecker originalPermissionChecker =
