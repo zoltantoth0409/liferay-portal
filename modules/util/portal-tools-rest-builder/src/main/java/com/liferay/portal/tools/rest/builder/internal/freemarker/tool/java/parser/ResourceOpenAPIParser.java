@@ -317,7 +317,7 @@ public class ResourceOpenAPIParser {
 		JavaMethodSignature javaMethodSignature, String methodName,
 		String schemaName) {
 
-		Operation batchOperation;
+		Operation batchOperation = null;
 
 		if (methodName.startsWith("delete")) {
 			batchOperation = new Delete();
