@@ -439,19 +439,18 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 
 	protected AcceptLanguage contextAcceptLanguage;
 	protected com.liferay.portal.kernel.model.Company contextCompany;
-	protected com.liferay.portal.kernel.model.User contextUser;
-	protected GroupLocalService groupLocalService;
 	protected HttpServletRequest contextHttpServletRequest;
 	protected HttpServletResponse contextHttpServletResponse;
+	protected Object contextScopeChecker;
+	protected UriInfo contextUriInfo;
+	protected com.liferay.portal.kernel.model.User contextUser;
+	protected GroupLocalService groupLocalService;
+	protected ResourceActionLocalService resourceActionLocalService;
+	protected ResourcePermissionLocalService resourcePermissionLocalService;
+	protected RoleLocalService roleLocalService;
 
 	<#if configYAML.generateBatch>
 		protected VulcanBatchImportTaskResource vulcanBatchImportTaskResource;
 	</#if>
-
-	protected ResourceActionLocalService resourceActionLocalService;
-	protected ResourcePermissionLocalService resourcePermissionLocalService;
-	protected RoleLocalService roleLocalService;
-	protected Object contextScopeChecker;
-	protected UriInfo contextUriInfo;
 
 }
