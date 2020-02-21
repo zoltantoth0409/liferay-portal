@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.batch.VulcanBatchEngineTaskItemDelegate;
-import com.liferay.portal.vulcan.batch.http.VulcanBatchImportTaskResource;
+import com.liferay.portal.vulcan.batch.engine.resource.VulcanBatchEngineImportTaskResource;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -128,40 +128,40 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
 				return false;
 			<#elseif configYAML.generateBatch && stringUtil.equals(javaMethodSignature.methodName, "delete" + schemaName + "Batch")>
-				vulcanBatchImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
-				vulcanBatchImportTaskResource.setContextCompany(contextCompany);
-				vulcanBatchImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
-				vulcanBatchImportTaskResource.setContextUriInfo(contextUriInfo);
-				vulcanBatchImportTaskResource.setContextUser(contextUser);
+				vulcanBatchEngineImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
+				vulcanBatchEngineImportTaskResource.setContextCompany(contextCompany);
+				vulcanBatchEngineImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
+				vulcanBatchEngineImportTaskResource.setContextUriInfo(contextUriInfo);
+				vulcanBatchEngineImportTaskResource.setContextUser(contextUser);
 
 				Response.ResponseBuilder responseBuilder = Response.accepted();
 
 				return responseBuilder.entity(
-					vulcanBatchImportTaskResource.deleteImportTask(${schemaName}.class.getName(), callbackURL, object)
+					vulcanBatchEngineImportTaskResource.deleteImportTask(${schemaName}.class.getName(), callbackURL, object)
 				).build();
 			<#elseif configYAML.generateBatch && stringUtil.equals(javaMethodSignature.methodName, "post" + parentSchemaName + schemaName + "Batch")>
-				vulcanBatchImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
-				vulcanBatchImportTaskResource.setContextCompany(contextCompany);
-				vulcanBatchImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
-				vulcanBatchImportTaskResource.setContextUriInfo(contextUriInfo);
-				vulcanBatchImportTaskResource.setContextUser(contextUser);
+				vulcanBatchEngineImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
+				vulcanBatchEngineImportTaskResource.setContextCompany(contextCompany);
+				vulcanBatchEngineImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
+				vulcanBatchEngineImportTaskResource.setContextUriInfo(contextUriInfo);
+				vulcanBatchEngineImportTaskResource.setContextUser(contextUser);
 
 				Response.ResponseBuilder responseBuilder = Response.accepted();
 
 				return responseBuilder.entity(
-					vulcanBatchImportTaskResource.postImportTask(${schemaName}.class.getName(), callbackURL, null, object)
+					vulcanBatchEngineImportTaskResource.postImportTask(${schemaName}.class.getName(), callbackURL, null, object)
 				).build();
 			<#elseif configYAML.generateBatch && stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName + "Batch")>
-				vulcanBatchImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
-				vulcanBatchImportTaskResource.setContextCompany(contextCompany);
-				vulcanBatchImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
-				vulcanBatchImportTaskResource.setContextUriInfo(contextUriInfo);
-				vulcanBatchImportTaskResource.setContextUser(contextUser);
+				vulcanBatchEngineImportTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
+				vulcanBatchEngineImportTaskResource.setContextCompany(contextCompany);
+				vulcanBatchEngineImportTaskResource.setContextHttpServletRequest(contextHttpServletRequest);
+				vulcanBatchEngineImportTaskResource.setContextUriInfo(contextUriInfo);
+				vulcanBatchEngineImportTaskResource.setContextUser(contextUser);
 
 				Response.ResponseBuilder responseBuilder = Response.accepted();
 
 				return responseBuilder.entity(
-					vulcanBatchImportTaskResource.putImportTask(${schemaName}.class.getName(), callbackURL, object)
+					vulcanBatchEngineImportTaskResource.putImportTask(${schemaName}.class.getName(), callbackURL, object)
 				).build();
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "PermissionsPage")>
 				<#assign generateGetPermissionCheckerMethods = true />
@@ -450,7 +450,7 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 	protected RoleLocalService roleLocalService;
 
 	<#if configYAML.generateBatch>
-		protected VulcanBatchImportTaskResource vulcanBatchImportTaskResource;
+		protected VulcanBatchEngineImportTaskResource vulcanBatchEngineImportTaskResource;
 	</#if>
 
 }
