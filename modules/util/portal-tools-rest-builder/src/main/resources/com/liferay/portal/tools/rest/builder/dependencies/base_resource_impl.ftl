@@ -85,10 +85,13 @@ import javax.ws.rs.core.UriInfo;
  */
 @Generated("")
 @Path("/${openAPIYAML.info.version}")
-public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Resource
+public abstract class Base${schemaName}ResourceImpl
+	implements ${schemaName}Resource
+
 	<#if configYAML.generateBatch>
 		, EntityModelResource, VulcanBatchEngineTaskItemDelegate<${schemaName}>
 	</#if>
+
 	{
 
 	<#assign
@@ -309,18 +312,22 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		@Override
 		public void setLanguageId(String languageId) {
 			this.contextAcceptLanguage = new AcceptLanguage() {
+
 				@Override
 				public List<Locale> getLocales() {
 					return null;
 				}
+
 				@Override
 				public String getPreferredLanguageId() {
 					return languageId;
 				}
+
 				@Override
 				public Locale getPreferredLocale() {
 					return LocaleUtil.fromLanguageId(languageId);
 				}
+
 			};
 		}
 
