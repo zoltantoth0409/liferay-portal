@@ -241,18 +241,17 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 						String defaultLanguageId = LocaleUtil.toLanguageId(
 							LocaleUtil.getDefault());
 
-						String nameProperty =
+						String name = typeSettingsProperties.getProperty(
+							"name_" + preferredLanguageId,
 							typeSettingsProperties.getProperty(
-								"name_" + preferredLanguageId,
-								typeSettingsProperties.getProperty(
-									"name_" + defaultLanguageId));
+								"name_" + defaultLanguageId));
 
-						if (nameProperty == null) {
-							nameProperty = layout.getName(
+						if (name == null) {
+							name = layout.getName(
 								contextAcceptLanguage.getPreferredLocale());
 						}
 
-						return nameProperty;
+						return name;
 					});
 				setName_i18n(
 					() -> {
