@@ -1425,6 +1425,9 @@ components:
                     items:
                         type: string
                     type: array
+                messageBoardSectionId:
+                    format: int64
+                    type: integer
                 messageBoardThreadId:
                     # @review
                     description:
@@ -1612,6 +1615,9 @@ components:
                     items:
                         type: string
                     type: array
+                messageBoardSectionId:
+                    format: int64
+                    type: integer
                 numberOfMessageBoardAttachments:
                     description:
                         The number of the thread's attachments.
