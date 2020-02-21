@@ -57,17 +57,20 @@ public class DEDataDefinitionFieldLinkLocalServiceImpl
 			deDataDefinitionFieldLinkPersistence.create(
 				counterLocalService.increment());
 
+		deDataDefinitionFieldLink.setUuid(serviceContext.getUuid());
+		deDataDefinitionFieldLink.setGroupId(groupId);
+
 		Group group = groupLocalService.getGroup(groupId);
+
+		deDataDefinitionFieldLink.setCompanyId(group.getCompanyId());
 
 		Date now = new Date();
 
-		deDataDefinitionFieldLink.setUuid(serviceContext.getUuid());
-		deDataDefinitionFieldLink.setGroupId(groupId);
-		deDataDefinitionFieldLink.setCompanyId(group.getCompanyId());
 		deDataDefinitionFieldLink.setCreateDate(
 			serviceContext.getCreateDate(now));
 		deDataDefinitionFieldLink.setModifiedDate(
 			serviceContext.getModifiedDate(now));
+
 		deDataDefinitionFieldLink.setClassNameId(classNameId);
 		deDataDefinitionFieldLink.setClassPK(classPK);
 		deDataDefinitionFieldLink.setDdmStructureId(ddmStructureId);
