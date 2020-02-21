@@ -253,7 +253,7 @@ public class MessageBoardThreadResourceImpl
 			Long siteId, MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		long messageBoardSectionId = 0L;
+		Long messageBoardSectionId = 0L;
 
 		if (messageBoardThread.getMessageBoardSectionId() != null) {
 			messageBoardSectionId =
