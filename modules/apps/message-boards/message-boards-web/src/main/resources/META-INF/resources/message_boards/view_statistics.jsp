@@ -86,28 +86,29 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 	<div class="statistics-panel">
 		<h3><liferay-ui:message key="top-posters" /></h3>
-			<liferay-ui:search-container
-				emptyResultsMessage="there-are-no-top-posters"
-				iteratorURL="<%= portletURL %>"
-				total="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId) %>"
+
+		<liferay-ui:search-container
+			emptyResultsMessage="there-are-no-top-posters"
+			iteratorURL="<%= portletURL %>"
+			total="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId) %>"
+		>
+			<liferay-ui:search-container-results
+				results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+			/>
+
+			<liferay-ui:search-container-row
+				className="com.liferay.message.boards.model.MBStatsUser"
+				keyProperty="statsUserId"
+				modelVar="statsUser"
 			>
-				<liferay-ui:search-container-results
-					results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
-				/>
+				<%@ include file="/message_boards/top_posters_user_display.jspf" %>
+			</liferay-ui:search-container-row>
 
-				<liferay-ui:search-container-row
-					className="com.liferay.message.boards.model.MBStatsUser"
-					keyProperty="statsUserId"
-					modelVar="statsUser"
-				>
-					<%@ include file="/message_boards/top_posters_user_display.jspf" %>
-				</liferay-ui:search-container-row>
-
-				<liferay-ui:search-iterator
-					displayStyle="descriptive"
-					markupView="lexicon"
-				/>
-			</liferay-ui:search-container>
+			<liferay-ui:search-iterator
+				displayStyle="descriptive"
+				markupView="lexicon"
+			/>
+		</liferay-ui:search-container>
 	</div>
 </div>
 
