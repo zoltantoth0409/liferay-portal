@@ -97,7 +97,6 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
-
 		<#assign
 			parentSchemaName = javaMethodSignature.parentSchemaName!
 		/>
