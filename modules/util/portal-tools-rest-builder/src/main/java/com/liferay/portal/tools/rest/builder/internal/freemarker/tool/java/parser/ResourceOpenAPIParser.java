@@ -336,11 +336,11 @@ public class ResourceOpenAPIParser {
 			_getBatchParameters(schemaName, operation));
 		batchOperation.setTags(operation.getTags());
 
+		Response response = new Response();
+
 		Content content = new Content();
 
 		content.setSchema(new Schema());
-
-		Response response = new Response();
 
 		response.setContent(
 			Collections.singletonMap("application/json", content));
