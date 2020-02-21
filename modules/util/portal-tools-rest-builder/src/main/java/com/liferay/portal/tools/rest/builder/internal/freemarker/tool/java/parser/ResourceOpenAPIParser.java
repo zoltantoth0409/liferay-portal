@@ -370,14 +370,15 @@ public class ResourceOpenAPIParser {
 	}
 
 	private static Parameter _getCallbarkURLParameter() {
-		Schema schema = new Schema();
-
-		schema.setType("String");
-
 		Parameter parameter = new Parameter();
 
 		parameter.setIn("query");
 		parameter.setName("callbackURL");
+
+		Schema schema = new Schema();
+
+		schema.setType("String");
+
 		parameter.setSchema(schema);
 
 		return parameter;
