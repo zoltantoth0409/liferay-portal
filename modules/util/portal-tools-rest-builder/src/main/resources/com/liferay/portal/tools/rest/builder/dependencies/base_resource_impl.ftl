@@ -228,24 +228,6 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		}
 	</#list>
 
-	<#if generateGetPermissionCheckerMethods>
-		protected String getPermissionCheckerActionsResourceName(Object id) throws Exception {
-			return getPermissionCheckerResourceName(id);
-		}
-
-		protected Long getPermissionCheckerGroupId(Object id) throws Exception {
-			throw new UnsupportedOperationException("This method needs to be implemented");
-		}
-
-		protected String getPermissionCheckerPortletName(Object id) throws Exception {
-			throw new UnsupportedOperationException("This method needs to be implemented");
-		}
-
-		protected String getPermissionCheckerResourceName(Object id) throws Exception {
-			throw new UnsupportedOperationException("This method needs to be implemented");
-		}
-	</#if>
-
 	<#if configYAML.generateBatch>
 		@Override
 		@SuppressWarnings("PMD.UnusedLocalVariable")
@@ -377,6 +359,24 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 					);
 				}
 			</#if>
+		}
+	</#if>
+
+	<#if generateGetPermissionCheckerMethods>
+		protected String getPermissionCheckerActionsResourceName(Object id) throws Exception {
+			return getPermissionCheckerResourceName(id);
+		}
+
+		protected Long getPermissionCheckerGroupId(Object id) throws Exception {
+			throw new UnsupportedOperationException("This method needs to be implemented");
+		}
+
+		protected String getPermissionCheckerPortletName(Object id) throws Exception {
+			throw new UnsupportedOperationException("This method needs to be implemented");
+		}
+
+		protected String getPermissionCheckerResourceName(Object id) throws Exception {
+			throw new UnsupportedOperationException("This method needs to be implemented");
 		}
 	</#if>
 
