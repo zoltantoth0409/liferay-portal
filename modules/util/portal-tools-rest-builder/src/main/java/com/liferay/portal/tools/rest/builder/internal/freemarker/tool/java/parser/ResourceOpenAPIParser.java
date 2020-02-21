@@ -333,7 +333,7 @@ public class ResourceOpenAPIParser {
 
 		batchOperation.setOperationId(operation.getOperationId() + "Batch");
 		batchOperation.setParameters(
-			_getBatchParameters(schemaName, operation));
+			_getBatchParameters(operation, schemaName));
 		batchOperation.setTags(operation.getTags());
 
 		Response response = new Response();
@@ -354,7 +354,7 @@ public class ResourceOpenAPIParser {
 	}
 
 	private static List<Parameter> _getBatchParameters(
-		String schemaName, Operation operation) {
+		Operation operation, String schemaName) {
 
 		List<Parameter> parameters = new ArrayList<>();
 
