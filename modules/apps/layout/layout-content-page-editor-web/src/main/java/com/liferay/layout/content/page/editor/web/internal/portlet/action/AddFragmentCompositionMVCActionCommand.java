@@ -78,34 +78,19 @@ public class AddFragmentCompositionMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long fragmentCollectionId = ParamUtil.getLong(
-			actionRequest, "fragmentCollectionId",
-			SegmentsExperienceConstants.ID_DEFAULT);
-		String itemId = ParamUtil.getString(actionRequest, "itemId");
-		String name = ParamUtil.getString(actionRequest, "name");
-		String description = ParamUtil.getString(actionRequest, "description");
-		String previewImageURL = ParamUtil.getString(
-			actionRequest, "previewImageURL");
-		long segmentsExperienceId = ParamUtil.getLong(
-			actionRequest, "segmentsExperienceId",
-			SegmentsExperienceConstants.ID_DEFAULT);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String layoutStructureJSON =
-			LayoutStructureUtil.getLayoutStructureItemJSON(
-				_fragmentCollectionContributorTracker,
-				_fragmentEntryConfigurationParser, _fragmentRendererTracker,
-				themeDisplay.getScopeGroupId(), itemId, themeDisplay.getPlid(),
-				segmentsExperienceId);
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
+		long fragmentCollectionId = ParamUtil.getLong(
+			actionRequest, "fragmentCollectionId",
+			SegmentsExperienceConstants.ID_DEFAULT);
 
 		FragmentCollection fragmentCollection =
 			_fragmentCollectionService.fetchFragmentCollection(
 				fragmentCollectionId);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
 
 		if (fragmentCollection == null) {
 			String fragmentCollectionName = LanguageUtil.get(
@@ -117,12 +102,30 @@ public class AddFragmentCompositionMVCActionCommand
 					fragmentCollectionName, serviceContext);
 		}
 
+		String name = ParamUtil.getString(actionRequest, "name");
+		String description = ParamUtil.getString(actionRequest, "description");
+
+		String itemId = ParamUtil.getString(actionRequest, "itemId");
+		long segmentsExperienceId = ParamUtil.getLong(
+			actionRequest, "segmentsExperienceId",
+			SegmentsExperienceConstants.ID_DEFAULT);
+
+		String layoutStructureJSON =
+			LayoutStructureUtil.getLayoutStructureItemJSON(
+				_fragmentCollectionContributorTracker,
+				_fragmentEntryConfigurationParser, _fragmentRendererTracker,
+				themeDisplay.getScopeGroupId(), itemId, themeDisplay.getPlid(),
+				segmentsExperienceId);
+
 		FragmentComposition fragmentComposition =
 			_fragmentCompositionService.addFragmentComposition(
 				themeDisplay.getScopeGroupId(),
 				fragmentCollection.getFragmentCollectionId(), null, name,
 				description, layoutStructureJSON, 0,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
+
+		String previewImageURL = ParamUtil.getString(
+			actionRequest, "previewImageURL");
 
 		if (Validator.isNotNull(previewImageURL)) {
 			FileEntry previewFileEntry = _addPreviewImage(
