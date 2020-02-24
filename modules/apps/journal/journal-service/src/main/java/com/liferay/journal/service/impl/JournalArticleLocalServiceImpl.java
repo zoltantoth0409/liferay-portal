@@ -8097,6 +8097,10 @@ public class JournalArticleLocalServiceImpl
 			"[$ARTICLE_DIFFS$]", DiffHtmlUtil.replaceStyles(articleDiffs),
 			false);
 
+		String articleURL = JournalUtil.getJournalControlPanelLink(
+			article.getFolderId(), article.getGroupId(),
+			serviceContext.getLiferayPortletResponse());
+
 		String folderName = StringPool.BLANK;
 
 		if (folder != null) {
@@ -8110,10 +8114,6 @@ public class JournalArticleLocalServiceImpl
 					LocaleUtil.getSiteDefault(), "home");
 			}
 		}
-
-		String articleURL = JournalUtil.getJournalControlPanelLink(
-			article.getFolderId(), article.getGroupId(),
-			serviceContext.getLiferayPortletResponse());
 
 		String articleStatus = LanguageUtil.get(
 			LocaleUtil.getSiteDefault(),
