@@ -309,7 +309,6 @@ public class ItemSelectorImpl implements ItemSelector {
 			sb.append(
 				ItemSelectorKeyUtil.getItemSelectorCriterionKey(
 					itemSelectorCriterion.getClass()));
-
 			sb.append(StringPool.COMMA);
 		}
 
