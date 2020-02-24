@@ -165,25 +165,23 @@ public class KeywordResourceImpl
 		return projectionList;
 	}
 
-	private Date _timestampToDate(Object object) {
-		Timestamp timestamp = (Timestamp)object;
-
-		return new Date(timestamp.getTime());
-	}
-
 	private AssetTag _toAssetTag(Object[] assetTags) {
 		return new AssetTagImpl() {
 			{
 				setAssetCount((int)assetTags[0]);
 				setCompanyId((long)assetTags[1]);
-				setCreateDate(_timestampToDate(assetTags[2]));
+				setCreateDate(_toDate((Timestamp)assetTags[2]));
 				setGroupId((long)assetTags[3]);
 				setTagId((long)assetTags[4]);
-				setModifiedDate(_timestampToDate(assetTags[5]));
+				setModifiedDate(_toDate((Timestamp)assetTags[5]));
 				setName((String)assetTags[6]);
 				setUserId((long)assetTags[7]);
 			}
 		};
+	}
+
+	private Date _toDate(Timestamp timestamp) {
+		return new Date(timestamp.getTime());
 	}
 
 	private Keyword _toKeyword(AssetTag assetTag) {
