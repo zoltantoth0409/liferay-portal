@@ -86,16 +86,14 @@ public class KeywordResourceImpl
 
 		DynamicQuery dynamicQuery = _assetTagLocalService.dynamicQuery();
 
-		dynamicQuery.setProjection(_getProjectionList(), true);
-
 		if (siteId != null) {
 			dynamicQuery.add(RestrictionsFactoryUtil.eq("groupId", siteId));
 		}
 
+		dynamicQuery.addOrder(OrderFactoryUtil.desc("count"));
 		dynamicQuery.setLimit(
 			pagination.getStartPosition(), pagination.getEndPosition());
-
-		dynamicQuery.addOrder(OrderFactoryUtil.desc("count"));
+		dynamicQuery.setProjection(_getProjectionList(), true);
 
 		return Page.of(
 			transform(
