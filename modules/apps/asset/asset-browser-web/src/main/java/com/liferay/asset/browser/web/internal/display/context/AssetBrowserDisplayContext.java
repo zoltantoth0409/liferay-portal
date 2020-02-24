@@ -205,7 +205,7 @@ public class AssetBrowserDisplayContext {
 		throws PortalException, PortletException {
 
 		return Arrays.asList(
-			_getSiteAndLibraryBreadcrumb(), _getHomeBreadcrumb());
+			_getSitesAndLibrariesBreadcrumb(), _getHomeBreadcrumb());
 	}
 
 	public PortletURL getPortletURL() throws PortletException {
@@ -448,7 +448,7 @@ public class AssetBrowserDisplayContext {
 		return listable;
 	}
 
-	private BreadcrumbEntry _getSiteAndLibraryBreadcrumb()
+	private BreadcrumbEntry _getSitesAndLibrariesBreadcrumb()
 		throws PortletException {
 
 		BreadcrumbEntry breadcrumbEntry = new BreadcrumbEntry();
