@@ -114,7 +114,6 @@ public class DefaultColumn<T extends BaseTable<T>, C>
 		Consumer<String> consumer, ASTNodeListener astNodeListener) {
 
 		consumer.accept(_table.getName());
-
 		consumer.accept(".");
 		consumer.accept(_name);
 	}
