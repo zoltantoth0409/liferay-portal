@@ -218,7 +218,7 @@ public class UpdateMembershipsMVCActionCommandTest {
 
 			_user = user;
 
-			_parametes = HashMapBuilder.put(
+			_parameters = HashMapBuilder.put(
 				"addDepotGroupIds",
 				new String[] {
 					Arrays.stream(
@@ -280,7 +280,7 @@ public class UpdateMembershipsMVCActionCommandTest {
 		@Override
 		public String getParameter(String name) {
 			return Optional.ofNullable(
-				_parametes.get(name)
+				_parameters.get(name)
 			).map(
 				parameter -> parameter[0]
 			).orElse(
@@ -290,7 +290,7 @@ public class UpdateMembershipsMVCActionCommandTest {
 
 		@Override
 		public Map<String, String[]> getParameterMap() {
-			return _parametes;
+			return _parameters;
 		}
 
 		private ThemeDisplay _getThemeDisplay() throws Exception {
@@ -312,7 +312,7 @@ public class UpdateMembershipsMVCActionCommandTest {
 
 		private final Company _company;
 		private final Group _group;
-		private final Map<String, String[]> _parametes;
+		private final Map<String, String[]> _parameters;
 		private final User _user;
 
 	}
