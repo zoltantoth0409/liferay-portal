@@ -32,7 +32,7 @@ public class OrderBy extends BaseASTNode implements DefaultLimitStep {
 		super(orderByStep);
 
 		if (orderByExpressions.length == 0) {
-			throw new IllegalArgumentException("OrderByExpressions is empty");
+			throw new IllegalArgumentException("Order by expressions is empty");
 		}
 
 		_orderByExpressions = orderByExpressions;
