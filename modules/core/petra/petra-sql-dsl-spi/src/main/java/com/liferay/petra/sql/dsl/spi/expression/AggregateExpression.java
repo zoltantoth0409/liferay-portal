@@ -52,7 +52,6 @@ public class AggregateExpression<T extends Number>
 		Consumer<String> consumer, ASTNodeListener astNodeListener) {
 
 		consumer.accept(_name);
-
 		consumer.accept("(");
 
 		if (_distinct) {
