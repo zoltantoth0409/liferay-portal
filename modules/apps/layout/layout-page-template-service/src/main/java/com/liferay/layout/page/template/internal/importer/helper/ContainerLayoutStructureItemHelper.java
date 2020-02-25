@@ -68,10 +68,8 @@ public class ContainerLayoutStructureItemHelper
 			if (layout != null) {
 				containerLayoutStructureItem.setPaddingBottom(
 					(Integer)layout.get("paddingBottom"));
-
 				containerLayoutStructureItem.setPaddingHorizontal(
 					(Integer)layout.get("paddingHorizontal"));
-
 				containerLayoutStructureItem.setPaddingTop(
 					(Integer)layout.get("paddingTop"));
 			}

@@ -44,7 +44,6 @@ public class RowLayoutStructureItemHelper implements LayoutStructureItemHelper {
 		if (definitionMap != null) {
 			rowLayoutStructureItem.setGutters(
 				(Boolean)definitionMap.get("gutters"));
-
 			rowLayoutStructureItem.setNumberOfColumns(
 				(Integer)definitionMap.get("numberOfColumns"));
 		}
