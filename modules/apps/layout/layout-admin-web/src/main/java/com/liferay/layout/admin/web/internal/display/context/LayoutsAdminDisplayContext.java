@@ -1737,14 +1737,16 @@ public class LayoutsAdminDisplayContext {
 			jsonObject.put("permissionsURL", getPermissionsURL(layout));
 		}
 
-		boolean published = GetterUtil.getBoolean(
-			layout.getTypeSettingsProperty("published"));
-
 		if (layout.isPending()) {
 			jsonObject.put("previewLayoutURL", getViewLayoutURL(layout));
 		}
-		else if (published) {
-			jsonObject.put("viewLayoutURL", getViewLayoutURL(layout));
+		else {
+			boolean published = GetterUtil.getBoolean(
+				layout.getTypeSettingsProperty("published"));
+
+			if (published) {
+				jsonObject.put("viewLayoutURL", getViewLayoutURL(layout));
+			}
 		}
 
 		return jsonObject;
