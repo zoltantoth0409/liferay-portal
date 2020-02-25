@@ -164,8 +164,8 @@ public class CompileJSPTask extends JavaExec {
 
 	private String[] _getCompleteArgs() {
 		return new String[] {
-			"-d", FileUtil.getAbsolutePath(getDestinationDir()),
-			"-webapp", FileUtil.getAbsolutePath(getWebAppDir())
+			"-d", FileUtil.getAbsolutePath(getDestinationDir()), "-webapp",
+			FileUtil.getAbsolutePath(getWebAppDir())
 		};
 	}
 
