@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.internal.upgrade.v1_0_7;
+package com.liferay.account.internal.upgrade.v1_0_1;
 
 import com.liferay.account.constants.AccountConstants;
 import com.liferay.account.model.AccountRole;
