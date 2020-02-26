@@ -213,12 +213,11 @@ public class AutoBatchPreparedStatementUtil {
 		private void _executeBatch() throws SQLException {
 			_count = 0;
 
+			final PreparedStatement preparedStatement = _preparedStatement;
+
 			NoticeableFuture<Void> noticeableFuture =
 				_noticeableExecutorService.submit(
 					() -> {
-						final PreparedStatement preparedStatement =
-							_preparedStatement;
-
 						try {
 							preparedStatement.executeBatch();
 						}
@@ -319,12 +318,11 @@ public class AutoBatchPreparedStatementUtil {
 		}
 
 		private void _executeUpdate() throws SQLException {
+			final PreparedStatement preparedStatement = _preparedStatement;
+
 			NoticeableFuture<Void> noticeableFuture =
 				_noticeableExecutorService.submit(
 					() -> {
-						final PreparedStatement preparedStatement =
-							_preparedStatement;
-
 						try {
 							preparedStatement.executeUpdate();
 						}

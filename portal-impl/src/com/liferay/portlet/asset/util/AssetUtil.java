@@ -244,11 +244,13 @@ public class AssetUtil {
 		List<AssetVocabulary> vocabularies, String className,
 		long classTypePK) {
 
+		long classNameId = PortalUtil.getClassNameId(className);
+
 		return ListUtil.filter(
 			vocabularies,
 			assetVocabulary ->
 				assetVocabulary.isAssociatedToClassNameIdAndClassTypePK(
-					PortalUtil.getClassNameId(className), classTypePK));
+					classNameId, classTypePK));
 	}
 
 	public static long[] filterVocabularyIds(
