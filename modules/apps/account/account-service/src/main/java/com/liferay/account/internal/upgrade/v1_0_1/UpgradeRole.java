@@ -38,12 +38,12 @@ public class UpgradeRole extends UpgradeProcess {
 
 			sb.append("select distinct Role_.roleId from Role_ inner join ");
 			sb.append("AccountRole on AccountRole.roleId = Role_.roleId ");
-			sb.append("where Role_.classNameId = ");
+			sb.append("where AccountRole.accountEntryId = ");
+			sb.append(AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
+			sb.append(" and Role_.classNameId = ");
 			sb.append(PortalUtil.getClassNameId(AccountRole.class));
 			sb.append(" and Role_.type_ = ");
 			sb.append(RoleConstants.TYPE_PROVIDER);
-			sb.append(" and AccountRole.accountEntryId = ");
-			sb.append(AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
 
 			try (PreparedStatement ps1 = connection.prepareStatement(
 					sb.toString());
