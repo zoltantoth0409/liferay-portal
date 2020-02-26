@@ -116,6 +116,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.adapter.impl.StagedThemeImpl;
 import com.liferay.portal.service.impl.LayoutLocalServiceHelper;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.sites.kernel.util.Sites;
 import com.liferay.sites.kernel.util.SitesUtil;
 
 import java.io.IOException;
@@ -802,6 +803,14 @@ public class LayoutStagedModelDataHandler
 		}
 		else {
 			updateTypeSettings(importedLayout, layout);
+		}
+
+		if (layoutsImportMode.equals(
+				PortletDataHandlerKeys.
+					LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID) &&
+			(layout.getLayoutPrototypeUuid() != null)) {
+
+			resetLastMergeTime(importedLayout, layout);
 		}
 
 		importedLayout.setHidden(layout.isHidden());
@@ -2008,6 +2017,24 @@ public class LayoutStagedModelDataHandler
 
 		layoutElement.addAttribute(
 			"layout-prototype-global", String.valueOf(layoutPrototypeGlobal));
+	}
+
+	protected void resetLastMergeTime(Layout importedLayout, Layout layout)
+		throws PortalException {
+
+		UnicodeProperties typeSettings =
+			importedLayout.getTypeSettingsProperties();
+
+		long lastMergeTime = GetterUtil.getLong(
+			typeSettings.getProperty(Sites.LAST_MERGE_TIME));
+
+		Date existingLayoutModifiedDate = layout.getModifiedDate();
+
+		if ((lastMergeTime != 0) && (existingLayoutModifiedDate != null) &&
+			(existingLayoutModifiedDate.getTime() <= lastMergeTime)) {
+
+			typeSettings.remove(Sites.LAST_MERGE_TIME);
+		}
 	}
 
 	@Reference(unbind = "-")
