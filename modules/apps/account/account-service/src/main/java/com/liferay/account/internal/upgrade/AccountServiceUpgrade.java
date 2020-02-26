@@ -14,7 +14,7 @@
 
 package com.liferay.account.internal.upgrade;
 
-import com.liferay.account.internal.upgrade.v1_0_7.UpgradeAccountRoleType;
+import com.liferay.account.internal.upgrade.v1_0_7.UpgradeRole;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,7 +27,7 @@ public class AccountServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("1.0.0", "1.0.7", new UpgradeAccountRoleType());
+		registry.register("1.0.0", "1.0.7", new UpgradeRole());
 	}
 
 }

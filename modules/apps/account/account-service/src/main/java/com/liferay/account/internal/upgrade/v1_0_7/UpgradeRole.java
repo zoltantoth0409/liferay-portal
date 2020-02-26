@@ -29,7 +29,7 @@ import java.sql.ResultSet;
 /**
  * @author Pei-Jung Lan
  */
-public class UpgradeAccountRoleType extends UpgradeProcess {
+public class UpgradeRole extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
