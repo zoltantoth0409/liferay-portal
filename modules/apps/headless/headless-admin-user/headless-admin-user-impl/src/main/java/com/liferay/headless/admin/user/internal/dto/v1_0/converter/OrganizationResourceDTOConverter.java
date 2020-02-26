@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.admin.user.internal.dto.v1_0.helper;
+package com.liferay.headless.admin.user.internal.dto.v1_0.converter;
 
 import static com.liferay.portal.vulcan.util.TransformUtil.transformToArray;
 
