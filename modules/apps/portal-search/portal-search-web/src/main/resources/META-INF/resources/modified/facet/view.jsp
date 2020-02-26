@@ -177,7 +177,7 @@ contextObjects.put("namespace", renderResponse.getNamespace());
 			toInputDatePicker: Liferay.component(
 				'<portlet:namespace />toInputDatePicker'
 			),
-			toInputName: '<portlet:namespace />toInput'
+			toInputName: '<portlet:namespace />toInput',
 		});
 
 		Liferay.Search.FacetUtil.enableInputs(
