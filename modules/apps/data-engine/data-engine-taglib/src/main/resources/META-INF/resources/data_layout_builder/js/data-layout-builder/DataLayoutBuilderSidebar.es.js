@@ -70,7 +70,7 @@ const DefaultSidebarBody = ({keywords}) => {
 
 	const tabNames = {
 		fields: 'fields',
-		fieldsets: 'fieldsets'
+		fieldsets: 'fieldsets',
 	};
 
 	return (
@@ -80,12 +80,12 @@ const DefaultSidebarBody = ({keywords}) => {
 				tabs={[
 					{
 						label: Liferay.Language.get('fields'),
-						name: tabNames.fields
+						name: tabNames.fields,
 					},
 					{
 						label: Liferay.Language.get('fieldsets'),
-						name: tabNames.fieldsets
-					}
+						name: tabNames.fieldsets,
+					},
 				]}
 			>
 				<FieldTypeList
