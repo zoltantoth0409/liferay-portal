@@ -58,7 +58,7 @@ public class DepotApplicationDisplayContext {
 	}
 
 	public String getMessage() throws PortletException {
-		String taglibViewGroupSelectorLink =
+		String viewGroupSelectorLink =
 			"<a href=\"" + HtmlUtil.escape(_getViewGroupSelectorURL()) + "\">";
 
 		if (Validator.isNotNull(_portletId)) {
@@ -67,14 +67,14 @@ public class DepotApplicationDisplayContext {
 				"x-application-is-disabled-for-this-scope.-please-go-back-to-" +
 					"selection",
 				new Object[] {
-					getPortletTitle(), taglibViewGroupSelectorLink, "</a>"
+					getPortletTitle(), viewGroupSelectorLink, "</a>"
 				});
 		}
 
 		return LanguageUtil.format(
 			_themeDisplay.getLocale(),
 			"application-is-not-supported.-please-go-back-to-selection",
-			new Object[] {taglibViewGroupSelectorLink, "</a>"});
+			new Object[] {viewGroupSelectorLink, "</a>"});
 	}
 
 	public String getPortletTitle() {
