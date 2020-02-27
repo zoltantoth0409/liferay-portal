@@ -65,7 +65,7 @@ public class GetAnalyticsReportsHistoricalViewsMVCResourceCommand
 			TimeSpan timeSpan = TimeSpan.of(timeSpanKey);
 
 			int timeSpanOffset = ParamUtil.getInteger(
-				resourceRequest, "timeSpanOffset", 0);
+				resourceRequest, "timeSpanOffset");
 
 			jsonObject.put(
 				"analyticsReportsHistoricalViews",
