@@ -284,7 +284,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	public void testUpdateAccountEntryUserRels() throws Exception {
 		long userId = _user.getUserId();
 
-		// Test add account entries to a user.
+		// Add account entries for a user
 
 		long[] addAccountEntryIds1 = _addAccountEntries(3);
 		long[] deleteAccountEntryIds1 = _addAccountEntries(2);
@@ -299,7 +299,7 @@ public class AccountEntryUserRelLocalServiceTest {
 		Assert.assertEquals(
 			accountEntryUserRels.toString(), 3, accountEntryUserRels.size());
 
-		// Test add and delete account entries to a user.
+		// Add and delete account entries for a user
 
 		long[] addAccountEntryIds2 = _addAccountEntries(5);
 		long[] deleteAccountEntryIds2 = {addAccountEntryIds1[0]};
@@ -324,7 +324,7 @@ public class AccountEntryUserRelLocalServiceTest {
 			ListUtil.sort(expectedAccountEntryIdsList),
 			ListUtil.sort(actualAccountEntryIds));
 
-		// Test remove all account entries from a user.
+		// Delete all account entries for a user
 
 		long[] addAccountEntryIds3 = new long[0];
 		long[] deleteAccountEntryIds3 = ArrayUtil.toLongArray(
