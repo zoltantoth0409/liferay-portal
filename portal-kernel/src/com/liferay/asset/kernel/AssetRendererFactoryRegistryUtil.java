@@ -45,7 +45,8 @@ public class AssetRendererFactoryRegistryUtil {
 
 		return ListUtil.fromMapValues(
 			_filterAssetRendererFactories(
-				companyId, _assetRenderFactoriesMapByClassName, false));
+				companyId, _classNameAssetRenderFactoriesServiceTrackerMap,
+				false));
 	}
 
 	public static List<AssetRendererFactory<?>> getAssetRendererFactories(
@@ -53,7 +54,7 @@ public class AssetRendererFactoryRegistryUtil {
 
 		return ListUtil.fromMapValues(
 			_filterAssetRendererFactories(
-				companyId, _assetRenderFactoriesMapByClassName,
+				companyId, _classNameAssetRenderFactoriesServiceTrackerMap,
 				filterSelectable));
 	}
 
@@ -61,26 +62,28 @@ public class AssetRendererFactoryRegistryUtil {
 		Class<T> clazz) {
 
 		return (AssetRendererFactory<T>)
-			_assetRenderFactoriesMapByClassName.getService(clazz.getName());
+			_classNameAssetRenderFactoriesServiceTrackerMap.getService(
+				clazz.getName());
 	}
 
 	public static AssetRendererFactory<?> getAssetRendererFactoryByClassName(
 		String className) {
 
-		return _assetRenderFactoriesMapByClassName.getService(className);
+		return _classNameAssetRenderFactoriesServiceTrackerMap.getService(
+			className);
 	}
 
 	public static AssetRendererFactory<?> getAssetRendererFactoryByClassNameId(
 		long classNameId) {
 
-		return _assetRenderFactoriesMapByClassName.getService(
+		return _classNameAssetRenderFactoriesServiceTrackerMap.getService(
 			PortalUtil.getClassName(classNameId));
 	}
 
 	public static AssetRendererFactory<?> getAssetRendererFactoryByType(
 		String type) {
 
-		return _assetRenderFactoriesMapByClassType.getService(type);
+		return _typeAssetRenderFactoriesServiceTrackerMap.getService(type);
 	}
 
 	public static long[] getClassNameIds(long companyId) {
@@ -93,7 +96,7 @@ public class AssetRendererFactoryRegistryUtil {
 		if (companyId > 0) {
 			Map<String, AssetRendererFactory<?>> assetRenderFactories =
 				_filterAssetRendererFactories(
-					companyId, _assetRenderFactoriesMapByClassName,
+					companyId, _classNameAssetRenderFactoriesServiceTrackerMap,
 					filterSelectable);
 
 			long[] classNameIds = new long[assetRenderFactories.size()];
@@ -111,12 +114,13 @@ public class AssetRendererFactoryRegistryUtil {
 			return classNameIds;
 		}
 
-		Set<String> classNames = _assetRenderFactoriesMapByClassName.keySet();
+		Set<String> classNames =
+			_classNameAssetRenderFactoriesServiceTrackerMap.keySet();
 
 		Stream<String> stream = classNames.stream();
 
 		return stream.map(
-			_assetRenderFactoriesMapByClassName::getService
+			_classNameAssetRenderFactoriesServiceTrackerMap::getService
 		).map(
 			AssetRendererFactory::getClassNameId
 		).mapToLong(
@@ -204,7 +208,7 @@ public class AssetRendererFactoryRegistryUtil {
 	}
 
 	private static ServiceTrackerMap<String, AssetRendererFactory>
-		_assetRenderFactoriesMapByClassName =
+		_classNameAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
 				AssetRendererFactory.class, null,
 				(serviceReference, emitter) -> {
@@ -217,8 +221,11 @@ public class AssetRendererFactoryRegistryUtil {
 				},
 				_getServiceReferenceComparator());
 
+	private static final ServiceRegistrationMap<AssetRendererFactory<?>>
+		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+
 	private static ServiceTrackerMap<String, AssetRendererFactory>
-		_assetRenderFactoriesMapByClassType =
+		_typeAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
 				AssetRendererFactory.class, null,
 				(serviceReference, emitter) -> {
@@ -230,8 +237,5 @@ public class AssetRendererFactoryRegistryUtil {
 					emitter.emit(assetRendererFactory.getType());
 				},
 				_getServiceReferenceComparator());
-
-	private static final ServiceRegistrationMap<AssetRendererFactory<?>>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
 
 }
