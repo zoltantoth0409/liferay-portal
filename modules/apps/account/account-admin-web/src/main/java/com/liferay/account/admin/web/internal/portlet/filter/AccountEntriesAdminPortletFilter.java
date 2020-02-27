@@ -115,6 +115,12 @@ public class AccountEntriesAdminPortletFilter
 					AccountScreenNavigationEntryConstants.
 						CATEGORY_KEY_DEFINE_PERMISSIONS);
 				portletURL.setParameter(
+					"cur", ParamUtil.getString(renderRequest, "cur"));
+				portletURL.setParameter(
+					"delta", ParamUtil.getString(renderRequest, "delta"));
+				portletURL.setParameter(
+					"resetCur", ParamUtil.getString(renderRequest, "resetCur"));
+				portletURL.setParameter(
 					"backURL", ParamUtil.getString(renderRequest, "backURL"));
 
 				long roleId = ParamUtil.getLong(renderRequest, "roleId");
@@ -130,13 +136,6 @@ public class AccountEntriesAdminPortletFilter
 						"accountRoleId",
 						String.valueOf(accountRole.getAccountRoleId()));
 				}
-
-				portletURL.setParameter(
-					"cur", ParamUtil.getString(renderRequest, "cur"));
-				portletURL.setParameter(
-					"delta", ParamUtil.getString(renderRequest, "delta"));
-				portletURL.setParameter(
-					"resetCur", ParamUtil.getString(renderRequest, "resetCur"));
 
 				HttpServletResponse httpServletResponse =
 					_portal.getHttpServletResponse(renderResponse);
