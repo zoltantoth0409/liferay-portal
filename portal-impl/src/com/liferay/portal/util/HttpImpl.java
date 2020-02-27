@@ -623,13 +623,13 @@ public class HttpImpl implements Http {
 			return StringPool.BLANK;
 		}
 
-		String query = uri.getQuery();
+		String queryString = uri.getQuery();
 
-		if (query == null) {
+		if (queryString == null) {
 			return StringPool.BLANK;
 		}
 
-		return query;
+		return queryString;
 	}
 
 	@Override
