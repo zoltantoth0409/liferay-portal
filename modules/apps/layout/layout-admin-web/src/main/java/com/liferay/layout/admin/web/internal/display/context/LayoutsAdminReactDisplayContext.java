@@ -363,7 +363,7 @@ public class LayoutsAdminReactDisplayContext
 					).put(
 						"label",
 						LanguageUtil.get(
-							httpServletRequest, "convert-to-content-page-...")
+							httpServletRequest, "convert-to-content-page...")
 					).put(
 						"url", getLayoutConversionPreviewURL(layout)
 					));
