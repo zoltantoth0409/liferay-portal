@@ -21,8 +21,7 @@ SelectChangeListDisplayContext selectChangeListDisplayContext = new SelectChange
 
 SearchContainer<CTCollection> searchContainer = selectChangeListDisplayContext.getSearchContainer();
 
-SelectChangeListManagementToolbarDisplayContext
-	selectChangeListManagementToolbarDisplayContext = new SelectChangeListManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, searchContainer);
+SelectChangeListManagementToolbarDisplayContext selectChangeListManagementToolbarDisplayContext = new SelectChangeListManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, searchContainer);
 %>
 
 <clay:management-toolbar
