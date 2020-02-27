@@ -179,10 +179,10 @@ public class AccountEntryUserRelLocalServiceImpl
 			long accountUserId)
 		throws PortalException {
 
-		Set<Long> intersection = SetUtil.intersect(
+		Set<Long> set = SetUtil.intersect(
 			addAccountEntryIds, deleteAccountEntryIds);
 
-		if (!SetUtil.isEmpty(intersection)) {
+		if (!SetUtil.isEmpty(set)) {
 			throw new DuplicateAccountEntryIdException();
 		}
 
