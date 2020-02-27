@@ -35,7 +35,7 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 			<aui:input name="groupId" type="hidden" />
 
 			<div class="alert alert-info">
-				<liferay-ui:message key="please-select-a-asset-library-to-which-you-will-assign-a-asset-library-role" />
+				<liferay-ui:message key="please-select-an-asset-library-to-which-you-will-assign-an-asset-library-role" />
 			</div>
 
 			<liferay-ui:search-container
