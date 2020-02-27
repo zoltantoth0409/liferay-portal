@@ -229,6 +229,13 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"discardDraftURL", _getDiscardDraftURL()
 			).put(
+				"draft",
+				() -> {
+					Layout layout = themeDisplay.getLayout();
+
+					return layout.isDraft();
+				}
+			).put(
 				"duplicateItemURL",
 				getFragmentEntryActionURL("/content_layout/duplicate_item")
 			).put(
