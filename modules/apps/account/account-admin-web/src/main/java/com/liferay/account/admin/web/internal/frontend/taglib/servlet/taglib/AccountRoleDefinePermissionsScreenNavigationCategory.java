@@ -103,8 +103,8 @@ public class AccountRoleDefinePermissionsScreenNavigationCategory
 		DynamicServletRequest dynamicServletRequest = new DynamicServletRequest(
 			httpServletRequest);
 
-		dynamicServletRequest.appendParameter("tabs1", "define-permissions");
 		dynamicServletRequest.appendParameter(Constants.CMD, Constants.VIEW);
+		dynamicServletRequest.appendParameter("tabs1", "define-permissions");
 		dynamicServletRequest.appendParameter(
 			"redirect", _getRedirect(httpServletRequest));
 		dynamicServletRequest.appendParameter(
