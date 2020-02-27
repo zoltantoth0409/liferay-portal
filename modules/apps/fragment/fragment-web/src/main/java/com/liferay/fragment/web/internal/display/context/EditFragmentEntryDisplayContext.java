@@ -47,6 +47,7 @@ import com.liferay.portal.template.soy.util.SoyContext;
 import com.liferay.portal.template.soy.util.SoyContextFactoryUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,21 +151,6 @@ public class EditFragmentEntryDisplayContext {
 
 		freeMarkerVariables.add("configuration");
 
-		FragmentCollection fragmentCollection =
-			FragmentCollectionServiceUtil.fetchFragmentCollection(
-				getFragmentCollectionId());
-
-		List<String> resources = new ArrayList<>();
-
-		if (fragmentCollection != null) {
-			List<FileEntry> resourceFileEntries =
-				fragmentCollection.getResources();
-
-			for (FileEntry fileEntry : resourceFileEntries) {
-				resources.add(fileEntry.getFileName());
-			}
-		}
-
 		soyContext.put(
 			"allowedStatus", allowedStatusSoyContext
 		).put(
@@ -198,7 +184,24 @@ public class EditFragmentEntryDisplayContext {
 		).put(
 			"readOnly", _isReadOnlyFragmentEntry()
 		).put(
-			"resources", resources
+			"resources",
+			() -> {
+				FragmentCollection fragmentCollection =
+					FragmentCollectionServiceUtil.fetchFragmentCollection(
+						getFragmentCollectionId());
+
+				if (fragmentCollection == null) {
+					return Collections.<String>emptyList();
+				}
+
+				List<String> resources = new ArrayList<>();
+
+				for (FileEntry fileEntry : fragmentCollection.getResources()) {
+					resources.add(fileEntry.getFileName());
+				}
+
+				return resources;
+			}
 		).put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
