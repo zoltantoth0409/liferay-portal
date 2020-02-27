@@ -171,13 +171,13 @@ public class ItemSelectorImplTest extends PowerMockito {
 		String mediaItemSelectorCriterionKey =
 			ItemSelectorKeyUtil.getItemSelectorCriterionKey(
 				MediaItemSelectorCriterion.class);
-		String flickerItemSelectorCriterionKey =
+		String flickrItemSelectorCriterionKey =
 			ItemSelectorKeyUtil.getItemSelectorCriterionKey(
 				FlickrItemSelectorCriterion.class);
 
 		Assert.assertEquals(
 			mediaItemSelectorCriterionKey + StringPool.COMMA +
-				flickerItemSelectorCriterionKey,
+				flickrItemSelectorCriterionKey,
 			parameters.get(ItemSelectorImpl.PARAMETER_CRITERIA)[0]);
 
 		Assert.assertNull(parameters.get("0_desiredItemSelectorReturnTypes"));
