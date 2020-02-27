@@ -120,6 +120,8 @@ public class FragmentInstanceDefinitionConverterUtil {
 			JSONObject imageJSONObject = jsonObject.getJSONObject(
 				backgroundImageId);
 
+			Map<String, String> localeMap = _toLocaleMap(imageJSONObject);
+
 			fragmentFields.add(
 				new FragmentField() {
 					{
@@ -128,9 +130,6 @@ public class FragmentInstanceDefinitionConverterUtil {
 							{
 								backgroundImage = new FragmentImage() {
 									{
-										Map<String, String> localeMap =
-											_toLocaleMap(imageJSONObject);
-
 										title = new InlineValue() {
 											{
 												value_i18n = localeMap;
@@ -419,19 +418,17 @@ public class FragmentInstanceDefinitionConverterUtil {
 	private static FragmentFieldImage _toFragmentFieldImage(
 		JSONObject jsonObject) {
 
+		Map<String, String> localeMap = _toLocaleMap(jsonObject);
+
 		return new FragmentFieldImage() {
 			{
 				fragmentImage = new FragmentImage() {
 					{
-						Map<String, String> localeMap = _toLocaleMap(
-							jsonObject);
-
 						title = new InlineValue() {
 							{
 								value_i18n = localeMap;
 							}
 						};
-
 						url = new InlineValue() {
 							{
 								value_i18n = localeMap;
