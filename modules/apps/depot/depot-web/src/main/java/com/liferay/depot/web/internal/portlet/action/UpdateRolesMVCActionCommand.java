@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + UsersAdminPortletKeys.USERS_ADMIN,
-		"mvc.command.name=/depot/hola"
+		"mvc.command.name=/depot/update_roles"
 	},
 	service = MVCActionCommand.class
 )
