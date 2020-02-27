@@ -414,14 +414,15 @@ public class MessageBoardThreadResourceImpl
 		}
 
 		String sql =
-			"EXISTS (select 1 from MBMessage where this_.classPK = messageId " +
-				"AND parentMessageId = 0 AND status = 0";
+			"EXISTS (select 1 from MBMessage where this_.classPK = messageId";
 
 		if (messageBoardSectionId != null) {
 			sql += " AND categoryId = " + messageBoardSectionId;
 		}
 
-		dynamicQuery.add(RestrictionsFactoryUtil.sqlRestriction(sql + ")"));
+		sql += " AND parentMessageId = 0 AND status = 0)";
+
+		dynamicQuery.add(RestrictionsFactoryUtil.sqlRestriction(sql));
 
 		dynamicQuery.setLimit(
 			pagination.getStartPosition(), pagination.getEndPosition());
