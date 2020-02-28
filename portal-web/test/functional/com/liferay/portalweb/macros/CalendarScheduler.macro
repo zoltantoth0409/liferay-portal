@@ -594,7 +594,7 @@ definition {
 	macro viewWeekStartDayViaWeekView {
 		CalendarNavigator.gotoView(viewType = "Week");
 
-		AssertTextEquals(
+		AssertTextEquals.assertPartialText(
 			locator1 = "Calendar#SCHEDULER_VIEW_WEEK_WEEK_START_DAY",
 			value1 = "${weekStartDay}");
 	}
