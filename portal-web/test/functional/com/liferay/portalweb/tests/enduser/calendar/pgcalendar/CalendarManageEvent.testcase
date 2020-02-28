@@ -436,7 +436,7 @@ definition {
 
 		Calendar.hideMyCalendarsCalendar();
 
-		CalendarScheduler.selectSpecificEvent(eventTitle = "Calendar Event Regular Title");
+		CalendarScheduler.selectSpecificEventNoRefresh(eventTitle = "Calendar Event Regular Title");
 
 		CalendarScheduler.editTitle(eventTitle = "Edited Title");
 
@@ -448,7 +448,7 @@ definition {
 
 		CalendarNavigator.gotoView(viewType = "Week");
 
-		CalendarScheduler.selectSpecificEvent(eventTitle = "Edited Title");
+		CalendarScheduler.selectSpecificEventNoRefresh(eventTitle = "Edited Title");
 
 		CalendarScheduler.gotoEditViaDialogBox();
 
