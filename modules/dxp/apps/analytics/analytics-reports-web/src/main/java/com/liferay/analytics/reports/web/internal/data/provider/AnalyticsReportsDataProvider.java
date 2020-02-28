@@ -39,14 +39,14 @@ public class AnalyticsReportsDataProvider {
 			long plid, TimeRange timeRange)
 		throws PortalException {
 
-		return _getHistoricalJSONObject(timeRange.getIntervalsLocalDateTimes());
+		return _getHistoricalJSONObject(timeRange.getIntervalLocalDateTimes());
 	}
 
 	public JSONObject getHistoricalViewsJSONObject(
 			long plid, TimeRange timeRange)
 		throws PortalException {
 
-		return _getHistoricalJSONObject(timeRange.getIntervalsLocalDateTimes());
+		return _getHistoricalJSONObject(timeRange.getIntervalLocalDateTimes());
 	}
 
 	public Long getTotalReads(long plid) {

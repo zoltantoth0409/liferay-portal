@@ -32,42 +32,42 @@ public class TimeRangeTest {
 	public void testGetIntervalsWithLast7DaysTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_7_DAYS, 0);
 
-		List<LocalDateTime> intervalsLocalDateTimes =
-			timeRange.getIntervalsLocalDateTimes();
+		List<LocalDateTime> intervalLocalDateTimes =
+			timeRange.getIntervalLocalDateTimes();
 
 		Assert.assertEquals(
-			intervalsLocalDateTimes.toString(), 7,
-			intervalsLocalDateTimes.size());
+			intervalLocalDateTimes.toString(), 7,
+			intervalLocalDateTimes.size());
 		Assert.assertEquals(
-			timeRange.getStartLocalDateTime(), intervalsLocalDateTimes.get(0));
+			timeRange.getStartLocalDateTime(), intervalLocalDateTimes.get(0));
 	}
 
 	@Test
 	public void testGetIntervalsWithLast24HoursTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_24_HOURS, 0);
 
-		List<LocalDateTime> intervalsLocalDateTimes =
-			timeRange.getIntervalsLocalDateTimes();
+		List<LocalDateTime> intervalLocalDateTimes =
+			timeRange.getIntervalLocalDateTimes();
 
 		Assert.assertEquals(
-			intervalsLocalDateTimes.toString(), 24,
-			intervalsLocalDateTimes.size());
+			intervalLocalDateTimes.toString(), 24,
+			intervalLocalDateTimes.size());
 		Assert.assertEquals(
-			timeRange.getStartLocalDateTime(), intervalsLocalDateTimes.get(0));
+			timeRange.getStartLocalDateTime(), intervalLocalDateTimes.get(0));
 	}
 
 	@Test
 	public void testGetIntervalsWithLast30DaysTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_30_DAYS, 0);
 
-		List<LocalDateTime> intervalsLocalDateTimes =
-			timeRange.getIntervalsLocalDateTimes();
+		List<LocalDateTime> intervalLocalDateTimes =
+			timeRange.getIntervalLocalDateTimes();
 
 		Assert.assertEquals(
-			intervalsLocalDateTimes.toString(), 30,
-			intervalsLocalDateTimes.size());
+			intervalLocalDateTimes.toString(), 30,
+			intervalLocalDateTimes.size());
 		Assert.assertEquals(
-			timeRange.getStartLocalDateTime(), intervalsLocalDateTimes.get(0));
+			timeRange.getStartLocalDateTime(), intervalLocalDateTimes.get(0));
 	}
 
 	@Test

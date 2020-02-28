@@ -83,7 +83,7 @@ public class TimeRange {
 		return localDateTime.minusDays(_getOffsetDays());
 	}
 
-	public List<LocalDateTime> getIntervalsLocalDateTimes() {
+	public List<LocalDateTime> getIntervalLocalDateTimes() {
 		List<LocalDateTime> intervals = new ArrayList<>();
 
 		LocalDateTime intervalLocalDateTime = getStartLocalDateTime();
