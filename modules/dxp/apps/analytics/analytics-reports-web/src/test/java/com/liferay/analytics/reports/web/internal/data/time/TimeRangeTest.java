@@ -29,7 +29,7 @@ import org.junit.Test;
 public class TimeRangeTest {
 
 	@Test
-	public void testGetIntervalsWithLast7DaysTimeSpan() {
+	public void testGetIntervalLocalDateTimesWithLast7DaysTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_7_DAYS, 0);
 
 		List<LocalDateTime> intervalLocalDateTimes =
@@ -43,7 +43,7 @@ public class TimeRangeTest {
 	}
 
 	@Test
-	public void testGetIntervalsWithLast24HoursTimeSpan() {
+	public void testGetIntervalLocalDateTimesWithLast24HoursTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_24_HOURS, 0);
 
 		List<LocalDateTime> intervalLocalDateTimes =
@@ -57,7 +57,7 @@ public class TimeRangeTest {
 	}
 
 	@Test
-	public void testGetIntervalsWithLast30DaysTimeSpan() {
+	public void testGetIntervalLocalDateTimesWithLast30DaysTimeSpan() {
 		TimeRange timeRange = TimeRange.of(TimeSpan.LAST_30_DAYS, 0);
 
 		List<LocalDateTime> intervalLocalDateTimes =
