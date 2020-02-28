@@ -551,31 +551,36 @@ public class AssigneeUserResourceImpl
 			{
 				durationTaskAvg = _getDurationTaskAvg(bucket);
 				id = userId;
-
-				if (user != null) {
-					name = user.getFullName();
-				}
-
 				onTimeTaskCount = _resourceHelper.getOnTimeTaskCount(bucket);
 				overdueTaskCount = _resourceHelper.getOverdueTaskCount(bucket);
 				taskCount = _getTaskCount(bucket);
 
-				if (user != null) {
-					setImage(
-						() -> {
-							if (user.getPortraitId() == 0) {
-								return null;
+				setImage(
+					() -> {
+						if (user == null) {
+							return null;
+						}
+
+						if (user.getPortraitId() == 0) {
+							return null;
+						}
+
+						ThemeDisplay themeDisplay = new ThemeDisplay() {
+							{
+								setPathImage(_portal.getPathImage());
 							}
+						};
 
-							ThemeDisplay themeDisplay = new ThemeDisplay() {
-								{
-									setPathImage(_portal.getPathImage());
-								}
-							};
+						return user.getPortraitURL(themeDisplay);
+					});
+				setName(
+					() -> {
+						if (user == null) {
+							return null;
+						}
 
-							return user.getPortraitURL(themeDisplay);
-						});
-				}
+						return user.getFullName();
+					});
 			}
 		};
 	}
