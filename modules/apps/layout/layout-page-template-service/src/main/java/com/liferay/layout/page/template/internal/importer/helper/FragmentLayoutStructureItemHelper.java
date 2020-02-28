@@ -109,14 +109,17 @@ public class FragmentLayoutStructureItemHelper
 		}
 
 		JSONObject jsonObject = JSONUtil.put(
-			_BACKGROUND_IMAGE_FRAGMENT_ENTRY_PROCESSOR,
+			"com.liferay.fragment.entry.processor.background.image." +
+				"BackgroundImageFragmentEntryProcessor",
 			JSONFactoryUtil.createJSONObject()
 		).put(
-			_EDITABLE_FRAGMENT_ENTRY_PROCESSOR,
+			"com.liferay.fragment.entry.processor.editable." +
+				"EditableFragmentEntryProcessor",
 			_createEditablesValuesJSONObject(
 				(List<Object>)definitionMap.get("fragmentFields"))
 		).put(
-			_FREEMARKER_FRAGMENT_ENTRY_PROCESSOR,
+			"com.liferay.fragment.entry.processor.freemarker." +
+				"FreeMarkerFragmentEntryProcessor",
 			_createConfigurationValuesJSONObject(
 				(Map<String, Object>)definitionMap.get("fragmentConfig"))
 		);
@@ -280,18 +283,6 @@ public class FragmentLayoutStructureItemHelper
 
 		return fragmentEntry;
 	}
-
-	private static final String _BACKGROUND_IMAGE_FRAGMENT_ENTRY_PROCESSOR =
-		"com.liferay.fragment.entry.processor.background.image." +
-			"BackgroundImageFragmentEntryProcessor";
-
-	private static final String _EDITABLE_FRAGMENT_ENTRY_PROCESSOR =
-		"com.liferay.fragment.entry.processor.editable." +
-			"EditableFragmentEntryProcessor";
-
-	private static final String _FREEMARKER_FRAGMENT_ENTRY_PROCESSOR =
-		"com.liferay.fragment.entry.processor.freemarker." +
-			"FreeMarkerFragmentEntryProcessor";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		FragmentLayoutStructureItemHelper.class);
