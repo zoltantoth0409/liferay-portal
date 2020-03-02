@@ -66,11 +66,11 @@ public class AUITopHeadResources implements TopHeadResources {
 
 		List<String> jsResourcePaths = new ArrayList<>();
 
-		if (auiConfiguration.enableAui()) {
+		if (auiConfiguration.enableAUI()) {
 			Collections.addAll(jsResourcePaths, _FILE_NAMES_AUI_CORE);
 		}
 
-		if (auiConfiguration.enableAuiPreload()) {
+		if (auiConfiguration.enableAUIPreload()) {
 			Collections.addAll(jsResourcePaths, _FILE_NAMES_AUI_PRELOAD);
 
 			Collections.addAll(

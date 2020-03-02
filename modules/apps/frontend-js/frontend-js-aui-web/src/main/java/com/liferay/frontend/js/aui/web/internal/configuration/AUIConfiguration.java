@@ -40,7 +40,7 @@ public interface AUIConfiguration {
 		deflt = "true", description = "enable-aui-description",
 		name = "enable-aui", required = false
 	)
-	public boolean enableAui();
+	public boolean enableAUI();
 
 	/**
 	 * Set this to <code>true</code> to preload widely used AUI modules.
@@ -52,6 +52,6 @@ public interface AUIConfiguration {
 		deflt = "true", description = "enable-aui-preload-description",
 		name = "enable-aui-preload", required = false
 	)
-	public boolean enableAuiPreload();
+	public boolean enableAUIPreload();
 
 }
