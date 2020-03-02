@@ -61,7 +61,9 @@ public interface AssetRendererFactory<T> {
 	public long getClassNameId();
 
 	public default String getClassSimpleName() {
-		return getClass().getSimpleName();
+		Class<?> clazz = getClass();
+
+		return clazz.getSimpleName();
 	}
 
 	public ClassTypeReader getClassTypeReader();
