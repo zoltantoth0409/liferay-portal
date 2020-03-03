@@ -108,7 +108,6 @@ public class RatingsTag extends IncludeTag {
 				"liferay-ratings:ratings:className", _className);
 			httpServletRequest.setAttribute(
 				"liferay-ratings:ratings:classPK", String.valueOf(_classPK));
-
 			httpServletRequest.setAttribute(
 				"liferay-ratings:ratings:data", _getData(httpServletRequest));
 
@@ -119,7 +118,6 @@ public class RatingsTag extends IncludeTag {
 
 			httpServletRequest.setAttribute(
 				"liferay-ratings:ratings:type", _type);
-
 			httpServletRequest.setAttribute(
 				"liferay-ratings:ratings:url", _url);
 		}
