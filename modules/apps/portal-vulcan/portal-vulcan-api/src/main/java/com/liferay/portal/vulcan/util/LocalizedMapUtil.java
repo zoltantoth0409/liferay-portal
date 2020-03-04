@@ -178,9 +178,9 @@ public class LocalizedMapUtil {
 		return result;
 	}
 
-	private static Locale _getLocale(String localeTag) {
+	private static Locale _getLocale(String languageId) {
 		return LocaleUtil.fromLanguageId(
-			StringUtil.replace(localeTag, CharPool.MINUS, CharPool.UNDERLINE),
+			StringUtil.replace(languageId, CharPool.MINUS, CharPool.UNDERLINE),
 			true, false);
 	}
 
