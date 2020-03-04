@@ -42,7 +42,7 @@ dependencies {
 	compile group: "biz.aQute.bnd", name: "biz.aQute.bnd.gradle", version: "4.3.0"
 	compile group: "com.liferay", name: "com.liferay.ant.bnd", version: "3.2.3"
 	compile group: "com.liferay", name: "com.liferay.gogo.shell.client", version: "1.0.0"
-	compile group: "com.liferay", name: "com.liferay.gradle.plugins.alloy.taglib", version: "2.0.2"
+	compile group: "com.liferay", name: "com.liferay.gradle.plugins.alloy.taglib", version: "2.0.3"
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.css.builder", version: "3.1.0"
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.db.support", version: "1.0.5"
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.gulp", version: "2.0.70"
@@ -62,7 +62,7 @@ dependencies {
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.wsdd.builder", version: "1.0.14"
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.wsdl.builder", version: "3.0.0"
 	compile group: "com.liferay", name: "com.liferay.gradle.plugins.xsd.builder", version: "1.0.8"
-	compile group: "com.liferay", name: "com.liferay.gradle.util", version: "1.0.34"
+	compile group: "com.liferay", name: "com.liferay.gradle.util", version: "1.0.35"
 
 	compileOnly fileTree(builtBy: [rootProject.tasks.getByName("extractGradleApi" + gradleVersion.replace(".", ""))], dir: new File(rootProject.buildDir, "gradle-${gradleVersion}"), excludes: ["lib/plugins/biz.aQute.bndlib-4.0.0.jar"])
 }
