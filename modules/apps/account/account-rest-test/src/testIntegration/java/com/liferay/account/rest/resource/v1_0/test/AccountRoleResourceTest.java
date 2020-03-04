@@ -74,22 +74,28 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 
 	@Override
 	protected Long testGetAccountRolesPage_getAccountId() throws Exception {
-		return _getAccountId();
+		Account account = _addAccount();
+
+		return account.getId();
 	}
 
 	@Override
 	protected Long testGetAccountRolesPage_getIrrelevantAccountId()
 		throws Exception {
 
-		return _getAccountId();
+		Account account = _addAccount();
+
+		return account.getId();
 	}
 
 	@Override
 	protected AccountRole testGraphQLAccountRole_addAccountRole()
 		throws Exception {
 
+		Account account = _addAccount();
+
 		return accountRoleResource.postAccountRole(
-			_getAccountId(), randomAccountRole());
+			account.getId(), randomAccountRole());
 	}
 
 	@Override
@@ -97,8 +103,10 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 			AccountRole accountRole)
 		throws Exception {
 
+		Account account = _addAccount();
+
 		return accountRoleResource.postAccountRole(
-			_getAccountId(), accountRole);
+			account.getId(), accountRole);
 	}
 
 	private Account _addAccount() throws Exception {
@@ -120,12 +128,6 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 				}
 			}
 		}
-	}
-
-	private long _getAccountId() throws Exception {
-		Account account = _addAccount();
-
-		return account.getId();
 	}
 
 	private Account _randomAccount() {
