@@ -100,10 +100,10 @@ public class LocalizedMapUtil {
 
 		for (Map.Entry<String, String> entry : i18nMap.entrySet()) {
 			Locale locale = _getLocale(entry.getKey());
-			String localizedValue = entry.getValue();
+			String value = entry.getValue();
 
-			if ((locale != null) && (localizedValue != null)) {
-				localizedMap.put(locale, localizedValue);
+			if ((locale != null) && (value != null)) {
+				localizedMap.put(locale, value);
 			}
 		}
 
