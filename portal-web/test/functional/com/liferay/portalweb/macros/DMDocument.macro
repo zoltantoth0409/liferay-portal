@@ -113,9 +113,9 @@ definition {
 		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
 		AssertClick(
-				key_breadcrumbName = "Sites and Libraries",
-				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
-				value1 = "Sites and Libraries");
+			key_breadcrumbName = "Sites and Libraries",
+			locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
+			value1 = "Sites and Libraries");
 
 		if (isSet(siteName)) {
 			LexiconCard.clickCard(card = "${siteName}");
