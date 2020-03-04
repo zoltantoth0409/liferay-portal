@@ -262,7 +262,7 @@ public class TaxonomyCategoryResourceImpl
 
 		AssetCategory assetCategory = _getAssetCategory(taxonomyCategoryId);
 
-		_validateResourceLanguageInRequest(
+		_validateI18n(
 			false, assetCategory.getDefaultLanguageId(), taxonomyCategory);
 
 		assetCategory.setDescriptionMap(
@@ -292,7 +292,7 @@ public class TaxonomyCategoryResourceImpl
 			long taxonomyCategoryId, long taxonomyVocabularyId)
 		throws Exception {
 
-		_validateResourceLanguageInRequest(true, languageId, taxonomyCategory);
+		_validateI18n(true, languageId, taxonomyCategory);
 
 		AssetCategory assetCategory = _assetCategoryService.addCategory(
 			groupId, taxonomyCategoryId,
@@ -416,7 +416,7 @@ public class TaxonomyCategoryResourceImpl
 			assetCategory);
 	}
 
-	private void _validateResourceLanguageInRequest(
+	private void _validateI18n(
 		boolean add, String languageId,
 		TaxonomyCategory taxonomyCategory) {
 

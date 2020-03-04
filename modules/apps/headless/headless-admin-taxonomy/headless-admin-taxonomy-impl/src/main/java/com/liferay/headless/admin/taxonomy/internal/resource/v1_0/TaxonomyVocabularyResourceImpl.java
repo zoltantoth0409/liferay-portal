@@ -189,7 +189,7 @@ public class TaxonomyVocabularyResourceImpl
 			Long siteId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		_validateResourceLanguageInRequest(true, taxonomyVocabulary);
+		_validateI18n(true, taxonomyVocabulary);
 
 		return _toTaxonomyVocabulary(
 			_assetVocabularyService.addVocabulary(
@@ -212,7 +212,7 @@ public class TaxonomyVocabularyResourceImpl
 			Long taxonomyVocabularyId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		_validateResourceLanguageInRequest(false, taxonomyVocabulary);
+		_validateI18n(false, taxonomyVocabulary);
 
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
 			taxonomyVocabularyId);
@@ -507,7 +507,7 @@ public class TaxonomyVocabularyResourceImpl
 		};
 	}
 
-	private void _validateResourceLanguageInRequest(
+	private void _validateI18n(
 		boolean add, TaxonomyVocabulary taxonomyVocabulary) {
 
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
