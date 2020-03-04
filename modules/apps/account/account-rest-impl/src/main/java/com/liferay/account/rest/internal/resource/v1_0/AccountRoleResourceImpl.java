@@ -107,21 +107,20 @@ public class AccountRoleResourceImpl
 			com.liferay.account.model.AccountRole serviceBuilderAccountRole)
 		throws Exception {
 
-		AccountRole accountRole = new AccountRole();
-
 		Role role = serviceBuilderAccountRole.getRole();
 
-		accountRole.setAccountId(serviceBuilderAccountRole.getAccountEntryId());
-		accountRole.setDescription(
-			role.getDescription(contextAcceptLanguage.getPreferredLocale()));
-		accountRole.setDisplayName(
-			role.getTitle(contextAcceptLanguage.getPreferredLocale()));
-
-		accountRole.setId(serviceBuilderAccountRole.getAccountRoleId());
-		accountRole.setName(serviceBuilderAccountRole.getRoleName());
-		accountRole.setRoleId(serviceBuilderAccountRole.getRoleId());
-
-		return accountRole;
+		return new AccountRole() {
+			{
+				accountId = serviceBuilderAccountRole.getAccountEntryId();
+				description = role.getDescription(
+					contextAcceptLanguage.getPreferredLocale());
+				displayName = role.getTitle(
+					contextAcceptLanguage.getPreferredLocale());
+				id = serviceBuilderAccountRole.getAccountRoleId();
+				name = serviceBuilderAccountRole.getRoleName();
+				roleId = serviceBuilderAccountRole.getRoleId();
+			}
+		};
 	}
 
 	private static final RoleNameComparator _roleNameComparator =

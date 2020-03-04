@@ -129,15 +129,15 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 	}
 
 	private Account _randomAccount() {
-		Account account = new Account();
-
-		account.setStatus(WorkflowConstants.STATUS_APPROVED);
-		account.setParentAccountId(AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
-		account.setName(RandomTestUtil.randomString(20));
-		account.setDomains(new String[0]);
-		account.setDescription(RandomTestUtil.randomString(20));
-
-		return account;
+		return new Account() {
+			{
+				description = RandomTestUtil.randomString(20);
+				domains = new String[0];
+				name = RandomTestUtil.randomString(20);
+				parentAccountId = AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT;
+				status = WorkflowConstants.STATUS_APPROVED;
+			}
+		};
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
