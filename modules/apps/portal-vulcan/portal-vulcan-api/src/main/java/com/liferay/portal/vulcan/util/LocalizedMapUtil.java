@@ -109,44 +109,44 @@ public class LocalizedMapUtil {
 	}
 
 	public static Map<Locale, String> merge(
-		Map<Locale, String> map, Locale locale, String value) {
+		Map<Locale, String> localizedMap, Locale locale, String value) {
 
 		if (locale == null) {
-			return map;
+			return localizedMap;
 		}
 
-		if (map == null) {
+		if (localizedMap == null) {
 			return Collections.singletonMap(locale, value);
 		}
 
 		if (value != null) {
-			map.put(locale, value);
+			localizedMap.put(locale, value);
 		}
 		else {
-			map.remove(locale);
+			localizedMap.remove(locale);
 		}
 
-		return map;
+		return localizedMap;
 	}
 
 	public static Map<Locale, String> merge(
-		Map<Locale, String> map, Map.Entry<Locale, String> entry) {
+		Map<Locale, String> localizedMap, Map.Entry<Locale, String> entry) {
 
 		if (entry == null) {
-			return map;
+			return localizedMap;
 		}
 
-		return merge(map, entry.getKey(), entry.getValue());
+		return merge(localizedMap, entry.getKey(), entry.getValue());
 	}
 
 	public static Map<Locale, String> patch(
-		Map<Locale, String> map, Locale locale, String value) {
+		Map<Locale, String> localizedMap, Locale locale, String value) {
 
 		if (value != null) {
-			map.put(locale, value);
+			localizedMap.put(locale, value);
 		}
 
-		return map;
+		return localizedMap;
 	}
 
 	public static Map<Locale, String> patch(
