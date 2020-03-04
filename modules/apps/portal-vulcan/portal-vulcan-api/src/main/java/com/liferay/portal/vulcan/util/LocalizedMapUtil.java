@@ -167,11 +167,11 @@ public class LocalizedMapUtil {
 			return result;
 		}
 
-		for (Map.Entry<String, String> localizedEntry : i18nMap.entrySet()) {
-			Locale locale = _getLocale(localizedEntry.getKey());
+		for (Map.Entry<String, String> entry : i18nMap.entrySet()) {
+			Locale locale = _getLocale(entry.getKey());
 
 			if (locale != null) {
-				result = patch(result, locale, localizedEntry.getValue());
+				result = patch(result, locale, entry.getValue());
 			}
 		}
 
