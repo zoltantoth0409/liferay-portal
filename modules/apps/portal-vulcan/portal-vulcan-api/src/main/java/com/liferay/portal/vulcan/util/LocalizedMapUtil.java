@@ -72,7 +72,7 @@ public class LocalizedMapUtil {
 		Locale defaultLocale, String defaultValue, Map<String, String> i18nMap,
 		Map<Locale, String> fallbackMap) {
 
-		Map<Locale, String> localizedMap;
+		Map<Locale, String> localizedMap = null;
 
 		if (i18nMap != null) {
 			localizedMap = getLocalizedMap(i18nMap);
