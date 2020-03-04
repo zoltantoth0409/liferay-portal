@@ -417,8 +417,7 @@ public class TaxonomyCategoryResourceImpl
 	}
 
 	private void _validateI18n(
-		boolean add, String languageId,
-		TaxonomyCategory taxonomyCategory) {
+		boolean add, String languageId, TaxonomyCategory taxonomyCategory) {
 
 		Locale defaultLocale = LocaleUtil.fromLanguageId(languageId);
 
