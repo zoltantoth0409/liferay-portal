@@ -508,7 +508,7 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private void _validateResourceLanguageInRequest(
-		boolean creation, TaxonomyVocabulary taxonomyVocabulary) {
+		boolean add, TaxonomyVocabulary taxonomyVocabulary) {
 
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
@@ -520,7 +520,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		Map<String, String> localizedNames = taxonomyVocabulary.getName_i18n();
 
-		if ((creation && (localizedNames == null)) ||
+		if ((add && (localizedNames == null)) ||
 			((localizedNames != null) &&
 			 !localizedNames.containsKey(defaultLocale.toLanguageTag()))) {
 

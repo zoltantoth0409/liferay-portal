@@ -417,7 +417,7 @@ public class TaxonomyCategoryResourceImpl
 	}
 
 	private void _validateResourceLanguageInRequest(
-		boolean creation, String languageId,
+		boolean add, String languageId,
 		TaxonomyCategory taxonomyCategory) {
 
 		Locale defaultLocale = LocaleUtil.fromLanguageId(languageId);
@@ -430,8 +430,8 @@ public class TaxonomyCategoryResourceImpl
 
 		Map<String, String> localizedNames = taxonomyCategory.getName_i18n();
 
-		if ((creation && (localizedNames == null)) ||
-			(!creation && (localizedNames != null) &&
+		if ((add && (localizedNames == null)) ||
+			(!add && (localizedNames != null) &&
 			 !localizedNames.containsKey(defaultLocale.toLanguageTag()))) {
 
 			String w3cLanguageId = LocaleUtil.toW3cLanguageId(defaultLocale);
