@@ -14,9 +14,7 @@
 
 package com.liferay.portal.vulcan.util;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -179,9 +177,7 @@ public class LocalizedMapUtil {
 	}
 
 	private static Locale _getLocale(String languageId) {
-		return LocaleUtil.fromLanguageId(
-			StringUtil.replace(languageId, CharPool.MINUS, CharPool.UNDERLINE),
-			true, false);
+		return LocaleUtil.fromLanguageId(languageId, true, false);
 	}
 
 }
