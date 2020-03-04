@@ -153,27 +153,29 @@ public class LocalizedMapUtil {
 		Map<Locale, String> localizedMap, Locale defaultLocale,
 		String defaultValue, Map<String, String> i18nMap) {
 
-		Map<Locale, String> result = new HashMap<>();
+		Map<Locale, String> resultLocalizedMap = new HashMap<>();
 
 		if (localizedMap != null) {
-			result.putAll(localizedMap);
+			resultLocalizedMap.putAll(localizedMap);
 		}
 
-		result = patch(result, defaultLocale, defaultValue);
+		resultLocalizedMap = patch(
+			resultLocalizedMap, defaultLocale, defaultValue);
 
 		if (i18nMap == null) {
-			return result;
+			return resultLocalizedMap;
 		}
 
 		for (Map.Entry<String, String> entry : i18nMap.entrySet()) {
 			Locale locale = _getLocale(entry.getKey());
 
 			if (locale != null) {
-				result = patch(result, locale, entry.getValue());
+				resultLocalizedMap = patch(
+					resultLocalizedMap, locale, entry.getValue());
 			}
 		}
 
-		return result;
+		return resultLocalizedMap;
 	}
 
 	private static Locale _getLocale(String languageId) {
