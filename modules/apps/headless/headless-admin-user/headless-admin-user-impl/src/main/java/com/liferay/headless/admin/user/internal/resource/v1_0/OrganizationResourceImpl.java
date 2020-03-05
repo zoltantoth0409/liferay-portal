@@ -100,9 +100,10 @@ public class OrganizationResourceImpl
 
 	@Override
 	public void deleteOrganization(String organizationId) throws Exception {
-		long id = _getOrganizationId(organizationId);
+		long serviceBuilderOrganizationId = _getServiceBuilderOrganizationId(
+			organizationId);
 
-		_organizationService.deleteOrganization(id);
+		_organizationService.deleteOrganization(serviceBuilderOrganizationId);
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class OrganizationResourceImpl
 					"VIEW", "getOrganizationOrganizationsPage",
 					com.liferay.portal.kernel.model.Organization.class.
 						getName(),
-					_getOrganizationId(parentOrganizationId))
+					_getServiceBuilderOrganizationId(parentOrganizationId))
 			).build(),
 			parentOrganizationId, flatten, search, filter, pagination, sorts);
 	}
@@ -288,7 +289,8 @@ public class OrganizationResourceImpl
 			String organizationId)
 		throws Exception {
 
-		Long id = _getOrganizationId(organizationId);
+		Long serviceBuilderOrganizationId = _getServiceBuilderOrganizationId(
+			organizationId);
 
 		return new DefaultDTOConverterContext(
 			contextAcceptLanguage.isAcceptAllLanguages(),
@@ -298,28 +300,28 @@ public class OrganizationResourceImpl
 					"DELETE", "deleteOrganization",
 					com.liferay.portal.kernel.model.Organization.class.
 						getName(),
-					id)
+					serviceBuilderOrganizationId)
 			).put(
 				"get",
 				addAction(
 					"VIEW", "getOrganization",
 					com.liferay.portal.kernel.model.Organization.class.
 						getName(),
-					id)
+					serviceBuilderOrganizationId)
 			).put(
 				"replace",
 				addAction(
 					"UPDATE", "putOrganization",
 					com.liferay.portal.kernel.model.Organization.class.
 						getName(),
-					id)
+					serviceBuilderOrganizationId)
 			).put(
 				"update",
 				addAction(
 					"UPDATE", "patchOrganization",
 					com.liferay.portal.kernel.model.Organization.class.
 						getName(),
-					id)
+					serviceBuilderOrganizationId)
 			).build(),
 			null, organizationId, contextAcceptLanguage.getPreferredLocale(),
 			contextUriInfo, contextUser);
@@ -342,29 +344,14 @@ public class OrganizationResourceImpl
 		);
 	}
 
-	private long _getOrganizationId(String organizationId) throws Exception {
-		if (organizationId == null) {
-			return 0;
-		}
-
-		com.liferay.portal.kernel.model.Organization
-			serviceBuilderOrganization =
-				_organizationResourceDTOConverter.getObject(organizationId);
-
-		if (serviceBuilderOrganization == null) {
-			return GetterUtil.getLong(organizationId);
-		}
-
-		return serviceBuilderOrganization.getOrganizationId();
-	}
-
 	private Page<Organization> _getOrganizationsPage(
 			Map<String, Map<String, String>> actions,
 			String parentOrganizationId, Boolean flatten, String search,
 			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		long id = _getOrganizationId(parentOrganizationId);
+		long serviceBuilderOrganizationId = _getServiceBuilderOrganizationId(
+			parentOrganizationId);
 
 		return SearchUtil.search(
 			actions,
@@ -373,7 +360,7 @@ public class OrganizationResourceImpl
 					booleanQuery.getPreBooleanFilter();
 
 				if (GetterUtil.getBoolean(flatten)) {
-					if (id != 0L) {
+					if (serviceBuilderOrganizationId != 0L) {
 						booleanFilter.add(
 							new QueryFilter(
 								new WildcardQueryImpl(
@@ -389,7 +376,8 @@ public class OrganizationResourceImpl
 				else {
 					booleanFilter.add(
 						new TermFilter(
-							"parentOrganizationId", String.valueOf(id)),
+							"parentOrganizationId",
+							String.valueOf(serviceBuilderOrganizationId)),
 						BooleanClauseOccur.MUST);
 				}
 			},
@@ -465,6 +453,24 @@ public class OrganizationResourceImpl
 		}
 
 		return 0;
+	}
+
+	private long _getServiceBuilderOrganizationId(String organizationId)
+		throws Exception {
+
+		if (organizationId == null) {
+			return 0;
+		}
+
+		com.liferay.portal.kernel.model.Organization
+			serviceBuilderOrganization =
+				_organizationResourceDTOConverter.getObject(organizationId);
+
+		if (serviceBuilderOrganization == null) {
+			return GetterUtil.getLong(organizationId);
+		}
+
+		return serviceBuilderOrganization.getOrganizationId();
 	}
 
 	private List<Website> _getWebsites(Organization organization) {
