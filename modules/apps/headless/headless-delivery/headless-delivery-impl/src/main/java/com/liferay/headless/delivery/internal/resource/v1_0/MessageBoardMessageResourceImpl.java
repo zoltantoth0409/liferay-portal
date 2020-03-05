@@ -132,7 +132,7 @@ public class MessageBoardMessageResourceImpl
 					mbMessage.getUserId(), "com.liferay.message.boards",
 					mbMessage.getGroupId())
 			).build(),
-			parentMessageBoardMessageId, null, flatten, search, filter,
+			parentMessageBoardMessageId, flatten, search, null, filter,
 			pagination, sorts);
 	}
 
@@ -171,7 +171,7 @@ public class MessageBoardMessageResourceImpl
 					mbThread.getUserId(), "com.liferay.message.boards",
 					mbThread.getGroupId())
 			).build(),
-			mbThread.getRootMessageId(), null, false, search, filter,
+			mbThread.getRootMessageId(), false, search, null, filter,
 			pagination, sorts);
 	}
 
@@ -198,7 +198,7 @@ public class MessageBoardMessageResourceImpl
 					"VIEW", "getSiteMessageBoardMessagesPage",
 					"com.liferay.message.boards", siteId)
 			).build(),
-			null, siteId, flatten, search, filter, pagination, sorts);
+			null, flatten, search, siteId, filter, pagination, sorts);
 	}
 
 	@Override
@@ -347,8 +347,8 @@ public class MessageBoardMessageResourceImpl
 
 	private Page<MessageBoardMessage> _getMessageBoardMessagesPage(
 			Map<String, Map<String, String>> actions,
-			Long messageBoardMessageId, Long siteId, Boolean flatten,
-			String search, Filter filter, Pagination pagination, Sort[] sorts)
+			Long messageBoardMessageId, Boolean flatten, String search,
+			Long siteId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		if (messageBoardMessageId != null) {
