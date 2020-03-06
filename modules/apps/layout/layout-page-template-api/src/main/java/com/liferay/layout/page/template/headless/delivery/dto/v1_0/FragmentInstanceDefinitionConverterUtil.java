@@ -577,11 +577,11 @@ public class FragmentInstanceDefinitionConverterUtil {
 
 		return new HashMap<String, String>() {
 			{
+				List<String> availableLanguageIds = _getAvailableLanguageIds();
+
 				Set<String> keys = jsonObject.keySet();
 
 				Iterator<String> iterator = keys.iterator();
-
-				List<String> availableLanguageIds = _getAvailableLanguageIds();
 
 				while (iterator.hasNext()) {
 					String key = iterator.next();
