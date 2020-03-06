@@ -127,10 +127,10 @@ public class LayoutPageTemplatesImporterImpl
 		_processPageElement(
 			layout, layoutStructure, pageElement, parentItemId, position);
 
+		List<FragmentEntryLink> fragmentEntryLinks = new ArrayList<>();
+
 		LayoutStructureItem parentLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(parentItemId);
-
-		List<FragmentEntryLink> fragmentEntryLinks = new ArrayList<>();
 
 		fragmentEntryLinks.addAll(
 			_getFragmentEntryLinks(
