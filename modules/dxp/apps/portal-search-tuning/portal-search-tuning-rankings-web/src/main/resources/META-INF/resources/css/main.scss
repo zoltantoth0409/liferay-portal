@@ -14,7 +14,9 @@
 }
 
 body {
+
 	// Resizes the page navbar when product menu is expanded.
+
 	&.open .result-rankings-root .navbar.page-toolbar-root {
 		left: 320px;
 		width: calc(100% - 320px);
@@ -22,6 +24,7 @@ body {
 
 	// Allows the modal to scroll when the modal height is greater than the
 	// window height.
+
 	&.modal-open .modal.result-ranking-modal-root {
 		overflow-y: auto;
 	}
