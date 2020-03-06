@@ -130,13 +130,12 @@ public class LayoutPageTemplatesImporterImpl
 		LayoutStructureItem parentLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(parentItemId);
 
-		List<String> childrenItemIds =
-			parentLayoutStructureItem.getChildrenItemIds();
-
 		List<FragmentEntryLink> fragmentEntryLinks = new ArrayList<>();
 
 		fragmentEntryLinks.addAll(
-			_getFragmentEntryLinks(layoutStructure, childrenItemIds));
+			_getFragmentEntryLinks(
+				layoutStructure,
+				parentLayoutStructureItem.getChildrenItemIds()));
 
 		_updateLayoutPageTemplateStructure(layout, layoutStructure);
 
