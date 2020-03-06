@@ -174,9 +174,9 @@ public class RatingsTag extends IncludeTag {
 				"liferay-ratings:ratings:type", _getType(httpServletRequest));
 			httpServletRequest.setAttribute("liferay-ratings:ratings:url", url);
 			httpServletRequest.setAttribute(
-				"liferay:ratings:ratings:ratingsEntry", ratingsEntry);
+				"liferay-ratings:ratings:ratingsEntry", ratingsEntry);
 			httpServletRequest.setAttribute(
-				"liferay:ratings:ratings:ratingsStats", ratingsStats);
+				"liferay-ratings:ratings:ratingsStats", ratingsStats);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
