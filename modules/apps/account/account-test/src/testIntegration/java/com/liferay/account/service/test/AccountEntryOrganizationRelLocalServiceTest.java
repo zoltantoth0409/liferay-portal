@@ -248,12 +248,13 @@ public class AccountEntryOrganizationRelLocalServiceTest {
 			_organizations.add(OrganizationTestUtil.addOrganization());
 		}
 
-		_assertSet(_organizations.subList(0, 4));
-		_assertSet(_organizations.subList(5, 9));
-		_assertSet(_organizations.subList(3, 7));
+		_testSetAccountEntryOrganizationRels(_organizations.subList(0, 4));
+		_testSetAccountEntryOrganizationRels(_organizations.subList(5, 9));
+		_testSetAccountEntryOrganizationRels(_organizations.subList(3, 7));
 	}
 
-	private void _assertSet(List<Organization> organizations)
+	private void _testSetAccountEntryOrganizationRels(
+			List<Organization> organizations)
 		throws PortalException {
 
 		_accountEntryOrganizationRelLocalService.
