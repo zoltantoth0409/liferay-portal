@@ -20,17 +20,7 @@ import com.liferay.redirect.service.base.RedirectEntryLocalServiceBaseImpl;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The implementation of the redirect entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.redirect.service.RedirectEntryLocalService</code> interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see RedirectEntryLocalServiceBaseImpl
  */
 @Component(
 	property = "model.class.name=com.liferay.redirect.model.RedirectEntry",
@@ -38,11 +28,4 @@ import org.osgi.service.component.annotations.Component;
 )
 public class RedirectEntryLocalServiceImpl
 	extends RedirectEntryLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Use <code>com.liferay.redirect.service.RedirectEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.redirect.service.RedirectEntryLocalServiceUtil</code>.
-	 */
-
 }
