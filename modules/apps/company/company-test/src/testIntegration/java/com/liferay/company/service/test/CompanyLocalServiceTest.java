@@ -995,20 +995,6 @@ public class CompanyLocalServiceTest {
 		_serviceRegistrations.add(
 			bundleContext.registerService(
 				ModelListener.class,
-				new BaseModelListener<UserGroupRole>() {
-
-					@Override
-					public void onBeforeRemove(UserGroupRole userGroupRole)
-						throws ModelListenerException {
-
-						list.add(UserGroupRole.class.getName());
-					}
-
-				},
-				new HashMapDictionary<>()));
-		_serviceRegistrations.add(
-			bundleContext.registerService(
-				ModelListener.class,
 				new BaseModelListener<Role>() {
 
 					@Override
@@ -1016,6 +1002,20 @@ public class CompanyLocalServiceTest {
 						throws ModelListenerException {
 
 						list.add(Role.class.getName());
+					}
+
+				},
+				new HashMapDictionary<>()));
+		_serviceRegistrations.add(
+			bundleContext.registerService(
+				ModelListener.class,
+				new BaseModelListener<UserGroupRole>() {
+
+					@Override
+					public void onBeforeRemove(UserGroupRole userGroupRole)
+						throws ModelListenerException {
+
+						list.add(UserGroupRole.class.getName());
 					}
 
 				},
