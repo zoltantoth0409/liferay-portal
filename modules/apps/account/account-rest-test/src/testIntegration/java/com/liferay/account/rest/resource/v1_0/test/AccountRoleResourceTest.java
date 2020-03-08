@@ -65,8 +65,6 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 		_accountResource.setContextCompany(testCompany);
 		_accountResource.setContextUser(companyAdminUser);
 
-		Locale defaultLocale = LocaleUtil.getDefault();
-
 		_accountUserResource.setContextAcceptLanguage(
 			new AcceptLanguage() {
 
@@ -77,16 +75,17 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 
 				@Override
 				public String getPreferredLanguageId() {
+					Locale defaultLocale = LocaleUtil.getDefault();
+
 					return defaultLocale.getLanguage();
 				}
 
 				@Override
 				public Locale getPreferredLocale() {
-					return defaultLocale;
+					return LocaleUtil.getDefault();
 				}
 
 			});
-
 		_accountUserResource.setContextCompany(testCompany);
 		_accountUserResource.setContextUser(companyAdminUser);
 	}
