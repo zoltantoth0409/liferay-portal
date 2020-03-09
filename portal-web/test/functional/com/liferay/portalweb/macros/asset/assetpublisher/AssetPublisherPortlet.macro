@@ -511,7 +511,7 @@ definition {
 			MenuItem.click(menuItem = "${siteName}");
 		}
 		else {
-			MenuItem.click(menuItem = "Other Site...");
+			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
 			SelectFrame(value1 = "relative=top");
 
@@ -1168,9 +1168,9 @@ definition {
 
 			if ("${childSite}" == "true") {
 				AssertTextEquals(
-					key_menuItem = "Other Site...",
+					key_menuItem = "Other Site or Asset Library...",
 					locator1 = "MenuItem#ANY_MENU_ITEM",
-					value1 = "Other Site...");
+					value1 = "Other Site or Asset Library...");
 			}
 			else {
 				MenuItem.viewNotPresent(menuItem = "OTHER_SITE");
