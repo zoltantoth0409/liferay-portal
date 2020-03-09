@@ -114,7 +114,7 @@ public class TestUploadHandler {
 		}
 	}
 
-	private boolean _fileEntryExists(long groupId, String fileName) {
+	private boolean _hasFileEntry(long groupId, String fileName) {
 		FileEntry fileEntry = new TestFileEntry(
 			fileName, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, groupId,
 			null);
@@ -153,7 +153,7 @@ public class TestUploadHandler {
 				TestFileEntry testFileEntry = new TestFileEntry(
 					_uniqueFileNameProvider.provide(
 						uploadPortletRequest.getFileName(parameterName),
-						curFileName -> _fileEntryExists(
+						curFileName -> _hasFileEntry(
 							themeDisplay.getScopeGroupId(), curFileName)),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 					themeDisplay.getScopeGroupId(), inputStream);
