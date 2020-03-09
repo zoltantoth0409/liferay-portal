@@ -336,7 +336,8 @@ public class ${schemaName}SerDes {
 				sb.append("\"");
 				sb.append(_escape(entry.getValue()));
 				sb.append("\"");
-			} else {
+			}
+			else {
 				sb.append(String.valueOf(entry.getValue()));
 			}
 
