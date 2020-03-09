@@ -2644,8 +2644,8 @@ public class DataFactory {
 			mbThreadModel.getGroupId(), classNameId, classPK,
 			MBCategoryConstants.DISCUSSION_CATEGORY_ID,
 			mbThreadModel.getThreadId(), messageId,
-			mbThreadModel.getRootMessageId(), parentMessageId, subject, body,
-			urlSubject);
+			mbThreadModel.getRootMessageId(), parentMessageId, subject,
+			urlSubject, body);
 	}
 
 	public List<MBMessageModel> newMBMessageModels(
@@ -2660,7 +2660,7 @@ public class DataFactory {
 				mbThreadModel.getThreadId(), mbThreadModel.getRootMessageId(),
 				mbThreadModel.getRootMessageId(),
 				MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID, "Test Message 1",
-				"This is test message 1.", "test-message-1"));
+				"test-message-1", "This is test message 1."));
 
 		for (int i = 2; i <= _maxMBMessageCount; i++) {
 			mbMessageModels.add(
@@ -2669,7 +2669,7 @@ public class DataFactory {
 					mbThreadModel.getCategoryId(), mbThreadModel.getThreadId(),
 					_counter.get(), mbThreadModel.getRootMessageId(),
 					mbThreadModel.getRootMessageId(), "Test Message " + i,
-					"This is test message " + i + ".", "test-message-" + i));
+					"test-message-" + i, "This is test message " + i + "."));
 		}
 
 		return mbMessageModels;
@@ -4040,7 +4040,7 @@ public class DataFactory {
 	protected MBMessageModel newMBMessageModel(
 		long groupId, long classNameId, long classPK, long categoryId,
 		long threadId, long messageId, long rootMessageId, long parentMessageId,
-		String subject, String body, String urlSubject) {
+		String subject, String urlSubject, String body) {
 
 		MBMessageModel mBMessageModel = new MBMessageModelImpl();
 
