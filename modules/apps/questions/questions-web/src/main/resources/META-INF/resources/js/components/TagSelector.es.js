@@ -94,7 +94,7 @@ export default ({tagsChange, tags = [], ...props}) => {
 					{error && (
 						<ClayForm.FeedbackItem>
 							<ClayForm.FeedbackIndicator symbol="exclamation-full" />
-							{Liferay.Language.get('this-is-not-a-valid-tag')}
+							{Liferay.Language.get('this-is-an-invalid-tag')}
 						</ClayForm.FeedbackItem>
 					)}
 				</ClayForm.FeedbackGroup>
