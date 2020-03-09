@@ -276,19 +276,6 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 			true);
 	}
 
-	private boolean _hasFileEntry(
-		long groupId, long folderId, String fileName) {
-
-		FileEntry fileEntry = _portletFileRepository.fetchPortletFileEntry(
-			groupId, folderId, fileName);
-
-		if (fileEntry == null) {
-			return false;
-		}
-
-		return true;
-	}
-
 	private List<FileEntry> _getTempBlogsEntryAttachmentFileEntries(
 			String content)
 		throws PortalException {
@@ -319,6 +306,19 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 		return _uniqueFileNameProvider.provide(
 			fileName,
 			curFileName -> _hasFileEntry(groupId, folderId, curFileName));
+	}
+
+	private boolean _hasFileEntry(
+		long groupId, long folderId, String fileName) {
+
+		FileEntry fileEntry = _portletFileRepository.fetchPortletFileEntry(
+			groupId, folderId, fileName);
+
+		if (fileEntry == null) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static final String _TEMP_FOLDER_NAME = BlogsEntry.class.getName();

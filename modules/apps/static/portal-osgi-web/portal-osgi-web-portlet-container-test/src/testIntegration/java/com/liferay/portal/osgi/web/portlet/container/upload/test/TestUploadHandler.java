@@ -114,21 +114,6 @@ public class TestUploadHandler {
 		}
 	}
 
-	private boolean _hasFileEntry(long groupId, String fileName) {
-		FileEntry fileEntry = new TestFileEntry(
-			fileName, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, groupId,
-			null);
-
-		TestFileEntry testFileEntry = _testUploadPortlet.get(
-			fileEntry.toString());
-
-		if (testFileEntry == null) {
-			return false;
-		}
-
-		return true;
-	}
-
 	private JSONObject _getImageJSONObject(PortletRequest portletRequest)
 		throws PortalException {
 
@@ -238,6 +223,21 @@ public class TestUploadHandler {
 		catch (IOException ioException) {
 			throw new SystemException(ioException);
 		}
+	}
+
+	private boolean _hasFileEntry(long groupId, String fileName) {
+		FileEntry fileEntry = new TestFileEntry(
+			fileName, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, groupId,
+			null);
+
+		TestFileEntry testFileEntry = _testUploadPortlet.get(
+			fileEntry.toString());
+
+		if (testFileEntry == null) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private final TestUploadPortlet _testUploadPortlet;
