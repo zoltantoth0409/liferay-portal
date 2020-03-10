@@ -69,6 +69,7 @@ public class LocalizableTextDDMFormFieldTemplateContextContributor
 				ddmForm.getDefaultLocale());
 
 			parameters.put("defaultLocale", localeJSONObject);
+
 			parameters.put("displayStyle", getDisplayStyle(ddmFormField));
 			parameters.put("editingLocale", localeJSONObject);
 			parameters.put(
