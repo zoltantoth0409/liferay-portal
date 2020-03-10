@@ -164,8 +164,8 @@ public class RedirectDisplayContext {
 
 		searchContext.setAttribute(Field.STATUS, WorkflowConstants.STATUS_ANY);
 		searchContext.setEnd(_redirectEntrySearch.getEnd());
-		searchContext.setStart(_redirectEntrySearch.getStart());
 		searchContext.setSorts(_getSorts());
+		searchContext.setStart(_redirectEntrySearch.getStart());
 
 		Hits hits = indexer.search(searchContext);
 
