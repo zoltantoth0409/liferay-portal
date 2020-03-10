@@ -44,7 +44,6 @@ public class RedirectEntryKeywordQueryContributor
 
 		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, "destinationURL", false);
-
 		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, "sourceURL", false);
 	}
