@@ -1011,15 +1011,12 @@ public class Entity implements Comparable<Entity> {
 
 		String methodName = entityColumn.getMethodName();
 
-		if ((_entityColumns.indexOf(
-				new EntityColumn(_serviceBuilder, "parent" + methodName)) !=
-					-1) &&
-			(_entityColumns.indexOf(
-				new EntityColumn(_serviceBuilder, "left" + methodName)) !=
-					-1) &&
-			(_entityColumns.indexOf(
-				new EntityColumn(_serviceBuilder, "right" + methodName)) !=
-					-1)) {
+		if (_entityColumns.contains(
+				new EntityColumn(_serviceBuilder, "parent" + methodName)) &&
+			_entityColumns.contains(
+				new EntityColumn(_serviceBuilder, "left" + methodName)) &&
+			_entityColumns.contains(
+				new EntityColumn(_serviceBuilder, "right" + methodName))) {
 
 			return true;
 		}
