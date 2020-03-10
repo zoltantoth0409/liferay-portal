@@ -162,10 +162,10 @@ public class DepotApplicationController {
 
 	private boolean _isTrashEnabled(long depotEntryId) {
 		int enabledDepotAppCustomizationCount =
-			_depotAppCustomizationLocalService.getDepotAppCustomizationCount(
+			_depotAppCustomizationLocalService.getDepotAppCustomizationsCount(
 				depotEntryId, true);
 		int disabledDepotAppCustomizationCount =
-			_depotAppCustomizationLocalService.getDepotAppCustomizationCount(
+			_depotAppCustomizationLocalService.getDepotAppCustomizationsCount(
 				depotEntryId, false);
 
 		if ((enabledDepotAppCustomizationCount == 0) &&

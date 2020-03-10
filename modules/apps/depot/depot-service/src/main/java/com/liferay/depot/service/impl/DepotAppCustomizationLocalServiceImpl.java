@@ -43,7 +43,7 @@ public class DepotAppCustomizationLocalServiceImpl
 	}
 
 	@Override
-	public int getDepotAppCustomizationCount(
+	public int getDepotAppCustomizationsCount(
 		long depotEntryId, boolean enabled) {
 
 		return depotAppCustomizationPersistence.countByD_E(
