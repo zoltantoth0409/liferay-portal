@@ -301,9 +301,9 @@ public class JournalContentSearchLocalServiceUtil {
 	 * @return the range of journal content searches
 	 */
 	public static java.util.List<com.liferay.journal.model.JournalContentSearch>
-		getJournalContentSearches(int start, int end) {
+		getJournalContentSearchs(int start, int end) {
 
-		return getService().getJournalContentSearches(start, end);
+		return getService().getJournalContentSearchs(start, end);
 	}
 
 	/**
@@ -311,8 +311,8 @@ public class JournalContentSearchLocalServiceUtil {
 	 *
 	 * @return the number of journal content searches
 	 */
-	public static int getJournalContentSearchesCount() {
-		return getService().getJournalContentSearchesCount();
+	public static int getJournalContentSearchsCount() {
+		return getService().getJournalContentSearchsCount();
 	}
 
 	public static java.util.List<Long> getLayoutIds(

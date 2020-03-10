@@ -81,7 +81,7 @@ public class JournalContentSearchPersistenceTest {
 	@After
 	public void tearDown() throws Exception {
 		Iterator<JournalContentSearch> iterator =
-			_journalContentSearches.iterator();
+			_journalContentSearchs.iterator();
 
 		while (iterator.hasNext()) {
 			_persistence.remove(iterator.next());
@@ -141,7 +141,7 @@ public class JournalContentSearchPersistenceTest {
 
 		newJournalContentSearch.setArticleId(RandomTestUtil.randomString());
 
-		_journalContentSearches.add(
+		_journalContentSearchs.add(
 			_persistence.update(newJournalContentSearch));
 
 		JournalContentSearch existingJournalContentSearch =
@@ -332,17 +332,17 @@ public class JournalContentSearchPersistenceTest {
 		primaryKeys.add(newJournalContentSearch1.getPrimaryKey());
 		primaryKeys.add(newJournalContentSearch2.getPrimaryKey());
 
-		Map<Serializable, JournalContentSearch> journalContentSearches =
+		Map<Serializable, JournalContentSearch> journalContentSearchs =
 			_persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(2, journalContentSearches.size());
+		Assert.assertEquals(2, journalContentSearchs.size());
 		Assert.assertEquals(
 			newJournalContentSearch1,
-			journalContentSearches.get(
+			journalContentSearchs.get(
 				newJournalContentSearch1.getPrimaryKey()));
 		Assert.assertEquals(
 			newJournalContentSearch2,
-			journalContentSearches.get(
+			journalContentSearchs.get(
 				newJournalContentSearch2.getPrimaryKey()));
 	}
 
@@ -359,10 +359,10 @@ public class JournalContentSearchPersistenceTest {
 		primaryKeys.add(pk1);
 		primaryKeys.add(pk2);
 
-		Map<Serializable, JournalContentSearch> journalContentSearches =
+		Map<Serializable, JournalContentSearch> journalContentSearchs =
 			_persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertTrue(journalContentSearches.isEmpty());
+		Assert.assertTrue(journalContentSearchs.isEmpty());
 	}
 
 	@Test
@@ -379,24 +379,23 @@ public class JournalContentSearchPersistenceTest {
 		primaryKeys.add(newJournalContentSearch.getPrimaryKey());
 		primaryKeys.add(pk);
 
-		Map<Serializable, JournalContentSearch> journalContentSearches =
+		Map<Serializable, JournalContentSearch> journalContentSearchs =
 			_persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(1, journalContentSearches.size());
+		Assert.assertEquals(1, journalContentSearchs.size());
 		Assert.assertEquals(
 			newJournalContentSearch,
-			journalContentSearches.get(
-				newJournalContentSearch.getPrimaryKey()));
+			journalContentSearchs.get(newJournalContentSearch.getPrimaryKey()));
 	}
 
 	@Test
 	public void testFetchByPrimaryKeysWithNoPrimaryKeys() throws Exception {
 		Set<Serializable> primaryKeys = new HashSet<Serializable>();
 
-		Map<Serializable, JournalContentSearch> journalContentSearches =
+		Map<Serializable, JournalContentSearch> journalContentSearchs =
 			_persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertTrue(journalContentSearches.isEmpty());
+		Assert.assertTrue(journalContentSearchs.isEmpty());
 	}
 
 	@Test
@@ -408,14 +407,13 @@ public class JournalContentSearchPersistenceTest {
 
 		primaryKeys.add(newJournalContentSearch.getPrimaryKey());
 
-		Map<Serializable, JournalContentSearch> journalContentSearches =
+		Map<Serializable, JournalContentSearch> journalContentSearchs =
 			_persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(1, journalContentSearches.size());
+		Assert.assertEquals(1, journalContentSearchs.size());
 		Assert.assertEquals(
 			newJournalContentSearch,
-			journalContentSearches.get(
-				newJournalContentSearch.getPrimaryKey()));
+			journalContentSearchs.get(newJournalContentSearch.getPrimaryKey()));
 	}
 
 	@Test
@@ -587,12 +585,12 @@ public class JournalContentSearchPersistenceTest {
 
 		journalContentSearch.setArticleId(RandomTestUtil.randomString());
 
-		_journalContentSearches.add(_persistence.update(journalContentSearch));
+		_journalContentSearchs.add(_persistence.update(journalContentSearch));
 
 		return journalContentSearch;
 	}
 
-	private List<JournalContentSearch> _journalContentSearches =
+	private List<JournalContentSearch> _journalContentSearchs =
 		new ArrayList<JournalContentSearch>();
 	private JournalContentSearchPersistence _persistence;
 	private ClassLoader _dynamicQueryClassLoader;

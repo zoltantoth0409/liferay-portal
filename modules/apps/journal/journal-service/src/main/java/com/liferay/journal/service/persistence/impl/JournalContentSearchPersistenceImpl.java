@@ -5161,12 +5161,12 @@ public class JournalContentSearchPersistenceImpl
 	/**
 	 * Caches the journal content searches in the entity cache if it is enabled.
 	 *
-	 * @param journalContentSearches the journal content searches
+	 * @param journalContentSearchs the journal content searches
 	 */
 	@Override
-	public void cacheResult(List<JournalContentSearch> journalContentSearches) {
+	public void cacheResult(List<JournalContentSearch> journalContentSearchs) {
 		for (JournalContentSearch journalContentSearch :
-				journalContentSearches) {
+				journalContentSearchs) {
 
 			if (entityCache.getResult(
 					entityCacheEnabled, JournalContentSearchImpl.class,
@@ -5217,12 +5217,12 @@ public class JournalContentSearchPersistenceImpl
 	}
 
 	@Override
-	public void clearCache(List<JournalContentSearch> journalContentSearches) {
+	public void clearCache(List<JournalContentSearch> journalContentSearchs) {
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (JournalContentSearch journalContentSearch :
-				journalContentSearches) {
+				journalContentSearchs) {
 
 			entityCache.removeResult(
 				entityCacheEnabled, JournalContentSearchImpl.class,

@@ -329,7 +329,7 @@ public abstract class JournalContentSearchLocalServiceBaseImpl
 	 * @return the range of journal content searches
 	 */
 	@Override
-	public List<JournalContentSearch> getJournalContentSearches(
+	public List<JournalContentSearch> getJournalContentSearchs(
 		int start, int end) {
 
 		return journalContentSearchPersistence.findAll(start, end);
@@ -341,7 +341,7 @@ public abstract class JournalContentSearchLocalServiceBaseImpl
 	 * @return the number of journal content searches
 	 */
 	@Override
-	public int getJournalContentSearchesCount() {
+	public int getJournalContentSearchsCount() {
 		return journalContentSearchPersistence.countAll();
 	}
 

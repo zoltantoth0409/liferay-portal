@@ -1391,10 +1391,10 @@ public interface JournalContentSearchPersistence
 	/**
 	 * Caches the journal content searches in the entity cache if it is enabled.
 	 *
-	 * @param journalContentSearches the journal content searches
+	 * @param journalContentSearchs the journal content searches
 	 */
 	public void cacheResult(
-		java.util.List<JournalContentSearch> journalContentSearches);
+		java.util.List<JournalContentSearch> journalContentSearchs);
 
 	/**
 	 * Creates a new journal content search with the primary key. Does not add the journal content search to the database.

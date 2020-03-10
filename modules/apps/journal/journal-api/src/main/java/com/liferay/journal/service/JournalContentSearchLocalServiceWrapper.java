@@ -332,9 +332,9 @@ public class JournalContentSearchLocalServiceWrapper
 	 */
 	@Override
 	public java.util.List<com.liferay.journal.model.JournalContentSearch>
-		getJournalContentSearches(int start, int end) {
+		getJournalContentSearchs(int start, int end) {
 
-		return _journalContentSearchLocalService.getJournalContentSearches(
+		return _journalContentSearchLocalService.getJournalContentSearchs(
 			start, end);
 	}
 
@@ -344,9 +344,9 @@ public class JournalContentSearchLocalServiceWrapper
 	 * @return the number of journal content searches
 	 */
 	@Override
-	public int getJournalContentSearchesCount() {
+	public int getJournalContentSearchsCount() {
 		return _journalContentSearchLocalService.
-			getJournalContentSearchesCount();
+			getJournalContentSearchsCount();
 	}
 
 	@Override

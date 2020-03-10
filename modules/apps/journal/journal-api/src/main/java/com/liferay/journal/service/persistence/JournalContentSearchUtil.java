@@ -1762,12 +1762,12 @@ public class JournalContentSearchUtil {
 	/**
 	 * Caches the journal content searches in the entity cache if it is enabled.
 	 *
-	 * @param journalContentSearches the journal content searches
+	 * @param journalContentSearchs the journal content searches
 	 */
 	public static void cacheResult(
-		List<JournalContentSearch> journalContentSearches) {
+		List<JournalContentSearch> journalContentSearchs) {
 
-		getPersistence().cacheResult(journalContentSearches);
+		getPersistence().cacheResult(journalContentSearchs);
 	}
 
 	/**

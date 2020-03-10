@@ -240,7 +240,7 @@ public interface JournalContentSearchLocalService
 	 * @return the range of journal content searches
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<JournalContentSearch> getJournalContentSearches(
+	public List<JournalContentSearch> getJournalContentSearchs(
 		int start, int end);
 
 	/**
@@ -249,7 +249,7 @@ public interface JournalContentSearchLocalService
 	 * @return the number of journal content searches
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getJournalContentSearchesCount();
+	public int getJournalContentSearchsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Long> getLayoutIds(
