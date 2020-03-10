@@ -36,7 +36,7 @@ public class EntityFinder {
 		_serviceBuilder = serviceBuilder;
 		_name = name;
 		_pluralName = GetterUtil.getString(
-			pluralName, TextFormatter.formatPlural(name));
+			pluralName, serviceBuilder.formatPlural(name));
 		_returnType = returnType;
 		_unique = unique;
 		_where = where;
