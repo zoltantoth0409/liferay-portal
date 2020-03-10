@@ -78,7 +78,6 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			accountEntryId);
-
 		AccountRole accountRole = _accountRoleLocalService.getAccountRole(
 			accountRoleId);
 

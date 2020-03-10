@@ -132,7 +132,6 @@ public class AccountUserRetrieverWhenSearchingAccountRoleUsersTest {
 
 		Assert.assertEquals(
 			accountRoleUsers.size(), baseModelSearchResult.getLength());
-
 		Assert.assertEquals(
 			ListUtil.sort(accountRoleUsers, new UserIdComparator()),
 			baseModelSearchResult.getBaseModels());
