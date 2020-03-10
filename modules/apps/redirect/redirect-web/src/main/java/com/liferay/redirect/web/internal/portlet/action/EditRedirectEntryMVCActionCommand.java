@@ -47,10 +47,11 @@ public class EditRedirectEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String destinationURL = ParamUtil.getString(
-			actionRequest, "destinationURL");
 		long redirectEntryId = ParamUtil.getLong(
 			actionRequest, "redirectEntryId");
+
+		String destinationURL = ParamUtil.getString(
+			actionRequest, "destinationURL");
 		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
 
 		if (redirectEntryId == 0) {
