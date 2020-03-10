@@ -1862,7 +1862,7 @@
 		<reference entity="PortletItem" package-path="com.liferay.portal" />
 		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
-	<entity local-service="true" name="RecentLayoutBranch" remote-service="false" uuid="false">
+	<entity local-service="true" name="RecentLayoutBranch" plural-name="RecentLayoutBranchs" remote-service="false" uuid="false">
 
 		<!-- PK fields -->
 
