@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.List;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Drew Brokke
  */
+@ProviderType
 public interface AccountUserRetriever {
 
 	public List<User> getAccountUsers(long accountEntryId);
