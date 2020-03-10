@@ -49,7 +49,6 @@ public class RedirectEntryLocalServiceImpl
 
 		redirectEntry.setCompanyId(serviceContext.getCompanyId());
 		redirectEntry.setUserId(serviceContext.getUserId());
-
 		redirectEntry.setDestinationURL(destinationURL);
 		redirectEntry.setSourceURL(sourceURL);
 
