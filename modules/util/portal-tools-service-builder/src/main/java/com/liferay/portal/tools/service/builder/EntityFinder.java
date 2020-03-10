@@ -29,10 +29,11 @@ import java.util.List;
 public class EntityFinder {
 
 	public EntityFinder(
-		String name, String pluralName, String returnType, boolean unique,
-		String where, String dbWhere, boolean dbIndex,
-		List<EntityColumn> entityColumns) {
+		ServiceBuilder serviceBuilder, String name, String pluralName,
+		String returnType, boolean unique, String where, String dbWhere,
+		boolean dbIndex, List<EntityColumn> entityColumns) {
 
+		_serviceBuilder = serviceBuilder;
 		_name = name;
 		_pluralName = GetterUtil.getString(
 			pluralName, TextFormatter.formatPlural(name));
@@ -156,7 +157,7 @@ public class EntityFinder {
 	}
 
 	public boolean hasEntityColumn(String name) {
-		return Entity.hasEntityColumn(name, _entityColumns);
+		return Entity.hasEntityColumn(_serviceBuilder, name, _entityColumns);
 	}
 
 	public boolean isCollection() {
@@ -182,6 +183,7 @@ public class EntityFinder {
 	private final String _name;
 	private final String _pluralName;
 	private final String _returnType;
+	private final ServiceBuilder _serviceBuilder;
 	private final boolean _unique;
 	private final String _where;
 
