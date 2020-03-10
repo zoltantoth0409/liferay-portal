@@ -538,10 +538,10 @@ public interface RecentLayoutBranchPersistence
 	/**
 	 * Caches the recent layout branches in the entity cache if it is enabled.
 	 *
-	 * @param recentLayoutBranches the recent layout branches
+	 * @param recentLayoutBranchs the recent layout branches
 	 */
 	public void cacheResult(
-		java.util.List<RecentLayoutBranch> recentLayoutBranches);
+		java.util.List<RecentLayoutBranch> recentLayoutBranchs);
 
 	/**
 	 * Creates a new recent layout branch with the primary key. Does not add the recent layout branch to the database.

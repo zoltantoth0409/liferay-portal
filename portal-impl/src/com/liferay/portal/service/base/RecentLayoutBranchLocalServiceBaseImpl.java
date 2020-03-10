@@ -328,9 +328,7 @@ public abstract class RecentLayoutBranchLocalServiceBaseImpl
 	 * @return the range of recent layout branches
 	 */
 	@Override
-	public List<RecentLayoutBranch> getRecentLayoutBranches(
-		int start, int end) {
-
+	public List<RecentLayoutBranch> getRecentLayoutBranchs(int start, int end) {
 		return recentLayoutBranchPersistence.findAll(start, end);
 	}
 
@@ -340,7 +338,7 @@ public abstract class RecentLayoutBranchLocalServiceBaseImpl
 	 * @return the number of recent layout branches
 	 */
 	@Override
-	public int getRecentLayoutBranchesCount() {
+	public int getRecentLayoutBranchsCount() {
 		return recentLayoutBranchPersistence.countAll();
 	}
 
