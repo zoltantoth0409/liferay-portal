@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.internal.list.retriever;
+package com.liferay.layout.internal.list.retriever.util;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

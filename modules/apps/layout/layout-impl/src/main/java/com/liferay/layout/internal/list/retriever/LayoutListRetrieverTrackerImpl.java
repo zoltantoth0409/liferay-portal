@@ -14,6 +14,7 @@
 
 package com.liferay.layout.internal.list.retriever;
 
+import com.liferay.layout.internal.list.retriever.util.GenericsUtil;
 import com.liferay.layout.list.retriever.LayoutListRetriever;
 import com.liferay.layout.list.retriever.LayoutListRetrieverTracker;
 
