@@ -361,7 +361,7 @@ export default function Chart({
 								title={
 									disabledPreviousPeriodButton
 										? Liferay.Language.get(
-												'you-cannot-choose-a-date-previous-to-the-publication-date'
+												'you-cannot-choose-a-date-prior-to-the-publication-date'
 										  )
 										: undefined
 								}
