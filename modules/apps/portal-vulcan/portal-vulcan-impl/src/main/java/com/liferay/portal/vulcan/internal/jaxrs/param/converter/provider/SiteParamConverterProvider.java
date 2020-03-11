@@ -80,7 +80,7 @@ public class SiteParamConverterProvider
 			return null;
 		}
 
-		if (_isSiteOrDepot(group) || _isSiteOrDepot(group.getLiveGroup())) {
+		if (_isDepotOrSite(group) || _isDepotOrSite(group.getLiveGroup())) {
 			return group.getGroupId();
 		}
 
@@ -116,7 +116,7 @@ public class SiteParamConverterProvider
 		return false;
 	}
 
-	private boolean _isSiteOrDepot(Group group) {
+	private boolean _isDepotOrSite(Group group) {
 		if (group == null) {
 			return false;
 		}
