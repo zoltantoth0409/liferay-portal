@@ -121,7 +121,7 @@ public class SiteParamConverterProvider
 			return false;
 		}
 
-		if (group.isSite() || (group.getType() == GroupConstants.TYPE_DEPOT)) {
+		if ((group.getType() == GroupConstants.TYPE_DEPOT) || group.isSite()) {
 			return true;
 		}
 
