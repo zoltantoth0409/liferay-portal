@@ -286,7 +286,7 @@ public class PullRequest {
 	}
 
 	public JSONArray getSenderSHAStatuses() {
-		JSONArray statusesJSONArray;
+		JSONArray statusesJSONArray = null;
 
 		try {
 			statusesJSONArray = JenkinsResultsParserUtil.toJSONArray(
