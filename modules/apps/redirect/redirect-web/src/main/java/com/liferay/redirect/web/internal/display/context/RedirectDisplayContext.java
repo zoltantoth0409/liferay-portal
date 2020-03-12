@@ -164,10 +164,10 @@ public class RedirectDisplayContext {
 			getSearchContainerId());
 
 		if (_redirectEntrySearch.isSearch()) {
-			_populateFromSearch(_redirectEntrySearch);
+			_populateFromSearchIndex(_redirectEntrySearch);
 		}
 		else {
-			_populateFromService(_redirectEntrySearch);
+			_populateFromDatabase(_redirectEntrySearch);
 		}
 
 		return _redirectEntrySearch;
@@ -246,7 +246,7 @@ public class RedirectDisplayContext {
 		return false;
 	}
 
-	private void _populateFromSearch(RedirectEntrySearch redirectEntrySearch)
+	private void _populateFromSearchIndex(RedirectEntrySearch redirectEntrySearch)
 		throws PortalException {
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(RedirectEntry.class);
@@ -278,7 +278,7 @@ public class RedirectDisplayContext {
 		redirectEntrySearch.setTotal(hits.getLength());
 	}
 
-	private void _populateFromService(RedirectEntrySearch redirectEntrySearch) {
+	private void _populateFromDatabase(RedirectEntrySearch redirectEntrySearch) {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
