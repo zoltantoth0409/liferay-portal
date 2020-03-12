@@ -14,7 +14,6 @@ definition {
 		App.toggleDeploy(deployOption = "${deployOption}");
 
 		if (isSet(menuOption) && isSet(siteOptionList)) {
-
 			App.selectProductMenuPlaceItDropdownOption(menuOption = "${menuOption}");
 
 			App.openProductMenuSiteOption();
