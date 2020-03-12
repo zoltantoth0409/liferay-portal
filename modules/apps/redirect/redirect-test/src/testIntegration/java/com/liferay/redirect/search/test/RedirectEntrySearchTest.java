@@ -153,7 +153,6 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 			_redirectEntryLocalService.addRedirectEntry(
 				serviceContext.getScopeGroupId(), "http://www.liferay.com/a",
 				RandomTestUtil.randomString(), true, serviceContext);
-
 		RedirectEntry redirectEntry2 =
 			_redirectEntryLocalService.addRedirectEntry(
 				serviceContext.getScopeGroupId(), "http://www.liferay.com/b",
@@ -164,7 +163,6 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 			new Sort(
 				Field.getSortableFieldName("destinationURL"), Sort.STRING_TYPE,
 				false));
-
 		_assertSearchResults(
 			redirectEntry2, redirectEntry1,
 			new Sort(
@@ -181,7 +179,6 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 			_redirectEntryLocalService.addRedirectEntry(
 				serviceContext.getScopeGroupId(), "http://www.liferay.com", "a",
 				true, serviceContext);
-
 		RedirectEntry redirectEntry2 =
 			_redirectEntryLocalService.addRedirectEntry(
 				serviceContext.getScopeGroupId(), "http://www.liferay.com", "b",
@@ -192,7 +189,6 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 			new Sort(
 				Field.getSortableFieldName("sourceURL"), Sort.STRING_TYPE,
 				false));
-
 		_assertSearchResults(
 			redirectEntry2, redirectEntry1,
 			new Sort(
