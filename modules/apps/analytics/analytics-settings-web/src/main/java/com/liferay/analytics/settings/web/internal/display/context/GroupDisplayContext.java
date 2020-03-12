@@ -63,12 +63,12 @@ import org.apache.http.util.EntityUtils;
 public class GroupDisplayContext {
 
 	public GroupDisplayContext(
-		RenderRequest renderRequest, RenderResponse renderResponse,
-		String mvcRenderCommandName) {
+		String mvcRenderCommandName, RenderRequest renderRequest,
+		RenderResponse renderResponse) {
 
+		_mvcRenderCommandName = mvcRenderCommandName;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
-		_mvcRenderCommandName = mvcRenderCommandName;
 
 		_analyticsConfiguration =
 			(AnalyticsConfiguration)renderRequest.getAttribute(
