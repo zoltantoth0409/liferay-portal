@@ -164,10 +164,10 @@ public class RedirectDisplayContext {
 			getSearchContainerId());
 
 		if (_redirectEntrySearch.isSearch()) {
-			_populateFromSearchIndex(_redirectEntrySearch);
+			_populateWithSearchIndex(_redirectEntrySearch);
 		}
 		else {
-			_populateFromDatabase(_redirectEntrySearch);
+			_populateWithDatabase(_redirectEntrySearch);
 		}
 
 		return _redirectEntrySearch;
@@ -246,7 +246,7 @@ public class RedirectDisplayContext {
 		return false;
 	}
 
-	private void _populateFromDatabase(
+	private void _populateWithDatabase(
 		RedirectEntrySearch redirectEntrySearch) {
 
 		ThemeDisplay themeDisplay =
@@ -263,7 +263,7 @@ public class RedirectDisplayContext {
 				_redirectEntrySearch.getEnd(), _getOrderByComparator()));
 	}
 
-	private void _populateFromSearchIndex(
+	private void _populateWithSearchIndex(
 			RedirectEntrySearch redirectEntrySearch)
 		throws PortalException {
 
