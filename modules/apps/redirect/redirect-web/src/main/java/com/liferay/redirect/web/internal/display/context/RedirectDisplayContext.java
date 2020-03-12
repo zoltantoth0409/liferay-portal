@@ -246,7 +246,25 @@ public class RedirectDisplayContext {
 		return false;
 	}
 
-	private void _populateFromSearchIndex(RedirectEntrySearch redirectEntrySearch)
+	private void _populateFromDatabase(
+		RedirectEntrySearch redirectEntrySearch) {
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)_httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		redirectEntrySearch.setTotal(
+			RedirectEntryLocalServiceUtil.getRedirectEntriesCount(
+				themeDisplay.getScopeGroupId()));
+
+		redirectEntrySearch.setResults(
+			RedirectEntryLocalServiceUtil.getRedirectEntries(
+				themeDisplay.getScopeGroupId(), _redirectEntrySearch.getStart(),
+				_redirectEntrySearch.getEnd(), _getOrderByComparator()));
+	}
+
+	private void _populateFromSearchIndex(
+			RedirectEntrySearch redirectEntrySearch)
 		throws PortalException {
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(RedirectEntry.class);
@@ -276,21 +294,6 @@ public class RedirectDisplayContext {
 			));
 
 		redirectEntrySearch.setTotal(hits.getLength());
-	}
-
-	private void _populateFromDatabase(RedirectEntrySearch redirectEntrySearch) {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		redirectEntrySearch.setTotal(
-			RedirectEntryLocalServiceUtil.getRedirectEntriesCount(
-				themeDisplay.getScopeGroupId()));
-
-		redirectEntrySearch.setResults(
-			RedirectEntryLocalServiceUtil.getRedirectEntries(
-				themeDisplay.getScopeGroupId(), _redirectEntrySearch.getStart(),
-				_redirectEntrySearch.getEnd(), _getOrderByComparator()));
 	}
 
 	private final HttpServletRequest _httpServletRequest;
