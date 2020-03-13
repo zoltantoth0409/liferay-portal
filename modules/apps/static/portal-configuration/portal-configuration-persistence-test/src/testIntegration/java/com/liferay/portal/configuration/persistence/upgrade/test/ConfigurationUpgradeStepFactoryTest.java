@@ -187,28 +187,28 @@ public class ConfigurationUpgradeStepFactoryTest {
 
 		Configuration configuration = configurations[0];
 
-		String existedPid = configuration.getPid();
+		String existentPid = configuration.getPid();
 
-		String nonExistedPid;
+		String nonexistentPid = null;
 
 		if (upgraded) {
-			nonExistedPid = StringUtil.replace(
-				existedPid, _TEST_PID_NEW, _TEST_PID_OLD);
+			nonexistentPid = StringUtil.replace(
+				existentPid, _TEST_PID_NEW, _TEST_PID_OLD);
 		}
 		else {
-			nonExistedPid = StringUtil.replace(
-				existedPid, _TEST_PID_OLD, _TEST_PID_NEW);
+			nonexistentPid = StringUtil.replace(
+				existentPid, _TEST_PID_OLD, _TEST_PID_NEW);
 		}
 
 		Assert.assertFalse(
-			"Configuration " + nonExistedPid + " still exists",
-			_persistenceManager.exists(nonExistedPid));
+			"Configuration " + nonexistentPid + " still exists",
+			_persistenceManager.exists(nonexistentPid));
 		Assert.assertTrue(
-			"Configuration " + existedPid + " does not exist",
-			_persistenceManager.exists(existedPid));
+			"Configuration " + existentPid + " does not exist",
+			_persistenceManager.exists(existentPid));
 
 		Dictionary<String, String> dictionary = _persistenceManager.load(
-			existedPid);
+			existentPid);
 
 		String fileName = dictionary.get("felix.fileinstall.filename");
 
@@ -221,16 +221,16 @@ public class ConfigurationUpgradeStepFactoryTest {
 			return;
 		}
 
-		File existedConfigFile;
+		File existentConfigFile;
 
 		if (upgraded) {
-			existedConfigFile = newConfigFile;
+			existentConfigFile = newConfigFile;
 		}
 		else {
-			existedConfigFile = oldConfigFile;
+			existentConfigFile = oldConfigFile;
 		}
 
-		URI uri = existedConfigFile.toURI();
+		URI uri = existentConfigFile.toURI();
 
 		Assert.assertEquals(uri.toString(), fileName);
 	}
