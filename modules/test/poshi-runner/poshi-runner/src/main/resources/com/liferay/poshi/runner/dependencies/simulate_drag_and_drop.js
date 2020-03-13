@@ -1,26 +1,29 @@
 Simulate = {
-    dragAndDrop: async function (source, target) {
-        const dataTransfer = new DataTransfer();
+	dragAndDrop: async function(source, target) {
+		const dataTransfer = new DataTransfer();
 
-        const dispatchEvent = async (type, element) => {
-            const rect = element.getBoundingClientRect();
+		const dispatchEvent = async(type, element) => {
+			const rect = element.getBoundingClientRect();
 
-            const event = new DragEvent(type, {
-                bubbles: true,
-                clientX: rect.left + (rect.width / 2),
-                clientY: rect.top + (rect.top / 2),
-                dataTransfer: dataTransfer,
-                relatedTarget: element
-            });
+			const event = new DragEvent(
+				type,
+				{
+					bubbles: true,
+					clientX: rect.left + (rect.width / 2),
+					clientY: rect.top + (rect.top / 2),
+					dataTransfer: dataTransfer,
+					relatedTarget: element
+				});
 
-            element.dispatchEvent(event);
-        };
-        await dispatchEvent('dragstart', source);
+			element.dispatchEvent(event);
+		};
 
-        await dispatchEvent('dragover', target);
+		await dispatchEvent('dragstart', source);
 
-        await dispatchEvent('drop', target);
+		await dispatchEvent('dragover', target);
 
-        await dispatchEvent('dragend', source);
-    }
+		await dispatchEvent('drop', target);
+
+		await dispatchEvent('dragend', source);
+	}
 };
