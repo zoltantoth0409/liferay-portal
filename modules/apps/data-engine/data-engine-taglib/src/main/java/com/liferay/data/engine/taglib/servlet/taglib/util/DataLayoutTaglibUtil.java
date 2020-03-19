@@ -150,7 +150,8 @@ public class DataLayoutTaglibUtil {
 					"ruleSettings",
 					JSONUtil.put(
 						"functionsMetadata",
-						_dataLayoutTaglibUtil._getFunctionsMetadata(locale)));
+						_dataLayoutTaglibUtil._getFunctionsMetadataJSONObject(
+							locale)));
 			}
 			catch (JSONException jsonException) {
 				_log.error(jsonException, jsonException);
@@ -457,7 +458,7 @@ public class DataLayoutTaglibUtil {
 		}
 	}
 
-	private JSONObject _getFunctionsMetadata(Locale locale)
+	private JSONObject _getFunctionsMetadataJSONObject(Locale locale)
 		throws JSONException {
 
 		return JSONFactoryUtil.createJSONObject(
