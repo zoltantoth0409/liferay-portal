@@ -479,18 +479,6 @@ public class MasterLayoutsImporterImpl implements MasterLayoutsImporter {
 	}
 
 	private void _updateLayoutSettings(Layout layout, Settings settings) {
-		if (Validator.isNotNull(settings.getCss())) {
-			layout.setCss(settings.getCss());
-		}
-
-		if (Validator.isNotNull(settings.getColorSchemeName())) {
-			layout.setColorSchemeId(settings.getColorSchemeName());
-		}
-
-		if (Validator.isNotNull(settings.getThemeName())) {
-			layout.setThemeId(settings.getThemeName());
-		}
-
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
@@ -503,6 +491,18 @@ public class MasterLayoutsImporterImpl implements MasterLayoutsImporter {
 			}
 
 			layout.setTypeSettingsProperties(unicodeProperties);
+		}
+
+		if (Validator.isNotNull(settings.getThemeName())) {
+			layout.setThemeId(settings.getThemeName());
+		}
+
+		if (Validator.isNotNull(settings.getColorSchemeName())) {
+			layout.setColorSchemeId(settings.getColorSchemeName());
+		}
+
+		if (Validator.isNotNull(settings.getCss())) {
+			layout.setCss(settings.getCss());
 		}
 
 		_layoutLocalService.updateLayout(layout);
