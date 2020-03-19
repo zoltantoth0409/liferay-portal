@@ -131,12 +131,10 @@ public class DataLayoutTaglibUtil {
 				"default");
 		}
 
-		boolean allowRules = dataLayoutBuilderDefinition.allowRules();
-
 		JSONObject dataLayoutConfigJSONObject = JSONUtil.put(
 			"allowFieldSets", dataLayoutBuilderDefinition.allowFieldSets()
 		).put(
-			"allowRules", allowRules
+			"allowRules", dataLayoutBuilderDefinition.allowRules()
 		).put(
 			"disabledProperties",
 			dataLayoutBuilderDefinition.getDisabledProperties()
@@ -152,7 +150,7 @@ public class DataLayoutTaglibUtil {
 			dataLayoutBuilderDefinition.getUnimplementedProperties()
 		);
 
-		if (allowRules) {
+		if (dataLayoutBuilderDefinition.allowRules()) {
 			try {
 				dataLayoutConfigJSONObject.put(
 					"ruleSettings",
