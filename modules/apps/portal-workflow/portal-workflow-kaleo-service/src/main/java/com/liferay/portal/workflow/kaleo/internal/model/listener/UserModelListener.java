@@ -83,17 +83,12 @@ public class UserModelListener extends BaseModelListener<User> {
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws PortalException {
 
-		KaleoTask kaleoTask = _kaleoTaskLocalService.getKaleoTask(
-			kaleoTaskAssignmentInstance.getKaleoTaskId());
-
 		KaleoInstanceToken kaleoInstanceToken =
 			_kaleoInstanceTokenLocalService.getKaleoInstanceToken(
 				kaleoTaskAssignmentInstance.getKaleoInstanceTokenId());
-
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			_kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				kaleoTaskAssignmentInstance.getKaleoTaskInstanceTokenId());
-
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
@@ -110,6 +105,9 @@ public class UserModelListener extends BaseModelListener<User> {
 			});
 
 		List<KaleoTaskAssignment> kaleoTaskAssignments = new ArrayList<>();
+
+		KaleoTask kaleoTask = _kaleoTaskLocalService.getKaleoTask(
+			kaleoTaskAssignmentInstance.getKaleoTaskId());
 
 		for (KaleoTaskAssignment kaleoTaskAssignment :
 				kaleoTask.getKaleoTaskAssignments()) {
