@@ -142,12 +142,6 @@ public class DataLayoutTaglibUtil {
 			"disabledTabs", dataLayoutBuilderDefinition.getDisabledTabs()
 		).put(
 			"paginationMode", dataLayoutBuilderDefinition.getPaginationMode()
-		).put(
-			"successPageSettings",
-			dataLayoutBuilderDefinition.getSuccessPageSettings()
-		).put(
-			"unimplementedProperties",
-			dataLayoutBuilderDefinition.getUnimplementedProperties()
 		);
 
 		if (dataLayoutBuilderDefinition.allowRules()) {
@@ -162,6 +156,14 @@ public class DataLayoutTaglibUtil {
 				_log.error(jsonException, jsonException);
 			}
 		}
+
+		dataLayoutConfigJSONObject.put(
+			"successPageSettings",
+			dataLayoutBuilderDefinition.getSuccessPageSettings()
+		).put(
+			"unimplementedProperties",
+			dataLayoutBuilderDefinition.getUnimplementedProperties()
+		);
 
 		return dataLayoutConfigJSONObject;
 	}
