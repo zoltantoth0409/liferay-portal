@@ -166,10 +166,8 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 	private void _addBaseFileName(String fileName) {
 		URL url = _classLoader.getResource(fileName);
 
-		List<String> includeAndOverrides = new ArrayList<>();
-
 		Configuration configuration = _addPropertiesSource(
-			fileName, url, _baseCompositeConfiguration, includeAndOverrides);
+			fileName, url, _baseCompositeConfiguration);
 
 		if (configuration == null) {
 			throw new SystemException(
@@ -179,12 +177,11 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 			_log.debug("Empty configuration " + fileName);
 		}
 
-		setProperty("include-and-override", includeAndOverrides);
+		setProperty("include-and-override", _includeAndOverride);
 	}
 
 	private Configuration _addFileProperties(
-		String fileName, CompositeConfiguration loadedCompositeConfiguration,
-		List<String> includeAndOverrides) {
+		String fileName, CompositeConfiguration loadedCompositeConfiguration) {
 
 		URL url = ConfigurationUtils.locate(_fileSystem, null, fileName);
 
@@ -204,8 +201,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 				};
 
 			_addIncludedPropertiesSources(
-				newFileConfiguration, loadedCompositeConfiguration,
-				includeAndOverrides);
+				newFileConfiguration, loadedCompositeConfiguration);
 
 			return newFileConfiguration;
 		}
@@ -220,8 +216,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 
 	private void _addIncludedPropertiesSources(
 		Configuration newConfiguration,
-		CompositeConfiguration loadedCompositeConfiguration,
-		List<String> includeAndOverrides) {
+		CompositeConfiguration loadedCompositeConfiguration) {
 
 		CompositeConfiguration tempCompositeConfiguration =
 			new CompositeConfiguration();
@@ -234,7 +229,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 		String[] fileNames = tempCompositeConfiguration.getStringArray(
 			"include-and-override");
 
-		Collections.addAll(includeAndOverrides, fileNames);
+		Collections.addAll(_includeAndOverride, fileNames);
 
 		ArrayUtil.reverse(fileNames);
 
@@ -254,28 +249,24 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 				url = _classLoader.getResource(fileName);
 			}
 
-			_addPropertiesSource(
-				fileName, url, loadedCompositeConfiguration,
-				includeAndOverrides);
+			_addPropertiesSource(fileName, url, loadedCompositeConfiguration);
 		}
 	}
 
 	private Configuration _addPropertiesSource(
 		String sourceName, URL url,
-		CompositeConfiguration loadedCompositeConfiguration,
-		List<String> includeAndOverrides) {
+		CompositeConfiguration loadedCompositeConfiguration) {
 
 		try {
 			Configuration newConfiguration = null;
 
 			if (url != null) {
 				newConfiguration = _addURLProperties(
-					url, loadedCompositeConfiguration, includeAndOverrides);
+					url, loadedCompositeConfiguration);
 			}
 			else {
 				newConfiguration = _addFileProperties(
-					sourceName, loadedCompositeConfiguration,
-					includeAndOverrides);
+					sourceName, loadedCompositeConfiguration);
 			}
 
 			if (newConfiguration == null) {
@@ -314,8 +305,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 	}
 
 	private Configuration _addURLProperties(
-		URL url, CompositeConfiguration loadedCompositeConfiguration,
-		List<String> includeAndOverrides) {
+		URL url, CompositeConfiguration loadedCompositeConfiguration) {
 
 		try {
 			PropertiesConfiguration propertiesConfiguration =
@@ -354,8 +344,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 			}
 
 			_addIncludedPropertiesSources(
-				propertiesConfiguration, loadedCompositeConfiguration,
-				includeAndOverrides);
+				propertiesConfiguration, loadedCompositeConfiguration);
 
 			return propertiesConfiguration;
 		}
@@ -424,6 +413,7 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 	private final String _componentName;
 	private final CompositeConfiguration _globalCompositeConfiguration =
 		new CompositeConfiguration();
+	private final List<String> _includeAndOverride = new ArrayList<>();
 	private final List<String> _loadedSources = new ArrayList<>();
 	private final Configuration _prefixedSystemConfiguration;
 	private final SystemConfiguration _systemConfiguration =
