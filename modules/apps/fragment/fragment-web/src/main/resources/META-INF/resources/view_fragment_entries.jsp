@@ -73,18 +73,14 @@ FragmentManagementToolbarDisplayContext fragmentManagementToolbarDisplayContext 
 	</liferay-ui:search-container>
 </aui:form>
 
-<portlet:actionURL name="/fragment/update_fragment_composition_preview" var="updateFragmentCompositionPreviewURL">
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-</portlet:actionURL>
-
-<portlet:actionURL name="/fragment/update_fragment_entry_preview" var="updateFragmentEntryPreviewURL">
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-</portlet:actionURL>
-
 <aui:form name="fragmentCompositionFm">
 	<aui:input name="fragmentCompositionId" type="hidden" />
 	<aui:input name="fragmentCollectionId" type="hidden" />
 </aui:form>
+
+<portlet:actionURL name="/fragment/update_fragment_composition_preview" var="updateFragmentCompositionPreviewURL">
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:actionURL>
 
 <aui:form action="<%= updateFragmentCompositionPreviewURL %>" name="fragmentCompositionPreviewFm">
 	<aui:input name="fragmentCompositionId" type="hidden" />
@@ -96,6 +92,10 @@ FragmentManagementToolbarDisplayContext fragmentManagementToolbarDisplayContext 
 	<aui:input name="fragmentCompositionIds" type="hidden" />
 	<aui:input name="fragmentEntryIds" type="hidden" />
 </aui:form>
+
+<portlet:actionURL name="/fragment/update_fragment_entry_preview" var="updateFragmentEntryPreviewURL">
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:actionURL>
 
 <aui:form action="<%= updateFragmentEntryPreviewURL %>" name="fragmentEntryPreviewFm">
 	<aui:input name="fragmentEntryId" type="hidden" />
