@@ -53,9 +53,6 @@ public class MoveFragmentCompositionsAndFragmentEntriesMVCActionCommand
 		long[] fragmentCompositionIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "fragmentCompositionIds"), 0L);
 
-		long[] fragmentEntryIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "fragmentEntryIds"), 0L);
-
 		long fragmentCollectionId = ParamUtil.getLong(
 			actionRequest, "fragmentCollectionId");
 
@@ -63,6 +60,9 @@ public class MoveFragmentCompositionsAndFragmentEntriesMVCActionCommand
 			_fragmentCompositionService.moveFragmentComposition(
 				fragmentCompositionId, fragmentCollectionId);
 		}
+
+		long[] fragmentEntryIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "fragmentEntryIds"), 0L);
 
 		for (long fragmentEntryId : fragmentEntryIds) {
 			_fragmentEntryService.moveFragmentEntry(
