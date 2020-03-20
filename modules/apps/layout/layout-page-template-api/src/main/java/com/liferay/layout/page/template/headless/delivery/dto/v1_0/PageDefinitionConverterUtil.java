@@ -117,9 +117,10 @@ public class PageDefinitionConverterUtil {
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 #toPageElement(FragmentCollectionContributorTracker,
-	 FragmentEntryConfigurationParser, FragmentRendererTracker, long,
-	 LayoutStructure,  LayoutStructureItem, boolean, boolean, long)}
+	 *             #toPageElement(FragmentCollectionContributorTracker,
+	 *             FragmentEntryConfigurationParser, FragmentRendererTracker,
+	 *             long, LayoutStructure,  LayoutStructureItem, boolean,
+	 *             boolean, long)}
 	 */
 	@Deprecated
 	public static PageElement toPageElement(
@@ -136,9 +137,10 @@ public class PageDefinitionConverterUtil {
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 #toPageElement(FragmentCollectionContributorTracker,
-	 FragmentEntryConfigurationParser, FragmentRendererTracker, long,
-	 LayoutStructure,  LayoutStructureItem, boolean, boolean, long)}
+	 *             #toPageElement(FragmentCollectionContributorTracker,
+	 *             FragmentEntryConfigurationParser, FragmentRendererTracker,
+	 *             long, LayoutStructure,  LayoutStructureItem, boolean,
+	 *             boolean, long)}
 	 */
 	@Deprecated
 	public static PageElement toPageElement(
