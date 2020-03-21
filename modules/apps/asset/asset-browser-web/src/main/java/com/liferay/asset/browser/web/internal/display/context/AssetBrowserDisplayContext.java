@@ -379,7 +379,7 @@ public class AssetBrowserDisplayContext {
 	}
 
 	public boolean isShowAssetEntryStatus() {
-		if (_isShowScheduled() || _isShowNonindexable()) {
+		if (_isShowNonindexable() || _isShowScheduled()) {
 			return true;
 		}
 
