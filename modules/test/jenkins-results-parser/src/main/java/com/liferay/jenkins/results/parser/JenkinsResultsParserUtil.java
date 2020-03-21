@@ -1160,10 +1160,9 @@ public class JenkinsResultsParserUtil {
 			excludePathMatchers = toPathMatchers(null, excludes);
 		}
 
-		List<File> files = findFiles(basedir, ".*");
-
 		return getIncludedFiles(
-			excludePathMatchers, toPathMatchers(null, includes), files);
+			excludePathMatchers, toPathMatchers(null, includes),
+			findFiles(basedir, ".*"));
 	}
 
 	public static List<File> getIncludedFiles(
