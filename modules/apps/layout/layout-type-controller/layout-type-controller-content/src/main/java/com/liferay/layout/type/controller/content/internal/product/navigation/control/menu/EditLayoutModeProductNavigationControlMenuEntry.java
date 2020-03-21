@@ -105,13 +105,13 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 					_portal.getClassNameId(Layout.class), layout.getPlid());
 
 				if (draftLayout == null) {
-					ServiceContext serviceContext =
-						ServiceContextFactory.getInstance(httpServletRequest);
-
 					UnicodeProperties unicodeProperties =
 						layout.getTypeSettingsProperties();
 
 					unicodeProperties.put("published", "true");
+
+					ServiceContext serviceContext =
+						ServiceContextFactory.getInstance(httpServletRequest);
 
 					draftLayout = _layoutLocalService.addLayout(
 						layout.getUserId(), layout.getGroupId(),

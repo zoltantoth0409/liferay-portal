@@ -1803,13 +1803,13 @@ public class LayoutsAdminDisplayContext {
 			PortalUtil.getClassNameId(Layout.class), layout.getPlid());
 
 		if (draftLayout == null) {
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				httpServletRequest);
-
 			UnicodeProperties unicodeProperties =
 				layout.getTypeSettingsProperties();
 
 			unicodeProperties.put("published", "true");
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				httpServletRequest);
 
 			draftLayout = LayoutLocalServiceUtil.addLayout(
 				layout.getUserId(), layout.getGroupId(),
