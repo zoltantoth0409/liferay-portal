@@ -43,7 +43,6 @@ definition {
 	}
 
 	macro addFormView {
-
 		if (IsElementPresent(locator1 = "AppBuilder#NAVBAR")) {
 			FormViewBuilder.switchToFormViewTab();
 			AppBuilderAdmin.add();
@@ -57,7 +56,6 @@ definition {
 	}
 
 	macro addFormViewAndValidateFieldLabel {
-
 		FormViewBuilder.addFormView(
 			fieldType = "${fieldType}",
 			formViewName = "${formViewName}");
