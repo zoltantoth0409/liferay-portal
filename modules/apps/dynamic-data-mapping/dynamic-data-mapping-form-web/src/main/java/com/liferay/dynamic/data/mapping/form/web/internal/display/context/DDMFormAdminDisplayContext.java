@@ -280,13 +280,13 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public JSONArray getDDMFormFieldTypesJSONArray() throws PortalException {
-		List<DDMFormFieldType> formFieldTypes =
+		List<DDMFormFieldType> ddmFormFieldTypes =
 			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
 
-		List<DDMFormFieldType> availableFormFieldTypes =
-			_removeDDMFormFieldTypesOutOfScope(formFieldTypes);
+		List<DDMFormFieldType> availableDDMFormFieldTypes =
+			_removeDDMFormFieldTypesOutOfScope(ddmFormFieldTypes);
 
-		String serializedFormFieldTypes = serialize(availableFormFieldTypes);
+		String serializedFormFieldTypes = serialize(availableDDMFormFieldTypes);
 
 		JSONArray jsonArray = jsonFactory.createJSONArray(
 			serializedFormFieldTypes);
@@ -298,7 +298,8 @@ public class DDMFormAdminDisplayContext {
 			PortalUtil.getHttpServletResponse(renderResponse);
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			DDMFormFieldType ddmFormFieldType = availableFormFieldTypes.get(i);
+			DDMFormFieldType ddmFormFieldType = availableDDMFormFieldTypes.get(
+				i);
 
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -1418,18 +1419,18 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	private List<DDMFormFieldType> _removeDDMFormFieldTypesOutOfScope(
-		List<DDMFormFieldType> formFieldTypes) {
+		List<DDMFormFieldType> ddmFormFieldTypes) {
 
-		List<DDMFormFieldType> availableFormFieldTypes = new ArrayList<>();
+		List<DDMFormFieldType> availableDDMFormFieldTypes = new ArrayList<>();
 
 		ListUtil.filter(
-			formFieldTypes, availableFormFieldTypes,
+			ddmFormFieldTypes, availableDDMFormFieldTypes,
 			formFieldType -> !formFieldType.getName(
 			).equals(
 				"geolocation"
 			));
 
-		return Collections.unmodifiableList(availableFormFieldTypes);
+		return Collections.unmodifiableList(availableDDMFormFieldTypes);
 	}
 
 	private static final String[] _DISPLAY_VIEWS = {"descriptive", "list"};
