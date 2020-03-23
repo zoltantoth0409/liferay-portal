@@ -361,62 +361,13 @@ public class EmbeddedElasticsearchConnection
 				ThreadPool threadPool = injector.getInstance(ThreadPool.class);
 
 				try {
-					Field executorsField = ReflectionUtil.getDeclaredField(
-						ThreadPool.class, "executors");
-
-					Map<String, Object> executors =
-						(Map<String, Object>)executorsField.get(threadPool);
-
-					Map<String, Object> newExecutors = new HashMap<>(executors);
-
-					newExecutors.put(
-						ThreadPool.Names.FETCH_SHARD_STARTED,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.FLUSH,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.GENERIC,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.INDEX,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.MANAGEMENT,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.REFRESH,
-						executors.get(ThreadPool.Names.SAME));
-
-					newExecutors.put(
-						ThreadPool.Names.WRITE,
-						executors.get(ThreadPool.Names.SAME));
-
-					Object executorHolder = newExecutors.get(
-						ThreadPool.Names.SEARCH);
-
-					Field executorField = ReflectionUtil.getDeclaredField(
-						executorHolder.getClass(), "executor");
-
-					ThreadPoolExecutor threadPoolExecutor =
-						(ThreadPoolExecutor)executorField.get(executorHolder);
-
-					threadPoolExecutor.shutdown();
-
-					threadPoolExecutor.setRejectedExecutionHandler(
-						(runnable, executor) -> runnable.run());
-
-					executorsField.set(
-						threadPool, Collections.unmodifiableMap(newExecutors));
+					_syncThreadPools(threadPool);
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
-						_log.warn("Unable to sync ES threadpools", exception);
+						_log.warn(
+							"Unable to sync Elasticsearch thread pools",
+							exception);
 					}
 				}
 			}
@@ -519,6 +470,54 @@ public class EmbeddedElasticsearchConnection
 
 	@Reference
 	protected Props props;
+
+	private void _syncThreadPools(ThreadPool threadPool) throws Exception {
+		Field executorsField = ReflectionUtil.getDeclaredField(
+			ThreadPool.class, "executors");
+
+		Map<String, Object> executors = (Map<String, Object>)executorsField.get(
+			threadPool);
+
+		Map<String, Object> newExecutors = new HashMap<>(executors);
+
+		newExecutors.put(
+			ThreadPool.Names.FETCH_SHARD_STARTED,
+			executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.FLUSH, executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.GENERIC, executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.INDEX, executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.MANAGEMENT, executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.REFRESH, executors.get(ThreadPool.Names.SAME));
+
+		newExecutors.put(
+			ThreadPool.Names.WRITE, executors.get(ThreadPool.Names.SAME));
+
+		Object executorHolder = newExecutors.get(ThreadPool.Names.SEARCH);
+
+		Field executorField = ReflectionUtil.getDeclaredField(
+			executorHolder.getClass(), "executor");
+
+		ThreadPoolExecutor threadPoolExecutor =
+			(ThreadPoolExecutor)executorField.get(executorHolder);
+
+		threadPoolExecutor.shutdown();
+
+		threadPoolExecutor.setRejectedExecutionHandler(
+			(runnable, executor) -> runnable.run());
+
+		executorsField.set(
+			threadPool, Collections.unmodifiableMap(newExecutors));
+	}
 
 	/**
 	 * Keep this as a static field to avoid the class loading failure during
