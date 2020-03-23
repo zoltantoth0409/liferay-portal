@@ -256,6 +256,7 @@ definition {
 		RecycleBin.viewDefaultCP(assetName = "Blogs Entry Title");
 	}
 
+	@ignore = "true"
 	@priority = "3"
 	test RecycleBinSearchBlogsEntries {
 		Portlet.addPG(portletName = "Blogs");
@@ -452,6 +453,7 @@ definition {
 			deleteUser = "Test Test");
 	}
 
+	@ignore = "true"
 	@priority = "3"
 	test RecycleBinWebContent {
 		WebContentStructures.openWebContentStructuresAdmin(siteURLKey = "site-name");
