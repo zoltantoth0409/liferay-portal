@@ -45,9 +45,10 @@ public class RedirectNotFoundEntryLocalServiceImpl
 
 			redirectNotFoundEntry.setGroupId(group.getGroupId());
 			redirectNotFoundEntry.setCompanyId(group.getCompanyId());
+			redirectNotFoundEntry.setHits(1);
 			redirectNotFoundEntry.setUrl(url);
 
-			redirectNotFoundEntry = redirectNotFoundEntryPersistence.update(
+			return redirectNotFoundEntryPersistence.update(
 				redirectNotFoundEntry);
 		}
 
