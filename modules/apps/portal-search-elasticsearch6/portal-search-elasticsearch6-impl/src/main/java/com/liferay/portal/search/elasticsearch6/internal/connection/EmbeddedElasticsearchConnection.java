@@ -483,22 +483,16 @@ public class EmbeddedElasticsearchConnection
 		newExecutors.put(
 			ThreadPool.Names.FETCH_SHARD_STARTED,
 			executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.FLUSH, executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.GENERIC, executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.INDEX, executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.MANAGEMENT, executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.REFRESH, executors.get(ThreadPool.Names.SAME));
-
 		newExecutors.put(
 			ThreadPool.Names.WRITE, executors.get(ThreadPool.Names.SAME));
 
