@@ -71,7 +71,6 @@ public class RedirectNotFoundEntryLocalServiceTest {
 			() -> {
 				RedirectNotFoundEntry redirectNotFoundEntry1 =
 					_addOrUpdateRedirectNotFoundEntry("url1");
-
 				RedirectNotFoundEntry redirectNotFoundEntry2 =
 					_addOrUpdateRedirectNotFoundEntry("url2");
 
