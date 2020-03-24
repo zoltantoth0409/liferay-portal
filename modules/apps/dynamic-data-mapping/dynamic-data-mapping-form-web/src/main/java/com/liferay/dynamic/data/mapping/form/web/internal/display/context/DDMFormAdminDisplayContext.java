@@ -280,11 +280,9 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public JSONArray getDDMFormFieldTypesJSONArray() throws PortalException {
-		List<DDMFormFieldType> ddmFormFieldTypes =
-			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
-
 		List<DDMFormFieldType> availableDDMFormFieldTypes =
-			_removeDDMFormFieldTypesOutOfScope(ddmFormFieldTypes);
+			_removeDDMFormFieldTypesOutOfScope(
+				_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes());
 
 		String serializedFormFieldTypes = serialize(availableDDMFormFieldTypes);
 
