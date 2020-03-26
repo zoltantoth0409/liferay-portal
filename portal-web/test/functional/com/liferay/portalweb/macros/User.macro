@@ -2438,6 +2438,28 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro verifyEmail {
+		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#EMAIL_VERIFICATION_CODE")) {
+			var bodySpecificText = MockMock.getBodySpecificText(
+				asset = "${portalURL}: Email Address Verification",
+				content = "Please verify your email address for ${portalURL}",
+				recipient = "${recipient}",
+				sender = "Joe Bloggs",
+				specificText = "ticketKey=",
+				subject = "${portalURL}: Email Address Verification");
+
+			Navigator.openURL();
+
+			Type(
+				locator1 = "TextInput#EMAIL_VERIFICATION_CODE",
+				value1 = "${bodySpecificText}");
+
+			Button.clickVerifyButton();
+
+			AssertElementNotPresent(locator1 = "TextInput#EMAIL_VERIFICATION_CODE");
+		}
+	}
+
 	macro viewAddress {
 		var key_primaryValue = "${street1}";
 

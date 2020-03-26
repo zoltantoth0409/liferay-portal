@@ -189,6 +189,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>EMAIL_VERIFICATION_CODE</td>
+	<td>//div[label[contains(.,'Email Verification Code')]]/input</td>
+	<td></td>
+</tr>
+<tr>
 	<td>ENTER_AGAIN</td>
 	<td>//div[label[contains(.,'Enter Again')]]/input</td>
 	<td></td>
