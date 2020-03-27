@@ -231,8 +231,19 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		);
 	}
 
+	protected JSONObject getToolbarsStylesSelectionsImageJSONObject() {
+		return JSONUtil.put(
+			"buttons", JSONUtil.putAll("imageLeft", "imageRight")
+		).put(
+			"name", "image"
+		).put(
+			"test", "AlloyEditor.SelectionTest.image"
+		);
+	}
+
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
 		return JSONUtil.putAll(
+			getToolbarsStylesSelectionsImageJSONObject(),
 			getToolbarsStylesSelectionsLinkJSONObject(),
 			getToolbarsStylesSelectionsTextJSONObject(locale));
 	}
