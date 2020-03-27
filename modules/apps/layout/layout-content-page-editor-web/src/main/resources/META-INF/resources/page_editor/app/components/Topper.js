@@ -176,7 +176,7 @@ export default function Topper({children, item, itemRef, layoutData}) {
 	const dataAdvice =
 		!droppable && isDraggableInPosition(TARGET_POSITION.MIDDLE)
 			? Liferay.Util.sub(
-					Liferay.Language.get('a-x-can-not-be-dropped-inside-a-x'),
+					Liferay.Language.get('a-x-cannot-be-dropped-inside-a-x'),
 					[
 						getLabelName(dropItem, fragmentEntryLinks),
 						getLabelName(item, fragmentEntryLinks),
