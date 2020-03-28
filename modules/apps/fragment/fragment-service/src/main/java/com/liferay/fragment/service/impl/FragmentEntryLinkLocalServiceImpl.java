@@ -111,6 +111,8 @@ public class FragmentEntryLinkLocalServiceImpl
 		fragmentEntryLink.setJs(js);
 		fragmentEntryLink.setConfiguration(configuration);
 
+		// LPS-110749 Namespace a comment before processing HTML
+
 		if (Validator.isNull(namespace)) {
 			namespace = StringUtil.randomId();
 		}
