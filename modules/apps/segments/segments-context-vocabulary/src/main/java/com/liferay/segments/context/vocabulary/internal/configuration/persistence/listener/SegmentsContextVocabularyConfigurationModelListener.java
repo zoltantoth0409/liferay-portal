@@ -55,7 +55,7 @@ public class SegmentsContextVocabularyConfigurationModelListener
 			throw new ConfigurationModelListenerException(
 				ResourceBundleUtil.getString(
 					getResourceBundle(),
-					"a-valid-session-property-name-should-be-provided"),
+					"a-valid-session-property-name-needs-to-be-provided"),
 				SegmentsContextVocabularyConfiguration.class, getClass(),
 				properties);
 		}
