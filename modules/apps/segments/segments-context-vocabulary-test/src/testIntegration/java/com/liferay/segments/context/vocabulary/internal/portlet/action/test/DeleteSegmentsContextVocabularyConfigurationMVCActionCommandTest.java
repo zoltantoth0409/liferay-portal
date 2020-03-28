@@ -95,11 +95,10 @@ public class DeleteSegmentsContextVocabularyConfigurationMVCActionCommandTest {
 
 		Dictionary<String, Object> configuredProperties = new Hashtable<>();
 
-		configuredProperties.put("entityField", RandomTestUtil.randomString());
 		configuredProperties.put(
 			"assetVocabulary", RandomTestUtil.randomString());
-
 		configuredProperties.put("configuration.cleaner.ignore", "true");
+		configuredProperties.put("entityField", RandomTestUtil.randomString());
 
 		configuration.update(configuredProperties);
 
