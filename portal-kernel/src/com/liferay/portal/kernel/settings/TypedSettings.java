@@ -92,7 +92,7 @@ public class TypedSettings {
 
 		if (JSONUtil.isValid(value)) {
 			try {
-				return _fromJSONObjectToLocalizedValuesMap(
+				return _toLocalizedValuesMap(
 					JSONFactoryUtil.createJSONObject(value));
 			}
 			catch (JSONException jsonException) {
@@ -100,7 +100,7 @@ public class TypedSettings {
 			}
 		}
 
-		return _fromPropertiesToLocalizedValuesMap(key, value);
+		return _toLocalizedValuesMap(key, value);
 	}
 
 	public long getLongValue(String key) {
@@ -166,9 +166,7 @@ public class TypedSettings {
 		modifiableSettings.setValues(key, values);
 	}
 
-	private LocalizedValuesMap _fromJSONObjectToLocalizedValuesMap(
-		JSONObject jsonObject) {
-
+	private LocalizedValuesMap _toLocalizedValuesMap(JSONObject jsonObject) {
 		String defaultValue = jsonObject.getString(
 			LocaleUtil.toLanguageId(LocaleThreadLocal.getDefaultLocale()));
 
@@ -184,7 +182,7 @@ public class TypedSettings {
 		return localizedValuesMap;
 	}
 
-	private LocalizedValuesMap _fromPropertiesToLocalizedValuesMap(
+	private LocalizedValuesMap _toLocalizedValuesMap(
 		String key, String defaultValue) {
 
 		LocalizedValuesMap localizedValuesMap = new LocalizedValuesMap(
