@@ -160,10 +160,7 @@ public class ${schemaName}ResourceFactoryImpl implements ${schemaName}Resource.F
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 
-		public AcceptLanguageImpl(
-			HttpServletRequest httpServletRequest, Locale preferredLocale,
-			User user) {
-
+		public AcceptLanguageImpl(HttpServletRequest httpServletRequest, Locale preferredLocale, User user) {
 			_httpServletRequest = httpServletRequest;
 			_preferredLocale = preferredLocale;
 			_user = user;
