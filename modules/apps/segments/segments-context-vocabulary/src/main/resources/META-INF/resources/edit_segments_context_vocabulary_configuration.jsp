@@ -19,7 +19,7 @@
 <%
 SegmentsContextVocabularyConfigurationDisplayContext segmentsContextVocabularyConfigurationDisplayContext = (SegmentsContextVocabularyConfigurationDisplayContext)renderRequest.getAttribute(SegmentsContextVocabularyWebKeys.SEGMENTS_CONTEXT_VOCABULARY_CONFIGURATION_DISPLAY_CONTEXT);
 
-segmentsContextVocabularyConfigurationDisplayContext.addBreadCrumbs();
+segmentsContextVocabularyConfigurationDisplayContext.addPortletBreadcrumbEntries();
 %>
 
 <liferay-ui:error exception="<%= ConfigurationModelListenerException.class %>">

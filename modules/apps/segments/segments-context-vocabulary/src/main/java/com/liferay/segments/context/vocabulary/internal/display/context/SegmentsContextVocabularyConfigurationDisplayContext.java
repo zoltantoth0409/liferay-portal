@@ -84,7 +84,7 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 		_locale = themeDisplay.getLocale();
 	}
 
-	public void addBreadCrumbs() {
+	public void addPortletBreadcrumbEntries() {
 		PortalUtil.addPortletBreadcrumbEntry(
 			PortalUtil.getHttpServletRequest(_renderRequest),
 			_portletDisplay.getPortletDisplayName(),
