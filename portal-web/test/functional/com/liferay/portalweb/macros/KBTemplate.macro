@@ -68,7 +68,7 @@ definition {
 		AssertTextEquals(
 			key_editor = "content",
 			locator1 = "CKEditor#BODY",
-			value1 = "${kbTemplateTitle}");
+			value1 = "${kbTemplateContent}");
 	}
 
 }
