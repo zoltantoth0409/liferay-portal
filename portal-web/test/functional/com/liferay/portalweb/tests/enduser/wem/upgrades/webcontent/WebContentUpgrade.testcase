@@ -109,7 +109,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property portal.version = "6.2.5";
 
-		//Quarantine for LRQA-57152
+		// Quarantine for LRQA-57152
 
 		Upgrade.addWCStructureAndTemplate();
 
