@@ -27,8 +27,6 @@ import javax.annotation.Generated;
 
 import javax.servlet.http.HttpServletRequest;
 
-import javax.ws.rs.core.HttpHeaders;
-
 import org.osgi.service.component.ComponentServiceObjects;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
