@@ -1166,7 +1166,7 @@ public class LayoutsAdminDisplayContext {
 	public String getViewLayoutURL(Layout layout) throws PortalException {
 		String layoutFullURL = null;
 
-		if (layout.getStatus() == WorkflowConstants.STATUS_PENDING) {
+		if (layout.isDenied() || layout.isPending()) {
 			Layout draftLayout = LayoutLocalServiceUtil.fetchLayout(
 				PortalUtil.getClassNameId(Layout.class), layout.getPlid());
 
