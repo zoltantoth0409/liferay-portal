@@ -87,7 +87,7 @@ public class DataDefinitionResourceFactoryImplTest {
 				_user
 			).build();
 
-		_assertDataDefinitionFieldTypes(
+		_assertTranslations(
 			_jsonFactory.createJSONArray(
 				dataDefinitionResource.
 					getDataDefinitionDataDefinitionFieldFieldTypes()),
@@ -104,7 +104,7 @@ public class DataDefinitionResourceFactoryImplTest {
 				_user
 			).build();
 
-		_assertDataDefinitionFieldTypes(
+		_assertTranslations(
 			_jsonFactory.createJSONArray(
 				dataDefinitionResource.
 					getDataDefinitionDataDefinitionFieldFieldTypes()),
@@ -119,16 +119,14 @@ public class DataDefinitionResourceFactoryImplTest {
 				_user
 			).build();
 
-		_assertDataDefinitionFieldTypes(
+		_assertTranslations(
 			_jsonFactory.createJSONArray(
 				dataDefinitionResource.
 					getDataDefinitionDataDefinitionFieldFieldTypes()),
 			LocaleUtil.US);
 	}
 
-	private void _assertDataDefinitionFieldTypes(
-		JSONArray jsonArray, Locale locale) {
-
+	private void _assertTranslations(JSONArray jsonArray, Locale locale) {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
