@@ -219,7 +219,6 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 
 		renameFragmentCompositionURL.setParameter(
 			ActionRequest.ACTION_NAME, "/fragment/rename_fragment_composition");
-
 		renameFragmentCompositionURL.setParameter(
 			"fragmentCompositionId",
 			String.valueOf(_fragmentComposition.getFragmentCompositionId()));
