@@ -73,13 +73,13 @@ public class ViewAccountRoleAssigneesManagementToolbarDisplayContext
 					ActionRequest.ACTION_NAME,
 					"/account_admin/remove_account_role_users");
 				removeUsersURL.setParameter(
+					"redirect", currentURLObj.toString());
+				removeUsersURL.setParameter(
 					"accountEntryId",
 					ParamUtil.getString(request, "accountEntryId"));
 				removeUsersURL.setParameter(
 					"accountRoleId",
 					ParamUtil.getString(request, "accountRoleId"));
-				removeUsersURL.setParameter(
-					"redirect", currentURLObj.toString());
 
 				dropdownItem.putData(
 					"removeUsersURL", removeUsersURL.toString());
