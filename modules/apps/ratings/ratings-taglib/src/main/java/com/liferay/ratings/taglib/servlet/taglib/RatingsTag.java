@@ -354,7 +354,7 @@ public class RatingsTag extends IncludeTag {
 		return false;
 	}
 
-	private static final int _DEFAULT_NUMBER_OF_STARS = GetterUtil.getInteger(
+	private static final int _NUMBER_OF_STARS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 
 	private static final String _PAGE = "/page.jsp";
@@ -364,7 +364,7 @@ public class RatingsTag extends IncludeTag {
 	private String _className;
 	private long _classPK;
 	private Boolean _inTrash;
-	private int _numberOfStars = _DEFAULT_NUMBER_OF_STARS;
+	private int _numberOfStars = _NUMBER_OF_STARS;
 	private RatingsEntry _ratingsEntry;
 	private RatingsStats _ratingsStats;
 	private boolean _setRatingsEntry;
