@@ -73,9 +73,9 @@ public class ImportPortletConfigurationIcon
 
 			StringBundler sb = new StringBundler(8);
 
-			sb.append("Liferay.Util.openWindow({dialog: {after: { destroy: ");
-			sb.append("function(event) { window.location.reload(); }, },");
-			sb.append("destroyOnHide:true}, dialogIframe: {bodyCssClass: ");
+			sb.append("Liferay.Util.openWindow({dialog: {after: {destroy: ");
+			sb.append("function(event) {window.location.reload();}, }, ");
+			sb.append("destroyOnHide: true}, dialogIframe: {bodyCssClass: ");
 			sb.append("'dialog-with-footer'}, title: '");
 			sb.append(getMessage(portletRequest));
 			sb.append("', uri: '");
