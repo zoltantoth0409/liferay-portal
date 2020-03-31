@@ -80,9 +80,7 @@ public class LanguageExtension {
 				bundleCapability.getAttributes());
 
 			Object aggregate = attributes.get("resource.bundle.aggregate");
-
 			Object baseName = attributes.get("resource.bundle.base.name");
-
 			Object serviceRanking = attributes.get(Constants.SERVICE_RANKING);
 
 			if (aggregate instanceof String) {
