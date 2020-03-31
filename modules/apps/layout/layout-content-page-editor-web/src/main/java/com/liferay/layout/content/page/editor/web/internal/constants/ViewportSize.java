@@ -24,7 +24,7 @@ public enum ViewportSize {
 		"landscapeMobile", "mobile-landscape", "mobile-landscape", 576, 540, 4),
 	PORTRAIT_MOBILE(
 		"portraitMobile", "mobile-portrait", "mobile-portrait", 540, 0, 3),
-	TABLET("tablet", "tablet", "tablet-portrait", 768, 720, 2);
+	TABLET("tablet", "tablet-portrait", "tablet", 768, 720, 2);
 
 	public String getIcon() {
 		return _icon;
@@ -51,7 +51,7 @@ public enum ViewportSize {
 	}
 
 	private ViewportSize(
-		String viewportSizeId, String label, String icon, int maxWidth,
+		String viewportSizeId, String icon, String label, int maxWidth,
 		int minWidth, int order) {
 
 		_viewportSizeId = viewportSizeId;
