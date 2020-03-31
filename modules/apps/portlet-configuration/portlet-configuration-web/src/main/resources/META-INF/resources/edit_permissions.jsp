@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-	RoleTypeContributorProvider roleTypeContributorProvider = (RoleTypeContributorProvider)request.getAttribute(RolesAdminWebKeys.ROLE_TYPE_CONTRIBUTOR_PROVIDER);
+RoleTypeContributorProvider roleTypeContributorProvider = (RoleTypeContributorProvider)request.getAttribute(RolesAdminWebKeys.ROLE_TYPE_CONTRIBUTOR_PROVIDER);
 
 PortletConfigurationPermissionsDisplayContext portletConfigurationPermissionsDisplayContext = new PortletConfigurationPermissionsDisplayContext(request, renderRequest, roleTypeContributorProvider);
 
