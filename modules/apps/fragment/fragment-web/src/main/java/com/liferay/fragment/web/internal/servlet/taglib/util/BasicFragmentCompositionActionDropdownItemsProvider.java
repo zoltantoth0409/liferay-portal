@@ -184,7 +184,6 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 
 		selectFragmentCollectionURL.setParameter(
 			"mvcRenderCommandName", "/fragment/select_fragment_collection");
-
 		selectFragmentCollectionURL.setWindowState(LiferayWindowState.POP_UP);
 
 		PortletURL moveFragmentCompositionURL =
