@@ -227,14 +227,14 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.putData("action", "renameFragmentComposition");
 			dropdownItem.putData(
-				"renameFragmentCompositionURL",
-				renameFragmentCompositionURL.toString());
-			dropdownItem.putData(
 				"fragmentCompositionId",
 				String.valueOf(
 					_fragmentComposition.getFragmentCompositionId()));
 			dropdownItem.putData(
 				"fragmentCompositionName", _fragmentComposition.getName());
+			dropdownItem.putData(
+				"renameFragmentCompositionURL",
+				renameFragmentCompositionURL.toString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "rename"));
 		};
