@@ -36,6 +36,7 @@ export default ({tagsChange, tags = [], ...props}) => {
 							assetType.type === context.defaultVocabulary
 					).length > 0
 			);
+
 			setSourceItems(
 				vocabulariesOfQuestions
 					.flatMap(vocabulary => vocabulary.taxonomyCategories.items)
