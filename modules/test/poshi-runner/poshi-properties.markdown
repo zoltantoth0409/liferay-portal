@@ -230,7 +230,7 @@ files. This does not include `*.testcase` files.
 ### test.jvm.max.retries
 
 Sets the maximum cumulative amount of attempts that failing tests in the test
-group may be re-executed.
+group may be reexecuted.
 
 ### test.name
 
@@ -275,7 +275,7 @@ Poshi project files. This includes all Poshi file types.
 ### test.testcase.max.retries
 
 Sets the maximum amount of attempts that an individual failing testcase may be
-re-executed.
+reexecuted.
 
 ### timeout.explicit.wait
 
