@@ -169,8 +169,6 @@ public class ConfigurationModelToDDMFormValuesConverter {
 	protected void setDDMFormFieldValueLocalizedValue(
 		String value, DDMFormFieldValue ddmFormFieldValue) {
 
-		// If it's a location type variable, resolve it
-
 		try {
 			if ((_locationVariableResolver != null) &&
 				_locationVariableResolver.isLocationVariable(value)) {
