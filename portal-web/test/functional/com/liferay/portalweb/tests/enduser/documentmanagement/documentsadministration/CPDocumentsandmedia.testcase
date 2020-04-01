@@ -97,6 +97,7 @@ definition {
 	}
 
 	@description = "This test ensures that a user can check in a document as a major version."
+	@ignore = "true"
 	@priority = "5"
 	test CheckInDocumentAsMajorVersion {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
@@ -129,6 +130,7 @@ definition {
 	}
 
 	@description = "This test ensures that a user can check in a document as a minor version."
+	@ignore = "true"
 	@priority = "5"
 	test CheckInDocumentAsMinorVersion {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
