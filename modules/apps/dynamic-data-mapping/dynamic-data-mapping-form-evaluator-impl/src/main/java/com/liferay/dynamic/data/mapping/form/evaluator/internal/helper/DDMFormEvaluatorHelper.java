@@ -119,7 +119,7 @@ public class DDMFormEvaluatorHelper {
 	public DDMFormEvaluatorEvaluateResponse evaluate() {
 		evaluateVisibilityExpressions();
 
-		List<DDMFormRule> ddmFormRules;
+		List<DDMFormRule> ddmFormRules = null;
 
 		if ((_ddmFormLayout != null) &&
 			ListUtil.isNotEmpty(_ddmFormLayout.getDDMFormRules())) {

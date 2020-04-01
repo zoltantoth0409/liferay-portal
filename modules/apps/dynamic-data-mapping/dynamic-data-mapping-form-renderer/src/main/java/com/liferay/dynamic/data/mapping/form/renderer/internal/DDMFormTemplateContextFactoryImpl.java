@@ -144,6 +144,7 @@ public class DDMFormTemplateContextFactoryImpl
 		}
 
 		templateContext.put("rules", toObjectList(ddmFormRules));
+
 		templateContext.put(
 			"showRequiredFieldsWarning",
 			ddmFormRenderingContext.isShowRequiredFieldsWarning());
