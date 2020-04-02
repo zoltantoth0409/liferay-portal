@@ -195,14 +195,14 @@ public class FragmentLayoutStructureItemHelper
 			return jsonObject;
 		}
 
-		jsonObject.put("target", fragmentLinkMap.get("target"));
-
 		Map<String, Object> hrefMap = (Map<String, Object>)fragmentLinkMap.get(
 			"href");
 
 		if (hrefMap != null) {
 			jsonObject.put("href", hrefMap.get("value"));
 		}
+
+		jsonObject.put("target", fragmentLinkMap.get("target"));
 
 		return jsonObject;
 	}
