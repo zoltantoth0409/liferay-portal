@@ -64,7 +64,6 @@ public class ExportFragmentCompositionsAndFragmentEntriesMVCResourceCommand
 
 		long fragmentCompositionId = ParamUtil.getLong(
 			resourceRequest, "fragmentCompositionId");
-
 		long fragmentEntryId = ParamUtil.getLong(
 			resourceRequest, "fragmentEntryId");
 
