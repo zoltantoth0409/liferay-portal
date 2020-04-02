@@ -224,10 +224,10 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		record.setDDMStorageId(ddmStorageId);
 		record.setRecordSetId(ddlRecordSetId);
 		record.setRecordSetVersion(ddlRecordSet.getVersion());
-		record.setVersion(DDLRecordConstants.VERSION_DEFAULT);
-		record.setDisplayIndex(0);
 		record.setClassName(className);
 		record.setClassPK(classPK);
+		record.setVersion(DDLRecordConstants.VERSION_DEFAULT);
+		record.setDisplayIndex(0);
 
 		record = ddlRecordPersistence.update(record);
 

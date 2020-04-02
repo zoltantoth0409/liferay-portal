@@ -28,10 +28,10 @@
 		<column name="DDMStorageId" type="long" />
 		<column name="recordSetId" type="long" />
 		<column name="recordSetVersion" type="String" />
-		<column name="version" type="String" />
-		<column name="displayIndex" type="int" />
 		<column name="className" type="String" />
 		<column name="classPK" type="long" />
+		<column name="version" type="String" />
+		<column name="displayIndex" type="int" />
 		<column name="lastPublishDate" type="Date" />
 
 		<!-- Finder methods -->
