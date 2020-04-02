@@ -107,15 +107,15 @@ public class AssetEntryListLayoutListRetriever
 	}
 
 	private List<Object> _toAssetObjects(List<AssetEntry> assetEntries) {
-		List<Object> list = new ArrayList<>(assetEntries.size());
+		List<Object> assetObjects = new ArrayList<>(assetEntries.size());
 
 		for (AssetEntry assetEntry : assetEntries) {
 			AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
 
-			list.add(assetRenderer.getAssetObject());
+			assetObjects.add(assetRenderer.getAssetObject());
 		}
 
-		return list;
+		return assetObjects;
 	}
 
 	@Reference
