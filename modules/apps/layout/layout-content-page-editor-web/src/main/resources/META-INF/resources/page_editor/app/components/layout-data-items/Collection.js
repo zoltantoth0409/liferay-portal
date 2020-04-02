@@ -52,13 +52,13 @@ export function fromControlsId(controlsItemId) {
 
 const NoItemsMessage = () => (
 	<div className="page-editor__collection__no-items-message">
-		{Liferay.Language.get('you-dont-have-any-item-yet-in-this-collection')}
+		{Liferay.Language.get('you-do-not-have-any-items-in-this-collection')}
 	</div>
 );
 
 const NotCollectionSelectedMessage = () => (
 	<div className="page-editor__collection__not-collection-selected-message">
-		{Liferay.Language.get('not-collection-selected-yet')}
+		{Liferay.Language.get('no-collection-selected-yet')}
 	</div>
 );
 
