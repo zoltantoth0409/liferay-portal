@@ -154,6 +154,7 @@ describe('Languages', () => {
 	});
 
 	// LPS-111488
+
 	it('render a dropdown menu with the correct order', () => {
 		const result = renderLanguagesComponent({
 			...defaultProps,
