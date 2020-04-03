@@ -1112,7 +1112,6 @@ public class SitesImpl implements Sites {
 
 		long lastMergeTime = GetterUtil.getLong(
 			settingsUnicodeProperties.getProperty(LAST_MERGE_TIME));
-
 		long lastMergeVersion = GetterUtil.getLong(
 			settingsUnicodeProperties.getProperty(LAST_MERGE_VERSION));
 
