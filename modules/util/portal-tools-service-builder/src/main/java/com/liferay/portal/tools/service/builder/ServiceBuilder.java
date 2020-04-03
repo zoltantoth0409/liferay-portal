@@ -2523,16 +2523,16 @@ public class ServiceBuilder {
 		if (changeTrackingEnabled) {
 			entityColumns.add(
 				new EntityColumn(
-					"ctCollectionId", null, "ctCollectionId", "long", true,
-					false, false, null, null, true, true, false, null, null,
-					false, null, null, true, true, false, false,
+					this, "ctCollectionId", null, "ctCollectionId", "long",
+					true, false, false, null, null, true, true, false, null,
+					null, false, null, null, true, true, false, false,
 					CTColumnResolutionType.STRICT, false, false, null, false));
 
 			entityColumns.add(
 				new EntityColumn(
-					"ctChangeType", null, "ctChangeType", "boolean", false,
-					false, false, null, null, true, true, false, null, null,
-					false, null, null, true, true, false, false,
+					this, "ctChangeType", null, "ctChangeType", "boolean",
+					false, false, false, null, null, true, true, false, null,
+					null, false, null, null, true, true, false, false,
 					CTColumnResolutionType.STRICT, false, false, null, false));
 		}
 
