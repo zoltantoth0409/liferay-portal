@@ -119,7 +119,6 @@ public class DefaultPortalKaleoManager
 
 				dynamicQuery.add(systemProperty.eq(Boolean.FALSE));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(Company company) -> {
 				try {
