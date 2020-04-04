@@ -56,20 +56,23 @@ public abstract class BaseBeanPortletMethod implements BeanPortletMethod {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BeanPortletMethod)) {
+		if (!(object instanceof BeanPortletMethod)) {
 			return false;
 		}
 
-		BeanPortletMethod beanPortletMethod = (BeanPortletMethod)obj;
+		BaseBeanPortletMethod baseBeanPortletMethod =
+			(BaseBeanPortletMethod)object;
 
-		if ((_ordinal == beanPortletMethod.getOrdinal()) &&
-			Objects.equals(_method, beanPortletMethod.getMethod()) &&
-			(_beanPortletMethodType == beanPortletMethod.getMethodType())) {
+		if (Objects.equals(
+				_beanPortletMethodType,
+				baseBeanPortletMethod._beanPortletMethodType) &&
+			Objects.equals(_method, baseBeanPortletMethod._method) &&
+			Objects.equals(_ordinal, baseBeanPortletMethod._ordinal)) {
 
 			return true;
 		}
@@ -173,11 +176,11 @@ public abstract class BaseBeanPortletMethod implements BeanPortletMethod {
 
 	@Override
 	public int hashCode() {
-		int hashCode = HashUtil.hash(0, _method);
+		int hashCode = HashUtil.hash(0, _beanPortletMethodType);
 
-		hashCode = HashUtil.hash(hashCode, _ordinal);
+		hashCode = HashUtil.hash(hashCode, _method);
 
-		return HashUtil.hash(hashCode, _beanPortletMethodType);
+		return HashUtil.hash(hashCode, _ordinal);
 	}
 
 	@Override
