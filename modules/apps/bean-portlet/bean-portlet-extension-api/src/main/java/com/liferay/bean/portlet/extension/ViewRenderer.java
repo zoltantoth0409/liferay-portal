@@ -34,8 +34,8 @@ public interface ViewRenderer {
 	public static final String VIEW_NAME = "viewName";
 
 	public void render(
-			PortletRequest portletRequest, MimeResponse mimeResponse,
-			PortletConfig portletConfig)
+			MimeResponse mimeResponse, PortletConfig portletConfig,
+			PortletRequest portletRequest)
 		throws PortletException;
 
 }
