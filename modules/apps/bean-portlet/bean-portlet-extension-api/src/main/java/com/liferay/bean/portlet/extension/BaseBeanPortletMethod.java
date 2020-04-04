@@ -103,13 +103,13 @@ public abstract class BaseBeanPortletMethod implements BeanPortletMethod {
 	}
 
 	@Override
-	public Method getMethod() {
-		return _method;
+	public BeanPortletMethodType getBeanPortletMethodType() {
+		return _beanPortletMethodType;
 	}
 
 	@Override
-	public BeanPortletMethodType getBeanPortletMethodType() {
-		return _beanPortletMethodType;
+	public Method getMethod() {
+		return _method;
 	}
 
 	@Override
