@@ -412,7 +412,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 	}
 
 	private static boolean _isSaveFragmentMappedValue(
-		boolean saveMapping, JSONObject jsonObject) {
+		JSONObject jsonObject, boolean saveMapping) {
 
 		if (saveMapping && jsonObject.has("classNameId") &&
 			jsonObject.has("classPK") && jsonObject.has("fieldId")) {
@@ -487,7 +487,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 				setHtml(
 					() -> {
 						if (_isSaveFragmentMappedValue(
-								saveMapping, jsonObject)) {
+								jsonObject, saveMapping)) {
 
 							return _toFragmentMappedValue(jsonObject);
 						}
@@ -521,7 +521,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 						setUrl(
 							() -> {
 								if (_isSaveFragmentMappedValue(
-										saveMapping, jsonObject)) {
+										jsonObject, saveMapping)) {
 
 									return _toFragmentMappedValue(jsonObject);
 								}
@@ -549,7 +549,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 				setText(
 					() -> {
 						if (_isSaveFragmentMappedValue(
-								saveMapping, jsonObject)) {
+								jsonObject, saveMapping)) {
 
 							return _toFragmentMappedValue(jsonObject);
 						}
@@ -571,7 +571,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 		JSONObject configJSONObject = jsonObject.getJSONObject("config");
 
 		if (configJSONObject.isNull("href") &&
-			!_isSaveFragmentMappedValue(saveMapping, configJSONObject)) {
+			!_isSaveFragmentMappedValue(configJSONObject, saveMapping)) {
 
 			return null;
 		}
@@ -581,7 +581,7 @@ public class FragmentInstanceDefinitionConverterUtil {
 				setHref(
 					() -> {
 						if (_isSaveFragmentMappedValue(
-								saveMapping, configJSONObject)) {
+								configJSONObject, saveMapping)) {
 
 							return _toFragmentMappedValue(configJSONObject);
 						}
