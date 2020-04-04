@@ -53,8 +53,8 @@ public abstract class BeanPortletMethodWrapper implements BeanPortletMethod {
 	}
 
 	@Override
-	public BeanPortletMethodType getMethodType() {
-		return _beanPortletMethod.getMethodType();
+	public BeanPortletMethodType getBeanPortletMethodType() {
+		return _beanPortletMethod.getBeanPortletMethodType();
 	}
 
 	@Override

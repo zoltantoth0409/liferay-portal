@@ -34,7 +34,7 @@ public interface BeanPortletMethod extends Comparable<BeanPortletMethod> {
 
 	public Method getMethod();
 
-	public BeanPortletMethodType getMethodType();
+	public BeanPortletMethodType getBeanPortletMethodType();
 
 	public int getOrdinal();
 
