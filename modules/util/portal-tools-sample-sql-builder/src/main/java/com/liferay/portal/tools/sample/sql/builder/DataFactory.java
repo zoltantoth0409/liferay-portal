@@ -2911,7 +2911,7 @@ public class DataFactory {
 				ReleaseConstants.DEFAULT_ID,
 				ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME,
 				latestSchemaVersion.toString(), ReleaseInfo.getBuildNumber(),
-				ReleaseConstants.TEST_STRING, false));
+				false, ReleaseConstants.TEST_STRING));
 
 		try (InputStream is = DataFactory.class.getResourceAsStream(
 				"dependencies/releases.txt");
@@ -2931,7 +2931,7 @@ public class DataFactory {
 					releases.add(
 						newReleaseModel(
 							_counter.get(), servletContextName, schemaVersion,
-							0, null, true));
+							0, true, null));
 				}
 			}
 		}
@@ -4130,7 +4130,7 @@ public class DataFactory {
 
 	protected ReleaseModelImpl newReleaseModel(
 			long releaseId, String servletContextName, String schemaVersion,
-			int buildNumber, String testString, boolean verified)
+			int buildNumber, boolean verified, String testString)
 		throws IOException {
 
 		ReleaseModelImpl releaseModelImpl = new ReleaseModelImpl();
@@ -4142,8 +4142,8 @@ public class DataFactory {
 		releaseModelImpl.setSchemaVersion(schemaVersion);
 		releaseModelImpl.setBuildNumber(buildNumber);
 		releaseModelImpl.setBuildDate(new Date());
-		releaseModelImpl.setTestString(testString);
 		releaseModelImpl.setVerified(verified);
+		releaseModelImpl.setTestString(testString);
 
 		return releaseModelImpl;
 	}
