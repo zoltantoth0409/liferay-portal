@@ -42,7 +42,7 @@ public interface BeanPortletMethod extends Comparable<BeanPortletMethod> {
 
 	public String getResourceID();
 
-	public Object invoke(Object... args) throws ReflectiveOperationException;
+	public Object invoke(Object... arguments) throws ReflectiveOperationException;
 
 	public boolean isEventProcessor(QName qName);
 
