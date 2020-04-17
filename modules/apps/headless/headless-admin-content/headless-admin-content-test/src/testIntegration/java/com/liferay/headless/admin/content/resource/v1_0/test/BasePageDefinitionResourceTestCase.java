@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.delivery.resource.v1_0.test;
+package com.liferay.headless.admin.content.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,11 +22,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
-import com.liferay.headless.delivery.client.dto.v1_0.PageDefinition;
-import com.liferay.headless.delivery.client.http.HttpInvoker;
-import com.liferay.headless.delivery.client.pagination.Page;
-import com.liferay.headless.delivery.client.resource.v1_0.PageDefinitionResource;
-import com.liferay.headless.delivery.client.serdes.v1_0.PageDefinitionSerDes;
+import com.liferay.headless.admin.content.client.dto.v1_0.PageDefinition;
+import com.liferay.headless.admin.content.client.http.HttpInvoker;
+import com.liferay.headless.admin.content.client.pagination.Page;
+import com.liferay.headless.admin.content.client.resource.v1_0.PageDefinitionResource;
+import com.liferay.headless.admin.content.client.serdes.v1_0.PageDefinitionSerDes;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -247,22 +247,6 @@ public abstract class BasePageDefinitionResourceTestCase {
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
 
-			if (Objects.equals("pageElement", additionalAssertFieldName)) {
-				if (pageDefinition.getPageElement() == null) {
-					valid = false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("settings", additionalAssertFieldName)) {
-				if (pageDefinition.getSettings() == null) {
-					valid = false;
-				}
-
-				continue;
-			}
-
 			throw new IllegalArgumentException(
 				"Invalid additional assert field name " +
 					additionalAssertFieldName);
@@ -355,28 +339,6 @@ public abstract class BasePageDefinitionResourceTestCase {
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
 
-			if (Objects.equals("pageElement", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						pageDefinition1.getPageElement(),
-						pageDefinition2.getPageElement())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("settings", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						pageDefinition1.getSettings(),
-						pageDefinition2.getSettings())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
 			throw new IllegalArgumentException(
 				"Invalid additional assert field name " +
 					additionalAssertFieldName);
@@ -459,16 +421,6 @@ public abstract class BasePageDefinitionResourceTestCase {
 		sb.append(" ");
 		sb.append(operator);
 		sb.append(" ");
-
-		if (entityFieldName.equals("pageElement")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
-		if (entityFieldName.equals("settings")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
 
 		throw new IllegalArgumentException(
 			"Invalid entity field " + entityFieldName);
@@ -622,7 +574,8 @@ public abstract class BasePageDefinitionResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private com.liferay.headless.delivery.resource.v1_0.PageDefinitionResource
-		_pageDefinitionResource;
+	private
+		com.liferay.headless.admin.content.resource.v1_0.PageDefinitionResource
+			_pageDefinitionResource;
 
 }

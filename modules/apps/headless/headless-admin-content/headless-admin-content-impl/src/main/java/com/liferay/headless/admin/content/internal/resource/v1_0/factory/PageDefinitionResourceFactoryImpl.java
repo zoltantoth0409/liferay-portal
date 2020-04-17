@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.delivery.internal.resource.v1_0.factory;
+package com.liferay.headless.admin.content.internal.resource.v1_0.factory;
 
-import com.liferay.headless.delivery.resource.v1_0.PageDefinitionResource;
+import com.liferay.headless.admin.content.resource.v1_0.PageDefinitionResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;

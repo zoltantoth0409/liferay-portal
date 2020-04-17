@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.delivery.client.resource.v1_0;
+package com.liferay.headless.admin.content.client.resource.v1_0;
 
-import com.liferay.headless.delivery.client.dto.v1_0.PageDefinition;
-import com.liferay.headless.delivery.client.http.HttpInvoker;
+import com.liferay.headless.admin.content.client.dto.v1_0.PageDefinition;
+import com.liferay.headless.admin.content.client.http.HttpInvoker;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -147,7 +147,7 @@ public interface PageDefinitionResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port +
-						"/o/headless-delivery/v1.0/sites/{siteId}/page-definitions/preview",
+						"/o/headless-admin-content/v1.0/sites/{siteId}/page-definitions/preview",
 				siteId);
 
 			httpInvoker.userNameAndPassword(
