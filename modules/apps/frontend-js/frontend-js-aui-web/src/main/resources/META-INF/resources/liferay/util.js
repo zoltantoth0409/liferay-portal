@@ -1117,6 +1117,9 @@
 			}
 		},
 
+		/**
+		 * @deprecated as of 7.3 with no replacement
+		 */
 		sortByAscending(a, b) {
 			a = a[1].toLowerCase();
 			b = b[1].toLowerCase();
