@@ -800,7 +800,7 @@
 		},
 
 		/**
-		 * @deprecated as of 7.3 — use `typeof val === 'function'` instead.
+		 * @deprecated As of Athanasius (7.3.x), replaced by `typeof val === 'function'`
 		 */
 		isFunction(val) {
 			return typeof val === 'function';
