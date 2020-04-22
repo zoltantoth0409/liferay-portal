@@ -270,7 +270,7 @@ public class AssetTagLocalServiceTest {
 	}
 
 	@Test
-	public void testIncrementAssetCountWhenEditingAsset()
+	public void testIncrementAssetCountWhenUpdatingAssetEntry()
 		throws PortalException {
 
 		AssetEntry assetEntry = AssetTestUtil.addAssetEntry(
