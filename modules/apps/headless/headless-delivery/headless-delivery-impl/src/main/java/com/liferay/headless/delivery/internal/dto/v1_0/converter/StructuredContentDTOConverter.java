@@ -145,7 +145,7 @@ public class StructuredContentDTOConverter
 					dtoConverterContext.getLocale());
 				description_i18n = LocalizedMapUtil.getI18nMap(
 					dtoConverterContext.isAcceptAllLanguages(),
-					_filterEmptyEntries(journalArticle.getDescriptionMap()));
+					_filterDescriptionMap(journalArticle.getDescriptionMap()));
 				friendlyUrlPath = journalArticle.getUrlTitle(
 					dtoConverterContext.getLocale());
 				friendlyUrlPath_i18n = LocalizedMapUtil.getI18nMap(
@@ -196,12 +196,12 @@ public class StructuredContentDTOConverter
 		};
 	}
 
-	private Map<Locale, String> _filterEmptyEntries(
+	private Map<Locale, String> _filterDescriptionMap(
 		Map<Locale, String> descriptionMap) {
 
-		Set<Map.Entry<Locale, String>> entrySet = descriptionMap.entrySet();
+		Set<Map.Entry<Locale, String>> set = descriptionMap.entrySet();
 
-		Stream<Map.Entry<Locale, String>> stream = entrySet.stream();
+		Stream<Map.Entry<Locale, String>> stream = set.stream();
 
 		return stream.filter(
 			entry -> !StringPool.BLANK.equals(entry.getValue())
