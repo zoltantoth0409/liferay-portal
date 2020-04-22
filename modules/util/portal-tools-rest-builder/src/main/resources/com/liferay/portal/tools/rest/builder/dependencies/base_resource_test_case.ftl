@@ -1444,12 +1444,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 			protected ${schemaName} testGraphQL${schemaName}_add${schemaName}(${schemaName} ${schemaVarName}) throws Exception {
 				StringBuilder sb = new StringBuilder("{");
 
-				for (Field field :
-						ReflectionUtil.getDeclaredFields(${schemaName}.class)) {
-
-					if (!ArrayUtil.contains(
-							getAdditionalAssertFieldNames(), field.getName())) {
-
+				for (Field field : ReflectionUtil.getDeclaredFields(${schemaName}.class)) {
+					if (!ArrayUtil.contains(getAdditionalAssertFieldNames(), field.getName())) {
 						continue;
 					}
 
@@ -1496,9 +1492,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				return jsonDeserializer.deserialize(String.valueOf(dataJSONObject.getJSONObject("createSite${schemaName}")), ${schemaName}.class);
 			}
 
-			protected void appendArray(Object[] objects, StringBuilder sb)
-				throws Exception {
-
+			protected void appendArray(Object[] objects, StringBuilder sb) throws Exception {
 				StringBuilder arraySB = new StringBuilder("[");
 
 				for (Object object : objects) {
@@ -1510,9 +1504,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					Class<?> clazz = object.getClass();
 
-					for (Field field :
-							ReflectionUtil.getDeclaredFields(clazz.getSuperclass())) {
-
+					for (Field field : ReflectionUtil.getDeclaredFields(clazz.getSuperclass())) {
 						arraySB.append(field.getName());
 						arraySB.append(": ");
 
@@ -1531,9 +1523,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				sb.append(arraySB.toString());
 			}
 
-			protected void appendValue(StringBuilder sb, Object value)
-				throws Exception {
-
+			protected void appendValue(StringBuilder sb, Object value) throws Exception {
 				if (value instanceof Object[]) {
 					appendArray((Object[])value, sb);
 				}
@@ -1761,9 +1751,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			graphQLFields.add(new GraphQLField("siteId"));
 		</#if>
 
-		for (Field field : ReflectionUtil.getDeclaredFields(
-				${configYAML.apiPackagePath}.dto.${escapedVersion}.${schemaName}.class)) {
-
+		for (Field field : ReflectionUtil.getDeclaredFields(${configYAML.apiPackagePath}.dto.${escapedVersion}.${schemaName}.class)) {
 			if (!ArrayUtil.contains(getAdditionalAssertFieldNames(), field.getName())){
 				continue;
 			}
@@ -1778,25 +1766,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 		List<GraphQLField> graphQLFields = new ArrayList<>();
 
 		for (Field field : fields) {
-			com.liferay.portal.vulcan.graphql.annotation.GraphQLField
-				graphQLField = field.getAnnotation(
-					com.liferay.portal.vulcan.graphql.annotation.GraphQLField.
-						class);
+			com.liferay.portal.vulcan.graphql.annotation.GraphQLField graphQLField = field.getAnnotation(com.liferay.portal.vulcan.graphql.annotation.GraphQLField.class);
 
 			if (graphQLField != null) {
-				Class<?> type = field.getType();
+				Class<?> clazz = field.getType();
 
-				if (type.isArray()) {
-					type = type.getComponentType();
+				if (clazz.isArray()) {
+					clazz = clazz.getComponentType();
 				}
 
-				List<GraphQLField> childrenGraphQLFields = getGraphQLFields(
-					ReflectionUtil.getDeclaredFields(type));
+				List<GraphQLField> childrenGraphQLFields = getGraphQLFields(ReflectionUtil.getDeclaredFields(clazz));
 
-				graphQLFields.add(
-					new GraphQLField(
-						field.getName(),
-						childrenGraphQLFields.toArray(new GraphQLField[0])));
+				graphQLFields.add(new GraphQLField(field.getName(), childrenGraphQLFields.toArray(new GraphQLField[0])));
 			}
 		}
 
