@@ -1762,9 +1762,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 		List<GraphQLField> graphQLFields = new ArrayList<>();
 
 		for (Field field : fields) {
-			com.liferay.portal.vulcan.graphql.annotation.GraphQLField graphQLField = field.getAnnotation(com.liferay.portal.vulcan.graphql.annotation.GraphQLField.class);
+			com.liferay.portal.vulcan.graphql.annotation.GraphQLField vulcanGraphQLField = field.getAnnotation(com.liferay.portal.vulcan.graphql.annotation.GraphQLField.class);
 
-			if (graphQLField != null) {
+			if (vulcanGraphQLField != null) {
 				Class<?> clazz = field.getType();
 
 				if (clazz.isArray()) {
