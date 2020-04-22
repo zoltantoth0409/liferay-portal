@@ -7,8 +7,7 @@ definition {
 		var iterator = "0";
 		var maxRetryNumber = "3";
 
-		while ( (IsElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_BASIC_TAB")) && ("${iterator}" != "${maxRetryNumber}") ) {
-
+		while ((IsElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_BASIC_TAB")) && ("${iterator}" != "${maxRetryNumber}")) {
 			DoubleClick(locator1 = "FormViewBuilder#SIDEBAR_FIELD_LABEL");
 
 			Pause(locator1 = "1000");
