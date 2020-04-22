@@ -68,11 +68,11 @@ public class LocationVariableResolver {
 		String protocol = _getProtocol(value);
 		String location = _getLocation(value);
 
-		if (LocationVariableProtocol.RESOURCE.equals(protocol)) {
-			return _resolveResource(location);
-		}
-		else if (LocationVariableProtocol.FILE.equals(protocol)) {
+		if (LocationVariableProtocol.FILE.equals(protocol)) {
 			return _resolveFile(location);
+		}
+		else if (LocationVariableProtocol.RESOURCE.equals(protocol)) {
+			return _resolveResource(location);
 		}
 		else if (LocationVariableProtocol.SERVER_PROPERTY.equals(protocol)) {
 			return _resolveServerProperty(location);
