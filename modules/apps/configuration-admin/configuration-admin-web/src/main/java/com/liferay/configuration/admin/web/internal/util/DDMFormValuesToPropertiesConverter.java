@@ -216,38 +216,39 @@ public class DDMFormValuesToPropertiesConverter {
 	private boolean _isDefaultResourceValue(
 		String defaultValue, int type, Object value) {
 
-		if ((_locationVariableResolver != null) &&
-			_locationVariableResolver.isLocationVariable(
+		if ((_locationVariableResolver == null) ||
+			!_locationVariableResolver.isLocationVariable(
 				defaultValue, LocationVariableProtocol.RESOURCE)) {
 
-			String resolvedDefaultValue = _locationVariableResolver.resolve(
-				defaultValue);
+			return false;
+		}
 
-			if (Objects.equals(resolvedDefaultValue, value)) {
-				return true;
+		String resolvedDefaultValue = _locationVariableResolver.resolve(
+			defaultValue);
+
+		if (Objects.equals(resolvedDefaultValue, value)) {
+			return true;
+		}
+
+		String stringValue = String.valueOf(value);
+
+		if ((type == ExtendedAttributeDefinition.LOCALIZED_VALUES_MAP) &&
+			JSONUtil.isValid(stringValue)) {
+
+			try {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					stringValue);
+
+				if ((jsonObject.length() == 1) &&
+					Objects.equals(
+						jsonObject.get(LocaleUtil.toLanguageId(_defaultLocale)),
+						resolvedDefaultValue)) {
+
+					return true;
+				}
 			}
-
-			String stringValue = String.valueOf(value);
-
-			if ((type == ExtendedAttributeDefinition.LOCALIZED_VALUES_MAP) &&
-				JSONUtil.isValid(stringValue)) {
-
-				try {
-					JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-						stringValue);
-
-					if ((jsonObject.length() == 1) &&
-						Objects.equals(
-							jsonObject.get(
-								LocaleUtil.toLanguageId(_defaultLocale)),
-							resolvedDefaultValue)) {
-
-						return true;
-					}
-				}
-				catch (JSONException jsonException) {
-					_log.error(jsonException, jsonException);
-				}
+			catch (JSONException jsonException) {
+				_log.error(jsonException, jsonException);
 			}
 		}
 
