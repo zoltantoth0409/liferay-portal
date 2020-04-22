@@ -1437,7 +1437,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#if properties?keys?seq_contains("id")>
 		<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "postSite" + schemaName)>
-			protected void appendValue(StringBuilder sb, Object value) throws Exception {
+			protected void appendGraphQLFieldValue(StringBuilder sb, Object value) throws Exception {
 				if (value instanceof Object[]) {
 					StringBuilder arraySB = new StringBuilder("[");
 
@@ -1454,7 +1454,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							arraySB.append(field.getName());
 							arraySB.append(": ");
 
-							appendValue(arraySB, field.get(object));
+							appendGraphQLFieldValue(arraySB, field.get(object));
 
 							arraySB.append(",");
 						}
@@ -1497,7 +1497,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					sb.append(field.getName());
 					sb.append(": ");
 
-					appendValue(sb, field.get(${schemaVarName}));
+					appendGraphQLFieldValue(sb, field.get(${schemaVarName}));
 				}
 
 				sb.append("}");
