@@ -1437,40 +1437,36 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#if properties?keys?seq_contains("id")>
 		<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "postSite" + schemaName)>
-			protected void appendArray(Object[] objects, StringBuilder sb) throws Exception {
-				StringBuilder arraySB = new StringBuilder("[");
-
-				for (Object object : objects) {
-					if (arraySB.length() > 1) {
-						arraySB.append(",");
-					}
-
-					arraySB.append("{");
-
-					Class<?> clazz = object.getClass();
-
-					for (Field field : ReflectionUtil.getDeclaredFields(clazz.getSuperclass())) {
-						arraySB.append(field.getName());
-						arraySB.append(": ");
-
-						appendValue(arraySB, field.get(object));
-
-						arraySB.append(",");
-					}
-
-					arraySB.setLength(arraySB.length() - 1);
-
-					arraySB.append("}");
-				}
-
-				arraySB.append("]");
-
-				sb.append(arraySB.toString());
-			}
-
 			protected void appendValue(StringBuilder sb, Object value) throws Exception {
 				if (value instanceof Object[]) {
-					appendArray((Object[])value, sb);
+					StringBuilder arraySB = new StringBuilder("[");
+
+					for (Object object : (Object[])value) {
+						if (arraySB.length() > 1) {
+							arraySB.append(",");
+						}
+
+						arraySB.append("{");
+
+						Class<?> clazz = object.getClass();
+
+						for (Field field : ReflectionUtil.getDeclaredFields(clazz.getSuperclass())) {
+							arraySB.append(field.getName());
+							arraySB.append(": ");
+
+							appendValue(arraySB, field.get(object));
+
+							arraySB.append(",");
+						}
+
+						arraySB.setLength(arraySB.length() - 1);
+
+						arraySB.append("}");
+					}
+
+					arraySB.append("]");
+
+					sb.append(arraySB.toString());
 				}
 				else if (value instanceof String) {
 					sb.append("\"");
