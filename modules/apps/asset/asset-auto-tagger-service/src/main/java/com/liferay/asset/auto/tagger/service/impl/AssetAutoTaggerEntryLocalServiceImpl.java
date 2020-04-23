@@ -85,8 +85,7 @@ public class AssetAutoTaggerEntryLocalServiceImpl
 		_assetTagLocalService.incrementAssetCount(
 			assetTag.getTagId(), assetEntry.getClassNameId());
 
-		return assetAutoTaggerEntryLocalService.addAssetAutoTaggerEntry(
-			assetEntry, assetTag);
+		return addAssetAutoTaggerEntry(assetEntry, assetTag);
 	}
 
 	@Override
