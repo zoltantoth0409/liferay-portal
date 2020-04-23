@@ -168,7 +168,7 @@ public class PageWidgetInstanceDefinitionConverterUtil {
 					_log.warn(
 						String.format(
 							"Resource permission %s will not be exported " +
-								"since no role was found for role id %s",
+								"since no role was found with role ID %s",
 							resourcePermission.getName(),
 							resourcePermission.getRoleId()));
 				}
