@@ -31,6 +31,7 @@ export {cancelDebounce, debounce} from './liferay/debounce/debounce.es';
 export {default as objectToFormData} from './liferay/util/form/object_to_form_data.es';
 
 // Liferay API
+
 export {default as BREAKPOINTS} from './liferay/breakpoints';
 
 export {default as CompatibilityEventProxy} from './liferay/CompatibilityEventProxy.es';
