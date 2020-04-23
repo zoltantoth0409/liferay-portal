@@ -130,13 +130,13 @@ public class WidgetLayoutStructureItemHelper
 				layout.getPlid(), PortletIdCodec.encode(name, instanceId),
 				widgetConfigDefinitionMap);
 
-			List<Map<String, Object>> widgetPermissionMaps =
+			List<Map<String, Object>> widgetPermissionsMaps =
 				(List<Map<String, Object>>)definitionMap.get(
 					"widgetPermissions");
 
 			_importPortletPermissions(
 				layout.getPlid(), PortletIdCodec.encode(name, instanceId),
-				widgetPermissionMaps);
+				widgetPermissionsMaps);
 
 			return FragmentEntryLinkLocalServiceUtil.addFragmentEntryLink(
 				layout.getUserId(), layout.getGroupId(), 0, 0, 0,
@@ -237,10 +237,10 @@ public class WidgetLayoutStructureItemHelper
 
 	private void _importPortletPermissions(
 			long plid, String portletId,
-			List<Map<String, Object>> widgetPermissionMaps)
+			List<Map<String, Object>> widgetPermissionsMaps)
 		throws Exception {
 
-		if (widgetPermissionMaps == null) {
+		if (widgetPermissionsMaps == null) {
 			return;
 		}
 
@@ -263,10 +263,10 @@ public class WidgetLayoutStructureItemHelper
 
 		Map<Long, String[]> roleIdsToActionIds = new HashMap<>();
 
-		for (Map<String, Object> widgetPermissionMap : widgetPermissionMaps) {
+		for (Map<String, Object> widgetPermissionsMap : widgetPermissionsMaps) {
 			Role role = RoleLocalServiceUtil.fetchRole(
 				layout.getCompanyId(),
-				(String)widgetPermissionMap.get("roleKey"));
+				(String)widgetPermissionsMap.get("roleKey"));
 
 			if (role == null) {
 				continue;
@@ -287,7 +287,7 @@ public class WidgetLayoutStructureItemHelper
 				Collectors.toList()
 			);
 
-			List<String> actionKeys = (List<String>)widgetPermissionMap.get(
+			List<String> actionKeys = (List<String>)widgetPermissionsMap.get(
 				"actionKeys");
 
 			List<String> actionIds = new ArrayList<>();
