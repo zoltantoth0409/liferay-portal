@@ -310,7 +310,7 @@ export default function Chart({
 
 					{validAnalyticsConnection && publishedToday && (
 						<div className={publishedTodayClasses}>
-							{Liferay.Language.get('no-data-available-yet')}
+							{Liferay.Language.get('no-data-is-available-yet')}
 						</div>
 					)}
 
