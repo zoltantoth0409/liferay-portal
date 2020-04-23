@@ -21,6 +21,7 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocal
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.portal.kernel.exception.ModelListenerException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.BaseModelListener;
@@ -44,57 +45,19 @@ public class FragmentEntryLinkModelListener
 		throws ModelListenerException {
 
 		try {
-			JSONObject editableValuesJSONObject =
-				JSONFactoryUtil.createJSONObject(
-					fragmentEntryLink.getEditableValues());
+			_updateLayoutPageTemplateStructure(fragmentEntryLink);
+		}
+		catch (Exception exception) {
+			throw new ModelListenerException(exception);
+		}
+	}
 
-			JSONObject dropZoneProcessorJSONObject =
-				editableValuesJSONObject.getJSONObject(
-					DropZoneFragmentEntryProcessor.class.getName());
+	@Override
+	public void onAfterUpdate(FragmentEntryLink fragmentEntryLink)
+		throws ModelListenerException {
 
-			if ((dropZoneProcessorJSONObject == null) ||
-				(dropZoneProcessorJSONObject.length() <= 0)) {
-
-				return;
-			}
-
-			LayoutStructure layoutStructure = _getLayoutStructure(
-				fragmentEntryLink);
-
-			if (layoutStructure == null) {
-				return;
-			}
-
-			Iterator<String> keys = dropZoneProcessorJSONObject.keys();
-
-			while (keys.hasNext()) {
-				String key = keys.next();
-
-				String uuid = dropZoneProcessorJSONObject.getString(key);
-
-				if (Validator.isNotNull(uuid)) {
-					continue;
-				}
-
-				LayoutStructureItem layoutStructureItem =
-					layoutStructure.addRootLayoutStructureItem();
-
-				dropZoneProcessorJSONObject.put(
-					key, layoutStructureItem.getItemId());
-			}
-
-			fragmentEntryLink.setEditableValues(
-				editableValuesJSONObject.toString());
-
-			JSONObject dataJSONObject = layoutStructure.toJSONObject();
-
-			_layoutPageTemplateStructureLocalService.
-				updateLayoutPageTemplateStructure(
-					fragmentEntryLink.getGroupId(),
-					fragmentEntryLink.getClassNameId(),
-					fragmentEntryLink.getClassPK(),
-					fragmentEntryLink.getSegmentsExperienceId(),
-					dataJSONObject.toString());
+		try {
+			_updateLayoutPageTemplateStructure(fragmentEntryLink);
 		}
 		catch (Exception exception) {
 			throw new ModelListenerException(exception);
@@ -119,6 +82,62 @@ public class FragmentEntryLinkModelListener
 		}
 
 		return LayoutStructure.of(data);
+	}
+
+	private void _updateLayoutPageTemplateStructure(
+			FragmentEntryLink fragmentEntryLink)
+		throws PortalException {
+
+		JSONObject editableValuesJSONObject = JSONFactoryUtil.createJSONObject(
+			fragmentEntryLink.getEditableValues());
+
+		JSONObject dropZoneProcessorJSONObject =
+			editableValuesJSONObject.getJSONObject(
+				DropZoneFragmentEntryProcessor.class.getName());
+
+		if ((dropZoneProcessorJSONObject == null) ||
+			(dropZoneProcessorJSONObject.length() <= 0)) {
+
+			return;
+		}
+
+		LayoutStructure layoutStructure = _getLayoutStructure(
+			fragmentEntryLink);
+
+		if (layoutStructure == null) {
+			return;
+		}
+
+		Iterator<String> keys = dropZoneProcessorJSONObject.keys();
+
+		while (keys.hasNext()) {
+			String key = keys.next();
+
+			String uuid = dropZoneProcessorJSONObject.getString(key);
+
+			if (Validator.isNotNull(uuid)) {
+				continue;
+			}
+
+			LayoutStructureItem layoutStructureItem =
+				layoutStructure.addRootLayoutStructureItem();
+
+			dropZoneProcessorJSONObject.put(
+				key, layoutStructureItem.getItemId());
+		}
+
+		fragmentEntryLink.setEditableValues(
+			editableValuesJSONObject.toString());
+
+		JSONObject dataJSONObject = layoutStructure.toJSONObject();
+
+		_layoutPageTemplateStructureLocalService.
+			updateLayoutPageTemplateStructure(
+				fragmentEntryLink.getGroupId(),
+				fragmentEntryLink.getClassNameId(),
+				fragmentEntryLink.getClassPK(),
+				fragmentEntryLink.getSegmentsExperienceId(),
+				dataJSONObject.toString());
 	}
 
 	@Reference
