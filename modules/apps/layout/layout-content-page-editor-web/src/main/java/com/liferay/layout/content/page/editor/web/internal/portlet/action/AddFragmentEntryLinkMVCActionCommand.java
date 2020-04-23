@@ -69,10 +69,9 @@ public class AddFragmentEntryLinkMVCActionCommand
 			ActionRequest actionRequest)
 		throws PortalException {
 
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		String fragmentEntryKey = ParamUtil.getString(
 			actionRequest, "fragmentEntryKey");
-
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
