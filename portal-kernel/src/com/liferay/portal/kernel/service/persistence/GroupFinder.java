@@ -61,14 +61,14 @@ public interface GroupFinder {
 	public java.util.List<com.liferay.portal.kernel.model.Group> findBySystem(
 		long companyId);
 
-	public java.util.List<Long> findByC_A(long companyId, boolean active);
-
 	public java.util.List<Long> findByC_P(
 		long companyId, long parentGroupId, long previousGroupId, int size);
 
 	public com.liferay.portal.kernel.model.Group findByC_GK(
 			long companyId, String groupKey)
 		throws com.liferay.portal.kernel.exception.NoSuchGroupException;
+
+	public java.util.List<Long> findByC_A(long companyId, boolean active);
 
 	public java.util.List<com.liferay.portal.kernel.model.Group>
 		findByL_TS_S_RSGC(

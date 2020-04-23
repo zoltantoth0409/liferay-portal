@@ -97,12 +97,6 @@ public class GroupFinderUtil {
 		return getFinder().findBySystem(companyId);
 	}
 
-	public static java.util.List<Long> findByC_A(
-		long companyId, boolean active) {
-
-		return getFinder().findByC_A(companyId, active);
-	}
-
 	public static java.util.List<Long> findByC_P(
 		long companyId, long parentGroupId, long previousGroupId, int size) {
 
@@ -115,6 +109,12 @@ public class GroupFinderUtil {
 		throws com.liferay.portal.kernel.exception.NoSuchGroupException {
 
 		return getFinder().findByC_GK(companyId, groupKey);
+	}
+
+	public static java.util.List<Long> findByC_A(
+		long companyId, boolean active) {
+
+		return getFinder().findByC_A(companyId, active);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Group>
