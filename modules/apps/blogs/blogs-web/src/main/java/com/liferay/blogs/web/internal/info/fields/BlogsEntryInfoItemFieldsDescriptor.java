@@ -16,6 +16,7 @@ package com.liferay.blogs.web.internal.info.fields;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.blogs.model.BlogsEntry;
+import com.liferay.expando.info.fields.provider.ExpandoInfoItemFieldsProvider;
 import com.liferay.info.display.contributor.InfoDisplayContributor;
 import com.liferay.info.fields.descriptor.InfoItemFieldsDescriptor;
 import com.liferay.info.fields.InfoItemField;
@@ -46,8 +47,15 @@ public class BlogsEntryInfoItemFieldsDescriptor
 			_classNameInfoItemFieldsProvider.getInfoItemFields(
 				BlogsEntry.class.getName()));
 
+		infoItemFields.addAll(
+			_expandoInfoItemFieldsProvider.
+				getInfoItemFields(BlogsEntry.class.getName()));
+
 		return infoItemFields;
 	}
+
+	@Reference
+	private ExpandoInfoItemFieldsProvider _expandoInfoItemFieldsProvider;
 
 	@Reference
 	private ClassNameInfoItemFieldsProvider _classNameInfoItemFieldsProvider;
