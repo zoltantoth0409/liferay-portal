@@ -76,9 +76,9 @@ public class GetCollectionFieldMVCResourceCommand
 
 		String layoutObjectReference = ParamUtil.getString(
 			resourceRequest, "layoutObjectReference");
-		int size = ParamUtil.getInteger(resourceRequest, "size");
 		long segmentsExperienceId = ParamUtil.getLong(
 			resourceRequest, "segmentsExperienceId");
+		int size = ParamUtil.getInteger(resourceRequest, "size");
 
 		try {
 			jsonObject = _getCollectionFieldsJSONObject(
