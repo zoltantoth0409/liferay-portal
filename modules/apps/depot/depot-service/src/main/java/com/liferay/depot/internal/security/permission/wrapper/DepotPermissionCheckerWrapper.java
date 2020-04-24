@@ -110,7 +110,7 @@ public class DepotPermissionCheckerWrapper extends PermissionCheckerWrapper {
 	public boolean isContentReviewer(long companyId, long groupId) {
 		try {
 			if (super.isContentReviewer(companyId, groupId) ||
-				_isContentReviewerImpl(companyId, groupId)) {
+				_isContentReviewer(companyId, groupId)) {
 
 				return true;
 			}
@@ -277,9 +277,7 @@ public class DepotPermissionCheckerWrapper extends PermissionCheckerWrapper {
 		}
 	}
 
-	private boolean _isContentReviewerImpl(long groupId)
-		throws PortalException {
-
+	private boolean _isContentReviewer(long groupId) throws PortalException {
 		Group group = _groupLocalService.getGroup(groupId);
 
 		if (group.getType() != GroupConstants.TYPE_DEPOT) {
@@ -296,7 +294,7 @@ public class DepotPermissionCheckerWrapper extends PermissionCheckerWrapper {
 		return false;
 	}
 
-	private boolean _isContentReviewerImpl(long companyId, long groupId)
+	private boolean _isContentReviewer(long companyId, long groupId)
 		throws Exception {
 
 		if (!isSignedIn()) {
@@ -325,7 +323,7 @@ public class DepotPermissionCheckerWrapper extends PermissionCheckerWrapper {
 
 		try {
 			if (value == null) {
-				value = _isContentReviewerImpl(groupId);
+				value = _isContentReviewer(groupId);
 
 				PermissionCacheUtil.putUserPrimaryKeyRole(
 					getUserId(), groupId,
