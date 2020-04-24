@@ -79,6 +79,10 @@ public class AnalyticsReportsDisplayContextTest {
 
 	@Test
 	public void testGetContextWithInvalidAnalyticsConnection() {
+		LocalDate localDate = LocalDate.now();
+
+		localDate.atStartOfDay();
+
 		AnalyticsReportsDisplayContext analyticsReportsDisplayContext =
 			new AnalyticsReportsDisplayContext(
 				_getAnalyticsReportsDataProvider(
@@ -96,15 +100,10 @@ public class AnalyticsReportsDisplayContextTest {
 		Map<String, Object> defaultTimeRange = (Map<String, Object>)context.get(
 			"defaultTimeRange");
 
-		LocalDate localDate = LocalDate.now();
-
-		localDate.atStartOfDay();
-
 		Assert.assertEquals(
 			DateTimeFormatter.ISO_DATE.format(
 				localDate.minus(1, ChronoUnit.DAYS)),
 			defaultTimeRange.get("endDate"));
-
 		Assert.assertEquals(
 			DateTimeFormatter.ISO_DATE.format(
 				localDate.minus(7, ChronoUnit.DAYS)),
