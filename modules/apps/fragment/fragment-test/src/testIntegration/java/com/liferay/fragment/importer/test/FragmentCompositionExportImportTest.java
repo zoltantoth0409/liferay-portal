@@ -104,14 +104,11 @@ public class FragmentCompositionExportImportTest {
 				zipReader.getEntryAsString(entry));
 
 			Assert.assertNotNull(jsonObject);
-
 			Assert.assertEquals(
 				jsonObject.getString("name"), fragmentComposition.getName());
-
 			Assert.assertEquals(
 				jsonObject.getString("description"),
 				fragmentComposition.getDescription());
-
 			Assert.assertEquals(
 				"fragment-composition-definition.json",
 				jsonObject.getString("fragmentCompositionDefinitionPath"));
