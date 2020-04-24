@@ -146,12 +146,13 @@ public class UpdateConfigurationValuesMVCActionCommand
 				editableValuesJSONObject.getJSONObject(
 					fragmentEntryProcessorKey);
 
-			JSONObject mergedEditableFragmentEntryProcessorJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
 			JSONObject defaultEditableFragmentEntryProcessorJSONObject =
 				defaultEditableValuesJSONObject.getJSONObject(
 					fragmentEntryProcessorKey);
+
+			if (defaultEditableFragmentEntryProcessorJSONObject == null) {
+				continue;
+			}
 
 			Iterator<String> keys =
 				defaultEditableFragmentEntryProcessorJSONObject.keys();
@@ -159,21 +160,13 @@ public class UpdateConfigurationValuesMVCActionCommand
 			while (keys.hasNext()) {
 				String key = keys.next();
 
-				if (editableFragmentEntryProcessorJSONObject.has(key)) {
-					mergedEditableFragmentEntryProcessorJSONObject.put(
-						key, editableFragmentEntryProcessorJSONObject.get(key));
-				}
-				else {
-					mergedEditableFragmentEntryProcessorJSONObject.put(
+				if (!editableFragmentEntryProcessorJSONObject.has(key)) {
+					editableFragmentEntryProcessorJSONObject.put(
 						key,
 						defaultEditableFragmentEntryProcessorJSONObject.get(
 							key));
 				}
 			}
-
-			editableValuesJSONObject.put(
-				fragmentEntryProcessorKey,
-				mergedEditableFragmentEntryProcessorJSONObject);
 		}
 
 		return editableValuesJSONObject;
