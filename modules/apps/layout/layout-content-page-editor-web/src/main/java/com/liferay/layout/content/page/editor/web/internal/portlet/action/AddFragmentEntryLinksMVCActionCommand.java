@@ -99,36 +99,43 @@ public class AddFragmentEntryLinksMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		String fragmentEntryKey = ParamUtil.getString(
 			actionRequest, "fragmentEntryKey");
 
-		String parentItemId = ParamUtil.getString(
-			actionRequest, "parentItemId");
-		int position = ParamUtil.getInteger(actionRequest, "position");
-		long segmentsExperienceId = ParamUtil.getLong(
-			actionRequest, "segmentsExperienceId",
-			SegmentsExperienceConstants.ID_DEFAULT);
-
 		FragmentComposition fragmentComposition =
 			_fragmentCompositionService.fetchFragmentComposition(
 				groupId, fragmentEntryKey);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long segmentsExperienceId = ParamUtil.getLong(
+			actionRequest, "segmentsExperienceId",
+			SegmentsExperienceConstants.ID_DEFAULT);
 
 		LayoutStructure layoutStructure =
 			LayoutStructureUtil.getLayoutStructure(
 				themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
 				segmentsExperienceId);
 
+		String parentItemId = ParamUtil.getString(
+			actionRequest, "parentItemId");
+
+		LayoutStructureItem layoutStructureItem =
+			layoutStructure.getLayoutStructureItem(parentItemId);
+
+		List<String> childrenItemIds = layoutStructureItem.getChildrenItemIds();
+
+		JSONObject fragmentEntryLinksJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		int position = ParamUtil.getInteger(actionRequest, "position");
+
 		List<FragmentEntryLink> fragmentEntryLinks =
 			_layoutPageTemplatesImporter.importPageElement(
 				themeDisplay.getLayout(), layoutStructure, parentItemId,
 				fragmentComposition.getData(), position);
-
-		JSONObject fragmentEntryLinksJSONObject =
-			JSONFactoryUtil.createJSONObject();
 
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
 			fragmentEntryLinksJSONObject.put(
@@ -140,11 +147,6 @@ public class AddFragmentEntryLinksMVCActionCommand
 					_fragmentRendererController, _fragmentRendererTracker,
 					_itemSelector, StringPool.BLANK));
 		}
-
-		LayoutStructureItem layoutStructureItem =
-			layoutStructure.getLayoutStructureItem(parentItemId);
-
-		List<String> childrenItemIds = layoutStructureItem.getChildrenItemIds();
 
 		return JSONUtil.put(
 			"addedItemId", childrenItemIds.get(position)
