@@ -121,7 +121,7 @@ public class DropZoneFragmentEntryProcessor implements FragmentEntryProcessor {
 
 			for (Element element : elements) {
 				element.attr(
-					"id",
+					"uuid",
 					dropZoneProcessorJSONObject.getString(element.attr("id")));
 			}
 

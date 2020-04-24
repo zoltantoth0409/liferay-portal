@@ -167,7 +167,7 @@ const FragmentContent = React.forwardRef(
 				Array.from(element.querySelectorAll('lfr-drop-zone')).map(
 					dropZoneElement => {
 						const mainItemId =
-							dropZoneElement.getAttribute('id') || '';
+							dropZoneElement.getAttribute('uuid') || '';
 
 						const Component = () =>
 							mainItemId ? (
