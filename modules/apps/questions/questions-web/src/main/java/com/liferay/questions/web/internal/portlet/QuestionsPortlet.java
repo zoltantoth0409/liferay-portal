@@ -79,7 +79,7 @@ public class QuestionsPortlet extends MVCPortlet {
 		);
 
 		renderRequest.setAttribute(
-			QuestionsPortletKeys.DEFAULT_RANK_ATTRIBUTE, lowestRank);
+			QuestionsPortletKeys.DEFAULT_RANK, lowestRank);
 
 		super.doView(renderRequest, renderResponse);
 	}
