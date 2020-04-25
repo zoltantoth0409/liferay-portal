@@ -39,17 +39,16 @@ public class DDMFormInstanceUADExporter extends BaseDDMFormInstanceUADExporter {
 
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
+				Property formInstanceIdProperty = PropertyFactoryUtil.forName(
+					"formInstanceId");
+
 				DynamicQuery formInstanceIdDynamicQuery =
 					_ddmFormInstanceRecordLocalService.dynamicQuery();
 
-				formInstanceIdDynamicQuery.setProjection(
-					ProjectionFactoryUtil.property("formInstanceId"));
-
 				formInstanceIdDynamicQuery.add(
 					RestrictionsFactoryUtil.eq("userId", userId));
-
-				Property formInstanceIdProperty = PropertyFactoryUtil.forName(
-					"formInstanceId");
+				formInstanceIdDynamicQuery.setProjection(
+					ProjectionFactoryUtil.property("formInstanceId"));
 
 				dynamicQuery.add(
 					formInstanceIdProperty.in(formInstanceIdDynamicQuery));
