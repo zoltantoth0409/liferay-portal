@@ -154,7 +154,7 @@ public class DataRecordValuesUtil {
 		}
 
 		if (ddmFormField.isRepeatable()) {
-			List<Object> instancesValue = null;
+			List<Object> list = null;
 
 			if (ddmFormField.isLocalizable()) {
 				Object value = dataRecordValues.get(name);
@@ -167,28 +167,28 @@ public class DataRecordValuesUtil {
 				Map<String, Object> localizedValues =
 					(Map<String, Object>)value;
 
-				instancesValue = (List<Object>)localizedValues.get(
+				list = (List<Object>)localizedValues.get(
 					LanguageUtil.getLanguageId(locale));
 			}
 			else {
-				instancesValue = (List<Object>)dataRecordValues.get(name);
+				list = (List<Object>)dataRecordValues.get(name);
 			}
 
-			if (instancesValue == null) {
+			if (list == null) {
 				return ListUtil.fromArray(ddmFormFieldValue);
 			}
 
 			List<DDMFormFieldValue> ddmFormFieldValues = new ArrayList<>(
-				instancesValue.size());
+				list.size());
 
-			for (Object instanceValue : instancesValue) {
+			for (Object object : list) {
 				ddmFormFieldValue = new DDMFormFieldValue();
 
 				ddmFormFieldValue.setName(ddmFormField.getName());
 
 				LocalizedValue localizedValue = new LocalizedValue();
 
-				localizedValue.addString(locale, String.valueOf(instanceValue));
+				localizedValue.addString(locale, String.valueOf(object));
 
 				ddmFormFieldValue.setValue(localizedValue);
 
