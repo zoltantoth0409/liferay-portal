@@ -437,13 +437,6 @@ public class MessageBoardThreadResourceImpl
 
 		DynamicQuery dynamicQuery = _ratingsStatsLocalService.dynamicQuery();
 
-		ClassName className = _classNameLocalService.getClassName(
-			MBMessage.class.getName());
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"classNameId", className.getClassNameId()));
-
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"companyId", contextCompany.getCompanyId()));
@@ -457,6 +450,13 @@ public class MessageBoardThreadResourceImpl
 			dynamicQuery.add(
 				RestrictionsFactoryUtil.gt("modifiedDate", dateModified));
 		}
+
+		ClassName className = _classNameLocalService.getClassName(
+			MBMessage.class.getName());
+
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq(
+				"classNameId", className.getClassNameId()));
 
 		String sql =
 			"EXISTS (select 1 from MBMessage where this_.classPK = messageId";
