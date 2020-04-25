@@ -76,7 +76,8 @@ public class DataRecordCollectionResourceTest
 		throws Exception {
 
 		DataRecordCollection dataRecordCollection =
-			testGetDataRecordCollectionPermission_addDataRecordCollection();
+			dataRecordCollectionResource.postDataDefinitionDataRecordCollection(
+				_ddmStructure.getStructureId(), randomDataRecordCollection());
 
 		assertHttpResponseStatusCode(
 			200,
@@ -91,7 +92,9 @@ public class DataRecordCollectionResourceTest
 		throws Exception {
 
 		DataRecordCollection dataRecordCollection =
-			testGraphQLGetDataDefinitionDataRecordCollection_addDataRecordCollection();
+			dataRecordCollectionResource.postDataDefinitionDataRecordCollection(
+				_ddmStructure.getStructureId(),
+				_randomDataRecordCollection(_ddmStructure.getStructureKey()));
 
 		List<GraphQLField> graphQLFields = getGraphQLFields();
 
@@ -277,15 +280,6 @@ public class DataRecordCollectionResourceTest
 				_ddmStructure.getStructureId(), randomDataRecordCollection());
 	}
 
-	protected DataRecordCollection
-			testGetDataRecordCollectionPermission_addDataRecordCollection()
-		throws Exception {
-
-		return dataRecordCollectionResource.
-			postDataDefinitionDataRecordCollection(
-				_ddmStructure.getStructureId(), randomDataRecordCollection());
-	}
-
 	@Override
 	protected DataRecordCollection
 			testGetSiteDataRecordCollectionByDataRecordCollectionKey_addDataRecordCollection()
@@ -304,16 +298,6 @@ public class DataRecordCollectionResourceTest
 		return dataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
 				_ddmStructure.getStructureId(), randomDataRecordCollection());
-	}
-
-	protected DataRecordCollection
-			testGraphQLGetDataDefinitionDataRecordCollection_addDataRecordCollection()
-		throws Exception {
-
-		return dataRecordCollectionResource.
-			postDataDefinitionDataRecordCollection(
-				_ddmStructure.getStructureId(),
-				_randomDataRecordCollection(_ddmStructure.getStructureKey()));
 	}
 
 	@Override
