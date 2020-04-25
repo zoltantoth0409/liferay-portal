@@ -45,27 +45,22 @@ public class DDMFormInstanceRecordUADExporter
 
 	@Override
 	protected String toXmlString(DDMFormInstanceRecord ddmFormInstanceRecord) {
-		String xmlString = super.toXmlString(ddmFormInstanceRecord);
-
-		xmlString = StringUtil.removeSubstring(xmlString, "</model>");
-
 		StringBundler sb = new StringBundler(7);
 
-		sb.append(xmlString);
-
+		sb.append(
+			StringUtil.removeSubstring(
+				super.toXmlString(ddmFormInstanceRecord), "</model>"));
 		sb.append("<column><column-name>");
 		sb.append("formInstanceName</column-name><column-value><![CDATA[");
 		sb.append(_getFormInstanceName(ddmFormInstanceRecord));
 		sb.append("]]></column-value></column>");
-
-		sb.append(_getFieldValuesDDMContent(ddmFormInstanceRecord));
-
+		sb.append(_getFieldValuesXMLString(ddmFormInstanceRecord));
 		sb.append("</model>");
 
 		return sb.toString();
 	}
 
-	private String _getFieldValuesDDMContent(
+	private String _getFieldValuesXMLString(
 		DDMFormInstanceRecord ddmFormInstanceRecord) {
 
 		try {
@@ -102,18 +97,15 @@ public class DDMFormInstanceRecordUADExporter
 		}
 		catch (PortalException portalException) {
 			_log.error(
-				"Unable to get field values from formInstanceRecord " +
-					ddmFormInstanceRecord.getFormInstanceRecordId(),
+				"Unable to get field values from dynamic data mapping form " +
+					"instance record " +
+						ddmFormInstanceRecord.getFormInstanceRecordId(),
 				portalException);
 		}
 
 		return null;
 	}
 
-	/**
-	 * Extracts DDMFormInstance name from xml structure stored in database
-	 * @return DDMFormInstance Name
-	 */
 	private String _getFormInstanceName(
 		DDMFormInstanceRecord ddmFormInstanceRecord) {
 
@@ -126,15 +118,15 @@ public class DDMFormInstanceRecordUADExporter
 
 			Node firstChildNode = document.getFirstChild();
 
-			NodeList childNodes = firstChildNode.getChildNodes();
+			NodeList nodeList = firstChildNode.getChildNodes();
 
-			Node formInstanceNameNode = childNodes.item(0);
+			Node formInstanceNameNode = nodeList.item(0);
 
 			return formInstanceNameNode.getTextContent();
 		}
 		catch (PortalException portalException) {
 			_log.error(
-				"Unable to get name from formInstance " +
+				"Unable to get name from dynamic data mapping form instance " +
 					ddmFormInstanceRecord.getFormInstanceId(),
 				portalException);
 		}
