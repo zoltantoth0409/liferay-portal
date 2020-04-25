@@ -130,7 +130,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
-		_setUpEnvironment(uploadPortletRequest, mockHttpServletResponse, _user);
+		_processEvents(uploadPortletRequest, mockHttpServletResponse, _user);
 
 		_importFragmentEntriesStrutsAction.execute(
 			uploadPortletRequest, mockHttpServletResponse);
@@ -178,7 +178,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 			outputStream.write(bytes);
 		}
 
-		return HashMapBuilder.put(
+		return HashMapBuilder.<String, FileItem[]>put(
 			namespace, new FileItem[] {liferayFileItem}
 		).build();
 	}
@@ -226,7 +226,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 		return FileUtil.getBytes(zipWriter.getFile());
 	}
 
-	private void _setUpEnvironment(
+	private void _processEvents(
 			HttpServletRequest mockHttpServletRequest,
 			MockHttpServletResponse mockHttpServletResponse, User user)
 		throws Exception {

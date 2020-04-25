@@ -112,7 +112,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		mockHttpServletRequest.setParameter(
 			"js", StringUtil.read(jsUrl.openStream()));
 
-		_setUpEnvironment(
+		_processEvents(
 			mockHttpServletRequest, mockHttpServletResponse, _user);
 
 		_renderFragmentEntryStrutsAction.execute(
@@ -142,7 +142,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
-		_setUpEnvironment(
+		_processEvents(
 			mockHttpServletRequest, mockHttpServletResponse, _user);
 
 		mockHttpServletRequest.setParameter(
@@ -187,7 +187,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		return htmlString.replaceAll("\\s+<", "<");
 	}
 
-	private void _setUpEnvironment(
+	private void _processEvents(
 			MockHttpServletRequest mockHttpServletRequest,
 			MockHttpServletResponse mockHttpServletResponse, User user)
 		throws Exception {
