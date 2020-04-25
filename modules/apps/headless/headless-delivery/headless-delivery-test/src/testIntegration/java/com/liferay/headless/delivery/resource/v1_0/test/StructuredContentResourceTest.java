@@ -283,8 +283,8 @@ public class StructuredContentResourceTest
 			Assert.assertFalse(actions.containsKey("update"));
 		}
 		finally {
-			_roleLocalService.deleteRole(role);
 			_userLocalService.deleteUser(testUser);
+			_roleLocalService.deleteRole(role);
 		}
 	}
 
