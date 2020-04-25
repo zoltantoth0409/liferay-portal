@@ -102,24 +102,24 @@ public class DDMFormValuesToMapConverterImpl
 				for (Locale locale : availableLocales) {
 					String languageId = LanguageUtil.getLanguageId(locale);
 
-					List<Object> instancesValue =
+					List<Object> list =
 						(List<Object>)localizedValues.getOrDefault(
 							languageId, new ArrayList<>());
 
-					instancesValue.add(localizedValue.getString(locale));
+					list.add(localizedValue.getString(locale));
 
-					localizedValues.put(languageId, instancesValue);
+					localizedValues.put(languageId, list);
 				}
 
 				values.put(name, localizedValues);
 			}
 			else {
-				List<Object> instancesValue = (List<Object>)values.getOrDefault(
+				List<Object> list = (List<Object>)values.getOrDefault(
 					name, new ArrayList<>());
 
-				instancesValue.add(value.getString(value.getDefaultLocale()));
+				list.add(value.getString(value.getDefaultLocale()));
 
-				values.put(name, instancesValue);
+				values.put(name, list);
 			}
 		}
 		else if (ddmFormField.isLocalizable()) {
