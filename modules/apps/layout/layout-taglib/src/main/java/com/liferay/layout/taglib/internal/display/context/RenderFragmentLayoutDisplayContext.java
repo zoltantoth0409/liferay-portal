@@ -211,7 +211,8 @@ public class RenderFragmentLayoutDisplayContext {
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Unable to write portlet paths " + portlet.getPortletId(),
+					"Unable to write portlet footer paths " +
+						portlet.getPortletId(),
 					exception);
 			}
 		}
@@ -237,7 +238,8 @@ public class RenderFragmentLayoutDisplayContext {
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Unable to write portlet paths " + portlet.getPortletId(),
+					"Unable to write portlet header paths " +
+						portlet.getPortletId(),
 					exception);
 			}
 		}
