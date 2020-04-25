@@ -62,11 +62,11 @@ RedirectManagementToolbarDisplayContext redirectManagementToolbarDisplayContext 
 					>
 
 						<%
-						String sourceUrl = RedirectUtil.getGroupBaseURL(themeDisplay) + StringPool.SLASH + redirectEntry.getSourceURL();
+						String sourceURL = RedirectUtil.getGroupBaseURL(themeDisplay) + StringPool.SLASH + redirectEntry.getSourceURL();
 						%>
 
-						<span data-title="<%= sourceUrl %>">
-							<%= HtmlUtil.escape(sourceUrl) %>
+						<span data-title="<%= sourceURL %>">
+							<%= HtmlUtil.escape(sourceURL) %>
 						</span>
 					</liferay-ui:search-container-column-text>
 
