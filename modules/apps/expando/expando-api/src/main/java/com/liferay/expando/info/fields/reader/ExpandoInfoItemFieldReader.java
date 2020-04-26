@@ -20,6 +20,7 @@ import com.liferay.expando.kernel.util.ExpandoConverterUtil;
 import com.liferay.info.fields.InfoItemField;
 import com.liferay.info.fields.reader.LocalizedInfoItemFieldReader;
 import com.liferay.info.fields.type.InfoItemFieldType;
+import com.liferay.info.localization.LocalizedValue;
 import com.liferay.info.fields.type.TextInfoItemFieldType;
 import com.liferay.info.localization.LocalizedValue;
 import com.liferay.petra.string.StringBundler;

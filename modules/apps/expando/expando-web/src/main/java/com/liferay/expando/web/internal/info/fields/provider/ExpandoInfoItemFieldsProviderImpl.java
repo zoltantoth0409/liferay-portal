@@ -44,14 +44,7 @@ public class ExpandoInfoItemFieldsProviderImpl
 		for (ExpandoInfoItemFieldReader expandoInfoItemFieldReader :
 				_getExpandoInfoItemFieldReaders(className)) {
 
-			InfoItemField infoItemField =
-				expandoInfoItemFieldReader.getInfoItemField();
-
-			infoItemFields.add(
-				new InfoItemField(
-					expandoInfoItemFieldReader.getKey(),
-					expandoInfoItemFieldReader.getLabels(),
-					infoItemField.getItemFieldType()));
+			infoItemFields.add(expandoInfoItemFieldReader.getInfoItemField());
 		}
 
 		return infoItemFields;

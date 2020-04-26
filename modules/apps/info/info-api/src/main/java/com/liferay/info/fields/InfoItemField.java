@@ -15,12 +15,12 @@
 package com.liferay.info.fields;
 
 import com.liferay.info.fields.type.InfoItemFieldType;
+import com.liferay.info.localization.LocalizedValue;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -29,12 +29,12 @@ import java.util.Objects;
 public class InfoItemField {
 
 	public InfoItemField(
-		String key, Map<Locale, String> labels,
+		String key, LocalizedValue<String> localizedValue,
 		InfoItemFieldType itemFieldType) {
 
-		_key = key;
-		_labels = labels;
+		_localizedValue = localizedValue;
 		_itemFieldType = itemFieldType;
+		_key = key;
 	}
 
 	@Override
@@ -50,7 +50,8 @@ public class InfoItemField {
 		InfoItemField infoDisplayField = (InfoItemField)obj;
 
 		if (Objects.equals(_key, infoDisplayField._key) &&
-			Objects.equals(_labels, infoDisplayField._labels) &&
+			Objects.equals(
+				_localizedValue, infoDisplayField._localizedValue) &&
 			Objects.equals(_itemFieldType, infoDisplayField._itemFieldType)) {
 
 			return true;
@@ -63,8 +64,12 @@ public class InfoItemField {
 		return _key;
 	}
 
+	public LocalizedValue<String> getLabel() {
+		return _localizedValue;
+	}
+
 	public String getLabel(Locale locale) {
-		return _labels.get(locale);
+		return _localizedValue.getValue(locale);
 	}
 
 	public InfoItemFieldType getItemFieldType() {
@@ -75,7 +80,7 @@ public class InfoItemField {
 	public int hashCode() {
 		int hash = HashUtil.hash(0, _key);
 
-		hash = HashUtil.hash(hash, _labels);
+		hash = HashUtil.hash(hash, _localizedValue);
 
 		return HashUtil.hash(hash, _itemFieldType);
 	}
@@ -84,7 +89,7 @@ public class InfoItemField {
 		return JSONUtil.put(
 			"key", getKey()
 		).put(
-			"labels", _labels   //TODO: Review
+			"labels", _localizedValue   //TODO: Review
 		).put(
 			"type", _itemFieldType.getName()
 		);
@@ -92,6 +97,7 @@ public class InfoItemField {
 
 	private final InfoItemFieldType _itemFieldType;
 	private final String _key;
-	private final Map<Locale, String> _labels;
+	private final LocalizedValue<String> _localizedValue;
+
 
 }
