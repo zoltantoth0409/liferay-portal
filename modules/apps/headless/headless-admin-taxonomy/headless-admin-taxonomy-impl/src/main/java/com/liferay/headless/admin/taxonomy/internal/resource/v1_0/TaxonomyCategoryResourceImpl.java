@@ -434,7 +434,7 @@ public class TaxonomyCategoryResourceImpl
 
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.sqlRestriction(
-				"EXISTS (select 1 from AssetEntryAssetCategoryRel where " +
+				"exists (select 1 from AssetEntryAssetCategoryRel where " +
 					"assetCategoryId = this_.categoryId)"));
 
 		return _assetCategoryLocalService.dynamicQueryCount(dynamicQuery);
