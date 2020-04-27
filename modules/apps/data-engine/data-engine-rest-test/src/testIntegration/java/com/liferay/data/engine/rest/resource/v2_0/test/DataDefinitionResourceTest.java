@@ -246,55 +246,54 @@ public class DataDefinitionResourceTest
 
 		// MustNotDuplicateFieldName
 
-		DataDefinition dataDefinition = new DataDefinition() {
-			{
-				availableLanguageIds = new String[] {"en_US", "pt_BR"};
-				dataDefinitionFields = new DataDefinitionField[] {
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text1";
-						}
-					},
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text2";
-						}
-					},
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text2";
-						}
-					}
-				};
-				dataDefinitionKey = RandomTestUtil.randomString();
-				defaultLanguageId = "en_US";
-				name = HashMapBuilder.<String, Object>put(
-					"en_US", RandomTestUtil.randomString()
-				).build();
-			}
-		};
-
 		try {
 			dataDefinitionResource.postDataDefinitionByContentType(
-				_CONTENT_TYPE, dataDefinition);
+				_CONTENT_TYPE,
+				new DataDefinition() {
+					{
+						availableLanguageIds = new String[] {"en_US", "pt_BR"};
+						dataDefinitionFields = new DataDefinitionField[] {
+							new DataDefinitionField() {
+								{
+									fieldType = "text";
+									label = HashMapBuilder.<String, Object>put(
+										"en_US", RandomTestUtil.randomString()
+									).put(
+										"pt_BR", RandomTestUtil.randomString()
+									).build();
+									name = "text1";
+								}
+							},
+							new DataDefinitionField() {
+								{
+									fieldType = "text";
+									label = HashMapBuilder.<String, Object>put(
+										"en_US", RandomTestUtil.randomString()
+									).put(
+										"pt_BR", RandomTestUtil.randomString()
+									).build();
+									name = "text2";
+								}
+							},
+							new DataDefinitionField() {
+								{
+									fieldType = "text";
+									label = HashMapBuilder.<String, Object>put(
+										"en_US", RandomTestUtil.randomString()
+									).put(
+										"pt_BR", RandomTestUtil.randomString()
+									).build();
+									name = "text2";
+								}
+							}
+						};
+						dataDefinitionKey = RandomTestUtil.randomString();
+						defaultLanguageId = "en_US";
+						name = HashMapBuilder.<String, Object>put(
+							"en_US", RandomTestUtil.randomString()
+						).build();
+					}
+				});
 
 			Assert.fail("An exception must be thrown");
 		}
