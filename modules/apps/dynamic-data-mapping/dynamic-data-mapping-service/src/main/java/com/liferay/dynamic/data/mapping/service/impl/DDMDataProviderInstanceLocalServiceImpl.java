@@ -308,11 +308,10 @@ public class DDMDataProviderInstanceLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		Date now = new Date();
-
 		dataProviderInstance.setUserId(user.getUserId());
 		dataProviderInstance.setUserName(user.getFullName());
-		dataProviderInstance.setModifiedDate(now);
+
+		dataProviderInstance.setModifiedDate(new Date());
 		dataProviderInstance.setNameMap(nameMap);
 		dataProviderInstance.setDescriptionMap(descriptionMap);
 		dataProviderInstance.setDefinition(serialize(ddmFormValues));
