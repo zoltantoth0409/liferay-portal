@@ -134,6 +134,19 @@ public class AppBuilderAppLocalServiceImpl
 	}
 
 	@Override
+	public int getAppBuilderAppsCount(long groupId) {
+		return appBuilderAppPersistence.countByGroupId(groupId);
+	}
+
+	@Override
+	public int getAppBuilderAppsCount(
+		long groupId, long companyId, long ddmStructureId) {
+
+		return appBuilderAppPersistence.countByG_C_D(
+			groupId, companyId, ddmStructureId);
+	}
+
+	@Override
 	public List<AppBuilderApp> getCompanyAppBuilderApps(
 		long companyId, int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
@@ -145,19 +158,6 @@ public class AppBuilderAppLocalServiceImpl
 	@Override
 	public int getCompanyAppBuilderAppsCount(long companyId) {
 		return appBuilderAppPersistence.countByCompanyId(companyId);
-	}
-
-	@Override
-	public int getAppBuilderAppsCount(long groupId) {
-		return appBuilderAppPersistence.countByGroupId(groupId);
-	}
-
-	@Override
-	public int getAppBuilderAppsCount(
-		long groupId, long companyId, long ddmStructureId) {
-
-		return appBuilderAppPersistence.countByG_C_D(
-			groupId, companyId, ddmStructureId);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
