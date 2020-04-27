@@ -181,97 +181,96 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 
 		// MustNotDuplicateFieldName
 
-		DataDefinition dataDefinition = new DataDefinition() {
-			{
-				availableLanguageIds = new String[] {"en_US", "pt_BR"};
-				dataDefinitionFields = new DataDefinitionField[] {
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text1";
-						}
-					},
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text2";
-						}
-					}
-				};
-				dataDefinitionKey = RandomTestUtil.randomString();
-				defaultLanguageId = "en_US";
-				name = HashMapBuilder.<String, Object>put(
-					"en_US", RandomTestUtil.randomString()
-				).build();
-			}
-		};
-
 		DataDefinitionResource dataDefinitionResource =
 			DataDefinitionResource.builder(
 			).build();
 
-		dataDefinition =
+		DataDefinition dataDefinition =
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
-				testGroup.getGroupId(), "app-builder", dataDefinition);
+				testGroup.getGroupId(), "app-builder",
+				new DataDefinition() {
+					{
+						availableLanguageIds = new String[] {"en_US", "pt_BR"};
+						dataDefinitionFields = new DataDefinitionField[] {
+							new DataDefinitionField() {
+								{
+									fieldType = "text";
+									label = HashMapBuilder.<String, Object>put(
+										"en_US", RandomTestUtil.randomString()
+									).put(
+										"pt_BR", RandomTestUtil.randomString()
+									).build();
+									name = "text1";
+								}
+							},
+							new DataDefinitionField() {
+								{
+									fieldType = "text";
+									label = HashMapBuilder.<String, Object>put(
+										"en_US", RandomTestUtil.randomString()
+									).put(
+										"pt_BR", RandomTestUtil.randomString()
+									).build();
+									name = "text2";
+								}
+							}
+						};
+						dataDefinitionKey = RandomTestUtil.randomString();
+						defaultLanguageId = "en_US";
+						name = HashMapBuilder.<String, Object>put(
+							"en_US", RandomTestUtil.randomString()
+						).build();
+					}
+				});
 
 		try {
-			DataLayout dataLayout = new DataLayout() {
+			DataLayoutRow dataLayoutRow = new DataLayoutRow() {
 				{
-					dataLayoutKey = RandomTestUtil.randomString();
-					paginationMode = "wizard";
+					dataLayoutColumns = new DataLayoutColumn[] {
+						new DataLayoutColumn() {
+							{
+								columnSize = 12;
+								fieldNames = new String[] {
+									"text1", "text2", "text1"
+								};
+							}
+						}
+					};
 				}
 			};
 
-			dataLayout.setDataDefinitionId(dataDefinition.getId());
-			dataLayout.setDataLayoutPages(
-				new DataLayoutPage[] {
-					new DataLayoutPage() {
-						{
-							dataLayoutRows = new DataLayoutRow[] {
-								new DataLayoutRow() {
+			dataLayoutResource.postDataDefinitionDataLayout(
+				dataDefinition.getId(),
+				new DataLayout() {
+					{
+						dataLayoutKey = RandomTestUtil.randomString();
+						paginationMode = "wizard";
+
+						setDataDefinitionId(dataDefinition.getId());
+						setDataLayoutPages(
+							new DataLayoutPage[] {
+								new DataLayoutPage() {
 									{
-										dataLayoutColumns =
-											new DataLayoutColumn[] {
-												new DataLayoutColumn() {
-													{
-														columnSize = 12;
-														fieldNames =
-															new String[] {
-																"text1",
-																"text2", "text1"
-															};
-													}
-												}
-											};
+										dataLayoutRows = new DataLayoutRow[] {
+											dataLayoutRow
+										};
+										description =
+											HashMapBuilder.<String, Object>put(
+												"en_US", "Page Description"
+											).build();
+										title =
+											HashMapBuilder.<String, Object>put(
+												"en_US", "Page Title"
+											).build();
 									}
 								}
-							};
-							description = HashMapBuilder.<String, Object>put(
-								"en_US", "Page Description"
-							).build();
-							title = HashMapBuilder.<String, Object>put(
-								"en_US", "Page Title"
-							).build();
-						}
+							});
+						setName(
+							HashMapBuilder.<String, Object>put(
+								"en_US", RandomTestUtil.randomString()
+							).build());
 					}
 				});
-			dataLayout.setName(
-				HashMapBuilder.<String, Object>put(
-					"en_US", RandomTestUtil.randomString()
-				).build());
-
-			dataLayoutResource.postDataDefinitionDataLayout(
-				dataDefinition.getId(), dataLayout);
 
 			Assert.fail("An exception must be thrown");
 		}
