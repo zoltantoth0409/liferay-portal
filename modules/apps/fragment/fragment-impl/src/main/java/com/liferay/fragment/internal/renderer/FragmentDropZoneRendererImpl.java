@@ -47,12 +47,12 @@ public class FragmentDropZoneRendererImpl implements FragmentDropZoneRenderer {
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		PipingServletResponse pipingServletResponse = new PipingServletResponse(
-			httpServletResponse, unsyncStringWriter);
-
 		httpServletRequest.setAttribute(
 			FragmentActionKeys.FRAGMENT_RENDERER_CONTROLLER,
 			_fragmentRendererController);
+
+		PipingServletResponse pipingServletResponse = new PipingServletResponse(
+			httpServletResponse, unsyncStringWriter);
 
 		try {
 			RenderFragmentLayoutTag renderFragmentLayoutTag =
