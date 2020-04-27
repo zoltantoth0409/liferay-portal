@@ -160,7 +160,6 @@ public class WorkflowMetricsReindexBackgroundTaskExecutor
 			message.put(
 				WorkflowMetricsReindexBackgroundTaskConstants.INDEX_ENTITY_NAME,
 				indexEntityNames[0]);
-
 			message.put(
 				WorkflowMetricsReindexBackgroundTaskConstants.
 					INDEX_ENTITY_NAMES,
