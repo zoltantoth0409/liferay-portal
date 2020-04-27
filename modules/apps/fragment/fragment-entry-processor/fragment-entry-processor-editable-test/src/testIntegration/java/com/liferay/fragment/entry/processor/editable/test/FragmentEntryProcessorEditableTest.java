@@ -537,7 +537,7 @@ public class FragmentEntryProcessorEditableTest {
 	@Inject(
 		filter = "javax.portlet.name=" + FragmentEntryLinkPortletKeys.FRAGMENT_ENTRY_LINK_NONINSTANCEABLE_TEST_PORTLET
 	)
-	private final Portlet _nonInstanceablePortlet = null;
+	private final Portlet _noninstanceablePortlet = null;
 
 	private Locale _originalSiteDefaultLocale;
 	private Locale _originalThemeDisplayDefaultLocale;
