@@ -244,7 +244,67 @@ public class DataDefinitionResourceTest
 	public void testPostDataDefinitionByContentType() throws Exception {
 		super.testPostDataDefinitionByContentType();
 
-		_testPostDataDefinitionByContentTypeDuplicatedFieldName();
+		// MustNotDuplicateFieldName
+
+		DataDefinition dataDefinition = new DataDefinition() {
+			{
+				availableLanguageIds = new String[] {"en_US", "pt_BR"};
+				dataDefinitionFields = new DataDefinitionField[] {
+					new DataDefinitionField() {
+						{
+							fieldType = "text";
+							label = HashMapBuilder.<String, Object>put(
+								"en_US", RandomTestUtil.randomString()
+							).put(
+								"pt_BR", RandomTestUtil.randomString()
+							).build();
+							name = "text1";
+						}
+					},
+					new DataDefinitionField() {
+						{
+							fieldType = "text";
+							label = HashMapBuilder.<String, Object>put(
+								"en_US", RandomTestUtil.randomString()
+							).put(
+								"pt_BR", RandomTestUtil.randomString()
+							).build();
+							name = "text2";
+						}
+					},
+					new DataDefinitionField() {
+						{
+							fieldType = "text";
+							label = HashMapBuilder.<String, Object>put(
+								"en_US", RandomTestUtil.randomString()
+							).put(
+								"pt_BR", RandomTestUtil.randomString()
+							).build();
+							name = "text2";
+						}
+					}
+				};
+				dataDefinitionKey = RandomTestUtil.randomString();
+				defaultLanguageId = "en_US";
+				name = HashMapBuilder.<String, Object>put(
+					"en_US", RandomTestUtil.randomString()
+				).build();
+			}
+		};
+
+		try {
+			dataDefinitionResource.postDataDefinitionByContentType(
+				_CONTENT_TYPE, dataDefinition);
+
+			Assert.fail("An exception must be thrown");
+		}
+		catch (Problem.ProblemException problemException) {
+			Problem problem = problemException.getProblem();
+
+			Assert.assertEquals("text2", problem.getDetail());
+			Assert.assertEquals("BAD_REQUEST", problem.getStatus());
+			Assert.assertEquals("MustNotDuplicateFieldName", problem.getType());
+		}
 	}
 
 	@Override
@@ -519,70 +579,6 @@ public class DataDefinitionResourceTest
 		assertValid(page);
 
 		dataDefinitionResource.deleteDataDefinition(dataDefinition.getId());
-	}
-
-	private void _testPostDataDefinitionByContentTypeDuplicatedFieldName()
-		throws Exception {
-
-		DataDefinition dataDefinition = new DataDefinition() {
-			{
-				availableLanguageIds = new String[] {"en_US", "pt_BR"};
-				dataDefinitionFields = new DataDefinitionField[] {
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text1";
-						}
-					},
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text2";
-						}
-					},
-					new DataDefinitionField() {
-						{
-							fieldType = "text";
-							label = HashMapBuilder.<String, Object>put(
-								"en_US", RandomTestUtil.randomString()
-							).put(
-								"pt_BR", RandomTestUtil.randomString()
-							).build();
-							name = "text2";
-						}
-					}
-				};
-				dataDefinitionKey = RandomTestUtil.randomString();
-				defaultLanguageId = "en_US";
-				name = HashMapBuilder.<String, Object>put(
-					"en_US", RandomTestUtil.randomString()
-				).build();
-			}
-		};
-
-		try {
-			dataDefinitionResource.postDataDefinitionByContentType(
-				_CONTENT_TYPE, dataDefinition);
-
-			Assert.fail("An exception must be thrown");
-		}
-		catch (Problem.ProblemException problemException) {
-			Problem problem = problemException.getProblem();
-
-			Assert.assertEquals("text2", problem.getDetail());
-			Assert.assertEquals("BAD_REQUEST", problem.getStatus());
-			Assert.assertEquals("MustNotDuplicateFieldName", problem.getType());
-		}
 	}
 
 	private static final String _CONTENT_TYPE = "app-builder";

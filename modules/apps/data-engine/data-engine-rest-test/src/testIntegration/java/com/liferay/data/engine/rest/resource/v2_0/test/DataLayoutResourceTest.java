@@ -179,114 +179,7 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 			assertValid(postDataLayout);
 		}
 
-		_testPostDataDefinitionDataLayoutDuplicatedFieldName();
-	}
-
-	@Override
-	protected String[] getAdditionalAssertFieldNames() {
-		return new String[] {"dataDefinitionId", "name", "paginationMode"};
-	}
-
-	@Override
-	protected DataLayout randomDataLayout() {
-		return DataLayoutTestUtil.createDataLayout(
-			_dataDefinition.getId(), RandomTestUtil.randomString(),
-			testGroup.getGroupId());
-	}
-
-	@Override
-	protected DataLayout randomIrrelevantDataLayout() throws Exception {
-		DataLayout randomIrrelevantDataLayout =
-			super.randomIrrelevantDataLayout();
-
-		randomIrrelevantDataLayout.setDataDefinitionId(
-			_irrelevantDataDefinition.getId());
-
-		return randomIrrelevantDataLayout;
-	}
-
-	@Override
-	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {
-		return dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-	}
-
-	@Override
-	protected DataLayout testDeleteDataLayoutsDataDefinition_addDataLayout()
-		throws Exception {
-
-		return dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-	}
-
-	@Override
-	protected Long testGetDataDefinitionDataLayoutsPage_getDataDefinitionId()
-		throws Exception {
-
-		return _dataDefinition.getId();
-	}
-
-	@Override
-	protected DataLayout testGetDataLayout_addDataLayout() throws Exception {
-		return dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-	}
-
-	@Override
-	protected DataLayout
-			testGetSiteDataLayoutByContentTypeByDataLayoutKey_addDataLayout()
-		throws Exception {
-
-		DataLayout dataLayout = dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-
-		dataLayout.setContentType("app-builder");
-
-		return dataLayout;
-	}
-
-	@Override
-	protected DataLayout testGraphQLDataLayout_addDataLayout()
-		throws Exception {
-
-		return dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-	}
-
-	@Override
-	protected DataLayout testPutDataLayout_addDataLayout() throws Exception {
-		return dataLayoutResource.postDataDefinitionDataLayout(
-			_dataDefinition.getId(), randomDataLayout());
-	}
-
-	private void _testGetDataDefinitionDataLayoutsPage(
-			String keywords, String name)
-		throws Exception {
-
-		Long dataDefinitionId =
-			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId();
-
-		DataLayout dataLayout =
-			testGetDataDefinitionDataLayoutsPage_addDataLayout(
-				dataDefinitionId,
-				DataLayoutTestUtil.createDataLayout(
-					_dataDefinition.getId(), name, testGroup.getGroupId()));
-
-		Page<DataLayout> page =
-			dataLayoutResource.getDataDefinitionDataLayoutsPage(
-				dataDefinitionId, keywords, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(1, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataLayout), (List<DataLayout>)page.getItems());
-		assertValid(page);
-
-		dataLayoutResource.deleteDataLayout(dataLayout.getId());
-	}
-
-	private void _testPostDataDefinitionDataLayoutDuplicatedFieldName()
-		throws Exception {
+		// MustNotDuplicateFieldName
 
 		DataDefinition dataDefinition = new DataDefinition() {
 			{
@@ -392,6 +285,109 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 		finally {
 			dataDefinitionResource.deleteDataDefinition(dataDefinition.getId());
 		}
+	}
+
+	@Override
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"dataDefinitionId", "name", "paginationMode"};
+	}
+
+	@Override
+	protected DataLayout randomDataLayout() {
+		return DataLayoutTestUtil.createDataLayout(
+			_dataDefinition.getId(), RandomTestUtil.randomString(),
+			testGroup.getGroupId());
+	}
+
+	@Override
+	protected DataLayout randomIrrelevantDataLayout() throws Exception {
+		DataLayout randomIrrelevantDataLayout =
+			super.randomIrrelevantDataLayout();
+
+		randomIrrelevantDataLayout.setDataDefinitionId(
+			_irrelevantDataDefinition.getId());
+
+		return randomIrrelevantDataLayout;
+	}
+
+	@Override
+	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {
+		return dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+	}
+
+	@Override
+	protected DataLayout testDeleteDataLayoutsDataDefinition_addDataLayout()
+		throws Exception {
+
+		return dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+	}
+
+	@Override
+	protected Long testGetDataDefinitionDataLayoutsPage_getDataDefinitionId()
+		throws Exception {
+
+		return _dataDefinition.getId();
+	}
+
+	@Override
+	protected DataLayout testGetDataLayout_addDataLayout() throws Exception {
+		return dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+	}
+
+	@Override
+	protected DataLayout
+			testGetSiteDataLayoutByContentTypeByDataLayoutKey_addDataLayout()
+		throws Exception {
+
+		DataLayout dataLayout = dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+
+		dataLayout.setContentType("app-builder");
+
+		return dataLayout;
+	}
+
+	@Override
+	protected DataLayout testGraphQLDataLayout_addDataLayout()
+		throws Exception {
+
+		return dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+	}
+
+	@Override
+	protected DataLayout testPutDataLayout_addDataLayout() throws Exception {
+		return dataLayoutResource.postDataDefinitionDataLayout(
+			_dataDefinition.getId(), randomDataLayout());
+	}
+
+	private void _testGetDataDefinitionDataLayoutsPage(
+			String keywords, String name)
+		throws Exception {
+
+		Long dataDefinitionId =
+			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId();
+
+		DataLayout dataLayout =
+			testGetDataDefinitionDataLayoutsPage_addDataLayout(
+				dataDefinitionId,
+				DataLayoutTestUtil.createDataLayout(
+					_dataDefinition.getId(), name, testGroup.getGroupId()));
+
+		Page<DataLayout> page =
+			dataLayoutResource.getDataDefinitionDataLayoutsPage(
+				dataDefinitionId, keywords, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(1, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(dataLayout), (List<DataLayout>)page.getItems());
+		assertValid(page);
+
+		dataLayoutResource.deleteDataLayout(dataLayout.getId());
 	}
 
 	private DataDefinition _dataDefinition;
