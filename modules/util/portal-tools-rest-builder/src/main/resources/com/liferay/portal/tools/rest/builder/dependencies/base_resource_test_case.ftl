@@ -1374,6 +1374,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 		</#if>
 	</#list>
 
+	<#if generateSearchTestRule>
+		@Rule
+		public SearchTestRule searchTestRule = new SearchTestRule();
+	</#if>
+
 	<#list relatedSchemaNames as relatedSchemaName>
 		<#assign
 			relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName)
@@ -1733,11 +1738,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 			Assert.assertTrue(valid);
 		}
 	</#list>
-
-	<#if generateSearchTestRule>
-		@Rule
-		public SearchTestRule searchTestRule = new SearchTestRule();
-	</#if>
 
 	protected String[] getAdditionalAssertFieldNames() {
 		return new String[0];
