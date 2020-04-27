@@ -134,7 +134,7 @@ public class AppBuilderAppLocalServiceImpl
 	}
 
 	@Override
-	public List<AppBuilderApp> getAppBuilderAppsByCompanyId(
+	public List<AppBuilderApp> getCompanyAppBuilderApps(
 		long companyId, int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
@@ -143,7 +143,7 @@ public class AppBuilderAppLocalServiceImpl
 	}
 
 	@Override
-	public int getAppBuilderAppsByCompanyIdCount(long companyId) {
+	public int getCompanyAppBuilderAppsCount(long companyId) {
 		return appBuilderAppPersistence.countByCompanyId(companyId);
 	}
 

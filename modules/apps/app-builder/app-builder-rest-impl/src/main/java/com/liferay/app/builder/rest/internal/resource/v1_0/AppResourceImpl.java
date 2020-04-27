@@ -136,14 +136,14 @@ public class AppResourceImpl
 		if (Validator.isNull(keywords)) {
 			return Page.of(
 				transform(
-					_appBuilderAppLocalService.getAppBuilderAppsByCompanyId(
+					_appBuilderAppLocalService.getCompanyAppBuilderApps(
 						contextCompany.getCompanyId(),
 						pagination.getStartPosition(),
 						pagination.getEndPosition(),
 						_toOrderByComparator(sorts[0])),
 					this::_toApp),
 				pagination,
-				_appBuilderAppLocalService.getAppBuilderAppsByCompanyIdCount(
+				_appBuilderAppLocalService.getCompanyAppBuilderAppsCount(
 					contextCompany.getCompanyId()));
 		}
 
