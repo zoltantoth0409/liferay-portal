@@ -131,7 +131,7 @@ public class RedirectEntryLocalServiceImpl
 	@Override
 	public boolean checkRedirectionChain(long groupId, String destinationURL) {
 		return ListUtil.isNotEmpty(
-			getRedirectEntriesByGroupAndDestinationURL(
+			getRedirectEntriesByGroupIdAndDestinationURL(
 				groupId, destinationURL));
 	}
 
@@ -182,7 +182,7 @@ public class RedirectEntryLocalServiceImpl
 	}
 
 	@Override
-	public List<RedirectEntry> getRedirectEntriesByGroupAndDestinationURL(
+	public List<RedirectEntry> getRedirectEntriesByGroupIdAndDestinationURL(
 		long groupId, String destinationURL) {
 
 		return ListUtil.filter(
