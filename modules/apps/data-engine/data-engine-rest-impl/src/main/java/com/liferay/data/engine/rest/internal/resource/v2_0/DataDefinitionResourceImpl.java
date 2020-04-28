@@ -330,19 +330,15 @@ public class DataDefinitionResourceImpl
 
 					dataDefinition = new DataDefinition() {
 						{
-							availableLanguageIds =
-								new String[] {
-									contextAcceptLanguage.
-										getPreferredLanguageId()
-								};
+							availableLanguageIds = new String[] {
+								contextAcceptLanguage.getPreferredLanguageId()
+							};
 							dataDefinitionKey =
 								dataEngineNativeObject.getClassName();
-							name =
-								HashMapBuilder.<String, Object>put(
-									contextAcceptLanguage.
-										getPreferredLanguageId(),
-									dataEngineNativeObject.getName()
-								).build();
+							name = HashMapBuilder.<String, Object>put(
+								contextAcceptLanguage.getPreferredLanguageId(),
+								dataEngineNativeObject.getName()
+							).build();
 							storageType = "json";
 						}
 					};
