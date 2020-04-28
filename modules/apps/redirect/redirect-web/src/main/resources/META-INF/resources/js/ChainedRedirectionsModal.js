@@ -56,7 +56,7 @@ const ChainedRedirectionsModal = ({
 					<div className="portlet-redirect-modal-description">
 						<p>
 							{Liferay.Language.get(
-								'there-are-other-redirects-pointing-to-the-source-url-of-this-redirect.-this-will-create-a-redirect-chain-so-users-will-be-redirected-multiple-times-before-reaching-the-destination'
+								'there-are-other-redirects-pointing-to-the-source-url-of-this-redirect'
 							)}
 						</p>
 						<p>
