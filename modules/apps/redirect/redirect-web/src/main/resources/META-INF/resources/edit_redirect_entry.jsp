@@ -27,11 +27,8 @@ RedirectDisplayContext redirectDisplayContext = new RedirectDisplayContext(reque
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
-String saveButtonLabel = "save";
-
 if (redirectEntry == null) {
 	renderResponse.setTitle(LanguageUtil.get(request, "new-redirect"));
-	saveButtonLabel = "create";
 }
 else {
 	renderResponse.setTitle(LanguageUtil.get(request, "edit-redirect"));
@@ -39,7 +36,6 @@ else {
 %>
 
 <portlet:actionURL name="/redirect/edit_redirect_entry" var="editRedirectEntryURL" />
-<portlet:actionURL name="/redirect/check_destination_url" var="checkDestinationURL" />
 
 <liferay-frontend:edit-form
 	action="<%= editRedirectEntryURL %>"
@@ -115,7 +111,8 @@ else {
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" value="<%= LanguageUtil.get(request, saveButtonLabel) %>" />
+		<aui:button type="submit" value='<%= LanguageUtil.get(request, (redirectEntry == null) ? "create" : "save") %>' />
+
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
@@ -124,11 +121,13 @@ else {
 	<react:component
 		data='<%=
 			HashMapBuilder.<String, Object>put(
-				"saveButtonLabel", LanguageUtil.get(request, saveButtonLabel)
+				"saveButtonLabel", LanguageUtil.get(request, (redirectEntry == null) ? "create" : "save")
 			).build() %>'
 		module="js/ChainedRedirections"
 	/>
 </div>
+
+<portlet:actionURL name="/redirect/check_destination_url" var="checkDestinationURL" />
 
 <liferay-frontend:component
 	context='<%=
