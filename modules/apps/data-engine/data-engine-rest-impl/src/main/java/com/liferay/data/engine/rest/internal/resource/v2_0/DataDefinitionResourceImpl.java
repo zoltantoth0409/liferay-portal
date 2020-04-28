@@ -325,20 +325,24 @@ public class DataDefinitionResourceImpl
 						(exception.getCause() instanceof
 							NoSuchStructureException)) {
 
-						dataDefinition = new DataDefinition();
-
-						dataDefinition.setAvailableLanguageIds(
-							new String[] {
-								contextAcceptLanguage.getPreferredLanguageId()
-							});
-						dataDefinition.setDataDefinitionKey(
-							dataEngineNativeObject.getClassName());
-						dataDefinition.setName(
-							HashMapBuilder.<String, Object>put(
-								contextAcceptLanguage.getPreferredLanguageId(),
-								dataEngineNativeObject.getName()
-							).build());
-						dataDefinition.setStorageType("json");
+						dataDefinition = new DataDefinition() {
+							{
+								availableLanguageIds =
+									new String[] {
+										contextAcceptLanguage.
+												getPreferredLanguageId()
+									};
+								dataDefinitionKey =
+									dataEngineNativeObject.getClassName();
+								name =
+									HashMapBuilder.<String, Object>put(
+										contextAcceptLanguage.
+											getPreferredLanguageId(),
+										dataEngineNativeObject.getName()
+									).build();
+								storageType = "json";
+							}
+						};
 					}
 					else {
 						throw exception;
