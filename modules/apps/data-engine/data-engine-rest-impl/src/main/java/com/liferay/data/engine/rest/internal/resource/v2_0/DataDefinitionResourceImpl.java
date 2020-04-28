@@ -321,32 +321,31 @@ public class DataDefinitionResourceImpl
 						dataEngineNativeObject.getClassName());
 				}
 				catch (Exception exception) {
-					if ((exception instanceof NoSuchStructureException) ||
-						(exception.getCause() instanceof
+					if (!(exception instanceof NoSuchStructureException) &&
+						!(exception.getCause() instanceof
 							NoSuchStructureException)) {
 
-						dataDefinition = new DataDefinition() {
-							{
-								availableLanguageIds =
-									new String[] {
-										contextAcceptLanguage.
-												getPreferredLanguageId()
-									};
-								dataDefinitionKey =
-									dataEngineNativeObject.getClassName();
-								name =
-									HashMapBuilder.<String, Object>put(
-										contextAcceptLanguage.
-											getPreferredLanguageId(),
-										dataEngineNativeObject.getName()
-									).build();
-								storageType = "json";
-							}
-						};
-					}
-					else {
 						throw exception;
 					}
+
+					dataDefinition = new DataDefinition() {
+						{
+							availableLanguageIds =
+								new String[] {
+									contextAcceptLanguage.
+										getPreferredLanguageId()
+								};
+							dataDefinitionKey =
+								dataEngineNativeObject.getClassName();
+							name =
+								HashMapBuilder.<String, Object>put(
+									contextAcceptLanguage.
+										getPreferredLanguageId(),
+									dataEngineNativeObject.getName()
+								).build();
+							storageType = "json";
+						}
+					};
 				}
 
 				if (dataDefinition != null) {
