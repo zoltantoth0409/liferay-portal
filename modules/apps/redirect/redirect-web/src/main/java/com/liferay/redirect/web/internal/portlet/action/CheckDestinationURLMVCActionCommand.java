@@ -50,10 +50,10 @@ public class CheckDestinationURLMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
 
 		JSONObject jsonObject = JSONUtil.put("success", Boolean.TRUE);
 
