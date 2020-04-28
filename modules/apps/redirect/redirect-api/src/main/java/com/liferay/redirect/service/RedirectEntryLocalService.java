@@ -264,7 +264,7 @@ public interface RedirectEntryLocalService
 		long groupId, int start, int end, OrderByComparator<RedirectEntry> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<RedirectEntry> getRedirectEntriesByGroupAndDestinationURL(
+	public List<RedirectEntry> getRedirectEntriesByGroupIdAndDestinationURL(
 		long groupId, String destinationURL);
 
 	/**

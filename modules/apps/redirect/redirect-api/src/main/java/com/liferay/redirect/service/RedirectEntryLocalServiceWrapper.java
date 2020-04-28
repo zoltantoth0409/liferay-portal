@@ -352,11 +352,12 @@ public class RedirectEntryLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.redirect.model.RedirectEntry>
-		getRedirectEntriesByGroupAndDestinationURL(
+		getRedirectEntriesByGroupIdAndDestinationURL(
 			long groupId, String destinationURL) {
 
 		return _redirectEntryLocalService.
-			getRedirectEntriesByGroupAndDestinationURL(groupId, destinationURL);
+			getRedirectEntriesByGroupIdAndDestinationURL(
+				groupId, destinationURL);
 	}
 
 	/**
