@@ -305,7 +305,7 @@ public class DataDefinitionResourceTest
 			Assert.assertEquals("MustNotDuplicateFieldName", problem.getType());
 		}
 
-		//MustSetValidContentType
+		// MustSetValidContentType
 
 		try {
 			dataDefinitionResource.postDataDefinitionByContentType(
