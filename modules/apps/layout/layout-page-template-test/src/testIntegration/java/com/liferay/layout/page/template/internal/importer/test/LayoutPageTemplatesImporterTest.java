@@ -38,8 +38,6 @@ import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.layout.util.structure.RowLayoutStructureItem;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Group;
@@ -436,7 +434,7 @@ public class LayoutPageTemplatesImporterTest {
 	}
 
 	private void _createFragmentEntry(String key, String name, String html)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -692,7 +690,7 @@ public class LayoutPageTemplatesImporterTest {
 
 	private void _validateHTMLFragmentEntryLinkEditableValues(
 			String editableValues)
-		throws JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			editableValues);
@@ -718,7 +716,7 @@ public class LayoutPageTemplatesImporterTest {
 
 	private void _validateImageFragmentEntryLinkEditableValues(
 			String editableValues)
-		throws JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			editableValues);
@@ -766,7 +764,7 @@ public class LayoutPageTemplatesImporterTest {
 
 	private void _validateLinkFragmentEntryLinkEditableValues(
 			String editableValues)
-		throws JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			editableValues);
@@ -797,7 +795,7 @@ public class LayoutPageTemplatesImporterTest {
 
 	private void _validateTextFragmentEntryLinkEditableValues(
 			String editableValues)
-		throws JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			editableValues);
