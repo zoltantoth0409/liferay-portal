@@ -473,10 +473,10 @@ public class WorkflowMetricsRESTTestHelper {
 	public Task addTask(long companyId, Instance instance, Task task)
 		throws Exception {
 
-		Assignee assignee = task.getAssignee();
-
 		Long[] assigneeIds = null;
 		String assigneeType = null;
+
+		Assignee assignee = task.getAssignee();
 
 		if ((assignee != null) && (assignee.getId() != null)) {
 			assigneeIds = new Long[] {assignee.getId()};

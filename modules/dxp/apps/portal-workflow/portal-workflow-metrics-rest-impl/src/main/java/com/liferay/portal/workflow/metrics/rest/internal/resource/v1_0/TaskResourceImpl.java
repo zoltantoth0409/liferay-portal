@@ -117,10 +117,10 @@ public class TaskResourceImpl extends BaseTaskResourceImpl {
 
 		getProcessTask(processId, taskId);
 
-		Assignee assignee = task.getAssignee();
-
 		Long[] assigneeIds = null;
 		String assigneeType = null;
+
+		Assignee assignee = task.getAssignee();
 
 		if ((assignee != null) && (assignee.getId() != null)) {
 			assigneeIds = new Long[] {assignee.getId()};
