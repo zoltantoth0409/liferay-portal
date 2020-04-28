@@ -92,7 +92,6 @@ public class GetFragmentEntryLinkMVCResourceCommand
 
 			String collectionItemClassName = ParamUtil.getString(
 				resourceRequest, "collectionItemClassName");
-
 			long collectionItemClassPK = ParamUtil.getLong(
 				resourceRequest, "collectionItemClassPK");
 
