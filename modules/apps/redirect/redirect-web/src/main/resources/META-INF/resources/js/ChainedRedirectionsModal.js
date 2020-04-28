@@ -61,7 +61,7 @@ const ChainedRedirectionsModal = ({
 						</p>
 						<p>
 							{Liferay.Language.get(
-								'to-avoid-this-chain-update-the-references-of-the-other-redirects'
+								'update-the-references-of-the-other-redirects-to-avoid-this-chain'
 							)}
 						</p>
 					</div>
