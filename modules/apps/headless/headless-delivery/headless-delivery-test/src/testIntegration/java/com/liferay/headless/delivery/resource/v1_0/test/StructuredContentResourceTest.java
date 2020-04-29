@@ -149,11 +149,11 @@ public class StructuredContentResourceTest
 	@Test
 	public void testGetStructuredContent() throws Exception {
 
-		// Get Structured Content
+		// Get structured content
 
 		super.testGetStructuredContent();
 
-		// Get StructuredContent and verify actions for an admin user
+		// Verify actions for an admin user
 
 		StructuredContent postStructuredContent =
 			testGetStructuredContent_addStructuredContent();
@@ -173,7 +173,7 @@ public class StructuredContentResourceTest
 		Assert.assertTrue(actions.containsKey("unsubscribe"));
 		Assert.assertTrue(actions.containsKey("update"));
 
-		// Get StructuredContent and verify actions for a view-only user
+		// Verify actions for a regular user
 
 		Role role = RoleTestUtil.addRole(
 			"viewArticleRole", RoleConstants.TYPE_SITE);
@@ -215,7 +215,7 @@ public class StructuredContentResourceTest
 			_userLocalService.deleteUser(user);
 		}
 
-		// Get StructuredContent and verify actions for the owner
+		// Verify actions for the owner
 
 		role = RoleTestUtil.addRole("addArticleRole", RoleConstants.TYPE_SITE);
 
