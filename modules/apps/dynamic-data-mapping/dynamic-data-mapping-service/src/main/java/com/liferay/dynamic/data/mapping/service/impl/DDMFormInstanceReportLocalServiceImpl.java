@@ -70,7 +70,7 @@ public class DDMFormInstanceReportLocalServiceImpl
 	@Override
 	public DDMFormInstanceReport updateFormInstanceReport(
 			long formInstanceReportId, long formInstanceRecordVersionId,
-			String formInstanceRecordVersionEvent)
+			String formInstanceReportEvent)
 		throws PortalException {
 
 		DDMFormInstanceReport formInstanceReport =
@@ -80,14 +80,14 @@ public class DDMFormInstanceReportLocalServiceImpl
 		formInstanceReport.setModifiedDate(new Date());
 		formInstanceReport.setData(
 			_getData(
-				formInstanceRecordVersionId, formInstanceRecordVersionEvent));
+				formInstanceRecordVersionId, formInstanceReportEvent));
 
 		return ddmFormInstanceReportPersistence.update(formInstanceReport);
 	}
 
 	private String _getData(
 			long formInstanceRecordVersionId,
-			String formInstanceRecordVersionEvent)
+			String formInstanceReportEvent)
 		throws PortalException {
 
 		DDMFormInstanceRecordVersion formInstanceRecordVersion =
@@ -133,7 +133,7 @@ public class DDMFormInstanceReportLocalServiceImpl
 					int count = valuesJSONObject.getInt(key);
 
 					if (DDMFormInstanceReportConstants.EVENT_ADD_RECORD_VERSION.
-							equals(formInstanceRecordVersionEvent)) {
+							equals(formInstanceReportEvent)) {
 
 						count = count + 1;
 					}
