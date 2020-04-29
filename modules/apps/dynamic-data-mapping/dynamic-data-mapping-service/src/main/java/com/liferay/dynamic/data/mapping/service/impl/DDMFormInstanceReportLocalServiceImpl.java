@@ -21,6 +21,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormInstanceReport;
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.base.DDMFormInstanceReportLocalServiceBaseImpl;
+import com.liferay.dynamic.data.mapping.service.persistence.DDMFormInstancePersistence;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.portal.aop.AopService;
@@ -47,17 +48,19 @@ public class DDMFormInstanceReportLocalServiceImpl
 	extends DDMFormInstanceReportLocalServiceBaseImpl {
 
 	@Override
-	public DDMFormInstanceReport addFormInstanceReport(
-			DDMFormInstance ddmFormInstance)
+	public DDMFormInstanceReport addFormInstanceReport(long formInstanceId)
 		throws PortalException {
 
-		long formInstanceReportId = counterLocalService.increment();
-
 		DDMFormInstanceReport ddmFormInstanceReport =
-			ddmFormInstanceReportPersistence.create(formInstanceReportId);
+			ddmFormInstanceReportPersistence.create(
+				counterLocalService.increment());
+
+		DDMFormInstance ddmFormInstance =
+			_ddmFormInstancePersistence.findByPrimaryKey(formInstanceId);
 
 		ddmFormInstanceReport.setGroupId(ddmFormInstance.getGroupId());
 		ddmFormInstanceReport.setCompanyId(ddmFormInstance.getCompanyId());
+
 		ddmFormInstanceReport.setCreateDate(new Date());
 		ddmFormInstanceReport.setFormInstanceId(
 			ddmFormInstance.getFormInstanceId());
@@ -145,6 +148,9 @@ public class DDMFormInstanceReportLocalServiceImpl
 
 		return formInstanceReportDataJSONObject.toString();
 	}
+
+	@Reference
+	private DDMFormInstancePersistence _ddmFormInstancePersistence;
 
 	@Reference
 	private DDMFormInstanceRecordVersionLocalService

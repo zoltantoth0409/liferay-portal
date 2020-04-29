@@ -40,7 +40,7 @@ public class DDMFormInstanceModelListener
 
 		try {
 			_ddmFormInstanceReportLocalService.addFormInstanceReport(
-				ddmFormInstance);
+				ddmFormInstance.getFormInstanceId());
 		}
 		catch (Exception exception) {
 			_log.error(
