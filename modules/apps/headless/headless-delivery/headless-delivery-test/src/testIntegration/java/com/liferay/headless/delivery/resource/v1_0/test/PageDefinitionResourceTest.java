@@ -37,6 +37,7 @@ public class PageDefinitionResourceTest
 	extends BasePageDefinitionResourceTestCase {
 
 	@Override
+	@Test
 	public void testPostSitePageDefinitionPreview() throws Exception {
 		HttpInvoker.HttpResponse httpResponse =
 			pageDefinitionResource.postSitePageDefinitionPreviewHttpResponse(
