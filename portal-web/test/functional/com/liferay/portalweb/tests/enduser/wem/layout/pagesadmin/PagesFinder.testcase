@@ -95,6 +95,7 @@ definition {
 	@priority = "5"
 	test AddChildPageViaPageFinder {
 		property portal.acceptance = "true";
+		property portal.upstream = "quarantine";
 
 		Navigator.openSiteURL(siteName = "Test Site Name 2");
 
