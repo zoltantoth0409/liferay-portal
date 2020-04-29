@@ -79,15 +79,13 @@ public class DDMFormInstanceReportLocalServiceImpl
 
 		formInstanceReport.setModifiedDate(new Date());
 		formInstanceReport.setData(
-			_getData(
-				formInstanceRecordVersionId, formInstanceReportEvent));
+			_getData(formInstanceRecordVersionId, formInstanceReportEvent));
 
 		return ddmFormInstanceReportPersistence.update(formInstanceReport);
 	}
 
 	private String _getData(
-			long formInstanceRecordVersionId,
-			String formInstanceReportEvent)
+			long formInstanceRecordVersionId, String formInstanceReportEvent)
 		throws PortalException {
 
 		DDMFormInstanceRecordVersion formInstanceRecordVersion =
