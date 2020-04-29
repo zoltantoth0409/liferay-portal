@@ -207,19 +207,19 @@ public class RoleNotificationRecipientBuilder
 	protected boolean isValidGroup(Group group, Role role)
 		throws PortalException {
 
-		if ((group != null) && group.isOrganization() &&
-			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+		if ((group != null) &&
+			(group.getType() == GroupConstants.TYPE_DEPOT) &&
+			(role.getType() == RoleConstants.TYPE_DEPOT)) {
+
+			return true;
+		}
+		else if ((group != null) && group.isOrganization() &&
+				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
 			return true;
 		}
 		else if ((group != null) && group.isSite() &&
 				 (role.getType() == RoleConstants.TYPE_SITE)) {
-
-			return true;
-		}
-		else if ((group != null) &&
-				 (group.getType() == GroupConstants.TYPE_DEPOT) &&
-				 (role.getType() == RoleConstants.TYPE_DEPOT)) {
 
 			return true;
 		}

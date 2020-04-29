@@ -82,16 +82,16 @@ public class RoleUtil {
 	}
 
 	public static int getRoleType(String roleType) {
-		if (roleType.equals(RoleConstants.TYPE_ORGANIZATION_LABEL)) {
+		if (roleType.equals(RoleConstants.TYPE_DEPOT_LABEL)) {
+			return RoleConstants.TYPE_DEPOT;
+		}
+		else if (roleType.equals(RoleConstants.TYPE_ORGANIZATION_LABEL)) {
 			return RoleConstants.TYPE_ORGANIZATION;
 		}
 		else if (roleType.equals(RoleConstants.TYPE_SITE_LABEL) ||
 				 roleType.equals(_LEGACY_TYPE_COMMUNITY_LABEL)) {
 
 			return RoleConstants.TYPE_SITE;
-		}
-		else if (roleType.equals(RoleConstants.TYPE_DEPOT_LABEL)) {
-			return RoleConstants.TYPE_DEPOT;
 		}
 
 		return RoleConstants.TYPE_REGULAR;

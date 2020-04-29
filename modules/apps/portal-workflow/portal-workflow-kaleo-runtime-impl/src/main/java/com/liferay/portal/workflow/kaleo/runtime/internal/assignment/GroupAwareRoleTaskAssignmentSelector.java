@@ -154,7 +154,13 @@ public class GroupAwareRoleTaskAssignmentSelector
 	protected boolean isValidAssignment(Group group, Role role)
 		throws PortalException {
 
-		if (role.getType() == RoleConstants.TYPE_REGULAR) {
+		if ((group != null) &&
+			(group.getType() == GroupConstants.TYPE_DEPOT) &&
+			(role.getType() == RoleConstants.TYPE_DEPOT)) {
+
+			return true;
+		}
+		else if (role.getType() == RoleConstants.TYPE_REGULAR) {
 			return true;
 		}
 		else if ((group != null) && group.isOrganization() &&
@@ -164,12 +170,6 @@ public class GroupAwareRoleTaskAssignmentSelector
 		}
 		else if ((group != null) && group.isSite() &&
 				 (role.getType() == RoleConstants.TYPE_SITE)) {
-
-			return true;
-		}
-		else if ((group != null) &&
-				 (group.getType() == GroupConstants.TYPE_DEPOT) &&
-				 (role.getType() == RoleConstants.TYPE_DEPOT)) {
 
 			return true;
 		}
