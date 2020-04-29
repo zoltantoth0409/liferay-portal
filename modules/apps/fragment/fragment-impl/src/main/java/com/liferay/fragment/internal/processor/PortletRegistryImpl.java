@@ -38,8 +38,6 @@ import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -138,18 +136,9 @@ public class PortletRegistryImpl implements PortletRegistry {
 		List<String> fragmentEntryLinkPortletIds =
 			getFragmentEntryLinkPortletIds(fragmentEntryLink);
 
-		Stream<String> stream = fragmentEntryLinkPortletIds.stream();
-
-		List<String> portletNames = stream.map(
-			fragmentEntryLinkPortletId -> PortletIdCodec.decodePortletName(
-				fragmentEntryLinkPortletId)
-		).distinct(
-		).collect(
-			Collectors.toList()
-		);
-
-		for (String portletName : portletNames) {
-			Portlet portlet = _portletLocalService.getPortletById(portletName);
+		for (String fragmentEntryLinkPortletId : fragmentEntryLinkPortletIds) {
+			Portlet portlet = _portletLocalService.getPortletById(
+				fragmentEntryLink.getCompanyId(), fragmentEntryLinkPortletId);
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
