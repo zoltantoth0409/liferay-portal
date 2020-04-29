@@ -51,13 +51,11 @@ public class DDMFormInstanceReportLocalServiceWrapper
 
 	@Override
 	public com.liferay.dynamic.data.mapping.model.DDMFormInstanceReport
-			addFormInstanceReport(
-				com.liferay.dynamic.data.mapping.model.DDMFormInstance
-					ddmFormInstance)
+			addFormInstanceReport(long formInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _ddmFormInstanceReportLocalService.addFormInstanceReport(
-			ddmFormInstance);
+			formInstanceId);
 	}
 
 	/**

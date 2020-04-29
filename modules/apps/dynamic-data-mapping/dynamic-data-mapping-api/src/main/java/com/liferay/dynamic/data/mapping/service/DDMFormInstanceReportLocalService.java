@@ -14,7 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.service;
 
-import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceReport;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -72,8 +71,7 @@ public interface DDMFormInstanceReportLocalService
 	public DDMFormInstanceReport addDDMFormInstanceReport(
 		DDMFormInstanceReport ddmFormInstanceReport);
 
-	public DDMFormInstanceReport addFormInstanceReport(
-			DDMFormInstance ddmFormInstance)
+	public DDMFormInstanceReport addFormInstanceReport(long formInstanceId)
 		throws PortalException;
 
 	/**

@@ -53,12 +53,10 @@ public class DDMFormInstanceReportLocalServiceUtil {
 	}
 
 	public static com.liferay.dynamic.data.mapping.model.DDMFormInstanceReport
-			addFormInstanceReport(
-				com.liferay.dynamic.data.mapping.model.DDMFormInstance
-					ddmFormInstance)
+			addFormInstanceReport(long formInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().addFormInstanceReport(ddmFormInstance);
+		return getService().addFormInstanceReport(formInstanceId);
 	}
 
 	/**

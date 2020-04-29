@@ -78,12 +78,11 @@ public class DDMFormInstanceReportLocalServiceImpl
 			ddmFormInstanceReportPersistence.findByPrimaryKey(
 				formInstanceReportId);
 
+		ddmFormInstanceReport.setModifiedDate(new Date());
 		ddmFormInstanceReport.setData(
 			_getFormInstanceReportData(
 				ddmFormInstanceRecordVersionId,
 				formInstanceRecordVersionEvent));
-
-		ddmFormInstanceReport.setModifiedDate(new Date());
 
 		return ddmFormInstanceReportPersistence.update(ddmFormInstanceReport);
 	}
