@@ -256,8 +256,8 @@ public interface DDMFormInstanceReportLocalService
 		DDMFormInstanceReport ddmFormInstanceReport);
 
 	public DDMFormInstanceReport updateFormInstanceReport(
-			long formInstanceReportId, long ddmFormInstanceRecordVersionId,
-			String formInstanceRecordVersionEvent)
+			long formInstanceReportId, long formInstanceRecordVersionId,
+			String formInstanceReportEvent)
 		throws PortalException;
 
 }
