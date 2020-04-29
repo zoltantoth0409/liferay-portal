@@ -188,10 +188,10 @@ public class StructuredContentResourceTest
 			StructuredContentResource.builder();
 
 		StructuredContentResource newUserStructuredContentResource =
-			builder.locale(
-				LocaleUtil.getDefault()
-			).authentication(
+			builder.authentication(
 				user.getLogin(), user.getPasswordUnencrypted()
+			).locale(
+				LocaleUtil.getDefault()
 			).build();
 
 		getStructuredContent =
@@ -228,10 +228,10 @@ public class StructuredContentResourceTest
 		builder = StructuredContentResource.builder();
 
 		StructuredContentResource ownedStructuredContentResource =
-			builder.locale(
-				LocaleUtil.getDefault()
-			).authentication(
+			builder.authentication(
 				user.getLogin(), user.getPasswordUnencrypted()
+			).locale(
+				LocaleUtil.getDefault()
 			).build();
 
 		postStructuredContent =
