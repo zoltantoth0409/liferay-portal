@@ -51,60 +51,58 @@ public class DDMFormInstanceReportLocalServiceImpl
 	public DDMFormInstanceReport addFormInstanceReport(long formInstanceId)
 		throws PortalException {
 
-		DDMFormInstanceReport ddmFormInstanceReport =
+		DDMFormInstanceReport formInstanceReport =
 			ddmFormInstanceReportPersistence.create(
 				counterLocalService.increment());
 
-		DDMFormInstance ddmFormInstance =
-			_ddmFormInstancePersistence.findByPrimaryKey(formInstanceId);
+		DDMFormInstance formInstance =
+			_formInstancePersistence.findByPrimaryKey(formInstanceId);
 
-		ddmFormInstanceReport.setGroupId(ddmFormInstance.getGroupId());
-		ddmFormInstanceReport.setCompanyId(ddmFormInstance.getCompanyId());
+		formInstanceReport.setGroupId(formInstance.getGroupId());
+		formInstanceReport.setCompanyId(formInstance.getCompanyId());
 
-		ddmFormInstanceReport.setCreateDate(new Date());
-		ddmFormInstanceReport.setFormInstanceId(
-			ddmFormInstance.getFormInstanceId());
+		formInstanceReport.setCreateDate(new Date());
+		formInstanceReport.setFormInstanceId(formInstance.getFormInstanceId());
 
-		return ddmFormInstanceReportPersistence.update(ddmFormInstanceReport);
+		return ddmFormInstanceReportPersistence.update(formInstanceReport);
 	}
 
 	@Override
 	public DDMFormInstanceReport updateFormInstanceReport(
-			long formInstanceReportId, long ddmFormInstanceRecordVersionId,
+			long formInstanceReportId, long formInstanceRecordVersionId,
 			String formInstanceRecordVersionEvent)
 		throws PortalException {
 
-		DDMFormInstanceReport ddmFormInstanceReport =
+		DDMFormInstanceReport formInstanceReport =
 			ddmFormInstanceReportPersistence.findByPrimaryKey(
 				formInstanceReportId);
 
-		ddmFormInstanceReport.setModifiedDate(new Date());
-		ddmFormInstanceReport.setData(
+		formInstanceReport.setModifiedDate(new Date());
+		formInstanceReport.setData(
 			_getFormInstanceReportData(
-				ddmFormInstanceRecordVersionId,
-				formInstanceRecordVersionEvent));
+				formInstanceRecordVersionId, formInstanceRecordVersionEvent));
 
-		return ddmFormInstanceReportPersistence.update(ddmFormInstanceReport);
+		return ddmFormInstanceReportPersistence.update(formInstanceReport);
 	}
 
 	private String _getFormInstanceReportData(
-			long ddmFormInstanceRecordVersionId,
+			long formInstanceRecordVersionId,
 			String formInstanceRecordVersionEvent)
 		throws PortalException {
 
-		DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion =
-			_ddmFormInstanceRecordVersionLocalService.
-				getDDMFormInstanceRecordVersion(ddmFormInstanceRecordVersionId);
+		DDMFormInstanceRecordVersion formInstanceRecordVersion =
+			_formInstanceRecordVersionLocalService.
+				getDDMFormInstanceRecordVersion(formInstanceRecordVersionId);
 
-		DDMFormInstanceReport ddmFormInstanceReport =
+		DDMFormInstanceReport formInstanceReport =
 			ddmFormInstanceReportPersistence.findByFormInstanceId(
-				ddmFormInstanceRecordVersion.getFormInstanceId());
+				formInstanceRecordVersion.getFormInstanceId());
 
 		JSONObject formInstanceReportDataJSONObject =
-			JSONFactoryUtil.createJSONObject(ddmFormInstanceReport.getData());
+			JSONFactoryUtil.createJSONObject(formInstanceReport.getData());
 
 		DDMFormValues ddmFormValues =
-			ddmFormInstanceRecordVersion.getDDMFormValues();
+			formInstanceRecordVersion.getDDMFormValues();
 
 		for (DDMFormFieldValue ddmFormFieldValue :
 				ddmFormValues.getDDMFormFieldValues()) {
@@ -149,10 +147,10 @@ public class DDMFormInstanceReportLocalServiceImpl
 	}
 
 	@Reference
-	private DDMFormInstancePersistence _ddmFormInstancePersistence;
+	private DDMFormInstancePersistence _formInstancePersistence;
 
 	@Reference
 	private DDMFormInstanceRecordVersionLocalService
-		_ddmFormInstanceRecordVersionLocalService;
+		_formInstanceRecordVersionLocalService;
 
 }
