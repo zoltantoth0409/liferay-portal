@@ -62,7 +62,7 @@ childGroups = ListUtil.filter(childGroups, group -> group.hasPrivateLayouts() ||
 					request.setAttribute("view.jsp-parentGroupId", childGroup.getGroupId());
 					%>
 
-					<liferay-util:include page="/view_child_sites.jsp" servletContext="<%= application %>" />
+					<liferay-util:include page="/view_child_groups.jsp" servletContext="<%= application %>" />
 				</c:if>
 			</li>
 
