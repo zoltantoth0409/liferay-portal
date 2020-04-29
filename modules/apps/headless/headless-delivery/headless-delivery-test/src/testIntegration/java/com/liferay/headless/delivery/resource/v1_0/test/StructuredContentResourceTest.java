@@ -194,9 +194,8 @@ public class StructuredContentResourceTest
 				LocaleUtil.getDefault()
 			).build();
 
-		getStructuredContent =
-			structuredContentResource.getStructuredContent(
-				postStructuredContent.getId());
+		getStructuredContent = structuredContentResource.getStructuredContent(
+			postStructuredContent.getId());
 
 		try {
 			actions = getStructuredContent.getActions();
@@ -227,20 +226,18 @@ public class StructuredContentResourceTest
 
 		builder = StructuredContentResource.builder();
 
-		structuredContentResource =
-			builder.authentication(
-				user.getLogin(), user.getPasswordUnencrypted()
-			).locale(
-				LocaleUtil.getDefault()
-			).build();
+		structuredContentResource = builder.authentication(
+			user.getLogin(), user.getPasswordUnencrypted()
+		).locale(
+			LocaleUtil.getDefault()
+		).build();
 
 		postStructuredContent =
 			structuredContentResource.postSiteStructuredContent(
 				testGroup.getGroupId(), randomStructuredContent());
 
-		getStructuredContent =
-			structuredContentResource.getStructuredContent(
-				postStructuredContent.getId());
+		getStructuredContent = structuredContentResource.getStructuredContent(
+			postStructuredContent.getId());
 
 		try {
 			actions = getStructuredContent.getActions();
