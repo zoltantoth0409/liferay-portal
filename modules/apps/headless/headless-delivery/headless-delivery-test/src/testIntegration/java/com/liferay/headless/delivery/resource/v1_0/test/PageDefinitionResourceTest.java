@@ -62,11 +62,10 @@ public class PageDefinitionResourceTest
 		Assert.assertEquals(
 			httpResponse.getStatusCode(),
 			HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-	}
 
-	@Test
-	public void testPostSitePageDefinitionWithRootPreview() throws Exception {
-		HttpInvoker.HttpResponse httpResponse =
+		// Root preview
+
+		httpResponse =
 			pageDefinitionResource.postSitePageDefinitionPreviewHttpResponse(
 				testGroup.getGroupId(),
 				new PageDefinition() {
