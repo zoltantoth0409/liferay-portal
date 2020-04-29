@@ -173,14 +173,14 @@ public class StructuredContentResourceTest
 		Assert.assertTrue(actions.containsKey("unsubscribe"));
 		Assert.assertTrue(actions.containsKey("update"));
 
-		// Regular user
+		// Owner
 
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
 
 		RoleTestUtil.addResourcePermission(
-			role.getName(), JournalArticle.class.getName(),
+			role.getName(), "com.liferay.journal",
 			ResourceConstants.SCOPE_GROUP,
-			String.valueOf(testGroup.getGroupId()), ActionKeys.VIEW);
+			String.valueOf(testGroup.getGroupId()), ActionKeys.ADD_ARTICLE);
 
 		User user = UserTestUtil.addGroupUser(testGroup, role.getName());
 
@@ -193,44 +193,6 @@ public class StructuredContentResourceTest
 			).locale(
 				LocaleUtil.getDefault()
 			).build();
-
-		getStructuredContent = structuredContentResource.getStructuredContent(
-			postStructuredContent.getId());
-
-		try {
-			actions = getStructuredContent.getActions();
-
-			Assert.assertFalse(actions.containsKey("delete"));
-			Assert.assertTrue(actions.containsKey("get"));
-			Assert.assertTrue(actions.containsKey("get-rendered-content"));
-			Assert.assertFalse(actions.containsKey("replace"));
-			Assert.assertFalse(actions.containsKey("subscribe"));
-			Assert.assertFalse(actions.containsKey("unsubscribe"));
-			Assert.assertFalse(actions.containsKey("update"));
-		}
-		finally {
-			_roleLocalService.deleteRole(role);
-			_userLocalService.deleteUser(user);
-		}
-
-		// Owner
-
-		role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
-
-		RoleTestUtil.addResourcePermission(
-			role.getName(), "com.liferay.journal",
-			ResourceConstants.SCOPE_GROUP,
-			String.valueOf(testGroup.getGroupId()), ActionKeys.ADD_ARTICLE);
-
-		user = UserTestUtil.addGroupUser(testGroup, role.getName());
-
-		builder = StructuredContentResource.builder();
-
-		structuredContentResource = builder.authentication(
-			user.getLogin(), user.getPasswordUnencrypted()
-		).locale(
-			LocaleUtil.getDefault()
-		).build();
 
 		postStructuredContent =
 			structuredContentResource.postSiteStructuredContent(
@@ -249,6 +211,44 @@ public class StructuredContentResourceTest
 			Assert.assertTrue(actions.containsKey("subscribe"));
 			Assert.assertTrue(actions.containsKey("unsubscribe"));
 			Assert.assertTrue(actions.containsKey("update"));
+		}
+		finally {
+			_roleLocalService.deleteRole(role);
+			_userLocalService.deleteUser(user);
+		}
+
+		// Regular user
+
+		role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
+
+		RoleTestUtil.addResourcePermission(
+			role.getName(), JournalArticle.class.getName(),
+			ResourceConstants.SCOPE_GROUP,
+			String.valueOf(testGroup.getGroupId()), ActionKeys.VIEW);
+
+		user = UserTestUtil.addGroupUser(testGroup, role.getName());
+
+		builder = StructuredContentResource.builder();
+
+		structuredContentResource = builder.authentication(
+			user.getLogin(), user.getPasswordUnencrypted()
+		).locale(
+			LocaleUtil.getDefault()
+		).build();
+
+		getStructuredContent = structuredContentResource.getStructuredContent(
+			postStructuredContent.getId());
+
+		try {
+			actions = getStructuredContent.getActions();
+
+			Assert.assertFalse(actions.containsKey("delete"));
+			Assert.assertTrue(actions.containsKey("get"));
+			Assert.assertTrue(actions.containsKey("get-rendered-content"));
+			Assert.assertFalse(actions.containsKey("replace"));
+			Assert.assertFalse(actions.containsKey("subscribe"));
+			Assert.assertFalse(actions.containsKey("unsubscribe"));
+			Assert.assertFalse(actions.containsKey("update"));
 		}
 		finally {
 			_roleLocalService.deleteRole(role);
