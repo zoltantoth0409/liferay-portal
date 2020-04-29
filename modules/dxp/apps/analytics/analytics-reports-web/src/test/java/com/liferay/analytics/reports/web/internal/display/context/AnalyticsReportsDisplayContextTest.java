@@ -97,8 +97,6 @@ public class AnalyticsReportsDisplayContextTest {
 
 		Map<String, Object> context = (Map<String, Object>)data.get("context");
 
-		Assert.assertTrue((Boolean)context.get("readsEnabled"));
-
 		Map<String, Object> defaultTimeRange = (Map<String, Object>)context.get(
 			"defaultTimeRange");
 
@@ -110,6 +108,8 @@ public class AnalyticsReportsDisplayContextTest {
 			DateTimeFormatter.ISO_DATE.format(
 				localDate.minus(7, ChronoUnit.DAYS)),
 			defaultTimeRange.get("startDate"));
+
+		Assert.assertTrue((Boolean)context.get("readsEnabled"));
 	}
 
 	@Test
