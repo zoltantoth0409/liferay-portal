@@ -175,8 +175,7 @@ public class StructuredContentResourceTest
 
 		// Verify actions for a regular user
 
-		Role role = RoleTestUtil.addRole(
-			"viewArticleRole", RoleConstants.TYPE_SITE);
+		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
 
 		RoleTestUtil.addResourcePermission(
 			role.getName(), JournalArticle.class.getName(),
@@ -217,7 +216,7 @@ public class StructuredContentResourceTest
 
 		// Verify actions for the owner
 
-		role = RoleTestUtil.addRole("addArticleRole", RoleConstants.TYPE_SITE);
+		role = RoleTestUtil.addRole(RoleConstants.TYPE_SITE);
 
 		RoleTestUtil.addResourcePermission(
 			role.getName(), "com.liferay.journal",
