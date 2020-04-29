@@ -187,7 +187,7 @@ public class StructuredContentResourceTest
 		StructuredContentResource.Builder builder =
 			StructuredContentResource.builder();
 
-		StructuredContentResource newUserStructuredContentResource =
+		StructuredContentResource structuredContentResource =
 			builder.authentication(
 				user.getLogin(), user.getPasswordUnencrypted()
 			).locale(
@@ -195,7 +195,7 @@ public class StructuredContentResourceTest
 			).build();
 
 		getStructuredContent =
-			newUserStructuredContentResource.getStructuredContent(
+			structuredContentResource.getStructuredContent(
 				postStructuredContent.getId());
 
 		try {
@@ -227,7 +227,7 @@ public class StructuredContentResourceTest
 
 		builder = StructuredContentResource.builder();
 
-		StructuredContentResource ownedStructuredContentResource =
+		structuredContentResource =
 			builder.authentication(
 				user.getLogin(), user.getPasswordUnencrypted()
 			).locale(
@@ -235,11 +235,11 @@ public class StructuredContentResourceTest
 			).build();
 
 		postStructuredContent =
-			ownedStructuredContentResource.postSiteStructuredContent(
+			structuredContentResource.postSiteStructuredContent(
 				testGroup.getGroupId(), randomStructuredContent());
 
 		getStructuredContent =
-			ownedStructuredContentResource.getStructuredContent(
+			structuredContentResource.getStructuredContent(
 				postStructuredContent.getId());
 
 		try {
