@@ -178,10 +178,10 @@ public class ExportConfigurationMVCResourceCommand
 
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
+		String factoryPid = ParamUtil.getString(resourceRequest, "factoryPid");
+
 		ConfigurationScopeDisplayContext configurationScopeDisplayContext =
 			ConfigurationScopeDisplayContextFactory.create(resourceRequest);
-
-		String factoryPid = ParamUtil.getString(resourceRequest, "factoryPid");
 
 		Map<String, ConfigurationModel> configurationModels =
 			_configurationModelRetriever.getConfigurationModels(
