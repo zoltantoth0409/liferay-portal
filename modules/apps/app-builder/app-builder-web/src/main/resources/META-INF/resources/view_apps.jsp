@@ -20,13 +20,11 @@
 	<link href="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathModule() + "/data-engine-taglib/data_layout_builder/css/main.css") %>" rel="stylesheet" />
 </liferay-util:html-top>
 
-<portlet:renderURL var="basePortletURL" />
-
 <div id="<portlet:namespace />-app-builder-root">
 
 	<%
 	Map<String, Object> data = HashMapBuilder.<String, Object>put(
-		"basePortletURL", basePortletURL
+		"basePortletURL", renderResponse.createRenderURL()
 	).put(
 		"pathFriendlyURLPublic", PortalUtil.getPathFriendlyURLPublic()
 	).build();
