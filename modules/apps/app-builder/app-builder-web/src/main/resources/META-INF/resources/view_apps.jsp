@@ -21,17 +21,13 @@
 </liferay-util:html-top>
 
 <div id="<portlet:namespace />-app-builder-root">
-
-	<%
-	Map<String, Object> data = HashMapBuilder.<String, Object>put(
-		"basePortletURL", renderResponse.createRenderURL()
-	).put(
-		"pathFriendlyURLPublic", PortalUtil.getPathFriendlyURLPublic()
-	).build();
-	%>
-
 	<react:component
-		data="<%= data %>"
+		data='<%=
+			HashMapBuilder.<String, Object>put(
+				"basePortletURL", renderResponse.createRenderURL()
+			).put(
+				"pathFriendlyURLPublic", PortalUtil.getPathFriendlyURLPublic()
+			).build() %>'
 		module="js/pages/apps/index.es"
 	/>
 </div>
