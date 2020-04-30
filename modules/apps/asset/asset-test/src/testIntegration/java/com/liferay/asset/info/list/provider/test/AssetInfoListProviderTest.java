@@ -77,14 +77,9 @@ public class AssetInfoListProviderTest {
 
 	@Test
 	public void testHighestRatedAssetsInfoListProvider() throws Exception {
-		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				_HIGHEST_RATED_ASSETS_INFO_LIST_PROVIDER_KEY);
-
 		JournalArticle article1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		JournalArticle article2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -95,6 +90,10 @@ public class AssetInfoListProviderTest {
 		_ratingsEntryLocalService.updateEntry(
 			TestPropsValues.getUserId(), JournalArticle.class.getName(),
 			article2.getResourcePrimKey(), 1, serviceContext);
+
+		InfoListProvider<AssetEntry> infoListProvider =
+			_infoListProviderTracker.getInfoListProvider(
+				_HIGHEST_RATED_ASSETS_INFO_LIST_PROVIDER_KEY);
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -125,7 +124,6 @@ public class AssetInfoListProviderTest {
 		Assert.assertEquals(
 			Long.valueOf(article1.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(0)));
-
 		Assert.assertEquals(
 			Long.valueOf(article2.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(1)));
@@ -133,10 +131,6 @@ public class AssetInfoListProviderTest {
 
 	@Test
 	public void testMostViewedAssetsInfoListProvider() throws Exception {
-		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				_MOST_VIEWED_ASSETS_INFO_LIST_PROVIDER_KEY);
-
 		JournalArticle article1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -149,6 +143,10 @@ public class AssetInfoListProviderTest {
 			_group.getCompanyId(), TestPropsValues.getUserId(),
 			JournalArticle.class.getName(), article2.getResourcePrimKey());
 
+		InfoListProvider<AssetEntry> infoListProvider =
+			_infoListProviderTracker.getInfoListProvider(
+				_MOST_VIEWED_ASSETS_INFO_LIST_PROVIDER_KEY);
+
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
 
@@ -160,7 +158,6 @@ public class AssetInfoListProviderTest {
 		Assert.assertEquals(
 			Long.valueOf(article2.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(0)));
-
 		Assert.assertEquals(
 			Long.valueOf(article1.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(1)));
@@ -174,7 +171,6 @@ public class AssetInfoListProviderTest {
 		Assert.assertEquals(
 			Long.valueOf(article1.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(0)));
-
 		Assert.assertEquals(
 			Long.valueOf(article2.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(1)));
@@ -182,17 +178,16 @@ public class AssetInfoListProviderTest {
 
 	@Test
 	public void testRecentContentInfoListProvider() throws Exception {
-		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				_RECENT_CONTENT_INFO_LIST_PROVIDER_KEY);
-
 		JournalArticle article1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		JournalArticle article2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+		InfoListProvider<AssetEntry> infoListProvider =
+			_infoListProviderTracker.getInfoListProvider(
+				_RECENT_CONTENT_INFO_LIST_PROVIDER_KEY);
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -205,7 +200,6 @@ public class AssetInfoListProviderTest {
 		Assert.assertEquals(
 			Long.valueOf(article2.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(0)));
-
 		Assert.assertEquals(
 			Long.valueOf(article1.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(1)));
@@ -217,7 +211,6 @@ public class AssetInfoListProviderTest {
 		Assert.assertEquals(
 			Long.valueOf(article1.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(0)));
-
 		Assert.assertEquals(
 			Long.valueOf(article2.getResourcePrimKey()),
 			_CLASS_PK_ACCESSOR.get(assetEntries.get(1)));
@@ -225,28 +218,20 @@ public class AssetInfoListProviderTest {
 
 	@Test
 	public void testRelatedAssetsInfoListProvider() throws Exception {
-		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				_RELATED_ASSETS_INFO_LIST_PROVIDER_KEY);
-
 		JournalArticle article1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		JournalArticle article2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		JournalArticle article3 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.getEntry(
 			JournalArticle.class.getName(), article1.getResourcePrimKey());
-
 		AssetEntry assetEntry2 = _assetEntryLocalService.getEntry(
 			JournalArticle.class.getName(), article2.getResourcePrimKey());
-
 		AssetEntry relatedAssetEntry = _assetEntryLocalService.getEntry(
 			JournalArticle.class.getName(), article3.getResourcePrimKey());
 
@@ -266,6 +251,10 @@ public class AssetInfoListProviderTest {
 		serviceContext.setRequest(httpServletRequest);
 
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+
+		InfoListProvider<AssetEntry> infoListProvider =
+			_infoListProviderTracker.getInfoListProvider(
+				_RELATED_ASSETS_INFO_LIST_PROVIDER_KEY);
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
