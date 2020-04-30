@@ -93,7 +93,8 @@ public class AssetInfoListProviderTest {
 
 		InfoListProvider<AssetEntry> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(
-				_HIGHEST_RATED_ASSETS_INFO_LIST_PROVIDER_KEY);
+				"com.liferay.asset.internal.info.list.provider." +
+					"HighestRatedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -145,7 +146,8 @@ public class AssetInfoListProviderTest {
 
 		InfoListProvider<AssetEntry> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(
-				_MOST_VIEWED_ASSETS_INFO_LIST_PROVIDER_KEY);
+				"com.liferay.asset.internal.info.list.provider." +
+					"MostViewedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -187,7 +189,8 @@ public class AssetInfoListProviderTest {
 
 		InfoListProvider<AssetEntry> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(
-				_RECENT_CONTENT_INFO_LIST_PROVIDER_KEY);
+				"com.liferay.asset.internal.info.list.provider." +
+					"RecentContentInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -254,7 +257,8 @@ public class AssetInfoListProviderTest {
 
 		InfoListProvider<AssetEntry> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(
-				_RELATED_ASSETS_INFO_LIST_PROVIDER_KEY);
+				"com.liferay.asset.internal.info.list.provider." +
+					"RelatedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -300,22 +304,6 @@ public class AssetInfoListProviderTest {
 			}
 
 		};
-
-	private static final String _HIGHEST_RATED_ASSETS_INFO_LIST_PROVIDER_KEY =
-		"com.liferay.asset.internal.info.list.provider." +
-			"HighestRatedAssetsInfoListProvider";
-
-	private static final String _MOST_VIEWED_ASSETS_INFO_LIST_PROVIDER_KEY =
-		"com.liferay.asset.internal.info.list.provider." +
-			"MostViewedAssetsInfoListProvider";
-
-	private static final String _RECENT_CONTENT_INFO_LIST_PROVIDER_KEY =
-		"com.liferay.asset.internal.info.list.provider." +
-			"RecentContentInfoListProvider";
-
-	private static final String _RELATED_ASSETS_INFO_LIST_PROVIDER_KEY =
-		"com.liferay.asset.internal.info.list.provider." +
-			"RelatedAssetsInfoListProvider";
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
