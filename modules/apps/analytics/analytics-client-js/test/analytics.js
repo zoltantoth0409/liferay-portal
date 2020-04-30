@@ -152,7 +152,7 @@ describe('Analytics', () => {
 
 		setTimeout(async () => {
 
-			// flush should have happened at least once
+			// Flush should have happened at least once
 
 			const userId = getItem(STORAGE_KEY_USER_ID);
 
