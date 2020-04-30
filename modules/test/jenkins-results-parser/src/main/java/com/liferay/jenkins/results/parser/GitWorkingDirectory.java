@@ -2269,7 +2269,7 @@ public class GitWorkingDirectory {
 				JenkinsResultsParserUtil.combine(
 					"Unable to delete more than ",
 					String.valueOf(_BRANCHES_DELETE_BATCH_SIZE),
-					" local Git branches at once."));
+					" local Git branches at once"));
 		}
 
 		StringBuilder sb = new StringBuilder();
