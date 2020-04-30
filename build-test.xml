@@ -7916,9 +7916,9 @@ company.security.strangers.verify=false
 
 browser.launcher.url=
 
-buffered.increment.enabled=false
-
 setup.wizard.enabled=false
+
+buffered.increment.enabled=false
 
 mail.send.blacklist=
 
