@@ -22,7 +22,7 @@
 
 <portlet:renderURL var="basePortletURL" />
 
-<div id="<%= renderResponse.getNamespace() %>-app-builder-root">
+<div id="<portlet:namespace />-app-builder-root">
 
 	<%
 	Map<String, Object> data = HashMapBuilder.<String, Object>put(
