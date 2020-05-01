@@ -74,6 +74,9 @@ public class ImportFragmentEntriesStrutsAction implements StrutsAction {
 					"the-selected-file-is-not-a-valid-zip-file"));
 		}
 		else {
+			JSONArray fragmentEntriesImportResultJSONArray =
+				JSONFactoryUtil.createJSONArray();
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -81,9 +84,6 @@ public class ImportFragmentEntriesStrutsAction implements StrutsAction {
 			List<FragmentsImporterResultEntry> fragmentsImporterResultEntries =
 				_fragmentsImporter.importFragmentEntries(
 					themeDisplay.getUserId(), groupId, 0L, file, true);
-
-			JSONArray fragmentEntriesImportResultJSONArray =
-				JSONFactoryUtil.createJSONArray();
 
 			for (FragmentsImporterResultEntry fragmentsImporterResultEntry :
 					fragmentsImporterResultEntries) {
@@ -106,13 +106,13 @@ public class ImportFragmentEntriesStrutsAction implements StrutsAction {
 				"fragmentEntriesImportResult",
 				fragmentEntriesImportResultJSONArray);
 
+			JSONArray pageTemplatesImportResultJSONArray =
+				JSONFactoryUtil.createJSONArray();
+
 			List<LayoutPageTemplatesImporterResultEntry>
 				layoutPageTemplatesImporterResultEntries =
 					_layoutPageTemplatesImporter.importFile(
 						themeDisplay.getUserId(), groupId, 0L, file, true);
-
-			JSONArray pageTemplatesImportResultJSONArray =
-				JSONFactoryUtil.createJSONArray();
 
 			for (LayoutPageTemplatesImporterResultEntry
 					layoutPageTemplatesImporterResultEntry :
