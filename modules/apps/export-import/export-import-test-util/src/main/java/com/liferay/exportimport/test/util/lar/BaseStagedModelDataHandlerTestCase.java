@@ -92,6 +92,7 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 	@Before
 	public void setUp() throws Exception {
 		liveGroup = GroupTestUtil.addGroup();
+
 		stagingGroup = GroupTestUtil.addGroup();
 
 		stagingGroup.setLiveGroupId(liveGroup.getGroupId());
