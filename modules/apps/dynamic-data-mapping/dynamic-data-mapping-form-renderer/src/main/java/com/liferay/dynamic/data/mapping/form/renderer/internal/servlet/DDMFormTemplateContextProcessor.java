@@ -101,6 +101,8 @@ public class DDMFormTemplateContextProcessor {
 
 		DDMFormField ddmFormField = new DDMFormField(name, type);
 
+		setDDMFormFieldCollapsible(
+			jsonObject.getBoolean("collapsible"), ddmFormField);
 		setDDMFormFieldDataProviderSettings(
 			jsonObject.getLong("ddmDataProviderInstanceId"),
 			jsonObject.getString("ddmDataProviderInstanceOutput"),
@@ -112,8 +114,6 @@ public class DDMFormTemplateContextProcessor {
 		setDDMFormFieldLabel(jsonObject.getString("label"), ddmFormField);
 		setDDMFormFieldLocalizable(
 			jsonObject.getBoolean("localizable", false), ddmFormField);
-		setDDMFormFieldCollapsible(
-			jsonObject.getBoolean("collapsible"), ddmFormField);
 		setDDMFormFieldMultiple(
 			jsonObject.getBoolean("multiple"), ddmFormField);
 		setDDMFormFieldOptions(
