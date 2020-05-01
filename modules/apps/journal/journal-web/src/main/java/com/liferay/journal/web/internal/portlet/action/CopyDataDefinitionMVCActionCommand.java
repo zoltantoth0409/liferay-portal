@@ -80,10 +80,10 @@ public class CopyDataDefinitionMVCActionCommand
 		long ddmStructureId = ParamUtil.getLong(
 			actionRequest, "ddmStructureId");
 
-		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
-			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
 
 		DataDefinitionResource dataDefinitionResource =
 			DataDefinitionResource.builder(
@@ -95,9 +95,9 @@ public class CopyDataDefinitionMVCActionCommand
 			dataDefinitionResource.getDataDefinition(ddmStructureId);
 
 		dataDefinition.setDataDefinitionKey(StringPool.BLANK);
-		dataDefinition.setName(LocalizedValueUtil.toStringObjectMap(nameMap));
 		dataDefinition.setDescription(
 			LocalizedValueUtil.toStringObjectMap(descriptionMap));
+		dataDefinition.setName(LocalizedValueUtil.toStringObjectMap(nameMap));
 
 		DataDefinition newDataDefinition =
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
