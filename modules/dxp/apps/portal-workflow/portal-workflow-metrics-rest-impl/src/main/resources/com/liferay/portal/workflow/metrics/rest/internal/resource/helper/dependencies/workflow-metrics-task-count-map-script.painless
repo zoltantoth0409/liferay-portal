@@ -30,7 +30,5 @@ if (doc.uid.value.startsWith("WorkflowMetricsTask") &&
 
 	state.taskIds.add(taskId);
 
-	state.slaStatusMap.compute(
-		taskId,
-		(key, slaStatus) -> (slaStatus == null) ? "untracked" : slaStatus);
+	state.slaStatusMap.compute(taskId, (key, slaStatus) -> (slaStatus == null) ? "untracked" : slaStatus);
 }
