@@ -24,6 +24,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
@@ -47,7 +48,6 @@ import com.liferay.portal.odata.entity.EntityField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -217,24 +217,15 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		UserAccount userAccount = userAccountResource.getUserAccount(
 			_testUser.getUserId());
 
-		List<GraphQLField> graphQLFields = getGraphQLFields();
-
-		GraphQLField graphQLField = new GraphQLField(
-			"query",
-			new GraphQLField(
-				"myUserAccount", new HashMap<>(),
-				graphQLFields.toArray(new GraphQLField[0])));
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			invoke(graphQLField.toString()));
-
-		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
-
 		Assert.assertTrue(
 			equals(
 				userAccount,
 				UserAccountSerDes.toDTO(
-					dataJSONObject.getString("myUserAccount"))));
+					JSONUtil.getValueAsString(
+						invokeGraphQLQuery(
+							new GraphQLField(
+								"myUserAccount", getGraphQLFields())),
+						"JSONObject/data", "JSONObject/myUserAccount"))));
 	}
 
 	@Override
