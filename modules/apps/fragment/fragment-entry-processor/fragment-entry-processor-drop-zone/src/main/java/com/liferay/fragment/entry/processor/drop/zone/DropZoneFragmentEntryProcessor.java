@@ -121,19 +121,19 @@ public class DropZoneFragmentEntryProcessor implements FragmentEntryProcessor {
 			return bodyElement.html();
 		}
 
-		int i = 0;
-
 		Optional<Map<String, Object>> fieldValuesOptional =
 			fragmentEntryProcessorContext.getFieldValuesOptional();
 
-		for (Element element : elements) {
+		for (int i = 0; i < elements.size(); i++) {
+			Element element = elements.get(i);
+
 			String dropZoneHTML = _fragmentDropZoneRenderer.renderDropZone(
 				fragmentEntryProcessorContext.getHttpServletRequest(),
 				fragmentEntryProcessorContext.getHttpServletResponse(),
 				fieldValuesOptional.orElse(null),
 				fragmentEntryLink.getGroupId(), fragmentEntryLink.getClassPK(),
-				dropZoneItemIds.get(i++),
-				fragmentEntryProcessorContext.getMode(), true);
+				dropZoneItemIds.get(i), fragmentEntryProcessorContext.getMode(),
+				true);
 
 			Element dropZoneElement = new Element("div");
 
