@@ -1212,13 +1212,10 @@ definition {
 			layoutName = "Blogs Page",
 			widgetName = "Blogs");
 
-		Navigator.gotoSitePage(
-			pageName = "Blogs Page",
-			siteName = "Test Site Name");
-
-		Blogs.addEntry(
+		JSONBlog.addEntry(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title");
+			entryTitle = "Blogs Entry1 Title",
+			groupName = "Test Site Name");
 
 		BlogsNavigator.openBlogsAdmin(siteURLKey = "test-site-name");
 
@@ -1423,13 +1420,10 @@ definition {
 			layoutName = "Blogs Page",
 			widgetName = "Blogs");
 
-		Navigator.gotoSitePage(
-			pageName = "Blogs Page",
-			siteName = "Test Site Name");
-
-		Blogs.addEntry(
+		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title");
+			entryTitle = "Blogs Entry Title",
+			groupName = "Test Site Name");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",

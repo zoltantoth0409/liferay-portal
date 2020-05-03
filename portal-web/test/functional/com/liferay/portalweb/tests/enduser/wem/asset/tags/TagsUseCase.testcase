@@ -451,14 +451,11 @@ definition {
 			layoutName = "Page Name",
 			widgetName = "Blogs");
 
-		Navigator.gotoSitePage(
-			pageName = "Page Name",
-			siteName = "Site Name");
-
-		Blogs.addEntryWithTags(
+		JSONBlog.addEntry(
+			assetTagNames = "tag name 1,tag name 2,tag name 3",
 			entryContent = "Entry Content",
 			entryTitle = "Entry Title",
-			tagNameList = "tag name 1,tag name 2,tag name 3");
+			groupName = "Site Name");
 
 		for (var tagName : list "tag name 1,tag name 2,tag name 3") {
 			Navigator.gotoSitePage(
