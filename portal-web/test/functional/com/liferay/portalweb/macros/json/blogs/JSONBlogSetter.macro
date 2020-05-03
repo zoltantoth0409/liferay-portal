@@ -1,5 +1,11 @@
 definition {
 
+	macro setContentXML {
+		var contentXML = JSONBlogUtil._convertToXML(content = "${content}");
+
+		return "${contentXML}";
+	}
+
 	macro setServiceContext {
 		var serviceContext = JSONServiceContextUtil.setServiceContext(
 			addGuestPermissions = "true",
