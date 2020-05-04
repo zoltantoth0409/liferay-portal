@@ -49,13 +49,12 @@ public class IndexResourceTest extends BaseIndexResourceTestCase {
 	@Override
 	@Test
 	public void testGraphQLGetIndexesPage() throws Exception {
-		GraphQLField graphQLField = new GraphQLField(
-			"indexes", new GraphQLField("items", getGraphQLFields()),
-			new GraphQLField("page"), new GraphQLField("totalCount"));
-
 		JSONObject indexesJSONObject = JSONUtil.getValueAsJSONObject(
-			invokeGraphQLQuery(graphQLField), "JSONObject/data",
-			"JSONObject/indexes");
+			invokeGraphQLQuery(
+				new GraphQLField(
+					"indexes", new GraphQLField("items", getGraphQLFields()),
+					new GraphQLField("page"), new GraphQLField("totalCount"))),
+			"JSONObject/data", "JSONObject/indexes");
 
 		Assert.assertEquals(7, indexesJSONObject.get("totalCount"));
 
