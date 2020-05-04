@@ -753,7 +753,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 				_log.warn(
 					String.format(
 						"Item class name could not be set since class name " +
-							"ID %s could not be parsed to long",
+							"ID %s could not be parsed to a long",
 						classNameIdString),
 					numberFormatException);
 			}
@@ -797,7 +797,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 				_log.warn(
 					String.format(
 						"Item class PK could not be set since class PK %s " +
-							"could not be parsed to long",
+							"could not be parsed to a long",
 						classPKString),
 					numberFormatException);
 			}
