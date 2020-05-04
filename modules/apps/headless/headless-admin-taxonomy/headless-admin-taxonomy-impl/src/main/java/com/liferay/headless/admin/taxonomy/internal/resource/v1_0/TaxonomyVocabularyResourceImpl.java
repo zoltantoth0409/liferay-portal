@@ -200,13 +200,13 @@ public class TaxonomyVocabularyResourceImpl
 			Long siteId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
+		Map<Locale, String> titleMap = LocalizedMapUtil.getLocalizedMap(
+			contextAcceptLanguage.getPreferredLocale(),
+			taxonomyVocabulary.getName(), taxonomyVocabulary.getName_i18n());
 		Map<Locale, String> descriptionMap = LocalizedMapUtil.getLocalizedMap(
 			contextAcceptLanguage.getPreferredLocale(),
 			taxonomyVocabulary.getDescription(),
 			taxonomyVocabulary.getDescription_i18n());
-		Map<Locale, String> titleMap = LocalizedMapUtil.getLocalizedMap(
-			contextAcceptLanguage.getPreferredLocale(),
-			taxonomyVocabulary.getName(), taxonomyVocabulary.getName_i18n());
 
 		LocalizedMapUtil.validateI18n(
 			true, "Taxonomy vocabulary", titleMap,
@@ -228,15 +228,15 @@ public class TaxonomyVocabularyResourceImpl
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
 			taxonomyVocabularyId);
 
+		Map<Locale, String> titleMap = LocalizedMapUtil.getLocalizedMap(
+			contextAcceptLanguage.getPreferredLocale(),
+			taxonomyVocabulary.getName(), taxonomyVocabulary.getName_i18n(),
+			assetVocabulary.getTitleMap());
 		Map<Locale, String> descriptionMap = LocalizedMapUtil.getLocalizedMap(
 			contextAcceptLanguage.getPreferredLocale(),
 			taxonomyVocabulary.getDescription(),
 			taxonomyVocabulary.getDescription_i18n(),
 			assetVocabulary.getDescriptionMap());
-		Map<Locale, String> titleMap = LocalizedMapUtil.getLocalizedMap(
-			contextAcceptLanguage.getPreferredLocale(),
-			taxonomyVocabulary.getName(), taxonomyVocabulary.getName_i18n(),
-			assetVocabulary.getTitleMap());
 
 		LocalizedMapUtil.validateI18n(
 			false, "Taxonomy vocabulary", titleMap,
