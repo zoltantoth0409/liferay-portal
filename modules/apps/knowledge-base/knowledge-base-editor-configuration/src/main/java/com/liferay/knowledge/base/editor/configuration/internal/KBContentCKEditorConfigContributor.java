@@ -52,12 +52,6 @@ public class KBContentCKEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		jsonObject.put(
-			"toolbar", "kb"
-		).put(
-			"toolbar_kb", getToolbarKBJSONArray(inputEditorTaglibAttributes)
-		);
-
 		String extraPlugins = jsonObject.getString("extraPlugins");
 
 		if (Validator.isNotNull(extraPlugins)) {
@@ -67,7 +61,13 @@ public class KBContentCKEditorConfigContributor
 			extraPlugins = "videoembed";
 		}
 
-		jsonObject.put("extraPlugins", extraPlugins);
+		jsonObject.put(
+			"extraPlugins", extraPlugins
+		).put(
+			"toolbar", "kb"
+		).put(
+			"toolbar_kb", getToolbarKBJSONArray(inputEditorTaglibAttributes)
+		);
 	}
 
 	protected JSONArray getToolbarKBJSONArray(
