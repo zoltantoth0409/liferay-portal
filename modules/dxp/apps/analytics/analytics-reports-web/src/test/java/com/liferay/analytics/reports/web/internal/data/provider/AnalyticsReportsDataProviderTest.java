@@ -58,6 +58,10 @@ public class AnalyticsReportsDataProviderTest {
 
 	@BeforeClass
 	public static void setUpClass() {
+		HtmlUtil htmlUtil = new HtmlUtil();
+
+		htmlUtil.setHtml(new HtmlImpl());
+
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
@@ -65,10 +69,6 @@ public class AnalyticsReportsDataProviderTest {
 		ReflectionTestUtil.setFieldValue(
 			PrefsPropsUtil.class, "_prefsProps",
 			Mockito.mock(PrefsProps.class));
-
-		HtmlUtil htmlUtil = new HtmlUtil();
-
-		htmlUtil.setHtml(new HtmlImpl());
 	}
 
 	@Test
