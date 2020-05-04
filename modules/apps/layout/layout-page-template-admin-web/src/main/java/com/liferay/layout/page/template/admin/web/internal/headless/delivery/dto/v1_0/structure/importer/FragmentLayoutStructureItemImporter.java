@@ -404,7 +404,7 @@ public class FragmentLayoutStructureItemImporter
 
 			try {
 				classNameId = String.valueOf(
-					PortalUtil.getClassNameId(itemClassName));
+					_portal.getClassNameId(itemClassName));
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
