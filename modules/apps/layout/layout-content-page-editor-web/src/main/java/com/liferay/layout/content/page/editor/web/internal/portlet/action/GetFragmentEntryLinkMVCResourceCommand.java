@@ -121,7 +121,6 @@ public class GetFragmentEntryLinkMVCResourceCommand
 					httpServletRequest.setAttribute(
 						InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR,
 						infoDisplayContributor);
-
 					httpServletRequest.setAttribute(
 						InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT,
 						infoDisplayObjectProvider.getDisplayObject());
@@ -142,12 +141,12 @@ public class GetFragmentEntryLinkMVCResourceCommand
 				);
 			}
 			finally {
+				httpServletRequest.removeAttribute(
+					InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
+
 				httpServletRequest.setAttribute(
 					InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR,
 					currentInfoDisplayContributor);
-
-				httpServletRequest.removeAttribute(
-					InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
 			}
 
 			if (SessionErrors.contains(

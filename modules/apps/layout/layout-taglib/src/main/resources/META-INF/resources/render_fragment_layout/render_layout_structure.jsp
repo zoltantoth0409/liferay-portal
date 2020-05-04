@@ -61,8 +61,9 @@ for (String childrenItemId : childrenItemIds) {
 					}
 				}
 				finally {
-					request.setAttribute(InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR, currentInfoDisplayContributor);
 					request.removeAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
+
+					request.setAttribute(InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR, currentInfoDisplayContributor);
 				}
 				%>
 
