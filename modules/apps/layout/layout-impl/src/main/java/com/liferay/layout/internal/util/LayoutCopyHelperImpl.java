@@ -200,10 +200,10 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 					classNameId, targetLayout.getPlid(), null, serviceContext);
 		}
 
-		Map<Long, Long> segmentsExperienceIdsMap = _getSegmentsExperienceIdsMap(
+		Map<Long, Long> segmentsExperienceIds = _getSegmentsExperienceIds(
 			classNameId, sourceLayout, targetLayout, serviceContext);
 
-		for (Map.Entry<Long, Long> entry : segmentsExperienceIdsMap.entrySet()) {
+		for (Map.Entry<Long, Long> entry : segmentsExperienceIds.entrySet()) {
 			_copyLayoutPageTemplateStructureExperience(
 				layoutPageTemplateStructure, entry.getKey(), classNameId,
 				targetLayout, fragmentEntryLinkMap, entry.getValue(),
@@ -401,7 +401,7 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 		}
 	}
 
-	private Map<Long, Long> _getSegmentsExperienceIdsMap(
+	private Map<Long, Long> _getSegmentsExperienceIds(
 		long classNameId, Layout sourceLayout, Layout targetLayout,
 		ServiceContext serviceContext) {
 
