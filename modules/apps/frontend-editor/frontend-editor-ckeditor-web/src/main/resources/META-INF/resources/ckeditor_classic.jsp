@@ -19,14 +19,14 @@
 <%
 String name = namespace + GetterUtil.getString((String)request.getAttribute(CKEditorConstants.ATTRIBUTE_NAMESPACE + ":name"));
 
-Map<String, Object> defaultEditorData = HashMapBuilder.<String, Object>put(
+Map<String, Object> data = HashMapBuilder.<String, Object>put(
 	"name", HtmlUtil.escapeAttribute(name)
 ).build();
 %>
 
 <div>
 	<react:component
-		data="<%= defaultEditorData %>"
+		data="<%= data %>"
 		module="editor/ClassicEditor"
 	/>
 </div>
