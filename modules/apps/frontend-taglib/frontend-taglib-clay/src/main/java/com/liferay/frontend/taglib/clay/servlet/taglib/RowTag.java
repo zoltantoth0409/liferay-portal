@@ -100,10 +100,8 @@ public class RowTag extends IncludeTag {
 	protected int processStartTag() throws Exception {
 		JspWriter jspWriter = pageContext.getOut();
 
-		jspWriter.write("<div");
-
-		jspWriter.write(" class=\"");
-		jspWriter.write(_getClassName().toString());
+		jspWriter.write("<div class=\"");
+		jspWriter.write(String.valueOf(_getClassName()));
 		jspWriter.write("\"");
 
 		if (Validator.isNotNull(_id)) {
