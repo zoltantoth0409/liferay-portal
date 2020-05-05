@@ -17,9 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String name = GetterUtil.getString((String)request.getAttribute(CKEditorConstants.ATTRIBUTE_NAMESPACE + ":name"));
-
-name = namespace + name;
+String name = namespace + GetterUtil.getString((String)request.getAttribute(CKEditorConstants.ATTRIBUTE_NAMESPACE + ":name"));
 
 Map<String, Object> defaultEditorData = HashMapBuilder.<String, Object>put(
 	"name", HtmlUtil.escapeAttribute(name)
