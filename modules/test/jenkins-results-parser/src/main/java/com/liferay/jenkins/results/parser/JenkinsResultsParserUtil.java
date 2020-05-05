@@ -3192,20 +3192,20 @@ public class JenkinsResultsParserUtil {
 	}
 
 	private static Set<Set<String>> _getOrderedOptSets(String... opts) {
-		Set<Set<String>> optsSets = new LinkedHashSet<>();
+		Set<Set<String>> optSets = new LinkedHashSet<>();
 
-		optsSets.add(new LinkedHashSet<>(Arrays.asList(opts)));
+		optSets.add(new LinkedHashSet<>(Arrays.asList(opts)));
 
-		int optsCount = opts.length;
+		int optCount = opts.length;
 
-		for (int i = optsCount - 1; i >= 0; i--) {
-			String[] childOpts = new String[optsCount - 1];
+		for (int i = optCount - 1; i >= 0; i--) {
+			String[] childOpts = new String[optCount - 1];
 
 			if (childOpts.length == 0) {
 				continue;
 			}
 
-			for (int j = 0; j < optsCount; j++) {
+			for (int j = 0; j < optCount; j++) {
 				if (j < i) {
 					childOpts[j] = opts[j];
 				}
@@ -3214,15 +3214,15 @@ public class JenkinsResultsParserUtil {
 				}
 			}
 
-			optsSets.addAll(_getOrderedOptSets(childOpts));
+			optSets.addAll(_getOrderedOptSets(childOpts));
 		}
 
 		Set<Set<String>> orderedOptSet = new LinkedHashSet<>();
 
-		for (int i = optsCount; i > 0; i--) {
-			for (Set<String> optsSet : optsSets) {
-				if (optsSet.size() == i) {
-					orderedOptSet.add(optsSet);
+		for (int i = optCount; i > 0; i--) {
+			for (Set<String> optSet : optSets) {
+				if (optSet.size() == i) {
+					orderedOptSet.add(optSet);
 				}
 			}
 		}
@@ -3347,26 +3347,26 @@ public class JenkinsResultsParserUtil {
 		for (String propertyName : propertyNames) {
 			Matcher matcher = _propertyNamePattern.matcher(propertyName);
 
-			Set<String> optsSet = new LinkedHashSet<>();
+			Set<String> optSet = new LinkedHashSet<>();
 
 			while (matcher.find()) {
 				String opt = matcher.group("opt");
 
 				opt = Pattern.quote(opt);
 
-				optsSet.add(opt.replaceAll("\\*", "\\\\E.+\\\\Q"));
+				optSet.add(opt.replaceAll("\\*", "\\\\E.+\\\\Q"));
 			}
 
-			if (optsSet.size() > maxOptCount) {
-				maxOptCount = optsSet.size();
+			if (optSet.size() > maxOptCount) {
+				maxOptCount = optSet.size();
 			}
 
-			propertyOptSetSizes.put(propertyName, optsSet.size());
-			propertyOptSets.put(propertyName, optsSet);
+			propertyOptSetSizes.put(propertyName, optSet.size());
+			propertyOptSets.put(propertyName, optSet);
 
 			int regexCount = 0;
 
-			for (String opt : optsSet) {
+			for (String opt : optSet) {
 				if (opt.contains(".+")) {
 					regexCount++;
 				}
@@ -3384,10 +3384,10 @@ public class JenkinsResultsParserUtil {
 
 					String propertyName = entry.getKey();
 
-					int optsSetSize = propertyOptSetSizes.get(propertyName);
+					int optSetSize = propertyOptSetSizes.get(propertyName);
 					int regexCount = propertyRegexCounts.get(propertyName);
 
-					if ((optsSetSize == i) && (regexCount == j)) {
+					if ((optSetSize == i) && (regexCount == j)) {
 						propertyOptRegexSets.put(
 							propertyName, entry.getValue());
 					}
