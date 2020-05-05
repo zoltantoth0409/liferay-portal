@@ -189,8 +189,9 @@ public class OpenAPIParserUtil {
 
 		List<String> externalReferences = getExternalReferences(openAPIYAML);
 
-		for (String reference : externalReferences) {
-			String path = reference.substring(0, reference.indexOf("#"));
+		for (String externalReference : externalReferences) {
+			String path = externalReference.substring(
+				0, externalReference.indexOf("#"));
 
 			File openAPIFile = new File(path);
 
