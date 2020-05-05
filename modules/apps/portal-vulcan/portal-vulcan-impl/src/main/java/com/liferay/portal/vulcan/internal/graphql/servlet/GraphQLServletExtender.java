@@ -408,7 +408,7 @@ public class GraphQLServletExtender {
 	}
 
 	private static Object _getAnnotationValue(
-		AnnotatedElement annotatedElement, Class clazz) {
+		AnnotatedElement annotatedElement, Class<?> clazz) {
 
 		for (Annotation annotation :
 				annotatedElement.getDeclaredAnnotations()) {
@@ -725,7 +725,7 @@ public class GraphQLServletExtender {
 	}
 
 	private Object _createQueryInstance(
-			Class clazz, DataFetchingEnvironment dataFetchingEnvironment)
+			Class<?> clazz, DataFetchingEnvironment dataFetchingEnvironment)
 		throws Exception {
 
 		GraphQLContext graphQLContext = dataFetchingEnvironment.getContext();
