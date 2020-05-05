@@ -154,23 +154,25 @@ public class OpenAPIParserUtil {
 			for (Operation operation : operations) {
 				RequestBody requestBody = operation.getRequestBody();
 
-				if (requestBody != null) {
-					Map<String, Content> contentMap = requestBody.getContent();
+				if (requestBody == null) {
+					continue;
+				}
 
-					for (Map.Entry<String, Content> entry2 :
-							contentMap.entrySet()) {
+				Map<String, Content> contentMap = requestBody.getContent();
 
-						Content content = entry2.getValue();
+				for (Map.Entry<String, Content> entry2 :
+						contentMap.entrySet()) {
 
-						Schema schema = content.getSchema();
+					Content content = entry2.getValue();
 
-						String reference = schema.getReference();
+					Schema schema = content.getSchema();
 
-						if ((reference != null) &&
-							!reference.contains("#/components/schemas/")) {
+					String reference = schema.getReference();
 
-							externalReferences.add(reference);
-						}
+					if ((reference != null) &&
+						!reference.contains("#/components/schemas/")) {
+
+						externalReferences.add(reference);
 					}
 				}
 			}
