@@ -360,13 +360,11 @@ public class DefaultPortalKaleoManager
 				_language.get(
 					ResourceBundleUtil.getModuleAndPortalResourceBundle(
 						availableLocale, DefaultPortalKaleoManager.class),
-					_DEFINITION_KEY));
+					"single-approver"));
 		}
 
 		return LocalizationUtil.getXml(localizedValuesMap, "title");
 	}
-
-	private static final String _DEFINITION_KEY = "single-approver";
 
 	private static final String _DEFINITION_NAME = "Single Approver";
 
