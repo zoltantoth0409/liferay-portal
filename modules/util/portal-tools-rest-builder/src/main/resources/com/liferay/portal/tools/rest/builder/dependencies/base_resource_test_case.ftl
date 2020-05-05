@@ -1,12 +1,12 @@
 package ${configYAML.apiPackagePath}.resource.${escapedVersion}.test;
 
-<#list allSchemas?keys as schemaName>
+<#list allExternalSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 	import ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource;
 	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
 </#list>
 
-<#list allExternalSchemas?keys as schemaName>
+<#list allSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 	import ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource;
 	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
