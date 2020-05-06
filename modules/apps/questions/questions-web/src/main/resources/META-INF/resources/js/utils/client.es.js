@@ -560,6 +560,7 @@ export const getUserActivity = ({
 					hasValidAnswer
 					headline
 					id
+					keywords
 					messageBoardSection {
 						title
 					}
