@@ -1377,7 +1377,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 						</#if>
 					</#list>
 
-					Assert.assertEquals("Not Found",
+					Assert.assertEquals(
+						"Not Found",
 						JSONUtil.getValueAsString(
 							invokeGraphQLQuery(
 								new GraphQLField(
