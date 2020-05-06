@@ -1232,7 +1232,9 @@ public class DataDefinitionResourceImpl
 
 			Locale defaultLocale = ddmForm.getDefaultLocale();
 
-			if (!name.containsKey(LocaleUtil.toLanguageId(defaultLocale))) {
+			if ((name == null) ||
+				!name.containsKey(LocaleUtil.toLanguageId(defaultLocale))) {
+
 				throw new DataDefinitionValidationException.MustSetValidName(
 					"Name is null for locale " +
 						defaultLocale.getDisplayName());
