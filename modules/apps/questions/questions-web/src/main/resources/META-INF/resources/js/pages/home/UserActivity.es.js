@@ -96,7 +96,7 @@ export default withRouter(
 				<NavigationBar />
 				<section className="questions-section questions-section-list">
 					<div className="questions-container">
-						<div className="row c-p-5">
+						<div className="c-p-5 row">
 							<PageHeader />
 							<Questions />
 						</div>
@@ -113,10 +113,10 @@ export default withRouter(
 							<UserIcon
 								fullName={creatorInfo.name}
 								portraitURL={creatorInfo.image}
-								userId={String(creatorInfo.id)}
 								size="xl"
+								userId={String(creatorInfo.id)}
 							/>
-						</div>				
+						</div>
 						<div className="c-ml-4 flex-column">
 							<div>
 								<span className="small">
@@ -143,7 +143,7 @@ export default withRouter(
 							</ClayButton>
 						</div>
 					</div>
-					<div className="c-mt-5 border-bottom">
+					<div className="border-bottom c-mt-5">
 						<h2>Latest Questions Asked</h2>
 					</div>
 				</div>
