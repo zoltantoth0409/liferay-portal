@@ -254,7 +254,7 @@ public class MessageBoardThreadResourceImpl
 
 		if (mbMessage == null) {
 			throw new NoSuchMessageException(
-				"No such message thread exists with friendly URL path " +
+				"No message thread exists with friendly URL path " +
 					friendlyUrlPath);
 		}
 

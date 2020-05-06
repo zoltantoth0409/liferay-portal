@@ -46,7 +46,8 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 			roleId);
 
 		if (role == null) {
-			throw new NoSuchRoleException("No Role exists with id " + roleId);
+			throw new NoSuchRoleException(
+				"No role exists with role ID " + roleId);
 		}
 
 		return _toRole(_roleService.getRole(roleId));

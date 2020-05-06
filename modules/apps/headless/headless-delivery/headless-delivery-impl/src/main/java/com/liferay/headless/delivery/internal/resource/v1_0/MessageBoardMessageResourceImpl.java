@@ -188,8 +188,7 @@ public class MessageBoardMessageResourceImpl
 
 		if (mbMessage == null) {
 			throw new NoSuchMessageException(
-				"No such message exists with friendly URL path " +
-					friendlyUrlPath);
+				"No message exists with friendly URL path " + friendlyUrlPath);
 		}
 
 		return _toMessageBoardMessage(mbMessage);
