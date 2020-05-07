@@ -88,6 +88,8 @@ public class PortletPermissionsImporterHelper {
 				continue;
 			}
 
+			List<String> actionIds = new ArrayList<>();
+
 			Stream<ResourceAction> stream = resourceActions.stream();
 
 			List<String> resourceActionsIds = stream.map(
@@ -98,8 +100,6 @@ public class PortletPermissionsImporterHelper {
 
 			List<String> actionKeys = (List<String>)widgetPermissionsMap.get(
 				"actionKeys");
-
-			List<String> actionIds = new ArrayList<>();
 
 			for (String actionKey : actionKeys) {
 				if (!resourceActionsIds.contains(actionKey)) {
