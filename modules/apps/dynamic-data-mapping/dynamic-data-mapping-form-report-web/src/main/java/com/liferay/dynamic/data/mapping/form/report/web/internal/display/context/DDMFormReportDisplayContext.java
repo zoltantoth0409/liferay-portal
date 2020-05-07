@@ -19,7 +19,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormInstanceReport;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -29,9 +28,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.Date;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.TimeZone;
 
 import javax.portlet.RenderRequest;
 
@@ -72,14 +69,17 @@ public class DDMFormReportDisplayContext {
 		Date modifiedDate = _ddmFormInstanceReport.getModifiedDate();
 
 		int daysBetween = DateUtil.getDaysBetween(
-			new Date(modifiedDate.getTime()), new Date(), themeDisplay.getTimeZone());
+			new Date(modifiedDate.getTime()), new Date(),
+			themeDisplay.getTimeZone());
 
 		if (daysBetween < 2) {
 			languageKey = "report-was-last-modified-x";
 		}
 
 		String relativeTimeDescription = StringUtil.removeSubstring(
-			Time.getRelativeTimeDescription(modifiedDate, themeDisplay.getLocale(), themeDisplay.getTimeZone()),
+			Time.getRelativeTimeDescription(
+				modifiedDate, themeDisplay.getLocale(),
+				themeDisplay.getTimeZone()),
 			StringPool.PERIOD);
 
 		if (daysBetween < 2) {
