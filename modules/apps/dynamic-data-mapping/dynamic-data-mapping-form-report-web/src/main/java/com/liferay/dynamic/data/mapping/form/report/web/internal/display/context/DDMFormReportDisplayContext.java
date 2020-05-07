@@ -66,15 +66,11 @@ public class DDMFormReportDisplayContext {
 
 		Date modifiedDate = _ddmFormInstanceReport.getModifiedDate();
 
-		Locale locale = themeDisplay.getLocale();
-
-		TimeZone timeZone = themeDisplay.getTimeZone();
-
 		int daysBetween = DateUtil.getDaysBetween(
-			new Date(modifiedDate.getTime()), new Date(), timeZone);
+			new Date(modifiedDate.getTime()), new Date(), themeDisplay.getTimeZone());
 
 		String relativeTimeDescription = StringUtil.removeSubstring(
-			Time.getRelativeTimeDescription(modifiedDate, locale, timeZone),
+			Time.getRelativeTimeDescription(modifiedDate, themeDisplay.getLocale(), themeDisplay.getTimeZone()),
 			StringPool.PERIOD);
 
 		String languageKey = "report-was-last-modified-on-x";
@@ -87,7 +83,7 @@ public class DDMFormReportDisplayContext {
 		}
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			locale, DDMFormReportPortlet.class);
+			themeDisplay.getLocale(), DDMFormReportPortlet.class);
 
 		return LanguageUtil.format(
 			resourceBundle, languageKey, relativeTimeDescription, false);
