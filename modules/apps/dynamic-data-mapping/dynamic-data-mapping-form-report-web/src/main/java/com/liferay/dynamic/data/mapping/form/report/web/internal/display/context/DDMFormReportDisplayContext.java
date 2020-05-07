@@ -64,26 +64,28 @@ public class DDMFormReportDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			themeDisplay.getLocale(), DDMFormReportPortlet.class);
+
+		String languageKey = "report-was-last-modified-on-x";
+
 		Date modifiedDate = _ddmFormInstanceReport.getModifiedDate();
 
 		int daysBetween = DateUtil.getDaysBetween(
 			new Date(modifiedDate.getTime()), new Date(), themeDisplay.getTimeZone());
 
+		if (daysBetween < 2) {
+			languageKey = "report-was-last-modified-x";
+		}
+
 		String relativeTimeDescription = StringUtil.removeSubstring(
 			Time.getRelativeTimeDescription(modifiedDate, themeDisplay.getLocale(), themeDisplay.getTimeZone()),
 			StringPool.PERIOD);
 
-		String languageKey = "report-was-last-modified-on-x";
-
 		if (daysBetween < 2) {
-			languageKey = "report-was-last-modified-x";
-
 			relativeTimeDescription = StringUtil.toLowerCase(
 				relativeTimeDescription);
 		}
-
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			themeDisplay.getLocale(), DDMFormReportPortlet.class);
 
 		return LanguageUtil.format(
 			resourceBundle, languageKey, relativeTimeDescription, false);
