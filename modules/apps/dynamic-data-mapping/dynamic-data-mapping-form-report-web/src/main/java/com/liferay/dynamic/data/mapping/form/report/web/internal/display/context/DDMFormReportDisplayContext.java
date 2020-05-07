@@ -66,11 +66,9 @@ public class DDMFormReportDisplayContext {
 
 		Date modifiedDate = _ddmFormInstanceReport.getModifiedDate();
 
-		User user = themeDisplay.getUser();
+		Locale locale = themeDisplay.getLocale();
 
-		Locale locale = user.getLocale();
-
-		TimeZone timeZone = user.getTimeZone();
+		TimeZone timeZone = themeDisplay.getTimeZone();
 
 		int daysBetween = DateUtil.getDaysBetween(
 			new Date(modifiedDate.getTime()), new Date(), timeZone);
