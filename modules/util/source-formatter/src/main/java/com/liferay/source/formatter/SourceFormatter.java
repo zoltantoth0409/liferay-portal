@@ -534,10 +534,12 @@ public class SourceFormatter {
 		while (true) {
 			String serviceFileName = dirName + "/service.xml";
 
-			File file = new File(serviceFileName);
+			File file = new File(
+				_sourceFormatterArgs.getBaseDirName() + serviceFileName);
 
 			if (file.exists()) {
-				dependentFileNames.add(serviceFileName);
+				dependentFileNames.add(
+					_sourceFormatterArgs.getBaseDirName() + serviceFileName);
 
 				return dependentFileNames;
 			}
