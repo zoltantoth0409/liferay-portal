@@ -33,21 +33,17 @@ public interface TableReferenceInfoBuilder<T extends Table<T>> {
 
 	public default TableReferenceInfoBuilder<T> groupedModel(T table) {
 		singleColumnReference(
-			table.getColumn("groupId", Long.class),
-			GroupTable.INSTANCE.groupId);
-
-		singleColumnReference(
+			table.getColumn("groupId", Long.class), GroupTable.INSTANCE.groupId
+		).singleColumnReference(
 			table.getColumn("companyId", Long.class),
-			CompanyTable.INSTANCE.companyId);
-
-		singleColumnReference(
-			table.getColumn("userId", Long.class), UserTable.INSTANCE.userId);
-
-		nonreferenceColumn(table.getColumn("userName", String.class));
-
-		nonreferenceColumn(table.getColumn("createDate", Date.class));
-
-		nonreferenceColumn(table.getColumn("modifiedDate", Date.class));
+			CompanyTable.INSTANCE.companyId
+		).singleColumnReference(
+			table.getColumn("userId", Long.class), UserTable.INSTANCE.userId
+		).nonreferenceColumns(
+			table.getColumn("userName", String.class),
+			table.getColumn("createDate", Date.class),
+			table.getColumn("modifiedDate", Date.class)
+		);
 
 		return this;
 	}
