@@ -63,7 +63,7 @@ public class JSR330InjectedMethodElement
 			return;
 		}
 
-		Object[] dependencies;
+		Object[] dependencies = null;
 		Method method = (Method)getMember();
 
 		if (_cached) {
