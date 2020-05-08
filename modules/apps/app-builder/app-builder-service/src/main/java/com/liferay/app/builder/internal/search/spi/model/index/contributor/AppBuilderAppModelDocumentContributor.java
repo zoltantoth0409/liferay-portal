@@ -42,7 +42,6 @@ public class AppBuilderAppModelDocumentContributor
 	@Override
 	public void contribute(Document document, AppBuilderApp appBuilderApp) {
 		document.addKeyword("active", appBuilderApp.isActive());
-
 		document.addKeyword(
 			"deploymentTypes",
 			Stream.of(
@@ -56,7 +55,6 @@ public class AppBuilderAppModelDocumentContributor
 			).toArray(
 				String[]::new
 			));
-
 		document.addKeyword(
 			"ddmStructureId", appBuilderApp.getDdmStructureId());
 
