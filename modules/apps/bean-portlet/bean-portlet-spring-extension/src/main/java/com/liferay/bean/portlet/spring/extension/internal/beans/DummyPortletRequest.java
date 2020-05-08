@@ -118,7 +118,7 @@ public class DummyPortletRequest implements PortletRequest {
 	}
 
 	@Override
-	public PortletSession getPortletSession(boolean b) {
+	public PortletSession getPortletSession(boolean create) {
 		throw new UnsupportedOperationException();
 	}
 
