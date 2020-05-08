@@ -132,10 +132,10 @@ RedirectManagementToolbarDisplayContext redirectManagementToolbarDisplayContext 
 		function (event) {
 			var delegateTarget = event.delegateTarget;
 
-			var destinationUrl = delegateTarget.dataset.href;
+			var destinationURL = delegateTarget.dataset.href;
 
-			if (destinationUrl) {
-				window.open(destinationUrl, '_blank');
+			if (destinationURL) {
+				window.open(destinationURL, '_blank');
 			}
 		}
 	);
