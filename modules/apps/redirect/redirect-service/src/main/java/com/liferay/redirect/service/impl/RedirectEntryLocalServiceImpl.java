@@ -197,7 +197,7 @@ public class RedirectEntryLocalServiceImpl
 	}
 
 	@Override
-	public List<RedirectEntry> getRedirectEntriesByGroupIdAndDestinationURL(
+	public List<RedirectEntry> getRedirectEntries(
 		long groupId, String destinationURL) {
 
 		return ListUtil.filter(
@@ -289,11 +289,9 @@ public class RedirectEntryLocalServiceImpl
 		throws PortalException {
 
 		List<RedirectEntry> chainedRedirectEntries =
-			redirectEntryLocalService.
-				getRedirectEntriesByGroupIdAndDestinationURL(
-					redirectEntry.getGroupId(),
-					groupBaseURL + StringPool.SLASH +
-						redirectEntry.getSourceURL());
+			redirectEntryLocalService.getRedirectEntries(
+				redirectEntry.getGroupId(),
+				groupBaseURL + StringPool.SLASH + redirectEntry.getSourceURL());
 
 		for (RedirectEntry chainedRedirectEntry : chainedRedirectEntries) {
 			updateRedirectEntry(

@@ -72,7 +72,7 @@ public class CheckRedirectEntryChainMVCActionCommand
 
 		List<RedirectEntry> redirectEntries =
 			_redirectEntryLocalService.
-				getRedirectEntriesByGroupIdAndDestinationURL(
+				getRedirectEntries(
 					themeDisplay.getScopeGroupId(),
 					RedirectUtil.getGroupBaseURL(themeDisplay) +
 						StringPool.FORWARD_SLASH + sourceURL);
