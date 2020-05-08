@@ -519,15 +519,6 @@ public class SourceFormatter {
 
 				tagJavaFilesAdded = true;
 			}
-			else if (recentChangesFileName.endsWith(
-						"/modules/source-formatter.properties")) {
-
-				dependentFileNames.addAll(
-					SourceFormatterUtil.filterFileNames(
-						_allFileNames, new String[0],
-						new String[] {"**/build.gradle"},
-						_sourceFormatterExcludes, false));
-			}
 		}
 
 		_sourceFormatterArgs.addRecentChangesFileNames(
