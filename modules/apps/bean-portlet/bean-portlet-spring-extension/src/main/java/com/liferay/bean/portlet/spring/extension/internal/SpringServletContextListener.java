@@ -48,7 +48,8 @@ public class SpringServletContextListener implements ServletContextListener {
 				SpringBeanPortletExtension.class.getName());
 
 		if (_springBeanPortletExtension == null) {
-			_log.error("The Spring ContextLoaderListener failed to initialize");
+			_log.error(
+				"Spring's context loader listener did not to initialize");
 
 			return;
 		}
