@@ -168,6 +168,7 @@ public class JSR330InjectedMethodElement
 		if (dependencies != null) {
 			try {
 				ReflectionUtils.makeAccessible(method);
+
 				method.invoke(beanInstance, dependencies);
 			}
 			catch (InvocationTargetException invocationTargetException) {
