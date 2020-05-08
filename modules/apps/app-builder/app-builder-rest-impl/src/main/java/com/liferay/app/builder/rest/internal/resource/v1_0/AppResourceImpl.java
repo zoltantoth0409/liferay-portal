@@ -584,7 +584,7 @@ public class AppResourceImpl
 		throws Exception {
 
 		if (Objects.isNull(active)) {
-			throw new InvalidAppException("The app active is null");
+			throw new InvalidAppException("Active is null");
 		}
 
 		if ((dataLayoutId == null) && (dataListViewId == null)) {
