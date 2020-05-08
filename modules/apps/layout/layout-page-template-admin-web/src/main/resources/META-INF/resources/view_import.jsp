@@ -62,7 +62,6 @@ ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, re
 
 			<%
 			String dialogMessage = importDisplayContext.getDialogMessage();
-
 			String dialogType = importDisplayContext.getDialogType();
 			%>
 
