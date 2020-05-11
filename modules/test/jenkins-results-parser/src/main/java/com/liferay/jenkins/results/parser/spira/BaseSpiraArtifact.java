@@ -417,18 +417,20 @@ public abstract class BaseSpiraArtifact implements SpiraArtifact {
 		pathSpiraArtifactsMap.remove(pathSpiraArtifact.getPath());
 	}
 
-	private void readObject(ObjectInputStream in)
+	private void readObject(ObjectInputStream objectInputStream)
 		throws ClassNotFoundException, IOException {
 
-		in.defaultReadObject();
+		objectInputStream.defaultReadObject();
 
-		jsonObject = new JSONObject(in.readUTF());
+		jsonObject = new JSONObject(objectInputStream.readUTF());
 	}
 
-	private void writeObject(ObjectOutputStream out) throws IOException {
-		out.defaultWriteObject();
+	private void writeObject(ObjectOutputStream objectOutputStream)
+		throws IOException {
 
-		out.writeUTF(jsonObject.toString());
+		objectOutputStream.defaultWriteObject();
+
+		objectOutputStream.writeUTF(jsonObject.toString());
 	}
 
 	private static final Map<Class<?>, Map<Integer, SpiraArtifact>>
