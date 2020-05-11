@@ -116,14 +116,14 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 								permissionChecker, organization))
 					).build();
 
-				BaseModelSearchResult<Organization> organizations =
+				BaseModelSearchResult<Organization> baseModelSearchResult =
 					_organizationLocalService.searchOrganizations(
 						user.getCompanyId(),
 						OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null,
 						organizationParams, QueryUtil.ALL_POS,
 						QueryUtil.ALL_POS, null);
 
-				if (organizations.getLength() == 0) {
+				if (baseModelSearchResult.getLength() == 0) {
 					return new BaseModelSearchResult<>(
 						Collections.<AccountEntry>emptyList(), 0);
 				}
@@ -135,7 +135,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 				params.put(
 					"organizationIds",
 					ListUtil.toLongArray(
-						organizations.getBaseModels(),
+						baseModelSearchResult.getBaseModels(),
 						OrganizationModel::getOrganizationId));
 			}
 			catch (PortalException portalException) {
