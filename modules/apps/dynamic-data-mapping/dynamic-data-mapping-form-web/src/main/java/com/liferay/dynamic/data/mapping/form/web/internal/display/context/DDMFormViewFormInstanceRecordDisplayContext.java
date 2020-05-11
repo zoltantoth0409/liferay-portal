@@ -149,9 +149,9 @@ public class DDMFormViewFormInstanceRecordDisplayContext {
 			_ddmFormAdminRequestHelper.getRequest(), "redirect");
 
 		if (Validator.isNotNull(redirectURL)) {
-			formRenderingContext.setRedirectURL(redirectURL);
 			formRenderingContext.setCancelLabel(
 				LanguageUtil.get(locale, "cancel"));
+			formRenderingContext.setRedirectURL(redirectURL);
 		}
 		else {
 			formRenderingContext.setShowCancelButton(false);
