@@ -131,36 +131,38 @@ public class DDMFormViewFormInstanceRecordDisplayContext {
 		DDMFormRenderingContext formRenderingContext =
 			new DDMFormRenderingContext();
 
-		formRenderingContext.setHttpServletRequest(
-			_ddmFormAdminRequestHelper.getRequest());
-		formRenderingContext.setHttpServletResponse(_httpServletResponse);
-
-		Set<Locale> availableLocales = ddmForm.getAvailableLocales();
+		String redirectURL = ParamUtil.getString(
+			_ddmFormAdminRequestHelper.getRequest(), "redirect");
 
 		Locale locale = ddmForm.getDefaultLocale();
+
+		Set<Locale> availableLocales = ddmForm.getAvailableLocales();
 
 		if (availableLocales.contains(_ddmFormAdminRequestHelper.getLocale())) {
 			locale = _ddmFormAdminRequestHelper.getLocale();
 		}
 
-		formRenderingContext.setLocale(locale);
-
-		String redirectURL = ParamUtil.getString(
-			_ddmFormAdminRequestHelper.getRequest(), "redirect");
-
 		if (Validator.isNotNull(redirectURL)) {
 			formRenderingContext.setCancelLabel(
 				LanguageUtil.get(locale, "cancel"));
+		}
+
+		formRenderingContext.setHttpServletRequest(
+			_ddmFormAdminRequestHelper.getRequest());
+		formRenderingContext.setHttpServletResponse(_httpServletResponse);
+		formRenderingContext.setLocale(locale);
+		formRenderingContext.setPortletNamespace(
+			PortalUtil.getPortletNamespace(
+				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN));
+		formRenderingContext.setReadOnly(readOnly);
+
+		if (Validator.isNotNull(redirectURL)) {
 			formRenderingContext.setRedirectURL(redirectURL);
 		}
 		else {
 			formRenderingContext.setShowCancelButton(false);
 		}
 
-		formRenderingContext.setPortletNamespace(
-			PortalUtil.getPortletNamespace(
-				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN));
-		formRenderingContext.setReadOnly(readOnly);
 		formRenderingContext.setViewMode(true);
 
 		return formRenderingContext;
