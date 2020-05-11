@@ -84,6 +84,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 					</#if>
 				</#list>
 			}
+
 		<#if schema.description??>
 			, description = "${schema.description}"
 		</#if>
