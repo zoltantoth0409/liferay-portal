@@ -174,14 +174,11 @@ public class DDMFormAssetRenderer
 
 		portletURL.setParameter(
 			"mvcPath", "/admin/edit_form_instance_record.jsp");
-
 		portletURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
-
 		portletURL.setParameter(
 			"formInstanceRecordId",
 			String.valueOf(_ddmFormInstanceRecord.getFormInstanceRecordId()));
-
 		portletURL.setParameter(
 			"formInstanceId",
 			String.valueOf(_ddmFormInstanceRecord.getFormInstanceId()));
