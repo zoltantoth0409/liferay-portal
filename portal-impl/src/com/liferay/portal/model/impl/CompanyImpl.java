@@ -211,10 +211,10 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 	@Override
 	public String getPortalURL(long groupId) throws PortalException {
-		int portalPort = PortalUtil.getPortalServerPort(false);
+		int portalServerPort = PortalUtil.getPortalServerPort(false);
 
 		String portalURL = PortalUtil.getPortalURL(
-			getVirtualHostname(), portalPort, false);
+			getVirtualHostname(), portalServerPort, false);
 
 		if (groupId <= 0) {
 			return portalURL;
@@ -231,7 +231,7 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 			if (!virtualHostnames.isEmpty()) {
 				portalURL = PortalUtil.getPortalURL(
-					virtualHostnames.firstKey(), portalPort, false);
+					virtualHostnames.firstKey(), portalServerPort, false);
 			}
 		}
 		else if (group.hasPrivateLayouts()) {
@@ -243,7 +243,7 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 			if (!virtualHostnames.isEmpty()) {
 				portalURL = PortalUtil.getPortalURL(
-					virtualHostnames.firstKey(), portalPort, false);
+					virtualHostnames.firstKey(), portalServerPort, false);
 			}
 		}
 
@@ -254,10 +254,10 @@ public class CompanyImpl extends CompanyBaseImpl {
 	public String getPortalURL(long groupId, boolean privateLayout)
 		throws PortalException {
 
-		int portalPort = PortalUtil.getPortalServerPort(false);
+		int portalServerPort = PortalUtil.getPortalServerPort(false);
 
 		String portalURL = PortalUtil.getPortalURL(
-			getVirtualHostname(), portalPort, false);
+			getVirtualHostname(), portalServerPort, false);
 
 		if (groupId <= 0) {
 			return portalURL;
@@ -271,7 +271,7 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 		if (!virtualHostnames.isEmpty()) {
 			portalURL = PortalUtil.getPortalURL(
-				virtualHostnames.firstKey(), portalPort, false);
+				virtualHostnames.firstKey(), portalServerPort, false);
 		}
 
 		return portalURL;
