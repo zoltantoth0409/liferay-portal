@@ -98,11 +98,11 @@ public abstract class FindStrutsAction implements StrutsAction {
 					String currentCompleteURL =
 						PortalUtil.getCurrentCompleteURL(httpServletRequest);
 
-					String redirectURL =
+					String redirect =
 						PortalUtil.getPathMain() + "/portal/login?redirect=" +
 							currentCompleteURL;
 
-					String redirect = HttpUtil.encodeParameters(redirectURL);
+					redirect = HttpUtil.encodeParameters(redirect);
 
 					httpServletResponse.sendRedirect(redirect);
 
