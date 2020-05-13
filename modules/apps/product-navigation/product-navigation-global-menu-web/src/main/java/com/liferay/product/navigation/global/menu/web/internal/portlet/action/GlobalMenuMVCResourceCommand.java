@@ -121,7 +121,6 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -208,13 +207,13 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 		JSONArray recentSitesJSONArray = JSONFactoryUtil.createJSONArray();
 
-		List<Group> recentSites = _recentGroupManager.getRecentGroups(
+		List<Group> recentGroups = _recentGroupManager.getRecentGroups(
 			httpServletRequest);
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			themeDisplay.getLocale(), getClass());
 
-		for (Group group : recentSites) {
+		for (Group group : recentGroups) {
 			recentSitesJSONArray.put(
 				JSONUtil.put(
 					"key", group.getGroupKey()
