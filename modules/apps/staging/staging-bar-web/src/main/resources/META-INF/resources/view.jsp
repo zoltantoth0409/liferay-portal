@@ -27,18 +27,6 @@ String remoteSiteURL = (String)renderRequest.getAttribute(StagingProcessesWebKey
 stagingGroup = (Group)renderRequest.getAttribute(StagingProcessesWebKeys.STAGING_GROUP);
 String stagingURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.STAGING_URL);
 
-String layoutSetBranchName = null;
-
-LayoutSetBranch layoutSetBranch = (LayoutSetBranch)request.getAttribute(StagingProcessesWebKeys.LAYOUT_SET_BRANCH);
-
-if ((layoutSetBranch == null) && (layoutRevision != null)) {
-	layoutSetBranch = LayoutSetBranchLocalServiceUtil.getLayoutSetBranch(layoutRevision.getLayoutSetBranchId());
-}
-
-if (layoutSetBranch != null) {
-	layoutSetBranchName = HtmlUtil.escape(layoutSetBranchDisplayContext.getLayoutSetBranchDisplayName(layoutSetBranch));
-}
-
 if (liveLayout != null) {
 	request.setAttribute("view.jsp-typeSettingsProperties", liveLayout.getTypeSettingsProperties());
 }
@@ -247,6 +235,20 @@ if (liveLayout != null) {
 											<use xlink:href="<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg#info-circle" />
 										</svg>
 									</span>
+
+									<%
+									String layoutSetBranchName = null;
+
+									LayoutSetBranch layoutSetBranch = (LayoutSetBranch)request.getAttribute(StagingProcessesWebKeys.LAYOUT_SET_BRANCH);
+
+									if ((layoutSetBranch == null) && (layoutRevision != null)) {
+										layoutSetBranch = LayoutSetBranchLocalServiceUtil.getLayoutSetBranch(layoutRevision.getLayoutSetBranchId());
+									}
+
+									if (layoutSetBranch != null) {
+										layoutSetBranchName = HtmlUtil.escape(layoutSetBranchDisplayContext.getLayoutSetBranchDisplayName(layoutSetBranch));
+									}
+									%>
 
 									<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(layoutRevision.getName(locale)), layoutSetBranchName} %>" key="the-page-x-is-not-enabled-in-x,-but-is-available-in-other-pages-variations" translateArguments="<%= false %>" />
 								</div>
