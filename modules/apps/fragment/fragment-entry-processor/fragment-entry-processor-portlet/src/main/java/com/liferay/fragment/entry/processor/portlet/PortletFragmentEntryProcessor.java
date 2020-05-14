@@ -155,7 +155,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 
 		FragmentEntryLink originalFragmentEntryLink = null;
-
 		Set<String> processedPortletIds = new HashSet<>();
 
 		for (Element element : document.select("*")) {
