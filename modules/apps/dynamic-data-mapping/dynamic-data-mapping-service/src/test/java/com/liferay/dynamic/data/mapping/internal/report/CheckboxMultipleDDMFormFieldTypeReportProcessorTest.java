@@ -66,7 +66,6 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 		Value value = new LocalizedValue();
 
 		value.addString(value.getDefaultLocale(), "[\"option1\"]");
-
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
@@ -87,11 +86,11 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 		JSONObject fieldJSONObject =
 			processedFormInstanceReportDataJSONObject.getJSONObject("field1");
 
-		JSONObject valuesJSONObject = fieldJSONObject.getJSONObject("values");
-
 		Assert.assertEquals(
 			DDMFormFieldType.CHECKBOX_MULTIPLE,
 			fieldJSONObject.getString("type"));
+
+		JSONObject valuesJSONObject = fieldJSONObject.getJSONObject("values");
 
 		Assert.assertEquals(1, valuesJSONObject.getLong("option1"));
 	}
@@ -117,7 +116,6 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 		Value value = new LocalizedValue();
 
 		value.addString(value.getDefaultLocale(), "[\"option1\", \"option2\"]");
-
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
