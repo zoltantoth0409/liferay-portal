@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -98,7 +99,7 @@ public class KeywordResourceImpl
 			dynamicQuery.add(RestrictionsFactoryUtil.eq("groupId", siteId));
 		}
 
-		if ((search != null) && !search.equals("")) {
+		if (Validator.isBlank(search)) {
 			dynamicQuery.add(
 				RestrictionsFactoryUtil.ilike(
 					"name", StringUtil.quote(search, StringPool.PERCENT)));
