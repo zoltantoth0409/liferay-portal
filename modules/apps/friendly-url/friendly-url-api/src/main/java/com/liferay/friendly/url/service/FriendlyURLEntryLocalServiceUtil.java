@@ -158,8 +158,7 @@ public class FriendlyURLEntryLocalServiceUtil {
 
 	public static void deleteFriendlyURLLocalizationEntry(
 			long friendlyURLEntryId, String languageId)
-		throws com.liferay.friendly.url.exception.
-			NoSuchFriendlyURLEntryLocalizationException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		getService().deleteFriendlyURLLocalizationEntry(
 			friendlyURLEntryId, languageId);
@@ -462,10 +461,11 @@ public class FriendlyURLEntryLocalServiceUtil {
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.friendly.url.model.
-						FriendlyURLEntryLocalization> obc) {
+						FriendlyURLEntryLocalization> orderByComparator) {
 
 		return getService().getFriendlyURLEntryLocalizations(
-			groupId, classNameId, classPK, languageId, start, end, obc);
+			groupId, classNameId, classPK, languageId, start, end,
+			orderByComparator);
 	}
 
 	public static

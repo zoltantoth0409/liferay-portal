@@ -15,7 +15,6 @@
 package com.liferay.friendly.url.service;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.friendly.url.exception.NoSuchFriendlyURLEntryLocalizationException;
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.model.FriendlyURLEntryLocalization;
 import com.liferay.petra.function.UnsafeFunction;
@@ -147,7 +146,7 @@ public interface FriendlyURLEntryLocalService
 
 	public void deleteFriendlyURLLocalizationEntry(
 			long friendlyURLEntryId, String languageId)
-		throws NoSuchFriendlyURLEntryLocalizationException;
+		throws PortalException;
 
 	public void deleteGroupFriendlyURLEntries(long groupId, long classNameId);
 
@@ -353,7 +352,7 @@ public interface FriendlyURLEntryLocalService
 	public List<FriendlyURLEntryLocalization> getFriendlyURLEntryLocalizations(
 		long groupId, long classNameId, long classPK, String languageId,
 		int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> obc);
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
