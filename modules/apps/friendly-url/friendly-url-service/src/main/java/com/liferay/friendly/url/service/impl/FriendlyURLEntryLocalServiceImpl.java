@@ -336,10 +336,11 @@ public class FriendlyURLEntryLocalServiceImpl
 	public List<FriendlyURLEntryLocalization> getFriendlyURLEntryLocalizations(
 		long groupId, long classNameId, long classPK, String languageId,
 		int start, int end,
-		OrderByComparator<FriendlyURLEntryLocalization> obc) {
+		OrderByComparator<FriendlyURLEntryLocalization> orderByComparator) {
 
 		return friendlyURLEntryLocalizationPersistence.findByG_C_C_L(
-			groupId, classNameId, classPK, languageId, start, end, obc);
+			groupId, classNameId, classPK, languageId, start, end,
+			orderByComparator);
 	}
 
 	@Override
