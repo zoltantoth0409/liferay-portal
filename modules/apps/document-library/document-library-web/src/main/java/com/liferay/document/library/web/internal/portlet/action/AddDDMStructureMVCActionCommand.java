@@ -68,9 +68,7 @@ public class AddDDMStructureMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-
 		DDMForm ddmForm = _ddm.getDDMForm(actionRequest);
-
 		String storageType = ParamUtil.getString(actionRequest, "storageType");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
