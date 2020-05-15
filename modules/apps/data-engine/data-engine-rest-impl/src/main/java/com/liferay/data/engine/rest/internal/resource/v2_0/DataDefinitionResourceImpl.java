@@ -719,14 +719,6 @@ public class DataDefinitionResourceImpl
 		return null;
 	}
 
-	private String[] _filterFieldNames(
-		String[] currentFieldNames, String[] fieldNames) {
-
-		return ArrayUtil.filter(
-			currentFieldNames,
-			fieldName -> !ArrayUtil.contains(fieldNames, fieldName));
-	}
-
 	private DataLayoutResource _getDataLayoutResource(boolean checkPermission) {
 		DataLayoutResource.Builder builder = DataLayoutResource.builder();
 
@@ -865,13 +857,15 @@ public class DataDefinitionResourceImpl
 				_ddmStructureLocalService.getStructure(dataDefinitionId),
 				_spiDDMFormRuleConverter);
 
-		return _filterFieldNames(
+		return ArrayUtil.filter(
 			transform(
 				existingDataDefinition.getDataDefinitionFields(),
 				DataDefinitionField::getName, String.class),
-			transform(
-				dataDefinition.getDataDefinitionFields(),
-				DataDefinitionField::getName, String.class));
+			fieldName -> !ArrayUtil.contains(
+				transform(
+					dataDefinition.getDataDefinitionFields(),
+					DataDefinitionField::getName, String.class),
+				fieldName));
 	}
 
 	private ResourceBundle _getResourceBundle(
@@ -907,9 +901,10 @@ public class DataDefinitionResourceImpl
 
 						dataLayoutColumns.forEach(
 							dataLayoutColumn -> dataLayoutColumn.setFieldNames(
-								_filterFieldNames(
+								ArrayUtil.filter(
 									dataLayoutColumn.getFieldNames(),
-									fieldNames)));
+									fieldName -> !ArrayUtil.contains(
+										fieldNames, fieldName))));
 
 						dataLayoutRow.setDataLayoutColumns(
 							ArrayUtil.filter(
@@ -1008,11 +1003,12 @@ public class DataDefinitionResourceImpl
 
 			deDataListView.setFieldNames(
 				Arrays.toString(
-					_filterFieldNames(
+					ArrayUtil.filter(
 						JSONUtil.toStringArray(
 							_jsonFactory.createJSONArray(
 								deDataListView.getFieldNames())),
-						removedFieldNames)));
+						fieldName -> !ArrayUtil.contains(
+							removedFieldNames, fieldName))));
 
 			_deDataListViewLocalService.updateDEDataListView(deDataListView);
 		}
