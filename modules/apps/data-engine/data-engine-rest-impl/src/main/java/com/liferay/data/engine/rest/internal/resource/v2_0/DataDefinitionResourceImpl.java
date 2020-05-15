@@ -755,8 +755,8 @@ public class DataDefinitionResourceImpl
 
 		String type = "text";
 
-		if (sqlType == Types.DATE) {
-			type = "date";
+		if (sqlType == Types.ARRAY) {
+			type = "select";
 		}
 		else if (sqlType == Types.BOOLEAN) {
 			type = "radio";
@@ -768,8 +768,8 @@ public class DataDefinitionResourceImpl
 
 			type = "numeric";
 		}
-		else if (sqlType == Types.ARRAY) {
-			type = "select";
+		else if (sqlType == Types.DATE) {
+			type = "date";
 		}
 
 		return type;
