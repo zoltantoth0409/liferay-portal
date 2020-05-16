@@ -534,8 +534,8 @@ public class FragmentLayoutStructureItemImporter
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Mapping could not be processed since no class name ID " +
-						"could be obtained for class name " + className);
+					"Unable to process mapping because class name ID could " +
+						"not be obtained for class name " + className);
 			}
 
 			return;

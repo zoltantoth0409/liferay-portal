@@ -189,9 +189,7 @@ public class CollectionLayoutStructureItemImporter
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					String.format(
-						"Class PK could not be set since class PK %s could " +
-							"not be parsed to a long",
-						classPKString),
+						"Unable to parse class PK %s to a long", classPKString),
 					numberFormatException);
 			}
 
