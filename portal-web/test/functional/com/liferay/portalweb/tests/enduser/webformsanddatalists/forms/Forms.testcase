@@ -2964,7 +2964,7 @@ definition {
 			fieldPositionNumber = "1",
 			fieldType = "Paragraph");
 
-		FormFields.editParagraphBody(content = "Paragraph body text.");
+		Form.editFieldLabelMetal(fieldValue = "Paragraph");
 
 		FormFields.editParagraphBody(content = "Paragraph body text.");
 
