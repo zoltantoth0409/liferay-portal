@@ -486,7 +486,7 @@ public class ContentUtil {
 			LayoutClassedModelUsage layoutClassedModelUsage)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(
 					layoutClassedModelUsage.getClassNameId());
@@ -505,7 +505,7 @@ public class ContentUtil {
 			);
 		}
 
-		AssetRenderer latestAssetRenderer =
+		AssetRenderer<?> latestAssetRenderer =
 			assetRendererFactory.getAssetRenderer(
 				layoutClassedModelUsage.getClassPK(),
 				AssetRendererFactory.TYPE_LATEST);
@@ -515,9 +515,10 @@ public class ContentUtil {
 		if (latestAssetRenderer.getStatus() !=
 				WorkflowConstants.STATUS_APPROVED) {
 
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				layoutClassedModelUsage.getClassPK(),
-				AssetRendererFactory.TYPE_LATEST_APPROVED);
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					layoutClassedModelUsage.getClassPK(),
+					AssetRendererFactory.TYPE_LATEST_APPROVED);
 
 			if (assetRenderer.getStatus() ==
 					WorkflowConstants.STATUS_APPROVED) {
