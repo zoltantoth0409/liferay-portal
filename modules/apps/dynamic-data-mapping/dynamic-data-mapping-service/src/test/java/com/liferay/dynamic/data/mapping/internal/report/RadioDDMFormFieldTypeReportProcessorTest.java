@@ -65,8 +65,8 @@ public class RadioDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 
 		Value value = new LocalizedValue();
 
-		value.setDefaultLocale(LocaleUtil.US);
 		value.addString(value.getDefaultLocale(), "option1");
+		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
 			ddmFormFieldValue.getValue()
@@ -114,8 +114,8 @@ public class RadioDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 
 		Value value = new LocalizedValue();
 
-		value.setDefaultLocale(LocaleUtil.US);
 		value.addString(value.getDefaultLocale(), "");
+		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
 			ddmFormFieldValue.getValue()
