@@ -2420,7 +2420,7 @@ definition {
 			fieldPositionNumber = "1",
 			fieldType = "Paragraph");
 
-		FormFields.editParagraphBody(content = "Paragraph body text.");
+		Form.editFieldLabelMetal(fieldValue = "Paragraph");
 
 		FormFields.editParagraphBody(content = "Paragraph body text.");
 
@@ -2563,7 +2563,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditField(fieldName = "Paragraph");
 
-		FormFields.editParagraphBody(content = "New Paragraph body text.");
+		Form.editFieldLabelMetal(fieldValue = "New Paragraph");
 
 		FormFields.editParagraphBody(content = "New Paragraph body text.");
 
