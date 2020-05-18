@@ -115,7 +115,7 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 			"project_id", String.valueOf(spiraProject.getID()));
 
 		try {
-			JSONArray responseJSONArray;
+			JSONArray responseJSONArray = null;
 
 			synchronized (SpiraTestCaseRun.class) {
 				responseJSONArray = SpiraRestAPIUtil.requestJSONArray(
