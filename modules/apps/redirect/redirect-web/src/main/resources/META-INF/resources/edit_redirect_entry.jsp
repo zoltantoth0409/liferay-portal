@@ -22,6 +22,9 @@ String backURL = ParamUtil.getString(request, "backURL");
 
 RedirectEntry redirectEntry = (RedirectEntry)request.getAttribute(RedirectEntry.class.getName());
 
+String destinationURL = (redirectEntry != null) ? redirectEntry.getDestinationURL() : ParamUtil.getString(request, "destinationURL");
+String sourceURL = (redirectEntry != null) ? redirectEntry.getSourceURL() : ParamUtil.getString(request, "sourceURL");
+
 RedirectDisplayContext redirectDisplayContext = new RedirectDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
 
 portletDisplay.setShowBackIcon(true);
@@ -33,9 +36,6 @@ if (redirectEntry == null) {
 else {
 	renderResponse.setTitle(LanguageUtil.get(request, "edit-redirect"));
 }
-
-String destinationURL = (redirectEntry != null) ? redirectEntry.getDestinationURL() : ParamUtil.getString(request, "destinationURL");
-String sourceURL = (redirectEntry != null) ? redirectEntry.getSourceURL() : ParamUtil.getString(request, "sourceURL");
 %>
 
 <portlet:actionURL name="/redirect/edit_redirect_entry" var="editRedirectEntryURL" />
