@@ -121,8 +121,9 @@ public class DDMFormInstanceRecordVersionLocalServiceImpl
 
 		if (ddmFormInstanceRecordVersions.isEmpty()) {
 			throw new NoSuchFormInstanceRecordVersionException(
-				"No form instance record versions found for form instance ID " +
-					ddmFormInstanceRecordId);
+				"No dynamic data mapping form instance record versions found " +
+					"for dynamic data mapping form instance ID " +
+						ddmFormInstanceRecordId);
 		}
 
 		ddmFormInstanceRecordVersions = ListUtil.copy(
