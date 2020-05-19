@@ -7,7 +7,6 @@ definition {
 		var panelNamePath = StringUtil.upperCase("${panelNamePath}");
 
 		if (IsElementPresent(locator1 = "CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED")) {
-
 			ScrollWebElementIntoView(locator1 = "CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED");
 
 			Click(locator1 = "CalendarEditEvent#${panelNamePath}_PANEL_COLLAPSED");
