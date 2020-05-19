@@ -1050,6 +1050,8 @@ public class LayoutPageTemplatesImporterImpl
 			Settings settings = pageDefinition.getSettings();
 
 			if (settings != null) {
+				layout = _layoutLocalService.fetchLayout(layout.getPlid());
+
 				_updateLayoutSettings(layout, settings);
 			}
 		}
@@ -1214,8 +1216,6 @@ public class LayoutPageTemplatesImporterImpl
 	}
 
 	private void _updateLayoutSettings(Layout layout, Settings settings) {
-		layout = _layoutLocalService.fetchLayout(layout.getPlid());
-
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
