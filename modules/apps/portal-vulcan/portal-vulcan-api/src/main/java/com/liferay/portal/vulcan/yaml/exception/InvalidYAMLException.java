@@ -30,13 +30,13 @@ public class InvalidYAMLException extends IllegalArgumentException {
 		super(_getProblem(exception), exception);
 	}
 
-	private static String _getProblem(Throwable exception) {
-		if (exception.getCause() instanceof MarkedYAMLException) {
-			return _getProblem(exception.getCause());
+	private static String _getProblem(Throwable throwable) {
+		if (throwable.getCause() instanceof MarkedYAMLException) {
+			return _getProblem(throwable.getCause());
 		}
 
 		MarkedYAMLException markedYAMLException =
-			(MarkedYAMLException)exception;
+			(MarkedYAMLException)throwable;
 
 		Optional<Mark> markOptional = Optional.ofNullable(
 			markedYAMLException.getProblemMark());
