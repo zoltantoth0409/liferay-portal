@@ -69,10 +69,6 @@ public class YAMLUtil {
 
 		propertyUtils.setSkipMissingProperties(true);
 
-		LoaderOptions loaderOptions = new LoaderOptions();
-
-		loaderOptions.setAllowDuplicateKeys(false);
-
 		Constructor configYAMLConstructor = new Constructor(ConfigYAML.class);
 
 		TypeDescription securityTypeDescription = new TypeDescription(
@@ -82,6 +78,10 @@ public class YAMLUtil {
 			"oAuth2", String.class, "getOAuth2", "setOAuth2");
 
 		configYAMLConstructor.addTypeDescription(securityTypeDescription);
+
+		LoaderOptions loaderOptions = new LoaderOptions();
+
+		loaderOptions.setAllowDuplicateKeys(false);
 
 		_YAML_CONFIG = new Yaml(
 			configYAMLConstructor, representer, new DumperOptions(),
