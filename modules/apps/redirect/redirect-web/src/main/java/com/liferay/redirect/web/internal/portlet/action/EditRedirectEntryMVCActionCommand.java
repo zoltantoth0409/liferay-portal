@@ -62,16 +62,17 @@ public class EditRedirectEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		String destinationURL = ParamUtil.getString(
 			actionRequest, "destinationURL");
-		Date expirationDate = _getExpirationDate(actionRequest, themeDisplay);
-		boolean permanent = ParamUtil.getBoolean(actionRequest, "permanent");
-		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
-		boolean updateChainedRedirectEntries = ParamUtil.getBoolean(
-			actionRequest, "updateChainedRedirectEntries");
 
 		if (!_http.hasProtocol(destinationURL)) {
 			destinationURL =
 				_http.getProtocol(actionRequest) + "://" + destinationURL;
 		}
+
+		Date expirationDate = _getExpirationDate(actionRequest, themeDisplay);
+		boolean permanent = ParamUtil.getBoolean(actionRequest, "permanent");
+		String sourceURL = ParamUtil.getString(actionRequest, "sourceURL");
+		boolean updateChainedRedirectEntries = ParamUtil.getBoolean(
+			actionRequest, "updateChainedRedirectEntries");
 
 		try {
 			if (redirectEntryId == 0) {
