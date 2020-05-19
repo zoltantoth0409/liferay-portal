@@ -94,7 +94,6 @@ public class UpdateMembershipsMVCActionCommandTest {
 			Collections.emptyMap(),
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId(), TestPropsValues.getUserId()));
-
 		_user = UserTestUtil.addUser();
 	}
 
