@@ -131,10 +131,8 @@ public class LayoutPageTemplatesImporterTest {
 		_bundleContext = _bundle.getBundleContext();
 
 		_group = GroupTestUtil.addGroup();
-
-		_user = TestPropsValues.getUser();
-
 		_testPortletName = "TEST_PORTLET_" + RandomTestUtil.randomString();
+		_user = TestPropsValues.getUser();
 	}
 
 	@After
