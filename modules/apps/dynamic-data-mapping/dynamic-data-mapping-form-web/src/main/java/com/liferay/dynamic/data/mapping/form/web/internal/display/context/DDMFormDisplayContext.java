@@ -569,7 +569,6 @@ public class DDMFormDisplayContext {
 		if (Validator.isNotNull(redirectURL)) {
 			ddmFormRenderingContext.setCancelLabel(
 				LanguageUtil.get(ddmForm.getDefaultLocale(), "cancel"));
-			ddmFormRenderingContext.setRedirectURL(redirectURL);
 		}
 
 		ddmFormRenderingContext.setContainerId(_containerId);
@@ -587,6 +586,11 @@ public class DDMFormDisplayContext {
 			getLocale(httpServletRequest, ddmForm));
 		ddmFormRenderingContext.setPortletNamespace(
 			_renderResponse.getNamespace());
+
+		if (Validator.isNotNull(redirectURL)) {
+			ddmFormRenderingContext.setRedirectURL(redirectURL);
+		}
+
 		ddmFormRenderingContext.setSharedURL(isSharedURL());
 
 		if (Validator.isNull(redirectURL)) {
