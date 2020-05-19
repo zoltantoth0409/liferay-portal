@@ -52,6 +52,7 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 		throws Exception {
 
 		_checkRoleType(roleId, RoleConstants.TYPE_ORGANIZATION);
+
 		Organization organization = _organizationService.getOrganization(
 			organizationId);
 
@@ -116,6 +117,7 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 		throws Exception {
 
 		_checkRoleType(roleId, RoleConstants.TYPE_ORGANIZATION);
+
 		Organization organization = _organizationService.getOrganization(
 			organizationId);
 
@@ -150,10 +152,9 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 		if (serviceBuilderRole.getType() != type) {
 			throw new RoleAssignmentException(
 				StringBundler.concat(
-					"Invalid role type: ",
+					"Role type ",
 					RoleConstants.getTypeLabel(serviceBuilderRole.getType()),
-					". Role should be of type: ",
-					RoleConstants.getTypeLabel(type)));
+					" is not role type ", RoleConstants.getTypeLabel(type)));
 		}
 	}
 
