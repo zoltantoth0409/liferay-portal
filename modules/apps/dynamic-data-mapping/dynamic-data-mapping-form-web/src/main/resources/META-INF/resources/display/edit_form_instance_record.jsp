@@ -19,13 +19,6 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-portletDisplay.setURLBack(redirect);
-portletDisplay.setShowBackIcon(true);
-
-String title = ParamUtil.getString(request, "title");
-
-renderResponse.setTitle(GetterUtil.get(title, LanguageUtil.get(request, "view-form")));
-
 DDMFormInstance formInstance = ddmFormDisplayContext.getFormInstance();
 
 DDMFormInstanceRecord formInstanceRecord = ddmFormDisplayContext.getFormInstanceRecord();
@@ -35,6 +28,13 @@ DDMFormInstanceRecordVersion formInstanceRecordVersion = null;
 if (formInstanceRecord != null) {
 	formInstanceRecordVersion = formInstanceRecord.getLatestFormInstanceRecordVersion();
 }
+
+portletDisplay.setURLBack(redirect);
+portletDisplay.setShowBackIcon(true);
+
+String title = ParamUtil.getString(request, "title");
+
+renderResponse.setTitle(GetterUtil.get(title, LanguageUtil.get(request, "view-form")));
 %>
 
 <clay:container>
