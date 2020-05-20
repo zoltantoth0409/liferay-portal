@@ -210,7 +210,6 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 		liferayPortletURL.setParameter(
 			"mvcRenderCommandName", "/mfa_email_otp_verify/verify");
 		liferayPortletURL.setParameter("redirect", redirectURL);
-
 		liferayPortletURL.setParameter(
 			"returnToFullPageURL", returnToFullPageURL);
 
