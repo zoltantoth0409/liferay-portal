@@ -132,6 +132,7 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 
 						ps3.setLong(1, classPK);
 						ps3.setLong(2, groupPortletPreferencesId);
+
 						ps3.addBatch();
 					}
 					else if (companyPortletPreferencesId != null) {
@@ -142,6 +143,7 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 
 						ps3.setLong(1, classPK);
 						ps3.setLong(2, companyPortletPreferencesId);
+
 						ps3.addBatch();
 					}
 				}
