@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.internal.runtime.integration.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -55,7 +56,7 @@ public class WorkflowDefinitionManagerTest {
 	public void testDeleteSaveWorkflowDefinition() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_PROXY_MESSAGE_LISTENER_CLASS_NAME, Level.OFF)) {
+					ProxyMessageListener.class.getName(), Level.OFF)) {
 
 			WorkflowDefinition workflowDefinition = _saveWorkflowDefinition();
 
@@ -428,7 +429,7 @@ public class WorkflowDefinitionManagerTest {
 
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_PROXY_MESSAGE_LISTENER_CLASS_NAME, Level.OFF)) {
+					ProxyMessageListener.class.getName(), Level.OFF)) {
 
 			_workflowDefinitionManager.validateWorkflowDefinition(bytes);
 
@@ -475,9 +476,6 @@ public class WorkflowDefinitionManagerTest {
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(), title,
 			StringUtil.randomId(), bytes);
 	}
-
-	private static final String _PROXY_MESSAGE_LISTENER_CLASS_NAME =
-		"com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener";
 
 	@Inject
 	private WorkflowDefinitionManager _workflowDefinitionManager;
