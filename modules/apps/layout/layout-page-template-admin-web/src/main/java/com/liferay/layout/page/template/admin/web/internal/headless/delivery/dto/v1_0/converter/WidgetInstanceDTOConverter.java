@@ -193,23 +193,23 @@ public class WidgetInstanceDTOConverter {
 				}
 			}
 
-			String roleName = role.getName();
+			String roleKey = role.getName();
 
 			if (role.getClassNameId() == _portal.getClassNameId(Team.class)) {
 				Team team = _teamLocalService.fetchTeam(role.getClassPK());
 
 				if (team != null) {
-					roleName = team.getName();
+					roleKey = team.getName();
 				}
 			}
 
-			String finalRoleName = roleName;
+			String finalRoleKey = roleKey;
 
 			widgetPermissions.add(
 				new WidgetPermission() {
 					{
 						actionKeys = actionIdsSet.toArray(new String[0]);
-						roleKey = finalRoleName;
+						roleKey = finalRoleKey;
 					}
 				});
 		}
