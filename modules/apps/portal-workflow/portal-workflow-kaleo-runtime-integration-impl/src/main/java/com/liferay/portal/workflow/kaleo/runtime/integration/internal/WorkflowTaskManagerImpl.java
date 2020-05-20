@@ -1177,8 +1177,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		Role role = _roleLocalService.getRole(assigneeClassPK);
 
 		if ((role.getType() == RoleConstants.TYPE_DEPOT) ||
-			(role.getType() == RoleConstants.TYPE_SITE) ||
-			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+			(role.getType() == RoleConstants.TYPE_ORGANIZATION) ||
+			(role.getType() == RoleConstants.TYPE_SITE)) {
 
 			if (Objects.equals(
 					role.getName(), DepotRolesConstants.ASSET_LIBRARY_MEMBER) ||
@@ -1267,8 +1267,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		Role role = _roleLocalService.getRole(assigneeClassPK);
 
 		if ((role.getType() == RoleConstants.TYPE_DEPOT) ||
-			(role.getType() == RoleConstants.TYPE_SITE) ||
-			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+			(role.getType() == RoleConstants.TYPE_ORGANIZATION) ||
+			(role.getType() == RoleConstants.TYPE_SITE)) {
 
 			if (Objects.equals(
 					role.getName(), DepotRolesConstants.ASSET_LIBRARY_MEMBER) ||
