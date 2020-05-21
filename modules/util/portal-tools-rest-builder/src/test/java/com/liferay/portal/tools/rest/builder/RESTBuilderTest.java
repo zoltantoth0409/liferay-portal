@@ -52,21 +52,20 @@ public class RESTBuilderTest {
 
 		Assert.assertTrue(applicationFile.exists());
 
+		_assertResourceFilesExist(filesPath, "Document");
 		_assertResourceFilesExist(filesPath, "Folder");
 
-		_assertResourceFilesExist(filesPath, "Document");
+		File sampleApiDir = new File(filesPath + "/sample-api");
 
-		File sampleApi = new File(filesPath + "/sample-api");
+		FileUtils.deleteDirectory(sampleApiDir);
 
-		FileUtils.deleteDirectory(sampleApi);
+		Assert.assertFalse(sampleApiDir.exists());
 
-		Assert.assertFalse(sampleApi.exists());
+		File sampleImplDir = new File(filesPath + "/sample-impl");
 
-		File sampleImpl = new File(filesPath + "/sample-impl");
+		FileUtils.deleteDirectory(sampleImplDir);
 
-		FileUtils.deleteDirectory(sampleImpl);
-
-		Assert.assertFalse(sampleImpl.exists());
+		Assert.assertFalse(sampleImplDir.exists());
 	}
 
 	private void _assertResourceFilesExist(
