@@ -12,7 +12,7 @@
  * details.
  */
 
-import {DataLayoutBuilderActions} from 'data-engine-taglib';
+import {DataLayoutBuilderActions, DataLayoutVisitor} from 'data-engine-taglib';
 import React, {useContext, useState} from 'react';
 
 import {AppContext} from '../../AppContext.es';
@@ -127,7 +127,12 @@ export default ({appsPortlet, newCustomObject}) => {
 				</UpperToolbar.Button>
 
 				<UpperToolbar.Button
-					disabled={!dataLayout.name[editingLanguageId]}
+					disabled={
+						!dataLayout.name[editingLanguageId] ||
+						DataLayoutVisitor.isDataLayoutEmpty(
+							dataLayout.dataLayoutPages
+						)
+					}
 					onClick={onSave}
 				>
 					{Liferay.Language.get('save')}
