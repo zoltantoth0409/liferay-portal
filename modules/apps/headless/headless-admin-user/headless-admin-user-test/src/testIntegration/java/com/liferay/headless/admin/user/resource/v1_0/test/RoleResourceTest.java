@@ -149,12 +149,10 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			roleResource.postOrganizationRoleUserAccountAssociationHttpResponse(
 				role.getId(), _user.getUserId(),
 				organization.getOrganizationId()));
-
 		assertHttpResponseStatusCode(
 			404,
 			roleResource.postOrganizationRoleUserAccountAssociationHttpResponse(
 				0L, _user.getUserId(), organization.getOrganizationId()));
-
 		assertHttpResponseStatusCode(
 			500,
 			roleResource.postOrganizationRoleUserAccountAssociationHttpResponse(
@@ -181,7 +179,6 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			404,
 			roleResource.postRoleUserAccountAssociationHttpResponse(
 				0L, _user.getUserId()));
-
 		assertHttpResponseStatusCode(
 			500,
 			roleResource.postRoleUserAccountAssociationHttpResponse(
@@ -208,7 +205,6 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			404,
 			roleResource.postSiteRoleUserAccountAssociationHttpResponse(
 				0L, _user.getUserId(), testGroup.getGroupId()));
-
 		assertHttpResponseStatusCode(
 			500,
 			roleResource.postSiteRoleUserAccountAssociationHttpResponse(
