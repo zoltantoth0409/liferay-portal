@@ -52,11 +52,10 @@ AccountUsersAdminManagementToolbarDisplayContext accountUsersAdminManagementTool
 			>
 
 				<%
-					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-							"actions", StringUtil.merge(accountUsersAdminManagementToolbarDisplayContext.getAvailableActions(accountUserDisplay))
-					).build();
-
-					row.setData(rowData);
+				row.setData(
+					HashMapBuilder.<String, Object>put(
+						"actions", StringUtil.merge(accountUsersAdminManagementToolbarDisplayContext.getAvailableActions(accountUserDisplay))
+					).build());
 				%>
 
 				<portlet:renderURL var="rowURL">
@@ -65,9 +64,9 @@ AccountUsersAdminManagementToolbarDisplayContext accountUsersAdminManagementTool
 				</portlet:renderURL>
 
 				<%
-					if (!UserPermissionUtil.contains(permissionChecker, accountUserDisplay.getUserId(), ActionKeys.UPDATE) && !AccountPermission.contains(permissionChecker, AccountPortletKeys.ACCOUNT_USERS_ADMIN, AccountActionKeys.ASSIGN_ACCOUNTS)) {
-						rowURL = null;
-					}
+				if (!UserPermissionUtil.contains(permissionChecker, accountUserDisplay.getUserId(), ActionKeys.UPDATE) && !AccountPermission.contains(permissionChecker, AccountPortletKeys.ACCOUNT_USERS_ADMIN, AccountActionKeys.ASSIGN_ACCOUNTS)) {
+					rowURL = null;
+				}
 				%>
 
 				<liferay-ui:search-container-column-text
