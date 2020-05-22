@@ -54,10 +54,10 @@ public class RestoreFriendlyURLEntryLocalizationMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long plid = ParamUtil.getLong(actionRequest, "plid");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		long plid = ParamUtil.getLong(actionRequest, "plid");
 
 		LayoutPermissionUtil.check(
 			themeDisplay.getPermissionChecker(), plid, ActionKeys.UPDATE);
