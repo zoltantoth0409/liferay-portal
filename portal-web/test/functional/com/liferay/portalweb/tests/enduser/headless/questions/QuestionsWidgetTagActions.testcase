@@ -40,7 +40,6 @@ definition {
 			}
 
 			Page.tearDownCP();
-
 		}
 	}
 
