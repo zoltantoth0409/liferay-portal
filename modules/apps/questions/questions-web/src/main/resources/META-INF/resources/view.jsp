@@ -25,6 +25,8 @@ String questionsRootElementId = renderResponse.getNamespace() + "-questions-root
 <div id="<%= questionsRootElementId %>">
 
 	<%
+	QuestionsConfiguration questionsConfiguration = (QuestionsConfiguration)request.getAttribute(QuestionsConfiguration.class.getName());
+
 	Map<String, Object> data = HashMapBuilder.<String, Object>put(
 		"defaultRank", renderRequest.getAttribute(QuestionsWebKeys.DEFAULT_RANK)
 	).put(
@@ -33,6 +35,8 @@ String questionsRootElementId = renderResponse.getNamespace() + "-questions-root
 		"includeContextPath", renderRequest.getAttribute("javax.servlet.include.context_path")
 	).put(
 		"isOmniAdmin", permissionChecker.isOmniadmin()
+	).put(
+		"redirectToLogin", questionsConfiguration.enableRedirectToLogin()
 	).put(
 		"siteKey", String.valueOf(themeDisplay.getScopeGroupId())
 	).put(
