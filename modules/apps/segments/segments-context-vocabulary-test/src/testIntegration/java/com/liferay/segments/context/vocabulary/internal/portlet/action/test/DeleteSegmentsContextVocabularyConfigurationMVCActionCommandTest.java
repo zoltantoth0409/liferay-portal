@@ -66,13 +66,13 @@ public class DeleteSegmentsContextVocabularyConfigurationMVCActionCommandTest {
 	public void testProcessAction() throws Exception {
 		Configuration configuration = _addConfiguration();
 
-		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
-			new MockLiferayPortletActionRequest();
-
-		mockLiferayPortletActionRequest.setParameter(
-			"pid", configuration.getPid());
-
 		try {
+			MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
+				new MockLiferayPortletActionRequest();
+
+			mockLiferayPortletActionRequest.setParameter(
+				"pid", configuration.getPid());
+
 			_deleteMVCActionCommand.processAction(
 				mockLiferayPortletActionRequest, null);
 
