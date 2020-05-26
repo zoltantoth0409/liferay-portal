@@ -136,10 +136,11 @@ public interface ${schemaName}Resource {
 						<#elseif javaMethodSignature.returnType?ends_with("String")>
 							return content;
 						<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.Boolean") ||
-									stringUtil.equals(javaMethodSignature.returnType, "java.lang.Float") ||
-									stringUtil.equals(javaMethodSignature.returnType, "java.lang.Double") ||
-									stringUtil.equals(javaMethodSignature.returnType, "java.lang.Integer") ||
-									stringUtil.equals(javaMethodSignature.returnType, "java.lang.Long")>
+								 stringUtil.equals(javaMethodSignature.returnType, "java.lang.Float") ||
+								 stringUtil.equals(javaMethodSignature.returnType, "java.lang.Double") ||
+								 stringUtil.equals(javaMethodSignature.returnType, "java.lang.Integer") ||
+								 stringUtil.equals(javaMethodSignature.returnType, "java.lang.Long")>
+
 							return ${javaMethodSignature.returnType}.valueOf(content);
 						<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.Number")>
 							return Double.valueOf(content);
