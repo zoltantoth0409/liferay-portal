@@ -60,7 +60,7 @@ public class AppBuilderAppLocalServiceImpl
 		return addAppBuilderApp(
 			groupId, companyId, userId, active, ddmStructureId,
 			ddmStructureLayoutId, deDataListViewId, nameMap,
-			AppBuilderAppConstants.STANDARD_APP_SCOPE);
+			AppBuilderAppConstants.SCOPE_STANDARD);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

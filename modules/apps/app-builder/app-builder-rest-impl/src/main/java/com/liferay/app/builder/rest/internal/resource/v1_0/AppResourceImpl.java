@@ -147,7 +147,7 @@ public class AppResourceImpl
 				transform(
 					_appBuilderAppLocalService.getCompanyAppBuilderApps(
 						contextCompany.getCompanyId(),
-						AppBuilderAppConstants.STANDARD_APP_SCOPE,
+						AppBuilderAppConstants.SCOPE_STANDARD,
 						pagination.getStartPosition(),
 						pagination.getEndPosition(),
 						_toOrderByComparator(sorts[0])),
@@ -155,7 +155,7 @@ public class AppResourceImpl
 				pagination,
 				_appBuilderAppLocalService.getCompanyAppBuilderAppsCount(
 					contextCompany.getCompanyId(),
-					AppBuilderAppConstants.STANDARD_APP_SCOPE));
+					AppBuilderAppConstants.SCOPE_STANDARD));
 		}
 
 		return SearchUtil.search(
@@ -203,7 +203,7 @@ public class AppResourceImpl
 				BooleanQuery scopeBooleanQuery = new BooleanQueryImpl();
 
 				scopeBooleanQuery.addTerm(
-					"scope", AppBuilderAppConstants.STANDARD_APP_SCOPE);
+					"scope", AppBuilderAppConstants.SCOPE_STANDARD);
 
 				booleanFilter.add(
 					new QueryFilter(scopeBooleanQuery),
@@ -275,7 +275,7 @@ public class AppResourceImpl
 				BooleanQuery scopeBooleanQuery = new BooleanQueryImpl();
 
 				scopeBooleanQuery.addTerm(
-					"scope", AppBuilderAppConstants.STANDARD_APP_SCOPE);
+					"scope", AppBuilderAppConstants.SCOPE_STANDARD);
 
 				booleanFilter.add(
 					new QueryFilter(scopeBooleanQuery),
@@ -331,14 +331,14 @@ public class AppResourceImpl
 			return Page.of(
 				transform(
 					_appBuilderAppLocalService.getAppBuilderApps(
-						siteId, AppBuilderAppConstants.STANDARD_APP_SCOPE,
+						siteId, AppBuilderAppConstants.SCOPE_STANDARD,
 						pagination.getStartPosition(),
 						pagination.getEndPosition(),
 						_toOrderByComparator(sorts[0])),
 					this::_toApp),
 				pagination,
 				_appBuilderAppLocalService.getAppBuilderAppsCount(
-					siteId, AppBuilderAppConstants.STANDARD_APP_SCOPE));
+					siteId, AppBuilderAppConstants.SCOPE_STANDARD));
 		}
 
 		return SearchUtil.search(
@@ -350,7 +350,7 @@ public class AppResourceImpl
 				BooleanQuery scopeBooleanQuery = new BooleanQueryImpl();
 
 				scopeBooleanQuery.addTerm(
-					"scope", AppBuilderAppConstants.STANDARD_APP_SCOPE);
+					"scope", AppBuilderAppConstants.SCOPE_STANDARD);
 
 				booleanFilter.add(
 					new QueryFilter(scopeBooleanQuery),
@@ -400,7 +400,7 @@ public class AppResourceImpl
 				dataDefinitionId, GetterUtil.getLong(app.getDataLayoutId()),
 				GetterUtil.getLong(app.getDataListViewId()),
 				LocalizedValueUtil.toLocaleStringMap(app.getName()),
-				AppBuilderAppConstants.STANDARD_APP_SCOPE);
+				AppBuilderAppConstants.SCOPE_STANDARD);
 
 		app.setId(appBuilderApp.getAppBuilderAppId());
 

@@ -35,7 +35,7 @@ public class UpgradeAppBuilderApp extends UpgradeProcess {
 			try (PreparedStatement ps = connection.prepareStatement(
 					"update AppBuilderApp set scope = ?")) {
 
-				ps.setString(1, AppBuilderAppConstants.STANDARD_APP_SCOPE);
+				ps.setString(1, AppBuilderAppConstants.SCOPE_STANDARD);
 
 				ps.execute();
 			}
