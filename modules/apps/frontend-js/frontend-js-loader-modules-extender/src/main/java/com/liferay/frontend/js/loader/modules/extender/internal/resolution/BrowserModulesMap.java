@@ -43,7 +43,7 @@ public class BrowserModulesMap {
 
 			if (jsModule != null) {
 				jsBrowserModule = new JSBrowserModule(
-					jsModule, _browserModulesResolution, _npmRegistry);
+					_browserModulesResolution, jsModule, _npmRegistry);
 
 				_map.put(jsBrowserModule.getName(), jsBrowserModule);
 			}

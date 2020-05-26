@@ -37,11 +37,11 @@ import java.util.Map;
 public class JSBrowserModule implements BrowserModule {
 
 	public JSBrowserModule(
-		JSModule jsModule, BrowserModulesResolution browserModulesResolution,
+		BrowserModulesResolution browserModulesResolution, JSModule jsModule,
 		NPMRegistry npmRegistry) {
 
-		_jsModule = jsModule;
 		_browserModulesResolution = browserModulesResolution;
+		_jsModule = jsModule;
 
 		_populateDependenciesMap(npmRegistry);
 	}
