@@ -244,6 +244,7 @@ public abstract class Base${schemaName}ResourceImpl
 				return new java.util.Date();
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "javax.ws.rs.core.Response")>
 				Response.ResponseBuilder responseBuilder = Response.ok();
+
 				return responseBuilder.build();
 			<#else>
 				return new ${javaMethodSignature.returnType}();
