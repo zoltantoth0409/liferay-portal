@@ -20,8 +20,8 @@ package com.liferay.app.builder.constants;
  */
 public class AppBuilderAppConstants {
 
-	public static final int SITE_ID_ALL = -1;
-
 	public static final String SCOPE_STANDARD = "standard";
+
+	public static final int SITE_ID_ALL = -1;
 
 }
