@@ -825,6 +825,10 @@ public interface LayoutLocalService
 	public Layout getLayout(long groupId, boolean privateLayout, long layoutId)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Layout getLayoutByFriendlyURL(
+		long groupId, boolean privateLayout, String friendlyURL);
+
 	/**
 	 * Returns the layout for the icon image; throws a {@link
 	 * NoSuchLayoutException} otherwise.
