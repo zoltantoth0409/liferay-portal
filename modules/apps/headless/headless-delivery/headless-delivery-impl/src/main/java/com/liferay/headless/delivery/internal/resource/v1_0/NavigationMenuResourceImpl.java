@@ -47,6 +47,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.ws.rs.BadRequestException;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -183,8 +185,13 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			siteId, false, link);
 
 		if (layout == null) {
-			layout = _layoutLocalService.getLayoutByFriendlyURL(
+			layout = _layoutLocalService.fetchLayoutByFriendlyURL(
 				siteId, true, link);
+		}
+
+		if (layout == null) {
+			throw new BadRequestException(
+				"No page found with friendly URL " + link);
 		}
 
 		return layout;
