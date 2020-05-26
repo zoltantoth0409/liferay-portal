@@ -1427,6 +1427,15 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		return layout;
 	}
 
+	public Layout getLayoutByFriendlyURL(
+		long groupId, boolean privateLayout, String friendlyURL) {
+
+		friendlyURL = layoutLocalServiceHelper.getFriendlyURL(friendlyURL);
+
+		return layoutPersistence.findByG_P_F(
+			groupId, privateLayout, friendlyURL);
+	}
+
 	/**
 	 * Returns the layout for the icon image; throws a {@link
 	 * NoSuchLayoutException} otherwise.
