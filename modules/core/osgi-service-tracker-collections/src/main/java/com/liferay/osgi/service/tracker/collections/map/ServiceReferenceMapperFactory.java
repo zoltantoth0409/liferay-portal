@@ -42,13 +42,13 @@ public final class ServiceReferenceMapperFactory {
 	}
 
 	public static <K, S> Function<BundleContext, ServiceReferenceMapper<K, S>>
-		createFromBiFunction(BiFunction<ServiceReference<S>, S, K> function) {
+		createFromBiFunction(BiFunction<ServiceReference<S>, S, K> biFunction) {
 
 		return bundleContext -> (serviceReference, emitter) -> {
 			S service = bundleContext.getService(serviceReference);
 
 			try {
-				emitter.emit(function.apply(serviceReference, service));
+				emitter.emit(biFunction.apply(serviceReference, service));
 			}
 			catch (Exception exception) {
 				bundleContext.ungetService(serviceReference);
@@ -62,13 +62,13 @@ public final class ServiceReferenceMapperFactory {
 	 */
 	@Deprecated
 	public static <K, S> Function<BundleContext, ServiceReferenceMapper<K, S>>
-		createFromFunction(BiFunction<ServiceReference<S>, S, K> function) {
+		createFromFunction(BiFunction<ServiceReference<S>, S, K> biFunction) {
 
 		return bundleContext -> (serviceReference, emitter) -> {
 			S service = bundleContext.getService(serviceReference);
 
 			try {
-				emitter.emit(function.apply(serviceReference, service));
+				emitter.emit(biFunction.apply(serviceReference, service));
 			}
 			catch (Exception exception) {
 				bundleContext.ungetService(serviceReference);
