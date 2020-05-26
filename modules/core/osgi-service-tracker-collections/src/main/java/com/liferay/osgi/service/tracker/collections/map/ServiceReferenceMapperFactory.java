@@ -68,7 +68,7 @@ public final class ServiceReferenceMapperFactory {
 	}
 
 	public static <K, S> ServiceReferenceMapper<K, S> createFromFunction(
-		final BundleContext bundleContext, final Function<S, K> function) {
+		BundleContext bundleContext, Function<S, K> function) {
 
 		return (serviceReference, emitter) -> {
 			S service = bundleContext.getService(serviceReference);
