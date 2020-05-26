@@ -154,12 +154,14 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			long parentNavigationMenuId, long siteId, long siteNavigationMenuId)
 		throws Exception {
 
-		if (navigationMenuItems != null) {
-			for (NavigationMenuItem navigationMenuItem : navigationMenuItems) {
-				_createNavigationMenuItem(
-					navigationMenuItem, parentNavigationMenuId, siteId,
-					siteNavigationMenuId);
-			}
+		if (navigationMenuItems == null) {
+			return;
+		}
+
+		for (NavigationMenuItem navigationMenuItem : navigationMenuItems) {
+			_createNavigationMenuItem(
+				navigationMenuItem, parentNavigationMenuId, siteId,
+				siteNavigationMenuId);
 		}
 	}
 
