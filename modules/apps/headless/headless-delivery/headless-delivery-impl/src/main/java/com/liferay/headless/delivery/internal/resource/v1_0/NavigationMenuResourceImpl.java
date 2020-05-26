@@ -278,9 +278,9 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 				"groupId", String.valueOf(layout.getGroupId()));
 			unicodeProperties.setProperty("layoutUuid", layout.getUuid());
 			unicodeProperties.setProperty(
-				"privateLayout", String.valueOf(layout.isPrivateLayout()));
-			unicodeProperties.setProperty(
 				"name", layout.getName(LocaleUtil.getDefault()));
+			unicodeProperties.setProperty(
+				"privateLayout", String.valueOf(layout.isPrivateLayout()));
 		}
 		else {
 			String preferredLanguageId =
@@ -292,9 +292,9 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			}
 
 			unicodeProperties.setProperty(
-				"name_" + preferredLanguageId, navigationMenuItem.getName());
-			unicodeProperties.setProperty(
 				"defaultLanguageId", preferredLanguageId);
+			unicodeProperties.setProperty(
+				"name_" + preferredLanguageId, navigationMenuItem.getName());
 
 			if (navigationMenuItem.getUrl() != null) {
 				unicodeProperties.setProperty(
