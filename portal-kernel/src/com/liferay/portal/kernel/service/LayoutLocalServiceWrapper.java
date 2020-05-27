@@ -979,7 +979,8 @@ public class LayoutLocalServiceWrapper
 
 	@Override
 	public Layout getLayoutByFriendlyURL(
-		long groupId, boolean privateLayout, String friendlyURL) {
+			long groupId, boolean privateLayout, String friendlyURL)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutLocalService.getLayoutByFriendlyURL(
 			groupId, privateLayout, friendlyURL);

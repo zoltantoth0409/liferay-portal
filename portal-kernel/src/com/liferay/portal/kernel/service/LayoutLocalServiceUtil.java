@@ -954,7 +954,8 @@ public class LayoutLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout getLayoutByFriendlyURL(
-		long groupId, boolean privateLayout, String friendlyURL) {
+			long groupId, boolean privateLayout, String friendlyURL)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getLayoutByFriendlyURL(
 			groupId, privateLayout, friendlyURL);

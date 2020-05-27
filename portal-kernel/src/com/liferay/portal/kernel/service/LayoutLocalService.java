@@ -827,7 +827,8 @@ public interface LayoutLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Layout getLayoutByFriendlyURL(
-		long groupId, boolean privateLayout, String friendlyURL);
+			long groupId, boolean privateLayout, String friendlyURL)
+		throws PortalException;
 
 	/**
 	 * Returns the layout for the icon image; throws a {@link
