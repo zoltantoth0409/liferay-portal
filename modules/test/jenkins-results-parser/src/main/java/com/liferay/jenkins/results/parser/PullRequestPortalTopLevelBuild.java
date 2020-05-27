@@ -132,11 +132,10 @@ public class PullRequestPortalTopLevelBuild extends PortalTopLevelBuild {
 			return null;
 		}
 
+		String result = getResult();
 		int stableJobDownstreamBuildsSuccessCount =
 			getJobVariantsDownstreamBuildCount(
 				stableJobBatchNames, "SUCCESS", null);
-
-		String result = getResult();
 
 		if (((result != null) && result.matches("(APPROVED|SUCCESS)")) ||
 			(stableJobDownstreamBuildsSuccessCount ==
