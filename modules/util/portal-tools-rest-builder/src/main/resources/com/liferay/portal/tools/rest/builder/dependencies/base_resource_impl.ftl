@@ -202,7 +202,8 @@ public abstract class Base${schemaName}ResourceImpl
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.Boolean")>
 				return false;
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.Double") ||
-			stringUtil.equals(javaMethodSignature.returnType, "java.lang.Number")>
+					 stringUtil.equals(javaMethodSignature.returnType, "java.lang.Number")>
+
 				return 0.0;
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "java.lang.Float")>
 				return 0f;
