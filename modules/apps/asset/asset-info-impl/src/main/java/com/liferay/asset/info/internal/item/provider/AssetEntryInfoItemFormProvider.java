@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.util.LocaleThreadLocal;
 
 import java.text.Format;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -69,66 +69,33 @@ public class AssetEntryInfoItemFormProvider
 	}
 
 	private List<InfoFieldSetEntry> _getAssetEntryFieldSetEntries() {
-		List<InfoFieldSetEntry> infoFieldSetEntries = new ArrayList<>();
-
-		infoFieldSetEntries.add(_titleInfoField);
-
-		infoFieldSetEntries.add(_descriptionInfoField);
-
-		infoFieldSetEntries.add(_summaryInfoField);
-
-		infoFieldSetEntries.add(_userNameInfoField);
-
-		infoFieldSetEntries.add(_createDateInfoField);
-
-		infoFieldSetEntries.add(_expirationDateInfoField);
-
-		infoFieldSetEntries.add(_viewCountInfoField);
-
-		infoFieldSetEntries.add(_urlInfoField);
-
-		return infoFieldSetEntries;
+		return Arrays.asList(
+			_titleInfoField, _descriptionInfoField, _summaryInfoField,
+			_userNameInfoField, _createDateInfoField, _expirationDateInfoField,
+			_viewCountInfoField, _urlInfoField);
 	}
 
 	private List<InfoFieldValue<Object>> _getAssetEntryInfoFieldValues(
 		AssetEntry assetEntry) {
 
-		List<InfoFieldValue<Object>> infoFieldValues = new ArrayList<>();
-
 		Locale locale = LocaleThreadLocal.getThemeDisplayLocale();
 
-		infoFieldValues.add(
-			new InfoFieldValue<>(_titleInfoField, assetEntry.getTitle(locale)));
-
-		infoFieldValues.add(
+		return Arrays.asList(
+			new InfoFieldValue<>(_titleInfoField, assetEntry.getTitle(locale)),
 			new InfoFieldValue<>(
-				_descriptionInfoField, assetEntry.getDescription(locale)));
-
-		infoFieldValues.add(
+				_descriptionInfoField, assetEntry.getDescription(locale)),
 			new InfoFieldValue<>(
-				_summaryInfoField, assetEntry.getSummary(locale)));
-
-		infoFieldValues.add(
-			new InfoFieldValue<>(_userNameInfoField, assetEntry.getUserName()));
-
-		infoFieldValues.add(
+				_summaryInfoField, assetEntry.getSummary(locale)),
+			new InfoFieldValue<>(_userNameInfoField, assetEntry.getUserName()),
 			new InfoFieldValue<>(
 				_createDateInfoField,
-				_getDateValue(assetEntry.getCreateDate())));
-
-		infoFieldValues.add(
+				_getDateValue(assetEntry.getCreateDate())),
 			new InfoFieldValue<>(
 				_expirationDateInfoField,
-				_getDateValue(assetEntry.getExpirationDate())));
-
-		infoFieldValues.add(
+				_getDateValue(assetEntry.getExpirationDate())),
 			new InfoFieldValue<>(
-				_viewCountInfoField, assetEntry.getViewCount()));
-
-		infoFieldValues.add(
+				_viewCountInfoField, assetEntry.getViewCount()),
 			new InfoFieldValue<>(_urlInfoField, assetEntry.getUrl()));
-
-		return infoFieldValues;
 	}
 
 	private String _getDateValue(Date date) {
