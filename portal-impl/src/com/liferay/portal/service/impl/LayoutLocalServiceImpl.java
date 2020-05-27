@@ -1428,7 +1428,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	}
 
 	public Layout getLayoutByFriendlyURL(
-		long groupId, boolean privateLayout, String friendlyURL) {
+			long groupId, boolean privateLayout, String friendlyURL)
+		throws PortalException {
 
 		friendlyURL = layoutLocalServiceHelper.getFriendlyURL(friendlyURL);
 
