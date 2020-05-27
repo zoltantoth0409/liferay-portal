@@ -76,7 +76,7 @@ public class MFAVerifyMVCRenderCommand implements MVCRenderCommand {
 		int mfaCheckerIndex = ParamUtil.getInteger(
 			renderRequest, "mfaCheckerIndex");
 
-		MFABrowserChecker mfaBrowserChecker;
+		MFABrowserChecker mfaBrowserChecker = null;
 
 		if ((mfaCheckerIndex > -1) &&
 			(mfaCheckerIndex < mfaBrowserCheckers.size())) {

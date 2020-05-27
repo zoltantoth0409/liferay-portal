@@ -75,7 +75,7 @@ public class MFAVerifyMVCActionCommand extends BaseMVCActionCommand {
 		int mfaCheckerIndex = ParamUtil.getInteger(
 			actionRequest, "mfaCheckerIndex");
 
-		MFABrowserChecker mfaBrowserChecker;
+		MFABrowserChecker mfaBrowserChecker = null;
 
 		if ((mfaCheckerIndex > -1) &&
 			(mfaCheckerIndex < mfaBrowserCheckers.size())) {
