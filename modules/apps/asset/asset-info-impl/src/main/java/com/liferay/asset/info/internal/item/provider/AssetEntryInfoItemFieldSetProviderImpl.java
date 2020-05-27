@@ -106,8 +106,8 @@ public class AssetEntryInfoItemFieldSetProviderImpl
 		catch (NoSuchEntryException noSuchEntryException) {
 			throw new NoSuchInfoItemException(
 				StringBundler.concat(
-					"Unable to find item with className=", itemClassName,
-					" and classPK=", itemClassPK),
+					"Unable to get asset entry with class name ", itemClassName,
+					" and class PK ", itemClassPK),
 				noSuchEntryException);
 		}
 		catch (PortalException portalException) {
