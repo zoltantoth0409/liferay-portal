@@ -178,7 +178,7 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 			layoutUuid, siteNavigationMenuItem.getGroupId(), privateLayout);
 	}
 
-	private Layout _getLayout(String link, long siteId) {
+	private Layout _getLayout(String link, long siteId) throws Exception {
 		Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
 			siteId, false, link);
 
@@ -267,7 +267,8 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 	}
 
 	private String _getUnicodeProperties(
-		NavigationMenuItem navigationMenuItem, long siteId) {
+			NavigationMenuItem navigationMenuItem, long siteId)
+		throws Exception {
 
 		UnicodeProperties unicodeProperties = new UnicodeProperties(true);
 
