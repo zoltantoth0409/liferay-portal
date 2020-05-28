@@ -27,9 +27,8 @@ public interface DDMFormFieldTypeReportProcessor {
 			long formInstanceRecordId, String formInstanceReportEvent)
 		throws Exception {
 
-		throw new IllegalStateException(
-			"DDMFormFieldTypeReportProcessor must implement the " +
-				"process(DDMFormFieldValue, JSONObject, long, String) method");
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	/**
