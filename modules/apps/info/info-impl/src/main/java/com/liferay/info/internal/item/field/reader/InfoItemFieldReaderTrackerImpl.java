@@ -20,7 +20,7 @@ import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReference
 import com.liferay.osgi.service.tracker.collections.map.ServiceReferenceMapperFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.petra.reflect.GenericsUtil;
+import com.liferay.petra.reflect.GenericUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,7 +61,7 @@ public class InfoItemFieldReaderTrackerImpl
 				ServiceReferenceMapperFactory.create(
 					bundleContext,
 					(infoItemFieldReader, emitter) -> emitter.emit(
-						GenericsUtil.getGenericClassName(infoItemFieldReader))),
+						GenericUtil.getGenericClassName(infoItemFieldReader))),
 				Collections.reverseOrder(
 					new PropertyServiceReferenceComparator<>(
 						"info.item.field.order")));

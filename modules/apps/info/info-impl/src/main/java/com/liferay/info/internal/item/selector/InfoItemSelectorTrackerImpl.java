@@ -16,7 +16,7 @@ package com.liferay.info.internal.item.selector;
 
 import com.liferay.info.item.selector.InfoItemSelector;
 import com.liferay.info.item.selector.InfoItemSelectorTracker;
-import com.liferay.petra.reflect.GenericsUtil;
+import com.liferay.petra.reflect.GenericUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 
 		List<InfoItemSelector> itemClassInfoItemSelectors =
 			_itemClassNameInfoItemSelectors.computeIfAbsent(
-				GenericsUtil.getGenericClassName(infoItemSelector),
+				GenericUtil.getGenericClassName(infoItemSelector),
 				itemClass -> new ArrayList<>());
 
 		itemClassInfoItemSelectors.add(infoItemSelector);
@@ -88,7 +88,7 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 
 		List<InfoItemSelector> itemClassInfoItemSelectors =
 			_itemClassNameInfoItemSelectors.get(
-				GenericsUtil.getGenericClassName(infoItemSelector));
+				GenericUtil.getGenericClassName(infoItemSelector));
 
 		if (itemClassInfoItemSelectors != null) {
 			itemClassInfoItemSelectors.remove(infoItemSelector);

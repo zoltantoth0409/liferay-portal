@@ -16,7 +16,7 @@ package com.liferay.layout.internal.list.retriever;
 
 import com.liferay.layout.list.retriever.ListObjectReferenceFactory;
 import com.liferay.layout.list.retriever.ListObjectReferenceFactoryTracker;
-import com.liferay.petra.reflect.GenericsUtil;
+import com.liferay.petra.reflect.GenericUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,7 +45,7 @@ public class ListObjectReferenceTrackerImpl
 		ListObjectReferenceFactory listObjectReferenceFactory) {
 
 		_listObjectReferenceFactories.put(
-			GenericsUtil.getGenericClassName(listObjectReferenceFactory),
+			GenericUtil.getGenericClassName(listObjectReferenceFactory),
 			listObjectReferenceFactory);
 	}
 
@@ -53,7 +53,7 @@ public class ListObjectReferenceTrackerImpl
 		ListObjectReferenceFactory listObjectReferenceFactory) {
 
 		_listObjectReferenceFactories.remove(
-			GenericsUtil.getGenericClassName(listObjectReferenceFactory));
+			GenericUtil.getGenericClassName(listObjectReferenceFactory));
 	}
 
 	private final Map<String, ListObjectReferenceFactory>

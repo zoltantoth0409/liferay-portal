@@ -20,7 +20,7 @@ import java.lang.reflect.Type;
 /**
  * @author Jorge Ferrer
  */
-public class GenericsUtil {
+public class GenericUtil {
 
 	public static Class<?> getGenericClass(Class<?> clazz) {
 		Type[] genericInterfaceTypes = clazz.getGenericInterfaces();

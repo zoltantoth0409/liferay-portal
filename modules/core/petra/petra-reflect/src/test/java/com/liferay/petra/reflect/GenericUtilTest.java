@@ -23,7 +23,7 @@ import org.junit.Test;
 /**
  * @author Cristina González
  */
-public class GenericsUtilTest {
+public class GenericUtilTest {
 
 	@ClassRule
 	public static final CodeCoverageAssertor codeCoverageAssertor =
@@ -31,36 +31,36 @@ public class GenericsUtilTest {
 
 	@Test
 	public void testConstructor() {
-		new GenericsUtil();
+		new GenericUtil();
 	}
 
 	@Test
 	public void testGetGenericClass() {
 		Assert.assertEquals(
 			String.class,
-			GenericsUtil.getGenericClass(new StringParameterizedType()));
+			GenericUtil.getGenericClass(new StringParameterizedType()));
 		Assert.assertEquals(
 			Object.class,
-			GenericsUtil.getGenericClass(new NoParameterizedTypeImpl()));
+			GenericUtil.getGenericClass(new NoParameterizedTypeImpl()));
 		Assert.assertEquals(
 			Object.class,
-			GenericsUtil.getGenericClass(ExtendsNoParameterizedTypeImpl.class));
+			GenericUtil.getGenericClass(ExtendsNoParameterizedTypeImpl.class));
 		Assert.assertEquals(
 			Object.class,
-			GenericsUtil.getGenericClass(NoParameterizedTypeImpl.class));
+			GenericUtil.getGenericClass(NoParameterizedTypeImpl.class));
 		Assert.assertEquals(
 			String.class,
-			GenericsUtil.getGenericClass(StringParameterizedType.class));
+			GenericUtil.getGenericClass(StringParameterizedType.class));
 	}
 
 	@Test
 	public void testGetGenericClassName() {
 		Assert.assertEquals(
 			Object.class.getCanonicalName(),
-			GenericsUtil.getGenericClassName(new NoParameterizedTypeImpl()));
+			GenericUtil.getGenericClassName(new NoParameterizedTypeImpl()));
 		Assert.assertEquals(
 			String.class.getCanonicalName(),
-			GenericsUtil.getGenericClassName(new StringParameterizedType()));
+			GenericUtil.getGenericClassName(new StringParameterizedType()));
 	}
 
 	public static class ExtendsNoParameterizedTypeImpl

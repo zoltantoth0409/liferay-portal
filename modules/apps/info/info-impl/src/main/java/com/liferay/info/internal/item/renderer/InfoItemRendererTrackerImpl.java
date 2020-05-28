@@ -20,7 +20,7 @@ import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReference
 import com.liferay.osgi.service.tracker.collections.map.ServiceReferenceMapperFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.petra.reflect.GenericsUtil;
+import com.liferay.petra.reflect.GenericUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 				ServiceReferenceMapperFactory.create(
 					bundleContext,
 					(infoItemRenderer, emitter) -> emitter.emit(
-						GenericsUtil.getGenericClassName(infoItemRenderer))),
+						GenericUtil.getGenericClassName(infoItemRenderer))),
 				Collections.reverseOrder(
 					new PropertyServiceReferenceComparator<>(
 						"service.ranking")));
