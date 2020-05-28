@@ -143,11 +143,9 @@ public class PublishLayoutMVCActionCommandTest {
 		Assert.assertNull(
 			layoutStructure.getLayoutStructureItem(
 				layoutStructureItem1.getItemId()));
-
 		Assert.assertNull(
 			layoutStructure.getLayoutStructureItem(
 				layoutStructureItem2.getItemId()));
-
 		Assert.assertNotNull(
 			layoutStructure.getLayoutStructureItem(
 				layoutStructureItem3.getItemId()));
