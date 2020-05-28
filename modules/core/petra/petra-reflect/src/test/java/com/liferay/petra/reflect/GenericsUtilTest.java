@@ -35,59 +35,39 @@ public class GenericsUtilTest {
 	}
 
 	@Test
-	public void testGetGenericClassNameWithNoParameterizedTypeObject() {
+	public void testGetGenericClass() {
 		Assert.assertEquals(
-			Object.class.getCanonicalName(),
-			GenericsUtil.getGenericClassName(new NoParameterizedTypeImpl()));
-	}
-
-	@Test
-	public void testGetGenericClassNameWithParameterizedTypeObject() {
-		Assert.assertEquals(
-			String.class.getCanonicalName(),
-			GenericsUtil.getGenericClassName(new StringParameterizedType()));
-	}
-
-	@Test
-	public void testGetGenericClassWithNoParameterizedTypeChildClass() {
-		Assert.assertEquals(
-			Object.class,
-			GenericsUtil.getGenericClass(NoParameterizedTypeImplChild.class));
-	}
-
-	@Test
-	public void testGetGenericClassWithNoParameterizedTypeClass() {
-		Assert.assertEquals(
-			Object.class,
-			GenericsUtil.getGenericClass(NoParameterizedTypeImpl.class));
-	}
-
-	@Test
-	public void testGetGenericClassWithNoParameterizedTypeObject() {
+			String.class,
+			GenericsUtil.getGenericClass(new StringParameterizedType()));
 		Assert.assertEquals(
 			Object.class,
 			GenericsUtil.getGenericClass(new NoParameterizedTypeImpl()));
-	}
-
-	@Test
-	public void testGetGenericClassWithParameterizedTypeClass() {
+		Assert.assertEquals(
+			Object.class,
+			GenericsUtil.getGenericClass(ExtendsNoParameterizedTypeImpl.class));
+		Assert.assertEquals(
+			Object.class,
+			GenericsUtil.getGenericClass(NoParameterizedTypeImpl.class));
 		Assert.assertEquals(
 			String.class,
 			GenericsUtil.getGenericClass(StringParameterizedType.class));
 	}
 
 	@Test
-	public void testGetGenericClassWithParameterizedTypeObject() {
+	public void testGetGenericClassName() {
 		Assert.assertEquals(
-			String.class,
-			GenericsUtil.getGenericClass(new StringParameterizedType()));
+			Object.class.getCanonicalName(),
+			GenericsUtil.getGenericClassName(new NoParameterizedTypeImpl()));
+		Assert.assertEquals(
+			String.class.getCanonicalName(),
+			GenericsUtil.getGenericClassName(new StringParameterizedType()));
+	}
+
+	public static class ExtendsNoParameterizedTypeImpl
+		extends NoParameterizedTypeImpl {
 	}
 
 	public static class NoParameterizedTypeImpl implements NoParameterizedType {
-	}
-
-	public static class NoParameterizedTypeImplChild
-		extends NoParameterizedTypeImpl {
 	}
 
 	public static class StringParameterizedType
