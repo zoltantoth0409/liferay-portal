@@ -38,9 +38,9 @@ const PaginatedList = ({
 			{showEmptyState && !data.totalCount && (
 				<ClayEmptyState
 					description={Liferay.Language.get(
-						'sorry-there-are-no-results-found'
+						'there-are-no-results'
 					)}
-					title={Liferay.Language.get('no-results-found')}
+					title={Liferay.Language.get('there-are-no-results')}
 				/>
 			)}
 			{data.totalCount > 0 && (
