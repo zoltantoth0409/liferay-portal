@@ -112,7 +112,7 @@ public class HttpImplTest {
 	}
 
 	@Test
-	public void testDecodePathControlPanelPage() {
+	public void testDecodePathControlPanel() {
 		Assert.assertEquals(
 			"/group/guest/~/control_panel/manage",
 			_httpImpl.decodePath("/group/guest/~/control_panel/manage"));
@@ -126,7 +126,7 @@ public class HttpImplTest {
 	}
 
 	@Test
-	public void testDecodePathNoAsciiPage() {
+	public void testDecodePathNoAscii() {
 		Assert.assertEquals(
 			"/web/guest/página1",
 			_httpImpl.decodePath("/web/guest/p%C3%83%C2%A1gina1"));
@@ -163,7 +163,7 @@ public class HttpImplTest {
 	}
 
 	@Test
-	public void testEncodePathControlPanelPage() {
+	public void testEncodePathControlPanel() {
 		Assert.assertEquals(
 			"/group/guest/~/control_panel/manage",
 			_httpImpl.encodePath("/group/guest/~/control_panel/manage"));
@@ -177,7 +177,7 @@ public class HttpImplTest {
 	}
 
 	@Test
-	public void testEncodePathNoAsciiPage() {
+	public void testEncodePathNoAscii() {
 		Assert.assertEquals(
 			"/web/guest/p%C3%83%C2%A1gina1",
 			_httpImpl.encodePath("/web/guest/página1"));
