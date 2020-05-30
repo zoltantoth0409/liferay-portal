@@ -1336,9 +1336,9 @@ public class ContentPageEditorDisplayContext {
 		if (infoDisplayContributorsClassNames.contains(
 				FileEntry.class.getName())) {
 
-			infoDisplayContributorsClassNames.remove(FileEntry.class.getName());
 			infoDisplayContributorsClassNames.add(
 				DLFileEntryConstants.getClassName());
+			infoDisplayContributorsClassNames.remove(FileEntry.class.getName());
 		}
 
 		return infoDisplayContributorsClassNames;
