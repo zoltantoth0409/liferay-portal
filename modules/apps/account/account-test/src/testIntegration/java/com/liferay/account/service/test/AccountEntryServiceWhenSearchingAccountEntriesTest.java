@@ -87,7 +87,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 			OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
 			RandomTestUtil.randomString(), false);
 
-		_organizationAccountEntryMap.put(
+		_organizationAccountEntries.put(
 			_rootOrganization,
 			_addAccountEntryWithOrganization(_rootOrganization));
 
@@ -96,14 +96,14 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 			_rootOrganization.getOrganizationId(),
 			RandomTestUtil.randomString(), false);
 
-		_organizationAccountEntryMap.put(
+		_organizationAccountEntries.put(
 			_organization, _addAccountEntryWithOrganization(_organization));
 
 		_suborganization = _organizationLocalService.addOrganization(
 			_companyAdminUser.getUserId(), _organization.getOrganizationId(),
 			RandomTestUtil.randomString(), false);
 
-		_organizationAccountEntryMap.put(
+		_organizationAccountEntries.put(
 			_suborganization,
 			_addAccountEntryWithOrganization(_suborganization));
 
@@ -133,7 +133,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 		_userLocalService.addRoleUser(role.getRoleId(), _user);
 
 		_assertSearch(
-			ListUtil.fromCollection(_organizationAccountEntryMap.values()));
+			ListUtil.fromCollection(_organizationAccountEntries.values()));
 	}
 
 	@Test
@@ -141,7 +141,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 		throws Exception {
 
 		for (Organization organization :
-				_organizationAccountEntryMap.keySet()) {
+				_organizationAccountEntries.keySet()) {
 
 			_userLocalService.addOrganizationUser(
 				organization.getOrganizationId(), _user);
@@ -170,7 +170,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 
 		_assertSearch(
 			ListUtil.toList(
-				_organizationAccountEntryMap.get(_rootOrganization)));
+				_organizationAccountEntries.get(_rootOrganization)));
 	}
 
 	@Test
@@ -190,7 +190,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 		_userGroupRoleLocalService.addUserGroupRole(
 			_user.getUserId(), _organization.getGroupId(), role.getRoleId());
 
-		AccountEntry accountEntry = _organizationAccountEntryMap.get(
+		AccountEntry accountEntry = _organizationAccountEntries.get(
 			_organization);
 
 		_assertSearch(ListUtil.toList(accountEntry));
@@ -200,7 +200,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 			ResourceConstants.SCOPE_GROUP_TEMPLATE, "0",
 			AccountActionKeys.MANAGE_SUBORGANIZATIONS_ACCOUNTS);
 
-		AccountEntry suborgAccountEntry = _organizationAccountEntryMap.get(
+		AccountEntry suborgAccountEntry = _organizationAccountEntries.get(
 			_suborganization);
 
 		_assertSearch(Arrays.asList(accountEntry, suborgAccountEntry));
@@ -297,7 +297,7 @@ public class AccountEntryServiceWhenSearchingAccountEntriesTest {
 
 	private User _companyAdminUser;
 	private Organization _organization;
-	private final Map<Organization, AccountEntry> _organizationAccountEntryMap =
+	private final Map<Organization, AccountEntry> _organizationAccountEntries =
 		new LinkedHashMap<>();
 
 	@Inject
