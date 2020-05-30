@@ -44,9 +44,6 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 	@Before
 	public void setUp() {
 		_setUpJSONFactoryUtil();
-
-		_checkboxMultipleDDMFormFieldTypeReportProcessor =
-			new CheckboxMultipleDDMFormFieldTypeReportProcessor();
 	}
 
 	@Test
@@ -196,7 +193,8 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 	}
 
-	private CheckboxMultipleDDMFormFieldTypeReportProcessor
-		_checkboxMultipleDDMFormFieldTypeReportProcessor;
+	private final CheckboxMultipleDDMFormFieldTypeReportProcessor
+		_checkboxMultipleDDMFormFieldTypeReportProcessor =
+			new CheckboxMultipleDDMFormFieldTypeReportProcessor();
 
 }

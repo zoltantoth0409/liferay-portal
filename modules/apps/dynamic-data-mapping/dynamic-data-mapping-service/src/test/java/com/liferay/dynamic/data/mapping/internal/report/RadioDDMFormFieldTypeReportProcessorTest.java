@@ -43,9 +43,6 @@ public class RadioDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 	@Before
 	public void setUp() {
 		_setUpJSONFactoryUtil();
-
-		_radioDDMFormFieldTypeReportProcessor =
-			new RadioDDMFormFieldTypeReportProcessor();
 	}
 
 	@Test
@@ -241,7 +238,8 @@ public class RadioDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 	}
 
-	private RadioDDMFormFieldTypeReportProcessor
-		_radioDDMFormFieldTypeReportProcessor;
+	private final RadioDDMFormFieldTypeReportProcessor
+		_radioDDMFormFieldTypeReportProcessor =
+			new RadioDDMFormFieldTypeReportProcessor();
 
 }
