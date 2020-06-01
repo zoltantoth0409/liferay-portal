@@ -21,11 +21,6 @@ String cmd = ParamUtil.getString(request, Constants.CMD, "auth");
 
 LocalEntityManager.CertificateUsage certificateUsage = LocalEntityManager.CertificateUsage.valueOf(ParamUtil.getString(request, "certificateUsage"));
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/admin/updateCertificate");
-portletURL.setParameter("certificateUsage", certificateUsage.name());
-
 X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebKeys.SAML_X509_CERTIFICATE);
 %>
 
@@ -45,6 +40,11 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 		navigationItems='<%=
 			new JSPNavigationItemList(pageContext) {
 				{
+					PortletURL portletURL = renderResponse.createRenderURL();
+
+					portletURL.setParameter("mvcRenderCommandName", "/admin/updateCertificate");
+					portletURL.setParameter("certificateUsage", certificateUsage.name());
+
 					portletURL.setParameter(Constants.CMD, "replace");
 
 					add(
