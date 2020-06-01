@@ -102,9 +102,9 @@ if (Validator.isNotNull(tempFileName)) {
 		<aui:input name="selectUploadedFile" type="hidden" value="<%= tempFileName %>" />
 
 		<%
-		int otherEntriesCount = 0;
 		List<String> aliases = new ArrayList<>();
 		CertificateTool certificateTool = (CertificateTool)request.getAttribute(SamlWebKeys.SAML_CERTIFICATE_TOOL);
+		int otherEntriesCount = 0;
 
 		Enumeration<String> enu = keyStore.aliases();
 		%>
