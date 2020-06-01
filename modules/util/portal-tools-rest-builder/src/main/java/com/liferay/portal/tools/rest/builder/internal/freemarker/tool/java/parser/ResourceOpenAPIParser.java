@@ -253,9 +253,10 @@ public class ResourceOpenAPIParser {
 			for (JavaMethodSignature existingJavaMethodSignature :
 					javaMethodSignatures) {
 
-				String path = existingJavaMethodSignature.getPath();
+				if (Objects.equals(
+						existingJavaMethodSignature.getPath(),
+						batchPath + "/batch")) {
 
-				if (path.equals(batchPath + "/batch")) {
 					return;
 				}
 			}
