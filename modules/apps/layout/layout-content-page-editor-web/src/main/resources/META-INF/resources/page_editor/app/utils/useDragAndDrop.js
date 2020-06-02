@@ -394,11 +394,7 @@ function computeHover({
 
 	// Drop inside target
 
-	const validDropInsideTarget = (
-		targetPositionWithMiddle,
-		layoutData,
-		targetItem
-	) => {
+	const validDropInsideTarget = (() => {
 		const targetIsFragment =
 			targetItem.type == LAYOUT_DATA_ITEM_TYPES.fragment;
 
@@ -410,12 +406,9 @@ function computeHover({
 			targetIsEmpty &&
 			!targetIsFragment
 		);
-	};
+	})();
 
-	if (
-		!siblingItem &&
-		validDropInsideTarget(targetPositionWithMiddle, layoutData, targetItem)
-	) {
+	if (!siblingItem && validDropInsideTarget) {
 		return dispatch({
 			dropItem: sourceItem,
 			dropTargetItem: targetItem,
