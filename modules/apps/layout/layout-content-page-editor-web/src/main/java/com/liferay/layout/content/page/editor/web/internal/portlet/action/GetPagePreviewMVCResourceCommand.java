@@ -70,44 +70,38 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String languageId = ParamUtil.getString(
-			resourceRequest, "languageId",
-			LocaleUtil.toLanguageId(themeDisplay.getLocale()));
-
-		long segmentsExperienceId = ParamUtil.getLong(
-			resourceRequest, "segmentsExperienceId");
-
+		Locale currentLocale = themeDisplay.getLocale();
 		long[] currentSegmentsExperienceIds = GetterUtil.getLongValues(
 			resourceRequest.getAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS),
 			new long[] {SegmentsExperienceConstants.ID_DEFAULT});
 
-		Locale currentLocale = themeDisplay.getLocale();
-
 		try {
-			themeDisplay.setLocale(LocaleUtil.fromLanguageId(languageId));
+			long segmentsExperienceId = ParamUtil.getLong(
+				resourceRequest, "segmentsExperienceId");
 
 			resourceRequest.setAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
 				new long[] {segmentsExperienceId});
 
-			ServletContext servletContext = ServletContextPool.get(
-				StringPool.BLANK);
+			String languageId = ParamUtil.getString(
+				resourceRequest, "languageId",
+				LocaleUtil.toLanguageId(themeDisplay.getLocale()));
+
+			themeDisplay.setLocale(LocaleUtil.fromLanguageId(languageId));
+
+			Layout layout = themeDisplay.getLayout();
 
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(resourceRequest);
-
 			HttpServletResponse httpServletResponse =
 				_portal.getHttpServletResponse(resourceResponse);
-
-			Layout layout = themeDisplay.getLayout();
 
 			layout.includeLayoutContent(
 				httpServletRequest, httpServletResponse);
 
-			StringBundler sb = (StringBundler)httpServletRequest.getAttribute(
-				WebKeys.LAYOUT_CONTENT);
-
+			ServletContext servletContext = ServletContextPool.get(
+				StringPool.BLANK);
 			LayoutSet layoutSet = themeDisplay.getLayoutSet();
 
 			Document document = Jsoup.parse(
@@ -117,6 +111,9 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 
 			Element bodyElement = document.body();
 
+			StringBundler sb = (StringBundler)httpServletRequest.getAttribute(
+				WebKeys.LAYOUT_CONTENT);
+
 			bodyElement.html(sb.toString());
 
 			ServletResponseUtil.write(httpServletResponse, document.toString());
@@ -125,6 +122,7 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest.setAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
 				currentSegmentsExperienceIds);
+
 			themeDisplay.setLocale(currentLocale);
 		}
 	}
