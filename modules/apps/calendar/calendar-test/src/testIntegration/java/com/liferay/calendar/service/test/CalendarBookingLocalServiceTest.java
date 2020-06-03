@@ -3331,7 +3331,6 @@ public class CalendarBookingLocalServiceTest {
 			_workflowTaskManager.getWorkflowTasksByUserRoles(
 				TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 				false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null));
-
 		workflowTasks.addAll(
 			_workflowTaskManager.getWorkflowTasksByUser(
 				TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
