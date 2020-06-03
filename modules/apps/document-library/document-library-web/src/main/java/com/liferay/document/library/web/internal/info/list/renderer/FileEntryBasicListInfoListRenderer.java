@@ -80,6 +80,8 @@ public abstract class FileEntryBasicListInfoListRenderer
 				FileEntryTitleInfoItemRenderer.class.getName());
 		}
 
+		infoListBasicListTag.setListStyleKey(getListStyle());
+
 		Optional<String> templateKeyOptional =
 			infoListRendererContext.getTemplateKeyOptional();
 
@@ -88,8 +90,6 @@ public abstract class FileEntryBasicListInfoListRenderer
 
 			infoListBasicListTag.setTemplateKey(templateKeyOptional.get());
 		}
-
-		infoListBasicListTag.setListStyleKey(getListStyle());
 
 		try {
 			infoListBasicListTag.doTag(
