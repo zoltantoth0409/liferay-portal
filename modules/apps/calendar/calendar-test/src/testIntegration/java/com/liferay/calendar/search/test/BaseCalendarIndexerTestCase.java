@@ -76,8 +76,8 @@ public abstract class BaseCalendarIndexerTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		user = UserTestUtil.addUser();
 		group = GroupTestUtil.addGroup();
+		user = UserTestUtil.addUser();
 
 		indexedFieldsFixture = createIndexedFieldsFixture();
 
