@@ -107,13 +107,14 @@ public class AppBuilderAppWorkflowHandler
 
 		DDLRecord ddlRecord = _ddlRecordLocalService.getRecord(ddlRecordId);
 
-		DDLRecordVersion recordVersion = ddlRecord.getRecordVersion();
+		DDLRecordVersion ddlRecordVersion = ddlRecord.getRecordVersion();
 
 		ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 			"serviceContext");
 
 		return _ddlRecordLocalService.updateStatus(
-			userId, recordVersion.getRecordVersionId(), status, serviceContext);
+			userId, ddlRecordVersion.getRecordVersionId(), status,
+			serviceContext);
 	}
 
 	private AppBuilderApp _getAppBuilderApp(DDLRecord ddlRecord)
