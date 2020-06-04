@@ -58,7 +58,8 @@ public class MFAIPAddressAuditMessageBuilder {
 		return new AuditMessage(
 			MFAIPAddressEventTypes.MFA_IP_ADDRESS_VERIFICATION_SUCCESS,
 			user.getCompanyId(), user.getUserId(), user.getFullName(),
-			mfaCheckerClassName, String.valueOf(user.getPrimaryKey()), null, null);
+			mfaCheckerClassName, String.valueOf(user.getPrimaryKey()), null,
+			null);
 	}
 
 	public void routeAuditMessage(AuditMessage auditMessage) {
