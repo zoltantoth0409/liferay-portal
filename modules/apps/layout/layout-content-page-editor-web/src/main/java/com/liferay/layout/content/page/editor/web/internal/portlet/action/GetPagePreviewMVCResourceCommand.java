@@ -78,7 +78,6 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest.getAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS),
 			new long[] {SegmentsExperienceConstants.ID_DEFAULT});
-
 		User currentUser = (User)resourceRequest.getAttribute(WebKeys.USER);
 
 		try {
@@ -89,27 +88,27 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
 				new long[] {segmentsExperienceId});
 
-			User defaultUser = _userLocalService.getDefaultUser(
-				themeDisplay.getCompanyId());
-
-			themeDisplay.setUser(defaultUser);
-
-			themeDisplay.setSignedIn(false);
-
 			String languageId = ParamUtil.getString(
 				resourceRequest, "languageId",
 				LocaleUtil.toLanguageId(themeDisplay.getLocale()));
 
 			themeDisplay.setLocale(LocaleUtil.fromLanguageId(languageId));
 
+			themeDisplay.setSignedIn(false);
+
+			User defaultUser = _userLocalService.getDefaultUser(
+				themeDisplay.getCompanyId());
+
+			themeDisplay.setUser(defaultUser);
+
 			Layout layout = themeDisplay.getLayout();
+
+			layout.setClassNameId(0);
 
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(resourceRequest);
 			HttpServletResponse httpServletResponse =
 				_portal.getHttpServletResponse(resourceResponse);
-
-			layout.setClassNameId(0);
 
 			layout.includeLayoutContent(
 				httpServletRequest, httpServletResponse);
@@ -138,8 +137,8 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 				currentSegmentsExperienceIds);
 
 			themeDisplay.setLocale(currentLocale);
-			themeDisplay.setUser(currentUser);
 			themeDisplay.setSignedIn(true);
+			themeDisplay.setUser(currentUser);
 		}
 	}
 
