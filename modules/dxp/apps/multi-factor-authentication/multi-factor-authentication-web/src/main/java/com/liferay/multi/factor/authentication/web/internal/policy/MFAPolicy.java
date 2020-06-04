@@ -135,7 +135,6 @@ public class MFAPolicy {
 			ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, BrowserMFAChecker.class, "(companyId=*)",
 				new PropertyServiceReferenceMapper<>("companyId"));
-
 		_headlessMFACheckerServiceTrackerMap =
 			ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, HeadlessMFAChecker.class, "(companyId=*)",
