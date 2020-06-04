@@ -61,7 +61,7 @@ public class IPAddressHeadlessMFAChecker implements HeadlessMFAChecker {
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Requested ip address verification for nonexistent user " +
+					"Requested IP address verification for nonexistent user " +
 						userId);
 			}
 
@@ -88,7 +88,7 @@ public class IPAddressHeadlessMFAChecker implements HeadlessMFAChecker {
 		_routeAuditMessage(
 			_mfaIPAddressAuditMessageBuilder.
 				buildVerificationFailureAuditMessage(
-					user, _getClassName(), "Ip not allowed"));
+					user, _getClassName(), "IP is not allowed"));
 
 		return false;
 	}
