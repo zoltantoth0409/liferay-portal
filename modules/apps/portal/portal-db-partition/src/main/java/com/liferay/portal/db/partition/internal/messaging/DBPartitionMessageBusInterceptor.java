@@ -90,7 +90,6 @@ public class DBPartitionMessageBusInterceptor implements MessageBusInterceptor {
 
 		_excludedMessageBusDestinationNames = SetUtil.fromArray(
 			dbPartitionConfiguration.excludedMessageBusDestinationNames());
-
 		_excludedSchedulerJobNames = SetUtil.fromArray(
 			dbPartitionConfiguration.excludedSchedulerJobNames());
 	}
