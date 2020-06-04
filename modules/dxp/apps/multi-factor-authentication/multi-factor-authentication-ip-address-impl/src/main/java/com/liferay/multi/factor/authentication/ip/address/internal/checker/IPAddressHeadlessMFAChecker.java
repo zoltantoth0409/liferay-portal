@@ -107,7 +107,7 @@ public class IPAddressHeadlessMFAChecker implements HeadlessMFAChecker {
 
 		_allowedIpAddressesAndNetmasks = new HashSet<>(
 			Arrays.asList(
-				mfaIPAddressConfiguration.allowedIpAddressAndNetMask()));
+				mfaIPAddressConfiguration.allowedIPAddressAndNetMask()));
 
 		_serviceRegistration = bundleContext.registerService(
 			HeadlessMFAChecker.class, this,

@@ -49,6 +49,6 @@ public interface MFAIPAddressConfiguration {
 		description = "allowed-ip-address-and-netmask-description",
 		name = "allowed-ip-address-and-netmask-name", required = false
 	)
-	public String[] allowedIpAddressAndNetMask();
+	public String[] allowedIPAddressAndNetMask();
 
 }
