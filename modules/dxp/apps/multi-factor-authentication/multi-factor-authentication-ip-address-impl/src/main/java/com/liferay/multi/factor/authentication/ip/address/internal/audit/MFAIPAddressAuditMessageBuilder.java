@@ -33,32 +33,32 @@ import org.osgi.service.component.annotations.Reference;
 public class MFAIPAddressAuditMessageBuilder {
 
 	public AuditMessage buildNonexistentUserVerificationFailureAuditMessage(
-		long companyId, long userId, String checkerClassName) {
+		long companyId, long userId, String mfaCheckerClassName) {
 
 		return new AuditMessage(
 			MFAIPAddressEventTypes.MFA_IP_ADDRESS_VERIFICATION_FAILURE,
-			companyId, userId, "Nonexistent", checkerClassName,
+			companyId, userId, "Nonexistent", mfaCheckerClassName,
 			String.valueOf(userId), null,
 			JSONUtil.put("reason", "Nonexistent User"));
 	}
 
 	public AuditMessage buildVerificationFailureAuditMessage(
-		User user, String checkerClassName, String reason) {
+		User user, String mfaCheckerClassName, String reason) {
 
 		return new AuditMessage(
 			MFAIPAddressEventTypes.MFA_IP_ADDRESS_VERIFICATION_FAILURE,
 			user.getCompanyId(), user.getUserId(), user.getFullName(),
-			checkerClassName, String.valueOf(user.getPrimaryKey()), null,
+			mfaCheckerClassName, String.valueOf(user.getPrimaryKey()), null,
 			JSONUtil.put("reason", reason));
 	}
 
 	public AuditMessage buildVerificationSuccessAuditMessage(
-		User user, String checkerClassName) {
+		User user, String mfaCheckerClassName) {
 
 		return new AuditMessage(
 			MFAIPAddressEventTypes.MFA_IP_ADDRESS_VERIFICATION_SUCCESS,
 			user.getCompanyId(), user.getUserId(), user.getFullName(),
-			checkerClassName, String.valueOf(user.getPrimaryKey()), null, null);
+			mfaCheckerClassName, String.valueOf(user.getPrimaryKey()), null, null);
 	}
 
 	public void routeAuditMessage(AuditMessage auditMessage) {
