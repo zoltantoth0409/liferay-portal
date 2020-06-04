@@ -95,6 +95,7 @@ export default withRouter(
 					window.location.origin.length,
 					window.location.href.indexOf('#')
 				);
+
 				window.location.replace(
 					`/c/portal/login?redirect=${baseURL}#/questions/${sectionTitle}/new`
 				);
