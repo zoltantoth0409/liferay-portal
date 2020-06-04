@@ -97,17 +97,17 @@ public class IPAddressHeadlessMFAChecker implements HeadlessMFAChecker {
 	protected void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
-		MFAIPAddressConfiguration mfaipAddressConfiguration =
+		MFAIPAddressConfiguration mfaIPAddressConfiguration =
 			ConfigurableUtil.createConfigurable(
 				MFAIPAddressConfiguration.class, properties);
 
-		if (!mfaipAddressConfiguration.enabled()) {
+		if (!mfaIPAddressConfiguration.enabled()) {
 			return;
 		}
 
 		_allowedIpAddressesAndNetmasks = new HashSet<>(
 			Arrays.asList(
-				mfaipAddressConfiguration.allowedIpAddressAndNetMask()));
+				mfaIPAddressConfiguration.allowedIpAddressAndNetMask()));
 
 		_serviceRegistration = bundleContext.registerService(
 			HeadlessMFAChecker.class, this,
