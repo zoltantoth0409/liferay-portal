@@ -15,22 +15,11 @@
 package com.liferay.app.builder.model.impl;
 
 /**
- * The extended model implementation for the AppBuilderAppDataRecordLink service. Represents a row in the &quot;AppBuilderAppDataRecordLink&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.app.builder.model.AppBuilderAppDataRecordLink</code> interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 public class AppBuilderAppDataRecordLinkImpl
 	extends AppBuilderAppDataRecordLinkBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a app builder app data record link model instance should use the {@link com.liferay.app.builder.model.AppBuilderAppDataRecordLink} interface instead.
-	 */
 	public AppBuilderAppDataRecordLinkImpl() {
 	}
 
