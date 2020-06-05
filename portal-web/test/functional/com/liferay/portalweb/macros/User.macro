@@ -1665,6 +1665,8 @@ definition {
 
 		var key_siteName = "${siteName}";
 
+		WaitForLiferayEvent.initializeLiferayEventLog();
+
 		AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#SITES_SELECT_LINK",
 			value1 = "SELECT");
