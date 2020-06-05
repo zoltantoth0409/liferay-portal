@@ -65,7 +65,6 @@ public class AssetEntryInfoItemFormProvider
 		infoFormValues.addAll(
 			_assetEntryInfoItemFieldSetProvider.getInfoFieldValues(assetEntry));
 		infoFormValues.addAll(_getAssetEntryInfoFieldValues(assetEntry));
-
 		infoFormValues.setInfoItemClassPKReference(
 			new InfoItemClassPKReference(
 				AssetEntry.class.getName(), assetEntry.getEntryId()));
