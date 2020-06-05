@@ -23,17 +23,7 @@ import com.liferay.portal.kernel.model.User;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The implementation of the account group local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.account.service.AccountGroupLocalService</code> interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see AccountGroupLocalServiceBaseImpl
  */
 @Component(
 	property = "model.class.name=com.liferay.account.model.AccountGroup",
