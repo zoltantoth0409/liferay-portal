@@ -38,7 +38,7 @@ public class BlogsEntryInfoItemObjectProvider
 			blogsEntry.isInTrash()) {
 
 			throw new NoSuchInfoItemException(
-				"Unable to get blogs entry with entryId " + classPK);
+				"Unable to get blogs entry " + classPK);
 		}
 
 		return blogsEntry;

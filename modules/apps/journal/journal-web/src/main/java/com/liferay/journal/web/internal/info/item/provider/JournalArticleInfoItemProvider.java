@@ -38,8 +38,7 @@ public class JournalArticleInfoItemProvider
 
 		if ((article == null) || article.isInTrash()) {
 			throw new NoSuchInfoItemException(
-				"Unable to get journal article with resource prim key: " +
-					classPK);
+				"Unable to get journal article " + classPK);
 		}
 
 		return article;

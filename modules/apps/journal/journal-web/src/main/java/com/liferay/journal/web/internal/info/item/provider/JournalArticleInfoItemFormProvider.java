@@ -117,7 +117,8 @@ public class JournalArticleInfoItemFormProvider
 		}
 		catch (NoSuchClassTypeException noSuchClassTypeException) {
 			throw new RuntimeException(
-				"Unable to find structure: " + ddmStructureId,
+				"Unable to get dynamic data mapping structure " +
+					ddmStructureId,
 				noSuchClassTypeException);
 		}
 	}
@@ -285,8 +286,8 @@ public class JournalArticleInfoItemFormProvider
 						}
 						catch (Exception exception) {
 							throw new RuntimeException(
-								"Error rendering template" +
-									ddmTemplate.getTemplateId(),
+								"Ynable to render dynamic data mapping " +
+									"template" + ddmTemplate.getTemplateId(),
 								exception);
 						}
 					});
