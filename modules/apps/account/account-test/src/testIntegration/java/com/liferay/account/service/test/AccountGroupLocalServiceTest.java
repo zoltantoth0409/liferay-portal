@@ -52,12 +52,11 @@ public class AccountGroupLocalServiceTest {
 	}
 
 	@Test
-	public void testDeleteAccount() throws Exception {
+	public void testDeleteAccountGroup() throws Exception {
 		_testDeleteAccountGroup(
 			_addAccountGroup(),
 			accountGroup -> _accountGroupLocalService.deleteAccountGroup(
 				accountGroup));
-
 		_testDeleteAccountGroup(
 			_addAccountGroup(),
 			accountGroup -> _accountGroupLocalService.deleteAccountGroup(
@@ -72,10 +71,10 @@ public class AccountGroupLocalServiceTest {
 
 	private void _testDeleteAccountGroup(
 			AccountGroup accountGroup,
-			UnsafeConsumer<AccountGroup, Exception> consumer)
+			UnsafeConsumer<AccountGroup, Exception> unsafeConsumer)
 		throws Exception {
 
-		consumer.accept(accountGroup);
+		unsafeConsumer.accept(accountGroup);
 
 		Assert.assertNull(
 			_accountGroupLocalService.fetchAccountGroup(
