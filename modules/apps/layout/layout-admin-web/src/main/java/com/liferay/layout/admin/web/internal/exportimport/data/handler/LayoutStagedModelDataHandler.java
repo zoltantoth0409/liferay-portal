@@ -1422,8 +1422,7 @@ public class LayoutStagedModelDataHandler
 
 		_fragmentEntryLinkLocalService.
 			deleteLayoutPageTemplateEntryFragmentEntryLinks(
-				portletDataContext.getScopeGroupId(),
-				_portal.getClassNameId(Layout.class), importedLayout.getPlid());
+				portletDataContext.getScopeGroupId(), importedLayout.getPlid());
 
 		List<Element> fragmentEntryLinkElements =
 			portletDataContext.getReferenceDataElements(
@@ -1633,9 +1632,8 @@ public class LayoutStagedModelDataHandler
 			ServiceContextThreadLocal.getServiceContext();
 
 		List<FragmentEntryLink> fragmentEntryLinks =
-			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
-				layout.getGroupId(), _portal.getClassNameId(Layout.class),
-				layout.getPlid());
+			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
+				layout.getGroupId(), layout.getPlid());
 
 		for (Element portletElement : portletsElement.elements()) {
 			String portletId = portletElement.attributeValue("portlet-id");
@@ -2309,9 +2307,8 @@ public class LayoutStagedModelDataHandler
 		}
 
 		List<FragmentEntryLink> fragmentEntryLinks =
-			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
-				layout.getGroupId(), _portal.getClassNameId(Layout.class),
-				layout.getPlid());
+			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
+				layout.getGroupId(), layout.getPlid());
 
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
 			StagedModelDataHandlerUtil.exportReferenceStagedModel(
