@@ -105,7 +105,6 @@ public class NavigationBarTag extends BaseContainerTag {
 			jspWriter.write("<div class=\"collapse navbar-collapse\">");
 			jspWriter.write(
 				"<div class=\"container-fluid container-fluid-max-xl\">");
-
 			jspWriter.write("<ul class=\"navbar-nav\">");
 
 			for (int i = 0; i < _navigationItems.size(); i++) {
@@ -114,8 +113,7 @@ public class NavigationBarTag extends BaseContainerTag {
 				jspWriter.write("<li class=\"nav-item\"");
 				jspWriter.write(" data-nav-item-index=\"");
 				jspWriter.write(String.valueOf(i));
-				jspWriter.write("\">");
-				jspWriter.write("<a class=\"nav-link");
+				jspWriter.write("\"><a class=\"nav-link");
 
 				if ((navigationItem.get("active") != null) &&
 					(Boolean)navigationItem.get("active")) {
@@ -131,19 +129,12 @@ public class NavigationBarTag extends BaseContainerTag {
 					jspWriter.write("\"");
 				}
 
-				jspWriter.write(">");
-
-				jspWriter.write("<span class=\"navbar-text-truncate\">");
+				jspWriter.write("><span class=\"navbar-text-truncate\">");
 				jspWriter.write((String)navigationItem.get("label"));
-				jspWriter.write("</span>");
-				jspWriter.write("</a>");
-				jspWriter.write("</li>");
+				jspWriter.write("</span></a></li>");
 			}
 
-			jspWriter.write("</ul>");
-			jspWriter.write("</div>");
-			jspWriter.write("</div>");
-			jspWriter.write("</div>");
+			jspWriter.write("</ul></div></div></div>");
 
 			return SKIP_BODY;
 		}
