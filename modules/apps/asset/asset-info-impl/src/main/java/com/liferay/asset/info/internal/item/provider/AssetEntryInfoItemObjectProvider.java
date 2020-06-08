@@ -38,7 +38,7 @@ public class AssetEntryInfoItemObjectProvider
 		}
 		catch (NoSuchEntryException noSuchEntryException) {
 			throw new NoSuchInfoItemException(
-				"Unable to get AssetEntry " + classPK, noSuchEntryException);
+				"Unable to get asset entry " + classPK, noSuchEntryException);
 		}
 		catch (PortalException portalException) {
 			throw new RuntimeException(portalException);
