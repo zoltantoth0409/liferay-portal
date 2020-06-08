@@ -191,11 +191,11 @@
 			getCanonicalURL: function() {
 
 				<%
+				LayoutSEOLinkManager layoutSEOLinkManager = LayoutSEOLinkManagerUtil.getLayoutSEOLinkManager();
+
 				String completeURL = PortalUtil.getCurrentCompleteURL(request);
 
 				String canonicalURL = PortalUtil.getCanonicalURL(completeURL, themeDisplay, layout, false, false);
-
-				LayoutSEOLinkManager layoutSEOLinkManager = LayoutSEOLinkManagerUtil.getLayoutSEOLinkManager();
 
 				LayoutSEOLink layoutSEOLink = layoutSEOLinkManager.getCanonicalLayoutSEOLink(layout, themeDisplay.getLocale(), canonicalURL, PortalUtil.getAlternateURLs(canonicalURL, themeDisplay, layout));
 				%>
