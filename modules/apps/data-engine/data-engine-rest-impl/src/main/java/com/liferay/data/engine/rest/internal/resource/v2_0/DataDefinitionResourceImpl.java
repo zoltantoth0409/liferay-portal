@@ -599,7 +599,6 @@ public class DataDefinitionResourceImpl
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
 			dataDefinitionId);
-
 		DDMForm ddmForm = DataDefinitionUtil.toDDMForm(
 			dataDefinition, _ddmFormFieldTypeServicesTracker);
 
