@@ -55,8 +55,8 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 					"data-engine-taglib/data_layout_builder/js" +
 						"/DataLayoutBuilder.es"));
 
-			if (Validator.isNull(getDataLayoutId()) &&
-				Validator.isNotNull(getDataDefinitionId())) {
+			if (Validator.isNotNull(getDataDefinitionId()) &&
+				Validator.isNull(getDataLayoutId())) {
 
 				setDataLayoutId(
 					DataLayoutTaglibUtil.getDefaultDataLayoutId(
