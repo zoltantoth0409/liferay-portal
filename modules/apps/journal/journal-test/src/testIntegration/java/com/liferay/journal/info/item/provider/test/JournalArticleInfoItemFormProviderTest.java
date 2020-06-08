@@ -79,7 +79,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			journalArticle.getResourcePrimKey(),
 			infoItemClassPKReference.getClassPK());
-
 		Assert.assertEquals(
 			JournalArticle.class.getName(),
 			infoItemClassPKReference.getClassName());
@@ -103,7 +102,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			"Some text",
 			ddmTextInfoFieldValue.getValue(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"Un poco de texto",
 			ddmTextInfoFieldValue.getValue(LocaleUtil.SPAIN));
@@ -120,7 +118,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			"Some text",
 			firstDDMTextInfoFieldValue.getValue(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"Un poco de texto",
 			firstDDMTextInfoFieldValue.getValue(LocaleUtil.SPAIN));
@@ -131,7 +128,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			"Some more text",
 			secondDDMTextInfoFieldValue.getValue(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"Un poco más de texto",
 			secondDDMTextInfoFieldValue.getValue(LocaleUtil.SPAIN));
