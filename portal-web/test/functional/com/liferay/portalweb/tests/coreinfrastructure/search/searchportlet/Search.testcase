@@ -168,7 +168,6 @@ definition {
 
 	@priority = "4"
 	test AssertIndexOnStartup {
-		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Search#AssertIndexOnStartup";
 
 		JSONWebcontent.addWebContent(
