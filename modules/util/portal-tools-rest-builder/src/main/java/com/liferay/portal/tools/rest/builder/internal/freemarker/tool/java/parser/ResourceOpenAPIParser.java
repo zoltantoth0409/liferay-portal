@@ -246,7 +246,7 @@ public class ResourceOpenAPIParser {
 			methodName.equals("post" + parentSchemaName + schemaName) ||
 			methodName.equals("put" + schemaName)) {
 
-			String batchPath;
+			String batchPath = null;
 
 			String path = javaMethodSignature.getPath();
 
