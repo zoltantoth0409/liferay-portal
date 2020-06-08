@@ -17,7 +17,7 @@
 <%@ include file="/control_menu/init.jsp" %>
 
 <%
-boolean globalMenuApp = (boolean)request.getAttribute("liferay-product-navigation:control-menu:globalMenuApp");
+boolean globalMenuApp = GetterUtil.getBoolean(request.getAttribute("liferay-product-navigation:control-menu:globalMenuApp"));
 
 ProductNavigationControlMenuCategoryRegistry productNavigationControlMenuCategoryRegistry = ServletContextUtil.getProductNavigationControlMenuCategoryRegistry();
 
