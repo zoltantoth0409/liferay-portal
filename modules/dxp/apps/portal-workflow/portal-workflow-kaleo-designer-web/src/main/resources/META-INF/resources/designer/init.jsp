@@ -84,15 +84,6 @@ KaleoDesignerDisplayContext kaleoDesignerDisplayContext = (KaleoDesignerDisplayC
 
 kaleoDesignerDisplayContext.setKaleoDesignerRequestHelper(renderRequest);
 
-Format dateFormatTime = null;
-
-if (DateUtil.isFormatAmPm(locale)) {
-	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat(LanguageUtil.get(request, "mmm-d-yyyy-hh-mm-a"), locale, timeZone);
-}
-else {
-	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat(LanguageUtil.get(request, "mmm-d-yyyy-hh-mm"), locale, timeZone);
-}
-
 String navigation = ParamUtil.getString(request, "navigation");
 
 int displayedStatus = WorkflowConstants.STATUS_ANY;
@@ -102,6 +93,15 @@ if (StringUtil.equals(navigation, "published")) {
 }
 else if (StringUtil.equals(navigation, "not-published")) {
 	displayedStatus = WorkflowConstants.STATUS_DRAFT;
+}
+
+Format dateFormatTime = null;
+
+if (DateUtil.isFormatAmPm(locale)) {
+	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat(LanguageUtil.get(request, "mmm-d-yyyy-hh-mm-a"), locale, timeZone);
+}
+else {
+	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat(LanguageUtil.get(request, "mmm-d-yyyy-hh-mm"), locale, timeZone);
 }
 %>
 
