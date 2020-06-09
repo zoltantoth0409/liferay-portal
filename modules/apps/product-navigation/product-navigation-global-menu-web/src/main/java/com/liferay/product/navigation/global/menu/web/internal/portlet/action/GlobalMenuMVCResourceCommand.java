@@ -23,13 +23,10 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.criteria.URLItemSelectorReturnType;
 import com.liferay.item.selector.criteria.group.criterion.GroupItemSelectorCriterion;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
@@ -239,34 +236,23 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 	}
 
 	private JSONArray _getSitesJSONArray(
-		List<Group> groups, ResourceRequest resourceRequest,
-		ThemeDisplay themeDisplay) {
+			List<Group> groups, ResourceRequest resourceRequest,
+			ThemeDisplay themeDisplay)
+		throws Exception {
 
 		JSONArray recentSitesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (Group group : groups) {
-			try {
-				recentSitesJSONArray.put(
-					JSONUtil.put(
-						"key", group.getGroupKey()
-					).put(
-						"label",
-						group.getDescriptiveName(themeDisplay.getLocale())
-					).put(
-						"logoURL", group.getLogoURL(themeDisplay, true)
-					).put(
-						"url",
-						_groupURLProvider.getGroupURL(group, resourceRequest)
-					));
-			}
-			catch (PortalException portalException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Unable to get descriptive name for group " +
-							group.getGroupId(),
-						portalException);
-				}
-			}
+			recentSitesJSONArray.put(
+				JSONUtil.put(
+					"key", group.getGroupKey()
+				).put(
+					"label", group.getDescriptiveName(themeDisplay.getLocale())
+				).put(
+					"logoURL", group.getLogoURL(themeDisplay, true)
+				).put(
+					"url", _groupURLProvider.getGroupURL(group, resourceRequest)
+				));
 		}
 
 		return recentSitesJSONArray;
@@ -355,9 +341,6 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 		return itemSelectorURL.toString();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		GlobalMenuMVCResourceCommand.class);
 
 	@Reference
 	private GroupSearchProvider _groupSearchProvider;
