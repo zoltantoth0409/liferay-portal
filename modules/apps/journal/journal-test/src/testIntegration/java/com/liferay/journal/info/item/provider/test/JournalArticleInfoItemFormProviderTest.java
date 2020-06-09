@@ -179,7 +179,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			"Description",
 			descriptionInfoFieldValue.getValue(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"Descripción",
 			descriptionInfoFieldValue.getValue(LocaleUtil.SPAIN));
@@ -190,7 +189,6 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			"Test Article",
 			titleInfoFieldValue.getValue(LocaleUtil.getDefault()));
-
 		Assert.assertEquals(
 			"Artículo de prueba",
 			titleInfoFieldValue.getValue(LocaleUtil.SPAIN));
