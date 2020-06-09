@@ -116,7 +116,7 @@ public class ContentDashboardAdminPortletTest {
 		MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest =
 			_getMockLiferayPortletRenderRequest();
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			mockLiferayPortletRenderRequest);
 
 		int initialCount = searchContainer.getTotal();
@@ -141,7 +141,7 @@ public class ContentDashboardAdminPortletTest {
 		MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest =
 			_getMockLiferayPortletRenderRequest();
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			mockLiferayPortletRenderRequest);
 
 		Assert.assertEquals(2, searchContainer.getTotal());
@@ -174,7 +174,7 @@ public class ContentDashboardAdminPortletTest {
 		mockLiferayPortletRenderRequest.setParameter(
 			"keywords", journalArticle.getTitle(LocaleUtil.getDefault()));
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			mockLiferayPortletRenderRequest);
 
 		Assert.assertEquals(1, searchContainer.getTotal());
@@ -198,7 +198,7 @@ public class ContentDashboardAdminPortletTest {
 		MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest =
 			_getMockLiferayPortletRenderRequest();
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			mockLiferayPortletRenderRequest);
 
 		Assert.assertEquals(
@@ -426,7 +426,7 @@ public class ContentDashboardAdminPortletTest {
 		return mockLiferayPortletRenderRequest;
 	}
 
-	private SearchContainer _getSearchContainer(
+	private SearchContainer<Object> _getSearchContainer(
 			MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest)
 		throws Exception {
 
