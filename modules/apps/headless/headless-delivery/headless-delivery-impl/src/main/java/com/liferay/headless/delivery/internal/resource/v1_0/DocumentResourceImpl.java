@@ -46,6 +46,8 @@ import com.liferay.headless.delivery.internal.odata.entity.v1_0.DocumentEntityMo
 import com.liferay.headless.delivery.resource.v1_0.DocumentResource;
 import com.liferay.journal.service.JournalArticleService;
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -522,6 +524,9 @@ public class DocumentResourceImpl
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				return null;
@@ -668,6 +673,9 @@ public class DocumentResourceImpl
 				contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 				contextUser));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DocumentResourceImpl.class);
 
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;
