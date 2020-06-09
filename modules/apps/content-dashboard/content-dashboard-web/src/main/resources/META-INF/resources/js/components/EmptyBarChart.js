@@ -40,7 +40,7 @@ export default function EmptyBarChart() {
 			<ClayEmptyState
 				className="empty-state text-center"
 				description={Liferay.Language.get(
-					'please-create-marketing-categories-to-label-and-audit-your-content'
+					'create-marketing-categories-to-label-and-audit-your-content'
 				)}
 				title={Liferay.Language.get('there-is-no-data-yet')}
 			>

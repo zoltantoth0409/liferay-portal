@@ -28,7 +28,7 @@ describe('EmptyBarChart', () => {
 		expect(getByText('there-is-no-data-yet')).toBeInTheDocument();
 		expect(
 			getByText(
-				'please-create-marketing-categories-to-label-and-audit-your-content'
+				'create-marketing-categories-to-label-and-audit-your-content'
 			)
 		).toBeInTheDocument();
 		expect(getByText('add-marketing-categories')).toBeInTheDocument();
