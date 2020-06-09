@@ -42,7 +42,7 @@ export default function EmptyBarChart() {
 				description={Liferay.Language.get(
 					'create-marketing-categories-to-label-and-audit-your-content'
 				)}
-				title={Liferay.Language.get('there-is-no-data-yet')}
+				title={Liferay.Language.get('there-is-no-data')}
 			>
 				<ClayButton displayType="secondary">
 					{Liferay.Language.get('add-marketing-categories')}

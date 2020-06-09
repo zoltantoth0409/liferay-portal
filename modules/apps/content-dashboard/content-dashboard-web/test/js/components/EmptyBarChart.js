@@ -25,7 +25,7 @@ describe('EmptyBarChart', () => {
 	it('renders empty bar chart if there is no content labeled with marketing categories', () => {
 		const {getByText} = render(<EmptyBarChart />);
 
-		expect(getByText('there-is-no-data-yet')).toBeInTheDocument();
+		expect(getByText('there-is-no-data')).toBeInTheDocument();
 		expect(
 			getByText(
 				'create-marketing-categories-to-label-and-audit-your-content'
