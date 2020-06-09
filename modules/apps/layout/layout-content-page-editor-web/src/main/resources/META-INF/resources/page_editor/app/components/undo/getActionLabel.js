@@ -30,7 +30,11 @@ import {UNDO_TYPES} from '../../config/constants/undoTypes';
 import {config} from '../../config/index';
 import getSegmentsExperienceName from '../../utils/getSegmentsExperienceName';
 
-export function getActionLabel(action, type, {availableSegmentsExperiences}) {
+export default function getActionLabel(
+	action,
+	type,
+	{availableSegmentsExperiences}
+) {
 	switch (action.originalType || action.type) {
 		case ADD_FRAGMENT_ENTRY_LINKS:
 		case ADD_ITEM:
