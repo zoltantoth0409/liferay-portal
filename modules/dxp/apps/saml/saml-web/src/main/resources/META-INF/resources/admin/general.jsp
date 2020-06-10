@@ -26,9 +26,9 @@ GeneralTabDefaultViewDisplayContext.X509CertificateStatus x509CertificateStatus 
 boolean keystoreException = x509CertificateStatus.getStatus() == GeneralTabDefaultViewDisplayContext.X509CertificateStatus.Status.SAML_KEYSTORE_EXCEPTION;
 boolean keystoreIncorrectPassword = x509CertificateStatus.getStatus() == GeneralTabDefaultViewDisplayContext.X509CertificateStatus.Status.SAML_KEYSTORE_PASSWORD_INCORRECT;
 String samlRole = properties.getProperty(PortletPropsKeys.SAML_ROLE, samlProviderConfiguration.role());
-String samlRoleHelpMessage = StringPool.BLANK;
-
 boolean samlRoleIdpOptionDisabled = StringUtil.equalsIgnoreCase(samlProviderConfiguration.role(), SamlProviderConfigurationKeys.SAML_ROLE_SP) && !generalTabDefaultViewDisplayContext.isRoleIdPAvailable();
+
+String samlRoleHelpMessage = StringPool.BLANK;
 
 if (samlRoleIdpOptionDisabled) {
 	samlRoleHelpMessage = "the-identity-provider-role-has-been-disabled-it-can-be-re-enabled-in-system-settings";
