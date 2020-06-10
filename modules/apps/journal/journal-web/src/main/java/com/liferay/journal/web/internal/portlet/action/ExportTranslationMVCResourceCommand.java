@@ -15,7 +15,7 @@
 package com.liferay.journal.web.internal.portlet.action;
 
 import com.liferay.info.item.provider.InfoItemFormProvider;
-import com.liferay.info.item.provider.InfoItemFormProviderTracker;
+import com.liferay.info.item.provider.InfoItemServiceTracker;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
@@ -71,8 +71,8 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 				ParamUtil.getString(resourceRequest, "articleId"));
 
 			InfoItemFormProvider infoItemFormProvider =
-				_infoItemFormProviderTracker.getInfoItemFormProvider(
-					JournalArticle.class.getName());
+				_infoItemServiceTracker.getInfoItemService(
+					InfoItemFormProvider.class, JournalArticle.class.getName());
 
 			String sourceLanguageId = ParamUtil.getString(
 				resourceRequest, "sourceLanguageId");
@@ -113,7 +113,7 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 	}
 
 	@Reference
-	private InfoItemFormProviderTracker _infoItemFormProviderTracker;
+	private InfoItemServiceTracker _infoItemServiceTracker;
 
 	@Reference
 	private JournalArticleLocalService _journalArticleLocalService;
