@@ -72,7 +72,6 @@ public class ContentDashboardAdminPortlet extends MVCPortlet {
 
 		LiferayPortletRequest liferayPortletRequest =
 			_portal.getLiferayPortletRequest(renderRequest);
-
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(renderResponse);
 
