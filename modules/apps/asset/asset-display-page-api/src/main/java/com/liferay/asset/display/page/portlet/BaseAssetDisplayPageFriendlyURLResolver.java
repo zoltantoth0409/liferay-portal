@@ -106,10 +106,9 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 			InfoDisplayWebKeys.VERSION_CLASS_PK,
 			_getVersionClassPK(friendlyURL));
 
+		Locale locale = portal.getLocale(httpServletRequest);
 		Layout layout = _getInfoDisplayObjectProviderLayout(
 			infoDisplayObjectProvider);
-
-		Locale locale = portal.getLocale(httpServletRequest);
 
 		portal.setPageDescription(
 			HtmlUtil.unescape(
