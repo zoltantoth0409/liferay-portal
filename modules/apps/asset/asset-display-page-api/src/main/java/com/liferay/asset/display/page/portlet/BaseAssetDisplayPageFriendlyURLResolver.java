@@ -118,6 +118,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 						layout::getDescription,
 						infoDisplayObjectProvider::getDescription))),
 			httpServletRequest);
+
 		portal.setPageKeywords(
 			infoDisplayObjectProvider.getKeywords(locale), httpServletRequest);
 		portal.setPageTitle(
