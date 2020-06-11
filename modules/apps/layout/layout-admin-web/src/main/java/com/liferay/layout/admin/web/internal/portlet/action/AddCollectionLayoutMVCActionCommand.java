@@ -94,14 +94,10 @@ public class AddCollectionLayoutMVCActionCommand
 			actionRequest, "privateLayout");
 		long parentLayoutId = ParamUtil.getLong(
 			actionRequest, "parentLayoutId");
-
 		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(),
 			ParamUtil.getString(actionRequest, "name")
 		).build();
-
-		long masterLayoutPlid = ParamUtil.getLong(
-			actionRequest, "masterLayoutPlid");
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			PropertiesParamUtil.getProperties(
@@ -117,6 +113,9 @@ public class AddCollectionLayoutMVCActionCommand
 
 		typeSettingsUnicodeProperties.setProperty(
 			"collectionType", collectionType);
+
+		long masterLayoutPlid = ParamUtil.getLong(
+			actionRequest, "masterLayoutPlid");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Layout.class.getName(), actionRequest);

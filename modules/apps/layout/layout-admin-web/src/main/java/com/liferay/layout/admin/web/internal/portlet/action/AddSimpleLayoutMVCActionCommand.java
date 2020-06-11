@@ -86,8 +86,14 @@ public class AddSimpleLayoutMVCActionCommand
 			actionRequest, "privateLayout");
 		long parentLayoutId = ParamUtil.getLong(
 			actionRequest, "parentLayoutId");
-		String name = ParamUtil.getString(actionRequest, "name");
+		Map<Locale, String> nameMap = HashMapBuilder.put(
+			LocaleUtil.getSiteDefault(),
+			ParamUtil.getString(actionRequest, "name")
+		).build();
 		String type = ParamUtil.getString(actionRequest, "type");
+		UnicodeProperties typeSettingsUnicodeProperties =
+			PropertiesParamUtil.getProperties(
+				actionRequest, "TypeSettingsProperties--");
 
 		long masterLayoutPlid = ParamUtil.getLong(
 			actionRequest, "masterLayoutPlid");
@@ -105,16 +111,8 @@ public class AddSimpleLayoutMVCActionCommand
 			}
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Layout.class.getName(), actionRequest);
-
-		UnicodeProperties typeSettingsUnicodeProperties =
-			PropertiesParamUtil.getProperties(
-				actionRequest, "TypeSettingsProperties--");
 
 		try {
 			Layout layout = _layoutService.addLayout(
