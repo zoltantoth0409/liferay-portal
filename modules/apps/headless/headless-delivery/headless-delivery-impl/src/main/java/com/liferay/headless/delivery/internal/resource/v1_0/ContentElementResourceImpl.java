@@ -143,7 +143,7 @@ public class ContentElementResourceImpl extends BaseContentElementResourceImpl {
 	}
 
 	private ContentElement _toContentElement(AssetEntry assetEntry) {
-		DTOConverter dtoConverter = _dtoConverterRegistry.getDTOConverter(
+		DTOConverter<?, ?> dtoConverter = _dtoConverterRegistry.getDTOConverter(
 			assetEntry.getClassName());
 
 		return new ContentElement() {
