@@ -116,7 +116,7 @@ const SelectDropdown = ({
 const SelectFormView = ({objectId, ...otherProps}) => {
 	const props = {
 		emptyResultMessage: Liferay.Language.get(
-			'no-form-views-found-with-this-name-try-searching-again-with-a-different-name'
+			'no-form-views-were-found-with-this-name-try-searching-again-with-a-different-name'
 		),
 		endpoint: `/o/data-engine/v2.0/data-definitions/${objectId}/data-layouts`,
 		label: Liferay.Language.get('select-a-form-view'),
@@ -140,7 +140,7 @@ const SelectFormView = ({objectId, ...otherProps}) => {
 const SelectTableView = ({objectId, ...otherProps}) => {
 	const props = {
 		emptyResultMessage: Liferay.Language.get(
-			'no-table-views-found-with-this-name-try-searching-again-with-a-different-name'
+			'no-table-views-were-found-with-this-name-try-searching-again-with-a-different-name'
 		),
 		endpoint: `/o/data-engine/v2.0/data-definitions/${objectId}/data-list-views`,
 		label: Liferay.Language.get('select-a-table-view'),
