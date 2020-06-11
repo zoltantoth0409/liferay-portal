@@ -78,6 +78,8 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 			addLayoutURL.setParameter(
 				"privateLayout", String.valueOf(privateLayout));
 
+			addLayoutURL.setParameter("type", LayoutConstants.TYPE_COLLECTION);
+
 			String collectionPK = ParamUtil.getString(
 				_httpServletRequest, "collectionPK");
 
@@ -91,9 +93,6 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 			addLayoutURL.setParameter(
 				"masterLayoutPlid",
 				String.valueOf(_layoutPageTemplateEntry.getPlid()));
-
-			addLayoutURL.setParameter("type", LayoutConstants.TYPE_COLLECTION);
-
 			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
 
 			data.put("add-layout-url", addLayoutURL.toString());
