@@ -160,9 +160,9 @@ public class LayoutsAdminDisplayContext {
 		portletURL.setParameter(
 			"stagingGroupId", String.valueOf(getStagingGroupId()));
 		portletURL.setParameter(
-			"parentLayoutId", String.valueOf(getParentLayoutId()));
-		portletURL.setParameter(
 			"privateLayout", String.valueOf(isPrivateLayout()));
+		portletURL.setParameter(
+			"parentLayoutId", String.valueOf(getParentLayoutId()));
 		portletURL.setParameter("explicitCreation", Boolean.TRUE.toString());
 
 		String type = ParamUtil.getString(httpServletRequest, "type");
