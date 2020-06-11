@@ -210,17 +210,17 @@ public class MVCCPortalCacheTest {
 			new MVCCPortalCache<>(new TestPortalCache<>(_PORTAL_CACHE_NAME));
 
 		Serializable key = _KEY_1;
-		MockMVCCModel value1 = new MockMVCCModel(_VERSION_0);
+		MockMVCCModel mockMVCCModel1 = new MockMVCCModel(_VERSION_0);
 
-		mvccPortalCache.put(key, value1);
+		mvccPortalCache.put(key, mockMVCCModel1);
 
-		Assert.assertSame(value1, mvccPortalCache.get(key));
+		Assert.assertSame(mockMVCCModel1, mvccPortalCache.get(key));
 
-		MockMVCCModel value2 = new MockMVCCModel(_VERSION_0);
+		MockMVCCModel mockMVCCModel2 = new MockMVCCModel(_VERSION_0);
 
-		mvccPortalCache.put(key, value2);
+		mvccPortalCache.put(key, mockMVCCModel2);
 
-		Assert.assertSame(value2, mvccPortalCache.get(key));
+		Assert.assertSame(mockMVCCModel2, mvccPortalCache.get(key));
 	}
 
 	@Aspect
