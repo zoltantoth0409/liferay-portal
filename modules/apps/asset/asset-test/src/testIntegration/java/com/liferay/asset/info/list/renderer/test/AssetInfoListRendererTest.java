@@ -208,24 +208,26 @@ public class AssetInfoListRendererTest {
 		MockHttpServletRequest httpServletRequest =
 			new MockHttpServletRequest();
 
-		ThemeDisplay themeDisplay = new ThemeDisplay();
+		httpServletRequest.setAttribute(
+			JavaConstants.JAVAX_PORTLET_RESPONSE,
+			new MockLiferayPortletRenderResponse());
 
-		LayoutSet layoutSet = _group.getPublicLayoutSet();
+		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);
 		themeDisplay.setLayout(_layout);
+
+		LayoutSet layoutSet = _group.getPublicLayoutSet();
+
 		themeDisplay.setLayoutSet(layoutSet);
 		themeDisplay.setLookAndFeel(
 			layoutSet.getTheme(), layoutSet.getColorScheme());
+
 		themeDisplay.setRealUser(TestPropsValues.getUser());
 		themeDisplay.setRequest(httpServletRequest);
 		themeDisplay.setResponse(new MockHttpServletResponse());
 		themeDisplay.setUser(TestPropsValues.getUser());
 		themeDisplay.setScopeGroupId(_group.getGroupId());
-
-		httpServletRequest.setAttribute(
-			JavaConstants.JAVAX_PORTLET_RESPONSE,
-			new MockLiferayPortletRenderResponse());
 
 		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 
