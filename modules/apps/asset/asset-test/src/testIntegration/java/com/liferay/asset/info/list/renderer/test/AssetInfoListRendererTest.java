@@ -236,7 +236,7 @@ public class AssetInfoListRendererTest {
 		return httpServletRequest;
 	}
 
-	private List<AssetEntry> _assetEntries = new ArrayList<>();
+	private final List<AssetEntry> _assetEntries = new ArrayList<>();
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
