@@ -85,28 +85,25 @@ public class AssetInfoListRendererTest {
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
+		AssetEntry assetEntry1 = _assetEntryLocalService.getEntry(
+			JournalArticle.class.getName(), article1.getResourcePrimKey());
+
+		_assetEntries.add(assetEntry1);
+
 		JournalArticle article2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		AssetEntry assetEntry1 = _assetEntryLocalService.getEntry(
-			JournalArticle.class.getName(), article1.getResourcePrimKey());
-
 		AssetEntry assetEntry2 = _assetEntryLocalService.getEntry(
 			JournalArticle.class.getName(), article2.getResourcePrimKey());
 
-		_assetEntries = new ArrayList<>();
-
-		_assetEntries.add(assetEntry1);
 		_assetEntries.add(assetEntry2);
 
 		_company = _companyLocalService.getCompany(_group.getCompanyId());
-
-		_layout = LayoutTestUtil.addLayout(_group);
-
 		_infoListRenderer = _infoListRendererTracker.getInfoListRenderer(
 			"com.liferay.asset.info.internal.list.renderer." +
 				"UnstyledAssetEntryBasicListInfoListRenderer");
+		_layout = LayoutTestUtil.addLayout(_group);
 	}
 
 	@Test
@@ -237,7 +234,7 @@ public class AssetInfoListRendererTest {
 		return httpServletRequest;
 	}
 
-	private List<AssetEntry> _assetEntries;
+	private List<AssetEntry> _assetEntries = new ArrayList<>();
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
