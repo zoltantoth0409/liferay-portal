@@ -87,6 +87,9 @@ public class MFAVerifyMVCRenderCommand implements MVCRenderCommand {
 			browserMFAChecker = browserMFACheckers.get(0);
 		}
 
+		renderRequest.setAttribute(
+			MFAWebKeys.BROWSER_MFA_CHECKER, browserMFAChecker);
+
 		BrowserMFAChecker nextAvailableBrowserMFAChecker =
 			browserMFACheckers.get(0);
 
@@ -101,11 +104,10 @@ public class MFAVerifyMVCRenderCommand implements MVCRenderCommand {
 			WebKeys.THEME_DISPLAY);
 
 		renderRequest.setAttribute(
-			MFAWebKeys.BROWSER_MFA_CHECKER, browserMFAChecker);
-		renderRequest.setAttribute(
 			MFAWebKeys.BROWSER_MFA_CHECKER_NAME,
 			_getMFACheckerName(
 				nextAvailableBrowserMFAChecker, themeDisplay.getLocale()));
+
 		renderRequest.setAttribute(
 			MFAWebKeys.BROWSER_MFA_CHECKERS, browserMFACheckers);
 		renderRequest.setAttribute(MFAWebKeys.MFA_USER_ID, mfaUserId);
