@@ -46,11 +46,11 @@ public class MFAUserAccountSetupScreenNavigationEntry
 
 	public MFAUserAccountSetupScreenNavigationEntry(
 		ServiceReference<SetupMFAChecker> serviceReference,
-		SetupMFAChecker setupMFAChecker, ServletContext servletContext) {
+		ServletContext servletContext, SetupMFAChecker setupMFAChecker) {
 
 		_serviceReference = serviceReference;
-		_setupMFAChecker = setupMFAChecker;
 		_servletContext = servletContext;
+		_setupMFAChecker = setupMFAChecker;
 
 		_bundle = _serviceReference.getBundle();
 
