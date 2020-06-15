@@ -78,8 +78,7 @@ public class MFAUserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 
 		if (setupMFAChecker == null) {
 			_log.error(
-				"Unable to find SetupMFAChecker with service.id " +
-					setupMFACheckerServiceId);
+				"Unable to get setup MFA checker " + setupMFACheckerServiceId);
 
 			return;
 		}
