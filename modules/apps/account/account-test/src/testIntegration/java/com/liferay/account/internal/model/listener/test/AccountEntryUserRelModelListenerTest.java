@@ -65,10 +65,10 @@ public class AccountEntryUserRelModelListenerTest {
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), _user.getUserId());
 
-		User user1 = UserTestUtil.addUser();
+		User user = UserTestUtil.addUser();
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
-			accountEntry.getAccountEntryId(), user1.getUserId());
+			accountEntry.getAccountEntryId(), user.getUserId());
 	}
 
 	@Test(expected = ModelListenerException.class)
@@ -80,10 +80,10 @@ public class AccountEntryUserRelModelListenerTest {
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), _user.getUserId());
 
-		User user1 = UserTestUtil.addUser();
+		User user = UserTestUtil.addUser();
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
-			accountEntry.getAccountEntryId(), user1.getUserId());
+			accountEntry.getAccountEntryId(), user.getUserId());
 	}
 
 	@Test
