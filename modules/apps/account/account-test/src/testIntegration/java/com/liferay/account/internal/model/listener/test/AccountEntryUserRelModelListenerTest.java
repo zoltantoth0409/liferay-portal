@@ -56,7 +56,7 @@ public class AccountEntryUserRelModelListenerTest {
 	}
 
 	@Test
-	public void testAccountEntryMembershipPolicyTypeBusiness()
+	public void testAddAccountEntryUserRelForAccountEntryTypeBusiness()
 		throws Exception {
 
 		AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(
@@ -72,7 +72,9 @@ public class AccountEntryUserRelModelListenerTest {
 	}
 
 	@Test(expected = ModelListenerException.class)
-	public void testAccountEntryMembershipPolicyTypePerson() throws Exception {
+	public void testAddAccountEntryUserRelForAccountEntryTypePersonal()
+		throws Exception {
+
 		AccountEntry accountEntry =
 			AccountEntryTestUtil.addPersonalAccountEntry(
 				_accountEntryLocalService);
