@@ -38,24 +38,24 @@ public class PortalCacheContentPageEditorListener
 
 	@Override
 	public void onAddFragmentEntryLink(FragmentEntryLink fragmentEntryLink) {
-		_removeCacheEntries(fragmentEntryLink);
+		_clearCache(fragmentEntryLink);
 	}
 
 	@Override
 	public void onDeleteFragmentEntryLink(FragmentEntryLink fragmentEntryLink) {
-		_removeCacheEntries(fragmentEntryLink);
+		_clearCache(fragmentEntryLink);
 	}
 
 	@Override
 	public void onUpdateFragmentEntryLink(FragmentEntryLink fragmentEntryLink) {
-		_removeCacheEntries(fragmentEntryLink);
+		_clearCache(fragmentEntryLink);
 	}
 
 	@Override
 	public void onUpdateFragmentEntryLinkConfigurationValues(
 		FragmentEntryLink fragmentEntryLink) {
 
-		_removeCacheEntries(fragmentEntryLink);
+		_clearCache(fragmentEntryLink);
 	}
 
 	@Activate
@@ -64,7 +64,7 @@ public class PortalCacheContentPageEditorListener
 			FragmentEntryLink.class.getName());
 	}
 
-	private void _removeCacheEntries(FragmentEntryLink fragmentEntryLink) {
+	private void _clearCache(FragmentEntryLink fragmentEntryLink) {
 		Set<Locale> availableLocales = LanguageUtil.getAvailableLocales(
 			fragmentEntryLink.getGroupId());
 
