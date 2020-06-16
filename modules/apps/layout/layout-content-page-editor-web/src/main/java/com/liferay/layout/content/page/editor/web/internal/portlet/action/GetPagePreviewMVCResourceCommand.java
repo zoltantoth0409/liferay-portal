@@ -78,9 +78,9 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest.getAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS),
 			new long[] {SegmentsExperienceConstants.ID_DEFAULT});
-		User currentUser = (User)resourceRequest.getAttribute(WebKeys.USER);
 		boolean currentPortletDecorate = GetterUtil.getBoolean(
 			resourceRequest.getAttribute(WebKeys.PORTLET_DECORATE));
+		User currentUser = (User)resourceRequest.getAttribute(WebKeys.USER);
 
 		try {
 			long segmentsExperienceId = ParamUtil.getLong(
@@ -140,7 +140,6 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest.setAttribute(
 				SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
 				currentSegmentsExperienceIds);
-
 			resourceRequest.setAttribute(
 				WebKeys.PORTLET_DECORATE, currentPortletDecorate);
 
