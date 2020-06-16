@@ -315,8 +315,7 @@ public class RESTBuilder {
 				validationErrorMessages, StringPool.NEW_LINE);
 
 			throw new RuntimeException(
-				"OpenAPI validation errors found: \n" +
-					validationErrorMessagesString);
+				"OpenAPI validation errors:\n" + validationErrorMessagesString);
 		}
 
 		FileUtil.deleteFiles(_configYAML.getApiDir(), _files);
