@@ -177,9 +177,9 @@ public class RESTBuilder {
 			_createClientUnsafeSupplierFile(context);
 		}
 
-		File[] files = FileUtil.getFiles(_configDir, "rest-openapi", ".yaml");
-
 		List<String> validationErrorMessages = new ArrayList<>();
+
+		File[] files = FileUtil.getFiles(_configDir, "rest-openapi", ".yaml");
 
 		for (File file : files) {
 			try {
@@ -311,11 +311,12 @@ public class RESTBuilder {
 		}
 
 		if (!validationErrorMessages.isEmpty()) {
-			String validationErrors = StringUtil.merge(
+			String validationErrorMessagesString = StringUtil.merge(
 				validationErrorMessages, StringPool.NEW_LINE);
 
 			throw new RuntimeException(
-				"OpenAPI validation errors found: \n" + validationErrors);
+				"OpenAPI validation errors found: \n" +
+					validationErrorMessagesString);
 		}
 
 		FileUtil.deleteFiles(_configYAML.getApiDir(), _files);
