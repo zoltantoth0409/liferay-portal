@@ -27,8 +27,6 @@ if (groupIds.length == 1) {
 
 	currentPermissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 }
-
-String selectEventName = ParamUtil.getString(request, "selectEventName");
 %>
 
 <liferay-ui:header
@@ -133,6 +131,11 @@ String selectEventName = ParamUtil.getString(request, "selectEventName");
 <aui:script>
 	window['<portlet:namespace />setPermissions'] = function (uri) {
 		Liferay.Util.getOpener().Liferay.fire(
+
+			<%
+			String selectEventName = ParamUtil.getString(request, "selectEventName");
+			%>
+
 			'<%= HtmlUtil.escape(selectEventName) %>',
 			{
 				uri: uri,

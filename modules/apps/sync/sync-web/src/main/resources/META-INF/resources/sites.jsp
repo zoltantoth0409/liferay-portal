@@ -251,8 +251,8 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				%>
 
 				<portlet:renderURL var="editSitesDefaultFilePermissionsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="groupIds" value="{groupIds}" />
 					<portlet:param name="mvcPath" value="/edit_default_file_permissions.jsp" />
+					<portlet:param name="groupIds" value="{groupIds}" />
 					<portlet:param name="selectEventName" value="<%= selectEventName %>" />
 				</portlet:renderURL>
 
