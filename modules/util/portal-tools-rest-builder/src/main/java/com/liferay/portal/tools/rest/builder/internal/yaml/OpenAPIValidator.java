@@ -26,13 +26,13 @@ import org.yaml.snakeyaml.Yaml;
 public class OpenAPIValidator {
 
 	public static void validate(
-			String fileName, String openAPIYAMLString, Yaml openAPIYAML)
+			String fileName, String openAPIYAMLString, Yaml yaml)
 		throws OpenAPIValidatorException {
 
-		OpenAPIYAML openAPI = openAPIYAML.loadAs(
+		OpenAPIYAML openAPIYAML = yaml.loadAs(
 			openAPIYAMLString, OpenAPIYAML.class);
 
-		Info info = openAPI.getInfo();
+		Info info = openAPIYAML.getInfo();
 
 		if (info.getVersion() == null) {
 			throw new OpenAPIValidatorException(
