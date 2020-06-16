@@ -424,6 +424,14 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 
 		uidFactory.setUID(journalArticle, document);
 
+		String articleId = journalArticle.getArticleId();
+
+		if (journalArticle.isInTrash()) {
+			articleId = _trashHelper.getOriginalTitle(articleId);
+		}
+
+		document.addKeywordSortable(Field.ARTICLE_ID, articleId);
+
 		Localization localization = getLocalization();
 
 		String[] contentAvailableLanguageIds =
@@ -455,6 +463,12 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 				description);
 		}
 
+		document.addDate(Field.DISPLAY_DATE, journalArticle.getDisplayDate());
+		document.addDate(
+			Field.EXPIRATION_DATE, journalArticle.getExpirationDate());
+		document.addKeyword(Field.FOLDER_ID, journalArticle.getFolderId());
+		document.addKeyword(Field.LAYOUT_UUID, journalArticle.getLayoutUuid());
+
 		String[] titleAvailableLanguageIds =
 			localization.getAvailableLanguageIds(
 				journalArticle.getTitleMapAsXML());
@@ -466,28 +480,8 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 				localization.getLocalizedName(
 					Field.TITLE, titleAvailableLanguageId),
 				title);
-
-			document.addKeywordSortable(
-				localization.getLocalizedName(
-					"urlTitle", titleAvailableLanguageId),
-				journalArticle.getUrlTitle(
-					LocaleUtil.fromLanguageId(titleAvailableLanguageId)));
 		}
 
-		document.addKeyword(Field.FOLDER_ID, journalArticle.getFolderId());
-
-		String articleId = journalArticle.getArticleId();
-
-		if (journalArticle.isInTrash()) {
-			articleId = _trashHelper.getOriginalTitle(articleId);
-		}
-
-		document.addKeywordSortable(Field.ARTICLE_ID, articleId);
-
-		document.addDate(Field.DISPLAY_DATE, journalArticle.getDisplayDate());
-		document.addDate(
-			Field.EXPIRATION_DATE, journalArticle.getExpirationDate());
-		document.addKeyword(Field.LAYOUT_UUID, journalArticle.getLayoutUuid());
 		document.addKeyword(
 			Field.TREE_PATH,
 			StringUtil.split(journalArticle.getTreePath(), CharPool.SLASH));
@@ -522,6 +516,14 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 			if (!visible) {
 				document.addKeyword("visible", true);
 			}
+		}
+
+		for (String titleAvailableLanguageId : titleAvailableLanguageIds) {
+			document.addKeywordSortable(
+				localization.getLocalizedName(
+					"urlTitle", titleAvailableLanguageId),
+				journalArticle.getUrlTitle(
+					LocaleUtil.fromLanguageId(titleAvailableLanguageId)));
 		}
 
 		addDDMStructureAttributes(document, journalArticle);
