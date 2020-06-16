@@ -305,7 +305,15 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 		UnicodeProperties unicodeProperties = new UnicodeProperties(true);
 
 		if (navigationMenuItem.getLink() != null) {
+			unicodeProperties.setProperty(
+				"defaultLanguageId",
+				LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
+
 			Layout layout = _getLayout(navigationMenuItem.getLink(), siteId);
+
+			unicodeProperties.setProperty(
+				"groupId", String.valueOf(layout.getGroupId()));
+			unicodeProperties.setProperty("layoutUuid", layout.getUuid());
 
 			Map<Locale, String> nameMap = LocalizedMapUtil.getLocalizedMap(
 				contextAcceptLanguage.getPreferredLocale(),
@@ -314,19 +322,12 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 				_getLocalizedNamesFromProperties(
 					_getUnicodeProperties(siteNavigationMenuItem)));
 
-			unicodeProperties.setProperty(
-				"defaultLanguageId",
-				LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
-
 			for (Map.Entry<Locale, String> entry : nameMap.entrySet()) {
 				unicodeProperties.setProperty(
 					"name_" + LocaleUtil.toLanguageId(entry.getKey()),
 					nameMap.get(entry.getKey()));
 			}
 
-			unicodeProperties.setProperty(
-				"groupId", String.valueOf(layout.getGroupId()));
-			unicodeProperties.setProperty("layoutUuid", layout.getUuid());
 			unicodeProperties.setProperty(
 				"privateLayout", String.valueOf(layout.isPrivateLayout()));
 		}
@@ -436,10 +437,10 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 		SiteNavigationMenuItem siteNavigationMenuItem,
 		Map<Long, List<SiteNavigationMenuItem>> siteNavigationMenuItemsMap) {
 
+		Layout layout = _getLayout(siteNavigationMenuItem);
+
 		UnicodeProperties unicodeProperties = _getUnicodeProperties(
 			siteNavigationMenuItem);
-
-		Layout layout = _getLayout(siteNavigationMenuItem);
 
 		Map<Locale, String> localizedMap = _getLocalizedNamesFromProperties(
 			unicodeProperties);
