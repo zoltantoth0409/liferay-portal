@@ -73,7 +73,15 @@ public class AccountGroupLocalServiceTest {
 
 	@Test
 	public void testSearchAccountGroups() throws Exception {
-		_addAccountGroups();
+		int size = 5;
+
+		long[] accountGroupIds = new long[size];
+
+		for (int i = 0; i < size; i++) {
+			AccountGroup accountGroup = _addAccountGroup();
+
+			accountGroupIds[i] = accountGroup.getAccountGroupId();
+		}
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
 			_accountGroupLocalService.searchAccountGroups(
@@ -124,18 +132,6 @@ public class AccountGroupLocalServiceTest {
 
 		return AccountGroupTestUtil.addAccountGroup(
 			_accountGroupLocalService, name, description);
-	}
-
-	private void _addAccountGroups() throws Exception {
-		int size = 5;
-
-		long[] accountGroupIds = new long[size];
-
-		for (int i = 0; i < size; i++) {
-			AccountGroup accountGroup = _addAccountGroup();
-
-			accountGroupIds[i] = accountGroup.getAccountGroupId();
-		}
 	}
 
 	private void _assertPaginationSort(
