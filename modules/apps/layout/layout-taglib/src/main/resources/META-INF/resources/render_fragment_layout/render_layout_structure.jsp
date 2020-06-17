@@ -118,19 +118,19 @@ for (String childrenItemId : childrenItemIds) {
 
 			String backgroundImage = renderFragmentLayoutDisplayContext.getBackgroundImage(containerLayoutStructureItem.getBackgroundImageJSONObject());
 
-			StringBundler classSB = new StringBundler();
+			StringBundler cssClassSB = new StringBundler();
 			StringBundler styleSB = new StringBundler();
 
 			styleSB.append("box-sizing: border-box;");
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getAlign())) {
-				classSB.append(" ");
-				classSB.append(containerLayoutStructureItem.getAlign());
+				cssClassSB.append(" ");
+				cssClassSB.append(containerLayoutStructureItem.getAlign());
 			}
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getBackgroundColorCssClass())) {
-				classSB.append(" bg-");
-				classSB.append(containerLayoutStructureItem.getBackgroundColorCssClass());
+				cssClassSB.append(" bg-");
+				cssClassSB.append(containerLayoutStructureItem.getBackgroundColorCssClass());
 			}
 
 			if (Validator.isNotNull(backgroundImage)) {
@@ -140,13 +140,13 @@ for (String childrenItemId : childrenItemIds) {
 			}
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getBorderColor())) {
-				classSB.append(" border-");
-				classSB.append(containerLayoutStructureItem.getBorderColor());
+				cssClassSB.append(" border-");
+				cssClassSB.append(containerLayoutStructureItem.getBorderColor());
 			}
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getBorderRadius())) {
-				classSB.append(" ");
-				classSB.append(containerLayoutStructureItem.getBorderRadius());
+				cssClassSB.append(" ");
+				cssClassSB.append(containerLayoutStructureItem.getBorderRadius());
 			}
 
 			if (containerLayoutStructureItem.getBorderWidth() != -1L) {
@@ -156,36 +156,36 @@ for (String childrenItemId : childrenItemIds) {
 			}
 
 			if (Objects.equals(containerLayoutStructureItem.getContentDisplay(), "block")) {
-				classSB.append(" d-block");
+				cssClassSB.append(" d-block");
 			}
 
 			if (Objects.equals(containerLayoutStructureItem.getContentDisplay(), "flex")) {
-				classSB.append(" d-flex");
+				cssClassSB.append(" d-flex");
 			}
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getJustify())) {
-				classSB.append(" ");
-				classSB.append(containerLayoutStructureItem.getJustify());
+				cssClassSB.append(" ");
+				cssClassSB.append(containerLayoutStructureItem.getJustify());
 			}
 
 			if (containerLayoutStructureItem.getMarginBottom() != -1L) {
-				classSB.append(" mb-");
-				classSB.append(containerLayoutStructureItem.getMarginBottom());
+				cssClassSB.append(" mb-");
+				cssClassSB.append(containerLayoutStructureItem.getMarginBottom());
 			}
 
 			if (containerLayoutStructureItem.getMarginLeft() != -1L) {
-				classSB.append(" ml-");
-				classSB.append(containerLayoutStructureItem.getMarginLeft());
+				cssClassSB.append(" ml-");
+				cssClassSB.append(containerLayoutStructureItem.getMarginLeft());
 			}
 
 			if (containerLayoutStructureItem.getMarginRight() != -1L) {
-				classSB.append(" mr-");
-				classSB.append(containerLayoutStructureItem.getMarginRight());
+				cssClassSB.append(" mr-");
+				cssClassSB.append(containerLayoutStructureItem.getMarginRight());
 			}
 
 			if (containerLayoutStructureItem.getMarginTop() != -1L) {
-				classSB.append(" mt-");
-				classSB.append(containerLayoutStructureItem.getMarginTop());
+				cssClassSB.append(" mt-");
+				cssClassSB.append(containerLayoutStructureItem.getMarginTop());
 			}
 
 			if (containerLayoutStructureItem.getOpacity() != -1L) {
@@ -195,36 +195,36 @@ for (String childrenItemId : childrenItemIds) {
 			}
 
 			if (containerLayoutStructureItem.getPaddingBottom() != -1L) {
-				classSB.append(" pb-");
-				classSB.append(containerLayoutStructureItem.getPaddingBottom());
+				cssClassSB.append(" pb-");
+				cssClassSB.append(containerLayoutStructureItem.getPaddingBottom());
 			}
 
 			if (containerLayoutStructureItem.getPaddingLeft() != -1L) {
-				classSB.append(" pl-");
-				classSB.append(containerLayoutStructureItem.getPaddingLeft());
+				cssClassSB.append(" pl-");
+				cssClassSB.append(containerLayoutStructureItem.getPaddingLeft());
 			}
 
 			if (containerLayoutStructureItem.getPaddingRight() != -1L) {
-				classSB.append(" pr-");
-				classSB.append(containerLayoutStructureItem.getPaddingRight());
+				cssClassSB.append(" pr-");
+				cssClassSB.append(containerLayoutStructureItem.getPaddingRight());
 			}
 
 			if (containerLayoutStructureItem.getPaddingTop() != -1L) {
-				classSB.append(" pt-");
-				classSB.append(containerLayoutStructureItem.getPaddingTop());
+				cssClassSB.append(" pt-");
+				cssClassSB.append(containerLayoutStructureItem.getPaddingTop());
 			}
 
 			if (Validator.isNotNull(containerLayoutStructureItem.getShadow())) {
-				classSB.append(" ");
-				classSB.append(containerLayoutStructureItem.getShadow());
+				cssClassSB.append(" ");
+				cssClassSB.append(containerLayoutStructureItem.getShadow());
 			}
 
 			if (Objects.equals(containerLayoutStructureItem.getWidthType(), "fixed")) {
-				classSB.append(" container");
+				cssClassSB.append(" container");
 			}
 			%>
 
-			<div class="<%= classSB.toString() %>" style="<%= styleSB.toString() %>">
+			<div class="<%= cssClassSB.toString() %>" style="<%= styleSB.toString() %>">
 
 				<%
 				request.setAttribute("render_layout_structure.jsp-childrenItemIds", layoutStructureItem.getChildrenItemIds());
