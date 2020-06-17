@@ -156,13 +156,13 @@ public class FragmentEntryLocalServiceImpl
 		draftFragmentEntry.setStatusByUserName(user.getFullName());
 		draftFragmentEntry.setStatusDate(new Date());
 
-		FragmentEntry savedDraftFragmentEntry = updateDraft(draftFragmentEntry);
+		FragmentEntry updatedDraftFragmentEntry = updateDraft(draftFragmentEntry);
 
 		if (WorkflowConstants.STATUS_APPROVED == status) {
-			return publishDraft(savedDraftFragmentEntry);
+			return publishDraft(updatedDraftFragmentEntry);
 		}
 
-		return savedDraftFragmentEntry;
+		return updatedDraftFragmentEntry;
 	}
 
 	@Override
