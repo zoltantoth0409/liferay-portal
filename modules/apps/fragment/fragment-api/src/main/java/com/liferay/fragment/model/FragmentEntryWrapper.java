@@ -234,8 +234,8 @@ public class FragmentEntryWrapper
 	}
 
 	@Override
-	public FragmentEntry fetchDraft() {
-		return model.fetchDraft();
+	public FragmentEntry fetchDraftFragmentEntry() {
+		return model.fetchDraftFragmentEntry();
 	}
 
 	/**
