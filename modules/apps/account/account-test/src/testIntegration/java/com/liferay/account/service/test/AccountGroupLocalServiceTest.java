@@ -120,8 +120,16 @@ public class AccountGroupLocalServiceTest {
 			_addAccountGroup(RandomTestUtil.randomString(), keywords),
 			_addAccountGroup(RandomTestUtil.randomString(), keywords));
 
-		_assertPaginationSort(expectedAccountGroups, keywords, false);
-		_assertPaginationSort(expectedAccountGroups, keywords, true);
+		Comparator<AccountGroup> comparator =
+			(accountGroup1, accountGroup2) -> {
+				String name1 = accountGroup1.getName();
+				String name2 = accountGroup2.getName();
+
+				return name1.compareToIgnoreCase(name2);
+			};
+
+		_assertPaginationSort(comparator, expectedAccountGroups, keywords, false);
+		_assertPaginationSort(comparator, expectedAccountGroups, keywords, true);
 	}
 
 	private AccountGroup _addAccountGroup() throws Exception {
@@ -138,18 +146,18 @@ public class AccountGroupLocalServiceTest {
 	}
 
 	private void _assertPaginationSort(
-			List<AccountGroup> expectedAccountGroups, String keywords,
-			boolean reversed)
+			Comparator<AccountGroup> comparator,
+			List<AccountGroup> expectedAccountGroups, String keywords, boolean reversed)
 		throws Exception {
 
 		int delta = 3;
 		int start = 1;
 
 		if (reversed) {
-			expectedAccountGroups.sort(_accountGroupNameComparator.reversed());
+			expectedAccountGroups.sort(comparator.reversed());
 		}
 		else {
-			expectedAccountGroups.sort(_accountGroupNameComparator);
+			expectedAccountGroups.sort(comparator);
 		}
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
@@ -182,14 +190,6 @@ public class AccountGroupLocalServiceTest {
 			_accountGroupLocalService.fetchAccountGroup(
 				accountGroup.getAccountGroupId()));
 	}
-
-	private static final Comparator<AccountGroup> _accountGroupNameComparator =
-		(accountGroup1, accountGroup2) -> {
-			String name1 = accountGroup1.getName();
-			String name2 = accountGroup2.getName();
-
-			return name1.compareToIgnoreCase(name2);
-		};
 
 	@Inject
 	private AccountGroupLocalService _accountGroupLocalService;
