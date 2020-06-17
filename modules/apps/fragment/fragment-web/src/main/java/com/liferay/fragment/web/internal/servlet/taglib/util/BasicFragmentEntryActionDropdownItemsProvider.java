@@ -264,7 +264,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 			fragmentEntry = _fragmentEntry;
 		}
 
-		final FragmentEntry editFragmentEntry = fragmentEntry;
+		FragmentEntry editFragmentEntry = fragmentEntry;
 
 		return dropdownItem -> {
 			dropdownItem.setHref(
