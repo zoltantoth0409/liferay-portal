@@ -109,7 +109,7 @@ public class BasicFragmentEntryVerticalCard extends FragmentEntryVerticalCard {
 	@Override
 	public List<LabelItem> getLabels() {
 		if (fragmentEntry.isApproved() &&
-			(fragmentEntry.fetchDraft() != null)) {
+			(fragmentEntry.fetchDraftFragmentEntry() != null)) {
 
 			return LabelItemListBuilder.add(
 				labelItem -> labelItem.setStatus(

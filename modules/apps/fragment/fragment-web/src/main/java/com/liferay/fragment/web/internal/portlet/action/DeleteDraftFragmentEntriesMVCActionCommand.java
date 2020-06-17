@@ -62,7 +62,8 @@ public class DeleteDraftFragmentEntriesMVCActionCommand
 				fragmentEntry.getFragmentEntryId());
 		}
 		else {
-			FragmentEntry draftFragmentEntry = fragmentEntry.fetchDraft();
+			FragmentEntry draftFragmentEntry =
+				fragmentEntry.fetchDraftFragmentEntry();
 
 			if (draftFragmentEntry != null) {
 				_fragmentEntryService.deleteFragmentEntry(

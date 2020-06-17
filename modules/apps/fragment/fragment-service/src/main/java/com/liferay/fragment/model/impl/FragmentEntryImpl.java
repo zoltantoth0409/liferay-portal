@@ -40,7 +40,7 @@ import com.liferay.portal.kernel.zip.ZipWriter;
  */
 public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 
-	public FragmentEntry fetchDraft() {
+	public FragmentEntry fetchDraftFragmentEntry() {
 		if (isDraft()) {
 			return null;
 		}

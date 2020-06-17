@@ -203,7 +203,8 @@ public class FragmentEntryLocalServiceImpl
 		else {
 			publishedFragmentEntry = fragmentEntry;
 
-			draftFragmentEntry = publishedFragmentEntry.fetchDraft();
+			draftFragmentEntry =
+				publishedFragmentEntry.fetchDraftFragmentEntry();
 		}
 
 		StringBundler sb = new StringBundler(5);

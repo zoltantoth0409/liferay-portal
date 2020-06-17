@@ -133,7 +133,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 				hasManageFragmentEntriesPermission &&
 				!_fragmentEntry.isReadOnly() &&
 				(_fragmentEntry.isDraft() ||
-				 (_fragmentEntry.fetchDraft() != null)),
+				 (_fragmentEntry.fetchDraftFragmentEntry() != null)),
 			_getDeleteDraftFragmentEntryActionUnsafeConsumer()
 		).build();
 	}
@@ -257,7 +257,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 			fragmentEntry = _fragmentEntry;
 		}
 		else {
-			fragmentEntry = _fragmentEntry.fetchDraft();
+			fragmentEntry = _fragmentEntry.fetchDraftFragmentEntry();
 		}
 
 		if (fragmentEntry == null) {
