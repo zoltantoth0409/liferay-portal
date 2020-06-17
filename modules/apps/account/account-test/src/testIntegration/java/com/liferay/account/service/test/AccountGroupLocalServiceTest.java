@@ -94,7 +94,10 @@ public class AccountGroupLocalServiceTest {
 			_addAccountGroup(keywords, RandomTestUtil.randomString()),
 			_addAccountGroup(RandomTestUtil.randomString(), keywords));
 
-		baseModelSearchResult = _searchAccountGroups(keywords);
+		baseModelSearchResult = _accountGroupLocalService.searchAccountGroups(
+			TestPropsValues.getCompanyId(), keywords, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
@@ -103,7 +106,9 @@ public class AccountGroupLocalServiceTest {
 				TestPropsValues.getCompanyId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		baseModelSearchResult = _searchAccountGroups(null);
+		baseModelSearchResult = _accountGroupLocalService.searchAccountGroups(
+			TestPropsValues.getCompanyId(), null, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
@@ -164,14 +169,6 @@ public class AccountGroupLocalServiceTest {
 				expectedAccountGroups.get(start + i),
 				actualAccountGroups.get(i));
 		}
-	}
-
-	private BaseModelSearchResult<AccountGroup> _searchAccountGroups(String keywords)
-		throws Exception {
-
-		return _accountGroupLocalService.searchAccountGroups(
-			TestPropsValues.getCompanyId(), keywords, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
 	}
 
 	private void _testDeleteAccountGroup(
