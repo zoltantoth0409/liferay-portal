@@ -144,7 +144,7 @@ public class AccountGroupLocalServiceTest {
 			_accountGroupLocalService, name, description);
 	}
 
-	private long[] _addAccountGroups() throws Exception {
+	private void _addAccountGroups() throws Exception {
 		int size = 5;
 
 		long[] accountGroupIds = new long[size];
@@ -154,8 +154,6 @@ public class AccountGroupLocalServiceTest {
 
 			accountGroupIds[i] = accountGroup.getAccountGroupId();
 		}
-
-		return accountGroupIds;
 	}
 
 	private void _assertPaginationSort(
