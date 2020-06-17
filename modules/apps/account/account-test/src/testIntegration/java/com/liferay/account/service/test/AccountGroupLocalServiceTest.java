@@ -128,8 +128,8 @@ public class AccountGroupLocalServiceTest {
 				return name1.compareToIgnoreCase(name2);
 			};
 
-		_assertPaginationSort(comparator, expectedAccountGroups, keywords, false);
-		_assertPaginationSort(comparator, expectedAccountGroups, keywords, true);
+		_testSearchAccountGroups(comparator, expectedAccountGroups, keywords, false);
+		_testSearchAccountGroups(comparator, expectedAccountGroups, keywords, true);
 	}
 
 	private AccountGroup _addAccountGroup() throws Exception {
@@ -145,7 +145,7 @@ public class AccountGroupLocalServiceTest {
 			_accountGroupLocalService, name, description);
 	}
 
-	private void _assertPaginationSort(
+	private void _testSearchAccountGroups(
 			Comparator<AccountGroup> comparator,
 			List<AccountGroup> expectedAccountGroups, String keywords, boolean reversed)
 		throws Exception {
