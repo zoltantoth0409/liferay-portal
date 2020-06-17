@@ -73,11 +73,9 @@ public class AccountGroupLocalServiceTest {
 
 	@Test
 	public void testSearchAccountGroups() throws Exception {
-		int size = 5;
+		long[] accountGroupIds = new long[5];
 
-		long[] accountGroupIds = new long[size];
-
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < accountGroupIds.length; i++) {
 			AccountGroup accountGroup = _addAccountGroup();
 
 			accountGroupIds[i] = accountGroup.getAccountGroupId();
