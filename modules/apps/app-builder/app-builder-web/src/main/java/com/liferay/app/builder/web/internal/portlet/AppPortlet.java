@@ -61,7 +61,7 @@ public class AppPortlet extends MVCPortlet {
 
 		Bundle bundle = FrameworkUtil.getBundle(AppPortlet.class);
 
-		_appBuilderAppPortletTabTrackerMap =
+		_appBuilderAppPortletTabServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundle.getBundleContext(), AppBuilderAppPortletTab.class,
 				"app.builder.app.tab.name");
@@ -112,7 +112,7 @@ public class AppPortlet extends MVCPortlet {
 			AppBuilderWebKeys.APP_DEPLOYMENT_TYPE, _appDeploymentType);
 
 		AppBuilderAppPortletTab appBuilderAppPortletTab =
-			_appBuilderAppPortletTabTrackerMap.getService(
+			_appBuilderAppPortletTabServiceTrackerMap.getService(
 				_appBuilderApp.getScope());
 
 		renderRequest.setAttribute(
@@ -135,7 +135,7 @@ public class AppPortlet extends MVCPortlet {
 
 	private final AppBuilderApp _appBuilderApp;
 	private final ServiceTrackerMap<String, AppBuilderAppPortletTab>
-		_appBuilderAppPortletTabTrackerMap;
+		_appBuilderAppPortletTabServiceTrackerMap;
 	private final String _appDeploymentType;
 	private final String _appName;
 	private final String _portletName;
