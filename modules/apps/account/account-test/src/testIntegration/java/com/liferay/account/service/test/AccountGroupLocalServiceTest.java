@@ -72,7 +72,7 @@ public class AccountGroupLocalServiceTest {
 	}
 
 	@Test
-	public void testSearchByCompanyId() throws Exception {
+	public void testSearchAccountGroups() throws Exception {
 		_addAccountGroups();
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
@@ -81,11 +81,6 @@ public class AccountGroupLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(5, baseModelSearchResult.getLength());
-	}
-
-	@Test
-	public void testSearchKeywords() throws Exception {
-		_addAccountGroups();
 
 		String keywords = RandomTestUtil.randomString();
 
@@ -93,34 +88,21 @@ public class AccountGroupLocalServiceTest {
 			_addAccountGroup(keywords, RandomTestUtil.randomString()),
 			_addAccountGroup(RandomTestUtil.randomString(), keywords));
 
-		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			_searchAccountGroups(keywords);
+		baseModelSearchResult = _searchAccountGroups(keywords);
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
-	}
 
-	@Test
-	public void testSearchNoKeywords() throws Exception {
-		_addAccountGroups();
-
-		List<AccountGroup> expectedAccountGroups =
-			_accountGroupLocalService.getAccountGroups(
+		expectedAccountGroups = _accountGroupLocalService.getAccountGroups(
 				TestPropsValues.getCompanyId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			_searchAccountGroups(null);
+		baseModelSearchResult = _searchAccountGroups(null);
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
-	}
 
-	@Test
-	public void testSearchPagination() throws Exception {
-		String keywords = RandomTestUtil.randomString();
-
-		List<AccountGroup> expectedAccountGroups = Arrays.asList(
+		expectedAccountGroups = Arrays.asList(
 			_addAccountGroup(RandomTestUtil.randomString(), keywords),
 			_addAccountGroup(RandomTestUtil.randomString(), keywords),
 			_addAccountGroup(RandomTestUtil.randomString(), keywords),
