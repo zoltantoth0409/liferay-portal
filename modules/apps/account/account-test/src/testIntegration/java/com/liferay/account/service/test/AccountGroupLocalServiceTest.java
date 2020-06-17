@@ -98,13 +98,12 @@ public class AccountGroupLocalServiceTest {
 			TestPropsValues.getCompanyId(), keywords, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 
-
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
 
 		expectedAccountGroups = _accountGroupLocalService.getAccountGroups(
-				TestPropsValues.getCompanyId(), QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null);
+			TestPropsValues.getCompanyId(), QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 
 		baseModelSearchResult = _accountGroupLocalService.searchAccountGroups(
 			TestPropsValues.getCompanyId(), null, QueryUtil.ALL_POS,
@@ -128,8 +127,10 @@ public class AccountGroupLocalServiceTest {
 				return name1.compareToIgnoreCase(name2);
 			};
 
-		_testSearchAccountGroups(comparator, expectedAccountGroups, keywords, false);
-		_testSearchAccountGroups(comparator, expectedAccountGroups, keywords, true);
+		_testSearchAccountGroups(
+			comparator, expectedAccountGroups, keywords, false);
+		_testSearchAccountGroups(
+			comparator, expectedAccountGroups, keywords, true);
 	}
 
 	private AccountGroup _addAccountGroup() throws Exception {
@@ -145,9 +146,22 @@ public class AccountGroupLocalServiceTest {
 			_accountGroupLocalService, name, description);
 	}
 
+	private void _testDeleteAccountGroup(
+			AccountGroup accountGroup,
+			UnsafeConsumer<AccountGroup, Exception> unsafeConsumer)
+		throws Exception {
+
+		unsafeConsumer.accept(accountGroup);
+
+		Assert.assertNull(
+			_accountGroupLocalService.fetchAccountGroup(
+				accountGroup.getAccountGroupId()));
+	}
+
 	private void _testSearchAccountGroups(
 			Comparator<AccountGroup> comparator,
-			List<AccountGroup> expectedAccountGroups, String keywords, boolean reversed)
+			List<AccountGroup> expectedAccountGroups, String keywords,
+			boolean reversed)
 		throws Exception {
 
 		int delta = 3;
@@ -177,18 +191,6 @@ public class AccountGroupLocalServiceTest {
 				expectedAccountGroups.get(start + i),
 				actualAccountGroups.get(i));
 		}
-	}
-
-	private void _testDeleteAccountGroup(
-			AccountGroup accountGroup,
-			UnsafeConsumer<AccountGroup, Exception> unsafeConsumer)
-		throws Exception {
-
-		unsafeConsumer.accept(accountGroup);
-
-		Assert.assertNull(
-			_accountGroupLocalService.fetchAccountGroup(
-				accountGroup.getAccountGroupId()));
 	}
 
 	@Inject
