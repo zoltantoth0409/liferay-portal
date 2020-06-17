@@ -153,13 +153,6 @@ public class AccountGroupLocalServiceTest {
 		int delta = 3;
 		int start = 1;
 
-		if (reversed) {
-			expectedAccountGroups.sort(comparator.reversed());
-		}
-		else {
-			expectedAccountGroups.sort(comparator);
-		}
-
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
 			_accountGroupLocalService.searchAccountGroups(
 				TestPropsValues.getCompanyId(), keywords, start, start + delta,
@@ -171,6 +164,13 @@ public class AccountGroupLocalServiceTest {
 
 		Assert.assertEquals(
 			actualAccountGroups.toString(), delta, actualAccountGroups.size());
+
+		if (reversed) {
+			expectedAccountGroups.sort(comparator.reversed());
+		}
+		else {
+			expectedAccountGroups.sort(comparator);
+		}
 
 		for (int i = 0; i < delta; i++) {
 			Assert.assertEquals(
