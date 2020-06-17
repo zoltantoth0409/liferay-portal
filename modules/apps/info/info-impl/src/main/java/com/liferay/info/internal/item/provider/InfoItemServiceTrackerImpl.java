@@ -81,9 +81,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 	}
 
 	@Override
-	public <P> P getInfoItemProviderByKey(
-		Class<P> serviceClass, String serviceKey) {
-
+	public <P> P getInfoItemProvider(Class<P> serviceClass, String serviceKey) {
 		if (Validator.isNull(serviceKey)) {
 			return null;
 		}
