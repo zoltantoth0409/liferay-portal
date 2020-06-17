@@ -103,9 +103,14 @@ public class ColumnLayoutStructureItemExporter
 
 		return new ViewportColumnConfigDefinition() {
 			{
-				if (jsonObject.has("size")) {
-					size = jsonObject.getInt("size");
-				}
+				setSize(
+					() -> {
+						if (!jsonObject.has("size")) {
+							return null;
+						}
+
+						return jsonObject.getInt("size");
+					});
 			}
 		};
 	}

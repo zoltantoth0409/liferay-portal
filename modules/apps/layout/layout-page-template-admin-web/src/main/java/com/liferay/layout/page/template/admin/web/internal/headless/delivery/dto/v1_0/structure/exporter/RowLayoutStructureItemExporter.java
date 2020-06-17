@@ -108,18 +108,30 @@ public class RowLayoutStructureItemExporter
 
 		return new ViewportRowConfigDefinition() {
 			{
-				if (jsonObject.has("modulesPerRow")) {
-					modulesPerRow = jsonObject.getInt("modulesPerRow");
-				}
+				setModulesPerRow(
+					() -> {
+						if (!jsonObject.has("modulesPerRow")) {
+							return null;
+						}
 
-				if (jsonObject.has("reverseOrder")) {
-					reverseOrder = jsonObject.getBoolean("reverseOrder");
-				}
+						return jsonObject.getInt("modulesPerRow");
+					});
+				setReverseOrder(
+					() -> {
+						if (!jsonObject.has("reverseOrder")) {
+							return null;
+						}
 
-				if (jsonObject.has("verticalAlignment")) {
-					verticalAlignment = jsonObject.getString(
-						"verticalAlignment");
-				}
+						return jsonObject.getBoolean("reverseOrder");
+					});
+				setVerticalAlignment(
+					() -> {
+						if (!jsonObject.has("verticalAlignment")) {
+							return null;
+						}
+
+						return jsonObject.getString("verticalAlignment");
+					});
 			}
 		};
 	}
