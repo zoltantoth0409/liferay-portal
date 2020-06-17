@@ -94,7 +94,7 @@ public class AccountGroupLocalServiceTest {
 			_addAccountGroup(RandomTestUtil.randomString(), keywords));
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			_keywordSearch(keywords);
+			_searchAccountGroups(keywords);
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
@@ -110,7 +110,7 @@ public class AccountGroupLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			_keywordSearch(null);
+			_searchAccountGroups(null);
 
 		Assert.assertEquals(
 			expectedAccountGroups.size(), baseModelSearchResult.getLength());
@@ -192,7 +192,7 @@ public class AccountGroupLocalServiceTest {
 		}
 	}
 
-	private BaseModelSearchResult<AccountGroup> _keywordSearch(String keywords)
+	private BaseModelSearchResult<AccountGroup> _searchAccountGroups(String keywords)
 		throws Exception {
 
 		return _accountGroupLocalService.searchAccountGroups(
