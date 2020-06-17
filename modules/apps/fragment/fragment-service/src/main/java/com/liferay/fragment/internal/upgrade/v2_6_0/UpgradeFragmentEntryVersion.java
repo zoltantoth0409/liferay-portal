@@ -40,7 +40,7 @@ public class UpgradeFragmentEntryVersion extends UpgradeProcess {
 		try (Statement s = connection.createStatement()) {
 			StringBundler sb = new StringBundler(17);
 
-			sb.append("insert into FragmentEntryVersion( ");
+			sb.append("insert into FragmentEntryVersion(");
 			sb.append("fragmentEntryVersionId, version, uuid_, ");
 			sb.append("fragmentEntryId, groupId, companyId, userId, ");
 			sb.append("userName, createDate, modifiedDate, ");
