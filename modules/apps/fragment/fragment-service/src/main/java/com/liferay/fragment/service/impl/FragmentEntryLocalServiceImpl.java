@@ -368,11 +368,12 @@ public class FragmentEntryLocalServiceImpl
 	public FragmentEntry fetchFragmentEntry(
 		long groupId, String fragmentEntryKey) {
 
-		List<FragmentEntry> list = fragmentEntryPersistence.findByG_FEK(
-			groupId, _getFragmentEntryKey(fragmentEntryKey));
+		List<FragmentEntry> fragmentEntries =
+			fragmentEntryPersistence.findByG_FEK(
+				groupId, _getFragmentEntryKey(fragmentEntryKey));
 
-		if (!list.isEmpty()) {
-			return list.get(0);
+		if (!fragmentEntries.isEmpty()) {
+			return fragmentEntries.get(0);
 		}
 
 		return null;
