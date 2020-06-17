@@ -53,6 +53,11 @@ public class AppPortlet extends MVCPortlet {
 		String portletName, boolean showFormView, boolean showTableView) {
 
 		_appBuilderApp = appBuilderApp;
+		_appDeploymentType = appDeploymentType;
+		_appName = appName;
+		_portletName = portletName;
+		_showFormView = showFormView;
+		_showTableView = showTableView;
 
 		Bundle bundle = FrameworkUtil.getBundle(AppPortlet.class);
 
@@ -61,11 +66,6 @@ public class AppPortlet extends MVCPortlet {
 				bundle.getBundleContext(), AppBuilderAppPortletTab.class,
 				"app.builder.app.tab.name");
 
-		_appDeploymentType = appDeploymentType;
-		_appName = appName;
-		_portletName = portletName;
-		_showFormView = showFormView;
-		_showTableView = showTableView;
 		_viewTemplate = showTableView ? "/view_entries.jsp" : "/edit_entry.jsp";
 	}
 
