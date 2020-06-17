@@ -109,11 +109,11 @@ public class GetPagePreviewMVCResourceCommand extends BaseMVCResourceCommand {
 
 			Layout layout = themeDisplay.getLayout();
 
+			layout.setClassNameId(0);
+
 			if (layout.isTypeAssetDisplay()) {
 				layout.setType(LayoutConstants.TYPE_CONTENT);
 			}
-
-			layout.setClassNameId(0);
 
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(resourceRequest);
