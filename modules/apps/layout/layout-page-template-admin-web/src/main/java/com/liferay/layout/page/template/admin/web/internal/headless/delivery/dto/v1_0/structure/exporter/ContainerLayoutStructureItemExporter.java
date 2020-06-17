@@ -151,7 +151,6 @@ public class ContainerLayoutStructureItemExporter
 
 										return borderColor;
 									});
-
 								setContentDisplay(
 									() -> {
 										String contentDisplay =
@@ -166,7 +165,6 @@ public class ContainerLayoutStructureItemExporter
 											StringUtil.upperCaseFirstLetter(
 												contentDisplay));
 									});
-
 								setWidthType(
 									() -> {
 										String widthType =
