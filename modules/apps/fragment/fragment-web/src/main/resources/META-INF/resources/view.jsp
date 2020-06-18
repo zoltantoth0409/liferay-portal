@@ -259,7 +259,7 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 					</h2>
 
 					<clay:sheet-section>
-						<c:if test="<%= fragmentDisplayContext.getNavigationItems().size() > 0 %>">
+						<c:if test="<%= !ListUtil.isEmpty(fragmentDisplayContext.getNavigationItems()) %>">
 							<clay:navigation-bar
 								navigationItems="<%= fragmentDisplayContext.getNavigationItems() %>"
 							/>
