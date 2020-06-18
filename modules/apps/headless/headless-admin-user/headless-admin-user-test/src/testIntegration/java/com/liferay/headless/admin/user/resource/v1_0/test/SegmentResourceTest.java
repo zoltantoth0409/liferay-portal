@@ -64,11 +64,9 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 
 		_adminUser = UserTestUtil.addGroupAdminUser(testGroup);
 
-		_password = RandomTestUtil.randomString();
-
 		_user = UserTestUtil.addUser(
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
-			_password,
+			RandomTestUtil.randomString(),
 			RandomTestUtil.randomString() + StringPool.AT + "liferay.com",
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
@@ -242,8 +240,6 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 
 	@DeleteAfterTestRun
 	private User _adminUser;
-
-	private String _password;
 
 	@DeleteAfterTestRun
 	private User _user;
