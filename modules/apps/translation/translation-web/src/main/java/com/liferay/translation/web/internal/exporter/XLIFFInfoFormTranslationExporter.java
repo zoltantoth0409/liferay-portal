@@ -203,7 +203,7 @@ public class XLIFFInfoFormTranslationExporter<T>
 
 		if (Validator.isNull(sourceLanguage) || (sourceLocale == null)) {
 			throw new InvalidXLIFFFileException(
-				"There is a lack of translation source ");
+				"There is no translation source");
 		}
 
 		String targetLanguage = startXliffData.getTargetLanguage();
@@ -213,7 +213,7 @@ public class XLIFFInfoFormTranslationExporter<T>
 
 		if (Validator.isNull(targetLanguage) || (targetLocale == null)) {
 			throw new InvalidXLIFFFileException(
-				"There is a lack of translation target ");
+				"There is no translation target");
 		}
 	}
 
@@ -235,7 +235,7 @@ public class XLIFFInfoFormTranslationExporter<T>
 		List<String> fileNodeIds = xliffDocument.getFileNodeIds();
 
 		if (fileNodeIds.size() != 1) {
-			throw new InvalidXLIFFFileException("Only one node allowed");
+			throw new InvalidXLIFFFileException("Only one node is allowed");
 		}
 
 		FileNode fileNode = xliffDocument.getFileNode(
@@ -243,7 +243,7 @@ public class XLIFFInfoFormTranslationExporter<T>
 				infoItemClassPKReference.getClassPK());
 
 		if (fileNode == null) {
-			throw new InvalidXLIFFFileException("File id not valid");
+			throw new InvalidXLIFFFileException("File ID is invalid");
 		}
 	}
 
