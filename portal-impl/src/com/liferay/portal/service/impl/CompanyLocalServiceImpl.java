@@ -1496,17 +1496,17 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (Validator.isNull(virtualHostname)) {
-			throw new CompanyVirtualHostException("Empty virtual host name");
+			throw new CompanyVirtualHostException("Virtual hostname is null");
 		}
 		else if (virtualHostname.equals(_DEFAULT_VIRTUAL_HOST) &&
 				 !webId.equals(PropsValues.COMPANY_DEFAULT_WEB_ID)) {
 
 			throw new CompanyVirtualHostException(
-				"Default virtual host name can not be reused");
+				"localhost can only be used for the default web ID " + webId);
 		}
 		else if (!Validator.isDomain(virtualHostname)) {
 			throw new CompanyVirtualHostException(
-				"Virtual host name should have a domain format");
+				"Virtual hostname is an invalid domain");
 		}
 		else {
 			try {
