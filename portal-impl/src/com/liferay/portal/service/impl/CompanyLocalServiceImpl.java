@@ -148,8 +148,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	/**
 	 * Adds a company.
 	 *
-	 * @param  companyId primary key (pass <code>null</code> or
-	 *         <code>0</code> to generate it automatically)
+	 * @param  companyId the primary key of the company (pass <code>null</code>
+	 *         or <code>0</code> to generate it automatically)
 	 * @param  webId the the company's web domain
 	 * @param  virtualHostname the company's virtual host name
 	 * @param  mx the company's mail domain
@@ -159,6 +159,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	 *         <code>0</code>)
 	 * @param  active whether the company is active
 	 * @return the company
+	 * @review
 	 */
 	@Override
 	public Company addCompany(
@@ -252,17 +253,18 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	/**
 	 * Adds a company.
 	 *
-	 * @param  webId the the company's web domain
-	 * @param  virtualHostname the company's virtual host name
-	 * @param  mx the company's mail domain
-	 * @param  system whether the company is the very first company (i.e., the
-	 *         super company)
-	 * @param  maxUsers the max number of company users (optionally
-	 *         <code>0</code>)
-	 * @param  active whether the company is active
-	 * @return the company
+	 * @param      webId the the company's web domain
+	 * @param      virtualHostname the company's virtual host name
+	 * @param      mx the company's mail domain
+	 * @param      system whether the company is the very first company (i.e.,
+	 *             the super company)
+	 * @param      maxUsers the max number of company users (optionally
+	 *             <code>0</code>)
+	 * @param      active whether the company is active
+	 * @return     the company
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 * #addCompany(Long, String, String, String, boolean, int, boolean)}
+	 *             #addCompany(Long, String, String, String, boolean, int,
+	 *             boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -944,7 +946,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	 * found in portal.properties.
 	 *
 	 * @param companyId the primary key of the company
-	 * @param unicodeProperties the company's properties. See {@link UnicodeProperties}
+	 * @param unicodeProperties the company's properties. See {@link
+	 *        UnicodeProperties}
 	 */
 	@Override
 	public void updatePreferences(
