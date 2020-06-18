@@ -50,8 +50,7 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 		_addAssetVocabulary(company, "stage");
 	}
 
-	private void _addAssetVocabulary(
-			Company company, String name)
+	private void _addAssetVocabulary(Company company, String name)
 		throws Exception {
 
 		AssetVocabulary assetVocabulary =
