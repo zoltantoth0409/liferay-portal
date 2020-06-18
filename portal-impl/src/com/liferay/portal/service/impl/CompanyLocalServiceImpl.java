@@ -1502,7 +1502,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 				 !webId.equals(PropsValues.COMPANY_DEFAULT_WEB_ID)) {
 
 			throw new CompanyVirtualHostException(
-				"localhost can only be used for the default web ID " + webId);
+				"localhost can only be used with the default web ID " + webId);
 		}
 		else if (!Validator.isDomain(virtualHostname)) {
 			throw new CompanyVirtualHostException(
