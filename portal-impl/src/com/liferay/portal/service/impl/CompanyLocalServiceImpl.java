@@ -1467,7 +1467,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (Validator.isNull(mx) || !Validator.isDomain(mx)) {
-			throw new CompanyMxException("Invalid domain: " + mx);
+			throw new CompanyMxException("Invalid domain " + mx);
 		}
 
 		String emailAddress =
@@ -1478,7 +1478,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		if (!emailAddressValidator.validate(companyId, emailAddress)) {
 			throw new CompanyMxException(
-				"Invalid email address: " + emailAddress);
+				"Invalid email address " + emailAddress);
 		}
 	}
 
@@ -1519,7 +1519,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 				if (!webId.equals(virtualHostnameCompany.getWebId())) {
 					throw new CompanyVirtualHostException(
-						"Duplicated virtual host name");
+						"Duplicate virtual hostname " + virtualHostname);
 				}
 			}
 			catch (NoSuchVirtualHostException noSuchVirtualHostException) {
