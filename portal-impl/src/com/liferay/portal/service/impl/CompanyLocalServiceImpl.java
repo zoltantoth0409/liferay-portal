@@ -1467,7 +1467,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (Validator.isNull(mx) || !Validator.isDomain(mx)) {
-			throw new CompanyMxException("Invalid domain");
+			throw new CompanyMxException("Invalid domain: " + mx);
 		}
 
 		String emailAddress =
@@ -1477,7 +1477,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			EmailAddressValidatorFactory.getInstance();
 
 		if (!emailAddressValidator.validate(companyId, emailAddress)) {
-			throw new CompanyMxException("Invalid domain for email address");
+			throw new CompanyMxException(
+				"Invalid email address: " + emailAddress);
 		}
 	}
 
