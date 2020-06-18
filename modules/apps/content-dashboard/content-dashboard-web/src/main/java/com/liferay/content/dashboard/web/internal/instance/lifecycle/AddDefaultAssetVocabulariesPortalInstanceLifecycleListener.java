@@ -46,11 +46,14 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		_addVocabulary(company, "audience");
-		_addVocabulary(company, "stage");
+		_addAssetVocabulary(company, "audience");
+		_addAssetVocabulary(company, "stage");
 	}
 
-	private void _addVocabulary(Company company, String name) throws Exception {
+	private void _addAssetVocabulary(
+			Company company, String name)
+		throws Exception {
+
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.fetchGroupVocabulary(
 				company.getGroupId(), name);
