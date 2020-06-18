@@ -349,7 +349,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	public Company deleteCompany(long companyId) throws PortalException {
 		if (companyId == PortalInstances.getDefaultCompanyId()) {
 			throw new RequiredCompanyException(
-				"Select other default company before deleting it");
+				"Select another default company before deleting company " +
+					companyId);
 		}
 
 		Long currentCompanyId = CompanyThreadLocal.getCompanyId();
@@ -702,7 +703,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		if (!active && (companyId == PortalInstances.getDefaultCompanyId())) {
 			throw new RequiredCompanyException(
-				"Select other default company before deactivating it");
+				"Select another default company before deactivating company " +
+					companyId);
 		}
 
 		Company company = companyPersistence.findByPrimaryKey(companyId);
