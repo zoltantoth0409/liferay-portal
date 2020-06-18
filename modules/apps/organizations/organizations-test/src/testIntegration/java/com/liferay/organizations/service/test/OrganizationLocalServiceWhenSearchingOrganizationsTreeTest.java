@@ -246,11 +246,11 @@ public class OrganizationLocalServiceWhenSearchingOrganizationsTreeTest {
 		List<Organization> indexerSearchResults =
 			baseModelSearchResult.getBaseModels();
 
-		Comparator<Organization> comparator = _organizationNameComparator;
-
 		AssertUtils.assertEquals(
 			String.valueOf(organizationParams),
-			toStringList(ListUtil.sort(expectedSearchResults, comparator)),
+			toStringList(
+				ListUtil.sort(
+					expectedSearchResults, _organizationNameComparator)),
 			toStringList(indexerSearchResults));
 
 		List<Organization> finderSearchResults =
