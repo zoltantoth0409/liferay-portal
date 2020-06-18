@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portlet.asset.util.AssetVocabularySettingsHelper;
 
 import java.util.Collections;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -63,11 +61,6 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 
 		User defaultUser = company.getDefaultUser();
 
-		Locale defaultLocale = LocaleUtil.getSiteDefault();
-
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			defaultLocale, getClass());
-
 		AssetVocabularySettingsHelper assetVocabularySettingsHelper =
 			new AssetVocabularySettingsHelper();
 
@@ -86,7 +79,10 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 			StringPool.BLANK,
 			Collections.singletonMap(
 				LocaleUtil.getSiteDefault(),
-				LanguageUtil.get(resourceBundle, name)),
+				LanguageUtil.get(
+					ResourceBundleUtil.getBundle(
+						LocaleUtil.getSiteDefault(), getClass()),
+					name)),
 			Collections.emptyMap(), assetVocabularySettingsHelper.toString(),
 			serviceContext);
 	}
