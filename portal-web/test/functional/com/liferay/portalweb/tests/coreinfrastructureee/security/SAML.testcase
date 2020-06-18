@@ -341,7 +341,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
+			value1 = "Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -387,7 +387,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
+			value1 = "Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -423,7 +423,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
+			value1 = "Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -467,7 +467,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
+			value1 = "Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -477,7 +477,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
+			value1 = "Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
