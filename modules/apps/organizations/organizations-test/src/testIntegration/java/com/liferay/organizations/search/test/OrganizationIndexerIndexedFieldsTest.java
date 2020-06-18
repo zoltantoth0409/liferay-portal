@@ -240,10 +240,6 @@ public class OrganizationIndexerIndexedFieldsTest {
 		).put(
 			Field.TYPE, organization.getType()
 		).put(
-			Field.getSortableFieldName(
-				StringBundler.concat("type", StringPool.UNDERLINE, "String")),
-			organization.getType()
-		).put(
 			Field.USER_ID, String.valueOf(organization.getUserId())
 		).put(
 			Field.USER_NAME, StringUtil.toLowerCase(organization.getUserName())
@@ -265,6 +261,10 @@ public class OrganizationIndexerIndexedFieldsTest {
 
 				return StringUtil.toLowerCase(region.getName());
 			}
+		).put(
+			Field.getSortableFieldName(
+				StringBundler.concat("type", StringPool.UNDERLINE, "String")),
+			organization.getType()
 		).build();
 	}
 
