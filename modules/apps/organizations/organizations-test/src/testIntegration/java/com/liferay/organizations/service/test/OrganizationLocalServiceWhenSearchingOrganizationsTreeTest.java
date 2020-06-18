@@ -49,7 +49,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.users.admin.kernel.util.UsersAdmin;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -250,7 +249,13 @@ public class OrganizationLocalServiceWhenSearchingOrganizationsTreeTest {
 			String.valueOf(organizationParams),
 			toStringList(
 				ListUtil.sort(
-					expectedSearchResults, _organizationNameComparator)),
+					expectedSearchResults,
+					(organization1, organization2) -> {
+						String name1 = organization1.getName();
+						String name2 = organization2.getName();
+
+						return name1.compareToIgnoreCase(name2);
+					})),
 			toStringList(indexerSearchResults));
 
 		List<Organization> finderSearchResults =
@@ -267,14 +272,6 @@ public class OrganizationLocalServiceWhenSearchingOrganizationsTreeTest {
 	}
 
 	private Organization _organization;
-
-	private final Comparator<Organization> _organizationNameComparator =
-		(organization1, organization2) -> {
-			String name1 = organization1.getName();
-			String name2 = organization2.getName();
-
-			return name1.compareToIgnoreCase(name2);
-		};
 
 	@DeleteAfterTestRun
 	private final List<Organization> _organizations = new ArrayList<>();
