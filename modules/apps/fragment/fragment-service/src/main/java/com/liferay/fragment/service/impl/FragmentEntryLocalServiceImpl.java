@@ -370,7 +370,7 @@ public class FragmentEntryLocalServiceImpl
 		long groupId, String fragmentEntryKey) {
 
 		return fragmentEntryPersistence.fetchByG_FEK_First(
-			groupId, _getFragmentEntryKey(fragmentEntryKey));
+			groupId, _getFragmentEntryKey(fragmentEntryKey), null);
 	}
 
 	@Override
