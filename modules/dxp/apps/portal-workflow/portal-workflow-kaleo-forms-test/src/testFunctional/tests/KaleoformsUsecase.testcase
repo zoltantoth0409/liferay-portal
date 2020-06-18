@@ -2111,7 +2111,6 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "KaleoformsUsecase#CompleteProcessWithUploadedDefinition";
 		property testray.component.names = "Training";
-		property portal.upstream = "quarantine";
 
 		GlobalMenu.gotoPortlet(
 			category = "Workflow",
