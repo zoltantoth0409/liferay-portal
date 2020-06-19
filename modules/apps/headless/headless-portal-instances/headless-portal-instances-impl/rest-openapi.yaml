@@ -188,7 +188,7 @@ paths:
         # @review
         put:
             description:
-                Deactivates the portal instance. When a portal instance isdeactivated, its virtual host will not longer
+                Deactivates the portal instance. When a portal instance is deactivated, its virtual host will not longer
                 respond requests.
             operationId: putPortalInstanceDeactivate
             parameters:
