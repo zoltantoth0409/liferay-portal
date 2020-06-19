@@ -162,7 +162,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRel2WithInvalidUserEmailDomain()
+	public void testAddAccountEntryUserRel2WithInvalidUserEmailAddressDomain()
 		throws Exception {
 
 		AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(
@@ -174,7 +174,7 @@ public class AccountEntryUserRelLocalServiceTest {
 	}
 
 	@Test
-	public void testAddAccountEntryUserRel2WithInvalidUserEmailDomainAs2BUser()
+	public void testAddAccountEntryUserRel2WithInvalidUserEmailAddressDomainAs2BUser()
 		throws Exception {
 
 		String originalName = PrincipalThreadLocal.getName();
