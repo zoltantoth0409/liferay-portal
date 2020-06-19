@@ -93,7 +93,7 @@ public class AddDataRecordMVCResourceCommand extends BaseMVCResourceCommand {
 
 		AppBuilderApp appBuilderApp =
 			_appBuilderAppLocalService.getAppBuilderApp(
-				ParamUtil.getLong(resourceRequest, "appBuilderAppId"));
+				ParamUtil.getLong(resourceRequest, "appId"));
 
 		DataRecordResource dataRecordResource = DataRecordResource.builder(
 		).user(
