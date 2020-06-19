@@ -14,10 +14,6 @@
 
 package com.liferay.app.builder.portlet.tab;
 
-import com.liferay.app.builder.model.AppBuilderApp;
-
-import java.util.List;
-
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -25,9 +21,6 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public interface AppBuilderAppPortletTab {
-
-	public List<Long> getEditEntryDataLayoutIds(
-		AppBuilderApp appBuilderApp, long dataRecordId);
 
 	public String getEditEntryPoint();
 
