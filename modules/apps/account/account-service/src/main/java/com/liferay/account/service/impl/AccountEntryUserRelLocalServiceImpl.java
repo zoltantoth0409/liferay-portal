@@ -231,13 +231,13 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		emailAddress = StringUtil.toLowerCase(emailAddress.trim());
 
-		int pos = emailAddress.indexOf(CharPool.AT);
+		int index = emailAddress.indexOf(CharPool.AT);
 
-		if (pos == -1) {
+		if (index == -1) {
 			return;
 		}
 
-		String emailDomain = emailAddress.substring(pos + 1);
+		String emailDomain = emailAddress.substring(index + 1);
 
 		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
 			accountEntryId);
