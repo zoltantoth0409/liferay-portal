@@ -35,7 +35,7 @@ public class StandardAppBuilderAppPortletTab
 	implements AppBuilderAppPortletTab {
 
 	@Override
-	public List<Long> getDataLayoutIds(
+	public List<Long> getEditEntryDataLayoutIds(
 		AppBuilderApp appBuilderApp, long dataRecordId) {
 
 		return Collections.singletonList(
