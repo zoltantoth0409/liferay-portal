@@ -201,7 +201,7 @@ public abstract class BasePortalInstanceResourceImpl
 	 */
 	@Override
 	@Operation(
-		description = "Deactivates the portal instance. When a portal instance isdeactivated, its virtual host will not longer respond requests."
+		description = "Deactivates the portal instance. When a portal instance is deactivated, its virtual host will not longer respond requests."
 	)
 	@PUT
 	@Parameters(
