@@ -50,7 +50,7 @@ public class UncompressUtil {
 			TarArchiveInputStream tarArchiveInputStream =
 				new TarArchiveInputStream(gzipCompressorInputStream)) {
 
-			TarArchiveEntry tarArchiveEntry;
+			TarArchiveEntry tarArchiveEntry = null;
 
 			while ((tarArchiveEntry =
 						tarArchiveInputStream.getNextTarEntry()) != null) {
@@ -73,7 +73,7 @@ public class UncompressUtil {
 					if (_logger.isWarnEnabled()) {
 						_logger.warn(
 							"Unable to read " + tarArchiveEntry.getName() +
-								" from tarArchiveEntry ");
+								" from tar archive entry");
 					}
 				}
 			}
