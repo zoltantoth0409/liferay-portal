@@ -72,7 +72,7 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		User user = userLocalService.getUser(accountUserId);
 
-		_validateEmailAddress(user.getEmailAddress(), accountEntryId);
+		_validateEmailAddress(accountEntryId, user.getEmailAddress());
 
 		accountEntryUserRel = createAccountEntryUserRel(
 			counterLocalService.increment());
@@ -99,7 +99,7 @@ public class AccountEntryUserRelLocalServiceImpl
 			companyId = accountEntry.getCompanyId();
 		}
 
-		_validateEmailAddress(emailAddress, accountEntryId);
+		_validateEmailAddress(accountEntryId, emailAddress);
 
 		boolean autoPassword = true;
 		String password1 = null;
@@ -216,7 +216,7 @@ public class AccountEntryUserRelLocalServiceImpl
 	@Reference
 	protected AccountEntryLocalService accountEntryLocalService;
 
-	private void _validateEmailAddress(String emailAddress, long accountEntryId)
+	private void _validateEmailAddress(long accountEntryId, String emailAddress)
 		throws PortalException {
 
 		long userId = GuestOrUserUtil.getGuestOrUserId();
