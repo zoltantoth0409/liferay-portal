@@ -45,6 +45,7 @@ const withResizeableColumns = (ChildComponent) => {
 		_createResizeDrag() {
 			this._resizeDrag = new Drag({
 				axis: 'x',
+				container: this.element,
 				sources: '.resizeable .ddm-resize-handle',
 				useShim: true,
 			});
