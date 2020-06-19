@@ -86,9 +86,9 @@ public class PortalInstanceResourceImpl extends BasePortalInstanceResourceImpl {
 		Company company = _companyLocalService.getCompanyByWebId(
 			portalInstanceId);
 
-		String virtualHostname = GetterUtil.get(
+		String virtualHostname = GetterUtil.getString(
 			portalInstance.getVirtualHost(), company.getVirtualHostname());
-		String domain = GetterUtil.get(
+		String domain = GetterUtil.getString(
 			portalInstance.getDomain(), company.getMx());
 
 		return _toPortalInstance(
