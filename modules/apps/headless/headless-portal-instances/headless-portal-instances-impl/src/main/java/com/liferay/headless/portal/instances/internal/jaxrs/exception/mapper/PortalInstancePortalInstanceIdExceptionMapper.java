@@ -32,11 +32,11 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Headless.Portal.Instances)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Headless.Portal.Instances.PortalInstanceWebIdExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Headless.Portal.Instances.PortalInstancePortalInstanceIdExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class PortalInstanceWebIdExceptionMapper
+public class PortalInstancePortalInstanceIdExceptionMapper
 	extends BaseExceptionMapper<CompanyWebIdException> {
 
 	@Override
