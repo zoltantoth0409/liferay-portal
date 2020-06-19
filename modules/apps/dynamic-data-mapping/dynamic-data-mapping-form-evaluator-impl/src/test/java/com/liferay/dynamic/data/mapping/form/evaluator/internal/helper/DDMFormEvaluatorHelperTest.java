@@ -137,7 +137,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(ddmFormField0);
 		ddmForm.addDDMFormField(ddmFormField1);
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList("setEnabled(\"field0\", false)"),
@@ -149,15 +148,12 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_0", "field1", new UnlocalizedValue("1")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_1", "field1", new UnlocalizedValue("5")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_2", "field1", new UnlocalizedValue("10")));
@@ -288,7 +284,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(ddmFormField0);
 		ddmForm.addDDMFormField(ddmFormField1);
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList("setVisible(\"field0\", false)"),
@@ -300,11 +295,9 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_0", "field1", new UnlocalizedValue("1")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_1", "field1", new UnlocalizedValue("5")));
@@ -481,7 +474,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 			"field1", "text", FieldConstants.STRING);
 
 		field1DDMFormField.setRequired(true);
-
 		field1DDMFormField.setVisibilityExpression("field0 > 5");
 
 		ddmForm.addDDMFormField(field1DDMFormField);
@@ -529,7 +521,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(ddmFormField0);
 		ddmForm.addDDMFormField(ddmFormField1);
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList("setRequired(\"field1\", true)"),
@@ -541,7 +532,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("11")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_instanceId", "field1", new UnlocalizedValue("")));
@@ -616,10 +606,8 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(
 			createDDMFormField("field0", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormField(
 			createDDMFormField("field1", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				"equals(sum(getValue('field0'), 10), 28)",
@@ -659,13 +647,10 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(
 			createDDMFormField("field0", "text", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormField(
 			createDDMFormField("field1", "text", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormField(
 			createDDMFormField("field2", "text", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList(
@@ -679,11 +664,9 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("30")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_instanceId", "field1", new UnlocalizedValue("15")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field2_instanceId", "field2", new UnlocalizedValue("10")));
@@ -739,12 +722,13 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		DDMFormField ddmFormField0 = createDDMFormField(
 			"field0", "numeric", FieldConstants.DOUBLE);
 
+		ddmForm.addDDMFormField(ddmFormField0);
+
 		DDMFormField ddmFormField1 = createDDMFormField(
 			"field1", "numeric", FieldConstants.DOUBLE);
 
 		ddmFormField1.setRepeatable(true);
 
-		ddmForm.addDDMFormField(ddmFormField0);
 		ddmForm.addDDMFormField(ddmFormField1);
 
 		ddmForm.addDDMFormRule(
@@ -758,15 +742,12 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_0", "field1", new UnlocalizedValue("1")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_1", "field1", new UnlocalizedValue("1")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_2", "field1", new UnlocalizedValue("2")));
@@ -794,13 +775,10 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(
 			createDDMFormField("field0", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormField(
 			createDDMFormField("field1", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormField(
 			createDDMFormField("field2", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList(
@@ -814,11 +792,9 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("5")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field1_instanceId", "field1", new UnlocalizedValue("2")));
-
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field2_instanceId", "field2", new UnlocalizedValue("0")));
@@ -1179,7 +1155,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 		ddmForm.addDDMFormField(
 			createDDMFormField("field0", "numeric", FieldConstants.DOUBLE));
-
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList(
