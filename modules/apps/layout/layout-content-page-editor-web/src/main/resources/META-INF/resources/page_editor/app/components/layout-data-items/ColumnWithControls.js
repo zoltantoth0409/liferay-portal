@@ -315,6 +315,8 @@ const ColumnWithControls = React.forwardRef(
 						dispatch(
 							resizeColumns({
 								layoutData: layoutDataContext,
+								rowItemId: parentItem.itemId,
+								segmentsExperienceId,
 							})
 						).then(() => {
 							setUpdatedLayoutData(null);
@@ -371,6 +373,7 @@ const ColumnWithControls = React.forwardRef(
 					dispatch(
 						resizeColumns({
 							layoutData: layoutDataContext,
+							rowItemId: parentItem.itemId,
 							segmentsExperienceId,
 						})
 					).then(() => setUpdatedLayoutData(null));
