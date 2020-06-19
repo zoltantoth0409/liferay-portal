@@ -237,14 +237,14 @@ public class AccountEntryUserRelLocalServiceImpl
 			return;
 		}
 
-		String emailDomain = emailAddress.substring(index + 1);
+		String domain = emailAddress.substring(index + 1);
 
 		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
 			accountEntryId);
 
 		String[] domains = StringUtil.split(accountEntry.getDomains());
 
-		if (!ArrayUtil.contains(domains, emailDomain)) {
+		if (!ArrayUtil.contains(domains, domain)) {
 			throw new UserEmailAddressException.MustHaveValidDomain(
 				emailAddress, accountEntry.getDomains());
 		}
