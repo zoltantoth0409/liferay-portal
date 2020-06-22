@@ -52,7 +52,6 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -84,12 +83,11 @@ public class MessageBoardThreadDTOConverter
 		MBMessage mbMessage = _mbMessageService.getMessage(
 			mbThread.getRootMessageId());
 
-		Locale locale = dtoConverterContext.getLocale();
+		String languageId = LocaleUtil.toLanguageId(
+			dtoConverterContext.getLocale());
 
 		Optional<UriInfo> uriInfoOptional =
 			dtoConverterContext.getUriInfoOptional();
-
-		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return new MessageBoardThread() {
 			{
@@ -107,7 +105,7 @@ public class MessageBoardThreadDTOConverter
 				customFields = CustomFieldsUtil.toCustomFields(
 					dtoConverterContext.isAcceptAllLanguages(),
 					MBMessage.class.getName(), mbMessage.getMessageId(),
-					mbThread.getCompanyId(), locale);
+					mbThread.getCompanyId(), dtoConverterContext.getLocale());
 				dateCreated = mbMessage.getCreateDate();
 				dateModified = mbMessage.getModifiedDate();
 				encodingFormat = mbMessage.getFormat();
@@ -137,7 +135,7 @@ public class MessageBoardThreadDTOConverter
 				relatedContents = RelatedContentUtil.toRelatedContents(
 					_assetEntryLocalService, _assetLinkLocalService,
 					_dtoConverterRegistry, mbMessage.getModelClassName(),
-					mbMessage.getMessageId(), locale);
+					mbMessage.getMessageId(), dtoConverterContext.getLocale());
 				seen = _mbThreadFlagLocalService.hasThreadFlag(
 					dtoConverterContext.getUserId(), mbThread);
 				showAsQuestion = mbThread.isQuestion();
@@ -151,7 +149,7 @@ public class MessageBoardThreadDTOConverter
 					assetCategory ->
 						TaxonomyCategoryBriefUtil.toTaxonomyCategoryBrief(
 							dtoConverterContext.isAcceptAllLanguages(),
-							assetCategory, locale),
+							assetCategory, dtoConverterContext.getLocale()),
 					TaxonomyCategoryBrief.class);
 				threadType = _toThreadType(
 					languageId, mbThread.getGroupId(), mbThread.getPriority());
