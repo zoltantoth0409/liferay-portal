@@ -57,11 +57,11 @@ AccountUserDisplay accountUserDisplay = AccountUserDisplay.of(selUser);
 	viewValidDomainsURL.setWindowState(LiferayWindowState.POP_UP);
 
 	Map<String, Object> componentContext = HashMapBuilder.<String, Object>put(
-			"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
+		"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
 	).put(
-			"validDomains", accountUserDisplay.getValidDomainsString()
+		"validDomains", accountUserDisplay.getValidDomainsString()
 	).put(
-			"viewValidDomainsURL", viewValidDomainsURL.toString()
+		"viewValidDomainsURL", viewValidDomainsURL.toString()
 	).build();
 	%>
 
