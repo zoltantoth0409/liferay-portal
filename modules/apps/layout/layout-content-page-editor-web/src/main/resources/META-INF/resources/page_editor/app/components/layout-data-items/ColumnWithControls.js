@@ -46,7 +46,7 @@ const getNewResponsiveConfig = (size, config, viewportSize) => {
 		: {...config, [viewportSize]: {size}};
 };
 
-const updateNewLayoutDataContext = (
+export const updateNewLayoutDataContext = (
 	layoutDataContext,
 	columnConfig,
 	selectedViewportSize
