@@ -45,10 +45,10 @@ public class JournalArticleContentDashboardItemFactory
 
 		return new JournalArticleContentDashboardItem(
 			_assetDisplayPageFriendlyURLProvider,
+			_groupLocalService.fetchGroup(journalArticle.getGroupId()),
 			(InfoEditURLProvider<JournalArticle>)
 				_infoEditURLProviderTracker.getInfoEditURLProvider(
 					JournalArticle.class.getName()),
-			_groupLocalService.fetchGroup(journalArticle.getGroupId()),
 			journalArticle, _language, _modelResourcePermission);
 	}
 

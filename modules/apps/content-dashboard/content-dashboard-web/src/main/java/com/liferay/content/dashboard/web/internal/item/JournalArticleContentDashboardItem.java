@@ -48,14 +48,14 @@ public class JournalArticleContentDashboardItem
 
 	public JournalArticleContentDashboardItem(
 		AssetDisplayPageFriendlyURLProvider assetDisplayPageFriendlyURLProvider,
-		InfoEditURLProvider<JournalArticle> infoEditURLProvider, Group group,
+		Group group, InfoEditURLProvider<JournalArticle> infoEditURLProvider,
 		JournalArticle journalArticle, Language language,
 		ModelResourcePermission<JournalArticle> modelResourcePermission) {
 
 		_assetDisplayPageFriendlyURLProvider =
 			assetDisplayPageFriendlyURLProvider;
-		_infoEditURLProvider = infoEditURLProvider;
 		_group = group;
+		_infoEditURLProvider = infoEditURLProvider;
 		_journalArticle = journalArticle;
 		_language = language;
 		_modelResourcePermission = modelResourcePermission;

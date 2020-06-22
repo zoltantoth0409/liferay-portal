@@ -64,7 +64,7 @@ public class JournalArticleContentDashboardItemTest {
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
-				null, infoEditURLProvider, null, journalArticle, null, null);
+				null, null, infoEditURLProvider, journalArticle, null, null);
 
 		Assert.assertEquals(
 			"validURL",
@@ -89,7 +89,7 @@ public class JournalArticleContentDashboardItemTest {
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
-				null, infoEditURLProvider, null, journalArticle, null, null);
+				null, null, infoEditURLProvider, journalArticle, null, null);
 
 		Assert.assertEquals(
 			StringPool.BLANK,
@@ -150,7 +150,7 @@ public class JournalArticleContentDashboardItemTest {
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
-				null, null, group, journalArticle, null, null);
+				null, group, null, journalArticle, null, null);
 
 		Assert.assertEquals(
 			"scopeName",
@@ -311,7 +311,7 @@ public class JournalArticleContentDashboardItemTest {
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
-				null, infoEditURLProvider, null, journalArticle, null,
+				null, null, infoEditURLProvider, journalArticle, null,
 				modelResourcePermission);
 
 		Assert.assertTrue(
@@ -331,7 +331,7 @@ public class JournalArticleContentDashboardItemTest {
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
-				null, infoEditURLProvider, null, journalArticle, null,
+				null, null, infoEditURLProvider, journalArticle, null,
 				modelResourcePermission);
 
 		Assert.assertFalse(
