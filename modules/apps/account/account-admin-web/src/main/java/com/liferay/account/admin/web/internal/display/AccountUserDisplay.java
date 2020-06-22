@@ -175,7 +175,7 @@ public class AccountUserDisplay {
 		return StringUtil.merge(commonDomains, StringPool.COMMA);
 	}
 
-	public boolean isValidateEmail() throws PortalException {
+	public boolean isValidateEmailAddress() throws PortalException {
 		List<AccountEntryUserRel> accountEntryUserRels =
 			_getAccountEntryUserRels(getUserId());
 
