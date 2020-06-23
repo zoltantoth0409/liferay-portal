@@ -80,7 +80,6 @@ public class SpiraCustomProperty extends BaseSpiraArtifact {
 			"ArtifactTypeId", getArtifactTypeID(spiraArtifactClass));
 		requestJSONObject.put("CustomPropertyTypeId", type.getID());
 		requestJSONObject.put("Name", customPropertyName);
-		requestJSONObject.put("ProjectTemplateId", projectTemplateID);
 
 		if (enableRichText) {
 			JSONArray optionsJSONArray = new JSONArray();
@@ -94,6 +93,8 @@ public class SpiraCustomProperty extends BaseSpiraArtifact {
 
 			requestJSONObject.put("Options", optionsJSONArray);
 		}
+
+		requestJSONObject.put("ProjectTemplateId", projectTemplateID);
 
 		spiraCustomProperties = getSpiraCustomProperties(
 			spiraProject, spiraArtifactClass);
