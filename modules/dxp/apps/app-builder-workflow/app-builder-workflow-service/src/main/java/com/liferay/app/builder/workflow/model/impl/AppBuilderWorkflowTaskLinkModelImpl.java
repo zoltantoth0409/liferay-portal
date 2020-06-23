@@ -67,7 +67,7 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 		{"mvccVersion", Types.BIGINT},
 		{"appBuilderWorkflowTaskLinkId", Types.BIGINT},
 		{"companyId", Types.BIGINT}, {"appBuilderAppId", Types.BIGINT},
-		{"ddmStructureLayoutId", Types.BIGINT},
+		{"ddmStructureLayoutId", Types.BIGINT}, {"readOnly", Types.BOOLEAN},
 		{"workflowTaskName", Types.VARCHAR}
 	};
 
@@ -80,11 +80,12 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("appBuilderAppId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("ddmStructureLayoutId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("readOnly", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("workflowTaskName", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AppBuilderWorkflowTaskLink (mvccVersion LONG default 0 not null,appBuilderWorkflowTaskLinkId LONG not null primary key,companyId LONG,appBuilderAppId LONG,ddmStructureLayoutId LONG,workflowTaskName VARCHAR(75) null)";
+		"create table AppBuilderWorkflowTaskLink (mvccVersion LONG default 0 not null,appBuilderWorkflowTaskLinkId LONG not null primary key,companyId LONG,appBuilderAppId LONG,ddmStructureLayoutId LONG,readOnly BOOLEAN,workflowTaskName VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table AppBuilderWorkflowTaskLink";
@@ -288,6 +289,12 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 			(BiConsumer<AppBuilderWorkflowTaskLink, Long>)
 				AppBuilderWorkflowTaskLink::setDdmStructureLayoutId);
 		attributeGetterFunctions.put(
+			"readOnly", AppBuilderWorkflowTaskLink::getReadOnly);
+		attributeSetterBiConsumers.put(
+			"readOnly",
+			(BiConsumer<AppBuilderWorkflowTaskLink, Boolean>)
+				AppBuilderWorkflowTaskLink::setReadOnly);
+		attributeGetterFunctions.put(
 			"workflowTaskName",
 			AppBuilderWorkflowTaskLink::getWorkflowTaskName);
 		attributeSetterBiConsumers.put(
@@ -380,6 +387,21 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 	}
 
 	@Override
+	public boolean getReadOnly() {
+		return _readOnly;
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return _readOnly;
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		_readOnly = readOnly;
+	}
+
+	@Override
 	public String getWorkflowTaskName() {
 		if (_workflowTaskName == null) {
 			return "";
@@ -449,6 +471,7 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 		appBuilderWorkflowTaskLinkImpl.setAppBuilderAppId(getAppBuilderAppId());
 		appBuilderWorkflowTaskLinkImpl.setDdmStructureLayoutId(
 			getDdmStructureLayoutId());
+		appBuilderWorkflowTaskLinkImpl.setReadOnly(isReadOnly());
 		appBuilderWorkflowTaskLinkImpl.setWorkflowTaskName(
 			getWorkflowTaskName());
 
@@ -572,6 +595,8 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 		appBuilderWorkflowTaskLinkCacheModel.ddmStructureLayoutId =
 			getDdmStructureLayoutId();
 
+		appBuilderWorkflowTaskLinkCacheModel.readOnly = isReadOnly();
+
 		appBuilderWorkflowTaskLinkCacheModel.workflowTaskName =
 			getWorkflowTaskName();
 
@@ -670,6 +695,7 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 	private long _ddmStructureLayoutId;
 	private long _originalDdmStructureLayoutId;
 	private boolean _setOriginalDdmStructureLayoutId;
+	private boolean _readOnly;
 	private String _workflowTaskName;
 	private String _originalWorkflowTaskName;
 	private long _columnBitmask;
