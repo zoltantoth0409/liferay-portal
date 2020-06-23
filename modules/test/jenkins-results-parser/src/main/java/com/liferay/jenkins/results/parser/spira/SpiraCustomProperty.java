@@ -83,12 +83,12 @@ public class SpiraCustomProperty extends BaseSpiraArtifact {
 		requestJSONObject.put("ProjectTemplateId", projectTemplateID);
 
 		if (enableRichText) {
+			JSONArray optionsJSONArray = new JSONArray();
+
 			JSONObject enableRichTextJSONObject = new JSONObject();
 
 			enableRichTextJSONObject.put("CustomPropertyOptionId", 4);
 			enableRichTextJSONObject.put("Value", "Y");
-
-			JSONArray optionsJSONArray = new JSONArray();
 
 			optionsJSONArray.put(enableRichTextJSONObject);
 
