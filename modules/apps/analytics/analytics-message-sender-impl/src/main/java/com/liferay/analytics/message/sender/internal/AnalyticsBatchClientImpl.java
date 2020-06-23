@@ -60,7 +60,7 @@ public class AnalyticsBatchClientImpl
 
 		if (!isEnabled(companyId)) {
 			throw new IllegalStateException(
-				"Analytics Batch Client is not enabled");
+				"Analytics batch client is not enabled");
 		}
 
 		AnalyticsConfiguration analyticsConfiguration =
