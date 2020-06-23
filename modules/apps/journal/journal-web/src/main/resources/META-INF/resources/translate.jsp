@@ -17,12 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-JournalArticle article = (JournalArticle)request.getAttribute(JournalWebKeys.JOURNAL_ARTICLES);
-
-String title = article.getTitle();
 String redirect = ParamUtil.getString(request, "redirect");
 
 InfoFormValues infoFormValues = (InfoFormValues)request.getAttribute(InfoFormValues.class.getName());
+
+JournalArticle article = (JournalArticle)request.getAttribute(JournalWebKeys.JOURNAL_ARTICLES);
+
+String title = article.getTitle();
 
 TranslationInfoFieldChecker translationInfoFieldChecker = (TranslationInfoFieldChecker)request.getAttribute(TranslationInfoFieldChecker.class.getName());
 
