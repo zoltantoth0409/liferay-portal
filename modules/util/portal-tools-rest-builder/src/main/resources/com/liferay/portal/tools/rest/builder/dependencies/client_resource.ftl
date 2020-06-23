@@ -12,16 +12,16 @@ package ${configYAML.apiPackagePath}.client.resource.${escapedVersion};
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 </#list>
 
-<#list allSchemas?keys as schemaName>
-	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
-</#list>
-
 import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
 import ${configYAML.apiPackagePath}.client.pagination.Page;
 import ${configYAML.apiPackagePath}.client.pagination.Pagination;
 import ${configYAML.apiPackagePath}.client.permission.Permission;
 import ${configYAML.apiPackagePath}.client.problem.Problem;
+
+<#list allSchemas?keys as schemaName>
+	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
+</#list>
 
 import java.io.File;
 
