@@ -123,9 +123,9 @@ public class ExportMasterLayoutsMVCResourceCommandTest {
 			layoutPageTemplateEntryIds);
 
 		try (ZipFile zipFile = new ZipFile(file)) {
-			Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
+			int count = 0;
 
-			int fileEntryCount = 0;
+			Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
 
 			while (enumeration.hasMoreElements()) {
 				ZipEntry zipEntry = enumeration.nextElement();
@@ -133,11 +133,11 @@ public class ExportMasterLayoutsMVCResourceCommandTest {
 				if (!zipEntry.isDirectory()) {
 					_validateZipEntry(zipEntry, zipFile);
 
-					fileEntryCount++;
+					count++;
 				}
 			}
 
-			Assert.assertEquals(3, fileEntryCount);
+			Assert.assertEquals(3, count);
 		}
 	}
 
