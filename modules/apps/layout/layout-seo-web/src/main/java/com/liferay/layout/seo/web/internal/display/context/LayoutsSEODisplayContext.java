@@ -509,20 +509,15 @@ public class LayoutsSEODisplayContext {
 
 	private InfoForm _getInfoForm(
 			LayoutPageTemplateEntry layoutPageTemplateEntry)
-		throws PortalException {
+		throws NoSuchClassTypeException {
 
 		InfoItemFormProvider<?> infoItemFormProvider =
 			_infoItemServiceTracker.getFirstInfoItemService(
 				InfoItemFormProvider.class,
 				layoutPageTemplateEntry.getClassName());
 
-		try {
-			return infoItemFormProvider.getInfoForm(
-				layoutPageTemplateEntry.getClassTypeId());
-		}
-		catch (NoSuchClassTypeException noSuchClassTypeException) {
-			throw new PortalException(noSuchClassTypeException);
-		}
+		return infoItemFormProvider.getInfoForm(
+			layoutPageTemplateEntry.getClassTypeId());
 	}
 
 	private LayoutPageTemplateEntry _getLayoutPageTemplateEntry() {
