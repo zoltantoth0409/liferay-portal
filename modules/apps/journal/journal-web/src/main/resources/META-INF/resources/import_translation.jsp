@@ -17,25 +17,25 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String articleId = ParamUtil.getString(request, "articleId");
-String articleResourcePrimKey = ParamUtil.getString(request, "articleResourcePrimKey");
-String articleTitle = ParamUtil.getString(request, "articleTitle");
-String groupId = ParamUtil.getString(request, "groupId");
 String redirect = ParamUtil.getString(request, "redirect");
-String title = LanguageUtil.get(resourceBundle, "import-translation");
+
+String articleResourcePrimKey = ParamUtil.getString(request, "articleResourcePrimKey");
+String groupId = ParamUtil.getString(request, "groupId");
+String articleId = ParamUtil.getString(request, "articleId");
+String articleTitle = ParamUtil.getString(request, "articleTitle");
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
-renderResponse.setTitle(title);
+renderResponse.setTitle(LanguageUtil.get(resourceBundle, "import-translation"));
 %>
 
 <liferay-ui:error exception="<%= InvalidXLIFFFileException.class %>" message="the-file-is-invalid" />
 
 <portlet:actionURL name="/journal/import_translation" var="importTranslationURL">
-	<portlet:param name="articleId" value="<%= articleId %>" />
 	<portlet:param name="articleResourcePrimKey" value="<%= articleResourcePrimKey %>" />
 	<portlet:param name="groupId" value="<%= groupId %>" />
+	<portlet:param name="articleId" value="<%= articleId %>" />
 </portlet:actionURL>
 
 <aui:form action="<%= importTranslationURL %>" name="fm">
