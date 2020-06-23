@@ -22,13 +22,13 @@ SiteAdministrationPanelCategoryDisplayContext siteAdministrationPanelCategoryDis
 Group group = siteAdministrationPanelCategoryDisplayContext.getGroup();
 PanelCategory panelCategory = siteAdministrationPanelCategoryDisplayContext.getPanelCategory();
 
+int childPanelCategoriesSize = GetterUtil.getInteger(request.getAttribute("product_menu.jsp-childPanelCategoriesSize"));
+
 PortletURL portletURL = PortletURLFactoryUtil.create(request, ProductNavigationProductMenuPortletKeys.PRODUCT_NAVIGATION_PRODUCT_MENU, RenderRequest.RENDER_PHASE);
 
 portletURL.setParameter("mvcPath", "/portlet/pages_tree.jsp");
 portletURL.setParameter("selPpid", portletDisplay.getId());
 portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-int childPanelCategoriesSize = GetterUtil.getInteger(request.getAttribute("product_menu.jsp-childPanelCategoriesSize"));
 %>
 
 <c:choose>
