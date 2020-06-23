@@ -77,8 +77,8 @@ public class UpgradeLayoutPageTemplateStructureRel extends UpgradeProcess {
 				String portletId = portletPreferences.getPortletId();
 
 				return portletId.contains(_INSTANCE_SEPARATOR) &&
-					   (portletId.contains(_SEGMENTS_EXPERIENCE_SEPARATOR1) ||
-						portletId.contains(_SEGMENTS_EXPERIENCE_SEPARATOR2));
+					   (portletId.contains(_SEGMENTS_EXPERIENCE_SEPARATOR_1) ||
+						portletId.contains(_SEGMENTS_EXPERIENCE_SEPARATOR_2));
 			}
 		).collect(
 			Collectors.toList()
@@ -101,9 +101,9 @@ public class UpgradeLayoutPageTemplateStructureRel extends UpgradeProcess {
 
 			if (!portletId.contains(oldNamespace) ||
 				(!portletId.contains(
-					_SEGMENTS_EXPERIENCE_SEPARATOR1 + segmentsExperienceId) &&
+					_SEGMENTS_EXPERIENCE_SEPARATOR_1 + segmentsExperienceId) &&
 				 !portletId.contains(
-					 _SEGMENTS_EXPERIENCE_SEPARATOR2 + segmentsExperienceId))) {
+					 _SEGMENTS_EXPERIENCE_SEPARATOR_2 + segmentsExperienceId))) {
 
 				continue;
 			}
@@ -112,8 +112,8 @@ public class UpgradeLayoutPageTemplateStructureRel extends UpgradeProcess {
 				portletId,
 				new String[] {
 					oldNamespace,
-					_SEGMENTS_EXPERIENCE_SEPARATOR1 + segmentsExperienceId,
-					_SEGMENTS_EXPERIENCE_SEPARATOR2 + segmentsExperienceId
+					_SEGMENTS_EXPERIENCE_SEPARATOR_1 + segmentsExperienceId,
+					_SEGMENTS_EXPERIENCE_SEPARATOR_2 + segmentsExperienceId
 				},
 				new String[] {
 					newNamespace, StringPool.BLANK, StringPool.BLANK
@@ -250,10 +250,10 @@ public class UpgradeLayoutPageTemplateStructureRel extends UpgradeProcess {
 
 	private static final String _INSTANCE_SEPARATOR = "_INSTANCE_";
 
-	private static final String _SEGMENTS_EXPERIENCE_SEPARATOR1 =
+	private static final String _SEGMENTS_EXPERIENCE_SEPARATOR_1 =
 		"_SEGMENTS_EXPERIENCE_";
 
-	private static final String _SEGMENTS_EXPERIENCE_SEPARATOR2 =
+	private static final String _SEGMENTS_EXPERIENCE_SEPARATOR_2 =
 		"SEGMENTSEXPERIENCE";
 
 	private final FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
