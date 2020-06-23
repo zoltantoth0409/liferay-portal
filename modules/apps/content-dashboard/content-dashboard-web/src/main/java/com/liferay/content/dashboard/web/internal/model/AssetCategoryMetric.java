@@ -14,8 +14,8 @@
 
 package com.liferay.content.dashboard.web.internal.model;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.Objects;
@@ -85,7 +85,16 @@ public class AssetCategoryMetric {
 	}
 
 	public JSONObject toJSONObject(String vocabularyName) {
-		JSONObject jsonObject = JSONUtil.put(
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if ((_assetVocabularyMetric != null) &&
+			ListUtil.isNotEmpty(
+				_assetVocabularyMetric.getAssetCategoryMetrics())) {
+
+			jsonObject.put("categories", _assetVocabularyMetric.toJSONArray());
+		}
+
+		jsonObject.put(
 			"key", _key
 		).put(
 			"name", _name
@@ -94,13 +103,6 @@ public class AssetCategoryMetric {
 		).put(
 			"vocabularyName", vocabularyName
 		);
-
-		if ((_assetVocabularyMetric != null) &&
-			ListUtil.isNotEmpty(
-				_assetVocabularyMetric.getAssetCategoryMetrics())) {
-
-			jsonObject.put("categories", _assetVocabularyMetric.toJSONArray());
-		}
 
 		return jsonObject;
 	}
