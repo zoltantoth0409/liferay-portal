@@ -65,13 +65,13 @@ renderResponse.setTitle(title);
 		<div class="bg-white p-4">
 
 			<%
-				for (InfoFieldValue<Object> infoFieldValue : infoFormValues.getInfoFieldValues()) {
-					InfoField infoField = infoFieldValue.getInfoField();
+			for (InfoFieldValue<Object> infoFieldValue : infoFormValues.getInfoFieldValues()) {
+				InfoField infoField = infoFieldValue.getInfoField();
 
-					if (translationInfoFieldChecker.isTranslatable(infoField)) {
-						InfoLocalizedValue<String> labelInfoLocalizedValue = infoField.getLabelInfoLocalizedValue();
+				if (translationInfoFieldChecker.isTranslatable(infoField)) {
+					InfoLocalizedValue<String> labelInfoLocalizedValue = infoField.getLabelInfoLocalizedValue();
 
-						String label = labelInfoLocalizedValue.getValue(locale);
+					String label = labelInfoLocalizedValue.getValue(locale);
 			%>
 
 				<clay:row>
@@ -89,8 +89,8 @@ renderResponse.setTitle(title);
 				</clay:row>
 
 			<%
-					}
 				}
+			}
 			%>
 
 		</div>
