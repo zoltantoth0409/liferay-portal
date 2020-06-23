@@ -87,9 +87,11 @@ import javax.ws.rs.core.UriInfo;
 @Path("/${openAPIYAML.info.version}")
 public abstract class Base${schemaName}ResourceImpl
 	implements ${schemaName}Resource
+
 	<#assign
 		generateBatch = configYAML.generateBatch && freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)??
 	/>
+
 	<#if generateBatch>
 		, EntityModelResource, VulcanBatchEngineTaskItemDelegate<${schemaName}>
 	</#if>
