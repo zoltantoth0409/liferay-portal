@@ -64,6 +64,7 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 		if (cmd.equals(Constants.ADD)) {
