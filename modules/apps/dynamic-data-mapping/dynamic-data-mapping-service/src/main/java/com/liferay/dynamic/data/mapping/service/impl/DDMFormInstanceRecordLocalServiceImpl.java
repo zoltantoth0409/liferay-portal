@@ -960,12 +960,12 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			int end, Sort sort)
 		throws PortalException {
 
+		DDMFormInstance ddmFormInstance =
+			ddmFormInstancePersistence.findByPrimaryKey(formInstanceId);
+
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAndSearch(true);
-
-		DDMFormInstance ddmFormInstance =
-			ddmFormInstancePersistence.findByPrimaryKey(formInstanceId);
 
 		Map<String, Serializable> attributes =
 			HashMapBuilder.<String, Serializable>put(
@@ -988,9 +988,8 @@ public class DDMFormInstanceRecordLocalServiceImpl
 		searchContext.setCompanyId(ddmFormInstance.getCompanyId());
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {ddmFormInstance.getGroupId()});
-		searchContext.setStart(start);
-
 		searchContext.setSorts(sort);
+		searchContext.setStart(start);
 
 		return searchContext;
 	}
