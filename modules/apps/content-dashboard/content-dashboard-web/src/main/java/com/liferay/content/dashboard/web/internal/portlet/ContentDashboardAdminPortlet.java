@@ -92,11 +92,6 @@ public class ContentDashboardAdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		LiferayPortletRequest liferayPortletRequest =
-			_portal.getLiferayPortletRequest(renderRequest);
-		LiferayPortletResponse liferayPortletResponse =
-			_portal.getLiferayPortletResponse(renderResponse);
-
 		ContentDashboardDataProvider contentDashboardDataProvider =
 			new ContentDashboardDataProvider(
 				_aggregations,
@@ -104,6 +99,10 @@ public class ContentDashboardAdminPortlet extends MVCPortlet {
 					_portal.getHttpServletRequest(renderRequest)),
 				_contentDashboardSearchRequestBuilderFactory,
 				_portal.getLocale(renderRequest), _searcher);
+		LiferayPortletRequest liferayPortletRequest =
+			_portal.getLiferayPortletRequest(renderRequest);
+		LiferayPortletResponse liferayPortletResponse =
+			_portal.getLiferayPortletResponse(renderResponse);
 
 		ContentDashboardItemSearchContainerFactory
 			contentDashboardItemSearchContainerFactory =
