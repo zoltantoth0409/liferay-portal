@@ -108,18 +108,16 @@ public class JournalArticleActionDropdownItemsProvider {
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.DELETE);
 		boolean hasUpdatePermission = JournalArticlePermission.contains(
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.UPDATE);
-
 		boolean hasViewPermission = JournalArticlePermission.contains(
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.VIEW);
-
-		boolean importExportEnabled = _importExportEnabled(hasViewPermission);
-
 		boolean trashEnabled = _trashHelper.isTrashEnabled(
 			_themeDisplay.getScopeGroupId());
 		UnsafeConsumer<DropdownItem, Exception> previewContentArticleAction =
 			_getPreviewArticleActionUnsafeConsumer();
 		UnsafeConsumer<DropdownItem, Exception> viewContentArticleAction =
 			_getViewContentArticleActionUnsafeConsumer();
+
+		boolean importExportEnabled = _isImportExportEnabled(hasViewPermission);
 
 		return DropdownItemListBuilder.add(
 			() -> hasUpdatePermission, _getEditArticleActionUnsafeConsumer()
@@ -782,7 +780,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		};
 	}
 
-	private boolean _importExportEnabled(boolean hasViewPermission) {
+	private boolean _isImportExportEnabled(boolean hasViewPermission) {
 		if (hasViewPermission &&
 			FFImportExportTranslationConfigurationUtil.enabled()) {
 
