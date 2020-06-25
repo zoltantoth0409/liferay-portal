@@ -299,9 +299,6 @@ public class PortletPreferencesFinderImpl
 					FINDER_PATH_FIND_BY_C_G_O_O_P_P, finderArgs, list);
 			}
 			catch (Exception exception) {
-				FinderCacheUtil.removeResult(
-					FINDER_PATH_FIND_BY_C_G_O_O_P_P, finderArgs);
-
 				throw new SystemException(exception);
 			}
 			finally {
