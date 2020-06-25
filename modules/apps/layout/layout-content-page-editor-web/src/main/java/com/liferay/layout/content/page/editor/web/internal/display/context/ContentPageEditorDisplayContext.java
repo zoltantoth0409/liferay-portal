@@ -716,13 +716,11 @@ public class ContentPageEditorDisplayContext {
 			infoListProviderItemSelectorCriterion =
 				new InfoListProviderItemSelectorCriterion();
 
-		infoListProviderItemSelectorCriterion.setItemTypes(
-			_getInfoItemFormProviderClassNames());
-
-		infoListProviderItemSelectorCriterion.setPlid(themeDisplay.getPlid());
-
 		infoListProviderItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new InfoListProviderItemSelectorReturnType());
+		infoListProviderItemSelectorCriterion.setItemTypes(
+			_getInfoItemFormProviderClassNames());
+		infoListProviderItemSelectorCriterion.setPlid(themeDisplay.getPlid());
 
 		PortletURL infoListSelectorURL = _itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
@@ -1421,10 +1419,9 @@ public class ContentPageEditorDisplayContext {
 			infoListProviderItemSelectorCriterion =
 				new InfoListProviderItemSelectorCriterion();
 
-		infoListProviderItemSelectorCriterion.setPlid(themeDisplay.getPlid());
-
 		infoListProviderItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new InfoListProviderItemSelectorReturnType());
+		infoListProviderItemSelectorCriterion.setPlid(themeDisplay.getPlid());
 
 		PortletURL infoListSelectorURL = _itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
