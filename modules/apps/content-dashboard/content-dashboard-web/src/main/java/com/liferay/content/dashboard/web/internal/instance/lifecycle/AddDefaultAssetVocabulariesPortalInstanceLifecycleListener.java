@@ -45,9 +45,9 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
+		_addAssetVocabulary(company, PropsValues.ASSET_VOCABULARY_DEFAULT);
 		_addAssetVocabulary(company, "audience");
 		_addAssetVocabulary(company, "stage");
-		_addAssetVocabulary(company, PropsValues.ASSET_VOCABULARY_DEFAULT);
 	}
 
 	private void _addAssetVocabulary(Company company, String name)
