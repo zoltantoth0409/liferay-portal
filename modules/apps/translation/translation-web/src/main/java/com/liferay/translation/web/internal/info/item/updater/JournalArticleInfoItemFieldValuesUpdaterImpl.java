@@ -105,12 +105,10 @@ public class JournalArticleInfoItemFieldValuesUpdaterImpl
 				String translatedTitle = _getTranslatedString(
 					article.getTitle(targetLocale), article.getTitle(),
 					importedLocaleTitleMap.get(targetLocale));
-
 				String translatedDescription = _getTranslatedString(
 					article.getDescription(targetLocale),
 					article.getDescription(),
 					importedLocaleDescriptionMap.get(targetLocale));
-
 				String translatedContent = _getTranslatedContent(
 					article.getContent(), importedLocaleContentMap,
 					targetLocale);
