@@ -103,14 +103,14 @@ public class NumericDDMFormFieldTypeReportProcessor
 				(number1, number2) -> Double.compare(
 					number1.doubleValue(), number2.doubleValue());
 
-			Number maxValue = _getNumberValues(
+			Number maxValue = _getNumberValuesStream(
 				ddmFormFieldValue.getName(), ddmFormInstance,
 				formInstanceRecordId
 			).max(
 				comparator
 			).get();
 
-			Number minValue = _getNumberValues(
+			Number minValue = _getNumberValuesStream(
 				ddmFormFieldValue.getName(), ddmFormInstance,
 				formInstanceRecordId
 			).min(
@@ -153,7 +153,7 @@ public class NumericDDMFormFieldTypeReportProcessor
 		return GetterUtil.getNumber(value);
 	}
 
-	private Stream<Number> _getNumberValues(
+	private Stream<Number> _getNumberValuesStream(
 		String ddmFormFieldValueName, DDMFormInstance ddmFormInstance,
 		long formInstanceRecordId) {
 
@@ -178,10 +178,10 @@ public class NumericDDMFormFieldTypeReportProcessor
 					List<DDMFormFieldValue> ddmFormFieldValues =
 						ddmFormFieldValuesMap.get(ddmFormFieldValueName);
 
-					Stream<DDMFormFieldValue> ddmFormFieldValueStream =
+					Stream<DDMFormFieldValue> ddmFormFieldValuesStream =
 						ddmFormFieldValues.stream();
 
-					return ddmFormFieldValueStream.map(
+					return ddmFormFieldValuesStream.map(
 						ddmFormFieldValue -> _getNumberValue(ddmFormFieldValue)
 					).findFirst(
 					).get();
