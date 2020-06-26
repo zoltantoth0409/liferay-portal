@@ -54,9 +54,9 @@ public class DLFileEntryAdditionalMetadataSetsDisplayContext {
 			return _ddmStructures;
 		}
 
-		DLFileEntryType fileEntryType = getDLFileEntryType();
+		DLFileEntryType dlFileEntryType = getDLFileEntryType();
 
-		if (fileEntryType == null) {
+		if (dlFileEntryType == null) {
 			_ddmStructures = Collections.emptyList();
 
 			return _ddmStructures;
@@ -65,11 +65,11 @@ public class DLFileEntryAdditionalMetadataSetsDisplayContext {
 		DDMStructure ddmStructure = _getDDMStructure();
 
 		if (ddmStructure == null) {
-			_ddmStructures = fileEntryType.getDDMStructures();
+			_ddmStructures = dlFileEntryType.getDDMStructures();
 		}
 		else {
 			_ddmStructures = ListUtil.filter(
-				fileEntryType.getDDMStructures(),
+				dlFileEntryType.getDDMStructures(),
 				currentDDMStructure ->
 					currentDDMStructure.getStructureId() !=
 						ddmStructure.getStructureId());
