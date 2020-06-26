@@ -61,7 +61,7 @@ public class RedirectNotFoundEntryLocalServiceImpl
 				group.getGroupId(), url);
 
 		if (redirectNotFoundEntry == null) {
-			_purgeRedirectNotFoundEntries();
+			_deleteRedirectNotFoundEntries();
 
 			redirectNotFoundEntry = redirectNotFoundEntryPersistence.create(
 				counterLocalService.increment());
@@ -207,7 +207,7 @@ public class RedirectNotFoundEntryLocalServiceImpl
 		return redirectNotFoundEntriesDynamicQuery;
 	}
 
-	private void _purgeRedirectNotFoundEntries() {
+	private void _deleteRedirectNotFoundEntries() {
 		ActionableDynamicQuery actionableDynamicQuery =
 			redirectNotFoundEntryLocalService.getActionableDynamicQuery();
 

@@ -67,7 +67,7 @@ public class RedirectNotFoundEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testAddOrUpdateRedirectNotFoundEntryPurgesOldestEntries()
+	public void testAddOrUpdateRedirectNotFoundEntryDeletesOldestEntries()
 		throws Exception {
 
 		RedirectTestUtil.withMaximumNumberOfRedirectNotFoundEntries(
@@ -99,7 +99,7 @@ public class RedirectNotFoundEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testAddOrUpdateRedirectNotFoundEntryPurgesOldestEntry()
+	public void testAddOrUpdateRedirectNotFoundEntryDeletesOldestEntry()
 		throws Exception {
 
 		RedirectTestUtil.withMaximumNumberOfRedirectNotFoundEntries(
