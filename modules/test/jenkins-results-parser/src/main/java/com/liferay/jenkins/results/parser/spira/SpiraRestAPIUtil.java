@@ -79,7 +79,7 @@ public class SpiraRestAPIUtil {
 
 	protected static String toDateString(long timestamp) {
 		return JenkinsResultsParserUtil.toDateString(
-			new Date(timestamp), _DATE_FORMAT_ISO_8601, _TIMEZONE_NAME);
+			new Date(timestamp), "yyyy-MM-dd'T'HH:mm:ss", "UTC");
 	}
 
 	private static String _applyURLPathReplacements(
@@ -132,9 +132,5 @@ public class SpiraRestAPIUtil {
 
 		return "?" + JenkinsResultsParserUtil.join("&", urlParameterStrings);
 	}
-
-	private static final String _DATE_FORMAT_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss";
-
-	private static final String _TIMEZONE_NAME = "UTC";
 
 }
