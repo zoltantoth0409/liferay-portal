@@ -165,6 +165,35 @@ public class RedirectNotFoundEntryLocalServiceImpl
 			RedirectConfiguration.class, properties);
 	}
 
+	private void _deleteRedirectNotFoundEntries() {
+		ActionableDynamicQuery actionableDynamicQuery =
+			redirectNotFoundEntryLocalService.getActionableDynamicQuery();
+
+		actionableDynamicQuery.setAddCriteriaMethod(
+			dynamicQuery -> {
+				int maximumNumberOfRedirectNotFoundEntries =
+					_redirectConfiguration.
+						maximumNumberOfRedirectNotFoundEntries();
+
+				dynamicQuery.setLimit(
+					maximumNumberOfRedirectNotFoundEntries - 1,
+					getRedirectNotFoundEntriesCount());
+			});
+		actionableDynamicQuery.setAddOrderCriteriaMethod(
+			dynamicQuery -> dynamicQuery.addOrder(
+				OrderFactoryUtil.desc("modifiedDate")));
+		actionableDynamicQuery.setPerformActionMethod(
+			(ActionableDynamicQuery.PerformActionMethod<RedirectNotFoundEntry>)
+				this::deleteRedirectNotFoundEntry);
+
+		try {
+			actionableDynamicQuery.performActions();
+		}
+		catch (PortalException portalException) {
+			_log.error(portalException, portalException);
+		}
+	}
+
 	private DynamicQuery _getRedirectNotFoundEntriesDynamicQuery(
 		long groupId, Boolean ignored, Date minModifiedDate) {
 
@@ -205,35 +234,6 @@ public class RedirectNotFoundEntryLocalServiceImpl
 		}
 
 		return redirectNotFoundEntriesDynamicQuery;
-	}
-
-	private void _deleteRedirectNotFoundEntries() {
-		ActionableDynamicQuery actionableDynamicQuery =
-			redirectNotFoundEntryLocalService.getActionableDynamicQuery();
-
-		actionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> {
-				int maximumNumberOfRedirectNotFoundEntries =
-					_redirectConfiguration.
-						maximumNumberOfRedirectNotFoundEntries();
-
-				dynamicQuery.setLimit(
-					maximumNumberOfRedirectNotFoundEntries - 1,
-					getRedirectNotFoundEntriesCount());
-			});
-		actionableDynamicQuery.setAddOrderCriteriaMethod(
-			dynamicQuery -> dynamicQuery.addOrder(
-				OrderFactoryUtil.desc("modifiedDate")));
-		actionableDynamicQuery.setPerformActionMethod(
-			(ActionableDynamicQuery.PerformActionMethod<RedirectNotFoundEntry>)
-				this::deleteRedirectNotFoundEntry);
-
-		try {
-			actionableDynamicQuery.performActions();
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException, portalException);
-		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
