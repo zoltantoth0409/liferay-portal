@@ -74,11 +74,12 @@ public class JournalArticleContentDashboardItem
 	}
 
 	@Override
-	public List<AssetCategory> getAssetCategories(long vocabularyId) {
+	public List<AssetCategory> getAssetCategories(long assetVocabularyId) {
 		Stream<AssetCategory> stream = _assetCategories.stream();
 
 		return stream.filter(
-			assetCategory -> assetCategory.getVocabularyId() == vocabularyId
+			assetCategory ->
+				assetCategory.getVocabularyId() == assetVocabularyId
 		).collect(
 			Collectors.toList()
 		);
