@@ -121,9 +121,9 @@ public class GridDDMFormFieldTypeReportProcessor
 		fieldJSONObject.put(
 			"structure",
 			JSONUtil.put(
-				"columns", _getOptionNames(ddmFormField, "columns")
+				"columns", _getOptionValuesJSONArray(ddmFormField, "columns")
 			).put(
-				"rows", _getOptionNames(ddmFormField, "rows")
+				"rows", _getOptionValuesJSONArray(ddmFormField, "rows")
 			)
 		).put(
 			"totalEntries", totalEntries
@@ -136,7 +136,7 @@ public class GridDDMFormFieldTypeReportProcessor
 	protected DDMFormInstanceRecordLocalService
 		ddmFormInstanceRecordLocalService;
 
-	private JSONArray _getOptionNames(
+	private JSONArray _getOptionValuesJSONArray(
 		DDMFormField ddmFormField, String propertyName) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
