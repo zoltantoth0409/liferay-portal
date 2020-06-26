@@ -221,11 +221,9 @@ public class RedirectNotFoundEntryLocalServiceImpl
 					maximumNumberOfRedirectNotFoundEntries - 1,
 					getRedirectNotFoundEntriesCount());
 			});
-
 		actionableDynamicQuery.setAddOrderCriteriaMethod(
 			dynamicQuery -> dynamicQuery.addOrder(
 				OrderFactoryUtil.desc("modifiedDate")));
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod<RedirectNotFoundEntry>)
 				this::deleteRedirectNotFoundEntry);
