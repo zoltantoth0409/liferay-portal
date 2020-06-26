@@ -45,7 +45,7 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		for (String assetVocabularyName : _DEFAULT_ASSET_VOCABULARY_NAMES) {
+		for (String assetVocabularyName : _ASSET_VOCABULARY_NAMES) {
 			_addAssetVocabulary(company, assetVocabularyName);
 		}
 	}
@@ -89,7 +89,7 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 			serviceContext);
 	}
 
-	private static final String[] _DEFAULT_ASSET_VOCABULARY_NAMES = {
+	private static final String[] _ASSET_VOCABULARY_NAMES = {
 		"audience", "stage", PropsValues.ASSET_VOCABULARY_DEFAULT
 	};
 
