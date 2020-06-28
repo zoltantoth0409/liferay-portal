@@ -23,7 +23,7 @@ definition {
 
 		AssertClick(
 			key_certificateUsage = "${certificateUsage}",
-			locator1 = "Button#CREATE_CERTIFICATE",
+			locator1 = "CPSAMLAdmin#CREATE_CERTIFICATE",
 			value1 = "Create Certificate");
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
@@ -62,11 +62,11 @@ definition {
 
 		AssertElementPresent(
 			key_certificateUsage = "${certificateUsage}",
-			locator1 = "Button#DOWNLOAD_CERTIFICATE");
+			locator1 = "CPSAMLAdmin#DOWNLOAD_CERTIFICATE");
 
 		AssertElementPresent(
 			key_certificateUsage = "${certificateUsage}",
-			locator1 = "Button#REPLACE_CERTIFICATE");
+			locator1 = "CPSAMLAdmin#REPLACE_CERTIFICATE");
 	}
 
 	macro configureIdentityProvider {
@@ -89,7 +89,7 @@ definition {
 
 	macro deleteCertificate {
 		ClickNoError(
-			locator1 = "Button#DELETE_CERTIFICATE",
+			locator1 = "CPSAMLAdmin#DELETE_CERTIFICATE",
 			value1 = "Delete Certificate");
 
 		AssertConfirm.waitForConfirmation(value1 = "Are you sure you want to delete this certificate from the keystore?");
