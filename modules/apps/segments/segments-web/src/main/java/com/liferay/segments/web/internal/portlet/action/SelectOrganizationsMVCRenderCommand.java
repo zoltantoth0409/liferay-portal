@@ -70,9 +70,6 @@ public class SelectOrganizationsMVCRenderCommand implements MVCRenderCommand {
 
 			return "/field/select_organizations.jsp";
 		}
-		catch (PortalException portalException) {
-			throw new PortletException(portalException);
-		}
 		catch (Exception exception) {
 			throw new PortletException(exception);
 		}
