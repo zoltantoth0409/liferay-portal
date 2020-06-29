@@ -156,7 +156,7 @@ public class UADApplicationExportController {
 		sb.append(StringPool.UNDERLINE);
 
 		if (user != null) {
-			String userName;
+			String userName = null;
 
 			try {
 				userName = URLEncoder.encode(user.getFullName(), "UTF-8");
