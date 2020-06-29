@@ -41,15 +41,15 @@ String infoListProviderClassName = infoListProviderItemsDisplayContext.getInfoLi
 				<%
 				InfoItemFieldValues infoItemFieldValues = infoItemFormProvider.getInfoItemFieldValues(result);
 
-				InfoFieldValue<Object> title = infoItemFieldValues.getInfoFieldValue("title");
-				InfoFieldValue<Object> userName = infoItemFieldValues.getInfoFieldValue("userName");
-				InfoFieldValue<Object> modifiedDate = infoItemFieldValues.getInfoFieldValue("modifiedDate");
-				InfoFieldValue<Object> createDate = infoItemFieldValues.getInfoFieldValue("createDate");
+				InfoFieldValue<Object> titleInfoFieldValue = infoItemFieldValues.getInfoFieldValue("title");
+				InfoFieldValue<Object> userNameInfoFieldValue = infoItemFieldValues.getInfoFieldValue("userName");
+				InfoFieldValue<Object> modifiedDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("modifiedDate");
+				InfoFieldValue<Object> createDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("createDate");
 				%>
 
 				<liferay-ui:search-container-column-text
 					name="title"
-					value="<%= HtmlUtil.escape(String.valueOf(title.getValue(locale))) %>"
+					value="<%= HtmlUtil.escape(String.valueOf(titleInfoFieldValue.getValue(locale))) %>"
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -59,17 +59,17 @@ String infoListProviderClassName = infoListProviderItemsDisplayContext.getInfoLi
 
 				<liferay-ui:search-container-column-text
 					name="author"
-					value="<%= String.valueOf(userName.getValue()) %>"
+					value="<%= String.valueOf(userNameInfoFieldValue.getValue()) %>"
 				/>
 
 				<liferay-ui:search-container-column-text
 					name="modified-date"
-					value="<%= String.valueOf(modifiedDate.getValue()) %>"
+					value="<%= String.valueOf(modifiedDateInfoFieldValue.getValue()) %>"
 				/>
 
 				<liferay-ui:search-container-column-text
 					name="create-date"
-					value="<%= String.valueOf(createDate.getValue()) %>"
+					value="<%= String.valueOf(createDateInfoFieldValue.getValue()) %>"
 				/>
 
 				<c:if test="<%= infoListProviderItemsDisplayContext.isShowActions() %>">
