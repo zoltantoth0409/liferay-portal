@@ -1295,6 +1295,8 @@ public class JenkinsResultsParserUtil {
 	}
 
 	public static String getJenkinsMasterName(String jenkinSlaveName) {
+		jenkinSlaveName = jenkinSlaveName.replaceAll("([^\\.]+).*", "$1");
+
 		Properties buildProperties = null;
 
 		try {
