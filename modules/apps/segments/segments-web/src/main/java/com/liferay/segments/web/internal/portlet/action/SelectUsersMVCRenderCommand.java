@@ -51,9 +51,6 @@ public class SelectUsersMVCRenderCommand implements MVCRenderCommand {
 				renderResponse, _userLocalService);
 
 		renderRequest.setAttribute(
-			SegmentsWebKeys.SELECT_USERS_DISPLAY_CONTEXT,
-			selectUsersDisplayContext);
-		renderRequest.setAttribute(
 			SegmentsWebKeys.
 				SEGMENTS_SELECT_USER_MANAGEMENT_TOOLBAL_DISPLAY_CONTEXT,
 			new SelectUsersManagementToolbarDisplayContext(
@@ -61,6 +58,9 @@ public class SelectUsersMVCRenderCommand implements MVCRenderCommand {
 				_portal.getLiferayPortletRequest(renderRequest),
 				_portal.getLiferayPortletResponse(renderResponse),
 				selectUsersDisplayContext));
+		renderRequest.setAttribute(
+			SegmentsWebKeys.SELECT_USERS_DISPLAY_CONTEXT,
+			selectUsersDisplayContext);
 
 		return "/field/select_users.jsp";
 	}

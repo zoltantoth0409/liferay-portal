@@ -14,7 +14,6 @@
 
 package com.liferay.segments.web.internal.portlet.action;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.util.Portal;
@@ -57,9 +56,6 @@ public class SelectOrganizationsMVCRenderCommand implements MVCRenderCommand {
 						_organizationLocalService);
 
 			renderRequest.setAttribute(
-				SegmentsWebKeys.SELECT_ORGANIZATIONS_DISPLAY_CONTEXT,
-				selectOrganizationsDisplayContext);
-			renderRequest.setAttribute(
 				SegmentsWebKeys.
 					SEGMENTS_SELECT_ORGANIZATION_MANAGEMENT_TOOLBAL_DISPLAY_CONTEXT,
 				new SelectOrganizationsManagementToolbarDisplayContext(
@@ -67,6 +63,9 @@ public class SelectOrganizationsMVCRenderCommand implements MVCRenderCommand {
 					_portal.getLiferayPortletRequest(renderRequest),
 					_portal.getLiferayPortletResponse(renderResponse),
 					selectOrganizationsDisplayContext));
+			renderRequest.setAttribute(
+				SegmentsWebKeys.SELECT_ORGANIZATIONS_DISPLAY_CONTEXT,
+				selectOrganizationsDisplayContext);
 
 			return "/field/select_organizations.jsp";
 		}
