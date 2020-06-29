@@ -19,8 +19,6 @@
 <%
 AssetListItemsDisplayContext assetListItemsDisplayContext = (AssetListItemsDisplayContext)request.getAttribute(AssetListWebKeys.ASSET_LIST_ITEMS_DISPLAY_CONTEXT);
 ListItemsActionDropdownItems listItemsActionDropdownItems = (ListItemsActionDropdownItems)request.getAttribute(AssetListWebKeys.LIST_ITEMS_ACTION_DROPDOWN_ITEMS);
-
-String className = AssetEntry.class.getName();
 %>
 
 <clay:container-fluid
@@ -71,7 +69,7 @@ String className = AssetEntry.class.getName();
 				<liferay-ui:search-container-column-text>
 					<clay:dropdown-actions
 						defaultEventHandler="<%= AssetListWebKeys.LIST_ITEMS_DROPDOWN_DEFAULT_EVENT_HANDLER %>"
-						dropdownItems="<%= listItemsActionDropdownItems.getActionDropdownItems(className, assetEntry) %>"
+						dropdownItems="<%= listItemsActionDropdownItems.getActionDropdownItems(AssetEntry.class.getName(), assetEntry) %>"
 					/>
 				</liferay-ui:search-container-column-text>
 			</c:if>
