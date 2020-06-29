@@ -66,7 +66,7 @@ public class ElasticsearchConnectionManager
 
 		if (connectionId == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Not adding connection. Connection ID is null.");
+				_log.warn("Skipping connection because connection ID is null");
 			}
 
 			return;
