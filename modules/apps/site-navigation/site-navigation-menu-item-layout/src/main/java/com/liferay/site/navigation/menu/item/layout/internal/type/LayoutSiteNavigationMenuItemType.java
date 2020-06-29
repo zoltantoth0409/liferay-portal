@@ -202,7 +202,7 @@ public class LayoutSiteNavigationMenuItemType
 
 		Layout layout = _fetchLayout(siteNavigationMenuItem);
 
-		if (!_useCustomName(siteNavigationMenuItem)) {
+		if (!_isUseCustomName(siteNavigationMenuItem)) {
 			return layout.getName(locale);
 		}
 
@@ -436,7 +436,7 @@ public class LayoutSiteNavigationMenuItemType
 
 		httpServletRequest.setAttribute(
 			SiteNavigationMenuItemTypeLayoutWebKeys.USE_CUSTOM_NAME,
-			_useCustomName(siteNavigationMenuItem));
+			_isUseCustomName(siteNavigationMenuItem));
 		httpServletRequest.setAttribute(
 			SiteNavigationWebKeys.SITE_NAVIGATION_MENU_ITEM,
 			siteNavigationMenuItem);
@@ -512,7 +512,7 @@ public class LayoutSiteNavigationMenuItemType
 		return layout;
 	}
 
-	private boolean _useCustomName(
+	private boolean _isUseCustomName(
 		SiteNavigationMenuItem siteNavigationMenuItem) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
