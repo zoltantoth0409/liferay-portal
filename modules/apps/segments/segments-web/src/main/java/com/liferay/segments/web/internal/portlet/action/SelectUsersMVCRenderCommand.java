@@ -53,7 +53,6 @@ public class SelectUsersMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			SegmentsWebKeys.SELECT_USERS_DISPLAY_CONTEXT,
 			selectUsersDisplayContext);
-
 		renderRequest.setAttribute(
 			SegmentsWebKeys.
 				SEGMENTS_SELECT_USER_MANAGEMENT_TOOLBAL_DISPLAY_CONTEXT,
