@@ -226,6 +226,8 @@ public class SelectUsersDisplayContext {
 		SearchContainer<User> userSearchContainer = new UserSearch(
 			_renderRequest, getPortletURL());
 
+		userSearchContainer.setId(getSearchContainerId());
+
 		OrderByComparator<User> orderByComparator =
 			UsersAdminUtil.getUserOrderByComparator(
 				getOrderByCol(), getOrderByType());
@@ -250,8 +252,6 @@ public class SelectUsersDisplayContext {
 			searchTerms.getStatus(), userParams);
 
 		userSearchContainer.setTotal(usersCount);
-
-		userSearchContainer.setId(getSearchContainerId());
 
 		List<User> users = _userLocalService.search(
 			_themeDisplay.getCompanyId(), searchTerms.getKeywords(),
