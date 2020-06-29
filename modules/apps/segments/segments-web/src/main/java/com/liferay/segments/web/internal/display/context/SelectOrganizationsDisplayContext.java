@@ -171,6 +171,7 @@ public class SelectOrganizationsDisplayContext {
 		OrganizationSearch organizationSearchContainer = new OrganizationSearch(
 			_renderRequest, getPortletURL());
 
+		organizationSearchContainer.setId(getSearchContainerId());
 		organizationSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 
@@ -189,8 +190,6 @@ public class SelectOrganizationsDisplayContext {
 			organizationParams);
 
 		organizationSearchContainer.setTotal(organizationsCount);
-
-		organizationSearchContainer.setId(getSearchContainerId());
 
 		List<Organization> organizations = _organizationLocalService.search(
 			_themeDisplay.getCompanyId(),
