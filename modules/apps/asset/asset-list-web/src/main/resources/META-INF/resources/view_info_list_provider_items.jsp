@@ -42,9 +42,6 @@ String infoListProviderClassName = infoListProviderItemsDisplayContext.getInfoLi
 				InfoItemFieldValues infoItemFieldValues = infoItemFormProvider.getInfoItemFieldValues(result);
 
 				InfoFieldValue<Object> titleInfoFieldValue = infoItemFieldValues.getInfoFieldValue("title");
-				InfoFieldValue<Object> userNameInfoFieldValue = infoItemFieldValues.getInfoFieldValue("userName");
-				InfoFieldValue<Object> modifiedDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("modifiedDate");
-				InfoFieldValue<Object> createDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("createDate");
 				%>
 
 				<liferay-ui:search-container-column-text
@@ -57,15 +54,27 @@ String infoListProviderClassName = infoListProviderItemsDisplayContext.getInfoLi
 					value="<%= infoListProviderItemsDisplayContext.getInfoListItemsType(result) %>"
 				/>
 
+				<%
+				InfoFieldValue<Object> userNameInfoFieldValue = infoItemFieldValues.getInfoFieldValue("userName");
+				%>
+
 				<liferay-ui:search-container-column-text
 					name="author"
 					value="<%= String.valueOf(userNameInfoFieldValue.getValue()) %>"
 				/>
 
+				<%
+				InfoFieldValue<Object> modifiedDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("modifiedDate");
+				%>
+
 				<liferay-ui:search-container-column-text
 					name="modified-date"
 					value="<%= String.valueOf(modifiedDateInfoFieldValue.getValue()) %>"
 				/>
+
+				<%
+				InfoFieldValue<Object> createDateInfoFieldValue = infoItemFieldValues.getInfoFieldValue("createDate");
+				%>
 
 				<liferay-ui:search-container-column-text
 					name="create-date"
