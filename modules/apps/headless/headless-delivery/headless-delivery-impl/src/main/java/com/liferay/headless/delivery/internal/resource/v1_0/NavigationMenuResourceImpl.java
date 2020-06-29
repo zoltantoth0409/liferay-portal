@@ -329,7 +329,6 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 
 			unicodeProperties.setProperty(
 				"privateLayout", String.valueOf(layout.isPrivateLayout()));
-
 			unicodeProperties.setProperty(
 				"useCustomName",
 				String.valueOf(navigationMenuItem.getUseCustomName()));
