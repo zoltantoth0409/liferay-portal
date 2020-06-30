@@ -129,15 +129,16 @@ public class GetFormRecordsFieldValuesMVCResourceCommand
 			List<DDMFormFieldValue> ddmFormFieldValues =
 				ddmFormFieldValuesMap.get(fieldName);
 
-			if (ddmFormFieldValues != null) {
-				ddmFormFieldValues.forEach(
-					ddmFormFieldValue -> {
-						Value value = ddmFormFieldValue.getValue();
-
-						jsonArray.put(
-							value.getString(value.getDefaultLocale()));
-					});
+			if (ddmFormFieldValues == null) {
+				continue;
 			}
+
+			ddmFormFieldValues.forEach(
+				ddmFormFieldValue -> {
+					Value value = ddmFormFieldValue.getValue();
+
+					jsonArray.put(value.getString(value.getDefaultLocale()));
+				});
 		}
 
 		return jsonArray;
