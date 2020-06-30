@@ -125,7 +125,7 @@ public class ImportTranslationMVCActionCommand extends BaseMVCActionCommand {
 		catch (Exception exception) {
 			SessionErrors.add(actionRequest, exception.getClass(), exception);
 
-			_redirectsOnError(
+			_sendRedirect(
 				actionRequest, actionResponse, articleResourcePrimKey, groupId,
 				articleId, version);
 		}
@@ -168,7 +168,7 @@ public class ImportTranslationMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private void _redirectsOnError(
+	private void _sendRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			long articleResourcePrimKey, long groupId, String articleId,
 			double version)
