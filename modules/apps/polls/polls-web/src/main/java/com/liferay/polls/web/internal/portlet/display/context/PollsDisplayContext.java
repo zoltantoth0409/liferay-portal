@@ -384,7 +384,6 @@ public class PollsDisplayContext {
 		searchContext.setGroupIds(
 			new long[] {_pollsRequestHelper.getScopeGroupId()});
 		searchContext.setKeywords(getKeywords());
-		searchContext.setStart(pollsQuestionSearch.getStart());
 
 		OrderByComparator<PollsQuestion> orderByComparator =
 			pollsQuestionSearch.getOrderByComparator();
@@ -392,6 +391,8 @@ public class PollsDisplayContext {
 		if (orderByComparator != null) {
 			searchContext.setSorts(_getSortFromComparator(orderByComparator));
 		}
+
+		searchContext.setStart(pollsQuestionSearch.getStart());
 
 		return searchContext;
 	}
