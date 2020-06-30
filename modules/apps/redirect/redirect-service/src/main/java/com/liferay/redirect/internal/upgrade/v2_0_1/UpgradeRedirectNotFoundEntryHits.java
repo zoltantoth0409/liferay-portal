@@ -32,15 +32,15 @@ public class UpgradeRedirectNotFoundEntryHits extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				SQLTransformer.transform(
-					"select companyId, hits, redirectNotFoundEntryId from " +
+					"select redirectNotFoundEntryId, companyId, hits from " +
 						"RedirectNotFoundEntry"));
 			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
-				int hits = rs.getInt("hits");
 				long redirectNotFoundEntryId = rs.getLong(
 					"redirectNotFoundEntryId");
+				long companyId = rs.getLong("companyId");
+				int hits = rs.getInt("hits");
 
 				ViewCountManagerUtil.incrementViewCount(
 					companyId,
