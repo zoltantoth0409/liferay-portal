@@ -37,9 +37,9 @@ public class RedirectNotFoundEntryModelDocumentContributor
 		Document document, RedirectNotFoundEntry redirectNotFoundEntry) {
 
 		document.addText(Field.URL, redirectNotFoundEntry.getUrl());
+		document.addKeyword("ignored", redirectNotFoundEntry.isIgnored());
 		document.addNumber(
 			"requestCount", redirectNotFoundEntry.getRequestCount());
-		document.addKeyword("ignored", redirectNotFoundEntry.isIgnored());
 	}
 
 }
