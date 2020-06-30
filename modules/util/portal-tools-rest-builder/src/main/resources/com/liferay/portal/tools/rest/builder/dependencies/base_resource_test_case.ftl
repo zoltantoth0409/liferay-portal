@@ -335,8 +335,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, javaMethodSignature.pathJavaMethodParameters[0].parameterName, schemaName)>
 						@SuppressWarnings("PMD.UnusedLocalVariable")
-						${schemaName} post${schemaName} =
-							test${freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName).methodName?cap_first}_add${schemaName}(random${schemaName}());
+						${schemaName} post${schemaName} = test${freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName).methodName?cap_first}_add${schemaName}(random${schemaName}());
 
 						Page<Permission> page = ${schemaVarName}Resource.${javaMethodSignature.methodName}(testGroup.getGroupId(), RoleConstants.GUEST);
 
