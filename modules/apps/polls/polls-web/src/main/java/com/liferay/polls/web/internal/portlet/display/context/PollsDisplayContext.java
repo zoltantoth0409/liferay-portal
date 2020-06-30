@@ -421,7 +421,6 @@ public class PollsDisplayContext {
 				_pollsRequestHelper.getScopeGroupId(),
 				pollsQuestionSearch.getStart(), pollsQuestionSearch.getEnd(),
 				pollsQuestionSearch.getOrderByComparator()));
-
 		pollsQuestionSearch.setTotal(
 			_pollsQuestionLocalService.searchCount(
 				_pollsRequestHelper.getScopeGroupId()));
