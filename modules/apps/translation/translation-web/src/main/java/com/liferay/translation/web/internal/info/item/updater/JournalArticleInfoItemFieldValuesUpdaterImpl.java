@@ -95,24 +95,22 @@ public class JournalArticleInfoItemFieldValuesUpdaterImpl
 			}
 		}
 
-		Map<Locale, String> descriptionMap = article.getDescriptionMap();
 		Map<Locale, String> titleMap = article.getTitleMap();
+		Map<Locale, String> descriptionMap = article.getDescriptionMap();
 		String translatedContent = article.getContent();
 
 		for (Locale targetLocale : translatedLocales) {
+			titleMap.put(
+				targetLocale,
+				_getTranslatedString(
+					article.getTitle(targetLocale), article.getTitle(),
+					importedLocaleTitleMap.get(targetLocale)));
 			descriptionMap.put(
 				targetLocale,
 				_getTranslatedString(
 					article.getDescription(targetLocale),
 					article.getDescription(),
 					importedLocaleDescriptionMap.get(targetLocale)));
-
-			titleMap.put(
-				targetLocale,
-				_getTranslatedString(
-					article.getTitle(targetLocale), article.getTitle(),
-					importedLocaleTitleMap.get(targetLocale)));
-
 			translatedContent = _getTranslatedContent(
 				translatedContent, article.getDDMStructure(),
 				importedLocaleContentMap, targetLocale);
