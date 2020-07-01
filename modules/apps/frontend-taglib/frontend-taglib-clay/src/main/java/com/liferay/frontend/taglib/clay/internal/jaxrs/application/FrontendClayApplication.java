@@ -16,7 +16,7 @@ package com.liferay.frontend.taglib.clay.internal.jaxrs.application;
 
 import com.liferay.frontend.taglib.clay.internal.jaxrs.context.provider.PaginationContextProvider;
 import com.liferay.frontend.taglib.clay.internal.jaxrs.context.provider.SortContextProvider;
-import com.liferay.frontend.taglib.clay.internal.jaxrs.endpoint.ClayDataSetDataProviderResource;
+import com.liferay.frontend.taglib.clay.internal.jaxrs.resource.ClayDataSetDataProviderResource;
 
 import java.util.HashSet;
 import java.util.Set;
