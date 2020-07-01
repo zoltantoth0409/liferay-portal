@@ -32,7 +32,7 @@ public class ClayDataSetDataRow {
 	}
 
 	public void addActionDropdownItems(List<DropdownItem> actionDropdownItems) {
-		this._actionDropdownItems.addAll(actionDropdownItems);
+		_actionDropdownItems.addAll(actionDropdownItems);
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
