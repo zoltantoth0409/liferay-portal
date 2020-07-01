@@ -59,10 +59,11 @@ public class ClayDataSetDataProviderResource {
 		@PathParam("tableName") String tableName,
 		@PathParam("dataProvider") String dataProvider,
 		@QueryParam("plid") long plid,
-		@QueryParam("portletId") String portletId, @Context UriInfo uriInfo,
-		@Context Pagination pagination, @Context Sort sort,
+		@QueryParam("portletId") String portletId,
 		@Context HttpServletRequest httpServletRequest,
-		@Context HttpServletResponse httpServletResponse) {
+		@Context HttpServletResponse httpServletResponse,
+		@Context Pagination pagination, @Context Sort sort,
+		@Context UriInfo uriInfo) {
 
 		ClayDataSetDataProvider clayDataProvider =
 			_clayDataProviderRegistry.getClayDataSetProvider(dataProvider);
