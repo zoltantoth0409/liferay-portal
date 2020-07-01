@@ -100,18 +100,18 @@ public class ClayDataSetDataProviderResource {
 			FilterFactory filterFactory =
 				_filterFactoryRegistry.getFilterFactory(dataProvider);
 
-			String json = _clayDataSetDataJSONFactory.create(
-				groupId, tableName,
-				clayDataSetDataProvider.getItems(
-					httpServletRequest,
-					filterFactory.create(httpServletRequest), pagination, sort),
-				clayDataSetDataProvider.getItemsCount(
-					httpServletRequest,
-					filterFactory.create(httpServletRequest)),
-				httpServletRequest);
-
 			return Response.ok(
-				json, MediaType.APPLICATION_JSON
+				_clayDataSetDataJSONFactory.create(
+					groupId, tableName,
+					clayDataSetDataProvider.getItems(
+						httpServletRequest,
+						filterFactory.create(httpServletRequest), pagination,
+						sort),
+					clayDataSetDataProvider.getItemsCount(
+						httpServletRequest,
+						filterFactory.create(httpServletRequest)),
+					httpServletRequest),
+				MediaType.APPLICATION_JSON
 			).build();
 		}
 		catch (Exception exception) {
