@@ -135,13 +135,13 @@ renderResponse.setTitle(article.getTitle());
 						<clay:col
 							md="6"
 						>
-							<aui:input dir="<%= LanguageUtil.get(sourceLocale, "lang.dir") %>" label="<%= label %>" name="<%= label %>" readonly="true" value="<%= String.valueOf(infoFieldValue.getValue(sourceLocale)) %>" />
+							<aui:input dir='<%= LanguageUtil.get(sourceLocale, "lang.dir") %>' label="<%= label %>" name="<%= label %>" readonly="true" value="<%= String.valueOf(infoFieldValue.getValue(sourceLocale)) %>" />
 						</clay:col>
 
 						<clay:col
 							md="6"
 						>
-							<aui:input dir="<%= LanguageUtil.get(targetLocale, "lang.dir") %>" label="<%= label %>" name="<%= label %>" value="<%= String.valueOf(infoFieldValue.getValue(targetLocale)) %>" />
+							<aui:input dir='<%= LanguageUtil.get(targetLocale, "lang.dir") %>' label="<%= label %>" name="<%= label %>" value="<%= String.valueOf(infoFieldValue.getValue(targetLocale)) %>" />
 						</clay:col>
 					</clay:row>
 
