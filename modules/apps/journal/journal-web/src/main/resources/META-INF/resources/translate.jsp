@@ -19,13 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-InfoItemFieldValues infoItemFieldValues = (InfoItemFieldValues)request.getAttribute(InfoItemFieldValues.class.getName());
-
 JournalArticle article = (JournalArticle)request.getAttribute(JournalWebKeys.JOURNAL_ARTICLES);
-
-String title = article.getTitle();
-
-TranslationInfoFieldChecker translationInfoFieldChecker = (TranslationInfoFieldChecker)request.getAttribute(TranslationInfoFieldChecker.class.getName());
 
 String sourceLanguageId = (String)request.getAttribute(JournalWebConstants.SOURCE_LANGUAGE_ID);
 String targetLanguageId = (String)request.getAttribute(JournalWebConstants.TARGET_LANGUAGE_ID);
@@ -33,7 +27,7 @@ String targetLanguageId = (String)request.getAttribute(JournalWebConstants.TARGE
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
-renderResponse.setTitle(title);
+renderResponse.setTitle(article.getTitle());
 %>
 
 <aui:form cssClass="translate-article" name="translate_fm" onSubmit="event.preventDefault();">
@@ -84,16 +78,15 @@ renderResponse.setTitle(title);
 		cssClass="container-view"
 	>
 		<div class="translate-body-form">
-
-			<%
-			String sourceLanguageIdTitle = StringUtil.replace(sourceLanguageId, CharPool.UNDERLINE, CharPool.DASH);
-			String targetLanguageIdTitle = StringUtil.replace(targetLanguageId, CharPool.UNDERLINE, CharPool.DASH);
-			%>
-
 			<clay:row>
 				<clay:col
 					md="6"
 				>
+
+					<%
+					String sourceLanguageIdTitle = StringUtil.replace(sourceLanguageId, CharPool.UNDERLINE, CharPool.DASH);
+					%>
+
 					<clay:icon
 						symbol="<%= StringUtil.toLowerCase(sourceLanguageIdTitle) %>"
 					/>
@@ -106,6 +99,11 @@ renderResponse.setTitle(title);
 				<clay:col
 					md="6"
 				>
+
+					<%
+					String targetLanguageIdTitle = StringUtil.replace(targetLanguageId, CharPool.UNDERLINE, CharPool.DASH);
+					%>
+
 					<clay:icon
 						symbol="<%= StringUtil.toLowerCase(targetLanguageIdTitle) %>"
 					/>
@@ -120,10 +118,11 @@ renderResponse.setTitle(title);
 			Locale sourceLocale = LocaleUtil.fromLanguageId(sourceLanguageId);
 			Locale targetLocale = LocaleUtil.fromLanguageId(targetLanguageId);
 
-			String sourceLanguageDir = LanguageUtil.get(sourceLocale, "lang.dir");
-			String targetLanguageDir = LanguageUtil.get(targetLocale, "lang.dir");
+			InfoItemFieldValues infoItemFieldValues = (InfoItemFieldValues)request.getAttribute(InfoItemFieldValues.class.getName());
 
 			for (InfoFieldValue<Object> infoFieldValue : infoItemFieldValues.getInfoFieldValues()) {
+				TranslationInfoFieldChecker translationInfoFieldChecker = (TranslationInfoFieldChecker)request.getAttribute(TranslationInfoFieldChecker.class.getName());
+
 				InfoField infoField = infoFieldValue.getInfoField();
 
 				if (translationInfoFieldChecker.isTranslatable(infoField)) {
@@ -136,13 +135,13 @@ renderResponse.setTitle(title);
 						<clay:col
 							md="6"
 						>
-							<aui:input dir="<%= sourceLanguageDir %>" label="<%= label %>" name="<%= label %>" readonly="true" value="<%= String.valueOf(infoFieldValue.getValue(sourceLocale)) %>" />
+							<aui:input dir="<%= LanguageUtil.get(sourceLocale, "lang.dir") %>" label="<%= label %>" name="<%= label %>" readonly="true" value="<%= String.valueOf(infoFieldValue.getValue(sourceLocale)) %>" />
 						</clay:col>
 
 						<clay:col
 							md="6"
 						>
-							<aui:input dir="<%= targetLanguageDir %>" label="<%= label %>" name="<%= label %>" value="<%= String.valueOf(infoFieldValue.getValue(targetLocale)) %>" />
+							<aui:input dir="<%= LanguageUtil.get(targetLocale, "lang.dir") %>" label="<%= label %>" name="<%= label %>" value="<%= String.valueOf(infoFieldValue.getValue(targetLocale)) %>" />
 						</clay:col>
 					</clay:row>
 
