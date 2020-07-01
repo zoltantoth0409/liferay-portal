@@ -45,15 +45,15 @@ public class ClayDataSetDisplayViewSerializerImpl
 	public JSONArray serialize(String dataSetDisplayViewKey, Locale locale) {
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		List<ClayDataSetDisplayView> clayDataSetDisplayViews =
 			_clayDataSetDisplayViewRegistry.getClayDataSetDisplayViews(
 				dataSetDisplayViewKey);
 
 		for (ClayDataSetDisplayView clayDataSetDisplayView :
 				clayDataSetDisplayViews) {
+
+			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+				"content.Language", locale, getClass());
 
 			JSONObject jsonObject = JSONUtil.put(
 				"contentRenderer", clayDataSetDisplayView.getContentRenderer()
