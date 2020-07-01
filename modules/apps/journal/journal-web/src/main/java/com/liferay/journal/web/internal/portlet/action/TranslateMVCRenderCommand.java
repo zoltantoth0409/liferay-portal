@@ -78,8 +78,16 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 						InfoItemFieldValuesProvider.class,
 						JournalArticle.class.getName());
 
+			renderRequest.setAttribute(
+				InfoItemFieldValues.class.getName(),
+				infoItemFieldValuesProvider.getInfoItemFieldValues(article));
+
 			List<String> availableSourceLanguageIds = Arrays.asList(
 				article.getAvailableLanguageIds());
+
+			renderRequest.setAttribute(
+				JournalWebConstants.AVAILABLE_SOURCE_LANGUAGE_IDS,
+				availableSourceLanguageIds);
 
 			String sourceLanguageId = ParamUtil.getString(
 				renderRequest, "sourceLanguageId",
@@ -88,13 +96,9 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 			List<String> availableTargetLanguageIds =
 				_getSiteAvailableLanguageIds(sourceLanguageId, themeDisplay);
 
-			String targetLanguageId = ParamUtil.getString(
-				renderRequest, "targetLanguageId",
-				availableTargetLanguageIds.get(0));
-
 			renderRequest.setAttribute(
-				InfoItemFieldValues.class.getName(),
-				infoItemFieldValuesProvider.getInfoItemFieldValues(article));
+				JournalWebConstants.AVAILABLE_TARGET_LANGUAGE_IDS,
+				availableTargetLanguageIds);
 
 			renderRequest.setAttribute(
 				JournalWebKeys.JOURNAL_ARTICLES, article);
@@ -103,13 +107,12 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 				_translationInfoFieldChecker);
 
 			renderRequest.setAttribute(
-				JournalWebConstants.AVAILABLE_SOURCE_LANGUAGE_IDS,
-				availableSourceLanguageIds);
-			renderRequest.setAttribute(
-				JournalWebConstants.AVAILABLE_TARGET_LANGUAGE_IDS,
-				availableTargetLanguageIds);
-			renderRequest.setAttribute(
 				JournalWebConstants.SOURCE_LANGUAGE_ID, sourceLanguageId);
+
+			String targetLanguageId = ParamUtil.getString(
+				renderRequest, "targetLanguageId",
+				availableTargetLanguageIds.get(0));
+
 			renderRequest.setAttribute(
 				JournalWebConstants.TARGET_LANGUAGE_ID, targetLanguageId);
 		}
