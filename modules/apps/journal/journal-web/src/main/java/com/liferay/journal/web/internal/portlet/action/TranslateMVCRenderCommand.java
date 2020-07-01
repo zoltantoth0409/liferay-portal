@@ -105,16 +105,13 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 			renderRequest.setAttribute(
 				TranslationInfoFieldChecker.class.getName(),
 				_translationInfoFieldChecker);
-
 			renderRequest.setAttribute(
 				JournalWebConstants.SOURCE_LANGUAGE_ID, sourceLanguageId);
-
-			String targetLanguageId = ParamUtil.getString(
-				renderRequest, "targetLanguageId",
-				availableTargetLanguageIds.get(0));
-
 			renderRequest.setAttribute(
-				JournalWebConstants.TARGET_LANGUAGE_ID, targetLanguageId);
+				JournalWebConstants.TARGET_LANGUAGE_ID,
+				ParamUtil.getString(
+					renderRequest, "targetLanguageId",
+					availableTargetLanguageIds.get(0)));
 		}
 		catch (PortalException portalException) {
 			throw new PortletException(portalException);
