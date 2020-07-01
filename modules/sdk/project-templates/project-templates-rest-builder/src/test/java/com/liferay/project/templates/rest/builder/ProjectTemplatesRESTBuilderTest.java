@@ -33,6 +33,7 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -40,6 +41,7 @@ import org.junit.rules.TemporaryFolder;
 /**
  * @author Javier de Arcos
  */
+@Ignore
 public class ProjectTemplatesRESTBuilderTest
 	implements BaseProjectTemplatesTestCase {
 
