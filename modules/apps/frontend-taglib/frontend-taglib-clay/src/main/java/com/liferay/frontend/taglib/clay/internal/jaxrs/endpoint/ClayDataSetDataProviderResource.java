@@ -29,8 +29,6 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -99,15 +97,15 @@ public class ClayDataSetDataProviderResource {
 			FilterFactory filterFactory =
 				_filterFactoryRegistry.getFilterFactory(dataProvider);
 
-			List<Object> items = clayDataProvider.getItems(
-				httpServletRequest, filterFactory.create(httpServletRequest),
-				pagination, sort);
-
-			int itemsCount = clayDataProvider.getItemsCount(
-				httpServletRequest, filterFactory.create(httpServletRequest));
-
 			String json = _clayDataSetDataJSONFactory.create(
-				groupId, tableName, items, itemsCount, httpServletRequest);
+				groupId, tableName,
+				clayDataProvider.getItems(
+					httpServletRequest,
+					filterFactory.create(httpServletRequest), pagination, sort),
+				clayDataProvider.getItemsCount(
+					httpServletRequest,
+					filterFactory.create(httpServletRequest)),
+				httpServletRequest);
 
 			return Response.ok(
 				json, MediaType.APPLICATION_JSON
