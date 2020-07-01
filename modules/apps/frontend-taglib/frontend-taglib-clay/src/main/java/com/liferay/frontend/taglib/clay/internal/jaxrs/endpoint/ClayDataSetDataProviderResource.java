@@ -65,10 +65,10 @@ public class ClayDataSetDataProviderResource {
 		@Context Pagination pagination, @Context Sort sort,
 		@Context UriInfo uriInfo) {
 
-		ClayDataSetDataProvider clayDataProvider =
+		ClayDataSetDataProvider clayDataSetDataProvider =
 			_clayDataProviderRegistry.getClayDataSetProvider(dataProvider);
 
-		if ((clayDataProvider == null) && _log.isDebugEnabled()) {
+		if ((clayDataSetDataProvider == null) && _log.isDebugEnabled()) {
 			_log.debug(
 				"No Clay data set data provider registered with key " +
 					dataProvider);
@@ -102,10 +102,10 @@ public class ClayDataSetDataProviderResource {
 
 			String json = _clayDataSetDataJSONFactory.create(
 				groupId, tableName,
-				clayDataProvider.getItems(
+				clayDataSetDataProvider.getItems(
 					httpServletRequest,
 					filterFactory.create(httpServletRequest), pagination, sort),
-				clayDataProvider.getItemsCount(
+				clayDataSetDataProvider.getItemsCount(
 					httpServletRequest,
 					filterFactory.create(httpServletRequest)),
 				httpServletRequest);
