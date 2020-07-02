@@ -30,7 +30,7 @@
 				<ul class="nav nav-nested">
 					<li class="nav-item">
 						<c:choose>
-							<c:when test="<%= ListUtil.isNotEmpty(assetCategoriesDisplayContext.getVocabularies()) || ListUtil.isNotEmpty(assetCategoriesDisplayContext.getInheritedVocabularies()) %>">
+							<c:when test="<%= ListUtil.isNotEmpty(assetCategoriesDisplayContext.getInheritedVocabularies()) || ListUtil.isNotEmpty(assetCategoriesDisplayContext.getVocabularies()) %>">
 								<clay:content-row
 									cssClass="mb-4"
 									verticalAlign="center"
