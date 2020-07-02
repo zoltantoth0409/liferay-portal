@@ -70,7 +70,7 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 			value.getDefaultLocale(),
 			JSONUtil.put(
 				"option1"
-			).toJSONString());
+			).toString());
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
@@ -120,7 +120,7 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 			value.getDefaultLocale(),
 			JSONUtil.put(
 				"option1"
-			).toJSONString());
+			).toString());
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
@@ -173,7 +173,7 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 			value.getDefaultLocale(),
 			JSONUtil.putAll(
 				"option1", "option2"
-			).toJSONString());
+			).toString());
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(

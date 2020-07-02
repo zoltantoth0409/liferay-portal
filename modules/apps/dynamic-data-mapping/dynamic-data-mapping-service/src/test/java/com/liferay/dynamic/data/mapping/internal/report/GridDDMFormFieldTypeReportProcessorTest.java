@@ -200,12 +200,12 @@ public class GridDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 			"columns");
 
 		Assert.assertEquals(
-			expectedJSONArray.toJSONString(), columnsJSONArray.toJSONString());
+			expectedJSONArray.toString(), columnsJSONArray.toString());
 
 		JSONArray rowsJSONArray = structureJSONObject.getJSONArray("rows");
 
 		Assert.assertEquals(
-			expectedJSONArray.toJSONString(), rowsJSONArray.toJSONString());
+			expectedJSONArray.toString(), rowsJSONArray.toString());
 	}
 
 	private DDMFormFieldOptions _createDDMFormOptions() {
@@ -236,8 +236,7 @@ public class GridDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 
 		Value value = new LocalizedValue();
 
-		value.addString(
-			value.getDefaultLocale(), valueJSONObject.toJSONString());
+		value.addString(value.getDefaultLocale(), valueJSONObject.toString());
 		value.setDefaultLocale(LocaleUtil.US);
 
 		when(
