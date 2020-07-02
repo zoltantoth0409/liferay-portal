@@ -202,14 +202,16 @@ public class AssetCategoriesDisplayContext {
 		EmptyOnClickRowChecker emptyOnClickRowChecker =
 			new EmptyOnClickRowChecker(_renderResponse);
 
-		AssetVocabulary vocabulary = getVocabulary();
-
 		StringBundler sb = new StringBundler(7);
 
 		sb.append("^(?!.*");
 		sb.append(_renderResponse.getNamespace());
 		sb.append("redirect).*(/vocabulary/");
+
+		AssetVocabulary vocabulary = getVocabulary();
+
 		sb.append(vocabulary.getVocabularyId());
+
 		sb.append("/category/");
 		sb.append(getCategoryId());
 		sb.append(")");
@@ -725,7 +727,7 @@ public class AssetCategoriesDisplayContext {
 			}
 		}
 		catch (Exception exception) {
-			_log.error("Unable to get Asset Vocabulary", exception);
+			_log.error("Unable to get asset vocabulary", exception);
 		}
 
 		if (AssetCategoriesPermission.contains(
