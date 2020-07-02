@@ -89,9 +89,7 @@ public class AssetEntryInfoItemFieldSetProviderImpl
 			"categorization");
 
 		infoFieldSet.add(_categoriesInfoField);
-
 		infoFieldSet.add(_tagsInfoField);
-
 		infoFieldSet.add(
 			_infoItemFieldReaderFieldSetProvider.getInfoFieldSet(
 				AssetEntry.class.getName()));
@@ -127,9 +125,7 @@ public class AssetEntryInfoItemFieldSetProviderImpl
 		}
 
 		infoFieldSet.add(_categoriesInfoField);
-
 		infoFieldSet.add(_tagsInfoField);
-
 		infoFieldSet.add(
 			_infoItemFieldReaderFieldSetProvider.getInfoFieldSet(
 				AssetEntry.class.getName()));
@@ -166,13 +162,11 @@ public class AssetEntryInfoItemFieldSetProviderImpl
 			new InfoFieldValue<>(
 				_categoriesInfoField,
 				() -> _getAssetCategoryNames(assetEntry.getCategories())));
-
 		infoFieldValues.add(
 			new InfoFieldValue<>(
 				_tagsInfoField,
 				() -> ListUtil.toString(
 					assetEntry.getTags(), AssetTag.NAME_ACCESSOR)));
-
 		infoFieldValues.addAll(
 			_infoItemFieldReaderFieldSetProvider.getInfoFieldValues(
 				AssetEntry.class.getName(), assetEntry));
