@@ -64,6 +64,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>MANAGEMENT_BAR</td>
+	<td>//div[contains(@class,'management-bar')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>VIEWPOINT_HANDLE</td>
 	<td>//div[contains(@class,'page-editor__layout-viewport__handle')]</td>
 	<td></td>
