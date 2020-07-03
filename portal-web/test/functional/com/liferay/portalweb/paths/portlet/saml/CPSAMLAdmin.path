@@ -29,6 +29,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>IMPORT_CERTIFICATE</td>
+	<td>//a[contains(.,'Import Certificate')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>REPLACE_CERTIFICATE</td>
 	<td>//button[contains(@onclick,'${key_certificateUsage}')]/span[contains(.,'Replace Certificate')]</td>
 	<td></td>
@@ -92,6 +97,16 @@
 <tr>
 	<td>CERTIFICATE_AND_PRIVATE_KEY_KEY_PASSWORD_FIELD</td>
 	<td>//input[contains(@id,'credential-password')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CERTIFICATE_AND_PRIVATE_KEY_KEYSTORE_ALIAS_RADIO</td>
+	<td>//input[contains(@id,'selectKeyStoreAlias') and @value='${key_keyStoreAlias}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CERTIFICATE_AND_PRIVATE_KEY_KEYSTORE_PASSWORD_FIELD</td>
+	<td>//input[contains(@id,'keyStorePassword')]</td>
 	<td></td>
 </tr>
 <tr>
