@@ -812,6 +812,65 @@ definition {
 
 	@description = "This is a use case for LPS-108077."
 	@priority = "5"
+	test ImportEncryptionCertificateFromPKCS12KeystoreFile {
+		property test.name.skip.portal.instance = "SAML#ImportEncryptionCertificateFromPKCS12KeystoreFile";
+
+		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
+
+		SAML.configureLiferaySAMLAsSP(
+			encryptionCertificate = "true",
+			samlEntityID = "samlsp",
+			spURL = "http://www.able.com:9080/");
+
+		SAMLNavigation.gotoServiceProviderConnection();
+
+		SAMLPortlet.configureServiceProviderConnection(
+			forceEncryption = "enable",
+			samlEntityID = "samlsp");
+
+		User.logoutPG();
+
+		User.viewLoggedOutPG();
+
+		SAML.executeSPInitiatedSSO(
+			password = "test",
+			specificURL = "http://www.able.com:9080",
+			spURL = "http://www.able.com:9080/",
+			userEmailAddress = "test@liferay.com");
+
+		User.viewLoggedInPG();
+
+		User.logoutPG();
+
+		User.loginPG(
+			password = "test",
+			specificURL = "http://www.able.com:9080",
+			userEmailAddress = "test@liferay.com");
+
+		GlobalMenu.gotoPortlet(
+			category = "Security",
+			panel = "Control Panel",
+			portlet = "SAML Admin");
+
+		Click(
+			key_certificateUsage = "ENCRYPTION",
+			locator1 = "CPSAMLAdmin#DOWNLOAD_CERTIFICATE");
+
+		SAMLRole.convertEncryptionCertificate();
+
+		SAMLRole.importCertificateAndPrivateKey(
+			certificateUsage = "ENCRYPTION",
+			keyStoreAlias = "samlsp-encryption");
+
+		User.logoutPG(specificURL = "http://www.able.com:9080/");
+
+		User.loginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+	}
+
+	@description = "This is a use case for LPS-108077."
+	@priority = "5"
 	test ImportSigningCertificateFromPKCS12KeystoreFile {
 		property test.name.skip.portal.instance = "SAML#ImportSigningCertificateFromPKCS12KeystoreFile";
 
