@@ -7770,6 +7770,35 @@ ${update.properties}</echo>
 		<apply-portal-ext-properties />
 	</target>
 
+	<target name="prepare-encryption-PCKS12-certificate">
+		<if>
+			<equals arg1="${app.server.type}" arg2="tomcat" />
+			<then>
+				<if>
+					<os family="unix" />
+					<then>
+						<exec dir="${app.server.parent.dir}-1" executable="/bin/bash">
+							<arg value="-c" />
+							<arg value="keytool -alias samlsp-encryption -importkeystore -srckeystore ${app.server.parent.dir}-1/data/keystore.jks -srcstoretype JKS -srcstorepass liferay -srckeypass samlsp -deststoretype PKCS12 -destkeystore ${app.server.parent.dir}/poshi/samlsp_encryption.p12 -deststorepass samlsp" />
+						</exec>
+					</then>
+					<elseif>
+						<os family="windows" />
+						<then>
+							<exec dir="${app.server.parent.dir}-1" executable="cmd">
+								<arg value="/c" />
+								<arg value="keytool -alias samlsp-encryption -importkeystore -srckeystore ${app.server.parent.dir}-1/data/keystore.jks -srcstoretype JKS -srcstorepass liferay -srckeypass samlsp -deststoretype PKCS12 -destkeystore ${app.server.parent.dir}/poshi/samlsp_encryption.p12 -deststorepass samlsp" />
+							</exec>
+						</then>
+					</elseif>
+				</if>
+			</then>
+			<else>
+				<echo>Please convert encryption certificate manually.</echo>
+			</else>
+		</if>
+	</target>
+
 	<target name="prepare-ip-address-update">
 		<get-testcase-property property.name="testcase.url" />
 
