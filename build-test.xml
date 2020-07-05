@@ -9998,6 +9998,35 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 		</if>
 	</target>
 
+	<target name="prepare-signing-PCKS12-certificate">
+		<if>
+			<equals arg1="${app.server.type}" arg2="tomcat" />
+			<then>
+				<if>
+					<os family="unix" />
+					<then>
+						<exec dir="${app.server.parent.dir}" executable="/bin/bash">
+							<arg value="-c" />
+							<arg value="keytool -alias samlidp -importkeystore -srckeystore ${app.server.parent.dir}/data/keystore.jks -srcstoretype JKS -srcstorepass liferay -srckeypass samlidp -deststoretype PKCS12 -destkeystore ${app.server.parent.dir}/poshi/samlidp.p12 -deststorepass samlidp" />
+						</exec>
+					</then>
+					<elseif>
+						<os family="windows" />
+						<then>
+							<exec dir="${app.server.parent.dir}" executable="cmd">
+								<arg value="/c" />
+								<arg value="keytool -alias samlidp -importkeystore -srckeystore ${app.server.parent.dir}/data/keystore.jks -srcstoretype JKS -srcstorepass liferay -srckeypass samlidp -deststoretype PKCS12 -destkeystore ${app.server.parent.dir}/poshi/samlidp.p12 -deststorepass samlidp" />
+							</exec>
+						</then>
+					</elseif>
+				</if>
+			</then>
+			<else>
+				<echo>Please convert signing certificate manually.</echo>
+			</else>
+		</if>
+	</target>
+
 	<target name="prepare-so-plugins">
 		<set-tomcat-version-number liferay.portal.bundle="${liferay.portal.bundle}" />
 
