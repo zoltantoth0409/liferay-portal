@@ -69,6 +69,12 @@ definition {
 			locator1 = "CPSAMLAdmin#REPLACE_CERTIFICATE");
 	}
 
+	macro convertEncryptionCertificate {
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "prepare-encryption-PCKS12-certificate");
+	}
+
 	macro configureIdentityProvider {
 		if (isSet(idpSessionIdleTimeout)) {
 			Type(
@@ -90,7 +96,7 @@ definition {
 	macro convertSingingCertificate {
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "prepare-PCKS12-certificate");
+			value1 = "prepare-signing-PCKS12-certificate");
 	}
 
 	macro deleteCertificate {
@@ -154,11 +160,9 @@ definition {
 			var liferayHome = PropsUtil.get("liferay.home.dir.name");
 			var filePath = "${liferayHome}-1/data";
 
-			UploadTempFile.uploadTempFileHiddenNoMouseOver(
+			UploadTempFile(
 				locator1 = "TextInput#FILE",
 				value1 = "samlsp_encryption.p12");
-
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Type(
 				locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_KEYSTORE_PASSWORD_FIELD",
