@@ -1464,13 +1464,13 @@ public abstract class BaseBuild implements Build {
 			return;
 		}
 
-		JenkinsSlave jenkinsSlave = getJenkinsSlave();
-
 		String pinnedMessage = "";
 
 		if (!slaveOfflineRule.shutdown) {
 			pinnedMessage = "PINNED\n";
 		}
+
+		JenkinsSlave jenkinsSlave = getJenkinsSlave();
 
 		String message = JenkinsResultsParserUtil.combine(
 			pinnedMessage, slaveOfflineRule.getName(), " failure detected at ",
