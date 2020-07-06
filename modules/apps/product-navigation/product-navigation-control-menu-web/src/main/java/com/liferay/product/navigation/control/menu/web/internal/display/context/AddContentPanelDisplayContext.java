@@ -533,13 +533,13 @@ public class AddContentPanelDisplayContext {
 	private List<Map<String, Object>> _getPortlets(
 		PortletCategory portletCategory) {
 
-		Set<String> portletIds = portletCategory.getPortletIds();
-
-		Stream<String> stream = portletIds.stream();
-
 		HttpSession httpSession = _httpServletRequest.getSession();
 
 		ServletContext servletContext = httpSession.getServletContext();
+
+		Set<String> portletIds = portletCategory.getPortletIds();
+
+		Stream<String> stream = portletIds.stream();
 
 		return stream.map(
 			portletId -> PortletLocalServiceUtil.getPortletById(
