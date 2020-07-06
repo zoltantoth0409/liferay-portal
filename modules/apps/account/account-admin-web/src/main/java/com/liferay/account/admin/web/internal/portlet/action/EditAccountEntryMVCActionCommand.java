@@ -166,7 +166,7 @@ public class EditAccountEntryMVCActionCommand extends BaseMVCActionCommand {
 		else {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Skipping user updates for business account: " +
+					"Skipping user updates for business account entry: " +
 						accountEntryId);
 			}
 		}
