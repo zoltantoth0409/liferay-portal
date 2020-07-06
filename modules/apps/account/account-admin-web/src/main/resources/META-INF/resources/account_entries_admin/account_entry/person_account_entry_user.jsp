@@ -21,8 +21,16 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 
 Optional<User> personAccountEntryUserOptional = accountEntryDisplay.getPersonAccountEntryUserOptional();
 
-List<User> userList = personAccountEntryUserOptional.map(Collections::singletonList).orElse(Collections.emptyList());
-long userId = personAccountEntryUserOptional.map(User::getUserId).orElse(0L);
+List<User> userList = personAccountEntryUserOptional.map(
+	Collections::singletonList
+).orElse(
+	Collections.emptyList()
+);
+long userId = personAccountEntryUserOptional.map(
+	User::getUserId
+).orElse(
+	0L
+);
 %>
 
 <liferay-util:buffer
