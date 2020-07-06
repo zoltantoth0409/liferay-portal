@@ -20,7 +20,7 @@ import com.liferay.redirect.internal.upgrade.v3_0_0.util.RedirectNotFoundEntryTa
 /**
  * @author Alejandro Tardín
  */
-public class UpgradeRedirectNotFoundEntryDropHits extends UpgradeProcess {
+public class UpgradeRedirectNotFoundEntry extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

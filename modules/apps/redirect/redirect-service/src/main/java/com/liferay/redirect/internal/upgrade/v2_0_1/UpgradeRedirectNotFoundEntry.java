@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 /**
  * @author Alejandro Tardín
  */
-public class UpgradeRedirectNotFoundEntryHits extends UpgradeProcess {
+public class UpgradeRedirectNotFoundEntry extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
