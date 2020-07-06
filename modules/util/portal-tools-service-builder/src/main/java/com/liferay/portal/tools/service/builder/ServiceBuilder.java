@@ -3487,12 +3487,12 @@ public class ServiceBuilder {
 
 			JavaSource parentJavaSource = parentJavaClass.getSource();
 
-			Map<String, String> importMap = new HashMap<>();
+			Map<String, String> importsMap = new HashMap<>();
 
 			for (String childImport : imports) {
 				int x = childImport.lastIndexOf('.');
 
-				importMap.put(childImport.substring(x + 1), childImport);
+				importsMap.put(childImport.substring(x + 1), childImport);
 			}
 
 			for (String parentImport : parentJavaSource.getImports()) {
@@ -3500,21 +3500,21 @@ public class ServiceBuilder {
 
 				String simpleName = parentImport.substring(x + 1);
 
-				String conflictingImport = importMap.get(simpleName);
+				String conflictingImport = importsMap.get(simpleName);
 
 				if (conflictingImport == null) {
 					imports.add(parentImport);
 				}
 				else if (!conflictingImport.equals(parentImport)) {
 					for (JavaMethod method : methods) {
-						String signiture = method.getDeclarationSignature(
+						String signature = method.getDeclarationSignature(
 							false);
 
-						if (signiture.contains(conflictingImport)) {
+						if (signature.contains(conflictingImport)) {
 							break;
 						}
 
-						if (signiture.contains(parentImport)) {
+						if (signature.contains(parentImport)) {
 							imports.remove(conflictingImport);
 
 							imports.add(parentImport);
