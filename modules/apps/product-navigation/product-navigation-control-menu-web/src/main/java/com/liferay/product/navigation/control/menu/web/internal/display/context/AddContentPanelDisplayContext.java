@@ -537,9 +537,9 @@ public class AddContentPanelDisplayContext {
 
 		Stream<String> stream = portletIds.stream();
 
-		HttpSession session = _httpServletRequest.getSession();
+		HttpSession httpSession = _httpServletRequest.getSession();
 
-		ServletContext servletContext = session.getServletContext();
+		ServletContext servletContext = httpSession.getServletContext();
 
 		return stream.map(
 			portletId -> PortletLocalServiceUtil.getPortletById(
