@@ -18,19 +18,6 @@
 
 <%
 AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_ENTRY_DISPLAY);
-
-Optional<User> personAccountEntryUserOptional = accountEntryDisplay.getPersonAccountEntryUserOptional();
-
-List<User> userList = personAccountEntryUserOptional.map(
-	Collections::singletonList
-).orElse(
-	Collections.emptyList()
-);
-long userId = personAccountEntryUserOptional.map(
-	User::getUserId
-).orElse(
-	0L
-);
 %>
 
 <liferay-util:buffer
@@ -74,7 +61,21 @@ long userId = personAccountEntryUserOptional.map(
 		</clay:content-col>
 	</clay:content-row>
 
-	<aui:input name="personAccountEntryUserId" type="hidden" value="<%= String.valueOf(userId) %>" />
+	<%
+	Optional<User> personAccountEntryUserOptional = accountEntryDisplay.getPersonAccountEntryUserOptional();
+	%>
+
+	<aui:input
+		name="personAccountEntryUserId"
+		type="hidden"
+		value="<%=
+		String.valueOf(
+			personAccountEntryUserOptional.map(
+				User::getUserId
+			).orElse(
+				0L
+			)) %>"
+	/>
 
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
@@ -84,7 +85,12 @@ long userId = personAccountEntryUserOptional.map(
 		total="<%= 1 %>"
 	>
 		<liferay-ui:search-container-results
-			results="<%= userList %>"
+			results="<%=
+				personAccountEntryUserOptional.map(
+					Collections::singletonList
+				).orElse(
+					Collections.emptyList()
+				) %>"
 		/>
 
 		<liferay-ui:search-container-row
