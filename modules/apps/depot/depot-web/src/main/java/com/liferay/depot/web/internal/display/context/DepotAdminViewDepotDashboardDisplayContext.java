@@ -136,7 +136,7 @@ public class DepotAdminViewDepotDashboardDisplayContext {
 		return portletURL.toString();
 	}
 
-	// Order is important.
+	// Order matters
 
 	private static final String[] _PANEL_CATEGORY_KEYS = {
 		PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
