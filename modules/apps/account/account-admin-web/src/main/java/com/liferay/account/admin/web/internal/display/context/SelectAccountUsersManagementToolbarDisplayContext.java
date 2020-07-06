@@ -76,14 +76,14 @@ public class SelectAccountUsersManagementToolbarDisplayContext
 						PortletRequest.RENDER_PHASE);
 
 				addAccountEntryUserURL.setParameter(
-					"accountEntryId",
-					ParamUtil.getString(request, "accountEntryId"));
-				addAccountEntryUserURL.setParameter(
-					"backURL", ParamUtil.getString(request, "redirect"));
-				addAccountEntryUserURL.setParameter(
 					"mvcRenderCommandName", "/account_admin/add_account_user");
 				addAccountEntryUserURL.setParameter(
 					"redirect", ParamUtil.getString(request, "redirect"));
+				addAccountEntryUserURL.setParameter(
+					"backURL", ParamUtil.getString(request, "redirect"));
+				addAccountEntryUserURL.setParameter(
+					"accountEntryId",
+					ParamUtil.getString(request, "accountEntryId"));
 
 				dropdownItem.putData(
 					"addAccountEntryUserURL",
