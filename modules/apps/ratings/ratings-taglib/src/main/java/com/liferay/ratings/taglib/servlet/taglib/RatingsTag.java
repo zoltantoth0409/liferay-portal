@@ -196,7 +196,7 @@ public class RatingsTag extends IncludeTag {
 					"positiveVotes", positiveVotes
 				).put(
 					"randomNamespace",
-					PortalUtil.generateRandomKey(request, "taglib_ratings_") +
+					PortalUtil.generateRandomKey(request, "taglib_ratings_ratings_") +
 						StringPool.UNDERLINE
 				).put(
 					"signedIn", themeDisplay.isSignedIn()
