@@ -273,7 +273,8 @@ public class DDMDataProviderDisplayContext {
 
 		return LanguageUtil.get(
 			httpServletRequest,
-			"create-a-data-provider-to-auto-populate-your-select-fields");
+			"create-a-data-provider-to-automatically-populate-your-select-" +
+				"fields");
 	}
 
 	public String getEmptyResultsMessage() {
