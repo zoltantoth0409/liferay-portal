@@ -240,7 +240,8 @@ public class AccountEntryUserRelLocalServiceImpl
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Updating user for person account: " + accountEntryId);
+			_log.debug(
+				"Updating user for person account entry: " + accountEntryId);
 		}
 
 		List<AccountEntryUserRel> removeAccountEntryUserRels = new ArrayList<>(
