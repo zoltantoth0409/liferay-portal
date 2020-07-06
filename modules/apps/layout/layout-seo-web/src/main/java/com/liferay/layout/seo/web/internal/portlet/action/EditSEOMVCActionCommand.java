@@ -114,11 +114,11 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 			groupId, privateLayout, layoutId, canonicalURLEnabled,
 			canonicalURLMap, serviceContext);
 
-		Layout draftLayout = layout.fetchDraftLayout();
-
 		UnicodeProperties formTypeSettingsUnicodeProperties =
 			PropertiesParamUtil.getProperties(
 				actionRequest, "TypeSettingsProperties--");
+
+		Layout draftLayout = layout.fetchDraftLayout();
 
 		if (draftLayout != null) {
 			draftLayout = _layoutService.updateLayout(
