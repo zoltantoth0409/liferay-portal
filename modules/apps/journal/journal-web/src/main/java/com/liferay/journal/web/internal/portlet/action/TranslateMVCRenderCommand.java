@@ -67,16 +67,16 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 		throws PortletException {
 
 		try {
+			InfoItemFormProvider<JournalArticle> infoItemFormProvider =
+				_infoItemServiceTracker.getFirstInfoItemService(
+					InfoItemFormProvider.class, JournalArticle.class.getName());
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			JournalArticle article = _journalArticleLocalService.getArticle(
 				themeDisplay.getScopeGroupId(),
 				ParamUtil.getString(renderRequest, "articleId"));
-
-			InfoItemFormProvider<JournalArticle> infoItemFormProvider =
-				_infoItemServiceTracker.getFirstInfoItemService(
-					InfoItemFormProvider.class, JournalArticle.class.getName());
 
 			renderRequest.setAttribute(
 				InfoForm.class.getName(),

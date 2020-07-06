@@ -19,10 +19,10 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+JournalTranslateDisplayContext journalTranslateDisplayContext = new JournalTranslateDisplayContext(liferayPortletRequest);
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
-
-JournalTranslateDisplayContext journalTranslateDisplayContext = new JournalTranslateDisplayContext(liferayPortletRequest);
 
 renderResponse.setTitle(journalTranslateDisplayContext.getTitle());
 %>
