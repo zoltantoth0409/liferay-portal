@@ -73,7 +73,6 @@ import com.liferay.portal.util.WebAppPool;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -531,7 +530,7 @@ public class AddContentPanelDisplayContext {
 		);
 	}
 
-	private List<HashMap<String, Object>> _getPortlets(
+	private List<Map<String, Object>> _getPortlets(
 		PortletCategory portletCategory) {
 
 		Set<String> portletIds = portletCategory.getPortletIds();
