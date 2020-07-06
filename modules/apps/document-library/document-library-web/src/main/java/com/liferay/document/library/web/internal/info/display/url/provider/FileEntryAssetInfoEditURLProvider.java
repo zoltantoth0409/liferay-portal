@@ -63,8 +63,6 @@ public class FileEntryAssetInfoEditURLProvider
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/document_library/edit_file_entry");
-		portletURL.setParameter(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 
 		String redirect = ParamUtil.getString(httpServletRequest, "redirect");
 
@@ -73,6 +71,9 @@ public class FileEntryAssetInfoEditURLProvider
 		}
 
 		portletURL.setParameter("redirect", redirect);
+
+		portletURL.setParameter(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 
 		return portletURL.toString();
 	}
