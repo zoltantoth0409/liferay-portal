@@ -840,12 +840,7 @@ definition {
 
 		User.viewLoggedInPG();
 
-		User.logoutPG();
-
-		User.loginPG(
-			password = "test",
-			specificURL = "http://www.able.com:9080",
-			userEmailAddress = "test@liferay.com");
+		Navigator.openSpecificURL(url = "http://www.able.com:9080");
 
 		GlobalMenu.gotoPortlet(
 			category = "Security",

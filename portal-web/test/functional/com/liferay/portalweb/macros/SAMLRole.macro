@@ -69,12 +69,6 @@ definition {
 			locator1 = "CPSAMLAdmin#REPLACE_CERTIFICATE");
 	}
 
-	macro convertEncryptionCertificate {
-		AntCommand(
-			locator1 = "build-test.xml",
-			value1 = "prepare-encryption-PCKS12-certificate");
-	}
-
 	macro configureIdentityProvider {
 		if (isSet(idpSessionIdleTimeout)) {
 			Type(
@@ -91,6 +85,12 @@ definition {
 		AssertClick(
 			locator1 = "Button#SUBMIT",
 			value1 = "Save");
+	}
+
+	macro convertEncryptionCertificate {
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "prepare-encryption-PCKS12-certificate");
 	}
 
 	macro convertSingingCertificate {
