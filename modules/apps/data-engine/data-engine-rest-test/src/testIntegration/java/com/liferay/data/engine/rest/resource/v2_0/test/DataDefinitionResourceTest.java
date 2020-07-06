@@ -485,8 +485,8 @@ public class DataDefinitionResourceTest
 			Assert.assertEquals("MustSetValidName", problem.getType());
 		}
 
-		// Fill the data layout name with the data definition's one
-		// when no name is informed
+		// Fill the data layout name with the data definition's name when no
+		// name is set
 
 		DataDefinition dataDefinition =
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
