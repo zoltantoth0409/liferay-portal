@@ -155,6 +155,11 @@ public class RatingsTag extends IncludeTag {
 
 			int positiveVotes = (int)Math.round(_getTotalScore(ratingsStats));
 
+			String randomNamespace = PortalUtil.generateRandomKey(
+				request, "taglib_ratings_ratings_");
+
+			randomNamespace += StringPool.UNDERLINE;
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -195,9 +200,7 @@ public class RatingsTag extends IncludeTag {
 				).put(
 					"positiveVotes", positiveVotes
 				).put(
-					"randomNamespace",
-					PortalUtil.generateRandomKey(request, "taglib_ratings_ratings_") +
-						StringPool.UNDERLINE
+					"randomNamespace", randomNamespace
 				).put(
 					"signedIn", themeDisplay.isSignedIn()
 				).put(
