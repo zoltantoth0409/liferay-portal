@@ -219,8 +219,7 @@ public class EmailOTPBrowserMFAChecker implements BrowserMFAChecker {
 		int maskLength = Math.max(
 			(int)Math.ceil(alias.length() / 2.0), Math.min(3, alias.length()));
 
-		int startIndex = (int)Math.ceil(
-			(alias.length() - maskLength) / 2.0);
+		int startIndex = (int)Math.ceil((alias.length() - maskLength) / 2.0);
 
 		int endIndex = startIndex + maskLength;
 
