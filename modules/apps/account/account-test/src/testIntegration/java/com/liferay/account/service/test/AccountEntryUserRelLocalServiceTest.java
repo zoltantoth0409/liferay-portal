@@ -291,8 +291,6 @@ public class AccountEntryUserRelLocalServiceTest {
 			_addPersonTypeAccountEntryUserRel(
 				personTypeAccountEntry.getAccountEntryId());
 
-		// The newly created user should be the only associated user
-
 		_assertPersonTypeAccountEntryUser(
 			new long[] {accountEntryUserRel2.getAccountUserId()},
 			personTypeAccountEntry.getAccountEntryId());
@@ -403,8 +401,6 @@ public class AccountEntryUserRelLocalServiceTest {
 		_testSetPersonTypeAccountEntryUser(
 			new long[] {user2.getUserId()},
 			personTypeAccountEntry.getAccountEntryId(), user2.getUserId());
-
-		// Passing in "0" will remove the user
 
 		_testSetPersonTypeAccountEntryUser(
 			new long[0], personTypeAccountEntry.getAccountEntryId(),
