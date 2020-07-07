@@ -437,8 +437,17 @@ public class ExportImportPerformanceTest {
 		_layoutLocalService.updateLayout(layout);
 	}
 
-	private void _updateLayoutPortletSetup(
-			Layout layout, String portletId)
+	private Closeable _startTimer() {
+		String invokerName = _getInvokerName();
+
+		long startTime = System.currentTimeMillis();
+
+		return () -> _writeToLogFile(
+			invokerName, " used ",
+			String.valueOf(System.currentTimeMillis() - startTime), "ms");
+	}
+
+	private void _updateLayoutPortletSetup(Layout layout, String portletId)
 		throws Exception {
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
@@ -460,17 +469,6 @@ public class ExportImportPerformanceTest {
 				).put(
 					"groupId", String.valueOf(assetEntry.getGroupId())
 				).build()));
-	}
-
-	private Closeable _startTimer() {
-		String invokerName = _getInvokerName();
-
-		long startTime = System.currentTimeMillis();
-
-		return () -> _writeToLogFile(
-			StringBundler.concat(
-				invokerName, " used ", System.currentTimeMillis() - startTime,
-				"ms"));
 	}
 
 	private static final String _TMPL_FRAGMENT_EDITABLE_VALUES =
