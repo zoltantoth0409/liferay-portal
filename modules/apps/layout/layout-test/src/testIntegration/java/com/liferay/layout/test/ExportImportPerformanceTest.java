@@ -32,7 +32,7 @@ import com.liferay.journal.constants.JournalFolderConstants;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.test.util.JournalTestUtil;
-import com.liferay.layout.layout.template.service.LayoutPageTemplateStructureLocalService;
+import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalService;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.petra.io.StreamUtil;
@@ -339,22 +339,21 @@ public class ExportImportPerformanceTest {
 				_fragmentCollectionContributorTracker.getFragmentEntry(
 					"FEATURED_CONTENT-highlights-circle");
 
-			Map<String, String> values = HashMapBuilder.put(
-				"classNameId",
-				String.valueOf(_portal.getClassNameId(JournalArticle.class))
-			).put(
-				"classPK_1",
-				String.valueOf(journalArticle1.getResourcePrimKey())
-			).put(
-				"classPK_2",
-				String.valueOf(journalArticle2.getResourcePrimKey())
-			).put(
-				"classPK_3",
-				String.valueOf(journalArticle3.getResourcePrimKey())
-			).build();
-
 			String editableValues = StringUtil.replace(
-				_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}", values);
+				_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}",
+				HashMapBuilder.put(
+					"classNameId",
+					String.valueOf(_portal.getClassNameId(JournalArticle.class))
+				).put(
+					"classPK_1",
+					String.valueOf(journalArticle1.getResourcePrimKey())
+				).put(
+					"classPK_2",
+					String.valueOf(journalArticle2.getResourcePrimKey())
+				).put(
+					"classPK_3",
+					String.valueOf(journalArticle3.getResourcePrimKey())
+				).build());
 
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
@@ -367,14 +366,13 @@ public class ExportImportPerformanceTest {
 		for (int i = 0; i < _portletsPerContentLayout; i++) {
 			String instanceId = PortletIdCodec.generateInstanceId();
 
-			Map<String, String> values = HashMapBuilder.put(
-				"instanceId", instanceId
-			).put(
-				"portletName", JournalPortletKeys.JOURNAL
-			).build();
-
 			String editableValues = StringUtil.replace(
-				_TMPL_FRAGMENT_PORTLET, "${", "}", values);
+				_TMPL_FRAGMENT_PORTLET, "${", "}",
+				HashMapBuilder.put(
+					"instanceId", instanceId
+				).put(
+					"portletName", JournalPortletKeys.JOURNAL
+				).build());
 
 			_savePortletPreferencesWithJournalArticle(
 				draftLayout,
@@ -454,16 +452,15 @@ public class ExportImportPerformanceTest {
 			JournalArticle.class.getName(),
 			journalArticle.getResourcePrimKey());
 
-		Map<String, String> values = HashMapBuilder.put(
-			"articleId", journalArticle.getArticleId()
-		).put(
-			"assetEntryId", String.valueOf(assetEntry.getEntryId())
-		).put(
-			"groupId", String.valueOf(assetEntry.getGroupId())
-		).build();
-
 		String portletPreferencesXML = StringUtil.replace(
-			_TMPL_PORTLET_PREFERENCES, "${", "}", values);
+			_TMPL_PORTLET_PREFERENCES, "${", "}",
+			HashMapBuilder.put(
+				"articleId", journalArticle.getArticleId()
+			).put(
+				"assetEntryId", String.valueOf(assetEntry.getEntryId())
+			).put(
+				"groupId", String.valueOf(assetEntry.getGroupId())
+			).build());
 
 		PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 			layout, portletId, portletPreferencesXML);
