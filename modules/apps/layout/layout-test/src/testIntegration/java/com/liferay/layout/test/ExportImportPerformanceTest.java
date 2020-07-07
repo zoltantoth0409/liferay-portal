@@ -311,9 +311,8 @@ public class ExportImportPerformanceTest {
 		throws IOException {
 
 		Files.write(
-			_logFilePath, Arrays.asList(contents),
-			StandardOpenOption.APPEND, StandardOpenOption.CREATE,
-			StandardOpenOption.WRITE);
+			_logFilePath, Arrays.asList(contents), StandardOpenOption.APPEND,
+			StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 	}
 
 	private void _createFragments(Layout layout) throws Exception {
@@ -495,11 +494,11 @@ public class ExportImportPerformanceTest {
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
 
 	private static int _fragmentsPerPage;
+	private static Path _logFilePath;
 	private static int _pagesCount;
 	private static String _pageType;
 	private static int _portletsPerContentPage;
 	private static int _portletsPerPortletPage;
-	private static Path _logFilePath;
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
