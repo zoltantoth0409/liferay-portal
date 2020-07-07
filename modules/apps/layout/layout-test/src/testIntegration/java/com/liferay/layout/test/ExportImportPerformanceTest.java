@@ -130,7 +130,7 @@ public class ExportImportPerformanceTest {
 
 		Files.deleteIfExists(_logFilePath);
 
-		_writeToResultsFile(
+		_writeToLogFile(
 			"Properties:",
 			StreamUtil.toString(
 				clazz.getResourceAsStream(
@@ -306,7 +306,7 @@ public class ExportImportPerformanceTest {
 			stackTraceElement.getMethodName());
 	}
 
-	private static void _writeToResultsFile(String... contents)
+	private static void _writeToLogFile(String... contents)
 		throws IOException {
 
 		Files.write(
@@ -473,7 +473,7 @@ public class ExportImportPerformanceTest {
 
 		long startTime = System.currentTimeMillis();
 
-		return () -> _writeToResultsFile(
+		return () -> _writeToLogFile(
 			StringBundler.concat(
 				invokerName, " used ", System.currentTimeMillis() - startTime,
 				"ms"));
