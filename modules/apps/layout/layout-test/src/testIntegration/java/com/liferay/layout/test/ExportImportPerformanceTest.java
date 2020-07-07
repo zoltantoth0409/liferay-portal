@@ -354,7 +354,7 @@ public class ExportImportPerformanceTest {
 			).build();
 
 			String editableValues = StringUtil.replace(
-				_FRAGMENT_EDITABLE_VALUES_TMPL, "${", "}", values);
+				_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}", values);
 
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
@@ -374,7 +374,7 @@ public class ExportImportPerformanceTest {
 			).build();
 
 			String editableValues = StringUtil.replace(
-				_FRAGMENT_PORTLET_TMPL, "${", "}", values);
+				_TMPL_FRAGMENT_PORTLET, "${", "}", values);
 
 			_savePortletPreferencesWithJournalArticle(
 				draftLayout,
@@ -463,7 +463,7 @@ public class ExportImportPerformanceTest {
 		).build();
 
 		String portletPreferencesXML = StringUtil.replace(
-			_PORTLET_PREFERENCES_TMPL, "${", "}", values);
+			_TMPL_PORTLET_PREFERENCES, "${", "}", values);
 
 		PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 			layout, portletId, portletPreferencesXML);
@@ -480,14 +480,14 @@ public class ExportImportPerformanceTest {
 				"ms"));
 	}
 
-	private static final String _FRAGMENT_EDITABLE_VALUES_TMPL =
+	private static final String _TMPL_FRAGMENT_EDITABLE_VALUES =
 		StringUtil.read(
 			ExportImportPerformanceTest.class, "fragment-editable-values.tmpl");
 
-	private static final String _FRAGMENT_PORTLET_TMPL = StringUtil.read(
+	private static final String _TMPL_FRAGMENT_PORTLET = StringUtil.read(
 		ExportImportPerformanceTest.class, "fragment-portlet.tmpl");
 
-	private static final String _PORTLET_PREFERENCES_TMPL = StringUtil.read(
+	private static final String _TMPL_PORTLET_PREFERENCES = StringUtil.read(
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
 
 	private static int _fragmentEntryLinksPerPage;
