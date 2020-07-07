@@ -69,12 +69,12 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 		name="personAccountEntryUserId"
 		type="hidden"
 		value="<%=
-		String.valueOf(
-			personAccountEntryUserOptional.map(
-				User::getUserId
-			).orElse(
-				0L
-			)) %>"
+			String.valueOf(
+				personAccountEntryUserOptional.map(
+					User::getUserId
+				).orElse(
+					0L
+				)) %>"
 	/>
 
 	<liferay-ui:search-container
