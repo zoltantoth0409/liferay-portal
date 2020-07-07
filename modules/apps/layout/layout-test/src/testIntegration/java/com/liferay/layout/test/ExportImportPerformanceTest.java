@@ -117,7 +117,7 @@ public class ExportImportPerformanceTest {
 			clazz.getResourceAsStream("export-import-performance.properties"),
 			"UTF-8");
 
-		_fragmentEntryLinksPerPage = GetterUtil.getInteger(
+		_fragmentEntryLinksPerLayout = GetterUtil.getInteger(
 			properties.getProperty("fragment.entry.links.per.layout"));
 		_layoutsCount = GetterUtil.getInteger(
 			properties.getProperty("layouts.count"));
@@ -322,7 +322,7 @@ public class ExportImportPerformanceTest {
 			return;
 		}
 
-		for (int i = 0; i < _fragmentEntryLinksPerPage; i++) {
+		for (int i = 0; i < _fragmentEntryLinksPerLayout; i++) {
 			JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 				_group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -490,7 +490,7 @@ public class ExportImportPerformanceTest {
 	private static final String _TMPL_PORTLET_PREFERENCES = StringUtil.read(
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
 
-	private static int _fragmentEntryLinksPerPage;
+	private static int _fragmentEntryLinksPerLayout;
 	private static Path _logFilePath;
 	private static int _layoutsCount;
 	private static String _layoutType;
