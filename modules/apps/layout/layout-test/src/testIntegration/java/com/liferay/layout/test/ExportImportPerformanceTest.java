@@ -294,7 +294,7 @@ public class ExportImportPerformanceTest {
 		}
 	}
 
-	private static String _getInvokerName() {
+	private String _getInvokerName() {
 		Thread thread = Thread.currentThread();
 
 		StackTraceElement[] stackTraceElements = thread.getStackTrace();
