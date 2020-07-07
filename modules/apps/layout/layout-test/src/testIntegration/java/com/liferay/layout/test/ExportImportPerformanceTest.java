@@ -376,7 +376,7 @@ public class ExportImportPerformanceTest {
 			String editableValues = StringUtil.replace(
 				_FRAGMENT_PORTLET_TMPL, "${", "}", values);
 
-			_savePortletPreferencesWithArticle(
+			_savePortletPreferencesWithJournalArticle(
 				draftLayout,
 				PortletIdCodec.encode(JournalPortletKeys.JOURNAL, instanceId));
 
@@ -426,7 +426,7 @@ public class ExportImportPerformanceTest {
 				JournalPortletKeys.JOURNAL,
 				PortletIdCodec.generateInstanceId());
 
-			_savePortletPreferencesWithArticle(layout, portletId);
+			_savePortletPreferencesWithJournalArticle(layout, portletId);
 
 			if (Validator.isNotNull(columnSettings)) {
 				columnSettings += StringPool.COMMA;
@@ -442,7 +442,7 @@ public class ExportImportPerformanceTest {
 		_layoutLocalService.updateLayout(layout);
 	}
 
-	private void _savePortletPreferencesWithArticle(
+	private void _savePortletPreferencesWithJournalArticle(
 			Layout layout, String portletId)
 		throws Exception {
 
