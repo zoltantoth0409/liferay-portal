@@ -131,7 +131,7 @@ public class ExportImportPerformanceTest {
 		Files.deleteIfExists(_logFilePath);
 
 		_writeToResultsFile(
-			"Settings:",
+			"Properties:",
 			StreamUtil.toString(
 				clazz.getResourceAsStream(
 					"export-import-performance.properties")),
