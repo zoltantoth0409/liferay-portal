@@ -120,9 +120,9 @@ public class ExportImportPerformanceTest {
 		_fragmentEntryLinksPerPage = GetterUtil.getInteger(
 			properties.getProperty("fragment.entry.links.per.page"));
 		_logFilePath = Paths.get(properties.getProperty("log.file"));
-		_pagesCount = GetterUtil.getInteger(
-			properties.getProperty("pages.count"));
-		_pageType = properties.getProperty("page.type");
+		_layoutsCount = GetterUtil.getInteger(
+			properties.getProperty("layouts.count"));
+		_layoutType = properties.getProperty("layout.type");
 		_portletsPerContentPage = GetterUtil.getInteger(
 			properties.getProperty("portlets.per.content.page"));
 		_portletsPerPortletPage = GetterUtil.getInteger(
@@ -395,7 +395,7 @@ public class ExportImportPerformanceTest {
 	}
 
 	private void _createLayouts() throws Exception {
-		for (int i = 0; i < _pagesCount; i++) {
+		for (int i = 0; i < _layoutsCount; i++) {
 			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.US, "Layout_" + i
 			).build();
@@ -403,10 +403,10 @@ public class ExportImportPerformanceTest {
 			Layout layout = _layoutLocalService.addLayout(
 				TestPropsValues.getUserId(), _group.getGroupId(), false, 0, 0,
 				0, nameMap, new HashMap<>(), new HashMap<>(), new HashMap<>(),
-				new HashMap<>(), _pageType, StringPool.BLANK, false, false,
+				new HashMap<>(), _layoutType, StringPool.BLANK, false, false,
 				new HashMap<>(), 0, _serviceContext);
 
-			if (Objects.equals(_pageType, LayoutConstants.TYPE_CONTENT)) {
+			if (Objects.equals(_layoutType, LayoutConstants.TYPE_CONTENT)) {
 				_createFragmentEntryLinks(layout);
 			}
 			else {
@@ -492,8 +492,8 @@ public class ExportImportPerformanceTest {
 
 	private static int _fragmentEntryLinksPerPage;
 	private static Path _logFilePath;
-	private static int _pagesCount;
-	private static String _pageType;
+	private static int _layoutsCount;
+	private static String _layoutType;
 	private static int _portletsPerContentPage;
 	private static int _portletsPerPortletPage;
 
