@@ -311,7 +311,6 @@ public class ExportImportPerformanceTest {
 			FragmentEntry fragmentEntry =
 				_fragmentCollectionContributorTracker.getFragmentEntry(
 					"FEATURED_CONTENT-highlights-circle");
-
 			JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 				_group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -425,9 +424,7 @@ public class ExportImportPerformanceTest {
 	private String _getInvokerName() {
 		Thread thread = Thread.currentThread();
 
-		StackTraceElement[] stackTraceElements = thread.getStackTrace();
-
-		StackTraceElement stackTraceElement = stackTraceElements[3];
+		StackTraceElement stackTraceElement = thread.getStackTrace()[3];
 
 		return StringBundler.concat(
 			stackTraceElement.getClassName(), StringPool.POUND,
