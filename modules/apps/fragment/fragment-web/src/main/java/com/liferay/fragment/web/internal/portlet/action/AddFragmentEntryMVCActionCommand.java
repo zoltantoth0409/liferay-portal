@@ -82,13 +82,14 @@ public class AddFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 			cssSB.append(fragmentEntry.getFragmentEntryId());
 			cssSB.append(" {\n}");
 
+			fragmentEntry.setCss(cssSB.toString());
+
 			StringBundler htmlSB = new StringBundler(3);
 
 			htmlSB.append("<div class=\"fragment_");
 			htmlSB.append(fragmentEntry.getFragmentEntryId());
 			htmlSB.append("\">\n</div>");
 
-			fragmentEntry.setCss(cssSB.toString());
 			fragmentEntry.setHtml(htmlSB.toString());
 
 			fragmentEntry = _fragmentEntryService.updateDraft(fragmentEntry);
