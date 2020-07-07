@@ -399,7 +399,7 @@ public class ExportImportPerformanceTest {
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
-		String columnSettings = unicodeProperties.getProperty("column-1");
+		String column1Value = unicodeProperties.getProperty("column-1");
 
 		for (int i = 0; i < _portletsPerPortletLayout; i++) {
 			String portletId = PortletIdCodec.encode(
@@ -408,14 +408,14 @@ public class ExportImportPerformanceTest {
 
 			_updateLayoutPortletSetup(layout, portletId);
 
-			if (Validator.isNotNull(columnSettings)) {
-				columnSettings += StringPool.COMMA;
+			if (Validator.isNotNull(column1Value)) {
+				column1Value += StringPool.COMMA;
 			}
 
-			columnSettings += portletId;
+			column1Value += portletId;
 		}
 
-		unicodeProperties.setProperty("column-1", columnSettings);
+		unicodeProperties.setProperty("column-1", column1Value);
 
 		layout.setTypeSettingsProperties(unicodeProperties);
 
