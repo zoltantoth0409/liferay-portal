@@ -119,10 +119,10 @@ public class ExportImportPerformanceTest {
 
 		_fragmentEntryLinksPerPage = GetterUtil.getInteger(
 			properties.getProperty("fragment.entry.links.per.page"));
-		_logFilePath = Paths.get(properties.getProperty("log.file"));
 		_layoutsCount = GetterUtil.getInteger(
 			properties.getProperty("layouts.count"));
 		_layoutType = properties.getProperty("layout.type");
+		_logFilePath = Paths.get(properties.getProperty("log.file"));
 		_portletsPerContentPage = GetterUtil.getInteger(
 			properties.getProperty("portlets.per.content.page"));
 		_portletsPerPortletPage = GetterUtil.getInteger(
