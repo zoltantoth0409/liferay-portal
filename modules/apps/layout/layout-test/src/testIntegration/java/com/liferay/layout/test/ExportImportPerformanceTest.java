@@ -117,8 +117,8 @@ public class ExportImportPerformanceTest {
 			clazz.getResourceAsStream("export-import-performance.properties"),
 			"UTF-8");
 
-		_fragmentsPerPage = GetterUtil.getInteger(
-			properties.getProperty("fragments.per.page"));
+		_fragmentEntryLinksPerPage = GetterUtil.getInteger(
+			properties.getProperty("fragment.entry.links.per.page"));
 		_logFilePath = Paths.get(properties.getProperty("log.file"));
 		_pagesCount = GetterUtil.getInteger(
 			properties.getProperty("pages.count"));
@@ -241,6 +241,7 @@ public class ExportImportPerformanceTest {
 			prototypeLayout.setType(layout.getType());
 
 			_layoutLocalService.updateLayout(prototypeLayout);
+
 			_layoutCopyHelper.copyLayout(layout, prototypeLayout);
 
 			layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
@@ -314,14 +315,14 @@ public class ExportImportPerformanceTest {
 			StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 	}
 
-	private void _createFragments(Layout layout) throws Exception {
+	private void _createFragmentEntryLinks(Layout layout) throws Exception {
 		Layout draftLayout = layout.fetchDraftLayout();
 
 		if (draftLayout == null) {
 			return;
 		}
 
-		for (int i = 0; i < _fragmentsPerPage; i++) {
+		for (int i = 0; i < _fragmentEntryLinksPerPage; i++) {
 			JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 				_group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -406,7 +407,7 @@ public class ExportImportPerformanceTest {
 				new HashMap<>(), 0, _serviceContext);
 
 			if (Objects.equals(_pageType, LayoutConstants.TYPE_CONTENT)) {
-				_createFragments(layout);
+				_createFragmentEntryLinks(layout);
 			}
 			else {
 				_createPortlets(layout);
@@ -492,7 +493,7 @@ public class ExportImportPerformanceTest {
 	private static final String _PORTLET_PREFERENCES_TMPL = StringUtil.read(
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
 
-	private static int _fragmentsPerPage;
+	private static int _fragmentEntryLinksPerPage;
 	private static Path _logFilePath;
 	private static int _pagesCount;
 	private static String _pageType;
