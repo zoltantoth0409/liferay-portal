@@ -294,18 +294,6 @@ public class ExportImportPerformanceTest {
 		}
 	}
 
-	private String _getInvokerName() {
-		Thread thread = Thread.currentThread();
-
-		StackTraceElement[] stackTraceElements = thread.getStackTrace();
-
-		StackTraceElement stackTraceElement = stackTraceElements[3];
-
-		return StringBundler.concat(
-			stackTraceElement.getClassName(), StringPool.POUND,
-			stackTraceElement.getMethodName());
-	}
-
 	private static void _writeToLogFile(String... contents) throws IOException {
 		Files.write(
 			_logFilePath, Arrays.asList(contents), StandardOpenOption.APPEND,
@@ -432,6 +420,18 @@ public class ExportImportPerformanceTest {
 		layout.setTypeSettingsProperties(unicodeProperties);
 
 		_layoutLocalService.updateLayout(layout);
+	}
+
+	private String _getInvokerName() {
+		Thread thread = Thread.currentThread();
+
+		StackTraceElement[] stackTraceElements = thread.getStackTrace();
+
+		StackTraceElement stackTraceElement = stackTraceElements[3];
+
+		return StringBundler.concat(
+			stackTraceElement.getClassName(), StringPool.POUND,
+			stackTraceElement.getMethodName());
 	}
 
 	private Closeable _startTimer() {
