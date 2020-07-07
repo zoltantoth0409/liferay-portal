@@ -321,21 +321,19 @@ public class ExportImportPerformanceTest {
 		}
 
 		for (int i = 0; i < _fragmentEntryLinksPerLayout; i++) {
-			JournalArticle journalArticle1 = JournalTestUtil.addArticle(
-				_group.getGroupId(),
-				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
-			JournalArticle journalArticle2 = JournalTestUtil.addArticle(
-				_group.getGroupId(),
-				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
-			JournalArticle journalArticle3 = JournalTestUtil.addArticle(
-				_group.getGroupId(),
-				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 			FragmentEntry fragmentEntry =
 				_fragmentCollectionContributorTracker.getFragmentEntry(
 					"FEATURED_CONTENT-highlights-circle");
+
+			JournalArticle journalArticle1 = JournalTestUtil.addArticle(
+				_group.getGroupId(),
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+			JournalArticle journalArticle2 = JournalTestUtil.addArticle(
+				_group.getGroupId(),
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+			JournalArticle journalArticle3 = JournalTestUtil.addArticle(
+				_group.getGroupId(),
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
