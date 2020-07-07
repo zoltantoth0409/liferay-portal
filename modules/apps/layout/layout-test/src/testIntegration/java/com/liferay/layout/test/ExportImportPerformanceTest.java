@@ -235,13 +235,13 @@ public class ExportImportPerformanceTest {
 			LayoutPrototype layoutPrototype = LayoutTestUtil.addLayoutPrototype(
 				RandomTestUtil.randomString());
 
-			Layout prototypeLayout = layoutPrototype.getLayout();
+			Layout layoutPrototypeLayout = layoutPrototype.getLayout();
 
-			prototypeLayout.setType(layout.getType());
+			layoutPrototypeLayout.setType(layout.getType());
 
-			_layoutLocalService.updateLayout(prototypeLayout);
+			_layoutLocalService.updateLayout(layoutPrototypeLayout);
 
-			_layoutCopyHelper.copyLayout(layout, prototypeLayout);
+			_layoutCopyHelper.copyLayout(layout, layoutPrototypeLayout);
 
 			layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
 			layout.setLayoutPrototypeLinkEnabled(true);
