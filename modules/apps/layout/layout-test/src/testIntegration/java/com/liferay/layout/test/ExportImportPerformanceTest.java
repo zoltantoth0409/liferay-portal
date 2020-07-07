@@ -337,7 +337,7 @@ public class ExportImportPerformanceTest {
 
 			FragmentEntry fragmentEntry =
 				_fragmentCollectionContributorTracker.getFragmentEntry(
-					_FRAGMENT_RENDERER_KEY);
+					"FEATURED_CONTENT-highlights-circle");
 
 			Map<String, String> values = HashMapBuilder.put(
 				"classNameId",
@@ -486,9 +486,6 @@ public class ExportImportPerformanceTest {
 
 	private static final String _FRAGMENT_PORTLET_TMPL = StringUtil.read(
 		ExportImportPerformanceTest.class, "fragment-portlet.tmpl");
-
-	private static final String _FRAGMENT_RENDERER_KEY =
-		"FEATURED_CONTENT-highlights-circle";
 
 	private static final String _PORTLET_PREFERENCES_TMPL = StringUtil.read(
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
