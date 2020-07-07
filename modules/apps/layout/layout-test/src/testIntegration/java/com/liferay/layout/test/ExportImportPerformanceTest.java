@@ -389,13 +389,13 @@ public class ExportImportPerformanceTest {
 
 	private void _addLayouts() throws Exception {
 		for (int i = 0; i < _layoutsCount; i++) {
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.US, "Layout_" + i
-			).build();
-
 			Layout layout = _layoutLocalService.addLayout(
 				TestPropsValues.getUserId(), _group.getGroupId(), false, 0, 0,
-				0, nameMap, new HashMap<>(), new HashMap<>(), new HashMap<>(),
+				0,
+				HashMapBuilder.put(
+					LocaleUtil.US, "Layout_" + i
+				).build(),
+				new HashMap<>(), new HashMap<>(), new HashMap<>(),
 				new HashMap<>(), _layoutType, StringPool.BLANK, false, false,
 				new HashMap<>(), 0, _serviceContext);
 
