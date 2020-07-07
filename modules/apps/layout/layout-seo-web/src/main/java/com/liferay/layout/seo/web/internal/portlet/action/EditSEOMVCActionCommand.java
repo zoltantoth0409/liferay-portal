@@ -16,7 +16,7 @@ package com.liferay.layout.seo.web.internal.portlet.action;
 
 import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
 import com.liferay.layout.seo.service.LayoutSEOEntryService;
-import com.liferay.layout.seo.web.internal.util.LayoutTypeSettingsUpdater;
+import com.liferay.layout.seo.web.internal.util.LayoutTypeSettingsUtil;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutTypePortlet;
@@ -128,7 +128,7 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 				draftLayout.getFriendlyURLMap(), draftLayout.isIconImage(),
 				null, serviceContext);
 
-			draftLayout = LayoutTypeSettingsUpdater.updateTypeSettings(
+			draftLayout = LayoutTypeSettingsUtil.updateTypeSettings(
 				draftLayout, _layoutService, formTypeSettingsUnicodeProperties);
 
 			_layoutSEOEntryService.updateLayoutSEOEntry(
@@ -138,7 +138,7 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 
 		themeDisplay.clearLayoutFriendlyURL(layout);
 
-		layout = LayoutTypeSettingsUpdater.updateTypeSettings(
+		layout = LayoutTypeSettingsUtil.updateTypeSettings(
 			layout, _layoutService, formTypeSettingsUnicodeProperties);
 
 		LayoutTypePortlet layoutTypePortlet =

@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 /**
  * @author Alejandro Tardín
  */
-public class LayoutTypeSettingsUpdater {
+public class LayoutTypeSettingsUtil {
 
 	public static Layout updateTypeSettings(
 			Layout layout, LayoutService layoutService,
