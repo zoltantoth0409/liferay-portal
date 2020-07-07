@@ -364,7 +364,7 @@ public class ExportImportPerformanceTest {
 		for (int i = 0; i < _portletsPerContentLayout; i++) {
 			String instanceId = PortletIdCodec.generateInstanceId();
 
-			_savePortletPreferencesWithJournalArticle(
+			_updateLayoutPortletSetup(
 				draftLayout,
 				PortletIdCodec.encode(JournalPortletKeys.JOURNAL, instanceId));
 
@@ -405,12 +405,12 @@ public class ExportImportPerformanceTest {
 				_addFragmentEntryLinks(layout);
 			}
 			else {
-				_addPortlets(layout);
+				_addPortletIds(layout);
 			}
 		}
 	}
 
-	private void _addPortlets(Layout layout) throws Exception {
+	private void _addPortletIds(Layout layout) throws Exception {
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
@@ -421,7 +421,7 @@ public class ExportImportPerformanceTest {
 				JournalPortletKeys.JOURNAL,
 				PortletIdCodec.generateInstanceId());
 
-			_savePortletPreferencesWithJournalArticle(layout, portletId);
+			_updateLayoutPortletSetup(layout, portletId);
 
 			if (Validator.isNotNull(columnSettings)) {
 				columnSettings += StringPool.COMMA;
@@ -437,7 +437,7 @@ public class ExportImportPerformanceTest {
 		_layoutLocalService.updateLayout(layout);
 	}
 
-	private void _savePortletPreferencesWithJournalArticle(
+	private void _updateLayoutPortletSetup(
 			Layout layout, String portletId)
 		throws Exception {
 
