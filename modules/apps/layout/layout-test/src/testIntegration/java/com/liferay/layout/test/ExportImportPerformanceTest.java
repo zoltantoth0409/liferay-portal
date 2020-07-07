@@ -148,7 +148,7 @@ public class ExportImportPerformanceTest {
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);
 
-		_createLayouts();
+		_addLayouts();
 
 		_layoutIds = ListUtil.toLongArray(
 			_layoutLocalService.getLayouts(_group.getGroupId(), false),
@@ -315,7 +315,7 @@ public class ExportImportPerformanceTest {
 			StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 	}
 
-	private void _createFragmentEntryLinks(Layout layout) throws Exception {
+	private void _addFragmentEntryLinks(Layout layout) throws Exception {
 		Layout draftLayout = layout.fetchDraftLayout();
 
 		if (draftLayout == null) {
@@ -394,7 +394,7 @@ public class ExportImportPerformanceTest {
 		_layoutCopyHelper.copyLayout(draftLayout, layout);
 	}
 
-	private void _createLayouts() throws Exception {
+	private void _addLayouts() throws Exception {
 		for (int i = 0; i < _layoutsCount; i++) {
 			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.US, "Layout_" + i
@@ -407,15 +407,15 @@ public class ExportImportPerformanceTest {
 				new HashMap<>(), 0, _serviceContext);
 
 			if (Objects.equals(_layoutType, LayoutConstants.TYPE_CONTENT)) {
-				_createFragmentEntryLinks(layout);
+				_addFragmentEntryLinks(layout);
 			}
 			else {
-				_createPortlets(layout);
+				_addPortlets(layout);
 			}
 		}
 	}
 
-	private void _createPortlets(Layout layout) throws Exception {
+	private void _addPortlets(Layout layout) throws Exception {
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
