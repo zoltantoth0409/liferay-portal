@@ -396,7 +396,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			}
 		}
 
-		// Preview image
+		// Portlet file entry
 
 		if (layoutPageTemplateEntry.getPreviewFileEntryId() > 0) {
 			PortletFileRepositoryUtil.deletePortletFileEntry(
