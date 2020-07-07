@@ -32,7 +32,7 @@ import com.liferay.journal.constants.JournalFolderConstants;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.test.util.JournalTestUtil;
-import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalService;
+import com.liferay.layout.layout.template.service.LayoutPageTemplateStructureLocalService;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.petra.io.StreamUtil;
@@ -118,15 +118,15 @@ public class ExportImportPerformanceTest {
 			"UTF-8");
 
 		_fragmentEntryLinksPerPage = GetterUtil.getInteger(
-			properties.getProperty("fragment.entry.links.per.page"));
+			properties.getProperty("fragment.entry.links.per.layout"));
 		_layoutsCount = GetterUtil.getInteger(
 			properties.getProperty("layouts.count"));
 		_layoutType = properties.getProperty("layout.type");
 		_logFilePath = Paths.get(properties.getProperty("log.file"));
-		_portletsPerContentPage = GetterUtil.getInteger(
-			properties.getProperty("portlets.per.content.page"));
-		_portletsPerPortletPage = GetterUtil.getInteger(
-			properties.getProperty("portlets.per.portlet.page"));
+		_portletsPerContentLayout = GetterUtil.getInteger(
+			properties.getProperty("portlets.per.content.layout"));
+		_portletsPerPortletLayout = GetterUtil.getInteger(
+			properties.getProperty("portlets.per.portlet.layout"));
 
 		Files.deleteIfExists(_logFilePath);
 
@@ -364,7 +364,7 @@ public class ExportImportPerformanceTest {
 				editableValues, StringPool.BLANK, 0, null, _serviceContext);
 		}
 
-		for (int i = 0; i < _portletsPerContentPage; i++) {
+		for (int i = 0; i < _portletsPerContentLayout; i++) {
 			String instanceId = PortletIdCodec.generateInstanceId();
 
 			Map<String, String> values = HashMapBuilder.put(
@@ -421,7 +421,7 @@ public class ExportImportPerformanceTest {
 
 		String columnSettings = unicodeProperties.getProperty("column-1");
 
-		for (int i = 0; i < _portletsPerPortletPage; i++) {
+		for (int i = 0; i < _portletsPerPortletLayout; i++) {
 			String portletId = PortletIdCodec.encode(
 				JournalPortletKeys.JOURNAL,
 				PortletIdCodec.generateInstanceId());
@@ -494,8 +494,8 @@ public class ExportImportPerformanceTest {
 	private static Path _logFilePath;
 	private static int _layoutsCount;
 	private static String _layoutType;
-	private static int _portletsPerContentPage;
-	private static int _portletsPerPortletPage;
+	private static int _portletsPerContentLayout;
+	private static int _portletsPerPortletLayout;
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
