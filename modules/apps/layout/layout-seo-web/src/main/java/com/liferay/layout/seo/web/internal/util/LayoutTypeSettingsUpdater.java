@@ -21,17 +21,14 @@ import com.liferay.portal.kernel.service.LayoutService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 /**
  * @author Alejandro Tardín
  */
-@Component(service = LayoutTypeSettingsUpdater.class)
 public class LayoutTypeSettingsUpdater {
 
-	public Layout updateTypeSettings(
-			Layout layout, UnicodeProperties typeSettingsUnicodeProperties)
+	public static Layout updateTypeSettings(
+			Layout layout, LayoutService layoutService,
+			UnicodeProperties typeSettingsUnicodeProperties)
 		throws Exception {
 
 		UnicodeProperties layoutTypeSettingsUnicodeProperties =
@@ -55,7 +52,7 @@ public class LayoutTypeSettingsUpdater {
 					layoutTypeSettingsUnicodeProperties);
 			}
 
-			return _layoutService.updateLayout(
+			return layoutService.updateLayout(
 				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getLayoutId(),
 				layoutTypeSettingsUnicodeProperties.toString());
@@ -67,12 +64,9 @@ public class LayoutTypeSettingsUpdater {
 		layoutTypeSettingsUnicodeProperties.putAll(
 			layout.getTypeSettingsProperties());
 
-		return _layoutService.updateLayout(
+		return layoutService.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layoutTypeSettingsUnicodeProperties.toString());
 	}
-
-	@Reference
-	private LayoutService _layoutService;
 
 }

@@ -128,8 +128,8 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 				draftLayout.getFriendlyURLMap(), draftLayout.isIconImage(),
 				null, serviceContext);
 
-			draftLayout = _layoutTypeSettingsUpdater.updateTypeSettings(
-				draftLayout, formTypeSettingsUnicodeProperties);
+			draftLayout = LayoutTypeSettingsUpdater.updateTypeSettings(
+				draftLayout, _layoutService, formTypeSettingsUnicodeProperties);
 
 			_layoutSEOEntryService.updateLayoutSEOEntry(
 				groupId, privateLayout, draftLayout.getLayoutId(),
@@ -138,8 +138,8 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 
 		themeDisplay.clearLayoutFriendlyURL(layout);
 
-		layout = _layoutTypeSettingsUpdater.updateTypeSettings(
-			layout, formTypeSettingsUnicodeProperties);
+		layout = LayoutTypeSettingsUpdater.updateTypeSettings(
+			layout, _layoutService, formTypeSettingsUnicodeProperties);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -173,9 +173,6 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private LayoutService _layoutService;
-
-	@Reference
-	private LayoutTypeSettingsUpdater _layoutTypeSettingsUpdater;
 
 	@Reference
 	private Portal _portal;

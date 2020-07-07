@@ -125,8 +125,8 @@ public class EditOpenGraphMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest, "TypeSettingsProperties--");
 
 		if (draftLayout != null) {
-			draftLayout = _layoutTypeSettingsUpdater.updateTypeSettings(
-				draftLayout, formTypeSettingsUnicodeProperties);
+			draftLayout = LayoutTypeSettingsUpdater.updateTypeSettings(
+				draftLayout, _layoutService, formTypeSettingsUnicodeProperties);
 
 			_layoutSEOEntryService.updateLayoutSEOEntry(
 				groupId, privateLayout, draftLayout.getLayoutId(),
@@ -136,8 +136,8 @@ public class EditOpenGraphMVCActionCommand extends BaseMVCActionCommand {
 				openGraphTitleEnabled, openGraphTitleMap, serviceContext);
 		}
 
-		layout = _layoutTypeSettingsUpdater.updateTypeSettings(
-			layout, formTypeSettingsUnicodeProperties);
+		layout = LayoutTypeSettingsUpdater.updateTypeSettings(
+			layout, _layoutService, formTypeSettingsUnicodeProperties);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -177,9 +177,6 @@ public class EditOpenGraphMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private LayoutService _layoutService;
-
-	@Reference
-	private LayoutTypeSettingsUpdater _layoutTypeSettingsUpdater;
 
 	@Reference
 	private Portal _portal;
