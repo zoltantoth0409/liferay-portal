@@ -76,21 +76,13 @@ public class AddFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 					null, name, 0, type, WorkflowConstants.STATUS_DRAFT,
 					serviceContext);
 
-			StringBundler cssSB = new StringBundler(3);
-
-			cssSB.append(".fragment_");
-			cssSB.append(fragmentEntry.getFragmentEntryId());
-			cssSB.append(" {\n}");
-
-			fragmentEntry.setCss(cssSB.toString());
-
-			StringBundler htmlSB = new StringBundler(3);
-
-			htmlSB.append("<div class=\"fragment_");
-			htmlSB.append(fragmentEntry.getFragmentEntryId());
-			htmlSB.append("\">\n</div>");
-
-			fragmentEntry.setHtml(htmlSB.toString());
+			fragmentEntry.setCss(
+				StringBundler.concat(
+					".fragment_", fragmentEntry.getFragmentEntryId(), " {\n}"));
+			fragmentEntry.setHtml(
+				StringBundler.concat(
+					"<div class=\"fragment_",
+					fragmentEntry.getFragmentEntryId(), "\">\n</div>"));
 
 			fragmentEntry = _fragmentEntryService.updateDraft(fragmentEntry);
 
