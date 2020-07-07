@@ -339,40 +339,31 @@ public class ExportImportPerformanceTest {
 				_fragmentCollectionContributorTracker.getFragmentEntry(
 					"FEATURED_CONTENT-highlights-circle");
 
-			String editableValues = StringUtil.replace(
-				_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}",
-				HashMapBuilder.put(
-					"classNameId",
-					String.valueOf(_portal.getClassNameId(JournalArticle.class))
-				).put(
-					"classPK_1",
-					String.valueOf(journalArticle1.getResourcePrimKey())
-				).put(
-					"classPK_2",
-					String.valueOf(journalArticle2.getResourcePrimKey())
-				).put(
-					"classPK_3",
-					String.valueOf(journalArticle3.getResourcePrimKey())
-				).build());
-
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
 				fragmentEntry.getFragmentEntryId(), 0, draftLayout.getPlid(),
 				fragmentEntry.getCss(), fragmentEntry.getHtml(),
 				fragmentEntry.getJs(), fragmentEntry.getConfiguration(),
-				editableValues, StringPool.BLANK, 0, null, _serviceContext);
+				StringUtil.replace(
+					_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}",
+					HashMapBuilder.put(
+						"classNameId",
+						String.valueOf(_portal.getClassNameId(JournalArticle.class))
+					).put(
+						"classPK_1",
+						String.valueOf(journalArticle1.getResourcePrimKey())
+					).put(
+						"classPK_2",
+						String.valueOf(journalArticle2.getResourcePrimKey())
+					).put(
+						"classPK_3",
+						String.valueOf(journalArticle3.getResourcePrimKey())
+					).build()),
+				StringPool.BLANK, 0, null, _serviceContext);
 		}
 
 		for (int i = 0; i < _portletsPerContentLayout; i++) {
 			String instanceId = PortletIdCodec.generateInstanceId();
-
-			String editableValues = StringUtil.replace(
-				_TMPL_FRAGMENT_PORTLET, "${", "}",
-				HashMapBuilder.put(
-					"instanceId", instanceId
-				).put(
-					"portletName", JournalPortletKeys.JOURNAL
-				).build());
 
 			_savePortletPreferencesWithJournalArticle(
 				draftLayout,
@@ -381,7 +372,14 @@ public class ExportImportPerformanceTest {
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0, 0, 0,
 				draftLayout.getPlid(), StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, editableValues,
+				StringPool.BLANK, StringPool.BLANK,
+				StringUtil.replace(
+					_TMPL_FRAGMENT_PORTLET, "${", "}",
+					HashMapBuilder.put(
+						"instanceId", instanceId
+					).put(
+						"portletName", JournalPortletKeys.JOURNAL
+					).build()),
 				StringPool.BLANK, 0, null, _serviceContext);
 		}
 
@@ -452,18 +450,17 @@ public class ExportImportPerformanceTest {
 			JournalArticle.class.getName(),
 			journalArticle.getResourcePrimKey());
 
-		String portletPreferencesXML = StringUtil.replace(
-			_TMPL_PORTLET_PREFERENCES, "${", "}",
-			HashMapBuilder.put(
-				"articleId", journalArticle.getArticleId()
-			).put(
-				"assetEntryId", String.valueOf(assetEntry.getEntryId())
-			).put(
-				"groupId", String.valueOf(assetEntry.getGroupId())
-			).build());
-
 		PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-			layout, portletId, portletPreferencesXML);
+			layout, portletId,
+			StringUtil.replace(
+				_TMPL_PORTLET_PREFERENCES, "${", "}",
+				HashMapBuilder.put(
+					"articleId", journalArticle.getArticleId()
+				).put(
+					"assetEntryId", String.valueOf(assetEntry.getEntryId())
+				).put(
+					"groupId", String.valueOf(assetEntry.getGroupId())
+				).build()));
 	}
 
 	private Closeable _startTimer() {
