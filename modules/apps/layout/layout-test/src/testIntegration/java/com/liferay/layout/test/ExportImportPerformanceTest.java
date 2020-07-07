@@ -307,9 +307,7 @@ public class ExportImportPerformanceTest {
 			stackTraceElement.getMethodName());
 	}
 
-	private static void _writeToLogFile(String... contents)
-		throws IOException {
-
+	private static void _writeToLogFile(String... contents) throws IOException {
 		Files.write(
 			_logFilePath, Arrays.asList(contents), StandardOpenOption.APPEND,
 			StandardOpenOption.CREATE, StandardOpenOption.WRITE);
@@ -348,7 +346,8 @@ public class ExportImportPerformanceTest {
 					_TMPL_FRAGMENT_EDITABLE_VALUES, "${", "}",
 					HashMapBuilder.put(
 						"classNameId",
-						String.valueOf(_portal.getClassNameId(JournalArticle.class))
+						String.valueOf(
+							_portal.getClassNameId(JournalArticle.class))
 					).put(
 						"classPK_1",
 						String.valueOf(journalArticle1.getResourcePrimKey())
@@ -485,9 +484,9 @@ public class ExportImportPerformanceTest {
 		ExportImportPerformanceTest.class, "portlet-preferences.tmpl");
 
 	private static int _fragmentEntryLinksPerLayout;
-	private static Path _logFilePath;
 	private static int _layoutsCount;
 	private static String _layoutType;
+	private static Path _logFilePath;
 	private static int _portletsPerContentLayout;
 	private static int _portletsPerPortletLayout;
 
