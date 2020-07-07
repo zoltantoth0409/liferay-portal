@@ -143,7 +143,7 @@ public class StyleBookEntryLocalServiceImpl
 
 		styleBookEntryPersistence.remove(styleBookEntry);
 
-		// Preview image
+		// Portlet file entry
 
 		if (styleBookEntry.getPreviewFileEntryId() > 0) {
 			PortletFileRepositoryUtil.deletePortletFileEntry(
