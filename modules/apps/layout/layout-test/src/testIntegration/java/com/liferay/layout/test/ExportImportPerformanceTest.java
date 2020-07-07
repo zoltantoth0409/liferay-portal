@@ -127,9 +127,9 @@ public class ExportImportPerformanceTest {
 		_portletsPerPortletPage = GetterUtil.getInteger(
 			properties.getProperty("portlets.per.portlet.page"));
 
-		_resultsFilePath = Paths.get(properties.getProperty("results.file"));
+		_logFilePath = Paths.get(properties.getProperty("log.file"));
 
-		Files.deleteIfExists(_resultsFilePath);
+		Files.deleteIfExists(_logFilePath);
 
 		_writeToResultsFile(
 			"Settings:",
@@ -311,7 +311,7 @@ public class ExportImportPerformanceTest {
 		throws IOException {
 
 		Files.write(
-			_resultsFilePath, Arrays.asList(contents),
+			_logFilePath, Arrays.asList(contents),
 			StandardOpenOption.APPEND, StandardOpenOption.CREATE,
 			StandardOpenOption.WRITE);
 	}
@@ -499,7 +499,7 @@ public class ExportImportPerformanceTest {
 	private static String _pageType;
 	private static int _portletsPerContentPage;
 	private static int _portletsPerPortletPage;
-	private static Path _resultsFilePath;
+	private static Path _logFilePath;
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
