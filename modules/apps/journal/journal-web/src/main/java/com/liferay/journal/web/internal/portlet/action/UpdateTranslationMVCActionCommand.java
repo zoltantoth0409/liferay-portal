@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.translation.info.item.updater.InfoItemFieldValuesUpdater;
 
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.portlet.ActionRequest;
@@ -65,19 +66,9 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "targetLanguageId");
 
 		try {
+			JournalArticle article = ActionUtil.getArticle(actionRequest);
 			UnicodeProperties infoFieldUnicodeProperties =
 				PropertiesParamUtil.getProperties(actionRequest, "infoField--");
-
-			InfoItemFieldValuesProvider<JournalArticle>
-				infoItemFieldValuesProvider =
-					_infoItemServiceTracker.getFirstInfoItemService(
-						InfoItemFieldValuesProvider.class,
-						JournalArticle.class.getName());
-
-			JournalArticle article = ActionUtil.getArticle(actionRequest);
-
-			InfoItemFieldValues infoItemFieldValues =
-				infoItemFieldValuesProvider.getInfoItemFieldValues(article);
 
 			InfoItemFieldValues newInfoItemFieldValues =
 				new InfoItemFieldValues(
@@ -86,7 +77,7 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 						article.getResourcePrimKey()));
 
 			for (InfoFieldValue<Object> infoFieldValue :
-					infoItemFieldValues.getInfoFieldValues()) {
+					_getInfoFieldValues(article)) {
 
 				InfoField infoField = infoFieldValue.getInfoField();
 
@@ -131,6 +122,21 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			TextInfoFieldType.INSTANCE, infoLocalizedValue, true, fieldName);
 
 		return new InfoFieldValue<>(infoField, value);
+	}
+
+	private Collection<InfoFieldValue<Object>> _getInfoFieldValues(
+		JournalArticle article) {
+
+		InfoItemFieldValuesProvider<JournalArticle>
+			infoItemFieldValuesProvider =
+				_infoItemServiceTracker.getFirstInfoItemService(
+					InfoItemFieldValuesProvider.class,
+					JournalArticle.class.getName());
+
+		InfoItemFieldValues infoItemFieldValues =
+			infoItemFieldValuesProvider.getInfoItemFieldValues(article);
+
+		return infoItemFieldValues.getInfoFieldValues();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
