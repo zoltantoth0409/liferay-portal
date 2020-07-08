@@ -64,7 +64,7 @@ public class DLFileVersionTableReferenceDefinitionTest
 
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
-		InputStream is = new ByteArrayInputStream(bytes);
+		InputStream inputStream = new ByteArrayInputStream(bytes);
 
 		_dlFileEntry = _dlFileEntryLocalService.addFileEntry(
 			group.getCreatorUserId(), group.getGroupId(), group.getGroupId(),
@@ -72,7 +72,7 @@ public class DLFileVersionTableReferenceDefinitionTest
 			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT, null,
-			null, is, bytes.length,
+			null, inputStream, bytes.length,
 			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
@@ -80,7 +80,7 @@ public class DLFileVersionTableReferenceDefinitionTest
 	protected CTModel<?> addCTModel() throws Exception {
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
-		InputStream is = new ByteArrayInputStream(bytes);
+		InputStream inputStream = new ByteArrayInputStream(bytes);
 
 		return _dlFileEntryLocalService.updateFileEntry(
 			group.getCreatorUserId(), _dlFileEntry.getFileEntryId(),
@@ -88,7 +88,7 @@ public class DLFileVersionTableReferenceDefinitionTest
 			StringUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			DLVersionNumberIncrease.MAJOR,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
-			Collections.emptyMap(), null, is, 0,
+			Collections.emptyMap(), null, inputStream, 0,
 			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 

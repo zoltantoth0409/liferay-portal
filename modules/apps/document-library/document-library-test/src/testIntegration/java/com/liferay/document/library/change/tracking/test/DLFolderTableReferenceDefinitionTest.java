@@ -72,7 +72,7 @@ public class DLFolderTableReferenceDefinitionTest
 
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
-		InputStream is = new ByteArrayInputStream(bytes);
+		InputStream inputStream = new ByteArrayInputStream(bytes);
 
 		_dlFileEntryLocalService.addFileEntry(
 			childFolder.getUserId(), childFolder.getGroupId(),
@@ -80,7 +80,7 @@ public class DLFolderTableReferenceDefinitionTest
 			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT, null,
-			null, is, bytes.length, serviceContext);
+			null, inputStream, bytes.length, serviceContext);
 
 		return parentFolder;
 	}
