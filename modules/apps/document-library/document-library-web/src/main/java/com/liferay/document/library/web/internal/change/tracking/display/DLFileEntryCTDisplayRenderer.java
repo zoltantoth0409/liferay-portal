@@ -119,6 +119,10 @@ public class DLFileEntryCTDisplayRenderer
 	public void render(DisplayContext<DLFileEntry> displayContext)
 		throws Exception {
 
+		RequestDispatcher requestDispatcher =
+			_servletContext.getRequestDispatcher(
+				"/document_library/ct_display/render_file_version.jsp");
+
 		HttpServletRequest httpServletRequest =
 			displayContext.getHttpServletRequest();
 
@@ -131,10 +135,6 @@ public class DLFileEntryCTDisplayRenderer
 		httpServletRequest.setAttribute(
 			WebKeys.DOCUMENT_LIBRARY_FILE_VERSION,
 			dlFileEntry.getFileVersion());
-
-		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher(
-				"/document_library/ct_display/render_file_version.jsp");
 
 		requestDispatcher.include(
 			httpServletRequest, displayContext.getHttpServletResponse());
