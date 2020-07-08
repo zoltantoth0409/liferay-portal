@@ -113,12 +113,10 @@ for (String childrenItemId : childrenItemIds) {
 			ContainerLayoutStructureItem containerLayoutStructureItem = (ContainerLayoutStructureItem)layoutStructureItem;
 
 			String containerLinkHref = portletLayoutDisplayContext.getContainerLinkHref(containerLayoutStructureItem, request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT));
-
-			boolean isContainerLinkConfigured = Validator.isNotNull(containerLinkHref);
 			%>
 
 			<c:choose>
-				<c:when test="<%= isContainerLinkConfigured %>">
+				<c:when test="<%= Validator.isNotNull(containerLinkHref) %>">
 					<a href="<%= containerLinkHref %>" style="color: inherit; text-decoration: none;" target="<%= portletLayoutDisplayContext.getContainerLinkTarget(containerLayoutStructureItem) %>">
 				</c:when>
 			</c:choose>
@@ -133,7 +131,7 @@ for (String childrenItemId : childrenItemIds) {
 			</div>
 
 			<c:choose>
-				<c:when test="<%= isContainerLinkConfigured %>">
+				<c:when test="<%= Validator.isNotNull(containerLinkHref) %>">
 					</a>
 				</c:when>
 			</c:choose>
