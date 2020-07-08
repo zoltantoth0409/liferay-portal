@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_GROUP_DISPLAY);
-
 String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
+
+AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_GROUP_DISPLAY);
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
