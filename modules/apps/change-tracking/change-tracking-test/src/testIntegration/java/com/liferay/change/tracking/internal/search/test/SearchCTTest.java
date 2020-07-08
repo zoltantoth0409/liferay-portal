@@ -82,12 +82,12 @@ public class SearchCTTest {
 
 	@Test
 	public void testCollectionVersusProduction() throws Exception {
-		JournalArticle addedArticle = null;
+		JournalArticle addedJournalArticle = null;
 
-		JournalArticle deletedArticle = JournalTestUtil.addArticle(
+		JournalArticle deletedJournalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString());
-		JournalArticle modifiedArticle = JournalTestUtil.addArticle(
+		JournalArticle modifiedJournalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString());
 
@@ -100,17 +100,19 @@ public class SearchCTTest {
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection.getCtCollectionId())) {
 
-			addedArticle = JournalTestUtil.addArticle(
+			addedJournalArticle = JournalTestUtil.addArticle(
 				_group.getGroupId(), RandomTestUtil.randomString(),
 				RandomTestUtil.randomString());
 
-			deletedArticle = _journalArticleLocalService.deleteJournalArticle(
-				deletedArticle);
+			deletedJournalArticle =
+				_journalArticleLocalService.deleteJournalArticle(
+					deletedJournalArticle);
 
-			modifiedArticle.setTitle("testModifyJournalArticle");
+			modifiedJournalArticle.setTitle("testModifyJournalArticle");
 
-			modifiedArticle = _journalArticleLocalService.updateJournalArticle(
-				modifiedArticle);
+			modifiedJournalArticle =
+				_journalArticleLocalService.updateJournalArticle(
+					modifiedJournalArticle);
 
 			addedLayout = LayoutTestUtil.addLayout(_group);
 
@@ -123,7 +125,7 @@ public class SearchCTTest {
 
 		assertCollectionHits(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION, _LEGACY_INDEXER_CLASSES,
-			deletedArticle, modifiedArticle);
+			deletedJournalArticle, modifiedJournalArticle);
 
 		assertCollectionHits(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION, _NEW_INDEXER_CLASSES,
@@ -131,11 +133,12 @@ public class SearchCTTest {
 
 		assertCollectionHits(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION, _ALL_INDEXER_CLASSES,
-			deletedArticle, deletedLayout, modifiedArticle, modifiedLayout);
+			deletedJournalArticle, deletedLayout, modifiedJournalArticle,
+			modifiedLayout);
 
 		assertCollectionHits(
 			_ctCollection.getCtCollectionId(), _LEGACY_INDEXER_CLASSES,
-			addedArticle, modifiedArticle);
+			addedJournalArticle, modifiedJournalArticle);
 
 		assertCollectionHits(
 			_ctCollection.getCtCollectionId(), _NEW_INDEXER_CLASSES,
@@ -143,16 +146,17 @@ public class SearchCTTest {
 
 		assertCollectionHits(
 			_ctCollection.getCtCollectionId(), _ALL_INDEXER_CLASSES,
-			addedArticle, addedLayout, modifiedArticle, modifiedLayout);
+			addedJournalArticle, addedLayout, modifiedJournalArticle,
+			modifiedLayout);
 
 		assertAllHits(
 			_ALL_INDEXER_CLASSES,
 			getUIDs(
-				CTConstants.CT_COLLECTION_ID_PRODUCTION, deletedArticle,
-				deletedLayout, modifiedArticle, modifiedLayout),
+				CTConstants.CT_COLLECTION_ID_PRODUCTION, deletedJournalArticle,
+				deletedLayout, modifiedJournalArticle, modifiedLayout),
 			getUIDs(
-				_ctCollection.getCtCollectionId(), addedArticle, addedLayout,
-				modifiedArticle, modifiedLayout));
+				_ctCollection.getCtCollectionId(), addedJournalArticle,
+				addedLayout, modifiedJournalArticle, modifiedLayout));
 	}
 
 	@Test
