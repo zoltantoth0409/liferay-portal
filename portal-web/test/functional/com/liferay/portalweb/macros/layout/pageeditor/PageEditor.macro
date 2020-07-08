@@ -923,125 +923,132 @@ definition {
 			Click.clickNoWaitForVisible(locator1 = "PageEditor#LAYOUT_ELEMENTS_HEADER");
 		}
 
-		if (isSet(backgroundColor)) {
-			Click(
-				key_paletteItem = "${backgroundColor}",
-				locator1 = "Button#PALETTE_ITEM");
+		if ("${panel}" == "Styles") {
+			Click(locator1 = "PageEditor#FRAGMENT_BODY_TOOLBAR_STYLE_BUTTON");
 
-			Pause(locator1 = "3000");
-		}
+			if (isSet(backgroundColor)) {
+				Click(
+					key_paletteItem = "${backgroundColor}",
+					locator1 = "Button#PALETTE_ITEM");
 
-		if (isSet(backgroundImage)) {
-			Select(
-				key_fieldLabel = "Image Source",
-				locator1 = "Select#GENERIC_SELECT_FIELD",
-				value1 = "${backgroundImage}");
-
-			if ("${backgroundImage}" == "Content Mapping") {
-				PageEditorMapping.mapEditableFieldToAsset(
-					entryTitle = "${entryTitle}",
-					navItem = "${navItem}");
-
-				if ("${navItem}" == "Documents and Media") {
-					Select(
-						locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
-						value1 = "${fieldName}");
-				}
-				else {
-					Select(
-						locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
-						value1 = "Image");
-				}
-
-				SelectFrame(value1 = "relative=top");
+				Pause(locator1 = "3000");
 			}
 
-			if ("${backgroundImage}" == "Manual Selection") {
-				AssertClick(
-					locator1 = "Button#SELECT",
-					value1 = "Select");
+			if (isSet(backgroundImage)) {
+				Select(
+					key_fieldLabel = "Image Source",
+					locator1 = "Select#GENERIC_SELECT_FIELD",
+					value1 = "${backgroundImage}");
 
-				if (isSet(depotName)) {
-					ItemSelector.selectRepositoryImage(
-						depotName = "${depotName}",
-						imageFileName = "${imageFileName}",
-						navTab = "Documents and Media");
-				}
+				if ("${backgroundImage}" == "Content Mapping") {
+					PageEditorMapping.mapEditableFieldToAsset(
+						entryTitle = "${entryTitle}",
+						navItem = "${navItem}");
 
-				else {
-					if (isSet(uploadFileName)) {
-						ItemSelector.uploadFile(
-							navTab = "Documents and Media",
-							uploadFileName = "${uploadFileName}");
-					}
-					else if (isSet(imageSourceURL)) {
-						ItemSelector.addFromURL(
-							imageSourceURL = "${imageSourceURL}",
-							navTab = "URL");
+					if ("${navItem}" == "Documents and Media") {
+						Select(
+							locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
+							value1 = "${fieldName}");
 					}
 					else {
-						SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
-
-						Click(
-							key_card = "${entryTitle}",
-							locator1 = "LexiconCard#CARD_TITLE");
+						Select(
+							locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
+							value1 = "Image");
 					}
+
+					SelectFrame(value1 = "relative=top");
 				}
 
-				SelectFrame(value1 = "relative=top");
-			}
+				if ("${backgroundImage}" == "Manual Selection") {
+					AssertClick(
+						locator1 = "Button#SELECT",
+						value1 = "Select");
 
-			Pause(locator1 = "3000");
-		}
+					if (isSet(depotName)) {
+						ItemSelector.selectRepositoryImage(
+							depotName = "${depotName}",
+							imageFileName = "${imageFileName}",
+							navTab = "Documents and Media");
+					}
 
-		if (isSet(containerWidth)) {
-			Select(
-				key_fieldLabel = "Container Width",
-				locator1 = "Select#GENERIC_SELECT_FIELD",
-				value1 = "${containerWidth}");
+					else {
+						if (isSet(uploadFileName)) {
+							ItemSelector.uploadFile(
+								navTab = "Documents and Media",
+								uploadFileName = "${uploadFileName}");
+						}
+						else if (isSet(imageSourceURL)) {
+							ItemSelector.addFromURL(
+								imageSourceURL = "${imageSourceURL}",
+								navTab = "URL");
+						}
+						else {
+							SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-			Pause(locator1 = "3000");
-		}
+							Click(
+								key_card = "${entryTitle}",
+								locator1 = "LexiconCard#CARD_TITLE");
+						}
+					}
 
-		if (isSet(padding)) {
-			if (isSet(bottom)) {
-				Select(
-					key_borderBottom = "Padding",
-					key_fieldLabel = "Bottom",
-					locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
-					value1 = "${bottom}");
-
-				Pause(locator1 = "3000");
-			}
-
-			if (isSet(left)) {
-				Select(
-					key_borderBottom = "Padding",
-					key_fieldLabel = "Left",
-					locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
-					value1 = "${left}");
-
-				Pause(locator1 = "3000");
-			}
-
-			if (isSet(right)) {
-				Select(
-					key_borderBottom = "Padding",
-					key_fieldLabel = "Right",
-					locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
-					value1 = "${right}");
+					SelectFrame(value1 = "relative=top");
+				}
 
 				Pause(locator1 = "3000");
 			}
 
-			if (isSet(top)) {
+			if (isSet(containerWidth)) {
 				Select(
-					key_borderBottom = "Padding",
-					key_fieldLabel = "Top",
-					locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
-					value1 = "${top}");
+					key_fieldLabel = "Container Width",
+					locator1 = "Select#GENERIC_SELECT_FIELD",
+					value1 = "${containerWidth}");
 
 				Pause(locator1 = "3000");
+			}
+
+			if (isSet(padding)) {
+				if (isSet(bottom)) {
+					Select(
+						key_borderBottom = "Padding",
+						key_fieldLabel = "Bottom",
+						locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
+						value1 = "${bottom}");
+
+					Pause(locator1 = "3000");
+				}
+
+				if (isSet(left)) {
+					Select(
+						key_borderBottom = "Padding",
+						key_fieldLabel = "Left",
+						locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
+						value1 = "${left}");
+
+					Pause(locator1 = "3000");
+				}
+
+				if (isSet(right)) {
+					Select(
+						key_borderBottom = "Padding",
+						key_fieldLabel = "Right",
+						locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
+						value1 = "${right}");
+
+					Pause(locator1 = "3000");
+				}
+
+				if (isSet(top)) {
+					Select(
+						key_borderBottom = "Padding",
+						key_fieldLabel = "Top",
+						locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
+						value1 = "${top}");
+
+					Pause(locator1 = "3000");
+				}
+			}
+			else if ("${panel}" == "Link") {
+				Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_LINK_BUTTON");
 			}
 		}
 
