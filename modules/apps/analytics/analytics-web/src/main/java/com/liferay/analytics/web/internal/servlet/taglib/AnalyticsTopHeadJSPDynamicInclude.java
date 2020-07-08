@@ -89,6 +89,12 @@ public class AnalyticsTopHeadJSPDynamicInclude extends BaseJSPDynamicInclude {
 					themeDisplay.getCompanyId(), "liferayAnalyticsGroupIds",
 					StringPool.COMMA)));
 
+		Layout layout = themeDisplay.getLayout();
+
+		httpServletRequest.setAttribute(
+			AnalyticsWebKeys.ANALYTICS_CLIENT_READABLE_CONTENT,
+			Boolean.toString(layout.isTypeAssetDisplay()));
+
 		super.include(httpServletRequest, httpServletResponse, key);
 	}
 
