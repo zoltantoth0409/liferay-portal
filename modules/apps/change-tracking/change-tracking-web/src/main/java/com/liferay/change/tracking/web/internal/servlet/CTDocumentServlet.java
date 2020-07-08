@@ -201,14 +201,13 @@ public class CTDocumentServlet extends HttpServlet {
 			_modelResourcePermission.check(
 				permissionChecker, ctCollection, ActionKeys.VIEW);
 
-			String type = _http.decodeURL(pathInfos.get(1));
-
 			String key = _http.decodeURL(pathInfos.get(2));
-
-			long fileSize = ParamUtil.getLong(httpServletRequest, "size");
 
 			String fileTitle = ParamUtil.getString(
 				httpServletRequest, "title", key);
+
+			String type = _http.decodeURL(pathInfos.get(1));
+			long fileSize = ParamUtil.getLong(httpServletRequest, "size");
 
 			ServletResponseUtil.sendFile(
 				httpServletRequest, httpServletResponse, fileTitle,
