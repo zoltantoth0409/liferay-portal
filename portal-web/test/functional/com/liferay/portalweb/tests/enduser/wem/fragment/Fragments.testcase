@@ -595,7 +595,9 @@ definition {
 		}
 
 		task ("Configure the section") {
-			PageEditor.editLayoutContainer(backgroundColor = "warning");
+			PageEditor.editLayoutContainer(
+				backgroundColor = "warning",
+				panel = "Styles");
 		}
 
 		task ("View the fragment style") {

@@ -403,7 +403,8 @@ definition {
 			PageEditor.editLayoutContainer(
 				backgroundImage = "Manual Selection",
 				entryTitle = "Document_1.jpg",
-				navItem = "Documents and Media");
+				navItem = "Documents and Media",
+				panel = "Styles");
 		}
 
 		task ("Add the Heading fragment into Container") {

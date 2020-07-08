@@ -114,7 +114,8 @@ definition {
 		PageEditor.editLayoutContainer(
 			backgroundImage = "Manual Selection",
 			depotName = "Test Depot Name",
-			imageFileName = "Document_1.jpeg");
+			imageFileName = "Document_1.jpeg",
+			panel = "Styles");
 
 		PageEditor.clickPublish();
 

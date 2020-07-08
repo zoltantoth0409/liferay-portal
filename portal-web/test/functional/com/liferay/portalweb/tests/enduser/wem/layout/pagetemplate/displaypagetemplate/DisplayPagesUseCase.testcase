@@ -257,7 +257,8 @@ definition {
 			backgroundImage = "Content Mapping",
 			entryTitle = "Document_1.jpg",
 			fieldName = "File URL",
-			navItem = "Documents and Media");
+			navItem = "Documents and Media",
+			panel = "Styles");
 
 		PageEditor.clickPublish();
 
@@ -490,7 +491,8 @@ definition {
 		PageEditor.editLayoutContainer(
 			backgroundImage = "Content Mapping",
 			entryTitle = "WC WebContent Title",
-			navItem = "Web Content");
+			navItem = "Web Content",
+			panel = "Styles");
 
 		task ("Assert the layout background field contains the mapped image.") {
 			PageEditor.clickPublish();

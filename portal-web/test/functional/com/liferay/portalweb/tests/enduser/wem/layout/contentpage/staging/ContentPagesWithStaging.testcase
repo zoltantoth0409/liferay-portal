@@ -579,7 +579,9 @@ definition {
 			id = "element-text",
 			text = "New editable fragment text");
 
-		PageEditor.editLayoutContainer(backgroundColor = "success");
+		PageEditor.editLayoutContainer(
+			backgroundColor = "success",
+			panel = "Styles");
 
 		PageEditor.removeFragment(fragmentName = "Container");
 

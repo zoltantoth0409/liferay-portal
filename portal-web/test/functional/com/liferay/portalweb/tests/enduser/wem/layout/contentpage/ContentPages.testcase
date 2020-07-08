@@ -480,6 +480,7 @@ definition {
 				bottom = "4",
 				containerWidth = "Fixed Width",
 				padding = "true",
+				panel = "Styles",
 				top = "2");
 		}
 
@@ -1438,7 +1439,9 @@ definition {
 		}
 
 		task ("Configure the Container") {
-			PageEditor.editLayoutContainer(backgroundColor = "success");
+			PageEditor.editLayoutContainer(
+				backgroundColor = "success",
+				panel = "Styles");
 
 			PageEditor.viewContainerStyle(
 				backgroundColor = "success",
