@@ -55,7 +55,7 @@ public class DLFileEntryTableReferenceDefinitionTest
 	protected CTModel<?> addCTModel() throws Exception {
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
-		InputStream is = new ByteArrayInputStream(bytes);
+		InputStream inputStream = new ByteArrayInputStream(bytes);
 
 		return _dlFileEntryLocalService.addFileEntry(
 			group.getCreatorUserId(), group.getGroupId(), group.getGroupId(),
@@ -63,7 +63,7 @@ public class DLFileEntryTableReferenceDefinitionTest
 			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT, null,
-			null, is, bytes.length,
+			null, inputStream, bytes.length,
 			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
