@@ -1843,7 +1843,7 @@ public class LanguageImpl implements Language, Serializable {
 		String value = ResourceBundleUtil.getString(resourceBundle, key);
 
 		if (value != null) {
-			return LanguageBuilderUtil.fixValue(value);
+			return value;
 		}
 
 		if ((key.length() > 0) &&
