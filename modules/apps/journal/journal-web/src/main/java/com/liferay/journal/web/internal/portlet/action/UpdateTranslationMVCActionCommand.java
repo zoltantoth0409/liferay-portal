@@ -62,9 +62,6 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String targetLanguageId = ParamUtil.getString(
-			actionRequest, "targetLanguageId");
-
 		try {
 			JournalArticle article = ActionUtil.getArticle(actionRequest);
 			UnicodeProperties infoFieldUnicodeProperties =
@@ -88,7 +85,7 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 					newInfoItemFieldValues.add(
 						_createInfoFieldValue(
 							infoField.getName(),
-							LocaleUtil.fromLanguageId(targetLanguageId),
+							_getTargetLocale(actionRequest),
 							infoFieldUnicodeProperties.get(
 								infoField.getName())));
 				}
@@ -137,6 +134,13 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			infoItemFieldValuesProvider.getInfoItemFieldValues(article);
 
 		return infoItemFieldValues.getInfoFieldValues();
+	}
+
+	private Locale _getTargetLocale(ActionRequest actionRequest) {
+		String targetLanguageId = ParamUtil.getString(
+			actionRequest, "targetLanguageId");
+
+		return LocaleUtil.fromLanguageId(targetLanguageId);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
