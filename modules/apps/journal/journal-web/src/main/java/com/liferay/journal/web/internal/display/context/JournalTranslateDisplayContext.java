@@ -68,7 +68,6 @@ public class JournalTranslateDisplayContext {
 		_infoItemFieldValues =
 			(InfoItemFieldValues)_httpServletRequest.getAttribute(
 				InfoItemFieldValues.class.getName());
-
 		_journalEditArticleDisplayContext =
 			new JournalEditArticleDisplayContext(
 				_httpServletRequest, liferayPortletResponse, _article);
