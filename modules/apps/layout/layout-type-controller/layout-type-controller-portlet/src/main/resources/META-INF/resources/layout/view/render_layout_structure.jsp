@@ -112,9 +112,7 @@ for (String childrenItemId : childrenItemIds) {
 			<%
 			ContainerLayoutStructureItem containerLayoutStructureItem = (ContainerLayoutStructureItem)layoutStructureItem;
 
-			Object displayObject = request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
-
-			String containerLinkHref = portletLayoutDisplayContext.getContainerLinkHref(containerLayoutStructureItem, displayObject);
+			String containerLinkHref = portletLayoutDisplayContext.getContainerLinkHref(containerLayoutStructureItem, request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT));
 
 			boolean isContainerLinkConfigured = Validator.isNotNull(containerLinkHref);
 			%>
@@ -195,9 +193,7 @@ for (String childrenItemId : childrenItemIds) {
 
 				DefaultFragmentRendererContext defaultFragmentRendererContext = new DefaultFragmentRendererContext(fragmentEntryLink);
 
-				Object displayObject = request.getAttribute("render_layout_structure.jsp-collectionObject");
-
-				defaultFragmentRendererContext.setDisplayObject(displayObject);
+				defaultFragmentRendererContext.setDisplayObject(request.getAttribute("render_layout_structure.jsp-collectionObject"));
 				defaultFragmentRendererContext.setLocale(locale);
 
 				if (LayoutStructureItemUtil.hasAncestor(fragmentLayoutStructureItem.getItemId(), LayoutDataItemTypeConstants.TYPE_COLLECTION_ITEM, layoutStructure)) {

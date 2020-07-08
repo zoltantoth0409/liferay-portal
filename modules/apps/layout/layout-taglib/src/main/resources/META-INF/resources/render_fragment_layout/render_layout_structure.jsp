@@ -115,9 +115,7 @@ for (String childrenItemId : childrenItemIds) {
 			<%
 			ContainerLayoutStructureItem containerLayoutStructureItem = (ContainerLayoutStructureItem)layoutStructureItem;
 
-			Object displayObject = request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
-
-			String containerLinkHref = renderFragmentLayoutDisplayContext.getContainerLinkHref(containerLayoutStructureItem, displayObject);
+			String containerLinkHref = renderFragmentLayoutDisplayContext.getContainerLinkHref(containerLayoutStructureItem, request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT));
 
 			boolean isContainerLinkConfigured = Validator.isNotNull(containerLinkHref);
 			%>
@@ -178,10 +176,7 @@ for (String childrenItemId : childrenItemIds) {
 
 			DefaultFragmentRendererContext defaultFragmentRendererContext = new DefaultFragmentRendererContext(fragmentEntryLink);
 
-			Object displayObject = request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT);
-
-			defaultFragmentRendererContext.setDisplayObject(displayObject);
-
+			defaultFragmentRendererContext.setDisplayObject(request.getAttribute(InfoDisplayWebKeys.INFO_LIST_DISPLAY_OBJECT));
 			defaultFragmentRendererContext.setFieldValues(fieldValues);
 			defaultFragmentRendererContext.setLocale(locale);
 			defaultFragmentRendererContext.setMode(mode);
