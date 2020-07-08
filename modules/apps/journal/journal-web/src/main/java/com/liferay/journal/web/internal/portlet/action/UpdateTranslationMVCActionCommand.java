@@ -77,17 +77,21 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 
 				InfoField infoField = infoFieldValue.getInfoField();
 
-				if ((infoField != null) &&
-					(infoFieldUnicodeProperties.get(infoField.getName()) !=
-						null)) {
-
-					infoItemFieldValues.add(
-						_createInfoFieldValue(
-							infoField.getName(),
-							_getTargetLocale(actionRequest),
-							infoFieldUnicodeProperties.get(
-								infoField.getName())));
+				if (infoField == null) {
+					continue;
 				}
+
+				if (infoFieldUnicodeProperties.get(infoField.getName()) ==
+						null) {
+
+					continue;
+				}
+
+				infoItemFieldValues.add(
+					_createInfoFieldValue(
+						infoField.getName(),
+						_getTargetLocale(actionRequest),
+						infoFieldUnicodeProperties.get(infoField.getName())));
 			}
 
 			_journalArticleInfoItemFieldValuesUpdater.
