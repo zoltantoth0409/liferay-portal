@@ -85,8 +85,6 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 						JournalArticle.class.getName(),
 						article.getResourcePrimKey()));
 
-			Locale targetLocale = LocaleUtil.fromLanguageId(targetLanguageId);
-
 			for (InfoFieldValue<Object> infoFieldValue :
 					infoItemFieldValues.getInfoFieldValues()) {
 
@@ -98,7 +96,8 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 
 					newInfoItemFieldValues.add(
 						_createInfoFieldValue(
-							infoField.getName(), targetLocale,
+							infoField.getName(),
+							LocaleUtil.fromLanguageId(targetLanguageId),
 							infoFieldUnicodeProperties.get(
 								infoField.getName())));
 				}
