@@ -16,7 +16,7 @@ import ClayLayout from '@clayui/layout';
 import ClayTabs from '@clayui/tabs';
 import React from 'react';
 
-import {EVENT_TYPES} from '../actions/types.es';
+import {EVENT_TYPES} from '../actions/eventTypes.es';
 import {useForm} from '../hooks/useForm.es';
 
 export const Tabs = ({activePage, pages}) => {
