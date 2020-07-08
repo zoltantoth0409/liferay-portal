@@ -274,7 +274,6 @@ public class ContainerLayoutStructureItemExporter
 							}
 						};
 					});
-
 				setTarget(
 					() -> {
 						String target = jsonObject.getString("target");
