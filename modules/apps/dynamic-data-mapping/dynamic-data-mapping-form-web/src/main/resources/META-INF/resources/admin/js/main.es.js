@@ -1060,28 +1060,6 @@ class Form extends Component {
 
 		autoSaveMessageNode.innerHTML = sub(message, [modifiedDate]);
 	}
-
-	_updateShareFormIcon(published) {
-		const {saved} = this.props;
-		const shareFormIcon = document.querySelector('.share-form-icon');
-
-		if (saved && published) {
-			shareFormIcon.classList.remove('ddm-btn-disabled');
-			shareFormIcon.setAttribute(
-				'title',
-				Liferay.Language.get('copy-url')
-			);
-		}
-		else {
-			shareFormIcon.classList.add('ddm-btn-disabled');
-			shareFormIcon.setAttribute(
-				'title',
-				Liferay.Language.get(
-					'publish-the-form-to-get-its-shareable-link'
-				)
-			);
-		}
-	}
 }
 
 Form.PROPS = {
