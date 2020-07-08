@@ -67,11 +67,10 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			UnicodeProperties infoFieldUnicodeProperties =
 				PropertiesParamUtil.getProperties(actionRequest, "infoField--");
 
-			InfoItemFieldValues newInfoItemFieldValues =
-				new InfoItemFieldValues(
-					new InfoItemClassPKReference(
-						JournalArticle.class.getName(),
-						article.getResourcePrimKey()));
+			InfoItemFieldValues infoItemFieldValues = new InfoItemFieldValues(
+				new InfoItemClassPKReference(
+					JournalArticle.class.getName(),
+					article.getResourcePrimKey()));
 
 			for (InfoFieldValue<Object> infoFieldValue :
 					_getInfoFieldValues(article)) {
@@ -82,7 +81,7 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 					(infoFieldUnicodeProperties.get(infoField.getName()) !=
 						null)) {
 
-					newInfoItemFieldValues.add(
+					infoItemFieldValues.add(
 						_createInfoFieldValue(
 							infoField.getName(),
 							_getTargetLocale(actionRequest),
@@ -92,7 +91,7 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			}
 
 			_journalArticleInfoItemFieldValuesUpdater.
-				updateFromInfoItemFieldValues(article, newInfoItemFieldValues);
+				updateFromInfoItemFieldValues(article, infoItemFieldValues);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
