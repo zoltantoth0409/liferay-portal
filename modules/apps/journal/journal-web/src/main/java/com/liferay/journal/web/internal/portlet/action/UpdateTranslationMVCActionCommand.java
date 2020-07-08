@@ -66,7 +66,6 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			JournalArticle article = ActionUtil.getArticle(actionRequest);
 			UnicodeProperties infoFieldUnicodeProperties =
 				PropertiesParamUtil.getProperties(actionRequest, "infoField--");
-
 			InfoItemFieldValues infoItemFieldValues = new InfoItemFieldValues(
 				new InfoItemClassPKReference(
 					JournalArticle.class.getName(),
