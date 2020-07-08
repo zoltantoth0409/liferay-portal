@@ -133,9 +133,8 @@ renderResponse.setTitle(journalTranslateDisplayContext.getTitle());
 				for (InfoFieldValue<Object> infoFieldValue : infoFieldValues) {
 					InfoField infoField = infoFieldValue.getInfoField();
 
-					String label = journalTranslateDisplayContext.getInfoFieldLabel(infoField);
-
 					String id = "infoField--" + infoField.getName() + "--";
+					String label = journalTranslateDisplayContext.getInfoFieldLabel(infoField);
 				%>
 
 					<clay:row>
