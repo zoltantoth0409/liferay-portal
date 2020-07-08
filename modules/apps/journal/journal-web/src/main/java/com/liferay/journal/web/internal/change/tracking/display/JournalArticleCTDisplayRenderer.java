@@ -104,6 +104,9 @@ public class JournalArticleCTDisplayRenderer
 	public void render(DisplayContext<JournalArticle> displayContext)
 		throws Exception {
 
+		RequestDispatcher requestDispatcher =
+			_servletContext.getRequestDispatcher("/ct_display/render.jsp");
+
 		HttpServletRequest httpServletRequest =
 			displayContext.getHttpServletRequest();
 
@@ -117,9 +120,6 @@ public class JournalArticleCTDisplayRenderer
 				displayContext.getModel(), "", "",
 				_language.getLanguageId(httpServletRequest), 1, null,
 				themeDisplay));
-
-		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/ct_display/render.jsp");
 
 		requestDispatcher.include(
 			httpServletRequest, displayContext.getHttpServletResponse());
