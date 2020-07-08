@@ -99,15 +99,15 @@ public class DLFolderCTDisplayRenderer implements CTDisplayRenderer<DLFolder> {
 	public void render(DisplayContext<DLFolder> displayContext)
 		throws Exception {
 
+		RequestDispatcher requestDispatcher =
+			_servletContext.getRequestDispatcher(
+				"/document_library/ct_display/render_folder.jsp");
+
 		HttpServletRequest httpServletRequest =
 			displayContext.getHttpServletRequest();
 
 		httpServletRequest.setAttribute(
 			WebKeys.DOCUMENT_LIBRARY_FOLDER, displayContext.getModel());
-
-		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher(
-				"/document_library/ct_display/render_folder.jsp");
 
 		requestDispatcher.include(
 			httpServletRequest, displayContext.getHttpServletResponse());
