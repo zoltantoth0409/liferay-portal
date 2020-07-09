@@ -33,7 +33,7 @@ public class UpgradeAccountEntry extends UpgradeProcess {
 
 		runSQL(
 			StringBundler.concat(
-				"UPDATE AccountEntry SET type_ = ", newType, " WHERE type_ = ",
+				"update AccountEntry set type_ = ", newType, " where type_ = ",
 				oldType));
 	}
 
