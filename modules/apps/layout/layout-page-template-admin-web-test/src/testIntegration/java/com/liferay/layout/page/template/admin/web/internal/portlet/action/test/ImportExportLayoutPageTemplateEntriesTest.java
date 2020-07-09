@@ -142,7 +142,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 
 		File expectedFile = _generateZipFile(
 			"container/background_fragment_image/expected", valuesMap);
-
 		File inputFile = _generateZipFile(
 			"container/background_fragment_image/input", valuesMap);
 
