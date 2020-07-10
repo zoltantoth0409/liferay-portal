@@ -171,21 +171,21 @@ public class EnterpriseAnalyzerPlugin implements AnalyzerPlugin {
 
 		jar.putResource(classFile, classResource);
 
-		Map<Descriptors.TypeRef, Clazz> classspace = analyzer.getClassspace();
+		Map<Descriptors.TypeRef, Clazz> classes = analyzer.getClassspace();
 
-		classspace.put(
+		classes.put(
 			analyzer.getTypeRefFromFQN(className),
 			new Clazz(analyzer, classFile, classResource));
 
-		String componentDefinitionFile = "OSGI-INF/" + className + ".xml";
+		String componentDefinitionFileName = "OSGI-INF/" + className + ".xml";
 
 		jar.putResource(
-			componentDefinitionFile,
+			componentDefinitionFileName,
 			_generateComponentDefinition(analyzer, className));
 
 		analyzer.setProperty(
 			Constants.SERVICE_COMPONENT,
-			serviceComponent + "," + componentDefinitionFile);
+			serviceComponent + "," + componentDefinitionFileName);
 	}
 
 	private static final String _BASE_CLASS_BINARY_NAME =
