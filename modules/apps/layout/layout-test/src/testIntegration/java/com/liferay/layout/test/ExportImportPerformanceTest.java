@@ -154,14 +154,14 @@ public class ExportImportPerformanceTest {
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);
 
+		long ddmGroupId = GetterUtil.getLong(
+			_serviceContext.getAttribute("ddmGroupId"), _group.getGroupId());
+
 		Locale defaultLocale = LocaleUtil.fromLanguageId(
 			_group.getDefaultLanguageId());
 
 		DDMForm ddmForm = DDMStructureTestUtil.getSampleDDMForm(
 			new Locale[] {defaultLocale}, defaultLocale);
-
-		long ddmGroupId = GetterUtil.getLong(
-			_serviceContext.getAttribute("ddmGroupId"), _group.getGroupId());
 
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			ddmGroupId, JournalArticle.class.getName(), ddmForm, defaultLocale);
