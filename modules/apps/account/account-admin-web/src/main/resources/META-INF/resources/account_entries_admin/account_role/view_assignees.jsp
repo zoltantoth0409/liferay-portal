@@ -88,18 +88,16 @@ ViewAccountRoleAssigneesManagementToolbarDisplayContext viewAccountRoleAssignees
 	<portlet:param name="accountRoleId" value="<%= String.valueOf(accountRoleId) %>" />
 </portlet:renderURL>
 
-<%
-Map<String, Object> context = HashMapBuilder.<String, Object>put(
-	"accountEntryName", role.getTitle(locale)
-).put(
-	"assignAccountUsersURL", assignAccountUsersURL
-).put(
-	"selectAccountUsersURL", selectAccountUsersURL
-).build();
-%>
-
 <liferay-frontend:component
 	componentId="<%= viewAccountRoleAssigneesManagementToolbarDisplayContext.getDefaultEventHandler() %>"
-	context="<%= context %>"
+	context="<%=
+		HashMapBuilder.<String, Object>put(
+			"accountEntryName", role.getTitle(locale)
+		).put(
+			"assignAccountUsersURL", assignAccountUsersURL
+		).put(
+			"selectAccountUsersURL", selectAccountUsersURL
+		).build()
+	%>"
 	module="account_entries_admin/js/AccountUsersManagementToolbarDefaultEventHandler.es"
 />
