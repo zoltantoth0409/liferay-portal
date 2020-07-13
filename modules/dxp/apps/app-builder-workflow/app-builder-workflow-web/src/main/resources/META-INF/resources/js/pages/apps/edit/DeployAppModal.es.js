@@ -52,9 +52,9 @@ export default function DeployAppModal({onSave}) {
 				{Liferay.Language.get('deploy')}
 			</ClayModal.Header>
 
-			<div className="modal-body px-0">
+			<ClayModal.Body>
 				<DeploySettings />
-			</div>
+			</ClayModal.Body>
 
 			<ClayModal.Footer
 				last={
