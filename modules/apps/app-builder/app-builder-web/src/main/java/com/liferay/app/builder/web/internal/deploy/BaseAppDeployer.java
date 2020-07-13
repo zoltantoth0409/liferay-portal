@@ -58,7 +58,6 @@ public abstract class BaseAppDeployer implements AppDeployer {
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, AppBuilderAppPortletTab.class,
 				"app.builder.app.tab.name");
-
 		appPortletMVCResourceCommandServiceTrackerMap =
 			ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, MVCResourceCommand.class,
