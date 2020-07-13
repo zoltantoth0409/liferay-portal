@@ -194,11 +194,11 @@ public class DDMTemplateLocalServiceImpl
 			File smallImageFile, ServiceContext serviceContext)
 		throws PortalException {
 
+		// Template
+
 		if (!_isTemplateCreationEnabled()) {
 			throw new TemplateCreationDisabledException();
 		}
-
-		// Template
 
 		User user = userLocalService.getUser(userId);
 
