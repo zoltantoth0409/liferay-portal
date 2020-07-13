@@ -430,7 +430,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 			addTextElement(
 				transition, "default",
 				String.valueOf(outgoingTransition.isDefault()));
-
 			addTextElement(transition, "name", outgoingTransition.getName());
 
 			Node targetNode = outgoingTransition.getTargetNode();
