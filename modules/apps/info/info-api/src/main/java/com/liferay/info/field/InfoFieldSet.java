@@ -206,8 +206,8 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 			return this;
 		}
 
-		private final Map<String, InfoFieldSetEntry>
-			_infoFieldSetEntries = new LinkedHashMap<>();
+		private final Map<String, InfoFieldSetEntry> _infoFieldSetEntries =
+			new LinkedHashMap<>();
 		private InfoLocalizedValue<String> _labelInfoLocalizedValue;
 		private String _name;
 
