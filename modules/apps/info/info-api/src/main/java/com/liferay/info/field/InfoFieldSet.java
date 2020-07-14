@@ -101,7 +101,7 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 		List<InfoField> allInfoFields = new ArrayList<>();
 
 		for (InfoFieldSetEntry infoFieldSetEntry :
-				_builder._infoFieldSetEntriesByName.values()) {
+				_builder._infoFieldSetEntries.values()) {
 
 			if (infoFieldSetEntry instanceof InfoField) {
 				allInfoFields.add((InfoField)infoFieldSetEntry);
@@ -117,11 +117,11 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 	}
 
 	public List<InfoFieldSetEntry> getInfoFieldSetEntries() {
-		return new ArrayList<>(_builder._infoFieldSetEntriesByName.values());
+		return new ArrayList<>(_builder._infoFieldSetEntries.values());
 	}
 
 	public InfoFieldSetEntry getInfoFieldSetEntry(String name) {
-		return _builder._infoFieldSetEntriesByName.get(name);
+		return _builder._infoFieldSetEntries.get(name);
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("{entries: ");
-		sb.append(_builder._infoFieldSetEntriesByName.size());
+		sb.append(_builder._infoFieldSetEntries.size());
 		sb.append(", name: ");
 		sb.append(_builder._name);
 		sb.append("}");
@@ -176,7 +176,7 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 		}
 
 		public Builder infoFieldSetEntry(InfoFieldSetEntry infoFieldSetEntry) {
-			_infoFieldSetEntriesByName.put(
+			_infoFieldSetEntries.put(
 				infoFieldSetEntry.getName(), infoFieldSetEntry);
 
 			return this;
@@ -207,7 +207,7 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 		}
 
 		private final Map<String, InfoFieldSetEntry>
-			_infoFieldSetEntriesByName = new LinkedHashMap<>();
+			_infoFieldSetEntries = new LinkedHashMap<>();
 		private InfoLocalizedValue<String> _labelInfoLocalizedValue;
 		private String _name;
 
