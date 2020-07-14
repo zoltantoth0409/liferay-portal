@@ -172,7 +172,7 @@ public class InfoDisplayContributorWrapper
 		}
 		catch (PortalException portalException) {
 			throw new RuntimeException(
-				"Cannot obtain class types for item class " +
+				"Unable to get item form variations for class " +
 					_infoDisplayContributor.getClassName(),
 				portalException);
 		}
