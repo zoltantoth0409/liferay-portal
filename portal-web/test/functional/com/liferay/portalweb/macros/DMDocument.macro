@@ -60,7 +60,7 @@ definition {
 			PortletEntry.inputDescription(description = "${dmDocumentDescription}");
 		}
 
-		if ("${fieldName}" == "Date") {
+		if (isSet(dateField)) {
 			FormFields.editDate(
 				fieldName = "${fieldName}",
 				fieldValue = "${fieldValue}");
