@@ -90,10 +90,10 @@ definition {
 		}
 
 		if (isSet(numberField)) {
-			var key_fieldName = "Numeric";
+			var key_fieldName = "Number";
 
 			Type(
-				locator1 = "TextInput#NUMERIC",
+				locator1 = "TextInput#DDM",
 				value1 = "${numberField}");
 		}
 
