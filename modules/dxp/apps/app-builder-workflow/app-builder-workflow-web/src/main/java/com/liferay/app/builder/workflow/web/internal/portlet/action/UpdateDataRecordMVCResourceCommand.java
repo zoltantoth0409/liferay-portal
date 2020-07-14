@@ -76,9 +76,9 @@ public class UpdateDataRecordMVCResourceCommand
 		if (workflowTasks.isEmpty()) {
 			throw new WorkflowException(
 				StringBundler.concat(
-					"Workflow Task not found with name ",
+					"Workflow task not found with name ",
 					ParamUtil.getString(resourceRequest, "taskName"),
-					" and instanceId ",
+					" and workflow instance ID ",
 					ParamUtil.getLong(resourceRequest, "workflowInstanceId")));
 		}
 
