@@ -126,7 +126,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "edit")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("edit dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
@@ -169,7 +169,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "info")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("info dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
@@ -219,7 +219,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "metrics")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("metrics dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
@@ -273,7 +273,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "view")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("view dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
@@ -329,7 +329,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "view")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("view dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
@@ -387,7 +387,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 				String.valueOf(dropdownItem.get("label")), "view")
 		).findFirst(
 		).orElseThrow(
-			() -> new AssertionError("view dropdownItem not found")
+			() -> new AssertionError()
 		);
 
 		Assert.assertEquals(
