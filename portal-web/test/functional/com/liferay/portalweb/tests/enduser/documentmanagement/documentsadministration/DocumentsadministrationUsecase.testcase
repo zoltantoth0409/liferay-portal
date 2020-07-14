@@ -43,9 +43,9 @@ definition {
 
 		DMNavigator.gotoMetadataSets();
 
-		DMMetadataSet.addTitle(metadataSetName = "DM Metadata Set Name");
-
-		DMMetadataSet.addField(fieldType = "Text Box");
+		DMMetadataSet.add(
+			dmMetadataSetFieldNames = "Text Box",
+			metadataSetName = "DM Metadata Set Name");
 
 		DDLDataDefinition.save();
 
@@ -149,9 +149,9 @@ definition {
 
 		DMNavigator.gotoMetadataSets();
 
-		DMMetadataSet.addTitle(metadataSetName = "Document Metadata Set Name");
-
-		DMMetadataSet.addField(fieldType = "Numeric");
+		DMMetadataSet.add(
+			dmMetadataSetFieldNames = "Boolean",
+			metadataSetName = "Document Metadata Set Name");
 
 		DDLDataDefinition.save();
 
