@@ -72,7 +72,7 @@ public class InfoItemFieldValues {
 
 	public InfoFieldValue<Object> getInfoFieldValue(String infoFieldName) {
 		Collection<InfoFieldValue<Object>> infoFieldValues =
-			_builder._infoFieldValuesByName.get(infoFieldName);
+			_builder._infoFieldValuesMap.get(infoFieldName);
 
 		if (infoFieldValues != null) {
 			Iterator<InfoFieldValue<Object>> iterator =
@@ -93,7 +93,7 @@ public class InfoItemFieldValues {
 	public Collection<InfoFieldValue<Object>> getInfoFieldValues(
 		String infoFieldName) {
 
-		return _builder._infoFieldValuesByName.getOrDefault(
+		return _builder._infoFieldValuesMap.getOrDefault(
 			infoFieldName, Collections.emptyList());
 	}
 
@@ -149,7 +149,7 @@ public class InfoItemFieldValues {
 			InfoField infoField = infoFieldValue.getInfoField();
 
 			Collection<InfoFieldValue<Object>> infoFieldValues =
-				_infoFieldValuesByName.computeIfAbsent(
+				_infoFieldValuesMap.computeIfAbsent(
 					infoField.getName(), key -> new ArrayList<>());
 
 			infoFieldValues.add(infoFieldValue);
@@ -188,7 +188,7 @@ public class InfoItemFieldValues {
 		private final Collection<InfoFieldValue<Object>> _infoFieldValues =
 			new LinkedHashSet<>();
 		private final Map<String, Collection<InfoFieldValue<Object>>>
-			_infoFieldValuesByName = new HashMap<>();
+			_infoFieldValuesMap = new HashMap<>();
 		private InfoItemClassPKReference _infoItemClassPKReference;
 
 	}
