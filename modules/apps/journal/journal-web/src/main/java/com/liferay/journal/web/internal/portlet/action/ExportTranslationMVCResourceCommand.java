@@ -98,7 +98,7 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 				translationInfoItemFieldValuesExporter =
 					exportFileFormatOptional.orElseThrow(
 						() -> new PortalException(
-							"Unknown export mimeType: " + exportMimeType));
+							"Unknown export mime type: " + exportMimeType));
 
 			for (String targetLanguageId :
 					ParamUtil.getStringValues(
