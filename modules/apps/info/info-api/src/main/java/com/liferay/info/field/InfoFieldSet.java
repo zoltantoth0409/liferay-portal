@@ -150,8 +150,8 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{entries: ");
-		sb.append(_builder._infoFieldSetEntries.size());
+		sb.append("{_infoFieldSetEntries: ");
+		sb.append(_builder._infoFieldSetEntries);
 		sb.append(", name: ");
 		sb.append(_builder._name);
 		sb.append("}");
