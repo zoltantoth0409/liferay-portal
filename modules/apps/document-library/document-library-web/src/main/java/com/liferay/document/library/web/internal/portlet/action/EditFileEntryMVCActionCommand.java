@@ -42,10 +42,12 @@ import com.liferay.document.library.kernel.service.DLFileEntryTypeLocalService;
 import com.liferay.document.library.kernel.service.DLTrashService;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.document.library.kernel.util.DLValidator;
+import com.liferay.document.library.web.internal.configuration.FFDocumentLibraryDDMEditorConfigurationUtil;
 import com.liferay.document.library.web.internal.settings.DLPortletInstanceSettings;
 import com.liferay.dynamic.data.mapping.exception.StorageFieldRequiredException;
 import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
@@ -673,9 +675,26 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, actionResponse, jsonObject);
 	}
 
-	private DDMStructure _fetchDDMStructure(DLFileEntryType dlFileEntryType) {
-		return _ddmStructureLocalService.fetchDDMStructure(
-			dlFileEntryType.getDataDefinitionId());
+	private DDMStructure _fetchDDMStructure(DLFileEntryType dlFileEntryType)
+		throws PortalException {
+
+		if (FFDocumentLibraryDDMEditorConfigurationUtil.useDataEngineEditor()) {
+			return _ddmStructureLocalService.fetchDDMStructure(
+				dlFileEntryType.getDataDefinitionId());
+		}
+
+		List<DDMStructureLink> ddmStructureLinks =
+			_ddmStructureLinkLocalService.getStructureLinks(
+				_portal.getClassNameId(DLFileEntryType.class),
+				dlFileEntryType.getFileEntryTypeId());
+
+		if (ListUtil.isEmpty(ddmStructureLinks)) {
+			return null;
+		}
+
+		DDMStructureLink ddmStructureLink = ddmStructureLinks.get(0);
+
+		return ddmStructureLink.getStructure();
 	}
 
 	private String _getAddMultipleFileEntriesErrorMessage(
@@ -935,6 +954,12 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _setUpDDMFormValues(ServiceContext serviceContext)
 		throws PortalException {
+
+		if (!FFDocumentLibraryDDMEditorConfigurationUtil.
+				useDataEngineEditor()) {
+
+			return;
+		}
 
 		long fileEntryTypeId = ParamUtil.getLong(
 			serviceContext, "fileEntryTypeId", -1);

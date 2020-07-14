@@ -378,22 +378,39 @@ renderResponse.setTitle(headerTitle);
 											<div class="hide">
 										</c:if>
 
-										<%
-										DDMFormValuesToMapConverter ddmFormValuesToMapConverter = (DDMFormValuesToMapConverter)request.getAttribute(DDMFormValuesToMapConverter.class.getName());
-										%>
+										<c:choose>
+											<c:when test="<%= FFDocumentLibraryDDMEditorConfigurationUtil.useDataEngineEditor() %>">
 
-										<liferay-data-engine:data-layout-renderer
-											containerId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
-											dataDefinitionId="<%= ddmStructure.getStructureId() %>"
-											dataRecordValues="<%= ddmFormValuesToMapConverter.convert(ddmFormValues, DDMStructureLocalServiceUtil.getStructure(ddmStructure.getStructureId())) %>"
-											namespace="<%= liferayPortletResponse.getNamespace() %>"
-										/>
+												<%
+												DDMFormValuesToMapConverter ddmFormValuesToMapConverter = (DDMFormValuesToMapConverter)request.getAttribute(DDMFormValuesToMapConverter.class.getName());
+												%>
 
-										<liferay-frontend:component
-											componentId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
-											module="document_library/js/dataEngineLayoutRendererLanguageProxy.es"
-											servletContext="<%= application %>"
-										/>
+												<liferay-data-engine:data-layout-renderer
+													containerId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
+													dataDefinitionId="<%= ddmStructure.getStructureId() %>"
+													dataRecordValues="<%= ddmFormValuesToMapConverter.convert(ddmFormValues, DDMStructureLocalServiceUtil.getStructure(ddmStructure.getStructureId())) %>"
+													namespace="<%= liferayPortletResponse.getNamespace() %>"
+												/>
+
+												<liferay-frontend:component
+													componentId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
+													module="document_library/js/dataEngineLayoutRendererLanguageProxy.es"
+													servletContext="<%= application %>"
+												/>
+											</c:when>
+											<c:otherwise>
+												<liferay-ddm:html
+													classNameId="<%= PortalUtil.getClassNameId(com.liferay.dynamic.data.mapping.model.DDMStructure.class) %>"
+													classPK="<%= ddmStructure.getPrimaryKey() %>"
+													ddmFormValues="<%= ddmFormValues %>"
+													defaultEditLocale="<%= LocaleUtil.fromLanguageId(defaultLanguageId) %>"
+													fieldsNamespace="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
+													groupId="<%= (fileEntry != null) ? fileEntry.getGroupId() : 0 %>"
+													localizable="<%= localizable %>"
+													requestedLocale="<%= locale %>"
+												/>
+											</c:otherwise>
+										</c:choose>
 
 										<c:if test="<%= !dlEditFileEntryDisplayContext.isDDMStructureVisible(ddmStructure) %>">
 											</div>

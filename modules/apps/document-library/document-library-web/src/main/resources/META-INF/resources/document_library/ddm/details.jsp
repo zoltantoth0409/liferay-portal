@@ -30,4 +30,8 @@ DLFileEntryTypeDetailsDisplayContext dlFileEntryTypeDetailsDisplayContext = new 
 	</c:if>
 </aui:field-wrapper>
 
+<c:if test="<%= !FFDocumentLibraryDDMEditorConfigurationUtil.useDataEngineEditor() %>">
+	<aui:input name="name" />
+</c:if>
+
 <aui:input name="description" />

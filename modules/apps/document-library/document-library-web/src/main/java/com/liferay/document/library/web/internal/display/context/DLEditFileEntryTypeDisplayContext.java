@@ -15,6 +15,7 @@
 package com.liferay.document.library.web.internal.display.context;
 
 import com.liferay.document.library.kernel.model.DLFileEntryType;
+import com.liferay.document.library.web.internal.configuration.FFDocumentLibraryDDMEditorConfigurationUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMConstants;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
@@ -287,6 +288,11 @@ public class DLEditFileEntryTypeDisplayContext {
 		}
 
 		return false;
+	}
+
+	public boolean useDataEngineEditor() {
+		return FFDocumentLibraryDDMEditorConfigurationUtil.
+			useDataEngineEditor();
 	}
 
 	private DDMForm _getDDMForm() throws PortalException {
