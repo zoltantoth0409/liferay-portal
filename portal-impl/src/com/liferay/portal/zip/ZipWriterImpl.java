@@ -84,11 +84,11 @@ public class ZipWriterImpl implements ZipWriter {
 		}
 
 		if (ExportImportThreadLocal.isExportInProcess()) {
-			if (_exportQueue == null) {
-				_exportQueue = new LinkedList<>();
+			if (_exportEntries == null) {
+				_exportEntries = new LinkedList<>();
 			}
 
-			_exportQueue.add(
+			_exportEntries.add(
 				new AbstractMap.SimpleImmutableEntry<>(name, bytes));
 
 			return;
@@ -163,12 +163,12 @@ public class ZipWriterImpl implements ZipWriter {
 
 	@Override
 	public File getFile() {
-		if (_exportQueue != null) {
+		if (_exportEntries != null) {
 			try (FileSystem fileSystem = FileSystems.newFileSystem(
 					_uri, Collections.emptyMap())) {
 
 				Iterator<Map.Entry<String, byte[]>> iterator =
-					_exportQueue.iterator();
+					_exportEntries.iterator();
 
 				while (iterator.hasNext()) {
 					Map.Entry<String, byte[]> entry = iterator.next();
@@ -189,7 +189,7 @@ public class ZipWriterImpl implements ZipWriter {
 						StandardOpenOption.WRITE);
 				}
 
-				_exportQueue = null;
+				_exportEntries = null;
 			}
 			catch (IOException ioException) {
 				throw new UncheckedIOException(ioException);
@@ -216,7 +216,7 @@ public class ZipWriterImpl implements ZipWriter {
 	public void umount() {
 	}
 
-	private List<Map.Entry<String, byte[]>> _exportQueue;
+	private List<Map.Entry<String, byte[]>> _exportEntries;
 	private final File _file;
 	private final URI _uri;
 
