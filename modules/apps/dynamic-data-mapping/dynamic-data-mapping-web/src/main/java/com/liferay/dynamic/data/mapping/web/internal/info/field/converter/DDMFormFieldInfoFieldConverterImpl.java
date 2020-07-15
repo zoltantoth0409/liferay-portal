@@ -72,12 +72,7 @@ public class DDMFormFieldInfoFieldConverterImpl
 	private InfoFieldType _getInfoFieldType(DDMFormField ddmFormField) {
 		String ddmFormFieldType = ddmFormField.getType();
 
-		if (Objects.equals(ddmFormFieldType, "ddm-image") ||
-			Objects.equals(ddmFormFieldType, "image")) {
-
-			return ImageInfoFieldType.INSTANCE;
-		}
-		else if (Objects.equals(ddmFormFieldType, DDMFormFieldType.CHECKBOX)) {
+		if (Objects.equals(ddmFormFieldType, DDMFormFieldType.CHECKBOX)) {
 			return BooleanInfoFieldType.INSTANCE;
 		}
 		else if (Objects.equals(ddmFormFieldType, DDMFormFieldType.DECIMAL) ||
@@ -85,6 +80,11 @@ public class DDMFormFieldInfoFieldConverterImpl
 				 Objects.equals(ddmFormFieldType, DDMFormFieldType.NUMBER)) {
 
 			return NumberInfoFieldType.INSTANCE;
+		}
+		else if (Objects.equals(ddmFormFieldType, "ddm-image") ||
+				 Objects.equals(ddmFormFieldType, "image")) {
+
+			return ImageInfoFieldType.INSTANCE;
 		}
 
 		return TextInfoFieldType.INSTANCE;
