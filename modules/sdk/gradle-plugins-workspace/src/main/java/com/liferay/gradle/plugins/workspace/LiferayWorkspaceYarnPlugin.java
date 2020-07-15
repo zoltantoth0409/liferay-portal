@@ -134,7 +134,7 @@ public class LiferayWorkspaceYarnPlugin extends LiferayYarnPlugin {
 						if (logger.isWarnEnabled()) {
 							StringBuilder sb = new StringBuilder();
 
-							sb.append("Could not read yarn.lock.");
+							sb.append("Unable to read yarn.lock.");
 
 							logger.warn(sb.toString());
 						}
