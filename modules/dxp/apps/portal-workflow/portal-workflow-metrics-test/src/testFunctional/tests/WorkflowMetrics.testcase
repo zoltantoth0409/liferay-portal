@@ -1715,14 +1715,8 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Blogs");
-
-		Blogs.addWithWorkflow(
+		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
-			entrySubtitle = "Subtitle",
 			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
@@ -1752,7 +1746,11 @@ definition {
 			key_slaTitle = "One min",
 			locator1 = "WorkflowMetricsSLA#SLA_RECORD_TITLE");
 
-		Pause(locator1 = "80000");
+		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
+
+		WorkflowMetrics.waitForSLA(
+			key_expectedValue = "0",
+			key_status = "OVERDUE");
 
 		Navigator.openURL();
 
@@ -1793,7 +1791,11 @@ definition {
 			key_slaTitle = "One day",
 			locator1 = "WorkflowMetricsSLA#SLA_RECORD_TITLE");
 
-		Pause(locator1 = "30000");
+		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
+
+		WorkflowMetrics.waitForSLA(
+			key_expectedValue = "0",
+			key_status = "ONTIME");
 
 		Navigator.openURL();
 
