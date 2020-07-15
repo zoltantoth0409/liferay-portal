@@ -296,6 +296,14 @@ definition {
 			locator1 = "PageEditor#GRID_COLUMN_RESIZER",
 			position = "530,0");
 
+		Click(locator1 = "PageEditor#MANAGEMENT_BAR");
+
+		PageEditor.waitForAutoSave();
+
+		Click.clickNoWaitForVisible(
+			key_fragmentName = "Grid",
+			locator1 = "Fragment#FRAGMENT_HEADER");
+
 		AssertVisible(locator1 = "PageEditor#GRID_COLUMN_FIRST_RESIZER");
 
 		PageEditor.addElementToColumn(
