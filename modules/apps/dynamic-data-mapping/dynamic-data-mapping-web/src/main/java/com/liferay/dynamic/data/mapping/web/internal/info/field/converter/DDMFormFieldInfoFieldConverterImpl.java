@@ -56,8 +56,8 @@ public class DDMFormFieldInfoFieldConverterImpl
 		if (Objects.equals(
 				ddmFormField.getType(), DDMFormFieldType.TEXT_HTML)) {
 
-			infoField.addAttribute(TextInfoFieldType.MULTILINE, true);
 			infoField.addAttribute(TextInfoFieldType.HTML, true);
+			infoField.addAttribute(TextInfoFieldType.MULTILINE, true);
 		}
 
 		if (Objects.equals(
