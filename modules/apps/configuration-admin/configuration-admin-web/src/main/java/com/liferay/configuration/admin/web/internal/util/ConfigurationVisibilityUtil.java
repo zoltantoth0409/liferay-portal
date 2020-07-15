@@ -34,23 +34,23 @@ public class ConfigurationVisibilityUtil {
 		Serializable scopePK) {
 
 		ConfigurationVisibilityController configurationVisibilityController =
-			_getVisibilityController(pid);
+			_getConfigurationVisibilityController(pid);
 
 		return configurationVisibilityController.isVisible(scope, scopePK);
 	}
 
-	private static ConfigurationVisibilityController _getVisibilityController(
-		String pid) {
+	private static ConfigurationVisibilityController
+		_getConfigurationVisibilityController(String pid) {
 
 		if (_serviceTrackerMap.containsKey(pid)) {
 			return _serviceTrackerMap.getService(pid);
 		}
 
-		return _defaultVisibilityController;
+		return _configurationVisibilityController;
 	}
 
 	private static final ConfigurationVisibilityController
-		_defaultVisibilityController = (scope, scopePK) -> true;
+		_configurationVisibilityController = (scope, scopePK) -> true;
 	private static final ServiceTrackerMap
 		<String, ConfigurationVisibilityController> _serviceTrackerMap;
 
