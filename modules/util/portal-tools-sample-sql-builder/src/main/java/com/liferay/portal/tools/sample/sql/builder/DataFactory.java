@@ -1554,7 +1554,7 @@ public class DataFactory {
 		long groupId, DDMStructureVersionModel ddmStructureVersionModel) {
 
 		StringBundler sb = new StringBundler(
-			3 + BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 4);
+			3 + (BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 4));
 
 		sb.append("{\"defaultLanguageId\": \"en_US\", \"pages\": [{\"rows\": ");
 		sb.append("[");
@@ -1582,7 +1582,7 @@ public class DataFactory {
 
 	public DDMStructureModel newDDLDDMStructureModel(long groupId) {
 		StringBundler sb = new StringBundler(
-			3 + BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 9);
+			3 + (BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 9));
 
 		sb.append("{\"availableLanguageIds\": [\"en_US\"],");
 		sb.append("\"defaultLanguageId\": \"en_US\", \"fields\": [");
@@ -1722,7 +1722,7 @@ public class DataFactory {
 		DDLRecordModel ddlRecordModel, int currentIndex) {
 
 		StringBundler sb = new StringBundler(
-			3 + BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 7);
+			3 + (BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT * 7));
 
 		sb.append("{\"availableLanguageIds\": [\"en_US\"],");
 		sb.append("\"defaultLanguageId\": \"en_US\", \"fieldValues\": [");
@@ -3665,10 +3665,10 @@ public class DataFactory {
 
 		cpInstanceModel.setPurchasable(true);
 		cpInstanceModel.setJson("[]");
-		cpInstanceModel.setWidth(index * 2 + 1);
+		cpInstanceModel.setWidth((index * 2) + 1);
 		cpInstanceModel.setHeight(index + 5);
 		cpInstanceModel.setDepth(index);
-		cpInstanceModel.setWeight(index * 3 + 1);
+		cpInstanceModel.setWeight((index * 3) + 1);
 		cpInstanceModel.setPrice(BigDecimal.valueOf(index + 10.1));
 		cpInstanceModel.setPromoPrice(BigDecimal.valueOf(index + 9.2));
 		cpInstanceModel.setCost(BigDecimal.valueOf(index + 6.4));

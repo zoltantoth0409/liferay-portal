@@ -433,7 +433,7 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 		}
 
 		StringBundler sb = new StringBundler(
-			implementedClassNames.size() * 3 + 1);
+			(implementedClassNames.size() * 3) + 1);
 
 		sb.append("{");
 

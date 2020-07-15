@@ -177,7 +177,7 @@ public class CalendarBookingLocalServiceTest {
 		Calendar invitedCalendar = CalendarTestUtil.addCalendar(
 			_user, serviceContext);
 
-		long startTime = System.currentTimeMillis() + Time.MINUTE * 2;
+		long startTime = System.currentTimeMillis() + (Time.MINUTE * 2);
 
 		long endTime = startTime + Time.HOUR;
 
@@ -333,10 +333,10 @@ public class CalendarBookingLocalServiceTest {
 
 		long startTime =
 			firstChildCalendarBooking.getStartTime() +
-				firstChildCalendarBooking.getDuration() / 2;
+				(firstChildCalendarBooking.getDuration() / 2);
 		long endTime =
 			firstChildCalendarBooking.getEndTime() +
-				firstChildCalendarBooking.getDuration() / 2;
+				(firstChildCalendarBooking.getDuration() / 2);
 
 		CalendarBooking secondChildCalendarBooking =
 			CalendarBookingTestUtil.addChildCalendarBooking(
@@ -430,8 +430,8 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertTrue(firstCalendarBooking.isApproved());
 
-		long startTime = firstCalendarBooking.getStartTime() - Time.HOUR / 2;
-		long endTime = firstCalendarBooking.getEndTime() - Time.HOUR / 2;
+		long startTime = firstCalendarBooking.getStartTime() - (Time.HOUR / 2);
+		long endTime = firstCalendarBooking.getEndTime() - (Time.HOUR / 2);
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user);
 
@@ -454,8 +454,8 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertTrue(firstCalendarBooking.isApproved());
 
-		long startTime = firstCalendarBooking.getStartTime() + Time.HOUR / 2;
-		long endTime = firstCalendarBooking.getEndTime() + Time.HOUR / 2;
+		long startTime = firstCalendarBooking.getStartTime() + (Time.HOUR / 2);
+		long endTime = firstCalendarBooking.getEndTime() + (Time.HOUR / 2);
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user);
 
@@ -508,10 +508,10 @@ public class CalendarBookingLocalServiceTest {
 
 		long startTime =
 			firstChildCalendarBooking.getStartTime() -
-				firstChildCalendarBooking.getDuration() / 2;
+				(firstChildCalendarBooking.getDuration() / 2);
 		long endTime =
 			firstChildCalendarBooking.getEndTime() -
-				firstChildCalendarBooking.getDuration() / 2;
+				(firstChildCalendarBooking.getDuration() / 2);
 
 		CalendarBooking secondChildCalendarBooking =
 			CalendarBookingTestUtil.addChildCalendarBooking(
@@ -2101,7 +2101,8 @@ public class CalendarBookingLocalServiceTest {
 
 		Map<Locale, String> titleMap = RandomTestUtil.randomLocaleStringMap();
 
-		long instanceStartTime = calendarBooking.getStartTime() + Time.DAY * 2;
+		long instanceStartTime =
+			calendarBooking.getStartTime() + (Time.DAY * 2);
 
 		long instanceEndTime = instanceStartTime + (Time.HOUR * 10);
 
@@ -2927,7 +2928,7 @@ public class CalendarBookingLocalServiceTest {
 		Map<Locale, String> instanceTitleMap =
 			RandomTestUtil.randomLocaleStringMap();
 
-		long instanceStartTime = startTime + Time.DAY * 2;
+		long instanceStartTime = startTime + (Time.DAY * 2);
 
 		CalendarBooking calendarBookingInstance =
 			_calendarBookingLocalService.updateCalendarBookingInstance(

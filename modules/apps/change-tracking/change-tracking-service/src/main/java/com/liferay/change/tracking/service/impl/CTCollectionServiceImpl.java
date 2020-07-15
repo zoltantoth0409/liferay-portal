@@ -202,7 +202,7 @@ public class CTCollectionServiceImpl extends CTCollectionServiceBaseImpl {
 					String primaryKeyName = iterator.next();
 
 					StringBundler sb = new StringBundler(
-						2 * ctEntries.size() + 7);
+						(2 * ctEntries.size()) + 7);
 
 					sb.append("delete from ");
 					sb.append(ctPersistence.getTableName());

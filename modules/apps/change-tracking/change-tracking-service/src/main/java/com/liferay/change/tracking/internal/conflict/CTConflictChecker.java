@@ -397,7 +397,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 		long tempCTCollectionId = -_sourceCTCollectionId;
 
 		StringBundler sb = new StringBundler(
-			2 * resolvedPrimaryKeys.size() + 9);
+			(2 * resolvedPrimaryKeys.size()) + 9);
 
 		sb.append("update ");
 		sb.append(ctPersistence.getTableName());
@@ -490,7 +490,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 		List<Long> unresolvedPrimaryKeys) {
 
 		StringBundler sb = new StringBundler(
-			2 * unresolvedPrimaryKeys.size() + 18);
+			(2 * unresolvedPrimaryKeys.size()) + 18);
 
 		sb.append("select t1.");
 		sb.append(primaryKeyName);

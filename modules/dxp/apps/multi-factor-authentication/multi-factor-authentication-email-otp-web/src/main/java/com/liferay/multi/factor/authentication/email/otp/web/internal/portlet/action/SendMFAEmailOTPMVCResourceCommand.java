@@ -160,7 +160,7 @@ public class SendMFAEmailOTPMVCResourceCommand implements MVCResourceCommand {
 		long resendEmailTimeout = mfaEmailOTPConfiguration.resendEmailTimeout();
 
 		if (resendEmailTimeout > 0) {
-			long time = mfaEmailOTPSetAtTime + resendEmailTimeout * 1000;
+			long time = mfaEmailOTPSetAtTime + (resendEmailTimeout * 1000);
 
 			if (System.currentTimeMillis() <= time) {
 				if (_log.isInfoEnabled()) {

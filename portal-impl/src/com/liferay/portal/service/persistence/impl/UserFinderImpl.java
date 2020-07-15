@@ -539,10 +539,10 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			if (db.getDBType() == DBType.SYBASE) {
 				sybase = true;
 
-				sb = new StringBundler(paramsList.size() * 7 + 1);
+				sb = new StringBundler((paramsList.size() * 7) + 1);
 			}
 			else {
-				sb = new StringBundler(paramsList.size() * 4 + 1);
+				sb = new StringBundler((paramsList.size() * 4) + 1);
 			}
 
 			sb.append("SELECT COUNT(userId) AS COUNT_VALUE FROM (");
@@ -907,7 +907,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 				sql = StringUtil.removeSubstring(sql, _STATUS_SQL);
 			}
 
-			StringBundler sb = new StringBundler(paramsList.size() * 3 + 2);
+			StringBundler sb = new StringBundler((paramsList.size() * 3) + 2);
 
 			for (int i = 0; i < paramsList.size(); i++) {
 				if (i == 0) {
@@ -970,7 +970,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 		String[] orderByFields = orderByComparator.getOrderByFields();
 
-		StringBundler sb = new StringBundler(orderByFields.length * 4 + 1);
+		StringBundler sb = new StringBundler((orderByFields.length * 4) + 1);
 
 		sb.append("DISTINCT User_.userId AS userId");
 
@@ -1350,7 +1350,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			join = CustomSQLUtil.get(JOIN_BY_GROUPS_ORGS);
 
 			if (groupIds.length > 1) {
-				StringBundler sb = new StringBundler(groupIds.length * 2 + 1);
+				StringBundler sb = new StringBundler((groupIds.length * 2) + 1);
 
 				sb.append("Groups_Orgs.groupId IN (");
 
@@ -1378,7 +1378,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			join = CustomSQLUtil.get(JOIN_BY_GROUPS_USER_GROUPS);
 
 			if (groupIds.length > 1) {
-				StringBundler sb = new StringBundler(groupIds.length * 2 + 1);
+				StringBundler sb = new StringBundler((groupIds.length * 2) + 1);
 
 				sb.append("Groups_UserGroups.groupId IN (");
 
@@ -1424,7 +1424,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 				if (groupIds.length > 1) {
 					StringBundler sb = new StringBundler(
-						groupIds.length * 2 + 1);
+						(groupIds.length * 2) + 1);
 
 					sb.append("WHERE (Users_Groups.groupId IN (");
 
@@ -1453,7 +1453,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 				if (organizationIds.length > 1) {
 					StringBundler sb = new StringBundler(
-						organizationIds.length * 2 + 1);
+						(organizationIds.length * 2) + 1);
 
 					sb.append("WHERE (Users_Orgs.organizationId IN (");
 
@@ -1481,7 +1481,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			int size = organizationsTree.size();
 
 			if (size > 0) {
-				StringBundler sb = new StringBundler(size * 4 + 1);
+				StringBundler sb = new StringBundler((size * 4) + 1);
 
 				sb.append("WHERE (");
 
@@ -1520,7 +1520,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 				if (userGroupIds.length > 1) {
 					StringBundler sb = new StringBundler(
-						userGroupIds.length * 2 + 1);
+						(userGroupIds.length * 2) + 1);
 
 					sb.append("WHERE (Users_UserGroups.userGroupId IN (");
 

@@ -223,7 +223,7 @@ public class FinderPath {
 	}
 
 	private void _initCacheKeyPrefix(String methodName, String[] params) {
-		StringBundler sb = new StringBundler(params.length * 2 + 3);
+		StringBundler sb = new StringBundler((params.length * 2) + 3);
 
 		sb.append(methodName);
 		sb.append(_PARAMS_SEPARATOR);

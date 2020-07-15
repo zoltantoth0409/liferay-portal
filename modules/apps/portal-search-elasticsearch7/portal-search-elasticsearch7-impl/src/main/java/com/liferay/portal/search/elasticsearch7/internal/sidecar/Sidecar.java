@@ -512,7 +512,7 @@ public class Sidecar {
 	private String[] _getSidecarArguments() {
 		Settings settings = getSettings();
 
-		StringBundler sb = new StringBundler(2 * settings.size() + 1);
+		StringBundler sb = new StringBundler((2 * settings.size()) + 1);
 
 		sb.append("Sidecar Elasticsearch properties : {");
 

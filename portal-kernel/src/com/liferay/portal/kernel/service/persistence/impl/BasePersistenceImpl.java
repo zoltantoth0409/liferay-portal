@@ -362,7 +362,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		}
 
 		StringBundler sb = new StringBundler(
-			2 * uncachedPrimaryKeys.size() + 4);
+			(2 * uncachedPrimaryKeys.size()) + 4);
 
 		sb.append(getSelectSQL());
 		sb.append(" WHERE ");
