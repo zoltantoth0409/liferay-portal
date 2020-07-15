@@ -248,28 +248,29 @@ public class StructuredContentDTOConverter
 
 					setRenderedContentValue(
 						() -> {
-							boolean renderedContentValue = uriInfoOptional.map(
-								UriInfo::getQueryParameters
-							).map(
-								parameters -> parameters.getFirst(
-									"nestedFields")
-							).map(
-								fields -> fields.contains(
-									"renderedContentValue")
-							).orElse(
-								false
-							);
+							boolean hasRenderedContentValueField =
+								uriInfoOptional.map(
+									UriInfo::getQueryParameters
+								).map(
+									parameters -> parameters.getFirst(
+										"nestedFields")
+								).map(
+									fields -> fields.contains(
+										"renderedContentValue")
+								).orElse(
+									false
+								);
 
-							if (!renderedContentValue) {
+							if (!hasRenderedContentValueField) {
 								return null;
 							}
 
 							return RenderedContentValueUtil.renderTemplate(
 								_classNameLocalService,
-								_ddmTemplateLocalService,
-								_groupLocalService, httpServletRequest,
-								_journalArticleService, _journalContent,
-								locale, journalArticle.getResourcePrimKey(),
+								_ddmTemplateLocalService, _groupLocalService,
+								httpServletRequest, _journalArticleService,
+								_journalContent, locale,
+								journalArticle.getResourcePrimKey(),
 								ddmTemplate.getTemplateKey(), uriInfo);
 						});
 				}
