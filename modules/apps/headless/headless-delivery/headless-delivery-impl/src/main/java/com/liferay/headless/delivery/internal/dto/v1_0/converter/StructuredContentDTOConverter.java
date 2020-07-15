@@ -260,17 +260,17 @@ public class StructuredContentDTOConverter
 								false
 							);
 
-							if (renderedContentValue) {
-								return RenderedContentValueUtil.renderTemplate(
-									_classNameLocalService,
-									_ddmTemplateLocalService,
-									_groupLocalService, httpServletRequest,
-									_journalArticleService, _journalContent,
-									locale, journalArticle.getResourcePrimKey(),
-									ddmTemplate.getTemplateKey(), uriInfo);
+							if (!renderedContentValue) {
+								return null;
 							}
 
-							return null;
+							return RenderedContentValueUtil.renderTemplate(
+								_classNameLocalService,
+								_ddmTemplateLocalService,
+								_groupLocalService, httpServletRequest,
+								_journalArticleService, _journalContent,
+								locale, journalArticle.getResourcePrimKey(),
+								ddmTemplate.getTemplateKey(), uriInfo);
 						});
 				}
 			},
