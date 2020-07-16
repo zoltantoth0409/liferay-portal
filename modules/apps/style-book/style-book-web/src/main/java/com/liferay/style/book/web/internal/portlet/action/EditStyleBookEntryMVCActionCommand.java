@@ -51,6 +51,7 @@ public class EditStyleBookEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		long styleBookEntryId = ParamUtil.getLong(
 			actionRequest, "styleBookEntryId");
+
 		String tokenValues = ParamUtil.getString(actionRequest, "tokenValues");
 
 		try {
