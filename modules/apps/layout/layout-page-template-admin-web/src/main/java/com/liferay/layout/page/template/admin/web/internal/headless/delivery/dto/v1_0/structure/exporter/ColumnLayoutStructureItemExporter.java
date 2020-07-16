@@ -24,8 +24,6 @@ import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MapUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -69,28 +67,20 @@ public class ColumnLayoutStructureItemExporter
 									return null;
 								}
 
-								List<ColumnViewport> columnViewports =
-									new ArrayList<ColumnViewport>() {
-										{
-											add(
-												_toColumnViewport(
-													columnViewportConfigurations,
-													ViewportSize.
-														MOBILE_LANDSCAPE));
-											add(
-												_toColumnViewport(
-													columnViewportConfigurations,
-													ViewportSize.
-														PORTRAIT_MOBILE));
-											add(
-												_toColumnViewport(
-													columnViewportConfigurations,
-													ViewportSize.TABLET));
-										}
-									};
+								ColumnViewport[] columnViewports =
+									new ColumnViewport[3];
 
-								return columnViewports.toArray(
-									new ColumnViewport[0]);
+								columnViewports[0] = _toColumnViewport(
+									columnViewportConfigurations,
+									ViewportSize.MOBILE_LANDSCAPE);
+								columnViewports[1] = _toColumnViewport(
+									columnViewportConfigurations,
+									ViewportSize.PORTRAIT_MOBILE);
+								columnViewports[2] = _toColumnViewport(
+									columnViewportConfigurations,
+									ViewportSize.TABLET);
+
+								return columnViewports;
 							});
 					}
 				};
