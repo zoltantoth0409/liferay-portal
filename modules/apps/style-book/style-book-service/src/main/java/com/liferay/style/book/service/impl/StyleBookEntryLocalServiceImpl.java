@@ -134,8 +134,6 @@ public class StyleBookEntryLocalServiceImpl
 		long previewFileEntryId = _copyStyleBookEntryPreviewFileEntry(
 			userId, groupId, styleBookEntry, copyStyleBookEntry);
 
-		//  Draft
-
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
@@ -162,8 +160,6 @@ public class StyleBookEntryLocalServiceImpl
 	@Override
 	public StyleBookEntry deleteStyleBookEntry(StyleBookEntry styleBookEntry)
 		throws PortalException {
-
-		// Portlet file entry
 
 		if (styleBookEntry.getPreviewFileEntryId() > 0) {
 			PortletFileRepositoryUtil.deletePortletFileEntry(
@@ -262,8 +258,6 @@ public class StyleBookEntryLocalServiceImpl
 
 			oldDefaultStyleBookEntry.setDefaultStyleBookEntry(false);
 
-			// Draft
-
 			StyleBookEntry oldDefaultDraftStyleBookEntry = fetchDraft(
 				oldDefaultStyleBookEntry);
 
@@ -278,8 +272,6 @@ public class StyleBookEntryLocalServiceImpl
 		}
 
 		styleBookEntry.setDefaultStyleBookEntry(defaultStyleBookEntry);
-
-		// Draft
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
@@ -303,8 +295,6 @@ public class StyleBookEntryLocalServiceImpl
 
 		styleBookEntry.setName(name);
 
-		// Draft
-
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
@@ -325,8 +315,6 @@ public class StyleBookEntryLocalServiceImpl
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
 		styleBookEntry.setPreviewFileEntryId(previewFileEntryId);
-
-		// Draft
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
@@ -352,8 +340,6 @@ public class StyleBookEntryLocalServiceImpl
 		styleBookEntry.setName(name);
 		styleBookEntry.setTokensValues(tokensValues);
 
-		// Draft
-
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
@@ -375,8 +361,6 @@ public class StyleBookEntryLocalServiceImpl
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
 		styleBookEntry.setTokensValues(tokensValues);
-
-		// Draft
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
