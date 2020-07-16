@@ -439,7 +439,7 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		int i = 0;
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			Collection<String> entryKeys = _sortEntryKeysByIndex(
+			Collection<String> entryKeys = _sort(
 				getEntryKeys(
 					ddmFormFieldValuesMap, StringPool.BLANK,
 					ddmFormField.getName()));
@@ -678,7 +678,7 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		int i = 0;
 
 		for (DDMFormField nestedDDMFormField : nestedDDMFormFields) {
-			Collection<String> entryKeys = _sortEntryKeysByIndex(
+			Collection<String> entryKeys = _sort(
 				getEntryKeys(
 					ddmFormFieldValuesMap, parentEntryKey,
 					nestedDDMFormField.getName()));
@@ -699,18 +699,18 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		}
 	}
 
-	private Collection<String> _sortEntryKeysByIndex(Set<String> entryKeys) {
+	private Collection<String> _sort(Set<String> entryKeys) {
 		Stream<String> entryKeysStream = entryKeys.stream();
 
-		Map<Integer, String> entryKeysByIndex = entryKeysStream.collect(
+		Map<Integer, String> entryKeysMap = entryKeysStream.collect(
 			Collectors.toMap(
 				this::getDDMFormFieldValueIndex, Function.identity()));
 
-		Set<Map.Entry<Integer, String>> entrySet = entryKeysByIndex.entrySet();
+		Set<Map.Entry<Integer, String>> set = entryKeysMap.entrySet();
 
-		Stream<Map.Entry<Integer, String>> stream = entrySet.stream();
+		Stream<Map.Entry<Integer, String>> stream = set.stream();
 
-		entryKeysByIndex = stream.sorted(
+		entryKeysMap = stream.sorted(
 			Map.Entry.comparingByKey()
 		).collect(
 			Collectors.toMap(
@@ -718,7 +718,7 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 				(oldValue, newValue) -> oldValue, LinkedHashMap::new)
 		);
 
-		return entryKeysByIndex.values();
+		return entryKeysMap.values();
 	}
 
 	private static final int _DDM_FORM_FIELD_INDEX_INDEX = 2;
