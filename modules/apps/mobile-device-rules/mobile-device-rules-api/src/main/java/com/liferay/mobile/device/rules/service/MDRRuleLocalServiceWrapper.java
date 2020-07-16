@@ -33,6 +33,10 @@ public class MDRRuleLocalServiceWrapper
 	/**
 	 * Adds the mdr rule to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRRuleLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mdrRule the mdr rule
 	 * @return the mdr rule that was added
 	 */
@@ -117,6 +121,10 @@ public class MDRRuleLocalServiceWrapper
 	/**
 	 * Deletes the mdr rule with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRRuleLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param ruleId the primary key of the mdr rule
 	 * @return the mdr rule that was removed
 	 * @throws PortalException if a mdr rule with the primary key could not be found
@@ -131,6 +139,10 @@ public class MDRRuleLocalServiceWrapper
 
 	/**
 	 * Deletes the mdr rule from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRRuleLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mdrRule the mdr rule
 	 * @return the mdr rule that was removed
@@ -470,6 +482,10 @@ public class MDRRuleLocalServiceWrapper
 
 	/**
 	 * Updates the mdr rule in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRRuleLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mdrRule the mdr rule
 	 * @return the mdr rule that was updated

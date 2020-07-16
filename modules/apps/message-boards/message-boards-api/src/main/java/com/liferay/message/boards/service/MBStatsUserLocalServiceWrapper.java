@@ -39,6 +39,10 @@ public class MBStatsUserLocalServiceWrapper
 	/**
 	 * Adds the message boards stats user to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBStatsUserLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mbStatsUser the message boards stats user
 	 * @return the message boards stats user that was added
 	 */
@@ -77,6 +81,10 @@ public class MBStatsUserLocalServiceWrapper
 	/**
 	 * Deletes the message boards stats user with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBStatsUserLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param statsUserId the primary key of the message boards stats user
 	 * @return the message boards stats user that was removed
 	 * @throws PortalException if a message boards stats user with the primary key could not be found
@@ -90,6 +98,10 @@ public class MBStatsUserLocalServiceWrapper
 
 	/**
 	 * Deletes the message boards stats user from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBStatsUserLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mbStatsUser the message boards stats user
 	 * @return the message boards stats user that was removed
@@ -359,6 +371,10 @@ public class MBStatsUserLocalServiceWrapper
 
 	/**
 	 * Updates the message boards stats user in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBStatsUserLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mbStatsUser the message boards stats user
 	 * @return the message boards stats user that was updated

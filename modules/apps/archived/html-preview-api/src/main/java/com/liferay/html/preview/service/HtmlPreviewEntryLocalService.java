@@ -66,6 +66,10 @@ public interface HtmlPreviewEntryLocalService
 	/**
 	 * Adds the html preview entry to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect HtmlPreviewEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param htmlPreviewEntry the html preview entry
 	 * @return the html preview entry that was added
 	 */
@@ -96,6 +100,10 @@ public interface HtmlPreviewEntryLocalService
 	/**
 	 * Deletes the html preview entry from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect HtmlPreviewEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param htmlPreviewEntry the html preview entry
 	 * @return the html preview entry that was removed
 	 * @throws PortalException
@@ -107,6 +115,10 @@ public interface HtmlPreviewEntryLocalService
 
 	/**
 	 * Deletes the html preview entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect HtmlPreviewEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param htmlPreviewEntryId the primary key of the html preview entry
 	 * @return the html preview entry that was removed
@@ -251,6 +263,10 @@ public interface HtmlPreviewEntryLocalService
 
 	/**
 	 * Updates the html preview entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect HtmlPreviewEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param htmlPreviewEntry the html preview entry
 	 * @return the html preview entry that was updated

@@ -74,6 +74,10 @@ public abstract class StyleBookEntryLocalServiceBaseImpl
 	/**
 	 * Adds the style book entry to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect StyleBookEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param styleBookEntry the style book entry
 	 * @return the style book entry that was added
 	 */
@@ -100,6 +104,10 @@ public abstract class StyleBookEntryLocalServiceBaseImpl
 	/**
 	 * Deletes the style book entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect StyleBookEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param styleBookEntryId the primary key of the style book entry
 	 * @return the style book entry that was removed
 	 * @throws PortalException if a style book entry with the primary key could not be found
@@ -114,6 +122,10 @@ public abstract class StyleBookEntryLocalServiceBaseImpl
 
 	/**
 	 * Deletes the style book entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect StyleBookEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param styleBookEntry the style book entry
 	 * @return the style book entry that was removed
@@ -343,6 +355,10 @@ public abstract class StyleBookEntryLocalServiceBaseImpl
 
 	/**
 	 * Updates the style book entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect StyleBookEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param styleBookEntry the style book entry
 	 * @return the style book entry that was updated

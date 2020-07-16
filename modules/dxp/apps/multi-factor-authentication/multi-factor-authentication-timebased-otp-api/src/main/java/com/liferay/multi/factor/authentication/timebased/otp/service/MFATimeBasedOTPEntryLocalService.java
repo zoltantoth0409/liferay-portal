@@ -65,6 +65,10 @@ public interface MFATimeBasedOTPEntryLocalService
 	/**
 	 * Adds the mfa time based otp entry to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MFATimeBasedOTPEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mfaTimeBasedOTPEntry the mfa time based otp entry
 	 * @return the mfa time based otp entry that was added
 	 */
@@ -95,6 +99,10 @@ public interface MFATimeBasedOTPEntryLocalService
 	/**
 	 * Deletes the mfa time based otp entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MFATimeBasedOTPEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mfaTimeBasedOTPEntryId the primary key of the mfa time based otp entry
 	 * @return the mfa time based otp entry that was removed
 	 * @throws PortalException if a mfa time based otp entry with the primary key could not be found
@@ -106,6 +114,10 @@ public interface MFATimeBasedOTPEntryLocalService
 
 	/**
 	 * Deletes the mfa time based otp entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MFATimeBasedOTPEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mfaTimeBasedOTPEntry the mfa time based otp entry
 	 * @return the mfa time based otp entry that was removed
@@ -262,6 +274,10 @@ public interface MFATimeBasedOTPEntryLocalService
 
 	/**
 	 * Updates the mfa time based otp entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MFATimeBasedOTPEntryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mfaTimeBasedOTPEntry the mfa time based otp entry
 	 * @return the mfa time based otp entry that was updated

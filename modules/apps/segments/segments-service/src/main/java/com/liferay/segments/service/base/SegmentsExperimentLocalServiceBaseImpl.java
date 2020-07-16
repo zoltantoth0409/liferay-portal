@@ -92,6 +92,10 @@ public abstract class SegmentsExperimentLocalServiceBaseImpl
 	/**
 	 * Adds the segments experiment to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect SegmentsExperimentLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param segmentsExperiment the segments experiment
 	 * @return the segments experiment that was added
 	 */
@@ -122,6 +126,10 @@ public abstract class SegmentsExperimentLocalServiceBaseImpl
 	/**
 	 * Deletes the segments experiment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect SegmentsExperimentLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param segmentsExperimentId the primary key of the segments experiment
 	 * @return the segments experiment that was removed
 	 * @throws PortalException if a segments experiment with the primary key could not be found
@@ -137,6 +145,10 @@ public abstract class SegmentsExperimentLocalServiceBaseImpl
 
 	/**
 	 * Deletes the segments experiment from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect SegmentsExperimentLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param segmentsExperiment the segments experiment
 	 * @return the segments experiment that was removed
@@ -531,6 +543,10 @@ public abstract class SegmentsExperimentLocalServiceBaseImpl
 
 	/**
 	 * Updates the segments experiment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect SegmentsExperimentLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param segmentsExperiment the segments experiment
 	 * @return the segments experiment that was updated

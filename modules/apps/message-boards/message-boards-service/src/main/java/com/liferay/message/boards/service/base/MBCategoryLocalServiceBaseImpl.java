@@ -93,6 +93,10 @@ public abstract class MBCategoryLocalServiceBaseImpl
 	/**
 	 * Adds the message boards category to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBCategoryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mbCategory the message boards category
 	 * @return the message boards category that was added
 	 */
@@ -119,6 +123,10 @@ public abstract class MBCategoryLocalServiceBaseImpl
 	/**
 	 * Deletes the message boards category with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBCategoryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param categoryId the primary key of the message boards category
 	 * @return the message boards category that was removed
 	 * @throws PortalException if a message boards category with the primary key could not be found
@@ -131,6 +139,10 @@ public abstract class MBCategoryLocalServiceBaseImpl
 
 	/**
 	 * Deletes the message boards category from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBCategoryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mbCategory the message boards category
 	 * @return the message boards category that was removed
@@ -542,6 +554,10 @@ public abstract class MBCategoryLocalServiceBaseImpl
 
 	/**
 	 * Updates the message boards category in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MBCategoryLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mbCategory the message boards category
 	 * @return the message boards category that was updated

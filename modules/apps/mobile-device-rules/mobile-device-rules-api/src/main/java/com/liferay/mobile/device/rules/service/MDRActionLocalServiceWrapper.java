@@ -64,6 +64,10 @@ public class MDRActionLocalServiceWrapper
 	/**
 	 * Adds the mdr action to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRActionLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param mdrAction the mdr action
 	 * @return the mdr action that was added
 	 */
@@ -118,6 +122,10 @@ public class MDRActionLocalServiceWrapper
 	/**
 	 * Deletes the mdr action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRActionLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param actionId the primary key of the mdr action
 	 * @return the mdr action that was removed
 	 * @throws PortalException if a mdr action with the primary key could not be found
@@ -132,6 +140,10 @@ public class MDRActionLocalServiceWrapper
 
 	/**
 	 * Deletes the mdr action from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRActionLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mdrAction the mdr action
 	 * @return the mdr action that was removed
@@ -489,6 +501,10 @@ public class MDRActionLocalServiceWrapper
 
 	/**
 	 * Updates the mdr action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect MDRActionLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param mdrAction the mdr action
 	 * @return the mdr action that was updated

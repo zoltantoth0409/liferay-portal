@@ -36,6 +36,10 @@ public class AccountGroupLocalServiceWrapper
 	/**
 	 * Adds the account group to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect AccountGroupLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param accountGroup the account group
 	 * @return the account group that was added
 	 */
@@ -82,6 +86,10 @@ public class AccountGroupLocalServiceWrapper
 	/**
 	 * Deletes the account group from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect AccountGroupLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param accountGroup the account group
 	 * @return the account group that was removed
 	 */
@@ -94,6 +102,10 @@ public class AccountGroupLocalServiceWrapper
 
 	/**
 	 * Deletes the account group with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect AccountGroupLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param accountGroupId the primary key of the account group
 	 * @return the account group that was removed
@@ -338,6 +350,10 @@ public class AccountGroupLocalServiceWrapper
 
 	/**
 	 * Updates the account group in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect AccountGroupLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param accountGroup the account group
 	 * @return the account group that was updated

@@ -77,6 +77,10 @@ public interface ExpandoValueLocalService
 	/**
 	 * Adds the expando value to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ExpandoValueLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param expandoValue the expando value
 	 * @return the expando value that was added
 	 */
@@ -229,6 +233,10 @@ public interface ExpandoValueLocalService
 	/**
 	 * Deletes the expando value from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ExpandoValueLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param expandoValue the expando value
 	 * @return the expando value that was removed
 	 */
@@ -237,6 +245,10 @@ public interface ExpandoValueLocalService
 
 	/**
 	 * Deletes the expando value with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ExpandoValueLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param valueId the primary key of the expando value
 	 * @return the expando value that was removed
@@ -645,6 +657,10 @@ public interface ExpandoValueLocalService
 
 	/**
 	 * Updates the expando value in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ExpandoValueLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
 	 *
 	 * @param expandoValue the expando value
 	 * @return the expando value that was updated
