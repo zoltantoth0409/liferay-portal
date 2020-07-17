@@ -56,23 +56,18 @@ public class DDMStructureContentDashboardItemTypeTest {
 		Assert.assertEquals(
 			DDMStructure.class.getName(),
 			ddmStructureContentDashboardItemType.getClassName());
-
 		Assert.assertEquals(
 			ddmStructure.getStructureId(),
 			ddmStructureContentDashboardItemType.getClassPK());
-
 		Assert.assertEquals(
 			"structureName (groupName)",
 			ddmStructureContentDashboardItemType.getFullLabel(LocaleUtil.US));
-
 		Assert.assertEquals(
 			"structureName",
 			ddmStructureContentDashboardItemType.getLabel(LocaleUtil.US));
-
 		Assert.assertEquals(
 			ddmStructure.getModifiedDate(),
 			ddmStructureContentDashboardItemType.getModifiedDate());
-
 		Assert.assertEquals(
 			ddmStructure.getUserId(),
 			ddmStructureContentDashboardItemType.getUserId());
@@ -86,7 +81,6 @@ public class DDMStructureContentDashboardItemTypeTest {
 			ddmStructureContentDashboardItemType1 =
 				new DDMStructureContentDashboardItemType(
 					ddmStructure, _getGroup("groupName"));
-
 		DDMStructureContentDashboardItemType
 			ddmStructureContentDashboardItemType2 =
 				new DDMStructureContentDashboardItemType(
