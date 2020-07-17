@@ -84,10 +84,13 @@ public class ContentDashboardItemTypeItemSelectorView
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
+		RequestDispatcher requestDispatcher =
+			_servletContext.getRequestDispatcher(
+				"/view_content_dashboard_item_types.jsp");
+
 		PortletRequest portletRequest =
 			(PortletRequest)servletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
-
 		PortletResponse portletResponse =
 			(PortletResponse)servletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
@@ -114,10 +117,6 @@ public class ContentDashboardItemTypeItemSelectorView
 				_portal.getLiferayPortletRequest(portletRequest),
 				_portal.getLiferayPortletResponse(portletResponse),
 				searchContainer));
-
-		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher(
-				"/view_content_dashboard_item_types.jsp");
 
 		requestDispatcher.include(servletRequest, servletResponse);
 	}
