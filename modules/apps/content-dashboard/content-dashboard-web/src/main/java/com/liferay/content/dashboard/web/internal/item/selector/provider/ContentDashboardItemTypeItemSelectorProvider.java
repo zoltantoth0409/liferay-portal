@@ -69,7 +69,6 @@ public class ContentDashboardItemTypeItemSelectorProvider {
 				portletRequest, portletURL, null, "there-is-no-subtype");
 
 		searchContainer.setOrderByCol(_getOrderByCol(portletRequest));
-
 		searchContainer.setOrderByType(_getOrderByType(portletRequest));
 
 		SearchResponse searchResponse = _getSearchResponse(
@@ -83,7 +82,6 @@ public class ContentDashboardItemTypeItemSelectorProvider {
 			new ContentDashboardItemTypeChecker(
 				_getCheckedContentDashboardItemTypes(portletRequest),
 				(RenderResponse)portletResponse));
-
 		searchContainer.setTotal(searchResponse.getTotalHits());
 
 		return searchContainer;
