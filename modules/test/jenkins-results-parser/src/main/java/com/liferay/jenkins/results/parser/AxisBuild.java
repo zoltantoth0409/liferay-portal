@@ -475,7 +475,7 @@ public class AxisBuild extends BaseBuild {
 	public List<String> getWarningMessages() {
 		List<String> warningMessages = new ArrayList<>();
 
-		URL poshiWarningsURL;
+		URL poshiWarningsURL = null;
 
 		try {
 			poshiWarningsURL = new URL(
@@ -491,7 +491,7 @@ public class AxisBuild extends BaseBuild {
 			GZIPInputStream gzipInputStream = new GZIPInputStream(
 				inputStream)) {
 
-			int i;
+			int i = 0;
 
 			while ((i = gzipInputStream.read()) > 0) {
 				sb.append((char)i);
