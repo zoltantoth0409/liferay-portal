@@ -685,7 +685,7 @@ public class DDMDisplayContext {
 
 		ThemeDisplay themeDisplay = _ddmWebRequestHelper.getThemeDisplay();
 
-		if (_isTemplateCreationEnabled() &&
+		if (_isEnableTemplateCreation() &&
 			ddmDisplay.isShowAddButton(themeDisplay.getScopeGroup())) {
 
 			if ((classNameId != 0) && (resourceClassNameId != 0)) {
@@ -1121,7 +1121,7 @@ public class DDMDisplayContext {
 		return null;
 	}
 
-	private boolean _isTemplateCreationEnabled() {
+	private boolean _isEnableTemplateCreation() {
 		Settings ddmWebConfigurationSettings =
 			_settingsLocatorHelper.getConfigurationBeanSettings(
 				"com.liferay.dynamic.data.mapping.web.internal.configuration." +
