@@ -54,15 +54,15 @@ public class WorkflowAppBuilderAppPortletTab
 	public AppBuilderAppPortletTabContext getAppBuilderAppPortletTabContext(
 		AppBuilderApp appBuilderApp, long dataRecordId) {
 
+		AppBuilderAppPortletTabContext appBuilderAppPortletTabContext =
+			new AppBuilderAppPortletTabContext();
+
 		WorkflowInstanceLink workflowInstanceLink =
 			_workflowInstanceLinkLocalService.fetchWorkflowInstanceLink(
 				appBuilderApp.getCompanyId(), appBuilderApp.getGroupId(),
 				ResourceActionsUtil.getCompositeModelName(
 					AppBuilderApp.class.getName(), DDLRecord.class.getName()),
 				dataRecordId);
-
-		AppBuilderAppPortletTabContext appBuilderAppPortletTabContext =
-			new AppBuilderAppPortletTabContext();
 
 		if (workflowInstanceLink == null) {
 			DDMStructureLayout ddmStructureLayout =
