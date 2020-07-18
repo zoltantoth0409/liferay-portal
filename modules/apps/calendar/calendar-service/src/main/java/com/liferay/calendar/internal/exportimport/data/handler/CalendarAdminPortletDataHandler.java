@@ -115,7 +115,7 @@ public class CalendarAdminPortletDataHandler extends BasePortletDataHandler {
 			PortletDataContext portletDataContext)
 		throws PortalException {
 
-		final CalendarResource guestCalendarResource =
+		CalendarResource guestCalendarResource =
 			CalendarResourceUtil.fetchGuestCalendarResource(
 				portletDataContext.getCompanyId());
 
