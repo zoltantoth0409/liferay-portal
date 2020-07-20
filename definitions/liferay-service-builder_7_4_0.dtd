@@ -39,6 +39,18 @@ plugin services.
 >
 
 <!--
+The change-tracking-enabled value specifies whether or not to enable change
+tracking by default for entities. Change tracking is a publishing framework that
+intercepts changes to data in entities' generated PersistenceImpl classes and
+queries made through Hibernate. It is highly encouraged to enable change
+tracking in the service-builder element instead of per entity. MVCC must be
+enabled to enable change tracking. The default value is false.
+-->
+<!ATTLIST service-builder
+	change-tracking-enabled CDATA #IMPLIED
+>
+
+<!--
 The dependency-injector value specifies which dependency injector to use. Valid
 values are "spring" and "ds". For new OSGi modules, the default value is "ds",
 for existing modules or WARs, the default value is "spring".
@@ -53,18 +65,6 @@ entities to prevent lost updates. The default value is false.
 -->
 <!ATTLIST service-builder
 	mvcc-enabled CDATA #IMPLIED
->
-
-<!--
-The change-tracking-enabled value specifies whether or not to enable change
-tracking by default for entities. Change tracking is a publishing framework that
-intercepts changes to data in entities' generated PersistenceImpl classes and
-queries made through Hibernate. It is highly encouraged to enable change
-tracking in the service-builder element instead of per entity. MVCC must be
-enabled to enable change tracking. The default value is false.
--->
-<!ATTLIST service-builder
-	change-tracking-enabled CDATA #IMPLIED
 >
 
 <!--
@@ -236,6 +236,18 @@ programs. The default value is true.
 >
 
 <!--
+The change-tracking-enabled value specifies whether or not to enable change
+tracking for this entity. Change tracking is a publishing framework that
+intercepts changes to data in the entity's generated PersistenceImpl class and
+queries made through Hibernate. It is highly encouraged to enable change
+tracking in the service-builder element instead of per entity. MVCC must be
+enabled to enable change tracking.
+-->
+<!ATTLIST entity
+	change-tracking-enabled CDATA #IMPLIED
+>
+
+<!--
 The dynamic-update-enabled value specifies whether or not unmodified properties
 are excluded in the SQL update statement. The default value is the value of the
 attribute mvcc-enabled.
@@ -260,18 +272,6 @@ attribute in the service-builder element.
 -->
 <!ATTLIST entity
 	mvcc-enabled CDATA #IMPLIED
->
-
-<!--
-The change-tracking-enabled value specifies whether or not to enable change
-tracking for this entity. Change tracking is a publishing framework that
-intercepts changes to data in the entity's generated PersistenceImpl class and
-queries made through Hibernate. It is highly encouraged to enable change
-tracking in the service-builder element instead of per entity. MVCC must be
-enabled to enable change tracking.
--->
-<!ATTLIST entity
-	change-tracking-enabled CDATA #IMPLIED
 >
 
 <!--
@@ -525,6 +525,19 @@ See the id-type attribute's description for more information.
 >
 
 <!--
+The change-tracking-resolution-type value specifies how to resolve columns when
+a modification conflict is detected when publishing. This value is only used
+when change tracking is enabled for the entity. Some values are automatically
+determined by column. Otherwise, the default value is STRICT.
+
+See com.liferay.portal.kernel.change.tracking.CTColumnResolutionType for
+available options.
+-->
+<!ATTLIST column
+	change-tracking-resolution-type CDATA #IMPLIED
+>
+
+<!--
 The convert-null value specifies whether or not the column value is
 automatically converted to a non null value if it is null. This only applies if
 the type value is String. This is particularly useful if your entity is
@@ -578,19 +591,6 @@ primary key of a parent container model.
 -->
 <!ATTLIST column
 	parent-container-model CDATA #IMPLIED
->
-
-<!--
-The change-tracking-resolution-type value specifies how to resolve columns when
-a modification conflict is detected when publishing. This value is only used
-when change tracking is enabled for the entity. Some values are automatically
-determined by column. Otherwise, the default value is STRICT.
-
-See com.liferay.portal.kernel.change.tracking.CTColumnResolutionType for
-available options.
--->
-<!ATTLIST column
-	change-tracking-resolution-type CDATA #IMPLIED
 >
 
 <!--
