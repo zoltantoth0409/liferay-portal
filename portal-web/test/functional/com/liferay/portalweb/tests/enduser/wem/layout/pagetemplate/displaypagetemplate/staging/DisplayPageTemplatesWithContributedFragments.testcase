@@ -50,6 +50,8 @@ definition {
 	@description = "This is a use case for LPS-112360. The related assets should be in Collection Display when select Related Assets as Collection Provider."
 	@priority = "5"
 	test DisplayRelatedAssetsInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		task ("Add a Collection Display to display page template and Select Related Assets Collection Providers") {
 			PageEditor.addFragment(
 				collectionName = "Content Display",

@@ -95,6 +95,8 @@ definition {
 	@description = "This is a use case for LPS-115361. Add a widget page template in normal site."
 	@priority = "5"
 	test AddPageTemplate {
+		property portal.acceptance = "true";
+
 		task ("Add a new site") {
 			JSONGroup.addGroup(groupName = "Site Name");
 		}
@@ -129,6 +131,8 @@ definition {
 	@description = "This is a use case for LPS-115361. Can not delete a widget page template is used by a page in normal site."
 	@priority = "5"
 	test CannotDeletePageTemplateIsUsedByAPage {
+		property portal.acceptance = "true";
+
 		task ("Add a new site") {
 			JSONGroup.addGroup(groupName = "Site Name");
 		}
@@ -246,6 +250,8 @@ definition {
 	@description = "This is a use case for LPS-115361. Delete a widget page template in normal site."
 	@priority = "5"
 	test DeletePageTemplate {
+		property portal.acceptance = "true";
+
 		task ("Add a new site") {
 			JSONGroup.addGroup(groupName = "Site Name");
 		}
@@ -332,6 +338,8 @@ definition {
 	@description = "This is a use case for LPS-115361. Edit a widget page template in normal site."
 	@priority = "5"
 	test EditPageTemplate {
+		property portal.acceptance = "true";
+
 		task ("Add a new site") {
 			JSONGroup.addGroup(groupName = "Site Name");
 		}
@@ -373,6 +381,7 @@ definition {
 
 	@priority = "5"
 	test ImportLAR {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
 		PageTemplatesAdminGlobalSite.openGlobalPageTemplatesAdmin();

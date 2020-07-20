@@ -324,6 +324,8 @@ definition {
 	@description = "This is a test for LPS-102887. A user can access content in a web content display widget through content panel"
 	@priority = "5"
 	test CanAccessContentPanel {
+		property portal.acceptance = "true";
+
 		JSONWebcontent.addWebContent(
 			content = "Web Content Content",
 			groupName = "Test Site Name",
@@ -765,6 +767,8 @@ definition {
 	@description = "This is a test for LPS-101258. Can create a fragment with a Drop Zone area."
 	@priority = "5"
 	test DropButtonFragmentToFrgamentWithOneDropZone {
+		property portal.acceptance = "true";
+
 		JSONFragment.addFragmentCollection(
 			groupName = "Test Site Name",
 			name = "Collection Name 2");
@@ -814,6 +818,8 @@ definition {
 	@description = "This is a test for LPS-107285. Can duplicate the Row fragment in one Section fragment."
 	@priority = "5"
 	test DuplicateRowInSection {
+		property portal.acceptance = "true";
+
 		task ("Add a Section to page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Test Content Page Name",
@@ -967,6 +973,8 @@ definition {
 	@description = "This is a test for LPS-107285. When duplicate the Section fragment with the Row fragment, the Row fragment should also be duplicated."
 	@priority = "5"
 	test DuplicateSectionWithRow {
+		property portal.acceptance = "true";
+
 		task ("Add a Container to page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Test Content Page Name",
@@ -1243,6 +1251,8 @@ definition {
 	@description = "This is a test for LPS-109169. Topper only visible when the element is selected but not hover."
 	@priority = "5"
 	test HeaderOnlyShownWhenElementSelected {
+		property portal.acceptance = "true";
+
 		task ("Add a Heading fragment and an Asset Publisher portlet to page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Test Content Page Name",
@@ -1307,6 +1317,8 @@ definition {
 	@description = "This is a test for LPS-106778. Add a content page with fragments. Can reorganize them."
 	@priority = "5"
 	test ReorganizeFragmentsInContentPage {
+		property portal.acceptance = "true";
+
 		task ("Add a Heading fragment to the content page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Test Content Page Name",
@@ -1539,6 +1551,7 @@ definition {
 	@description = "This is a test for LPS-81870. In edit mode the page should still show the elements of the page that are not from the page itself, like the header, footer, or elements defined by the theme."
 	@priority = "5"
 	test ViewEditModeHeaderFooterTheme {
+		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentPages#ViewEditModeHeaderFooterTheme";
 
 		task ("Add a widget page to the site") {
@@ -1617,6 +1630,8 @@ definition {
 	@description = "This is a test for LPS-104629. The header of fragment selected can reach the border of the management toolbar."
 	@priority = "5"
 	test ViewHeaderOfFragmentMoveInsideBodyWhenReachTheManagementToolbar {
+		property portal.acceptance = "true";
+
 		task ("Add Image, Slider, Card and HTML fragments to page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Test Content Page Name",
@@ -1801,6 +1816,8 @@ definition {
 	@description = "This is a test for LPS-101255. The saved composition entry is available in Page Fragments admin with specific actions."
 	@priority = "5"
 	test ViewSavedCompositionMenuItem {
+		property portal.acceptance = "true";
+
 		task ("Add a new site") {
 			JSONGroup.addGroup(groupName = "Site Name");
 		}

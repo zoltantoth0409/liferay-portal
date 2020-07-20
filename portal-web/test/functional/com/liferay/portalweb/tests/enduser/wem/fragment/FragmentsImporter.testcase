@@ -610,6 +610,8 @@ definition {
 	@description = "This is a test for LPS-101255. The edited inline contents will be reset to default value when save a composition of fragments without Save Inline Content."
 	@priority = "5"
 	test ExportImportSavedCompositionWithoutSaveInlineContent {
+		property portal.acceptance = "true";
+
 		task ("Add a content page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",
@@ -789,6 +791,8 @@ definition {
 	@description = "This is a test for LPS-101255. The edited inline contents will be reset to default value when save a composition of fragments without Save Inline Content."
 	@priority = "5"
 	test ExportImportSavedCompositionWithSaveInlineContent {
+		property portal.acceptance = "true";
+
 		task ("Add a content page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",

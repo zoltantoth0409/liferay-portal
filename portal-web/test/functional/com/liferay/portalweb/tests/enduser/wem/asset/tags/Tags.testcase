@@ -80,6 +80,8 @@ definition {
 
 	@priority = "5"
 	test DeleteTagFromMenu {
+		property portal.acceptance = "true";
+
 		JSONAssettag.addTag(
 			groupName = "Guest",
 			tagName = "tagname1");

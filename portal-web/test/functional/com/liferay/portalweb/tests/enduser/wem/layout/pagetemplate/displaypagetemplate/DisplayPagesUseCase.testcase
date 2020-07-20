@@ -233,6 +233,8 @@ definition {
 	@description = "This ensures that images can be added to the fragment background via the file URL when mapping a document."
 	@priority = "5"
 	test MapDMImageToFragmentBackground {
+		property portal.acceptance = "true";
+
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
 			dmDocumentTitle = "Document_1.jpg",
@@ -274,6 +276,8 @@ definition {
 	@description = "This is a test for LPS-86550. Users should be able to map author name and author profile image to a fragment editable field in a display page."
 	@priority = "5"
 	test MapWebContentAuthor {
+		property portal.acceptance = "true";
+
 		task ("Add a display page with author name and profile fields mapped") {
 			JSONLayoutpagetemplate.addDisplayPageTemplateEntry(
 				contentType = "Web Content Article",
@@ -355,6 +359,8 @@ definition {
 	@description = "This case ensures a user can map the editable background image of a fragment to an existing image content."
 	@priority = "5"
 	test MapWebContentImageToFragmentBackground {
+		property portal.acceptance = "true";
+
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
 		NavItem.gotoStructures();
@@ -440,6 +446,8 @@ definition {
 	@description = "This case ensures a user can map the layout of a fragment to an existing image content."
 	@priority = "5"
 	test MapWebContentImageToLayoutSection {
+		property portal.acceptance = "true";
+
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
 		NavItem.gotoStructures();

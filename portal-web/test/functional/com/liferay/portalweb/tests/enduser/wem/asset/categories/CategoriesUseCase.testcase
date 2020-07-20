@@ -735,6 +735,7 @@ definition {
 
 	@priority = "5"
 	test ExportImportWCWithCategoryViaAP {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
 		JSONLayout.addPublicLayout(
@@ -859,6 +860,7 @@ definition {
 
 	@priority = "5"
 	test ImportLAR {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
 		Category.openCategoriesAdmin(siteURLKey = "test-site-name");

@@ -447,6 +447,8 @@ definition {
 	@description = "This is a use case for LPS-49853."
 	@priority = "5"
 	test ViewWebContentViaAPAsGuestWithViewPermission {
+		property portal.acceptance = "true";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
@@ -509,6 +511,8 @@ definition {
 	@description = "This is a use case for LPS-80445."
 	@priority = "5"
 	test ViewWebContentViaAPDeleteCategory {
+		property portal.acceptance = "true";
+
 		JSONCategory.addVocabulary(
 			groupName = "Guest",
 			title = "Vocabulary Name");

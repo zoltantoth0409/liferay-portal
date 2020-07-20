@@ -44,6 +44,7 @@ definition {
 	@description = "This is for LPS-110108. Adding a fourth level child page and viewing it on Page admin."
 	@priority = "5"
 	test AddPageWithFourthLevelChildPagesToSite {
+		property portal.acceptance = "true";
 		property testray.component.names = "Site Pages Administration";
 
 		JSONLayout.addPublicLayout(
@@ -96,6 +97,7 @@ definition {
 	@description = "This is for LPS-110108. Management Toolbar shows count of selected items and all visible items are selected after checking the Select All checkbox."
 	@priority = "5"
 	test CheckAndViewCountViaManagementToolbar {
+		property portal.acceptance = "true";
 		property testray.component.names = "Site Pages Administration";
 
 		JSONLayout.addPublicLayout(
@@ -127,6 +129,7 @@ definition {
 	@description = "This is for LPS-110108. The hovered item shows Add Page quick action and a Kebab menu with the actions available for that item. Clicking on item title navigates to the content."
 	@priority = "5"
 	test MouseOverNonRootPageAndViewPage {
+		property portal.acceptance = "true";
 		property testray.component.names = "Site Pages Administration";
 
 		for (var n : list "1,2") {
@@ -287,6 +290,8 @@ definition {
 	@description = "This is for LPS-114527. Can move multiple same level pages at the same level via dragging in Pages admin."
 	@priority = "5"
 	test MoveMultiplePagesInSameLevel {
+		property portal.acceptance = "true";
+
 		task ("Add 2 widget page and 1 content page in the same level") {
 			for (var n : list "1,2") {
 				JSONLayout.addPublicLayout(
@@ -390,6 +395,7 @@ definition {
 	@description = "This is for LPS-110108. Reorder pages in same level via drag and drop."
 	@priority = "5"
 	test MovePageInSameLevel {
+		property portal.acceptance = "true";
 		property testray.component.names = "Site Pages Administration";
 
 		JSONLayout.addPublicLayout(
@@ -490,6 +496,8 @@ definition {
 	@description = "This is a test for LPS-76825. A user can search for a page from pages admin."
 	@priority = "5"
 	test SearchPages {
+		property portal.acceptance = "true";
+
 		task ("Add two pages to root and add one child page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",

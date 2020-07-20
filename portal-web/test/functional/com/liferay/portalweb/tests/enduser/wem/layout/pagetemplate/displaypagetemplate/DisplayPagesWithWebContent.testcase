@@ -276,6 +276,8 @@ definition {
 	@description = "This is a test for LPS-90999. A user has access to edit a display page while viewing the article through its display page."
 	@priority = "5"
 	test EditDisplayPageWhenViewingInDisplayPage {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -336,6 +338,8 @@ definition {
 	@description = "This is a test for LPS-90999. A user has access to edit the web content article while viewing the article through its display page."
 	@priority = "5"
 	test EditWebContentWhenViewingInDisplayPage {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -388,6 +392,8 @@ definition {
 	@description = "This is a test for LPS-86221. A user can preview a draft status web content article within its display page."
 	@priority = "5"
 	test PreviewDraftWebContent {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -438,6 +444,8 @@ definition {
 	@description = "This is a test for LPS-86221. A user can preview a pending status web content article within its display page."
 	@priority = "5"
 	test PreviewPendingWebContent {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -496,6 +504,8 @@ definition {
 	@description = "This is a test for LPS-86221. A user can preview a published web content article within its display page."
 	@priority = "5"
 	test PreviewPublishedWebContent {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -546,6 +556,8 @@ definition {
 	@description = "This is a test for LPS-96438. Guests should be able to view web content articles through display page templates."
 	@priority = "5"
 	test ViewDisplayPageAsGuest {
+		property portal.acceptance = "true";
+
 		task ("Add a couple pages to the site so the navigation menu will appear in the display page template header") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",
@@ -649,6 +661,8 @@ definition {
 	@description = "When a display page is marked as default, associated assets will be displayed through the display page by default without need for additional configuration."
 	@priority = "5"
 	test ViewDisplayPageMarkedAsDefault {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 
@@ -818,6 +832,8 @@ definition {
 	@description = "Display pages can be viewed through friendly URL."
 	@priority = "5"
 	test ViewDisplayPageViaFriendlyURL {
+		property portal.acceptance = "true";
+
 		task ("Add a web content article") {
 			JSONWebcontent.addWebContent(
 				content = "Webcontent Content",
@@ -855,6 +871,8 @@ definition {
 	@description = "A selected display page should override the default display page."
 	@priority = "5"
 	test ViewNonDefaultDisplayPage {
+		property portal.acceptance = "true";
+
 		task ("Mark the display page as default") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
 

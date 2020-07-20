@@ -88,6 +88,8 @@ definition {
 	@description = "Page Fragments administration is only be accessible in staging view."
 	@priority = "5"
 	test AssertFragmentsAreOnlyEditableInStagingView {
+		property portal.acceptance = "true";
+
 		task ("Assert fragments admin is accessible in the staging site") {
 			ProductMenuHelper.openProductMenu();
 

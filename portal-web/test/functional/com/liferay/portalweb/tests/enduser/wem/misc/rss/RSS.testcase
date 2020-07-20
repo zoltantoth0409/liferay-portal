@@ -333,6 +333,7 @@ definition {
 	@description = "This is a use case for LPS-107942.The input field of Entries Per Feed allows integer numbers greater than 10."
 	@priority = "5"
 	test ChangeNumberOfEntriesPerFeedToEleven {
+		property portal.acceptance = "true";
 		property testray.component.names = "RSS";
 
 		JSONLayout.addWidgetToPublicLayout(

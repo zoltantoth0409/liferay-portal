@@ -118,6 +118,8 @@ definition {
 	@description = "This is a test for LPS-108339. Can add a Row fragment to Container. Can add several Row fragments to Container."
 	@priority = "5"
 	test AddRowToSection {
+		property portal.acceptance = "true";
+
 		task ("Add a content page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",
@@ -577,6 +579,8 @@ definition {
 	@description = "This is a test for LPS-106776 and LPS-102959. Configure the Container and Grid elements."
 	@priority = "5"
 	test ConfigureLayoutElements {
+		property portal.acceptance = "true";
+
 		task ("Add a content page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Test Site Name",
@@ -654,6 +658,8 @@ definition {
 	@description = "This is a test for LPS-90064 and is a supplementary frontend test to the integration tests in LPS-90307. Fragments can be copied."
 	@priority = "5"
 	test CopyFragment {
+		property portal.acceptance = "true";
+
 		task ("Navigate to the fragment collection") {
 			FragmentsAdminNavigator.gotoCollection(collectionName = "Collection Name");
 		}
@@ -742,6 +748,8 @@ definition {
 	@description = "This is a test for LPS-108376. Can check Cacheable for fragments when create them in portal and they are non-Cachable by default."
 	@priority = "5"
 	test MarkFragmentCreatedInPortalAsCacheable {
+		property portal.acceptance = "true";
+
 		FragmentsAdminNavigator.gotoCollection(collectionName = "Collection Name");
 
 		FragmentsAdminNavigator.gotoEntryEllipsisItem(
@@ -806,6 +814,7 @@ definition {
 	test PropagateGlobalFragmentChanges {
 		property osgi.module.configuration.file.names = "com.liferay.fragment.web.internal.configuration.FragmentGlobalPanelAppConfiguration.config";
 		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property portal.acceptance = "true";
 
 		task ("Add a fragment collection in Global site") {
 			JSONFragment.addFragmentCollection(
@@ -1033,6 +1042,8 @@ definition {
 	@description = "This is a test for LPS-114145. The changes are saved automatically in fragment editor before publishing."
 	@priority = "5"
 	test ViewAutoSavedBeforePublishingComponent {
+		property portal.acceptance = "true";
+
 		FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "test-site-name");
 
 		FragmentsAdminNavigator.gotoCollection(collectionName = "Collection Name");
@@ -1059,6 +1070,8 @@ definition {
 	@description = "Fragments that are being used cannot be deleted."
 	@priority = "5"
 	test ViewCannotDeleteFragmentInUse {
+		property portal.acceptance = "true";
+
 		task ("Publish the fragment entry") {
 			FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "test-site-name");
 
@@ -1133,6 +1146,7 @@ definition {
 	test ViewGlobalFragments {
 		property osgi.module.configuration.file.names = "com.liferay.fragment.web.internal.configuration.FragmentGlobalPanelAppConfiguration.config";
 		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property portal.acceptance = "true";
 
 		task ("Add a fragment collection in Global site") {
 			JSONFragment.addFragmentCollection(
@@ -1197,6 +1211,7 @@ definition {
 	test ViewGlobalFragmentsSiteUsages {
 		property osgi.module.configuration.file.names = "com.liferay.fragment.web.internal.configuration.FragmentGlobalPanelAppConfiguration.config";
 		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property portal.acceptance = "true";
 
 		task ("Add a fragment collection in Global site") {
 			JSONFragment.addFragmentCollection(

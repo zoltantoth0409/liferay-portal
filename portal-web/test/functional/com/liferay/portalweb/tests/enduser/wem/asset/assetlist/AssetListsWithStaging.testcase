@@ -35,6 +35,8 @@ definition {
 	@description = "Assert that Asset Lists administration is only accessible on the staging site."
 	@priority = "5"
 	test AssertAssetListsAreOnlyEditableInStagingView {
+		property portal.acceptance = "true";
+
 		task ("Navigate to asset list administration in the staging site.") {
 			ProductMenuHelper.openProductMenu();
 

@@ -119,6 +119,7 @@ definition {
 
 	@priority = "5"
 	test AddExistingPageAsDisplayPageInSiteCP {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training,Web Content Administration";
 
 		JSONLayout.addPublicLayout(
@@ -163,6 +164,7 @@ definition {
 
 	@priority = "5"
 	test AddImageToWebContentViaItemSelector {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training,Web Content Administration";
 
 		JSONLayout.addPublicLayout(
@@ -386,6 +388,7 @@ definition {
 
 	@priority = "5"
 	test AddWebContentViaAddContentPanel {
+		property portal.acceptance = "true";
 		property testray.component.names = "Web Content Display,Training";
 
 		JSONWebcontent.addWebContent(
@@ -753,6 +756,7 @@ definition {
 	@description = "This is a use case for LPS-71941."
 	@priority = "5"
 	test UndeployWebContentDisplayModuleViaGogoShell {
+		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "WebContentDisplay#UndeployWebContentDisplayModuleViaGogoShell";
 
 		GogoShell.openGogoShellAdmin();

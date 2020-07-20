@@ -181,6 +181,7 @@ definition {
 	@description = "This is a use case for LPS-109298. Each tab of Tabs fragment is able to contain any elements in content page."
 	@priority = "5"
 	test AddFragmentToIndividualTabOfTabsFragment {
+		property portal.acceptance = "true";
 		property test.assert.warning.exceptions = "true";
 
 		ContentPagesNavigator.openEditContentPage(
@@ -425,6 +426,8 @@ definition {
 	@description = "This is a use case for LPS-111274. The selected Tabs fragment should always stay selected when click on the tabs of it."
 	@priority = "5"
 	test ClickTabsFragmentTabAndViewHeader {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Content Page Name",
 			siteName = "Test Site Name");
@@ -449,6 +452,8 @@ definition {
 	@description = "This is a use case for LPS-111274. The light blue frame is shown when hover on unmapped editable field of selected fragments but the dark blue frame is shown when click on unmapped editable field of selected fragments."
 	@priority = "5"
 	test ClickUnmappedEditableFieldAndMouseOver {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Content Page Name",
 			siteName = "Test Site Name");
@@ -543,6 +548,8 @@ definition {
 	@description = "This is a use case for LPS-112360. The asset entries should be ordered by ratings from high to low in Collection Display when select Highest Rated Assets as Collection Provider."
 	@priority = "5"
 	test DisplayHighestRatedAssetsInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		task ("Add three Web Content Articles based on Basic Web Content") {
 			for (var entryTitle : list "First Web Content,Second Web Content,Third Web Content") {
 				JSONWebcontent.addWebContent(
@@ -686,6 +693,7 @@ definition {
 	@priority = "5"
 	test DisplayMostViewedAssetsInCollectionDisplay {
 		property custom.properties = "buffered.increment.enabled=true";
+		property portal.acceptance = "true";
 
 		task ("Add a Web Content Article, a Blogs Entry and a Document") {
 			JSONWebcontent.addWebContent(
@@ -898,6 +906,8 @@ definition {
 	@description = "This is a use case for LPS-112360. The asset entries should be ordered by modified time from recent to past in Collection Display when select Recent Content as Collection Provider."
 	@priority = "5"
 	test DisplayRecentContentInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		task ("Add three Web Content Articles based on Basic Web Content") {
 			for (var entryTitle : list "First Web Content,Second Web Content,Third Web Content") {
 				JSONWebcontent.addWebContent(
@@ -1238,6 +1248,8 @@ definition {
 	@description = "This is a use case for LPS-114770. The Collection Display can select a manual collection with multiple asset types."
 	@priority = "5"
 	test ManualCollectionWithAssetTypesIsAvailableToCollectionDisplay {
+		property portal.acceptance = "true";
+
 		task ("Add a Web Content Article,a Blogs Entry and a document") {
 			JSONWebcontent.addWebContent(
 				content = "Web Content Content",
@@ -1317,6 +1329,7 @@ definition {
 	@description = "This case ensures that a user can map a blogs content field to a fragment via the content display."
 	@priority = "5"
 	test MapBlogContentViaContentDisplay {
+		property portal.acceptance = "true";
 		property testray.component.names = "Content Pages,Item Selector";
 
 		JSONBlog.addEntry(
@@ -1677,6 +1690,8 @@ definition {
 	@description = "This is a test for LPS-101249. Can only select web content articles when set itemType to JournalArticle"
 	@priority = "5"
 	test OnlySelectWebContentViaFragmentWhenItemTypeIsJournalArticle {
+		property portal.acceptance = "true";
+
 		task ("Add a WC based on Basic Web Content") {
 			JSONWebcontent.addWebContent(
 				content = "Web Content Content",
@@ -1836,6 +1851,8 @@ definition {
 	@description = "This is a test for LPS-101248. Can select any custom web content template as a "Template" for web content selected in content fragment."
 	@priority = "5"
 	test SelectCustomWebContentTemplateViaContentDisplay {
+		property portal.acceptance = "true";
+
 		JSONWebcontent.addWebContent(
 			content = "This content maps from web content",
 			groupName = "Test Site Name",
@@ -2006,6 +2023,8 @@ definition {
 	@description = "This is a use case for LPS-114727. The Content Display fragment can display abstract of asset entries in Collection Display."
 	@priority = "5"
 	test ViewAbstractInContentDisplayWithCollectionProvider {
+		property portal.acceptance = "true";
+
 		task ("Add a Web Content Article, a document and a Blogs Entry") {
 			JSONWebcontent.addWebContent(
 				content = "Web Content Content",
@@ -2089,6 +2108,8 @@ definition {
 	@description = "This is a use case for LPS-114727. The Content Display fragment can display title of asset entries in Collection Provider."
 	@priority = "5"
 	test ViewAssetTitleInContentDisplayWithCollectionProvider {
+		property portal.acceptance = "true";
+
 		task ("Add a Web Content Article,a Blogs Entry and a document") {
 			JSONWebcontent.addWebContent(
 				content = "Web Content Content",
@@ -2310,6 +2331,8 @@ definition {
 	@description = "This is a test for LPS-112249. The flags of each collection item are shown when add a Content Flags fragment to Collection Display."
 	@priority = "5"
 	test ViewFlagsViaContentFlagsInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		for (var i : list "1,2,3") {
 			JSONWebcontent.addWebContent(
 				content = "WC WebContent Content ${i}",
@@ -2392,6 +2415,8 @@ definition {
 	@description = "This is a use case for LPS-114727. The Content Display fragment can display full content of asset entries in Collection Display."
 	@priority = "5"
 	test ViewFullContentInContentDisplayWithCollectionProvider {
+		property portal.acceptance = "true";
+
 		task ("Add a Web Content Article,a Blogs Entry and a document") {
 			JSONWebcontent.addWebContent(
 				content = "Web Content Content",
@@ -2485,6 +2510,8 @@ definition {
 	@description = "This is a test for LPS-112249. The ratings of each collection item are shown when add a Content Ratings fragment to Collection Display."
 	@priority = "5"
 	test ViewRatingsViaContentRatingsInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		for (var i : list "1,2,3") {
 			JSONWebcontent.addWebContent(
 				content = "WC WebContent Content ${i}",
@@ -2560,6 +2587,8 @@ definition {
 	@description = "This is a test for LPS-112093. The Web Content Articles of collection are displayed using Default Template when add a Content Display to Collection Display."
 	@priority = "5"
 	test ViewWebContentViaContentInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		for (var i : list "1,2,3") {
 			JSONWebcontent.addWebContent(
 				content = "WC WebContent Content ${i}",
@@ -2632,6 +2661,8 @@ definition {
 	@description = "This is a test for LPS-112093. Can display Web Content Articles of collection using custom template when add a Content Display to Collection Display."
 	@priority = "5"
 	test ViewWebContentWithCustomTemplateViaContentDisplayInCollectionDisplay {
+		property portal.acceptance = "true";
+
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
 		NavItem.gotoStructures();

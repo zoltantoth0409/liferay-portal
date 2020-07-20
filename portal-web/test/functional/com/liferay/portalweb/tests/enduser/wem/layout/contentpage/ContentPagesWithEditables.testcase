@@ -36,6 +36,7 @@ definition {
 	@description = "Add a content page and edit its fragment immediately. This is a variation of the steps from LPS-85872."
 	@priority = "5"
 	test AddContentPageWithEditedFragmentText {
+		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
 		ContentPagesNavigator.openEditContentPage(
@@ -152,6 +153,8 @@ definition {
 	@description = "This is a test for LPS-106776. Add a translation to editable text."
 	@priority = "5"
 	test AddTraslationtoRichText {
+		property portal.acceptance = "true";
+
 		task ("Add a Rich Text fragment to the content page") {
 			ContentPagesNavigator.openEditContentPage(
 				pageName = "Content Page Name",

@@ -239,6 +239,8 @@ definition {
 	@description = "This is for LPS-102200. Can change master of a content page among any existing masters."
 	@priority = "5"
 	test ChangeMasterOfContentPageAmongExistingMasters {
+		property portal.acceptance = "true";
+
 		task ("Add header and footer in custom master") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
@@ -374,6 +376,8 @@ definition {
 	@description = "This is for LPS-102200. Can change master of a content page template among any existing masters"
 	@priority = "5"
 	test ChangeMasterOfContentPageTemplateAmongExistingMasters {
+		property portal.acceptance = "true";
+
 		task ("Add header and footer in custom master") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
@@ -538,6 +542,8 @@ definition {
 	@description = "This is for LPS-102200. Can change master of a display page template among any existing masters."
 	@priority = "5"
 	test ChangeMasterOfDisplayPageTemplateAmongExistingMasters {
+		property portal.acceptance = "true";
+
 		task ("Add header and footer in custom master") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
@@ -679,6 +685,8 @@ definition {
 	@description = "This is for LPS-105864. Can change master of a widget page among any existing masters."
 	@priority = "5"
 	test ChangeMasterOfWidgetPageAmongExistingMasters {
+		property portal.acceptance = "true";
+
 		task ("Add header and footer in custom master") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
@@ -817,6 +825,8 @@ definition {
 	@description = "This is for LPS-105864. Can change master of a widget page template among any existing masters."
 	@priority = "5"
 	test ChangeMasterOfWidgetPageTemplateAmongExistingMasters {
+		property portal.acceptance = "true";
+
 		task ("Add header and footer in custom master") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
@@ -1022,6 +1032,8 @@ definition {
 	@description = "This is a test for LPS-102194. When checking the checkbox beside Select New Fragments Automatically, the new fragment will be available in content page."
 	@priority = "5"
 	test CheckSelectNewFragmentsAutomaticallyInAllowedFragments {
+		property portal.acceptance = "true";
+
 		MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
 		AssertClick(
@@ -1128,6 +1140,8 @@ definition {
 	@description = "This is a test for LPS-102194. Only can add allowed fragments to drop zone in fragment pages when set them in master."
 	@priority = "5"
 	test ConfigureAllowedFragmentsInDropZone {
+		property portal.acceptance = "true";
+
 		MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
 		AssertClick(
@@ -1452,6 +1466,8 @@ definition {
 	@description = "This is for LPS-102200. Can edit master page template elements from  "Look and Feel" of page editor."
 	@priority = "5"
 	test EditMasterPageTemplateViaPageEditorLookAndFeel {
+		property portal.acceptance = "true";
+
 		MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
 		PageEditor.addFragment(
@@ -1624,6 +1640,8 @@ definition {
 	@description = "This is a test for LPS-102566. Master page can be used in page, page template and display page, changes in master page will be propagated to page, page template and display page"
 	@priority = "5"
 	test PropagateChangesFromCustomMastersToAllBasedOnCustomMasters {
+		property portal.acceptance = "true";
+
 		task ("Add a page based on custom masters") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 

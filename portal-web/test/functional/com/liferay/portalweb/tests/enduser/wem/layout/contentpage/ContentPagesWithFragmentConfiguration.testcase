@@ -55,6 +55,8 @@ definition {
 	@description = "This is a test for LPS-99377. User can change checkbox fragment configuration."
 	@priority = "5"
 	test AddCheckboxConfigurationFragmentToContentPage {
+		property portal.acceptance = "true";
+
 		task ("Add a section fragment to the fragment collection via JSON") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.html");
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.json");
@@ -102,6 +104,8 @@ definition {
 	@description = "This is a test for LPS-97179. User can change colorPalette fragment configuration."
 	@priority = "5"
 	test AddColorPaletteConfigurationFragmentToContentPage {
+		property portal.acceptance = "true";
+
 		task ("Add a section fragment to the fragment collection via JSON") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "colorPalette_configuration.html");
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "colorPalette_configuration.json");
@@ -161,6 +165,8 @@ definition {
 	@description = "This is a test for LPS-101326. Add placeholder in fragment configuration and assert there the placeholder text is present."
 	@priority = "5"
 	test AddPlaceholderConfigurationFragmentToContentPage {
+		property portal.acceptance = "true";
+
 		task ("Add a section fragment to the fragment collection via JSON") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.html");
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "placeholder_configuration.json");

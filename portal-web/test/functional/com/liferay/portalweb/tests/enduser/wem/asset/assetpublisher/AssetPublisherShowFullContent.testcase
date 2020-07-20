@@ -76,6 +76,7 @@ definition {
 
 	@priority = "5"
 	test AddAPMultiplePortlet {
+		property portal.acceptance = "true";
 		property testray.component.names = "Asset Publisher,Training";
 
 		Navigator.gotoSitePage(
@@ -106,6 +107,7 @@ definition {
 	@priority = "5"
 	test AddAssetTypesViaAPAndAddRespectivePortletsToSamePage {
 		property plugins.deployment.type = "osgi";
+		property portal.acceptance = "true";
 
 		Navigator.gotoSitePage(
 			pageName = "Asset Publisher Page",
@@ -422,6 +424,7 @@ definition {
 
 	@priority = "5"
 	test ConfigureAPPortletScopeMultipleSites {
+		property portal.acceptance = "true";
 		property testray.component.names = "Asset Publisher,Training";
 
 		JSONGroup.addGroup(groupName = "Site Name 2");
@@ -931,6 +934,7 @@ definition {
 
 	@priority = "5"
 	test RestoreAPArchivedSetup {
+		property portal.acceptance = "true";
 		property testray.component.names = "Asset Publisher,Training";
 
 		JSONWebcontent.addWebContent(

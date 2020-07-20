@@ -50,6 +50,7 @@ definition {
 
 	@priority = "5"
 	test AddMemberAssignSiteRole {
+		property portal.acceptance = "true";
 		property testray.component.names = "Site Administration,Training,Users and Organizations";
 
 		JSONUser.addUser(

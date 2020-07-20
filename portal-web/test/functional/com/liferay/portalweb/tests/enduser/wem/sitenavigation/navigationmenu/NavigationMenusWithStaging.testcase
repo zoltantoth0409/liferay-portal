@@ -62,6 +62,8 @@ definition {
 	@description = "Navigation menus are only editable in the staging site and cannot be edited in the live site."
 	@priority = "5"
 	test CannotEditNavigationMenuInLive {
+		property portal.acceptance = "true";
+
 		task ("Publish to live") {
 			Staging.openStagingAdmin(siteURLKey = "test-site-name-staging");
 
@@ -168,6 +170,8 @@ definition {
 	@description = "Edits to navigation menus will appear in live until after publish. This test has the Navigation Menu widget display a specific navigation menu and covers LPS-86525."
 	@priority = "5"
 	test PublishEditedNavigationMenu {
+		property portal.acceptance = "true";
+
 		task ("Add the first page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",
@@ -305,6 +309,8 @@ definition {
 	@description = "Edits to navigation menus will appear in live until after publish. This test has the Navigation Menu widget display the primary navigation menu and covers LPS-86529."
 	@priority = "5"
 	test PublishEditedPrimaryNavigationMenu {
+		property portal.acceptance = "true";
+
 		task ("Add the first page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",
@@ -450,6 +456,8 @@ definition {
 	@description = "Navigation menus can be published to live and do not appear in live until published. This is a use case for LPS-86142 and LPS-112993."
 	@priority = "5"
 	test PublishNavigationMenu {
+		property portal.acceptance = "true";
+
 		task ("Add the first page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",
@@ -594,6 +602,8 @@ definition {
 	@description = "Publishing navigation menus should not also publish pages. When publishing only navigation menus, pages that exist in the staging site but do not exist in the live site should not appear in the Navigation Menu widget. This test has the Navigation Menu widget display a specific navigation menu and covers LPS-86525."
 	@priority = "5"
 	test PublishNavigationMenuWithDeletedPages {
+		property portal.acceptance = "true";
+
 		task ("Add the first page, second page, and third page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",
@@ -668,6 +678,8 @@ definition {
 	@description = "Navigation menus can be published to live and do not appear in live until published. This test has the Navigation Menu widget display the primary navigation menu."
 	@priority = "5"
 	test PublishPrimaryNavigationMenu {
+		property portal.acceptance = "true";
+
 		task ("Add the first page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",
@@ -820,6 +832,8 @@ definition {
 	@description = "Publishing navigation menus should not also publish pages. When publishing only navigation menus, pages that exist in the staging site but do not exist in the live site should not appear in the Navigation Menu widget. This test has the Navigation Menu widget display the primary navigation menu."
 	@priority = "5"
 	test PublishPrimaryNavigationMenuWithDeletedPages {
+		property portal.acceptance = "true";
+
 		task ("Add the first page, second page, and third page to the navigation menu") {
 			NavigationMenusAdmin.addItem(
 				item = "Page",

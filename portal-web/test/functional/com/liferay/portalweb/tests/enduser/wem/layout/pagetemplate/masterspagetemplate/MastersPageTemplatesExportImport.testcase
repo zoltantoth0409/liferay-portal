@@ -27,6 +27,8 @@ definition {
 	@description = "This is a use case for LPS-102207. Can not export a master page template when it doesn't has published version."
 	@priority = "5"
 	test CannotExportMastersPageTemplateWithoutPublishedVersion {
+		property portal.acceptance = "true";
+
 		task ("Add a custom master but not publish") {
 			JSONLayoutpagetemplate.addMasterPageTemplateEntry(
 				groupName = "Test Site Name",

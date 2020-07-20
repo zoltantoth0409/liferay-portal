@@ -494,6 +494,8 @@ definition {
 
 	@priority = "5"
 	test DeleteCategory {
+		property portal.acceptance = "true";
+
 		JSONCategory.addCategory(
 			groupName = "Test Site Name",
 			title = "Category Name 1",
@@ -584,6 +586,8 @@ definition {
 
 	@priority = "5"
 	test DeleteSubcategoryViaMenu {
+		property portal.acceptance = "true";
+
 		JSONCategory.addCategory(
 			groupName = "Test Site Name",
 			title = "Category Name 1",

@@ -70,6 +70,8 @@ definition {
 	@description = "This is a test for LPS-112030. Can return to a given saved interactions via Undo History list."
 	@priority = "5"
 	test RestoreSavedInteractionsViaUndoHistory {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -136,6 +138,8 @@ definition {
 	@description = "This is a test for LPS-111549. Redo can make the page editor rollback the previous undo state up to X that is the number of undo interactions."
 	@priority = "5"
 	test UndoAndRedoPagechanges {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -253,6 +257,8 @@ definition {
 	@description = "This is a test for LPS-111946. Undo can bring deleted fragments and widgets back."
 	@priority = "5"
 	test UndoDeletedFragmentAndWidgetInPage {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -285,6 +291,8 @@ definition {
 	@description = "This is a test for LPS-111946. Undo can bring deleted composition of fragments back."
 	@priority = "5"
 	test UndoDeletedFragmentComposition {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -497,6 +505,8 @@ definition {
 	@description = "This is a use case for for LPS-111548. Undo can make the page editor come back to previous state up to 100 last states when the page has more than 100 states."
 	@priority = "5"
 	test UndoPagechangeHundredTimes {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -595,6 +605,8 @@ definition {
 	@description = "This is a test for LPS-111548. Undo can make the page editor come back to previous state up to X last states when the page has X states that is less than 20."
 	@priority = "5"
 	test UndoPagechangeThreeTimes {
+		property portal.acceptance = "true";
+
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Content Page Name",
 			siteName = "Test Site Name");
@@ -653,6 +665,8 @@ definition {
 	@description = "This is a test for LPS-112030. The all saved interactions are shown in the Undo History list."
 	@priority = "5"
 	test ViewSavedInteractionsViaUndoHistory {
+		property portal.acceptance = "true";
+
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
 			groupName = "Test Site Name",

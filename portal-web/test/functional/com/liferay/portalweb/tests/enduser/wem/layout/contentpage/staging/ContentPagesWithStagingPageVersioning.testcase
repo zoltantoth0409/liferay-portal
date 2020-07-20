@@ -74,6 +74,8 @@ definition {
 	@description = "With page versioning enabled, content pages only appear in live view after being published and should appear properly."
 	@priority = "5"
 	test PublishContentPage {
+		property portal.acceptance = "true";
+
 		task ("Navigate to the content page in the staging site") {
 			ContentPagesNavigator.openViewContentPage(
 				pageName = "Test Content Page Name",
