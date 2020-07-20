@@ -286,22 +286,22 @@ public class EditStyleBookEntryDisplayContext {
 		for (String tokenSetName :
 				_getTokenSetsName(tokenCategoryName, tokensJSONArray)) {
 
-			JSONObject tokenSet = _getTokenSetJSONObject(
+			JSONObject tokenSetJSONObject = _getTokenSetJSONObject(
 				tokenSetName, tokenSetsJSONArray);
 
-			if (tokenSet == null) {
+			if (tokenSetJSONObject == null) {
 				continue;
 			}
 
 			jsonArray.put(
 				JSONUtil.put(
-					"label", tokenSet.getString("label")
+					"label", tokenSetJSONObject.getString("label")
 				).put(
-					"name", tokenSet.getString("name")
+					"name", tokenSetJSONObject.getString("name")
 				).put(
 					"tokens",
 					_getTokensJSONArray(
-						tokenCategoryName, tokenSet.getString("name"),
+						tokenCategoryName, tokenSetJSONObject.getString("name"),
 						tokensJSONArray)
 				));
 		}
