@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBProcessContext;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.model.ServiceComponent;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
@@ -68,7 +69,8 @@ public class ServiceComponentLocalServiceTest {
 	@Before
 	public void setUp() {
 		List<ServiceComponent> serviceComponents =
-			_serviceComponentLocalService.getServiceComponents(-1, -1);
+			_serviceComponentLocalService.getServiceComponents(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		Set<String> buildNameSpaces = new HashSet<>();
 
