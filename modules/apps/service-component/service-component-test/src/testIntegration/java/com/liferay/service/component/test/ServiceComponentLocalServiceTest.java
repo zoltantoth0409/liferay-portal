@@ -68,11 +68,11 @@ public class ServiceComponentLocalServiceTest {
 
 	@Before
 	public void setUp() {
+		Set<String> buildNameSpaces = new HashSet<>();
+
 		List<ServiceComponent> serviceComponents =
 			_serviceComponentLocalService.getServiceComponents(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		Set<String> buildNameSpaces = new HashSet<>();
 
 		for (ServiceComponent serviceComponent : serviceComponents) {
 			buildNameSpaces.add(serviceComponent.getBuildNamespace());
