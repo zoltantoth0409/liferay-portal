@@ -68,17 +68,17 @@ public class ServiceComponentLocalServiceTest {
 
 	@Before
 	public void setUp() {
-		Set<String> buildNameSpaces = new HashSet<>();
+		Set<String> buildNamespaces = new HashSet<>();
 
 		List<ServiceComponent> serviceComponents =
 			_serviceComponentLocalService.getServiceComponents(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (ServiceComponent serviceComponent : serviceComponents) {
-			buildNameSpaces.add(serviceComponent.getBuildNamespace());
+			buildNamespaces.add(serviceComponent.getBuildNamespace());
 		}
 
-		_initialLatestServiceComponentsCount = buildNameSpaces.size();
+		_initialLatestServiceComponentsCount = buildNamespaces.size();
 
 		_serviceComponents.add(_addServiceComponent(_SERVICE_COMPONENT_1, 1));
 		_serviceComponents.add(_addServiceComponent(_SERVICE_COMPONENT_2, 1));
