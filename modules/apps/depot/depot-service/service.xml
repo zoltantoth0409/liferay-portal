@@ -86,7 +86,7 @@
 		<finder name="ToGroupId" return-type="Collection">
 			<finder-column name="toGroupId" />
 		</finder>
-		<finder name="DSA_TGI" return-type="Collection">
+		<finder name="DDMSA_TGI" return-type="Collection">
 			<finder-column name="ddmStructuresAvailable" />
 			<finder-column name="toGroupId" />
 		</finder>

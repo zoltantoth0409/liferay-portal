@@ -132,7 +132,7 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 		List<DepotEntry> depotEntries = new ArrayList<>();
 
 		List<DepotEntryGroupRel> depotEntryGroupRels =
-			_depotEntryGroupRelPersistence.findByDSA_TGI(
+			_depotEntryGroupRelPersistence.findByDDMSA_TGI(
 				ddmStructuresAvailable, groupId, start, end);
 
 		for (DepotEntryGroupRel depotEntryGroupRel : depotEntryGroupRels) {
