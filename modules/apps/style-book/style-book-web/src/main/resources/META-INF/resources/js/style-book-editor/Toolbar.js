@@ -34,7 +34,7 @@ export default function Toolbar() {
 		if (
 			!confirm(
 				Liferay.Language.get(
-					'once-published-these-changes-will-affect-to-all-instances-of-the-site-using-these-properties.-do-you-want-to-publish-now'
+					'once-published,-these-changes-will-affect-all-instances-of-the-site-using-these-properties'
 				)
 			)
 		) {
