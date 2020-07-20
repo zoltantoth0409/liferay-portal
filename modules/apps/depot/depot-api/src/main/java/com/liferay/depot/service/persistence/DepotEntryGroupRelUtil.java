@@ -480,10 +480,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param toGroupId the to group ID
 	 * @return the matching depot entry group rels
 	 */
-	public static List<DepotEntryGroupRel> findByDSA_TGI(
+	public static List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId) {
 
-		return getPersistence().findByDSA_TGI(
+		return getPersistence().findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId);
 	}
 
@@ -500,10 +500,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param end the upper bound of the range of depot entry group rels (not inclusive)
 	 * @return the range of matching depot entry group rels
 	 */
-	public static List<DepotEntryGroupRel> findByDSA_TGI(
+	public static List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end) {
 
-		return getPersistence().findByDSA_TGI(
+		return getPersistence().findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, start, end);
 	}
 
@@ -521,11 +521,11 @@ public class DepotEntryGroupRelUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching depot entry group rels
 	 */
-	public static List<DepotEntryGroupRel> findByDSA_TGI(
+	public static List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		return getPersistence().findByDSA_TGI(
+		return getPersistence().findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, start, end, orderByComparator);
 	}
 
@@ -544,12 +544,12 @@ public class DepotEntryGroupRelUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching depot entry group rels
 	 */
-	public static List<DepotEntryGroupRel> findByDSA_TGI(
+	public static List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator,
 		boolean useFinderCache) {
 
-		return getPersistence().findByDSA_TGI(
+		return getPersistence().findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, start, end, orderByComparator,
 			useFinderCache);
 	}
@@ -563,12 +563,12 @@ public class DepotEntryGroupRelUtil {
 	 * @return the first matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel findByDSA_TGI_First(
+	public static DepotEntryGroupRel findByDDMSA_TGI_First(
 			boolean ddmStructuresAvailable, long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
 		throws com.liferay.depot.exception.NoSuchEntryGroupRelException {
 
-		return getPersistence().findByDSA_TGI_First(
+		return getPersistence().findByDDMSA_TGI_First(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 	}
 
@@ -580,11 +580,11 @@ public class DepotEntryGroupRelUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel fetchByDSA_TGI_First(
+	public static DepotEntryGroupRel fetchByDDMSA_TGI_First(
 		boolean ddmStructuresAvailable, long toGroupId,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		return getPersistence().fetchByDSA_TGI_First(
+		return getPersistence().fetchByDDMSA_TGI_First(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 	}
 
@@ -597,12 +597,12 @@ public class DepotEntryGroupRelUtil {
 	 * @return the last matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel findByDSA_TGI_Last(
+	public static DepotEntryGroupRel findByDDMSA_TGI_Last(
 			boolean ddmStructuresAvailable, long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
 		throws com.liferay.depot.exception.NoSuchEntryGroupRelException {
 
-		return getPersistence().findByDSA_TGI_Last(
+		return getPersistence().findByDDMSA_TGI_Last(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 	}
 
@@ -614,11 +614,11 @@ public class DepotEntryGroupRelUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public static DepotEntryGroupRel fetchByDSA_TGI_Last(
+	public static DepotEntryGroupRel fetchByDDMSA_TGI_Last(
 		boolean ddmStructuresAvailable, long toGroupId,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		return getPersistence().fetchByDSA_TGI_Last(
+		return getPersistence().fetchByDDMSA_TGI_Last(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 	}
 
@@ -632,13 +632,13 @@ public class DepotEntryGroupRelUtil {
 	 * @return the previous, current, and next depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a depot entry group rel with the primary key could not be found
 	 */
-	public static DepotEntryGroupRel[] findByDSA_TGI_PrevAndNext(
+	public static DepotEntryGroupRel[] findByDDMSA_TGI_PrevAndNext(
 			long depotEntryGroupRelId, boolean ddmStructuresAvailable,
 			long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
 		throws com.liferay.depot.exception.NoSuchEntryGroupRelException {
 
-		return getPersistence().findByDSA_TGI_PrevAndNext(
+		return getPersistence().findByDDMSA_TGI_PrevAndNext(
 			depotEntryGroupRelId, ddmStructuresAvailable, toGroupId,
 			orderByComparator);
 	}
@@ -649,10 +649,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param ddmStructuresAvailable the ddm structures available
 	 * @param toGroupId the to group ID
 	 */
-	public static void removeByDSA_TGI(
+	public static void removeByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId) {
 
-		getPersistence().removeByDSA_TGI(ddmStructuresAvailable, toGroupId);
+		getPersistence().removeByDDMSA_TGI(ddmStructuresAvailable, toGroupId);
 	}
 
 	/**
@@ -662,10 +662,10 @@ public class DepotEntryGroupRelUtil {
 	 * @param toGroupId the to group ID
 	 * @return the number of matching depot entry group rels
 	 */
-	public static int countByDSA_TGI(
+	public static int countByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId) {
 
-		return getPersistence().countByDSA_TGI(
+		return getPersistence().countByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId);
 	}
 

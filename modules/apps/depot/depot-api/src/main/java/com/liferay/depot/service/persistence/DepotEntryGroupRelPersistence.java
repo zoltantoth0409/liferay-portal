@@ -335,7 +335,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param toGroupId the to group ID
 	 * @return the matching depot entry group rels
 	 */
-	public java.util.List<DepotEntryGroupRel> findByDSA_TGI(
+	public java.util.List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId);
 
 	/**
@@ -351,7 +351,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param end the upper bound of the range of depot entry group rels (not inclusive)
 	 * @return the range of matching depot entry group rels
 	 */
-	public java.util.List<DepotEntryGroupRel> findByDSA_TGI(
+	public java.util.List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end);
 
 	/**
@@ -368,7 +368,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching depot entry group rels
 	 */
-	public java.util.List<DepotEntryGroupRel> findByDSA_TGI(
+	public java.util.List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 			orderByComparator);
@@ -388,7 +388,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching depot entry group rels
 	 */
-	public java.util.List<DepotEntryGroupRel> findByDSA_TGI(
+	public java.util.List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 			orderByComparator,
@@ -403,7 +403,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @return the first matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel findByDSA_TGI_First(
+	public DepotEntryGroupRel findByDDMSA_TGI_First(
 			boolean ddmStructuresAvailable, long toGroupId,
 			com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 				orderByComparator)
@@ -417,7 +417,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel fetchByDSA_TGI_First(
+	public DepotEntryGroupRel fetchByDDMSA_TGI_First(
 		boolean ddmStructuresAvailable, long toGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 			orderByComparator);
@@ -431,7 +431,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @return the last matching depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel findByDSA_TGI_Last(
+	public DepotEntryGroupRel findByDDMSA_TGI_Last(
 			boolean ddmStructuresAvailable, long toGroupId,
 			com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 				orderByComparator)
@@ -445,7 +445,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
-	public DepotEntryGroupRel fetchByDSA_TGI_Last(
+	public DepotEntryGroupRel fetchByDDMSA_TGI_Last(
 		boolean ddmStructuresAvailable, long toGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
 			orderByComparator);
@@ -460,7 +460,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @return the previous, current, and next depot entry group rel
 	 * @throws NoSuchEntryGroupRelException if a depot entry group rel with the primary key could not be found
 	 */
-	public DepotEntryGroupRel[] findByDSA_TGI_PrevAndNext(
+	public DepotEntryGroupRel[] findByDDMSA_TGI_PrevAndNext(
 			long depotEntryGroupRelId, boolean ddmStructuresAvailable,
 			long toGroupId,
 			com.liferay.portal.kernel.util.OrderByComparator<DepotEntryGroupRel>
@@ -473,7 +473,8 @@ public interface DepotEntryGroupRelPersistence
 	 * @param ddmStructuresAvailable the ddm structures available
 	 * @param toGroupId the to group ID
 	 */
-	public void removeByDSA_TGI(boolean ddmStructuresAvailable, long toGroupId);
+	public void removeByDDMSA_TGI(
+		boolean ddmStructuresAvailable, long toGroupId);
 
 	/**
 	 * Returns the number of depot entry group rels where ddmStructuresAvailable = &#63; and toGroupId = &#63;.
@@ -482,7 +483,7 @@ public interface DepotEntryGroupRelPersistence
 	 * @param toGroupId the to group ID
 	 * @return the number of matching depot entry group rels
 	 */
-	public int countByDSA_TGI(boolean ddmStructuresAvailable, long toGroupId);
+	public int countByDDMSA_TGI(boolean ddmStructuresAvailable, long toGroupId);
 
 	/**
 	 * Returns the depot entry group rel where depotEntryId = &#63; and toGroupId = &#63; or throws a <code>NoSuchEntryGroupRelException</code> if it could not be found.

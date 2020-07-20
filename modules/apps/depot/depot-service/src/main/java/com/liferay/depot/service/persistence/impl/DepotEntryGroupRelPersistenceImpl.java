@@ -1097,9 +1097,9 @@ public class DepotEntryGroupRelPersistenceImpl
 	private static final String _FINDER_COLUMN_TOGROUPID_TOGROUPID_2 =
 		"depotEntryGroupRel.toGroupId = ?";
 
-	private FinderPath _finderPathWithPaginationFindByDSA_TGI;
-	private FinderPath _finderPathWithoutPaginationFindByDSA_TGI;
-	private FinderPath _finderPathCountByDSA_TGI;
+	private FinderPath _finderPathWithPaginationFindByDDMSA_TGI;
+	private FinderPath _finderPathWithoutPaginationFindByDDMSA_TGI;
+	private FinderPath _finderPathCountByDDMSA_TGI;
 
 	/**
 	 * Returns all the depot entry group rels where ddmStructuresAvailable = &#63; and toGroupId = &#63;.
@@ -1109,10 +1109,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the matching depot entry group rels
 	 */
 	@Override
-	public List<DepotEntryGroupRel> findByDSA_TGI(
+	public List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId) {
 
-		return findByDSA_TGI(
+		return findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1131,10 +1131,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the range of matching depot entry group rels
 	 */
 	@Override
-	public List<DepotEntryGroupRel> findByDSA_TGI(
+	public List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end) {
 
-		return findByDSA_TGI(
+		return findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, start, end, null);
 	}
 
@@ -1153,11 +1153,11 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the ordered range of matching depot entry group rels
 	 */
 	@Override
-	public List<DepotEntryGroupRel> findByDSA_TGI(
+	public List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		return findByDSA_TGI(
+		return findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, start, end, orderByComparator,
 			true);
 	}
@@ -1178,7 +1178,7 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the ordered range of matching depot entry group rels
 	 */
 	@Override
-	public List<DepotEntryGroupRel> findByDSA_TGI(
+	public List<DepotEntryGroupRel> findByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId, int start, int end,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator,
 		boolean useFinderCache) {
@@ -1190,12 +1190,12 @@ public class DepotEntryGroupRelPersistenceImpl
 			(orderByComparator == null)) {
 
 			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByDSA_TGI;
+				finderPath = _finderPathWithoutPaginationFindByDDMSA_TGI;
 				finderArgs = new Object[] {ddmStructuresAvailable, toGroupId};
 			}
 		}
 		else if (useFinderCache) {
-			finderPath = _finderPathWithPaginationFindByDSA_TGI;
+			finderPath = _finderPathWithPaginationFindByDDMSA_TGI;
 			finderArgs = new Object[] {
 				ddmStructuresAvailable, toGroupId, start, end, orderByComparator
 			};
@@ -1234,9 +1234,9 @@ public class DepotEntryGroupRelPersistenceImpl
 
 			sb.append(_SQL_SELECT_DEPOTENTRYGROUPREL_WHERE);
 
-			sb.append(_FINDER_COLUMN_DSA_TGI_DDMSTRUCTURESAVAILABLE_2);
+			sb.append(_FINDER_COLUMN_DDMSA_TGI_DDMSTRUCTURESAVAILABLE_2);
 
-			sb.append(_FINDER_COLUMN_DSA_TGI_TOGROUPID_2);
+			sb.append(_FINDER_COLUMN_DDMSA_TGI_TOGROUPID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(
@@ -1291,12 +1291,12 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel findByDSA_TGI_First(
+	public DepotEntryGroupRel findByDDMSA_TGI_First(
 			boolean ddmStructuresAvailable, long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
 		throws NoSuchEntryGroupRelException {
 
-		DepotEntryGroupRel depotEntryGroupRel = fetchByDSA_TGI_First(
+		DepotEntryGroupRel depotEntryGroupRel = fetchByDDMSA_TGI_First(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 
 		if (depotEntryGroupRel != null) {
@@ -1327,11 +1327,11 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the first matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel fetchByDSA_TGI_First(
+	public DepotEntryGroupRel fetchByDDMSA_TGI_First(
 		boolean ddmStructuresAvailable, long toGroupId,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		List<DepotEntryGroupRel> list = findByDSA_TGI(
+		List<DepotEntryGroupRel> list = findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1351,12 +1351,12 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @throws NoSuchEntryGroupRelException if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel findByDSA_TGI_Last(
+	public DepotEntryGroupRel findByDDMSA_TGI_Last(
 			boolean ddmStructuresAvailable, long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
 		throws NoSuchEntryGroupRelException {
 
-		DepotEntryGroupRel depotEntryGroupRel = fetchByDSA_TGI_Last(
+		DepotEntryGroupRel depotEntryGroupRel = fetchByDDMSA_TGI_Last(
 			ddmStructuresAvailable, toGroupId, orderByComparator);
 
 		if (depotEntryGroupRel != null) {
@@ -1387,17 +1387,17 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the last matching depot entry group rel, or <code>null</code> if a matching depot entry group rel could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel fetchByDSA_TGI_Last(
+	public DepotEntryGroupRel fetchByDDMSA_TGI_Last(
 		boolean ddmStructuresAvailable, long toGroupId,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator) {
 
-		int count = countByDSA_TGI(ddmStructuresAvailable, toGroupId);
+		int count = countByDDMSA_TGI(ddmStructuresAvailable, toGroupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DepotEntryGroupRel> list = findByDSA_TGI(
+		List<DepotEntryGroupRel> list = findByDDMSA_TGI(
 			ddmStructuresAvailable, toGroupId, count - 1, count,
 			orderByComparator);
 
@@ -1419,7 +1419,7 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @throws NoSuchEntryGroupRelException if a depot entry group rel with the primary key could not be found
 	 */
 	@Override
-	public DepotEntryGroupRel[] findByDSA_TGI_PrevAndNext(
+	public DepotEntryGroupRel[] findByDDMSA_TGI_PrevAndNext(
 			long depotEntryGroupRelId, boolean ddmStructuresAvailable,
 			long toGroupId,
 			OrderByComparator<DepotEntryGroupRel> orderByComparator)
@@ -1435,13 +1435,13 @@ public class DepotEntryGroupRelPersistenceImpl
 
 			DepotEntryGroupRel[] array = new DepotEntryGroupRelImpl[3];
 
-			array[0] = getByDSA_TGI_PrevAndNext(
+			array[0] = getByDDMSA_TGI_PrevAndNext(
 				session, depotEntryGroupRel, ddmStructuresAvailable, toGroupId,
 				orderByComparator, true);
 
 			array[1] = depotEntryGroupRel;
 
-			array[2] = getByDSA_TGI_PrevAndNext(
+			array[2] = getByDDMSA_TGI_PrevAndNext(
 				session, depotEntryGroupRel, ddmStructuresAvailable, toGroupId,
 				orderByComparator, false);
 
@@ -1455,7 +1455,7 @@ public class DepotEntryGroupRelPersistenceImpl
 		}
 	}
 
-	protected DepotEntryGroupRel getByDSA_TGI_PrevAndNext(
+	protected DepotEntryGroupRel getByDDMSA_TGI_PrevAndNext(
 		Session session, DepotEntryGroupRel depotEntryGroupRel,
 		boolean ddmStructuresAvailable, long toGroupId,
 		OrderByComparator<DepotEntryGroupRel> orderByComparator,
@@ -1474,9 +1474,9 @@ public class DepotEntryGroupRelPersistenceImpl
 
 		sb.append(_SQL_SELECT_DEPOTENTRYGROUPREL_WHERE);
 
-		sb.append(_FINDER_COLUMN_DSA_TGI_DDMSTRUCTURESAVAILABLE_2);
+		sb.append(_FINDER_COLUMN_DDMSA_TGI_DDMSTRUCTURESAVAILABLE_2);
 
-		sb.append(_FINDER_COLUMN_DSA_TGI_TOGROUPID_2);
+		sb.append(_FINDER_COLUMN_DDMSA_TGI_TOGROUPID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields =
@@ -1577,11 +1577,11 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @param toGroupId the to group ID
 	 */
 	@Override
-	public void removeByDSA_TGI(
+	public void removeByDDMSA_TGI(
 		boolean ddmStructuresAvailable, long toGroupId) {
 
 		for (DepotEntryGroupRel depotEntryGroupRel :
-				findByDSA_TGI(
+				findByDDMSA_TGI(
 					ddmStructuresAvailable, toGroupId, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null)) {
 
@@ -1597,8 +1597,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	 * @return the number of matching depot entry group rels
 	 */
 	@Override
-	public int countByDSA_TGI(boolean ddmStructuresAvailable, long toGroupId) {
-		FinderPath finderPath = _finderPathCountByDSA_TGI;
+	public int countByDDMSA_TGI(
+		boolean ddmStructuresAvailable, long toGroupId) {
+
+		FinderPath finderPath = _finderPathCountByDDMSA_TGI;
 
 		Object[] finderArgs = new Object[] {ddmStructuresAvailable, toGroupId};
 
@@ -1609,9 +1611,9 @@ public class DepotEntryGroupRelPersistenceImpl
 
 			sb.append(_SQL_COUNT_DEPOTENTRYGROUPREL_WHERE);
 
-			sb.append(_FINDER_COLUMN_DSA_TGI_DDMSTRUCTURESAVAILABLE_2);
+			sb.append(_FINDER_COLUMN_DDMSA_TGI_DDMSTRUCTURESAVAILABLE_2);
 
-			sb.append(_FINDER_COLUMN_DSA_TGI_TOGROUPID_2);
+			sb.append(_FINDER_COLUMN_DDMSA_TGI_TOGROUPID_2);
 
 			String sql = sb.toString();
 
@@ -1644,10 +1646,10 @@ public class DepotEntryGroupRelPersistenceImpl
 	}
 
 	private static final String
-		_FINDER_COLUMN_DSA_TGI_DDMSTRUCTURESAVAILABLE_2 =
+		_FINDER_COLUMN_DDMSA_TGI_DDMSTRUCTURESAVAILABLE_2 =
 			"depotEntryGroupRel.ddmStructuresAvailable = ? AND ";
 
-	private static final String _FINDER_COLUMN_DSA_TGI_TOGROUPID_2 =
+	private static final String _FINDER_COLUMN_DDMSA_TGI_TOGROUPID_2 =
 		"depotEntryGroupRel.toGroupId = ?";
 
 	private FinderPath _finderPathFetchByD_TGI;
@@ -2745,9 +2747,9 @@ public class DepotEntryGroupRelPersistenceImpl
 				depotEntryGroupRelModelImpl.getToGroupId()
 			};
 
-			finderCache.removeResult(_finderPathCountByDSA_TGI, args);
+			finderCache.removeResult(_finderPathCountByDDMSA_TGI, args);
 			finderCache.removeResult(
-				_finderPathWithoutPaginationFindByDSA_TGI, args);
+				_finderPathWithoutPaginationFindByDDMSA_TGI, args);
 
 			args = new Object[] {
 				depotEntryGroupRelModelImpl.isSearchable(),
@@ -2806,7 +2808,7 @@ public class DepotEntryGroupRelPersistenceImpl
 			}
 
 			if ((depotEntryGroupRelModelImpl.getColumnBitmask() &
-				 _finderPathWithoutPaginationFindByDSA_TGI.
+				 _finderPathWithoutPaginationFindByDDMSA_TGI.
 					 getColumnBitmask()) != 0) {
 
 				Object[] args = new Object[] {
@@ -2815,18 +2817,18 @@ public class DepotEntryGroupRelPersistenceImpl
 					depotEntryGroupRelModelImpl.getOriginalToGroupId()
 				};
 
-				finderCache.removeResult(_finderPathCountByDSA_TGI, args);
+				finderCache.removeResult(_finderPathCountByDDMSA_TGI, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByDSA_TGI, args);
+					_finderPathWithoutPaginationFindByDDMSA_TGI, args);
 
 				args = new Object[] {
 					depotEntryGroupRelModelImpl.isDdmStructuresAvailable(),
 					depotEntryGroupRelModelImpl.getToGroupId()
 				};
 
-				finderCache.removeResult(_finderPathCountByDSA_TGI, args);
+				finderCache.removeResult(_finderPathCountByDDMSA_TGI, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByDSA_TGI, args);
+					_finderPathWithoutPaginationFindByDDMSA_TGI, args);
 			}
 
 			if ((depotEntryGroupRelModelImpl.getColumnBitmask() &
@@ -3171,25 +3173,25 @@ public class DepotEntryGroupRelPersistenceImpl
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByToGroupId", new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByDSA_TGI = new FinderPath(
+		_finderPathWithPaginationFindByDDMSA_TGI = new FinderPath(
 			DepotEntryGroupRelImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByDSA_TGI",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByDDMSA_TGI",
 			new String[] {
 				Boolean.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
 
-		_finderPathWithoutPaginationFindByDSA_TGI = new FinderPath(
+		_finderPathWithoutPaginationFindByDDMSA_TGI = new FinderPath(
 			DepotEntryGroupRelImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByDSA_TGI",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByDDMSA_TGI",
 			new String[] {Boolean.class.getName(), Long.class.getName()},
 			DepotEntryGroupRelModelImpl.DDMSTRUCTURESAVAILABLE_COLUMN_BITMASK |
 			DepotEntryGroupRelModelImpl.TOGROUPID_COLUMN_BITMASK);
 
-		_finderPathCountByDSA_TGI = new FinderPath(
+		_finderPathCountByDDMSA_TGI = new FinderPath(
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"countByDSA_TGI",
+			"countByDDMSA_TGI",
 			new String[] {Boolean.class.getName(), Long.class.getName()});
 
 		_finderPathFetchByD_TGI = new FinderPath(
