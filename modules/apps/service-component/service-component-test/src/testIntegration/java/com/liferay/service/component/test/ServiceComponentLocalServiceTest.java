@@ -78,7 +78,7 @@ public class ServiceComponentLocalServiceTest {
 			buildNamespaces.add(serviceComponent.getBuildNamespace());
 		}
 
-		_initialLatestServiceComponentsCount = buildNamespaces.size();
+		_initialServiceComponentsCount = buildNamespaces.size();
 
 		_serviceComponents.add(_addServiceComponent(_SERVICE_COMPONENT_1, 1));
 		_serviceComponents.add(_addServiceComponent(_SERVICE_COMPONENT_2, 1));
@@ -95,7 +95,7 @@ public class ServiceComponentLocalServiceTest {
 			_serviceComponentLocalService.getLatestServiceComponents();
 
 		Assert.assertEquals(
-			2, serviceComponents.size() - _initialLatestServiceComponentsCount);
+			2, serviceComponents.size() - _initialServiceComponentsCount);
 
 		ServiceComponent latestServiceComponent1 = _getServiceComponent(
 			serviceComponents, _SERVICE_COMPONENT_1);
@@ -114,7 +114,7 @@ public class ServiceComponentLocalServiceTest {
 			_serviceComponentLocalService.getLatestServiceComponents();
 
 		Assert.assertEquals(
-			2, serviceComponents.size() - _initialLatestServiceComponentsCount);
+			2, serviceComponents.size() - _initialServiceComponentsCount);
 
 		ServiceComponent latestServiceComponent1 = _getServiceComponent(
 			serviceComponents, _SERVICE_COMPONENT_1);
@@ -251,7 +251,7 @@ public class ServiceComponentLocalServiceTest {
 	@Inject
 	private CounterLocalService _counterLocalService;
 
-	private int _initialLatestServiceComponentsCount;
+	private int _initialServiceComponentsCount;
 
 	@DeleteAfterTestRun
 	private Release _release;
