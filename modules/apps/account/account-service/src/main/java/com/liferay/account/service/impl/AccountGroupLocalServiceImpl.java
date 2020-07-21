@@ -68,6 +68,8 @@ public class AccountGroupLocalServiceImpl
 
 	@Override
 	public AccountGroup deleteAccountGroup(AccountGroup accountGroup) {
+		accountGroupPersistence.remove(accountGroup);
+
 		List<AccountGroupAccountEntryRel> accountGroupAccountEntryRels =
 			accountGroupAccountEntryRelPersistence.findByAccountGroupId(
 				accountGroup.getAccountGroupId());
@@ -79,7 +81,7 @@ public class AccountGroupLocalServiceImpl
 				accountGroupAccountEntryRel);
 		}
 
-		return accountGroupPersistence.remove(accountGroup);
+		return accountGroup;
 	}
 
 	@Override

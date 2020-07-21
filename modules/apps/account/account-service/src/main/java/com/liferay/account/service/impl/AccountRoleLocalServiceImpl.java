@@ -129,10 +129,10 @@ public class AccountRoleLocalServiceImpl
 		for (AccountRole accountRole :
 				accountRolePersistence.findByCompanyId(companyId)) {
 
+			accountRolePersistence.remove(accountRole);
+
 			userGroupRoleLocalService.deleteUserGroupRolesByRoleId(
 				accountRole.getRoleId());
-
-			accountRolePersistence.remove(accountRole);
 		}
 	}
 
