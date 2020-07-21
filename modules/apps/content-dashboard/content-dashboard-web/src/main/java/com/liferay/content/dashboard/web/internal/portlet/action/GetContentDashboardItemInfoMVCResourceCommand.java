@@ -80,7 +80,6 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 		try {
 			String className = ParamUtil.getString(
 				resourceRequest, "className");
-
 			long classPK = GetterUtil.getLong(
 				ParamUtil.getLong(resourceRequest, "classPK"));
 

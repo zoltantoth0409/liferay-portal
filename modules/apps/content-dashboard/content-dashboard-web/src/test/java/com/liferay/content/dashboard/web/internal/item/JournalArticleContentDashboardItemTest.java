@@ -82,7 +82,7 @@ public class JournalArticleContentDashboardItemTest {
 	}
 
 	@Test
-	public void testGetAssetCategoriesByVocabulary() {
+	public void testGetAssetCategoriesByAssetVocabulary() {
 		JournalArticle journalArticle = _getJournalArticle();
 
 		AssetCategory assetCategory = Mockito.mock(AssetCategory.class);
@@ -105,7 +105,7 @@ public class JournalArticleContentDashboardItemTest {
 	}
 
 	@Test
-	public void testGetAssetCategoriesByVocabularyWithEmptyAssetCategories() {
+	public void testGetAssetCategoriesByAssetVocabularyWithEmptyAssetCategories() {
 		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
