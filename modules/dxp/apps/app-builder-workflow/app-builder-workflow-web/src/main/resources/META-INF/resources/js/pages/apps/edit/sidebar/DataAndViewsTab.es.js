@@ -230,6 +230,7 @@ export default function DataAndViewsTab() {
 											.slice(5, duplicatedFields.length)
 											.join('\n')}
 									>
+										{'*'}
 										{Liferay.Language.get(
 											'see-other-fields'
 										)}
