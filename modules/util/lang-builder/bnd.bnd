@@ -15,6 +15,7 @@ Main-Class: com.liferay.lang.builder.LangBuilder
 	@com.liferay.portal.impl-*.jar!/com/liferay/portal/tools/ArgumentsUtil.class,\
 	@com.liferay.portal.impl-*.jar!/com/liferay/portal/tools/GitException.class,\
 	@com.liferay.portal.impl-*.jar!/com/liferay/portal/tools/GitUtil.class,\
+	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/constants/LanguageConstants.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/exception/NestableException.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/exception/PortalException.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/io/OutputStreamWriter.class,\
@@ -24,6 +25,7 @@ Main-Class: com.liferay.lang.builder.LangBuilder
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncByteArrayOutputStream.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncStringReader.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncStringWriter.class,\
+	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/language/LanguageBuilderUtil.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/language/LanguageConstants.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/language/LanguageValidator.class,\
 	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/log/*,\
