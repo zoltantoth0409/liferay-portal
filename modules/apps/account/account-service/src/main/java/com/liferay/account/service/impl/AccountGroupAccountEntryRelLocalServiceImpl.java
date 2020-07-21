@@ -51,11 +51,11 @@ public class AccountGroupAccountEntryRelLocalServiceImpl
 			throw new DuplicateAccountGroupAccountEntryRelException();
 		}
 
+		_accountGroupLocalService.getAccountGroup(accountGroupId);
+
 		if (accountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
 			_accountEntryLocalService.getAccountEntry(accountEntryId);
 		}
-
-		_accountGroupLocalService.getAccountGroup(accountGroupId);
 
 		accountGroupAccountEntryRel = createAccountGroupAccountEntryRel(
 			counterLocalService.increment());
