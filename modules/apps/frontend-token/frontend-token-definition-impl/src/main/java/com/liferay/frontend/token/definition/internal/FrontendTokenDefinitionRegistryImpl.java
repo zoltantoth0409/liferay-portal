@@ -186,8 +186,8 @@ public class FrontendTokenDefinitionRegistryImpl
 			return null;
 		}
 
-		try (InputStream is = url.openStream()) {
-			String xml = StringUtil.read(is);
+		try (InputStream inputStream = url.openStream()) {
+			String xml = StringUtil.read(inputStream);
 
 			xml = xml.replaceAll(StringPool.NEW_LINE, StringPool.SPACE);
 
