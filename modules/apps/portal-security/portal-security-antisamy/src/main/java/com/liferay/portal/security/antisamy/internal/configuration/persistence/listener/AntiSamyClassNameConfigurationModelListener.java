@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 	property = "model.class.name=com.liferay.portal.security.antisamy.configuration.AntiSamyClassNameConfiguration",
 	service = ConfigurationModelListener.class
 )
-public class AntiSamyClassNameConfigurationListener
+public class AntiSamyClassNameConfigurationModelListener
 	implements ConfigurationModelListener {
 
 	@Override
