@@ -199,7 +199,6 @@ public class LayoutPageTemplateEntryServiceTest {
 				layoutPageTemplateEntry.getLayoutPrototypeId());
 
 		Assert.assertNotNull(layoutPrototype);
-
 		Assert.assertEquals(
 			layoutPageTemplateEntry.getName(),
 			layoutPrototype.getName(LocaleUtil.getMostRelevantLocale()));
@@ -313,7 +312,6 @@ public class LayoutPageTemplateEntryServiceTest {
 		Assert.assertNull(
 			_layoutPageTemplateEntryPersistence.fetchByPrimaryKey(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
-
 		Assert.assertNull(
 			_layoutPrototypeLocalService.fetchLayoutPrototype(
 				layoutPageTemplateEntry.getLayoutPrototypeId()));
