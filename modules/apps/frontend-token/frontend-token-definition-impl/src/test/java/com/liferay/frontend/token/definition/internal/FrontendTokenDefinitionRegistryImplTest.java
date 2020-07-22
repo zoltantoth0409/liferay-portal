@@ -45,15 +45,15 @@ public class FrontendTokenDefinitionRegistryImplTest {
 		Bundle bundle = Mockito.mock(Bundle.class);
 
 		Mockito.when(
-			bundle.getHeaders(Mockito.anyString())
-		).thenReturn(
-			new HashMapDictionary<>()
-		);
-
-		Mockito.when(
 			bundle.getEntry("WEB-INF/frontend-token-definition.json")
 		).thenReturn(
 			_frontendTokenDefinitionJSONURL
+		);
+
+		Mockito.when(
+			bundle.getHeaders(Mockito.anyString())
+		).thenReturn(
+			new HashMapDictionary<>()
 		);
 
 		FrontendTokenDefinition frontendTokenDefinition =
