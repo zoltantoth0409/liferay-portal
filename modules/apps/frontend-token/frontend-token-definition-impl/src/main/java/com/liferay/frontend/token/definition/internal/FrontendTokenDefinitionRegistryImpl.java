@@ -152,8 +152,8 @@ public class FrontendTokenDefinitionRegistryImpl
 			return null;
 		}
 
-		try (InputStream is = url.openStream()) {
-			return StringUtil.read(is);
+		try (InputStream inputStream = url.openStream()) {
+			return StringUtil.read(inputStream);
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(
