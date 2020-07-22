@@ -256,9 +256,9 @@ public class AddCollectionItemProductNavigationControlMenuEntry
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME, "/control_menu/add_collection_item");
+		portletURL.setParameter("redirect", currentURL);
 		portletURL.setParameter(
 			"assetListEntryId", String.valueOf(assetListEntryId));
-		portletURL.setParameter("redirect", currentURL);
 
 		return _http.addParameter(
 			portletURL.toString(), "portletResource",
