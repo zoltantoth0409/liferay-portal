@@ -140,7 +140,7 @@ public class FrontendTokenDefinitionRegistryImplTest {
 
 		Bundle bundle = Mockito.mock(Bundle.class);
 
-		HashMapDictionary<String, String> headers = new HashMapDictionary<>();
+		Dictionary<String, String> headers = new HashMapDictionary<>();
 
 		headers.put("Web-ContextPath", "/classic-theme");
 
