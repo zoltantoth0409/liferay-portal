@@ -24,6 +24,8 @@ import java.io.InputStream;
 
 import java.net.URL;
 
+import java.util.Dictionary;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -77,7 +79,7 @@ public class FrontendTokenDefinitionRegistryImplTest {
 
 		Bundle bundle = Mockito.mock(Bundle.class);
 
-		HashMapDictionary<String, String> headers = new HashMapDictionary<>();
+		Dictionary<String, String> headers = new HashMapDictionary<>();
 
 		headers.put("Web-ContextPath", "/my-theme");
 
