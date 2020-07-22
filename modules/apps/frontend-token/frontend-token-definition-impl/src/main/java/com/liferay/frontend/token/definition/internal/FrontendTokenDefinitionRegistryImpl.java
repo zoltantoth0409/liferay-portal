@@ -53,12 +53,12 @@ public class FrontendTokenDefinitionRegistryImpl
 
 	@Override
 	public FrontendTokenDefinition getFrontendTokenDefinition(String themeId) {
-		return themeIdFrontendTokenDefinitionImplsMap.get(themeId);
+		return themeIdFrontendTokenDefinitionImpls.get(themeId);
 	}
 
 	@Override
 	public Collection<FrontendTokenDefinition> getFrontendTokenDefinitions() {
-		return new ArrayList<>(bundleFrontendTokenDefinitionImplsMap.values());
+		return new ArrayList<>(bundleFrontendTokenDefinitionImpls.values());
 	}
 
 	@Activate
@@ -79,11 +79,11 @@ public class FrontendTokenDefinitionRegistryImpl
 					}
 
 					synchronized (FrontendTokenDefinitionRegistryImpl.this) {
-						bundleFrontendTokenDefinitionImplsMap.put(
+						bundleFrontendTokenDefinitionImpls.put(
 							bundle, frontendTokenDefinitionImpl);
 
 						if (frontendTokenDefinitionImpl.getThemeId() != null) {
-							themeIdFrontendTokenDefinitionImplsMap.put(
+							themeIdFrontendTokenDefinitionImpls.put(
 								frontendTokenDefinitionImpl.getThemeId(),
 								frontendTokenDefinitionImpl);
 						}
@@ -108,11 +108,11 @@ public class FrontendTokenDefinitionRegistryImpl
 					synchronized (FrontendTokenDefinitionRegistryImpl.this) {
 						FrontendTokenDefinitionImpl
 							frontendTokenDefinitionImpl =
-								bundleFrontendTokenDefinitionImplsMap.remove(
+								bundleFrontendTokenDefinitionImpls.remove(
 									bundle1);
 
 						if (frontendTokenDefinitionImpl.getThemeId() != null) {
-							themeIdFrontendTokenDefinitionImplsMap.remove(
+							themeIdFrontendTokenDefinitionImpls.remove(
 								frontendTokenDefinitionImpl.getThemeId());
 						}
 					}
@@ -128,8 +128,8 @@ public class FrontendTokenDefinitionRegistryImpl
 		bundleTracker.close();
 
 		synchronized (this) {
-			bundleFrontendTokenDefinitionImplsMap.clear();
-			themeIdFrontendTokenDefinitionImplsMap.clear();
+			bundleFrontendTokenDefinitionImpls.clear();
+			themeIdFrontendTokenDefinitionImpls.clear();
 		}
 	}
 
@@ -217,14 +217,14 @@ public class FrontendTokenDefinitionRegistryImpl
 	}
 
 	protected Map<Bundle, FrontendTokenDefinitionImpl>
-		bundleFrontendTokenDefinitionImplsMap = new ConcurrentHashMap<>();
+		bundleFrontendTokenDefinitionImpls = new ConcurrentHashMap<>();
 	protected BundleTracker<Bundle> bundleTracker;
 
 	@Reference
 	protected Portal portal;
 
 	protected Map<String, FrontendTokenDefinitionImpl>
-		themeIdFrontendTokenDefinitionImplsMap = new ConcurrentHashMap<>();
+		themeIdFrontendTokenDefinitionImpls = new ConcurrentHashMap<>();
 
 	private static final Pattern _themeIdPattern = Pattern.compile(
 		".*<theme id=\"([^\"]*)\"[^>]*>.*");
