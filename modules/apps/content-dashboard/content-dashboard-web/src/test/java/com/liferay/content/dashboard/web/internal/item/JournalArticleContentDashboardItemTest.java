@@ -623,18 +623,6 @@ public class JournalArticleContentDashboardItemTest {
 		);
 
 		Mockito.when(
-			journalArticle.hasApprovedVersion()
-		).thenReturn(
-			true
-		);
-
-		Mockito.when(
-			journalArticle.isApproved()
-		).thenReturn(
-			true
-		);
-
-		Mockito.when(
 			journalArticle.getModifiedDate()
 		).thenReturn(
 			new Date()
@@ -644,6 +632,18 @@ public class JournalArticleContentDashboardItemTest {
 			journalArticle.getTitle(Mockito.any(Locale.class))
 		).thenReturn(
 			RandomTestUtil.randomString()
+		);
+
+		Mockito.when(
+			journalArticle.hasApprovedVersion()
+		).thenReturn(
+			true
+		);
+
+		Mockito.when(
+			journalArticle.isApproved()
+		).thenReturn(
+			true
 		);
 
 		return journalArticle;
