@@ -62,8 +62,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetAssetCategories() {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetCategory assetCategory = Mockito.mock(AssetCategory.class);
 
 		Mockito.when(
@@ -71,6 +69,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -84,8 +84,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetAssetCategoriesByAssetVocabulary() {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetCategory assetCategory = Mockito.mock(AssetCategory.class);
 
 		Mockito.when(
@@ -93,6 +91,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -122,8 +122,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetAssetCategoriesWithNoAssetCategoriesInAssetVocabulary() {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetCategory assetCategory = Mockito.mock(AssetCategory.class);
 
 		Mockito.when(
@@ -131,6 +129,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -145,9 +145,9 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetAssetTags() {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetTag assetTag = Mockito.mock(AssetTag.class);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -161,8 +161,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetEditURL() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		InfoEditURLProvider<JournalArticle> infoEditURLProvider = Mockito.mock(
 			InfoEditURLProvider.class);
 
@@ -173,6 +171,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			"validURL"
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -187,8 +187,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetEditURLWithNullURL() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		InfoEditURLProvider<JournalArticle> infoEditURLProvider = Mockito.mock(
 			InfoEditURLProvider.class);
 
@@ -199,6 +197,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			null
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -255,8 +255,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetScopeName() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		Group group = Mockito.mock(Group.class);
 
 		Mockito.when(
@@ -264,6 +262,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			"scopeName"
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -424,8 +424,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetViewURL() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetDisplayPageFriendlyURLProvider
 			assetDisplayPageFriendlyURLProvider = Mockito.mock(
 				AssetDisplayPageFriendlyURLProvider.class);
@@ -436,6 +434,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			"validURL"
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -450,11 +450,11 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testGetViewURLWithNullFriendlyURL() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetDisplayPageFriendlyURLProvider
 			assetDisplayPageFriendlyURLProvider = Mockito.mock(
 				AssetDisplayPageFriendlyURLProvider.class);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -469,8 +469,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testIsEditURLEnabled() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		InfoEditURLProvider<JournalArticle> infoEditURLProvider = Mockito.mock(
 			InfoEditURLProvider.class);
 
@@ -485,6 +483,8 @@ public class JournalArticleContentDashboardItemTest {
 			Boolean.TRUE
 		);
 
+		JournalArticle journalArticle = _getJournalArticle();
+
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
 				null, null, null, null, null, infoEditURLProvider,
@@ -498,13 +498,13 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testIsEditURLEnabledWithoutPermissions() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		InfoEditURLProvider<JournalArticle> infoEditURLProvider = Mockito.mock(
 			InfoEditURLProvider.class);
 
 		ModelResourcePermission<JournalArticle> modelResourcePermission =
 			Mockito.mock(ModelResourcePermission.class);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -519,8 +519,6 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testIsViewURLEnabled() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetDisplayPageFriendlyURLProvider
 			assetDisplayPageFriendlyURLProvider = Mockito.mock(
 				AssetDisplayPageFriendlyURLProvider.class);
@@ -531,6 +529,8 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			"validURL"
 		);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -544,6 +544,10 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testIsViewURLEnabledWithNotApprovedVersion() {
+		AssetDisplayPageFriendlyURLProvider
+			assetDisplayPageFriendlyURLProvider = Mockito.mock(
+				AssetDisplayPageFriendlyURLProvider.class);
+
 		JournalArticle journalArticle = _getJournalArticle();
 
 		Mockito.when(
@@ -551,10 +555,6 @@ public class JournalArticleContentDashboardItemTest {
 		).thenReturn(
 			false
 		);
-
-		AssetDisplayPageFriendlyURLProvider
-			assetDisplayPageFriendlyURLProvider = Mockito.mock(
-				AssetDisplayPageFriendlyURLProvider.class);
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
@@ -567,11 +567,11 @@ public class JournalArticleContentDashboardItemTest {
 
 	@Test
 	public void testIsViewURLEnabledWithNullFriendlyURL() throws Exception {
-		JournalArticle journalArticle = _getJournalArticle();
-
 		AssetDisplayPageFriendlyURLProvider
 			assetDisplayPageFriendlyURLProvider = Mockito.mock(
 				AssetDisplayPageFriendlyURLProvider.class);
+
+		JournalArticle journalArticle = _getJournalArticle();
 
 		JournalArticleContentDashboardItem journalArticleContentDashboardItem =
 			new JournalArticleContentDashboardItem(
