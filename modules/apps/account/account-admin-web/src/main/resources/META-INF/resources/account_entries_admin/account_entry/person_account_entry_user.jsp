@@ -142,23 +142,24 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 
 <liferay-frontend:component
 	componentId="PersonAccountEntryEventHandler"
-	context='<%= HashMapBuilder.<String, Object>put(
-	"container", "#personAccountUserContainer"
-	).put(
-	"removeUserIconMarkup", removeUserIcon
-	).put(
-	"removeUserLinkSelector", ".remove-user-link"
-	).put(
-	"searchContainer", "personAccountEntryUserSearchContainer"
-	).put(
-	"selectUserButton", "#selectUserButton"
-	).put(
-	"selectUserEventName", "selectPersonAccountEntryUser"
-	).put(
-	"selectUserURL", selectUserURL.toString()
-	).put(
-	"userIdInput", "#personAccountEntryUserId"
-	).build()
+	context='<%=
+		HashMapBuilder.<String, Object>put(
+			"container", "#personAccountUserContainer"
+		).put(
+			"removeUserIconMarkup", removeUserIcon
+		).put(
+			"removeUserLinkSelector", ".remove-user-link"
+		).put(
+			"searchContainer", "personAccountEntryUserSearchContainer"
+		).put(
+			"selectUserButton", "#selectUserButton"
+		).put(
+			"selectUserEventName", "selectPersonAccountEntryUser"
+		).put(
+			"selectUserURL", selectUserURL.toString()
+		).put(
+			"userIdInput", "#personAccountEntryUserId"
+		).build()
 	%>'
 	module="account_entries_admin/js/PersonAccountEntryEventHandler.es"
 />

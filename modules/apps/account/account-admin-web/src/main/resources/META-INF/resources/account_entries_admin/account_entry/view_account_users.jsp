@@ -98,13 +98,14 @@ renderResponse.setTitle(accountEntryDisplay.getName());
 
 <liferay-frontend:component
 	componentId="<%= viewAccountUsersManagementToolbarDisplayContext.getDefaultEventHandler() %>"
-	context='<%= HashMapBuilder.<String, Object>put(
-	"accountEntryName", accountEntryDisplay.getName()
-	).put(
-	"assignAccountUsersURL", assignAccountUsersURL
-	).put(
-	"selectAccountUsersURL", selectAccountUsersURL
-	).build()
+	context='<%=
+		HashMapBuilder.<String, Object>put(
+			"accountEntryName", accountEntryDisplay.getName()
+		).put(
+			"assignAccountUsersURL", assignAccountUsersURL
+		).put(
+			"selectAccountUsersURL", selectAccountUsersURL
+		).build()
 	%>'
 	module="account_entries_admin/js/AccountUsersManagementToolbarDefaultEventHandler.es"
 />
