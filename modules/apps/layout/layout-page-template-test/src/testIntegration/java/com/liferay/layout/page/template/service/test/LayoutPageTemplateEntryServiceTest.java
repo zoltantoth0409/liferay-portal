@@ -119,7 +119,6 @@ public class LayoutPageTemplateEntryServiceTest {
 			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
 			name, LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
 			WorkflowConstants.STATUS_APPROVED);
-
 		LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
 			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
 			name, LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE,
