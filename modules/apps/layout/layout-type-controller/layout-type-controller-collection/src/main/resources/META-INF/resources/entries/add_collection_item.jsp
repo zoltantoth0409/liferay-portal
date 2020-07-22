@@ -27,7 +27,9 @@ if (assetPublisherAddItemHolders.size() == 1) {
 	label = LanguageUtil.format(request, "new-x", new Object[] {assetPublisherAddItemHolder.getModelResource()});
 }
 
-Map<String, Object> data = HashMapBuilder.<String, Object>put("title", label).build();
+Map<String, Object> data = HashMapBuilder.<String, Object>put(
+	"title", label
+).build();
 %>
 
 <li class="control-menu-nav-item">
