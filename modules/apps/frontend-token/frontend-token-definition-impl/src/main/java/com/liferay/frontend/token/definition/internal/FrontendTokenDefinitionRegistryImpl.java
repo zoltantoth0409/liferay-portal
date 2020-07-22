@@ -157,7 +157,7 @@ public class FrontendTokenDefinitionRegistryImpl
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to read: WEB-INF/frontend-token-definition.json",
+				"Unable to read WEB-INF/frontend-token-definition.json",
 				ioException);
 		}
 	}
