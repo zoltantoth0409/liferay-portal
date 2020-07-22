@@ -115,7 +115,6 @@ public class ResponsiveLayoutStructureUtilTest {
 
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
-
 		_themeDisplay.setLanguageId(
 			LanguageUtil.getLanguageId(LocaleUtil.getDefault()));
 		_themeDisplay.setLayout(_layout);
@@ -126,10 +125,10 @@ public class ResponsiveLayoutStructureUtilTest {
 			_layout.getTheme(), _layout.getColorScheme());
 		_themeDisplay.setPermissionChecker(
 			PermissionThreadLocal.getPermissionChecker());
+		_themeDisplay.setRealUser(TestPropsValues.getUser());
 		_themeDisplay.setScopeGroupId(_group.getGroupId());
 		_themeDisplay.setSiteGroupId(_group.getGroupId());
 		_themeDisplay.setUser(TestPropsValues.getUser());
-		_themeDisplay.setRealUser(TestPropsValues.getUser());
 	}
 
 	@Test
