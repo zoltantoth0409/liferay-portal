@@ -211,7 +211,7 @@ public class FrontendTokenDefinitionRegistryImpl
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to read: WEB-INF/liferay-look-and-feel.xml",
+				"Unable to read WEB-INF/liferay-look-and-feel.xml",
 				ioException);
 		}
 	}
