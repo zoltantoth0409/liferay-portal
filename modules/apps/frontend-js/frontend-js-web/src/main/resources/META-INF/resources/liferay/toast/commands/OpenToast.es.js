@@ -68,7 +68,7 @@ const getRootElement = ({container, containerId}) => {
 		alertFixed = document.body.appendChild(alertFixed);
 	}
 
-	// Creates a fragment for preventing React to unmount the alertContainer
+	// Creates a fragment to prevent React from unmounting the alert container
 
 	container = document.createElement('div');
 	container.className = 'mb-3';
