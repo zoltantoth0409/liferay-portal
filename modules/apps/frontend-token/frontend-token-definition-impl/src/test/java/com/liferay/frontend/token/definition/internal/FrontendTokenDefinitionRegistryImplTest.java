@@ -115,15 +115,15 @@ public class FrontendTokenDefinitionRegistryImplTest {
 		Bundle bundle = Mockito.mock(Bundle.class);
 
 		Mockito.when(
-			bundle.getHeaders(Mockito.anyString())
-		).thenReturn(
-			new HashMapDictionary<>()
-		);
-
-		Mockito.when(
 			bundle.getEntry("WEB-INF/liferay-look-and-feel.xml")
 		).thenReturn(
 			_liferayLookAndFeelXMLURL
+		);
+
+		Mockito.when(
+			bundle.getHeaders(Mockito.anyString())
+		).thenReturn(
+			new HashMapDictionary<>()
 		);
 
 		frontendTokenDefinitionRegistryImpl.portal = new PortalImpl();
