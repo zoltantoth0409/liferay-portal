@@ -52,10 +52,8 @@ public class LinkEditableElementMapper implements EditableElementMapper {
 		boolean assetDisplayPage =
 			_fragmentEntryProcessorHelper.isAssetDisplayPage(
 				fragmentEntryProcessorContext.getMode());
-
 		boolean collectionMapped =
 			_fragmentEntryProcessorHelper.isMappedCollection(configJSONObject);
-
 		boolean mapped = _fragmentEntryProcessorHelper.isMapped(
 			configJSONObject);
 
