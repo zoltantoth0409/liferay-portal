@@ -140,6 +140,12 @@ public class FrontendTokenDefinitionRegistryImplTest {
 
 		Bundle bundle = Mockito.mock(Bundle.class);
 
+		Mockito.when(
+			bundle.getEntry("WEB-INF/liferay-look-and-feel.xml")
+		).thenReturn(
+			_liferayLookAndFeelXMLURL
+		);
+
 		Dictionary<String, String> headers = new HashMapDictionary<>();
 
 		headers.put("Web-ContextPath", "/classic-theme");
@@ -148,12 +154,6 @@ public class FrontendTokenDefinitionRegistryImplTest {
 			bundle.getHeaders(Mockito.anyString())
 		).thenReturn(
 			headers
-		);
-
-		Mockito.when(
-			bundle.getEntry("WEB-INF/liferay-look-and-feel.xml")
-		).thenReturn(
-			_liferayLookAndFeelXMLURL
 		);
 
 		frontendTokenDefinitionRegistryImpl.portal = new PortalImpl();
