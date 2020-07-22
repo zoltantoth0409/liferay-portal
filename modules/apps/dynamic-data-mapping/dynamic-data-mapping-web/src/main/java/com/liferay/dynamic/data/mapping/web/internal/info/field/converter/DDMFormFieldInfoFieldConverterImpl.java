@@ -79,11 +79,6 @@ public class DDMFormFieldInfoFieldConverterImpl
 			finalStep.attribute(NumberInfoFieldType.DECIMAL, true);
 		}
 
-		if (Objects.equals(ddmFormField.getType(), "rich_text")) {
-			finalStep.attribute(TextInfoFieldType.HTML, true);
-			finalStep.attribute(TextInfoFieldType.MULTILINE, true);
-		}
-
 		if (Objects.equals(ddmFormField.getType(), DDMFormFieldType.SELECT) &&
 			GetterUtil.getBoolean(ddmFormField.getProperty("multiple"))) {
 
@@ -99,6 +94,11 @@ public class DDMFormFieldInfoFieldConverterImpl
 		if (Objects.equals(
 				ddmFormField.getType(), DDMFormFieldType.TEXT_HTML)) {
 
+			finalStep.attribute(TextInfoFieldType.HTML, true);
+			finalStep.attribute(TextInfoFieldType.MULTILINE, true);
+		}
+
+		if (Objects.equals(ddmFormField.getType(), "rich_text")) {
 			finalStep.attribute(TextInfoFieldType.HTML, true);
 			finalStep.attribute(TextInfoFieldType.MULTILINE, true);
 		}
