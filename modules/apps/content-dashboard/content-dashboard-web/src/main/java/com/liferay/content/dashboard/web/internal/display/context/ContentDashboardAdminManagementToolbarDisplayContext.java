@@ -202,7 +202,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
 				labelItem.setCloseable(true);
-
 				labelItem.setLabel(
 					LanguageUtil.get(request, "site-or-asset-library") + ": " +
 						_getScopeLabel(scopeId));
@@ -303,7 +302,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
 				labelItem.setCloseable(true);
-
 				labelItem.setLabel(
 					LanguageUtil.get(request, "status") + ": " +
 						_getStatusLabel(status));
