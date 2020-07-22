@@ -3,12 +3,14 @@ $navbarHeight: 120px;
 
 .app-builder-workflow-app {
 	display: flex;
+	justify-content: center;
 	margin-top: 64px;
 
 	&__builder {
 		display: flex;
 		flex-flow: column;
 		height: calc(100vh - #{$navbarHeight} + 56px);
+		margin-right: 350px;
 		overflow: auto;
 		padding-bottom: 55px;
 		padding-top: 56px;
@@ -241,4 +243,8 @@ $navbarHeight: 120px;
 	fill: #da1414;
 	margin-left: auto;
 	min-width: 1em;
+}
+
+.tooltip-icon:hover {
+	fill: #6b6c7e;
 }
