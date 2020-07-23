@@ -59,12 +59,12 @@ public class OrganizationScreenNavigationRegistrar {
 				UserScreenNavigationEntryConstants.CATEGORY_KEY_GENERAL
 			).entryKey(
 				"information"
-			).isVisibleBiFunction(
-				(user, organization) -> true
 			).jspPath(
 				"/organization/information.jsp"
 			).mvcActionCommandName(
 				"/users_admin/edit_organization"
+			).visibleBiFunction(
+				(user, organization) -> true
 			).build());
 
 		_registerService(
