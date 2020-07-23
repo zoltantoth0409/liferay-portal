@@ -849,7 +849,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		if (infoItemFormProvider == null) {
 			throw new PortalException(
-				"No Item Form Provider is registered for class name ID " +
+				"No item form provider is registered for class name ID " +
 					classNameId);
 		}
 
