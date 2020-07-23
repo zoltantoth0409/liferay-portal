@@ -45,13 +45,10 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		for (String assetVocabularyName : _NONSYSTEM_ASSET_VOCABULARY_NAMES) {
-			_addAssetVocabulary(company, assetVocabularyName, false);
-		}
-
-		for (String assetVocabularyName : _SYSTEM_ASSET_VOCABULARY_NAMES) {
-			_addAssetVocabulary(company, assetVocabularyName, true);
-		}
+		_addAssetVocabulary(
+			company, PropsValues.ASSET_VOCABULARY_DEFAULT, false);
+		_addAssetVocabulary(company, "audience", true);
+		_addAssetVocabulary(company, "stage", true);
 	}
 
 	private void _addAssetVocabulary(
@@ -93,14 +90,6 @@ public class AddDefaultAssetVocabulariesPortalInstanceLifecycleListener
 			Collections.emptyMap(), assetVocabularySettingsHelper.toString(),
 			system, serviceContext);
 	}
-
-	private static final String[] _NONSYSTEM_ASSET_VOCABULARY_NAMES = {
-		PropsValues.ASSET_VOCABULARY_DEFAULT
-	};
-
-	private static final String[] _SYSTEM_ASSET_VOCABULARY_NAMES = {
-		"audience", "stage"
-	};
 
 	@Reference
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
