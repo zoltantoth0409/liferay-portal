@@ -81,7 +81,8 @@ public class FrontendTokenDefinitionImpl implements FrontendTokenDefinition {
 		}
 		catch (JSONException jsonException) {
 			_log.error(
-				"Unable to parse token-definitions.json of theme " + _themeId,
+				"Unable to parse frontend-token-definition.json for theme " +
+					_themeId,
 				jsonException);
 		}
 
