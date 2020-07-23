@@ -48,18 +48,23 @@ public class TranslationEntryLocalServiceImpl
 			long groupId, InfoItemClassPKReference infoItemClassPKReference,
 			InfoItemFieldValues infoItemFieldValues, String languageId,
 			ServiceContext serviceContext)
-		throws IOException {
+		throws PortalException {
 
-		return addOrUpdateTranslationEntry(
-			groupId, infoItemClassPKReference.getClassName(),
-			infoItemClassPKReference.getClassPK(), languageId,
-			StreamUtil.toString(
-				_xliffTranslationInfoItemFieldValuesExporter.
-					exportInfoItemFieldValues(
-						infoItemFieldValues, LocaleUtil.getDefault(),
-						LocaleUtil.fromLanguageId(languageId))),
-			_xliffTranslationInfoItemFieldValuesExporter.getMimeType(),
-			serviceContext);
+		try {
+			return addOrUpdateTranslationEntry(
+				groupId, infoItemClassPKReference.getClassName(),
+				infoItemClassPKReference.getClassPK(), languageId,
+				StreamUtil.toString(
+					_xliffTranslationInfoItemFieldValuesExporter.
+						exportInfoItemFieldValues(
+							infoItemFieldValues, LocaleUtil.getDefault(),
+							LocaleUtil.fromLanguageId(languageId))),
+				_xliffTranslationInfoItemFieldValuesExporter.getMimeType(),
+				serviceContext);
+		}
+		catch (IOException ioException) {
+			throw new PortalException(ioException);
+		}
 	}
 
 	@Override
@@ -101,17 +106,22 @@ public class TranslationEntryLocalServiceImpl
 	@Override
 	public InfoItemFieldValues getInfoItemFieldValues(
 			TranslationEntry translationEntry)
-		throws IOException, PortalException {
+		throws PortalException {
 
-		String content = translationEntry.getContent();
+		try {
+			String content = translationEntry.getContent();
 
-		return _xliffTranslationInfoItemFieldValuesImporter.
-			importInfoItemFieldValues(
-				translationEntry.getGroupId(),
-				new InfoItemClassPKReference(
-					translationEntry.getClassName(),
-					translationEntry.getClassPK()),
-				new ByteArrayInputStream(content.getBytes()));
+			return _xliffTranslationInfoItemFieldValuesImporter.
+				importInfoItemFieldValues(
+					translationEntry.getGroupId(),
+					new InfoItemClassPKReference(
+						translationEntry.getClassName(),
+						translationEntry.getClassPK()),
+					new ByteArrayInputStream(content.getBytes()));
+		}
+		catch (IOException ioException) {
+			throw new PortalException(ioException);
+		}
 	}
 
 	@Reference
