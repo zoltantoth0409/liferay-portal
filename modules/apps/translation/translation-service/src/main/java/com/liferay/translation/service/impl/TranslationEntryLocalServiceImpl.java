@@ -106,18 +106,13 @@ public class TranslationEntryLocalServiceImpl
 
 	@Override
 	public InfoItemFieldValues getInfoItemFieldValues(
-			TranslationEntry translationEntry)
+			long groupId, String className, long classPK, String content)
 		throws PortalException {
 
 		try {
-			String content = translationEntry.getContent();
-
 			return _xliffTranslationInfoItemFieldValuesImporter.
 				importInfoItemFieldValues(
-					translationEntry.getGroupId(),
-					new InfoItemClassPKReference(
-						translationEntry.getClassName(),
-						translationEntry.getClassPK()),
+					groupId, new InfoItemClassPKReference(className, classPK),
 					new ByteArrayInputStream(content.getBytes()));
 		}
 		catch (IOException ioException) {

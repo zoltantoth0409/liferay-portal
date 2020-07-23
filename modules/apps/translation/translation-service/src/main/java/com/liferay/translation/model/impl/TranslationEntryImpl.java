@@ -14,12 +14,25 @@
 
 package com.liferay.translation.model.impl;
 
+import com.liferay.info.item.InfoItemFieldValues;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.translation.service.TranslationEntryLocalServiceUtil;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class TranslationEntryImpl extends TranslationEntryBaseImpl {
 
 	public TranslationEntryImpl() {
+	}
+
+	@Override
+	public InfoItemFieldValues getInfoItemFieldValues(
+			long groupId, String className, long classPK, String content)
+		throws PortalException {
+
+		return TranslationEntryLocalServiceUtil.getInfoItemFieldValues(
+			getGroupId(), getClassName(), getClassPK(), getContent());
 	}
 
 }
