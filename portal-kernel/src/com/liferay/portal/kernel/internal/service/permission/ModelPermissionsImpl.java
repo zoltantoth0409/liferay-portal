@@ -68,20 +68,20 @@ public class ModelPermissionsImpl implements ModelPermissions {
 	}
 
 	@Override
-	public void addRolePermissions(String roleName, String... actionIds) {
-		if (ArrayUtil.isEmpty(actionIds)) {
+	public void addRolePermissions(String roleName, String... actionIdsArray) {
+		if (ArrayUtil.isEmpty(actionIdsArray)) {
 			return;
 		}
 
-		Set<String> actionIdSet = _actionIdsMap.get(roleName);
+		Set<String> actionIds = _actionIdsMap.get(roleName);
 
-		if (actionIdSet == null) {
-			actionIdSet = new HashSet<>();
+		if (actionIds == null) {
+			actionIds = new HashSet<>();
 
-			_actionIdsMap.put(roleName, actionIdSet);
+			_actionIdsMap.put(roleName, actionIds);
 		}
 
-		Collections.addAll(actionIdSet, actionIds);
+		Collections.addAll(actionIds, actionIdsArray);
 	}
 
 	@Override

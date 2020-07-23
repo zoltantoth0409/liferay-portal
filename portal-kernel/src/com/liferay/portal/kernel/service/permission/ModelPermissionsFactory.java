@@ -141,7 +141,7 @@ public class ModelPermissionsFactory {
 		String className) {
 
 		if (className == null) {
-			throw new NullPointerException("className is null");
+			throw new NullPointerException("Class name is null");
 		}
 
 		ModelPermissions modelPermissions = new ModelPermissionsImpl(className);
