@@ -54,6 +54,7 @@ public class ModelPermissionsFactory {
 		return _createModelPermissions(
 			httpServletRequest.getParameterMap(), className);
 	}
+
 	public static ModelPermissions create(
 		Map<String, String[]> modelPermissionsParameterMap, String className) {
 
