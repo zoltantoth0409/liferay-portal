@@ -228,6 +228,15 @@ public class TranslationEntryWrapper
 		return model.getGroupId();
 	}
 
+	@Override
+	public com.liferay.info.item.InfoItemFieldValues getInfoItemFieldValues(
+			long groupId, String className, long classPK, String content)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return model.getInfoItemFieldValues(
+			groupId, className, classPK, content);
+	}
+
 	/**
 	 * Returns the language ID of this translation entry.
 	 *

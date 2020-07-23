@@ -59,4 +59,8 @@ public interface TranslationEntry
 
 		};
 
+	public com.liferay.info.item.InfoItemFieldValues getInfoItemFieldValues(
+			long groupId, String className, long classPK, String content)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 }

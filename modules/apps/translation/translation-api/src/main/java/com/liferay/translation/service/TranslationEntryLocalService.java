@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.translation.model.TranslationEntry;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.List;
@@ -72,7 +71,7 @@ public interface TranslationEntryLocalService
 			InfoItemClassPKReference infoItemClassPKReference,
 			InfoItemFieldValues infoItemFieldValues,
 			ServiceContext serviceContext)
-		throws IOException;
+		throws PortalException;
 
 	public TranslationEntry addOrUpdateTranslationEntry(
 		long groupId, String className, long classPK, String content,
@@ -242,7 +241,7 @@ public interface TranslationEntryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public InfoItemFieldValues getInfoItemFieldValues(
-			TranslationEntry translationEntry)
+			long groupId, String className, long classPK, String content)
 		throws PortalException;
 
 	/**

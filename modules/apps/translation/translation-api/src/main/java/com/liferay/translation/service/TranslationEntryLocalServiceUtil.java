@@ -44,7 +44,7 @@ public class TranslationEntryLocalServiceUtil {
 					infoItemClassPKReference,
 				com.liferay.info.item.InfoItemFieldValues infoItemFieldValues,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws java.io.IOException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addOrUpdateTranslationEntry(
 			groupId, languageId, infoItemClassPKReference, infoItemFieldValues,
@@ -289,10 +289,11 @@ public class TranslationEntryLocalServiceUtil {
 
 	public static com.liferay.info.item.InfoItemFieldValues
 			getInfoItemFieldValues(
-				com.liferay.translation.model.TranslationEntry translationEntry)
+				long groupId, String className, long classPK, String content)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getInfoItemFieldValues(translationEntry);
+		return getService().getInfoItemFieldValues(
+			groupId, className, classPK, content);
 	}
 
 	/**
