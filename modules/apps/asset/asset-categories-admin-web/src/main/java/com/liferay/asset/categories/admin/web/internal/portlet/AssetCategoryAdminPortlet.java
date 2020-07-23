@@ -245,7 +245,6 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 			actionRequest, "title");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-
 		boolean system = ParamUtil.getBoolean(actionRequest, "system");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(

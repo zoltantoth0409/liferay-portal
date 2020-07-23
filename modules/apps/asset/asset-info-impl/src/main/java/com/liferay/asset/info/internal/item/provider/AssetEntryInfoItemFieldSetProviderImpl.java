@@ -250,23 +250,23 @@ public class AssetEntryInfoItemFieldSetProviderImpl
 
 		try {
 			if (itemClassTypeId > 0) {
-				List<AssetVocabulary> groupsVocabularies =
+				List<AssetVocabulary> groupsAssetVocabularies =
 					_assetVocabularyLocalService.getGroupsVocabularies(
 						_portal.getCurrentAndAncestorSiteGroupIds(scopeGroupId),
 						itemClassName, itemClassTypeId);
 
 				return ListUtil.filter(
-					groupsVocabularies,
+					groupsAssetVocabularies,
 					assetVocabulary -> !assetVocabulary.isSystem());
 			}
 
-			List<AssetVocabulary> groupsVocabularies =
+			List<AssetVocabulary> groupsAssetVocabularies =
 				_assetVocabularyLocalService.getGroupsVocabularies(
 					_portal.getCurrentAndAncestorSiteGroupIds(scopeGroupId),
 					itemClassName);
 
 			return ListUtil.filter(
-				groupsVocabularies,
+				groupsAssetVocabularies,
 				assetVocabulary -> !assetVocabulary.isSystem());
 		}
 		catch (PortalException portalException) {
