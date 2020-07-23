@@ -381,7 +381,7 @@ public class DBUpgrader {
 
 		StartupHelperUtil.updateIndexes(true);
 
-		// Update Release
+		// Update release build info
 
 		_updateReleaseBuildInfo();
 
