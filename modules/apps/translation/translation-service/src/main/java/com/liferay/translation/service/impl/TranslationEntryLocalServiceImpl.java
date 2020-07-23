@@ -45,8 +45,9 @@ public class TranslationEntryLocalServiceImpl
 
 	@Override
 	public TranslationEntry addOrUpdateTranslationEntry(
-			long groupId, InfoItemClassPKReference infoItemClassPKReference,
-			InfoItemFieldValues infoItemFieldValues, String languageId,
+			long groupId, String languageId,
+			InfoItemClassPKReference infoItemClassPKReference,
+			InfoItemFieldValues infoItemFieldValues,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -69,8 +70,8 @@ public class TranslationEntryLocalServiceImpl
 
 	@Override
 	public TranslationEntry addOrUpdateTranslationEntry(
-		long groupId, String className, long classPK, String languageId,
-		String content, String contentType, ServiceContext serviceContext) {
+		long groupId, String className, long classPK, String content,
+		String contentType, String languageId, ServiceContext serviceContext) {
 
 		TranslationEntry translationEntry =
 			translationEntryPersistence.fetchByC_C_L(
