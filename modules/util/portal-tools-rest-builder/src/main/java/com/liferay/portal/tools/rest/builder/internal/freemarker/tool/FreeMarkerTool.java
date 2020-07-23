@@ -460,39 +460,41 @@ public class FreeMarkerTool {
 
 			Map<String, Schema> propertySchemas = schema.getPropertySchemas();
 
-			if (propertySchemas != null) {
-				Set<String> propertyNames = propertySchemas.keySet();
+			if (propertySchemas == null) {
+				continue;
+			}
 
-				for (String propertyName : propertyNames) {
-					if (propertyName.startsWith("parent") &&
-						!propertyNames.contains(
-							StringUtil.removeSubstring(propertyName, "Id"))) {
+			Set<String> propertyNames = propertySchemas.keySet();
 
-						propertyName = StringUtil.lowerCaseFirstLetter(
-							StringUtil.removeSubstring(propertyName, "parent"));
+			for (String propertyName : propertyNames) {
+				if (propertyName.startsWith("parent") &&
+					!propertyNames.contains(
+						StringUtil.removeSubstring(propertyName, "Id"))) {
 
-						for (JavaMethodSignature javaMethodSignature :
-								javaMethodSignatures) {
+					propertyName = StringUtil.lowerCaseFirstLetter(
+						StringUtil.removeSubstring(propertyName, "parent"));
 
-							List<JavaMethodParameter> javaMethodParameters =
-								javaMethodSignature.getJavaMethodParameters();
+					for (JavaMethodSignature javaMethodSignature :
+							javaMethodSignatures) {
 
-							if (javaMethodParameters.isEmpty()) {
-								continue;
-							}
+						List<JavaMethodParameter> javaMethodParameters =
+							javaMethodSignature.getJavaMethodParameters();
 
-							JavaMethodParameter javaMethodParameter =
-								javaMethodParameters.get(0);
+						if (javaMethodParameters.isEmpty()) {
+							continue;
+						}
 
-							if (propertyName.equals(
-									javaMethodParameter.getParameterName())) {
+						JavaMethodParameter javaMethodParameter =
+							javaMethodParameters.get(0);
 
-								parentJavaMethodSignatures.add(
-									_getJavaMethodSignature(
-										javaMethodSignature, entry.getKey()));
+						if (propertyName.equals(
+								javaMethodParameter.getParameterName())) {
 
-								break;
-							}
+							parentJavaMethodSignatures.add(
+								_getJavaMethodSignature(
+									javaMethodSignature, entry.getKey()));
+
+							break;
 						}
 					}
 				}
