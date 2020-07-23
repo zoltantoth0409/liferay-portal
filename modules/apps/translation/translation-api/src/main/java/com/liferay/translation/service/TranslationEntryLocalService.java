@@ -68,14 +68,15 @@ public interface TranslationEntryLocalService
 	 * Never modify or reference this interface directly. Always use {@link TranslationEntryLocalServiceUtil} to access the translation entry local service. Add custom service methods to <code>com.liferay.translation.service.impl.TranslationEntryLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public TranslationEntry addOrUpdateTranslationEntry(
-			long groupId, InfoItemClassPKReference infoItemClassPKReference,
-			InfoItemFieldValues infoItemFieldValues, String languageId,
+			long groupId, String languageId,
+			InfoItemClassPKReference infoItemClassPKReference,
+			InfoItemFieldValues infoItemFieldValues,
 			ServiceContext serviceContext)
 		throws IOException;
 
 	public TranslationEntry addOrUpdateTranslationEntry(
-		long groupId, String className, long classPK, String languageId,
-		String content, String contentType, ServiceContext serviceContext);
+		long groupId, String className, long classPK, String content,
+		String contentType, String languageId, ServiceContext serviceContext);
 
 	/**
 	 * Adds the translation entry to the database. Also notifies the appropriate model listeners.
@@ -242,7 +243,7 @@ public interface TranslationEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public InfoItemFieldValues getInfoItemFieldValues(
 			TranslationEntry translationEntry)
-		throws IOException, PortalException;
+		throws PortalException;
 
 	/**
 	 * Returns the OSGi service identifier.

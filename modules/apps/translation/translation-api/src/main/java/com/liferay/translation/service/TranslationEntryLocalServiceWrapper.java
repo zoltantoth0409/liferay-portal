@@ -36,28 +36,27 @@ public class TranslationEntryLocalServiceWrapper
 	@Override
 	public com.liferay.translation.model.TranslationEntry
 			addOrUpdateTranslationEntry(
-				long groupId,
+				long groupId, String languageId,
 				com.liferay.info.item.InfoItemClassPKReference
 					infoItemClassPKReference,
 				com.liferay.info.item.InfoItemFieldValues infoItemFieldValues,
-				String languageId,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws java.io.IOException {
 
 		return _translationEntryLocalService.addOrUpdateTranslationEntry(
-			groupId, infoItemClassPKReference, infoItemFieldValues, languageId,
+			groupId, languageId, infoItemClassPKReference, infoItemFieldValues,
 			serviceContext);
 	}
 
 	@Override
 	public com.liferay.translation.model.TranslationEntry
 		addOrUpdateTranslationEntry(
-			long groupId, String className, long classPK, String languageId,
-			String content, String contentType,
+			long groupId, String className, long classPK, String content,
+			String contentType, String languageId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return _translationEntryLocalService.addOrUpdateTranslationEntry(
-			groupId, className, classPK, languageId, content, contentType,
+			groupId, className, classPK, content, contentType, languageId,
 			serviceContext);
 	}
 
@@ -311,8 +310,7 @@ public class TranslationEntryLocalServiceWrapper
 	@Override
 	public com.liferay.info.item.InfoItemFieldValues getInfoItemFieldValues(
 			com.liferay.translation.model.TranslationEntry translationEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			   java.io.IOException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _translationEntryLocalService.getInfoItemFieldValues(
 			translationEntry);
