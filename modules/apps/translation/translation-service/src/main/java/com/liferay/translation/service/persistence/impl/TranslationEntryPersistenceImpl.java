@@ -1458,8 +1458,8 @@ public class TranslationEntryPersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
 		"translationEntry.companyId = ?";
 
-	private FinderPath _finderPathFetchByG_S;
-	private FinderPath _finderPathCountByG_S;
+	private FinderPath _finderPathFetchByC_C_L;
+	private FinderPath _finderPathCountByC_C_L;
 
 	/**
 	 * Returns the translation entry where classNameId = &#63; and classPK = &#63; and languageId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
@@ -1471,11 +1471,11 @@ public class TranslationEntryPersistenceImpl
 	 * @throws NoSuchEntryException if a matching translation entry could not be found
 	 */
 	@Override
-	public TranslationEntry findByG_S(
+	public TranslationEntry findByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws NoSuchEntryException {
 
-		TranslationEntry translationEntry = fetchByG_S(
+		TranslationEntry translationEntry = fetchByC_C_L(
 			classNameId, classPK, languageId);
 
 		if (translationEntry == null) {
@@ -1513,10 +1513,10 @@ public class TranslationEntryPersistenceImpl
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
 	@Override
-	public TranslationEntry fetchByG_S(
+	public TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId) {
 
-		return fetchByG_S(classNameId, classPK, languageId, true);
+		return fetchByC_C_L(classNameId, classPK, languageId, true);
 	}
 
 	/**
@@ -1529,7 +1529,7 @@ public class TranslationEntryPersistenceImpl
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
 	@Override
-	public TranslationEntry fetchByG_S(
+	public TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId,
 		boolean useFinderCache) {
 
@@ -1545,7 +1545,7 @@ public class TranslationEntryPersistenceImpl
 
 		if (useFinderCache) {
 			result = finderCache.getResult(
-				_finderPathFetchByG_S, finderArgs, this);
+				_finderPathFetchByC_C_L, finderArgs, this);
 		}
 
 		if (result instanceof TranslationEntry) {
@@ -1564,19 +1564,19 @@ public class TranslationEntryPersistenceImpl
 
 			sb.append(_SQL_SELECT_TRANSLATIONENTRY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_S_CLASSNAMEID_2);
+			sb.append(_FINDER_COLUMN_C_C_L_CLASSNAMEID_2);
 
-			sb.append(_FINDER_COLUMN_G_S_CLASSPK_2);
+			sb.append(_FINDER_COLUMN_C_C_L_CLASSPK_2);
 
 			boolean bindLanguageId = false;
 
 			if (languageId.isEmpty()) {
-				sb.append(_FINDER_COLUMN_G_S_LANGUAGEID_3);
+				sb.append(_FINDER_COLUMN_C_C_L_LANGUAGEID_3);
 			}
 			else {
 				bindLanguageId = true;
 
-				sb.append(_FINDER_COLUMN_G_S_LANGUAGEID_2);
+				sb.append(_FINDER_COLUMN_C_C_L_LANGUAGEID_2);
 			}
 
 			String sql = sb.toString();
@@ -1603,7 +1603,7 @@ public class TranslationEntryPersistenceImpl
 				if (list.isEmpty()) {
 					if (useFinderCache) {
 						finderCache.putResult(
-							_finderPathFetchByG_S, finderArgs, list);
+							_finderPathFetchByC_C_L, finderArgs, list);
 					}
 				}
 				else {
@@ -1639,11 +1639,11 @@ public class TranslationEntryPersistenceImpl
 	 * @return the translation entry that was removed
 	 */
 	@Override
-	public TranslationEntry removeByG_S(
+	public TranslationEntry removeByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws NoSuchEntryException {
 
-		TranslationEntry translationEntry = findByG_S(
+		TranslationEntry translationEntry = findByC_C_L(
 			classNameId, classPK, languageId);
 
 		return remove(translationEntry);
@@ -1658,10 +1658,10 @@ public class TranslationEntryPersistenceImpl
 	 * @return the number of matching translation entries
 	 */
 	@Override
-	public int countByG_S(long classNameId, long classPK, String languageId) {
+	public int countByC_C_L(long classNameId, long classPK, String languageId) {
 		languageId = Objects.toString(languageId, "");
 
-		FinderPath finderPath = _finderPathCountByG_S;
+		FinderPath finderPath = _finderPathCountByC_C_L;
 
 		Object[] finderArgs = new Object[] {classNameId, classPK, languageId};
 
@@ -1672,19 +1672,19 @@ public class TranslationEntryPersistenceImpl
 
 			sb.append(_SQL_COUNT_TRANSLATIONENTRY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_S_CLASSNAMEID_2);
+			sb.append(_FINDER_COLUMN_C_C_L_CLASSNAMEID_2);
 
-			sb.append(_FINDER_COLUMN_G_S_CLASSPK_2);
+			sb.append(_FINDER_COLUMN_C_C_L_CLASSPK_2);
 
 			boolean bindLanguageId = false;
 
 			if (languageId.isEmpty()) {
-				sb.append(_FINDER_COLUMN_G_S_LANGUAGEID_3);
+				sb.append(_FINDER_COLUMN_C_C_L_LANGUAGEID_3);
 			}
 			else {
 				bindLanguageId = true;
 
-				sb.append(_FINDER_COLUMN_G_S_LANGUAGEID_2);
+				sb.append(_FINDER_COLUMN_C_C_L_LANGUAGEID_2);
 			}
 
 			String sql = sb.toString();
@@ -1721,16 +1721,16 @@ public class TranslationEntryPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_S_CLASSNAMEID_2 =
+	private static final String _FINDER_COLUMN_C_C_L_CLASSNAMEID_2 =
 		"translationEntry.classNameId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_S_CLASSPK_2 =
+	private static final String _FINDER_COLUMN_C_C_L_CLASSPK_2 =
 		"translationEntry.classPK = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_S_LANGUAGEID_2 =
+	private static final String _FINDER_COLUMN_C_C_L_LANGUAGEID_2 =
 		"translationEntry.languageId = ?";
 
-	private static final String _FINDER_COLUMN_G_S_LANGUAGEID_3 =
+	private static final String _FINDER_COLUMN_C_C_L_LANGUAGEID_3 =
 		"(translationEntry.languageId IS NULL OR translationEntry.languageId = '')";
 
 	public TranslationEntryPersistenceImpl() {
@@ -1767,7 +1767,7 @@ public class TranslationEntryPersistenceImpl
 			translationEntry);
 
 		finderCache.putResult(
-			_finderPathFetchByG_S,
+			_finderPathFetchByC_C_L,
 			new Object[] {
 				translationEntry.getClassNameId(),
 				translationEntry.getClassPK(), translationEntry.getLanguageId()
@@ -1877,9 +1877,9 @@ public class TranslationEntryPersistenceImpl
 		};
 
 		finderCache.putResult(
-			_finderPathCountByG_S, args, Long.valueOf(1), false);
+			_finderPathCountByC_C_L, args, Long.valueOf(1), false);
 		finderCache.putResult(
-			_finderPathFetchByG_S, args, translationEntryModelImpl, false);
+			_finderPathFetchByC_C_L, args, translationEntryModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
@@ -1915,12 +1915,12 @@ public class TranslationEntryPersistenceImpl
 				translationEntryModelImpl.getLanguageId()
 			};
 
-			finderCache.removeResult(_finderPathCountByG_S, args);
-			finderCache.removeResult(_finderPathFetchByG_S, args);
+			finderCache.removeResult(_finderPathCountByC_C_L, args);
+			finderCache.removeResult(_finderPathFetchByC_C_L, args);
 		}
 
 		if ((translationEntryModelImpl.getColumnBitmask() &
-			 _finderPathFetchByG_S.getColumnBitmask()) != 0) {
+			 _finderPathFetchByC_C_L.getColumnBitmask()) != 0) {
 
 			Object[] args = new Object[] {
 				translationEntryModelImpl.getOriginalClassNameId(),
@@ -1928,8 +1928,8 @@ public class TranslationEntryPersistenceImpl
 				translationEntryModelImpl.getOriginalLanguageId()
 			};
 
-			finderCache.removeResult(_finderPathCountByG_S, args);
-			finderCache.removeResult(_finderPathFetchByG_S, args);
+			finderCache.removeResult(_finderPathCountByC_C_L, args);
+			finderCache.removeResult(_finderPathFetchByC_C_L, args);
 		}
 	}
 
@@ -2521,8 +2521,9 @@ public class TranslationEntryPersistenceImpl
 			"countByUuid_C",
 			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByG_S = new FinderPath(
-			TranslationEntryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_S",
+		_finderPathFetchByC_C_L = new FinderPath(
+			TranslationEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC_C_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				String.class.getName()
@@ -2531,8 +2532,9 @@ public class TranslationEntryPersistenceImpl
 			TranslationEntryModelImpl.CLASSPK_COLUMN_BITMASK |
 			TranslationEntryModelImpl.LANGUAGEID_COLUMN_BITMASK);
 
-		_finderPathCountByG_S = new FinderPath(
-			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_S",
+		_finderPathCountByC_C_L = new FinderPath(
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByC_C_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				String.class.getName()

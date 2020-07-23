@@ -545,11 +545,11 @@ public class TranslationEntryUtil {
 	 * @return the matching translation entry
 	 * @throws NoSuchEntryException if a matching translation entry could not be found
 	 */
-	public static TranslationEntry findByG_S(
+	public static TranslationEntry findByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws com.liferay.translation.exception.NoSuchEntryException {
 
-		return getPersistence().findByG_S(classNameId, classPK, languageId);
+		return getPersistence().findByC_C_L(classNameId, classPK, languageId);
 	}
 
 	/**
@@ -560,10 +560,10 @@ public class TranslationEntryUtil {
 	 * @param languageId the language ID
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
-	public static TranslationEntry fetchByG_S(
+	public static TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId) {
 
-		return getPersistence().fetchByG_S(classNameId, classPK, languageId);
+		return getPersistence().fetchByC_C_L(classNameId, classPK, languageId);
 	}
 
 	/**
@@ -575,11 +575,11 @@ public class TranslationEntryUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
-	public static TranslationEntry fetchByG_S(
+	public static TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId,
 		boolean useFinderCache) {
 
-		return getPersistence().fetchByG_S(
+		return getPersistence().fetchByC_C_L(
 			classNameId, classPK, languageId, useFinderCache);
 	}
 
@@ -591,11 +591,11 @@ public class TranslationEntryUtil {
 	 * @param languageId the language ID
 	 * @return the translation entry that was removed
 	 */
-	public static TranslationEntry removeByG_S(
+	public static TranslationEntry removeByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws com.liferay.translation.exception.NoSuchEntryException {
 
-		return getPersistence().removeByG_S(classNameId, classPK, languageId);
+		return getPersistence().removeByC_C_L(classNameId, classPK, languageId);
 	}
 
 	/**
@@ -606,10 +606,10 @@ public class TranslationEntryUtil {
 	 * @param languageId the language ID
 	 * @return the number of matching translation entries
 	 */
-	public static int countByG_S(
+	public static int countByC_C_L(
 		long classNameId, long classPK, String languageId) {
 
-		return getPersistence().countByG_S(classNameId, classPK, languageId);
+		return getPersistence().countByC_C_L(classNameId, classPK, languageId);
 	}
 
 	/**

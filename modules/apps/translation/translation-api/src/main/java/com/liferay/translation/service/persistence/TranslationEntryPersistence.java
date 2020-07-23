@@ -398,7 +398,7 @@ public interface TranslationEntryPersistence
 	 * @return the matching translation entry
 	 * @throws NoSuchEntryException if a matching translation entry could not be found
 	 */
-	public TranslationEntry findByG_S(
+	public TranslationEntry findByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws NoSuchEntryException;
 
@@ -410,7 +410,7 @@ public interface TranslationEntryPersistence
 	 * @param languageId the language ID
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
-	public TranslationEntry fetchByG_S(
+	public TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId);
 
 	/**
@@ -422,7 +422,7 @@ public interface TranslationEntryPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching translation entry, or <code>null</code> if a matching translation entry could not be found
 	 */
-	public TranslationEntry fetchByG_S(
+	public TranslationEntry fetchByC_C_L(
 		long classNameId, long classPK, String languageId,
 		boolean useFinderCache);
 
@@ -434,7 +434,7 @@ public interface TranslationEntryPersistence
 	 * @param languageId the language ID
 	 * @return the translation entry that was removed
 	 */
-	public TranslationEntry removeByG_S(
+	public TranslationEntry removeByC_C_L(
 			long classNameId, long classPK, String languageId)
 		throws NoSuchEntryException;
 
@@ -446,7 +446,7 @@ public interface TranslationEntryPersistence
 	 * @param languageId the language ID
 	 * @return the number of matching translation entries
 	 */
-	public int countByG_S(long classNameId, long classPK, String languageId);
+	public int countByC_C_L(long classNameId, long classPK, String languageId);
 
 	/**
 	 * Caches the translation entry in the entity cache if it is enabled.
