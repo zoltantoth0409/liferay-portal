@@ -158,7 +158,7 @@ public class StyleBookEntryZipProcessor {
 	}
 
 	private StyleBookEntry _addStyleBookEntry(
-			String frontendTokensValues, long groupId, String name,
+			long groupId, String frontendTokensValues, String name,
 			boolean overwrite, String styleBookEntryKey)
 		throws Exception {
 
@@ -362,7 +362,7 @@ public class StyleBookEntryZipProcessor {
 		}
 
 		StyleBookEntry styleBookEntry = _addStyleBookEntry(
-			frontendTokensValues, groupId, name, overwrite, styleBookEntryKey);
+			groupId, frontendTokensValues, name, overwrite, styleBookEntryKey);
 
 		if (styleBookEntry == null) {
 			return;
