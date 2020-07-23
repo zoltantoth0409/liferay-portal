@@ -490,15 +490,17 @@ public class FreeMarkerTool {
 					JavaMethodParameter javaMethodParameter =
 						javaMethodParameters.get(0);
 
-					if (propertyName.equals(
+					if (!propertyName.equals(
 							javaMethodParameter.getParameterName())) {
 
-						parentJavaMethodSignatures.add(
-							_getJavaMethodSignature(
-								javaMethodSignature, entry.getKey()));
-
-						break;
+						continue;
 					}
+
+					parentJavaMethodSignatures.add(
+						_getJavaMethodSignature(
+							javaMethodSignature, entry.getKey()));
+
+					break;
 				}
 			}
 		}
