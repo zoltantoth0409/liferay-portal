@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Alejandro Tardín
+ * @author Alejandro TardÃ­n
  */
 @Component(
 	property = "model.class.name=com.liferay.translation.model.TranslationEntry",
