@@ -43,14 +43,13 @@ public class FrontendTokenDefinitionImplTest {
 		ResourceBundleLoader resourceBundleLoader = Mockito.mock(
 			ResourceBundleLoader.class);
 
-		Package aPackage = FrontendTokenDefinitionImplTest.class.getPackage();
+		Package pkg = FrontendTokenDefinitionImplTest.class.getPackage();
 
 		Mockito.when(
 			resourceBundleLoader.loadResourceBundle(LocaleUtil.ENGLISH)
 		).thenReturn(
 			ResourceBundle.getBundle(
-				aPackage.getName() + ".dependencies.Language",
-				LocaleUtil.ENGLISH)
+				pkg.getName() + ".dependencies.Language", LocaleUtil.ENGLISH)
 		);
 
 		FrontendTokenDefinitionImpl frontendTokenDefinitionImpl =
