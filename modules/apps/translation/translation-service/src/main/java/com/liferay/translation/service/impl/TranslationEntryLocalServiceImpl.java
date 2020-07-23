@@ -78,7 +78,7 @@ public class TranslationEntryLocalServiceImpl
 		String content, String contentType, ServiceContext serviceContext) {
 
 		TranslationEntry translationEntry =
-			translationEntryPersistence.fetchByG_S(
+			translationEntryPersistence.fetchByC_C_L(
 				_portal.getClassNameId(className), classPK, languageId);
 
 		if (translationEntry == null) {
@@ -106,7 +106,7 @@ public class TranslationEntryLocalServiceImpl
 	public TranslationEntry fetchTranslationEntry(
 		String className, long classPK, String languageId) {
 
-		return translationEntryPersistence.fetchByG_S(
+		return translationEntryPersistence.fetchByC_C_L(
 			_portal.getClassNameId(className), classPK, languageId);
 	}
 
