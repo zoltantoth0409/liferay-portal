@@ -76,9 +76,7 @@ public class TranslationEntryLocalServiceImpl
 				counterLocalService.increment());
 
 			translationEntry.setUuid(serviceContext.getUuid());
-
 			translationEntry.setGroupId(groupId);
-
 			translationEntry.setCompanyId(serviceContext.getCompanyId());
 			translationEntry.setUserId(serviceContext.getUserId());
 			translationEntry.setClassName(className);
