@@ -111,15 +111,13 @@ public class ContentDashboardDropdownItemsProvider {
 				ResourceURL resourceURL =
 					_liferayPortletResponse.createResourceURL();
 
-				resourceURL.setResourceID(
-					"/content_dashboard/get_content_dashboard_item_info");
-
 				resourceURL.setParameter(
 					"className", contentDashboardItem.getClassName());
-
 				resourceURL.setParameter(
 					"classPK",
 					String.valueOf(contentDashboardItem.getClassPK()));
+				resourceURL.setResourceID(
+					"/content_dashboard/get_content_dashboard_item_info");
 
 				dropdownItem.setHref(String.valueOf(resourceURL));
 
