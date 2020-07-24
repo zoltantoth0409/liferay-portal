@@ -291,7 +291,10 @@ const createReducer = (dataLayoutBuilder) => {
 						focusedCustomObjectField,
 					}
 				);
-				const {settingsContext} = editedFocusedCustomObjectField;
+				const {
+					nestedDataDefinitionFields,
+					settingsContext,
+				} = editedFocusedCustomObjectField;
 
 				return {
 					...state,
@@ -303,9 +306,12 @@ const createReducer = (dataLayoutBuilder) => {
 									dataDefinitionField.name ===
 									focusedCustomObjectField.name
 								) {
-									return dataLayoutBuilder.getDataDefinitionField(
-										editedFocusedCustomObjectField
-									);
+									return {
+										...dataLayoutBuilder.getDataDefinitionField(
+											editedFocusedCustomObjectField
+										),
+										nestedDataDefinitionFields,
+									};
 								}
 
 								return dataDefinitionField;
