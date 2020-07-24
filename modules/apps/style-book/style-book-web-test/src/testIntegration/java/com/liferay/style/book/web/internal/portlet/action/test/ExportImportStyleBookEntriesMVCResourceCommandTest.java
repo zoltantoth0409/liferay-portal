@@ -87,7 +87,6 @@ public class ExportImportStyleBookEntriesMVCResourceCommandTest {
 				_read("frontend-tokens-values.json"),
 				RandomTestUtil.randomString(), "STYLE_BOOK_ENTRY_KEY_1",
 				serviceContext);
-
 		StyleBookEntry styleBookEntry2 =
 			_styleBookEntryLocalService.addStyleBookEntry(
 				TestPropsValues.getUserId(), _sourceGroup.getGroupId(),
@@ -161,7 +160,6 @@ public class ExportImportStyleBookEntriesMVCResourceCommandTest {
 		JSONObject expectedFrontendTokensValuesJSONObject =
 			JSONFactoryUtil.createJSONObject(
 				styleBookEntry.getFrontendTokensValues());
-
 		JSONObject actualFrontendTokensValuesJSONObject =
 			JSONFactoryUtil.createJSONObject(
 				targetGroupStyleBookEntry.getFrontendTokensValues());
@@ -271,7 +269,6 @@ public class ExportImportStyleBookEntriesMVCResourceCommandTest {
 		JSONObject expectedFrontendTokensValuesJSONObject =
 			JSONFactoryUtil.createJSONObject(
 				updatedStyleBookEntry.getFrontendTokensValues());
-
 		JSONObject actualFrontendTokensValuesJSONObject =
 			JSONFactoryUtil.createJSONObject(
 				updatedTargetGroupStyleBookEntry.getFrontendTokensValues());
