@@ -167,7 +167,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 
 		File expectedFile = _generateZipFile(
 			"container/background_image/expected", valuesMap);
-
 		File inputFile = _generateZipFile(
 			"container/background_image/input", valuesMap);
 
@@ -180,7 +179,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 
 		File expectedFile = _generateZipFile(
 			"container/default/expected", null);
-
 		File inputFile = _generateZipFile("container/default/input", null);
 
 		_validateImportExport(expectedFile, inputFile);
@@ -191,7 +189,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 		throws Exception {
 
 		File expectedFile = _generateZipFile("container/empty/expected", null);
-
 		File inputFile = _generateZipFile("container/empty/input", null);
 
 		_validateImportExport(expectedFile, inputFile);
@@ -202,7 +199,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 		throws Exception {
 
 		File expectedFile = _generateZipFile("container/layout/expected", null);
-
 		File inputFile = _generateZipFile("container/layout/input", null);
 
 		_validateImportExport(expectedFile, inputFile);
@@ -213,7 +209,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 		throws Exception {
 
 		File expectedFile = _generateZipFile("container/link/expected", null);
-
 		File inputFile = _generateZipFile("container/link/input", null);
 
 		_validateImportExport(expectedFile, inputFile);
@@ -266,7 +261,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			"fragment/text_field/mapped_value/class_pk_reference/expected" +
 				"/fragment_available",
 			valuesMap);
-
 		File inputFile = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/input",
 			valuesMap);
@@ -294,7 +288,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			"fragment/text_field/mapped_value/class_pk_reference/expected" +
 				"/fragment_available",
 			valuesMap);
-
 		File inputFile = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/input",
 			valuesMap);
@@ -449,7 +442,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			"fragment/text_field/mapped_value/class_pk_reference/expected" +
 				"/fragment_available",
 			valuesMap);
-
 		File inputFile = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/input",
 			valuesMap);
@@ -475,7 +467,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			"fragment/text_field/mapped_value/class_pk_reference/expected" +
 				"/fragment_not_available",
 			valuesMap);
-
 		File inputFile = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/input",
 			valuesMap);
@@ -488,7 +479,6 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 		throws Exception {
 
 		File expectedFile = _generateZipFile("row/container/expected", null);
-
 		File inputFile = _generateZipFile("row/container/input", null);
 
 		_validateImportExport(expectedFile, inputFile);
