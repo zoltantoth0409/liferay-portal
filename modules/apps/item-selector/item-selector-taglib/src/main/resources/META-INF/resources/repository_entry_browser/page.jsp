@@ -325,7 +325,7 @@ ItemSelectorRepositoryEntryManagementToolbarDisplayContext itemSelectorRepositor
 									<liferay-ui:search-container-column-text
 										colspan="<%= 3 %>"
 									>
-										<div class="card card-horizontal card-interactive card-interactive-secondary ">
+										<div class="card card-horizontal card-interactive card-interactive-secondary">
 											<div class="card-body">
 												<div class="card-row">
 													<div class="autofit-col">
