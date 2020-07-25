@@ -898,9 +898,7 @@ public class DataDefinitionResourceImpl
 		for (DataDefinitionField dataDefinitionField :
 				existingDataDefinition.getDataDefinitionFields()) {
 
-			if (ArrayUtil.contains(
-					fieldNames, dataDefinitionField.getName())) {
-
+			if (ArrayUtil.contains(fieldNames, dataDefinitionField.getName())) {
 				continue;
 			}
 
@@ -919,8 +917,7 @@ public class DataDefinitionResourceImpl
 						"ddmStructureId"));
 
 			Map<String, DDMFormField> map =
-				fieldSetDDMStructure.getFullHierarchyDDMFormFieldsMap(
-					false);
+				fieldSetDDMStructure.getFullHierarchyDDMFormFieldsMap(false);
 
 			removedFieldNames.addAll(map.keySet());
 		}
