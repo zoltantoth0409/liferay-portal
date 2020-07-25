@@ -898,27 +898,31 @@ public class DataDefinitionResourceImpl
 		for (DataDefinitionField dataDefinitionField :
 				existingDataDefinition.getDataDefinitionFields()) {
 
-			if (!ArrayUtil.contains(
+			if (ArrayUtil.contains(
 					fieldNames, dataDefinitionField.getName())) {
 
-				removedFieldNames.add(dataDefinitionField.getName());
-
-				if (Objects.equals(
-						dataDefinitionField.getFieldType(), "fieldset")) {
-
-					DDMStructure fieldSetDDMStructure =
-						_ddmStructureLocalService.getDDMStructure(
-							MapUtil.getLong(
-								dataDefinitionField.getCustomProperties(),
-								"ddmStructureId"));
-
-					Map<String, DDMFormField> map =
-						fieldSetDDMStructure.getFullHierarchyDDMFormFieldsMap(
-							false);
-
-					removedFieldNames.addAll(map.keySet());
-				}
+				continue;
 			}
+
+			removedFieldNames.add(dataDefinitionField.getName());
+
+			if (!Objects.equals(
+					dataDefinitionField.getFieldType(), "fieldset")) {
+
+				continue;
+			}
+
+			DDMStructure fieldSetDDMStructure =
+				_ddmStructureLocalService.getDDMStructure(
+					MapUtil.getLong(
+						dataDefinitionField.getCustomProperties(),
+						"ddmStructureId"));
+
+			Map<String, DDMFormField> map =
+				fieldSetDDMStructure.getFullHierarchyDDMFormFieldsMap(
+					false);
+
+			removedFieldNames.addAll(map.keySet());
 		}
 
 		return removedFieldNames.toArray(new String[0]);
