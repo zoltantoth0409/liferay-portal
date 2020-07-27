@@ -71,7 +71,7 @@ public class UpgradeSchema extends UpgradeProcess {
 					ps2.setLong(10, rs.getLong("ddlRecordSetId"));
 					ps2.setLong(11, rs.getLong("ddmStructureId"));
 					ps2.setLong(12, rs.getLong("ddmStructureLayoutId"));
-					ps2.setString(13, _DEFAULT_VERSION);
+					ps2.setString(13, "1.0");
 
 					ps2.addBatch();
 				}
@@ -80,8 +80,6 @@ public class UpgradeSchema extends UpgradeProcess {
 			}
 		}
 	}
-
-	private static final String _DEFAULT_VERSION = "1.0";
 
 	private final CounterLocalService _counterLocalService;
 
