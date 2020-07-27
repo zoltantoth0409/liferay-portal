@@ -64,7 +64,7 @@ public class AppBuilderAppLocalServiceTest {
 	}
 
 	@Test
-	public void testUpdateAppBuilderAppIncrementVersion() throws Exception {
+	public void testUpdateAppBuilderApp() throws Exception {
 		AppBuilderApp appBuilderApp =
 			_appBuilderAppLocalService.addAppBuilderApp(
 				TestPropsValues.getGroupId(), TestPropsValues.getCompanyId(),
