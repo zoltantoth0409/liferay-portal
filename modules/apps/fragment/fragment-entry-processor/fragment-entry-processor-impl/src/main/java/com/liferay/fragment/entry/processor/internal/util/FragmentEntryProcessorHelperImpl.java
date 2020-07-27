@@ -443,7 +443,7 @@ public class FragmentEntryProcessorHelperImpl
 		String itemClassName) {
 
 		if (itemClassName.equals(String.class.getName())) {
-			return _DEFAULT_INFO_COLLECTION_TEXT_FORMATTER;
+			return _INFO_COLLECTION_TEXT_FORMATTER;
 		}
 
 		InfoCollectionTextFormatter<Object> infoCollectionTextFormatter =
@@ -453,14 +453,14 @@ public class FragmentEntryProcessorHelperImpl
 
 		if (infoCollectionTextFormatter == null) {
 			infoCollectionTextFormatter =
-				_DEFAULT_INFO_COLLECTION_TEXT_FORMATTER;
+				_INFO_COLLECTION_TEXT_FORMATTER;
 		}
 
 		return infoCollectionTextFormatter;
 	}
 
 	private static final InfoCollectionTextFormatter<Object>
-		_DEFAULT_INFO_COLLECTION_TEXT_FORMATTER =
+		_INFO_COLLECTION_TEXT_FORMATTER =
 			new CommaSeparatedInfoCollectionTextFormatter();
 
 	private static final Log _log = LogFactoryUtil.getLog(
