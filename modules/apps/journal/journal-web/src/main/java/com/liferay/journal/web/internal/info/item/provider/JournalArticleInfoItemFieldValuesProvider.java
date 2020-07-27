@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.display.template.PortletDisplayTemplate;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

@@ -452,8 +452,7 @@ public class FragmentEntryProcessorHelperImpl
 					InfoCollectionTextFormatter.class, itemClassName);
 
 		if (infoCollectionTextFormatter == null) {
-			infoCollectionTextFormatter =
-				_INFO_COLLECTION_TEXT_FORMATTER;
+			infoCollectionTextFormatter = _INFO_COLLECTION_TEXT_FORMATTER;
 		}
 
 		return infoCollectionTextFormatter;
