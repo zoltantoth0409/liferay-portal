@@ -309,10 +309,8 @@ public abstract class BaseAppBuilderAppMVCResourceCommandTestCase {
 			PortletConfigFactoryUtil.create(
 				_portletLocalService.getPortletById(AppBuilderPortletKeys.APPS),
 				null));
-
 		mockLiferayResourceRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE, mockLiferayResourceResponse);
-
 		mockLiferayResourceRequest.setAttribute(
 			WebKeys.THEME_DISPLAY,
 			new ThemeDisplay() {
