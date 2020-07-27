@@ -36,9 +36,9 @@ public class CommaSeparatedInfoCollectionTextFormatter
 		return stream.map(
 			collectionItem -> {
 				if (collectionItem instanceof Labeled) {
-					Labeled labeledCollectionItem = (Labeled)collectionItem;
+					Labeled collectionItemLabeled = (Labeled)collectionItem;
 
-					return labeledCollectionItem.getLabel(locale);
+					return collectionItemLabeled.getLabel(locale);
 				}
 
 				return collectionItem.toString();
