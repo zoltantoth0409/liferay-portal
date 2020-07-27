@@ -293,14 +293,13 @@ public class AppWorkflowResourceTest extends BaseAppWorkflowResourceTestCase {
 	}
 
 	private DDLRecord _addDDLRecord() throws Exception {
+		AppBuilderAppVersion latestAppBuilderAppVersion =
+			_appBuilderAppVersionLocalService.getLatestAppBuilderAppVersion(
+				_appBuilderApp.getAppBuilderAppId());
 		DDLRecord ddlRecord = _ddlRecordLocalService.addRecord(
 			testGroup.getCreatorUserId(), _ddlRecordSet.getGroupId(),
 			RandomTestUtil.nextLong(), _appBuilderApp.getDdlRecordSetId(),
 			StringPool.BLANK, 0, new ServiceContext());
-
-		AppBuilderAppVersion latestAppBuilderAppVersion =
-			_appBuilderAppVersionLocalService.getLatestAppBuilderAppVersion(
-				_appBuilderApp.getAppBuilderAppId());
 
 		_appBuilderAppDataRecordLinkLocalService.addAppBuilderAppDataRecordLink(
 			testGroup.getGroupId(), testGroup.getCompanyId(),
