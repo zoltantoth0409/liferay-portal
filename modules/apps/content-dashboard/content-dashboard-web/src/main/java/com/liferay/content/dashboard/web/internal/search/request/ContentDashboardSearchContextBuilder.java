@@ -56,7 +56,6 @@ public class ContentDashboardSearchContextBuilder {
 
 		searchContext.setAssetCategoryIds(
 			ParamUtil.getLongValues(_httpServletRequest, "assetCategoryId"));
-
 		searchContext.setAssetTagNames(
 			ParamUtil.getStringValues(_httpServletRequest, "assetTagId"));
 
