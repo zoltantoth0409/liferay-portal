@@ -68,12 +68,12 @@ public class AppWorkflowResourceImpl extends BaseAppWorkflowResourceImpl {
 		AppBuilderApp appBuilderApp =
 			_appBuilderAppLocalService.getAppBuilderApp(appId);
 
-		WorkflowDefinition workflowDefinition =
-			_appWorkflowResourceHelper.getWorkflowDefinition(appBuilderApp);
-
 		AppBuilderAppVersion latestAppBuilderAppVersion =
 			_appBuilderAppVersionLocalService.getLatestAppBuilderAppVersion(
 				appBuilderApp.getAppBuilderAppId());
+
+		WorkflowDefinition workflowDefinition =
+			_appWorkflowResourceHelper.getWorkflowDefinition(appBuilderApp);
 
 		return _toAppWorkflow(
 			latestAppBuilderAppVersion,
