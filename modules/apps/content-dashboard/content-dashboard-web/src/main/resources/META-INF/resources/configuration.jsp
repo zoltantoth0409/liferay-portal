@@ -38,7 +38,7 @@ ContentDashboardAdminConfigurationDisplayContext contentDashboardAdminConfigurat
 	<aui:input name="preferences--assetVocabularyNames--" type="hidden" />
 
 	<liferay-frontend:edit-form-body>
-		<liferay-ui:error key="emptyAssetVocabularyNames" message="select-at-least-one-vocabulary-to-be-shown-on-the-chart" />
+		<liferay-ui:error key="emptyAssetVocabularyNames" message="select-at-least-one-vocabulary-to-show-on-the-chart" />
 
 		<liferay-frontend:fieldset-group>
 			<liferay-frontend:fieldset>
