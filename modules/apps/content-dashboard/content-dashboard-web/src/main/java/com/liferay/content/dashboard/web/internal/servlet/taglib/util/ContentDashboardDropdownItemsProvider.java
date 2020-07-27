@@ -97,6 +97,8 @@ public class ContentDashboardDropdownItemsProvider {
 				return dropdownItem;
 			},
 			() -> {
+				DropdownItem dropdownItem = new DropdownItem();
+
 				ResourceURL resourceURL =
 					_liferayPortletResponse.createResourceURL();
 
@@ -107,8 +109,6 @@ public class ContentDashboardDropdownItemsProvider {
 					String.valueOf(contentDashboardItem.getClassPK()));
 				resourceURL.setResourceID(
 					"/content_dashboard/get_content_dashboard_item_info");
-
-				DropdownItem dropdownItem = new DropdownItem();
 
 				dropdownItem.setData(
 					HashMapBuilder.<String, Object>put(
