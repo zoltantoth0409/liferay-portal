@@ -385,7 +385,7 @@ public class ViewChangesDisplayContext {
 							modelClassNameId,
 							key -> JSONFactoryUtil.createJSONArray());
 
-						// Copy jsonObject to prevent appending children
+						// Copy JSON object to prevent appending children
 
 						jsonArray.put(
 							JSONUtil.put(
