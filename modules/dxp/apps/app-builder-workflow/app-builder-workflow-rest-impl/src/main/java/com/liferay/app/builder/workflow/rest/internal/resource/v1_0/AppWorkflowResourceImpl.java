@@ -89,12 +89,12 @@ public class AppWorkflowResourceImpl extends BaseAppWorkflowResourceImpl {
 	public AppWorkflow postAppWorkflow(Long appId, AppWorkflow appWorkflow)
 		throws Exception {
 
-		List<AppBuilderWorkflowTaskLink> appBuilderWorkflowTaskLinks =
-			new ArrayList<>();
-
 		AppBuilderAppVersion latestAppBuilderAppVersion =
 			_appBuilderAppVersionLocalService.getLatestAppBuilderAppVersion(
 				appId);
+
+		List<AppBuilderWorkflowTaskLink> appBuilderWorkflowTaskLinks =
+			new ArrayList<>();
 
 		if (Objects.nonNull(appWorkflow.getAppWorkflowTasks())) {
 			for (AppWorkflowTask appWorkflowTask :
