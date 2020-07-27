@@ -77,11 +77,13 @@ public class AppBuilderAppLocalServiceImpl
 		appBuilderApp.setNameMap(nameMap);
 		appBuilderApp.setScope(scope);
 
+		appBuilderApp = appBuilderAppPersistence.update(appBuilderApp);
+
 		_appBuilderAppVersionLocalService.addAppBuilderAppVersion(
 			groupId, companyId, userId, appBuilderApp.getAppBuilderAppId(),
 			ddlRecordSetId, ddmStructureId, ddmStructureLayoutId);
 
-		return appBuilderAppPersistence.update(appBuilderApp);
+		return appBuilderApp;
 	}
 
 	/**
@@ -127,6 +129,9 @@ public class AppBuilderAppLocalServiceImpl
 	public AppBuilderApp deleteAppBuilderApp(long appBuilderAppId)
 		throws PortalException {
 
+		AppBuilderApp appBuilderApp = appBuilderAppPersistence.remove(
+			appBuilderAppId);
+
 		List<AppBuilderAppDeployment> appBuilderAppDeployments =
 			_appBuilderAppDeploymentLocalService.getAppBuilderAppDeployments(
 				appBuilderAppId);
@@ -141,7 +146,7 @@ public class AppBuilderAppLocalServiceImpl
 		_appBuilderAppVersionLocalService.deleteAppBuilderAppVersions(
 			appBuilderAppId);
 
-		return appBuilderAppPersistence.remove(appBuilderAppId);
+		return appBuilderApp;
 	}
 
 	@Override
@@ -266,6 +271,17 @@ public class AppBuilderAppLocalServiceImpl
 		AppBuilderApp appBuilderApp = appBuilderAppPersistence.findByPrimaryKey(
 			appBuilderAppId);
 
+		appBuilderApp.setUserId(user.getUserId());
+		appBuilderApp.setUserName(user.getFullName());
+		appBuilderApp.setModifiedDate(new Date());
+		appBuilderApp.setActive(active);
+		appBuilderApp.setDdmStructureId(ddmStructureId);
+		appBuilderApp.setDdmStructureLayoutId(ddmStructureLayoutId);
+		appBuilderApp.setDeDataListViewId(deDataListViewId);
+		appBuilderApp.setNameMap(nameMap);
+
+		appBuilderApp = appBuilderAppPersistence.update(appBuilderApp);
+
 		if (!Objects.equals(
 				appBuilderApp.getDdmStructureLayoutId(),
 				ddmStructureLayoutId)) {
@@ -277,16 +293,7 @@ public class AppBuilderAppLocalServiceImpl
 				ddmStructureLayoutId);
 		}
 
-		appBuilderApp.setUserId(user.getUserId());
-		appBuilderApp.setUserName(user.getFullName());
-		appBuilderApp.setModifiedDate(new Date());
-		appBuilderApp.setActive(active);
-		appBuilderApp.setDdmStructureId(ddmStructureId);
-		appBuilderApp.setDdmStructureLayoutId(ddmStructureLayoutId);
-		appBuilderApp.setDeDataListViewId(deDataListViewId);
-		appBuilderApp.setNameMap(nameMap);
-
-		return appBuilderAppPersistence.update(appBuilderApp);
+		return appBuilderApp;
 	}
 
 	@Reference
