@@ -132,13 +132,13 @@ public class Page<T> {
 			}
 			else if (Objects.equals(jsonParserFieldName, "facets")) {
 				if (jsonParserFieldValue != null) {
-					page.setFacets(Stream.of(
-						toStrings((Object[])jsonParserFieldValue)
-					).map(
-						this::parseToMap
-					).map(
-						facets ->
-							new Facet(
+					page.setFacets(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							this::parseToMap
+						).map(
+							facets -> new Facet(
 								(String)facets.get("facetCriteria"),
 								Stream.of(
 									(Object[])facets.get("facetValues")
@@ -147,15 +147,13 @@ public class Page<T> {
 								).map(
 									this::parseToMap
 								).map(
-									facetValues -> new Facet.FacetValue(
-										Integer.valueOf((String)facetValues.get("numberOfOccurrences")), (String)facetValues.get("term"))
-										).collect(
+									facetValues -> new Facet.FacetValue(Integer.valueOf((String)facetValues.get("numberOfOccurrences")), (String)facetValues.get("term"))
+								).collect(
 									Collectors.toList()
-								)
-							)
-					).collect(
-						Collectors.toList()
-					));
+								))
+						).collect(
+							Collectors.toList()
+						));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "items")) {
