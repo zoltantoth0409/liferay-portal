@@ -55,6 +55,10 @@ AccountUserDisplay accountUserDisplay = AccountUserDisplay.of(selUser);
 			"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
 		).build();
 
+		if (Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()))) {
+			context.put("blockedDomains", AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()));
+		}
+
 		if (accountUserDisplay.isValidateEmailAddress()) {
 			context.put("validDomains", accountUserDisplay.getValidDomainsString());
 
@@ -65,10 +69,6 @@ AccountUserDisplay accountUserDisplay = AccountUserDisplay.of(selUser);
 			viewValidDomainsURL.setWindowState(LiferayWindowState.POP_UP);
 
 			context.put("viewValidDomainsURL", viewValidDomainsURL.toString());
-		}
-
-		if (Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()))) {
-			context.put("blockedDomains", AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()));
 		}
 		%>
 
