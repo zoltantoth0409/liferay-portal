@@ -233,18 +233,6 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 		return contentDashboardItemType.getLabel(locale);
 	}
 
-	private String _getViewURL(
-		HttpServletRequest httpServletRequest, String url) {
-
-		String backURL = ParamUtil.getString(httpServletRequest, "backURL");
-
-		if (Validator.isNotNull(backURL)) {
-			return _http.setParameter(url, "p_l_back_url", backURL);
-		}
-
-		return url;
-	}
-
 	private JSONArray _getVersionsJSONArray(
 		ContentDashboardItem contentDashboardItem, Locale locale) {
 
@@ -257,6 +245,18 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 			stream.map(
 				ContentDashboardItem.Version::toJSONObject
 			).toArray());
+	}
+
+	private String _getViewURL(
+		HttpServletRequest httpServletRequest, String url) {
+
+		String backURL = ParamUtil.getString(httpServletRequest, "backURL");
+
+		if (Validator.isNotNull(backURL)) {
+			return _http.setParameter(url, "p_l_back_url", backURL);
+		}
+
+		return url;
 	}
 
 	private JSONArray _getViewURLsJSONArray(
@@ -279,8 +279,7 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 				).put(
 					"languageId", _language.getBCP47LanguageId(entry.getKey())
 				).put(
-					"viewURL",
-					_getViewURL(httpServletRequest, entry.getValue())
+					"viewURL", _getViewURL(httpServletRequest, entry.getValue())
 				)
 			).toArray());
 	}
