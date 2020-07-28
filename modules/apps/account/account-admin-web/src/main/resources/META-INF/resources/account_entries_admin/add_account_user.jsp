@@ -128,8 +128,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 <c:if test="<%= !Objects.equals(accountEntryDisplay.getType(), AccountConstants.ACCOUNT_ENTRY_TYPE_PERSON) && (accountEntryDisplay.isValidateUserEmailAddress(themeDisplay) || Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()))) %>">
 
 	<%
-	HashMap<String, Object> context = HashMapBuilder.<String, Object>put(
-			"accountEntryNames", accountEntryDisplay.getName()
+	Map<String, Object> context = HashMapBuilder.<String, Object>put(
+		"accountEntryNames", accountEntryDisplay.getName()
 	).build();
 
 	if (accountEntryDisplay.isValidateUserEmailAddress(themeDisplay)) {
