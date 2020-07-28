@@ -247,13 +247,10 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
-		int visibilityType;
+		int visibilityType = AssetVocabularyConstants.VISIBILITY_TYPE_PUBLIC;
 
 		if (ParamUtil.getBoolean(actionRequest, "internalUse")) {
 			visibilityType = AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL;
-		}
-		else {
-			visibilityType = AssetVocabularyConstants.VISIBILITY_TYPE_PUBLIC;
 		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
