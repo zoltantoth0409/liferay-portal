@@ -424,7 +424,7 @@ public class WorkflowDefinitionLinkDisplayContext {
 	public List<WorkflowDefinition> getWorkflowDefinitions()
 		throws PortalException {
 
-		if (Objects.nonNull(_workflowDefinitions)) {
+		if (_workflowDefinitions != null) {
 			return _workflowDefinitions;
 		}
 
