@@ -52,7 +52,7 @@ AccountUserDisplay accountUserDisplay = AccountUserDisplay.of(selUser);
 
 		<%
 		HashMap<String, Object> context = HashMapBuilder.<String, Object>put(
-				"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
+			"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
 		).build();
 
 		if (accountUserDisplay.isValidateEmailAddress()) {

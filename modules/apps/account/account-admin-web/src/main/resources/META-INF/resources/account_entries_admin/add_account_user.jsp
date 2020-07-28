@@ -132,6 +132,10 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 		"accountEntryNames", accountEntryDisplay.getName()
 	).build();
 
+	if (Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()))) {
+		context.put("blockedDomains", AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()));
+	}
+
 	if (accountEntryDisplay.isValidateUserEmailAddress(themeDisplay)) {
 		context.put("validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA));
 
@@ -142,10 +146,6 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 		viewValidDomainsURL.setWindowState(LiferayWindowState.POP_UP);
 
 		context.put("viewValidDomainsURL", viewValidDomainsURL.toString());
-	}
-
-	if (Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()))) {
-		context.put("blockedDomains", AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId()));
 	}
 	%>
 
