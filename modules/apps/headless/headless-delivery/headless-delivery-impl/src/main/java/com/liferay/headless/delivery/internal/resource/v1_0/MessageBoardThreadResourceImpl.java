@@ -81,7 +81,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -142,7 +141,7 @@ public class MessageBoardThreadResourceImpl
 		MBCategory mbCategory = _mbCategoryService.getCategory(
 			messageBoardSectionId);
 
-		HashMap<String, Map<String, String>> actions =
+		Map<String, Map<String, String>> actions =
 			HashMapBuilder.<String, Map<String, String>>put(
 				"create",
 				addAction(
