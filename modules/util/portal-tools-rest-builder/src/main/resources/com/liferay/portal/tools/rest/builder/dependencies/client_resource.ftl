@@ -226,8 +226,9 @@ public interface ${schemaName}Resource {
 
 				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 					<#if stringUtil.equals(javaMethodParameter.parameterName, "aggregation")>
-						if (aggregation != null && aggregation.getTerms() != null) {
+						if ((aggregation != null) && (aggregation.getTerms() != null)) {
 							Map<String, String> terms = aggregation.getTerms();
+
 							httpInvoker.parameter("terms", String.join(",", terms.values()));
 						}
 					<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
