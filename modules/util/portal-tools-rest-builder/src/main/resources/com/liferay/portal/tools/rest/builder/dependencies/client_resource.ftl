@@ -1,5 +1,7 @@
 package ${configYAML.apiPackagePath}.client.resource.${escapedVersion};
 
+import ${configYAML.apiPackagePath}.client.aggregation.Aggregation;
+
 <#list globalEnumSchemas?keys as globalEnumSchemaName>
 	import ${configYAML.apiPackagePath}.client.constant.${escapedVersion}.${globalEnumSchemaName};
 </#list>
@@ -14,7 +16,6 @@ package ${configYAML.apiPackagePath}.client.resource.${escapedVersion};
 
 import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
-import ${configYAML.apiPackagePath}.client.aggregation.Aggregation;
 import ${configYAML.apiPackagePath}.client.pagination.Page;
 import ${configYAML.apiPackagePath}.client.pagination.Pagination;
 import ${configYAML.apiPackagePath}.client.permission.Permission;
