@@ -51,7 +51,7 @@ AccountUserDisplay accountUserDisplay = AccountUserDisplay.of(selUser);
 	<c:if test="<%= accountUserDisplay.isValidateEmailAddress() || Validator.isNotNull(AccountUserDisplay.getBlockedDomains(themeDisplay.getCompanyId())) %>">
 
 		<%
-		HashMap<String, Object> context = HashMapBuilder.<String, Object>put(
+		Map<String, Object> context = HashMapBuilder.<String, Object>put(
 			"accountEntryNames", accountUserDisplay.getAccountEntryNamesString(request)
 		).build();
 
