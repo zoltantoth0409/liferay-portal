@@ -17,20 +17,18 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String headerTitle = HtmlUtil.escape(layout.getName(locale));
-
-String layoutFriendlyURL = layout.getFriendlyURL();
-
-String portletId = ParamUtil.getString(request, "p_p_id");
-
-if (Validator.isNotNull(portletId) && layout.isSystem() && !layout.isTypeControlPanel() && layoutFriendlyURL.equals(PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL)) {
-	headerTitle = PortalUtil.getPortletTitle(portletId, locale);
-}
-
 String cssClass = "control-menu-nav-item";
 
 if (!Objects.equals(layout.getType(), LayoutConstants.TYPE_COLLECTION)) {
 	cssClass += " control-menu-nav-item-content";
+}
+
+String headerTitle = HtmlUtil.escape(layout.getName(locale));
+
+String portletId = ParamUtil.getString(request, "p_p_id");
+
+if (Validator.isNotNull(portletId) && layout.isSystem() && !layout.isTypeControlPanel() && Objects.equals(layout.getFriendlyURL(), PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL)) {
+	headerTitle = PortalUtil.getPortletTitle(portletId, locale);
 }
 %>
 
