@@ -65,17 +65,17 @@ public class AppWorkflowResourceImpl extends BaseAppWorkflowResourceImpl {
 
 	@Override
 	public void deleteAppWorkflow(Long appId) throws Exception {
+		_appBuilderWorkflowTaskLinkLocalService.
+			deleteAppBuilderWorkflowTaskLinks(appId);
+
+		_appWorkflowResourceHelper.undeployWorkflowDefinition(
+			appId, contextCompany.getCompanyId(), contextUser.getUserId());
+
 		_workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
 			contextCompany.getCompanyId(), 0,
 			ResourceActionsUtil.getCompositeModelName(
 				AppBuilderApp.class.getName(), DDLRecord.class.getName()),
 			appId, 0);
-
-		_appWorkflowResourceHelper.undeployWorkflowDefinition(
-			appId, contextCompany.getCompanyId(), contextUser.getUserId());
-
-		_appBuilderWorkflowTaskLinkLocalService.
-			deleteAppBuilderWorkflowTaskLinks(appId);
 	}
 
 	@Override
