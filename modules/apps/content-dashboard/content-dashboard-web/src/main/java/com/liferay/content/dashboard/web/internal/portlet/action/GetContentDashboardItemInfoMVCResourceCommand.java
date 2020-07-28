@@ -233,7 +233,7 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 		return contentDashboardItemType.getLabel(locale);
 	}
 
-	private String _getURLWithBackURL(
+	private String _getViewURL(
 		HttpServletRequest httpServletRequest, String url) {
 
 		String backURL = ParamUtil.getString(httpServletRequest, "backURL");
@@ -280,7 +280,7 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 					"languageId", _language.getBCP47LanguageId(entry.getKey())
 				).put(
 					"viewURL",
-					_getURLWithBackURL(httpServletRequest, entry.getValue())
+					_getViewURL(httpServletRequest, entry.getValue())
 				)
 			).toArray());
 	}

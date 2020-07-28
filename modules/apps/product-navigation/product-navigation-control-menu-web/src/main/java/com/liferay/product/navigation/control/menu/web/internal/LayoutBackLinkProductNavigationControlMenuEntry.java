@@ -65,8 +65,6 @@ public class LayoutBackLinkProductNavigationControlMenuEntry
 
 	@Override
 	public String getURL(HttpServletRequest httpServletRequest) {
-
-
 		return _portal.escapeRedirect(
 			ParamUtil.getString(httpServletRequest, "p_l_back_url"));
 	}
