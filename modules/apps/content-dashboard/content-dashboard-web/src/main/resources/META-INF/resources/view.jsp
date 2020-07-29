@@ -154,7 +154,7 @@ ContentDashboardAdminManagementToolbarDisplayContext contentDashboardAdminManage
 									List<String> assetCategories = contentDashboardAdminDisplayContext.getAssetCategoryTitles(contentDashboardItem, assetVocabulary.getVocabularyId());
 									%>
 
-									<c:if test="<%= assetCategories.size() > 0 %>">
+									<c:if test="<%= !assetCategories.isEmpty() %>">
 										<clay:label
 											displayType="secondary"
 											large="<%= true %>"
