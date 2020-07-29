@@ -60,7 +60,7 @@ export default ({
 					{totalCount > maxNumberOfSearchResults && (
 						<div className="text-secondary">
 							{Liferay.Language.get(
-								'try-to-refine-the-search-criteria-to-reduce-results'
+								'refine-the-search-criteria-to-reduce-results'
 							)}
 						</div>
 					)}
