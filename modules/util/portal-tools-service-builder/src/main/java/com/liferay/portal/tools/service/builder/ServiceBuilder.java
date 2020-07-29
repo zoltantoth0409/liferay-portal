@@ -6572,7 +6572,7 @@ public class ServiceBuilder {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
 						"Finder ", finderName, " for entity ", entityName,
-						" requires an additional company scope field"));
+						" needs a finder column for \"companyId\""));
 			}
 
 			entityFinders.add(
