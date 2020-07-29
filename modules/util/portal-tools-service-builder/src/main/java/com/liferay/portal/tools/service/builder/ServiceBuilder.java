@@ -5709,7 +5709,7 @@ public class ServiceBuilder {
 			return false;
 		}
 
-		String[] finderIdColumnNames = Stream.of(
+		String[] finderColumnNames = Stream.of(
 			finderColumnElements.toArray(new Element[0])
 		).map(
 			finderColumnElement -> finderColumnElement.attributeValue("name")
@@ -5721,8 +5721,8 @@ public class ServiceBuilder {
 			String[]::new
 		);
 
-		if ((finderIdColumnNames.length == 1) &&
-			finderIdColumnNames[0].equals("classNameId")) {
+		if ((finderColumnNames.length == 1) &&
+			finderColumnNames[0].equals("classNameId")) {
 
 			return true;
 		}
