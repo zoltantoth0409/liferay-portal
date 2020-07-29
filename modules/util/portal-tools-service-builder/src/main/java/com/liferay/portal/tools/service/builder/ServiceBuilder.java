@@ -5690,7 +5690,7 @@ public class ServiceBuilder {
 		return false;
 	}
 
-	private boolean _isClassNameIdCompanyFinder(
+	private boolean _requiresCompanyIdInFinder(
 		List<Element> columnElements, List<Element> finderColumnElements) {
 
 		if (!isVersionGTE_7_3_0()) {
@@ -6566,7 +6566,7 @@ public class ServiceBuilder {
 				finderEntityColumns.add(entityColumn);
 			}
 
-			if (_isClassNameIdCompanyFinder(
+			if (_requiresCompanyIdInFinder(
 					columnElements, finderColumnElements)) {
 
 				throw new IllegalArgumentException(
