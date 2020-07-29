@@ -5680,16 +5680,6 @@ public class ServiceBuilder {
 		return Version.getInstance(version);
 	}
 
-	private boolean _hasHttpMethods(JavaClass javaClass) {
-		for (JavaMethod javaMethod : _getMethods(javaClass)) {
-			if (javaMethod.isPublic() && isCustomMethod(javaMethod)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	private boolean _hasFinderWithMissingCompanyId(
 		List<Element> columnElements, List<Element> finderColumnElements) {
 
@@ -5725,6 +5715,16 @@ public class ServiceBuilder {
 			finderColumnNames[0].equals("classNameId")) {
 
 			return true;
+		}
+
+		return false;
+	}
+
+	private boolean _hasHttpMethods(JavaClass javaClass) {
+		for (JavaMethod javaMethod : _getMethods(javaClass)) {
+			if (javaMethod.isPublic() && isCustomMethod(javaMethod)) {
+				return true;
+			}
 		}
 
 		return false;
