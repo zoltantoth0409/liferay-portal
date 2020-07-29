@@ -5680,7 +5680,7 @@ public class ServiceBuilder {
 		return Version.getInstance(version);
 	}
 
-	private boolean _hasFinderWithMissingCompanyId(
+	private boolean _hasFinderThatIsNotUniqueByCompany(
 		List<Element> columnElements, List<Element> finderColumnElements) {
 
 		if (!isVersionGTE_7_3_0()) {
@@ -6566,13 +6566,14 @@ public class ServiceBuilder {
 				finderEntityColumns.add(entityColumn);
 			}
 
-			if (_hasFinderWithMissingCompanyId(
+			if (_hasFinderThatIsNotUniqueByCompany(
 					columnElements, finderColumnElements)) {
 
 				throw new IllegalArgumentException(
 					StringBundler.concat(
 						"Finder ", finderName, " for entity ", entityName,
-						" needs a finder column for \"companyId\""));
+						" needs an additional ID column to make it unique by ",
+						"company"));
 			}
 
 			entityFinders.add(
