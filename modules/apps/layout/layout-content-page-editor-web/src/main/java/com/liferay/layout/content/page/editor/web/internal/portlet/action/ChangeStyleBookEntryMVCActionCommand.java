@@ -54,13 +54,13 @@ public class ChangeStyleBookEntryMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long styleBookEntryId = ParamUtil.getLong(
-			actionRequest, "styleBookEntryId");
-
 		Layout layout = _layoutLocalService.fetchLayout(themeDisplay.getPlid());
 
 		LayoutPermissionUtil.check(
 			themeDisplay.getPermissionChecker(), layout, ActionKeys.UPDATE);
+
+		long styleBookEntryId = ParamUtil.getLong(
+			actionRequest, "styleBookEntryId");
 
 		_layoutLocalService.updateStyleBookEntryId(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
