@@ -107,11 +107,11 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 	public List<InfoItemCapability> getInfoItemCapabilities(
 		String itemClassName) {
 
-		InfoItemCapabilitiesProvider itemCapabilitiesProvider =
+		InfoItemCapabilitiesProvider infoItemCapabilitiesProvider =
 			getFirstInfoItemService(
 				InfoItemCapabilitiesProvider.class, itemClassName);
 
-		return itemCapabilitiesProvider.getInfoItemCapabilities();
+		return infoItemCapabilitiesProvider.getInfoItemCapabilities();
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 
 	@Override
 	public List<InfoItemClassDetails> getInfoItemClassDetails(
-		InfoItemCapability itemCapability) {
+		InfoItemCapability infoItemCapability) {
 
 		List<InfoItemClassDetails> itemClassDetails = new ArrayList<>();
 
@@ -139,17 +139,17 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 			getInfoItemClassDetails(InfoItemCapabilitiesProvider.class);
 
 		for (InfoItemClassDetails curItemClassDetails : allItemClassDetails) {
-			InfoItemCapabilitiesProvider itemCapabilitiesProvider =
+			InfoItemCapabilitiesProvider infoItemCapabilitiesProvider =
 				getFirstInfoItemService(
 					InfoItemCapabilitiesProvider.class,
 					curItemClassDetails.getClassName());
 
-			List<InfoItemCapability> itemCapabilities =
-				itemCapabilitiesProvider.getInfoItemCapabilities();
+			List<InfoItemCapability> infoItemCapabilities =
+				infoItemCapabilitiesProvider.getInfoItemCapabilities();
 
-			if (itemCapabilities.contains(itemCapability) &&
+			if (infoItemCapabilities.contains(infoItemCapability) &&
 				_validateItemCapability(
-					itemCapability, curItemClassDetails.getClassName())) {
+					infoItemCapability, curItemClassDetails.getClassName())) {
 
 				itemClassDetails.add(curItemClassDetails);
 			}
@@ -244,12 +244,12 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 	}
 
 	private boolean _validateItemCapability(
-		InfoItemCapability itemCapability, String itemClassName) {
+		InfoItemCapability infoItemCapability, String itemClassName) {
 
 		List<String> missingServiceClassNames = new ArrayList<>();
 
 		for (Class<?> serviceClass :
-				itemCapability.getRequiredServiceClasses()) {
+				infoItemCapability.getRequiredServiceClasses()) {
 
 			if (getFirstInfoItemService(serviceClass, itemClassName) == null) {
 				missingServiceClassNames.add(serviceClass.getName());
@@ -260,7 +260,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 			StringBundler sb = new StringBundler(7);
 
 			sb.append("Failed validation of capability ");
-			sb.append(itemCapability.getKey());
+			sb.append(infoItemCapability.getKey());
 			sb.append(" for item class name ");
 			sb.append(itemClassName);
 			sb.append(". An implementation for the following services is ");
