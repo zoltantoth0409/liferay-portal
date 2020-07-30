@@ -81,7 +81,7 @@ public class JenkinsCohort {
 	}
 
 	public void update() {
-		Properties buildProperties;
+		Properties buildProperties = null;
 
 		try {
 			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
@@ -91,13 +91,12 @@ public class JenkinsCohort {
 				"Unable to get Jenkins properties", ioException);
 		}
 
+		List<Callable<Void>> callables = new ArrayList<>();
+		final List<String> jobURLs = new ArrayList<>();
+
 		List<JenkinsMaster> jenkinsMasters =
 			JenkinsResultsParserUtil.getJenkinsMasters(
 				buildProperties, 16, getName());
-
-		final List<String> jobURLs = new ArrayList<>();
-
-		List<Callable<Void>> callables = new ArrayList<>(jenkinsMasters.size());
 
 		for (final JenkinsMaster jenkinsMaster : jenkinsMasters) {
 			Callable<Void> callable = new Callable<Void>() {
