@@ -61,13 +61,11 @@ public class AccountEntryModelPreFilterContributor
 			"accountGroupIds");
 
 		if (ArrayUtil.isNotEmpty(accountGroupIds)) {
-			TermsFilter accountEntryTermsFilter = new TermsFilter(
-				"accountGroupIds");
+			TermsFilter termsFilter = new TermsFilter("accountGroupIds");
 
-			accountEntryTermsFilter.addValues(
-				ArrayUtil.toStringArray(accountGroupIds));
+			termsFilter.addValues(ArrayUtil.toStringArray(accountGroupIds));
 
-			booleanFilter.add(accountEntryTermsFilter, BooleanClauseOccur.MUST);
+			booleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 		}
 	}
 
@@ -78,13 +76,11 @@ public class AccountEntryModelPreFilterContributor
 			"accountUserIds");
 
 		if (ArrayUtil.isNotEmpty(accountUserIds)) {
-			TermsFilter accountEntryTermsFilter = new TermsFilter(
-				"accountUserIds");
+			TermsFilter termsFilter = new TermsFilter("accountUserIds");
 
-			accountEntryTermsFilter.addValues(
-				ArrayUtil.toStringArray(accountUserIds));
+			termsFilter.addValues(ArrayUtil.toStringArray(accountUserIds));
 
-			booleanFilter.add(accountEntryTermsFilter, BooleanClauseOccur.MUST);
+			booleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 		}
 	}
 
@@ -94,11 +90,11 @@ public class AccountEntryModelPreFilterContributor
 		String[] domains = (String[])searchContext.getAttribute("domains");
 
 		if (ArrayUtil.isNotEmpty(domains)) {
-			TermsFilter domainTermsFilter = new TermsFilter("domains");
+			TermsFilter termsFilter = new TermsFilter("domains");
 
-			domainTermsFilter.addValues(domains);
+			termsFilter.addValues(domains);
 
-			booleanFilter.add(domainTermsFilter, BooleanClauseOccur.MUST);
+			booleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 		}
 	}
 
@@ -109,13 +105,11 @@ public class AccountEntryModelPreFilterContributor
 			"organizationIds");
 
 		if (ArrayUtil.isNotEmpty(organizationIds)) {
-			TermsFilter accountEntryTermsFilter = new TermsFilter(
-				"organizationIds");
+			TermsFilter termsFilter = new TermsFilter("organizationIds");
 
-			accountEntryTermsFilter.addValues(
-				ArrayUtil.toStringArray(organizationIds));
+			termsFilter.addValues(ArrayUtil.toStringArray(organizationIds));
 
-			booleanFilter.add(accountEntryTermsFilter, BooleanClauseOccur.MUST);
+			booleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 		}
 	}
 
