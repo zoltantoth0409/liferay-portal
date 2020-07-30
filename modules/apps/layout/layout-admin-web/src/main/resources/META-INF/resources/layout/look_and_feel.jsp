@@ -157,7 +157,7 @@ else {
 			displayType="warning"
 			elementClasses="hide"
 			id='<%= liferayPortletResponse.getNamespace() + "styleBookWarning" %>'
-			message="style-book-may-not-work-as-expected-if-theme-is-changed"
+			message="style-book-may-not-work-as-expected-if-the-theme-is-changed"
 		/>
 	</c:if>
 
