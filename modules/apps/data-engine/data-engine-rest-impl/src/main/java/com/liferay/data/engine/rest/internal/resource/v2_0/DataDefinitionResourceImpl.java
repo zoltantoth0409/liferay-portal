@@ -766,14 +766,29 @@ public class DataDefinitionResourceImpl
 		LocaleThreadLocal.setThemeDisplayLocale(locale);
 
 		try {
-			Locale defaultLocale = _getDefaultLocale();
+			Set<Locale> availableLocales = null;
+
+			DDMForm ddmForm = _getDDMForm();
+
+			if (ddmForm != null) {
+				availableLocales = ddmForm.getAvailableLocales();
+			}
+			else {
+				availableLocales = Collections.singleton(
+					Optional.ofNullable(
+						LocaleThreadLocal.getSiteDefaultLocale()
+					).orElse(
+						LocaleThreadLocal.getDefaultLocale()
+					));
+			}
 
 			DDMForm ddmFormFieldTypeSettingsDDMForm = DDMFormFactory.create(
 				ddmFormFieldType.getDDMFormFieldTypeSettings());
 
 			ddmFormFieldTypeSettingsDDMForm.setAvailableLocales(
-				_getAvailableLocales());
-			ddmFormFieldTypeSettingsDDMForm.setDefaultLocale(defaultLocale);
+				availableLocales);
+			ddmFormFieldTypeSettingsDDMForm.setDefaultLocale(
+				_getDefaultLocale());
 
 			DDMFormRenderingContext ddmFormRenderingContext =
 				new DDMFormRenderingContext();
@@ -789,7 +804,7 @@ public class DataDefinitionResourceImpl
 
 			ddmFormRenderingContext.setHttpServletRequest(
 				contextHttpServletRequest);
-			ddmFormRenderingContext.setLocale(defaultLocale);
+			ddmFormRenderingContext.setLocale(_getDefaultLocale());
 			ddmFormRenderingContext.setPortletNamespace(
 				_portal.getPortletNamespace(
 					_portal.getPortletId(contextHttpServletRequest)));
@@ -813,22 +828,6 @@ public class DataDefinitionResourceImpl
 		}
 
 		return null;
-	}
-
-	private Set<Locale> _getAvailableLocales() {
-		DDMForm ddmForm = _getDDMForm();
-
-		if (ddmForm != null) {
-			return ddmForm.getAvailableLocales();
-		}
-
-		Locale defaultLocale = Optional.ofNullable(
-			LocaleThreadLocal.getSiteDefaultLocale()
-		).orElse(
-			LocaleThreadLocal.getDefaultLocale()
-		);
-
-		return Collections.singleton(defaultLocale);
 	}
 
 	private String _getDataEngineNativeObjectFieldName(
@@ -864,11 +863,8 @@ public class DataDefinitionResourceImpl
 
 	private DDMForm _getDDMForm() {
 		try {
-			long ddmStructureId = ParamUtil.getLong(
-				contextHttpServletRequest, "ddmStructureId");
-
 			DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
-				ddmStructureId);
+				ParamUtil.getLong(contextHttpServletRequest, "ddmStructureId"));
 
 			if (ddmStructure == null) {
 				return null;
@@ -880,9 +876,9 @@ public class DataDefinitionResourceImpl
 			if (_log.isDebugEnabled()) {
 				_log.debug(exception, exception);
 			}
-
-			return null;
 		}
+
+		return null;
 	}
 
 	private long _getDefaultDataLayoutId(long dataDefinitionId)
