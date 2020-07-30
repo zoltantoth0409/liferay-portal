@@ -147,7 +147,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 				infoItemCapabilitiesProvider.getInfoItemCapabilities();
 
 			if (infoItemCapabilities.contains(infoItemCapability) &&
-				_validateItemCapability(
+				_validateInfoItemCapability(
 					infoItemCapability,
 					curInfoItemClassDetails.getClassName())) {
 
@@ -243,7 +243,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 		return infoItemClassDetails;
 	}
 
-	private boolean _validateItemCapability(
+	private boolean _validateInfoItemCapability(
 		InfoItemCapability infoItemCapability, String itemClassName) {
 
 		List<String> missingServiceClassNames = new ArrayList<>();
