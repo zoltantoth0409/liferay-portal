@@ -135,11 +135,8 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 
 		List<InfoItemClassDetails> infoItemClassDetails = new ArrayList<>();
 
-		List<InfoItemClassDetails> allInfoItemClassDetails =
-			getInfoItemClassDetails(InfoItemCapabilitiesProvider.class);
-
 		for (InfoItemClassDetails curInfoItemClassDetails :
-				allInfoItemClassDetails) {
+				getInfoItemClassDetails(InfoItemCapabilitiesProvider.class)) {
 
 			InfoItemCapabilitiesProvider infoItemCapabilitiesProvider =
 				getFirstInfoItemService(
