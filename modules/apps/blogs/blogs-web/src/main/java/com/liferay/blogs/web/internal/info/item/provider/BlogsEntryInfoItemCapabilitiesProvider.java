@@ -18,8 +18,8 @@ import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.info.item.capability.InfoItemCapability;
 import com.liferay.info.item.provider.InfoItemCapabilitiesProvider;
 import com.liferay.layout.page.template.info.item.capability.DisplayPageInfoItemCapability;
+import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -33,11 +33,7 @@ public class BlogsEntryInfoItemCapabilitiesProvider
 
 	@Override
 	public List<InfoItemCapability> getInfoItemCapabilities() {
-		ArrayList<InfoItemCapability> infoItemCapabilities = new ArrayList<>();
-
-		infoItemCapabilities.add(DisplayPageInfoItemCapability.INSTANCE);
-
-		return infoItemCapabilities;
+		return ListUtil.fromArray(DisplayPageInfoItemCapability.INSTANCE);
 	}
 
 }

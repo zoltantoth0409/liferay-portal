@@ -42,10 +42,10 @@ import com.liferay.info.item.provider.InfoItemObjectProvider;
 import com.liferay.info.localized.InfoLocalizedValue;
 import com.liferay.layout.page.template.info.item.capability.DisplayPageInfoItemCapability;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -143,11 +143,7 @@ public class InfoDisplayContributorWrapper
 
 	@Override
 	public List<InfoItemCapability> getInfoItemCapabilities() {
-		ArrayList<InfoItemCapability> infoItemCapabilities = new ArrayList<>();
-
-		infoItemCapabilities.add(DisplayPageInfoItemCapability.INSTANCE);
-
-		return infoItemCapabilities;
+		return ListUtil.fromArray(DisplayPageInfoItemCapability.INSTANCE);
 	}
 
 	@Override
