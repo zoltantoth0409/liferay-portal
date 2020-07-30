@@ -572,7 +572,6 @@ public class ContentPageLayoutEditorDisplayContext
 		}
 
 		String collectionPK = layout.getTypeSettingsProperty("collectionPK");
-
 		String collectionType = layout.getTypeSettingsProperty(
 			"collectionType");
 
