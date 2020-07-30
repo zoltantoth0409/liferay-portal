@@ -144,7 +144,6 @@ public class AnalyticsReportsContentDashboardItemActionProviderTest {
 				"_com_liferay_analytics_reports_web_internal_portlet_" +
 					"AnalyticsReportsPortlet_classNameId",
 				false));
-
 		Assert.assertEquals(
 			String.valueOf(infoDisplayObjectProvider.getClassPK()),
 			_http.getParameter(
@@ -220,13 +219,11 @@ public class AnalyticsReportsContentDashboardItemActionProviderTest {
 			AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER,
 			_infoDisplayContributor.getInfoDisplayObjectProvider(
 				_journalArticle.getResourcePrimKey()));
-
 		mockHttpServletRequest.setAttribute(
 			WebKeys.LAYOUT_ASSET_ENTRY,
 			_assetEntryLocalService.getEntry(
 				JournalArticle.class.getName(),
 				_journalArticle.getResourcePrimKey()));
-
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY,
 			_getThemeDisplay(mockHttpServletRequest, user));
