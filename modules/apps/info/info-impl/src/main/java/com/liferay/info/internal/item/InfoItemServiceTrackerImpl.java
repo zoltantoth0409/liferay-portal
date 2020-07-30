@@ -118,11 +118,11 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 	public <P> List<InfoItemClassDetails> getInfoItemClassDetails(
 		Class<P> serviceClass) {
 
-		List<String> itemClassNames = getInfoItemClassNames(serviceClass);
+		List<String> infoItemClassNames = getInfoItemClassNames(serviceClass);
 
-		Stream<String> itemClassNamesStream = itemClassNames.stream();
+		Stream<String> infoItemClassNamesStream = infoItemClassNames.stream();
 
-		return itemClassNamesStream.map(
+		return infoItemClassNamesStream.map(
 			itemClassName -> _getInfoItemClassDetails(itemClassName)
 		).collect(
 			Collectors.toList()
