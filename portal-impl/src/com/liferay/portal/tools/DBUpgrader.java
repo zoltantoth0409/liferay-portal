@@ -209,7 +209,9 @@ public class DBUpgrader {
 		return buildNumber;
 	}
 
-	private static int _getReleaseColumnValue(String columnName) throws Exception {
+	private static int _getReleaseColumnValue(String columnName)
+		throws Exception {
+
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select " + columnName +
