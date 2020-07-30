@@ -229,7 +229,7 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 			getFirstInfoItemService(
 				InfoItemClassDetailsProvider.class, itemClassName);
 
-		InfoItemClassDetails infoItemClassDetails;
+		InfoItemClassDetails infoItemClassDetails = null;
 
 		if (infoItemClassDetailsProvider != null) {
 			infoItemClassDetails =
