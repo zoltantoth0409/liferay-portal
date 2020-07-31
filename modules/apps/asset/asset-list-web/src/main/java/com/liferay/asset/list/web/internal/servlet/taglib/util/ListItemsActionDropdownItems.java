@@ -90,11 +90,11 @@ public class ListItemsActionDropdownItems {
 			_infoItemServiceTracker.getFirstInfoItemService(
 				InfoItemFieldValuesProvider.class, className);
 
-		InfoItemFieldValues infoFormValues =
+		InfoItemFieldValues infoItemFieldValues =
 			infoItemFieldValuesProvider.getInfoItemFieldValues(object);
 
 		InfoItemClassPKReference infoItemClassPKReference =
-			infoFormValues.getInfoItemClassPKReference();
+			infoItemFieldValues.getInfoItemClassPKReference();
 
 		long classPK = infoItemClassPKReference.getClassPK();
 
