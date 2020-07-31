@@ -91,6 +91,11 @@ public class ServletContextUtil {
 	private String _getClayDataSetDisplaySettingsNamespace(
 		HttpServletRequest httpServletRequest, String id) {
 
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(DatasetDisplayTag.class.getName());
+		sb.append(StringPool.POUND);
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -100,11 +105,8 @@ public class ServletContextUtil {
 		String portletNamespace = _portal.getPortletNamespace(
 			portletDisplay.getId());
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(DatasetDisplayTag.class.getName());
-		sb.append(StringPool.POUND);
 		sb.append(portletNamespace);
+
 		sb.append(StringPool.POUND);
 		sb.append(themeDisplay.getPlid());
 		sb.append(StringPool.POUND);
