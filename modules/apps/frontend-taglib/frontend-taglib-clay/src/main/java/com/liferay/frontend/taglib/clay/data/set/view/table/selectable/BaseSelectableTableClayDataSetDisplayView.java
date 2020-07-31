@@ -26,6 +26,7 @@ import java.util.Locale;
 public abstract class BaseSelectableTableClayDataSetDisplayView
 	implements ClayDataSetDisplayView {
 
+	@Override
 	public String getContentRenderer() {
 		return ClayDataSetConstants.SELECTABLE_TABLE;
 	}
@@ -34,6 +35,7 @@ public abstract class BaseSelectableTableClayDataSetDisplayView
 
 	public abstract String getFirstColumnName();
 
+	@Override
 	public String getLabel() {
 		return ClayDataSetConstants.SELECTABLE_TABLE;
 	}
@@ -42,6 +44,7 @@ public abstract class BaseSelectableTableClayDataSetDisplayView
 		return ClayDataSetConstants.SELECTABLE_TABLE;
 	}
 
+	@Override
 	public String getThumbnail() {
 		return StringPool.BLANK;
 	}

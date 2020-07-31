@@ -23,6 +23,7 @@ import com.liferay.frontend.taglib.clay.data.set.constants.ClayDataSetConstants;
 public abstract class BaseTimelineClayDataSetDisplayView
 	implements ClayDataSetDisplayView {
 
+	@Override
 	public String getContentRenderer() {
 		return ClayDataSetConstants.TIMELINE;
 	}
@@ -31,6 +32,7 @@ public abstract class BaseTimelineClayDataSetDisplayView
 
 	public abstract String getDescription();
 
+	@Override
 	public String getLabel() {
 		return ClayDataSetConstants.TIMELINE;
 	}
@@ -39,6 +41,7 @@ public abstract class BaseTimelineClayDataSetDisplayView
 		return ClayDataSetConstants.TIMELINE;
 	}
 
+	@Override
 	public String getThumbnail() {
 		return ClayDataSetConstants.TIMELINE;
 	}
