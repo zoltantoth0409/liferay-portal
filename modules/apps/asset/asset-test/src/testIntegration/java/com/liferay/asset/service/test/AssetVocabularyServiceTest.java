@@ -421,7 +421,7 @@ public class AssetVocabularyServiceTest {
 	}
 
 	@Test
-	public void testOOTBVocabulariesExist() throws Exception {
+	public void testFetchGroupVocabulary() throws Exception {
 		Company company = _companyLocalService.getCompany(
 			_group.getCompanyId());
 
@@ -442,10 +442,7 @@ public class AssetVocabularyServiceTest {
 				company.getGroupId(), "topic");
 
 		Assert.assertNotNull(topicVocabulary);
-	}
 
-	@Test
-	public void testTopicVocabularyDoesNotExistForGroup() throws Exception {
 		AssetVocabulary topicVocabulary =
 			_assetVocabularyLocalService.fetchGroupVocabulary(
 				_group.getGroupId(), "topic");
