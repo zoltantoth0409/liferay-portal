@@ -250,8 +250,8 @@ public class UserServiceUtil {
 	 * </p>
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -267,8 +267,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -276,18 +276,18 @@ public class UserServiceUtil {
 	 * @param organizationIds the primary keys of the user's organizations
 	 * @param roleIds the primary keys of the roles this user possesses
 	 * @param userGroupIds the primary keys of the user's user groups
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 #addUser(long, boolean, String, String, boolean, String,
-	 String, Locale, String, String, String, long, long, boolean,
-	 int, int, int, String, long[], long[], long[], long[],
-	 boolean, ServiceContext)}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #addUser(long,
+	 boolean, String, String, boolean, String, String, Locale,
+	 String, String, String, long, long, boolean, int, int, int,
+	 String, long[], long[], long[], long[], boolean,
+	 ServiceContext)}
 	 */
 	@Deprecated
 	public static com.liferay.portal.kernel.model.User addUser(
@@ -321,8 +321,8 @@ public class UserServiceUtil {
 	 * </p>
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -338,8 +338,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -352,18 +352,18 @@ public class UserServiceUtil {
 	 * @param phones the user's phone numbers
 	 * @param websites the user's websites
 	 * @param announcementsDelivers the announcements deliveries
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 #addUser(long, boolean, String, String, boolean, String,
-	 String, Locale, String, String, String, long, long, boolean,
-	 int, int, int, String, long[], long[], long[], long[], List,
-	 List, List, List, List, boolean, ServiceContext)}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #addUser(long,
+	 boolean, String, String, boolean, String, String, Locale,
+	 String, String, String, long, long, boolean, int, int, int,
+	 String, long[], long[], long[], long[], List, List, List,
+	 List, List, boolean, ServiceContext)}
 	 */
 	@Deprecated
 	public static com.liferay.portal.kernel.model.User addUser(
@@ -556,8 +556,8 @@ public class UserServiceUtil {
 	 * </p>
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -573,8 +573,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -582,12 +582,12 @@ public class UserServiceUtil {
 	 * @param organizationIds the primary keys of the user's organizations
 	 * @param roleIds the primary keys of the roles this user possesses
 	 * @param userGroupIds the primary keys of the user's user groups
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #addUserWithWorkflow(long, boolean, String, String, boolean,
@@ -627,8 +627,8 @@ public class UserServiceUtil {
 	 * </p>
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -644,8 +644,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -658,12 +658,12 @@ public class UserServiceUtil {
 	 * @param phones the user's phone numbers
 	 * @param websites the user's websites
 	 * @param announcementsDelivers the announcements deliveries
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #addUserWithWorkflow(long, boolean, String, String, boolean,
@@ -787,8 +787,8 @@ public class UserServiceUtil {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -807,8 +807,8 @@ public class UserServiceUtil {
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -896,8 +896,8 @@ public class UserServiceUtil {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -916,8 +916,8 @@ public class UserServiceUtil {
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -1380,8 +1380,8 @@ public class UserServiceUtil {
 	 * name and email address.
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -1397,17 +1397,18 @@ public class UserServiceUtil {
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
-	 * @param updateUserInformation whether to update the user's information
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param updateUserInformation whether to update the user's
+	 information
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the expando bridge attributes for the
-	 user.
+	 <code>null</code>). Can set the expando bridge attributes for
+	 the user.
 	 * @return the user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #updateIncompleteUser(long, long, boolean, String, String,
@@ -1576,8 +1577,6 @@ public class UserServiceUtil {
 	 * @param reminderQueryAnswer the user's new password reset answer
 	 * @param screenName the user's new screen name
 	 * @param emailAddress the user's new email address
-	 * @param facebookId the user's new Facebook ID
-	 * @param openId the user's new OpenID
 	 * @param hasPortrait if the user has a custom portrait image
 	 * @param portraitBytes the new portrait image data
 	 * @param languageId the user's new language ID
@@ -1681,8 +1680,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's new name prefix ID
 	 * @param suffixId the user's new name suffix ID
 	 * @param male whether user is male
-	 * @param birthdayMonth the user's new birthday month (0-based, meaning 0
-	 for January)
+	 * @param birthdayMonth the user's new birthday month (0-based, meaning
+	 0 for January)
 	 * @param birthdayDay the user's new birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param smsSn the user's new SMS screen name
@@ -1702,9 +1701,9 @@ public class UserServiceUtil {
 	 * @param websites the user's websites
 	 * @param announcementsDelivers the announcements deliveries
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #updateUser(long, String, String, String, boolean, String,
@@ -1779,8 +1778,8 @@ public class UserServiceUtil {
 	 * @param prefixId the user's new name prefix ID
 	 * @param suffixId the user's new name suffix ID
 	 * @param male whether user is male
-	 * @param birthdayMonth the user's new birthday month (0-based, meaning 0
-	 for January)
+	 * @param birthdayMonth the user's new birthday month (0-based, meaning
+	 0 for January)
 	 * @param birthdayDay the user's new birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param smsSn the user's new SMS screen name
@@ -1795,9 +1794,9 @@ public class UserServiceUtil {
 	 * @param userGroupRoles the user user's group roles
 	 * @param userGroupIds the primary keys of the user's user groups
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #updateUser(long, String, String, String, boolean, String,
@@ -1849,8 +1848,6 @@ public class UserServiceUtil {
 	 * @param reminderQueryAnswer the user's new password reset answer
 	 * @param screenName the user's new screen name
 	 * @param emailAddress the user's new email address
-	 * @param facebookId the user's new Facebook ID
-	 * @param openId the user's new OpenID
 	 * @param languageId the user's new language ID
 	 * @param timeZoneId the user's new time zone ID
 	 * @param greeting the user's new greeting

@@ -263,8 +263,8 @@ public interface UserLocalService
 	 *
 	 * @param creatorUserId the primary key of the creator
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -280,8 +280,8 @@ public interface UserLocalService
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -289,18 +289,18 @@ public interface UserLocalService
 	 * @param organizationIds the primary keys of the user's organizations
 	 * @param roleIds the primary keys of the roles this user possesses
 	 * @param userGroupIds the primary keys of the user's user groups
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 #addUser(long, long, boolean, String, String, boolean,
-	 String, String, Locale, String, String, String, long, long,
-	 boolean, int, int, int, String, long[], long[], long[],
-	 long[], boolean, ServiceContext)}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #addUser(long,
+	 long, boolean, String, String, boolean, String, String,
+	 Locale, String, String, String, long, long, boolean, int,
+	 int, int, String, long[], long[], long[], long[], boolean,
+	 ServiceContext)}
 	 */
 	@Deprecated
 	public User addUser(
@@ -411,8 +411,8 @@ public interface UserLocalService
 	 *
 	 * @param creatorUserId the primary key of the creator
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -428,8 +428,8 @@ public interface UserLocalService
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
@@ -437,12 +437,12 @@ public interface UserLocalService
 	 * @param organizationIds the primary keys of the user's organizations
 	 * @param roleIds the primary keys of the roles this user possesses
 	 * @param userGroupIds the primary keys of the user's user groups
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the new user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #addUserWithWorkflow(long, long, boolean, String, String,
@@ -585,8 +585,6 @@ public interface UserLocalService
 	 * authenticating users of <code>tunnel-web</code>.
 	 *
 	 * @param companyId the primary key of the user's company
-	 * @param username either the user's email address, screen name, or primary
-	 key
 	 * @param realm unused
 	 * @param nonce the number used once
 	 * @param method the request method
@@ -961,8 +959,8 @@ public interface UserLocalService
 	 *
 	 * @param companyId the primary key of the user's company
 	 * @param openId the user's OpenID
-	 * @return the user with the OpenID, or <code>null</code> if a user with the
-	 OpenID could not be found
+	 * @return the user with the OpenID, or <code>null</code> if a user with
+	 the OpenID could not be found
 	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
 	 */
 	@Deprecated
@@ -1100,8 +1098,8 @@ public interface UserLocalService
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1120,8 +1118,8 @@ public interface UserLocalService
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1211,8 +1209,8 @@ public interface UserLocalService
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1231,8 +1229,8 @@ public interface UserLocalService
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1340,8 +1338,8 @@ public interface UserLocalService
 	 types can be found in {@link SocialRelationConstants}.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation of the
 	 type with the user
 	 */
@@ -1368,8 +1366,8 @@ public interface UserLocalService
 	 * @param userId2 the primary key of the second user
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation with the
 	 user
 	 */
@@ -1752,8 +1750,8 @@ public interface UserLocalService
 	 com.liferay.portal.kernel.service.persistence.UserFinder}.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 * @see com.liferay.portal.kernel.service.persistence.UserFinder
 	 */
@@ -1832,8 +1830,8 @@ public interface UserLocalService
 	 or the last name 'smith'&quot;.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param orderByComparator the comparator to order the users by (optionally
-	 <code>null</code>)
+	 * @param orderByComparator the comparator to order the users by
+	 (optionally <code>null</code>)
 	 * @return the matching users
 	 * @see com.liferay.portal.kernel.service.persistence.UserFinder
 	 */
@@ -2350,8 +2348,8 @@ public interface UserLocalService
 	 *
 	 * @param creatorUserId the primary key of the creator
 	 * @param companyId the primary key of the user's company
-	 * @param autoPassword whether a password should be automatically generated
-	 for the user
+	 * @param autoPassword whether a password should be automatically
+	 generated for the user
 	 * @param password1 the user's password
 	 * @param password2 the user's password confirmation
 	 * @param autoScreenName whether a screen name should be automatically
@@ -2367,14 +2365,15 @@ public interface UserLocalService
 	 * @param prefixId the user's name prefix ID
 	 * @param suffixId the user's name suffix ID
 	 * @param male whether the user is male
-	 * @param birthdayMonth the user's birthday month (0-based, meaning 0 for
-	 January)
+	 * @param birthdayMonth the user's birthday month (0-based, meaning 0
+	 for January)
 	 * @param birthdayDay the user's birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param jobTitle the user's job title
-	 * @param updateUserInformation whether to update the user's information
-	 * @param sendEmail whether to send the user an email notification about
-	 their new account
+	 * @param updateUserInformation whether to update the user's
+	 information
+	 * @param sendEmail whether to send the user an email notification
+	 about their new account
 	 * @param serviceContext the service context to be applied (optionally
 	 <code>null</code>). Can set expando bridge attributes for the
 	 user.
@@ -2699,8 +2698,8 @@ public interface UserLocalService
 	 * @param prefixId the user's new name prefix ID
 	 * @param suffixId the user's new name suffix ID
 	 * @param male whether user is male
-	 * @param birthdayMonth the user's new birthday month (0-based, meaning 0
-	 for January)
+	 * @param birthdayMonth the user's new birthday month (0-based, meaning
+	 0 for January)
 	 * @param birthdayDay the user's new birthday day
 	 * @param birthdayYear the user's birthday year
 	 * @param smsSn the user's new SMS screen name
@@ -2715,9 +2714,9 @@ public interface UserLocalService
 	 * @param userGroupRoles the user user's group roles
 	 * @param userGroupIds the primary keys of the user's user groups
 	 * @param serviceContext the service context to be applied (optionally
-	 <code>null</code>). Can set the UUID (with the <code>uuid</code>
-	 attribute), asset category IDs, asset tag names, and expando
-	 bridge attributes for the user.
+	 <code>null</code>). Can set the UUID (with the
+	 <code>uuid</code> attribute), asset category IDs, asset tag
+	 names, and expando bridge attributes for the user.
 	 * @return the user
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 #updateUser(long, String, String, String, boolean, String,
