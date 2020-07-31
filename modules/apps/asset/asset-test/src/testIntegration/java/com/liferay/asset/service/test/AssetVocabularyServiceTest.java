@@ -144,6 +144,26 @@ public class AssetVocabularyServiceTest {
 	}
 
 	@Test
+	public void testFetchGroupVocabulary() throws Exception {
+		Company company = _companyLocalService.getCompany(
+			_group.getCompanyId());
+
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "audience"));
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "stage"));
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "topic"));
+
+		Assert.assertNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				_group.getGroupId(), "topic"));
+	}
+
+	@Test
 	public void testGetGroupVocabulariesPaginatedWithNoViewableVocabularies()
 		throws Exception {
 
@@ -418,36 +438,6 @@ public class AssetVocabularyServiceTest {
 		Assert.assertEquals(title, vocabulary.getTitle(LocaleUtil.US, true));
 		Assert.assertEquals(
 			StringUtil.toLowerCase(title), vocabulary.getName());
-	}
-
-	@Test
-	public void testFetchGroupVocabulary() throws Exception {
-		Company company = _companyLocalService.getCompany(
-			_group.getCompanyId());
-
-		AssetVocabulary audienceVocabulary =
-			_assetVocabularyLocalService.fetchGroupVocabulary(
-				company.getGroupId(), "audience");
-
-		Assert.assertNotNull(audienceVocabulary);
-
-		AssetVocabulary stageVocabulary =
-			_assetVocabularyLocalService.fetchGroupVocabulary(
-				company.getGroupId(), "stage");
-
-		Assert.assertNotNull(stageVocabulary);
-
-		AssetVocabulary topicVocabulary =
-			_assetVocabularyLocalService.fetchGroupVocabulary(
-				company.getGroupId(), "topic");
-
-		Assert.assertNotNull(topicVocabulary);
-
-		AssetVocabulary topicVocabulary =
-			_assetVocabularyLocalService.fetchGroupVocabulary(
-				_group.getGroupId(), "topic");
-
-		Assert.assertNull(topicVocabulary);
 	}
 
 	@Test(expected = DuplicateVocabularyException.class)
