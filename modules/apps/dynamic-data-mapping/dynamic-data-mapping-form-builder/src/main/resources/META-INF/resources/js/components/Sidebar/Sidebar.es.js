@@ -342,6 +342,7 @@ class Sidebar extends Component {
 				.then((pages) => {
 					dispatch('focusedFieldEvaluationEnded', {
 						...focusedField,
+						changedEditingLanguage: true,
 						settingsContext: {
 							...focusedField.settingsContext,
 							pages,
