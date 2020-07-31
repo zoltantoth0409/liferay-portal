@@ -73,7 +73,7 @@ public class ExportImportPortletConfigurationIcon
 
 		sb.append(portletDisplay.getNamespace());
 
-		sb.append("', onClose: function(){ Liferay.Portlet.refresh('#p_p_id_");
+		sb.append("', onClose: function() {Liferay.Portlet.refresh('#p_p_id_");
 		sb.append(portletDisplay.getId());
 		sb.append("_')}, portletSelector: '#p_p_id_");
 		sb.append(portletDisplay.getId());
