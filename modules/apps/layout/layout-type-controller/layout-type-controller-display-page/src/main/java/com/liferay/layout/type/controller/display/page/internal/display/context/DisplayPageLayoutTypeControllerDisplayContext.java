@@ -101,10 +101,8 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 			InfoItemReference infoItemReference =
 				_infoItemDetails.getItemReference();
 
-			long infoItemClassPK = infoItemReference.getClassPK();
-
 			return assetRendererFactory.hasPermission(
-				permissionChecker, infoItemClassPK, actionId);
+				permissionChecker, infoItemReference.getClassPK(), actionId);
 		}
 
 		return true;
