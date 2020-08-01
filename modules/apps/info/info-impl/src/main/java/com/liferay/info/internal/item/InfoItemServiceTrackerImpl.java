@@ -226,15 +226,15 @@ public class InfoItemServiceTrackerImpl implements InfoItemServiceTracker {
 	private InfoItemClassDetails _getInfoItemClassDetails(
 		String itemClassName) {
 
-		InfoItemDetailsProvider infoItemClassDetailsProvider =
+		InfoItemDetailsProvider infoItemDetailsProvider =
 			getFirstInfoItemService(
 				InfoItemDetailsProvider.class, itemClassName);
 
 		InfoItemClassDetails infoItemClassDetails = null;
 
-		if (infoItemClassDetailsProvider != null) {
+		if (infoItemDetailsProvider != null) {
 			infoItemClassDetails =
-				infoItemClassDetailsProvider.getInfoItemClassDetails();
+				infoItemDetailsProvider.getInfoItemClassDetails();
 		}
 		else {
 			infoItemClassDetails = new InfoItemClassDetails(
