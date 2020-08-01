@@ -572,7 +572,6 @@ public class DataDefinitionResourceImpl
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
 			dataDefinitionId);
-
 		DDMForm ddmForm = DataDefinitionUtil.toDDMForm(
 			dataDefinition, _ddmFormFieldTypeServicesTracker);
 
@@ -766,6 +765,9 @@ public class DataDefinitionResourceImpl
 		LocaleThreadLocal.setThemeDisplayLocale(locale);
 
 		try {
+			DDMForm ddmFormFieldTypeSettingsDDMForm = DDMFormFactory.create(
+				ddmFormFieldType.getDDMFormFieldTypeSettings());
+
 			Set<Locale> availableLocales = null;
 
 			DDMForm ddmForm = _getDDMForm();
@@ -782,11 +784,9 @@ public class DataDefinitionResourceImpl
 					));
 			}
 
-			DDMForm ddmFormFieldTypeSettingsDDMForm = DDMFormFactory.create(
-				ddmFormFieldType.getDDMFormFieldTypeSettings());
-
 			ddmFormFieldTypeSettingsDDMForm.setAvailableLocales(
 				availableLocales);
+
 			ddmFormFieldTypeSettingsDDMForm.setDefaultLocale(
 				_getDefaultLocale());
 
