@@ -45,11 +45,11 @@ public class BlogsEntryInfoItemPermissionProvider
 	@Override
 	public boolean hasPermission(
 			PermissionChecker permissionChecker,
-			InfoItemReference itemReference, String actionId)
+			InfoItemReference infoItemReference, String actionId)
 		throws InfoItemPermissionException {
 
 		return _hasPermission(
-			permissionChecker, itemReference.getClassPK(), actionId);
+			permissionChecker, infoItemReference.getClassPK(), actionId);
 	}
 
 	private boolean _hasPermission(

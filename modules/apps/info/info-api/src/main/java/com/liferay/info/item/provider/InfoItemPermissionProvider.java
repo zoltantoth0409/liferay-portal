@@ -25,7 +25,7 @@ public interface InfoItemPermissionProvider<T> {
 
 	public boolean hasPermission(
 			PermissionChecker permissionChecker,
-			InfoItemReference itemReference, String actionId)
+			InfoItemReference infoItemReference, String actionId)
 		throws InfoItemPermissionException;
 
 	public boolean hasPermission(
