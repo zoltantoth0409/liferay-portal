@@ -104,12 +104,12 @@ public class ContentElementResourceImpl extends BaseContentElementResourceImpl {
 
 		SearchContext searchContext = new SearchContext();
 
-		Map<String, String> terms = aggregation.getAggregationTerms();
+		Map<String, String> aggregationTerms = aggregation.getAggregationTerms();
 
-		for (String value : terms.values()) {
+		for (String aggregationTerm : aggregationTerms.values()) {
 			Facet facet = new SimpleFacet(searchContext);
 
-			facet.setFieldName(value);
+			facet.setFieldName(aggregationTerm);
 
 			searchContext.addFacet(facet);
 		}
