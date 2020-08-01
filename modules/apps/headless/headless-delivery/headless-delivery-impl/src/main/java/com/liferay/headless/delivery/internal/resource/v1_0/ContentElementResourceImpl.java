@@ -81,6 +81,8 @@ public class ContentElementResourceImpl extends BaseContentElementResourceImpl {
 		SearchContext searchContext = _getAssetSearchContext(
 			siteId, search, aggregation, filter, pagination, sorts);
 
+		Map<String, Facet> facets = searchContext.getFacets();
+
 		AssetSearcher assetSearcher =
 			(AssetSearcher)AssetSearcher.getInstance();
 
@@ -88,8 +90,6 @@ public class ContentElementResourceImpl extends BaseContentElementResourceImpl {
 
 		List<AssetEntry> assetEntries = _assetHelper.getAssetEntries(
 			assetSearcher.search(searchContext));
-
-		Map<String, Facet> facets = searchContext.getFacets();
 
 		return Page.of(
 			new HashMap<>(),
