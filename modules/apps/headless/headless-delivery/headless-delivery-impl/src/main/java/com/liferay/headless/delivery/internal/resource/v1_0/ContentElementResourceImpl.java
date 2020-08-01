@@ -104,7 +104,8 @@ public class ContentElementResourceImpl extends BaseContentElementResourceImpl {
 
 		SearchContext searchContext = new SearchContext();
 
-		Map<String, String> aggregationTerms = aggregation.getAggregationTerms();
+		Map<String, String> aggregationTerms =
+			aggregation.getAggregationTerms();
 
 		for (String aggregationTerm : aggregationTerms.values()) {
 			Facet facet = new SimpleFacet(searchContext);
