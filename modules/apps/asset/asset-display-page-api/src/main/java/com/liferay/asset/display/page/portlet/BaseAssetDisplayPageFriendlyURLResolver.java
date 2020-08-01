@@ -120,10 +120,6 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 			InfoDisplayWebKeys.INFO_ITEM_DETAILS,
 			infoItemDetailsProvider.getInfoItemDetails(infoItem));
 
-		httpServletRequest.setAttribute(
-			InfoDisplayWebKeys.INFO_ITEM_SERVICE_TRACKER,
-			infoItemServiceTracker);
-
 		InfoItemFieldValuesProvider<?> infoItemFieldValuesProvider =
 			infoItemServiceTracker.getFirstInfoItemService(
 				InfoItemFieldValuesProvider.class, infoItemClassName);
@@ -131,6 +127,10 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		httpServletRequest.setAttribute(
 			InfoDisplayWebKeys.INFO_ITEM_FIELD_VALUES_PROVIDER,
 			infoItemFieldValuesProvider);
+
+		httpServletRequest.setAttribute(
+			InfoDisplayWebKeys.INFO_ITEM_SERVICE_TRACKER,
+			infoItemServiceTracker);
 
 		Locale locale = portal.getLocale(httpServletRequest);
 		Layout layout = _getInfoDisplayObjectProviderLayout(
