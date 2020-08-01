@@ -46,7 +46,6 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 			InfoDisplayWebKeys.INFO_ITEM);
 		_infoItemDetails = (InfoItemDetails)httpServletRequest.getAttribute(
 			InfoDisplayWebKeys.INFO_ITEM_DETAILS);
-
 		_infoItemServiceTracker =
 			(InfoItemServiceTracker)httpServletRequest.getAttribute(
 				InfoDisplayWebKeys.INFO_ITEM_SERVICE_TRACKER);
