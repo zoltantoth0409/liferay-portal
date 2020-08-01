@@ -99,7 +99,7 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 
 		if (assetRendererFactory != null) {
 			InfoItemReference infoItemReference =
-				_infoItemDetails.getItemReference();
+				_infoItemDetails.getInfoItemReference();
 
 			return assetRendererFactory.hasPermission(
 				permissionChecker, infoItemReference.getClassPK(), actionId);

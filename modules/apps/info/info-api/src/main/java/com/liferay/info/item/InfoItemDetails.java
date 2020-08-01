@@ -20,26 +20,26 @@ package com.liferay.info.item;
 public class InfoItemDetails {
 
 	public InfoItemDetails(
-		InfoItemClassDetails itemClassDetails,
-		InfoItemReference itemReference) {
+		InfoItemClassDetails infoItemClassDetails,
+		InfoItemReference infoItemReference) {
 
-		_itemClassDetails = itemClassDetails;
-		_itemReference = itemReference;
+		_infoItemClassDetails = infoItemClassDetails;
+		_infoItemReference = infoItemReference;
 	}
 
 	public String getClassName() {
-		return _itemClassDetails.getClassName();
+		return _infoItemClassDetails.getClassName();
 	}
 
-	public InfoItemClassDetails getItemClassDetails() {
-		return _itemClassDetails;
+	public InfoItemClassDetails getInfoItemClassDetails() {
+		return _infoItemClassDetails;
 	}
 
-	public InfoItemReference getItemReference() {
-		return _itemReference;
+	public InfoItemReference getInfoItemReference() {
+		return _infoItemReference;
 	}
 
-	private final InfoItemClassDetails _itemClassDetails;
-	private final InfoItemReference _itemReference;
+	private final InfoItemClassDetails _infoItemClassDetails;
+	private final InfoItemReference _infoItemReference;
 
 }
