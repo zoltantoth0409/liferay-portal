@@ -314,7 +314,7 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 				<%= className %>Options.classList.add('hide');
 			}
 
-			if (removeOrderBySubtype && orderingPanel) {
+			if (orderingPanel && removeOrderBySubtype) {
 				Array.prototype.forEach.call(
 					orderingPanel.querySelectorAll('.order-by-subtype'),
 					function (option) {
