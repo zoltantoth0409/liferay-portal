@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
-
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
@@ -37,6 +35,11 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 	cssClass="container-view"
 >
 	<clay:row>
+
+		<%
+		AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
+		%>
+
 		<clay:col
 			lg="3"
 		>

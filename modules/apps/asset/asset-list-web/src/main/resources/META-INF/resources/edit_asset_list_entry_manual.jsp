@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
-
 String backURL = ParamUtil.getString(request, "backURL");
 
 if (Validator.isNotNull(backURL)) {
@@ -31,6 +29,10 @@ if (Validator.isNotNull(backURL)) {
 </portlet:actionURL>
 
 <portlet:actionURL name="/asset_list/update_asset_list_entry_manual" var="updateAssetListEntryURL" />
+
+<%
+AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
+%>
 
 <c:choose>
 	<c:when test="<%= Validator.isNull(assetListEntry.getAssetEntryType()) %>">

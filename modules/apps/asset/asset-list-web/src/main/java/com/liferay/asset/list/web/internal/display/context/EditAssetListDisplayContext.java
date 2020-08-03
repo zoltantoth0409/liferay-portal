@@ -631,10 +631,10 @@ public class EditAssetListDisplayContext {
 			new AssetRendererFactoryTypeNameComparator(
 				_themeDisplay.getLocale()));
 
-		AssetListEntry assetListEntry = getAssetListEntry();
-
 		for (AssetRendererFactory<?> curRendererFactory :
 				assetRendererFactories) {
+
+			AssetListEntry assetListEntry = getAssetListEntry();
 
 			if (!Objects.equals(
 					assetListEntry.getAssetEntryType(),
