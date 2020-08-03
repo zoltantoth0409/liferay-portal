@@ -21,6 +21,7 @@ import {Loading} from '../../components/loading/Loading.es';
 import useDataListView from '../../hooks/useDataListView.es';
 import useEntriesActions from '../../hooks/useEntriesActions.es';
 import usePermissions from '../../hooks/usePermissions.es';
+import {getLocalizedUserPreferenceValue} from '../../utils/lang.es';
 import {buildEntries, navigateToEditPage} from './utils.es';
 
 export default function ListEntries() {
@@ -30,6 +31,7 @@ export default function ListEntries() {
 		dataDefinitionId,
 		dataListViewId,
 		showFormView,
+		userLanguageId,
 	} = useContext(AppContext);
 
 	const {
@@ -41,6 +43,19 @@ export default function ListEntries() {
 
 	const permissions = usePermissions();
 
+	const formColumns = columns.map(({value, ...column}) => ({
+		...column,
+		value: getLocalizedUserPreferenceValue(
+			value,
+			userLanguageId,
+			dataDefinition.defaultLanguageId
+		),
+	}));
+
+	const portletParams = {
+		locale: userLanguageId,
+	};
+
 	return (
 		<Loading isLoading={isLoading}>
 			<ListView
@@ -50,13 +65,18 @@ export default function ListEntries() {
 					permissions.add && (
 						<Button
 							className="nav-btn nav-btn-monospaced"
-							onClick={() => navigateToEditPage(basePortletURL)}
+							onClick={() =>
+								navigateToEditPage(
+									basePortletURL,
+									portletParams
+								)
+							}
 							symbol="plus"
 							tooltip={Liferay.Language.get('new-entry')}
 						/>
 					)
 				}
-				columns={columns}
+				columns={formColumns}
 				emptyState={{
 					button: () =>
 						showFormView &&
@@ -64,7 +84,10 @@ export default function ListEntries() {
 							<Button
 								displayType="secondary"
 								onClick={() =>
-									navigateToEditPage(basePortletURL)
+									navigateToEditPage(
+										basePortletURL,
+										portletParams
+									)
 								}
 							>
 								{Liferay.Language.get('new-entry')}
