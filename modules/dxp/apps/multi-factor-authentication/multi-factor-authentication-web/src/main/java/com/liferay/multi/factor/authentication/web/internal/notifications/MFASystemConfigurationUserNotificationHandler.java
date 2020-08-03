@@ -57,7 +57,7 @@ public class MFASystemConfigurationUserNotificationHandler
 		boolean mfaDisableGlobally = jsonObject.getBoolean(
 			"mfaDisableGlobally");
 
-		String body;
+		String body = null;
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			serviceContext.getLocale(), getClass());

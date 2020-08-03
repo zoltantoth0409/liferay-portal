@@ -54,10 +54,7 @@ public class MFAEmailOTPConfigurationListener
 				_configurationProvider.getSystemConfiguration(
 					MFASystemConfiguration.class);
 
-			boolean mfaDisableGlobally =
-				mfaSystemConfiguration.disableGlobally();
-
-			if (!mfaDisableGlobally ||
+			if (!mfaSystemConfiguration.disableGlobally() ||
 				!GetterUtil.getBoolean(properties.get("enabled"))) {
 
 				return;
@@ -71,7 +68,8 @@ public class MFAEmailOTPConfigurationListener
 				JSONUtil.put(
 					"classPK", ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
 				).put(
-					"mfaDisableGlobally", mfaDisableGlobally
+					"mfaDisableGlobally",
+					mfaSystemConfiguration.disableGlobally()
 				).put(
 					"userId", userId
 				));
@@ -87,7 +85,8 @@ public class MFAEmailOTPConfigurationListener
 				MFASystemConfigurationListener.class, properties);
 		}
 		catch (PortalException portalException) {
-			_log.error("Failed to send notification", portalException);
+			_log.error(
+				"Unable to send user notification events", portalException);
 
 			throw new ConfigurationModelListenerException(
 				portalException.getMessage(), PortalException.class,
