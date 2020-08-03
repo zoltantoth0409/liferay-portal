@@ -61,8 +61,8 @@ public class MFAUserAccountSetupCheckerTracker {
 			long companyId = GetterUtil.getLong(properties.get("companyId"));
 
 			String filterString =
-				"(&(objectClass=" + SetupMFAChecker.class.getName() +
-					")(companyId=" + companyId + "))";
+				"(&(companyId=" + companyId + ")(objectClass=" +
+					SetupMFAChecker.class.getName() + "))";
 
 			_serviceTracker = ServiceTrackerFactory.open(
 				bundleContext, filterString,
