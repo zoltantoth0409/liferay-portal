@@ -45,6 +45,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -162,10 +163,8 @@ public class PortalCORSServletFilter
 				String pid, Dictionary<String, Object> newProperties)
 			throws ConfigurationModelListenerException {
 
-			Set<String> urlPatterns = new HashSet<>();
 			Set<String> duplicateURLPatterns = new HashSet<>();
-
-			long companyId = GetterUtil.getLong(newProperties.get("companyId"));
+			Set<String> urlPatterns = new HashSet<>();
 
 			PortalCORSConfiguration portalCORSConfiguration =
 				ConfigurableUtil.createConfigurable(
@@ -194,8 +193,10 @@ public class PortalCORSServletFilter
 
 				Dictionary<String, ?> properties = entry.getValue();
 
-				if (companyId != GetterUtil.getLong(
-						properties.get("companyId"))) {
+				if (Objects.equals(
+						GetterUtil.getLong(newProperties.get("companyId")),
+						GetterUtil.getLong(
+							properties.get("companyId")))) {
 
 					continue;
 				}
