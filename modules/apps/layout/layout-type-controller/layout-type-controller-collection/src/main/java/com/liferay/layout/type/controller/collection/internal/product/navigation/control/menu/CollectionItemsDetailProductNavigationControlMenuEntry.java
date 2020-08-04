@@ -159,12 +159,11 @@ public class CollectionItemsDetailProductNavigationControlMenuEntry
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		ServletContext servletContext =
-			(ServletContext)httpServletRequest.getAttribute(WebKeys.CTX);
-
 		Portlet portlet = _portletLocalService.getPortletById(
 			ProductNavigationControlMenuPortletKeys.
 				PRODUCT_NAVIGATION_CONTROL_MENU);
+		ServletContext servletContext =
+			(ServletContext)httpServletRequest.getAttribute(WebKeys.CTX);
 
 		InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
 			portlet, servletContext);
