@@ -33,7 +33,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 			return value;
 		}
 
-		int lastDotIndex = 0;
+		int index = 0;
 
 		for (int i = urlPath.length(); i > 0; --i) {
 			value = _wildcardURLPatternValues.get(urlPath.substring(0, i) + "*");
@@ -42,13 +42,13 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 				return value;
 			}
 
-			if ((lastDotIndex < 1) && (urlPath.charAt(i - 1) == '.')) {
-				lastDotIndex = i - 1;
+			if ((index < 1) && (urlPath.charAt(i - 1) == '.')) {
+				index = i - 1;
 			}
 		}
 
 		return _extensionURLPatternValues.get(
-			"*" + urlPath.substring(lastDotIndex));
+			"*" + urlPath.substring(index));
 	}
 
 	@Override
