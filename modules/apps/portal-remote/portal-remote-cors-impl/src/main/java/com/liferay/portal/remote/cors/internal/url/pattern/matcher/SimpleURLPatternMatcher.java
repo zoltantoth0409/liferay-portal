@@ -76,14 +76,11 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		}
 	}
 
-	/**
-	 *  https://download.oracle.com/otndocs/jcp/servlet-4-final-eval-spec/index.html#12.1.3
-	 *  https://download.oracle.com/otndocs/jcp/servlet-4-final-eval-spec/index.html#12.2
-	 *
-	 * @param urlPattern the given urlPattern
-	 * @return a boolean value indicating if the urlPattern an extensionURLPattern
-	 */
 	private boolean _isExtensionURLPattern(String urlPattern) {
+
+		// Servlet 4 spec 12.1.3
+		// Servlet 4 spec 12.2
+
 		if ((urlPattern.length() < 3) || (urlPattern.charAt(0) != '*') ||
 			(urlPattern.charAt(1) != '.')) {
 
@@ -103,14 +100,11 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		return true;
 	}
 
-	/**
-	 *  https://tools.ietf.org/html/rfc3986#section-3.3
-	 *  https://download.oracle.com/otndocs/jcp/servlet-4-final-eval-spec/index.html#12.2
-	 *
-	 * @param urlPattern the given urlPattern
-	 * @return a boolean value indicating if the urlPattern a wildCardURLPattern
-	 */
 	private boolean _isWildcardURLPattern(String urlPattern) {
+
+		// RFC 3986 3.3
+		// Servlet 4 spec 12.2
+
 		if ((urlPattern.length() < 2) || (urlPattern.charAt(0) != '/') ||
 			(urlPattern.charAt(urlPattern.length() - 1) != '*') ||
 			(urlPattern.charAt(urlPattern.length() - 2) != '/')) {
