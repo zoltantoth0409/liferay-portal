@@ -88,10 +88,14 @@ public class CollectionItemsDetailProductNavigationControlMenuEntry
 		throws IOException {
 
 		try {
-			LiferayRenderRequest liferayRenderRequest = _createLiferayRenderRequest(
-				httpServletRequest, httpServletResponse);
-			LiferayRenderResponse liferayRenderResponse = _createLiferayRenderResponse(
-				liferayRenderRequest, httpServletResponse);
+			LiferayRenderRequest liferayRenderRequest =
+				_createLiferayRenderRequest(
+					httpServletRequest, httpServletResponse);
+
+			LiferayRenderResponse liferayRenderResponse =
+				_createLiferayRenderResponse(
+					liferayRenderRequest, httpServletResponse);
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);

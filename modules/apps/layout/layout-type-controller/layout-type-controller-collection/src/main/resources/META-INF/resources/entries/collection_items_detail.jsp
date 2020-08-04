@@ -18,12 +18,10 @@
 
 <%
 CollectionItemsDetailDisplayContext collectionItemsDetailDisplayContext = (CollectionItemsDetailDisplayContext)request.getAttribute(CollectionPageLayoutTypeControllerWebKeys.COLLECTION_ITEMS_DETAIL_DISPLAY_CONTEXT);
-
-String namespace = collectionItemsDetailDisplayContext.getNamespace();
 %>
 
 <li class="control-menu-nav-item">
-	<button class="btn btn-unstyled text-muted" id="<%= namespace %>viewCollectionItems" />
+	<button class="btn btn-unstyled text-muted" id="<%= collectionItemsDetailDisplayContext.getNamespace() %>viewCollectionItems" />
 		(<%= LanguageUtil.format(resourceBundle, "x-items", collectionItemsDetailDisplayContext.getCollectionItemsCount(), false) %>)
 	</button>
 </li>
@@ -31,12 +29,12 @@ String namespace = collectionItemsDetailDisplayContext.getNamespace();
 <aui:script>
 
 	var viewCollectionItems = document.getElementById(
-		'<%= namespace %>viewCollectionItems'
+		'<%= collectionItemsDetailDisplayContext.getNamespace() %>viewCollectionItems'
 	);
 
 	viewCollectionItems.addEventListener('click', function (event) {
 		Liferay.Util.openModal({
-			id: '<%= namespace %>viewCollectionItemsDialog',
+			id: '<%= collectionItemsDetailDisplayContext.getNamespace() %>viewCollectionItemsDialog',
 			title: '<liferay-ui:message key="collection-items" />',
 			url: '<%= collectionItemsDetailDisplayContext.getViewCollectionItemsURL() %>'
 		});
