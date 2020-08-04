@@ -609,6 +609,9 @@ public class DataDefinitionResourceImpl
 					continue;
 				}
 
+				Map<String, Object> customProperties =
+					dataDefinitionField.getCustomProperties();
+
 				DDMStructureLayout ddmStructureLayout =
 					_ddmStructureLayoutLocalService.getStructureLayout(
 						Optional.ofNullable(
@@ -624,9 +627,6 @@ public class DataDefinitionResourceImpl
 							new String[] {"fieldNames"},
 							new String[] {"fields"})),
 					"JSONArray/pages", "Object/0", "JSONArray/rows");
-
-				Map<String, Object> customProperties =
-					dataDefinitionField.getCustomProperties();
 
 				customProperties.put("rows", jsonArray.toString());
 
