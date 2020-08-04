@@ -25,12 +25,12 @@ import org.osgi.service.component.annotations.Component;
 public class URLPatternMatcherFactory {
 
 	public <T> URLPatternMatcher<T> createURLPatternMatcher(
-		Map<String, T> urlPatternMap) {
+		Map<String, T> urlPatternValues) {
 
 		URLPatternMatcher<T> urlPatternMatcher =
 			new SimpleURLPatternMatcher<>();
 
-		for (Map.Entry<String, T> entry : urlPatternMap.entrySet()) {
+		for (Map.Entry<String, T> entry : urlPatternValues.entrySet()) {
 			urlPatternMatcher.putValue(entry.getKey(), entry.getValue());
 		}
 

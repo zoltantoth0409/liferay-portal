@@ -24,7 +24,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 
 	@Override
 	public T getValue(String urlPath) {
-		T value = _exactURLPatternMap.get(urlPath);
+		T value = _exactURLPatternValues.get(urlPath);
 
 		if (value != null) {
 			return value;
@@ -33,7 +33,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		int lastDotIndex = 0;
 
 		for (int i = urlPath.length(); i > 0; --i) {
-			value = _wildcardURLPatternMap.get(urlPath.substring(0, i) + "*");
+			value = _wildcardURLPatternValues.get(urlPath.substring(0, i) + "*");
 
 			if (value != null) {
 				return value;
@@ -44,7 +44,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 			}
 		}
 
-		return _extensionURLPatternMap.get(
+		return _extensionURLPatternValues.get(
 			"*" + urlPath.substring(lastDotIndex));
 	}
 
@@ -53,28 +53,28 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		throws IllegalArgumentException {
 
 		if (URLPatternMatcher.isWildcardURLPattern(urlPattern)) {
-			if (!_wildcardURLPatternMap.containsKey(urlPattern)) {
-				_wildcardURLPatternMap.put(urlPattern, value);
+			if (!_wildcardURLPatternValues.containsKey(urlPattern)) {
+				_wildcardURLPatternValues.put(urlPattern, value);
 			}
 
 			return;
 		}
 
 		if (URLPatternMatcher.isExtensionURLPattern(urlPattern)) {
-			if (!_extensionURLPatternMap.containsKey(urlPattern)) {
-				_extensionURLPatternMap.put(urlPattern, value);
+			if (!_extensionURLPatternValues.containsKey(urlPattern)) {
+				_extensionURLPatternValues.put(urlPattern, value);
 			}
 
 			return;
 		}
 
-		if (!_exactURLPatternMap.containsKey(urlPattern)) {
-			_exactURLPatternMap.put(urlPattern, value);
+		if (!_exactURLPatternValues.containsKey(urlPattern)) {
+			_exactURLPatternValues.put(urlPattern, value);
 		}
 	}
 
-	private final Map<String, T> _exactURLPatternMap = new HashMap<>();
-	private final Map<String, T> _extensionURLPatternMap = new HashMap<>();
-	private final Map<String, T> _wildcardURLPatternMap = new HashMap<>();
+	private final Map<String, T> _exactURLPatternValues = new HashMap<>();
+	private final Map<String, T> _extensionURLPatternValues = new HashMap<>();
+	private final Map<String, T> _wildcardURLPatternValues = new HashMap<>();
 
 }
