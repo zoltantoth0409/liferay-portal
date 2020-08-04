@@ -255,7 +255,7 @@ public class PortalCORSServletFilter
 		return _log;
 	}
 
-	protected String getURI(HttpServletRequest httpServletRequest) {
+	private String _getURI(HttpServletRequest httpServletRequest) {
 		String uri = httpServletRequest.getRequestURI();
 
 		if (Validator.isNotNull(_contextPath) &&
@@ -284,7 +284,7 @@ public class PortalCORSServletFilter
 			_getURLPatternMatcher(companyId);
 
 		CORSSupport corsSupport = urlPatternMatcher.getValue(
-			getURI(httpServletRequest));
+			_getURI(httpServletRequest));
 
 		if (corsSupport != null) {
 			if (StringUtil.equals(
