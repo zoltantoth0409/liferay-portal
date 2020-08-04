@@ -121,7 +121,6 @@ public class CollectionItemsDetailDisplayContext {
 		}
 
 		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-
 		portletURL.setParameter("collectionPK", collectionPK);
 		portletURL.setParameter("collectionType", collectionType);
 		portletURL.setParameter("showActions", String.valueOf(Boolean.TRUE));
