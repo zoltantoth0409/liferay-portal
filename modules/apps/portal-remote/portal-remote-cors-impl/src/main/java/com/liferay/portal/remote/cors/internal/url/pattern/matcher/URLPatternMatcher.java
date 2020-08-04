@@ -14,9 +14,6 @@
 
 package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 /**
  * @author Arthur Chan
  * @author Carlos Sierra Andrés

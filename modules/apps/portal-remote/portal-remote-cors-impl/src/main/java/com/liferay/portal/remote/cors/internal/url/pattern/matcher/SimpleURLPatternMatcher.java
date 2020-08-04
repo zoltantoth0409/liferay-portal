@@ -36,7 +36,8 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		int index = 0;
 
 		for (int i = urlPath.length(); i > 0; --i) {
-			value = _wildcardURLPatternValues.get(urlPath.substring(0, i) + "*");
+			value = _wildcardURLPatternValues.get(
+				urlPath.substring(0, i) + "*");
 
 			if (value != null) {
 				return value;
@@ -47,8 +48,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 			}
 		}
 
-		return _extensionURLPatternValues.get(
-			"*" + urlPath.substring(index));
+		return _extensionURLPatternValues.get("*" + urlPath.substring(index));
 	}
 
 	@Override
