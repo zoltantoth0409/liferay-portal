@@ -171,10 +171,9 @@ public class PortalCORSServletFilter
 				ConfigurableUtil.createConfigurable(
 					PortalCORSConfiguration.class, newProperties);
 
-			String[] urlPatterns =
-				portalCORSConfiguration.filterMappingURLPatterns();
+			for (String urlPattern :
+					portalCORSConfiguration.filterMappingURLPatterns()) {
 
-			for (String urlPattern : urlPatterns) {
 				if (urlPatternsSet.contains(urlPattern)) {
 					throw new ConfigurationModelListenerException(
 						"Duplicated url path patterns: " + urlPattern,
@@ -204,10 +203,9 @@ public class PortalCORSServletFilter
 				portalCORSConfiguration = ConfigurableUtil.createConfigurable(
 					PortalCORSConfiguration.class, properties);
 
-				urlPatterns =
-					portalCORSConfiguration.filterMappingURLPatterns();
+				for (String urlPattern :
+						portalCORSConfiguration.filterMappingURLPatterns()) {
 
-				for (String urlPattern : urlPatterns) {
 					if (!urlPatternsSet.add(urlPattern)) {
 						duplicateURLPatternsSet.add(urlPattern);
 					}
