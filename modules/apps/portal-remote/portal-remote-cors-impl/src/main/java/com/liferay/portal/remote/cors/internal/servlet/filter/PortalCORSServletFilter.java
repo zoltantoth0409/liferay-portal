@@ -163,7 +163,6 @@ public class PortalCORSServletFilter
 				String pid, Dictionary<String, Object> newProperties)
 			throws ConfigurationModelListenerException {
 
-			Set<String> duplicateURLPatterns = new HashSet<>();
 			Set<String> urlPatterns = new HashSet<>();
 
 			PortalCORSConfiguration portalCORSConfiguration =
@@ -183,6 +182,8 @@ public class PortalCORSServletFilter
 
 				urlPatterns.add(urlPattern);
 			}
+
+			Set<String> duplicateURLPatterns = new HashSet<>();
 
 			for (Map.Entry<String, Dictionary<String, ?>> entry :
 					_configurationPidsProperties.entrySet()) {
