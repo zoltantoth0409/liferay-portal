@@ -196,8 +196,7 @@ public class PortalCORSServletFilter
 
 				if (Objects.equals(
 						GetterUtil.getLong(newProperties.get("companyId")),
-						GetterUtil.getLong(
-							properties.get("companyId")))) {
+						GetterUtil.getLong(properties.get("companyId")))) {
 
 					continue;
 				}
@@ -253,19 +252,6 @@ public class PortalCORSServletFilter
 	@Override
 	protected Log getLog() {
 		return _log;
-	}
-
-	private String _getURI(HttpServletRequest httpServletRequest) {
-		String uri = httpServletRequest.getRequestURI();
-
-		if (Validator.isNotNull(_contextPath) &&
-			!_contextPath.equals(StringPool.SLASH) &&
-			uri.startsWith(_contextPath)) {
-
-			uri = uri.substring(_contextPath.length());
-		}
-
-		return _http.normalizePath(uri);
 	}
 
 	@Override
@@ -344,6 +330,19 @@ public class PortalCORSServletFilter
 				PortalCORSConfiguration.class, new HashMapDictionary<>()));
 
 		return URLPatternMatcherFactory.create(corsSupports);
+	}
+
+	private String _getURI(HttpServletRequest httpServletRequest) {
+		String uri = httpServletRequest.getRequestURI();
+
+		if (Validator.isNotNull(_contextPath) &&
+			!_contextPath.equals(StringPool.SLASH) &&
+			uri.startsWith(_contextPath)) {
+
+			uri = uri.substring(_contextPath.length());
+		}
+
+		return _http.normalizePath(uri);
 	}
 
 	private URLPatternMatcher<CORSSupport> _getURLPatternMatcher(
