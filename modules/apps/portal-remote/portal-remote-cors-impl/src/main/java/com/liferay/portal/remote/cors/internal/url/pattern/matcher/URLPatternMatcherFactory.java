@@ -16,15 +16,12 @@ package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
 
 import java.util.Map;
 
-import org.osgi.service.component.annotations.Component;
-
 /**
  * @author Carlos Sierra Andrés
  */
-@Component(service = URLPatternMatcherFactory.class)
 public class URLPatternMatcherFactory {
 
-	public <T> URLPatternMatcher<T> createURLPatternMatcher(
+	public static <T> URLPatternMatcher<T> create(
 		Map<String, T> urlPatternValues) {
 
 		URLPatternMatcher<T> urlPatternMatcher =
