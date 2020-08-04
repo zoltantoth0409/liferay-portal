@@ -100,10 +100,11 @@ public class MFAUserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 		String redirect = _portal.escapeRedirect(
 			ParamUtil.getString(actionRequest, "redirect"));
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		if (Validator.isBlank(redirect)) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
 			redirect = themeDisplay.getPortalURL();
 		}
 
