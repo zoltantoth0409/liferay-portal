@@ -29,7 +29,7 @@ public class URLtoCORSSupportMapper {
 
 	public URLtoCORSSupportMapper(Map<String, CORSSupport> corsSupports) {
 		for (Map.Entry<String, CORSSupport> entry : corsSupports.entrySet()) {
-			put(entry.getKey(), entry.getValue());
+			_put(entry.getKey(), entry.getValue());
 		}
 	}
 
@@ -59,7 +59,7 @@ public class URLtoCORSSupportMapper {
 			"*" + urlPath.substring(index));
 	}
 
-	public void put(String urlPattern, CORSSupport corsSupport)
+	private void _put(String urlPattern, CORSSupport corsSupport)
 		throws IllegalArgumentException {
 
 		if (_isWildcardURLPattern(urlPattern)) {
