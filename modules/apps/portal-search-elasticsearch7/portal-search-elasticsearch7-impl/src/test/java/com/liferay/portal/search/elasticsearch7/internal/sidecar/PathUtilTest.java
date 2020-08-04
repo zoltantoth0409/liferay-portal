@@ -59,14 +59,13 @@ public class PathUtilTest {
 	protected void assertDoesNotExist(Path path, String name) {
 		Path fullPath = path.resolve(name);
 
-		Assert.assertFalse(fullPath + " exists.", Files.exists(fullPath));
+		Assert.assertFalse(Files.exists(fullPath));
 	}
 
 	protected void assertExists(Path path, String name) {
 		Path fullPath = path.resolve(name);
 
-		Assert.assertTrue(
-			fullPath + " does not exist.", Files.exists(fullPath));
+		Assert.assertTrue(Files.exists(fullPath));
 	}
 
 	protected Path getResourcePath(String name) throws URISyntaxException {
