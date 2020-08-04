@@ -321,12 +321,10 @@ public class PortalCORSServletFilter
 		Map<String, CORSSupport> corsSupports,
 		PortalCORSConfiguration portalCORSConfiguration) {
 
-		Map<String, String> corsHeaders = CORSSupport.buildCORSHeaders(
-			portalCORSConfiguration.headers());
-
 		CORSSupport corsSupport = new CORSSupport();
 
-		corsSupport.setCORSHeaders(corsHeaders);
+		corsSupport.setCORSHeaders(
+			CORSSupport.buildCORSHeaders(portalCORSConfiguration.headers()));
 
 		for (String urlPattern :
 				portalCORSConfiguration.filterMappingURLPatterns()) {
