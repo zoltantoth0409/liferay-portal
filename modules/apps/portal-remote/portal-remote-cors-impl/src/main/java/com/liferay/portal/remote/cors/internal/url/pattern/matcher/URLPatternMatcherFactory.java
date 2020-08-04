@@ -14,6 +14,8 @@
 
 package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
 
+import com.liferay.portal.remote.cors.internal.CORSSupport;
+
 import java.util.Map;
 
 /**
@@ -21,14 +23,13 @@ import java.util.Map;
  */
 public class URLPatternMatcherFactory {
 
-	public static <T> URLPatternMatcher<T> create(
-		Map<String, T> urlPatternValues) {
+	public static URLPatternMatcher create(
+		Map<String, CORSSupport> corsSupports) {
 
-		URLPatternMatcher<T> urlPatternMatcher =
-			new SimpleURLPatternMatcher<>();
+		URLPatternMatcher urlPatternMatcher = new SimpleURLPatternMatcher();
 
-		for (Map.Entry<String, T> entry : urlPatternValues.entrySet()) {
-			urlPatternMatcher.putValue(entry.getKey(), entry.getValue());
+		for (Map.Entry<String, CORSSupport> entry : corsSupports.entrySet()) {
+			urlPatternMatcher.put(entry.getKey(), entry.getValue());
 		}
 
 		return urlPatternMatcher;

@@ -14,15 +14,17 @@
 
 package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
 
+import com.liferay.portal.remote.cors.internal.CORSSupport;
+
 /**
  * @author Arthur Chan
  * @author Carlos Sierra Andrés
  */
-public interface URLPatternMatcher<T> {
+public interface URLPatternMatcher {
 
-	public T getValue(String urlPath);
+	public CORSSupport get(String urlPath);
 
-	public void putValue(String urlPattern, T value)
+	public void put(String urlPattern, CORSSupport corsSupport)
 		throws IllegalArgumentException;
 
 }

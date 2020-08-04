@@ -14,6 +14,8 @@
 
 package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
 
+import com.liferay.portal.remote.cors.internal.CORSSupport;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -23,24 +25,24 @@ import java.util.Map;
 /**
  * @author Arthur Chan
  */
-public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
+public class SimpleURLPatternMatcher implements URLPatternMatcher {
 
 	@Override
-	public T getValue(String urlPath) {
-		T value = _exactURLPatternValues.get(urlPath);
+	public CORSSupport get(String urlPath) {
+		CORSSupport corsSupport = _exactURLPatternCORSSupports.get(urlPath);
 
-		if (value != null) {
-			return value;
+		if (corsSupport != null) {
+			return corsSupport;
 		}
 
 		int index = 0;
 
 		for (int i = urlPath.length(); i > 0; --i) {
-			value = _wildcardURLPatternValues.get(
+			corsSupport = _wildcardURLPatternCORSSupports.get(
 				urlPath.substring(0, i) + "*");
 
-			if (value != null) {
-				return value;
+			if (corsSupport != null) {
+				return corsSupport;
 			}
 
 			if ((index < 1) && (urlPath.charAt(i - 1) == '.')) {
@@ -48,31 +50,31 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 			}
 		}
 
-		return _extensionURLPatternValues.get("*" + urlPath.substring(index));
+		return _extensionURLPatternCORSSupports.get("*" + urlPath.substring(index));
 	}
 
 	@Override
-	public void putValue(String urlPattern, T value)
+	public void put(String urlPattern, CORSSupport corsSupport)
 		throws IllegalArgumentException {
 
 		if (_isWildcardURLPattern(urlPattern)) {
-			if (!_wildcardURLPatternValues.containsKey(urlPattern)) {
-				_wildcardURLPatternValues.put(urlPattern, value);
+			if (!_wildcardURLPatternCORSSupports.containsKey(urlPattern)) {
+				_wildcardURLPatternCORSSupports.put(urlPattern, corsSupport);
 			}
 
 			return;
 		}
 
 		if (_isExtensionURLPattern(urlPattern)) {
-			if (!_extensionURLPatternValues.containsKey(urlPattern)) {
-				_extensionURLPatternValues.put(urlPattern, value);
+			if (!_extensionURLPatternCORSSupports.containsKey(urlPattern)) {
+				_extensionURLPatternCORSSupports.put(urlPattern, corsSupport);
 			}
 
 			return;
 		}
 
-		if (!_exactURLPatternValues.containsKey(urlPattern)) {
-			_exactURLPatternValues.put(urlPattern, value);
+		if (!_exactURLPatternCORSSupports.containsKey(urlPattern)) {
+			_exactURLPatternCORSSupports.put(urlPattern, corsSupport);
 		}
 	}
 
@@ -129,8 +131,8 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 		return true;
 	}
 
-	private final Map<String, T> _exactURLPatternValues = new HashMap<>();
-	private final Map<String, T> _extensionURLPatternValues = new HashMap<>();
-	private final Map<String, T> _wildcardURLPatternValues = new HashMap<>();
+	private final Map<String, CORSSupport> _exactURLPatternCORSSupports = new HashMap<>();
+	private final Map<String, CORSSupport> _extensionURLPatternCORSSupports = new HashMap<>();
+	private final Map<String, CORSSupport> _wildcardURLPatternCORSSupports = new HashMap<>();
 
 }
