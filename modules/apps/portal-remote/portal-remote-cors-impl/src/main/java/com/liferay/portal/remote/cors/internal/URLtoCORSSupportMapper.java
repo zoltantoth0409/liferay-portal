@@ -59,30 +59,6 @@ public class URLtoCORSSupportMapper {
 			"*" + urlPath.substring(index));
 	}
 
-	private void _put(String urlPattern, CORSSupport corsSupport)
-		throws IllegalArgumentException {
-
-		if (_isWildcardURLPattern(urlPattern)) {
-			if (!_wildcardURLPatternCORSSupports.containsKey(urlPattern)) {
-				_wildcardURLPatternCORSSupports.put(urlPattern, corsSupport);
-			}
-
-			return;
-		}
-
-		if (_isExtensionURLPattern(urlPattern)) {
-			if (!_extensionURLPatternCORSSupports.containsKey(urlPattern)) {
-				_extensionURLPatternCORSSupports.put(urlPattern, corsSupport);
-			}
-
-			return;
-		}
-
-		if (!_exactURLPatternCORSSupports.containsKey(urlPattern)) {
-			_exactURLPatternCORSSupports.put(urlPattern, corsSupport);
-		}
-	}
-
 	private boolean _isExtensionURLPattern(String urlPattern) {
 
 		// Servlet 4 spec 12.1.3
@@ -134,6 +110,30 @@ public class URLtoCORSSupportMapper {
 		}
 
 		return true;
+	}
+
+	private void _put(String urlPattern, CORSSupport corsSupport)
+		throws IllegalArgumentException {
+
+		if (_isWildcardURLPattern(urlPattern)) {
+			if (!_wildcardURLPatternCORSSupports.containsKey(urlPattern)) {
+				_wildcardURLPatternCORSSupports.put(urlPattern, corsSupport);
+			}
+
+			return;
+		}
+
+		if (_isExtensionURLPattern(urlPattern)) {
+			if (!_extensionURLPatternCORSSupports.containsKey(urlPattern)) {
+				_extensionURLPatternCORSSupports.put(urlPattern, corsSupport);
+			}
+
+			return;
+		}
+
+		if (!_exactURLPatternCORSSupports.containsKey(urlPattern)) {
+			_exactURLPatternCORSSupports.put(urlPattern, corsSupport);
+		}
 	}
 
 	private final Map<String, CORSSupport> _exactURLPatternCORSSupports =
