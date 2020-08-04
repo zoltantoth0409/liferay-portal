@@ -50,7 +50,8 @@ public class SimpleURLPatternMatcher implements URLPatternMatcher {
 			}
 		}
 
-		return _extensionURLPatternCORSSupports.get("*" + urlPath.substring(index));
+		return _extensionURLPatternCORSSupports.get(
+			"*" + urlPath.substring(index));
 	}
 
 	@Override
@@ -131,8 +132,11 @@ public class SimpleURLPatternMatcher implements URLPatternMatcher {
 		return true;
 	}
 
-	private final Map<String, CORSSupport> _exactURLPatternCORSSupports = new HashMap<>();
-	private final Map<String, CORSSupport> _extensionURLPatternCORSSupports = new HashMap<>();
-	private final Map<String, CORSSupport> _wildcardURLPatternCORSSupports = new HashMap<>();
+	private final Map<String, CORSSupport> _exactURLPatternCORSSupports =
+		new HashMap<>();
+	private final Map<String, CORSSupport> _extensionURLPatternCORSSupports =
+		new HashMap<>();
+	private final Map<String, CORSSupport> _wildcardURLPatternCORSSupports =
+		new HashMap<>();
 
 }

@@ -266,8 +266,7 @@ public class PortalCORSServletFilter
 			return;
 		}
 
-		URLPatternMatcher urlPatternMatcher =
-			_getURLPatternMatcher(companyId);
+		URLPatternMatcher urlPatternMatcher = _getURLPatternMatcher(companyId);
 
 		CORSSupport corsSupport = urlPatternMatcher.get(
 			_getURI(httpServletRequest));
@@ -345,11 +344,9 @@ public class PortalCORSServletFilter
 		return _http.normalizePath(uri);
 	}
 
-	private URLPatternMatcher _getURLPatternMatcher(
-		long companyId) {
-
-		URLPatternMatcher urlPatternMatcher =
-			_urlPatternMatchers.get(companyId);
+	private URLPatternMatcher _getURLPatternMatcher(long companyId) {
+		URLPatternMatcher urlPatternMatcher = _urlPatternMatchers.get(
+			companyId);
 
 		if (urlPatternMatcher != null) {
 			return urlPatternMatcher;
@@ -445,8 +442,7 @@ public class PortalCORSServletFilter
 
 	private ServiceRegistration<ConfigurationModelListener>
 		_serviceRegistration;
-	private final Map<Long, URLPatternMatcher>
-		_urlPatternMatchers = Collections.synchronizedMap(
-			new LinkedHashMap<>());
+	private final Map<Long, URLPatternMatcher> _urlPatternMatchers =
+		Collections.synchronizedMap(new LinkedHashMap<>());
 
 }
