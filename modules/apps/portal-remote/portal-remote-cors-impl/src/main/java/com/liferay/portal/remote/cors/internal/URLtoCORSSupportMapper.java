@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.remote.cors.internal.url.pattern.matcher;
-
-import com.liferay.portal.remote.cors.internal.CORSSupport;
+package com.liferay.portal.remote.cors.internal;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,10 +22,17 @@ import java.util.Map;
 
 /**
  * @author Arthur Chan
+ * @author Carlos Sierra Andrés
+ * @author Brian Wing Shun Chan
  */
-public class SimpleURLPatternMatcher implements URLPatternMatcher {
+public class URLtoCORSSupportMapper {
 
-	@Override
+	public URLtoCORSSupportMapper(Map<String, CORSSupport> corsSupports) {
+		for (Map.Entry<String, CORSSupport> entry : corsSupports.entrySet()) {
+			put(entry.getKey(), entry.getValue());
+		}
+	}
+
 	public CORSSupport get(String urlPath) {
 		CORSSupport corsSupport = _exactURLPatternCORSSupports.get(urlPath);
 
@@ -54,7 +59,6 @@ public class SimpleURLPatternMatcher implements URLPatternMatcher {
 			"*" + urlPath.substring(index));
 	}
 
-	@Override
 	public void put(String urlPattern, CORSSupport corsSupport)
 		throws IllegalArgumentException {
 
