@@ -162,8 +162,8 @@ public class PortalCORSServletFilter
 				String pid, Dictionary<String, Object> newProperties)
 			throws ConfigurationModelListenerException {
 
-			Set<String> urlPatternsSet = new HashSet<>();
-			Set<String> duplicateURLPatternsSet = new HashSet<>();
+			Set<String> urlPatterns = new HashSet<>();
+			Set<String> duplicateURLPatterns = new HashSet<>();
 
 			long companyId = GetterUtil.getLong(newProperties.get("companyId"));
 
@@ -174,7 +174,7 @@ public class PortalCORSServletFilter
 			for (String urlPattern :
 					portalCORSConfiguration.filterMappingURLPatterns()) {
 
-				if (urlPatternsSet.contains(urlPattern)) {
+				if (urlPatterns.contains(urlPattern)) {
 					throw new ConfigurationModelListenerException(
 						"Duplicated url path patterns: " + urlPattern,
 						PortalCORSConfiguration.class,
@@ -182,7 +182,7 @@ public class PortalCORSServletFilter
 						newProperties);
 				}
 
-				urlPatternsSet.add(urlPattern);
+				urlPatterns.add(urlPattern);
 			}
 
 			for (Map.Entry<String, Dictionary<String, ?>> entry :
@@ -206,15 +206,15 @@ public class PortalCORSServletFilter
 				for (String urlPattern :
 						portalCORSConfiguration.filterMappingURLPatterns()) {
 
-					if (!urlPatternsSet.add(urlPattern)) {
-						duplicateURLPatternsSet.add(urlPattern);
+					if (!urlPatterns.add(urlPattern)) {
+						duplicateURLPatterns.add(urlPattern);
 					}
 				}
 			}
 
-			if (!duplicateURLPatternsSet.isEmpty()) {
+			if (!duplicateURLPatterns.isEmpty()) {
 				throw new ConfigurationModelListenerException(
-					"Duplicate URL patterns: " + duplicateURLPatternsSet,
+					"Duplicate URL patterns: " + duplicateURLPatterns,
 					PortalCORSConfiguration.class,
 					PortalCORSConfigurationModelListener.class, newProperties);
 			}
