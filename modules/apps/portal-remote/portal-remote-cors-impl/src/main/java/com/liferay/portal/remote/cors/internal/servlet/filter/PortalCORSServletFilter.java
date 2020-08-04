@@ -175,7 +175,7 @@ public class PortalCORSServletFilter
 
 				if (urlPatterns.contains(urlPattern)) {
 					throw new ConfigurationModelListenerException(
-						"Duplicated url path patterns: " + urlPattern,
+						"Duplicate URL pattern " + urlPattern,
 						PortalCORSConfiguration.class,
 						PortalCORSConfigurationModelListener.class,
 						newProperties);
@@ -215,7 +215,7 @@ public class PortalCORSServletFilter
 
 			if (!duplicateURLPatterns.isEmpty()) {
 				throw new ConfigurationModelListenerException(
-					"Duplicate URL patterns: " + duplicateURLPatterns,
+					"Duplicate URL pattern " + duplicateURLPatterns,
 					PortalCORSConfiguration.class,
 					PortalCORSConfigurationModelListener.class, newProperties);
 			}
