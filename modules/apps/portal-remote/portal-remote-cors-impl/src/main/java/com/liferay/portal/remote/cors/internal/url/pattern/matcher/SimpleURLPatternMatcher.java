@@ -55,7 +55,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 	public void putValue(String urlPattern, T value)
 		throws IllegalArgumentException {
 
-		if (isWildcardURLPattern(urlPattern)) {
+		if (_isWildcardURLPattern(urlPattern)) {
 			if (!_wildcardURLPatternValues.containsKey(urlPattern)) {
 				_wildcardURLPatternValues.put(urlPattern, value);
 			}
@@ -63,7 +63,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 			return;
 		}
 
-		if (isExtensionURLPattern(urlPattern)) {
+		if (_isExtensionURLPattern(urlPattern)) {
 			if (!_extensionURLPatternValues.containsKey(urlPattern)) {
 				_extensionURLPatternValues.put(urlPattern, value);
 			}
@@ -83,7 +83,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 	 * @param urlPattern the given urlPattern
 	 * @return a boolean value indicating if the urlPattern an extensionURLPattern
 	 */
-	public static boolean isExtensionURLPattern(String urlPattern) {
+	private boolean _isExtensionURLPattern(String urlPattern) {
 		if ((urlPattern.length() < 3) || (urlPattern.charAt(0) != '*') ||
 			(urlPattern.charAt(1) != '.')) {
 
@@ -110,7 +110,7 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 	 * @param urlPattern the given urlPattern
 	 * @return a boolean value indicating if the urlPattern a wildCardURLPattern
 	 */
-	public static boolean isWildcardURLPattern(String urlPattern) {
+	private boolean _isWildcardURLPattern(String urlPattern) {
 		if ((urlPattern.length() < 2) || (urlPattern.charAt(0) != '/') ||
 			(urlPattern.charAt(urlPattern.length() - 1) != '*') ||
 			(urlPattern.charAt(urlPattern.length() - 2) != '/')) {
