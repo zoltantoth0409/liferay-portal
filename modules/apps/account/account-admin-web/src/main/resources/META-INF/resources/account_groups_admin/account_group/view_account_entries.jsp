@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
+
 AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_GROUP_DISPLAY);
 
 SearchContainer<AccountEntryDisplay> accountEntryDisplaySearchContainer = AccountEntryDisplaySearchContainerFactory.createWithAccountGroupId(accountGroupDisplay.getAccountGroupId(), liferayPortletRequest, liferayPortletResponse);
 
 ViewAccountGroupAccountEntriesManagementToolbarDisplayContext viewAccountGroupAccountEntriesManagementToolbarDisplayContext = new ViewAccountGroupAccountEntriesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountEntryDisplaySearchContainer);
-
-String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
@@ -114,9 +114,9 @@ renderResponse.setTitle(accountGroupDisplay.getName());
 	<portlet:param name="mvcPath" value="/account_users_admin/select_account_entry.jsp" />
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 	<portlet:param name="accountGroupId" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
-	<portlet:param name="singleSelect" value="<%= Boolean.FALSE.toString() %>" />
 	<portlet:param name="openModalOnRedirect" value="<%= Boolean.TRUE.toString() %>" />
 	<portlet:param name="showCreateButton" value="<%= Boolean.TRUE.toString() %>" />
+	<portlet:param name="singleSelect" value="<%= Boolean.FALSE.toString() %>" />
 </portlet:renderURL>
 
 <liferay-frontend:component
