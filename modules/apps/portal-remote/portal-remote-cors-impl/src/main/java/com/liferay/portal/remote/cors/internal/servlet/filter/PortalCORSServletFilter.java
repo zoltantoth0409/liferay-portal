@@ -162,8 +162,8 @@ public class PortalCORSServletFilter
 				String pid, Dictionary<String, Object> newProperties)
 			throws ConfigurationModelListenerException {
 
-			Set<String> urlPatternSet = new HashSet<>();
-			Set<String> duplicatedURLPatternSet = new HashSet<>();
+			Set<String> urlPatternsSet = new HashSet<>();
+			Set<String> duplicateURLPatternsSet = new HashSet<>();
 
 			long companyId = GetterUtil.getLong(newProperties.get("companyId"));
 
@@ -175,7 +175,7 @@ public class PortalCORSServletFilter
 				portalCORSConfiguration.filterMappingURLPatterns();
 
 			for (String urlPattern : urlPatterns) {
-				if (urlPatternSet.contains(urlPattern)) {
+				if (urlPatternsSet.contains(urlPattern)) {
 					throw new ConfigurationModelListenerException(
 						"Duplicated url path patterns: " + urlPattern,
 						PortalCORSConfiguration.class,
@@ -183,7 +183,7 @@ public class PortalCORSServletFilter
 						newProperties);
 				}
 
-				urlPatternSet.add(urlPattern);
+				urlPatternsSet.add(urlPattern);
 			}
 
 			for (Map.Entry<String, Dictionary<String, ?>> entry :
@@ -208,15 +208,15 @@ public class PortalCORSServletFilter
 					portalCORSConfiguration.filterMappingURLPatterns();
 
 				for (String urlPattern : urlPatterns) {
-					if (!urlPatternSet.add(urlPattern)) {
-						duplicatedURLPatternSet.add(urlPattern);
+					if (!urlPatternsSet.add(urlPattern)) {
+						duplicateURLPatternsSet.add(urlPattern);
 					}
 				}
 			}
 
-			if (!duplicatedURLPatternSet.isEmpty()) {
+			if (!duplicateURLPatternsSet.isEmpty()) {
 				throw new ConfigurationModelListenerException(
-					"Duplicated url patterns: " + duplicatedURLPatternSet,
+					"Duplicate URL patterns: " + duplicateURLPatternsSet,
 					PortalCORSConfiguration.class,
 					PortalCORSConfigurationModelListener.class, newProperties);
 			}
