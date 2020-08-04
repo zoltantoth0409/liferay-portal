@@ -91,7 +91,6 @@ public class JournalTranslateDisplayContext {
 
 		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
 		_translationInfoFieldChecker =
 			(TranslationInfoFieldChecker)_httpServletRequest.getAttribute(
 				TranslationInfoFieldChecker.class.getName());
