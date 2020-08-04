@@ -102,7 +102,6 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 
 	private boolean _isWildcardURLPattern(String urlPattern) {
 
-		// RFC 3986 3.3
 		// Servlet 4 spec 12.2
 
 		if ((urlPattern.length() < 2) || (urlPattern.charAt(0) != '/') ||
@@ -111,6 +110,8 @@ public class SimpleURLPatternMatcher<T> implements URLPatternMatcher<T> {
 
 			return false;
 		}
+
+		// RFC 3986 3.3
 
 		try {
 			String urlPath = urlPattern.substring(0, urlPattern.length() - 1);
