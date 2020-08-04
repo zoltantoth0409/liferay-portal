@@ -88,12 +88,10 @@ public class CollectionItemsDetailProductNavigationControlMenuEntry
 		throws IOException {
 
 		try {
-			LiferayRenderRequest liferayRenderRequest = _createRenderRequest(
+			LiferayRenderRequest liferayRenderRequest = _createLiferayRenderRequest(
 				httpServletRequest, httpServletResponse);
-
-			LiferayRenderResponse liferayRenderResponse = _createRenderResponse(
+			LiferayRenderResponse liferayRenderResponse = _createLiferayRenderResponse(
 				liferayRenderRequest, httpServletResponse);
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -156,7 +154,7 @@ public class CollectionItemsDetailProductNavigationControlMenuEntry
 		super.setServletContext(servletContext);
 	}
 
-	private LiferayRenderRequest _createRenderRequest(
+	private LiferayRenderRequest _createLiferayRenderRequest(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws Exception {
@@ -204,7 +202,7 @@ public class CollectionItemsDetailProductNavigationControlMenuEntry
 		return liferayRenderRequest;
 	}
 
-	private LiferayRenderResponse _createRenderResponse(
+	private LiferayRenderResponse _createLiferayRenderResponse(
 		LiferayRenderRequest liferayRenderRequest,
 		HttpServletResponse httpServletResponse) {
 
