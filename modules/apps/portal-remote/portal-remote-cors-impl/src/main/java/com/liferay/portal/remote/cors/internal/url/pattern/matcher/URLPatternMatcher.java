@@ -23,20 +23,8 @@ import java.net.URISyntaxException;
  */
 public interface URLPatternMatcher<T> {
 
-	/**
-	 * https://download.oracle.com/otndocs/jcp/servlet-4-final-eval-spec/index.html#12.1
-	 *
-	 * @param urlPath a legal urlPath from a URL
-	 * @return the matched pattern
-	 */
 	public T getValue(String urlPath);
 
-	/**
-	 * https://download.oracle.com/otndocs/jcp/servlet-4-final-eval-spec/index.html#12.2
-	 *
-	 * @param urlPattern the URL pattern, used for URL pattern matching
-	 * @param value an non null object associated with urlPattern
-	 */
 	public void putValue(String urlPattern, T value)
 		throws IllegalArgumentException;
 
