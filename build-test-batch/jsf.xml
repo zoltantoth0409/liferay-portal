@@ -142,7 +142,10 @@
 
 		<property location="${selenium.executable.dir.name}${selenium.gecko.driver.executable}" name="gecko.driver.path" />
 
-		<!-- LRQA-60084 Temporary workaround until new release branch is available from faces repos -->
+		<!--
+		LRQA-60084 Temporary workaround until new release branch is available
+		from the Faces repos
+		-->
 
 		<exec dir="${liferay.faces.alloy.dir}" executable="git">
 			<arg line="checkout" />
