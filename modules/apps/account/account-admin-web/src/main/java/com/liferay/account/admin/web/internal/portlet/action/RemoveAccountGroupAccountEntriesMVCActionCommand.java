@@ -53,10 +53,10 @@ public class RemoveAccountGroupAccountEntriesMVCActionCommand
 		try (SafeClosable safeClosable =
 				ProxyModeThreadLocal.setWithSafeClosable(true)) {
 
-			long[] accountEntryIds = ParamUtil.getLongValues(
-				actionRequest, "accountEntryIds");
 			long accountGroupId = ParamUtil.getLong(
 				actionRequest, "accountGroupId");
+			long[] accountEntryIds = ParamUtil.getLongValues(
+				actionRequest, "accountEntryIds");
 
 			_accountGroupAccountEntryRelLocalService.
 				deleteAccountGroupAccountEntryRels(
