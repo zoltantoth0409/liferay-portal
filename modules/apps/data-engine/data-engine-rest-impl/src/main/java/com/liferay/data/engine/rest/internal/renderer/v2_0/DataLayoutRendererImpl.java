@@ -68,6 +68,12 @@ public class DataLayoutRendererImpl implements DataLayoutRenderer {
 	private DDMFormRenderingContext _toDDMFormRenderingContext(
 		DataLayoutRendererContext dataLayoutRendererContext, DDMForm ddmForm) {
 
+		DDMFormRenderingContext ddmFormRenderingContext =
+			new DDMFormRenderingContext();
+
+		ddmFormRenderingContext.setContainerId(
+			dataLayoutRendererContext.getContainerId());
+
 		Locale locale = null;
 
 		String languageId = ParamUtil.get(
@@ -82,15 +88,11 @@ public class DataLayoutRendererImpl implements DataLayoutRenderer {
 			locale = LocaleUtil.fromLanguageId(languageId);
 		}
 
-		DDMFormRenderingContext ddmFormRenderingContext =
-			new DDMFormRenderingContext();
-
-		ddmFormRenderingContext.setContainerId(
-			dataLayoutRendererContext.getContainerId());
 		ddmFormRenderingContext.setDDMFormValues(
 			DataRecordValuesUtil.toDDMFormValues(
 				dataLayoutRendererContext.getDataRecordValues(), ddmForm,
 				locale));
+
 		ddmFormRenderingContext.setHttpServletRequest(
 			dataLayoutRendererContext.getHttpServletRequest());
 		ddmFormRenderingContext.setHttpServletResponse(
