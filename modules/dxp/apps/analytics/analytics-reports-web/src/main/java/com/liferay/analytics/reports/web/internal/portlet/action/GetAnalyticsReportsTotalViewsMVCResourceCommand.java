@@ -64,11 +64,11 @@ public class GetAnalyticsReportsTotalViewsMVCResourceCommand
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		AnalyticsReportsDataProvider analyticsReportsDataProvider =
-			new AnalyticsReportsDataProvider(_http);
-
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
+
+		AnalyticsReportsDataProvider analyticsReportsDataProvider =
+			new AnalyticsReportsDataProvider(_http);
 
 		CanonicalURLProvider canonicalURLProvider = new CanonicalURLProvider(
 			_assetDisplayPageFriendlyURLProvider, httpServletRequest,
