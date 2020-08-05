@@ -53,7 +53,7 @@ export default function ListEntries() {
 	}));
 
 	const portletParams = {
-		locale: userLanguageId,
+		languageId: userLanguageId,
 	};
 
 	return (
