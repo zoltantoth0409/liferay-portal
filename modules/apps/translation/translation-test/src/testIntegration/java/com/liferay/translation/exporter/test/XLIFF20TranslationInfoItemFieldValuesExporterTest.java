@@ -50,8 +50,8 @@ public class XLIFF20TranslationInfoItemFieldValuesExporterTest {
 
 	@ClassRule
 	@Rule
-	public static final LiferayIntegrationTestRule
-		testRuexportInfoItemFieldValuesle = new LiferayIntegrationTestRule();
+	public static final LiferayIntegrationTestRule liferayIntegrationTestRule =
+		new LiferayIntegrationTestRule();
 
 	@Before
 	public void setUp() throws Exception {
