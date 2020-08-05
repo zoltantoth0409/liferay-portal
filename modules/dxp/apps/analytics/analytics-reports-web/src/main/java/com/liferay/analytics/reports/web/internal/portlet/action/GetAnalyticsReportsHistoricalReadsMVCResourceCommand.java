@@ -68,6 +68,9 @@ public class GetAnalyticsReportsHistoricalReadsMVCResourceCommand
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
+			HttpServletRequest httpServletRequest =
+				_portal.getHttpServletRequest(resourceRequest);
+
 			AnalyticsReportsDataProvider analyticsReportsDataProvider =
 				new AnalyticsReportsDataProvider(_http);
 
@@ -78,9 +81,6 @@ public class GetAnalyticsReportsHistoricalReadsMVCResourceCommand
 
 			int timeSpanOffset = ParamUtil.getInteger(
 				resourceRequest, "timeSpanOffset");
-
-			HttpServletRequest httpServletRequest =
-				_portal.getHttpServletRequest(resourceRequest);
 
 			CanonicalURLProvider canonicalURLProvider =
 				new CanonicalURLProvider(
