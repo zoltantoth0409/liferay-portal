@@ -67,6 +67,13 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 		throws PortletException {
 
 		try {
+			InfoItemFieldValuesProvider<JournalArticle>
+				infoItemFieldValuesProvider =
+					(InfoItemFieldValuesProvider<JournalArticle>)
+						_infoItemServiceTracker.getFirstInfoItemService(
+							InfoItemFieldValuesProvider.class,
+							JournalArticle.class.getName());
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)resourceRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -75,12 +82,9 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 				themeDisplay.getScopeGroupId(),
 				ParamUtil.getString(resourceRequest, "articleId"));
 
-			InfoItemFieldValuesProvider<JournalArticle>
-				infoItemFieldValuesProvider =
-					(InfoItemFieldValuesProvider<JournalArticle>)
-						_infoItemServiceTracker.getFirstInfoItemService(
-							InfoItemFieldValuesProvider.class,
-							JournalArticle.class.getName());
+			String escapedTitle = StringUtil.removeSubstrings(
+				article.getTitle(themeDisplay.getLocale()),
+				PropsValues.DL_CHAR_BLACKLIST);
 
 			String sourceLanguageId = ParamUtil.getString(
 				resourceRequest, "sourceLanguageId");
@@ -101,10 +105,6 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 					exportFileFormatOptional.orElseThrow(
 						() -> new PortalException(
 							"Unknown export mime type: " + exportMimeType));
-
-			String escapedTitle = StringUtil.removeSubstrings(
-				article.getTitle(themeDisplay.getLocale()),
-				PropsValues.DL_CHAR_BLACKLIST);
 
 			for (String targetLanguageId :
 					ParamUtil.getStringValues(
