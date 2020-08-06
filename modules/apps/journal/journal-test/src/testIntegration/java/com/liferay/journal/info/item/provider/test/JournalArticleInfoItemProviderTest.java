@@ -67,7 +67,7 @@ public class JournalArticleInfoItemProviderTest {
 
 		_serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
 
-		JournalArticle updateArticle = JournalTestUtil.updateArticle(
+		JournalArticle updatedArticle = JournalTestUtil.updateArticle(
 			article, RandomTestUtil.randomString(), article.getContent(), false,
 			false, _serviceContext);
 
@@ -90,7 +90,7 @@ public class JournalArticleInfoItemProviderTest {
 		JournalArticle draftArticle =
 			journalArticleInfoItemProvider.getInfoItem(infoItemIdentifier);
 
-		Assert.assertEquals(updateArticle.getTitle(), draftArticle.getTitle());
+		Assert.assertEquals(updatedArticle.getTitle(), draftArticle.getTitle());
 	}
 
 	@Test(expected = NoSuchInfoItemException.class)
