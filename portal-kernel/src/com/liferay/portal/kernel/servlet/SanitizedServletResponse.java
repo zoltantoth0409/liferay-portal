@@ -216,14 +216,14 @@ public class SanitizedServletResponse extends HttpServletResponseWrapper {
 			SystemProperties.getProperties(),
 			httpHeaderSecureXFrameOptionsKey.concat(StringPool.PERIOD), true);
 
+		List<KeyValuePair> xFrameOptionKVPs = new ArrayList<>(
+			properties.size());
+
 		List<String> propertyNames = new ArrayList<>(
 			properties.stringPropertyNames());
 
 		propertyNames.sort(
 			Comparator.comparingInt(GetterUtil::getIntegerStrict));
-
-		List<KeyValuePair> xFrameOptionKVPs = new ArrayList<>(
-			properties.size());
 
 		for (String propertyName : propertyNames) {
 			String propertyValue = properties.getProperty(propertyName);
