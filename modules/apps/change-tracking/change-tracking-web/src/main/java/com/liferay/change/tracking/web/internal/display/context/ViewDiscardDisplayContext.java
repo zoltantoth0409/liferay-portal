@@ -55,21 +55,17 @@ public class ViewDiscardDisplayContext {
 
 		_ctCollectionLocalService = ctCollectionLocalService;
 		_ctDisplayRendererRegistry = ctDisplayRendererRegistry;
-
 		_httpServletRequest = httpServletRequest;
-
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		_renderRequest = renderRequest;
+		_renderResponse = renderResponse;
+		_userLocalService = userLocalService;
 
 		_ctCollectionId = ParamUtil.getLong(_renderRequest, "ctCollectionId");
 		_modelClassNameId = ParamUtil.getLong(
 			_renderRequest, "modelClassNameId");
 		_modelClassPK = ParamUtil.getLong(_renderRequest, "modelClassPK");
-
-		_renderResponse = renderResponse;
-		_userLocalService = userLocalService;
+		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	public Map<String, Object> getReactData() {
