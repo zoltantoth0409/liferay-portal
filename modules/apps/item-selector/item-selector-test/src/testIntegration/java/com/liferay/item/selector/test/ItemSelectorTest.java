@@ -49,7 +49,7 @@ public class ItemSelectorTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testGetgetItemSelectedEventName() {
+	public void testGetItemSelectedEventName() {
 		Assert.assertEquals(
 			"eventName",
 			_itemSelector.getItemSelectedEventName(
