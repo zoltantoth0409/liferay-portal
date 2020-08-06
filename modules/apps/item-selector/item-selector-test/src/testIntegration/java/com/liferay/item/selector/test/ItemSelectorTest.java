@@ -95,7 +95,6 @@ public class ItemSelectorTest {
 		Assert.assertEquals(
 			desiredItemSelectorReturnTypes.toString(), 1,
 			desiredItemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				URLItemSelectorReturnType);
@@ -138,7 +137,6 @@ public class ItemSelectorTest {
 		Assert.assertEquals(
 			desiredItemSelectorReturnTypes.toString(), 1,
 			desiredItemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				URLItemSelectorReturnType);
@@ -155,7 +153,6 @@ public class ItemSelectorTest {
 		Assert.assertEquals(
 			desiredItemSelectorReturnTypes.toString(), 1,
 			desiredItemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				DownloadURLItemSelectorReturnType);
