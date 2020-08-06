@@ -61,7 +61,7 @@ public class JournalArticleInfoItemPermissionProviderTest {
 	}
 
 	@Test
-	public void testCannotViewArticleWithoutViewPermissions() throws Exception {
+	public void testHasPermission() throws Exception {
 		JournalArticle article = JournalTestUtil.addArticle(
 			_user.getUserId(), _group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
