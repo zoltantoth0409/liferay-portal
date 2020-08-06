@@ -47,6 +47,7 @@ public class DiscardChangesMVCActionCommand extends BaseMVCActionCommand {
 
 		long ctCollectionId = ParamUtil.getLong(
 			actionRequest, "ctCollectionId");
+
 		long modelClassNameId = ParamUtil.getLong(
 			actionRequest, "modelClassNameId");
 		long modelClassPK = ParamUtil.getLong(actionRequest, "modelClassPK");
