@@ -81,7 +81,8 @@ public class CTTransactionExceptionDynamicInclude extends BaseDynamicInclude {
 		try {
 			Writer writer = pageContext.getOut();
 
-			writer.write("Liferay.Util.openToast({autoClose:10000,message:'");
+			writer.write(
+				"Liferay.Util.openToast({autoClose: 10000, message: '");
 
 			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 				_portal.getLocale(httpServletRequest),
@@ -92,11 +93,11 @@ public class CTTransactionExceptionDynamicInclude extends BaseDynamicInclude {
 					resourceBundle,
 					"this-action-can-only-be-performed-in-production-mode"));
 
-			writer.write("',title:'");
+			writer.write("', title: '");
 
 			writer.write(_language.get(resourceBundle, "error"));
 
-			writer.write(":',type:'danger',});");
+			writer.write(":', type: 'danger',});");
 		}
 		catch (IOException ioException) {
 			ReflectionUtil.throwException(ioException);
