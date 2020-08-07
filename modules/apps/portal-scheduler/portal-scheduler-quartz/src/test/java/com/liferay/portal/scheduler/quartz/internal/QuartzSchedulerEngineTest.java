@@ -1063,8 +1063,8 @@ public class QuartzSchedulerEngineTest {
 
 		@Override
 		public void scheduleJob(
-			JobDetail jobDetail,
-			Set<? extends org.quartz.Trigger> triggersForJob, boolean replace) {
+			JobDetail jobDetail, Set<? extends org.quartz.Trigger> triggers,
+			boolean replace) {
 		}
 
 		@Override
@@ -1074,7 +1074,7 @@ public class QuartzSchedulerEngineTest {
 
 		@Override
 		public void scheduleJobs(
-			Map<JobDetail, Set<? extends org.quartz.Trigger>> triggersAndJobs,
+			Map<JobDetail, Set<? extends org.quartz.Trigger>> triggers,
 			boolean replace) {
 		}
 
