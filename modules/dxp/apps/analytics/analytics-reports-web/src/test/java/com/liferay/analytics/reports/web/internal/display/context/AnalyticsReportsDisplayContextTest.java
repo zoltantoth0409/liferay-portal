@@ -215,7 +215,6 @@ public class AnalyticsReportsDisplayContextTest {
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(Boolean.TRUE, jsonObject.getBoolean("default"));
-
 		Assert.assertEquals(
 			LocaleUtil.toBCP47LanguageId(LocaleUtil.getDefault()),
 			jsonObject.getString("languageId"));
@@ -259,7 +258,6 @@ public class AnalyticsReportsDisplayContextTest {
 		JSONObject jsonObject1 = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(Boolean.TRUE, jsonObject1.getBoolean("default"));
-
 		Assert.assertEquals(
 			LocaleUtil.toBCP47LanguageId(LocaleUtil.SPAIN),
 			jsonObject1.getString("languageId"));
@@ -274,11 +272,9 @@ public class AnalyticsReportsDisplayContextTest {
 		JSONObject jsonObject2 = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(Boolean.FALSE, jsonObject2.getBoolean("default"));
-
 		Assert.assertEquals(
 			LocaleUtil.toBCP47LanguageId(LocaleUtil.US),
 			jsonObject2.getString("languageId"));
-
 		Assert.assertEquals(
 			LocaleUtil.toLanguageId(LocaleUtil.US),
 			http.getParameter(
