@@ -103,13 +103,13 @@ public class AssetDisplayPageFriendlyURLProviderImpl
 				ThemeDisplay clonedThemeDisplay =
 					(ThemeDisplay)themeDisplay.clone();
 
-				clonedThemeDisplay.setI18nPath(_getI18nPath(locale));
-
 				String languageId = LocaleUtil.toLanguageId(locale);
 
 				clonedThemeDisplay.setI18nLanguageId(languageId);
-				clonedThemeDisplay.setLanguageId(languageId);
 
+				clonedThemeDisplay.setI18nPath(_getI18nPath(locale));
+
+				clonedThemeDisplay.setLanguageId(languageId);
 				clonedThemeDisplay.setLocale(locale);
 
 				return _portal.getGroupFriendlyURL(
