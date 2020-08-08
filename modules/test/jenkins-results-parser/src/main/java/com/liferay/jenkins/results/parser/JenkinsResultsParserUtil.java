@@ -514,21 +514,22 @@ public class JenkinsResultsParserUtil {
 
 					Runtime runtime = Runtime.getRuntime();
 
-					String[] envp = new String[environments.size()];
+					String[] environmentParameters =
+						new String[environments.size()];
 
 					int i = 0;
 
 					for (Map.Entry<String, String> environment :
 							environments.entrySet()) {
 
-						envp[i] = combine(
+						environmentParameters[i] = combine(
 							environment.getKey(), "=", environment.getValue());
 
 						i++;
 					}
 
 					Process process = runtime.exec(
-						sb.toString(), envp, baseDir);
+						sb.toString(), environmentParameters, baseDir);
 
 					try (CountingInputStream countingInputStream =
 							new CountingInputStream(process.getInputStream());
@@ -536,7 +537,7 @@ public class JenkinsResultsParserUtil {
 							new InputStreamReader(
 								countingInputStream, StandardCharsets.UTF_8)) {
 
-						int logCharInt;
+						int logCharInt = 0;
 
 						while ((logCharInt = inputStreamReader.read()) != -1) {
 							if (countingInputStream.getCount() > maxLogSize) {
