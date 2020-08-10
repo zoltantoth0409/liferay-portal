@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 package com.liferay.remote.app.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -19,20 +18,20 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class DuplicateEntryURLException extends PortalException {
+public class DuplicateRemoteAppEntryURLException extends PortalException {
 
-	public DuplicateEntryURLException() {
+	public DuplicateRemoteAppEntryURLException() {
 	}
 
-	public DuplicateEntryURLException(String msg) {
+	public DuplicateRemoteAppEntryURLException(String msg) {
 		super(msg);
 	}
 
-	public DuplicateEntryURLException(String msg, Throwable throwable) {
+	public DuplicateRemoteAppEntryURLException(String msg, Throwable throwable) {
 		super(msg, throwable);
 	}
 
-	public DuplicateEntryURLException(Throwable throwable) {
+	public DuplicateRemoteAppEntryURLException(Throwable throwable) {
 		super(throwable);
 	}
 
