@@ -131,25 +131,18 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 
 		properties.put("companyId", companyId);
 		properties.put("filter.mapping.url.pattern", urlPatterns);
-
-		String[] headers = new String[_HEADERS_BASE.length + 1];
-
-		for (int i = 0; i < _HEADERS_BASE.length; ++i) {
-			headers[i] = _HEADERS_BASE[i];
-		}
-
-		headers[headers.length - 1] =
-			"Access-Control-Allow-Origin: " + allowedOrigin;
-		properties.put("headers", headers);
+		properties.put(
+			"headers",
+			new String[] {
+				"Access-Control-Allow-Credentials: true",
+				"Access-Control-Allow-Headers: *",
+				"Access-Control-Allow-Methods: *",
+				"Access-Control-Allow-Origin: " + allowedOrigin
+			});
 
 		createFactoryConfiguration(
 			PortalCORSConfiguration.class.getName(), properties);
 	}
-
-	private static final String[] _HEADERS_BASE = {
-		"Access-Control-Allow-Credentials: true",
-		"Access-Control-Allow-Headers: *", "Access-Control-Allow-Methods: *"
-	};
 
 	private static final String[] _URL_PATTERNS_DUPLICATE = {
 		"/o/cors-app/duplicate/path/*"
