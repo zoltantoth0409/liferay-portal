@@ -90,11 +90,11 @@ public class URLtoCORSSupportMapperTest {
 			corsSupports.put(keyValuePair.getValue(), corsSupport);
 		}
 
-		URLtoCORSSupportMapper urLtoCORSSupportMapper =
+		URLtoCORSSupportMapper urlToCORSSupportMapper =
 			new URLtoCORSSupportMapper(corsSupports);
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
-			CORSSupport corsSupport = urLtoCORSSupportMapper.get(
+			CORSSupport corsSupport = urlToCORSSupportMapper.get(
 				keyValuePair.getKey());
 
 			if (corsSupport == null) {
