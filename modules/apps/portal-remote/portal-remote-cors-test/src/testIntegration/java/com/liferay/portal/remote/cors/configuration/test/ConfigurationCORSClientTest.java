@@ -130,7 +130,6 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 		Dictionary<String, Object> properties = new Hashtable<>();
 
 		properties.put("companyId", companyId);
-
 		properties.put("filter.mapping.url.pattern", urlPatterns);
 
 		String[] headers = new String[_HEADERS_BASE.length + 1];
