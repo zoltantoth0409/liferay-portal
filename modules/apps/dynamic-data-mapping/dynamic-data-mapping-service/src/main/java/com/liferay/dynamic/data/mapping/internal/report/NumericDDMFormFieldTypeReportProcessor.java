@@ -184,11 +184,11 @@ public class NumericDDMFormFieldTypeReportProcessor
 	}
 
 	protected String formatBigDecimal(BigDecimal bigDecimal) {
+		StringBundler sb = new StringBundler(3);
+
 		String bigDecimalString = bigDecimal.toString();
 
 		String[] bigDecimalStringParts = bigDecimalString.split("\\.");
-
-		StringBundler sb = new StringBundler(3);
 
 		sb.append(bigDecimalStringParts[0]);
 
