@@ -63,11 +63,13 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testDuplicateConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			_companyId, _URL_PATTERN_DUPLICATE, "http://www.liferay.com");
+			_companyId, "/o/cors-app/duplicate/path/*",
+			"http://www.liferay.com");
 
 		try {
 			_createFactoryConfiguration(
-				_companyId, _URL_PATTERN_DUPLICATE, "http://www.google.com");
+				_companyId, "/o/cors-app/duplicate/path/*",
+				"http://www.google.com");
 		}
 		catch (RuntimeException runtimeException) {
 			Throwable throwable = runtimeException.getCause();
@@ -81,7 +83,6 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	public void testNonoverwrittenConfiguration() throws Exception {
 		_createFactoryConfiguration(
 			0, "/o/cors-app/system/only/path/*", "http://www.liferay.com");
-
 		_createFactoryConfiguration(
 			_companyId, "/o/cors-app/instance/only/path/*",
 			"http://www.google.com");
@@ -104,10 +105,10 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testOverwrittenConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			0, _URL_PATTERN_OVERWRITTEN, "http://www.google.com");
-
+			0, "/o/cors-app/overwritten/path/*", "http://www.google.com");
 		_createFactoryConfiguration(
-			_companyId, _URL_PATTERN_OVERWRITTEN, "http://www.liferay.com");
+			_companyId, "/o/cors-app/overwritten/path/*",
+			"http://www.liferay.com");
 
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
@@ -144,12 +145,6 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 		createFactoryConfiguration(
 			PortalCORSConfiguration.class.getName(), properties);
 	}
-
-	private static final String _URL_PATTERN_DUPLICATE =
-		"/o/cors-app/duplicate/path/*";
-
-	private static final String _URL_PATTERN_OVERWRITTEN =
-		"/o/cors-app/overwritten/path/*";
 
 	private long _companyId;
 
