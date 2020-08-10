@@ -27,7 +27,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Dictionary;
-import java.util.Hashtable;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -127,7 +126,7 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			long companyId, String urlPattern, String allowedOrigin)
 		throws Exception {
 
-		Dictionary<String, Object> properties = new Hashtable<>();
+		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("companyId", companyId);
 		properties.put("filter.mapping.url.pattern", new String[] {urlPattern});
