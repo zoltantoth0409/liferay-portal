@@ -139,15 +139,12 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 		}
 
 		headers[headers.length - 1] =
-			_HEADER_ACCESS_CONTROL_ALLOWED_ORIGIN + allowedOrigin;
+			"Access-Control-Allow-Origin: " + allowedOrigin;
 		properties.put("headers", headers);
 
 		createFactoryConfiguration(
 			PortalCORSConfiguration.class.getName(), properties);
 	}
-
-	private static final String _HEADER_ACCESS_CONTROL_ALLOWED_ORIGIN =
-		"Access-Control-Allow-Origin: ";
 
 	private static final String[] _HEADERS_BASE = {
 		"Access-Control-Allow-Credentials: true",
