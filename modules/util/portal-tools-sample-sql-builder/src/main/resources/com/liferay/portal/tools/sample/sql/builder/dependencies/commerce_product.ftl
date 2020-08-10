@@ -1,8 +1,10 @@
 <#assign
 	commerceCurrencyModel = dataFactory.newCommerceCurrencyModel()
+
 	commerceCatalogModel = dataFactory.newCommerceCatalogModel(commerceCurrencyModel)
-	commerceChannelModel = dataFactory.newCommerceChannelModel(commerceCurrencyModel)
+
 	commerceCatalogGroupModel = dataFactory.newCommerceCatalogGroupModel(commerceCatalogModel)
+	commerceChannelModel = dataFactory.newCommerceChannelModel(commerceCurrencyModel)
 	cpTaxCategoryModel = dataFactory.newCPTaxCategoryModel()
 />
 
