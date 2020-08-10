@@ -63,11 +63,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testDuplicateConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			_companyId, _URL_PATTERNS_DUPLICATE, "http://www.liferay.com");
+			_companyId, _URL_PATTERN_DUPLICATE, "http://www.liferay.com");
 
 		try {
 			_createFactoryConfiguration(
-				_companyId, _URL_PATTERNS_DUPLICATE, "http://www.google.com");
+				_companyId, _URL_PATTERN_DUPLICATE, "http://www.google.com");
 		}
 		catch (RuntimeException runtimeException) {
 			Throwable throwable = runtimeException.getCause();
@@ -80,10 +80,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testNonoverwrittenConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			0, _URL_PATTERNS_SYSTEM_ONLY, "http://www.liferay.com");
+			0, "/o/cors-app/system/only/path/*", "http://www.liferay.com");
 
 		_createFactoryConfiguration(
-			_companyId, _URL_PATTERNS_INSTANCE_ONLY, "http://www.google.com");
+			_companyId, "/o/cors-app/instance/only/path/*",
+			"http://www.google.com");
 
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
@@ -103,10 +104,10 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testOverwrittenConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			0, _URL_PATTERNS_OVERWRITTEN, "http://www.google.com");
+			0, _URL_PATTERN_OVERWRITTEN, "http://www.google.com");
 
 		_createFactoryConfiguration(
-			_companyId, _URL_PATTERNS_OVERWRITTEN, "http://www.liferay.com");
+			_companyId, _URL_PATTERN_OVERWRITTEN, "http://www.liferay.com");
 
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
@@ -124,13 +125,13 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	}
 
 	private void _createFactoryConfiguration(
-			long companyId, String[] urlPatterns, String allowedOrigin)
+			long companyId, String urlPattern, String allowedOrigin)
 		throws Exception {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 
 		properties.put("companyId", companyId);
-		properties.put("filter.mapping.url.pattern", urlPatterns);
+		properties.put("filter.mapping.url.pattern", new String[] {urlPattern});
 		properties.put(
 			"headers",
 			new String[] {
@@ -144,21 +145,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			PortalCORSConfiguration.class.getName(), properties);
 	}
 
-	private static final String[] _URL_PATTERNS_DUPLICATE = {
-		"/o/cors-app/duplicate/path/*"
-	};
+	private static final String _URL_PATTERN_DUPLICATE =
+		"/o/cors-app/duplicate/path/*";
 
-	private static final String[] _URL_PATTERNS_INSTANCE_ONLY = {
-		"/o/cors-app/instance/only/path/*"
-	};
-
-	private static final String[] _URL_PATTERNS_OVERWRITTEN = {
-		"/o/cors-app/overwritten/path/*"
-	};
-
-	private static final String[] _URL_PATTERNS_SYSTEM_ONLY = {
-		"/o/cors-app/system/only/path/*"
-	};
+	private static final String _URL_PATTERN_OVERWRITTEN =
+		"/o/cors-app/overwritten/path/*";
 
 	private long _companyId;
 
