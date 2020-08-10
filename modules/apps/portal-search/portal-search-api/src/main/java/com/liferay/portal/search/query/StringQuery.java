@@ -54,6 +54,15 @@ public interface StringQuery extends Query {
 
 	public Boolean getEscape();
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #getFieldsBoosts}
+	 */
+	@Deprecated
+	public default Map<String, Float> getFields() {
+		return getFieldsBoosts();
+	}
+
 	public Map<String, Float> getFieldsBoosts();
 
 	public Float getFuzziness();
