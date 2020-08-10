@@ -143,13 +143,13 @@ public class NumericDDMFormFieldTypeReportProcessor
 				(number1, number2) -> Double.compare(
 					number1.doubleValue(), number2.doubleValue());
 
-			BigDecimal maxValueBigDecimal = _getValuesBigDecimalStream(
+			BigDecimal maxValueBigDecimal = _getValueBigDecimalsStream(
 				ddmFormFieldValue.getName(), streamSupplier.get()
 			).max(
 				comparator
 			).get();
 
-			BigDecimal minValueBigDecimal = _getValuesBigDecimalStream(
+			BigDecimal minValueBigDecimal = _getValueBigDecimalsStream(
 				ddmFormFieldValue.getName(), streamSupplier.get()
 			).min(
 				comparator
@@ -226,7 +226,7 @@ public class NumericDDMFormFieldTypeReportProcessor
 		return new BigDecimal(value);
 	}
 
-	private Stream<BigDecimal> _getValuesBigDecimalStream(
+	private Stream<BigDecimal> _getValueBigDecimalsStream(
 		String ddmFormFieldValueName,
 		Stream<DDMFormInstanceRecord> ddmFormInstanceRecordsStream) {
 
