@@ -439,8 +439,7 @@ public class EditFragmentEntryDisplayContext {
 		).put(
 			"resources", resources
 		).put(
-			"spritemap",
-			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
+			"spritemap", _themeDisplay.getPathThemeImages() + "/clay/icons.svg"
 		).put(
 			"status",
 			() -> {
