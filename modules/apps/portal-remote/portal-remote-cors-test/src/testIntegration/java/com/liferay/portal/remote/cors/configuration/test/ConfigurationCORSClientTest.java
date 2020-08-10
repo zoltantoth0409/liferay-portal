@@ -94,12 +94,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 		registerJaxRsApplication(new CORSTestApplication(), "", properties);
 
 		assertJaxRSUrl(
-			"/cors-app/system/only/path/whatever", "GET", false, true,
-			"http://www.liferay.com");
-
-		assertJaxRSUrl(
 			"/cors-app/instance/only/path/whatever", "GET", false, true,
 			"http://www.google.com");
+		assertJaxRSUrl(
+			"/cors-app/system/only/path/whatever", "GET", false, true,
+			"http://www.liferay.com");
 	}
 
 	@Test
@@ -119,7 +118,6 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 		assertJaxRSUrl(
 			"/cors-app/overwritten/path/whatever", "GET", false, false,
 			"http://www.google.com");
-
 		assertJaxRSUrl(
 			"/cors-app/overwritten/path/whatever", "GET", false, true,
 			"http://www.liferay.com");
