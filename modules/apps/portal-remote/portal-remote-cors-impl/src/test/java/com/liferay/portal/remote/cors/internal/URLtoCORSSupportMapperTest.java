@@ -33,7 +33,56 @@ public class URLtoCORSSupportMapperTest {
 	public void testGet() throws Exception {
 		Map<String, CORSSupport> corsSupports = new HashMap<>();
 
-		for (KeyValuePair keyValuePair : _KEY_VALUE_PAIRS) {
+		KeyValuePair[] keyValuePairs = {
+			new KeyValuePair("/", "//*"), new KeyValuePair("/*", "/*/*"),
+			new KeyValuePair("/*/", "/*//*"),
+			new KeyValuePair("/c/portal/j_login", "/c/portal/j_login"),
+			new KeyValuePair("/documents", "/documents/*"),
+			new KeyValuePair("/documents/", "/documents/*"),
+			new KeyValuePair("/documents/main.jsp", "/documents/main.jsp/*"),
+			new KeyValuePair("/documents/main.jsp/*", "/documents/main.jsp/*"),
+			new KeyValuePair("/documents/main.jspf", "/documents/main.jspf/*"),
+			new KeyValuePair("/documents/main.jspf/", "/documents/main.jspf/*"),
+			new KeyValuePair("/documents/user1", "/documents/user1/*"),
+			new KeyValuePair("/documents/user1/", "/documents/user1/*"),
+			new KeyValuePair(
+				"/documents/user1/folder1", "/documents/user1/folder1/*"),
+			new KeyValuePair(
+				"/documents/user1/folder1/", "/documents/user1/folder1/*"),
+			new KeyValuePair(
+				"/documents/user1/folder2", "/documents/user1/folder2/*"),
+			new KeyValuePair(
+				"/documents/user1/folder2/", "/documents/user1/folder2/*"),
+			new KeyValuePair("/documents/user2", "/documents/user2/*"),
+			new KeyValuePair("/documents/user2/", "/documents/user2/*"),
+			new KeyValuePair(
+				"/documents/user2/folder1", "/documents/user2/folder1/*"),
+			new KeyValuePair(
+				"/documents/user2/folder1/", "/documents/user2/folder1/*"),
+			new KeyValuePair(
+				"/documents/user2/folder2", "/documents/user2/folder2/*"),
+			new KeyValuePair(
+				"/documents/user2/folder2/", "/documents/user2/folder2/*"),
+			new KeyValuePair("/documents/user3", "/documents/*"),
+			new KeyValuePair("/documents/user3/", "/documents/*"),
+			new KeyValuePair("/documents/user3/folder1", "/documents/*"),
+			new KeyValuePair("/documents/user3/folder1/", "/documents/*"),
+			new KeyValuePair("/documents/user3/folder2", "/documents/*"),
+			new KeyValuePair("/documents/user3/folder2/", "/documents/*"),
+			new KeyValuePair("/test", "/*"), new KeyValuePair("/test/", "/*"),
+			new KeyValuePair("no/leading/slash", StringPool.BLANK),
+			new KeyValuePair("no/leading/slash/", StringPool.BLANK),
+			new KeyValuePair("no/leading/slash/*", "no/leading/slash/*"),
+			new KeyValuePair("no/leading/slash/test", StringPool.BLANK),
+			new KeyValuePair("test", StringPool.BLANK),
+			new KeyValuePair("test.jsp", "*.jsp"),
+			new KeyValuePair("test.jspf/", StringPool.BLANK),
+			new KeyValuePair("test/", StringPool.BLANK),
+			new KeyValuePair("test/main.jsp/*", StringPool.BLANK),
+			new KeyValuePair("test/main.jspf", "*.jspf")
+		};
+
+		for (KeyValuePair keyValuePair : keyValuePairs) {
 			CORSSupport corsSupport = new CORSSupport();
 
 			corsSupport.setHeader("pattern", keyValuePair.getValue());
@@ -44,7 +93,7 @@ public class URLtoCORSSupportMapperTest {
 		URLtoCORSSupportMapper urLtoCORSSupportMapper =
 			new URLtoCORSSupportMapper(corsSupports);
 
-		for (KeyValuePair keyValuePair : _KEY_VALUE_PAIRS) {
+		for (KeyValuePair keyValuePair : keyValuePairs) {
 			CORSSupport corsSupport = urLtoCORSSupportMapper.get(
 				keyValuePair.getKey());
 
@@ -70,54 +119,5 @@ public class URLtoCORSSupportMapperTest {
 			}
 		}
 	}
-
-	private static final KeyValuePair[] _KEY_VALUE_PAIRS = {
-		new KeyValuePair("/", "//*"), new KeyValuePair("/*", "/*/*"),
-		new KeyValuePair("/*/", "/*//*"),
-		new KeyValuePair("/c/portal/j_login", "/c/portal/j_login"),
-		new KeyValuePair("/documents", "/documents/*"),
-		new KeyValuePair("/documents/", "/documents/*"),
-		new KeyValuePair("/documents/main.jsp", "/documents/main.jsp/*"),
-		new KeyValuePair("/documents/main.jsp/*", "/documents/main.jsp/*"),
-		new KeyValuePair("/documents/main.jspf", "/documents/main.jspf/*"),
-		new KeyValuePair("/documents/main.jspf/", "/documents/main.jspf/*"),
-		new KeyValuePair("/documents/user1", "/documents/user1/*"),
-		new KeyValuePair("/documents/user1/", "/documents/user1/*"),
-		new KeyValuePair(
-			"/documents/user1/folder1", "/documents/user1/folder1/*"),
-		new KeyValuePair(
-			"/documents/user1/folder1/", "/documents/user1/folder1/*"),
-		new KeyValuePair(
-			"/documents/user1/folder2", "/documents/user1/folder2/*"),
-		new KeyValuePair(
-			"/documents/user1/folder2/", "/documents/user1/folder2/*"),
-		new KeyValuePair("/documents/user2", "/documents/user2/*"),
-		new KeyValuePair("/documents/user2/", "/documents/user2/*"),
-		new KeyValuePair(
-			"/documents/user2/folder1", "/documents/user2/folder1/*"),
-		new KeyValuePair(
-			"/documents/user2/folder1/", "/documents/user2/folder1/*"),
-		new KeyValuePair(
-			"/documents/user2/folder2", "/documents/user2/folder2/*"),
-		new KeyValuePair(
-			"/documents/user2/folder2/", "/documents/user2/folder2/*"),
-		new KeyValuePair("/documents/user3", "/documents/*"),
-		new KeyValuePair("/documents/user3/", "/documents/*"),
-		new KeyValuePair("/documents/user3/folder1", "/documents/*"),
-		new KeyValuePair("/documents/user3/folder1/", "/documents/*"),
-		new KeyValuePair("/documents/user3/folder2", "/documents/*"),
-		new KeyValuePair("/documents/user3/folder2/", "/documents/*"),
-		new KeyValuePair("/test", "/*"), new KeyValuePair("/test/", "/*"),
-		new KeyValuePair("no/leading/slash", StringPool.BLANK),
-		new KeyValuePair("no/leading/slash/", StringPool.BLANK),
-		new KeyValuePair("no/leading/slash/*", "no/leading/slash/*"),
-		new KeyValuePair("no/leading/slash/test", StringPool.BLANK),
-		new KeyValuePair("test", StringPool.BLANK),
-		new KeyValuePair("test.jsp", "*.jsp"),
-		new KeyValuePair("test.jspf/", StringPool.BLANK),
-		new KeyValuePair("test/", StringPool.BLANK),
-		new KeyValuePair("test/main.jsp/*", StringPool.BLANK),
-		new KeyValuePair("test/main.jspf", "*.jspf")
-	};
 
 }
