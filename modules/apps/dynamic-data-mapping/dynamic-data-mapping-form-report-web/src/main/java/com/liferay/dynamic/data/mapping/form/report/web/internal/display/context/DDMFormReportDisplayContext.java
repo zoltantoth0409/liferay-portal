@@ -78,9 +78,9 @@ public class DDMFormReportDisplayContext {
 		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm.getDDMFormFieldsMap(true);
 
-		Set<String> keySet = ddmFormFieldsMap.keySet();
+		Set<String> set = ddmFormFieldsMap.keySet();
 
-		Stream<String> stream = keySet.stream();
+		Stream<String> stream = set.stream();
 
 		stream.map(
 			ddmFormFieldName -> ddmFormFieldsMap.get(ddmFormFieldName)
