@@ -126,11 +126,11 @@ public abstract class BaseMessageBodyWriter
 					DynamicPropertyFilter dynamicPropertyFilter =
 						VulcanDynamicPropertyFilter.of(propertyFilter);
 
+					addFilter("Liferay.Vulcan", dynamicPropertyFilter);
 					addFilter(
-						"Liferay.ExtendedEntityPropertyFilter",
+						"Liferay.Vulcan.ExtendedEntityPropertyFilter",
 						ExtendedEntityPropertyFilter.with(
 							dynamicPropertyFilter));
-					addFilter("Liferay.Vulcan", dynamicPropertyFilter);
 				}
 			});
 
