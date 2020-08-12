@@ -93,7 +93,7 @@ public class FrontendTokenDefinitionImpl implements FrontendTokenDefinition {
 	protected void translateJSONObject(
 		JSONObject jsonObject, ResourceBundle resourceBundle) {
 
-		Map<String, String> translationsMap = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 
 		for (String key : jsonObject.keySet()) {
 			if (_localizableKeys.contains(key)) {
@@ -101,7 +101,7 @@ public class FrontendTokenDefinitionImpl implements FrontendTokenDefinition {
 
 				if (Validator.isNotNull(value)) {
 					try {
-						translationsMap.put(
+						map.put(
 							key,
 							ResourceBundleUtil.getString(
 								resourceBundle, value));
@@ -136,7 +136,7 @@ public class FrontendTokenDefinitionImpl implements FrontendTokenDefinition {
 			}
 		}
 
-		for (Map.Entry<String, String> entry : translationsMap.entrySet()) {
+		for (Map.Entry<String, String> entry : map.entrySet()) {
 			jsonObject.put(entry.getKey(), entry.getValue());
 		}
 	}
