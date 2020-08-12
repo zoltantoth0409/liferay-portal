@@ -134,17 +134,16 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 	public void testGetInfoFieldSetInternalAssetEntryEmptyVocabulary()
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		AssetVocabulary vocabulary = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), _group.getGroupId(),
-			RandomTestUtil.randomString(), titleMap, null, null,
-			AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL, serviceContext);
+			RandomTestUtil.randomString(),
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			null, null, AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL, serviceContext);
 
 		AssetEntry assetEntry = AssetTestUtil.addAssetEntry(
 			_group.getGroupId());
