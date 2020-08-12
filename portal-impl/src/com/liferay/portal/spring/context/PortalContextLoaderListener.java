@@ -376,6 +376,7 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		CustomJspBagRegistryUtil.getCustomJspBags();
 
 		initServlets(servletContext);
+
 		initListeners(servletContext);
 	}
 
