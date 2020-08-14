@@ -92,13 +92,17 @@ public class ContainerLayoutStructureItemExporter
 							saveMappingConfiguration);
 						layout = _toLayout(containerLayoutStructureItem);
 
-						JSONObject itemConfigJSONObject =
-							containerLayoutStructureItem.
-								getItemConfigJSONObject();
+						setStyles(
+							() -> {
+								JSONObject itemConfigJSONObject =
+									containerLayoutStructureItem.
+										getItemConfigJSONObject();
 
-						styles = _toStylesMap(
-							itemConfigJSONObject.getJSONObject("styles"),
-							saveMappingConfiguration);
+								return _toStylesMap(
+									itemConfigJSONObject.getJSONObject(
+										"styles"),
+									saveMappingConfiguration);
+							});
 					}
 				};
 				type = PageElement.Type.SECTION;
