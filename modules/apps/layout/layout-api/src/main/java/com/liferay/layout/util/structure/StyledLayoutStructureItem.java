@@ -320,7 +320,7 @@ public abstract class StyledLayoutStructureItem extends LayoutStructureItem {
 		Object configValue = configJSONObject.get(propertyKey);
 		Object styleValue = stylesJSONObject.get(propertyKey);
 
-		if ((styleValue == null) && (configValue != null)) {
+		if ((configValue != null) && (styleValue == null)) {
 			return configValue;
 		}
 
