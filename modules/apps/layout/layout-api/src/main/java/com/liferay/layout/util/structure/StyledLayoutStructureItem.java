@@ -318,10 +318,6 @@ public abstract class StyledLayoutStructureItem extends LayoutStructureItem {
 		JSONObject configJSONObject = getItemConfigJSONObject();
 
 		Object configValue = configJSONObject.get(propertyKey);
-
-		Object defaultValue = CommonStylesUtil.getDefaultStyleValue(
-			propertyKey);
-
 		Object styleValue = stylesJSONObject.get(propertyKey);
 
 		if ((styleValue == null) && (configValue != null)) {
@@ -332,7 +328,7 @@ public abstract class StyledLayoutStructureItem extends LayoutStructureItem {
 			return styleValue;
 		}
 
-		return defaultValue;
+		return CommonStylesUtil.getDefaultStyleValue(propertyKey);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
