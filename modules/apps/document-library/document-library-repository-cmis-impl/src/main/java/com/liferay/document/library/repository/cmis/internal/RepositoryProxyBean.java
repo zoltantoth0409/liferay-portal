@@ -47,7 +47,6 @@ public class RepositoryProxyBean
 		super(classLoader);
 
 		_repository = repository;
-		_classLoader = classLoader;
 	}
 
 	@Override
@@ -780,7 +779,6 @@ public class RepositoryProxyBean
 		return _repository.verifyInheritableLock(folderId, lockUuid);
 	}
 
-	private final ClassLoader _classLoader;
 	private final Repository _repository;
 
 }
