@@ -23,11 +23,11 @@ Folder folder = (Folder)row.getObject();
 
 folder = folder.toEscapedModel();
 
+FolderActionDisplayContext folderActionDisplayContext = new FolderActionDisplayContext(dlTrashHelper, request, liferayPortletResponse);
+
 Date modifiedDate = folder.getLastPostDate();
 
 String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - modifiedDate.getTime(), true);
-
-FolderActionDisplayContext folderActionDisplayContext = new FolderActionDisplayContext(dlTrashHelper, request, liferayPortletResponse);
 %>
 
 <h2 class="h5">

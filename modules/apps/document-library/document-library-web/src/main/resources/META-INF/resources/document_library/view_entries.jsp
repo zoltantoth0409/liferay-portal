@@ -30,6 +30,8 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 
 String displayStyle = GetterUtil.getString((String)request.getAttribute("view.jsp-displayStyle"));
 
+FolderActionDisplayContext folderActionDisplayContext = new FolderActionDisplayContext(dlTrashHelper, request, liferayPortletResponse);
+
 PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) ? "/document_library/view" : "/document_library/view_folder");
@@ -62,8 +64,6 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 
 	renderResponse.setTitle(folder.getName());
 }
-
-FolderActionDisplayContext folderActionDisplayContext = new FolderActionDisplayContext(dlTrashHelper, request, liferayPortletResponse);
 %>
 
 <div class="document-container" id="<portlet:namespace />entriesContainer">
