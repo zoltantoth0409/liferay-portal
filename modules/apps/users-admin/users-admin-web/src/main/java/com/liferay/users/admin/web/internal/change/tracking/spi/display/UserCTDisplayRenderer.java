@@ -58,14 +58,14 @@ public class UserCTDisplayRenderer extends BaseCTDisplayRenderer<User> {
 			httpServletRequest, UsersAdminPortletKeys.USERS_ADMIN,
 			PortletRequest.RENDER_PHASE);
 
+		portletURL.setParameter("p_u_i_d", String.valueOf(user.getUserId()));
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/users_admin/edit_user");
-		portletURL.setParameter("p_u_i_d", String.valueOf(user.getUserId()));
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 
-		portletURL.setParameter("backURL", currentURL);
 		portletURL.setParameter("redirect", currentURL);
+		portletURL.setParameter("backURL", currentURL);
 
 		return portletURL.toString();
 	}
