@@ -849,12 +849,12 @@ have a common solution for both Alloy Editor and CKEditor.
 
 ### What changed?
 
-The `findByClassNameId`, `removeByClassNameId`, `countByClassNameId` methods and similar ones were removed from the following classes:
+The `countByClassNameId`, `findByClassNameId`, `removeByClassNameId` methods were removed from the following classes:
 
-`com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence`
-`com.liferay.dynamic.data.mapping.service.persistence.DDMStructureUtil`
 `com.liferay.dynamic.data.mapping.service.persistence.DDMStructureLinkPersistence`
 `com.liferay.dynamic.data.mapping.service.persistence.DDMStructureLinkUtil`
+`com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence`
+`com.liferay.dynamic.data.mapping.service.persistence.DDMStructureUtil`
 `com.liferay.dynamic.data.mapping.service.persistence.DDMTemplateLinkPersistence`
 `com.liferay.dynamic.data.mapping.service.persistence.DDMTemplateLinkUtil`
 
