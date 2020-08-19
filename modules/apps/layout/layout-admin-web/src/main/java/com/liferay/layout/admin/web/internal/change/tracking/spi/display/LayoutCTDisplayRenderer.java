@@ -72,13 +72,13 @@ public class LayoutCTDisplayRenderer extends BaseCTDisplayRenderer<Layout> {
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 
-		portletURL.setParameter("backURL", currentURL);
 		portletURL.setParameter("redirect", currentURL);
+		portletURL.setParameter("backURL", currentURL);
 
-		portletURL.setParameter(
-			"privateLayout", String.valueOf(layout.isPrivateLayout()));
 		portletURL.setParameter("groupId", String.valueOf(layout.getGroupId()));
 		portletURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
+		portletURL.setParameter(
+			"privateLayout", String.valueOf(layout.isPrivateLayout()));
 
 		return portletURL.toString();
 	}
