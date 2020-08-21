@@ -2235,25 +2235,20 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#if serviceBuilder.isVersionGTE_7_3_0()>
 			<#if osgiModule>
 				<#if !dependencyInjectorDS>
-					Bundle bundle = FrameworkUtil.getBundle(
-						${entity.name}PersistenceImpl.class);
+					Bundle bundle = FrameworkUtil.getBundle(${entity.name}PersistenceImpl.class);
 
 					_bundleContext = bundle.getBundleContext();
 				</#if>
 
-				_argumentsResolverServiceRegistration =
-					_bundleContext.registerService(
-						ArgumentsResolver.class, new ${entity.name}ModelArgumentsResolver(),
-						MapUtil.singletonDictionary("model.class.name", ${entity.name}.class.getName()));
+				_argumentsResolverServiceRegistration = _bundleContext.registerService(ArgumentsResolver.class, new ${entity.name}ModelArgumentsResolver(), MapUtil.singletonDictionary("model.class.name", ${entity.name}.class.getName()));
 			<#else>
 				Registry registry = RegistryUtil.getRegistry();
 
-				_argumentsResolverServiceRegistration =
-					registry.registerService(
-						ArgumentsResolver.class, new ${entity.name}ModelArgumentsResolver(),
-						HashMapBuilder.<String, Object>put(
-							"model.class.name", ${entity.name}.class.getName()
-						).build());
+				_argumentsResolverServiceRegistration = registry.registerService(
+					ArgumentsResolver.class, new ${entity.name}ModelArgumentsResolver(),
+					HashMapBuilder.<String, Object>put(
+						"model.class.name", ${entity.name}.class.getName()
+					).build());
 			</#if>
 		</#if>
 
@@ -2825,15 +2820,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			String cacheName, String methodName, String[] params,
 			String[] columnNames, boolean baseModelResult) {
 
-			FinderPath finderPath = new FinderPath(
-				cacheName, methodName, params, columnNames, baseModelResult);
+			FinderPath finderPath = new FinderPath(cacheName, methodName, params, columnNames, baseModelResult);
 
 			if (!cacheName.equals(FINDER_CLASS_NAME_LIST_WITH_PAGINATION)) {
 				<#if osgiModule>
-					_serviceRegistrations.add(
-						_bundleContext.registerService(
-							FinderPath.class, finderPath,
-							MapUtil.singletonDictionary("cache.name", cacheName)));
+					_serviceRegistrations.add(_bundleContext.registerService(FinderPath.class, finderPath, MapUtil.singletonDictionary("cache.name", cacheName)));
 				<#else>
 					Registry registry = RegistryUtil.getRegistry();
 
