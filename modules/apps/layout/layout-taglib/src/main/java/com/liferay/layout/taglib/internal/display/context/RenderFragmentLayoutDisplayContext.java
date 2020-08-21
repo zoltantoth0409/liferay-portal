@@ -541,7 +541,7 @@ public class RenderFragmentLayoutDisplayContext {
 
 			styleSB.append("background-color: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getBackgroundColor()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -557,7 +557,7 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getBorderColor())) {
 			styleSB.append("border-color: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getBorderColor()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -571,7 +571,7 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getFontFamily())) {
 			styleSB.append("font-family: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getFontFamily()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -579,7 +579,7 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getFontSize())) {
 			styleSB.append("font-size: ");
 			styleSB.append(
-				getStyleFromStyleBook(styledLayoutStructureItem.getFontSize()));
+				getStyleFromStyleBookEntry(styledLayoutStructureItem.getFontSize()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -592,7 +592,7 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getMaxHeight())) {
 			styleSB.append("max-height: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getMaxHeight()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -600,14 +600,14 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getMaxWidth())) {
 			styleSB.append("max-width: ");
 			styleSB.append(
-				getStyleFromStyleBook(styledLayoutStructureItem.getMaxWidth()));
+				getStyleFromStyleBookEntry(styledLayoutStructureItem.getMaxWidth()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
 		if (Validator.isNotNull(styledLayoutStructureItem.getMinHeight())) {
 			styleSB.append("min-height: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getMinHeight()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -615,7 +615,7 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getMinWidth())) {
 			styleSB.append("min-width: ");
 			styleSB.append(
-				getStyleFromStyleBook(styledLayoutStructureItem.getMinWidth()));
+				getStyleFromStyleBookEntry(styledLayoutStructureItem.getMinWidth()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -628,14 +628,14 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getOverflow())) {
 			styleSB.append("overflow: ");
 			styleSB.append(
-				getStyleFromStyleBook(styledLayoutStructureItem.getOverflow()));
+				getStyleFromStyleBookEntry(styledLayoutStructureItem.getOverflow()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
 		if (Validator.isNotNull(styledLayoutStructureItem.getTextColor())) {
 			styleSB.append("color: ");
 			styleSB.append(
-				getStyleFromStyleBook(
+				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getTextColor()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
@@ -649,7 +649,7 @@ public class RenderFragmentLayoutDisplayContext {
 		return styleSB.toString();
 	}
 
-	public String getStyleFromStyleBook(String styleValue) throws Exception {
+	public String getStyleFromStyleBookEntry(String styleValue) throws Exception {
 		JSONObject frontendTokensValuesJSONObject =
 			_getFrontendTokensJSONObject();
 
