@@ -153,9 +153,8 @@ public class PortletPreferencesCTDisplayRenderer
 
 					return portlet.getPortletName();
 				}
-			});
-
-		displayBuilder.display(
+			}
+		).display(
 			"preferences",
 			() -> {
 				String preferencesXML = portletPreferences.getPreferences();
