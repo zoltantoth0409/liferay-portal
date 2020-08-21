@@ -321,9 +321,8 @@ public class FreeMarkerTool {
 			"@GraphQLName(\"assetLibraryId\") java.lang.Long assetLibraryId",
 			"@GraphQLName(\"assetLibraryId\") @NotEmpty String assetLibraryId");
 		parameters = StringUtil.replace(
-			parameters,
-			"com.liferay.portal.vulcan.aggregation.Aggregation aggregation",
-			"List<String> aggregations");
+			parameters, "@GraphQLName(\"siteId\") java.lang.Long siteId",
+			"@GraphQLName(\"siteKey\") @NotEmpty String siteKey");
 		parameters = StringUtil.replace(
 			parameters, "com.liferay.portal.kernel.search.filter.Filter filter",
 			"String filterString");
@@ -331,8 +330,9 @@ public class FreeMarkerTool {
 			parameters, "com.liferay.portal.kernel.search.Sort[] sorts",
 			"String sortsString");
 		parameters = StringUtil.replace(
-			parameters, "@GraphQLName(\"siteId\") java.lang.Long siteId",
-			"@GraphQLName(\"siteKey\") @NotEmpty String siteKey");
+			parameters,
+			"com.liferay.portal.vulcan.aggregation.Aggregation aggregation",
+			"List<String> aggregations");
 
 		return parameters;
 	}
