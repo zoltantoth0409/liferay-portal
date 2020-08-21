@@ -56,8 +56,8 @@ public class EntityExtensionWriterInterceptorTest {
 		JAXRSExtensionContextUtil.TestObject testObject =
 			JAXRSExtensionContextUtil.getTestObject();
 
-		ArgumentCaptor<ExtendedEntity> argumentCaptor =
-			ArgumentCaptor.forClass(ExtendedEntity.class);
+		ArgumentCaptor<ExtendedEntity> argumentCaptor = ArgumentCaptor.forClass(
+			ExtendedEntity.class);
 
 		Mockito.when(
 			_mockedWriterInterceptorContext.getEntity()
