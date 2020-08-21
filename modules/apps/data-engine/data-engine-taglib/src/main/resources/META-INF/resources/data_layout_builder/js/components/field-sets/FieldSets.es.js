@@ -169,7 +169,7 @@ export default function FieldSets({keywords}) {
 									popover: {
 										alignPosition: 'left',
 										body: Liferay.Language.get(
-											'the-fieldset-cannot-be-edited-because-the-instance-language-does-not-match-the-current-language-of-the-fieldset-re-create-the-fieldset-if-changes-are-required'
+											'the-fieldset-cannot-be-edited-because-the-instance-language-does-not-match-the-current-language-of-the-fieldset-recreate-the-fieldset-if-changes-are-required'
 										),
 										header: Liferay.Language.get(
 											'edit-not-allowed'
