@@ -93,7 +93,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Page<JAXRSExtensionContextUtil.TestObject> page = Page.of(
 			Collections.singleton(testObject));
 
-		ArgumentCaptor<Page> extendedPageCaptor = ArgumentCaptor.forClass(
+		ArgumentCaptor<Page> argumentCaptor = ArgumentCaptor.forClass(
 			Page.class);
 
 		Mockito.when(
@@ -119,9 +119,10 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Mockito.verify(
 			_writerInterceptorContext
 		).setEntity(
-			extendedPageCaptor.capture()
+			argumentCaptor.capture()
 		);
-		Page<ExtendedEntity> extendedPage = extendedPageCaptor.getValue();
+
+		Page<ExtendedEntity> extendedPage = argumentCaptor.getValue();
 
 		Assert.assertEquals(page.getActions(), extendedPage.getActions());
 
