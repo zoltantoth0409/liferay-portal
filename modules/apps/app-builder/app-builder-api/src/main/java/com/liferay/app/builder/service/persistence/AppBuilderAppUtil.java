@@ -2276,10 +2276,10 @@ public class AppBuilderAppUtil {
 	 * @param scope the scope
 	 * @return the matching app builder apps
 	 */
-	public static List<AppBuilderApp> findByG_C_D_S(
+	public static List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return getPersistence().findByG_C_D_S(
+		return getPersistence().findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope);
 	}
 
@@ -2298,11 +2298,11 @@ public class AppBuilderAppUtil {
 	 * @param end the upper bound of the range of app builder apps (not inclusive)
 	 * @return the range of matching app builder apps
 	 */
-	public static List<AppBuilderApp> findByG_C_D_S(
+	public static List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end) {
 
-		return getPersistence().findByG_C_D_S(
+		return getPersistence().findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end);
 	}
 
@@ -2322,12 +2322,12 @@ public class AppBuilderAppUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching app builder apps
 	 */
-	public static List<AppBuilderApp> findByG_C_D_S(
+	public static List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return getPersistence().findByG_C_D_S(
+		return getPersistence().findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end,
 			orderByComparator);
 	}
@@ -2349,12 +2349,12 @@ public class AppBuilderAppUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching app builder apps
 	 */
-	public static List<AppBuilderApp> findByG_C_D_S(
+	public static List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end, OrderByComparator<AppBuilderApp> orderByComparator,
 		boolean useFinderCache) {
 
-		return getPersistence().findByG_C_D_S(
+		return getPersistence().findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end,
 			orderByComparator, useFinderCache);
 	}
@@ -2370,12 +2370,12 @@ public class AppBuilderAppUtil {
 	 * @return the first matching app builder app
 	 * @throws NoSuchAppException if a matching app builder app could not be found
 	 */
-	public static AppBuilderApp findByG_C_D_S_First(
+	public static AppBuilderApp findByG_C_DDMSI_S_First(
 			long groupId, long companyId, long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws com.liferay.app.builder.exception.NoSuchAppException {
 
-		return getPersistence().findByG_C_D_S_First(
+		return getPersistence().findByG_C_DDMSI_S_First(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 	}
 
@@ -2389,11 +2389,11 @@ public class AppBuilderAppUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching app builder app, or <code>null</code> if a matching app builder app could not be found
 	 */
-	public static AppBuilderApp fetchByG_C_D_S_First(
+	public static AppBuilderApp fetchByG_C_DDMSI_S_First(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return getPersistence().fetchByG_C_D_S_First(
+		return getPersistence().fetchByG_C_DDMSI_S_First(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 	}
 
@@ -2408,12 +2408,12 @@ public class AppBuilderAppUtil {
 	 * @return the last matching app builder app
 	 * @throws NoSuchAppException if a matching app builder app could not be found
 	 */
-	public static AppBuilderApp findByG_C_D_S_Last(
+	public static AppBuilderApp findByG_C_DDMSI_S_Last(
 			long groupId, long companyId, long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws com.liferay.app.builder.exception.NoSuchAppException {
 
-		return getPersistence().findByG_C_D_S_Last(
+		return getPersistence().findByG_C_DDMSI_S_Last(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 	}
 
@@ -2427,11 +2427,11 @@ public class AppBuilderAppUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching app builder app, or <code>null</code> if a matching app builder app could not be found
 	 */
-	public static AppBuilderApp fetchByG_C_D_S_Last(
+	public static AppBuilderApp fetchByG_C_DDMSI_S_Last(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return getPersistence().fetchByG_C_D_S_Last(
+		return getPersistence().fetchByG_C_DDMSI_S_Last(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 	}
 
@@ -2447,13 +2447,13 @@ public class AppBuilderAppUtil {
 	 * @return the previous, current, and next app builder app
 	 * @throws NoSuchAppException if a app builder app with the primary key could not be found
 	 */
-	public static AppBuilderApp[] findByG_C_D_S_PrevAndNext(
+	public static AppBuilderApp[] findByG_C_DDMSI_S_PrevAndNext(
 			long appBuilderAppId, long groupId, long companyId,
 			long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws com.liferay.app.builder.exception.NoSuchAppException {
 
-		return getPersistence().findByG_C_D_S_PrevAndNext(
+		return getPersistence().findByG_C_DDMSI_S_PrevAndNext(
 			appBuilderAppId, groupId, companyId, ddmStructureId, scope,
 			orderByComparator);
 	}
@@ -2467,10 +2467,10 @@ public class AppBuilderAppUtil {
 	 * @param scope the scope
 	 * @return the matching app builder apps that the user has permission to view
 	 */
-	public static List<AppBuilderApp> filterFindByG_C_D_S(
+	public static List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return getPersistence().filterFindByG_C_D_S(
+		return getPersistence().filterFindByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope);
 	}
 
@@ -2489,11 +2489,11 @@ public class AppBuilderAppUtil {
 	 * @param end the upper bound of the range of app builder apps (not inclusive)
 	 * @return the range of matching app builder apps that the user has permission to view
 	 */
-	public static List<AppBuilderApp> filterFindByG_C_D_S(
+	public static List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end) {
 
-		return getPersistence().filterFindByG_C_D_S(
+		return getPersistence().filterFindByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end);
 	}
 
@@ -2513,12 +2513,12 @@ public class AppBuilderAppUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching app builder apps that the user has permission to view
 	 */
-	public static List<AppBuilderApp> filterFindByG_C_D_S(
+	public static List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return getPersistence().filterFindByG_C_D_S(
+		return getPersistence().filterFindByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end,
 			orderByComparator);
 	}
@@ -2535,13 +2535,13 @@ public class AppBuilderAppUtil {
 	 * @return the previous, current, and next app builder app
 	 * @throws NoSuchAppException if a app builder app with the primary key could not be found
 	 */
-	public static AppBuilderApp[] filterFindByG_C_D_S_PrevAndNext(
+	public static AppBuilderApp[] filterFindByG_C_DDMSI_S_PrevAndNext(
 			long appBuilderAppId, long groupId, long companyId,
 			long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws com.liferay.app.builder.exception.NoSuchAppException {
 
-		return getPersistence().filterFindByG_C_D_S_PrevAndNext(
+		return getPersistence().filterFindByG_C_DDMSI_S_PrevAndNext(
 			appBuilderAppId, groupId, companyId, ddmStructureId, scope,
 			orderByComparator);
 	}
@@ -2554,10 +2554,10 @@ public class AppBuilderAppUtil {
 	 * @param ddmStructureId the ddm structure ID
 	 * @param scope the scope
 	 */
-	public static void removeByG_C_D_S(
+	public static void removeByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		getPersistence().removeByG_C_D_S(
+		getPersistence().removeByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope);
 	}
 
@@ -2570,10 +2570,10 @@ public class AppBuilderAppUtil {
 	 * @param scope the scope
 	 * @return the number of matching app builder apps
 	 */
-	public static int countByG_C_D_S(
+	public static int countByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return getPersistence().countByG_C_D_S(
+		return getPersistence().countByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope);
 	}
 
@@ -2586,10 +2586,10 @@ public class AppBuilderAppUtil {
 	 * @param scope the scope
 	 * @return the number of matching app builder apps that the user has permission to view
 	 */
-	public static int filterCountByG_C_D_S(
+	public static int filterCountByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return getPersistence().filterCountByG_C_D_S(
+		return getPersistence().filterCountByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope);
 	}
 

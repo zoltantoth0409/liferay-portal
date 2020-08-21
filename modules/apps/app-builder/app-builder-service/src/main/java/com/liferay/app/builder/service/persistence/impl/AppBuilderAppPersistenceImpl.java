@@ -7104,9 +7104,9 @@ public class AppBuilderAppPersistenceImpl
 	private static final String _FINDER_COLUMN_C_A_S_SCOPE_3 =
 		"(appBuilderApp.scope IS NULL OR appBuilderApp.scope = '')";
 
-	private FinderPath _finderPathWithPaginationFindByG_C_D_S;
-	private FinderPath _finderPathWithoutPaginationFindByG_C_D_S;
-	private FinderPath _finderPathCountByG_C_D_S;
+	private FinderPath _finderPathWithPaginationFindByG_C_DDMSI_S;
+	private FinderPath _finderPathWithoutPaginationFindByG_C_DDMSI_S;
+	private FinderPath _finderPathCountByG_C_DDMSI_S;
 
 	/**
 	 * Returns all the app builder apps where groupId = &#63; and companyId = &#63; and ddmStructureId = &#63; and scope = &#63;.
@@ -7118,10 +7118,10 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the matching app builder apps
 	 */
 	@Override
-	public List<AppBuilderApp> findByG_C_D_S(
+	public List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return findByG_C_D_S(
+		return findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -7142,11 +7142,11 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the range of matching app builder apps
 	 */
 	@Override
-	public List<AppBuilderApp> findByG_C_D_S(
+	public List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end) {
 
-		return findByG_C_D_S(
+		return findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end, null);
 	}
 
@@ -7167,12 +7167,12 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the ordered range of matching app builder apps
 	 */
 	@Override
-	public List<AppBuilderApp> findByG_C_D_S(
+	public List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return findByG_C_D_S(
+		return findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end,
 			orderByComparator, true);
 	}
@@ -7195,7 +7195,7 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the ordered range of matching app builder apps
 	 */
 	@Override
-	public List<AppBuilderApp> findByG_C_D_S(
+	public List<AppBuilderApp> findByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end, OrderByComparator<AppBuilderApp> orderByComparator,
 		boolean useFinderCache) {
@@ -7209,14 +7209,14 @@ public class AppBuilderAppPersistenceImpl
 			(orderByComparator == null)) {
 
 			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindByG_C_D_S;
+				finderPath = _finderPathWithoutPaginationFindByG_C_DDMSI_S;
 				finderArgs = new Object[] {
 					groupId, companyId, ddmStructureId, scope
 				};
 			}
 		}
 		else if (useFinderCache) {
-			finderPath = _finderPathWithPaginationFindByG_C_D_S;
+			finderPath = _finderPathWithPaginationFindByG_C_DDMSI_S;
 			finderArgs = new Object[] {
 				groupId, companyId, ddmStructureId, scope, start, end,
 				orderByComparator
@@ -7257,21 +7257,21 @@ public class AppBuilderAppPersistenceImpl
 
 			sb.append(_SQL_SELECT_APPBUILDERAPP_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 			boolean bindScope = false;
 
 			if (scope.isEmpty()) {
-				sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+				sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 			}
 			else {
 				bindScope = true;
 
-				sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+				sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 			}
 
 			if (orderByComparator != null) {
@@ -7335,12 +7335,12 @@ public class AppBuilderAppPersistenceImpl
 	 * @throws NoSuchAppException if a matching app builder app could not be found
 	 */
 	@Override
-	public AppBuilderApp findByG_C_D_S_First(
+	public AppBuilderApp findByG_C_DDMSI_S_First(
 			long groupId, long companyId, long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws NoSuchAppException {
 
-		AppBuilderApp appBuilderApp = fetchByG_C_D_S_First(
+		AppBuilderApp appBuilderApp = fetchByG_C_DDMSI_S_First(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 
 		if (appBuilderApp != null) {
@@ -7379,11 +7379,11 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the first matching app builder app, or <code>null</code> if a matching app builder app could not be found
 	 */
 	@Override
-	public AppBuilderApp fetchByG_C_D_S_First(
+	public AppBuilderApp fetchByG_C_DDMSI_S_First(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		List<AppBuilderApp> list = findByG_C_D_S(
+		List<AppBuilderApp> list = findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -7405,12 +7405,12 @@ public class AppBuilderAppPersistenceImpl
 	 * @throws NoSuchAppException if a matching app builder app could not be found
 	 */
 	@Override
-	public AppBuilderApp findByG_C_D_S_Last(
+	public AppBuilderApp findByG_C_DDMSI_S_Last(
 			long groupId, long companyId, long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws NoSuchAppException {
 
-		AppBuilderApp appBuilderApp = fetchByG_C_D_S_Last(
+		AppBuilderApp appBuilderApp = fetchByG_C_DDMSI_S_Last(
 			groupId, companyId, ddmStructureId, scope, orderByComparator);
 
 		if (appBuilderApp != null) {
@@ -7449,17 +7449,18 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the last matching app builder app, or <code>null</code> if a matching app builder app could not be found
 	 */
 	@Override
-	public AppBuilderApp fetchByG_C_D_S_Last(
+	public AppBuilderApp fetchByG_C_DDMSI_S_Last(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		int count = countByG_C_D_S(groupId, companyId, ddmStructureId, scope);
+		int count = countByG_C_DDMSI_S(
+			groupId, companyId, ddmStructureId, scope);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<AppBuilderApp> list = findByG_C_D_S(
+		List<AppBuilderApp> list = findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, count - 1, count,
 			orderByComparator);
 
@@ -7483,7 +7484,7 @@ public class AppBuilderAppPersistenceImpl
 	 * @throws NoSuchAppException if a app builder app with the primary key could not be found
 	 */
 	@Override
-	public AppBuilderApp[] findByG_C_D_S_PrevAndNext(
+	public AppBuilderApp[] findByG_C_DDMSI_S_PrevAndNext(
 			long appBuilderAppId, long groupId, long companyId,
 			long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
@@ -7500,13 +7501,13 @@ public class AppBuilderAppPersistenceImpl
 
 			AppBuilderApp[] array = new AppBuilderAppImpl[3];
 
-			array[0] = getByG_C_D_S_PrevAndNext(
+			array[0] = getByG_C_DDMSI_S_PrevAndNext(
 				session, appBuilderApp, groupId, companyId, ddmStructureId,
 				scope, orderByComparator, true);
 
 			array[1] = appBuilderApp;
 
-			array[2] = getByG_C_D_S_PrevAndNext(
+			array[2] = getByG_C_DDMSI_S_PrevAndNext(
 				session, appBuilderApp, groupId, companyId, ddmStructureId,
 				scope, orderByComparator, false);
 
@@ -7520,7 +7521,7 @@ public class AppBuilderAppPersistenceImpl
 		}
 	}
 
-	protected AppBuilderApp getByG_C_D_S_PrevAndNext(
+	protected AppBuilderApp getByG_C_DDMSI_S_PrevAndNext(
 		Session session, AppBuilderApp appBuilderApp, long groupId,
 		long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator, boolean previous) {
@@ -7538,21 +7539,21 @@ public class AppBuilderAppPersistenceImpl
 
 		sb.append(_SQL_SELECT_APPBUILDERAPP_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 		boolean bindScope = false;
 
 		if (scope.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 		}
 		else {
 			bindScope = true;
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 		}
 
 		if (orderByComparator != null) {
@@ -7663,10 +7664,10 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the matching app builder apps that the user has permission to view
 	 */
 	@Override
-	public List<AppBuilderApp> filterFindByG_C_D_S(
+	public List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
-		return filterFindByG_C_D_S(
+		return filterFindByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -7687,11 +7688,11 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the range of matching app builder apps that the user has permission to view
 	 */
 	@Override
-	public List<AppBuilderApp> filterFindByG_C_D_S(
+	public List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end) {
 
-		return filterFindByG_C_D_S(
+		return filterFindByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end, null);
 	}
 
@@ -7712,13 +7713,13 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the ordered range of matching app builder apps that the user has permission to view
 	 */
 	@Override
-	public List<AppBuilderApp> filterFindByG_C_D_S(
+	public List<AppBuilderApp> filterFindByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope,
 		int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_D_S(
+			return findByG_C_DDMSI_S(
 				groupId, companyId, ddmStructureId, scope, start, end,
 				orderByComparator);
 		}
@@ -7743,21 +7744,21 @@ public class AppBuilderAppPersistenceImpl
 				_FILTER_SQL_SELECT_APPBUILDERAPP_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 		boolean bindScope = false;
 
 		if (scope.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 		}
 		else {
 			bindScope = true;
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
@@ -7840,14 +7841,14 @@ public class AppBuilderAppPersistenceImpl
 	 * @throws NoSuchAppException if a app builder app with the primary key could not be found
 	 */
 	@Override
-	public AppBuilderApp[] filterFindByG_C_D_S_PrevAndNext(
+	public AppBuilderApp[] filterFindByG_C_DDMSI_S_PrevAndNext(
 			long appBuilderAppId, long groupId, long companyId,
 			long ddmStructureId, String scope,
 			OrderByComparator<AppBuilderApp> orderByComparator)
 		throws NoSuchAppException {
 
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_D_S_PrevAndNext(
+			return findByG_C_DDMSI_S_PrevAndNext(
 				appBuilderAppId, groupId, companyId, ddmStructureId, scope,
 				orderByComparator);
 		}
@@ -7863,13 +7864,13 @@ public class AppBuilderAppPersistenceImpl
 
 			AppBuilderApp[] array = new AppBuilderAppImpl[3];
 
-			array[0] = filterGetByG_C_D_S_PrevAndNext(
+			array[0] = filterGetByG_C_DDMSI_S_PrevAndNext(
 				session, appBuilderApp, groupId, companyId, ddmStructureId,
 				scope, orderByComparator, true);
 
 			array[1] = appBuilderApp;
 
-			array[2] = filterGetByG_C_D_S_PrevAndNext(
+			array[2] = filterGetByG_C_DDMSI_S_PrevAndNext(
 				session, appBuilderApp, groupId, companyId, ddmStructureId,
 				scope, orderByComparator, false);
 
@@ -7883,7 +7884,7 @@ public class AppBuilderAppPersistenceImpl
 		}
 	}
 
-	protected AppBuilderApp filterGetByG_C_D_S_PrevAndNext(
+	protected AppBuilderApp filterGetByG_C_DDMSI_S_PrevAndNext(
 		Session session, AppBuilderApp appBuilderApp, long groupId,
 		long companyId, long ddmStructureId, String scope,
 		OrderByComparator<AppBuilderApp> orderByComparator, boolean previous) {
@@ -7907,21 +7908,21 @@ public class AppBuilderAppPersistenceImpl
 				_FILTER_SQL_SELECT_APPBUILDERAPP_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 		boolean bindScope = false;
 
 		if (scope.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 		}
 		else {
 			bindScope = true;
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
@@ -8068,11 +8069,11 @@ public class AppBuilderAppPersistenceImpl
 	 * @param scope the scope
 	 */
 	@Override
-	public void removeByG_C_D_S(
+	public void removeByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
 		for (AppBuilderApp appBuilderApp :
-				findByG_C_D_S(
+				findByG_C_DDMSI_S(
 					groupId, companyId, ddmStructureId, scope,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
@@ -8090,12 +8091,12 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the number of matching app builder apps
 	 */
 	@Override
-	public int countByG_C_D_S(
+	public int countByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
 		scope = Objects.toString(scope, "");
 
-		FinderPath finderPath = _finderPathCountByG_C_D_S;
+		FinderPath finderPath = _finderPathCountByG_C_DDMSI_S;
 
 		Object[] finderArgs = new Object[] {
 			groupId, companyId, ddmStructureId, scope
@@ -8108,21 +8109,21 @@ public class AppBuilderAppPersistenceImpl
 
 			sb.append(_SQL_COUNT_APPBUILDERAPP_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 			boolean bindScope = false;
 
 			if (scope.isEmpty()) {
-				sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+				sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 			}
 			else {
 				bindScope = true;
 
-				sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+				sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 			}
 
 			String sql = sb.toString();
@@ -8171,11 +8172,12 @@ public class AppBuilderAppPersistenceImpl
 	 * @return the number of matching app builder apps that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_D_S(
+	public int filterCountByG_C_DDMSI_S(
 		long groupId, long companyId, long ddmStructureId, String scope) {
 
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_C_D_S(groupId, companyId, ddmStructureId, scope);
+			return countByG_C_DDMSI_S(
+				groupId, companyId, ddmStructureId, scope);
 		}
 
 		scope = Objects.toString(scope, "");
@@ -8184,21 +8186,21 @@ public class AppBuilderAppPersistenceImpl
 
 		sb.append(_FILTER_SQL_COUNT_APPBUILDERAPP_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_GROUPID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_COMPANYID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2);
 
-		sb.append(_FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2);
+		sb.append(_FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2);
 
 		boolean bindScope = false;
 
 		if (scope.isEmpty()) {
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_3);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3);
 		}
 		else {
 			bindScope = true;
 
-			sb.append(_FINDER_COLUMN_G_C_D_S_SCOPE_2);
+			sb.append(_FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2);
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(
@@ -8239,19 +8241,19 @@ public class AppBuilderAppPersistenceImpl
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_D_S_GROUPID_2 =
+	private static final String _FINDER_COLUMN_G_C_DDMSI_S_GROUPID_2 =
 		"appBuilderApp.groupId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_C_D_S_COMPANYID_2 =
+	private static final String _FINDER_COLUMN_G_C_DDMSI_S_COMPANYID_2 =
 		"appBuilderApp.companyId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_C_D_S_DDMSTRUCTUREID_2 =
+	private static final String _FINDER_COLUMN_G_C_DDMSI_S_DDMSTRUCTUREID_2 =
 		"appBuilderApp.ddmStructureId = ? AND ";
 
-	private static final String _FINDER_COLUMN_G_C_D_S_SCOPE_2 =
+	private static final String _FINDER_COLUMN_G_C_DDMSI_S_SCOPE_2 =
 		"appBuilderApp.scope = ?";
 
-	private static final String _FINDER_COLUMN_G_C_D_S_SCOPE_3 =
+	private static final String _FINDER_COLUMN_G_C_DDMSI_S_SCOPE_3 =
 		"(appBuilderApp.scope IS NULL OR appBuilderApp.scope = '')";
 
 	public AppBuilderAppPersistenceImpl() {
@@ -9043,8 +9045,8 @@ public class AppBuilderAppPersistenceImpl
 			},
 			new String[] {"companyId", "active_", "scope"}, false);
 
-		_finderPathWithPaginationFindByG_C_D_S = _createFinderPath(
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_D_S",
+		_finderPathWithPaginationFindByG_C_DDMSI_S = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_DDMSI_S",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				Long.class.getName(), String.class.getName(),
@@ -9054,8 +9056,8 @@ public class AppBuilderAppPersistenceImpl
 			new String[] {"groupId", "companyId", "ddmStructureId", "scope"},
 			true);
 
-		_finderPathWithoutPaginationFindByG_C_D_S = _createFinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_D_S",
+		_finderPathWithoutPaginationFindByG_C_DDMSI_S = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_DDMSI_S",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				Long.class.getName(), String.class.getName()
@@ -9063,8 +9065,8 @@ public class AppBuilderAppPersistenceImpl
 			new String[] {"groupId", "companyId", "ddmStructureId", "scope"},
 			true);
 
-		_finderPathCountByG_C_D_S = _createFinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_D_S",
+		_finderPathCountByG_C_DDMSI_S = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_DDMSI_S",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				Long.class.getName(), String.class.getName()

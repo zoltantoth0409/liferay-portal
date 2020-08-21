@@ -293,14 +293,14 @@ public class AppBuilderAppPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_C_D_S() throws Exception {
-		_persistence.countByG_C_D_S(
+	public void testCountByG_C_DDMSI_S() throws Exception {
+		_persistence.countByG_C_DDMSI_S(
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong(), "");
 
-		_persistence.countByG_C_D_S(0L, 0L, 0L, "null");
+		_persistence.countByG_C_DDMSI_S(0L, 0L, 0L, "null");
 
-		_persistence.countByG_C_D_S(0L, 0L, 0L, (String)null);
+		_persistence.countByG_C_DDMSI_S(0L, 0L, 0L, (String)null);
 	}
 
 	@Test
