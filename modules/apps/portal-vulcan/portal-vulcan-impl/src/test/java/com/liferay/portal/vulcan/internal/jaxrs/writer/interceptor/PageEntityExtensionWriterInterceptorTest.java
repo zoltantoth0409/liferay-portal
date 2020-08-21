@@ -101,12 +101,14 @@ public class PageEntityExtensionWriterInterceptorTest {
 		).thenReturn(
 			page
 		);
+
 		Mockito.when(
 			_writerInterceptorContext.getGenericType()
 		).thenReturn(
 			new GenericType<Page<JAXRSExtensionContextUtil.TestObject>>() {
 			}.getType()
 		);
+
 		Mockito.when(
 			_writerInterceptorContext.getType()
 		).thenReturn(
