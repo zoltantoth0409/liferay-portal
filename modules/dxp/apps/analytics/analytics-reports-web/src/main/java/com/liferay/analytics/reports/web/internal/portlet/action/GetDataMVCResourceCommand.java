@@ -193,15 +193,15 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 		Layout layout, Locale locale, Locale urlLocale, Object object,
 		ResourceResponse resourceResponse) {
 
+		AnalyticsReportsDataProvider analyticsReportsDataProvider =
+			new AnalyticsReportsDataProvider(_http);
+
 		TimeSpan defaultTimeSpan = TimeSpan.of(TimeSpan.defaultTimeSpanKey());
 
 		TimeRange defaultTimeRange = defaultTimeSpan.toTimeRange(0);
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			locale, getClass());
-
-		AnalyticsReportsDataProvider analyticsReportsDataProvider =
-			new AnalyticsReportsDataProvider(_http);
 
 		return JSONUtil.put(
 			"author",
