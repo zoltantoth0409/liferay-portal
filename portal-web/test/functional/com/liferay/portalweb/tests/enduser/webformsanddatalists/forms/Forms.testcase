@@ -1960,7 +1960,7 @@ definition {
 	@priority = "4"
 	test EditTranslatedGridField {
 		property test.name.skip.portal.instance = "Forms#EditTranslatedGridField";
-		property portal.acceptance = "true";
+		property portal.acceptance = "quarantine";
 
 		Navigator.openURL();
 
