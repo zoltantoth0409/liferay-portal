@@ -66,21 +66,21 @@ public class JAXRSExtensionContextUtil {
 
 		@Override
 		public <T> ContextResolver<T> getContextResolver(
-			Class<T> aClass, MediaType mediaType) {
+			Class<T> clazz, MediaType mediaType) {
 
 			return null;
 		}
 
 		@Override
 		public <T extends Throwable> ExceptionMapper<T> getExceptionMapper(
-			Class<T> aClass) {
+			Class<T> clazz) {
 
 			return null;
 		}
 
 		@Override
 		public <T> MessageBodyReader<T> getMessageBodyReader(
-			Class<T> aClass, Type type, Annotation[] annotations,
+			Class<T> clazz, Type type, Annotation[] annotations,
 			MediaType mediaType) {
 
 			return null;
@@ -88,7 +88,7 @@ public class JAXRSExtensionContextUtil {
 
 		@Override
 		public <T> MessageBodyWriter<T> getMessageBodyWriter(
-			Class<T> aClass, Type type, Annotation[] annotations,
+			Class<T> clazz, Type type, Annotation[] annotations,
 			MediaType mediaType) {
 
 			return null;
@@ -117,8 +117,8 @@ public class JAXRSExtensionContextUtil {
 		implements ContextResolver<ExtensionContext> {
 
 		@Override
-		public ExtensionContext getContext(Class<?> aClass) {
-			if (TestObject.class.isAssignableFrom(aClass)) {
+		public ExtensionContext getContext(Class<?> clazz) {
+			if (TestObject.class.isAssignableFrom(clazz)) {
 				return new TestExtensionContext();
 			}
 
@@ -131,9 +131,9 @@ public class JAXRSExtensionContextUtil {
 
 		@Override
 		public <T> ContextResolver<T> getContextResolver(
-			Class<T> aClass, MediaType mediaType) {
+			Class<T> clazz, MediaType mediaType) {
 
-			if (aClass.isAssignableFrom(ExtensionContext.class)) {
+			if (clazz.isAssignableFrom(ExtensionContext.class)) {
 				return (ContextResolver)new TestExtensionContextResolver();
 			}
 
@@ -142,14 +142,14 @@ public class JAXRSExtensionContextUtil {
 
 		@Override
 		public <T extends Throwable> ExceptionMapper<T> getExceptionMapper(
-			Class<T> aClass) {
+			Class<T> clazz) {
 
 			return null;
 		}
 
 		@Override
 		public <T> MessageBodyReader<T> getMessageBodyReader(
-			Class<T> aClass, Type type, Annotation[] annotations,
+			Class<T> clazz, Type type, Annotation[] annotations,
 			MediaType mediaType) {
 
 			return null;
@@ -157,7 +157,7 @@ public class JAXRSExtensionContextUtil {
 
 		@Override
 		public <T> MessageBodyWriter<T> getMessageBodyWriter(
-			Class<T> aClass, Type type, Annotation[] annotations,
+			Class<T> clazz, Type type, Annotation[] annotations,
 			MediaType mediaType) {
 
 			return null;
