@@ -107,6 +107,7 @@ public class EntityExtensionWriterInterceptorTest {
 		).thenReturn(
 			new Object()
 		);
+
 		Mockito.when(
 			_mockedWriterInterceptorContext.getType()
 		).thenReturn(
