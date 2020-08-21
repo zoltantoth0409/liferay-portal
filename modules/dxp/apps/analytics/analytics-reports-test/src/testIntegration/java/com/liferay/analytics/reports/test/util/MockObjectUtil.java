@@ -48,7 +48,6 @@ public class MockObjectUtil {
 
 		ServiceRegistration<AnalyticsReportsInfoItem<MockObject>>
 			analyticsReportsInfoItemServiceRegistration = null;
-
 		ServiceRegistration<InfoDisplayContributor<MockObject>>
 			infoDisplayContributorServiceRegistration = null;
 
@@ -59,7 +58,6 @@ public class MockObjectUtil {
 						(Class<?>)AnalyticsReportsInfoItem.class,
 					new MockAnalyticsReportsInfoItem(),
 					new HashMapDictionary<>());
-
 			infoDisplayContributorServiceRegistration =
 				bundleContext.registerService(
 					(Class<InfoDisplayContributor<MockObject>>)
