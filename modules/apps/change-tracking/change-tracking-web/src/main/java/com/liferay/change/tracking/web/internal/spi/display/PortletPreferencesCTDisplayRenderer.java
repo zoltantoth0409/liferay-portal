@@ -157,6 +157,9 @@ public class PortletPreferencesCTDisplayRenderer
 		).display(
 			"preferences",
 			() -> {
+				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+					displayBuilder.getLocale(), getClass());
+
 				String preferencesXML = portletPreferences.getPreferences();
 
 				javax.portlet.PortletPreferences jxPortletPreferences =
@@ -164,9 +167,6 @@ public class PortletPreferencesCTDisplayRenderer
 						preferencesXML);
 
 				Map<String, String[]> map = jxPortletPreferences.getMap();
-
-				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-					displayBuilder.getLocale(), getClass());
 
 				if (map.isEmpty()) {
 					return _language.get(
