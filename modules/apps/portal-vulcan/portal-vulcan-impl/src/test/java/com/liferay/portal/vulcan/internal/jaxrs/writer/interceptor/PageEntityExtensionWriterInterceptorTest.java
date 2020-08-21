@@ -124,21 +124,21 @@ public class PageEntityExtensionWriterInterceptorTest {
 			argumentCaptor.capture()
 		);
 
-		Page<ExtendedEntity> extendedPage = argumentCaptor.getValue();
+		Page<ExtendedEntity> extendedEntityPage = argumentCaptor.getValue();
 
-		Assert.assertEquals(page.getActions(), extendedPage.getActions());
+		Assert.assertEquals(page.getActions(), extendedEntityPage.getActions());
 
-		Collection<ExtendedEntity> items = extendedPage.getItems();
+		Collection<ExtendedEntity> extendedEntities = extendedEntityPage.getItems();
 
-		ExtendedEntity extendedEntity = items.toArray(new ExtendedEntity[0])[0];
+		ExtendedEntity extendedEntity = extendedEntities.toArray(new ExtendedEntity[0])[0];
 
 		Assert.assertEquals(testObject, extendedEntity.getEntity());
 		Assert.assertEquals(
 			JAXRSExtensionContextUtil.getTestExtendedProperties(),
 			extendedEntity.getExtendedProperties());
 
-		Assert.assertEquals(page.getPage(), extendedPage.getPage());
-		Assert.assertEquals(page.getPageSize(), extendedPage.getPageSize());
+		Assert.assertEquals(page.getPage(), extendedEntityPage.getPage());
+		Assert.assertEquals(page.getPageSize(), extendedEntityPage.getPageSize());
 		Assert.assertEquals(page.getLastPage(), page.getLastPage());
 		Assert.assertEquals(page.getTotalCount(), page.getTotalCount());
 
