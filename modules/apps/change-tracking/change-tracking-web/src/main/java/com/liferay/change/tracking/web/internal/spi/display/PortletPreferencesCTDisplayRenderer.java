@@ -187,7 +187,8 @@ public class PortletPreferencesCTDisplayRenderer
 				}
 
 				return sb.toString();
-			});
+			}
+		);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
