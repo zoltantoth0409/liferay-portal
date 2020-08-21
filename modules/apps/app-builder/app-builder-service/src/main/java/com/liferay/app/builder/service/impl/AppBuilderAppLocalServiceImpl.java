@@ -205,7 +205,7 @@ public class AppBuilderAppLocalServiceImpl
 		int start, int end,
 		OrderByComparator<AppBuilderApp> orderByComparator) {
 
-		return appBuilderAppPersistence.findByG_C_D_S(
+		return appBuilderAppPersistence.findByG_C_DDMSI_S(
 			groupId, companyId, ddmStructureId, scope, start, end,
 			orderByComparator);
 	}
