@@ -117,9 +117,9 @@ public class LiferaySyncCapability
 	protected void registerDLSyncEventCallback(
 		String event, FileEntry fileEntry) {
 
-		if (isStagingGroup(fileEntry.getGroupId()) ||
-			!(fileEntry instanceof LiferayFileEntry) ||
-			!CTCollectionThreadLocal.isProductionMode()) {
+		if (!CTCollectionThreadLocal.isProductionMode() ||
+			isStagingGroup(fileEntry.getGroupId()) ||
+			!(fileEntry instanceof LiferayFileEntry)) {
 
 			return;
 		}
@@ -140,9 +140,9 @@ public class LiferaySyncCapability
 	}
 
 	protected void registerDLSyncEventCallback(String event, Folder folder) {
-		if (isStagingGroup(folder.getGroupId()) ||
-			!(folder instanceof LiferayFolder) ||
-			!CTCollectionThreadLocal.isProductionMode()) {
+		if (!CTCollectionThreadLocal.isProductionMode() ||
+			isStagingGroup(folder.getGroupId()) ||
+			!(folder instanceof LiferayFolder)) {
 
 			return;
 		}
