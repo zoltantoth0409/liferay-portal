@@ -87,11 +87,11 @@ public class PageEntityExtensionWriterInterceptorTest {
 	public void testAroundWritePageWithExtensionContextWithExtendedType()
 		throws IOException {
 
-		JAXRSExtensionContextUtil.TestObject entity =
+		JAXRSExtensionContextUtil.TestObject testObject =
 			JAXRSExtensionContextUtil.getTestObject();
 
 		Page<JAXRSExtensionContextUtil.TestObject> page = Page.of(
-			Collections.singleton(entity));
+			Collections.singleton(testObject));
 
 		ArgumentCaptor<Page> extendedPageCaptor = ArgumentCaptor.forClass(
 			Page.class);
@@ -129,7 +129,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 
 		ExtendedEntity extendedEntity = items.toArray(new ExtendedEntity[0])[0];
 
-		Assert.assertEquals(entity, extendedEntity.getEntity());
+		Assert.assertEquals(testObject, extendedEntity.getEntity());
 		Assert.assertEquals(
 			JAXRSExtensionContextUtil.getTestExtendedProperties(),
 			extendedEntity.getExtendedProperties());
