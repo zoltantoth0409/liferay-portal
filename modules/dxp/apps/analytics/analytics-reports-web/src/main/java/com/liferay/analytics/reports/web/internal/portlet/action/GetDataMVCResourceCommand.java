@@ -111,7 +111,6 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 						getAnalyticsReportsInfoItem(
 							_portal.getClassName(
 								infoDisplayObjectProvider.getClassNameId()));
-
 			CanonicalURLProvider canonicalURLProvider =
 				new CanonicalURLProvider(
 					_assetDisplayPageFriendlyURLProvider, httpServletRequest,
@@ -119,16 +118,14 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 						httpServletRequest, _infoDisplayContributorTracker,
 						_portal),
 					_language, _layoutSEOLinkManager, _portal);
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)resourceRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
 			InfoDisplayContributor<Object> infoDisplayContributor =
 				(InfoDisplayContributor<Object>)
 					_infoDisplayContributorTracker.getInfoDisplayContributor(
 						_portal.getClassName(
 							infoDisplayObjectProvider.getClassNameId()));
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
 
 			JSONPortletResponseUtil.writeJSON(
 				resourceRequest, resourceResponse,
