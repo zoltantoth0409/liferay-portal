@@ -44,15 +44,15 @@ public class PageEntityExtensionWriterInterceptorTest {
 
 	@Before
 	public void setUp() {
-		_writerInterceptorContext = Mockito.mock(
-			WriterInterceptorContext.class);
-
 		_pageEntityExtensionWriterInterceptor =
 			new PageEntityExtensionWriterInterceptor();
 
 		ReflectionTestUtil.setFieldValue(
 			_pageEntityExtensionWriterInterceptor, "_providers",
 			JAXRSExtensionContextUtil.getTestProviders());
+
+		_writerInterceptorContext = Mockito.mock(
+			WriterInterceptorContext.class);
 	}
 
 	@Test
