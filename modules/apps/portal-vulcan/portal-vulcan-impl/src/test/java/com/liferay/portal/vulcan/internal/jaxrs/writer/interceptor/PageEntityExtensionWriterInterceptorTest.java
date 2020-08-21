@@ -44,7 +44,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 
 	@Before
 	public void setUp() {
-		_mockedWriterInterceptorContext = Mockito.mock(
+		_writerInterceptorContext = Mockito.mock(
 			WriterInterceptorContext.class);
 
 		_pageEntityExtensionWriterInterceptor =
@@ -58,28 +58,28 @@ public class PageEntityExtensionWriterInterceptorTest {
 	@Test
 	public void testAroundWriteNotPage() throws IOException {
 		Mockito.when(
-			_mockedWriterInterceptorContext.getType()
+			_writerInterceptorContext.getType()
 		).thenReturn(
 			(Class)JAXRSExtensionContextUtil.TestObject.class
 		);
 
 		_pageEntityExtensionWriterInterceptor.aroundWriteTo(
-			_mockedWriterInterceptorContext);
+			_writerInterceptorContext);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setEntity(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).proceed();
 	}
 
@@ -97,27 +97,27 @@ public class PageEntityExtensionWriterInterceptorTest {
 			Page.class);
 
 		Mockito.when(
-			_mockedWriterInterceptorContext.getEntity()
+			_writerInterceptorContext.getEntity()
 		).thenReturn(
 			page
 		);
 		Mockito.when(
-			_mockedWriterInterceptorContext.getGenericType()
+			_writerInterceptorContext.getGenericType()
 		).thenReturn(
 			new GenericType<Page<JAXRSExtensionContextUtil.TestObject>>() {
 			}.getType()
 		);
 		Mockito.when(
-			_mockedWriterInterceptorContext.getType()
+			_writerInterceptorContext.getType()
 		).thenReturn(
 			(Class)page.getClass()
 		);
 
 		_pageEntityExtensionWriterInterceptor.aroundWriteTo(
-			_mockedWriterInterceptorContext);
+			_writerInterceptorContext);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).setEntity(
 			extendedPageCaptor.capture()
 		);
@@ -140,7 +140,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Assert.assertEquals(page.getTotalCount(), page.getTotalCount());
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).setGenericType(
 			eq(
 				new GenericType<Page<ExtendedEntity>>() {
@@ -148,7 +148,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).proceed();
 	}
 
@@ -159,40 +159,40 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Page<Object> page = Page.of(Collections.singleton(new Object()));
 
 		Mockito.when(
-			_mockedWriterInterceptorContext.getEntity()
+			_writerInterceptorContext.getEntity()
 		).thenReturn(
 			page
 		);
 
 		Mockito.when(
-			_mockedWriterInterceptorContext.getGenericType()
+			_writerInterceptorContext.getGenericType()
 		).thenReturn(
 			new GenericType<Page<Object>>() {
 			}.getType()
 		);
 		Mockito.when(
-			_mockedWriterInterceptorContext.getType()
+			_writerInterceptorContext.getType()
 		).thenReturn(
 			(Class)Object.class
 		);
 
 		_pageEntityExtensionWriterInterceptor.aroundWriteTo(
-			_mockedWriterInterceptorContext);
+			_writerInterceptorContext);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setEntity(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).proceed();
 	}
 
@@ -208,45 +208,45 @@ public class PageEntityExtensionWriterInterceptorTest {
 			Collections.singleton(JAXRSExtensionContextUtil.getTestObject()));
 
 		Mockito.when(
-			_mockedWriterInterceptorContext.getEntity()
+			_writerInterceptorContext.getEntity()
 		).thenReturn(
 			page
 		);
 
 		Mockito.when(
-			_mockedWriterInterceptorContext.getGenericType()
+			_writerInterceptorContext.getGenericType()
 		).thenReturn(
 			new GenericType<Page<JAXRSExtensionContextUtil.TestObject>>() {
 			}.getType()
 		);
 		Mockito.when(
-			_mockedWriterInterceptorContext.getType()
+			_writerInterceptorContext.getType()
 		).thenReturn(
 			(Class)page.getClass()
 		);
 
 		_pageEntityExtensionWriterInterceptor.aroundWriteTo(
-			_mockedWriterInterceptorContext);
+			_writerInterceptorContext);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setEntity(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext, Mockito.never()
+			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
 			any()
 		);
 
 		Mockito.verify(
-			_mockedWriterInterceptorContext
+			_writerInterceptorContext
 		).proceed();
 	}
 
-	private WriterInterceptorContext _mockedWriterInterceptorContext;
 	private PageEntityExtensionWriterInterceptor
 		_pageEntityExtensionWriterInterceptor;
+	private WriterInterceptorContext _writerInterceptorContext;
 
 }
