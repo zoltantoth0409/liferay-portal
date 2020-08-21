@@ -6026,9 +6026,9 @@ public class ServiceBuilder {
 		if (_dtdVersion.isSameVersionAs("7.3.0") && !cacheEnabled) {
 			System.out.println(
 				StringBundler.concat(
-					"Warning: unable to disable cache for entity ", entityName,
-					", corresponding support has been removed cause there is ",
-					"no good reason to disable cache for a specific entity"));
+					"Warning: The attribute cache-enabled is set to false for ",
+					"entity ", entityName, ". This attribute is ignored in ",
+					"7.3.0 and will be removed in 7.4.0."));
 		}
 
 		boolean changeTrackingEnabled = GetterUtil.getBoolean(
