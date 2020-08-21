@@ -109,13 +109,12 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 	private List<InfoFieldValue<Object>> _getInfoFieldValues(
 		ActionRequest actionRequest, JournalArticle article) {
 
+		List<InfoFieldValue<Object>> infoFieldValues = new ArrayList<>();
+
 		UnicodeProperties infoFieldUnicodeProperties =
 			PropertiesParamUtil.getProperties(actionRequest, "infoField--");
-
 		InfoItemFieldValues infoItemFieldValues = _getInfoItemFieldValues(
 			article);
-
-		List<InfoFieldValue<Object>> infoFieldValues = new ArrayList<>();
 
 		for (InfoField infoField : _getInfoFields(article)) {
 			String value = infoFieldUnicodeProperties.get(infoField.getName());
