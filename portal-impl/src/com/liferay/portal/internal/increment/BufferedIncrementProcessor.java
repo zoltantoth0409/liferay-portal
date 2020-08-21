@@ -67,8 +67,8 @@ public class BufferedIncrementProcessor {
 				_bufferedIncrementConfiguration, _batchablePipe,
 				_queueLengthTracker, Thread.currentThread());
 
-			if (ProxyModeThreadLocal.isForceSync() ||
-				!CTCollectionThreadLocal.isProductionMode()) {
+			if (!CTCollectionThreadLocal.isProductionMode() ||
+				ProxyModeThreadLocal.isForceSync()) {
 
 				runnable.run();
 			}
