@@ -579,7 +579,8 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getFontSize())) {
 			styleSB.append("font-size: ");
 			styleSB.append(
-				getStyleFromStyleBookEntry(styledLayoutStructureItem.getFontSize()));
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getFontSize()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -600,7 +601,8 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getMaxWidth())) {
 			styleSB.append("max-width: ");
 			styleSB.append(
-				getStyleFromStyleBookEntry(styledLayoutStructureItem.getMaxWidth()));
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getMaxWidth()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -615,7 +617,8 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getMinWidth())) {
 			styleSB.append("min-width: ");
 			styleSB.append(
-				getStyleFromStyleBookEntry(styledLayoutStructureItem.getMinWidth()));
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getMinWidth()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -628,7 +631,8 @@ public class RenderFragmentLayoutDisplayContext {
 		if (Validator.isNotNull(styledLayoutStructureItem.getOverflow())) {
 			styleSB.append("overflow: ");
 			styleSB.append(
-				getStyleFromStyleBookEntry(styledLayoutStructureItem.getOverflow()));
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getOverflow()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
@@ -649,7 +653,9 @@ public class RenderFragmentLayoutDisplayContext {
 		return styleSB.toString();
 	}
 
-	public String getStyleFromStyleBookEntry(String styleValue) throws Exception {
+	public String getStyleFromStyleBookEntry(String styleValue)
+		throws Exception {
+
 		JSONObject frontendTokensValuesJSONObject =
 			_getFrontendTokensJSONObject();
 
