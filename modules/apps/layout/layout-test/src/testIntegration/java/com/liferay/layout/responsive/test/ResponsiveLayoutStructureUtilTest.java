@@ -121,9 +121,9 @@ public class ResponsiveLayoutStructureUtilTest {
 		_themeDisplay.setLayoutTypePortlet(
 			(LayoutTypePortlet)_layout.getLayoutType());
 		_themeDisplay.setLayoutSet(_group.getPublicLayoutSet());
+		_themeDisplay.setLocale(LocaleUtil.US);
 		_themeDisplay.setLookAndFeel(
 			_layout.getTheme(), _layout.getColorScheme());
-		_themeDisplay.setLocale(LocaleUtil.US);
 		_themeDisplay.setPermissionChecker(
 			PermissionThreadLocal.getPermissionChecker());
 		_themeDisplay.setRealUser(TestPropsValues.getUser());
