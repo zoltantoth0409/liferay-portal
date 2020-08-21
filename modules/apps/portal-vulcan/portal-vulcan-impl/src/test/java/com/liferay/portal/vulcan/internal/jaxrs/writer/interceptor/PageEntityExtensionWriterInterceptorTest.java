@@ -176,6 +176,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 			new GenericType<Page<Object>>() {
 			}.getType()
 		);
+
 		Mockito.when(
 			_writerInterceptorContext.getType()
 		).thenReturn(
@@ -225,6 +226,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 			new GenericType<Page<JAXRSExtensionContextUtil.TestObject>>() {
 			}.getType()
 		);
+
 		Mockito.when(
 			_writerInterceptorContext.getType()
 		).thenReturn(
