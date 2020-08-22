@@ -32,6 +32,7 @@ import java.util.Collection;
  * triggers a cache refresh.
  *
  * @author Iván Zaera Avellón
+ * @review
  */
 public interface NPMRegistryUpdate {
 

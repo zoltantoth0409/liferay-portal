@@ -31,6 +31,7 @@ import java.util.List;
  * {@link BuiltInJSResolvedModuleServlet}.
  *
  * @author Iván Zaera
+ * @review
  */
 public abstract class BaseBuiltInJSModule implements JSModule {
 

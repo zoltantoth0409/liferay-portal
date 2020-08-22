@@ -28,6 +28,7 @@ import java.util.Collection;
  * Provides an implementation of {@link JSModule} to hold in-memory modules.
  *
  * @author Iván Zaera
+ * @review
  */
 public class DynamicJSModule extends BaseBuiltInJSModule implements JSModule {
 

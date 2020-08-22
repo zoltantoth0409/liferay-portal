@@ -31,6 +31,7 @@ package com.liferay.frontend.js.loader.modules.extender.npm;
  * </p>
  *
  * @author Iván Zaera
+ * @review
  * @see NPMRegistry#registerJSModule(JSPackage, String, Collection, String, String)
  */
 public interface ModifiableJSPackage extends JSPackage {
