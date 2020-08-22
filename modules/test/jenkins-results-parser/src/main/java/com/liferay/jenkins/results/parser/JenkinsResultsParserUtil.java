@@ -2687,22 +2687,22 @@ public class JenkinsResultsParserUtil {
 	}
 
 	public static String toByteCountString(long byteCount) {
-		long gigaByteCount = byteCount / _BYTES_GIGA;
+		long gigabyteCount = byteCount / _BYTES_GIGA;
 
-		if (gigaByteCount > 0) {
-			return gigaByteCount + " GB";
+		if (gigabyteCount > 0) {
+			return gigabyteCount + " GB";
 		}
 
-		long megaByteCount = byteCount / _BYTES_MEGA;
+		long megabyteCount = byteCount / _BYTES_MEGA;
 
-		if (megaByteCount > 0) {
-			return megaByteCount + " MB";
+		if (megabyteCount > 0) {
+			return megabyteCount + " MB";
 		}
 
-		long kiloByteCount = byteCount / _BYTES_KILO;
+		long kilobyteCount = byteCount / _BYTES_KILO;
 
-		if (kiloByteCount > 0) {
-			return kiloByteCount + " KB";
+		if (kilobyteCount > 0) {
+			return kilobyteCount + " KB";
 		}
 
 		return byteCount + " B";
