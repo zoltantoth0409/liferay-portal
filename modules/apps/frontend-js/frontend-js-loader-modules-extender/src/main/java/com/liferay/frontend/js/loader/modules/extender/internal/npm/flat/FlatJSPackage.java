@@ -70,12 +70,12 @@ public class FlatJSPackage implements ModifiableJSPackage {
 	public void addJSModule(JSModule jsModule) {
 		if (jsModule.getJSPackage() != this) {
 			throw new IllegalArgumentException(
-				"The given JSModule does not belong to this JSPackage");
+				"The given JS module does not belong to this JS package");
 		}
 
 		if (_jsModules.putIfAbsent(jsModule.getName(), jsModule) != null) {
 			throw new IllegalStateException(
-				"A JSModule with the same name already exists");
+				"A JS module with the same name already exists");
 		}
 	}
 
@@ -185,7 +185,7 @@ public class FlatJSPackage implements ModifiableJSPackage {
 	public void removeJSModule(JSModule jsModule) {
 		if (jsModule.getJSPackage() != this) {
 			throw new IllegalArgumentException(
-				"The given JSModule does not belong to this JSPackage");
+				"The given JS module does not belong to this JS package");
 		}
 
 		_jsModules.remove(jsModule.getName());
@@ -195,12 +195,12 @@ public class FlatJSPackage implements ModifiableJSPackage {
 	public void replaceJSModule(JSModule jsModule) {
 		if (jsModule.getJSPackage() != this) {
 			throw new IllegalArgumentException(
-				"The given JSModule does not belong to this JSPackage");
+				"The given JS module does not belong to this JS package");
 		}
 
 		if (_jsModules.replace(jsModule.getName(), jsModule) == null) {
 			throw new IllegalArgumentException(
-				"No JSModule with the same name exists");
+				"No JS module with the same name exists");
 		}
 	}
 

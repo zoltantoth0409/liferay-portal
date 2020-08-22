@@ -49,7 +49,7 @@ public class NPMRegistryUpdateImpl implements NPMRegistryUpdate {
 
 		if (!(jsPackage instanceof ModifiableJSPackage)) {
 			throw new IllegalArgumentException(
-				"Invalid JSPackage type " + jsPackage.getClass());
+				"Invalid JS package type " + jsPackage.getClass());
 		}
 
 		ModifiableJSPackage modifiableJSPackage =
@@ -71,7 +71,7 @@ public class NPMRegistryUpdateImpl implements NPMRegistryUpdate {
 
 		if (!(jsPackage instanceof ModifiableJSPackage)) {
 			throw new IllegalArgumentException(
-				"Invalid JSPackage type " + jsPackage.getClass());
+				"Invalid JS package type " + jsPackage.getClass());
 		}
 
 		ModifiableJSPackage modifiableJSPackage =
@@ -91,7 +91,7 @@ public class NPMRegistryUpdateImpl implements NPMRegistryUpdate {
 
 		if (!(jsPackage instanceof ModifiableJSPackage)) {
 			throw new IllegalArgumentException(
-				"Invalid JSPackage type " + jsPackage.getClass());
+				"Invalid JS package type " + jsPackage.getClass());
 		}
 
 		ModifiableJSPackage modifiableJSPackage =
