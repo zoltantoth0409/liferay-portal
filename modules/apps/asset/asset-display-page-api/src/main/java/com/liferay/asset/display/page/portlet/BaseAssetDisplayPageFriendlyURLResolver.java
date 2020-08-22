@@ -284,12 +284,6 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		return infoItemObjectProvider.getInfoItem(infoItemIdentifier);
 	}
 
-	private String _getInfoURLSeparator(String friendlyURL) {
-		List<String> paths = StringUtil.split(friendlyURL, CharPool.SLASH);
-
-		return CharPool.SLASH + paths.get(0) + CharPool.SLASH;
-	}
-
 	private LayoutDisplayPageObjectProvider<?>
 		_getLayoutDisplayPageObjectProvider(
 			LayoutDisplayPageProvider<?> layoutDisplayPageProvider,
@@ -337,16 +331,16 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 			String friendlyURL)
 		throws PortalException {
 
-		String infoURLSeparator = _getInfoURLSeparator(friendlyURL);
+		String urlSeparator = _getURLSeparator(friendlyURL);
 
 		LayoutDisplayPageProvider<?> layoutDisplayPageProvider =
 			layoutDisplayPageProviderTracker.
-				getLayoutDisplayPageProviderByURLSeparator(infoURLSeparator);
+				getLayoutDisplayPageProviderByURLSeparator(urlSeparator);
 
 		if (layoutDisplayPageProvider == null) {
 			throw new PortalException(
 				"Info display contributor is not available for " +
-					infoURLSeparator);
+					urlSeparator);
 		}
 
 		return layoutDisplayPageProvider;
@@ -377,10 +371,16 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		return defaultValueFunction.apply(locale);
 	}
 
-	private String _getUrlTitle(String friendlyURL) {
-		String infoURLSeparator = _getInfoURLSeparator(friendlyURL);
+	private String _getURLSeparator(String friendlyURL) {
+		List<String> paths = StringUtil.split(friendlyURL, CharPool.SLASH);
 
-		String urlTitle = friendlyURL.substring(infoURLSeparator.length());
+		return CharPool.SLASH + paths.get(0) + CharPool.SLASH;
+	}
+
+	private String _getUrlTitle(String friendlyURL) {
+		String urlSeparator = _getURLSeparator(friendlyURL);
+
+		String urlTitle = friendlyURL.substring(urlSeparator.length());
 
 		long versionClassPK = _getVersionClassPK(friendlyURL);
 
@@ -388,7 +388,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 			String versionClassPKValue = String.valueOf(versionClassPK);
 
 			urlTitle = friendlyURL.substring(
-				infoURLSeparator.length(),
+				urlSeparator.length(),
 				friendlyURL.length() - versionClassPKValue.length() - 1);
 		}
 
