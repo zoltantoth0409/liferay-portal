@@ -89,7 +89,6 @@ public interface JSPackage extends JSBundleObject {
 	public URL getResourceURL(String location);
 
 	/**
-	 /**
 	 * Returns the package's NPM version.
 	 *
 	 * @return the package's NPM version
