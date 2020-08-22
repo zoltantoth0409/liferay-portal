@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.info.internal.display.contributor;
+package com.liferay.info.internal.layout.display.page;
 
 import com.liferay.info.display.contributor.InfoDisplayContributor;
 import com.liferay.info.display.contributor.InfoDisplayObjectProvider;
