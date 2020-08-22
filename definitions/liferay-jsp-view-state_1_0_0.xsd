@@ -33,7 +33,6 @@
 		namespace="http://java.sun.com/xml/ns/javaee"
 		schemaLocation="web-jsptaglibrary_2_1.xsd"
 	/>
-
 	<xsd:complexType name="ActionURL">
 		<xsd:annotation>
 			<xsd:documentation>Refers to the javax.portlet.ActionURL object type</xsd:documentation>
@@ -188,7 +187,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="fqcn">
 		<xsd:annotation>
-			<xsd:documentation>Refers to a Java type specified as a Fully Qualified Class Name (FQCN) within an fqcn child element</xsd:documentation>
+			<xsd:documentation>Refers to a Java type specified as a fully qualified class name (FQCN) within an FQCN child element</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
 			<xsd:extension base="javaee:extensibleType">
