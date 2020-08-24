@@ -172,34 +172,31 @@ public class DDMStorageAdapterTest {
 	}
 
 	private void _deleteDDMFormValues(
-			DDMStorageAdapter testDDMStorageAdapter, long primaryKey)
+			DDMStorageAdapter ddmStorageAdapter, long primaryKey)
 		throws Exception {
 
 		DDMStorageAdapterDeleteRequest.Builder
 			ddmStorageAdapterDeleteRequestBuilder =
 				DDMStorageAdapterDeleteRequest.Builder.newBuilder(primaryKey);
 
-		testDDMStorageAdapter.delete(
-			ddmStorageAdapterDeleteRequestBuilder.build());
+		ddmStorageAdapter.delete(ddmStorageAdapterDeleteRequestBuilder.build());
 	}
 
 	private DDMFormValues _getDDMFormValues(
-			DDMStorageAdapter testDDMStorageAdapter, long primaryKey)
+			DDMStorageAdapter ddmStorageAdapter, long primaryKey)
 		throws Exception {
 
 		DDMStorageAdapterGetRequest.Builder ddmStorageAdapterGetRequestBuilder =
 			DDMStorageAdapterGetRequest.Builder.newBuilder(primaryKey, null);
 
 		DDMStorageAdapterGetResponse ddmStorageAdapterGetResponse =
-			testDDMStorageAdapter.get(
-				ddmStorageAdapterGetRequestBuilder.build());
+			ddmStorageAdapter.get(ddmStorageAdapterGetRequestBuilder.build());
 
 		return ddmStorageAdapterGetResponse.getDDMFormValues();
 	}
 
 	private long _saveDDMFormValues(
-			DDMFormValues ddmFormValues,
-			DDMStorageAdapter testDDMStorageAdapter)
+			DDMFormValues ddmFormValues, DDMStorageAdapter ddmStorageAdapter)
 		throws Exception {
 
 		DDMStorageAdapterSaveRequest.Builder
@@ -209,8 +206,7 @@ public class DDMStorageAdapterTest {
 					ddmFormValues);
 
 		DDMStorageAdapterSaveResponse ddmStorageAdapterSaveResponse =
-			testDDMStorageAdapter.save(
-				ddmStorageAdapterSaveRequestBuilder.build());
+			ddmStorageAdapter.save(ddmStorageAdapterSaveRequestBuilder.build());
 
 		return ddmStorageAdapterSaveResponse.getPrimaryKey();
 	}
