@@ -534,7 +534,7 @@ public class WorkflowDefinitionDisplayContext {
 				WorkflowDefinitionConstants.SCOPE_ALL);
 
 		if ((status == WorkflowConstants.STATUS_ANY) &&
-			Validator.isNull(title) && Validator.isNull(description)) {
+			Validator.isNull(description) && Validator.isNull(title)) {
 
 			return predicate;
 		}
