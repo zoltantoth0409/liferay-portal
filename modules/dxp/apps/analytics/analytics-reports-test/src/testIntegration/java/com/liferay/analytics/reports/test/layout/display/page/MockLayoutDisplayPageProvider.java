@@ -57,7 +57,7 @@ public class MockLayoutDisplayPageProvider
 
 	@Override
 	public String getURLSeparator() {
-		return "/mockSeparator";
+		return "/mock_separator";
 	}
 
 	public static class MockLayoutDisplayPageObjectProvider
