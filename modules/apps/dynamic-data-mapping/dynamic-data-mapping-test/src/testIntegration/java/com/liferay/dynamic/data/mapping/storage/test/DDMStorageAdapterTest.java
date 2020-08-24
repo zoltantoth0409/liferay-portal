@@ -81,10 +81,10 @@ public class DDMStorageAdapterTest {
 
 		Assert.assertNotNull(jsonDDMStorageAdapter);
 
-		DDMStorageAdapter ddmTestStorageAdapter =
+		DDMStorageAdapter testDDMStorageAdapter =
 			_ddmStorageAdapterTracker.getDDMStorageAdapter(_STORAGE_TYPE_TEST);
 
-		Assert.assertNotNull(ddmTestStorageAdapter);
+		Assert.assertNotNull(testDDMStorageAdapter);
 	}
 
 	@Test
@@ -98,21 +98,21 @@ public class DDMStorageAdapterTest {
 
 	@Test
 	public void testInvokeDDMTestStorageAdapter() throws Exception {
-		DDMStorageAdapter ddmTestStorageAdapter =
+		DDMStorageAdapter testDDMStorageAdapter =
 			_ddmStorageAdapterTracker.getDDMStorageAdapter(_STORAGE_TYPE_TEST);
 
 		long primaryKey = _saveDDMFormValues(
-			_createDDMFormValues(), ddmTestStorageAdapter);
+			_createDDMFormValues(), testDDMStorageAdapter);
 
 		DDMFormValues ddmFormValues = _getDDMFormValues(
-			ddmTestStorageAdapter, primaryKey);
+			testDDMStorageAdapter, primaryKey);
 
 		Assert.assertTrue(_containsValue(ddmFormValues, "TextField Value 1"));
 		Assert.assertTrue(_containsValue(ddmFormValues, "TextField Value 2"));
 
-		_deleteDDMFormValues(ddmTestStorageAdapter, primaryKey);
+		_deleteDDMFormValues(testDDMStorageAdapter, primaryKey);
 
-		ddmFormValues = _getDDMFormValues(ddmTestStorageAdapter, primaryKey);
+		ddmFormValues = _getDDMFormValues(testDDMStorageAdapter, primaryKey);
 
 		Assert.assertNull(ddmFormValues);
 	}
@@ -172,26 +172,26 @@ public class DDMStorageAdapterTest {
 	}
 
 	private void _deleteDDMFormValues(
-			DDMStorageAdapter ddmTestStorageAdapter, long primaryKey)
+			DDMStorageAdapter testDDMStorageAdapter, long primaryKey)
 		throws Exception {
 
 		DDMStorageAdapterDeleteRequest.Builder
 			ddmStorageAdapterDeleteRequestBuilder =
 				DDMStorageAdapterDeleteRequest.Builder.newBuilder(primaryKey);
 
-		ddmTestStorageAdapter.delete(
+		testDDMStorageAdapter.delete(
 			ddmStorageAdapterDeleteRequestBuilder.build());
 	}
 
 	private DDMFormValues _getDDMFormValues(
-			DDMStorageAdapter ddmTestStorageAdapter, long primaryKey)
+			DDMStorageAdapter testDDMStorageAdapter, long primaryKey)
 		throws Exception {
 
 		DDMStorageAdapterGetRequest.Builder ddmStorageAdapterGetRequestBuilder =
 			DDMStorageAdapterGetRequest.Builder.newBuilder(primaryKey, null);
 
 		DDMStorageAdapterGetResponse ddmStorageAdapterGetResponse =
-			ddmTestStorageAdapter.get(
+			testDDMStorageAdapter.get(
 				ddmStorageAdapterGetRequestBuilder.build());
 
 		return ddmStorageAdapterGetResponse.getDDMFormValues();
@@ -199,7 +199,7 @@ public class DDMStorageAdapterTest {
 
 	private long _saveDDMFormValues(
 			DDMFormValues ddmFormValues,
-			DDMStorageAdapter ddmTestStorageAdapter)
+			DDMStorageAdapter testDDMStorageAdapter)
 		throws Exception {
 
 		DDMStorageAdapterSaveRequest.Builder
@@ -209,7 +209,7 @@ public class DDMStorageAdapterTest {
 					ddmFormValues);
 
 		DDMStorageAdapterSaveResponse ddmStorageAdapterSaveResponse =
-			ddmTestStorageAdapter.save(
+			testDDMStorageAdapter.save(
 				ddmStorageAdapterSaveRequestBuilder.build());
 
 		return ddmStorageAdapterSaveResponse.getPrimaryKey();
