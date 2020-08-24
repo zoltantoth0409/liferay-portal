@@ -74,7 +74,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ViewChangesDisplayContext {
 
 	public ViewChangesDisplayContext(
-		long activeCtCollectionId,
+		long activeCTCollectionId,
 		BasePersistenceRegistry basePersistenceRegistry,
 		CTClosureFactory ctClosureFactory, CTCollection ctCollection,
 		CTConfiguration ctConfiguration,
@@ -83,7 +83,7 @@ public class ViewChangesDisplayContext {
 		Portal portal, RenderRequest renderRequest,
 		RenderResponse renderResponse, UserLocalService userLocalService) {
 
-		_activeCtCollectionId = activeCtCollectionId;
+		_activeCTCollectionId = activeCTCollectionId;
 		_basePersistenceRegistry = basePersistenceRegistry;
 		_ctClosureFactory = ctClosureFactory;
 		_ctCollection = ctCollection;
@@ -220,7 +220,7 @@ public class ViewChangesDisplayContext {
 
 		return HashMapBuilder.<String, Object>put(
 			"activeCTCollection",
-			_ctCollection.getCtCollectionId() == _activeCtCollectionId
+			_ctCollection.getCtCollectionId() == _activeCTCollectionId
 		).put(
 			"changes",
 			() -> {
@@ -564,7 +564,7 @@ public class ViewChangesDisplayContext {
 				);
 
 				if (_ctCollection.getCtCollectionId() ==
-						_activeCtCollectionId) {
+						_activeCTCollectionId) {
 
 					JSONArray dropdownItemsJSONArray =
 						JSONFactoryUtil.createJSONArray();
@@ -598,7 +598,7 @@ public class ViewChangesDisplayContext {
 	private static final Log _log = LogFactoryUtil.getLog(
 		ViewChangesDisplayContext.class);
 
-	private final long _activeCtCollectionId;
+	private final long _activeCTCollectionId;
 	private final BasePersistenceRegistry _basePersistenceRegistry;
 	private final CTClosureFactory _ctClosureFactory;
 	private final CTCollection _ctCollection;
