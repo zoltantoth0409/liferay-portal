@@ -44,7 +44,7 @@ public class AddResourceActionsPortalInstanceLifecycleListener
 			_resourceActions.read(
 				null,
 				SAXReaderUtil.read(
-					StringUtil.replace(xml, "[$LANGUAGE$]", languageId)),
+					StringUtil.replace(xml, "[$LANGUAGE_ID$]", languageId)),
 				null);
 		}
 	}
