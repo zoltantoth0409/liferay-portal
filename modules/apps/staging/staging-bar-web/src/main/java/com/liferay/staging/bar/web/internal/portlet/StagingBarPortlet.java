@@ -271,9 +271,9 @@ public class StagingBarPortlet extends MVCPortlet {
 				}
 			}
 
-			themeDisplay.setScopeGroupId(originalScopeGroupId);
 			httpServletRequest.setAttribute(
 				WebKeys.LAYOUT_ASSET_ENTRY, originalAssetEntry);
+			themeDisplay.setScopeGroupId(originalScopeGroupId);
 
 			if (group.isStagingGroup() || group.isStagedRemotely()) {
 				layoutSetBranches =
