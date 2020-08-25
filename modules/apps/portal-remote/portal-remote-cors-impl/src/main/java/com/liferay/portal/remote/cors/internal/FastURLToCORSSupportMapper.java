@@ -91,9 +91,7 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		int column = 0;
 		int row = 0;
 
-		final int urlPathLength = urlPath.length();
-
-		for (; row < urlPathLength; ++row) {
+		for (; row < urlPath.length(); ++row) {
 			if (row > (_maxURLPatternLength - 1)) {
 				bitmask = 0;
 
@@ -125,14 +123,12 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 	private CORSSupport _getExtensionCORSSupport(String urlPath) {
 		long currentBitmask = _BITMASK;
 
-		final int urlPathLength = urlPath.length();
-
-		for (int row = 0; row < urlPathLength; ++row) {
+		for (int row = 0; row < urlPath.length(); ++row) {
 			if (row > (_maxURLPatternLength - 1)) {
 				break;
 			}
 
-			char character = urlPath.charAt(urlPathLength - 1 - row);
+			char character = urlPath.charAt(urlPath.length() - 1 - row);
 
 			if (character == '/') {
 				break;
@@ -220,14 +216,12 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		boolean onlyExact = false;
 		boolean onlyWildcard = false;
 
-		final int urlPathLength = urlPath.length();
-
 		if (urlPath.charAt(0) != '/') {
 			onlyExact = true;
 		}
-		else if ((urlPathLength > 1) &&
-				 (urlPath.charAt(urlPathLength - 2) == '/') &&
-				 (urlPath.charAt(urlPathLength - 1) == '*')) {
+		else if ((urlPath.length() > 1) &&
+				 (urlPath.charAt(urlPath.length() - 2) == '/') &&
+				 (urlPath.charAt(urlPath.length() - 1) == '*')) {
 
 			onlyWildcard = true;
 		}
@@ -237,7 +231,7 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		long currentBitmask = _BITMASK;
 		int row = 0;
 
-		for (; row < urlPathLength; ++row) {
+		for (; row < urlPath.length(); ++row) {
 			if (row > (_maxURLPatternLength - 1)) {
 				currentBitmask = 0;
 
@@ -352,16 +346,14 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		int column = 0;
 		int row = 0;
 
-		final int urlPathLength = urlPattern.length();
-
-		for (; row < urlPathLength; ++row) {
+		for (; row < urlPattern.length(); ++row) {
 			char character;
 
 			if (wildcard) {
 				character = urlPattern.charAt(row);
 			}
 			else {
-				character = urlPattern.charAt(urlPathLength - 1 - row);
+				character = urlPattern.charAt(urlPattern.length() - 1 - row);
 			}
 
 			column = character - _ASCII_PRINTABLE_OFFSET;
