@@ -555,16 +555,16 @@ public class LayoutsSEODisplayContext {
 	}
 
 	private String _getTypeLabel(String className) {
-		InfoItemDetailsProvider infoItemClassDetailsProvider =
+		InfoItemDetailsProvider infoItemDetailsProvider =
 			_infoItemServiceTracker.getFirstInfoItemService(
 				InfoItemDetailsProvider.class, className);
 
-		if (infoItemClassDetailsProvider == null) {
+		if (infoItemDetailsProvider == null) {
 			return StringPool.BLANK;
 		}
 
 		InfoItemClassDetails infoItemClassDetails =
-			infoItemClassDetailsProvider.getInfoItemClassDetails();
+			infoItemDetailsProvider.getInfoItemClassDetails();
 
 		return infoItemClassDetails.getLabel(_themeDisplay.getLocale());
 	}
