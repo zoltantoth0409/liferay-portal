@@ -20,9 +20,8 @@ import java.net.URISyntaxException;
 /**
  * @author Carlos Sierra Andrés
  */
-public abstract class BaseURLToCORSSupportMapper {
-
-	public abstract CORSSupport get(String urlPath);
+public abstract class BaseURLToCORSSupportMapper
+	implements URLToCORSSupportMapper {
 
 	protected boolean isExtensionURLPattern(String urlPattern) {
 

@@ -32,7 +32,7 @@ public class SimpleURLToCORSSupportMapperTest {
 	public void testGet() {
 		KeyValuePair[] keyValuePairs = _createKeyValuePairs();
 
-		BaseURLToCORSSupportMapper urlToCORSSupportMapper =
+		URLToCORSSupportMapper urlToCORSSupportMapper =
 			createURLToCORSSupportMapper(_createCORSSupports(keyValuePairs));
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
@@ -62,7 +62,7 @@ public class SimpleURLToCORSSupportMapperTest {
 		}
 	}
 
-	protected BaseURLToCORSSupportMapper createURLToCORSSupportMapper(
+	protected URLToCORSSupportMapper createURLToCORSSupportMapper(
 		Map<String, CORSSupport> corsSupports) {
 
 		return new SimpleURLToCORSSupportMapper(corsSupports);

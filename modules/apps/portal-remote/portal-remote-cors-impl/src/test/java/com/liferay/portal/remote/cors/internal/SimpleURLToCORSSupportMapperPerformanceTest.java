@@ -30,7 +30,7 @@ public class SimpleURLToCORSSupportMapperPerformanceTest {
 	@Test
 	public void testGet() {
 		KeyValuePair[] keyValuePairs = _createKeyValuePairs();
-		BaseURLToCORSSupportMapper urlToCORSSupportMapper =
+		URLToCORSSupportMapper urlToCORSSupportMapper =
 			createURLToCORSSupportMapper(_createCORSSupports());
 
 		long start = System.currentTimeMillis();
@@ -50,7 +50,7 @@ public class SimpleURLToCORSSupportMapperPerformanceTest {
 		Assert.assertTrue(delta < 20000);
 	}
 
-	protected BaseURLToCORSSupportMapper createURLToCORSSupportMapper(
+	protected URLToCORSSupportMapper createURLToCORSSupportMapper(
 		Map<String, CORSSupport> corsSupports) {
 
 		return new SimpleURLToCORSSupportMapper(corsSupports);

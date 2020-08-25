@@ -31,7 +31,7 @@ public class FastURLToCORSSupportMapperTest
 		super.testGet();
 	}
 
-	protected BaseURLToCORSSupportMapper createURLToCORSSupportMapper(
+	protected URLToCORSSupportMapper createURLToCORSSupportMapper(
 		Map<String, CORSSupport> corsSupports) {
 
 		return new FastURLToCORSSupportMapper(corsSupports);
