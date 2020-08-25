@@ -856,6 +856,7 @@ public class Query {
 
 		public AssigneePage(Page assigneePage) {
 			actions = assigneePage.getActions();
+
 			items = assigneePage.getItems();
 			lastPage = assigneePage.getLastPage();
 			page = assigneePage.getPage();
@@ -888,6 +889,7 @@ public class Query {
 
 		public TransitionPage(Page transitionPage) {
 			actions = transitionPage.getActions();
+
 			items = transitionPage.getItems();
 			lastPage = transitionPage.getLastPage();
 			page = transitionPage.getPage();
@@ -920,6 +922,7 @@ public class Query {
 
 		public WorkflowDefinitionPage(Page workflowDefinitionPage) {
 			actions = workflowDefinitionPage.getActions();
+
 			items = workflowDefinitionPage.getItems();
 			lastPage = workflowDefinitionPage.getLastPage();
 			page = workflowDefinitionPage.getPage();
@@ -952,6 +955,7 @@ public class Query {
 
 		public WorkflowInstancePage(Page workflowInstancePage) {
 			actions = workflowInstancePage.getActions();
+
 			items = workflowInstancePage.getItems();
 			lastPage = workflowInstancePage.getLastPage();
 			page = workflowInstancePage.getPage();
@@ -984,6 +988,7 @@ public class Query {
 
 		public WorkflowLogPage(Page workflowLogPage) {
 			actions = workflowLogPage.getActions();
+
 			items = workflowLogPage.getItems();
 			lastPage = workflowLogPage.getLastPage();
 			page = workflowLogPage.getPage();
@@ -1016,6 +1021,7 @@ public class Query {
 
 		public WorkflowTaskPage(Page workflowTaskPage) {
 			actions = workflowTaskPage.getActions();
+
 			items = workflowTaskPage.getItems();
 			lastPage = workflowTaskPage.getLastPage();
 			page = workflowTaskPage.getPage();
@@ -1048,6 +1054,7 @@ public class Query {
 
 		public WorkflowTaskTransitionsPage(Page workflowTaskTransitionsPage) {
 			actions = workflowTaskTransitionsPage.getActions();
+
 			items = workflowTaskTransitionsPage.getItems();
 			lastPage = workflowTaskTransitionsPage.getLastPage();
 			page = workflowTaskTransitionsPage.getPage();

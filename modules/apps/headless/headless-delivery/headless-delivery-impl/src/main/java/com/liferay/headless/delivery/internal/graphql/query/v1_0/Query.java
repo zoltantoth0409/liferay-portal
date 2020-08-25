@@ -3509,7 +3509,9 @@ public class Query {
 
 		public BlogPostingPage(Page blogPostingPage) {
 			actions = blogPostingPage.getActions();
+
 			facets = blogPostingPage.getFacets();
+
 			items = blogPostingPage.getItems();
 			lastPage = blogPostingPage.getLastPage();
 			page = blogPostingPage.getPage();
@@ -3545,7 +3547,9 @@ public class Query {
 
 		public BlogPostingImagePage(Page blogPostingImagePage) {
 			actions = blogPostingImagePage.getActions();
+
 			facets = blogPostingImagePage.getFacets();
+
 			items = blogPostingImagePage.getItems();
 			lastPage = blogPostingImagePage.getLastPage();
 			page = blogPostingImagePage.getPage();
@@ -3581,7 +3585,9 @@ public class Query {
 
 		public CommentPage(Page commentPage) {
 			actions = commentPage.getActions();
+
 			facets = commentPage.getFacets();
+
 			items = commentPage.getItems();
 			lastPage = commentPage.getLastPage();
 			page = commentPage.getPage();
@@ -3617,7 +3623,9 @@ public class Query {
 
 		public ContentElementPage(Page contentElementPage) {
 			actions = contentElementPage.getActions();
+
 			facets = contentElementPage.getFacets();
+
 			items = contentElementPage.getItems();
 			lastPage = contentElementPage.getLastPage();
 			page = contentElementPage.getPage();
@@ -3653,7 +3661,9 @@ public class Query {
 
 		public ContentSetElementPage(Page contentSetElementPage) {
 			actions = contentSetElementPage.getActions();
+
 			facets = contentSetElementPage.getFacets();
+
 			items = contentSetElementPage.getItems();
 			lastPage = contentSetElementPage.getLastPage();
 			page = contentSetElementPage.getPage();
@@ -3689,7 +3699,9 @@ public class Query {
 
 		public ContentStructurePage(Page contentStructurePage) {
 			actions = contentStructurePage.getActions();
+
 			facets = contentStructurePage.getFacets();
+
 			items = contentStructurePage.getItems();
 			lastPage = contentStructurePage.getLastPage();
 			page = contentStructurePage.getPage();
@@ -3725,7 +3737,9 @@ public class Query {
 
 		public ContentTemplatePage(Page contentTemplatePage) {
 			actions = contentTemplatePage.getActions();
+
 			facets = contentTemplatePage.getFacets();
+
 			items = contentTemplatePage.getItems();
 			lastPage = contentTemplatePage.getLastPage();
 			page = contentTemplatePage.getPage();
@@ -3761,7 +3775,9 @@ public class Query {
 
 		public DocumentPage(Page documentPage) {
 			actions = documentPage.getActions();
+
 			facets = documentPage.getFacets();
+
 			items = documentPage.getItems();
 			lastPage = documentPage.getLastPage();
 			page = documentPage.getPage();
@@ -3797,7 +3813,9 @@ public class Query {
 
 		public DocumentFolderPage(Page documentFolderPage) {
 			actions = documentFolderPage.getActions();
+
 			facets = documentFolderPage.getFacets();
+
 			items = documentFolderPage.getItems();
 			lastPage = documentFolderPage.getLastPage();
 			page = documentFolderPage.getPage();
@@ -3833,7 +3851,9 @@ public class Query {
 
 		public KnowledgeBaseArticlePage(Page knowledgeBaseArticlePage) {
 			actions = knowledgeBaseArticlePage.getActions();
+
 			facets = knowledgeBaseArticlePage.getFacets();
+
 			items = knowledgeBaseArticlePage.getItems();
 			lastPage = knowledgeBaseArticlePage.getLastPage();
 			page = knowledgeBaseArticlePage.getPage();
@@ -3869,7 +3889,9 @@ public class Query {
 
 		public KnowledgeBaseAttachmentPage(Page knowledgeBaseAttachmentPage) {
 			actions = knowledgeBaseAttachmentPage.getActions();
+
 			facets = knowledgeBaseAttachmentPage.getFacets();
+
 			items = knowledgeBaseAttachmentPage.getItems();
 			lastPage = knowledgeBaseAttachmentPage.getLastPage();
 			page = knowledgeBaseAttachmentPage.getPage();
@@ -3905,7 +3927,9 @@ public class Query {
 
 		public KnowledgeBaseFolderPage(Page knowledgeBaseFolderPage) {
 			actions = knowledgeBaseFolderPage.getActions();
+
 			facets = knowledgeBaseFolderPage.getFacets();
+
 			items = knowledgeBaseFolderPage.getItems();
 			lastPage = knowledgeBaseFolderPage.getLastPage();
 			page = knowledgeBaseFolderPage.getPage();
@@ -3941,7 +3965,9 @@ public class Query {
 
 		public MessageBoardAttachmentPage(Page messageBoardAttachmentPage) {
 			actions = messageBoardAttachmentPage.getActions();
+
 			facets = messageBoardAttachmentPage.getFacets();
+
 			items = messageBoardAttachmentPage.getItems();
 			lastPage = messageBoardAttachmentPage.getLastPage();
 			page = messageBoardAttachmentPage.getPage();
@@ -3977,7 +4003,9 @@ public class Query {
 
 		public MessageBoardMessagePage(Page messageBoardMessagePage) {
 			actions = messageBoardMessagePage.getActions();
+
 			facets = messageBoardMessagePage.getFacets();
+
 			items = messageBoardMessagePage.getItems();
 			lastPage = messageBoardMessagePage.getLastPage();
 			page = messageBoardMessagePage.getPage();
@@ -4013,7 +4041,9 @@ public class Query {
 
 		public MessageBoardSectionPage(Page messageBoardSectionPage) {
 			actions = messageBoardSectionPage.getActions();
+
 			facets = messageBoardSectionPage.getFacets();
+
 			items = messageBoardSectionPage.getItems();
 			lastPage = messageBoardSectionPage.getLastPage();
 			page = messageBoardSectionPage.getPage();
@@ -4049,7 +4079,9 @@ public class Query {
 
 		public MessageBoardThreadPage(Page messageBoardThreadPage) {
 			actions = messageBoardThreadPage.getActions();
+
 			facets = messageBoardThreadPage.getFacets();
+
 			items = messageBoardThreadPage.getItems();
 			lastPage = messageBoardThreadPage.getLastPage();
 			page = messageBoardThreadPage.getPage();
@@ -4085,7 +4117,9 @@ public class Query {
 
 		public NavigationMenuPage(Page navigationMenuPage) {
 			actions = navigationMenuPage.getActions();
+
 			facets = navigationMenuPage.getFacets();
+
 			items = navigationMenuPage.getItems();
 			lastPage = navigationMenuPage.getLastPage();
 			page = navigationMenuPage.getPage();
@@ -4121,7 +4155,9 @@ public class Query {
 
 		public StructuredContentPage(Page structuredContentPage) {
 			actions = structuredContentPage.getActions();
+
 			facets = structuredContentPage.getFacets();
+
 			items = structuredContentPage.getItems();
 			lastPage = structuredContentPage.getLastPage();
 			page = structuredContentPage.getPage();
@@ -4157,7 +4193,9 @@ public class Query {
 
 		public StructuredContentFolderPage(Page structuredContentFolderPage) {
 			actions = structuredContentFolderPage.getActions();
+
 			facets = structuredContentFolderPage.getFacets();
+
 			items = structuredContentFolderPage.getItems();
 			lastPage = structuredContentFolderPage.getLastPage();
 			page = structuredContentFolderPage.getPage();
@@ -4193,7 +4231,9 @@ public class Query {
 
 		public WikiNodePage(Page wikiNodePage) {
 			actions = wikiNodePage.getActions();
+
 			facets = wikiNodePage.getFacets();
+
 			items = wikiNodePage.getItems();
 			lastPage = wikiNodePage.getLastPage();
 			page = wikiNodePage.getPage();
@@ -4229,7 +4269,9 @@ public class Query {
 
 		public WikiPagePage(Page wikiPagePage) {
 			actions = wikiPagePage.getActions();
+
 			facets = wikiPagePage.getFacets();
+
 			items = wikiPagePage.getItems();
 			lastPage = wikiPagePage.getLastPage();
 			page = wikiPagePage.getPage();
@@ -4265,7 +4307,9 @@ public class Query {
 
 		public WikiPageAttachmentPage(Page wikiPageAttachmentPage) {
 			actions = wikiPageAttachmentPage.getActions();
+
 			facets = wikiPageAttachmentPage.getFacets();
+
 			items = wikiPageAttachmentPage.getItems();
 			lastPage = wikiPageAttachmentPage.getLastPage();
 			page = wikiPageAttachmentPage.getPage();
