@@ -38,7 +38,7 @@ public class AddResourceActionsPortalInstanceLifecycleListener
 			AddResourceActionsPortalInstanceLifecycleListener.class.
 				getClassLoader(),
 			"/com/liferay/translation/internal/instance/lifecycle" +
-				"/dependencies/languages.xml.tpl");
+				"/dependencies/resource-actions.xml.tpl");
 
 		for (String languageId : PropsValues.LOCALES) {
 			_resourceActions.read(
