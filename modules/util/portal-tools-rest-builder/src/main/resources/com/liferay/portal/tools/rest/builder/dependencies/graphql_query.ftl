@@ -15,6 +15,7 @@ import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 
 <#assign
 	javaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "query", openAPIYAML)
+
 	generateAggregationFunction = freeMarkerTool.containsAggregationFunction(javaMethodSignatures)
 />
 
@@ -146,9 +147,11 @@ public class Query {
 
 			public ${schemaName}Page(Page ${freeMarkerTool.getSchemaVarName(schemaName)}Page) {
 				actions = ${freeMarkerTool.getSchemaVarName(schemaName)}Page.getActions();
+
 				<#if generateAggregationFunction>
 					facets = ${freeMarkerTool.getSchemaVarName(schemaName)}Page.getFacets();
 				</#if>
+
 				items = ${freeMarkerTool.getSchemaVarName(schemaName)}Page.getItems();
 				lastPage = ${freeMarkerTool.getSchemaVarName(schemaName)}Page.getLastPage();
 				page = ${freeMarkerTool.getSchemaVarName(schemaName)}Page.getPage();
@@ -242,9 +245,11 @@ public class Query {
 	</#list>
 
 	private AcceptLanguage _acceptLanguage;
+
 	<#if generateAggregationFunction>
 		private BiFunction<Object, List<String>, Aggregation> _aggregationBiFunction;
 	</#if>
+
 	private com.liferay.portal.kernel.model.Company _company;
 	private BiFunction<Object, String, Filter> _filterBiFunction;
 	private GroupLocalService _groupLocalService;
