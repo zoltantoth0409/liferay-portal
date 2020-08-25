@@ -76,7 +76,7 @@ boolean panelsShown = false;
 	<c:if test="<%= !panelsShown %>">
 		<clay:alert
 			displayType="info"
-			message="you-dont-have-access-to-any-application-in-this-asset-library"
+			message="you-do-not-have-access-to-any-applications-in-this-asset-library"
 		/>
 	</c:if>
 </clay:container-fluid>
