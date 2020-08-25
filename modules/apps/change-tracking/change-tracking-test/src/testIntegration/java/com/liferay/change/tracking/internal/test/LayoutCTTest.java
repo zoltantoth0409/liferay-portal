@@ -496,7 +496,6 @@ public class LayoutCTTest {
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.getEntry(
 			Layout.class.getName(), layout1.getPlid());
-
 		AssetEntry assetEntry2 = _assetEntryLocalService.getEntry(
 			Layout.class.getName(), layout2.getPlid());
 
