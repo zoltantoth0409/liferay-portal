@@ -62,7 +62,7 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		}
 		catch (IndexOutOfBoundsException indexOutOfBoundsException) {
 			throw new IllegalArgumentException(
-				"urlPath contains invalid characters",
+				"URL path contains invalid characters",
 				indexOutOfBoundsException);
 		}
 	}
@@ -76,7 +76,7 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		}
 
 		if (Validator.isBlank(urlPattern)) {
-			throw new IllegalArgumentException("urlPattern is empty");
+			throw new IllegalArgumentException("URL pattern is blank");
 		}
 
 		try {
@@ -96,7 +96,7 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		}
 		catch (IndexOutOfBoundsException indexOutOfBoundsException) {
 			throw new IllegalArgumentException(
-				"urlPattern contains invalid characters",
+				"URL pattern contains invalid characters",
 				indexOutOfBoundsException);
 		}
 	}

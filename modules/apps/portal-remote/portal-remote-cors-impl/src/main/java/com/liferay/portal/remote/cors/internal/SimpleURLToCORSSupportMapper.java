@@ -78,7 +78,7 @@ public class SimpleURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		throws IllegalArgumentException {
 
 		if (Validator.isBlank(urlPattern)) {
-			throw new IllegalArgumentException("urlPattern is empty");
+			throw new IllegalArgumentException("URL pattern is blank");
 		}
 
 		if (isWildcardURLPattern(urlPattern)) {
