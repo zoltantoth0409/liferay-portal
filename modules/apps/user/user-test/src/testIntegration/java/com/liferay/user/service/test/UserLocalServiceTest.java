@@ -305,7 +305,7 @@ public class UserLocalServiceTest {
 		Field propsValuesField = ReflectionUtil.getDeclaredField(
 			PropsValues.class, "USERS_SEARCH_WITH_INDEX");
 
-		boolean oldPropsValuesValue = (boolean)propsValuesField.get(null);
+		boolean propsValuesFieldValue = (boolean)propsValuesField.get(null);
 
 		try {
 			propsValuesField.set(null, false);
@@ -319,7 +319,7 @@ public class UserLocalServiceTest {
 				).build());
 		}
 		finally {
-			propsValuesField.set(null, oldPropsValuesValue);
+			propsValuesField.set(null, propsValuesFieldValue);
 		}
 	}
 
