@@ -177,7 +177,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 		_showOnlyRequiredVocabularies = false;
 		_showRequiredLabel = true;
 		_singleSelect = false;
-		_visibilityTypes = _DEFAULT_VISIBILITY_TYPES;
+		_visibilityTypes = _VISIBILITY_TYPES;
 	}
 
 	protected List<String[]> getCategoryIdsTitles() {
@@ -476,7 +476,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			});
 	}
 
-	private static final int[] _DEFAULT_VISIBILITY_TYPES = {
+	private static final int[] _VISIBILITY_TYPES = {
 		AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL,
 		AssetVocabularyConstants.VISIBILITY_TYPE_PUBLIC
 	};
@@ -498,6 +498,6 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 	private boolean _showOnlyRequiredVocabularies;
 	private boolean _showRequiredLabel = true;
 	private boolean _singleSelect;
-	private int[] _visibilityTypes = _DEFAULT_VISIBILITY_TYPES;
+	private int[] _visibilityTypes = _VISIBILITY_TYPES;
 
 }
