@@ -870,11 +870,17 @@ class ChangeTrackingChangesView extends React.Component {
 		return (
 			<ClayTable.Head>
 				<ClayTable.Row>
-					<ClayTable.Cell headingCell style={{width: '5%'}}>
+					<ClayTable.Cell
+						headingCell
+						style={{minWidth: '5%', whiteSpace: 'nowrap'}}
+					>
 						{Liferay.Language.get('user')}
 					</ClayTable.Cell>
 
-					<ClayTable.Cell headingCell style={{width: '15%'}}>
+					<ClayTable.Cell
+						headingCell
+						style={{minWidth: '5%', whiteSpace: 'nowrap'}}
+					>
 						{Liferay.Language.get('site')}
 					</ClayTable.Cell>
 
@@ -882,7 +888,10 @@ class ChangeTrackingChangesView extends React.Component {
 						{Liferay.Language.get('change')}
 					</ClayTable.Cell>
 
-					<ClayTable.Cell headingCell style={{width: '15%'}}>
+					<ClayTable.Cell
+						headingCell
+						style={{minWidth: '5%', whiteSpace: 'nowrap'}}
+					>
 						{Liferay.Language.get('last-modified')}
 					</ClayTable.Cell>
 				</ClayTable.Row>
