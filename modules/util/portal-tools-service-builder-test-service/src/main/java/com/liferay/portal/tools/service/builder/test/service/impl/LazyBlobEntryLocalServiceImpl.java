@@ -21,17 +21,7 @@ import com.liferay.portal.tools.service.builder.test.model.LazyBlobEntry;
 import com.liferay.portal.tools.service.builder.test.service.base.LazyBlobEntryLocalServiceBaseImpl;
 
 /**
- * The implementation of the lazy blob entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.portal.tools.service.builder.test.service.LazyBlobEntryLocalService</code> interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see LazyBlobEntryLocalServiceBaseImpl
  */
 public class LazyBlobEntryLocalServiceImpl
 	extends LazyBlobEntryLocalServiceBaseImpl {
