@@ -104,9 +104,8 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 	private int _getExactIndex(String urlPath, long[][][] trieMatrix) {
 		long bitmask = _BITMASK;
 		int column = 0;
-		int row = 0;
-
 		int maxRow = Math.min(urlPath.length(), _maxURLPatternLength - 1);
+		int row = 0;
 
 		for (; row < maxRow; ++row) {
 			char character = urlPath.charAt(row);
@@ -137,7 +136,6 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 
 	private CORSSupport _getExtensionCORSSupport(String urlPath) {
 		long currentBitmask = _BITMASK;
-
 		int maxRow = Math.min(urlPath.length(), _maxURLPatternLength - 1);
 
 		for (int row = 0; row < maxRow; ++row) {
@@ -242,9 +240,8 @@ public class FastURLToCORSSupportMapper extends BaseURLToCORSSupportMapper {
 		long bestMatchBitmask = 0;
 		int column = 0;
 		long currentBitmask = _BITMASK;
-		int row = 0;
-
 		int maxRow = Math.min(urlPath.length(), _maxURLPatternLength - 1);
+		int row = 0;
 
 		for (; row < maxRow; ++row) {
 			char character = urlPath.charAt(row);
