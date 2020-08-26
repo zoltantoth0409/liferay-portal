@@ -146,6 +146,7 @@ public class JournalArticleInfoItemFieldValuesUpdaterImpl
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setFormDate(new Date());
+		serviceContext.setScopeGroupId(latestArticle.getGroupId());
 
 		if (latestArticle.getStatus() != WorkflowConstants.STATUS_APPROVED) {
 			serviceContext.setWorkflowAction(
@@ -154,8 +155,6 @@ public class JournalArticleInfoItemFieldValuesUpdaterImpl
 		else {
 			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 		}
-
-		serviceContext.setScopeGroupId(latestArticle.getGroupId());
 
 		return _journalArticleService.updateArticle(
 			latestArticle.getUserId(), latestArticle.getGroupId(),
