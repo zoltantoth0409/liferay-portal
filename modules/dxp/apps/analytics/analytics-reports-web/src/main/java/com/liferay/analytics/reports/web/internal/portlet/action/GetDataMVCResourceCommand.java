@@ -181,6 +181,8 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 		InfoItemFieldValuesProvider<Object> infoItemFieldValuesProvider,
 		Locale locale, Object object) {
 
+		String authorProfileImage = null;
+
 		InfoItemFieldValues infoItemFieldValues =
 			infoItemFieldValuesProvider.getInfoItemFieldValues(object);
 
@@ -192,8 +194,6 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 
 		long portraitId = GetterUtil.getLong(
 			_http.getParameter(HtmlUtil.escape(webImage.getUrl()), "img_id"));
-
-		String authorProfileImage = null;
 
 		if (portraitId > 0) {
 			authorProfileImage = webImage.getUrl();
