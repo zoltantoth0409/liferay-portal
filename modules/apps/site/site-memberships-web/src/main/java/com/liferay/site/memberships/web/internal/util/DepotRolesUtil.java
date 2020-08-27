@@ -35,7 +35,7 @@ public class DepotRolesUtil {
 
 	/**
 	 * @see com.liferay.depot.web.internal.display.context.DepotAdminMembershipsDisplayContext.Step2#_filterGroupRoles(
-	 *List)
+	 *      List)
 	 */
 	public static List<Role> filterGroupRoles(
 			PermissionChecker permissionChecker, long groupId, List<Role> roles)
