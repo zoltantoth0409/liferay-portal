@@ -28,8 +28,8 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	public DynamicSizeTrieURLToCORSSupportMapper(
 		Map<String, CORSSupport> corsSupports) {
 
-		_extensionTrieNode = _trieNodeHeap.nextAvailableNode();
-		_wildCardTrieNode = _trieNodeHeap.nextAvailableNode();
+		_extensionTrieNode = _trieNodeHeap.nextAvailableTrieNode();
+		_wildCardTrieNode = _trieNodeHeap.nextAvailableTrieNode();
 
 		for (Map.Entry<String, CORSSupport> entry : corsSupports.entrySet()) {
 			put(entry.getValue(), entry.getKey());
@@ -159,7 +159,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			currentTrieNode = previousTrieNode.next(urlPattern.charAt(index));
 
 			if (currentTrieNode == null) {
-				TrieNode nextTrieNode = _trieNodeHeap.nextAvailableNode();
+				TrieNode nextTrieNode = _trieNodeHeap.nextAvailableTrieNode();
 
 				currentTrieNode = previousTrieNode.setNext(
 					urlPattern.charAt(index), nextTrieNode);
@@ -226,8 +226,8 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			}
 		}
 
-		public TrieNode nextAvailableNode() {
-			if (_nextAvailableNodeIndex >= _trieNodes.size()) {
+		public TrieNode nextAvailableTrieNode() {
+			if (_nextAvailableTrieNodeIndex >= _trieNodes.size()) {
 				_trieNodes.ensureCapacity(_trieNodes.size() + _INIT_SIZE);
 
 				for (int i = 0; i < _INIT_SIZE; ++i) {
@@ -235,12 +235,12 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				}
 			}
 
-			return _trieNodes.get(_nextAvailableNodeIndex++);
+			return _trieNodes.get(_nextAvailableTrieNodeIndex++);
 		}
 
 		private static final int _INIT_SIZE = 1024;
 
-		private int _nextAvailableNodeIndex;
+		private int _nextAvailableTrieNodeIndex;
 		private ArrayList<TrieNode> _trieNodes = new ArrayList<>(_INIT_SIZE);
 
 	}
