@@ -50,17 +50,17 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				break;
 			}
 
-			currentTrieNode = previousTrieNode.next(character);
+			currentTrieNode = previousTrieNode.getNextTrieNode(character);
 
 			if (currentTrieNode == null) {
 				break;
 			}
 
 			if (urlPath.charAt(index) == '.') {
-				TrieNode nextTrieNode = currentTrieNode.next('*');
+				TrieNode nextTrieNode = currentTrieNode.getNextTrieNode('*');
 
 				if ((nextTrieNode != null) && nextTrieNode.isEnd()) {
-					return nextTrieNode.get();
+					return nextTrieNode.getCORSSupport();
 				}
 			}
 
@@ -90,17 +90,17 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 		TrieNode previousTrieNode = _wildCardTrieNode;
 
 		for (int i = 0; i < urlPath.length(); ++i) {
-			currentTrieNode = previousTrieNode.next(urlPath.charAt(i));
+			currentTrieNode = previousTrieNode.getNextTrieNode(urlPath.charAt(i));
 
 			if (currentTrieNode == null) {
 				break;
 			}
 
 			if (!onlyExact && (urlPath.charAt(i) == '/')) {
-				TrieNode nextTrieNode = currentTrieNode.next('*');
+				TrieNode nextTrieNode = currentTrieNode.getNextTrieNode('*');
 
 				if ((nextTrieNode != null) && nextTrieNode.isEnd()) {
-					corsSupport = nextTrieNode.get();
+					corsSupport = nextTrieNode.getCORSSupport();
 				}
 			}
 
@@ -113,20 +113,20 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 					return null;
 				}
 
-				return currentTrieNode.get();
+				return currentTrieNode.getCORSSupport();
 			}
 
 			if (!onlyWildcard && currentTrieNode.isEnd()) {
-				return currentTrieNode.get();
+				return currentTrieNode.getCORSSupport();
 			}
 
-			currentTrieNode = currentTrieNode.next('/');
+			currentTrieNode = currentTrieNode.getNextTrieNode('/');
 
 			if (currentTrieNode != null) {
-				currentTrieNode = currentTrieNode.next('*');
+				currentTrieNode = currentTrieNode.getNextTrieNode('*');
 
 				if ((currentTrieNode != null) && currentTrieNode.isEnd()) {
-					corsSupport = currentTrieNode.get();
+					corsSupport = currentTrieNode.getCORSSupport();
 				}
 			}
 		}
@@ -156,12 +156,12 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				index = urlPattern.length() - 1 - i;
 			}
 
-			currentTrieNode = previousTrieNode.next(urlPattern.charAt(index));
+			currentTrieNode = previousTrieNode.getNextTrieNode(urlPattern.charAt(index));
 
 			if (currentTrieNode == null) {
 				TrieNode nextTrieNode = _trieNodeHeap.nextAvailableTrieNode();
 
-				currentTrieNode = previousTrieNode.setNext(
+				currentTrieNode = previousTrieNode.setNextTrieNode(
 					urlPattern.charAt(index), nextTrieNode);
 			}
 
@@ -169,7 +169,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 		}
 
 		if (currentTrieNode != null) {
-			currentTrieNode.set(corsSupport);
+			currentTrieNode.setCORSSupport(corsSupport);
 		}
 	}
 
@@ -187,7 +187,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			}
 		}
 
-		public CORSSupport get() {
+		public CORSSupport getCORSSupport() {
 			return _corsSupport;
 		}
 
@@ -199,15 +199,15 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			return false;
 		}
 
-		public TrieNode next(char character) {
+		public TrieNode getNextTrieNode(char character) {
 			return _trieNodes.get(character - ASCII_PRINTABLE_OFFSET);
 		}
 
-		public void set(CORSSupport corsSupport) {
+		public void setCORSSupport(CORSSupport corsSupport) {
 			_corsSupport = corsSupport;
 		}
 
-		public TrieNode setNext(char character, TrieNode nextTrieNode) {
+		public TrieNode setNextTrieNode(char character, TrieNode nextTrieNode) {
 			_trieNodes.set(character - ASCII_PRINTABLE_OFFSET, nextTrieNode);
 
 			return nextTrieNode;
