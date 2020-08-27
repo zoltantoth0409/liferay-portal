@@ -159,10 +159,10 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			currentTrieNode = previousTrieNode.next(urlPattern.charAt(index));
 
 			if (currentTrieNode == null) {
-				TrieNode nextNode = _trieNodeHeap.nextAvailableNode();
+				TrieNode nextTrieNode = _trieNodeHeap.nextAvailableNode();
 
 				currentTrieNode = previousTrieNode.setNext(
-					urlPattern.charAt(index), nextNode);
+					urlPattern.charAt(index), nextTrieNode);
 			}
 
 			previousTrieNode = currentTrieNode;
@@ -207,10 +207,10 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			_corsSupport = corsSupport;
 		}
 
-		public TrieNode setNext(char character, TrieNode nextNode) {
-			_trieNodes.set(character - ASCII_PRINTABLE_OFFSET, nextNode);
+		public TrieNode setNext(char character, TrieNode nextTrieNode) {
+			_trieNodes.set(character - ASCII_PRINTABLE_OFFSET, nextTrieNode);
 
-			return nextNode;
+			return nextTrieNode;
 		}
 
 		private CORSSupport _corsSupport;
