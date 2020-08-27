@@ -121,12 +121,12 @@ public class DepotBreadcrumbEntryContributorImpl
 						httpServletRequest, scopeGroup, title));
 			}
 			else if (!originalBreadcrumbEntries.isEmpty()) {
-				String homeTitle = _language.get(httpServletRequest, "home");
+				String title = _language.get(httpServletRequest, "home");
 
 				BreadcrumbEntry breadcrumbEntry = originalBreadcrumbEntries.get(
 					0);
 
-				if (homeTitle.equals(breadcrumbEntry.getTitle())) {
+				if (title.equals(breadcrumbEntry.getTitle())) {
 					breadcrumbEntry.setTitle(
 						portletDisplay.getPortletDisplayName());
 				}
