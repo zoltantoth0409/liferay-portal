@@ -72,17 +72,17 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 
 	@Override
 	protected CORSSupport getWildcardCORSSupport(String urlPath) {
-		boolean onlyExact = false;
-		boolean onlyWildcard = false;
+		boolean exact = false;
+		boolean wildcard = false;
 
 		if (urlPath.charAt(0) != '/') {
-			onlyExact = true;
+			exact = true;
 		}
 		else if ((urlPath.length() > 1) &&
 				 (urlPath.charAt(urlPath.length() - 2) == '/') &&
 				 (urlPath.charAt(urlPath.length() - 1) == '*')) {
 
-			onlyWildcard = true;
+			wildcard = true;
 		}
 
 		CORSSupport corsSupport = null;
@@ -97,7 +97,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				break;
 			}
 
-			if (!onlyExact && (urlPath.charAt(i) == '/')) {
+			if (!exact && (urlPath.charAt(i) == '/')) {
 				TrieNode nextTrieNode = currentTrieNode.getNextTrieNode('*');
 
 				if ((nextTrieNode != null) && nextTrieNode.isEnd()) {
@@ -109,7 +109,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 		}
 
 		if (currentTrieNode != null) {
-			if (onlyExact) {
+			if (exact) {
 				if (!currentTrieNode.isEnd()) {
 					return null;
 				}
@@ -117,7 +117,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				return currentTrieNode.getCORSSupport();
 			}
 
-			if (!onlyWildcard && currentTrieNode.isEnd()) {
+			if (!wildcard && currentTrieNode.isEnd()) {
 				return currentTrieNode.getCORSSupport();
 			}
 

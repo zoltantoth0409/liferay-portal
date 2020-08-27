@@ -89,17 +89,17 @@ public class StaticSizeTrieURLToCORSSupportMapper
 
 	@Override
 	protected CORSSupport getWildcardCORSSupport(String urlPath) {
-		boolean onlyExact = false;
-		boolean onlyWildcard = false;
+		boolean exact = false;
+		boolean wildcard = false;
 
 		if (urlPath.charAt(0) != '/') {
-			onlyExact = true;
+			exact = true;
 		}
 		else if ((urlPath.length() > 1) &&
 				 (urlPath.charAt(urlPath.length() - 2) == '/') &&
 				 (urlPath.charAt(urlPath.length() - 1) == '*')) {
 
-			onlyWildcard = true;
+			wildcard = true;
 		}
 
 		long bestMatchBitmask = 0;
@@ -119,7 +119,7 @@ public class StaticSizeTrieURLToCORSSupportMapper
 				break;
 			}
 
-			if (!onlyExact && (character == '/') &&
+			if (!exact && (character == '/') &&
 				((row + 1) < _maxURLPatternLength)) {
 
 				long bitmask =
@@ -145,7 +145,7 @@ public class StaticSizeTrieURLToCORSSupportMapper
 				_getFirstSetBitIndex(bestMatchBitmask));
 		}
 
-		if (onlyExact) {
+		if (exact) {
 			long bitmask =
 				currentBitmask & _wildCardTrieMatrix[1][row - 1][column];
 
@@ -156,7 +156,7 @@ public class StaticSizeTrieURLToCORSSupportMapper
 			return null;
 		}
 
-		if (!onlyWildcard) {
+		if (!wildcard) {
 			long bitmask =
 				currentBitmask & _wildCardTrieMatrix[1][row - 1][column];
 
