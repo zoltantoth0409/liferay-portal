@@ -1,5 +1,3 @@
-import com.liferay.gradle.util.FileUtil
-
 apply plugin: "com.gradle.plugin-publish"
 apply plugin: "org.ysb33r.gradletest"
 
@@ -32,10 +30,4 @@ gradleTest {
 
 pluginBundle {
 	tags = ["java", "rest", "service"]
-}
-
-updateFileVersions {
-	if (FileUtil.exists(project, "../../../modules/dxp/apps/commerce-punchout/headless/headless-commerce-punchout-impl/build.gradle")) {
-		match(/classpath group: "com\.liferay", name: "com\.liferay\.gradle\.plugins\.rest\.builder", version: "(\d.+)"/, "../../../modules/dxp/apps/commerce-punchout/headless/headless-commerce-punchout-impl/build.gradle")
-	}
 }
