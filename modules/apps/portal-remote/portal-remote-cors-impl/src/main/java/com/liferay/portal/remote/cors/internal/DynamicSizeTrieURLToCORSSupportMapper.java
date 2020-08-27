@@ -28,8 +28,6 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	public DynamicSizeTrieURLToCORSSupportMapper(
 		Map<String, CORSSupport> corsSupports) {
 
-		_trieNodeHeap = new TrieNodeHeap();
-
 		_extensionTrieNode = _trieNodeHeap.nextAvailableNode();
 		_wildCardTrieNode = _trieNodeHeap.nextAvailableNode();
 
@@ -176,7 +174,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	}
 
 	private final TrieNode _extensionTrieNode;
-	private final TrieNodeHeap _trieNodeHeap;
+	private final TrieNodeHeap _trieNodeHeap = new TrieNodeHeap();
 	private final TrieNode _wildCardTrieNode;
 
 	private static class TrieNode {
@@ -223,8 +221,6 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	private static class TrieNodeHeap {
 
 		public TrieNodeHeap() {
-			_trieNodes = new ArrayList<>(_INIT_SIZE);
-
 			for (int i = 0; i < _INIT_SIZE; ++i) {
 				_trieNodes.add(new TrieNode());
 			}
@@ -245,7 +241,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 		private static final int _INIT_SIZE = 1024;
 
 		private int _nextAvailableNodeIndex;
-		private ArrayList<TrieNode> _trieNodes;
+		private ArrayList<TrieNode> _trieNodes = new ArrayList<>(_INIT_SIZE);
 
 	}
 
