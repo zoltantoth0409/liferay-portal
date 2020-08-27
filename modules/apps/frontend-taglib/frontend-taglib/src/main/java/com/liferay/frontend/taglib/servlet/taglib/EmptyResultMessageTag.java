@@ -177,12 +177,10 @@ public class EmptyResultMessageTag extends IncludeTag {
 		httpServletRequest.setAttribute(
 			"liferay-frontend:empty-result-message:propsTransformer",
 			_propsTransformer);
-
 		httpServletRequest.setAttribute(
 			"liferay-frontend:empty-result-message:" +
 				"propsTransformerServletContext",
 			getPropsTransformerServletContext());
-
 		httpServletRequest.setAttribute(
 			"liferay-frontend:empty-result-message:title", _title);
 	}
