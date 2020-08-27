@@ -51,24 +51,6 @@ public class StaticSizeTrieURLToCORSSupportMapper
 	}
 
 	@Override
-	public CORSSupport get(String urlPath) {
-		try {
-			CORSSupport corsSupport = getWildcardCORSSupport(urlPath);
-
-			if (corsSupport != null) {
-				return corsSupport;
-			}
-
-			return getExtensionCORSSupport(urlPath);
-		}
-		catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-			throw new IllegalArgumentException(
-				"URL path contains invalid characters",
-				indexOutOfBoundsException);
-		}
-	}
-
-	@Override
 	protected CORSSupport getExtensionCORSSupport(String urlPath) {
 		long currentBitmask = _BITMASK;
 		int maxRow = Math.min(urlPath.length(), _maxURLPatternLength - 1);
