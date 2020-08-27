@@ -177,7 +177,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	private final TrieNodeHeap _trieNodeHeap = new TrieNodeHeap();
 	private final TrieNode _wildCardTrieNode;
 
-	private static class TrieNode {
+	private class TrieNode {
 
 		public TrieNode() {
 			_trieNodes = new ArrayList<>(ASCII_CHARACTER_RANGE);
@@ -218,7 +218,7 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 
 	}
 
-	private static class TrieNodeHeap {
+	private class TrieNodeHeap {
 
 		public TrieNodeHeap() {
 			for (int i = 0; i < _INIT_SIZE; ++i) {
