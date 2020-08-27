@@ -90,7 +90,8 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 		TrieNode previousTrieNode = _wildCardTrieNode;
 
 		for (int i = 0; i < urlPath.length(); ++i) {
-			currentTrieNode = previousTrieNode.getNextTrieNode(urlPath.charAt(i));
+			currentTrieNode = previousTrieNode.getNextTrieNode(
+				urlPath.charAt(i));
 
 			if (currentTrieNode == null) {
 				break;
@@ -156,7 +157,8 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 				index = urlPattern.length() - 1 - i;
 			}
 
-			currentTrieNode = previousTrieNode.getNextTrieNode(urlPattern.charAt(index));
+			currentTrieNode = previousTrieNode.getNextTrieNode(
+				urlPattern.charAt(index));
 
 			if (currentTrieNode == null) {
 				TrieNode nextTrieNode = _trieNodeHeap.nextAvailableTrieNode();
@@ -191,16 +193,16 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			return _corsSupport;
 		}
 
+		public TrieNode getNextTrieNode(char character) {
+			return _trieNodes.get(character - ASCII_PRINTABLE_OFFSET);
+		}
+
 		public boolean isEnd() {
 			if (_corsSupport != null) {
 				return true;
 			}
 
 			return false;
-		}
-
-		public TrieNode getNextTrieNode(char character) {
-			return _trieNodes.get(character - ASCII_PRINTABLE_OFFSET);
 		}
 
 		public void setCORSSupport(CORSSupport corsSupport) {
