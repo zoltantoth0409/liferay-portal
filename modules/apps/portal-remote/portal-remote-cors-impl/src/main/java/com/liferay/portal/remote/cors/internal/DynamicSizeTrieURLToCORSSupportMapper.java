@@ -221,16 +221,16 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 	private class TrieNodeHeap {
 
 		public TrieNodeHeap() {
-			for (int i = 0; i < _INIT_SIZE; ++i) {
+			for (int i = 0; i < _SIZE; ++i) {
 				_trieNodes.add(new TrieNode());
 			}
 		}
 
 		public TrieNode nextAvailableTrieNode() {
 			if (_nextAvailableTrieNodeIndex >= _trieNodes.size()) {
-				_trieNodes.ensureCapacity(_trieNodes.size() + _INIT_SIZE);
+				_trieNodes.ensureCapacity(_trieNodes.size() + _SIZE);
 
-				for (int i = 0; i < _INIT_SIZE; ++i) {
+				for (int i = 0; i < _SIZE; ++i) {
 					_trieNodes.add(new TrieNode());
 				}
 			}
@@ -238,10 +238,10 @@ public class DynamicSizeTrieURLToCORSSupportMapper
 			return _trieNodes.get(_nextAvailableTrieNodeIndex++);
 		}
 
-		private static final int _INIT_SIZE = 1024;
+		private static final int _SIZE = 1024;
 
 		private int _nextAvailableTrieNodeIndex;
-		private ArrayList<TrieNode> _trieNodes = new ArrayList<>(_INIT_SIZE);
+		private ArrayList<TrieNode> _trieNodes = new ArrayList<>(_SIZE);
 
 	}
 
