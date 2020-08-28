@@ -69,11 +69,11 @@ public class TranslationModelResourceResourceBundleLoader
 					String languageId = StringUtil.removeSubstring(
 						key, _PREFIX);
 
-					Locale curLocale = LocaleUtil.fromLanguageId(languageId);
+					Locale keyLocale = LocaleUtil.fromLanguageId(languageId);
 
 					return StringBundler.concat(
 						languageId, StringPool.SPACE, StringPool.DASH,
-						StringPool.SPACE, curLocale.getDisplayName(locale));
+						StringPool.SPACE, keyLocale.getDisplayName(locale));
 				}
 
 			});
