@@ -128,6 +128,12 @@ public class DepotAdminGroupSearchProvider {
 
 		GroupSearch groupSearch = new GroupSearch(portletRequest, portletURL);
 
+		groupSearch.setEmptyResultsMessage(
+			LanguageUtil.get(
+				ResourceBundleUtil.getBundle(
+					portletRequest.getLocale(), getClass()),
+				"no-asset-libraries-were-found"));
+
 		GroupSearchTerms searchTerms =
 			(GroupSearchTerms)groupSearch.getSearchTerms();
 
@@ -157,12 +163,6 @@ public class DepotAdminGroupSearchProvider {
 				searchTerms.getKeywords(), groupParams, groupSearch.getStart(),
 				groupSearch.getEnd(), groupSearch.getOrderByComparator());
 		}
-
-		groupSearch.setEmptyResultsMessage(
-			LanguageUtil.get(
-				ResourceBundleUtil.getBundle(
-					portletRequest.getLocale(), getClass()),
-				"no-asset-libraries-were-found"));
 
 		groupSearch.setResults(results);
 
