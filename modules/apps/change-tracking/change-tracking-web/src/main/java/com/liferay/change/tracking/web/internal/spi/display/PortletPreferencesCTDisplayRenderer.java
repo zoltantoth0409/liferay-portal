@@ -112,10 +112,10 @@ public class PortletPreferencesCTDisplayRenderer
 		Layout layout = _layoutLocalService.fetchLayout(
 			portletPreferences.getPlid());
 
-		if ((layout == null) || layout.isSystem() ||
-			layout.isTypeControlPanel() ||
+		if ((layout == null) ||
 			layout.isPortletEmbedded(
-				portletPreferences.getPortletId(), layout.getGroupId())) {
+				portletPreferences.getPortletId(), layout.getGroupId()) ||
+			layout.isSystem() || layout.isTypeControlPanel()) {
 
 			return true;
 		}
