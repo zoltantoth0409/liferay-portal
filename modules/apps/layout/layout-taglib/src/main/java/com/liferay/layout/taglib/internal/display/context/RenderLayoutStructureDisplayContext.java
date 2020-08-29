@@ -879,12 +879,14 @@ public class RenderLayoutStructureDisplayContext {
 						frontendTokenJSONObject.getJSONArray("mappings");
 
 					for (int l = 0; l < mappingsJSONArray.length(); l++) {
-						JSONObject mapping = mappingsJSONArray.getJSONObject(l);
+						JSONObject mappingJSONObject =
+							mappingsJSONArray.getJSONObject(l);
 
 						if (Objects.equals(
-								mapping.getString("type"), "cssVariable")) {
+								mappingJSONObject.getString("type"),
+								"cssVariable")) {
 
-							cssVariable = mapping.getString("value");
+							cssVariable = mappingJSONObject.getString("value");
 						}
 					}
 
