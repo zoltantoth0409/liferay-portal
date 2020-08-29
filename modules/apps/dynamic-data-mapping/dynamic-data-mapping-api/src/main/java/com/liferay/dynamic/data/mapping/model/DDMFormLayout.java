@@ -127,11 +127,8 @@ public class DDMFormLayout implements Serializable {
 		int hash = HashUtil.hash(0, _availableLocales);
 
 		hash = HashUtil.hash(hash, _ddmFormLayoutPages);
-
 		hash = HashUtil.hash(hash, _ddmFormRules);
-
 		hash = HashUtil.hash(hash, _defaultLocale);
-
 		hash = HashUtil.hash(hash, _paginationMode);
 
 		return HashUtil.hash(hash, _definitionSchemaVersion);
