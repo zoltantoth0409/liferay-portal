@@ -62,6 +62,26 @@ public class RowLayoutStructureItemExporter
 						reverseOrder = getReverseOrder();
 						verticalAlignment = getVerticalAlignment();
 
+						setFragmentStyle(
+							() -> {
+								JSONObject itemConfigJSONObject =
+									rowStyledLayoutStructureItem.
+										getItemConfigJSONObject();
+
+								return toFragmentStyle(
+									itemConfigJSONObject.getJSONObject(
+										"styles"),
+									saveMappingConfiguration);
+							});
+						setFragmentViewports(
+							() -> {
+								JSONObject itemConfigJSONObject =
+									rowStyledLayoutStructureItem.
+										getItemConfigJSONObject();
+
+								return getFragmentViewPorts(
+									itemConfigJSONObject);
+							});
 						setRowViewports(
 							() -> {
 								Map<String, JSONObject>
@@ -96,28 +116,6 @@ public class RowLayoutStructureItemExporter
 									};
 
 								return rowViewports.toArray(new RowViewport[0]);
-							});
-
-						setFragmentStyle(
-							() -> {
-								JSONObject itemConfigJSONObject =
-									rowStyledLayoutStructureItem.
-										getItemConfigJSONObject();
-
-								return toFragmentStyle(
-									itemConfigJSONObject.getJSONObject(
-										"styles"),
-									saveMappingConfiguration);
-							});
-
-						setFragmentViewports(
-							() -> {
-								JSONObject itemConfigJSONObject =
-									rowStyledLayoutStructureItem.
-										getItemConfigJSONObject();
-
-								return getFragmentViewPorts(
-									itemConfigJSONObject);
 							});
 					}
 				};
