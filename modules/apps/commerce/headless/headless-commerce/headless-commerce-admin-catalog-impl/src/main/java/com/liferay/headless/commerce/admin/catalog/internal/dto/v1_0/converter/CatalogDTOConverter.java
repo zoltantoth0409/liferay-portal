@@ -39,6 +39,7 @@ public class CatalogDTOConverter
 		return Catalog.class.getSimpleName();
 	}
 
+	@Override
 	public Catalog toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

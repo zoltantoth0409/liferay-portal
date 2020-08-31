@@ -43,6 +43,7 @@ public class ProductSpecificationDTOConverter
 		return ProductSpecification.class.getSimpleName();
 	}
 
+	@Override
 	public ProductSpecification toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

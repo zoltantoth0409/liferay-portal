@@ -42,6 +42,7 @@ public class PriceListDiscountDTOConverter
 		return PriceListDiscount.class.getSimpleName();
 	}
 
+	@Override
 	public PriceListDiscount toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

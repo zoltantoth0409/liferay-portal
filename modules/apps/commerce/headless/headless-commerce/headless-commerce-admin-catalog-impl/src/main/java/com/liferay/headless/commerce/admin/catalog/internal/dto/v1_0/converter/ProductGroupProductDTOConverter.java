@@ -50,6 +50,7 @@ public class ProductGroupProductDTOConverter
 		return ProductGroupProduct.class.getSimpleName();
 	}
 
+	@Override
 	public ProductGroupProduct toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

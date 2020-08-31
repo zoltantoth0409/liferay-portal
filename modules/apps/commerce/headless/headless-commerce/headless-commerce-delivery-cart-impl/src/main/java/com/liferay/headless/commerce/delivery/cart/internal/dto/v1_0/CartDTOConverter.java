@@ -61,6 +61,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 		return Cart.class.getSimpleName();
 	}
 
+	@Override
 	public Cart toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

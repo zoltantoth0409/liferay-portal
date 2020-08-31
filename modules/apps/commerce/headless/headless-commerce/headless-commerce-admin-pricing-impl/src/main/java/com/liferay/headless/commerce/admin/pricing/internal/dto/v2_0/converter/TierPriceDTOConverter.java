@@ -48,6 +48,7 @@ public class TierPriceDTOConverter
 		return TierPrice.class.getSimpleName();
 	}
 
+	@Override
 	public TierPrice toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

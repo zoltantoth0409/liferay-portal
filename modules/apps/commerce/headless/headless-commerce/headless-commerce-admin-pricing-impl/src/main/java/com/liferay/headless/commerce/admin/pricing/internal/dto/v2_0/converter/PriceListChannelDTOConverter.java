@@ -41,6 +41,7 @@ public class PriceListChannelDTOConverter
 		return PriceListChannel.class.getSimpleName();
 	}
 
+	@Override
 	public PriceListChannel toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -50,6 +50,7 @@ public class DiscountDTOConverter
 		return Discount.class.getSimpleName();
 	}
 
+	@Override
 	public Discount toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -36,16 +36,19 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ServiceContextHelperImpl implements ServiceContextHelper {
 
+	@Override
 	public ServiceContext getServiceContext() throws PortalException {
 		return getServiceContext(0, new long[0], null, false);
 	}
 
+	@Override
 	public ServiceContext getServiceContext(long groupId)
 		throws PortalException {
 
 		return getServiceContext(groupId, new long[0], null, false);
 	}
 
+	@Override
 	public ServiceContext getServiceContext(
 			long groupId, long[] assetCategoryIds, User user)
 		throws PortalException {
@@ -53,6 +56,7 @@ public class ServiceContextHelperImpl implements ServiceContextHelper {
 		return getServiceContext(groupId, assetCategoryIds, user, false);
 	}
 
+	@Override
 	public ServiceContext getServiceContext(
 			long groupId, long[] assetCategoryIds, User user,
 			boolean generateUuid)
@@ -87,6 +91,7 @@ public class ServiceContextHelperImpl implements ServiceContextHelper {
 		return serviceContext;
 	}
 
+	@Override
 	public ServiceContext getServiceContext(User user) throws PortalException {
 		return getServiceContext(0, new long[0], user, false);
 	}

@@ -39,6 +39,7 @@ public class DiscountRuleDTOConverter
 		return DiscountRule.class.getSimpleName();
 	}
 
+	@Override
 	public DiscountRule toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

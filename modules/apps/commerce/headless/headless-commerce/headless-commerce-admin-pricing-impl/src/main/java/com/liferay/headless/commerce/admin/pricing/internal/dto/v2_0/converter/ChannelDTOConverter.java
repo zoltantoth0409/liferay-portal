@@ -39,6 +39,7 @@ public class ChannelDTOConverter
 		return Channel.class.getSimpleName();
 	}
 
+	@Override
 	public Channel toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -102,6 +102,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		return portletURL.toString();
 	}
 
+	@Override
 	public String getCompareProductsURL(ThemeDisplay themeDisplay)
 		throws PortalException {
 

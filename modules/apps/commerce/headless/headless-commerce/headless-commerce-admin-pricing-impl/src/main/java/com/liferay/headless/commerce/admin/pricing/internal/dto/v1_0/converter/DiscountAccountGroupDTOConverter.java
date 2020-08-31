@@ -42,6 +42,7 @@ public class DiscountAccountGroupDTOConverter
 		return DiscountAccountGroup.class.getSimpleName();
 	}
 
+	@Override
 	public DiscountAccountGroup toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 
