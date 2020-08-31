@@ -152,22 +152,11 @@ public class DisplayPageLayoutTypeController
 				new DisplayPageLayoutTypeControllerDisplayContext(
 					httpServletRequest, _infoItemServiceTracker);
 
-		if (!displayPageLayoutTypeControllerDisplayContext.hasPermission(
-				themeDisplay.getPermissionChecker(), ActionKeys.VIEW)) {
-
-			if (themeDisplay.isSignedIn()) {
-				httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			}
-			else {
-				httpServletResponse.setStatus(
-					HttpServletResponse.SC_UNAUTHORIZED);
-			}
-		}
-
 		httpServletRequest.setAttribute(
 			DisplayPageLayoutTypeControllerWebKeys.
 				DISPLAY_PAGE_LAYOUT_TYPE_CONTROLLER_DISPLAY_CONTEXT,
 			displayPageLayoutTypeControllerDisplayContext);
+
 		httpServletRequest.setAttribute(
 			FragmentActionKeys.FRAGMENT_RENDERER_CONTROLLER,
 			_fragmentRendererController);
@@ -186,8 +175,6 @@ public class DisplayPageLayoutTypeController
 
 		ServletResponse servletResponse = createServletResponse(
 			httpServletResponse, unsyncStringWriter);
-
-		String contentType = servletResponse.getContentType();
 
 		String includeServletPath = (String)httpServletRequest.getAttribute(
 			RequestDispatcher.INCLUDE_SERVLET_PATH);
@@ -217,12 +204,26 @@ public class DisplayPageLayoutTypeController
 				RequestDispatcher.INCLUDE_SERVLET_PATH, includeServletPath);
 		}
 
+		httpServletRequest.setAttribute(
+			WebKeys.LAYOUT_CONTENT, unsyncStringWriter.getStringBundler());
+
+		String contentType = servletResponse.getContentType();
+
 		if (contentType != null) {
 			httpServletResponse.setContentType(contentType);
 		}
 
-		httpServletRequest.setAttribute(
-			WebKeys.LAYOUT_CONTENT, unsyncStringWriter.getStringBundler());
+		if (!displayPageLayoutTypeControllerDisplayContext.hasPermission(
+				themeDisplay.getPermissionChecker(), ActionKeys.VIEW)) {
+
+			if (themeDisplay.isSignedIn()) {
+				httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			}
+			else {
+				httpServletResponse.setStatus(
+					HttpServletResponse.SC_UNAUTHORIZED);
+			}
+		}
 
 		return false;
 	}
