@@ -770,7 +770,7 @@ public class CompanyLocalServiceTest {
 	}
 
 	@Test
-	public void testGetCompanyByVirtualHostWithIPv6() throws Exception {
+	public void testGetCompanyByVirtualHost() throws Exception {
 		String virtualHostName = "::1";
 
 		Company company = CompanyLocalServiceUtil.addCompany(

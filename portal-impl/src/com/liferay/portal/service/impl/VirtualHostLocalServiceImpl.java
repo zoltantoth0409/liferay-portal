@@ -69,10 +69,10 @@ public class VirtualHostLocalServiceImpl
 	public VirtualHost fetchVirtualHost(String hostname) {
 		if (Validator.isIPv6Address(hostname)) {
 			try {
-				Inet6Address address = (Inet6Address)InetAddress.getByName(
+				Inet6Address inet6Address = (Inet6Address)InetAddress.getByName(
 					hostname);
 
-				hostname = address.getHostAddress();
+				hostname = inet6Address.getHostAddress();
 			}
 			catch (UnknownHostException unknownHostException) {
 				if (_log.isDebugEnabled()) {
