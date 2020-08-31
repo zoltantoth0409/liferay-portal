@@ -156,7 +156,7 @@ public class PortalCORSServletFilter
 	protected void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
-		_defaultURLToCORSSupportMapper = _buildDefaultURLToCORSSupportMapper();
+		_defaultURLToCORSSupportMapper = _createDefaultURLToCORSSupportMapper();
 
 		_serviceRegistration = bundleContext.registerService(
 			ConfigurationModelListener.class,
@@ -251,7 +251,7 @@ public class PortalCORSServletFilter
 		}
 	}
 
-	private URLToCORSSupportMapper _buildDefaultURLToCORSSupportMapper() {
+	private URLToCORSSupportMapper _createDefaultURLToCORSSupportMapper() {
 		Map<String, CORSSupport> corsSupports = new HashMap<>();
 
 		_buildCORSSupports(
