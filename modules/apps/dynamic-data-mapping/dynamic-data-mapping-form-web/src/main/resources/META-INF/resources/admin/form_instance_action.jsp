@@ -21,8 +21,6 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 DDMFormInstance formInstance = (DDMFormInstance)row.getObject();
 
-boolean hasValidStorageType = ddmFormAdminDisplayContext.hasValidStorageType(formInstance);
-
 FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFormAdminDisplayContext.getPermissionCheckerHelper();
 %>
 
@@ -42,6 +40,10 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 			url="<%= deleteURL %>"
 		/>
 	</c:if>
+
+	<%
+	boolean hasValidStorageType = ddmFormAdminDisplayContext.hasValidStorageType(formInstance);
+	%>
 
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowDuplicateIcon() %>">
 		<liferay-portlet:actionURL name="copyFormInstance" var="copyFormInstanceURL">
