@@ -233,7 +233,7 @@ public class PortalCORSServletFilter
 		filterChain.doFilter(httpServletRequest, httpServletResponse);
 	}
 
-	private void _buildCORSSupports(
+	private void _populateCORSSupports(
 		Map<String, CORSSupport> corsSupports,
 		PortalCORSConfiguration portalCORSConfiguration) {
 
@@ -254,7 +254,7 @@ public class PortalCORSServletFilter
 	private URLToCORSSupportMapper _createDefaultURLToCORSSupportMapper() {
 		Map<String, CORSSupport> corsSupports = new HashMap<>();
 
-		_buildCORSSupports(
+		_populateCORSSupports(
 			corsSupports,
 			ConfigurableUtil.createConfigurable(
 				PortalCORSConfiguration.class, new HashMapDictionary<>()));
@@ -320,7 +320,7 @@ public class PortalCORSServletFilter
 				ConfigurableUtil.createConfigurable(
 					PortalCORSConfiguration.class, properties);
 
-			_buildCORSSupports(corsSupports, portalCORSConfiguration);
+			_populateCORSSupports(corsSupports, portalCORSConfiguration);
 		}
 	}
 
