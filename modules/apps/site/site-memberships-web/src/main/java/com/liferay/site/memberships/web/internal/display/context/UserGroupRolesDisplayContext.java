@@ -203,9 +203,9 @@ public class UserGroupRolesDisplayContext {
 
 		roleSearch.setOrderByType(getOrderByType());
 
-		Group group = GroupLocalServiceUtil.fetchGroup(getGroupId());
-
 		int roleType = RoleConstants.TYPE_SITE;
+
+		Group group = GroupLocalServiceUtil.fetchGroup(getGroupId());
 
 		if (group.getType() == GroupConstants.TYPE_DEPOT) {
 			roleType = RoleConstants.TYPE_DEPOT;
