@@ -21,14 +21,14 @@ QuestionsConfiguration questionsConfiguration = portletDisplay.getPortletInstanc
 
 long rootTopicId = questionsConfiguration.rootTopicId();
 
-MBCategory rootTopic = null;
+MBCategory mbCategory = null;
 
 String rootTopicName = StringPool.BLANK;
 
 try {
-	rootTopic = MBCategoryLocalServiceUtil.getCategory(rootTopicId);
+	mbCategory = MBCategoryLocalServiceUtil.getCategory(rootTopicId);
 
-	rootTopicName = rootTopic.getName();
+	rootTopicName = mbCategory.getName();
 }
 catch (Exception exception) {
 	if (_log.isDebugEnabled()) {
@@ -108,15 +108,14 @@ catch (Exception exception) {
 				title: '<liferay-ui:message arguments="category" key="select-x" />',
 
 				<%
-				PortletURL selectCategoryURL = PortletProviderUtil.getPortletURL(request, MBCategory.class.getName(), PortletProvider.Action.EDIT);
+				PortletURL selectMBCategoryURL = PortletProviderUtil.getPortletURL(request, MBCategory.class.getName(), PortletProvider.Action.EDIT);
 
-				selectCategoryURL.setParameter("mvcRenderCommandName", "/message_boards/select_category");
-				selectCategoryURL.setParameter("mbCategoryId", String.valueOf(rootTopicId));
-
-				selectCategoryURL.setWindowState(LiferayWindowState.POP_UP);
+				selectMBCategoryURL.setParameter("mvcRenderCommandName", "/message_boards/select_category");
+				selectMBCategoryURL.setParameter("mbCategoryId", String.valueOf(rootTopicId));
+				selectMBCategoryURL.setWindowState(LiferayWindowState.POP_UP);
 				%>
 
-				url: '<%= selectCategoryURL.toString() %>',
+				url: '<%= selectMBCategoryURL.toString() %>',
 			});
 		});
 	}
