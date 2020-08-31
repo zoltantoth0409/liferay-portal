@@ -199,7 +199,6 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 						).build();
 					}
 				});
-
 		DataRecord dataRecord2 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId,
@@ -230,85 +229,85 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 					}
 				});
 
-		// Retrieve data records sorting by Multiple Selection field
+		// Sort by multiple selection field
 
-		Page<DataRecord> ascPageMultipleSelection =
+		Page<DataRecord> multipleSelectionAscPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/MultipleSelection:asc");
 
 		assertEquals(
 			Arrays.asList(dataRecord1, dataRecord2),
-			(List<DataRecord>)ascPageMultipleSelection.getItems());
+			(List<DataRecord>)multipleSelectionAscPage.getItems());
 
-		Page<DataRecord> descPageMultipleSelection =
+		Page<DataRecord> multipleSelectionDescPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/MultipleSelection:desc");
 
 		assertEquals(
 			Arrays.asList(dataRecord2, dataRecord1),
-			(List<DataRecord>)descPageMultipleSelection.getItems());
+			(List<DataRecord>)multipleSelectionDescPage.getItems());
 
-		// Retrieve data records sorting by Select From List field
+		// Sort by select from list
 
-		Page<DataRecord> ascPageSelectFromList =
+		Page<DataRecord> sortBySelectFromListAscPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/SelectFromList:asc");
 
 		assertEquals(
 			Arrays.asList(dataRecord2, dataRecord1),
-			(List<DataRecord>)ascPageSelectFromList.getItems());
+			(List<DataRecord>)sortBySelectFromListAscPage.getItems());
 
-		Page<DataRecord> descPageSelectFromList =
+		Page<DataRecord> sortBySelectFromListDescPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/SelectFromList:desc");
 
 		assertEquals(
 			Arrays.asList(dataRecord1, dataRecord2),
-			(List<DataRecord>)descPageSelectFromList.getItems());
+			(List<DataRecord>)sortBySelectFromListDescPage.getItems());
 
-		// Retrieve data records sorting by Single Selection field
+		// Sort by single selection
 
-		Page<DataRecord> ascPageSingleSelection =
+		Page<DataRecord> sortBySingleSelectionAscPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/SingleSelection:asc");
 
 		assertEquals(
 			Arrays.asList(dataRecord2, dataRecord1),
-			(List<DataRecord>)ascPageSingleSelection.getItems());
+			(List<DataRecord>)sortBySingleSelectionAscPage.getItems());
 
-		Page<DataRecord> descPageSingleSelection =
+		Page<DataRecord> sortBySingleSelectionDescPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/SingleSelection:desc");
 
 		assertEquals(
 			Arrays.asList(dataRecord1, dataRecord2),
-			(List<DataRecord>)descPageSingleSelection.getItems());
+			(List<DataRecord>)sortBySingleSelectionDescPage.getItems());
 
-		//Retrieve data records sorting by Text field
+		// Sort by text
 
-		Page<DataRecord> ascPageText =
+		Page<DataRecord> sortByTextAscPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/Text:asc");
 
 		assertEquals(
 			Arrays.asList(dataRecord1, dataRecord2),
-			(List<DataRecord>)ascPageText.getItems());
+			(List<DataRecord>)sortByTextAscPage.getItems());
 
-		Page<DataRecord> descPageText =
+		Page<DataRecord> sortByTextDescPage =
 			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, null, null, Pagination.of(1, 2),
 				"dataRecordValues/Text:desc");
 
 		assertEquals(
 			Arrays.asList(dataRecord2, dataRecord1),
-			(List<DataRecord>)descPageText.getItems());
+			(List<DataRecord>)sortByTextDescPage.getItems());
 	}
 
 	@Override
