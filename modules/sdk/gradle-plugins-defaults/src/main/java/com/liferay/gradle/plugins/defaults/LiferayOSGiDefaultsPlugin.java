@@ -1330,7 +1330,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			}
 		}
 
-		if (FileUtil.exists(project, ".lfrbuild-releng-ignore-source")) {
+		if (FileUtil.exists(project, ".lfrbuild-releng-skip-source")) {
 			jar.setEnabled(false);
 		}
 
