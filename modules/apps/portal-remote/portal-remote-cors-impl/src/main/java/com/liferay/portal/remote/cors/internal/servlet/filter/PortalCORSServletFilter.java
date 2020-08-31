@@ -233,24 +233,6 @@ public class PortalCORSServletFilter
 		filterChain.doFilter(httpServletRequest, httpServletResponse);
 	}
 
-	private void _populateCORSSupports(
-		Map<String, CORSSupport> corsSupports,
-		PortalCORSConfiguration portalCORSConfiguration) {
-
-		CORSSupport corsSupport = new CORSSupport();
-
-		corsSupport.setCORSHeaders(
-			CORSSupport.buildCORSHeaders(portalCORSConfiguration.headers()));
-
-		for (String urlPattern :
-				portalCORSConfiguration.filterMappingURLPatterns()) {
-
-			if (!corsSupports.containsKey(urlPattern)) {
-				corsSupports.put(urlPattern, corsSupport);
-			}
-		}
-	}
-
 	private URLToCORSSupportMapper _createDefaultURLToCORSSupportMapper() {
 		Map<String, CORSSupport> corsSupports = new HashMap<>();
 
@@ -321,6 +303,24 @@ public class PortalCORSServletFilter
 					PortalCORSConfiguration.class, properties);
 
 			_populateCORSSupports(corsSupports, portalCORSConfiguration);
+		}
+	}
+
+	private void _populateCORSSupports(
+		Map<String, CORSSupport> corsSupports,
+		PortalCORSConfiguration portalCORSConfiguration) {
+
+		CORSSupport corsSupport = new CORSSupport();
+
+		corsSupport.setCORSHeaders(
+			CORSSupport.buildCORSHeaders(portalCORSConfiguration.headers()));
+
+		for (String urlPattern :
+				portalCORSConfiguration.filterMappingURLPatterns()) {
+
+			if (!corsSupports.containsKey(urlPattern)) {
+				corsSupports.put(urlPattern, corsSupport);
+			}
 		}
 	}
 
