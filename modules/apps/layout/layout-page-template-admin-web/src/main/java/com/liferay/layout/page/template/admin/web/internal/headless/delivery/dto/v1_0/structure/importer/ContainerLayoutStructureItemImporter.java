@@ -56,10 +56,10 @@ public class ContainerLayoutStructureItemImporter
 				layoutStructure.addContainerLayoutStructureItem(
 					parentItemId, position);
 
+		JSONObject stylesJSONObject = JSONFactoryUtil.createJSONObject();
+
 		Map<String, Object> definitionMap = getDefinitionMap(
 			pageElement.getDefinition());
-
-		JSONObject stylesJSONObject = JSONFactoryUtil.createJSONObject();
 
 		if (definitionMap != null) {
 			stylesJSONObject.put(
