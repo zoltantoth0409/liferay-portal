@@ -452,13 +452,15 @@ public class GroupImpl extends GroupBaseImpl {
 			return sb.toString();
 		}
 
-		Company company = themeDisplay.getCompany();
-
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(themeDisplay.getPathImage());
 		sb.append("/company_logo?img_id=");
+
+		Company company = themeDisplay.getCompany();
+
 		sb.append(company.getCompanyId());
+
 		sb.append("&t=");
 		sb.append(WebServerServletTokenUtil.getToken(logoId));
 
