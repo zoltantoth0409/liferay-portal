@@ -446,12 +446,13 @@ public class RenderLayoutStructureDisplayContext {
 			cssClassSB.append(styledLayoutStructureItem.getShadow());
 		}
 
-		String textAlign = styledLayoutStructureItem.getTextAlignCssClass();
+		String textAlignCssClass =
+			styledLayoutStructureItem.getTextAlignCssClass();
 
-		if (Validator.isNotNull(textAlign) &&
-			!Objects.equals(textAlign, "none")) {
+		if (Validator.isNotNull(textAlignCssClass) &&
+			!Objects.equals(textAlignCssClass, "none")) {
 
-			if (!StringUtil.startsWith(textAlign, "text-")) {
+			if (!StringUtil.startsWith(textAlignCssClass, "text-")) {
 				cssClassSB.append(" text-");
 			}
 			else {
