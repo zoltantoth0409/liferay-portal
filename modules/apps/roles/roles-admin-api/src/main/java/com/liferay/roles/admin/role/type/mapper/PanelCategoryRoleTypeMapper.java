@@ -21,6 +21,7 @@ package com.liferay.roles.admin.role.type.mapper;
  * in the Roles Admin portlet.
  *
  * @author Drew Brokke
+ * @review
  */
 public interface PanelCategoryRoleTypeMapper {
 
