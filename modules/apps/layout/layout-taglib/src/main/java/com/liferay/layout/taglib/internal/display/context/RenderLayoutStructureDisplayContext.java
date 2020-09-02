@@ -328,7 +328,7 @@ public class RenderLayoutStructureDisplayContext {
 			StyledLayoutStructureItem styledLayoutStructureItem)
 		throws Exception {
 
-		StringBundler cssClassSB = new StringBundler(39);
+		StringBundler cssClassSB = new StringBundler(35);
 
 		if (Validator.isNotNull(styledLayoutStructureItem.getAlign())) {
 			cssClassSB.append(" ");
@@ -351,11 +351,6 @@ public class RenderLayoutStructureDisplayContext {
 				styledLayoutStructureItem.getBorderColorCssClass());
 		}
 
-		if (Validator.isNotNull(styledLayoutStructureItem.getBorderRadius())) {
-			cssClassSB.append(" ");
-			cssClassSB.append(styledLayoutStructureItem.getBorderRadius());
-		}
-
 		if (Objects.equals(
 				styledLayoutStructureItem.getContentDisplay(), "block")) {
 
@@ -366,14 +361,6 @@ public class RenderLayoutStructureDisplayContext {
 				styledLayoutStructureItem.getContentDisplay(), "flex")) {
 
 			cssClassSB.append(" d-flex");
-		}
-
-		if (Validator.isNotNull(
-				styledLayoutStructureItem.getFontWeightCssClass())) {
-
-			cssClassSB.append(StringPool.SPACE);
-			cssClassSB.append(
-				styledLayoutStructureItem.getFontWeightCssClass());
 		}
 
 		if (Validator.isNotNull(styledLayoutStructureItem.getJustify())) {
@@ -563,7 +550,7 @@ public class RenderLayoutStructureDisplayContext {
 	public String getStyle(StyledLayoutStructureItem styledLayoutStructureItem)
 		throws Exception {
 
-		StringBundler styleSB = new StringBundler(48);
+		StringBundler styleSB = new StringBundler(57);
 
 		styleSB.append("box-sizing: border-box;");
 
@@ -596,10 +583,26 @@ public class RenderLayoutStructureDisplayContext {
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
+		if (Validator.isNotNull(styledLayoutStructureItem.getBorderRadius())) {
+			styleSB.append("border-radius: ");
+			styleSB.append(
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getBorderRadius()));
+			styleSB.append(StringPool.SEMICOLON);
+		}
+
 		if (styledLayoutStructureItem.getBorderWidth() != -1L) {
 			styleSB.append("border-style: solid; border-width: ");
 			styleSB.append(styledLayoutStructureItem.getBorderWidth());
 			styleSB.append("px;");
+		}
+
+		if (Validator.isNotNull(styledLayoutStructureItem.getShadow())) {
+			styleSB.append("box-shadow: ");
+			styleSB.append(
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getShadow()));
+			styleSB.append(StringPool.SEMICOLON);
 		}
 
 		if (Validator.isNotNull(styledLayoutStructureItem.getFontFamily())) {
@@ -615,6 +618,16 @@ public class RenderLayoutStructureDisplayContext {
 			styleSB.append(
 				getStyleFromStyleBookEntry(
 					styledLayoutStructureItem.getFontSize()));
+			styleSB.append(StringPool.SEMICOLON);
+		}
+
+		if (Validator.isNotNull(
+				styledLayoutStructureItem.getFontWeightCssClass())) {
+
+			styleSB.append("font-weight: ");
+			styleSB.append(
+				getStyleFromStyleBookEntry(
+					styledLayoutStructureItem.getFontWeightCssClass()));
 			styleSB.append(StringPool.SEMICOLON);
 		}
 
