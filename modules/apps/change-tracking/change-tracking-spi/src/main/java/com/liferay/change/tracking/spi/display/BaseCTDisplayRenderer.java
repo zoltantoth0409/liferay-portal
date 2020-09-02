@@ -57,7 +57,6 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 	 *             #getEditURL(HttpServletRequest, BaseModel)}
 	 */
 	@Deprecated
-	@SuppressWarnings("unchecked")
 	public String getEditURL(
 			HttpServletRequest httpServletRequest, CTModel<?> ctModel)
 		throws Exception {
@@ -80,7 +79,6 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 	 *             #getTitle(Locale, BaseModel)}
 	 */
 	@Deprecated
-	@SuppressWarnings("unchecked")
 	public String getTitle(Locale locale, CTModel<?> ctModel)
 		throws PortalException {
 
@@ -108,7 +106,6 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 	 *             #isHideable(BaseModel)}
 	 */
 	@Deprecated
-	@SuppressWarnings("unchecked")
 	public boolean isHideable(CTModel<?> ctModel) {
 		return isHideable((T)ctModel);
 	}
