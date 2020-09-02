@@ -128,13 +128,17 @@ public class RemoteAppEntryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
+		QueryConfig queryConfig = searchContext.getQueryConfig();
+
+		queryConfig.setHighlightEnabled(false);
+		queryConfig.setScoreEnabled(false);
+
 		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.NAME, keywords
 			).put(
 				Field.URL, keywords
 			).build());
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setKeywords(keywords);
@@ -144,11 +148,6 @@ public class RemoteAppEntryLocalServiceImpl
 		}
 
 		searchContext.setStart(start);
-
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		queryConfig.setHighlightEnabled(false);
-		queryConfig.setScoreEnabled(false);
 
 		return searchContext;
 	}

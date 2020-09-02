@@ -157,7 +157,7 @@ public class RemoteAppEntryIndexer extends BaseIndexer<RemoteAppEntry> {
 	protected void reindexRemoteAppEntries(long companyId)
 		throws PortalException {
 
-		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			_remoteAppEntryLocalService.getIndexableActionableDynamicQuery();
 
 		indexableActionableDynamicQuery.setCompanyId(companyId);
