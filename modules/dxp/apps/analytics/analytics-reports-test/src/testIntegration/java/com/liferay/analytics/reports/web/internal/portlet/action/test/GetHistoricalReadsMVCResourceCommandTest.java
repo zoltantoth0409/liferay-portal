@@ -109,9 +109,6 @@ public class GetHistoricalReadsMVCResourceCommandTest {
 					_classNameLocalService
 				).build(),
 				() -> {
-					MockLiferayResourceResponse mockLiferayResourceResponse =
-						new MockLiferayResourceResponse();
-
 					MockLiferayResourceRequest mockLiferayResourceRequest =
 						_getMockLiferayResourceRequest();
 
@@ -122,6 +119,9 @@ public class GetHistoricalReadsMVCResourceCommandTest {
 
 					ServiceContextThreadLocal.pushServiceContext(
 						serviceContext);
+
+					MockLiferayResourceResponse mockLiferayResourceResponse =
+						new MockLiferayResourceResponse();
 
 					_mvcResourceCommand.serveResource(
 						mockLiferayResourceRequest,
