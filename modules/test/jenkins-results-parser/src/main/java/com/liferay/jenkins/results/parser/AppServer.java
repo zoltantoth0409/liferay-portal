@@ -189,13 +189,13 @@ public class AppServer {
 
 		sb.append("tail -f logs/liferay.*.log;");
 
-		File readLogBashFile = new File(
+		File file = new File(
 			_getAppServerParentDir(), "read_liferay_log.sh");
 
 		try {
-			JenkinsResultsParserUtil.write(readLogBashFile, sb.toString());
+			JenkinsResultsParserUtil.write(file, sb.toString());
 
-			return readLogBashFile.getCanonicalPath();
+			return file.getCanonicalPath();
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
