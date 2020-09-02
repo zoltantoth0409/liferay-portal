@@ -838,7 +838,6 @@ public class ContentDashboardAdminPortletTest {
 			ReflectionTestUtil.invoke(
 				results.get(0), "getTitle", new Class<?>[] {Locale.class},
 				LocaleUtil.US));
-
 		Assert.assertEquals(
 			journalArticle1.getTitle(LocaleUtil.US),
 			ReflectionTestUtil.invoke(
@@ -1178,7 +1177,6 @@ public class ContentDashboardAdminPortletTest {
 
 			Assert.assertEquals(
 				String.valueOf(assetCategories), 1, assetCategories.size());
-
 			Assert.assertEquals(assetCategory, assetCategories.get(0));
 		}
 		finally {
@@ -1221,12 +1219,10 @@ public class ContentDashboardAdminPortletTest {
 			LocaleUtil.US);
 
 		Assert.assertEquals(versions.toString(), 2, versions.size());
-
 		Assert.assertEquals(
 			"Approved",
 			ReflectionTestUtil.invoke(
 				versions.get(0), "getLabel", new Class<?>[0]));
-
 		Assert.assertEquals(
 			"Draft",
 			ReflectionTestUtil.invoke(
