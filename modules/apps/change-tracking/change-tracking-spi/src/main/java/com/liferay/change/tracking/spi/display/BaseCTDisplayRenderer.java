@@ -122,8 +122,8 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 
 		Writer writer = httpServletResponse.getWriter();
 
-		writer.write("<div class=\"table-responsive\"><table ");
-		writer.write("class=\"change-lists-render-table table table-autofit ");
+		writer.write("<div class=\"table-responsive\"><table class=\"");
+		writer.write("change-lists-render-table table table-autofit ");
 		writer.write("table-nowrap\">");
 
 		HttpServletRequest httpServletRequest =
