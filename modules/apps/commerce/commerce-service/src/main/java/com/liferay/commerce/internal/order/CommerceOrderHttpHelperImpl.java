@@ -404,7 +404,7 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 
 		HttpServletRequest httpServletRequest = themeDisplay.getRequest();
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
 		String commerceOrderUuidWebKey = getCookieName(
 			commerceOrder.getGroupId());
@@ -417,7 +417,7 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 		if ((threadLocalCommerceOrder != null) &&
 			threadLocalCommerceOrder.isGuestOrder()) {
 
-			session.removeAttribute(commerceOrderUuidWebKey);
+			httpSession.removeAttribute(commerceOrderUuidWebKey);
 
 			_commerceOrderUuidThreadLocal.remove();
 		}
@@ -433,7 +433,7 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 				CommerceOrderConstants.ORDER_STATUS_OPEN);
 
 		if (userCommerceOrder == null) {
-			session.removeAttribute(commerceOrderUuidWebKey);
+			httpSession.removeAttribute(commerceOrderUuidWebKey);
 
 			return _commerceOrderLocalService.updateAccount(
 				commerceOrder.getCommerceOrderId(), user.getUserId(),
@@ -448,7 +448,7 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 			userCommerceOrder.getCommerceOrderId(),
 			_getCommerceContext(httpServletRequest), serviceContext);
 
-		session.removeAttribute(commerceOrderUuidWebKey);
+		httpSession.removeAttribute(commerceOrderUuidWebKey);
 
 		return userCommerceOrder;
 	}
@@ -482,9 +482,9 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 
 		HttpServletRequest httpServletRequest = themeDisplay.getRequest();
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
-		String commerceOrderUuid = (String)session.getAttribute(cookieName);
+		String commerceOrderUuid = (String)httpSession.getAttribute(cookieName);
 
 		if (commerceAccountId != CommerceAccountConstants.ACCOUNT_ID_GUEST) {
 			commerceOrder =

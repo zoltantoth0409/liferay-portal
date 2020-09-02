@@ -54,9 +54,9 @@ public class LoginPostAction extends Action {
 				if (name.startsWith(
 						CommerceOrder.class.getName() + StringPool.POUND)) {
 
-					HttpSession session = httpServletRequest.getSession();
+					HttpSession httpSession = httpServletRequest.getSession();
 
-					session.setAttribute(name, cookie.getValue());
+					httpSession.setAttribute(name, cookie.getValue());
 
 					CookieKeys.deleteCookies(
 						httpServletRequest, httpServletResponse, domain, name);
