@@ -121,7 +121,6 @@ public class IdentityContextMessageJSONObjectMapper
 				addMixIn(
 					IdentityContextMessage.class,
 					IdentityContextMessageMixIn.class);
-
 				configure(
 					DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			}
