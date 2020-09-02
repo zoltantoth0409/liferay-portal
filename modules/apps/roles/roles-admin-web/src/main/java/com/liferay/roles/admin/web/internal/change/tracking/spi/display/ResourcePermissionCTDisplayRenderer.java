@@ -168,8 +168,6 @@ public class ResourcePermissionCTDisplayRenderer
 
 		ResourcePermission resourcePermission = displayBuilder.getModel();
 
-		Locale locale = displayBuilder.getLocale();
-
 		Map<String, ResourceAction> resourceActionMap = new TreeMap<>();
 
 		for (ResourceAction resourceAction :
@@ -177,13 +175,14 @@ public class ResourcePermissionCTDisplayRenderer
 					resourcePermission.getName())) {
 
 			String actionLabel = _resourceActions.getAction(
-				locale, resourceAction.getActionId());
+				displayBuilder.getLocale(), resourceAction.getActionId());
 
 			resourceActionMap.put(actionLabel, resourceAction);
 		}
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			locale, ResourcePermissionCTDisplayRenderer.class);
+			displayBuilder.getLocale(),
+			ResourcePermissionCTDisplayRenderer.class);
 
 		String granted = LanguageUtil.get(resourceBundle, "granted");
 		String notGranted = LanguageUtil.get(resourceBundle, "not-granted");
