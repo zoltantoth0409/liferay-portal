@@ -430,11 +430,6 @@ public class RenderLayoutStructureDisplayContext {
 			cssClassSB.append(styledLayoutStructureItem.getPaddingTop());
 		}
 
-		if (Validator.isNotNull(styledLayoutStructureItem.getShadow())) {
-			cssClassSB.append(StringPool.SPACE);
-			cssClassSB.append(styledLayoutStructureItem.getShadow());
-		}
-
 		String textAlignCssClass =
 			styledLayoutStructureItem.getTextAlignCssClass();
 
