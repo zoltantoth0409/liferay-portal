@@ -189,8 +189,7 @@ public class AppServer {
 
 		sb.append("tail -f logs/liferay.*.log;");
 
-		File file = new File(
-			_getAppServerParentDir(), "read_liferay_log.sh");
+		File file = new File(_getAppServerParentDir(), "read_liferay_log.sh");
 
 		try {
 			JenkinsResultsParserUtil.write(file, sb.toString());
