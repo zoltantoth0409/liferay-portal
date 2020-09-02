@@ -254,7 +254,7 @@ public class TranslationEntryServiceTest {
 				StringUtil.replace(
 					TranslationTestUtil.readFileToString(
 						"test-journal-article.xlf"),
-					"$ARTICLE_ID",
+					"[$JOURNAL_ARTICLE_ID$]",
 					String.valueOf(journalArticle.getResourcePrimKey()));
 
 				_translationEntry =
@@ -408,7 +408,7 @@ public class TranslationEntryServiceTest {
 				String stringFile = StringUtil.replace(
 					TranslationTestUtil.readFileToString(
 						"test-journal-article-only-title.xlf"),
-					"$ARTICLE_ID",
+					"[$JOURNAL_ARTICLE_ID$]",
 					String.valueOf(journalArticle.getResourcePrimKey()));
 
 				InfoItemFieldValues infoItemFieldValues =
