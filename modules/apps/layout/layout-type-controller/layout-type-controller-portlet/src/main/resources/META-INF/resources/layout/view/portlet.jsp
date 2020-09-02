@@ -17,7 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-HttpServletRequest originalServletRequest = (HttpServletRequest)request.getAttribute(PortletLayoutTypeControllerWebKeys.ORIGINAL_HTTP_SERVLET_REQUEST);
 String portletResource = ParamUtil.getString(request, "portletResource");
 %>
 
@@ -49,6 +48,8 @@ String portletResource = ParamUtil.getString(request, "portletResource");
 		}
 
 		if (Validator.isNotNull(templateContent)) {
+			HttpServletRequest originalServletRequest = (HttpServletRequest)request.getAttribute(PortletLayoutTypeControllerWebKeys.ORIGINAL_HTTP_SERVLET_REQUEST);
+
 			RuntimePageUtil.processTemplate(originalServletRequest, response, ppid, new StringTemplateResource(templateId, templateContent), langType);
 		}
 		%>
