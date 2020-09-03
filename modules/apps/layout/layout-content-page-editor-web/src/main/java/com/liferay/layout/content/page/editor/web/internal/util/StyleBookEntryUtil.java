@@ -71,7 +71,7 @@ public class StyleBookEntryUtil {
 
 					frontendTokensValues.put(
 						frontendTokenJSONObject.getString("name"),
-						_getProcessedFrontendToken(
+						_getProcessedFrontendTokenValue(
 							frontendTokenJSONObject,
 							frontendTokenValuesJSONObject));
 				}
@@ -93,7 +93,7 @@ public class StyleBookEntryUtil {
 		return JSONFactoryUtil.createJSONObject();
 	}
 
-	private static Map<String, Object> _getProcessedFrontendToken(
+	private static Map<String, Object> _getProcessedFrontendTokenValue(
 		JSONObject frontendTokenJSONObject,
 		JSONObject frontendTokenValuesJSONObject) {
 
