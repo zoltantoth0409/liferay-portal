@@ -139,12 +139,12 @@ public class CPDefinitionIndexer extends BaseIndexer<CPDefinition> {
 				attributes.get(CPField.BASE_PRICE));
 
 			for (String basePriceRange : basePriceRanges) {
-				String[] rangeArray = RangeParserUtil.parserRange(
+				String[] basePriceRangeParts = RangeParserUtil.parserRange(
 					basePriceRange);
 
 				RangeTermFilter rangeTermFilter = new RangeTermFilter(
-					CPField.BASE_PRICE, true, true, rangeArray[0],
-					rangeArray[1]);
+					CPField.BASE_PRICE, true, true, basePriceRangeParts[0],
+					basePriceRangeParts[1]);
 
 				contextBooleanFilter.add(
 					rangeTermFilter, BooleanClauseOccur.MUST);
