@@ -133,11 +133,11 @@ public class EditCPDisplayLayoutMVCActionCommand extends BaseMVCActionCommand {
 				companyGroup.getGroupId(), false);
 
 		for (AssetVocabulary assetVocabulary : assetVocabularies) {
-			long classPKParam = ParamUtil.getLong(
+			long classPK = ParamUtil.getLong(
 				actionRequest, "classPK_" + assetVocabulary.getVocabularyId());
 
-			if (classPKParam > 0) {
-				classPKs.add(classPKParam);
+			if (classPK > 0) {
+				classPKs.add(classPK);
 			}
 		}
 
