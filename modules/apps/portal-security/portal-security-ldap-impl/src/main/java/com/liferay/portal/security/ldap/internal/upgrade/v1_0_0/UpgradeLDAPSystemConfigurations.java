@@ -61,7 +61,7 @@ public class UpgradeLDAPSystemConfigurations extends UpgradeProcess {
 			Dictionary<String, Object> configurationProperties =
 				configuration.getProperties();
 
-			Long companyId = GetterUtil.getLong(
+			long companyId = GetterUtil.getLong(
 				configurationProperties.get("companyId"));
 
 			if (companyId == CompanyConstants.SYSTEM) {
