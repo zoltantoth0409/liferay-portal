@@ -295,77 +295,75 @@ public class SaveFormInstanceMVCCommandHelper {
 		for (Locale availableLocale : value.getAvailableLocales()) {
 			String valueString = value.getString(availableLocale);
 
-			if (Validator.isNotNull(valueString)) {
-				String escapedRedirect = _portal.escapeRedirect(valueString);
+			if (Validator.isNull(valueString)) {
+				continue;
+			}
 
-				if (Validator.isNull(escapedRedirect)) {
-					URI uri = _getURI(valueString);
+			String escapedRedirect = _portal.escapeRedirect(valueString);
 
-					if (uri != null) {
-						StringBundler sb = new StringBundler(3);
+			if (Validator.isNotNull(escapedRedirect)) {
+				continue;
+			}
 
-						sb.append("the-specified-redirect-url-is-not-allowed-");
-						sb.append("due-to-installation-settings.-add-x-into-");
-						sb.append("the-property-x-to-fix-it");
+			URI uri = _getURI(valueString);
 
-						String securityMode =
-							PropsValues.REDIRECT_URL_SECURITY_MODE;
+			if (uri != null) {
+				StringBundler sb = new StringBundler(3);
 
-						String host = uri.getHost();
+				sb.append("the-specified-redirect-url-is-not-allowed-");
+				sb.append("due-to-installation-settings.-add-x-into-");
+				sb.append("the-property-x-to-fix-it");
 
-						if (securityMode.equals("domain")) {
-							List<String> allowedDomains = Arrays.asList(
-								PropsValues.REDIRECT_URL_DOMAINS_ALLOWED);
+				String securityMode = PropsValues.REDIRECT_URL_SECURITY_MODE;
 
-							if (!allowedDomains.contains(host)) {
-								throw new FormInstanceSettingsRedirectURLException(
-									LanguageUtil.format(
-										httpServletRequest, sb.toString(),
-										new String[] {
-											host,
-											PropsKeys.
-												REDIRECT_URL_DOMAINS_ALLOWED
-										}));
-							}
-						}
-						else if (securityMode.equals("ip")) {
-							try {
-								List<String> allowedIps = Arrays.asList(
-									PropsValues.REDIRECT_URL_IPS_ALLOWED);
+				String host = uri.getHost();
 
-								InetAddress inetAddress =
-									InetAddressUtil.getInetAddressByName(host);
+				if (securityMode.equals("domain")) {
+					List<String> allowedDomains = Arrays.asList(
+						PropsValues.REDIRECT_URL_DOMAINS_ALLOWED);
 
-								String hostAddress =
-									inetAddress.getHostAddress();
+					if (!allowedDomains.contains(host)) {
+						throw new FormInstanceSettingsRedirectURLException(
+							LanguageUtil.format(
+								httpServletRequest, sb.toString(),
+								new String[] {
+									host, PropsKeys.REDIRECT_URL_DOMAINS_ALLOWED
+								}));
+					}
+				}
+				else if (securityMode.equals("ip")) {
+					try {
+						List<String> allowedIps = Arrays.asList(
+							PropsValues.REDIRECT_URL_IPS_ALLOWED);
 
-								if (!allowedIps.contains(hostAddress)) {
-									throw new FormInstanceSettingsRedirectURLException(
-										LanguageUtil.format(
-											httpServletRequest, sb.toString(),
-											new String[] {
-												hostAddress,
-												PropsKeys.
-													REDIRECT_URL_IPS_ALLOWED
-											}));
-								}
-							}
-							catch (UnknownHostException unknownHostException) {
-								if (_log.isDebugEnabled()) {
-									_log.debug(
-										unknownHostException,
-										unknownHostException);
-								}
-							}
+						InetAddress inetAddress =
+							InetAddressUtil.getInetAddressByName(host);
+
+						String hostAddress = inetAddress.getHostAddress();
+
+						if (!allowedIps.contains(hostAddress)) {
+							throw new FormInstanceSettingsRedirectURLException(
+								LanguageUtil.format(
+									httpServletRequest, sb.toString(),
+									new String[] {
+										hostAddress,
+										PropsKeys.REDIRECT_URL_IPS_ALLOWED
+									}));
 						}
 					}
-
-					throw new FormInstanceSettingsRedirectURLException(
-						LanguageUtil.get(
-							httpServletRequest,
-							"the-specified-redirect-url-is-not-allowed"));
+					catch (UnknownHostException unknownHostException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								unknownHostException, unknownHostException);
+						}
+					}
 				}
 			}
+
+			throw new FormInstanceSettingsRedirectURLException(
+				LanguageUtil.get(
+					httpServletRequest,
+					"the-specified-redirect-url-is-not-allowed"));
 		}
 	}
 
