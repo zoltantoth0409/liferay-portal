@@ -702,7 +702,7 @@ public class DDMFormAdminDisplayContext {
 
 	public String getInvalidDDMFormFieldType(DDMFormInstance ddmFormInstance) {
 		try {
-			String invalidDDMFormFieldType = _invalidDDMFormFieldTypeMap.get(
+			String invalidDDMFormFieldType = _invalidDDMFormFieldTypes.get(
 				ddmFormInstance.getFormInstanceId());
 
 			if (invalidDDMFormFieldType != null) {
@@ -717,7 +717,7 @@ public class DDMFormAdminDisplayContext {
 						ddmFormField.getType());
 
 				if (ddmFormFieldType == null) {
-					_invalidDDMFormFieldTypeMap.put(
+					_invalidDDMFormFieldTypes.put(
 						ddmFormInstance.getFormInstanceId(),
 						ddmFormField.getType());
 
@@ -725,7 +725,7 @@ public class DDMFormAdminDisplayContext {
 				}
 			}
 
-			_invalidDDMFormFieldTypeMap.put(
+			_invalidDDMFormFieldTypes.put(
 				ddmFormInstance.getFormInstanceId(), StringPool.BLANK);
 		}
 		catch (Exception exception) {
@@ -1676,7 +1676,7 @@ public class DDMFormAdminDisplayContext {
 	private String _displayStyle;
 	private final FormInstancePermissionCheckerHelper
 		_formInstancePermissionCheckerHelper;
-	private final Map<Long, String> _invalidDDMFormFieldTypeMap =
+	private final Map<Long, String> _invalidDDMFormFieldTypes =
 		new HashMap<>();
 	private final NPMResolver _npmResolver;
 	private final Portal _portal;
