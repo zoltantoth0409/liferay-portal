@@ -165,9 +165,8 @@ public class SampleSQLBuilderTest {
 		properties.put(BenchmarksPropsKeys.OPTIMIZE_BUFFER_SIZE, "8192");
 		properties.put(
 			BenchmarksPropsKeys.OUTPUT_CSV_FILE_NAMES,
-			"assetPublisher,blog,company,documentLibrary," +
-				"dynamicDataList,fragment,layout,mbCategory,mbThread," +
-					"repository,wiki");
+			"assetPublisher,blog,company,documentLibrary,dynamicDataList," +
+				"fragment,layout,mbCategory,mbThread,repository,wiki");
 		properties.put(BenchmarksPropsKeys.OUTPUT_DIR, outputDir);
 		properties.put(BenchmarksPropsKeys.OUTPUT_MERGE, "true");
 		properties.put(
