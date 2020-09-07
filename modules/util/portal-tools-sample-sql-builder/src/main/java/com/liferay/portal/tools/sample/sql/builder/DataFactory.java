@@ -349,7 +349,6 @@ public class DataFactory {
 			"ddm_structure_basic_web_content.json");
 		_journalDDMStructureLayoutContent = _readFile(
 			"ddm_structure_layout_basic_web_content.json");
-
 		_layoutPageTemplateStructureRelData = _readFile(
 			"layout_page_template_structure_rel_data.json");
 
@@ -2911,7 +2910,6 @@ public class DataFactory {
 			layoutPageTemplateStructureModel.
 				getLayoutPageTemplateStructureId());
 		layoutPageTemplateStructureRelModel.setSegmentsExperienceId(0L);
-
 		layoutPageTemplateStructureRelModel.setData(
 			StringUtil.replace(
 				_layoutPageTemplateStructureRelData, "${fragmentEntryLinkId}",
