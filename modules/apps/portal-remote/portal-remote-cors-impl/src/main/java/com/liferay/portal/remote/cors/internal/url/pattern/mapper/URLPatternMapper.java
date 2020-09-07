@@ -19,6 +19,6 @@ package com.liferay.portal.remote.cors.internal.url.pattern.mapper;
  */
 public interface URLPatternMapper<T> {
 
-	public T get(String urlPath);
+	public T getValue(String urlPath);
 
 }

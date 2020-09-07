@@ -37,7 +37,7 @@ public class SimpleURLPatternMapperTest {
 			_createValues(keyValuePairs));
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
-			String value = urlPatternMapper.get(keyValuePair.getKey());
+			String value = urlPatternMapper.getValue(keyValuePair.getKey());
 
 			if (value == null) {
 				Assert.assertEquals("", keyValuePair.getValue());

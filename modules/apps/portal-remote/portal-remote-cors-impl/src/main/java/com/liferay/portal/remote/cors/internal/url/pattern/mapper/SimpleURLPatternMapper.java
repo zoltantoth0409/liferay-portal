@@ -33,7 +33,7 @@ public class SimpleURLPatternMapper<T> extends BaseURLPatternMapper<T> {
 	}
 
 	@Override
-	public T get(String urlPath) {
+	public T getValue(String urlPath) {
 		if (Validator.isNull(urlPath)) {
 			return null;
 		}

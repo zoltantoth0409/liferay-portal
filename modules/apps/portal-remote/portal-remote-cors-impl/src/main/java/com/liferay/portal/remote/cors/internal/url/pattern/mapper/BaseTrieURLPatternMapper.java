@@ -24,7 +24,7 @@ public abstract class BaseTrieURLPatternMapper<T>
 	extends BaseURLPatternMapper<T> {
 
 	@Override
-	public T get(String urlPath) {
+	public T getValue(String urlPath) {
 		try {
 			T value = getWildcardValue(urlPath);
 

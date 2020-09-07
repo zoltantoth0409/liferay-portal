@@ -199,7 +199,7 @@ public class PortalCORSServletFilter
 		URLPatternMapper<CORSSupport> urlPatternMapper = _getURLPatternMapper(
 			companyId);
 
-		CORSSupport corsSupport = urlPatternMapper.get(
+		CORSSupport corsSupport = urlPatternMapper.getValue(
 			_getURI(httpServletRequest));
 
 		if (corsSupport != null) {

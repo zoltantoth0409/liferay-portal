@@ -37,7 +37,7 @@ public class SimpleURLPatternMapperPerformanceTest {
 
 		for (int i = 0; i < 100000; i++) {
 			for (KeyValuePair keyValuePair : keyValuePairs) {
-				urlPatternMapper.get(keyValuePair.getKey());
+				urlPatternMapper.getValue(keyValuePair.getKey());
 			}
 		}
 
