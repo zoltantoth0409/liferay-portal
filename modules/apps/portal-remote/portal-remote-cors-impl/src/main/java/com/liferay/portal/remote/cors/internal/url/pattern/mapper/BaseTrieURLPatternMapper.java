@@ -49,12 +49,12 @@ public abstract class BaseTrieURLPatternMapper<T>
 	protected void put(String urlPattern, T value)
 		throws IllegalArgumentException {
 
-		if (value == null) {
-			throw new IllegalArgumentException("Value is null");
-		}
-
 		if (Validator.isBlank(urlPattern)) {
 			throw new IllegalArgumentException("URL pattern is blank");
+		}
+
+		if (value == null) {
+			throw new IllegalArgumentException("Value is null");
 		}
 
 		try {
