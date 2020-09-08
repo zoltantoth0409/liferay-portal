@@ -31,6 +31,7 @@
 
 <body class="${css_class}" id="content">
 	<@liferay_ui["quick-access"] contentId="#minium" />
+
 	<@liferay.control_menu />
 
 	<div id="wrapper">
