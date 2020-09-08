@@ -773,22 +773,22 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			httpSession.setAttribute(
 				SamlWebKeys.SAML_SUBJECT_NAME_ID, nameID.getValue());
 
-			String errorKey = StringPool.BLANK;
+			String error = StringPool.BLANK;
 
 			if (portalException instanceof ContactNameException) {
-				errorKey = ContactNameException.class.getSimpleName();
+				error = ContactNameException.class.getSimpleName();
 			}
 			else if (portalException instanceof SubjectException) {
-				errorKey = SubjectException.class.getSimpleName();
+				error = SubjectException.class.getSimpleName();
 			}
 			else if (portalException instanceof MustNotUseCompanyMx) {
-				errorKey = MustNotUseCompanyMx.class.getSimpleName();
+				error = MustNotUseCompanyMx.class.getSimpleName();
 			}
 			else if (portalException instanceof UserEmailAddressException) {
-				errorKey = UserEmailAddressException.class.getSimpleName();
+				error = UserEmailAddressException.class.getSimpleName();
 			}
 			else if (portalException instanceof UserScreenNameException) {
-				errorKey = UserScreenNameException.class.getSimpleName();
+				error = UserScreenNameException.class.getSimpleName();
 			}
 			else {
 				Class<?> clazz = portalException.getClass();
@@ -799,7 +799,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 				throw portalException;
 			}
 
-			httpSession.setAttribute(SamlWebKeys.SAML_SSO_ERROR, errorKey);
+			httpSession.setAttribute(SamlWebKeys.SAML_SSO_ERROR, error);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(portalException, portalException);
