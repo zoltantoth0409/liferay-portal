@@ -17,7 +17,7 @@ Here are some of the types of changes documented in this file:
 * Deprecations or end of support: For example, warning that a certain
   feature or API will be dropped in an upcoming version.
 
-*This document has been reviewed through commit `20bb08f47603`.*
+*This document has been reviewed through commit `4334fc6cc349`.*
 
 ## Breaking Changes Contribution Guidelines
 
