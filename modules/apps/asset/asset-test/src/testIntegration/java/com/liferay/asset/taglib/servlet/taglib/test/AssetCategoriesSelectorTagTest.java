@@ -79,6 +79,11 @@ public class AssetCategoriesSelectorTagTest {
 			StringPool.BLANK, AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL,
 			serviceContext);
 
+		_assetCategoryLocalService.addCategory(
+			TestPropsValues.getUserId(), _group.getGroupId(),
+			RandomTestUtil.randomString(),
+			_internalAssetVocabulary.getVocabularyId(), serviceContext);
+
 		_publicAssetVocabulary = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			RandomTestUtil.randomString(),
@@ -86,11 +91,6 @@ public class AssetCategoriesSelectorTagTest {
 			RandomTestUtil.randomLocaleStringMap(LocaleUtil.getSiteDefault()),
 			StringPool.BLANK, AssetVocabularyConstants.VISIBILITY_TYPE_PUBLIC,
 			serviceContext);
-
-		_assetCategoryLocalService.addCategory(
-			TestPropsValues.getUserId(), _group.getGroupId(),
-			RandomTestUtil.randomString(),
-			_internalAssetVocabulary.getVocabularyId(), serviceContext);
 
 		_assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -151,7 +151,6 @@ public class AssetCategoriesSelectorTagTest {
 			CoreMatchers.containsString(
 				_internalAssetVocabulary.getTitle(
 					LocaleUtil.getSiteDefault())));
-
 		Assert.assertThat(
 			mockHttpServletResponse.getContentAsString(),
 			CoreMatchers.containsString(
@@ -181,7 +180,6 @@ public class AssetCategoriesSelectorTagTest {
 			CoreMatchers.containsString(
 				_internalAssetVocabulary.getTitle(
 					LocaleUtil.getSiteDefault())));
-
 		Assert.assertThat(
 			mockHttpServletResponse.getContentAsString(),
 			CoreMatchers.not(
@@ -212,7 +210,6 @@ public class AssetCategoriesSelectorTagTest {
 			mockHttpServletResponse.getContentAsString(),
 			CoreMatchers.containsString(
 				_publicAssetVocabulary.getTitle(LocaleUtil.getSiteDefault())));
-
 		Assert.assertThat(
 			mockHttpServletResponse.getContentAsString(),
 			CoreMatchers.not(
@@ -235,10 +232,10 @@ public class AssetCategoriesSelectorTagTest {
 		themeDisplay.setSiteGroupId(_group.getGroupId());
 		themeDisplay.setScopeGroupId(_group.getGroupId());
 
-		mockHttpServletRequest.setMethod(HttpMethods.GET);
-
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
+
+		mockHttpServletRequest.setMethod(HttpMethods.GET);
 
 		return mockHttpServletRequest;
 	}
