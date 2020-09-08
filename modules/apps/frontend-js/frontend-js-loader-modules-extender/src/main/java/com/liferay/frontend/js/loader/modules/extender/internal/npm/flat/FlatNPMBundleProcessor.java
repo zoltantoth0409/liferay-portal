@@ -238,7 +238,7 @@ public class FlatNPMBundleProcessor implements JSBundleProcessor {
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to load cached json objects", exception);
+					_log.warn("Unable to load cached JSON objects", exception);
 				}
 			}
 		}
@@ -301,7 +301,7 @@ public class FlatNPMBundleProcessor implements JSBundleProcessor {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to write json objects cache file", exception);
+				_log.warn("Unable to write JSON objects cache file", exception);
 			}
 		}
 
