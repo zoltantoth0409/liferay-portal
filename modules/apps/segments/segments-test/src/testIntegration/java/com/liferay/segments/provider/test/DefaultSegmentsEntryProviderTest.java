@@ -470,12 +470,11 @@ public class DefaultSegmentsEntryProviderTest {
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
 			_group.getGroupId(), User.class.getName(), _user1.getUserId());
 
+		Assert.assertArrayEquals(
+			new long[] {segmentsEntry.getSegmentsEntryId()}, segmentsEntryIds);
 		Assert.assertEquals(
 			StringUtil.merge(segmentsEntryIds, StringPool.COMMA), 1,
 			segmentsEntryIds.length);
-
-		Assert.assertArrayEquals(
-			new long[] {segmentsEntry.getSegmentsEntryId()}, segmentsEntryIds);
 	}
 
 	@Inject(
