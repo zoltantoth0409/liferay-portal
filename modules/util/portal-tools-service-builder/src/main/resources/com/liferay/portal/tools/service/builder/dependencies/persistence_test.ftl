@@ -175,11 +175,11 @@ public class ${entity.name}PersistenceTest {
 			;
 		</#if>
 
-		${entity.name} ${entity.varName} = _persistence.create(pk);
+		${entity.name} ${entity.variableName} = _persistence.create(pk);
 
-		Assert.assertNotNull(${entity.varName});
+		Assert.assertNotNull(${entity.variableName});
 
-		Assert.assertEquals(${entity.varName}.getPrimaryKey(), pk);
+		Assert.assertEquals(${entity.variableName}.getPrimaryKey(), pk);
 	}
 
 	@Test
@@ -852,8 +852,8 @@ public class ${entity.name}PersistenceTest {
 				new ActionableDynamicQuery.PerformActionMethod<${entity.name}>() {
 
 					@Override
-					public void performAction(${entity.name} ${entity.varName}) {
-						Assert.assertNotNull(${entity.varName});
+					public void performAction(${entity.name} ${entity.variableName}) {
+						Assert.assertNotNull(${entity.variableName});
 
 						count.increment();
 					}
@@ -1077,18 +1077,18 @@ public class ${entity.name}PersistenceTest {
 				_assertOriginalValues(result.get(0));
 			}
 
-			private void _assertOriginalValues(${entity.name} ${entity.varName}) {
+			private void _assertOriginalValues(${entity.name} ${entity.variableName}) {
 				<#list entity.uniqueEntityFinders as uniqueEntityFinder>
 					<#assign entityColumns = uniqueEntityFinder.entityColumns />
 
 					<#list entityColumns as entityColumn>
 						<#if entityColumn.isInterfaceColumn()>
 							<#if stringUtil.equals(entityColumn.type, "double")>
-								AssertUtils.assertEquals(${entity.varName}.get${entityColumn.methodName}(), ReflectionTestUtil.<Double>invoke(${entity.varName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
+								AssertUtils.assertEquals(${entity.variableName}.get${entityColumn.methodName}(), ReflectionTestUtil.<Double>invoke(${entity.variableName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
 							<#elseif entityColumn.isPrimitiveType()>
-								Assert.assertEquals(${serviceBuilder.getPrimitiveObj(entityColumn.type)}.valueOf(${entity.varName}.get${entityColumn.methodName}()), ReflectionTestUtil.<${serviceBuilder.getPrimitiveObj(entityColumn.type)}>invoke(${entity.varName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
+								Assert.assertEquals(${serviceBuilder.getPrimitiveObj(entityColumn.type)}.valueOf(${entity.variableName}.get${entityColumn.methodName}()), ReflectionTestUtil.<${serviceBuilder.getPrimitiveObj(entityColumn.type)}>invoke(${entity.variableName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
 							<#else>
-								Assert.assertEquals(${entity.varName}.get${entityColumn.methodName}(), ReflectionTestUtil.invoke(${entity.varName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
+								Assert.assertEquals(${entity.variableName}.get${entityColumn.methodName}(), ReflectionTestUtil.invoke(${entity.variableName}, "getColumnOriginalValue", new Class<?>[]{String.class}, "${entityColumn.DBName}"));
 							</#if>
 						</#if>
 					</#list>
@@ -1144,7 +1144,7 @@ public class ${entity.name}PersistenceTest {
 			;
 		</#if>
 
-		${entity.name} ${entity.varName} = _persistence.create(pk);
+		${entity.name} ${entity.variableName} = _persistence.create(pk);
 
 		<#list entity.regularEntityColumns as entityColumn>
 			<#if !entityColumn.primary && (validator.isNull(parentPKColumn) || (parentPKColumn.name != entityColumn.name))>
@@ -1156,7 +1156,7 @@ public class ${entity.name}PersistenceTest {
 					Blob ${entityColumn.name}Blob = new OutputBlob(new ByteArrayInputStream(${entityColumn.name}Bytes), ${entityColumn.name}Bytes.length);
 				</#if>
 
-				${entity.varName}.set${entityColumn.methodName}(
+				${entity.variableName}.set${entityColumn.methodName}(
 
 				<#if stringUtil.equals(entityColumn.type, "boolean")>
 					RandomTestUtil.randomBoolean()
@@ -1188,9 +1188,9 @@ public class ${entity.name}PersistenceTest {
 			</#if>
 		</#list>
 
-		_${entity.pluralVariableName}.add(_persistence.update(${entity.varName}));
+		_${entity.pluralVariableName}.add(_persistence.update(${entity.variableName}));
 
-		return ${entity.varName};
+		return ${entity.variableName};
 	}
 
 	<#if entity.isHierarchicalTree()>
@@ -1408,12 +1408,12 @@ public class ${entity.name}PersistenceTest {
 				;
 			</#if>
 
-			${entity.name} ${entity.varName} = _persistence.create(pk);
+			${entity.name} ${entity.variableName} = _persistence.create(pk);
 
 			<#list entity.regularEntityColumns as entityColumn>
 				<#if !entityColumn.primary && (validator.isNull(parentPKColumn) || (parentPKColumn.name != entityColumn.name))>
 					<#if entityColumn.name ="${scopeEntityColumn.name}">
-						${entity.varName}.set${entityColumn.methodName}(${scopeEntityColumn.name});
+						${entity.variableName}.set${entityColumn.methodName}(${scopeEntityColumn.name});
 					<#else>
 						<#if stringUtil.equals(entityColumn.type, "Blob")>
 							String ${entityColumn.name}String = RandomTestUtil.randomString();
@@ -1423,7 +1423,7 @@ public class ${entity.name}PersistenceTest {
 							Blob ${entityColumn.name}Blob = new OutputBlob(new ByteArrayInputStream(${entityColumn.name}Bytes), ${entityColumn.name}Bytes.length);
 						</#if>
 
-						${entity.varName}.set${entityColumn.methodName}(
+						${entity.variableName}.set${entityColumn.methodName}(
 
 						<#if stringUtil.equals(entityColumn.type, "boolean")>
 							RandomTestUtil.randomBoolean()
@@ -1455,12 +1455,12 @@ public class ${entity.name}PersistenceTest {
 			</#list>
 
 			if (parent${pkEntityColumn.methodName} != null) {
-				${entity.varName}.setParent${pkEntityColumn.methodName}(parent${pkEntityColumn.methodName});
+				${entity.variableName}.setParent${pkEntityColumn.methodName}(parent${pkEntityColumn.methodName});
 			}
 
-			_${entity.pluralVariableName}.add(_persistence.update(${entity.varName}));
+			_${entity.pluralVariableName}.add(_persistence.update(${entity.variableName}));
 
-			return ${entity.varName};
+			return ${entity.variableName};
 		}
 	</#if>
 

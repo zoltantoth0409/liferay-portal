@@ -604,8 +604,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			new Function<${entity.name}, Object>() {
 
 				@Override
-				public Object apply(${entity.name} ${entity.varName}) {
-					return ${entity.varName}.get${entityColumn.methodName}();
+				public Object apply(${entity.name} ${entity.variableName}) {
+					return ${entity.variableName}.get${entityColumn.methodName}();
 				}
 
 			});
@@ -623,8 +623,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			new BiConsumer<${entity.name}, Object>() {
 
 				@Override
-				public void accept(${entity.name} ${entity.varName}, Object ${entityColumn.name}Object) {
-					${entity.varName}.set${entityColumn.methodName}((${entityColumnType})${entityColumn.name}Object);
+				public void accept(${entity.name} ${entity.variableName}, Object ${entityColumn.name}Object) {
+					${entity.variableName}.set${entityColumn.methodName}((${entityColumnType})${entityColumn.name}Object);
 				}
 
 			});
@@ -647,9 +647,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			String[] availableLanguageIds = new String[${localizedEntity.pluralVariableName}.size()];
 
 			for (int i = 0; i < availableLanguageIds.length; i++) {
-				${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.pluralVariableName}.get(i);
+				${localizedEntity.name} ${localizedEntity.variableName} = ${localizedEntity.pluralVariableName}.get(i);
 
-				availableLanguageIds[i] = ${localizedEntity.varName}.getLanguageId();
+				availableLanguageIds[i] = ${localizedEntity.variableName}.getLanguageId();
 			}
 
 			return availableLanguageIds;
@@ -695,21 +695,21 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 				List<${localizedEntity.name}> ${localizedEntity.pluralVariableName} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
 
-				for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.pluralVariableName}) {
-					languageIdTo${entityColumn.methodName}Map.put(${localizedEntity.varName}.getLanguageId(), ${localizedEntity.varName}.get${entityColumn.methodName}());
+				for (${localizedEntity.name} ${localizedEntity.variableName} : ${localizedEntity.pluralVariableName}) {
+					languageIdTo${entityColumn.methodName}Map.put(${localizedEntity.variableName}.getLanguageId(), ${localizedEntity.variableName}.get${entityColumn.methodName}());
 				}
 
 				return languageIdTo${entityColumn.methodName}Map;
 			}
 
 			private String _get${entityColumn.methodName}(String languageId) {
-				${localizedEntity.name} ${localizedEntity.varName} = ${entity.name}LocalServiceUtil.fetch${localizedEntity.name}(getPrimaryKey(), languageId);
+				${localizedEntity.name} ${localizedEntity.variableName} = ${entity.name}LocalServiceUtil.fetch${localizedEntity.name}(getPrimaryKey(), languageId);
 
-				if (${localizedEntity.varName} == null) {
+				if (${localizedEntity.variableName} == null) {
 					return "";
 				}
 
-				return ${localizedEntity.varName}.get${entityColumn.methodName}();
+				return ${localizedEntity.variableName}.get${entityColumn.methodName}();
 			}
 		</#list>
 	</#if>
@@ -718,10 +718,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#assign versionEntity = entity.versionEntity />
 
 		@Override
-		public void populateVersionModel(${versionEntity.name} ${versionEntity.varName}) {
+		public void populateVersionModel(${versionEntity.name} ${versionEntity.variableName}) {
 			<#list entity.entityColumns as entityColumn>
 				<#if !entityColumn.isPrimary() && !stringUtil.equals(entityColumn.methodName, "HeadId") && !stringUtil.equals(entityColumn.methodName, "MvccVersion") && !entityColumn.isMappingManyToMany()>
-					${versionEntity.varName}.set${entityColumn.methodName}(get${entityColumn.methodName}());
+					${versionEntity.variableName}.set${entityColumn.methodName}(get${entityColumn.methodName}());
 				</#if>
 			</#list>
 		}
@@ -737,10 +737,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 
 		@Override
-		public void populateVersionedModel(${versionedEntity.name} ${versionedEntity.varName}) {
+		public void populateVersionedModel(${versionedEntity.name} ${versionedEntity.variableName}) {
 			<#list versionedEntity.entityColumns as entityColumn>
 				<#if !entityColumn.isPrimary() && !stringUtil.equals(entityColumn.methodName, "HeadId") && !stringUtil.equals(entityColumn.methodName, "MvccVersion") && !entityColumn.isMappingManyToMany()>
-					${versionedEntity.varName}.set${entityColumn.methodName}(get${entityColumn.methodName}());
+					${versionedEntity.variableName}.set${entityColumn.methodName}(get${entityColumn.methodName}());
 				</#if>
 			</#list>
 		}
@@ -752,14 +752,14 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		@Override
 		public ${versionedEntity.name} toVersionedModel() {
-			${versionedEntity.name} ${versionedEntity.varName} = new ${versionedEntity.name}Impl();
+			${versionedEntity.name} ${versionedEntity.variableName} = new ${versionedEntity.name}Impl();
 
-			${versionedEntity.varName}.setPrimaryKey(getVersionedModelId());
-			${versionedEntity.varName}.setHeadId(-getVersionedModelId());
+			${versionedEntity.variableName}.setPrimaryKey(getVersionedModelId());
+			${versionedEntity.variableName}.setHeadId(-getVersionedModelId());
 
-			populateVersionedModel(${versionedEntity.varName});
+			populateVersionedModel(${versionedEntity.variableName});
 
-			return ${versionedEntity.varName};
+			return ${versionedEntity.variableName};
 		}
 	</#if>
 
@@ -1505,11 +1505,11 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public Object clone() {
-		${entity.name}Impl ${entity.varName}Impl = new ${entity.name}Impl();
+		${entity.name}Impl ${entity.variableName}Impl = new ${entity.name}Impl();
 
 		<#list entity.regularEntityColumns as entityColumn>
 			<#if !stringUtil.equals(entityColumn.type, "Blob")>
-				${entity.varName}Impl.set${entityColumn.methodName}(
+				${entity.variableName}Impl.set${entityColumn.methodName}(
 
 				<#if entityColumn.entityName??>
 					(${entityColumn.entityName})get${entityColumn.methodName}().clone()
@@ -1523,25 +1523,25 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			</#if>
 		</#list>
 
-		${entity.varName}Impl.resetOriginalValues();
+		${entity.variableName}Impl.resetOriginalValues();
 
-		return ${entity.varName}Impl;
+		return ${entity.variableName}Impl;
 	}
 
 	@Override
-	public int compareTo(${entity.name} ${entity.varName}) {
+	public int compareTo(${entity.name} ${entity.variableName}) {
 		<#if entity.isOrdered()>
 			int value = 0;
 
 			<#list entity.entityOrder.entityColumns as entityColumn>
 				<#if entityColumn.isPrimitiveType()>
 					<#if stringUtil.equals(entityColumn.type, "boolean")>
-						value = Boolean.compare(is${entityColumn.methodName}(), ${entity.varName}.is${entityColumn.methodName}());
+						value = Boolean.compare(is${entityColumn.methodName}(), ${entity.variableName}.is${entityColumn.methodName}());
 					<#else>
-						if (get${entityColumn.methodName}() < ${entity.varName}.get${entityColumn.methodName}()) {
+						if (get${entityColumn.methodName}() < ${entity.variableName}.get${entityColumn.methodName}()) {
 							value = -1;
 						}
-						else if (get${entityColumn.methodName}() > ${entity.varName}.get${entityColumn.methodName}()) {
+						else if (get${entityColumn.methodName}() > ${entity.variableName}.get${entityColumn.methodName}()) {
 							value = 1;
 						}
 						else {
@@ -1550,12 +1550,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 					</#if>
 				<#else>
 					<#if stringUtil.equals(entityColumn.type, "Date")>
-						value = DateUtil.compareTo(get${entityColumn.methodName}(), ${entity.varName}.get${entityColumn.methodName}());
+						value = DateUtil.compareTo(get${entityColumn.methodName}(), ${entity.variableName}.get${entityColumn.methodName}());
 					<#else>
 						<#if entityColumn.isCaseSensitive()>
-							value = get${entityColumn.methodName}().compareTo(${entity.varName}.get${entityColumn.methodName}());
+							value = get${entityColumn.methodName}().compareTo(${entity.variableName}.get${entityColumn.methodName}());
 						<#else>
-							value = get${entityColumn.methodName}().compareToIgnoreCase(${entity.varName}.get${entityColumn.methodName}());
+							value = get${entityColumn.methodName}().compareToIgnoreCase(${entity.variableName}.get${entityColumn.methodName}());
 						</#if>
 					</#if>
 				</#if>
@@ -1571,7 +1571,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 			return 0;
 		<#else>
-			${entity.PKClassName} primaryKey = ${entity.varName}.getPrimaryKey();
+			${entity.PKClassName} primaryKey = ${entity.variableName}.getPrimaryKey();
 
 			<#if entity.hasPrimitivePK()>
 				if (getPrimaryKey() < primaryKey) {
@@ -1599,9 +1599,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			return false;
 		}
 
-		${entity.name} ${entity.varName} = (${entity.name})object;
+		${entity.name} ${entity.variableName} = (${entity.name})object;
 
-		${entity.PKClassName} primaryKey = ${entity.varName}.getPrimaryKey();
+		${entity.PKClassName} primaryKey = ${entity.variableName}.getPrimaryKey();
 
 		<#if entity.hasPrimitivePK()>
 			if (getPrimaryKey() == primaryKey) {
@@ -1705,10 +1705,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public CacheModel<${entity.name}> toCacheModel() {
-		${entity.name}CacheModel ${entity.varName}CacheModel = new ${entity.name}CacheModel();
+		${entity.name}CacheModel ${entity.variableName}CacheModel = new ${entity.name}CacheModel();
 
 		<#if entity.hasCompoundPK()>
-			${entity.varName}CacheModel.${entity.PKVariableName} = getPrimaryKey();
+			${entity.variableName}CacheModel.${entity.PKVariableName} = getPrimaryKey();
 		</#if>
 
 		<#list entity.databaseRegularEntityColumns as entityColumn>
@@ -1717,29 +1717,29 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 					Date ${entityColumn.name} = get${entityColumn.methodName}();
 
 					if (${entityColumn.name} != null) {
-						${entity.varName}CacheModel.${entityColumn.name} = ${entityColumn.name}.getTime();
+						${entity.variableName}CacheModel.${entityColumn.name} = ${entityColumn.name}.getTime();
 					}
 					else {
-						${entity.varName}CacheModel.${entityColumn.name} = Long.MIN_VALUE;
+						${entity.variableName}CacheModel.${entityColumn.name} = Long.MIN_VALUE;
 					}
 				<#else>
 					<#if entityColumn.isPrimitiveTypeWrapper()>
 						${entityColumn.type} ${entityColumn.name} = get${entityColumn.methodName}();
 
 						if (${entityColumn.name} != null) {
-							${entity.varName}CacheModel.${entityColumn.name} = ${entityColumn.name};
+							${entity.variableName}CacheModel.${entityColumn.name} = ${entityColumn.name};
 						}
 					<#elseif stringUtil.equals(entityColumn.type, "boolean")>
-						${entity.varName}CacheModel.${entityColumn.name} = is${entityColumn.methodName}();
+						${entity.variableName}CacheModel.${entityColumn.name} = is${entityColumn.methodName}();
 					<#else>
-						${entity.varName}CacheModel.${entityColumn.name} = get${entityColumn.methodName}();
+						${entity.variableName}CacheModel.${entityColumn.name} = get${entityColumn.methodName}();
 					</#if>
 
 					<#if stringUtil.equals(entityColumn.type, "String")>
-						String ${entityColumn.name} = ${entity.varName}CacheModel.${entityColumn.name};
+						String ${entityColumn.name} = ${entity.variableName}CacheModel.${entityColumn.name};
 
 						if ((${entityColumn.name} != null) && (${entityColumn.name}.length() == 0)) {
-							${entity.varName}CacheModel.${entityColumn.name} = null;
+							${entity.variableName}CacheModel.${entityColumn.name} = null;
 						}
 					</#if>
 				</#if>
@@ -1749,10 +1749,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#list cacheFields as cacheField>
 			<#assign methodName = serviceBuilder.getCacheFieldMethodName(cacheField) />
 
-			${entity.varName}CacheModel.${cacheField.name} = get${methodName}();
+			${entity.variableName}CacheModel.${cacheField.name} = get${methodName}();
 		</#list>
 
-		return ${entity.varName}CacheModel;
+		return ${entity.variableName}CacheModel;
 	}
 
 	<#if hasLazy>
