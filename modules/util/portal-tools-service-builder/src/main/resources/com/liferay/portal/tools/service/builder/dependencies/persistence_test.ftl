@@ -114,7 +114,7 @@ public class ${entity.name}PersistenceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Iterator<${entity.name}> iterator = _${entity.pluralVarName}.iterator();
+		Iterator<${entity.name}> iterator = _${entity.pluralVariableName}.iterator();
 
 		while (iterator.hasNext()) {
 			_persistence.remove(iterator.next());
@@ -296,7 +296,7 @@ public class ${entity.name}PersistenceTest {
 			</#if>
 		</#list>
 
-		_${entity.pluralVarName}.add(_persistence.update(new${entity.name}));
+		_${entity.pluralVariableName}.add(_persistence.update(new${entity.name}));
 
 		<#if hasEagerBlob>
 			Session session = _persistence.openSession();
@@ -652,11 +652,11 @@ public class ${entity.name}PersistenceTest {
 		primaryKeys.add(new${entity.name}1.getPrimaryKey());
 		primaryKeys.add(new${entity.name}2.getPrimaryKey());
 
-		Map<Serializable, ${entity.name}> ${entity.pluralVarName} = _persistence.fetchByPrimaryKeys(primaryKeys);
+		Map<Serializable, ${entity.name}> ${entity.pluralVariableName} = _persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(2, ${entity.pluralVarName}.size());
-		Assert.assertEquals(new${entity.name}1, ${entity.pluralVarName}.get(new${entity.name}1.getPrimaryKey()));
-		Assert.assertEquals(new${entity.name}2, ${entity.pluralVarName}.get(new${entity.name}2.getPrimaryKey()));
+		Assert.assertEquals(2, ${entity.pluralVariableName}.size());
+		Assert.assertEquals(new${entity.name}1, ${entity.pluralVariableName}.get(new${entity.name}1.getPrimaryKey()));
+		Assert.assertEquals(new${entity.name}2, ${entity.pluralVariableName}.get(new${entity.name}2.getPrimaryKey()));
 	}
 
 	@Test
@@ -754,9 +754,9 @@ public class ${entity.name}PersistenceTest {
 		primaryKeys.add(pk1);
 		primaryKeys.add(pk2);
 
-		Map<Serializable, ${entity.name}> ${entity.pluralVarName} = _persistence.fetchByPrimaryKeys(primaryKeys);
+		Map<Serializable, ${entity.name}> ${entity.pluralVariableName} = _persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertTrue(${entity.pluralVarName}.isEmpty());
+		Assert.assertTrue(${entity.pluralVariableName}.isEmpty());
 	}
 
 	@Test
@@ -812,19 +812,19 @@ public class ${entity.name}PersistenceTest {
 		primaryKeys.add(new${entity.name}.getPrimaryKey());
 		primaryKeys.add(pk);
 
-		Map<Serializable, ${entity.name}> ${entity.pluralVarName} = _persistence.fetchByPrimaryKeys(primaryKeys);
+		Map<Serializable, ${entity.name}> ${entity.pluralVariableName} = _persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(1, ${entity.pluralVarName}.size());
-		Assert.assertEquals(new${entity.name}, ${entity.pluralVarName}.get(new${entity.name}.getPrimaryKey()));
+		Assert.assertEquals(1, ${entity.pluralVariableName}.size());
+		Assert.assertEquals(new${entity.name}, ${entity.pluralVariableName}.get(new${entity.name}.getPrimaryKey()));
 	}
 
 	@Test
 	public void testFetchByPrimaryKeysWithNoPrimaryKeys() throws Exception {
 		Set<Serializable> primaryKeys = new HashSet<Serializable>();
 
-		Map<Serializable, ${entity.name}> ${entity.pluralVarName} = _persistence.fetchByPrimaryKeys(primaryKeys);
+		Map<Serializable, ${entity.name}> ${entity.pluralVariableName} = _persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertTrue(${entity.pluralVarName}.isEmpty());
+		Assert.assertTrue(${entity.pluralVariableName}.isEmpty());
 	}
 
 	@Test
@@ -835,10 +835,10 @@ public class ${entity.name}PersistenceTest {
 
 		primaryKeys.add(new${entity.name}.getPrimaryKey());
 
-		Map<Serializable, ${entity.name}> ${entity.pluralVarName} = _persistence.fetchByPrimaryKeys(primaryKeys);
+		Map<Serializable, ${entity.name}> ${entity.pluralVariableName} = _persistence.fetchByPrimaryKeys(primaryKeys);
 
-		Assert.assertEquals(1, ${entity.pluralVarName}.size());
-		Assert.assertEquals(new${entity.name}, ${entity.pluralVarName}.get(new${entity.name}.getPrimaryKey()));
+		Assert.assertEquals(1, ${entity.pluralVariableName}.size());
+		Assert.assertEquals(new${entity.name}, ${entity.pluralVariableName}.get(new${entity.name}.getPrimaryKey()));
 	}
 
 	<#if entity.hasActionableDynamicQuery()>
@@ -1188,7 +1188,7 @@ public class ${entity.name}PersistenceTest {
 			</#if>
 		</#list>
 
-		_${entity.pluralVarName}.add(_persistence.update(${entity.varName}));
+		_${entity.pluralVariableName}.add(_persistence.update(${entity.varName}));
 
 		return ${entity.varName};
 	}
@@ -1458,13 +1458,13 @@ public class ${entity.name}PersistenceTest {
 				${entity.varName}.setParent${pkEntityColumn.methodName}(parent${pkEntityColumn.methodName});
 			}
 
-			_${entity.pluralVarName}.add(_persistence.update(${entity.varName}));
+			_${entity.pluralVariableName}.add(_persistence.update(${entity.varName}));
 
 			return ${entity.varName};
 		}
 	</#if>
 
-	private List<${entity.name}> _${entity.pluralVarName} = new ArrayList<${entity.name}>();
+	private List<${entity.name}> _${entity.pluralVariableName} = new ArrayList<${entity.name}>();
 	private ${entity.name}Persistence _persistence;
 	private ClassLoader _dynamicQueryClassLoader;
 

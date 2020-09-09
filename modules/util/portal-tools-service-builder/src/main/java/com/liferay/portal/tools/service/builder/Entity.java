@@ -567,7 +567,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String getPKDBName() {
 		if (hasCompoundPK()) {
-			return getVarName() + "PK";
+			return getVariableName() + "PK";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -596,9 +596,9 @@ public class Entity implements Comparable<Entity> {
 		return entityColumn.getMethodName();
 	}
 
-	public String getPKVarName() {
+	public String getPKVariableName() {
 		if (hasCompoundPK()) {
-			return getVarName() + "PK";
+			return getVariableName() + "PK";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -614,9 +614,9 @@ public class Entity implements Comparable<Entity> {
 		return _pluralName;
 	}
 
-	public String getPluralPKVarName() {
+	public String getPluralPKVariableName() {
 		if (hasCompoundPK()) {
-			return getVarName() + "PKs";
+			return getVariableName() + "PKs";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -624,7 +624,7 @@ public class Entity implements Comparable<Entity> {
 		return entityColumn.getPluralName();
 	}
 
-	public String getPluralVarName() {
+	public String getPluralVariableName() {
 		return _pluralVariableName;
 	}
 
@@ -789,7 +789,7 @@ public class Entity implements Comparable<Entity> {
 		return _unresolvedReferenceEntityNames;
 	}
 
-	public String getVarName() {
+	public String getVariableName() {
 		return _variableName;
 	}
 
@@ -1007,10 +1007,10 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isGroupedModel() {
-		String pkVarName = getPKVarName();
+		String pkVariableName = getPKVariableName();
 
 		if (isAuditedModel() && hasEntityColumn("groupId") &&
-			!pkVarName.equals("groupId")) {
+			!pkVariableName.equals("groupId")) {
 
 			return true;
 		}
@@ -1137,10 +1137,10 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isResourcedModel() {
-		String pkVarName = getPKVarName();
+		String pkVariableName = getPKVariableName();
 
 		if (hasEntityColumn("resourcePrimKey") &&
-			!pkVarName.equals("resourcePrimKey")) {
+			!pkVariableName.equals("resourcePrimKey")) {
 
 			return true;
 		}

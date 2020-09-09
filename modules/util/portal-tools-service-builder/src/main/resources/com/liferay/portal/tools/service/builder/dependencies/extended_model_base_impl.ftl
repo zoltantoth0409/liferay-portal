@@ -69,22 +69,22 @@ public abstract class ${entity.name}BaseImpl extends ${entity.name}ModelImpl imp
 				@Override
 				@SuppressWarnings("unused")
 				public String buildTreePath() throws PortalException {
-					List<${entity.name}> ${entity.pluralVarName} = new ArrayList<${entity.name}>();
+					List<${entity.name}> ${entity.pluralVariableName} = new ArrayList<${entity.name}>();
 
 					${entity.name} ${entity.varName} = this;
 
 					while (${entity.varName} != null) {
-						${entity.pluralVarName}.add(${entity.varName});
+						${entity.pluralVariableName}.add(${entity.varName});
 
 						${entity.varName} = ${entity.name}LocalServiceUtil.fetch${entity.name}(${entity.varName}.getParent${pkEntityColumn.methodName}());
 					}
 
-					StringBundler sb = new StringBundler(${entity.pluralVarName}.size() * 2 + 1);
+					StringBundler sb = new StringBundler(${entity.pluralVariableName}.size() * 2 + 1);
 
 					sb.append("/");
 
-					for (int i = ${entity.pluralVarName}.size() - 1; i >= 0; i--) {
-						${entity.varName} = ${entity.pluralVarName}.get(i);
+					for (int i = ${entity.pluralVariableName}.size() - 1; i >= 0; i--) {
+						${entity.varName} = ${entity.pluralVariableName}.get(i);
 
 						sb.append(${entity.varName}.get${entity.PKEntityColumns[0].methodName}());
 						sb.append("/");

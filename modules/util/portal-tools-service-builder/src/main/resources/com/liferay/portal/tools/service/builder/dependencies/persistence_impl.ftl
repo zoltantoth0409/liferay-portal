@@ -346,11 +346,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Caches the ${entity.pluralHumanName} in the entity cache if it is enabled.
 	 *
-	 * @param ${entity.pluralVarName} the ${entity.pluralHumanName}
+	 * @param ${entity.pluralVariableName} the ${entity.pluralHumanName}
 	 */
 	@Override
-	public void cacheResult(List<${entity.name}> ${entity.pluralVarName}) {
-		for (${entity.name} ${entity.varName} : ${entity.pluralVarName}) {
+	public void cacheResult(List<${entity.name}> ${entity.pluralVariableName}) {
+		for (${entity.name} ${entity.varName} : ${entity.pluralVariableName}) {
 			<#if entity.isChangeTrackingEnabled()>
 				if (${entity.varName}.getCtCollectionId() != 0) {
 					<#if serviceBuilder.isVersionLTE_7_2_0()>
@@ -416,13 +416,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	@Override
-	public void clearCache(List<${entity.name}> ${entity.pluralVarName}) {
+	public void clearCache(List<${entity.name}> ${entity.pluralVariableName}) {
 		<#if serviceBuilder.isVersionLTE_7_2_0()>
 			${finderCache}.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 			${finderCache}.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		</#if>
 
-		for (${entity.name} ${entity.varName} : ${entity.pluralVarName}) {
+		for (${entity.name} ${entity.varName} : ${entity.pluralVariableName}) {
 			<#if serviceBuilder.isVersionGTE_7_3_0()>
 				${entityCache}.removeResult(${entity.name}Impl.class, ${entity.varName});
 			<#else>
@@ -554,15 +554,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Creates a new ${entity.humanName} with the primary key. Does not add the ${entity.humanName} to the database.
 	 *
-	 * @param ${entity.PKVarName} the primary key for the new ${entity.humanName}
+	 * @param ${entity.PKVariableName} the primary key for the new ${entity.humanName}
 	 * @return the new ${entity.humanName}
 	 */
 	@Override
-	public ${entity.name} create(${entity.PKClassName} ${entity.PKVarName}) {
+	public ${entity.name} create(${entity.PKClassName} ${entity.PKVariableName}) {
 		${entity.name} ${entity.varName} = new ${entity.name}Impl();
 
 		${entity.varName}.setNew(true);
-		${entity.varName}.setPrimaryKey(${entity.PKVarName});
+		${entity.varName}.setPrimaryKey(${entity.PKVariableName});
 
 		<#if entity.hasUuid()>
 			String uuid = PortalUUIDUtil.generate();
@@ -580,13 +580,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Removes the ${entity.humanName} with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param ${entity.PKVarName} the primary key of the ${entity.humanName}
+	 * @param ${entity.PKVariableName} the primary key of the ${entity.humanName}
 	 * @return the ${entity.humanName} that was removed
 	 * @throws ${noSuchEntity}Exception if a ${entity.humanName} with the primary key could not be found
 	 */
 	@Override
-	public ${entity.name} remove(${entity.PKClassName} ${entity.PKVarName}) throws ${noSuchEntity}Exception {
-		return remove((Serializable)${entity.PKVarName});
+	public ${entity.name} remove(${entity.PKClassName} ${entity.PKVariableName}) throws ${noSuchEntity}Exception {
+		return remove((Serializable)${entity.PKVariableName});
 	}
 
 	/**
@@ -754,10 +754,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 					long groupId = 0;
 				</#if>
 
-				long ${entity.PKVarName} = 0;
+				long ${entity.PKVariableName} = 0;
 
 				if (!isNew) {
-					${entity.PKVarName} = ${entity.varName}.getPrimaryKey();
+					${entity.PKVariableName} = ${entity.varName}.getPrimaryKey();
 				}
 
 				try {
@@ -786,7 +786,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 							<#assign modes = "StringUtil.split(\"" + sanitizeTuple.getObject(2) + "\")" />
 						</#if>
 
-						${entity.varName}.set${colMethodName}(SanitizerUtil.sanitize(companyId, groupId, userId, ${apiPackagePath}.model.${entity.name}.class.getName(), ${entity.PKVarName}, ${contentType}, ${modes}, ${entity.varName}.get${colMethodName}(), null));
+						${entity.varName}.set${colMethodName}(SanitizerUtil.sanitize(companyId, groupId, userId, ${apiPackagePath}.model.${entity.name}.class.getName(), ${entity.PKVariableName}, ${contentType}, ${modes}, ${entity.varName}.get${colMethodName}(), null));
 					</#list>
 				}
 				catch (SanitizerException sanitizerException) {
@@ -1050,13 +1050,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Returns the ${entity.humanName} with the primary key or throws a <code>${noSuchEntity}Exception</code> if it could not be found.
 	 *
-	 * @param ${entity.PKVarName} the primary key of the ${entity.humanName}
+	 * @param ${entity.PKVariableName} the primary key of the ${entity.humanName}
 	 * @return the ${entity.humanName}
 	 * @throws ${noSuchEntity}Exception if a ${entity.humanName} with the primary key could not be found
 	 */
 	@Override
-	public ${entity.name} findByPrimaryKey(${entity.PKClassName} ${entity.PKVarName}) throws ${noSuchEntity}Exception {
-		return findByPrimaryKey((Serializable)${entity.PKVarName});
+	public ${entity.name} findByPrimaryKey(${entity.PKClassName} ${entity.PKVariableName}) throws ${noSuchEntity}Exception {
+		return findByPrimaryKey((Serializable)${entity.PKVariableName});
 	}
 
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
@@ -1145,12 +1145,12 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Returns the ${entity.humanName} with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param ${entity.PKVarName} the primary key of the ${entity.humanName}
+	 * @param ${entity.PKVariableName} the primary key of the ${entity.humanName}
 	 * @return the ${entity.humanName}, or <code>null</code> if a ${entity.humanName} with the primary key could not be found
 	 */
 	@Override
-	public ${entity.name} fetchByPrimaryKey(${entity.PKClassName} ${entity.PKVarName}) {
-		return fetchByPrimaryKey((Serializable)${entity.PKVarName});
+	public ${entity.name} fetchByPrimaryKey(${entity.PKClassName} ${entity.PKVariableName}) {
+		return fetchByPrimaryKey((Serializable)${entity.PKVariableName});
 	}
 
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
@@ -1760,11 +1760,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName}
+				 * @param ${referenceEntity.pluralVariableName} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
-				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
-					add${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVarName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVariableName}) {
+					add${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVariableName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVariableName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1814,11 +1814,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName}
+				 * @param ${referenceEntity.pluralVariableName} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
-				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
-					remove${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVarName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVariableName}) {
+					remove${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVariableName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVariableName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1858,15 +1858,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Sets the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.pluralVariableName} the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
 				 */
 				@Override
-				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
+				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVariableName}) {
 					try {
-						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.pluralVarName}.size()];
+						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.pluralVariableName}.size()];
 
-						for (int i = 0; i < ${referenceEntity.pluralVarName}.size(); i++) {
-							${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName} = ${referenceEntity.pluralVarName}.get(i);
+						for (int i = 0; i < ${referenceEntity.pluralVariableName}.size(); i++) {
+							${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName} = ${referenceEntity.pluralVariableName}.get(i);
 
 							${referenceEntity.varName}PKs[i] = ${referenceEntity.varName}.getPrimaryKey();
 						}

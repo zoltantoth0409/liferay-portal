@@ -642,12 +642,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		@Override
 		public String[] getAvailableLanguageIds() {
-			List<${localizedEntity.name}> ${localizedEntity.pluralVarName} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
+			List<${localizedEntity.name}> ${localizedEntity.pluralVariableName} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
 
-			String[] availableLanguageIds = new String[${localizedEntity.pluralVarName}.size()];
+			String[] availableLanguageIds = new String[${localizedEntity.pluralVariableName}.size()];
 
 			for (int i = 0; i < availableLanguageIds.length; i++) {
-				${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.pluralVarName}.get(i);
+				${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.pluralVariableName}.get(i);
 
 				availableLanguageIds[i] = ${localizedEntity.varName}.getLanguageId();
 			}
@@ -693,9 +693,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			public Map<String, String> getLanguageIdTo${entityColumn.methodName}Map() {
 				Map<String, String> languageIdTo${entityColumn.methodName}Map = new HashMap<String, String>();
 
-				List<${localizedEntity.name}> ${localizedEntity.pluralVarName} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
+				List<${localizedEntity.name}> ${localizedEntity.pluralVariableName} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
 
-				for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.pluralVarName}) {
+				for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.pluralVariableName}) {
 					languageIdTo${entityColumn.methodName}Map.put(${localizedEntity.varName}.getLanguageId(), ${localizedEntity.varName}.get${entityColumn.methodName}());
 				}
 
@@ -746,8 +746,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 
 		@Override
-		public void setVersionedModelId(long ${versionedEntity.getPKVarName()}) {
-			set${pkEntityColumn.methodName}(${versionedEntity.getPKVarName()});
+		public void setVersionedModelId(long ${versionedEntity.getPKVariableName()}) {
+			set${pkEntityColumn.methodName}(${versionedEntity.getPKVariableName()});
 		}
 
 		@Override
@@ -1708,7 +1708,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		${entity.name}CacheModel ${entity.varName}CacheModel = new ${entity.name}CacheModel();
 
 		<#if entity.hasCompoundPK()>
-			${entity.varName}CacheModel.${entity.PKVarName} = getPrimaryKey();
+			${entity.varName}CacheModel.${entity.PKVariableName} = getPrimaryKey();
 		</#if>
 
 		<#list entity.databaseRegularEntityColumns as entityColumn>

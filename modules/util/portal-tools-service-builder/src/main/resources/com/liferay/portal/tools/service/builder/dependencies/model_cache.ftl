@@ -57,15 +57,15 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 
 		<#if entity.hasPrimitivePK(false)>
 			<#if entity.isMvccEnabled()>
-				if ((${entity.PKVarName} == ${entity.varName}CacheModel.${entity.PKVarName}) && (mvccVersion == ${entity.varName}CacheModel.mvccVersion)) {
+				if ((${entity.PKVariableName} == ${entity.varName}CacheModel.${entity.PKVariableName}) && (mvccVersion == ${entity.varName}CacheModel.mvccVersion)) {
 			<#else>
-				if (${entity.PKVarName} == ${entity.varName}CacheModel.${entity.PKVarName}) {
+				if (${entity.PKVariableName} == ${entity.varName}CacheModel.${entity.PKVariableName}) {
 			</#if>
 		<#else>
 			<#if entity.isMvccEnabled()>
-				if (${entity.PKVarName}.equals(${entity.varName}CacheModel.${entity.PKVarName}) && (mvccVersion == ${entity.varName}CacheModel.mvccVersion)) {
+				if (${entity.PKVariableName}.equals(${entity.varName}CacheModel.${entity.PKVariableName}) && (mvccVersion == ${entity.varName}CacheModel.mvccVersion)) {
 			<#else>
-				if (${entity.PKVarName}.equals(${entity.varName}CacheModel.${entity.PKVarName})) {
+				if (${entity.PKVariableName}.equals(${entity.varName}CacheModel.${entity.PKVariableName})) {
 			</#if>
 		</#if>
 
@@ -78,11 +78,11 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 	@Override
 	public int hashCode() {
 		<#if entity.isMvccEnabled()>
-			int hashCode = HashUtil.hash(0, ${entity.PKVarName});
+			int hashCode = HashUtil.hash(0, ${entity.PKVariableName});
 
 			return HashUtil.hash(hashCode, mvccVersion);
 		<#else>
-			return HashUtil.hash(0, ${entity.PKVarName});
+			return HashUtil.hash(0, ${entity.PKVariableName});
 		</#if>
 	}
 
@@ -206,7 +206,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 		</#list>
 
 		<#if entity.hasCompoundPK()>
-			${entity.PKVarName} = new ${entity.PKClassName}(
+			${entity.PKVariableName} = new ${entity.PKClassName}(
 
 				<#list entity.PKEntityColumns as entityColumn>
 					${entityColumn.name}
@@ -273,7 +273,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 	</#list>
 
 	<#if entity.hasCompoundPK()>
-		public transient ${entity.name}PK ${entity.PKVarName};
+		public transient ${entity.name}PK ${entity.PKVariableName};
 	</#if>
 
 }

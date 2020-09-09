@@ -7158,7 +7158,7 @@ public class ServiceBuilder {
 			"column");
 
 		versionEntityColumnElement.addAttribute(
-			"name", entity.getVarName() + "VersionId");
+			"name", entity.getVariableName() + "VersionId");
 		versionEntityColumnElement.addAttribute("primary", "true");
 		versionEntityColumnElement.addAttribute("type", "long");
 

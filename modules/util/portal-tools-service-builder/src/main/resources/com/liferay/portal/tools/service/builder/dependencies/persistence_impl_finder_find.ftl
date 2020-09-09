@@ -487,11 +487,11 @@ that may or may not be enforced with a unique index at the database level. Case
 		return null;
 	}
 
-	<#if !entityFinder.hasEntityColumn(entity.PKVarName)>
+	<#if !entityFinder.hasEntityColumn(entity.PKVariableName)>
 		/**
 		 * Returns the ${entity.pluralHumanName} before and after the current ${entity.humanName} in the ordered set where ${entityFinder.getHumanConditions(false)}.
 		 *
-		 * @param ${entity.PKVarName} the primary key of the current ${entity.humanName}
+		 * @param ${entity.PKVariableName} the primary key of the current ${entity.humanName}
 		<#list entityColumns as entityColumn>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#list>
@@ -500,7 +500,7 @@ that may or may not be enforced with a unique index at the database level. Case
 		 * @throws ${noSuchEntity}Exception if a ${entity.humanName} with the primary key could not be found
 		 */
 		@Override
-		public ${entity.name}[] findBy${entityFinder.name}_PrevAndNext(${entity.PKClassName} ${entity.PKVarName},
+		public ${entity.name}[] findBy${entityFinder.name}_PrevAndNext(${entity.PKClassName} ${entity.PKVariableName},
 
 		<#list entityColumns as entityColumn>
 			${entityColumn.type} ${entityColumn.name},
@@ -513,7 +513,7 @@ that may or may not be enforced with a unique index at the database level. Case
 				</#if>
 			</#list>
 
-			${entity.name} ${entity.varName} = findByPrimaryKey(${entity.PKVarName});
+			${entity.name} ${entity.varName} = findByPrimaryKey(${entity.PKVariableName});
 
 			Session session = null;
 
@@ -799,11 +799,11 @@ that may or may not be enforced with a unique index at the database level. Case
 			</#if>
 		}
 
-		<#if !entityFinder.hasEntityColumn(entity.PKVarName)>
+		<#if !entityFinder.hasEntityColumn(entity.PKVariableName)>
 			/**
 			 * Returns the ${entity.pluralHumanName} before and after the current ${entity.humanName} in the ordered set of ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 			 *
-			 * @param ${entity.PKVarName} the primary key of the current ${entity.humanName}
+			 * @param ${entity.PKVariableName} the primary key of the current ${entity.humanName}
 			<#list entityColumns as entityColumn>
 			 * @param ${entityColumn.name} the ${entityColumn.humanName}
 			</#list>
@@ -812,7 +812,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			 * @throws ${noSuchEntity}Exception if a ${entity.humanName} with the primary key could not be found
 			 */
 			@Override
-			public ${entity.name}[] filterFindBy${entityFinder.name}_PrevAndNext(${entity.PKClassName} ${entity.PKVarName},
+			public ${entity.name}[] filterFindBy${entityFinder.name}_PrevAndNext(${entity.PKClassName} ${entity.PKVariableName},
 
 			<#list entityColumns as entityColumn>
 				${entityColumn.type} ${entityColumn.name},
@@ -827,7 +827,7 @@ that may or may not be enforced with a unique index at the database level. Case
 					if (!InlineSQLHelperUtil.isEnabled()) {
 				</#if>
 
-					return findBy${entityFinder.name}_PrevAndNext(${entity.PKVarName},
+					return findBy${entityFinder.name}_PrevAndNext(${entity.PKVariableName},
 
 					<#list entityColumns as entityColumn>
 						${entityColumn.name},
@@ -842,7 +842,7 @@ that may or may not be enforced with a unique index at the database level. Case
 					</#if>
 				</#list>
 
-				${entity.name} ${entity.varName} = findByPrimaryKey(${entity.PKVarName});
+				${entity.name} ${entity.varName} = findByPrimaryKey(${entity.PKVariableName});
 
 				Session session = null;
 
