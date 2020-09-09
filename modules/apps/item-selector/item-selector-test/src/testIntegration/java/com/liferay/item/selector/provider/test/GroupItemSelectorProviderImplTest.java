@@ -61,7 +61,7 @@ public class GroupItemSelectorProviderImplTest {
 	}
 
 	@Test
-	public void testGetGroupsAlwaysReturnsGlobal() throws Exception {
+	public void testGetGroups() throws Exception {
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_user);
 
