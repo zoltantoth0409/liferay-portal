@@ -77,8 +77,8 @@ public interface DispatchLogLocalService
 	public DispatchLog addDispatchLog(DispatchLog dispatchLog);
 
 	public DispatchLog addDispatchLog(
-			long userId, long dispatchTriggerId, String error, String output,
-			int status, Date startDate, Date endDate)
+			long userId, long dispatchTriggerId, Date endDate, String error,
+			String output, Date startDate, int status)
 		throws PortalException;
 
 	/**
@@ -280,8 +280,8 @@ public interface DispatchLogLocalService
 	public DispatchLog updateDispatchLog(DispatchLog dispatchLog);
 
 	public DispatchLog updateDispatchLog(
-			long dispatchLogId, String error, String output, int status,
-			Date endDate)
+			long dispatchLogId, Date endDate, String error, String output,
+			int status)
 		throws PortalException;
 
 }

@@ -55,13 +55,13 @@ public class DispatchLogLocalServiceUtil {
 	}
 
 	public static com.liferay.dispatch.model.DispatchLog addDispatchLog(
-			long userId, long dispatchTriggerId, String error, String output,
-			int status, java.util.Date startDate, java.util.Date endDate)
+			long userId, long dispatchTriggerId, java.util.Date endDate,
+			String error, String output, java.util.Date startDate, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addDispatchLog(
-			userId, dispatchTriggerId, error, output, status, startDate,
-			endDate);
+			userId, dispatchTriggerId, endDate, error, output, startDate,
+			status);
 	}
 
 	/**
@@ -331,12 +331,12 @@ public class DispatchLogLocalServiceUtil {
 	}
 
 	public static com.liferay.dispatch.model.DispatchLog updateDispatchLog(
-			long dispatchLogId, String error, String output, int status,
-			java.util.Date endDate)
+			long dispatchLogId, java.util.Date endDate, String error,
+			String output, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateDispatchLog(
-			dispatchLogId, error, output, status, endDate);
+			dispatchLogId, endDate, error, output, status);
 	}
 
 	public static DispatchLogLocalService getService() {
