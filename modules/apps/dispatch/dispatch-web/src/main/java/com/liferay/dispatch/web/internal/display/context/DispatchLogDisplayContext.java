@@ -54,6 +54,14 @@ public class DispatchLogDisplayContext {
 			_dispatchRequestHelper.getLocale());
 	}
 
+	public String getDateString(Date date) {
+		if (date != null) {
+			return _dateFormat.format(date);
+		}
+
+		return StringPool.BLANK;
+	}
+
 	public DispatchLog getDispatchLog() throws PortalException {
 		long dispatchLogId = ParamUtil.getLong(
 			_dispatchRequestHelper.getRequest(), "dispatchLogId");
@@ -67,14 +75,6 @@ public class DispatchLogDisplayContext {
 
 	public DispatchTrigger getDispatchTrigger() {
 		return _dispatchRequestHelper.getDispatchTrigger();
-	}
-
-	public String getDateString(Date date) {
-		if (date != null) {
-			return _dateFormat.format(date);
-		}
-
-		return StringPool.BLANK;
 	}
 
 	public String getOrderByCol() {
