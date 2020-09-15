@@ -145,15 +145,13 @@ public class CommerceCatalogLocalServiceImpl
 
 		validate(commerceCatalog);
 
-		long groupId = commerceCatalog.getGroupId();
-
 		// Commerce catalog
 
 		commerceCatalogPersistence.remove(commerceCatalog);
 
 		// Group
 
-		groupLocalService.deleteGroup(groupId);
+		groupLocalService.deleteGroup(commerceCatalog.getGroupId());
 
 		// Resources
 
