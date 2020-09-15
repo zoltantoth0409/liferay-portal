@@ -98,9 +98,6 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 			else if (cmd.equals(Constants.DELETE)) {
 				deleteDispatchTrigger(actionRequest);
 			}
-			else if (cmd.equals("schedule")) {
-				scheduleDispatchTrigger(actionRequest);
-			}
 			else if (cmd.equals("runProcess")) {
 				HttpServletResponse httpServletResponse =
 					_portal.getHttpServletResponse(actionResponse);
@@ -111,6 +108,9 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 				writeJSON(actionResponse, runProcess(actionRequest));
 
 				hideDefaultSuccessMessage(actionRequest);
+			}
+			else if (cmd.equals("schedule")) {
+				scheduleDispatchTrigger(actionRequest);
 			}
 		}
 		catch (Exception exception) {
