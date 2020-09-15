@@ -30,9 +30,10 @@ if (schedulePublicationDisplayContext != null) {
 	scheduled = schedulePublicationDisplayContext.isScheduled();
 }
 else {
-	int day = ParamUtil.getInteger(request, "publishTimeDay");
-	int minute = ParamUtil.getInteger(request, "publishTimeMinute");
+	calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
+
 	int month = ParamUtil.getInteger(request, "publishTimeMonth");
+	int day = ParamUtil.getInteger(request, "publishTimeDay");
 	int year = ParamUtil.getInteger(request, "publishTimeYear");
 
 	int hour = ParamUtil.getInteger(request, "publishTimeHour");
@@ -41,7 +42,7 @@ else {
 		hour += 12;
 	}
 
-	calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
+	int minute = ParamUtil.getInteger(request, "publishTimeMinute");
 
 	calendar.setTime(PortalUtil.getDate(month, day, year, hour, minute, timeZone, PortalException.class));
 

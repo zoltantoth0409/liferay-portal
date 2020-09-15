@@ -62,13 +62,11 @@ public class ViewScheduledDisplayContext {
 		_httpServletRequest = httpServletRequest;
 		_language = language;
 		_publishScheduler = publishScheduler;
-
 		_renderRequest = renderRequest;
+		_renderResponse = renderResponse;
 
 		_themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		_renderResponse = renderResponse;
 	}
 
 	public String getDisplayStyle() {

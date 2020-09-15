@@ -66,10 +66,8 @@ public class SchedulePublicationMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, ActionRequest.ACTION_NAME);
 
 		if (!actionName.equals("/change_lists/unschedule_publication")) {
-			int day = ParamUtil.getInteger(actionRequest, "publishTimeDay");
-			int minute = ParamUtil.getInteger(
-				actionRequest, "publishTimeMinute");
 			int month = ParamUtil.getInteger(actionRequest, "publishTimeMonth");
+			int day = ParamUtil.getInteger(actionRequest, "publishTimeDay");
 			int year = ParamUtil.getInteger(actionRequest, "publishTimeYear");
 
 			int hour = ParamUtil.getInteger(actionRequest, "publishTimeHour");
@@ -79,6 +77,9 @@ public class SchedulePublicationMVCActionCommand extends BaseMVCActionCommand {
 
 				hour += 12;
 			}
+
+			int minute = ParamUtil.getInteger(
+				actionRequest, "publishTimeMinute");
 
 			publishDate = _portal.getDate(
 				month, day, year, hour, minute, themeDisplay.getTimeZone(),
