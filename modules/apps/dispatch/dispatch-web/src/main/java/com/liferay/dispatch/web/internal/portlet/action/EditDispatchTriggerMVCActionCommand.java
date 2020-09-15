@@ -152,9 +152,23 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 		long dispatchTriggerId = ParamUtil.getLong(
 			actionRequest, "dispatchTriggerId");
 
+		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 		String cronExpression = ParamUtil.getString(
 			actionRequest, "cronExpression");
-		boolean active = ParamUtil.getBoolean(actionRequest, "active");
+		int endDateMonth = ParamUtil.getInteger(actionRequest, "endDateMonth");
+		int endDateDay = ParamUtil.getInteger(actionRequest, "endDateDay");
+		int endDateYear = ParamUtil.getInteger(actionRequest, "endDateYear");
+		int endDateHour = ParamUtil.getInteger(actionRequest, "endDateHour");
+		int endDateMinute = ParamUtil.getInteger(
+			actionRequest, "endDateMinute");
+
+		int endDateAmPm = ParamUtil.getInteger(actionRequest, "endDateAmPm");
+
+		if (endDateAmPm == Calendar.PM) {
+			endDateHour += 12;
+		}
+
+		boolean neverEnd = ParamUtil.getBoolean(actionRequest, "neverEnd");
 
 		int startDateMonth = ParamUtil.getInteger(
 			actionRequest, "startDateMonth");
@@ -165,26 +179,13 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "startDateHour");
 		int startDateMinute = ParamUtil.getInteger(
 			actionRequest, "startDateMinute");
+
 		int startDateAmPm = ParamUtil.getInteger(
 			actionRequest, "startDateAmPm");
 
 		if (startDateAmPm == Calendar.PM) {
 			startDateHour += 12;
 		}
-
-		int endDateMonth = ParamUtil.getInteger(actionRequest, "endDateMonth");
-		int endDateDay = ParamUtil.getInteger(actionRequest, "endDateDay");
-		int endDateYear = ParamUtil.getInteger(actionRequest, "endDateYear");
-		int endDateHour = ParamUtil.getInteger(actionRequest, "endDateHour");
-		int endDateMinute = ParamUtil.getInteger(
-			actionRequest, "endDateMinute");
-		int endDateAmPm = ParamUtil.getInteger(actionRequest, "endDateAmPm");
-
-		if (endDateAmPm == Calendar.PM) {
-			endDateHour += 12;
-		}
-
-		boolean neverEnd = ParamUtil.getBoolean(actionRequest, "neverEnd");
 
 		_dispatchTriggerService.updateDispatchTrigger(
 			dispatchTriggerId, active, cronExpression, endDateMonth, endDateDay,
@@ -200,7 +201,6 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "dispatchTriggerId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
-
 		String dispatchTriggerType = ParamUtil.getString(
 			actionRequest, "dispatchTriggerType");
 
