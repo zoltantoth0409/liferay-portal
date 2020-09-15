@@ -69,7 +69,7 @@ public class DispatchLogDisplayContext {
 		return _dispatchRequestHelper.getDispatchTrigger();
 	}
 
-	public String getFormattedDate(Date date) {
+	public String getDateString(Date date) {
 		if (date != null) {
 			return _dateFormat.format(date);
 		}

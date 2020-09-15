@@ -63,7 +63,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 							href="<%= rowURL %>"
 							name="start-date"
 						>
-							<%= dispatchLogDisplayContext.getFormattedDate(dispatchLog.getStartDate()) %>
+							<%= dispatchLogDisplayContext.getDateString(dispatchLog.getStartDate()) %>
 						</liferay-ui:search-container-column-text>
 
 						<liferay-ui:search-container-column-text

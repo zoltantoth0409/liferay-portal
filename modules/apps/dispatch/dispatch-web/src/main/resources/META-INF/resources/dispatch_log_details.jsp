@@ -27,7 +27,7 @@ Date startDate = dispatchLog.getStartDate();
 
 long timeMillis = endDate.getTime() - startDate.getTime();
 
-String formattedStartDate = dispatchLogDisplayContext.getFormattedDate(dispatchLog.getStartDate());
+String formattedStartDate = dispatchLogDisplayContext.getDateString(dispatchLog.getStartDate());
 %>
 
 <portlet:actionURL name="editDispatchLog" var="editDispatchLogActionURL" />

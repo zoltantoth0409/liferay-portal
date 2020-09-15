@@ -60,7 +60,7 @@ public class DispatchTriggerDisplayContext {
 		return _dispatchRequestHelper.getDispatchTrigger();
 	}
 
-	public String getNextFireDate(long dispatchTriggerId) {
+	public String getNextFireDateString(long dispatchTriggerId) {
 		Date nextRunDate = _dispatchTriggerLocalService.getNextFireDate(
 			dispatchTriggerId);
 

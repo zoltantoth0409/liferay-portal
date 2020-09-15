@@ -78,7 +78,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 							<liferay-ui:search-container-column-text
 								cssClass="table-cell-content"
 								name="next-fire-date"
-								value="<%= dispatchTriggerDisplayContext.getNextFireDate(dispatchTrigger.getDispatchTriggerId()) %>"
+								value="<%= dispatchTriggerDisplayContext.getNextFireDateString(dispatchTrigger.getDispatchTriggerId()) %>"
 							/>
 
 							<liferay-ui:search-container-column-jsp
