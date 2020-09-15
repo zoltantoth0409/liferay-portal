@@ -37,8 +37,8 @@ public class DispatchLogLocalServiceImpl
 
 	@Override
 	public DispatchLog addDispatchLog(
-			long userId, long dispatchTriggerId, String error, String output,
-			int status, Date startDate, Date endDate)
+			long userId, long dispatchTriggerId, Date endDate, String error,
+			String output, Date startDate, int status)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
@@ -80,8 +80,8 @@ public class DispatchLogLocalServiceImpl
 
 	@Override
 	public DispatchLog updateDispatchLog(
-			long dispatchLogId, String error, String output, int status,
-			Date endDate)
+			long dispatchLogId, Date endDate, String error, String output,
+			int status)
 		throws PortalException {
 
 		DispatchLog dispatchLog = dispatchLogPersistence.findByPrimaryKey(
