@@ -187,34 +187,6 @@ public class ImportSamlSaasApplication extends Application {
 		for (JSONObject samlSpIdpConnectionJSONObject :
 				(Iterable<JSONObject>)samlSpIdConnectionsJsonArray) {
 
-			String samlIdpEntityId = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("samlIdpEntityId"));
-			boolean assertionSignatureRequired = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get(
-					"assertionSignatureRequired"));
-			long clockSkew = GetterUtil.getLong(
-				samlSpIdpConnectionJSONObject.get("clockSkew"));
-			boolean enabled = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get("enabled"));
-			boolean forceAuthn = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get("forceAuthn"));
-			boolean ldapImportEnabled = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get("ldapImportEnabled"));
-			String metadataUrl = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("metadataUrl"));
-			String metadataXml = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("metadataXml"));
-			String name = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("name"));
-			String nameIdFormat = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("nameIdFormat"));
-			boolean signAuthnRequest = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get("signAuthnRequest"));
-			boolean unknownUsersAreStrangers = GetterUtil.getBoolean(
-				samlSpIdpConnectionJSONObject.get("unknownUsersAreStrangers"));
-			String userAttributeMappings = GetterUtil.getString(
-				samlSpIdpConnectionJSONObject.get("userAttributeMappings"));
-
 			long samlSpIdpConnectionId = _counterLocalService.increment(
 				SamlSpIdpConnection.class.getName());
 
@@ -224,22 +196,49 @@ public class ImportSamlSaasApplication extends Application {
 
 			samlSpIdpConnection.setCompanyId(
 				_portal.getCompanyId(httpServletRequest));
-			samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
+			samlSpIdpConnection.setSamlIdpEntityId(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get("samlIdpEntityId")));
 			samlSpIdpConnection.setAssertionSignatureRequired(
-				assertionSignatureRequired);
-			samlSpIdpConnection.setClockSkew(clockSkew);
-			samlSpIdpConnection.setEnabled(enabled);
-			samlSpIdpConnection.setForceAuthn(forceAuthn);
-			samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get(
+						"assertionSignatureRequired")));
+			samlSpIdpConnection.setClockSkew(
+				GetterUtil.getLong(
+					samlSpIdpConnectionJSONObject.get("clockSkew")));
+			samlSpIdpConnection.setEnabled(
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get("enabled")));
+			samlSpIdpConnection.setForceAuthn(
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get("forceAuthn")));
+			samlSpIdpConnection.setLdapImportEnabled(
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get("ldapImportEnabled")));
 			samlSpIdpConnection.setMetadataUpdatedDate(new Date());
-			samlSpIdpConnection.setMetadataUrl(metadataUrl);
-			samlSpIdpConnection.setMetadataXml(metadataXml);
-			samlSpIdpConnection.setName(name);
-			samlSpIdpConnection.setNameIdFormat(nameIdFormat);
-			samlSpIdpConnection.setSignAuthnRequest(signAuthnRequest);
+			samlSpIdpConnection.setMetadataUrl(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get("metadataUrl")));
+			samlSpIdpConnection.setMetadataXml(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get("metadataXml")));
+			samlSpIdpConnection.setName(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get("name")));
+			samlSpIdpConnection.setNameIdFormat(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get("nameIdFormat")));
+			samlSpIdpConnection.setSignAuthnRequest(
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get("signAuthnRequest")));
 			samlSpIdpConnection.setUnknownUsersAreStrangers(
-				unknownUsersAreStrangers);
-			samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
+				GetterUtil.getBoolean(
+					samlSpIdpConnectionJSONObject.get(
+						"unknownUsersAreStrangers")));
+			samlSpIdpConnection.setUserAttributeMappings(
+				GetterUtil.getString(
+					samlSpIdpConnectionJSONObject.get(
+						"userAttributeMappings")));
 
 			ExpandoBridge expandoBridge =
 				samlSpIdpConnection.getExpandoBridge();
