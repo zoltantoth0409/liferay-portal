@@ -19,6 +19,7 @@ function resize() {
 			const boundingClientRect = content.getBoundingClientRect();
 
 			const contentWidth = width || boundingClientRect.width;
+
 			const contentHeight =
 				height || contentWidth * 0.5625;
 
