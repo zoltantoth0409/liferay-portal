@@ -241,10 +241,11 @@ public class ImportSamlSaasApplication extends Application {
 				unknownUsersAreStrangers);
 			samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
 
-			JSONObject expandoValuesJSONObject =
-				samlSpIdpConnectionJSONObject.getJSONObject("expandoValues");
 			ExpandoBridge expandoBridge =
 				samlSpIdpConnection.getExpandoBridge();
+
+			JSONObject expandoValuesJSONObject =
+				samlSpIdpConnectionJSONObject.getJSONObject("expandoValues");
 
 			for (String key : expandoValuesJSONObject.keySet()) {
 				expandoBridge.setAttribute(
