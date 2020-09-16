@@ -111,7 +111,7 @@ public class ImportSamlSaasApplication extends Application {
 
 			if (Validator.isBlank(samlSaasConfiguration.preSharedKey())) {
 				_log.error(
-					"Instance must be configured with a pre-shared key to " +
+					"Instance must be configured with a preshared key to " +
 						"decrypt configuration data imports");
 
 				throw new WebApplicationException(Response.Status.NOT_FOUND);
