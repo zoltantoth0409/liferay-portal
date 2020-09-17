@@ -146,7 +146,7 @@ public class DepotEntryGroupRelLocalServiceImpl
 
 			if (group.isStaged()) {
 				throw new DepotEntryGroupRelStagedGroupException(
-					"Asset library cannot be connected to a staged group");
+					"Depot entry cannot be connected to a staged group");
 			}
 		}
 		catch (PortalException portalException) {
