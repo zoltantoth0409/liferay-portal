@@ -91,8 +91,8 @@ public class WorkflowMetricsReindexBackgroundTaskExecutor
 		}
 
 		for (int i = 0; i < indexEntityNames.length; i++) {
-			String indexEntityName = indexEntityNames[i];
 			int count = i + 1;
+			String indexEntityName = indexEntityNames[i];
 
 			_workflowMetricsPortalExecutor.execute(
 				() -> {
