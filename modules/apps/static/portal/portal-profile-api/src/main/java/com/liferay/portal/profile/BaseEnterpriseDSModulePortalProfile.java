@@ -33,7 +33,7 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 
 	@Override
 	public void activate() {
-		if (!_DXP_RELEASE_BUILD) {
+		if (!_DXP) {
 			_componentContext.enableComponent(null);
 
 			return;
@@ -90,12 +90,12 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 		_supportedPortalProfileNames.add(bundle.getSymbolicName());
 	}
 
-	private static final boolean _DXP_RELEASE_BUILD;
+	private static final boolean _DXP;
 
 	static {
 		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-		boolean dxpReleaseBuild = false;
+		boolean dxp = false;
 
 		try {
 			Class<?> clazz = classLoader.loadClass(
@@ -103,12 +103,12 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 
 			clazz.getDeclaredMethod("checkUserLicense");
 
-			dxpReleaseBuild = true;
+			dxp = true;
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
 		}
 
-		_DXP_RELEASE_BUILD = dxpReleaseBuild;
+		_DXP = dxp;
 	}
 
 	private ComponentContext _componentContext;
