@@ -2021,7 +2021,7 @@ components:
                 locked:
                     # @review
                     description:
-                        A flag that indicates whether this thread is locked
+                        A flag that indicates whether this thread is locked.
                     readOnly: true
                     type: boolean
                 messageBoardSectionId:
