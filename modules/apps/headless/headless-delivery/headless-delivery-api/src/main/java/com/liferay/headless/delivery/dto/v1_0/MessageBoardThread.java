@@ -475,7 +475,9 @@ public class MessageBoardThread {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String[] keywords;
 
-	@Schema(description = "A flag that indicates whether this thread is locked")
+	@Schema(
+		description = "A flag that indicates whether this thread is locked."
+	)
 	public Boolean getLocked() {
 		return locked;
 	}
@@ -500,7 +502,7 @@ public class MessageBoardThread {
 	}
 
 	@GraphQLField(
-		description = "A flag that indicates whether this thread is locked"
+		description = "A flag that indicates whether this thread is locked."
 	)
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected Boolean locked;
