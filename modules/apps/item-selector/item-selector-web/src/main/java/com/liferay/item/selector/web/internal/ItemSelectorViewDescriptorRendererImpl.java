@@ -54,7 +54,6 @@ public class ItemSelectorViewDescriptorRendererImpl<T>
 		PortletRequest portletRequest =
 			(PortletRequest)servletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
-
 		PortletResponse portletResponse =
 			(PortletResponse)servletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
