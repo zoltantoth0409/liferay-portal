@@ -155,7 +155,7 @@ public class ProductResourceImpl
 		return _entityModel;
 	}
 
-	private static BooleanClause<Query> _getBooleanClause(
+	private BooleanClause<Query> _getBooleanClause(
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
 			Filter filter)
 		throws Exception {
