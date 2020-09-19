@@ -163,8 +163,7 @@ public class WabFactory
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Error on waiting service tracker opener thread to finish",
-				exception);
+				"Unable to stop service tracker opener thread", exception);
 		}
 
 		_bundleTracker.close();
