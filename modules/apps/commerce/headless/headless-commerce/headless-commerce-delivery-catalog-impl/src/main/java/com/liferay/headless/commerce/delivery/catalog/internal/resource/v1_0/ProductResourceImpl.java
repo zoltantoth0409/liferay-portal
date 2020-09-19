@@ -155,6 +155,29 @@ public class ProductResourceImpl
 		return _entityModel;
 	}
 
+	private Long _getAccountId(Long accountId, CommerceChannel commerceChannel)
+		throws Exception {
+
+		int countUserCommerceAccounts =
+			_commerceAccountHelper.countUserCommerceAccounts(
+				contextUser.getUserId(), commerceChannel.getGroupId());
+
+		if (countUserCommerceAccounts > 1) {
+			if (accountId == null) {
+				throw new NoSuchAccountException();
+			}
+		}
+		else {
+			long[] commerceAccountIds =
+				_commerceAccountHelper.getUserCommerceAccountIds(
+					contextUser.getUserId(), commerceChannel.getGroupId());
+
+			return commerceAccountIds[0];
+		}
+
+		return accountId;
+	}
+
 	private BooleanClause<Query> _getBooleanClause(
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
 			Filter filter)
@@ -178,29 +201,6 @@ public class ProductResourceImpl
 
 		return BooleanClauseFactoryUtil.create(
 			booleanQuery, BooleanClauseOccur.MUST.getName());
-	}
-
-	private Long _getAccountId(Long accountId, CommerceChannel commerceChannel)
-		throws Exception {
-
-		int countUserCommerceAccounts =
-			_commerceAccountHelper.countUserCommerceAccounts(
-				contextUser.getUserId(), commerceChannel.getGroupId());
-
-		if (countUserCommerceAccounts > 1) {
-			if (accountId == null) {
-				throw new NoSuchAccountException();
-			}
-		}
-		else {
-			long[] commerceAccountIds =
-				_commerceAccountHelper.getUserCommerceAccountIds(
-					contextUser.getUserId(), commerceChannel.getGroupId());
-
-			return commerceAccountIds[0];
-		}
-
-		return accountId;
 	}
 
 	private Product _toProduct(CPDefinition cpDefinition) throws Exception {
