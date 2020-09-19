@@ -288,9 +288,9 @@ public class CPSpecificationOptionFacetsPortlet
 		SearchResponse searchResponse =
 			portletSharedSearchResponse.getSearchResponse();
 
-		SearchRequest request = searchResponse.getRequest();
+		SearchRequest searchRequest = searchResponse.getRequest();
 
-		return request.getPaginationStartParameterName();
+		return searchRequest.getPaginationStartParameterName();
 	}
 
 	@Reference
