@@ -507,9 +507,9 @@ public class DataDefinitionResourceTest
 		catch (Problem.ProblemException problemException) {
 			Problem problem = problemException.getProblem();
 
-			Assert.assertEquals("string", problem.getDetail());
 			Assert.assertEquals("BAD_REQUEST", problem.getStatus());
 			Assert.assertEquals("MustSetValidType", problem.getType());
+			Assert.assertEquals("string", problem.getDetail());
 		}
 
 		// Fill the data layout name with the data definition's name when no
