@@ -40,7 +40,7 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 	@Override
 	public MFAFIDO2CredentialEntry addMFAFIDO2CredentialEntry(
 			long userId, String credentialKey, int credentialType,
-			String publicKeyCose)
+			String publicKeyCode)
 		throws PortalException {
 
 		MFAFIDO2CredentialEntry mfaFIDO2CredentialEntry =
@@ -65,7 +65,7 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 		mfaFIDO2CredentialEntry.setCreateDate(new Date());
 		mfaFIDO2CredentialEntry.setCredentialKey(credentialKey);
 		mfaFIDO2CredentialEntry.setCredentialType(credentialType);
-		mfaFIDO2CredentialEntry.setPublicKeyCose(publicKeyCose);
+		mfaFIDO2CredentialEntry.setPublicKeyCode(publicKeyCode);
 		mfaFIDO2CredentialEntry.setSignatureCount(0);
 
 		return mfaFIDO2CredentialEntryPersistence.update(
