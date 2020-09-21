@@ -46,6 +46,20 @@ public class StaticSizeTrieURLPatternMapperTest
 		}
 		catch (IllegalArgumentException illegalArgumentException) {			
 		}
+
+		try {
+			Map<String, String> map = new HashMap<>();
+
+			for (int i = 0; i < (Long.SIZE + 1); i++) {
+				map.put("key" + i, "value" + i);
+			}
+
+			createURLPatternMapper(map);
+
+			Assert.fail();
+		}
+		catch (IllegalArgumentException illegalArgumentException) {			
+		}
 	}
 
 	@Test
@@ -73,17 +87,6 @@ public class StaticSizeTrieURLPatternMapperTest
 
 		Assert.assertNull(urlPatternMapper.getValue("jsp"));
 		Assert.assertEquals("*.jsp", urlPatternMapper.getValue(".jsp"));
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testWilcardMaximumCount() {
-		Map<String, String> map = new HashMap<>();
-
-		for (int i = 0; i < (Long.SIZE + 1); i++) {
-			map.put("key" + i, "value" + 1);
-		}
-
-		createURLPatternMapper(map);
 	}
 
 	@Override
