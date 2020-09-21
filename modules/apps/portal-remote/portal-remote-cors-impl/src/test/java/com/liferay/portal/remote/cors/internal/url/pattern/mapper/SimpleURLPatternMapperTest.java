@@ -47,7 +47,7 @@ public class SimpleURLPatternMapperTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException illegalArgumentException) {			
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {
@@ -59,7 +59,7 @@ public class SimpleURLPatternMapperTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException illegalArgumentException) {			
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 	}
 

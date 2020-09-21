@@ -14,8 +14,6 @@
 
 package com.liferay.portal.remote.cors.internal.url.pattern.mapper;
 
-import com.liferay.portal.kernel.util.HashMapBuilder;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +42,7 @@ public class StaticSizeTrieURLPatternMapperTest
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException illegalArgumentException) {			
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {
@@ -58,7 +56,7 @@ public class StaticSizeTrieURLPatternMapperTest
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException illegalArgumentException) {			
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 	}
 
