@@ -55,17 +55,6 @@ public class SimpleURLPatternMapperTest {
 	}
 
 	@Test
-	public void testGetExtensionEdgeCases() {
-		URLPatternMapper<String> urlPatternMapper = createURLPatternMapper(
-			HashMapBuilder.put(
-				"*.jsp", "*.jsp"
-			).build());
-
-		Assert.assertNull(urlPatternMapper.getValue("jsp"));
-		Assert.assertEquals("*.jsp", urlPatternMapper.getValue(".jsp"));
-	}
-
-	@Test
 	public void testGetValue() {
 		KeyValuePair[] keyValuePairs = _createKeyValuePairs();
 
@@ -91,15 +80,14 @@ public class SimpleURLPatternMapperTest {
 					comparisonFailure.getActual());
 			}
 		}
-	}
 
-	@Test
-	public void testGetValueWithNull() {
-		URLPatternMapper<String> urlPatternMapper = createURLPatternMapper(
+		urlPatternMapper = createURLPatternMapper(
 			HashMapBuilder.put(
 				"*.jsp", "*.jsp"
 			).build());
 
+		Assert.assertEquals("*.jsp", urlPatternMapper.getValue(".jsp"));
+		Assert.assertNull(urlPatternMapper.getValue("jsp"));
 		Assert.assertNull(urlPatternMapper.getValue(null));
 	}
 
