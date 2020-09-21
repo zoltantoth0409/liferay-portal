@@ -78,17 +78,6 @@ public class StaticSizeTrieURLPatternMapperTest
 		}
 	}
 
-	@Test
-	public void testGetExtensionValueBounds() {
-		URLPatternMapper<String> urlPatternMapper = createURLPatternMapper(
-			HashMapBuilder.put(
-				"*.jsp", "*.jsp"
-			).build());
-
-		Assert.assertNull(urlPatternMapper.getValue("jsp"));
-		Assert.assertEquals("*.jsp", urlPatternMapper.getValue(".jsp"));
-	}
-
 	@Override
 	protected URLPatternMapper<String> createURLPatternMapper(
 		Map<String, String> values) {
