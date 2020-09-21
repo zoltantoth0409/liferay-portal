@@ -49,7 +49,7 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 
 		if (mfaFIDO2CredentialEntry != null) {
 			throw new DuplicateMFAFIDO2CredentialEntryException(
-				"User ID " + userId);
+				"{credentialKey=" + credentialKey + ", userId=" + userId + "}");
 		}
 
 		mfaFIDO2CredentialEntry = mfaFIDO2CredentialEntryPersistence.create(
