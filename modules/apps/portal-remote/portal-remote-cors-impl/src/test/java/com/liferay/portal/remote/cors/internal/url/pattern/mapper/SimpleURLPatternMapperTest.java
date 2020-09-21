@@ -38,7 +38,7 @@ public class SimpleURLPatternMapperTest {
 		CodeCoverageAssertor.INSTANCE;
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testConstructorWithEmptyPattern() {
+	public void testConstructorWithBlankPattern() {
 		createURLPatternMapper(
 			HashMapBuilder.put(
 				"", ""
@@ -47,7 +47,7 @@ public class SimpleURLPatternMapperTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstructorWithNullPattern() {
-		HashMap<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 
 		map.put(null, "null");
 
