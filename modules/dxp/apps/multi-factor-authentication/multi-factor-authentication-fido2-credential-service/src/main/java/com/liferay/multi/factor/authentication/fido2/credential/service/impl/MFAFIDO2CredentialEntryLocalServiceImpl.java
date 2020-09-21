@@ -106,7 +106,7 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 
 		if (mfaFIDO2CredentialEntry == null) {
 			throw new NoSuchMFAFIDO2CredentialEntryException(
-				"User ID " + userId);
+				"{credentialKey=" + credentialKey + ", userId=" + userId + "}");
 		}
 
 		if (signatureCount < 1) {
