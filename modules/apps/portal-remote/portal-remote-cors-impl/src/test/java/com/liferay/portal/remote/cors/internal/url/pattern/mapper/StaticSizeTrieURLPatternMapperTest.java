@@ -62,8 +62,11 @@ public class StaticSizeTrieURLPatternMapperTest
 		}
 	}
 
+	@Override
 	@Test
-	public void testFullAddresses() {
+	public void testGetValue() {
+		super.testGetValue();
+
 		Map<String, String> map = new HashMap<>();
 
 		for (int i = 0; i < Long.SIZE; i++) {
