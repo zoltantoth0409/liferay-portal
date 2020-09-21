@@ -37,21 +37,30 @@ public class SimpleURLPatternMapperTest {
 	public static final CodeCoverageAssertor codeCoverageAssertor =
 		CodeCoverageAssertor.INSTANCE;
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testConstructorWithBlankPattern() {
-		createURLPatternMapper(
-			HashMapBuilder.put(
-				"", ""
-			).build());
-	}
+	@Test
+	public void testConstructor() {
+		try {
+			createURLPatternMapper(
+				HashMapBuilder.put(
+					"", ""
+				).build());
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testConstructorWithNullPattern() {
-		Map<String, String> map = new HashMap<>();
+			Assert.fail();
+		}
+		catch (IllegalArgumentException illegalArgumentException) {			
+		}
 
-		map.put(null, "null");
+		try {
+			Map<String, String> map = new HashMap<>();
 
-		createURLPatternMapper(map);
+			map.put(null, "null");
+
+			createURLPatternMapper(map);
+
+			Assert.fail();
+		}
+		catch (IllegalArgumentException illegalArgumentException) {			
+		}
 	}
 
 	@Test

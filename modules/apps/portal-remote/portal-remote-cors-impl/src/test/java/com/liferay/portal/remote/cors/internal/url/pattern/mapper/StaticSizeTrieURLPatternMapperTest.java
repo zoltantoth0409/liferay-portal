@@ -28,15 +28,24 @@ import org.junit.Test;
 public class StaticSizeTrieURLPatternMapperTest
 	extends SimpleURLPatternMapperTest {
 
-	@Test(expected = IllegalArgumentException.class)
+	@Override
+	@Test
 	public void testConstructor() {
-		Map<String, String> map = new HashMap<>();
+		super.testConstructor();
 
-		for (int i = 0; i < 65; i++) {
-			map.put("*.key" + i, "value" + i);
+		try {
+			Map<String, String> map = new HashMap<>();
+
+			for (int i = 0; i < 65; i++) {
+				map.put("*.key" + i, "value" + i);
+			}
+
+			createURLPatternMapper(map);
+
+			Assert.fail();
 		}
-
-		createURLPatternMapper(map);
+		catch (IllegalArgumentException illegalArgumentException) {			
+		}
 	}
 
 	@Test
