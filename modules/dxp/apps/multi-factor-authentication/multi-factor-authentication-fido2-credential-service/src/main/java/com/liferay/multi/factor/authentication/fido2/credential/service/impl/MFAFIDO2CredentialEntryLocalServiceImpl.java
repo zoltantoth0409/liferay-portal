@@ -61,7 +61,6 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 
 		mfaFIDO2CredentialEntry.setUserId(userId);
 		mfaFIDO2CredentialEntry.setUserName(user.getFullName());
-
 		mfaFIDO2CredentialEntry.setCreateDate(new Date());
 		mfaFIDO2CredentialEntry.setCredentialKey(credentialKey);
 		mfaFIDO2CredentialEntry.setCredentialType(credentialType);
