@@ -97,7 +97,7 @@ public class MFAFIDO2CredentialEntryLocalServiceImpl
 
 	@Override
 	public MFAFIDO2CredentialEntry updateAttempts(
-			long userId, String credentialKey, String ip, long signatureCount)
+			long userId, String credentialKey, long signatureCount)
 		throws PortalException {
 
 		MFAFIDO2CredentialEntry mfaFIDO2CredentialEntry =
