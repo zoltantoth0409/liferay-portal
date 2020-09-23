@@ -19,7 +19,6 @@ import com.liferay.dispatch.model.DispatchLog;
 import com.liferay.dispatch.model.DispatchTrigger;
 import com.liferay.dispatch.service.DispatchLogLocalService;
 import com.liferay.dispatch.service.DispatchTriggerLocalService;
-import com.liferay.dispatch.talend.internal.helper.DispatchTalendScheduledTaskExecutorHelper;
 import com.liferay.petra.process.CollectorOutputProcessor;
 import com.liferay.petra.process.ConsumerOutputProcessor;
 import com.liferay.petra.process.ProcessException;

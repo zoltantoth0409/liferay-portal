@@ -12,13 +12,12 @@
  * details.
  */
 
-package com.liferay.dispatch.talend.internal.helper;
+package com.liferay.dispatch.talend.internal.executor;
 
 import com.liferay.dispatch.constants.DispatchPortletKeys;
 import com.liferay.dispatch.model.DispatchTrigger;
 import com.liferay.dispatch.service.DispatchTriggerLocalService;
 import com.liferay.dispatch.talend.internal.configuration.DispatchTalendConfiguration;
-import com.liferay.dispatch.talend.internal.executor.DispatchTalendScheduledTaskExecutor;
 import com.liferay.document.library.kernel.exception.FileExtensionException;
 import com.liferay.document.library.kernel.exception.FileSizeException;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
