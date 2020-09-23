@@ -160,7 +160,7 @@ if (commerceOrder != null) {
 					<div class="col-md-12">
 						<c:if test="<%= billingCommerceAddress != null %>">
 							<%= HtmlUtil.escape(billingCommerceAddress.getStreet1()) %><br />
-							<%= HtmlUtil.escape(billingCommerceAddress.getCity() + StringPool.SPACE + billingCommerceAddress.getZip()) %>
+							<%= HtmlUtil.escape(billingCommerceAddress.getCity() %> <%= billingCommerceAddress.getZip()) %>
 						</c:if>
 					</div>
 				</div>
