@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.dispatch.talend.internal.executor;
+package com.liferay.dispatch.talend.web.internal.executor;
 
 import com.liferay.dispatch.constants.DispatchPortletKeys;
 import com.liferay.dispatch.model.DispatchTrigger;
 import com.liferay.dispatch.service.DispatchTriggerLocalService;
-import com.liferay.dispatch.talend.internal.configuration.DispatchTalendConfiguration;
+import com.liferay.dispatch.talend.web.internal.configuration.DispatchTalendConfiguration;
 import com.liferay.document.library.kernel.exception.FileExtensionException;
 import com.liferay.document.library.kernel.exception.FileSizeException;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	configurationPid = "com.liferay.dispatch.talend.internal.configuration.DispatchTalendConfiguration",
+	configurationPid = "com.liferay.dispatch.talend.web.internal.configuration.DispatchTalendConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	service = DispatchTalendScheduledTaskExecutorHelper.class
 )

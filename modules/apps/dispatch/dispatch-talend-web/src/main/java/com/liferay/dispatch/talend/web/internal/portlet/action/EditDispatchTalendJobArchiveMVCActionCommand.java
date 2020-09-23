@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.dispatch.talend.internal.portlet.action;
+package com.liferay.dispatch.talend.web.internal.portlet.action;
 
 import com.liferay.dispatch.constants.DispatchPortletKeys;
-import com.liferay.dispatch.talend.internal.executor.DispatchTalendScheduledTaskExecutorHelper;
+import com.liferay.dispatch.talend.web.internal.executor.DispatchTalendScheduledTaskExecutorHelper;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

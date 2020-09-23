@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dispatch.talend.internal.configuration;
+package com.liferay.dispatch.talend.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,7 +24,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "dispatch")
 @Meta.OCD(
-	id = "com.liferay.dispatch.talend.internal.configuration.DispatchTalendConfiguration",
+	id = "com.liferay.dispatch.talend.web.internal.configuration.DispatchTalendConfiguration",
 	localization = "content/Language",
 	name = "dispatch-talend-configuration-name"
 )
