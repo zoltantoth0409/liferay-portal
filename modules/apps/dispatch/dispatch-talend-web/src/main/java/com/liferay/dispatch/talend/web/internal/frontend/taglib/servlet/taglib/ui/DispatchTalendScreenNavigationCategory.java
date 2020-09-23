@@ -116,7 +116,9 @@ public class DispatchTalendScreenNavigationCategory
 	@Reference
 	private JSPRenderer _jspRenderer;
 
-	@Reference(target = "(osgi.web.symbolicname=com.liferay.dispatch.talend)")
+	@Reference(
+		target = "(osgi.web.symbolicname=com.liferay.dispatch.talend.web)"
+	)
 	private ServletContext _servletContext;
 
 }
