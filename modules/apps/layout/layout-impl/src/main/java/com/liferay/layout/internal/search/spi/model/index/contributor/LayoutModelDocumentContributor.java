@@ -108,9 +108,6 @@ public class LayoutModelDocumentContributor
 			httpServletRequest.setAttribute(
 				WebKeys.USER_ID, layout.getUserId());
 
-			httpServletRequest = DynamicServletRequest.addQueryString(
-				httpServletRequest, "p_l_id=" + layout.getPlid(), false);
-
 			try {
 				EventsProcessorUtil.process(
 					PropsKeys.SERVLET_SERVICE_EVENTS_PRE,
@@ -122,6 +119,9 @@ public class LayoutModelDocumentContributor
 					"Unable to initialize synthetic request and response",
 					actionException);
 			}
+
+			httpServletRequest = DynamicServletRequest.addQueryString(
+				httpServletRequest, "p_l_id=" + layout.getPlid(), false);
 
 			long[] segmentsExperienceIds = {
 				SegmentsExperienceConstants.ID_DEFAULT
