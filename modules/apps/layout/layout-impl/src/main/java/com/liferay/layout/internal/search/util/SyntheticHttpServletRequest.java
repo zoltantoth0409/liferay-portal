@@ -18,8 +18,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.servlet.DirectRequestDispatcherFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.ConcurrentHashMapBuilder;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +30,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
@@ -407,10 +406,7 @@ public class SyntheticHttpServletRequest implements HttpServletRequest {
 		return null;
 	}
 
-	private final Map<String, Object> _attributes =
-		ConcurrentHashMapBuilder.<String, Object>put(
-			WebKeys.CTX, ServletContextPool.get(StringPool.BLANK)
-		).build();
+	private final Map<String, Object> _attributes = new ConcurrentHashMap<>();
 
 	private final HttpSession _httpSession = new HttpSession() {
 
@@ -431,7 +427,7 @@ public class SyntheticHttpServletRequest implements HttpServletRequest {
 
 		@Override
 		public String getId() {
-			return StringPool.BLANK;
+			return null;
 		}
 
 		@Override
