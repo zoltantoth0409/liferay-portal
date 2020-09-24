@@ -472,11 +472,10 @@ public class PortletPreferencesFactoryImpl
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			companyId, portletId);
 
-		boolean uniquePerLayout = portlet.isPreferencesUniquePerLayout();
-		boolean ownedByGroup = portlet.isPreferencesOwnedByGroup();
-		boolean companyWide = portlet.isPreferencesCompanyWide();
+		if (portlet.isPreferencesCompanyWide() ||
+			(portlet.isPreferencesOwnedByGroup() &&
+			 !portlet.isPreferencesUniquePerLayout())) {
 
-		if (companyWide || (ownedByGroup && !uniquePerLayout)) {
 			portletId = PortletIdCodec.decodePortletName(portletId);
 		}
 
@@ -493,10 +492,10 @@ public class PortletPreferencesFactoryImpl
 			ownerId = PortletIdCodec.decodeUserId(originalPortletId);
 			ownerType = PortletKeys.PREFS_OWNER_TYPE_USER;
 		}
-		else if (uniquePerLayout) {
+		else if (portlet.isPreferencesUniquePerLayout()) {
 			ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
 		}
-		else if (ownedByGroup) {
+		else if (portlet.isPreferencesOwnedByGroup()) {
 			plid = PortletKeys.PREFS_PLID_SHARED;
 
 			if (siteGroupId > LayoutConstants.DEFAULT_PLID) {
@@ -508,7 +507,7 @@ public class PortletPreferencesFactoryImpl
 
 			ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
 		}
-		else if (companyWide) {
+		else if (portlet.isPreferencesCompanyWide()) {
 			plid = PortletKeys.PREFS_PLID_SHARED;
 
 			ownerId = companyId;
