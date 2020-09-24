@@ -517,16 +517,16 @@ public class PortletPreferencesFactoryImpl
 		if (ownerType == 0) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Portlet ", originalPortletId, "has wrong properties or ",
-					"data handler settings, resulting in ownerType = 0"));
+					"Portlet ", originalPortletId, " has wrong properties or ",
+					"data handler settings resulting in owner type of 0"));
 		}
 
 		if ((ownerId == 0) && (plid == 0)) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Portlet ", originalPortletId, "has wrong properties or ",
-					"data handler settings, resulting in ownerId = 0 and plid ",
-					"= 0"));
+					"Portlet ", originalPortletId, " has wrong properties or ",
+					"data handler settings resulting in owner ID of 0 and ",
+					"PLID  of 0"));
 		}
 
 		return new PortletPreferencesIds(
