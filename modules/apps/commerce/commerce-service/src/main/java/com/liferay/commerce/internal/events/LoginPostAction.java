@@ -48,24 +48,24 @@ public class LoginPostAction extends Action {
 
 			Cookie[] cookies = httpServletRequest.getCookies();
 
-			if (cookies != null) {
-				for (Cookie cookie : cookies) {
-					String name = cookie.getName();
+			if (cookies == null) {
+				return;
+			}
 
-					if (name.startsWith(
-							CommerceOrder.class.getName() + StringPool.POUND)) {
+			for (Cookie cookie : cookies) {
+				String name = cookie.getName();
 
-						HttpSession httpSession =
-							httpServletRequest.getSession();
+				if (name.startsWith(
+						CommerceOrder.class.getName() + StringPool.POUND)) {
 
-						httpSession.setAttribute(name, cookie.getValue());
+					HttpSession httpSession = httpServletRequest.getSession();
 
-						CookieKeys.deleteCookies(
-							httpServletRequest, httpServletResponse, domain,
-							name);
+					httpSession.setAttribute(name, cookie.getValue());
 
-						break;
-					}
+					CookieKeys.deleteCookies(
+						httpServletRequest, httpServletResponse, domain, name);
+
+					break;
 				}
 			}
 		}
