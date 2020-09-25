@@ -1209,7 +1209,7 @@ public class GitHubDevSyncUtil {
 
 			System.out.println(
 				"Synchronization with local Git completed in " +
-					durationString);
+					durationString + ".");
 		}
 	}
 
