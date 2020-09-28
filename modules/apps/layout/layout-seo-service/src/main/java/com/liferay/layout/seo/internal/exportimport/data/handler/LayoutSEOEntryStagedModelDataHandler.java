@@ -97,11 +97,9 @@ public class LayoutSEOEntryStagedModelDataHandler
 		Element structureFieldsElement = layoutSEOEntryElement.addElement(
 			"structure-fields");
 
-		long ddmStorageId = layoutSEOEntry.getDDMStorageId();
-
-		if (ddmStorageId != 0) {
+		if (layoutSEOEntry.getDDMStorageId() != 0) {
 			String ddmFormValuesPath = ExportImportPathUtil.getModelPath(
-				ddmStructure, String.valueOf(ddmStorageId));
+				ddmStructure, String.valueOf(layoutSEOEntry.getDDMStorageId()));
 
 			structureFieldsElement.addAttribute(
 				"ddm-form-values-path", ddmFormValuesPath);
@@ -111,7 +109,8 @@ public class LayoutSEOEntryStagedModelDataHandler
 					_jsonDDMFormValuesSerializer.serialize(
 						DDMFormValuesSerializerSerializeRequest.Builder.
 							newBuilder(
-								_storageEngine.getDDMFormValues(ddmStorageId)
+								_storageEngine.getDDMFormValues(
+									layoutSEOEntry.getDDMStorageId())
 							).build());
 
 			portletDataContext.addZipEntry(
