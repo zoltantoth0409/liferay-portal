@@ -36,7 +36,7 @@ try {
 %>
 
 	<liferay-util:buffer
-		var="pageContent"
+		var="content"
 	>
 		<liferay-layout:render-layout-structure
 			fieldValues="<%= fieldValues %>"
@@ -47,7 +47,7 @@ try {
 		/>
 	</liferay-util:buffer>
 
-	<%= renderFragmentLayoutDisplayContext.processAMImages(pageContent) %>
+	<%= renderFragmentLayoutDisplayContext.processAMImages(content) %>
 
 <%
 }
