@@ -38,7 +38,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 			}
 
 			if (Validator.isNull(imageURL)) {
-				imageURL = PortalUtil.getPathContext(request) + "/blogs/images/cover-image-placeholder.jpg";
+				imageURL = PortalUtil.getPathContext(request) + "/blogs/images/cover_image_placeholder.jpg";
 			}
 			%>
 
