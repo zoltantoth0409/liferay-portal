@@ -47,8 +47,8 @@ if (dispatchTrigger != null) {
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 			<aui:input name="dispatchTriggerId" type="hidden" value="<%= String.valueOf(dispatchTriggerId) %>" />
-			<aui:input name="taskType" type="hidden" value="<%= taskType %>" />
 			<aui:input name="taskSettings" type="hidden" />
+			<aui:input name="taskType" type="hidden" value="<%= taskType %>" />
 
 			<div class="lfr-form-content">
 				<aui:model-context bean="<%= dispatchTrigger %>" model="<%= DispatchTrigger.class %>" />
