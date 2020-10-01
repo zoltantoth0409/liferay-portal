@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.renderer.menu.display.internal.renderer;
+package com.liferay.fragment.renderer.menu.display.internal;
 
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateService;
