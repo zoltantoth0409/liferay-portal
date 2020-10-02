@@ -29,7 +29,7 @@ public class DateArrayConverter implements TypeConverter<Date[]> {
 	public DateArrayConverter() {
 		TypeConverterManager typeConverterManager = TypeConverterManager.get();
 
-		_converter = typeConverterManager.lookup(Date.class);
+		_typeConverter = typeConverterManager.lookup(Date.class);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class DateArrayConverter implements TypeConverter<Date[]> {
 				return convertArray(values);
 			}
 
-			return new Date[] {(Date)_converter.convert(value)};
+			return new Date[] {(Date)_typeConverter.convert(value)};
 		}
 
 		Class<?> componentType = type.getComponentType();
@@ -58,7 +58,8 @@ public class DateArrayConverter implements TypeConverter<Date[]> {
 			Date[] results = new Date[values.length];
 
 			for (int i = 0; i < values.length; i++) {
-				results[i] = (Date)_converter.convert(Long.valueOf(values[i]));
+				results[i] = (Date)_typeConverter.convert(
+					Long.valueOf(values[i]));
 			}
 
 			return results;
@@ -71,12 +72,12 @@ public class DateArrayConverter implements TypeConverter<Date[]> {
 		Date[] results = new Date[values.length];
 
 		for (int i = 0; i < values.length; i++) {
-			results[i] = (Date)_converter.convert(values[i]);
+			results[i] = (Date)_typeConverter.convert(values[i]);
 		}
 
 		return results;
 	}
 
-	private final TypeConverter<Date> _converter;
+	private final TypeConverter<Date> _typeConverter;
 
 }
