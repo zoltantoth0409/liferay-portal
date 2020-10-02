@@ -50,7 +50,6 @@ public class UpgradeDepotEntryGroupRel extends UpgradeProcess {
 
 				while (rs.next()) {
 					ps2.setString(1, PortalUUIDUtil.generate());
-
 					ps2.setLong(2, rs.getLong(1));
 
 					ps2.addBatch();
