@@ -259,11 +259,11 @@ public class StyleBookEntriesImporterUtil {
 			boolean overwrite)
 		throws Exception {
 
+		String frontendTokensValues = StringPool.BLANK;
+
 		String styleBookEntryKey = _getKey(zipFile, groupId, fileName);
 
 		String name = styleBookEntryKey;
-
-		String frontendTokensValues = StringPool.BLANK;
 
 		String styleBookEntryContent = _getContent(zipFile, fileName);
 
