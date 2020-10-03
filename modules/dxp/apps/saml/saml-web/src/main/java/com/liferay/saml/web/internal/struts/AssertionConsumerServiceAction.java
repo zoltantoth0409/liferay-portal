@@ -88,7 +88,6 @@ public class AssertionConsumerServiceAction extends BaseSamlStrutsAction {
 				com.liferay.saml.web.internal.constants.SamlWebKeys.
 					SAML_SSO_ERROR_ENTITY_ID,
 				entityInteractionException.getEntityId());
-
 			httpSession.setAttribute(
 				SamlWebKeys.SAML_SUBJECT_NAME_ID,
 				entityInteractionException.getNameIdValue());
@@ -97,10 +96,7 @@ public class AssertionConsumerServiceAction extends BaseSamlStrutsAction {
 
 			String error = StringPool.BLANK;
 
-			if (causeThrowable instanceof MustNotUseCompanyMx) {
-				error = MustNotUseCompanyMx.class.getSimpleName();
-			}
-			else if (causeThrowable instanceof AuthnAgeException) {
+			if (causeThrowable instanceof AuthnAgeException) {
 				error = AuthnAgeException.class.getSimpleName();
 			}
 			else if (causeThrowable instanceof ContactNameException) {
@@ -110,7 +106,12 @@ public class AssertionConsumerServiceAction extends BaseSamlStrutsAction {
 				error = SubjectException.class.getSimpleName();
 			}
 			else if (causeThrowable instanceof UserEmailAddressException) {
-				error = UserEmailAddressException.class.getSimpleName();
+				if (causeThrowable instanceof MustNotUseCompanyMx) {
+					error = MustNotUseCompanyMx.class.getSimpleName();
+				}
+				else {
+					error = UserEmailAddressException.class.getSimpleName();
+				}
 			}
 			else if (causeThrowable instanceof UserScreenNameException) {
 				error = UserScreenNameException.class.getSimpleName();
