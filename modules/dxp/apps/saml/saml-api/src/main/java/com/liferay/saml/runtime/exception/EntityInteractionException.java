@@ -25,7 +25,8 @@ public class EntityInteractionException extends PortalException {
 		String entityId, String nameIdValue, Throwable throwable) {
 
 		super(
-			"Failed interaction with entityId \"" + entityId + "\"", throwable);
+			"Failed interaction with entity ID \"" + entityId + "\"",
+			throwable);
 
 		_entityId = entityId;
 		_nameIdValue = nameIdValue;
