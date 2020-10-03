@@ -99,15 +99,28 @@ public abstract class BaseJSPAssetRenderer<T>
 		_servletContext = servletContext;
 	}
 
+	protected ResourceBundleLoader acquireResourceBundleLoader() {
+		if (_servletContext != null) {
+			return ResourceBundleLoaderUtil.
+				getResourceBundleLoaderByServletContextName(
+					_servletContext.getServletContextName());
+		}
+
+		return new AggregateResourceBundleLoader(
+			new ClassResourceBundleLoader("content.Language", getClass()),
+			ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
+	}
+
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #loadResourceBundleLoader}
+	 *             #acquireResourceBundleLoader}
 	 */
 	@Deprecated
 	protected com.liferay.portal.kernel.util.ResourceBundleLoader
 		getResourceBundleLoader() {
 
-		ResourceBundleLoader resourceBundleLoader = loadResourceBundleLoader();
+		ResourceBundleLoader resourceBundleLoader =
+			acquireResourceBundleLoader();
 
 		return locale -> resourceBundleLoader.loadResourceBundle(locale);
 	}
@@ -122,18 +135,6 @@ public abstract class BaseJSPAssetRenderer<T>
 		PortletBag portletBag = PortletBagPool.get(portletId);
 
 		return portletBag.getServletContext();
-	}
-
-	protected ResourceBundleLoader loadResourceBundleLoader() {
-		if (_servletContext != null) {
-			return ResourceBundleLoaderUtil.
-				getResourceBundleLoaderByServletContextName(
-					_servletContext.getServletContextName());
-		}
-
-		return new AggregateResourceBundleLoader(
-			new ClassResourceBundleLoader("content.Language", getClass()),
-			ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
