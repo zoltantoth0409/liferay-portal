@@ -56,7 +56,7 @@ String samlSubjectScreenName = (String)request.getAttribute(SamlWebKeys.SAML_SUB
 			<c:when test='<%= SessionMessages.contains(request, "AuthnAgeException") %>'>
 				<aui:fieldset>
 					<aui:button-row>
-						<aui:button type="submit" value="re-authenticate" />
+						<aui:button type="submit" value="reauthenticate" />
 					</aui:button-row>
 				</aui:fieldset>
 			</c:when>
