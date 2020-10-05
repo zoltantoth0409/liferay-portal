@@ -20,6 +20,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 
 /**
  * @author Arthur Chan
+ * @review
  */
 @ExtendedObjectClassDefinition(
 	category = "multi-factor-authentication",
