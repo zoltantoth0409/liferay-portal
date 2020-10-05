@@ -147,7 +147,6 @@ public class StagingImplTest {
 		Assert.assertEquals(
 			remoteStagingGroupLayout.getUuid(),
 			remoteLiveGroupLayout.getUuid());
-
 		Assert.assertEquals(
 			remoteStagingGroupLayout.getTitle(),
 			remoteLiveGroupLayout.getTitle());
