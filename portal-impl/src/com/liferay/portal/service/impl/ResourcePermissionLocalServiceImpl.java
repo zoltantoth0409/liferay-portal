@@ -1769,7 +1769,7 @@ public class ResourcePermissionLocalServiceImpl
 	}
 
 	protected boolean isGuestRoleId(
-		Boolean guestRole, long companyId, long roleId) {
+		long companyId, long roleId, Boolean guestRole) {
 
 		if (guestRole != null) {
 			return guestRole;
@@ -2181,7 +2181,7 @@ public class ResourcePermissionLocalServiceImpl
 
 		if (((operator == ResourcePermissionConstants.OPERATOR_ADD) ||
 			 (operator == ResourcePermissionConstants.OPERATOR_SET)) &&
-			isGuestRoleId(guestRole, companyId, roleId)) {
+			isGuestRoleId(companyId, roleId, guestRole)) {
 
 			unsupportedActionIds =
 				ResourceActionsUtil.getResourceGuestUnsupportedActions(
