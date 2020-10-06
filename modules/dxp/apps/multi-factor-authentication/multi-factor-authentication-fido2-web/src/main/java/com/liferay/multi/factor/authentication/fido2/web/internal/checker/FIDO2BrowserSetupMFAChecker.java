@@ -453,7 +453,7 @@ public class FIDO2BrowserSetupMFAChecker
 				).displayName(
 					user.getFullName()
 				).id(
-					ConvertUtil.longToByteArray(userId)
+					ConvertUtil.toByteArray(userId)
 				).build()
 			).build());
 	}

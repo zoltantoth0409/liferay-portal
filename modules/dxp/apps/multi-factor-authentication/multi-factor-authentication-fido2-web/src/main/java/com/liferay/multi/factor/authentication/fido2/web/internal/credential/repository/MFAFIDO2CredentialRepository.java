@@ -75,14 +75,13 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 	public Optional<ByteArray> getUserHandleForUsername(String userName) {
 		Optional<Long> optionalUserId = _getOptionalUserId(userName);
 
-		return optionalUserId.map(ConvertUtil::longToByteArray);
+		return optionalUserId.map(ConvertUtil::toByteArray);
 	}
 
 	@Override
 	public Optional<String> getUsernameForUserHandle(ByteArray userHandle) {
 		return Optional.ofNullable(
-			_userLocalService.fetchUserById(
-				ConvertUtil.byteArrayToLong(userHandle))
+			_userLocalService.fetchUserById(ConvertUtil.toLong(userHandle))
 		).map(
 			User::getScreenName
 		);
@@ -95,8 +94,7 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 		return Optional.ofNullable(
 			_mfaFIDO2CredentialEntryLocalService.
 				fetchMFAFIDO2CredentialEntryByUserIdAndCredentialKey(
-					ConvertUtil.byteArrayToLong(userHandle),
-					credentialId.getBase64())
+					ConvertUtil.toLong(userHandle), credentialId.getBase64())
 		).filter(
 			mfaFIDO2CredentialEntry -> Objects.equals(
 				mfaFIDO2CredentialEntry.getCredentialKey(),
@@ -143,7 +141,7 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 		).credentialId(
 			ByteArray.fromBase64(mfaFIDO2CredentialEntry.getCredentialKey())
 		).userHandle(
-			ConvertUtil.longToByteArray(mfaFIDO2CredentialEntry.getUserId())
+			ConvertUtil.toByteArray(mfaFIDO2CredentialEntry.getUserId())
 		).publicKeyCose(
 			ByteArray.fromBase64(mfaFIDO2CredentialEntry.getPublicKeyCOSE())
 		).signatureCount(
