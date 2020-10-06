@@ -88,12 +88,12 @@ public class DisplayPageUsagesDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"layoutPageTemplateEntryId",
-			String.valueOf(getLayoutPageTemplateEntryId()));
-		portletURL.setParameter(
 			"mvcRenderCommandName",
 			"/layout_page_template/view_display_page_usages");
 		portletURL.setParameter("redirect", getRedirect());
+		portletURL.setParameter(
+			"layoutPageTemplateEntryId",
+			String.valueOf(getLayoutPageTemplateEntryId()));
 
 		return portletURL;
 	}
