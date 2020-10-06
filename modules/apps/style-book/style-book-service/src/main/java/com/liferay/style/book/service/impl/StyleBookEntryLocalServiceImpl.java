@@ -293,8 +293,8 @@ public class StyleBookEntryLocalServiceImpl
 			styleBookEntryPersistence.update(oldDefaultStyleBookEntry);
 		}
 
-		styleBookEntry.setDefaultStyleBookEntry(defaultStyleBookEntry);
 		styleBookEntry.setModifiedDate(new Date());
+		styleBookEntry.setDefaultStyleBookEntry(defaultStyleBookEntry);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
@@ -315,14 +315,14 @@ public class StyleBookEntryLocalServiceImpl
 		StyleBookEntry styleBookEntry =
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
-		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 		styleBookEntry.setModifiedDate(new Date());
+		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
-			draftStyleBookEntry.setFrontendTokensValues(frontendTokensValues);
 			draftStyleBookEntry.setModifiedDate(new Date());
+			draftStyleBookEntry.setFrontendTokensValues(frontendTokensValues);
 
 			updateDraft(draftStyleBookEntry);
 		}
@@ -339,14 +339,14 @@ public class StyleBookEntryLocalServiceImpl
 
 		_validate(name);
 
-		styleBookEntry.setName(name);
 		styleBookEntry.setModifiedDate(new Date());
+		styleBookEntry.setName(name);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
-			draftStyleBookEntry.setName(name);
 			draftStyleBookEntry.setModifiedDate(new Date());
+			draftStyleBookEntry.setName(name);
 
 			updateDraft(draftStyleBookEntry);
 		}
@@ -362,14 +362,14 @@ public class StyleBookEntryLocalServiceImpl
 		StyleBookEntry styleBookEntry =
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
-		styleBookEntry.setPreviewFileEntryId(previewFileEntryId);
 		styleBookEntry.setModifiedDate(new Date());
+		styleBookEntry.setPreviewFileEntryId(previewFileEntryId);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
-			draftStyleBookEntry.setPreviewFileEntryId(previewFileEntryId);
 			draftStyleBookEntry.setModifiedDate(new Date());
+			draftStyleBookEntry.setPreviewFileEntryId(previewFileEntryId);
 
 			updateDraft(draftStyleBookEntry);
 		}
@@ -419,15 +419,15 @@ public class StyleBookEntryLocalServiceImpl
 
 		_validate(name);
 
-		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 		styleBookEntry.setModifiedDate(new Date());
+		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 		styleBookEntry.setName(name);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
 
 		if (draftStyleBookEntry != null) {
-			draftStyleBookEntry.setFrontendTokensValues(frontendTokensValues);
 			draftStyleBookEntry.setModifiedDate(new Date());
+			draftStyleBookEntry.setFrontendTokensValues(frontendTokensValues);
 			draftStyleBookEntry.setName(name);
 
 			updateDraft(draftStyleBookEntry);
