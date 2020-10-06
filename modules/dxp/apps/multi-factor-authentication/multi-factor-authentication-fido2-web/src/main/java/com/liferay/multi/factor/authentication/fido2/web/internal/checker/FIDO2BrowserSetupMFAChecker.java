@@ -143,11 +143,11 @@ public class FIDO2BrowserSetupMFAChecker
 			return;
 		}
 
-		String mfaFIDO2pkccOptions = _objectMapper.writeValueAsString(
+		String mfaFIDO2PKCCOptions = _objectMapper.writeValueAsString(
 			_getPublicKeyCredentialCreationOptions(userId));
 
 		httpServletRequest.setAttribute(
-			MFAFIDO2WebKeys.MFA_FIDO2_PKCC_OPTIONS, mfaFIDO2pkccOptions);
+			MFAFIDO2WebKeys.MFA_FIDO2_PKCC_OPTIONS, mfaFIDO2PKCCOptions);
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
@@ -161,7 +161,7 @@ public class FIDO2BrowserSetupMFAChecker
 		HttpSession httpSession = originalHttpServletRequest.getSession();
 
 		httpSession.setAttribute(
-			MFAFIDO2WebKeys.MFA_FIDO2_PKCC_OPTIONS, mfaFIDO2pkccOptions);
+			MFAFIDO2WebKeys.MFA_FIDO2_PKCC_OPTIONS, mfaFIDO2PKCCOptions);
 	}
 
 	@Override
