@@ -134,7 +134,7 @@ public class DisplayPageActionDropdownItemsProvider {
 			_getDiscardDraftActionUnsafeConsumer()
 		).add(
 			() -> {
-				int usagesCount =
+				int count =
 					AssetDisplayPageEntryServiceUtil.
 						getAssetDisplayPageEntriesCountByLayoutPageTemplateEntryId(
 							_layoutPageTemplateEntry.
@@ -142,7 +142,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 				return FFDisplayPageAdminWebConfigurationUtil.
 					viewUsagesEnabled() &&
-					   (usagesCount > 0);
+					   (count > 0);
 			},
 			_getViewUsagesDisplayPageActionUnsafeConsumer()
 		).add(
