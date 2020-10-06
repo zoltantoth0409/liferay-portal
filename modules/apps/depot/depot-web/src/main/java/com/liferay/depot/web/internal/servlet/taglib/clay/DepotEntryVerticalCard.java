@@ -106,19 +106,19 @@ public class DepotEntryVerticalCard
 	@Override
 	public String getSubtitle() {
 		try {
-			int depotEntryConnectedGroupsCount =
+			int count =
 				DepotEntryGroupRelServiceUtil.getDepotEntryGroupRelsCount(
 					_depotEntry);
 
-			if (depotEntryConnectedGroupsCount != 1) {
+			if (count != 1) {
 				return LanguageUtil.format(
 					_liferayPortletRequest.getHttpServletRequest(),
-					"x-connected-sites", depotEntryConnectedGroupsCount);
+					"x-connected-sites", count);
 			}
 
 			return LanguageUtil.format(
 				_liferayPortletRequest.getHttpServletRequest(),
-				"x-connected-site", depotEntryConnectedGroupsCount);
+				"x-connected-site", count);
 		}
 		catch (PortalException portalException) {
 			return ReflectionUtil.throwException(portalException);
