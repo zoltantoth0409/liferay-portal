@@ -403,8 +403,8 @@ public class StyleBookEntryLocalServiceImpl
 		styleBookEntry.setDefaultStyleBookEntry(defaultStylebookEntry);
 		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 		styleBookEntry.setName(name);
-		styleBookEntry.setStyleBookEntryKey(styleBookEntryKey);
 		styleBookEntry.setPreviewFileEntryId(previewFileEntryId);
+		styleBookEntry.setStyleBookEntryKey(styleBookEntryKey);
 
 		return styleBookEntryPersistence.update(styleBookEntry);
 	}
