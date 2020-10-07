@@ -112,7 +112,7 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 	public Set<RegisteredCredential> lookupAll(
 		ByteArray credentialIdByteArray) {
 
-		Set<RegisteredCredential> credentials = new HashSet<>();
+		Set<RegisteredCredential> registeredCredentials = new HashSet<>();
 
 		List<MFAFIDO2CredentialEntry> mfaFIDO2CredentialEntries =
 			_mfaFIDO2CredentialEntryLocalService.
@@ -122,11 +122,11 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 		for (MFAFIDO2CredentialEntry mfaFIDO2CredentialEntry :
 				mfaFIDO2CredentialEntries) {
 
-			credentials.add(
+			registeredCredentials.add(
 				_buildRegisteredCredential(mfaFIDO2CredentialEntry));
 		}
 
-		return credentials;
+		return registeredCredentials;
 	}
 
 	private PublicKeyCredentialDescriptor _buildPublicKeyCredentialDescriptor(
