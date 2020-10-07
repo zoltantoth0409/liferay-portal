@@ -29,9 +29,9 @@ public class SimpleURLPatternMapperPerformanceTest {
 
 	@Test
 	public void testGet() {
-		Map<String, String> urlPatterns = _createURLPatterns();
 		URLPatternMapper<String> urlPatternMapper = createURLPatternMapper(
 			_createValues());
+		Map<String, String> urlPatterns = _createURLPatterns();
 
 		long start = System.currentTimeMillis();
 
