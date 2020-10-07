@@ -53,9 +53,9 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 	public Set<PublicKeyCredentialDescriptor> getCredentialIdsForUsername(
 		String userName) {
 
-		Optional<Long> optionalUserId = _getOptionalUserId(userName);
+		Optional<Long> userIdOptional = _getUserIdOptional(userName);
 
-		return optionalUserId.map(
+		return userIdOptional.map(
 			_mfaFIDO2CredentialEntryLocalService::
 				getMFAFIDO2CredentialEntriesByUserId
 		).map(
@@ -73,9 +73,9 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 
 	@Override
 	public Optional<ByteArray> getUserHandleForUsername(String userName) {
-		Optional<Long> optionalUserId = _getOptionalUserId(userName);
+		Optional<Long> userIdOptional = _getUserIdOptional(userName);
 
-		return optionalUserId.map(ConvertUtil::toByteArray);
+		return userIdOptional.map(ConvertUtil::toByteArray);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 		).build();
 	}
 
-	private Optional<Long> _getOptionalUserId(String userName) {
+	private Optional<Long> _getUserIdOptional(String userName) {
 		return Optional.ofNullable(
 			_userLocalService.fetchUserByScreenName(
 				CompanyThreadLocal.getCompanyId(), userName)
