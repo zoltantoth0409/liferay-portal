@@ -24,8 +24,8 @@ import com.liferay.multi.factor.authentication.fido2.credential.model.MFAFIDO2Cr
 import com.liferay.multi.factor.authentication.fido2.credential.service.MFAFIDO2CredentialEntryLocalService;
 import com.liferay.multi.factor.authentication.fido2.web.internal.configuration.MFAFIDO2Configuration;
 import com.liferay.multi.factor.authentication.fido2.web.internal.constants.MFAFIDO2WebKeys;
-import com.liferay.multi.factor.authentication.fido2.web.internal.credential.repository.MFAFIDO2CredentialRepository;
 import com.liferay.multi.factor.authentication.fido2.web.internal.util.ConvertUtil;
+import com.liferay.multi.factor.authentication.fido2.web.internal.yubico.webauthn.MFAFIDO2CredentialRepository;
 import com.liferay.multi.factor.authentication.spi.checker.browser.BrowserMFAChecker;
 import com.liferay.multi.factor.authentication.spi.checker.setup.SetupMFAChecker;
 import com.liferay.petra.string.StringBundler;

@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.fido2.web.internal.credential.repository;
+package com.liferay.multi.factor.authentication.fido2.web.internal.yubico.webauthn;
 
 import com.liferay.multi.factor.authentication.fido2.credential.model.MFAFIDO2CredentialEntry;
 import com.liferay.multi.factor.authentication.fido2.credential.service.MFAFIDO2CredentialEntryLocalService;
