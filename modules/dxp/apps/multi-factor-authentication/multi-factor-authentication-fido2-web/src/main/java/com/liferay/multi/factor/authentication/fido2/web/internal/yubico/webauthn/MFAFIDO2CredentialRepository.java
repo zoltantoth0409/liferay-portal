@@ -79,9 +79,12 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 	}
 
 	@Override
-	public Optional<String> getUsernameForUserHandle(ByteArray userHandle) {
+	public Optional<String> getUsernameForUserHandle(
+		ByteArray userHandleByteArray) {
+
 		return Optional.ofNullable(
-			_userLocalService.fetchUserById(ConvertUtil.toLong(userHandle))
+			_userLocalService.fetchUserById(
+				ConvertUtil.toLong(userHandleByteArray))
 		).map(
 			User::getScreenName
 		);
@@ -89,29 +92,32 @@ public class MFAFIDO2CredentialRepository implements CredentialRepository {
 
 	@Override
 	public Optional<RegisteredCredential> lookup(
-		ByteArray credentialId, ByteArray userHandle) {
+		ByteArray credentialIdByteArray, ByteArray userHandleByteArray) {
 
 		return Optional.ofNullable(
 			_mfaFIDO2CredentialEntryLocalService.
 				fetchMFAFIDO2CredentialEntryByUserIdAndCredentialKey(
-					ConvertUtil.toLong(userHandle), credentialId.getBase64())
+					ConvertUtil.toLong(userHandleByteArray),
+					credentialIdByteArray.getBase64())
 		).filter(
 			mfaFIDO2CredentialEntry -> Objects.equals(
 				mfaFIDO2CredentialEntry.getCredentialKey(),
-				credentialId.getBase64())
+				credentialIdByteArray.getBase64())
 		).map(
 			this::_buildRegisteredCredential
 		);
 	}
 
 	@Override
-	public Set<RegisteredCredential> lookupAll(ByteArray credentialId) {
+	public Set<RegisteredCredential> lookupAll(
+		ByteArray credentialIdByteArray) {
+
 		Set<RegisteredCredential> credentials = new HashSet<>();
 
 		List<MFAFIDO2CredentialEntry> mfaFIDO2CredentialEntries =
 			_mfaFIDO2CredentialEntryLocalService.
 				getMFAFIDO2CredentialEntriesByCredentialKey(
-					credentialId.getBase64());
+					credentialIdByteArray.getBase64());
 
 		for (MFAFIDO2CredentialEntry mfaFIDO2CredentialEntry :
 				mfaFIDO2CredentialEntries) {
