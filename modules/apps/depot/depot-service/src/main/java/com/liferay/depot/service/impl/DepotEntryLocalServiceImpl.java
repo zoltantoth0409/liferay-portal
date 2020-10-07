@@ -76,7 +76,7 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 			!ParamUtil.getBoolean(serviceContext, "staging")) {
 
 			throw new DepotEntryGroupException(
-				"Cannot create staged depot entry for group " +
+				"Unable to create staged depot entry for group " +
 					group.getGroupId());
 		}
 
@@ -86,9 +86,7 @@ public class DepotEntryLocalServiceImpl extends DepotEntryLocalServiceBaseImpl {
 			counterLocalService.increment());
 
 		depotEntry.setUuid(serviceContext.getUuid());
-
 		depotEntry.setGroupId(group.getGroupId());
-
 		depotEntry.setCompanyId(serviceContext.getCompanyId());
 		depotEntry.setUserId(serviceContext.getUserId());
 
