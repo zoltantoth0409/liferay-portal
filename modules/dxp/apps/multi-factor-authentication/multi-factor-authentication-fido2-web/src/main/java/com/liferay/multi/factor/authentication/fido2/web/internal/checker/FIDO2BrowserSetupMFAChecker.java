@@ -216,12 +216,15 @@ public class FIDO2BrowserSetupMFAChecker
 			PublicKeyCredentialDescriptor publicKeyCredentialDescriptor =
 				registrationResult.getKeyId();
 
-			ByteArray credentialId = publicKeyCredentialDescriptor.getId();
+			ByteArray credentialIdByteArray =
+				publicKeyCredentialDescriptor.getId();
 
-			ByteArray publicKeyCOSE = registrationResult.getPublicKeyCose();
+			ByteArray publicKeyCOSEByteArray =
+				registrationResult.getPublicKeyCose();
 
 			_mfaFIDO2CredentialEntryLocalService.addMFAFIDO2CredentialEntry(
-				userId, credentialId.getBase64(), 0, publicKeyCOSE.getBase64());
+				userId, credentialIdByteArray.getBase64(), 0,
+				publicKeyCOSEByteArray.getBase64());
 
 			return true;
 		}
@@ -268,17 +271,17 @@ public class FIDO2BrowserSetupMFAChecker
 			AssertionResult assertionResult = _getAssertionResult(
 				httpServletRequest);
 
-			ByteArray credentialId = assertionResult.getCredentialId();
+			ByteArray credentialIdByteArray = assertionResult.getCredentialId();
 
 			if (!assertionResult.isSuccess()) {
 				_mfaFIDO2CredentialEntryLocalService.updateAttempts(
-					userId, credentialId.getBase64(), 0);
+					userId, credentialIdByteArray.getBase64(), 0);
 
 				return false;
 			}
 
 			_mfaFIDO2CredentialEntryLocalService.updateAttempts(
-				userId, credentialId.getBase64(),
+				userId, credentialIdByteArray.getBase64(),
 				assertionResult.getSignatureCount());
 		}
 		catch (Exception exception) {
