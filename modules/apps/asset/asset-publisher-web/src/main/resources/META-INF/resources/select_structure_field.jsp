@@ -110,12 +110,6 @@ portletURL.setParameter("eventName", eventName);
 			<liferay-ui:search-container-column-text>
 
 				<%
-				JSONObject jsonObject = JSONUtil.put(
-					"ddmStructureFieldName", ddmStructureFieldName
-				).put(
-					"ddmStructureFieldValue", ddmStructureFieldValue
-				);
-
 				Map<String, Object> data = HashMapBuilder.<String, Object>put(
 					"fieldsnamespace", fieldsNamespace
 				).put(
@@ -125,7 +119,12 @@ portletURL.setParameter("eventName", eventName);
 				).put(
 					"name", name
 				).put(
-					"value", jsonObject
+					"value",
+					JSONUtil.put(
+						"ddmStructureFieldName", ddmStructureFieldName
+					).put(
+						"ddmStructureFieldValue", ddmStructureFieldValue
+					)
 				).build();
 				%>
 
