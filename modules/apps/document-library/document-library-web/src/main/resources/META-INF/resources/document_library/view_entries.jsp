@@ -17,8 +17,6 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
-
 String navigation = ParamUtil.getString(request, "navigation", "home");
 
 String currentFolder = ParamUtil.getString(request, "curFolder");
@@ -28,6 +26,7 @@ long folderId = GetterUtil.getLong((String)request.getAttribute("view.jsp-folder
 
 long repositoryId = GetterUtil.getLong((String)request.getAttribute("view.jsp-repositoryId"));
 
+DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
 DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletInstanceSettingsHelper(dlRequestHelper);
 
 String displayStyle = dlAdminDisplayContext.getDisplayStyle();

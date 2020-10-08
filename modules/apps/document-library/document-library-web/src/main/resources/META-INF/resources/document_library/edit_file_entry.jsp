@@ -17,8 +17,6 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
-
 String cmd = ParamUtil.getString(request, Constants.CMD, Constants.EDIT);
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -97,6 +95,8 @@ boolean saveAsDraft = false;
 if ((checkedOut || pending) && !dlPortletInstanceSettings.isEnableFileEntryDrafts()) {
 	saveAsDraft = true;
 }
+
+DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
 
 DLEditFileEntryDisplayContext dlEditFileEntryDisplayContext = null;
 

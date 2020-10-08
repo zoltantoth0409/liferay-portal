@@ -17,8 +17,6 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
-
 long repositoryId = ParamUtil.getLong(request, "repositoryId");
 
 if (repositoryId == 0) {
@@ -42,6 +40,8 @@ if (searchFolderId > 0) {
 }
 
 String keywords = ParamUtil.getString(request, "keywords");
+
+DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
 
 EntriesChecker entriesChecker = new EntriesChecker(liferayPortletRequest, liferayPortletResponse);
 

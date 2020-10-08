@@ -17,11 +17,11 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
-
 long folderId = ParamUtil.getLong(request, "folderId");
 
 Folder folder = null;
+
+DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
 
 if (folderId != dlAdminDisplayContext.getRootFolderId()) {
 	folder = DLAppServiceUtil.getFolder(folderId);
