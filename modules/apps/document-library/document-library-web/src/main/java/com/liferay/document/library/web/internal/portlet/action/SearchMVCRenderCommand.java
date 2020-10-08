@@ -47,13 +47,6 @@ public class SearchMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		renderRequest.setAttribute(
-			DLWebKeys.DOCUMENT_LIBRARY_PORTLET_TOOLBAR_CONTRIBUTOR,
-			_dlPortletToolbarContributorRegistry.
-				getDLPortletToolbarContributor());
-		renderRequest.setAttribute(
-			DLWebKeys.DOCUMENT_LIBRARY_TRASH_HELPER, _dlTrashHelper);
-
 		DLAdminDisplayContext dlAdminDisplayContext =
 			_dlAdminDisplayContextProvider.getDLAdminDisplayContext(
 				_portal.getHttpServletRequest(renderRequest),
@@ -69,6 +62,13 @@ public class SearchMVCRenderCommand implements MVCRenderCommand {
 					_portal.getHttpServletRequest(renderRequest),
 					_portal.getHttpServletResponse(renderResponse),
 					dlAdminDisplayContext));
+
+		renderRequest.setAttribute(
+			DLWebKeys.DOCUMENT_LIBRARY_PORTLET_TOOLBAR_CONTRIBUTOR,
+			_dlPortletToolbarContributorRegistry.
+				getDLPortletToolbarContributor());
+		renderRequest.setAttribute(
+			DLWebKeys.DOCUMENT_LIBRARY_TRASH_HELPER, _dlTrashHelper);
 
 		return "/document_library/view.jsp";
 	}
