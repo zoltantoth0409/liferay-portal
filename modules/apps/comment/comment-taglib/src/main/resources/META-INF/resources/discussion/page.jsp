@@ -639,6 +639,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 
 							if (moreCommentsContainer) {
 								var newCommentsContainer = document.createElement('div');
+
 								newCommentsContainer.innerHTML = response;
 
 								moreCommentsContainer.insertAdjacentElement(
