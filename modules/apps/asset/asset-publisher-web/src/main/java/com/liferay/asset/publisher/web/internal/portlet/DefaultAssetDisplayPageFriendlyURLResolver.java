@@ -92,14 +92,14 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 			Map<String, Object> requestContext)
 		throws PortalException {
 
+		HttpServletRequest httpServletRequest =
+			(HttpServletRequest)requestContext.get("request");
+
 		JournalArticle journalArticle = _getJournalArticle(
 			groupId, friendlyURL);
 
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
 			_getLayoutDisplayPageObjectProvider(journalArticle);
-
-		HttpServletRequest httpServletRequest =
-			(HttpServletRequest)requestContext.get("request");
 
 		if (Validator.isNull(journalArticle.getLayoutUuid()) &&
 			(layoutDisplayPageObjectProvider != null) &&
