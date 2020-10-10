@@ -57,7 +57,7 @@ public class FileEntryInfoItemFields {
 			InfoLocalizedValue.localize(
 				FileEntryInfoItemFields.class, "description")
 		).build();
-	public static final InfoField<URLInfoFieldType> displayPageUrlInfoField =
+	public static final InfoField<URLInfoFieldType> displayPageURLInfoField =
 		InfoField.builder(
 		).infoFieldType(
 			URLInfoFieldType.INSTANCE

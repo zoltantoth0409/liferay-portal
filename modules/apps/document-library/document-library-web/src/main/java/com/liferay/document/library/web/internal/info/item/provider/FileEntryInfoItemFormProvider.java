@@ -186,7 +186,7 @@ public class FileEntryInfoItemFormProvider
 	private InfoFieldSet _getDisplayPageInfoFieldSet() {
 		return InfoFieldSet.builder(
 		).infoFieldSetEntry(
-			FileEntryInfoItemFields.displayPageUrlInfoField
+			FileEntryInfoItemFields.displayPageURLInfoField
 		).labelInfoLocalizedValue(
 			InfoLocalizedValue.localize(getClass(), "display-page")
 		).name(

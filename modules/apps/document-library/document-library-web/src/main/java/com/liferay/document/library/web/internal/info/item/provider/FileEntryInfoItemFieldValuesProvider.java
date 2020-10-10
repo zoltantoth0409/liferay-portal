@@ -243,7 +243,7 @@ public class FileEntryInfoItemFieldValuesProvider
 			if (themeDisplay != null) {
 				fileEntryFieldValues.add(
 					new InfoFieldValue<>(
-						FileEntryInfoItemFields.displayPageUrlInfoField,
+						FileEntryInfoItemFields.displayPageURLInfoField,
 						_getDisplayPageURL(fileEntry, themeDisplay)));
 			}
 
