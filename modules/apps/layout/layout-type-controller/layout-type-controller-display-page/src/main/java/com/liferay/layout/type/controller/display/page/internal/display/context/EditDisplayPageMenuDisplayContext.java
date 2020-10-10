@@ -57,11 +57,13 @@ public class EditDisplayPageMenuDisplayContext {
 	}
 
 	public List<DropdownItem> getDropdownItems() {
-		UnsafeConsumer<DropdownItem, Exception> editURLDropdownItem =
-			getEditURLDropdownItem(_infoEditURLProvider);
+		UnsafeConsumer<DropdownItem, Exception>
+			editURLDropdownItemUnsafeConsumer =
+				getEditURLDropdownItemUnsafeConsumer(_infoEditURLProvider);
 
 		return DropdownItemListBuilder.add(
-			() -> editURLDropdownItem != null, editURLDropdownItem
+			() -> editURLDropdownItemUnsafeConsumer != null,
+			editURLDropdownItemUnsafeConsumer
 		).add(
 			() -> LayoutPermissionUtil.contains(
 				_themeDisplay.getPermissionChecker(), _themeDisplay.getLayout(),
@@ -92,8 +94,9 @@ public class EditDisplayPageMenuDisplayContext {
 		).build();
 	}
 
-	protected UnsafeConsumer<DropdownItem, Exception> getEditURLDropdownItem(
-		InfoEditURLProvider<Object> infoEditURLProvider) {
+	protected UnsafeConsumer<DropdownItem, Exception>
+		getEditURLDropdownItemUnsafeConsumer(
+			InfoEditURLProvider<Object> infoEditURLProvider) {
 
 		if (infoEditURLProvider == null) {
 			return null;
