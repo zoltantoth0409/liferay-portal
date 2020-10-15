@@ -1,7 +1,0 @@
-[tool.black]
-exclude = '''
-(
-    modules/node_modules/node-gyp
-  | portal-impl/src/com/liferay/portal/deploy/dependencies/wsadmin.py
-)
-'''
