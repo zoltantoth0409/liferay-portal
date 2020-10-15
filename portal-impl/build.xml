@@ -784,8 +784,6 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 						</if>
 					</then>
 				</if>
-
-				<antcall target="format-python" />
 			</then>
 		</if>
 	</target>
