@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.internal.portal.workflow.kaleo.runtime.util.validator;
+package com.liferay.account.internal.workflow.kaleo.runtime.util.validator;
 
 import com.liferay.account.model.AccountEntry;
 import com.liferay.portal.kernel.exception.PortalException;
