@@ -41,6 +41,10 @@ public class AccountRoleDisplaySearchContainerFactory {
 		long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)liferayPortletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
 		SearchContainer<AccountRoleDisplay> searchContainer =
 			new SearchContainer(
 				liferayPortletRequest,
@@ -61,10 +65,6 @@ public class AccountRoleDisplaySearchContainerFactory {
 
 		String keywords = ParamUtil.getString(
 			liferayPortletRequest, "keywords");
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)liferayPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
 
 		BaseModelSearchResult<AccountRole> baseModelSearchResult =
 			AccountRoleLocalServiceUtil.searchAccountRoles(
