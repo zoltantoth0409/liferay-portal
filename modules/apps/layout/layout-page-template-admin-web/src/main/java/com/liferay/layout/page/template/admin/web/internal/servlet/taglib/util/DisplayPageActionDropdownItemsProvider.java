@@ -480,16 +480,16 @@ public class DisplayPageActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.setHref(
 				_renderResponse.createRenderURL(), "mvcRenderCommandName",
-				"/layout_page_template/view_display_page_usages", "classNameId",
+				"/layout_page_template/view_display_page_usages", "redirect",
+				_themeDisplay.getURLCurrent(), "classNameId",
 				String.valueOf(_layoutPageTemplateEntry.getClassNameId()),
 				"classTypeId",
 				String.valueOf(_layoutPageTemplateEntry.getClassTypeId()),
-				"defaultTemplate",
-				String.valueOf(_layoutPageTemplateEntry.isDefaultTemplate()),
 				"layoutPageTemplateEntryId",
 				String.valueOf(
 					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()),
-				"redirect", _themeDisplay.getURLCurrent());
+				"defaultTemplate",
+				String.valueOf(_layoutPageTemplateEntry.isDefaultTemplate()));
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "view-usages"));
 		};
