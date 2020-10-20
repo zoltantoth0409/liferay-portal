@@ -83,12 +83,10 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 
 		try {
 			long classNameId = ParamUtil.getLong(renderRequest, "classNameId");
-			long classPK = ParamUtil.getLong(renderRequest, "classPK");
 
 			String className = _portal.getClassName(classNameId);
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			long classPK = ParamUtil.getLong(renderRequest, "classPK");
 
 			InfoItemLanguagesProvider<Object> infoItemLanguagesProvider =
 				_infoItemServiceTracker.getFirstInfoItemService(
@@ -106,6 +104,9 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 			String sourceLanguageId = ParamUtil.getString(
 				renderRequest, "sourceLanguageId",
 				infoItemLanguagesProvider.getDefaultLanguageId(object));
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			List<String> availableTargetLanguageIds =
 				_getAvailableTargetLanguageIds(

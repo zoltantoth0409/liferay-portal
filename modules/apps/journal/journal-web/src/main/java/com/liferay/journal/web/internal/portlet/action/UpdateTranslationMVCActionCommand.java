@@ -68,10 +68,12 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 
 		try {
 			long groupId = ParamUtil.getLong(actionRequest, "groupId");
+
 			long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-			long classPK = ParamUtil.getLong(actionRequest, "classPK");
 
 			String className = _portal.getClassName(classNameId);
+
+			long classPK = ParamUtil.getLong(actionRequest, "classPK");
 
 			InfoItemReference infoItemReference = new InfoItemReference(
 				className, classPK);
