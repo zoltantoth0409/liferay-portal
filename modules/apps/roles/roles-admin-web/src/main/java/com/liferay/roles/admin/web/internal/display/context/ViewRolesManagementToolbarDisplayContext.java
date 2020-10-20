@@ -200,7 +200,7 @@ public class ViewRolesManagementToolbarDisplayContext {
 			(RoleSearchTerms)roleSearch.getSearchTerms();
 
 		BaseModelSearchResult<Role> baseModelSearchResult =
-			_currentRoleTypeContributor.search(
+			_currentRoleTypeContributor.searchRoles(
 				themeDisplay.getCompanyId(), roleSearchTerms.getKeywords(),
 				roleSearch.getStart(), roleSearch.getEnd(),
 				roleSearch.getOrderByComparator());

@@ -168,7 +168,7 @@ public interface RoleTypeContributor {
 		return false;
 	}
 
-	public default BaseModelSearchResult<Role> search(
+	public default BaseModelSearchResult<Role> searchRoles(
 		long companyId, String keywords, int start, int end,
 		OrderByComparator<Role> orderByComparator) {
 
