@@ -99,10 +99,15 @@
 				"actionIds": [
 					"MANAGE_COMMERCE_SHIPMENTS",
 					"MANAGE_COMMERCE_SUBSCRIPTIONS",
-					"MANAGE_INVENTORY",
 					"VIEW_CONTROL_PANEL"
 				],
 				"resource": "90"
+			},
+			{
+				"actionIds": [
+					"MANAGE_INVENTORY"
+				],
+				"resource": "com.liferay.commerce.inventory"
 			},
 			{
 				"actionIds": [
