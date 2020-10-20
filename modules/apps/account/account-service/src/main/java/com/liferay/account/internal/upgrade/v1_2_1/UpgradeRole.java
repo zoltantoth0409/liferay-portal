@@ -36,10 +36,10 @@ public class UpgradeRole extends UpgradeProcess {
 
 		runSQL(
 			StringBundler.concat(
-				"UPDATE Role_ SET Role_.type_ = ", newType,
-				" WHERE Role_.classNameId = (SELECT classNameId FROM ",
-				"ClassName_ WHERE ClassName_.value = ", className,
-				") AND Role_.type_ = ", oldType));
+				"update Role_ set Role_.type_ = ", newType,
+				" where Role_.classNameId = (select classNameId from ",
+				"ClassName_ where ClassName_.value = ", className,
+				") and Role_.type_ = ", oldType));
 	}
 
 }
