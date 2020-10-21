@@ -1459,7 +1459,7 @@ public class JenkinsResultsParserUtil {
 		}
 
 		NotificationUtil.sendEmail(
-			sb.toString(), "jenkins", "Unable to get Jenkins Master name",
+			sb.toString(), "jenkins", "Unable to get Jenkins master name",
 			"peter.yoo@liferay.com");
 
 		return null;
