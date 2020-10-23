@@ -113,13 +113,13 @@ public class AppResourceImpl
 			PermissionThreadLocal.getPermissionChecker(), appId,
 			ActionKeys.DELETE);
 
+		_appBuilderAppLocalService.deleteAppBuilderApp(appId);
+
 		_workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
 			contextCompany.getCompanyId(), 0,
 			ResourceActionsUtil.getCompositeModelName(
 				AppBuilderApp.class.getName(), DDLRecord.class.getName()),
 			appId, 0);
-
-		_appBuilderAppLocalService.deleteAppBuilderApp(appId);
 	}
 
 	@Override
