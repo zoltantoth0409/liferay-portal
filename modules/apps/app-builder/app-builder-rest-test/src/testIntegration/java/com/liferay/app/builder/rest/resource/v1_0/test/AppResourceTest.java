@@ -86,7 +86,6 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 			StringPool.BLANK);
 
 		_irrelevantDDMStructure = _addDDMStructure(irrelevantGroup);
-
 		_workflowDefinition =
 			_workflowDefinitionManager.getLatestWorkflowDefinition(
 				testCompany.getCompanyId(), "Single Approver");
