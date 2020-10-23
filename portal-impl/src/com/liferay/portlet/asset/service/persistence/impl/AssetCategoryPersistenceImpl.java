@@ -5216,28 +5216,29 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns all the asset categories that the user has permission to view where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns all the asset categories that the user has permission to view where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the matching asset categories that the user has permission to view
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_V(
-		long groupId, long[] vocabularyIds) {
+		long[] groupIds, long[] vocabularyIds) {
 
 		return filterFindByG_V(
-			groupId, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			groupIds, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
-	 * Returns a range of all the asset categories that the user has permission to view where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns a range of all the asset categories that the user has permission to view where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
@@ -5245,19 +5246,19 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_V(
-		long groupId, long[] vocabularyIds, int start, int end) {
+		long[] groupIds, long[] vocabularyIds, int start, int end) {
 
-		return filterFindByG_V(groupId, vocabularyIds, start, end, null);
+		return filterFindByG_V(groupIds, vocabularyIds, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the asset categories that the user has permission to view where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns an ordered range of all the asset categories that the user has permission to view where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
@@ -5266,12 +5267,19 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_V(
-		long groupId, long[] vocabularyIds, int start, int end,
+		long[] groupIds, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator) {
 
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
 			return findByG_V(
-				groupId, vocabularyIds, start, end, orderByComparator);
+				groupIds, vocabularyIds, start, end, orderByComparator);
+		}
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
 		}
 
 		if (vocabularyIds == null) {
@@ -5291,7 +5299,19 @@ public class AssetCategoryPersistenceImpl
 				_FILTER_SQL_SELECT_ASSETCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		sb.append(_FINDER_COLUMN_G_V_GROUPID_2);
+		if (groupIds.length > 0) {
+			sb.append("(");
+
+			sb.append(_FINDER_COLUMN_G_V_GROUPID_7);
+
+			sb.append(StringUtil.merge(groupIds));
+
+			sb.append(")");
+
+			sb.append(")");
+
+			sb.append(WHERE_AND);
+		}
 
 		if (vocabularyIds.length > 0) {
 			sb.append("(");
@@ -5334,7 +5354,7 @@ public class AssetCategoryPersistenceImpl
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(
 			sb.toString(), AssetCategory.class.getName(),
-			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -5352,10 +5372,6 @@ public class AssetCategoryPersistenceImpl
 					_FILTER_ENTITY_TABLE, AssetCategoryImpl.class);
 			}
 
-			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
-
-			queryPos.add(groupId);
-
 			return (List<AssetCategory>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
 		}
@@ -5368,30 +5384,33 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns all the asset categories where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns all the asset categories where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the matching asset categories
 	 */
 	@Override
-	public List<AssetCategory> findByG_V(long groupId, long[] vocabularyIds) {
+	public List<AssetCategory> findByG_V(
+		long[] groupIds, long[] vocabularyIds) {
+
 		return findByG_V(
-			groupId, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			groupIds, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
-	 * Returns a range of all the asset categories where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns a range of all the asset categories where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
@@ -5399,19 +5418,19 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_V(
-		long groupId, long[] vocabularyIds, int start, int end) {
+		long[] groupIds, long[] vocabularyIds, int start, int end) {
 
-		return findByG_V(groupId, vocabularyIds, start, end, null);
+		return findByG_V(groupIds, vocabularyIds, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the asset categories where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns an ordered range of all the asset categories where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
@@ -5420,11 +5439,11 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_V(
-		long groupId, long[] vocabularyIds, int start, int end,
+		long[] groupIds, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return findByG_V(
-			groupId, vocabularyIds, start, end, orderByComparator, true);
+			groupIds, vocabularyIds, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5444,9 +5463,16 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_V(
-		long groupId, long[] vocabularyIds, int start, int end,
+		long[] groupIds, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
 		boolean useFinderCache) {
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
+		}
 
 		if (vocabularyIds == null) {
 			vocabularyIds = new long[0];
@@ -5455,9 +5481,9 @@ public class AssetCategoryPersistenceImpl
 			vocabularyIds = ArrayUtil.sortedUnique(vocabularyIds);
 		}
 
-		if (vocabularyIds.length == 1) {
+		if ((groupIds.length == 1) && (vocabularyIds.length == 1)) {
 			return findByG_V(
-				groupId, vocabularyIds[0], start, end, orderByComparator);
+				groupIds[0], vocabularyIds[0], start, end, orderByComparator);
 		}
 
 		boolean productionMode = CTPersistenceHelperUtil.isProductionMode(
@@ -5470,14 +5496,14 @@ public class AssetCategoryPersistenceImpl
 
 			if (useFinderCache && productionMode) {
 				finderArgs = new Object[] {
-					groupId, StringUtil.merge(vocabularyIds)
+					StringUtil.merge(groupIds), StringUtil.merge(vocabularyIds)
 				};
 			}
 		}
 		else if (useFinderCache && productionMode) {
 			finderArgs = new Object[] {
-				groupId, StringUtil.merge(vocabularyIds), start, end,
-				orderByComparator
+				StringUtil.merge(groupIds), StringUtil.merge(vocabularyIds),
+				start, end, orderByComparator
 			};
 		}
 
@@ -5489,7 +5515,8 @@ public class AssetCategoryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetCategory assetCategory : list) {
-					if ((groupId != assetCategory.getGroupId()) ||
+					if (!ArrayUtil.contains(
+							groupIds, assetCategory.getGroupId()) ||
 						!ArrayUtil.contains(
 							vocabularyIds, assetCategory.getVocabularyId())) {
 
@@ -5506,7 +5533,19 @@ public class AssetCategoryPersistenceImpl
 
 			sb.append(_SQL_SELECT_ASSETCATEGORY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_V_GROUPID_2);
+			if (groupIds.length > 0) {
+				sb.append("(");
+
+				sb.append(_FINDER_COLUMN_G_V_GROUPID_7);
+
+				sb.append(StringUtil.merge(groupIds));
+
+				sb.append(")");
+
+				sb.append(")");
+
+				sb.append(WHERE_AND);
+			}
 
 			if (vocabularyIds.length > 0) {
 				sb.append("(");
@@ -5539,10 +5578,6 @@ public class AssetCategoryPersistenceImpl
 				session = openSession();
 
 				Query query = session.createQuery(sql);
-
-				QueryPos queryPos = QueryPos.getInstance(query);
-
-				queryPos.add(groupId);
 
 				list = (List<AssetCategory>)QueryUtil.list(
 					query, getDialect(), start, end);
@@ -5650,14 +5685,21 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns the number of asset categories where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns the number of asset categories where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the number of matching asset categories
 	 */
 	@Override
-	public int countByG_V(long groupId, long[] vocabularyIds) {
+	public int countByG_V(long[] groupIds, long[] vocabularyIds) {
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
+		}
+
 		if (vocabularyIds == null) {
 			vocabularyIds = new long[0];
 		}
@@ -5674,7 +5716,7 @@ public class AssetCategoryPersistenceImpl
 
 		if (productionMode) {
 			finderArgs = new Object[] {
-				groupId, StringUtil.merge(vocabularyIds)
+				StringUtil.merge(groupIds), StringUtil.merge(vocabularyIds)
 			};
 
 			count = (Long)FinderCacheUtil.getResult(
@@ -5686,7 +5728,19 @@ public class AssetCategoryPersistenceImpl
 
 			sb.append(_SQL_COUNT_ASSETCATEGORY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_V_GROUPID_2);
+			if (groupIds.length > 0) {
+				sb.append("(");
+
+				sb.append(_FINDER_COLUMN_G_V_GROUPID_7);
+
+				sb.append(StringUtil.merge(groupIds));
+
+				sb.append(")");
+
+				sb.append(")");
+
+				sb.append(WHERE_AND);
+			}
 
 			if (vocabularyIds.length > 0) {
 				sb.append("(");
@@ -5711,10 +5765,6 @@ public class AssetCategoryPersistenceImpl
 				session = openSession();
 
 				Query query = session.createQuery(sql);
-
-				QueryPos queryPos = QueryPos.getInstance(query);
-
-				queryPos.add(groupId);
 
 				count = (Long)query.uniqueResult();
 
@@ -5788,16 +5838,23 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns the number of asset categories that the user has permission to view where groupId = &#63; and vocabularyId = any &#63;.
+	 * Returns the number of asset categories that the user has permission to view where groupId = any &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the number of matching asset categories that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_V(long groupId, long[] vocabularyIds) {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_V(groupId, vocabularyIds);
+	public int filterCountByG_V(long[] groupIds, long[] vocabularyIds) {
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
+			return countByG_V(groupIds, vocabularyIds);
+		}
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
 		}
 
 		if (vocabularyIds == null) {
@@ -5811,7 +5868,19 @@ public class AssetCategoryPersistenceImpl
 
 		sb.append(_FILTER_SQL_COUNT_ASSETCATEGORY_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_V_GROUPID_2);
+		if (groupIds.length > 0) {
+			sb.append("(");
+
+			sb.append(_FINDER_COLUMN_G_V_GROUPID_7);
+
+			sb.append(StringUtil.merge(groupIds));
+
+			sb.append(")");
+
+			sb.append(")");
+
+			sb.append(WHERE_AND);
+		}
 
 		if (vocabularyIds.length > 0) {
 			sb.append("(");
@@ -5830,7 +5899,7 @@ public class AssetCategoryPersistenceImpl
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(
 			sb.toString(), AssetCategory.class.getName(),
-			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -5841,10 +5910,6 @@ public class AssetCategoryPersistenceImpl
 
 			sqlQuery.addScalar(
 				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
-
-			queryPos.add(groupId);
 
 			Long count = (Long)sqlQuery.uniqueResult();
 
@@ -5860,6 +5925,9 @@ public class AssetCategoryPersistenceImpl
 
 	private static final String _FINDER_COLUMN_G_V_GROUPID_2 =
 		"assetCategory.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_V_GROUPID_7 =
+		"assetCategory.groupId IN (";
 
 	private static final String _FINDER_COLUMN_G_V_VOCABULARYID_2 =
 		"assetCategory.vocabularyId = ?";
@@ -10652,30 +10720,30 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns all the asset categories that the user has permission to view where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns all the asset categories that the user has permission to view where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the matching asset categories that the user has permission to view
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds) {
+		long[] groupIds, String name, long[] vocabularyIds) {
 
 		return filterFindByG_LikeN_V(
-			groupId, name, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			groupIds, name, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
 	/**
-	 * Returns a range of all the asset categories that the user has permission to view where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns a range of all the asset categories that the user has permission to view where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
@@ -10684,20 +10752,21 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds, int start, int end) {
+		long[] groupIds, String name, long[] vocabularyIds, int start,
+		int end) {
 
 		return filterFindByG_LikeN_V(
-			groupId, name, vocabularyIds, start, end, null);
+			groupIds, name, vocabularyIds, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the asset categories that the user has permission to view where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns an ordered range of all the asset categories that the user has permission to view where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
@@ -10707,12 +10776,19 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> filterFindByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds, int start, int end,
+		long[] groupIds, String name, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator) {
 
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
 			return findByG_LikeN_V(
-				groupId, name, vocabularyIds, start, end, orderByComparator);
+				groupIds, name, vocabularyIds, start, end, orderByComparator);
+		}
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
 		}
 
 		name = Objects.toString(name, "");
@@ -10734,7 +10810,19 @@ public class AssetCategoryPersistenceImpl
 				_FILTER_SQL_SELECT_ASSETCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_2);
+		if (groupIds.length > 0) {
+			sb.append("(");
+
+			sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_7);
+
+			sb.append(StringUtil.merge(groupIds));
+
+			sb.append(")");
+
+			sb.append(")");
+
+			sb.append(WHERE_AND);
+		}
 
 		boolean bindName = false;
 
@@ -10788,7 +10876,7 @@ public class AssetCategoryPersistenceImpl
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(
 			sb.toString(), AssetCategory.class.getName(),
-			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -10808,8 +10896,6 @@ public class AssetCategoryPersistenceImpl
 
 			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			queryPos.add(groupId);
-
 			if (bindName) {
 				queryPos.add(StringUtil.toLowerCase(name));
 			}
@@ -10826,34 +10912,34 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns all the asset categories where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns all the asset categories where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the matching asset categories
 	 */
 	@Override
 	public List<AssetCategory> findByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds) {
+		long[] groupIds, String name, long[] vocabularyIds) {
 
 		return findByG_LikeN_V(
-			groupId, name, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			groupIds, name, vocabularyIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
 	/**
-	 * Returns a range of all the asset categories where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns a range of all the asset categories where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
@@ -10862,19 +10948,20 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds, int start, int end) {
+		long[] groupIds, String name, long[] vocabularyIds, int start,
+		int end) {
 
-		return findByG_LikeN_V(groupId, name, vocabularyIds, start, end, null);
+		return findByG_LikeN_V(groupIds, name, vocabularyIds, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the asset categories where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns an ordered range of all the asset categories where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>AssetCategoryModelImpl</code>.
 	 * </p>
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @param start the lower bound of the range of asset categories
@@ -10884,11 +10971,11 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds, int start, int end,
+		long[] groupIds, String name, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return findByG_LikeN_V(
-			groupId, name, vocabularyIds, start, end, orderByComparator, true);
+			groupIds, name, vocabularyIds, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -10909,9 +10996,16 @@ public class AssetCategoryPersistenceImpl
 	 */
 	@Override
 	public List<AssetCategory> findByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds, int start, int end,
+		long[] groupIds, String name, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
 		boolean useFinderCache) {
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
+		}
 
 		name = Objects.toString(name, "");
 
@@ -10922,9 +11016,10 @@ public class AssetCategoryPersistenceImpl
 			vocabularyIds = ArrayUtil.sortedUnique(vocabularyIds);
 		}
 
-		if (vocabularyIds.length == 1) {
+		if ((groupIds.length == 1) && (vocabularyIds.length == 1)) {
 			return findByG_LikeN_V(
-				groupId, name, vocabularyIds[0], start, end, orderByComparator);
+				groupIds[0], name, vocabularyIds[0], start, end,
+				orderByComparator);
 		}
 
 		boolean productionMode = CTPersistenceHelperUtil.isProductionMode(
@@ -10937,14 +11032,15 @@ public class AssetCategoryPersistenceImpl
 
 			if (useFinderCache && productionMode) {
 				finderArgs = new Object[] {
-					groupId, name, StringUtil.merge(vocabularyIds)
+					StringUtil.merge(groupIds), name,
+					StringUtil.merge(vocabularyIds)
 				};
 			}
 		}
 		else if (useFinderCache && productionMode) {
 			finderArgs = new Object[] {
-				groupId, name, StringUtil.merge(vocabularyIds), start, end,
-				orderByComparator
+				StringUtil.merge(groupIds), name,
+				StringUtil.merge(vocabularyIds), start, end, orderByComparator
 			};
 		}
 
@@ -10956,7 +11052,8 @@ public class AssetCategoryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetCategory assetCategory : list) {
-					if ((groupId != assetCategory.getGroupId()) ||
+					if (!ArrayUtil.contains(
+							groupIds, assetCategory.getGroupId()) ||
 						!StringUtil.wildcardMatches(
 							assetCategory.getName(), name, '_', '%', '\\',
 							false) ||
@@ -10976,7 +11073,19 @@ public class AssetCategoryPersistenceImpl
 
 			sb.append(_SQL_SELECT_ASSETCATEGORY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_2);
+			if (groupIds.length > 0) {
+				sb.append("(");
+
+				sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_7);
+
+				sb.append(StringUtil.merge(groupIds));
+
+				sb.append(")");
+
+				sb.append(")");
+
+				sb.append(WHERE_AND);
+			}
 
 			boolean bindName = false;
 
@@ -11022,8 +11131,6 @@ public class AssetCategoryPersistenceImpl
 				Query query = session.createQuery(sql);
 
 				QueryPos queryPos = QueryPos.getInstance(query);
-
-				queryPos.add(groupId);
 
 				if (bindName) {
 					queryPos.add(StringUtil.toLowerCase(name));
@@ -11157,16 +11264,23 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns the number of asset categories where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns the number of asset categories where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the number of matching asset categories
 	 */
 	@Override
 	public int countByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds) {
+		long[] groupIds, String name, long[] vocabularyIds) {
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
+		}
 
 		name = Objects.toString(name, "");
 
@@ -11186,7 +11300,8 @@ public class AssetCategoryPersistenceImpl
 
 		if (productionMode) {
 			finderArgs = new Object[] {
-				groupId, name, StringUtil.merge(vocabularyIds)
+				StringUtil.merge(groupIds), name,
+				StringUtil.merge(vocabularyIds)
 			};
 
 			count = (Long)FinderCacheUtil.getResult(
@@ -11198,7 +11313,19 @@ public class AssetCategoryPersistenceImpl
 
 			sb.append(_SQL_COUNT_ASSETCATEGORY_WHERE);
 
-			sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_2);
+			if (groupIds.length > 0) {
+				sb.append("(");
+
+				sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_7);
+
+				sb.append(StringUtil.merge(groupIds));
+
+				sb.append(")");
+
+				sb.append(")");
+
+				sb.append(WHERE_AND);
+			}
 
 			boolean bindName = false;
 
@@ -11236,8 +11363,6 @@ public class AssetCategoryPersistenceImpl
 				Query query = session.createQuery(sql);
 
 				QueryPos queryPos = QueryPos.getInstance(query);
-
-				queryPos.add(groupId);
 
 				if (bindName) {
 					queryPos.add(StringUtil.toLowerCase(name));
@@ -11336,19 +11461,26 @@ public class AssetCategoryPersistenceImpl
 	}
 
 	/**
-	 * Returns the number of asset categories that the user has permission to view where groupId = &#63; and name LIKE &#63; and vocabularyId = any &#63;.
+	 * Returns the number of asset categories that the user has permission to view where groupId = any &#63; and name LIKE &#63; and vocabularyId = any &#63;.
 	 *
-	 * @param groupId the group ID
+	 * @param groupIds the group IDs
 	 * @param name the name
 	 * @param vocabularyIds the vocabulary IDs
 	 * @return the number of matching asset categories that the user has permission to view
 	 */
 	@Override
 	public int filterCountByG_LikeN_V(
-		long groupId, String name, long[] vocabularyIds) {
+		long[] groupIds, String name, long[] vocabularyIds) {
 
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_LikeN_V(groupId, name, vocabularyIds);
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
+			return countByG_LikeN_V(groupIds, name, vocabularyIds);
+		}
+
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else if (groupIds.length > 1) {
+			groupIds = ArrayUtil.sortedUnique(groupIds);
 		}
 
 		name = Objects.toString(name, "");
@@ -11364,7 +11496,19 @@ public class AssetCategoryPersistenceImpl
 
 		sb.append(_FILTER_SQL_COUNT_ASSETCATEGORY_WHERE);
 
-		sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_2);
+		if (groupIds.length > 0) {
+			sb.append("(");
+
+			sb.append(_FINDER_COLUMN_G_LIKEN_V_GROUPID_7);
+
+			sb.append(StringUtil.merge(groupIds));
+
+			sb.append(")");
+
+			sb.append(")");
+
+			sb.append(WHERE_AND);
+		}
 
 		boolean bindName = false;
 
@@ -11394,7 +11538,7 @@ public class AssetCategoryPersistenceImpl
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(
 			sb.toString(), AssetCategory.class.getName(),
-			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -11407,8 +11551,6 @@ public class AssetCategoryPersistenceImpl
 				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
-
-			queryPos.add(groupId);
 
 			if (bindName) {
 				queryPos.add(StringUtil.toLowerCase(name));
@@ -11428,6 +11570,9 @@ public class AssetCategoryPersistenceImpl
 
 	private static final String _FINDER_COLUMN_G_LIKEN_V_GROUPID_2 =
 		"assetCategory.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_LIKEN_V_GROUPID_7 =
+		"assetCategory.groupId IN (";
 
 	private static final String _FINDER_COLUMN_G_LIKEN_V_NAME_2 =
 		"lower(assetCategory.name) LIKE ? AND ";
