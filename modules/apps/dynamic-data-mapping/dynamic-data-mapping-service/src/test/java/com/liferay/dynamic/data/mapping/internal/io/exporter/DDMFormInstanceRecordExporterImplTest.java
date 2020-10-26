@@ -300,13 +300,13 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 			ddmFormInstanceRecordExporterImpl.getDDMFormFieldsLabel(
 				ddmFormFieldMap, locale);
 
+		Assert.assertEquals("Autor", ddmFormFieldsLabel.get("author"));
+		Assert.assertEquals("Idioma", ddmFormFieldsLabel.get("languageId"));
+		Assert.assertEquals(
+			"Data de Modificação", ddmFormFieldsLabel.get("modifiedDate"));
 		Assert.assertEquals("Campo 1", ddmFormFieldsLabel.get("reference1"));
 		Assert.assertEquals("Campo 2", ddmFormFieldsLabel.get("reference2"));
 		Assert.assertEquals("Estado", ddmFormFieldsLabel.get("status"));
-		Assert.assertEquals(
-			"Data de Modificação", ddmFormFieldsLabel.get("modifiedDate"));
-		Assert.assertEquals("Autor", ddmFormFieldsLabel.get("author"));
-		Assert.assertEquals("Idioma", ddmFormFieldsLabel.get("languageId"));
 	}
 
 	@Test
@@ -489,8 +489,8 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 		Map<String, String> valuesMap = ddmFormFieldValues.get(0);
 
 		Assert.assertEquals("User Name", valuesMap.get("author"));
-		Assert.assertEquals(StringPool.BLANK, valuesMap.get("reference1"));
-		Assert.assertEquals("value", valuesMap.get("reference2"));
+		Assert.assertEquals(
+			LocaleUtil.US.toString(), valuesMap.get("languageId"));
 
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 			locale);
@@ -499,10 +499,9 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 
 		Assert.assertEquals(modifiedDate, valuesMap.get("modifiedDate"));
 
+		Assert.assertEquals(StringPool.BLANK, valuesMap.get("reference1"));
+		Assert.assertEquals("value", valuesMap.get("reference2"));
 		Assert.assertEquals("aprovado", valuesMap.get("status"));
-
-		Assert.assertEquals(
-			LocaleUtil.US.toString(), valuesMap.get("languageId"));
 
 		InOrder inOrder = Mockito.inOrder(
 			ddmFormInstanceRecordExporterImpl, ddmFormInstanceRecord,

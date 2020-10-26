@@ -128,12 +128,12 @@ public class DDMFormInstanceRecordExporterImpl
 					localizedValue.getString(locale));
 			});
 
-		ddmFormFieldsLabel.put(_STATUS, LanguageUtil.get(locale, _STATUS));
-		ddmFormFieldsLabel.put(
-			_MODIFIED_DATE, LanguageUtil.get(locale, "modified-date"));
 		ddmFormFieldsLabel.put(_AUTHOR, LanguageUtil.get(locale, _AUTHOR));
 		ddmFormFieldsLabel.put(
 			_LANGUAGE_ID, LanguageUtil.get(locale, "default-language"));
+		ddmFormFieldsLabel.put(
+			_MODIFIED_DATE, LanguageUtil.get(locale, "modified-date"));
+		ddmFormFieldsLabel.put(_STATUS, LanguageUtil.get(locale, _STATUS));
 
 		return ddmFormFieldsLabel;
 	}
@@ -204,21 +204,19 @@ public class DDMFormInstanceRecordExporterImpl
 				ddmFormInstanceRecord.getFormInstanceRecordVersion();
 
 			ddmFormFieldsValue.put(
-				_STATUS,
-				getStatusMessage(
-					ddmFormInstanceRecordVersion.getStatus(), locale));
-
-			ddmFormFieldsValue.put(
-				_MODIFIED_DATE,
-				dateTimeFormat.format(
-					ddmFormInstanceRecordVersion.getStatusDate()));
-
-			ddmFormFieldsValue.put(
 				_AUTHOR, ddmFormInstanceRecordVersion.getUserName());
 
 			ddmFormFieldsValue.put(
 				_LANGUAGE_ID,
 				LocaleUtil.toLanguageId(ddmFormValues.getDefaultLocale()));
+			ddmFormFieldsValue.put(
+				_MODIFIED_DATE,
+				dateTimeFormat.format(
+					ddmFormInstanceRecordVersion.getStatusDate()));
+			ddmFormFieldsValue.put(
+				_STATUS,
+				getStatusMessage(
+					ddmFormInstanceRecordVersion.getStatus(), locale));
 
 			ddmFormFieldValues.add(ddmFormFieldsValue);
 		}
