@@ -38,7 +38,7 @@
 			<div class="form-navigator-content">
 
 				<%
-				for (final FormNavigatorEntry<Object> formNavigatorEntry : formNavigatorEntries) {
+				for (FormNavigatorEntry<Object> formNavigatorEntry : formNavigatorEntries) {
 					String sectionId = namespace + _getSectionId(formNavigatorEntry.getKey());
 				%>
 
