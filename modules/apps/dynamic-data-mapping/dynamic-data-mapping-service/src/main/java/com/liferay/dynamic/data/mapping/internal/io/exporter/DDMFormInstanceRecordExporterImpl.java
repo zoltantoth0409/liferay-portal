@@ -128,12 +128,14 @@ public class DDMFormInstanceRecordExporterImpl
 					localizedValue.getString(locale));
 			});
 
-		ddmFormFieldsLabel.put(_AUTHOR, LanguageUtil.get(locale, _AUTHOR));
 		ddmFormFieldsLabel.put(
-			_LANGUAGE_ID, LanguageUtil.get(locale, "default-language"));
+			_KEY_AUTHOR, LanguageUtil.get(locale, _KEY_AUTHOR));
 		ddmFormFieldsLabel.put(
-			_MODIFIED_DATE, LanguageUtil.get(locale, "modified-date"));
-		ddmFormFieldsLabel.put(_STATUS, LanguageUtil.get(locale, _STATUS));
+			_KEY_LANGUAGE_ID, LanguageUtil.get(locale, "default-language"));
+		ddmFormFieldsLabel.put(
+			_KEY_MODIFIED_DATE, LanguageUtil.get(locale, "modified-date"));
+		ddmFormFieldsLabel.put(
+			_KEY_STATUS, LanguageUtil.get(locale, _KEY_STATUS));
 
 		return ddmFormFieldsLabel;
 	}
@@ -204,17 +206,17 @@ public class DDMFormInstanceRecordExporterImpl
 				ddmFormInstanceRecord.getFormInstanceRecordVersion();
 
 			ddmFormFieldsValue.put(
-				_AUTHOR, ddmFormInstanceRecordVersion.getUserName());
+				_KEY_AUTHOR, ddmFormInstanceRecordVersion.getUserName());
 
 			ddmFormFieldsValue.put(
-				_LANGUAGE_ID,
+				_KEY_LANGUAGE_ID,
 				LocaleUtil.toLanguageId(ddmFormValues.getDefaultLocale()));
 			ddmFormFieldsValue.put(
-				_MODIFIED_DATE,
+				_KEY_MODIFIED_DATE,
 				dateTimeFormat.format(
 					ddmFormInstanceRecordVersion.getStatusDate()));
 			ddmFormFieldsValue.put(
-				_STATUS,
+				_KEY_STATUS,
 				getStatusMessage(
 					ddmFormInstanceRecordVersion.getStatus(), locale));
 
@@ -323,12 +325,12 @@ public class DDMFormInstanceRecordExporterImpl
 	protected DDMFormInstanceVersionLocalService
 		ddmFormInstanceVersionLocalService;
 
-	private static final String _AUTHOR = "author";
+	private static final String _KEY_AUTHOR = "author";
 
-	private static final String _LANGUAGE_ID = "languageId";
+	private static final String _KEY_LANGUAGE_ID = "languageId";
 
-	private static final String _MODIFIED_DATE = "modifiedDate";
+	private static final String _KEY_MODIFIED_DATE = "modifiedDate";
 
-	private static final String _STATUS = "status";
+	private static final String _KEY_STATUS = "status";
 
 }
