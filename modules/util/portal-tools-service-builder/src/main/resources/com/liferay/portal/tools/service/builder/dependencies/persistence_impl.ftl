@@ -2281,7 +2281,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				_argumentsResolverServiceRegistration = registry.registerService(
 					ArgumentsResolver.class, new ${entity.name}ModelArgumentsResolver()
 					<#if serviceBuilder.isVersionLTE_7_3_0()>
-						,HashMapBuilder.<String, Object>put(
+						,
+						HashMapBuilder.<String, Object>put(
 							"model.class.name", ${entity.name}.class.getName()
 						).build()
 					</#if>);

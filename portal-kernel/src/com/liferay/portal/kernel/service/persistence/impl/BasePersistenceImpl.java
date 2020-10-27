@@ -201,7 +201,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 
 		FinderPath finderPath = new FinderPath(
 			FinderPath.encodeDSLQueryCacheName(tableNames), "dslQuery",
-			_getTypes(scalarValues), new String[0],
+			_getClassNames(scalarValues), new String[0],
 			projectionType == ProjectionType.MODELS);
 
 		Object[] arguments = _getArguments(scalarValues);
@@ -254,7 +254,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 				}
 			}
 
-			Object result;
+			Object result = null;
 
 			if (projectionType == ProjectionType.COUNT) {
 				List<?> results = sqlQuery.list();
@@ -966,6 +966,22 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		return arguments.toArray(new Object[0]);
 	}
 
+	private String[] _getClassNames(List<Object> objects) {
+		if ((objects == null) || objects.isEmpty()) {
+			return new String[0];
+		}
+
+		List<String> types = new ArrayList<>();
+
+		for (Object object : objects) {
+			Class<?> clazz = object.getClass();
+
+			types.add(clazz.getName());
+		}
+
+		return types.toArray(new String[0]);
+	}
+
 	private ProjectionType _getProjectionType(
 		String[] tableNames, Collection<? extends Expression<?>> expressions) {
 
@@ -1051,22 +1067,6 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		}
 
 		throw new IllegalArgumentException(expression.toString());
-	}
-
-	private String[] _getTypes(List<Object> objects) {
-		if ((objects == null) || objects.isEmpty()) {
-			return new String[0];
-		}
-
-		List<String> types = new ArrayList<>();
-
-		for (Object object : objects) {
-			Class<?> clazz = object.getClass();
-
-			types.add(clazz.getName());
-		}
-
-		return types.toArray(new String[0]);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

@@ -293,7 +293,7 @@ public class FinderCacheImpl
 				for (String tableName :
 						FinderPath.decodeDSLQueryCacheName(cacheName)) {
 
-					String modelImplClassName = _modelImplClassNameMap.get(
+					String modelImplClassName = _modelImplClassNames.get(
 						tableName);
 
 					if (Validator.isNull(modelImplClassName)) {
@@ -303,7 +303,7 @@ public class FinderCacheImpl
 					}
 
 					Set<String> dslQueryCacheNames =
-						_dslQueryCacheNameSetMap.computeIfAbsent(
+						_dslQueryCacheNamesMap.computeIfAbsent(
 							modelImplClassName,
 							key -> Collections.newSetFromMap(
 								new ConcurrentHashMap<>()));
@@ -351,7 +351,7 @@ public class FinderCacheImpl
 
 		_clearDSLQueryCache(cacheName);
 
-		ArgumentsResolver argumentsResolver = _argumentsResolverMap.get(
+		ArgumentsResolver argumentsResolver = _argumentsResolvers.get(
 			cacheName);
 
 		for (FinderPath finderPath : _getFinderPaths(cacheName)) {
@@ -382,7 +382,7 @@ public class FinderCacheImpl
 		removeCache(_getCacheNameWithPagination(cacheName));
 		removeCache(_getCacheNameWithoutPagination(cacheName));
 
-		Set<String> dslQueryCacheNames = _dslQueryCacheNameSetMap.remove(
+		Set<String> dslQueryCacheNames = _dslQueryCacheNamesMap.remove(
 			cacheName);
 
 		if (dslQueryCacheNames != null) {
@@ -414,7 +414,7 @@ public class FinderCacheImpl
 
 		_clearDSLQueryCache(cacheName);
 
-		ArgumentsResolver argumentsResolver = _argumentsResolverMap.get(
+		ArgumentsResolver argumentsResolver = _argumentsResolvers.get(
 			cacheName);
 
 		for (FinderPath finderPath :
@@ -494,8 +494,7 @@ public class FinderCacheImpl
 	}
 
 	private void _clearDSLQueryCache(String className) {
-		Set<String> dslQueryCacheNames = _dslQueryCacheNameSetMap.get(
-			className);
+		Set<String> dslQueryCacheNames = _dslQueryCacheNamesMap.get(className);
 
 		if (dslQueryCacheNames != null) {
 			for (String dslQueryCacheName : dslQueryCacheNames) {
@@ -627,19 +626,19 @@ public class FinderCacheImpl
 	private static final String _GROUP_KEY_PREFIX =
 		FinderCache.class.getName() + StringPool.PERIOD;
 
-	private final Map<String, ArgumentsResolver> _argumentsResolverMap =
+	private final Map<String, ArgumentsResolver> _argumentsResolvers =
 		new ConcurrentHashMap<>();
 	private ServiceTracker<ArgumentsResolver, ArgumentsResolver>
 		_argumentsResolverServiceTracker;
 	private volatile CacheKeyGenerator _baseModelCacheKeyGenerator;
 	private BundleContext _bundleContext;
 	private volatile CacheKeyGenerator _cacheKeyGenerator;
-	private final Map<String, Set<String>> _dslQueryCacheNameSetMap =
+	private final Map<String, Set<String>> _dslQueryCacheNamesMap =
 		new ConcurrentHashMap<>();
 	private final Map<String, Map<String, FinderPath>> _finderPathsMap =
 		new ConcurrentHashMap<>();
 	private ThreadLocal<LRUMap> _localCache;
-	private final Map<String, String> _modelImplClassNameMap =
+	private final Map<String, String> _modelImplClassNames =
 		new ConcurrentHashMap<>();
 
 	@Reference
@@ -695,10 +694,9 @@ public class FinderCacheImpl
 			ArgumentsResolver argumentsResolver = _bundleContext.getService(
 				serviceReference);
 
-			_argumentsResolverMap.put(
+			_argumentsResolvers.put(
 				argumentsResolver.getClassName(), argumentsResolver);
-
-			_modelImplClassNameMap.put(
+			_modelImplClassNames.put(
 				argumentsResolver.getTableName(),
 				argumentsResolver.getClassName());
 
@@ -716,8 +714,8 @@ public class FinderCacheImpl
 			ServiceReference<ArgumentsResolver> serviceReference,
 			ArgumentsResolver argumentsResolver) {
 
-			_argumentsResolverMap.remove(argumentsResolver.getClassName());
-			_modelImplClassNameMap.remove(argumentsResolver.getTableName());
+			_argumentsResolvers.remove(argumentsResolver.getClassName());
+			_modelImplClassNames.remove(argumentsResolver.getTableName());
 
 			_bundleContext.ungetService(serviceReference);
 		}
