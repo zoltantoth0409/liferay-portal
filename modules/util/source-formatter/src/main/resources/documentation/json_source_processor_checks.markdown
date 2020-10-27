@@ -1,4 +1,4 @@
-# Checks for .ipynb, .json or .npmbridgerc
+# Checks for .json or .npmbridgerc
 
 Check | Category | Description
 ----- | -------- | -----------

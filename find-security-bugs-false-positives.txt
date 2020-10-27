@@ -1,5 +1,4 @@
-
- com/google/api/services/drive/model/File.getExportLinks():SAFE@com/liferay/document/library/opener/google/drive/web/internal/DLOpenerGoogleDriveManagerImpl
+com/google/api/services/drive/model/File.getExportLinks():SAFE@com/liferay/document/library/opener/google/drive/web/internal/DLOpenerGoogleDriveManagerImpl
 com/liferay/asset/kernel/model/AssetRendererFactory.getClassName()Ljava/lang/String;:SAFE
 com/liferay/asset/kernel/model/AssetRendererFactory.getSubtypeTitle(Ljava/util/Locale;)Ljava/lang/String;:SAFE
 com/liferay/asset/kernel/model/AssetRendererFactory.getTypeName(Ljava/util/Locale;)Ljava/lang/String;:SAFE
