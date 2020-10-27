@@ -74,8 +74,8 @@ public class MBEditMessageDisplayContext {
 				"messageId", String.valueOf(_message.getMessageId()));
 			getAttachmentsURL.setResourceID("/message_boards/get_attachments");
 
-			PortletURL currentURLObj = PortletURLUtil.getCurrent(
-				_liferayPortletRequest, _liferayPortletResponse);
+			taglibContext.put(
+				"getAttachmentsURL", getAttachmentsURL.toString());
 
 			PortletURL viewTrashAttachmentsURL =
 				_liferayPortletResponse.createRenderURL();
@@ -84,13 +84,14 @@ public class MBEditMessageDisplayContext {
 				"mvcRenderCommandName",
 				"/message_boards/view_deleted_message_attachments");
 			viewTrashAttachmentsURL.setParameter(
-				"redirect", currentURLObj.toString());
+				"redirect",
+				String.valueOf(
+					PortletURLUtil.getCurrent(
+						_liferayPortletRequest, _liferayPortletResponse)));
 			viewTrashAttachmentsURL.setParameter(
 				"messageId", String.valueOf(_message.getMessageId()));
 			viewTrashAttachmentsURL.setWindowState(LiferayWindowState.POP_UP);
 
-			taglibContext.put(
-				"getAttachmentsURL", getAttachmentsURL.toString());
 			taglibContext.put(
 				"viewTrashAttachmentsURL", viewTrashAttachmentsURL.toString());
 		}
