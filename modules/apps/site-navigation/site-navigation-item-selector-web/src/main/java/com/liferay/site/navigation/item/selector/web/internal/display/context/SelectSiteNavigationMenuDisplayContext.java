@@ -156,7 +156,6 @@ public class SelectSiteNavigationMenuDisplayContext {
 			SiteNavigationMenuServiceUtil.getSiteNavigationMenus(
 				groupIds, searchContainer.getStart(), searchContainer.getEnd(),
 				null);
-
 		int siteNavigationMenusCount =
 			SiteNavigationMenuServiceUtil.getSiteNavigationMenusCount(groupIds);
 
@@ -165,12 +164,10 @@ public class SelectSiteNavigationMenuDisplayContext {
 				Collections.singletonList(
 					_getPublicPagesHierarchySiteNavigationMenu()),
 				siteNavigationMenus);
-
 			siteNavigationMenusCount++;
 		}
 
 		searchContainer.setResults(siteNavigationMenus);
-
 		searchContainer.setTotal(siteNavigationMenusCount);
 
 		return searchContainer;
