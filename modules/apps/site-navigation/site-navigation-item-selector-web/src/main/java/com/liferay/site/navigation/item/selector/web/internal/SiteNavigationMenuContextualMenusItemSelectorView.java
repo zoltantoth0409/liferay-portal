@@ -86,6 +86,9 @@ public class SiteNavigationMenuContextualMenusItemSelectorView
 
 		ServletContext servletContext = getServletContext();
 
+		RequestDispatcher requestDispatcher =
+			servletContext.getRequestDispatcher("/view_contextual_menus.jsp");
+
 		SiteNavigationMenuContextualMenusItemSelectorViewDisplayContext
 			siteNavigationMenuContextualMenusItemSelectorViewDisplayContext =
 				new SiteNavigationMenuContextualMenusItemSelectorViewDisplayContext(
@@ -95,9 +98,6 @@ public class SiteNavigationMenuContextualMenusItemSelectorView
 			SiteNavigationItemSelectorWebKeys.
 				SITE_NAVIGATION_MENU_CONTEXTUAL_MENUS_ITEM_SELECTOR_DISPLAY_CONTEXT,
 			siteNavigationMenuContextualMenusItemSelectorViewDisplayContext);
-
-		RequestDispatcher requestDispatcher =
-			servletContext.getRequestDispatcher("/view_contextual_menus.jsp");
 
 		requestDispatcher.include(servletRequest, servletResponse);
 	}

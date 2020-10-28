@@ -84,6 +84,12 @@ public class SelectSiteNavigationMenuItemSelectorView
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
+		ServletContext servletContext = getServletContext();
+
+		RequestDispatcher requestDispatcher =
+			servletContext.getRequestDispatcher(
+				"/select_site_navigation_menu.jsp");
+
 		SelectSiteNavigationMenuDisplayContext
 			selectSiteNavigationMenuDisplayContext =
 				new SelectSiteNavigationMenuDisplayContext(
@@ -94,12 +100,6 @@ public class SelectSiteNavigationMenuItemSelectorView
 			SiteNavigationItemSelectorWebKeys.
 				SELECT_SITE_NAVIGATION_ITEM_SELECTOR_DISPLAY_CONTEXT,
 			selectSiteNavigationMenuDisplayContext);
-
-		ServletContext servletContext = getServletContext();
-
-		RequestDispatcher requestDispatcher =
-			servletContext.getRequestDispatcher(
-				"/select_site_navigation_menu.jsp");
 
 		requestDispatcher.include(servletRequest, servletResponse);
 	}
