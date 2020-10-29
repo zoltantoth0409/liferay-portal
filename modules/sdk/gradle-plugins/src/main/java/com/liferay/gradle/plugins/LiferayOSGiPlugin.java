@@ -941,7 +941,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 									}
 								}
 								catch (Exception exception) {
-									new GradleException(
+									throw new GradleException(
 										buildWSDDTask + " failed", exception);
 								}
 							}
