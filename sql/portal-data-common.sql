@@ -692,6 +692,12 @@ insert into ListType (listTypeId, name, type_) values (10012, 'intranet', 'com.l
 insert into ListType (listTypeId, name, type_) values (10013, 'public', 'com.liferay.portal.kernel.model.Account.website');
 
 ##
+## List types for addresses
+##
+
+insert into ListType (listTypeId, name, type_) values (13000, 'phone-number', 'com.liferay.portal.kernel.model.Address.phone');
+
+##
 ## List types for contacts
 ##
 
@@ -759,9 +765,3 @@ insert into ListType (listTypeId, name, type_) values (12018, 'provisional-membe
 
 insert into ListType (listTypeId, name, type_) values (12019, 'intranet', 'com.liferay.portal.kernel.model.Organization.website');
 insert into ListType (listTypeId, name, type_) values (12020, 'public', 'com.liferay.portal.kernel.model.Organization.website');
-
-##
-## List types for addresses
-##
-
-insert into ListType (listTypeId, name, type_) values (13000, 'phone-number', 'com.liferay.portal.kernel.model.Address.phone');
