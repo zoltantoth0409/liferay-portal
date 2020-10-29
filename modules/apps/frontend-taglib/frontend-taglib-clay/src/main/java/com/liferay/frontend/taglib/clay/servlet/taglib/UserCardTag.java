@@ -448,25 +448,21 @@ public class UserCardTag extends BaseContainerTag {
 			for (LabelItem labelItem : labels) {
 				LabelTag labelTag = new LabelTag();
 
-				boolean labelIsDismissible = (boolean)labelItem.get(
-					"dismissible");
-				boolean labelIsLarge = (boolean)labelItem.get("large");
-				String labelDisplayType = (String)labelItem.get("displayType");
-				String labelLabel = (String)labelItem.get("label");
-
-				if (labelIsDismissible) {
-					labelTag.setDismissible(labelIsDismissible);
+				if ((boolean)labelItem.get("dismissible")) {
+					labelTag.setDismissible(true);
 				}
 
-				if (labelIsLarge) {
-					labelTag.setLarge(labelIsLarge);
+				if ((boolean)labelItem.get("large")) {
+					labelTag.setLarge(true);
 				}
 
-				if (Validator.isNotNull(labelDisplayType)) {
-					labelTag.setDisplayType(labelDisplayType);
+				String displayType = (String)labelItem.get("displayType");
+
+				if (Validator.isNotNull(displayType)) {
+					labelTag.setDisplayType(displayType);
 				}
 
-				labelTag.setLabel(labelLabel);
+				labelTag.setLabel((String)labelItem.get("label"));
 
 				labelTag.doTag(pageContext);
 			}
