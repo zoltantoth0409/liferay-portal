@@ -53,7 +53,7 @@ public class AddressLocalServiceTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testAddAddressWithPhoneNumber() throws Exception {
+	public void testAddAddress() throws Exception {
 		String phoneNumber = "1234567890";
 
 		Address address = _addAddress(phoneNumber);
@@ -78,7 +78,7 @@ public class AddressLocalServiceTest {
 	}
 
 	@Test
-	public void testUpdateAddressWithPhoneNumber() throws Exception {
+	public void testUpdateAddress() throws Exception {
 		Address address = _addAddress("123456789");
 
 		Address updatedAddress = _addressLocalService.updateAddress(
