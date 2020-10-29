@@ -482,9 +482,7 @@ public class DLFileEntryLocalServiceTest {
 
 		Assert.assertEquals(
 			content, StringUtil.read(fileEntry.getContentStream()));
-
 		Assert.assertEquals("txt", fileEntry.getExtension());
-
 		Assert.assertEquals(ContentTypes.TEXT_PLAIN, fileEntry.getMimeType());
 	}
 
