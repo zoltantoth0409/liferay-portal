@@ -58,9 +58,9 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		throws PortalException {
 
 		return addAddress(
-			userId, className, classPK, null, null, street1, street2, street3,
-			city, zip, regionId, countryId, null, typeId, mailing, primary,
-			null, serviceContext);
+			null, userId, className, classPK, null, null, street1, street2,
+			street3, city, zip, regionId, countryId, null, typeId, mailing,
+			primary, serviceContext);
 	}
 
 	@Override
@@ -72,9 +72,9 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		throws PortalException {
 
 		return addAddress(
-			userId, className, classPK, name, description, street1, street2,
-			street3, city, zip, regionId, countryId, null, typeId, mailing,
-			primary, null, serviceContext);
+			null, userId, className, classPK, name, description, street1,
+			street2, street3, city, zip, regionId, countryId, null, typeId,
+			mailing, primary, serviceContext);
 	}
 
 	@Override
@@ -87,18 +87,18 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		throws PortalException {
 
 		return addAddress(
-			userId, className, classPK, name, description, street1, street2,
-			street3, city, zip, regionId, countryId, phoneNumber, typeId,
-			mailing, primary, null, serviceContext);
+			null, userId, className, classPK, name, description, street1,
+			street2, street3, city, zip, regionId, countryId, phoneNumber,
+			typeId, mailing, primary, serviceContext);
 	}
 
 	@Override
 	public Address addAddress(
-			long userId, String className, long classPK, String name,
-			String description, String street1, String street2, String street3,
-			String city, String zip, long regionId, long countryId,
-			String phoneNumber, long typeId, boolean mailing, boolean primary,
-			String externalReferenceCode, ServiceContext serviceContext)
+			String externalReferenceCode, long userId, String className,
+			long classPK, String name, String description, String street1,
+			String street2, String street3, String city, String zip,
+			long regionId, long countryId, String phoneNumber, long typeId,
+			boolean mailing, boolean primary, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -113,6 +113,7 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		Address address = addressPersistence.create(addressId);
 
 		address.setUuid(serviceContext.getUuid());
+		address.setExternalReferenceCode(externalReferenceCode);
 		address.setCompanyId(user.getCompanyId());
 		address.setUserId(user.getUserId());
 		address.setUserName(user.getFullName());
@@ -135,7 +136,6 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setTypeId(typeId);
 		address.setMailing(mailing);
 		address.setPrimary(primary);
-		address.setExternalReferenceCode(externalReferenceCode);
 
 		return addressPersistence.update(address);
 	}
@@ -149,12 +149,12 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		Address address = addressPersistence.findByPrimaryKey(addressId);
 
 		return addAddress(
-			serviceContext.getUserId(), className, classPK, address.getName(),
-			address.getDescription(), address.getStreet1(),
-			address.getStreet2(), address.getStreet3(), address.getCity(),
-			address.getZip(), address.getRegionId(), address.getCountryId(),
-			address.getPhoneNumber(), address.getTypeId(), address.isMailing(),
-			address.isPrimary(), address.getExternalReferenceCode(),
+			address.getExternalReferenceCode(), serviceContext.getUserId(),
+			className, classPK, address.getName(), address.getDescription(),
+			address.getStreet1(), address.getStreet2(), address.getStreet3(),
+			address.getCity(), address.getZip(), address.getRegionId(),
+			address.getCountryId(), address.getPhoneNumber(),
+			address.getTypeId(), address.isMailing(), address.isPrimary(),
 			serviceContext);
 	}
 
