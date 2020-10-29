@@ -81,8 +81,8 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 	public Address addAddress(
 			long userId, String className, long classPK, String name,
 			String description, String street1, String street2, String street3,
-			String city, String zip, long regionId, long countryId,
-			long typeId, boolean mailing, boolean primary, String phoneNumber,
+			String city, String zip, long regionId, long countryId, long typeId,
+			boolean mailing, boolean primary, String phoneNumber,
 			ServiceContext serviceContext)
 		throws PortalException {
 
