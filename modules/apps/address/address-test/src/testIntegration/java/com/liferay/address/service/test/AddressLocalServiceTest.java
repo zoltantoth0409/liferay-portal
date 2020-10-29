@@ -85,8 +85,8 @@ public class AddressLocalServiceTest {
 			address.getAddressId(), address.getName(), address.getDescription(),
 			address.getStreet1(), address.getStreet2(), address.getStreet3(),
 			address.getCity(), address.getZip(), address.getRegionId(),
-			address.getCountryId(), "1112223333", address.getTypeId(),
-			address.isMailing(), address.isPrimary());
+			address.getCountryId(), address.getTypeId(),
+			address.isMailing(), address.isPrimary(), "1112223333");
 
 		List<Phone> phones = _phoneLocalService.getPhones(
 			address.getCompanyId(), Address.class.getName(),
@@ -109,8 +109,8 @@ public class AddressLocalServiceTest {
 			user.getUserId(), Contact.class.getName(), user.getContactId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), null, null,
-			RandomTestUtil.randomString(), null, 0, 0, phoneNumber,
-			listType.getListTypeId(), false, false,
+			RandomTestUtil.randomString(), null, 0, 0,
+			listType.getListTypeId(), false, false, phoneNumber,
 			ServiceContextTestUtil.getServiceContext());
 	}
 
