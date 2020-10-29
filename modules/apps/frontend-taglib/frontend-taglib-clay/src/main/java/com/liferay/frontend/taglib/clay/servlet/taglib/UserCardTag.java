@@ -452,10 +452,6 @@ public class UserCardTag extends BaseContainerTag {
 					labelTag.setDismissible(true);
 				}
 
-				if ((boolean)labelItem.get("large")) {
-					labelTag.setLarge(true);
-				}
-
 				String displayType = (String)labelItem.get("displayType");
 
 				if (Validator.isNotNull(displayType)) {
@@ -463,6 +459,10 @@ public class UserCardTag extends BaseContainerTag {
 				}
 
 				labelTag.setLabel((String)labelItem.get("label"));
+
+				if ((boolean)labelItem.get("large")) {
+					labelTag.setLarge(true);
+				}
 
 				labelTag.doTag(pageContext);
 			}
