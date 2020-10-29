@@ -350,7 +350,7 @@ public class UserCardTag extends BaseContainerTag {
 		Boolean selectable = isSelectable();
 
 		if (selectable) {
-			jspWriter.write("<div class=\"custom-control custom-checkbox\">");
+			jspWriter.write("<div class=\"custom-checkbox custom-control\">");
 			jspWriter.write("<label><input ");
 
 			jspWriter.write("class=\"custom-control-input\"");
@@ -474,7 +474,7 @@ public class UserCardTag extends BaseContainerTag {
 
 		if (!ListUtil.isEmpty(getActionDropdownItems())) {
 			jspWriter.write("<div class=\"autofit-col\"><div class=\"dropdown");
-			jspWriter.write("\"><div class=\"dropdown-toggle component-action");
+			jspWriter.write("\"><div class=\"component-action dropdown-toggle");
 			jspWriter.write("\">");
 
 			IconTag iconTag = new IconTag();
