@@ -65,35 +65,6 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 
 	@Override
 	public Address addAddress(
-			long userId, String className, long classPK, String name,
-			String description, String street1, String street2, String street3,
-			String city, String zip, long regionId, long countryId, long typeId,
-			boolean mailing, boolean primary, ServiceContext serviceContext)
-		throws PortalException {
-
-		return addAddress(
-			null, userId, className, classPK, name, description, street1,
-			street2, street3, city, zip, regionId, countryId, typeId, mailing,
-			primary, null, serviceContext);
-	}
-
-	@Override
-	public Address addAddress(
-			long userId, String className, long classPK, String name,
-			String description, String street1, String street2, String street3,
-			String city, String zip, long regionId, long countryId, long typeId,
-			boolean mailing, boolean primary, String phoneNumber,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		return addAddress(
-			null, userId, className, classPK, name, description, street1,
-			street2, street3, city, zip, regionId, countryId, typeId, mailing,
-			primary, phoneNumber, serviceContext);
-	}
-
-	@Override
-	public Address addAddress(
 			String externalReferenceCode, long userId, String className,
 			long classPK, String name, String description, String street1,
 			String street2, String street3, String city, String zip,
