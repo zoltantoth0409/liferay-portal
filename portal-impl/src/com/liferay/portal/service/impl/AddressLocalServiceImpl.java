@@ -59,8 +59,8 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 
 		return addAddress(
 			null, userId, className, classPK, null, null, street1, street2,
-			street3, city, zip, regionId, countryId, null, typeId, mailing,
-			primary, serviceContext);
+			street3, city, zip, regionId, countryId, typeId, mailing, primary,
+			null, serviceContext);
 	}
 
 	@Override
@@ -73,8 +73,8 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 
 		return addAddress(
 			null, userId, className, classPK, name, description, street1,
-			street2, street3, city, zip, regionId, countryId, null, typeId,
-			mailing, primary, serviceContext);
+			street2, street3, city, zip, regionId, countryId, typeId, mailing,
+			primary, null, serviceContext);
 	}
 
 	@Override
@@ -82,14 +82,14 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 			long userId, String className, long classPK, String name,
 			String description, String street1, String street2, String street3,
 			String city, String zip, long regionId, long countryId,
-			String phoneNumber, long typeId, boolean mailing, boolean primary,
+			long typeId, boolean mailing, boolean primary, String phoneNumber,
 			ServiceContext serviceContext)
 		throws PortalException {
 
 		return addAddress(
 			null, userId, className, classPK, name, description, street1,
-			street2, street3, city, zip, regionId, countryId, phoneNumber,
-			typeId, mailing, primary, serviceContext);
+			street2, street3, city, zip, regionId, countryId, typeId, mailing,
+			primary, phoneNumber, serviceContext);
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 			String externalReferenceCode, long userId, String className,
 			long classPK, String name, String description, String street1,
 			String street2, String street3, String city, String zip,
-			long regionId, long countryId, String phoneNumber, long typeId,
-			boolean mailing, boolean primary, ServiceContext serviceContext)
+			long regionId, long countryId, long typeId, boolean mailing,
+			boolean primary, String phoneNumber, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -128,16 +128,17 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setZip(zip);
 		address.setRegionId(regionId);
 		address.setCountryId(countryId);
+		address.setTypeId(typeId);
+		address.setMailing(mailing);
+		address.setPrimary(primary);
+
+		address = addressPersistence.update(address);
 
 		if (Validator.isNotNull(phoneNumber)) {
 			_addAddressPhone(addressId, phoneNumber);
 		}
 
-		address.setTypeId(typeId);
-		address.setMailing(mailing);
-		address.setPrimary(primary);
-
-		return addressPersistence.update(address);
+		return address;
 	}
 
 	@Override
@@ -153,9 +154,8 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 			className, classPK, address.getName(), address.getDescription(),
 			address.getStreet1(), address.getStreet2(), address.getStreet3(),
 			address.getCity(), address.getZip(), address.getRegionId(),
-			address.getCountryId(), address.getPhoneNumber(),
-			address.getTypeId(), address.isMailing(), address.isPrimary(),
-			serviceContext);
+			address.getCountryId(), address.getTypeId(), address.isMailing(),
+			address.isPrimary(), address.getPhoneNumber(), serviceContext);
 	}
 
 	@Override
@@ -255,16 +255,16 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 
 		return updateAddress(
 			addressId, address.getName(), address.getDescription(), street1,
-			street2, street3, city, zip, regionId, countryId,
-			address.getPhoneNumber(), typeId, mailing, primary);
+			street2, street3, city, zip, regionId, countryId, typeId, mailing,
+			primary, address.getPhoneNumber());
 	}
 
 	@Override
 	public Address updateAddress(
 			long addressId, String name, String description, String street1,
 			String street2, String street3, String city, String zip,
-			long regionId, long countryId, String phoneNumber, long typeId,
-			boolean mailing, boolean primary)
+			long regionId, long countryId, long typeId, boolean mailing,
+			boolean primary, String phoneNumber)
 		throws PortalException {
 
 		validate(
@@ -282,6 +282,11 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setZip(zip);
 		address.setRegionId(regionId);
 		address.setCountryId(countryId);
+		address.setTypeId(typeId);
+		address.setMailing(mailing);
+		address.setPrimary(primary);
+
+		address = addressPersistence.update(address);
 
 		if (Validator.isNotNull(phoneNumber)) {
 			List<Phone> phones = _phoneLocalService.getPhones(
@@ -297,11 +302,7 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 			}
 		}
 
-		address.setTypeId(typeId);
-		address.setMailing(mailing);
-		address.setPrimary(primary);
-
-		return addressPersistence.update(address);
+		return address;
 	}
 
 	protected void validate(
