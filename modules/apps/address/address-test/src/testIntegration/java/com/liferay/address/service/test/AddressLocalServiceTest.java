@@ -79,7 +79,7 @@ public class AddressLocalServiceTest {
 
 	@Test
 	public void testUpdateAddress() throws Exception {
-		Address address = _addAddress("123456789");
+		Address address = _addAddress("1234567890");
 
 		Address updatedAddress = _addressLocalService.updateAddress(
 			address.getAddressId(), address.getName(), address.getDescription(),
