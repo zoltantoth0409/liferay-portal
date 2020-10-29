@@ -106,7 +106,7 @@ public class AddressLocalServiceTest {
 			"personal", ListTypeConstants.CONTACT_ADDRESS);
 
 		return _addressLocalService.addAddress(
-			user.getUserId(), Contact.class.getName(), user.getContactId(),
+			null, user.getUserId(), Contact.class.getName(), user.getContactId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), null, null,
 			RandomTestUtil.randomString(), null, 0, 0, listType.getListTypeId(),
