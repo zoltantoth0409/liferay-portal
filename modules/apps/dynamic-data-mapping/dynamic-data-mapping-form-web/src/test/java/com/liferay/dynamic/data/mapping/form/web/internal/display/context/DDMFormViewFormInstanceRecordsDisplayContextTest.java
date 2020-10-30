@@ -129,7 +129,7 @@ public class DDMFormViewFormInstanceRecordsDisplayContextTest
 			ddmForm
 		);
 
-		DDMStructure ddmStructure = _mockDDMStructure();
+		DDMStructure ddmStructure = _mockDDMStructure(ddmForm);
 
 		when(
 			ddmFormInstance.getStructure()
@@ -140,10 +140,8 @@ public class DDMFormViewFormInstanceRecordsDisplayContextTest
 		return ddmFormInstance;
 	}
 
-	private DDMStructure _mockDDMStructure() {
+	private DDMStructure _mockDDMStructure(DDMForm ddmForm) {
 		DDMStructure ddmStructure = mock(DDMStructure.class);
-
-		DDMForm ddmForm = _mockDDMForm();
 
 		when(
 			ddmStructure.getDDMForm()
