@@ -121,20 +121,20 @@ public class DDMFormViewFormInstanceRecordsDisplayContextTest
 	private DDMFormInstance _mockDDMFormInstance() throws PortalException {
 		DDMFormInstance ddmFormInstance = mock(DDMFormInstance.class);
 
-		DDMStructure ddmStructure = _mockDDMStructure();
-
-		when(
-			ddmFormInstance.getStructure()
-		).thenReturn(
-			ddmStructure
-		);
-
 		DDMForm ddmForm = _mockDDMForm();
 
 		when(
 			ddmFormInstance.getDDMForm()
 		).thenReturn(
 			ddmForm
+		);
+
+		DDMStructure ddmStructure = _mockDDMStructure();
+
+		when(
+			ddmFormInstance.getStructure()
+		).thenReturn(
+			ddmStructure
 		);
 
 		return ddmFormInstance;
