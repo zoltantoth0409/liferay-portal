@@ -129,15 +129,15 @@ public class InsuranceSiteInitializerTest {
 		Assert.assertNotNull(displayPagesMap.get("Claim"));
 		Assert.assertNotNull(displayPagesMap.get("Policy"));
 
-		String[] privateLayouts = _getLayoutNames(_group.getGroupId(), true);
+		String[] privateLayoutNames = _getLayoutNames(_group.getGroupId(), true);
 
 		Assert.assertTrue(
-			ArrayUtil.containsAll(privateLayouts, _PRIVATE_LAYOUTS));
+			ArrayUtil.containsAll(privateLayoutNames, _PRIVATE_LAYOUT_NAMES));
 
-		String[] publicLayouts = _getLayoutNames(_group.getGroupId(), false);
+		String[] publicLayoutNames = _getLayoutNames(_group.getGroupId(), false);
 
 		Assert.assertTrue(
-			ArrayUtil.containsAll(publicLayouts, _PUBLIC_LAYOUTS));
+			ArrayUtil.containsAll(publicLayoutNames, _PUBLIC_LAYOUTS_NAMES));
 
 		Assert.assertNotNull(
 			_styleBookEntryLocalService.fetchStyleBookEntry(
@@ -189,7 +189,6 @@ public class InsuranceSiteInitializerTest {
 		httpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE,
 			new MockLiferayPortletActionResponse());
-
 		httpServletRequest.setAttribute(WebKeys.LAYOUT, _layout);
 		httpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
@@ -222,11 +221,11 @@ public class InsuranceSiteInitializerTest {
 		return themeDisplay;
 	}
 
-	private static final String[] _PRIVATE_LAYOUTS = {
+	private static final String[] _PRIVATE_LAYOUT_NAMES = {
 		"Claims", "Dashboard", "Documents", "Policies"
 	};
 
-	private static final String[] _PUBLIC_LAYOUTS = {
+	private static final String[] _PUBLIC_LAYOUTS_NAMES = {
 		"Home", "Contact", "News", "Product", "Sign In", "Search"
 	};
 
