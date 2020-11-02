@@ -147,7 +147,6 @@ public class AppPortlet extends MVCPortlet {
 			).put(
 				"viewEntryPoint", appBuilderAppPortletTab.getViewEntryPoint()
 			).build());
-
 		renderRequest.setAttribute(
 			AppBuilderWebKeys.APP_TAB_CONTEXT,
 			appBuilderAppPortletTab.getAppBuilderAppPortletTabContext(
