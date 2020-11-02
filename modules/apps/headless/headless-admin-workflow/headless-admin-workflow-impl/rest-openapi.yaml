@@ -237,7 +237,7 @@ components:
                         The object/asset that the instance's workflow is managing.
                     readOnly: true
                 state:
-					# @review
+                    # @review
                     description:
                         The instance's current state.
                     readOnly: true
