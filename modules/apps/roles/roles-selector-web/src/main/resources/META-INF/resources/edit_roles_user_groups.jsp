@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String keywords = ParamUtil.getString(request, "keywords");
-
 String tabs1 = (String)request.getAttribute("edit_roles.jsp-tabs1");
 
 Group group = (Group)request.getAttribute("edit_roles.jsp-group");
@@ -36,6 +34,8 @@ if (group.isSite()) {
 if (tabs1.equals("current")) {
 	userGroupParams.put(UserGroupFinderConstants.PARAM_KEY_USER_GROUP_GROUP_ROLE, new Long[] {Long.valueOf(roleId), Long.valueOf(group.getGroupId())});
 }
+
+String keywords = ParamUtil.getString(request, "keywords");
 
 if (Validator.isNotNull(keywords)) {
 	userGroupParams.put("expandoAttributes", keywords);
