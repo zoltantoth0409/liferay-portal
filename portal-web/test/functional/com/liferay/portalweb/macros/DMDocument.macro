@@ -70,6 +70,12 @@ definition {
 			PortletEntry.inputDescription(description = "${dmDocumentDescription}");
 		}
 
+		if (isSet(dmDocumentFileName)) {
+			PortletEntry.inputText(
+				fieldLabel = "File Name",
+				text = "${dmDocumentFileName}");
+		}
+
 		if (isSet(documentsAndMediaField)) {
 			var key_fieldName = "DocumentsandMedia";
 
