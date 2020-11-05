@@ -394,21 +394,11 @@ public class ContentDashboardAdminDisplayContext {
 	}
 
 	public boolean isSwapConfigurationEnabled() {
-		if (_swapConfigurationEnabled != null) {
-			return _swapConfigurationEnabled;
+		if (_assetVocabularies.size() == 2) {
+			return true;
 		}
 
-		List<String> vocabularyNames =
-			_assetVocabularyMetric.getVocabularyNames();
-
-		if (vocabularyNames.size() == 2) {
-			_swapConfigurationEnabled = true;
-		}
-		else {
-			_swapConfigurationEnabled = false;
-		}
-
-		return _swapConfigurationEnabled;
+		return false;
 	}
 
 	private Map<String, Object> _getContext() {
@@ -458,7 +448,6 @@ public class ContentDashboardAdminDisplayContext {
 	private long _scopeId;
 	private final SearchContainer<ContentDashboardItem<?>> _searchContainer;
 	private Integer _status;
-	private Boolean _swapConfigurationEnabled;
 	private long _userId;
 
 }
