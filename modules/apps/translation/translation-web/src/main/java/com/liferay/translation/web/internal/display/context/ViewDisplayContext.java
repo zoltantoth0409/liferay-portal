@@ -176,16 +176,11 @@ public class ViewDisplayContext {
 			_httpServletRequest);
 
 		searchContext.setAttribute("paginationType", "regular");
-
 		searchContext.setCompanyId(_themeDisplay.getCompanyId());
-
 		searchContext.setEnd(_searchContainer.getEnd());
-
 		searchContext.setKeywords(
 			ParamUtil.getString(_httpServletRequest, "keywords"));
-
 		searchContext.setStart(_searchContainer.getStart());
-
 		searchContext.setUserId(_themeDisplay.getUserId());
 
 		Indexer<TranslationEntry> indexer =
