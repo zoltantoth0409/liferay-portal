@@ -40,13 +40,13 @@ public class AddressKeywordQueryContributor implements KeywordQueryContributor {
 
 		queryHelper.addSearchTerm(
 			booleanQuery, keywordQueryContributorHelper.getSearchContext(),
+			Field.NAME, false);
+		queryHelper.addSearchTerm(
+			booleanQuery, keywordQueryContributorHelper.getSearchContext(),
 			"city", false);
 		queryHelper.addSearchTerm(
 			booleanQuery, keywordQueryContributorHelper.getSearchContext(),
 			"countryName", false);
-		queryHelper.addSearchTerm(
-			booleanQuery, keywordQueryContributorHelper.getSearchContext(),
-			Field.NAME, false);
 		queryHelper.addSearchTerm(
 			booleanQuery, keywordQueryContributorHelper.getSearchContext(),
 			"regionName", false);
