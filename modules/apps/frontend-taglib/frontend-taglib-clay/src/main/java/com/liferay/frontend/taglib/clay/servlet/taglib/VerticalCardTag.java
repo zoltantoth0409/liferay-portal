@@ -751,7 +751,7 @@ public class VerticalCardTag extends BaseContainerTag {
 		if (!ListUtil.isEmpty(getActionDropdownItems())) {
 			jspWriter.write(
 				"<div class=\"autofit-col\"><div class=\"dropdown\">");
-			jspWriter.write("<div class=\"dropdown-toggle component-action\">");
+			jspWriter.write("<div class=\"component-action dropdown-toggle\">");
 
 			IconTag iconTag = new IconTag();
 
