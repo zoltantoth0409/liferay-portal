@@ -571,7 +571,7 @@ public class VerticalCardTag extends BaseContainerTag {
 			jspWriter.write("/><span class=\"custom-control-label\"></span>");
 		}
 
-		jspWriter.write("<div class=\"card-item-first aspect-ratio\">");
+		jspWriter.write("<div class=\"aspect-ratio card-item-first\">");
 
 		if (Validator.isNotNull(getImageSrc())) {
 			jspWriter.write("<img");
