@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<h3>Image cards</h3>
+<h3>Image Cards</h3>
 
 <%
 ClaySampleImageCard claySampleImageCard = new ClaySampleImageCard();
