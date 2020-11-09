@@ -72,17 +72,14 @@ public class EntityCacheImplTest {
 		ReflectionTestUtil.setFieldValue(
 			entityCacheImpl, "_clusterExecutor",
 			ProxyFactory.newDummyInstance(ClusterExecutor.class));
-
 		ReflectionTestUtil.setFieldValue(
 			entityCacheImpl, "_multiVMPool", multiVMPool);
-
 		ReflectionTestUtil.setFieldValue(entityCacheImpl, "_props", _props);
 
 		FinderCacheImpl finderCacheImpl = new FinderCacheImpl();
 
 		ReflectionTestUtil.setFieldValue(
 			entityCacheImpl, "_finderCacheImpl", finderCacheImpl);
-
 		ReflectionTestUtil.setFieldValue(
 			finderCacheImpl, "_multiVMPool", multiVMPool);
 
