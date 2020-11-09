@@ -15,9 +15,16 @@
 package com.liferay.app.builder.workflow.web.internal.portlet.action;
 
 import com.liferay.app.builder.constants.AppBuilderPortletKeys;
+import com.liferay.app.builder.model.AppBuilderApp;
+import com.liferay.app.builder.rest.dto.v1_0.App;
 import com.liferay.app.builder.rest.resource.v1_0.AppResource;
+import com.liferay.app.builder.workflow.rest.dto.v1_0.AppWorkflow;
 import com.liferay.app.builder.workflow.rest.resource.v1_0.AppWorkflowResource;
+import com.liferay.dynamic.data.lists.model.DDLRecord;
+import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
+import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
+import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -27,6 +34,7 @@ import java.util.Optional;
 import javax.portlet.ResourceRequest;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Rafael Praxedes
@@ -34,15 +42,15 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + AppBuilderPortletKeys.APPS,
-		"mvc.command.name=/app_builder/delete_workflow_app"
+		"mvc.command.name=/app_builder/add_workflow_app"
 	},
 	service = MVCResourceCommand.class
 )
-public class DeleteAppBuilderAppMVCResourceCommand
-	extends BaseAppBuilderAppMVCResourceCommand<Void> {
+public class AddWorkflowAppMVCResourceCommand
+	extends BaseAppBuilderAppMVCResourceCommand<App> {
 
 	@Override
-	protected Optional<Void> doTransactionalCommand(
+	protected Optional<App> doTransactionalCommand(
 			ResourceRequest resourceRequest)
 		throws Exception {
 
@@ -54,18 +62,37 @@ public class DeleteAppBuilderAppMVCResourceCommand
 			themeDisplay.getUser()
 		).build();
 
-		appResource.deleteApp(
-			ParamUtil.getLong(resourceRequest, "appBuilderAppId"));
+		App app = appResource.postDataDefinitionApp(
+			ParamUtil.getLong(resourceRequest, "dataDefinitionId"),
+			App.toDTO(ParamUtil.getString(resourceRequest, "app")));
 
 		AppWorkflowResource appWorkflowResource = AppWorkflowResource.builder(
 		).user(
 			themeDisplay.getUser()
 		).build();
 
-		appWorkflowResource.deleteAppWorkflow(
-			ParamUtil.getLong(resourceRequest, "appBuilderAppId"));
+		appWorkflowResource.postAppWorkflow(
+			app.getId(),
+			AppWorkflow.toDTO(
+				ParamUtil.getString(resourceRequest, "appWorkflow")));
 
-		return Optional.empty();
+		WorkflowDefinitionLink workflowDefinitionLink =
+			_workflowDefinitionLinkLocalService.getWorkflowDefinitionLink(
+				themeDisplay.getCompanyId(), 0,
+				ResourceActionsUtil.getCompositeModelName(
+					AppBuilderApp.class.getName(), DDLRecord.class.getName()),
+				app.getId(), 0);
+
+		app.setWorkflowDefinitionName(
+			workflowDefinitionLink.getWorkflowDefinitionName());
+		app.setWorkflowDefinitionVersion(
+			workflowDefinitionLink.getWorkflowDefinitionVersion());
+
+		return Optional.of(app);
 	}
+
+	@Reference
+	private WorkflowDefinitionLinkLocalService
+		_workflowDefinitionLinkLocalService;
 
 }
