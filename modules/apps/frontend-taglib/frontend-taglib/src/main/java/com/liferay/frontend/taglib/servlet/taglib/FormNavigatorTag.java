@@ -154,10 +154,8 @@ public class FormNavigatorTag extends IncludeTag {
 
 		FormNavigatorCategoryProvider formNavigatorCategoryProvider =
 			ServletContextUtil.getFormNavigatorCategoryProvider();
-
 		FormNavigatorEntryProvider formNavigatorEntryProvider =
 			ServletContextUtil.getFormNavigatorEntryProvider();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
