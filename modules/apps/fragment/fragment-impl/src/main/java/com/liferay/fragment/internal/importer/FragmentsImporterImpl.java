@@ -258,7 +258,6 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 		int type = FragmentConstants.getTypeFromLabel(
 			StringUtil.toLowerCase(StringUtil.trim(typeLabel)));
-
 		int status = WorkflowConstants.STATUS_APPROVED;
 		String errorMessage = null;
 
