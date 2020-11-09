@@ -68,7 +68,7 @@ public class SpiraCustomPropertyValue extends BaseSpiraArtifact {
 	protected SpiraCustomPropertyValue(
 		String name, SpiraCustomProperty spiraCustomProperty) {
 
-		super(new JSONObject("{\"Name\":\"" + name + "\"}"));
+		super(new JSONObject("{\"Name\":\" " + name + "\"}"));
 
 		_spiraCustomProperty = spiraCustomProperty;
 	}
