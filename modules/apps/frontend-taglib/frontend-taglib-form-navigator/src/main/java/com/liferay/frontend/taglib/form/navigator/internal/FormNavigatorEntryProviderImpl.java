@@ -170,6 +170,12 @@ public class FormNavigatorEntryProviderImpl
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
+		_formNavigatorContextProviderMap =
+			ServiceTrackerMapFactory.openSingleValueMap(
+				bundleContext,
+				(Class<FormNavigatorContextProvider<?>>)
+					(Class<?>)FormNavigatorContextProvider.class,
+				FormNavigatorContextConstants.FORM_NAVIGATOR_ID);
 		_formNavigatorEntries = ServiceTrackerMapFactory.openMultiValueMap(
 			bundleContext, FormNavigatorEntry.class, null,
 			ServiceReferenceMapperFactory.create(
@@ -180,14 +186,6 @@ public class FormNavigatorEntryProviderImpl
 						formNavigatorEntry.getCategoryKey()))),
 			new PropertyServiceReferenceComparator<>(
 				"form.navigator.entry.order"));
-
-		_formNavigatorContextProviderMap =
-			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext,
-				(Class<FormNavigatorContextProvider<?>>)
-					(Class<?>)FormNavigatorContextProvider.class,
-				FormNavigatorContextConstants.FORM_NAVIGATOR_ID);
-
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext,
 			(Class
