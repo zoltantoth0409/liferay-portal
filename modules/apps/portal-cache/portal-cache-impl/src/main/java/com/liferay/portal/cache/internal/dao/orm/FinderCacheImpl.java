@@ -289,19 +289,18 @@ public class FinderCacheImpl
 				return;
 			}
 			else if (finderPath.isBaseModelResult()) {
+				String baseModelClassName = null;
 				ArrayList<Serializable> primaryKeys = new ArrayList<>(
 					objects.size());
-
-				String baseModelClassName = null;
 
 				for (Object object : objects) {
 					BaseModel<?> baseModel = (BaseModel<?>)object;
 
-					primaryKeys.add(baseModel.getPrimaryKeyObj());
-
 					if (baseModelClassName == null) {
 						baseModelClassName = baseModel.getModelClassName();
 					}
+
+					primaryKeys.add(baseModel.getPrimaryKeyObj());
 				}
 
 				cacheValue = new AbstractMap.SimpleEntry<String, Serializable>(
