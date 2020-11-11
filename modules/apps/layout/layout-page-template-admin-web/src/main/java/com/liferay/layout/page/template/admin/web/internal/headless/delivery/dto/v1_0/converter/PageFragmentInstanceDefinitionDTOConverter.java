@@ -159,14 +159,14 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 			JSONObject imageJSONObject = jsonObject.getJSONObject(
 				backgroundImageId);
 
-			Map<String, String> localeMap = _toLocaleMap(imageJSONObject);
+			Map<String, String> localeStringMap = _toLocaleStringMap(imageJSONObject);
 
 			fragmentFields.add(
 				new FragmentField() {
 					{
 						id = backgroundImageId;
 						value = _toFragmentFieldBackgroundImage(
-							imageJSONObject, localeMap, saveMapping);
+							imageJSONObject, localeStringMap, saveMapping);
 					}
 				});
 		}
@@ -529,7 +529,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentFieldBackgroundImage _toFragmentFieldBackgroundImage(
-		JSONObject jsonObject, Map<String, String> localeMap,
+		JSONObject jsonObject, Map<String, String> localeStringMap,
 		boolean saveMapping) {
 
 		return new FragmentFieldBackgroundImage() {
@@ -537,7 +537,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 				backgroundFragmentImage = new FragmentImage() {
 					{
 						title = _toTitleFragmentInlineValue(
-							jsonObject, localeMap);
+							jsonObject, localeStringMap);
 
 						setUrl(
 							() -> {
@@ -553,7 +553,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 								return new FragmentInlineValue() {
 									{
-										value_i18n = localeMap;
+										value_i18n = localeStringMap;
 									}
 								};
 							});
@@ -580,7 +580,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 						return new FragmentInlineValue() {
 							{
-								value_i18n = _toLocaleMap(jsonObject);
+								value_i18n = _toLocaleStringMap(jsonObject);
 							}
 						};
 					});
@@ -593,7 +593,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		Map<String, JSONObject> localeJSONObjectMap = _toLocaleJSONObjectMap(
 			jsonObject);
-		Map<String, String> localeMap = _toLocaleMap(jsonObject);
+		Map<String, String> localeStringMap = _toLocaleStringMap(jsonObject);
 
 		return new FragmentFieldImage() {
 			{
@@ -602,7 +602,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 						description = _toDescriptionFragmentInlineValue(
 							jsonObject);
 						title = _toTitleFragmentInlineValue(
-							jsonObject, localeMap);
+							jsonObject, localeStringMap);
 
 						setFragmentImageClassPKReference(
 							() -> {
@@ -632,7 +632,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 								return new FragmentInlineValue() {
 									{
-										value_i18n = localeMap;
+										value_i18n = localeStringMap;
 									}
 								};
 							});
@@ -660,16 +660,16 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 								jsonObject);
 						}
 
-						Map<String, String> localeMap = _toLocaleMap(
+						Map<String, String> localeStringMap = _toLocaleStringMap(
 							jsonObject);
 
-						if (MapUtil.isEmpty(localeMap)) {
+						if (MapUtil.isEmpty(localeStringMap)) {
 							return null;
 						}
 
 						return new FragmentInlineValue() {
 							{
-								value_i18n = localeMap;
+								value_i18n = localeStringMap;
 							}
 						};
 					});
@@ -928,7 +928,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		};
 	}
 
-	private Map<String, String> _toLocaleMap(JSONObject jsonObject) {
+	private Map<String, String> _toLocaleStringMap(JSONObject jsonObject) {
 		return new HashMap<String, String>() {
 			{
 				List<String> availableLanguageIds = _getAvailableLanguageIds();
@@ -949,7 +949,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentInlineValue _toTitleFragmentInlineValue(
-		JSONObject jsonObject, Map<String, String> localeMap) {
+		JSONObject jsonObject, Map<String, String> localeStringMap) {
 
 		JSONObject configJSONObject = jsonObject.getJSONObject("config");
 
@@ -960,7 +960,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		String imageTitle = configJSONObject.getString("imageTitle");
 
 		if (Validator.isNull(imageTitle) ||
-			localeMap.containsValue(imageTitle)) {
+			localeStringMap.containsValue(imageTitle)) {
 
 			return null;
 		}
