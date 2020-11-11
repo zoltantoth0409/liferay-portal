@@ -23,9 +23,9 @@ DLFileEntryType fileEntryType = (DLFileEntryType)request.getAttribute(WebKeys.DO
 
 long fileEntryTypeId = BeanParamUtil.getLong(fileEntryType, request, "fileEntryTypeId");
 
-String defaultLanguageId = LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault());
-
 long dataDefinitionId = BeanParamUtil.getLong(fileEntryType, request, "dataDefinitionId");
+
+String defaultLanguageId = LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault());
 
 if (dataDefinitionId != 0) {
 	com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = DDMStructureServiceUtil.getStructure(dataDefinitionId);
