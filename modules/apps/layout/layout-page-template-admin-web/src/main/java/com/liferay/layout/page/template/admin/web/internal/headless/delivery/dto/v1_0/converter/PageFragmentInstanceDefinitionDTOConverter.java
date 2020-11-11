@@ -612,8 +612,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 								}
 
 								return _toFragmentImageClassPKReference(
-									localizedJSONObjects,
-									jsonObject.getJSONObject("config"));
+									jsonObject.getJSONObject("config"),
+									localizedJSONObjects);
 							});
 						setUrl(
 							() -> {
@@ -679,8 +679,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentImageClassPKReference _toFragmentImageClassPKReference(
-		Map<String, JSONObject> localizedJSONObjects,
-		JSONObject configJSONObject) {
+		JSONObject configJSONObject,
+		Map<String, JSONObject> localizedJSONObjects) {
 
 		JSONObject imageConfigurationJSONObject =
 			configJSONObject.getJSONObject("imageConfiguration");
