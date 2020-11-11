@@ -386,24 +386,24 @@ public class FragmentLayoutStructureItemImporter
 	}
 
 	private JSONObject _createImageJSONObject(
-		Map<String, Object> classPKReferences) {
+		Map<String, Object> classPKReferencesMap) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		if (classPKReferences == null) {
+		if (classPKReferencesMap == null) {
 			return jsonObject;
 		}
 
-		for (Map.Entry<String, Object> entry : classPKReferences.entrySet()) {
-			Map<String, Object> classPKReference =
+		for (Map.Entry<String, Object> entry : classPKReferencesMap.entrySet()) {
+			Map<String, Object> classPKReferenceMap =
 				(Map<String, Object>)entry.getValue();
 
 			if (Objects.equals(
-					classPKReference.get("className"),
+					classPKReferenceMap.get("className"),
 					FileEntry.class.getName())) {
 
 				long fileEntryId = GetterUtil.getLong(
-					classPKReference.get("classPK"));
+					classPKReferenceMap.get("classPK"));
 
 				try {
 					FileEntry fileEntry =
