@@ -394,7 +394,9 @@ public class FragmentLayoutStructureItemImporter
 			return jsonObject;
 		}
 
-		for (Map.Entry<String, Object> entry : classPKReferencesMap.entrySet()) {
+		for (Map.Entry<String, Object> entry :
+				classPKReferencesMap.entrySet()) {
+
 			Map<String, Object> classPKReferenceMap =
 				(Map<String, Object>)entry.getValue();
 
@@ -830,11 +832,10 @@ public class FragmentLayoutStructureItemImporter
 							(Map<String, Object>)fragmentImageMap.get(
 								"fragmentImageClassPKReference");
 
-						baseFragmentFieldJSONObject =
-							_createImageJSONObject(
-								(Map<String, Object>)
-									fragmentImageClassPKReferenceMap.get(
-										"classPKReferences"));
+						baseFragmentFieldJSONObject = _createImageJSONObject(
+							(Map<String, Object>)
+								fragmentImageClassPKReferenceMap.get(
+									"classPKReferences"));
 
 						Map<String, String> fragmentImageConfigurationMap =
 							(Map<String, String>)
