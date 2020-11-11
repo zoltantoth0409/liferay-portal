@@ -869,8 +869,7 @@ public class FragmentLayoutStructureItemImporter
 				try {
 					editableFieldConfigJSONObject = JSONUtil.merge(
 						editableFieldConfigJSONObject,
-						_createFragmentConfigJSONObject(
-							fragmentImageMap));
+						_createFragmentConfigJSONObject(fragmentImageMap));
 				}
 				catch (JSONException jsonException) {
 					if (_log.isWarnEnabled()) {

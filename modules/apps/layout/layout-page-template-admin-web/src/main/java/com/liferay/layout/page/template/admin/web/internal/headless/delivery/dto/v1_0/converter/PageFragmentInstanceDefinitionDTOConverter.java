@@ -687,8 +687,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		return new FragmentImageClassPKReference() {
 			{
-				classPKReferences = _toClassPKReferences(
-					localizedJSONObjects);
+				classPKReferences = _toClassPKReferences(localizedJSONObjects);
 				fragmentImageConfiguration = new FragmentImageConfiguration() {
 					{
 						landscapeMobile =
