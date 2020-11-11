@@ -159,7 +159,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 			JSONObject imageJSONObject = jsonObject.getJSONObject(
 				backgroundImageId);
 
-			Map<String, String> localizedValues = _toLocalizedValues(imageJSONObject);
+			Map<String, String> localizedValues = _toLocalizedValues(
+				imageJSONObject);
 
 			fragmentFields.add(
 				new FragmentField() {
@@ -591,8 +592,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	private FragmentFieldImage _toFragmentFieldImage(
 		JSONObject jsonObject, boolean saveMapping) {
 
-		Map<String, JSONObject> localizedJSONObjects = _toLocalizedValueJSONObjects(
-			jsonObject);
+		Map<String, JSONObject> localizedJSONObjects =
+			_toLocalizedValueJSONObjects(jsonObject);
 		Map<String, String> localizedValues = _toLocalizedValues(jsonObject);
 
 		return new FragmentFieldImage() {
@@ -660,8 +661,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 								jsonObject);
 						}
 
-						Map<String, String> localizedValues = _toLocalizedValues(
-							jsonObject);
+						Map<String, String> localizedValues =
+							_toLocalizedValues(jsonObject);
 
 						if (MapUtil.isEmpty(localizedValues)) {
 							return null;
@@ -686,7 +687,8 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		return new FragmentImageClassPKReference() {
 			{
-				classPKReferences = _toClassPKReferenceMap(localizedJSONObjects);
+				classPKReferences = _toClassPKReferenceMap(
+					localizedJSONObjects);
 				fragmentImageConfiguration = new FragmentImageConfiguration() {
 					{
 						landscapeMobile =
