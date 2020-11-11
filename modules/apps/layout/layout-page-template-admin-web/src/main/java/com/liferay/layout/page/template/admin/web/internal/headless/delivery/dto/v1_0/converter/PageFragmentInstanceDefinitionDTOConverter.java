@@ -365,7 +365,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		return false;
 	}
 
-	private Map<String, ClassPKReference> _toClassPKReferenceMap(
+	private Map<String, ClassPKReference> _toClassPKReferences(
 		Map<String, JSONObject> localizedJSONObjects) {
 
 		Map<String, ClassPKReference> imageReferenceMap = new HashMap<>();
@@ -687,7 +687,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		return new FragmentImageClassPKReference() {
 			{
-				classPKReferences = _toClassPKReferenceMap(
+				classPKReferences = _toClassPKReferences(
 					localizedJSONObjects);
 				fragmentImageConfiguration = new FragmentImageConfiguration() {
 					{
