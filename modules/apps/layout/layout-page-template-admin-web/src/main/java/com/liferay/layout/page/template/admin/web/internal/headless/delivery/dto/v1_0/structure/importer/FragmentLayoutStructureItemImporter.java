@@ -385,7 +385,7 @@ public class FragmentLayoutStructureItemImporter
 		return jsonObject;
 	}
 
-	private JSONObject _createImageJSONObjectFromClassPKReferences(
+	private JSONObject _createImageJSONObject(
 		Map<String, Object> classPKReferences) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -831,7 +831,7 @@ public class FragmentLayoutStructureItemImporter
 								"fragmentImageClassPKReference");
 
 						baseFragmentFieldJSONObject =
-							_createImageJSONObjectFromClassPKReferences(
+							_createImageJSONObject(
 								(Map<String, Object>)
 									fragmentImageClassPKReferenceMap.get(
 										"classPKReferences"));
