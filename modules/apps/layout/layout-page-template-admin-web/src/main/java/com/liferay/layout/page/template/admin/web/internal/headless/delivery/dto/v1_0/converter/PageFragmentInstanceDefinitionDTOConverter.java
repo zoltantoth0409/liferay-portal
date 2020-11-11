@@ -368,14 +368,14 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	private Map<String, ClassPKReference> _toClassPKReferences(
 		Map<String, JSONObject> localizedJSONObjects) {
 
-		Map<String, ClassPKReference> imageReferenceMap = new HashMap<>();
+		Map<String, ClassPKReference> classPKReferences = new HashMap<>();
 
 		for (Map.Entry<String, JSONObject> entry :
 				localizedJSONObjects.entrySet()) {
 
 			JSONObject jsonObject = entry.getValue();
 
-			imageReferenceMap.put(
+			classPKReferences.put(
 				entry.getKey(),
 				new ClassPKReference() {
 					{
@@ -385,7 +385,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 				});
 		}
 
-		return imageReferenceMap;
+		return classPKReferences;
 	}
 
 	private FragmentInlineValue _toDefaultMappingValue(
