@@ -949,7 +949,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentInlineValue _toTitleFragmentInlineValue(
-		JSONObject jsonObject, Map<String, String> map) {
+		JSONObject jsonObject, Map<String, String> localeMap) {
 
 		JSONObject configJSONObject = jsonObject.getJSONObject("config");
 
@@ -959,7 +959,9 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		String imageTitle = configJSONObject.getString("imageTitle");
 
-		if (Validator.isNull(imageTitle) || map.containsValue(imageTitle)) {
+		if (Validator.isNull(imageTitle) ||
+			localeMap.containsValue(imageTitle)) {
+
 			return null;
 		}
 
