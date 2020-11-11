@@ -301,7 +301,7 @@ public class FragmentLayoutStructureItemImporter
 		return jsonObject;
 	}
 
-	private JSONObject _createFragmentConfigJSONObjectFragmentImageMap(
+	private JSONObject _createFragmentConfigJSONObject(
 		Map<String, Object> fragmentImageMap) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -869,7 +869,7 @@ public class FragmentLayoutStructureItemImporter
 				try {
 					editableFieldConfigJSONObject = JSONUtil.merge(
 						editableFieldConfigJSONObject,
-						_createFragmentConfigJSONObjectFragmentImageMap(
+						_createFragmentConfigJSONObject(
 							fragmentImageMap));
 				}
 				catch (JSONException jsonException) {
