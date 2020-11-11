@@ -54,7 +54,7 @@
 		${viewCategorizedPagesURL.setParameter("struts_action", "/wiki/view_categorized_pages")}
 		${viewCategorizedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
 
-		<@liferay_asset["asset-categories-summary"]
+		<@liferay_ui["asset-categories-summary"]
 			className=wikiPageClassName
 			classPK=entry.getResourcePrimKey()
 			portletURL=viewCategorizedPagesURL
@@ -67,7 +67,7 @@
 		${viewTaggedPagesURL.setParameter("struts_action", "/wiki/view_tagged_pages")}
 		${viewTaggedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
 
-		<@liferay_asset["asset-tags-summary"]
+		<@liferay_ui["asset-tags-summary"]
 			className=wikiPageClassName
 			classPK=entry.getResourcePrimKey()
 			portletURL=viewTaggedPagesURL

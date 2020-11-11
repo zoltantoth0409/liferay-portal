@@ -45,14 +45,14 @@
 			</#if>
 
 			<span class="entry-categories">
-				<@liferay_asset["asset-categories-summary"]
+				<@liferay_ui["asset-categories-summary"]
 					className=blogsEntryClassName
 					classPK=entry.getEntryId()
 					portletURL=renderResponse.createRenderURL()
 				/>
 			</span>
 			<span class="entry-tags">
-				<@liferay_asset["asset-tags-summary"]
+				<@liferay_ui["asset-tags-summary"]
 					className=blogsEntryClassName
 					classPK=entry.getEntryId()
 					portletURL=renderResponse.createRenderURL()
