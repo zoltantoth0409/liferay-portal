@@ -159,14 +159,14 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 			JSONObject imageJSONObject = jsonObject.getJSONObject(
 				backgroundImageId);
 
-			Map<String, String> localeStringMap = _toLocaleStringMap(imageJSONObject);
+			Map<String, String> localizedValues = _toLocalizedValues(imageJSONObject);
 
 			fragmentFields.add(
 				new FragmentField() {
 					{
 						id = backgroundImageId;
 						value = _toFragmentFieldBackgroundImage(
-							imageJSONObject, localeStringMap, saveMapping);
+							imageJSONObject, localizedValues, saveMapping);
 					}
 				});
 		}
@@ -365,12 +365,12 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private Map<String, ClassPKReference> _toClassPKReferenceMap(
-		Map<String, JSONObject> localeJSONObjectMap) {
+		Map<String, JSONObject> localizedJSONObjects) {
 
 		Map<String, ClassPKReference> imageReferenceMap = new HashMap<>();
 
 		for (Map.Entry<String, JSONObject> entry :
-				localeJSONObjectMap.entrySet()) {
+				localizedJSONObjects.entrySet()) {
 
 			JSONObject jsonObject = entry.getValue();
 
@@ -529,7 +529,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentFieldBackgroundImage _toFragmentFieldBackgroundImage(
-		JSONObject jsonObject, Map<String, String> localeStringMap,
+		JSONObject jsonObject, Map<String, String> localizedValues,
 		boolean saveMapping) {
 
 		return new FragmentFieldBackgroundImage() {
@@ -537,7 +537,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 				backgroundFragmentImage = new FragmentImage() {
 					{
 						title = _toTitleFragmentInlineValue(
-							jsonObject, localeStringMap);
+							jsonObject, localizedValues);
 
 						setUrl(
 							() -> {
@@ -553,7 +553,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 								return new FragmentInlineValue() {
 									{
-										value_i18n = localeStringMap;
+										value_i18n = localizedValues;
 									}
 								};
 							});
@@ -580,7 +580,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 						return new FragmentInlineValue() {
 							{
-								value_i18n = _toLocaleStringMap(jsonObject);
+								value_i18n = _toLocalizedValues(jsonObject);
 							}
 						};
 					});
@@ -591,9 +591,9 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	private FragmentFieldImage _toFragmentFieldImage(
 		JSONObject jsonObject, boolean saveMapping) {
 
-		Map<String, JSONObject> localeJSONObjectMap = _toLocaleJSONObjectMap(
+		Map<String, JSONObject> localizedJSONObjects = _toLocalizedValueJSONObjects(
 			jsonObject);
-		Map<String, String> localeStringMap = _toLocaleStringMap(jsonObject);
+		Map<String, String> localizedValues = _toLocalizedValues(jsonObject);
 
 		return new FragmentFieldImage() {
 			{
@@ -602,21 +602,21 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 						description = _toDescriptionFragmentInlineValue(
 							jsonObject);
 						title = _toTitleFragmentInlineValue(
-							jsonObject, localeStringMap);
+							jsonObject, localizedValues);
 
 						setFragmentImageClassPKReference(
 							() -> {
-								if (MapUtil.isEmpty(localeJSONObjectMap)) {
+								if (MapUtil.isEmpty(localizedJSONObjects)) {
 									return null;
 								}
 
 								return _toFragmentImageClassPKReference(
-									localeJSONObjectMap,
+									localizedJSONObjects,
 									jsonObject.getJSONObject("config"));
 							});
 						setUrl(
 							() -> {
-								if (MapUtil.isNotEmpty(localeJSONObjectMap)) {
+								if (MapUtil.isNotEmpty(localizedJSONObjects)) {
 									return null;
 								}
 
@@ -632,7 +632,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 								return new FragmentInlineValue() {
 									{
-										value_i18n = localeStringMap;
+										value_i18n = localizedValues;
 									}
 								};
 							});
@@ -660,16 +660,16 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 								jsonObject);
 						}
 
-						Map<String, String> localeStringMap = _toLocaleStringMap(
+						Map<String, String> localizedValues = _toLocalizedValues(
 							jsonObject);
 
-						if (MapUtil.isEmpty(localeStringMap)) {
+						if (MapUtil.isEmpty(localizedValues)) {
 							return null;
 						}
 
 						return new FragmentInlineValue() {
 							{
-								value_i18n = localeStringMap;
+								value_i18n = localizedValues;
 							}
 						};
 					});
@@ -678,7 +678,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentImageClassPKReference _toFragmentImageClassPKReference(
-		Map<String, JSONObject> localeJSONObjectMap,
+		Map<String, JSONObject> localizedJSONObjects,
 		JSONObject configJSONObject) {
 
 		JSONObject imageConfigurationJSONObject =
@@ -686,7 +686,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 
 		return new FragmentImageClassPKReference() {
 			{
-				classPKReferences = _toClassPKReferenceMap(localeJSONObjectMap);
+				classPKReferences = _toClassPKReferenceMap(localizedJSONObjects);
 				fragmentImageConfiguration = new FragmentImageConfiguration() {
 					{
 						landscapeMobile =
@@ -902,7 +902,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		};
 	}
 
-	private Map<String, JSONObject> _toLocaleJSONObjectMap(
+	private Map<String, JSONObject> _toLocalizedValueJSONObjects(
 		JSONObject jsonObject) {
 
 		return new HashMap<String, JSONObject>() {
@@ -928,7 +928,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		};
 	}
 
-	private Map<String, String> _toLocaleStringMap(JSONObject jsonObject) {
+	private Map<String, String> _toLocalizedValues(JSONObject jsonObject) {
 		return new HashMap<String, String>() {
 			{
 				List<String> availableLanguageIds = _getAvailableLanguageIds();
@@ -949,7 +949,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 	}
 
 	private FragmentInlineValue _toTitleFragmentInlineValue(
-		JSONObject jsonObject, Map<String, String> localeStringMap) {
+		JSONObject jsonObject, Map<String, String> localizedValues) {
 
 		JSONObject configJSONObject = jsonObject.getJSONObject("config");
 
@@ -960,7 +960,7 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		String imageTitle = configJSONObject.getString("imageTitle");
 
 		if (Validator.isNull(imageTitle) ||
-			localeStringMap.containsValue(imageTitle)) {
+			localizedValues.containsValue(imageTitle)) {
 
 			return null;
 		}
