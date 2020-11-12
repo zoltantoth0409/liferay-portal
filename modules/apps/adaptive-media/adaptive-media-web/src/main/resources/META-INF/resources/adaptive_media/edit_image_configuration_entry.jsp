@@ -25,11 +25,9 @@ portletDisplay.setURLBack(redirect);
 boolean configurationEntryEditable = GetterUtil.getBoolean(request.getAttribute(AMWebKeys.CONFIGURATION_ENTRY_EDITABLE));
 AMImageConfigurationEntry amImageConfigurationEntry = (AMImageConfigurationEntry)request.getAttribute(AMWebKeys.CONFIGURATION_ENTRY);
 
+boolean automaticUuid = false;
+
 String configurationEntryUuid = ParamUtil.getString(request, "uuid", (amImageConfigurationEntry != null) ? amImageConfigurationEntry.getUUID() : StringPool.BLANK);
-
-renderResponse.setTitle((amImageConfigurationEntry != null) ? amImageConfigurationEntry.getName() : LanguageUtil.get(request, "new-image-resolution"));
-
-boolean automaticUuid;
 
 if (amImageConfigurationEntry == null) {
 	automaticUuid = Validator.isNull(configurationEntryUuid);
@@ -39,6 +37,8 @@ else {
 }
 
 automaticUuid = ParamUtil.getBoolean(request, "automaticUuid", automaticUuid);
+
+renderResponse.setTitle((amImageConfigurationEntry != null) ? amImageConfigurationEntry.getName() : LanguageUtil.get(request, "new-image-resolution"));
 %>
 
 <div class="container-view">
