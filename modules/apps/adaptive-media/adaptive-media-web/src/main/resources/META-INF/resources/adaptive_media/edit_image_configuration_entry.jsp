@@ -29,12 +29,6 @@ String configurationEntryUuid = ParamUtil.getString(request, "uuid", (amImageCon
 
 renderResponse.setTitle((amImageConfigurationEntry != null) ? amImageConfigurationEntry.getName() : LanguageUtil.get(request, "new-image-resolution"));
 
-Map<String, String> properties = null;
-
-if (amImageConfigurationEntry != null) {
-	properties = amImageConfigurationEntry.getProperties();
-}
-
 boolean automaticUuid;
 
 if (amImageConfigurationEntry == null) {
