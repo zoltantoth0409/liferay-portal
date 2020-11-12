@@ -24,13 +24,7 @@ String editFormViewRootElementId = liferayPortletResponse.getNamespace() + "-app
 
 long dataDefinitionId = ParamUtil.getLong(request, "dataDefinitionId");
 long dataLayoutId = ParamUtil.getLong(request, "dataLayoutId");
-boolean popUpWindow = LiferayWindowState.isPopUp(request);
 boolean newCustomObject = ParamUtil.getBoolean(request, "newCustomObject");
-String popUpCssClass = "";
-
-if (popUpWindow) {
-	popUpCssClass = "app-builder-popup";
-}
 %>
 
 <div class="app-builder-root">
@@ -39,6 +33,14 @@ if (popUpWindow) {
 		<aui:input name="dataLayout" type="hidden" />
 
 		<portlet:renderURL var="basePortletURL" />
+
+		<%
+		String popUpCssClass = "";
+
+		if (LiferayWindowState.isPopUp(request)) {
+			popUpCssClass = "app-builder-popup";
+		}
+		%>
 
 		<div class="app-builder-form-view-app <%= popUpCssClass %>" id="<%= editFormViewRootElementId %>">
 			<react:component
@@ -59,7 +61,7 @@ if (popUpWindow) {
 					).put(
 						"newCustomObject", newCustomObject
 					).put(
-						"popUpWindow", popUpWindow
+						"popUpWindow", LiferayWindowState.isPopUp(request)
 					).put(
 						"showTranslationManager", request.getAttribute(AppBuilderWebKeys.SHOW_TRANSLATION_MANAGER)
 					).build()
