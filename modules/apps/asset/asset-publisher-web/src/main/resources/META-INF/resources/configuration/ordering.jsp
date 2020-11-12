@@ -78,11 +78,8 @@
 			<aui:option label="title" selected='<%= orderByColumn2.equals("title") %>' />
 			<aui:option label="create-date" selected='<%= orderByColumn2.equals("createDate") %>' value="createDate" />
 			<aui:option label="modified-date" selected='<%= orderByColumn2.equals("modifiedDate") %>' value="modifiedDate" />
-
 			<aui:option label="publish-date" selected='<%= orderByColumn2.equals("publishDate") %>' value="publishDate" />
-
 			<aui:option label="expiration-date" selected='<%= orderByColumn2.equals("expirationDate") %>' value="expirationDate" />
-
 			<aui:option label="priority" selected='<%= orderByColumn2.equals("priority") %>' value="priority" />
 
 			<c:if test="<%= !assetPublisherDisplayContext.isSearchWithIndex() %>">
@@ -119,10 +116,13 @@
 	</clay:col>
 </clay:row>
 
-<liferay-frontend:component context='<%=
-	HashMapBuilder.<String, Object>put(
-		"iconCssClass", ".icon"
-	).put(
-		"orderingContainerId", liferayPortletResponse.getNamespace() + "ordering"
-	).build()
-		%>' module="js/Ordering" />
+<liferay-frontend:component
+	context='<%=
+		HashMapBuilder.<String, Object>put(
+			"iconCssClass", ".icon"
+		).put(
+			"orderingContainerId", liferayPortletResponse.getNamespace() + "ordering"
+		).build()
+	%>'
+	module="js/Ordering"
+/>
