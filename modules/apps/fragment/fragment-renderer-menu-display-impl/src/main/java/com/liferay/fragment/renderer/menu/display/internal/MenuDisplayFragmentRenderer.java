@@ -46,7 +46,6 @@ import com.liferay.site.navigation.taglib.servlet.taglib.NavigationMenuTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -273,34 +272,33 @@ public class MenuDisplayFragmentRenderer implements FragmentRenderer {
 			PrintWriter printWriter)
 		throws IOException {
 
-		HashMap<String, String> values = HashMapBuilder.put(
-			"fragmentId", fragmentId
-		).put(
-			"hoveredItemColor",
-			() -> {
-				Optional<String> hoveredItemColorOptional =
-					menuDisplayFragmentConfiguration.
-						getHoveredItemColorOptional();
-
-				return hoveredItemColorOptional.orElse("inherit");
-			}
-		).put(
-			"selectedItemColor",
-			() -> {
-				Optional<String> selectedItemColorOptional =
-					menuDisplayFragmentConfiguration.
-						getSelectedItemColorOptional();
-
-				return selectedItemColorOptional.orElse("inherit");
-			}
-		).build();
-
 		String styles = StringUtil.replace(
 			StringUtil.read(
 				getClass(),
 				"/META-INF/resources/fragment/renderer/menu/display" +
 					"/styles.tmpl"),
-			"${", "}", values);
+			"${", "}",
+			HashMapBuilder.put(
+				"fragmentId", fragmentId
+			).put(
+				"hoveredItemColor",
+				() -> {
+					Optional<String> hoveredItemColorOptional =
+						menuDisplayFragmentConfiguration.
+							getHoveredItemColorOptional();
+
+					return hoveredItemColorOptional.orElse("inherit");
+				}
+			).put(
+				"selectedItemColor",
+				() -> {
+					Optional<String> selectedItemColorOptional =
+						menuDisplayFragmentConfiguration.
+							getSelectedItemColorOptional();
+
+					return selectedItemColorOptional.orElse("inherit");
+				}
+			).build());
 
 		printWriter.write(styles);
 	}
