@@ -136,7 +136,7 @@ public class MenuDisplayFragmentConfigurationParser {
 			}
 		}
 		catch (Exception exception) {
-			_log.error("Cannot get frontend tokens", exception);
+			_log.error("Unable to get frontend tokens", exception);
 		}
 
 		return frontendTokens;
