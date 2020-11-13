@@ -90,7 +90,7 @@ public class FacebookDLExternalVideoProvider
 			"frameborder=\"0\" height=\"315\" ",
 			"src=\"https://www.facebook.com/plugins/video.php?",
 			"height=315&href={embedId}&show_text=0&width=560\" ",
-			"scrolling=\"no\" style=\"border: none;overflow: hidden;\" ",
+			"scrolling=\"no\" style=\"border: none; overflow: hidden;\" ",
 			"width=\"560\"></iframe>");
 	}
 
