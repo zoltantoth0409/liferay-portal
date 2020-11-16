@@ -60,7 +60,7 @@ ViewDisplayContext viewDisplayContext = (ViewDisplayContext)request.getAttribute
 					name="language"
 				>
 					<clay:icon
-						symbol='<%= StringUtil.toLowerCase(translationEntry.getLanguageId()).replace("_", "-") %>'
+						symbol='<%= StringUtil.replace(StringUtil.toLowerCase(translationEntry.getLanguageId()), "_", "-") %>'
 					/>
 					<%= translationEntry.getLanguageId() %>
 				</liferay-ui:search-container-column-text>
