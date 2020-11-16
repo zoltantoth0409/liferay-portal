@@ -22,10 +22,13 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowLog;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Michael C. Han
  */
 @MessagingProxy(mode = ProxyMode.SYNC)
+@ProviderType
 public interface WorkflowComparatorFactory {
 
 	public OrderByComparator<WorkflowDefinition>
