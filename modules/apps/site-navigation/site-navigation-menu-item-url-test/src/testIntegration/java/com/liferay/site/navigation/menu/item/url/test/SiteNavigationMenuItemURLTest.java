@@ -83,10 +83,8 @@ public class SiteNavigationMenuItemURLTest {
 
 		typeSettingsUnicodeProperties.setProperty(
 			"name", StringUtil.randomString());
-
 		typeSettingsUnicodeProperties.setProperty(
 			"url", "http://www.liferay.com");
-
 		typeSettingsUnicodeProperties.setProperty(
 			"useNewTab", Boolean.TRUE.toString());
 
@@ -129,7 +127,6 @@ public class SiteNavigationMenuItemURLTest {
 
 		typeSettingsUnicodeProperties.setProperty(
 			"name", StringUtil.randomString());
-
 		typeSettingsUnicodeProperties.setProperty(
 			"url", "http://www.liferay.com");
 
