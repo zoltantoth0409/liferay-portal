@@ -213,12 +213,12 @@ public class RESTBuilder {
 			Map<String, Schema> allSchemas = OpenAPIUtil.getAllSchemas(
 				openAPIYAML);
 
-			context.put("allSchemas", allSchemas);
-
 			Map<String, Schema> allExternalSchemas =
 				OpenAPIUtil.getAllExternalSchemas(allSchemas, openAPIYAML);
 
 			context.put("allExternalSchemas", allExternalSchemas);
+
+			context.put("allSchemas", allSchemas);
 
 			String escapedVersion = OpenAPIUtil.escapeVersion(openAPIYAML);
 
