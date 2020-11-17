@@ -162,7 +162,7 @@ public class OpenAPIParserUtil {
 				RequestBody requestBody = operation.getRequestBody();
 
 				if (requestBody != null) {
-					_getExternalReferencesFromContents(
+					_getExternalReferences(
 						requestBody.getContent(), externalReferences);
 				}
 
@@ -170,7 +170,7 @@ public class OpenAPIParserUtil {
 					operation.getResponses();
 
 				for (Response response : responses.values()) {
-					_getExternalReferencesFromContents(
+					_getExternalReferences(
 						response.getContent(), externalReferences);
 				}
 			}
@@ -448,7 +448,7 @@ public class OpenAPIParserUtil {
 		return false;
 	}
 
-	private static void _getExternalReferencesFromContents(
+	private static void _getExternalReferences(
 		Map<String, Content> contents, Set<String> externalReferences) {
 
 		if (contents == null) {
