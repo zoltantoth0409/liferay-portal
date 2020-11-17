@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.site.navigation.model.SiteNavigationMenuItem;
 import com.liferay.site.navigation.service.SiteNavigationMenuItemService;
+import com.liferay.site.navigation.taglib.servlet.taglib.NavigationMenuMode;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemType;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemTypeRegistry;
 
@@ -142,8 +143,9 @@ public class NavItemUtil {
 	}
 
 	public static List<NavItem> getNavItems(
-			HttpServletRequest httpServletRequest, Boolean privateLayout,
-			String rootLayoutType, int rootLayoutLevel, String rootLayoutUuid,
+			NavigationMenuMode navigationMenuMode,
+			HttpServletRequest httpServletRequest, String rootLayoutType,
+			int rootLayoutLevel, String rootLayoutUuid,
 			List<NavItem> branchNavItems)
 		throws Exception {
 
@@ -157,7 +159,7 @@ public class NavItemUtil {
 		if (rootLayoutType.equals("absolute")) {
 			if (rootLayoutLevel == 0) {
 				navItems = _fromLayouts(
-					httpServletRequest, privateLayout, themeDisplay);
+					navigationMenuMode, httpServletRequest, themeDisplay);
 			}
 			else if (branchNavItems.size() >= rootLayoutLevel) {
 				rootNavItem = branchNavItems.get(rootLayoutLevel - 1);
@@ -171,7 +173,7 @@ public class NavItemUtil {
 
 				if (absoluteLevel == -1) {
 					navItems = _fromLayouts(
-						httpServletRequest, privateLayout, themeDisplay);
+						navigationMenuMode, httpServletRequest, themeDisplay);
 				}
 				else if ((absoluteLevel >= 0) &&
 						 (absoluteLevel < branchNavItems.size())) {
@@ -199,7 +201,7 @@ public class NavItemUtil {
 			}
 			else {
 				navItems = _fromLayouts(
-					httpServletRequest, privateLayout, themeDisplay);
+					navigationMenuMode, httpServletRequest, themeDisplay);
 			}
 		}
 
@@ -242,12 +244,18 @@ public class NavItemUtil {
 	}
 
 	private static List<NavItem> _fromLayouts(
-			HttpServletRequest httpServletRequest, Boolean privateLayout,
-			ThemeDisplay themeDisplay)
+			NavigationMenuMode navigationMenuMode,
+			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		if (privateLayout == null) {
+		if (navigationMenuMode == NavigationMenuMode.DEFAULT) {
 			return NavItem.fromLayouts(httpServletRequest, themeDisplay, null);
+		}
+
+		boolean privateLayout = false;
+
+		if (navigationMenuMode == NavigationMenuMode.PRIVATE_PAGES) {
+			privateLayout = true;
 		}
 
 		List<Layout> layouts = _layoutLocalService.getLayouts(
