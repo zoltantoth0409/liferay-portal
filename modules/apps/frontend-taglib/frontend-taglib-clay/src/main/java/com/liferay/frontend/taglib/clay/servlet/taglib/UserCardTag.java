@@ -184,13 +184,14 @@ public class UserCardTag extends BaseCardTag {
 			cssClasses.add("card");
 		}
 
+		cssClasses.add("card-type-asset");
+
 		if (selectable) {
 			cssClasses.add("form-check");
 			cssClasses.add("form-check-card");
 			cssClasses.add("form-check-top-left");
 		}
 
-		cssClasses.add("card-type-asset");
 		cssClasses.add("user-card");
 
 		return super.processCssClasses(cssClasses);
