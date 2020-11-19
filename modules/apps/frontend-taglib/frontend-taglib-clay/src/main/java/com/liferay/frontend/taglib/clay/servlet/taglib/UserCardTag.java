@@ -341,6 +341,7 @@ public class UserCardTag extends BaseCardTag {
 			DropdownActionsTag dropdownActionsTag = new DropdownActionsTag();
 
 			dropdownActionsTag.setDropdownItems(actionDropdownItems);
+
 			dropdownActionsTag.doTag(pageContext);
 
 			jspWriter.write("</div>");

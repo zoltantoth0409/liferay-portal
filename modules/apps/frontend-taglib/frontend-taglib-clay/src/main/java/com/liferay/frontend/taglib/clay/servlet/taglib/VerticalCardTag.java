@@ -443,6 +443,7 @@ public class VerticalCardTag extends BaseCardTag {
 			IconTag icon = new IconTag();
 
 			icon.setSymbol(getIcon());
+
 			icon.doTag(pageContext);
 
 			jspWriter.write("</div>");
@@ -517,6 +518,7 @@ public class VerticalCardTag extends BaseCardTag {
 			linkTag.setCssClass("text-truncate");
 			linkTag.setHref(href);
 			linkTag.setLabel(title);
+
 			linkTag.doTag(pageContext);
 		}
 		else {
@@ -587,6 +589,7 @@ public class VerticalCardTag extends BaseCardTag {
 			DropdownActionsTag dropdownActionsTag = new DropdownActionsTag();
 
 			dropdownActionsTag.setDropdownItems(actionDropdownItems);
+
 			dropdownActionsTag.doTag(pageContext);
 
 			jspWriter.write("</div>");
