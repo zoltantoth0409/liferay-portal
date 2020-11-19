@@ -18,8 +18,6 @@
 
 <%
 SelectThemeDisplayContext selectThemeDisplayContext = new SelectThemeDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
-
-String themeId = ParamUtil.getString(request, "themeId");
 %>
 
 <clay:management-toolbar-v2
@@ -55,6 +53,8 @@ String themeId = ParamUtil.getString(request, "themeId");
 			Map<String, Object> data = HashMapBuilder.<String, Object>put(
 				"themeid", theme.getThemeId()
 			).build();
+
+			String themeId = ParamUtil.getString(request, "themeId");
 
 			if (themeId.equals(theme.getThemeId())) {
 				row.setCssClass("active");
