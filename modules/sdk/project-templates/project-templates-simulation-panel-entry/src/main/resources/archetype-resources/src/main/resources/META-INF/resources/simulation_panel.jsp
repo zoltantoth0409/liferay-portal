@@ -17,14 +17,14 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <div class="list-group-panel" id="<portlet:namespace />simulationOptionsContainer">
 	<p class="text-center"><liferay-ui:message key="simulation-description" /></p>
 
-	<div class="container-fluid default-devices d-flex flex-wrap">
+	<div class="container-fluid d-flex default-devices flex-wrap">
 		<div class="flex-fill d-none d-md-block lfr-device-item selected text-center" data-option="option-1">
 			<aui:icon cssClass="icon icon-monospaced" image="calendar" markupView="lexicon" />
 
 			<small><%= LanguageUtil.get(resourceBundle, "option-1") %></small>
 		</div>
 
-		<div class="flex-fill d-none d-md-block lfr-device-item selected text-center" data-option="option-2">
+		<div class="d-none d-md-block flex-fill lfr-device-item selected text-center" data-option="option-2">
 			<aui:icon cssClass="icon icon-monospaced" image="heart" markupView="lexicon" />
 
 			<small><%= LanguageUtil.get(resourceBundle, "option-2") %></small>
