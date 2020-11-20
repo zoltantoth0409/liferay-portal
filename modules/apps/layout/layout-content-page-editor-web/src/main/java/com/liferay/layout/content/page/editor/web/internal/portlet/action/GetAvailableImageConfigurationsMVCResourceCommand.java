@@ -66,7 +66,6 @@ public class GetAvailableImageConfigurationsMVCResourceCommand
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
-
 		Image image = ImageToolUtil.getImage(fileEntry.getContentStream());
 
 		JSONArray jsonArray = JSONUtil.put(
