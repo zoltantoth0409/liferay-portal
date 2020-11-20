@@ -171,9 +171,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	protected Locale getDisplayLocale(HttpServletRequest httpServletRequest) {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = getThemeDisplay(httpServletRequest);
 
 		return themeDisplay.getLocale();
 	}
@@ -206,9 +204,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			return StringPool.BLANK;
 		}
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = getThemeDisplay(httpServletRequest);
 
 		if (themeDisplay == null) {
 			return StringPool.BLANK;
@@ -234,9 +230,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	protected String getItemSelectorAuthToken(
 		HttpServletRequest httpServletRequest) {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = getThemeDisplay(httpServletRequest);
 
 		if (themeDisplay == null) {
 			return StringPool.BLANK;
@@ -260,9 +254,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	protected String getLexiconIconsPath(
 		HttpServletRequest httpServletRequest) {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = getThemeDisplay(httpServletRequest);
 
 		if (themeDisplay == null) {
 			return StringPool.BLANK;
