@@ -30,7 +30,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 			<small><%= LanguageUtil.get(resourceBundle, "option-2") %></small>
 		</div>
 
-		<div class="flex-fill d-none d-md-block lfr-device-item selected text-center" data-option="option-3">
+		<div class="d-none d-md-block flex-fill lfr-device-item selected text-center" data-option="option-3">
 			<aui:icon cssClass="icon icon-monospaced" image="star" markupView="lexicon" />
 
 			<small><%= LanguageUtil.get(resourceBundle, "option-3") %></small>
