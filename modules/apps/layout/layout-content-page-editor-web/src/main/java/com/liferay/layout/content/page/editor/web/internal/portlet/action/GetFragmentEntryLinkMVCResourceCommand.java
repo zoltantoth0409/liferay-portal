@@ -82,15 +82,15 @@ public class GetFragmentEntryLinkMVCResourceCommand
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (fragmentEntryLink != null) {
+			DefaultFragmentRendererContext defaultFragmentRendererContext =
+				new DefaultFragmentRendererContext(fragmentEntryLink);
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)resourceRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
 			String languageId = ParamUtil.getString(
 				resourceRequest, "languageId", themeDisplay.getLanguageId());
-
-			DefaultFragmentRendererContext defaultFragmentRendererContext =
-				new DefaultFragmentRendererContext(fragmentEntryLink);
 
 			defaultFragmentRendererContext.setLocale(
 				LocaleUtil.fromLanguageId(languageId));
