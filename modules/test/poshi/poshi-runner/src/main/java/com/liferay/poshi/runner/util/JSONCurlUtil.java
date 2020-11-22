@@ -139,10 +139,8 @@ public class JSONCurlUtil {
 			sb.append(" ");
 			sb.append(_requestURL);
 
-			long timeout = 1000 * 60 * 15;
-
 			Process process = ExecUtil.executeCommands(
-				true, new File("."), timeout, sb.toString());
+				true, new File("."), 1000 * 60 * 15, sb.toString());
 
 			InputStream inputStream = process.getInputStream();
 
