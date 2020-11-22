@@ -424,7 +424,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				tempFileEntry.getGroupId(), folderId, originalSelectedFileName);
 
 			String mimeType = tempFileEntry.getMimeType();
-			String uniqueTitle = FileUtil.stripExtension(uniqueFileName);
 			InputStream inputStream = tempFileEntry.getContentStream();
 			long size = tempFileEntry.getSize();
 
@@ -432,8 +431,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				DLFileEntry.class.getName(), actionRequest);
 
 			FileEntry fileEntry = _dlAppService.addFileEntry(
-				repositoryId, folderId, uniqueFileName, mimeType, uniqueTitle,
-				description, changeLog, inputStream, size, serviceContext);
+				repositoryId, folderId, uniqueFileName, mimeType,
+				FileUtil.stripExtension(uniqueFileName), description, changeLog,
+				inputStream, size, serviceContext);
 
 			_assetDisplayPageEntryFormProcessor.process(
 				FileEntry.class.getName(), fileEntry.getFileEntryId(),
