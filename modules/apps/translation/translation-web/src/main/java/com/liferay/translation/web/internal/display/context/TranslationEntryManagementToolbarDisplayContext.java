@@ -154,7 +154,6 @@ public class TranslationEntryManagementToolbarDisplayContext
 							dropdownItem.setHref(
 								getPortletURL(), "status",
 								String.valueOf(status));
-
 							dropdownItem.setLabel(
 								LanguageUtil.get(
 									httpServletRequest,
