@@ -35,7 +35,6 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 	private void _upgradeDLAssetDisplayPageTypes() throws Exception {
 		long dlFileEntryClassNameId = PortalUtil.getClassNameId(
 			DLFileEntryConstants.getClassName());
-
 		long fileEntryClassNameId = PortalUtil.getClassNameId(
 			FileEntry.class.getName());
 
