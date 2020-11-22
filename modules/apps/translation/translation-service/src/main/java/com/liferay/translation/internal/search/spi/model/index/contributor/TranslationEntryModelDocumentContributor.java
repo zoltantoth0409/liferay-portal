@@ -50,10 +50,7 @@ public class TranslationEntryModelDocumentContributor
 		document.addDate(
 			Field.MODIFIED_DATE, translationEntry.getModifiedDate());
 		document.addKeyword(Field.STATUS, translationEntry.getStatus());
-
-		String title = _getTitle(translationEntry);
-
-		document.addText(Field.TITLE, title);
+		document.addText(Field.TITLE, _getTitle(translationEntry));
 	}
 
 	private Locale _getLocale(TranslationEntry translationEntry)
