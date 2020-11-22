@@ -82,14 +82,6 @@ public class EditCommerceTaxAvalaraMVCActionCommand
 
 		modifiableSettings.setValue("accountNumber", accountNumber);
 
-		String licenseKey = ParamUtil.getString(actionRequest, "licenseKey");
-
-		modifiableSettings.setValue("licenseKey", licenseKey);
-
-		String serviceURL = ParamUtil.getString(actionRequest, "serviceURL");
-
-		modifiableSettings.setValue("serviceURL", serviceURL);
-
 		String companyCode = ParamUtil.getString(actionRequest, "companyCode");
 
 		modifiableSettings.setValue("companyCode", companyCode);
@@ -100,6 +92,14 @@ public class EditCommerceTaxAvalaraMVCActionCommand
 		modifiableSettings.setValue(
 			"disabledDocumentRecording",
 			String.valueOf(disabledDocumentRecording));
+
+		String licenseKey = ParamUtil.getString(actionRequest, "licenseKey");
+
+		modifiableSettings.setValue("licenseKey", licenseKey);
+
+		String serviceURL = ParamUtil.getString(actionRequest, "serviceURL");
+
+		modifiableSettings.setValue("serviceURL", serviceURL);
 
 		modifiableSettings.store();
 	}
