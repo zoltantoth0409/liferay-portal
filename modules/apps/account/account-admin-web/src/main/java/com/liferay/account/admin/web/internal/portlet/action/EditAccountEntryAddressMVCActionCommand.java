@@ -113,6 +113,7 @@ public class EditAccountEntryAddressMVCActionCommand
 
 		long accountEntryAddressId = ParamUtil.getLong(
 			actionRequest, "accountEntryAddressId");
+
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 		String street1 = ParamUtil.getString(actionRequest, "street1");
