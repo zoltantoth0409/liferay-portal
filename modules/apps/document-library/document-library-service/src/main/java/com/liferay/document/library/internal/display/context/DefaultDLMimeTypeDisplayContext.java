@@ -48,9 +48,6 @@ public class DefaultDLMimeTypeDisplayContext
 
 			return "file-icon-color-0";
 		}
-		else if (_isMultimediaFileMimeType(mimeType)) {
-			return "file-icon-color-5";
-		}
 		else if (_containsMimeType(
 					_dlConfiguration.presentationFileMimeTypes(), mimeType)) {
 
@@ -71,6 +68,9 @@ public class DefaultDLMimeTypeDisplayContext
 
 			return "file-icon-color-3";
 		}
+		else if (_isMultimediaFileMimeType(mimeType)) {
+			return "file-icon-color-5";
+		}
 
 		return "file-icon-color-0";
 	}
@@ -84,13 +84,6 @@ public class DefaultDLMimeTypeDisplayContext
 					_dlConfiguration.compressedFileMimeTypes(), mimeType)) {
 
 			return "document-compressed";
-		}
-		else if (_isMultimediaFileMimeType(mimeType)) {
-			if (mimeType.startsWith("image")) {
-				return "document-image";
-			}
-
-			return "document-multimedia";
 		}
 		else if (_containsMimeType(
 					_dlConfiguration.presentationFileMimeTypes(), mimeType)) {
@@ -111,6 +104,13 @@ public class DefaultDLMimeTypeDisplayContext
 					_dlConfiguration.vectorialFileMimeTypes(), mimeType)) {
 
 			return "document-vector";
+		}
+		else if (_isMultimediaFileMimeType(mimeType)) {
+			if (mimeType.startsWith("image")) {
+				return "document-image";
+			}
+
+			return "document-multimedia";
 		}
 
 		return "document-default";
