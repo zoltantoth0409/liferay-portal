@@ -23,6 +23,7 @@ import com.liferay.item.selector.ItemSelectorReturnType;
  * external video service.
  *
  * @author Alejandro Tardín
+ * @review
  */
 public class VideoURLItemSelectorReturnType implements ItemSelectorReturnType {
 }
