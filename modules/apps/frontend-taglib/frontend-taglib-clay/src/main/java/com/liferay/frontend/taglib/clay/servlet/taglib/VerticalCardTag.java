@@ -459,13 +459,14 @@ public class VerticalCardTag extends BaseCardTag {
 		StickerTag stickerTag = new StickerTag();
 
 		String stickerCssClass = getStickerCssClass();
-		String stickerIcon = getStickerIcon();
-		String stickerImageSrc = getStickerImageSrc();
-		String stickerLabel = getStickerLabel();
 
 		if (Validator.isNotNull(stickerCssClass)) {
 			stickerTag.setCssClass(stickerCssClass);
 		}
+
+		String stickerIcon = getStickerIcon();
+		String stickerImageSrc = getStickerImageSrc();
+		String stickerLabel = getStickerLabel();
 
 		if (Validator.isNotNull(stickerIcon)) {
 			stickerTag.setIcon(stickerIcon);
