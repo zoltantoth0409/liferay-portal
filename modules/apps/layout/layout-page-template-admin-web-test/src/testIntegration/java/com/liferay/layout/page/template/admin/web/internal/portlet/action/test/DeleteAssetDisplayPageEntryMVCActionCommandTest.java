@@ -65,7 +65,6 @@ public class DeleteAssetDisplayPageEntryMVCActionCommandTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
-
 		_layout = _layoutLocalService.getLayout(
 			_layoutService.getControlPanelLayoutPlid());
 	}
