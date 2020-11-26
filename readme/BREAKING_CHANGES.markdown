@@ -251,8 +251,6 @@ the overall concept of display pages.
 
 ---------------------------------------
 
----------------------------------------
-
 ### The CSS class .container-fluid-1280 has been replaced with .container-fluid.container-fluid-max-xl
 - **Date:** 2020-Nov-24
 - **JIRA Ticket:** [LPS-123894](https://issues.liferay.com/browse/LPS-123894)
