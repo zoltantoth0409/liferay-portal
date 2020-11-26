@@ -42,7 +42,7 @@ public class PortletStyleCSSDynamicInclude extends BaseDynamicInclude {
 		printWriter.print("<style data-senna-track=\"temporary\" ");
 		printWriter.print("type=\"text/css\">\n");
 		printWriter.print(".portlet-borderless .portlet-content {");
-		printWriter.print("padding: 0; } </style>\n");
+		printWriter.print("padding: 0;}</style>\n");
 	}
 
 	@Override
