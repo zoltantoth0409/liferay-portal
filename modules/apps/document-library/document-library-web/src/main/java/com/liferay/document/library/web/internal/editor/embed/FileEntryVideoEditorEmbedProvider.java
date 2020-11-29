@@ -52,7 +52,7 @@ public class FileEntryVideoEditorEmbedProvider implements EditorEmbedProvider {
 	@Override
 	public String getTpl() {
 		return StringBundler.concat(
-			"<iframe height=\"315\" frameborder=\"0\" src=\"",
+			"<iframe frameborder=\"0\" height=\"315\" src=\"",
 			_getEmbedVideoURL(), "&",
 			_portal.getPortletNamespace(DLPortletKeys.DOCUMENT_LIBRARY),
 			"url={embedId}\" width=\"560\"></iframe>");
