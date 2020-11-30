@@ -53,23 +53,22 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		validate(a2, a3, idd, name, number);
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
-
-		String defaultLanguageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getDefault());
-
 		long countryId = counterLocalService.increment();
 
 		Country country = countryPersistence.create(countryId);
 
+		User user = userLocalService.getUser(serviceContext.getUserId());
+
 		country.setCompanyId(user.getCompanyId());
 		country.setUserId(user.getUserId());
 		country.setUserName(user.getFullName());
+
 		country.setA2(a2);
 		country.setA3(a3);
 		country.setActive(active);
 		country.setBillingAllowed(billingAllowed);
-		country.setDefaultLanguageId(defaultLanguageId);
+		country.setDefaultLanguageId(
+			LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
 		country.setGroupFilterEnabled(false);
 		country.setIdd(idd);
 		country.setName(name);

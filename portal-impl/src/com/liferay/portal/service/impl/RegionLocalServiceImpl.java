@@ -34,8 +34,6 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 			String regionCode, ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
-
 		countryPersistence.findByPrimaryKey(countryId);
 
 		validate(name, regionCode);
@@ -45,8 +43,12 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 		Region region = regionPersistence.create(regionId);
 
 		region.setCompanyId(serviceContext.getCompanyId());
+
+		User user = userLocalService.getUser(serviceContext.getUserId());
+
 		region.setUserId(user.getUserId());
 		region.setUserName(user.getFullName());
+
 		region.setCountryId(countryId);
 		region.setActive(active);
 		region.setName(name);
