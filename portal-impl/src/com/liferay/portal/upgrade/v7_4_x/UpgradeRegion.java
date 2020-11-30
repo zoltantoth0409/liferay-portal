@@ -38,9 +38,9 @@ public class UpgradeRegion extends UpgradeProcess {
 		long defaultUserId = 0;
 
 		String sql = StringBundler.concat(
-			"SELECT User_.companyId, User_.userId FROM User_ JOIN Company ON ",
-			"User_.companyId = Company.companyId WHERE User_.defaultUser = ",
-			"true AND Company.webId = ",
+			"select User_.companyId, User_.userId from User_ join Company on ",
+			"User_.companyId = Company.companyId where User_.defaultUser = ",
+			"true and Company.webId = ",
 			StringUtil.quote(
 				PropsValues.COMPANY_DEFAULT_WEB_ID, StringPool.QUOTE));
 
