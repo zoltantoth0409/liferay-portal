@@ -71,9 +71,15 @@ public class DateRangeClayDataSetFilterContextContributor
 		BaseDateRangeClayDataSetFilter baseDateRangeClayDataSetFilter) {
 
 		return HashMapBuilder.<String, Object>put(
-			"max", _getJSONObject(baseDateRangeClayDataSetFilter.getMax())
+			"max",
+			_getJSONObject(
+				baseDateRangeClayDataSetFilter.
+					getMaxDateClayDataSetFilterItem())
 		).put(
-			"min", _getJSONObject(baseDateRangeClayDataSetFilter.getMin())
+			"min",
+			_getJSONObject(
+				baseDateRangeClayDataSetFilter.
+					getMinDateClayDataSetFilterItem())
 		).build();
 	}
 

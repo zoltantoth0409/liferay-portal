@@ -20,9 +20,9 @@ package com.liferay.frontend.taglib.clay.data.set.filter;
 public abstract class BaseDateRangeClayDataSetFilter
 	implements ClayDataSetFilter {
 
-	public abstract DateClayDataSetFilterItem getMax();
+	public abstract DateClayDataSetFilterItem getMaxDateClayDataSetFilterItem();
 
-	public abstract DateClayDataSetFilterItem getMin();
+	public abstract DateClayDataSetFilterItem getMinDateClayDataSetFilterItem();
 
 	@Override
 	public String getType() {
