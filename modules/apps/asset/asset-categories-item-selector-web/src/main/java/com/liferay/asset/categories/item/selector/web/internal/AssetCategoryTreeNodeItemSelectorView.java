@@ -80,7 +80,7 @@ public class AssetCategoryTreeNodeItemSelectorView
 	public void renderHTML(
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			AssetCategoryTreeNodeItemSelectorCriterion
-				siteNavigationMenuItemSelectorCriterion,
+				assetCategoryTreeNodeItemSelectorCriterion,
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
