@@ -114,7 +114,7 @@ public class FormNavigatorCategoryProviderImpl
 			new PropertyServiceReferenceComparator<>(
 				"form.navigator.category.order"));
 
-		_serviceTracker = ServiceTrackerFactory.openWrapperRegistrator(
+		_serviceTracker = ServiceTrackerFactory.openWrapperServiceRegistrator(
 			bundleContext,
 			com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorCategory.
 				class,
