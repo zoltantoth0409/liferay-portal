@@ -976,8 +976,8 @@ public class PortletPreferencesLocalServiceImpl
 						(preference.isReadOnly() !=
 							portletPreferenceValue.isReadOnly())) {
 
-						portletPreferenceValue.setValue(value);
 						portletPreferenceValue.setReadOnly(readOnly);
+						portletPreferenceValue.setValue(value);
 
 						portletPreferenceValuePersistence.update(
 							portletPreferenceValue);
@@ -994,8 +994,8 @@ public class PortletPreferencesLocalServiceImpl
 						portletPreferences.getPortletPreferencesId());
 					portletPreferenceValue.setName(preference.getName());
 					portletPreferenceValue.setIndex(i);
-					portletPreferenceValue.setValue(value);
 					portletPreferenceValue.setReadOnly(readOnly);
+					portletPreferenceValue.setValue(value);
 
 					portletPreferenceValuePersistence.update(
 						portletPreferenceValue);
