@@ -394,7 +394,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	private Folder _createDDMFormUploadedFilesFolder(
-		long repositoryId, long userId, HttpServletRequest httpServletRequest) {
+		long userId, long repositoryId, HttpServletRequest httpServletRequest) {
 
 		try {
 			return _portletFileRepository.addPortletFolder(
@@ -413,7 +413,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	private Folder _createPrivateUserFolder(
-		long parentFolderId, long repositoryId,
+		long repositoryId, long parentFolderId,
 		HttpServletRequest httpServletRequest, User user) {
 
 		try {
@@ -452,7 +452,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	private Folder _getDDMFormUploadedFilesFolder(
-		long repositoryId, long userId, HttpServletRequest httpServletRequest) {
+		long userId, long repositoryId, HttpServletRequest httpServletRequest) {
 
 		try {
 			return _portletFileRepository.getPortletFolder(
@@ -465,7 +465,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			}
 
 			return _createDDMFormUploadedFilesFolder(
-				repositoryId, userId, httpServletRequest);
+				userId, repositoryId, httpServletRequest);
 		}
 	}
 
@@ -480,11 +480,11 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			User user = _getDDMFormDefaultUser(themeDisplay.getCompanyId());
 
 			Folder folder = _getDDMFormUploadedFilesFolder(
-				repositoryId, user.getUserId(), httpServletRequest);
+				user.getUserId(), repositoryId, httpServletRequest);
 
 			if (themeDisplay.isSignedIn()) {
 				folder = _getPrivateUserFolder(
-					folder.getFolderId(), repositoryId, httpServletRequest,
+					repositoryId, folder.getFolderId(), httpServletRequest,
 					themeDisplay.getUser());
 			}
 
@@ -500,7 +500,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	private Folder _getPrivateUserFolder(
-		long parentFolderId, long repositoryId,
+		long repositoryId, long parentFolderId,
 		HttpServletRequest httpServletRequest, User user) {
 
 		try {
@@ -516,7 +516,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			}
 
 			return _createPrivateUserFolder(
-				parentFolderId, repositoryId, httpServletRequest, user);
+				repositoryId, parentFolderId, httpServletRequest, user);
 		}
 	}
 
