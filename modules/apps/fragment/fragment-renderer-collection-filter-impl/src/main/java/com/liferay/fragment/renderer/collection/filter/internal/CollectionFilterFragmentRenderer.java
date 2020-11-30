@@ -134,7 +134,7 @@ public class CollectionFilterFragmentRenderer implements FragmentRenderer {
 			return;
 		}
 
-		JSONObject sourceJSONObject;
+		JSONObject sourceJSONObject = null;
 
 		try {
 			sourceJSONObject = _jsonFactory.createJSONObject(
