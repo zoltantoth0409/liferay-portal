@@ -99,12 +99,12 @@ public class SpiraProject extends BaseSpiraArtifact {
 
 		if (spiraAutomationHosts.size() > 1) {
 			throw new RuntimeException(
-				"Duplicate automation host id " + automationHostID);
+				"Duplicate automation host ID " + automationHostID);
 		}
 
 		if (spiraAutomationHosts.isEmpty()) {
 			throw new RuntimeException(
-				"Missing automation host id " + automationHostID);
+				"Missing automation host ID " + automationHostID);
 		}
 
 		return spiraAutomationHosts.get(0);
