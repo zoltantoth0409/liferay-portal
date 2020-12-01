@@ -59,7 +59,7 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteRegionsByCountryId(long countryId) {
+	public void deleteCountryRegions(long countryId) {
 		regionPersistence.removeByCountryId(countryId);
 	}
 
