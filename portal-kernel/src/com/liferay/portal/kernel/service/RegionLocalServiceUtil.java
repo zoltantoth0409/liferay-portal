@@ -82,6 +82,10 @@ public class RegionLocalServiceUtil {
 		return getService().createRegion(regionId);
 	}
 
+	public static void deleteCountryRegions(long countryId) {
+		getService().deleteCountryRegions(countryId);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -125,10 +129,6 @@ public class RegionLocalServiceUtil {
 		com.liferay.portal.kernel.model.Region region) {
 
 		return getService().deleteRegion(region);
-	}
-
-	public static void deleteRegionsByCountryId(long countryId) {
-		getService().deleteRegionsByCountryId(countryId);
 	}
 
 	public static <T> T dslQuery(

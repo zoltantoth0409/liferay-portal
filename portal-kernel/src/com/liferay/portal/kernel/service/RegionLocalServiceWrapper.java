@@ -78,6 +78,11 @@ public class RegionLocalServiceWrapper
 		return _regionLocalService.createRegion(regionId);
 	}
 
+	@Override
+	public void deleteCountryRegions(long countryId) {
+		_regionLocalService.deleteCountryRegions(countryId);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -122,11 +127,6 @@ public class RegionLocalServiceWrapper
 		com.liferay.portal.kernel.model.Region region) {
 
 		return _regionLocalService.deleteRegion(region);
-	}
-
-	@Override
-	public void deleteRegionsByCountryId(long countryId) {
-		_regionLocalService.deleteRegionsByCountryId(countryId);
 	}
 
 	@Override
