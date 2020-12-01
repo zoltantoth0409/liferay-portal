@@ -51,8 +51,8 @@ public class UpdateAccountEntryDefaultAddressMVCActionCommand
 
 		long accountEntryId = ParamUtil.getLong(
 			actionRequest, "accountEntryId");
-		long addressId = ParamUtil.getLong(actionRequest, "addressId");
 
+		long addressId = ParamUtil.getLong(actionRequest, "addressId");
 		String type = ParamUtil.getString(actionRequest, "type");
 
 		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
