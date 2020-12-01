@@ -99,7 +99,7 @@ public interface CountryLocalService
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
-	public void deleteCountriesByCompanyId(long companyId);
+	public void deleteCompanyCountries(long companyId);
 
 	/**
 	 * Deletes the country from the database. Also notifies the appropriate model listeners.
@@ -224,6 +224,12 @@ public interface CountryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Country> getCompanyCountries(long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getCompanyCountriesCount(long companyId);
+
 	/**
 	 * Returns a range of all the countries.
 	 *
@@ -238,9 +244,6 @@ public interface CountryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Country> getCountries(int start, int end);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Country> getCountriesByCompanyId(long companyId);
-
 	/**
 	 * Returns the number of countries.
 	 *
@@ -248,9 +251,6 @@ public interface CountryLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCountriesCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getCountriesCountByCompanyId(long companyId);
 
 	/**
 	 * Returns the country with the primary key.

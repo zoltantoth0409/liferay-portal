@@ -86,8 +86,8 @@ public class CountryLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteCountriesByCompanyId(long companyId) {
-		_countryLocalService.deleteCountriesByCompanyId(companyId);
+	public void deleteCompanyCountries(long companyId) {
+		_countryLocalService.deleteCompanyCountries(companyId);
 	}
 
 	/**
@@ -267,6 +267,18 @@ public class CountryLocalServiceWrapper
 		return _countryLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Country>
+		getCompanyCountries(long companyId) {
+
+		return _countryLocalService.getCompanyCountries(companyId);
+	}
+
+	@Override
+	public int getCompanyCountriesCount(long companyId) {
+		return _countryLocalService.getCompanyCountriesCount(companyId);
+	}
+
 	/**
 	 * Returns a range of all the countries.
 	 *
@@ -285,13 +297,6 @@ public class CountryLocalServiceWrapper
 		return _countryLocalService.getCountries(start, end);
 	}
 
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Country>
-		getCountriesByCompanyId(long companyId) {
-
-		return _countryLocalService.getCountriesByCompanyId(companyId);
-	}
-
 	/**
 	 * Returns the number of countries.
 	 *
@@ -300,11 +305,6 @@ public class CountryLocalServiceWrapper
 	@Override
 	public int getCountriesCount() {
 		return _countryLocalService.getCountriesCount();
-	}
-
-	@Override
-	public int getCountriesCountByCompanyId(long companyId) {
-		return _countryLocalService.getCountriesCountByCompanyId(companyId);
 	}
 
 	/**
