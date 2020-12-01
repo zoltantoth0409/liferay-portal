@@ -57,11 +57,10 @@ public class DLExternalVideoResolverTest {
 	@Test
 	public void testResolveFromVimeo() {
 		Assert.assertNotNull(
-			_dlExternalVideoResolver.resolve(
-				"https://vimeo.com/album/ALBUM_ID/video/VIDEO_ID"));
+			_dlExternalVideoResolver.resolve("https://vimeo.com/VIDEO_ID"));
 		Assert.assertNotNull(
 			_dlExternalVideoResolver.resolve(
-				"https://vimeo.com/showcase/SHOWCASE_ID/video/VIDEO_ID"));
+				"https://vimeo.com/album/ALBUM_ID/video/VIDEO_ID"));
 		Assert.assertNotNull(
 			_dlExternalVideoResolver.resolve(
 				"https://vimeo.com/channels/CHANNEL_ID/VIDEO_ID"));
@@ -69,7 +68,8 @@ public class DLExternalVideoResolverTest {
 			_dlExternalVideoResolver.resolve(
 				"https://vimeo.com/groups/GROUP_ID/videos/VIDEO_ID"));
 		Assert.assertNotNull(
-			_dlExternalVideoResolver.resolve("https://vimeo.com/VIDEO_ID"));
+			_dlExternalVideoResolver.resolve(
+				"https://vimeo.com/showcase/SHOWCASE_ID/video/VIDEO_ID"));
 	}
 
 	@Test
