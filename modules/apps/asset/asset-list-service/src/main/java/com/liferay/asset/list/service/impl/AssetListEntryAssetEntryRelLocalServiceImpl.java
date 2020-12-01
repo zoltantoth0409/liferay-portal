@@ -199,11 +199,10 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 				assetListEntryId, segmentsEntryIds, start, end);
 		}
 
-		FromStep fromStep = DSLQueryFactoryUtil.select(
-			AssetListEntryAssetEntryRelTable.INSTANCE);
-
 		GroupByStep groupByStep = _getGroupByStep(
-			fromStep, assetListEntryId, segmentsEntryIds, assetCategoryIds);
+			DSLQueryFactoryUtil.select(
+				AssetListEntryAssetEntryRelTable.INSTANCE),
+			assetListEntryId, segmentsEntryIds, assetCategoryIds);
 
 		DSLQuery dslQuery = groupByStep.limit(start, end);
 
@@ -253,10 +252,9 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 				assetListEntryId, segmentsEntryIds);
 		}
 
-		FromStep fromStep = DSLQueryFactoryUtil.count();
-
 		DSLQuery dslQuery = _getGroupByStep(
-			fromStep, assetListEntryId, segmentsEntryIds, assetCategoryIds);
+			DSLQueryFactoryUtil.count(), assetListEntryId, segmentsEntryIds,
+			assetCategoryIds);
 
 		Long count = assetListEntryAssetEntryRelPersistence.dslQuery(dslQuery);
 
