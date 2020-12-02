@@ -132,7 +132,7 @@ public class ProjectTemplatesAPIJarTest
 			});
 
 		Assert.assertTrue(
-			"Missing TLD Classes: " + sb.toString(),
+			"Missing TLD classes: " + sb.toString(),
 			Objects.equals("", sb.toString()));
 	}
 

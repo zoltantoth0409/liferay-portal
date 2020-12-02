@@ -71,9 +71,8 @@ public class ZipUtil {
 
 	private static void _createDir(File dir) throws IOException {
 		if (!dir.exists() && !dir.mkdirs()) {
-			String message = "Could not create dir: " + dir.getPath();
-
-			throw new IOException(message);
+			throw new IOException(
+				"Unable to create directory " + dir.getPath());
 		}
 	}
 
