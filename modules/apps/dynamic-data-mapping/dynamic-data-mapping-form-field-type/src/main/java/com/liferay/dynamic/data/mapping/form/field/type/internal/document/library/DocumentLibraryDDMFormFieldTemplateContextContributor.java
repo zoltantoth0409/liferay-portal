@@ -300,7 +300,6 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/dynamic_data_mapping_form/upload_file_entry");
-		portletURL.setParameter("folderId", String.valueOf(folderId));
 		portletURL.setParameter(
 			"formInstanceId",
 			ParamUtil.getString(httpServletRequest, "formInstanceId"));
@@ -308,6 +307,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			"groupId",
 			String.valueOf(
 				ddmFormFieldRenderingContext.getProperty("groupId")));
+		portletURL.setParameter("folderId", String.valueOf(folderId));
 
 		return portletURL.toString();
 	}
