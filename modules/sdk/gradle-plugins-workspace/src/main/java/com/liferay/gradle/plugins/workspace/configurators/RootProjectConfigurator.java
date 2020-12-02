@@ -477,9 +477,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		File workDir = new File(dockerDir, "work");
 
 		String deployPath = deployDir.getAbsolutePath();
-
 		String dockerPath = dockerDir.getAbsolutePath();
-
 		String workPath = workDir.getAbsolutePath();
 
 		if (OSDetector.isWindows()) {
