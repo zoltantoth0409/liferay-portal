@@ -74,7 +74,7 @@ public class UpdateDataRecordMVCResourceCommand
 		DataRecord dataRecord = _updateDataRecord(
 			resourceRequest, themeDisplay);
 
-		_updateAsset(
+		_updateAssetEntry(
 			dataRecord, themeDisplay.getScopeGroupId(),
 			themeDisplay.getUserId());
 
@@ -115,7 +115,8 @@ public class UpdateDataRecordMVCResourceCommand
 		return Optional.of(dataRecord);
 	}
 
-	private void _updateAsset(DataRecord dataRecord, long groupId, long userId)
+	private void _updateAssetEntry(
+			DataRecord dataRecord, long groupId, long userId)
 		throws Exception {
 
 		AppBuilderAppDataRecordLink appBuilderAppDataRecordLink =

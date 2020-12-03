@@ -82,7 +82,7 @@ public class UpdateDataRecordMVCResourceCommand
 			_appBuilderAppDataRecordLinkLocalService.
 				getDDLRecordAppBuilderAppDataRecordLink(dataRecord.getId());
 
-		updateAsset(
+		updateAssetEntry(
 			appBuilderAppDataRecordLink.getAppBuilderAppId(), ddlRecord,
 			themeDisplay.getScopeGroupId(), themeDisplay.getUserId());
 

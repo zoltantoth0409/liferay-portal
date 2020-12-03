@@ -89,7 +89,7 @@ public class AddDataRecordMVCResourceCommand
 		DDLRecord ddlRecord = _ddlRecordLocalService.getDDLRecord(
 			dataRecord.getId());
 
-		updateAsset(
+		updateAssetEntry(
 			appBuilderAppVersion.getAppBuilderAppId(), ddlRecord,
 			themeDisplay.getScopeGroupId(), themeDisplay.getUserId());
 

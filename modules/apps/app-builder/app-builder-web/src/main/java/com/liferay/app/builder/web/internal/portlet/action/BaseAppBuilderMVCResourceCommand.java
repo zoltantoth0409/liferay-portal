@@ -89,7 +89,7 @@ public abstract class BaseAppBuilderMVCResourceCommand<T>
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception;
 
-	protected void updateAsset(
+	protected void updateAssetEntry(
 			long appBuilderAppId, DDLRecord ddlRecord, long groupId,
 			long userId)
 		throws Exception {
