@@ -119,10 +119,10 @@ public class EditGroupMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest, group);
 
 			siteAdministrationURL.setParameter(
+				"redirect", siteAdministrationURL.toString());
+			siteAdministrationURL.setParameter(
 				"historyKey",
 				ActionUtil.getHistoryKey(actionRequest, actionResponse));
-			siteAdministrationURL.setParameter(
-				"redirect", siteAdministrationURL.toString());
 
 			actionRequest.setAttribute(
 				WebKeys.REDIRECT, siteAdministrationURL.toString());
