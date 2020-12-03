@@ -317,10 +317,10 @@ public class AccountEntryLocalServiceTest {
 				TestPropsValues.getCompanyId());
 
 		Assert.assertEquals(
-			TestPropsValues.getCompanyId(), guestAccountEntry.getCompanyId());
-		Assert.assertEquals(
 			AccountConstants.ACCOUNT_ENTRY_ID_GUEST,
 			guestAccountEntry.getAccountEntryId());
+		Assert.assertEquals(
+			TestPropsValues.getCompanyId(), guestAccountEntry.getCompanyId());
 		Assert.assertEquals(
 			AccountConstants.ACCOUNT_ENTRY_TYPE_GUEST,
 			guestAccountEntry.getType());
