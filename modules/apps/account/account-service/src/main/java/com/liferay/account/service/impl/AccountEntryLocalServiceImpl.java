@@ -314,7 +314,6 @@ public class AccountEntryLocalServiceImpl
 
 		accountEntryImpl.setAccountEntryId(
 			AccountConstants.ACCOUNT_ENTRY_ID_GUEST);
-
 		accountEntryImpl.setCompanyId(defaultUser.getCompanyId());
 		accountEntryImpl.setUserId(defaultUser.getUserId());
 		accountEntryImpl.setUserName(defaultUser.getFullName());
