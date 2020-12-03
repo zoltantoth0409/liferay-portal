@@ -208,26 +208,7 @@ public class ExtProjectConfigurator extends BaseProjectConfigurator {
 								@SuppressWarnings("unused")
 								public void doCall(CopySpec copySpec) {
 									copySpec.rename(
-										new Closure<String>(project) {
-
-											public String doCall(
-												String fileName) {
-
-												LiferayExtension
-													liferayExtension =
-														GradleUtil.getExtension(
-															project,
-															LiferayExtension.
-																class);
-
-												Closure<String> closure =
-													liferayExtension.
-														getDeployedFileNameClosure();
-
-												return closure.call(sourcePath);
-											}
-
-										});
+										_getClosure(project, sourcePath));
 								}
 
 							};
@@ -296,6 +277,22 @@ public class ExtProjectConfigurator extends BaseProjectConfigurator {
 				}
 
 			});
+	}
+
+	private Closure<String> _getClosure(Project project, Object sourcePath) {
+		return new Closure<String>(project) {
+
+			public String doCall(String fileName) {
+				LiferayExtension liferayExtension = GradleUtil.getExtension(
+					project, LiferayExtension.class);
+
+				Closure<String> closure =
+					liferayExtension.getDeployedFileNameClosure();
+
+				return closure.call(sourcePath);
+			}
+
+		};
 	}
 
 	private boolean _isExtPlugin(Project project) {
