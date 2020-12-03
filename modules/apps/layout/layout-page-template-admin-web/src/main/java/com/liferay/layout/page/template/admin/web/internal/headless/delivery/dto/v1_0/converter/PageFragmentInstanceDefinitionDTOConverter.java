@@ -730,7 +730,6 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		return new FragmentLink() {
 			{
 				value = _toFragmentLinkValue(configJSONObject, saveMapping);
-
 				value_i18n = _toLocalizedFragmentLinkValues(
 					configJSONObject, saveMapping);
 			}
