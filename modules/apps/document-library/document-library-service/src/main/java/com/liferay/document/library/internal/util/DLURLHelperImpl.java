@@ -449,11 +449,12 @@ public class DLURLHelperImpl implements DLURLHelper {
 		FileVersion fileVersion, ThemeDisplay themeDisplay,
 		DLFileVersionURLProvider.Type type) {
 
-		DLFileVersionURLProvider dlURLProvider =
+		DLFileVersionURLProvider dlFileVersionURLProvider =
 			_dlFileVersionURLProviders.getService(type);
 
-		if (dlURLProvider != null) {
-			String url = dlURLProvider.getURL(fileVersion, themeDisplay);
+		if (dlFileVersionURLProvider != null) {
+			String url = dlFileVersionURLProvider.getURL(
+				fileVersion, themeDisplay);
 
 			if (Validator.isNotNull(url)) {
 				return url;
