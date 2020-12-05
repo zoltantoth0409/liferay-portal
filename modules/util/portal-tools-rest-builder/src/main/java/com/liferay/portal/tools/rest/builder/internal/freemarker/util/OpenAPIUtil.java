@@ -99,7 +99,7 @@ public class OpenAPIUtil {
 
 		queue.add(allExternalSchemas);
 
-		Map<String, Schema> map;
+		Map<String, Schema> map = null;
 
 		while ((map = queue.poll()) != null) {
 			for (Map.Entry<String, Schema> entry : map.entrySet()) {
