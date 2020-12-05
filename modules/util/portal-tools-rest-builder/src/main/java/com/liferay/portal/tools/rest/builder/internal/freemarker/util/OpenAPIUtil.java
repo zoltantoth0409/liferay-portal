@@ -81,11 +81,11 @@ public class OpenAPIUtil {
 
 		Map<String, Schema> allExternalSchemas = new HashMap<>(allSchemas);
 
-		List<String> externalReferences =
-			OpenAPIParserUtil.getExternalReferences(openAPIYAML);
-
 		Map<String, Schema> externalSchemas =
 			OpenAPIParserUtil.getExternalSchemas(openAPIYAML);
+
+		List<String> externalReferences =
+			OpenAPIParserUtil.getExternalReferences(openAPIYAML);
 
 		for (String externalReference : externalReferences) {
 			String referenceName = OpenAPIParserUtil.getReferenceName(
