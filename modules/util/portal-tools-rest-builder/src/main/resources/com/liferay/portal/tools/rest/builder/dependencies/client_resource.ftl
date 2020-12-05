@@ -21,11 +21,11 @@ import ${configYAML.apiPackagePath}.client.pagination.Pagination;
 import ${configYAML.apiPackagePath}.client.permission.Permission;
 import ${configYAML.apiPackagePath}.client.problem.Problem;
 
-<#list allSchemas?keys as schemaName>
+<#list allExternalSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
 </#list>
 
-<#list allExternalSchemas?keys as schemaName>
+<#list allSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
 </#list>
 
