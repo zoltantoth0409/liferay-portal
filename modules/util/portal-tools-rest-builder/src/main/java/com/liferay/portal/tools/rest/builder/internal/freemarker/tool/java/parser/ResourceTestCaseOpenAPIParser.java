@@ -157,9 +157,9 @@ public class ResourceTestCaseOpenAPIParser {
 			}
 		}
 		else if (returnType.contains(".") &&
-				 !returnType.startsWith("java.lang") &&
-				 !returnType.equals("javax.ws.rs.core.Response") &&
 				 !returnType.equals("com.liferay.portal.vulcan") &&
+				 !returnType.equals("javax.ws.rs.core.Response") &&
+				 !returnType.startsWith("java.lang") &&
 				 !returnType.startsWith(apiPackage)) {
 
 			return StringBundler.concat(
