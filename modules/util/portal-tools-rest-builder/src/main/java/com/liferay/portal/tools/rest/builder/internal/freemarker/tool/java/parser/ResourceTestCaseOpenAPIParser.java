@@ -45,8 +45,6 @@ public class ResourceTestCaseOpenAPIParser {
 			ResourceOpenAPIParser.getJavaMethodSignatures(
 				configYAML, openAPIYAML, schemaName);
 
-		String version = _getVersion(openAPIYAML);
-
 		for (JavaMethodSignature resourceJavaMethodSignature :
 				resourceJavaMethodSignatures) {
 
@@ -61,7 +59,8 @@ public class ResourceTestCaseOpenAPIParser {
 					_getMethodName(resourceJavaMethodSignature),
 					_getReturnType(
 						configYAML.getApiPackagePath(),
-						resourceJavaMethodSignature.getReturnType(), version)));
+						resourceJavaMethodSignature.getReturnType(),
+						_getVersion(openAPIYAML))));
 		}
 
 		return javaMethodSignatures;
