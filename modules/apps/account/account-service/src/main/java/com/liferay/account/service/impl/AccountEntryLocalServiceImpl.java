@@ -534,18 +534,18 @@ public class AccountEntryLocalServiceImpl
 					organizationIds));
 		}
 
-		Predicate accountEntryTablePredicate =
+		Predicate accountEntryPredicate =
 			AccountEntryTable.INSTANCE.accountEntryId.eq(
 				AccountEntryUserRelTable.INSTANCE.accountEntryId);
 
 		if (ArrayUtil.isNotEmpty(organizationIds)) {
-			accountEntryTablePredicate = accountEntryTablePredicate.or(
+			accountEntryPredicate = accountEntryPredicate.or(
 				AccountEntryTable.INSTANCE.accountEntryId.eq(
 					AccountEntryOrganizationRelTable.INSTANCE.accountEntryId));
 		}
 
 		joinStep = joinStep.leftJoinOn(
-			AccountEntryTable.INSTANCE, accountEntryTablePredicate);
+			AccountEntryTable.INSTANCE, accountEntryPredicate);
 
 		return joinStep.where(
 			() -> {
