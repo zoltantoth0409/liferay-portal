@@ -423,16 +423,6 @@ public class AccountEntryLocalServiceUtil {
 	public static java.util.List<com.liferay.account.model.AccountEntry>
 			getUserAccountEntries(
 				long userId, Long parentAccountEntryId, String keywords,
-				Integer status, String[] types, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return getService().getUserAccountEntries(
-			userId, parentAccountEntryId, keywords, status, types, start, end);
-	}
-
-	public static java.util.List<com.liferay.account.model.AccountEntry>
-			getUserAccountEntries(
-				long userId, Long parentAccountEntryId, String keywords,
 				String[] types, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -440,13 +430,14 @@ public class AccountEntryLocalServiceUtil {
 			userId, parentAccountEntryId, keywords, types, start, end);
 	}
 
-	public static int getUserAccountEntriesCount(
-			long userId, Long parentAccountEntryId, String keywords,
-			Integer status, String[] types)
+	public static java.util.List<com.liferay.account.model.AccountEntry>
+			getUserAccountEntries(
+				long userId, Long parentAccountEntryId, String keywords,
+				String[] types, Integer status, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getUserAccountEntriesCount(
-			userId, parentAccountEntryId, keywords, status, types);
+		return getService().getUserAccountEntries(
+			userId, parentAccountEntryId, keywords, types, status, start, end);
 	}
 
 	public static int getUserAccountEntriesCount(
@@ -456,6 +447,15 @@ public class AccountEntryLocalServiceUtil {
 
 		return getService().getUserAccountEntriesCount(
 			userId, parentAccountEntryId, keywords, types);
+	}
+
+	public static int getUserAccountEntriesCount(
+			long userId, Long parentAccountEntryId, String keywords,
+			String[] types, Integer status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getUserAccountEntriesCount(
+			userId, parentAccountEntryId, keywords, types, status);
 	}
 
 	public static com.liferay.portal.kernel.search.BaseModelSearchResult

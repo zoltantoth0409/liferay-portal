@@ -452,17 +452,6 @@ public class AccountEntryLocalServiceWrapper
 	public java.util.List<com.liferay.account.model.AccountEntry>
 			getUserAccountEntries(
 				long userId, Long parentAccountEntryId, String keywords,
-				Integer status, String[] types, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _accountEntryLocalService.getUserAccountEntries(
-			userId, parentAccountEntryId, keywords, status, types, start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.account.model.AccountEntry>
-			getUserAccountEntries(
-				long userId, Long parentAccountEntryId, String keywords,
 				String[] types, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -471,13 +460,14 @@ public class AccountEntryLocalServiceWrapper
 	}
 
 	@Override
-	public int getUserAccountEntriesCount(
-			long userId, Long parentAccountEntryId, String keywords,
-			Integer status, String[] types)
+	public java.util.List<com.liferay.account.model.AccountEntry>
+			getUserAccountEntries(
+				long userId, Long parentAccountEntryId, String keywords,
+				String[] types, Integer status, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _accountEntryLocalService.getUserAccountEntriesCount(
-			userId, parentAccountEntryId, keywords, status, types);
+		return _accountEntryLocalService.getUserAccountEntries(
+			userId, parentAccountEntryId, keywords, types, status, start, end);
 	}
 
 	@Override
@@ -488,6 +478,16 @@ public class AccountEntryLocalServiceWrapper
 
 		return _accountEntryLocalService.getUserAccountEntriesCount(
 			userId, parentAccountEntryId, keywords, types);
+	}
+
+	@Override
+	public int getUserAccountEntriesCount(
+			long userId, Long parentAccountEntryId, String keywords,
+			String[] types, Integer status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _accountEntryLocalService.getUserAccountEntriesCount(
+			userId, parentAccountEntryId, keywords, types, status);
 	}
 
 	@Override
