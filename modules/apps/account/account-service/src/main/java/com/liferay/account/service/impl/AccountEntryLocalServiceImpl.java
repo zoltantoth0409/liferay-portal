@@ -600,6 +600,34 @@ public class AccountEntryLocalServiceImpl
 			});
 	}
 
+	private Long[] _getOrganizationIds(long userId) throws PortalException {
+		List<Organization> organizations =
+			organizationLocalService.getUserOrganizations(userId);
+
+		ListIterator<Organization> listIterator = organizations.listIterator();
+
+		while (listIterator.hasNext()) {
+			Organization organization = listIterator.next();
+
+			for (Organization curOrganization :
+					organizationLocalService.getOrganizations(
+						organization.getCompanyId(),
+						organization.getTreePath() + "%")) {
+
+				listIterator.add(curOrganization);
+			}
+		}
+
+		Stream<Organization> stream = organizations.stream();
+
+		return stream.map(
+			Organization::getOrganizationId
+		).distinct(
+		).toArray(
+			Long[]::new
+		);
+	}
+
 	private SearchRequest _getSearchRequest(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
 		int cur, int delta, String orderByField, boolean reverse) {
@@ -639,35 +667,6 @@ public class AccountEntryLocalServiceImpl
 		}
 
 		return searchRequestBuilder.build();
-	}
-
-	private Long[] _getOrganizationIds(long userId) throws PortalException {
-		List<Organization> organizations =
-			organizationLocalService.getUserOrganizations(userId);
-
-		ListIterator<Organization> listIterator =
-			organizations.listIterator();
-
-		while (listIterator.hasNext()) {
-			Organization organization = listIterator.next();
-
-			for (Organization curOrganization :
-					organizationLocalService.getOrganizations(
-						organization.getCompanyId(),
-						organization.getTreePath() + "%")) {
-
-				listIterator.add(curOrganization);
-			}
-		}
-
-		Stream<Organization> stream = organizations.stream();
-
-		return stream.map(
-			Organization::getOrganizationId
-		).distinct(
-		).toArray(
-			Long[]::new
-		);
 	}
 
 	private void _performActions(
