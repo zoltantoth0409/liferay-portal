@@ -660,9 +660,9 @@ public class AccountEntryLocalServiceImpl
 			}
 		}
 
-		Stream<Organization> organizationStream = organizations.stream();
+		Stream<Organization> stream = organizations.stream();
 
-		return organizationStream.map(
+		return stream.map(
 			Organization::getOrganizationId
 		).distinct(
 		).toArray(
