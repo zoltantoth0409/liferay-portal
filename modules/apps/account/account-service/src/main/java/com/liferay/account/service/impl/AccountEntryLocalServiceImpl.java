@@ -645,18 +645,18 @@ public class AccountEntryLocalServiceImpl
 		List<Organization> organizations =
 			organizationLocalService.getUserOrganizations(userId);
 
-		ListIterator<Organization> organizationListIterator =
+		ListIterator<Organization> listIterator =
 			organizations.listIterator();
 
-		while (organizationListIterator.hasNext()) {
-			Organization organization = organizationListIterator.next();
+		while (listIterator.hasNext()) {
+			Organization organization = listIterator.next();
 
 			for (Organization curOrganization :
 					organizationLocalService.getOrganizations(
 						organization.getCompanyId(),
 						organization.getTreePath() + "%")) {
 
-				organizationListIterator.add(curOrganization);
+				listIterator.add(curOrganization);
 			}
 		}
 
