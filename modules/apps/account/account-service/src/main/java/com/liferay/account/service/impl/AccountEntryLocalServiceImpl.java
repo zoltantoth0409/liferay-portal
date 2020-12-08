@@ -525,7 +525,7 @@ public class AccountEntryLocalServiceImpl
 				UserTable.INSTANCE.userId)
 		);
 
-		Long[] organizationIds = _getUserOrganizations(userId);
+		Long[] organizationIds = _getOrganizationIds(userId);
 
 		if (ArrayUtil.isNotEmpty(organizationIds)) {
 			joinStep = joinStep.leftJoinOn(
@@ -641,7 +641,7 @@ public class AccountEntryLocalServiceImpl
 		return searchRequestBuilder.build();
 	}
 
-	private Long[] _getUserOrganizations(long userId) throws PortalException {
+	private Long[] _getOrganizationIds(long userId) throws PortalException {
 		List<Organization> organizations =
 			organizationLocalService.getUserOrganizations(userId);
 
