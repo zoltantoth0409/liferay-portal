@@ -343,41 +343,27 @@ public class AccountEntryLocalServiceImpl
 	@Override
 	public List<AccountEntry> getUserAccountEntries(
 			long userId, Long parentAccountEntryId, String keywords,
-			Integer status, String[] types, int start, int end)
+			String[] types, int start, int end)
 		throws PortalException {
 
-		return dslQuery(
-			_getGroupByStep(
-				DSLQueryFactoryUtil.selectDistinct(AccountEntryTable.INSTANCE),
-				userId, parentAccountEntryId, keywords, status, types
-			).limit(
-				start, end
-			));
+		return getUserAccountEntries(
+			userId, parentAccountEntryId, keywords, types,
+			WorkflowConstants.STATUS_ANY, start, end);
 	}
 
 	@Override
 	public List<AccountEntry> getUserAccountEntries(
 			long userId, Long parentAccountEntryId, String keywords,
-			String[] types, int start, int end)
-		throws PortalException {
-
-		return getUserAccountEntries(
-			userId, parentAccountEntryId, keywords,
-			WorkflowConstants.STATUS_ANY, types, start, end);
-	}
-
-	@Override
-	public int getUserAccountEntriesCount(
-			long userId, Long parentAccountEntryId, String keywords,
-			Integer status, String[] types)
+			String[] types, Integer status, int start, int end)
 		throws PortalException {
 
 		return dslQuery(
 			_getGroupByStep(
-				DSLQueryFactoryUtil.countDistinct(
-					AccountEntryTable.INSTANCE.accountEntryId.as(
-						"COUNT_VALUE")),
-				userId, parentAccountEntryId, keywords, status, types));
+				DSLQueryFactoryUtil.selectDistinct(AccountEntryTable.INSTANCE),
+				userId, parentAccountEntryId, keywords, types, status
+			).limit(
+				start, end
+			));
 	}
 
 	@Override
@@ -387,8 +373,22 @@ public class AccountEntryLocalServiceImpl
 		throws PortalException {
 
 		return getUserAccountEntriesCount(
-			userId, parentAccountEntryId, keywords,
-			WorkflowConstants.STATUS_ANY, types);
+			userId, parentAccountEntryId, keywords, types,
+			WorkflowConstants.STATUS_ANY);
+	}
+
+	@Override
+	public int getUserAccountEntriesCount(
+			long userId, Long parentAccountEntryId, String keywords,
+			String[] types, Integer status)
+		throws PortalException {
+
+		return dslQuery(
+			_getGroupByStep(
+				DSLQueryFactoryUtil.countDistinct(
+					AccountEntryTable.INSTANCE.accountEntryId.as(
+						"COUNT_VALUE")),
+				userId, parentAccountEntryId, keywords, types, status));
 	}
 
 	@Override
@@ -514,7 +514,7 @@ public class AccountEntryLocalServiceImpl
 
 	private GroupByStep _getGroupByStep(
 			FromStep fromStep, long userId, Long parentAccountId,
-			String keywords, Integer status, String[] types)
+			String keywords, String[] types, Integer status)
 		throws PortalException {
 
 		JoinStep joinStep = fromStep.from(
