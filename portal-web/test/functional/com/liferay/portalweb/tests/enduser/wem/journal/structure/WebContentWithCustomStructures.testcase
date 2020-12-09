@@ -229,7 +229,7 @@ definition {
 
 		DataEngine.addField(
 			fieldFieldLabel = "Geolocation",
-			fieldLocation = "1",
+			fieldLocation = "2",
 			fieldName = "Geolocation");
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
@@ -241,6 +241,7 @@ definition {
 		WebContentTemplates.addCP(
 			structureName = "WC Structure Name",
 			templateDescription = "WC Template Description",
+			templateFieldNames = "Web Content,Geolocation",
 			templateName = "WC Template Name");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
@@ -257,8 +258,8 @@ definition {
 
 		WebContent.viewWithStructureCP(
 			webContentGeolocation = "true",
-			webContentTitle = "WC WebContent 1 Title",
-			webContentWebContent = "WC WebContent 2 Title");
+			webContentTitle = "WC WebContent 2 Title",
+			webContentWebContent = "WC WebContent 1 Title");
 	}
 
 	@description = "This is a use case for LRQA-61632."
