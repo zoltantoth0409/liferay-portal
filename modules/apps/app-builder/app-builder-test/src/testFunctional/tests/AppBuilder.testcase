@@ -3388,7 +3388,6 @@ definition {
 	@priority = "5"
 	test ViewFormViewRules {
 		property portal.acceptance = "quarantine";
-		property portal.upstream = "quarantine";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
