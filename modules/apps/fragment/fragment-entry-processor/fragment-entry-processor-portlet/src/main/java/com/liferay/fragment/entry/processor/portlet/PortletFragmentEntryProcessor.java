@@ -413,9 +413,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			portletPreferencesList,
 		PortletPreferences jxPortletPreferences) {
 
-		String portletPreferencesXML = PortletPreferencesFactoryUtil.toXML(
-			jxPortletPreferences);
-
 		long plid = 0L;
 
 		if (jxPortletPreferences instanceof PortletPreferencesImpl) {
@@ -424,6 +421,9 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 
 			plid = portletPreferencesImpl.getPlid();
 		}
+
+		String portletPreferencesXML = PortletPreferencesFactoryUtil.toXML(
+			jxPortletPreferences);
 
 		for (com.liferay.portal.kernel.model.PortletPreferences
 				portletPreferencesImpl : portletPreferencesList) {
