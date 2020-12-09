@@ -801,7 +801,31 @@ public class JournalConverterImpl implements JournalConverter {
 
 		String type = ddmFieldType;
 
-		if (Objects.equals(ddmFieldType, "text")) {
+		if (Objects.equals(ddmFieldType, "color")) {
+			type = "ddm-color";
+		}
+		else if (Objects.equals(ddmFieldType, "date")) {
+			type = "ddm-date";
+		}
+		else if (Objects.equals(ddmFieldType, "geolocation")) {
+			type = "ddm-geolocation";
+		}
+		else if (Objects.equals(ddmFieldType, "journal_article")) {
+			type = "ddm-journal-article";
+		}
+		else if (Objects.equals(ddmFieldType, "numeric")) {
+			type = "ddm-number";
+		}
+		else if (Objects.equals(ddmFieldType, "rich_text")) {
+			type = "text_area";
+		}
+		else if (Objects.equals(ddmFieldType, "select")) {
+			type = "list";
+		}
+		else if (Objects.equals(ddmFieldType, "separator")) {
+			type = "selection_break";
+		}
+		else if (Objects.equals(ddmFieldType, "text")) {
 			type = "text";
 
 			try {
@@ -823,30 +847,6 @@ public class JournalConverterImpl implements JournalConverter {
 						portalException);
 				}
 			}
-		}
-		else if (Objects.equals(ddmFieldType, "select")) {
-			type = "list";
-		}
-		else if (Objects.equals(ddmFieldType, "journal_article")) {
-			type = "ddm-journal-article";
-		}
-		else if (Objects.equals(ddmFieldType, "separator")) {
-			type = "selection_break";
-		}
-		else if (Objects.equals(ddmFieldType, "numeric")) {
-			type = "ddm-number";
-		}
-		else if (Objects.equals(ddmFieldType, "rich_text")) {
-			type = "text_area";
-		}
-		else if (Objects.equals(ddmFieldType, "date")) {
-			type = "ddm-date";
-		}
-		else if (Objects.equals(ddmFieldType, "color")) {
-			type = "ddm-color";
-		}
-		else if (Objects.equals(ddmFieldType, "geolocation")) {
-			type = "ddm-geolocation";
 		}
 
 		return type;
