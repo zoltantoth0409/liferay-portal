@@ -89,9 +89,9 @@ public class EditFileEntryMVCActionCommandTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
 		_company = _companyLocalService.getCompany(
 			TestPropsValues.getCompanyId());
+		_group = GroupTestUtil.addGroup();
 	}
 
 	@Test
