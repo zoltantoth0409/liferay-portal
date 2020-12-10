@@ -122,8 +122,6 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		// Regions
 
-		long countryId = country.getCountryId();
-
 		regionPersistence.removeByCountryId(country.getCountryId());
 
 		return country;
