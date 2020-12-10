@@ -114,12 +114,12 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		// Organizations
 
-		List<Organization> organizationList = organizationLocalService.search(
+		List<Organization> organizations = organizationLocalService.search(
 			country.getCompanyId(),
 			OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null, null, null,
 			country.getCountryId(), null, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		for (Organization organization : organizationList) {
+		for (Organization organization : organizations) {
 			organization.setCountryId(0);
 			organization.setRegionId(0);
 
