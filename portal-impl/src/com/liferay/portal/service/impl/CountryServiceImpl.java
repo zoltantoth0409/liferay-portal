@@ -42,7 +42,9 @@ public class CountryServiceImpl extends CountryServiceBaseImpl {
 			Map<String, String> titleMap, ServiceContext serviceContext)
 		throws PortalException {
 
-		if (!getPermissionChecker().isOmniadmin()) {
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
 			throw new PrincipalException.MustBeOmniadmin(
 				getPermissionChecker());
 		}
@@ -78,7 +80,9 @@ public class CountryServiceImpl extends CountryServiceBaseImpl {
 
 	@Override
 	public void deleteCountry(long countryId) throws PortalException {
-		if (!getPermissionChecker().isOmniadmin()) {
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
 			throw new PrincipalException.MustBeOmniadmin(
 				getPermissionChecker());
 		}
@@ -242,7 +246,9 @@ public class CountryServiceImpl extends CountryServiceBaseImpl {
 	public Country updateActive(long countryId, boolean active)
 		throws PortalException {
 
-		if (!getPermissionChecker().isOmniadmin()) {
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
 			throw new PrincipalException.MustBeOmniadmin(
 				getPermissionChecker());
 		}
@@ -258,7 +264,9 @@ public class CountryServiceImpl extends CountryServiceBaseImpl {
 			Map<String, String> titleMap)
 		throws PortalException {
 
-		if (!getPermissionChecker().isOmniadmin()) {
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
 			throw new PrincipalException.MustBeOmniadmin(
 				getPermissionChecker());
 		}
@@ -273,7 +281,9 @@ public class CountryServiceImpl extends CountryServiceBaseImpl {
 			long countryId, boolean groupFilterEnabled)
 		throws PortalException {
 
-		if (!getPermissionChecker().isOmniadmin()) {
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
 			throw new PrincipalException.MustBeOmniadmin(
 				getPermissionChecker());
 		}
