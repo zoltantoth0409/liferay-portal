@@ -50,12 +50,12 @@ public class CountryLocalServiceTest {
 
 	@Test
 	public void testAddCountry() throws Exception {
-		boolean billingAllowed = true;
+		boolean billingAllowed = RandomTestUtil.randomBoolean();
 		String number = RandomTestUtil.randomString();
 		double position = RandomTestUtil.randomDouble();
-		boolean shippingAllowed = true;
-		boolean subjectToVAT = true;
-		boolean zipRequired = true;
+		boolean shippingAllowed = RandomTestUtil.randomBoolean();
+		boolean subjectToVAT = RandomTestUtil.randomBoolean();
+		boolean zipRequired = RandomTestUtil.randomBoolean();
 
 		Country country = _addCountry(
 			billingAllowed, number, position, shippingAllowed, subjectToVAT,
@@ -107,21 +107,22 @@ public class CountryLocalServiceTest {
 
 	@Test
 	public void testUpdateCountry() throws Exception {
-		Country country = _addCountry(
-			true, RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
-			true, true, true);
+		boolean billingAllowed = RandomTestUtil.randomBoolean();
+		boolean shippingAllowed = RandomTestUtil.randomBoolean();
+		boolean subjectToVAT = RandomTestUtil.randomBoolean();
 
-		boolean billingAllowed = false;
+		Country country = _addCountry(
+			billingAllowed, RandomTestUtil.randomString(),
+			RandomTestUtil.randomDouble(), shippingAllowed, subjectToVAT, true);
+
 		String number = String.valueOf(9999 + RandomTestUtil.nextInt());
 		int position = RandomTestUtil.randomInt();
-		boolean shippingAllowed = false;
-		boolean subjectToVAT = false;
 
 		Country updatedCountry = _countryLocalService.updateCountry(
 			country.getCountryId(), country.getA2(), country.getA3(),
-			country.isActive(), billingAllowed, country.getIdd(),
-			country.getName(), number, position, shippingAllowed, subjectToVAT,
-			null);
+			country.isActive(), !billingAllowed, country.getIdd(),
+			country.getName(), number, position, !shippingAllowed,
+			!subjectToVAT, null);
 
 		Assert.assertEquals(billingAllowed, updatedCountry.isBillingAllowed());
 		Assert.assertEquals(number, updatedCountry.getNumber());
