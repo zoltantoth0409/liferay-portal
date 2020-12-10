@@ -111,9 +111,6 @@ public class CTCollectionLocalServiceImpl
 
 		_validate(name, description);
 
-		CTSchemaVersion latestCTSchemaVersion =
-			_ctSchemaVersionLocalService.getLatestCTSchemaVersion(companyId);
-
 		long ctCollectionId = counterLocalService.increment(
 			CTCollection.class.getName());
 
@@ -122,8 +119,13 @@ public class CTCollectionLocalServiceImpl
 
 		ctCollection.setCompanyId(companyId);
 		ctCollection.setUserId(userId);
+
+		CTSchemaVersion latestCTSchemaVersion =
+			_ctSchemaVersionLocalService.getLatestCTSchemaVersion(companyId);
+
 		ctCollection.setSchemaVersionId(
 			latestCTSchemaVersion.getSchemaVersionId());
+
 		ctCollection.setName(name);
 		ctCollection.setDescription(description);
 		ctCollection.setStatus(WorkflowConstants.STATUS_DRAFT);
