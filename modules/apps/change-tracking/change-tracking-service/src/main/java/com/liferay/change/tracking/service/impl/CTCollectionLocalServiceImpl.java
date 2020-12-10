@@ -421,10 +421,10 @@ public class CTCollectionLocalServiceImpl
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			ctCollection.getCtCollectionId());
 
-		int schemaVersionCount = ctCollectionPersistence.countBySchemaVersionId(
+		int count = ctCollectionPersistence.countBySchemaVersionId(
 			ctCollection.getSchemaVersionId());
 
-		if (schemaVersionCount == 1) {
+		if (count == 1) {
 			CTSchemaVersion ctSchemaVersion =
 				_ctSchemaVersionLocalService.fetchCTSchemaVersion(
 					ctCollection.getSchemaVersionId());
