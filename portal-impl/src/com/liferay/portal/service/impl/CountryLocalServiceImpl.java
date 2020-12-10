@@ -102,12 +102,6 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		countryPersistence.remove(country);
 
-		// Regions
-
-		long countryId = country.getCountryId();
-
-		regionPersistence.removeByCountryId(country.getCountryId());
-
 		// Addresses
 
 		addressLocalService.deleteCountryAddresses(country.getCountryId());
@@ -125,6 +119,12 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 			organizationLocalService.updateOrganization(organization);
 		}
+
+		// Regions
+
+		long countryId = country.getCountryId();
+
+		regionPersistence.removeByCountryId(country.getCountryId());
 
 		return country;
 	}
