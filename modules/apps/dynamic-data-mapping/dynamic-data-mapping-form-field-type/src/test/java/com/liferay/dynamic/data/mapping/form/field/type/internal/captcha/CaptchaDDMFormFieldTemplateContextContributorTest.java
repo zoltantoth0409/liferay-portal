@@ -42,11 +42,9 @@ public class CaptchaDDMFormFieldTemplateContextContributorTest
 	public void testGetParameters() throws Exception {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("<div><div class=\"taglib-captcha\">");
-		sb.append("<img alt=\"Text to Identify\" src=\"captcha\">");
-		sb.append("<label>Text Verification</label>");
-		sb.append("<input type=\"text\">");
-		sb.append("</div></div>");
+		sb.append("<div><div class=\"taglib-captcha\"><img alt=\"Text to ");
+		sb.append("Identify\" src=\"captcha\"><label>Text Verification");
+		sb.append("</label><input type=\"text\"></div></div>");
 
 		CaptchaDDMFormFieldTemplateContextContributor spy = createSpy(
 			sb.toString());
