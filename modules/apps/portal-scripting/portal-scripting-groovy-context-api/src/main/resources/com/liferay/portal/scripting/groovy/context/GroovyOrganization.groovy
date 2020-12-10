@@ -56,7 +56,7 @@ class GroovyOrganization {
 
 		regionId = RegionServiceUtil.fetchRegion(countryId, regionCode);
 		countryId = CountryServiceUtil.getCountryByName(
-				CompanyThreadLocal.getCompanyId(), countryName);
+			CompanyThreadLocal.getCompanyId(), countryName);
 	}
 
 	void create(GroovyScriptingContext groovyScriptingContext) {
