@@ -65,9 +65,9 @@ public class CaptchaDDMFormFieldTemplateContextContributorTest
 		CaptchaDDMFormFieldTemplateContextContributor spy = PowerMockito.spy(
 			_captchaDDMFormFieldTemplateContextContributor);
 
-		PowerMockitoStubber stubber = PowerMockito.doReturn(html);
+		PowerMockitoStubber powerMockitoStubber = PowerMockito.doReturn(html);
 
-		stubber.when(
+		powerMockitoStubber.when(
 			spy
 		).renderCaptchaTag(
 			Matchers.any(DDMFormField.class),
