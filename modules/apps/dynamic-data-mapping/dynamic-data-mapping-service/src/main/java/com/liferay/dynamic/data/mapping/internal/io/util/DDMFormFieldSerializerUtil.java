@@ -158,7 +158,7 @@ public class DDMFormFieldSerializerUtil {
 		return clazz.isArray();
 	}
 
-	private static JSONArray _optionsToJSONArray(
+	private static JSONArray _toJSONArray(
 		DDMFormFieldOptions ddmFormFieldOptions, JSONFactory jsonFactory) {
 
 		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
@@ -203,7 +203,7 @@ public class DDMFormFieldSerializerUtil {
 			return GetterUtil.getBoolean(property);
 		}
 		else if (Objects.equals(dataType, "ddm-options")) {
-			return _optionsToJSONArray(
+			return _toJSONArray(
 				(DDMFormFieldOptions)property, jsonFactory);
 		}
 		else if (Objects.equals(
