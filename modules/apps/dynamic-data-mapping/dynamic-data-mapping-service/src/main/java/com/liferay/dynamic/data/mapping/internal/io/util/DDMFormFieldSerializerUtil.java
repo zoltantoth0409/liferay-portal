@@ -158,6 +158,34 @@ public class DDMFormFieldSerializerUtil {
 		return clazz.isArray();
 	}
 
+	private static Object _serializeDDMFormFieldProperty(
+		DDMFormField ddmFormFieldTypeSetting, JSONFactory jsonFactory,
+		Object property) {
+
+		if (ddmFormFieldTypeSetting.isLocalizable()) {
+			return _toJSONObject(jsonFactory, (LocalizedValue)property);
+		}
+
+		String dataType = ddmFormFieldTypeSetting.getDataType();
+
+		if (Objects.equals(dataType, "boolean")) {
+			return GetterUtil.getBoolean(property);
+		}
+		else if (Objects.equals(dataType, "ddm-options")) {
+			return _toJSONArray((DDMFormFieldOptions)property, jsonFactory);
+		}
+		else if (Objects.equals(
+					ddmFormFieldTypeSetting.getType(), "validation")) {
+
+			return _toJSONObject((DDMFormFieldValidation)property, jsonFactory);
+		}
+		else if (_isArray(property)) {
+			return jsonFactory.createJSONArray((Object[])property);
+		}
+
+		return String.valueOf(property);
+	}
+
 	private static JSONArray _toJSONArray(
 		DDMFormFieldOptions ddmFormFieldOptions, JSONFactory jsonFactory) {
 
@@ -187,35 +215,6 @@ public class DDMFormFieldSerializerUtil {
 		}
 
 		return jsonArray;
-	}
-
-	private static Object _serializeDDMFormFieldProperty(
-		DDMFormField ddmFormFieldTypeSetting, JSONFactory jsonFactory,
-		Object property) {
-
-		if (ddmFormFieldTypeSetting.isLocalizable()) {
-			return _toJSONObject(jsonFactory, (LocalizedValue)property);
-		}
-
-		String dataType = ddmFormFieldTypeSetting.getDataType();
-
-		if (Objects.equals(dataType, "boolean")) {
-			return GetterUtil.getBoolean(property);
-		}
-		else if (Objects.equals(dataType, "ddm-options")) {
-			return _toJSONArray(
-				(DDMFormFieldOptions)property, jsonFactory);
-		}
-		else if (Objects.equals(
-					ddmFormFieldTypeSetting.getType(), "validation")) {
-
-			return _toJSONObject((DDMFormFieldValidation)property, jsonFactory);
-		}
-		else if (_isArray(property)) {
-			return jsonFactory.createJSONArray((Object[])property);
-		}
-
-		return String.valueOf(property);
 	}
 
 	private static JSONObject _toJSONObject(
