@@ -106,7 +106,6 @@ public class CTSchemaVersionLocalServiceImpl
 			}
 
 			Version version1 = Version.parseVersion(ctReleaseSchemaVersion);
-
 			Version version2 = Version.parseVersion(release.getSchemaVersion());
 
 			if ((version1.getMajor() != version2.getMajor()) ||
