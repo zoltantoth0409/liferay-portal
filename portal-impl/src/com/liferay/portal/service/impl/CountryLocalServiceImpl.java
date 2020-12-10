@@ -106,18 +106,18 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		long countryId = country.getCountryId();
 
-		regionPersistence.removeByCountryId(countryId);
+		regionPersistence.removeByCountryId(country.getCountryId());
 
 		// Addresses
 
-		addressLocalService.deleteCountryAddresses(countryId);
+		addressLocalService.deleteCountryAddresses(country.getCountryId());
 
 		// Organizations
 
 		List<Organization> organizationList = organizationLocalService.search(
 			country.getCompanyId(),
 			OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null, null, null,
-			countryId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			country.getCountryId(), null, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Organization organization : organizationList) {
 			organization.setCountryId(0);
