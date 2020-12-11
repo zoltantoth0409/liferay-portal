@@ -26,8 +26,9 @@
 	<div class="video-preview-aspect-ratio">
 
 		<%
-		FileEntry fileEntry = (FileEntry)request.getAttribute(FileEntry.class.getName());
 		DLVideoRenderer dlVideoRenderer = (DLVideoRenderer)request.getAttribute(DLVideoRenderer.class.getName());
+
+		FileEntry fileEntry = (FileEntry)request.getAttribute(FileEntry.class.getName());
 		%>
 
 		<%= dlVideoRenderer.renderHTML(fileEntry, request) %>
