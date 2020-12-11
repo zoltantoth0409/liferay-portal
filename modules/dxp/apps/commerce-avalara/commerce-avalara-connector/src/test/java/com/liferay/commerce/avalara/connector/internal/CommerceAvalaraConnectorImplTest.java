@@ -80,9 +80,9 @@ public class CommerceAvalaraConnectorImplTest {
 
 	@Test
 	public void testVerifyConnectionToAvalara() throws Exception {
-		PingResultModel ping = _avaTaxClient.ping();
+		PingResultModel pingResultModel = _avaTaxClient.ping();
 
-		Assert.assertTrue(ping.getAuthenticated());
+		Assert.assertTrue(pingResultModel.getAuthenticated());
 	}
 
 	private AvaTaxClient _avaTaxClient;
