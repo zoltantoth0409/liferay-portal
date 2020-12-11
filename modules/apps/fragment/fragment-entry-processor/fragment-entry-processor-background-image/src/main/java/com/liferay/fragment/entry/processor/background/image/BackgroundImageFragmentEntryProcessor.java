@@ -155,7 +155,6 @@ public class BackgroundImageFragmentEntryProcessor
 						JSONFactoryUtil.createJSONObject(value);
 
 					fileEntryId = valueJSONObject.getLong("fileEntryId");
-
 					value = valueJSONObject.getString("url", value);
 				}
 
