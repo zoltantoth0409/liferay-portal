@@ -138,15 +138,15 @@ public class SelectAssetVocabularyDisplayContext {
 			_portletURL, PortalUtil.getLiferayPortletResponse(portletResponse));
 
 		portletURL.setParameter(
-			"assetCategoryTreeNodeId", String.valueOf(assetVocabularyId));
-		portletURL.setParameter(
-			"assetCategoryTreeNodeType",
-			AssetCategoryTreeNodeConstants.TYPE_ASSET_VOCABULARY);
-		portletURL.setParameter(
 			"backURL",
 			ParamUtil.getString(
 				_httpServletRequest, "backURL",
 				PortalUtil.getCurrentURL(_httpServletRequest)));
+		portletURL.setParameter(
+			"assetCategoryTreeNodeId", String.valueOf(assetVocabularyId));
+		portletURL.setParameter(
+			"assetCategoryTreeNodeType",
+			AssetCategoryTreeNodeConstants.TYPE_ASSET_VOCABULARY);
 
 		return portletURL.toString();
 	}

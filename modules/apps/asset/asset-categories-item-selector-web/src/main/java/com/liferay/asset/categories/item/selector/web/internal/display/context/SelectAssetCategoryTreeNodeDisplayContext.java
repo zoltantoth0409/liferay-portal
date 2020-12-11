@@ -263,14 +263,14 @@ public class SelectAssetCategoryTreeNodeDisplayContext {
 			_portletURL, PortalUtil.getLiferayPortletResponse(portletResponse));
 
 		portletURL.setParameter(
-			"assetCategoryTreeNodeId", String.valueOf(assetCategoryTreeNodeId));
-		portletURL.setParameter(
-			"assetCategoryTreeNodeType", assetCategoryTreeNodeType);
-		portletURL.setParameter(
 			"backURL",
 			ParamUtil.getString(
 				_httpServletRequest, "backURL",
 				PortalUtil.getCurrentURL(_httpServletRequest)));
+		portletURL.setParameter(
+			"assetCategoryTreeNodeId", String.valueOf(assetCategoryTreeNodeId));
+		portletURL.setParameter(
+			"assetCategoryTreeNodeType", assetCategoryTreeNodeType);
 
 		return portletURL.toString();
 	}
