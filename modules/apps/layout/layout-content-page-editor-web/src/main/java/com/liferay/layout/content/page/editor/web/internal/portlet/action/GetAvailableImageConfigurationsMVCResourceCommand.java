@@ -93,16 +93,10 @@ public class GetAvailableImageConfigurationsMVCResourceCommand
 				"width", image.getWidth()
 			));
 
-		FileVersion fileVersion = fileEntry.getFileVersion();
-
-		List<AMImageEntry> amImageEntries =
-			_amImageEntryLocalService.getAMImageEntries(
-				fileVersion.getFileVersionId());
+		Map<String, String> mediaQueriesMap = new HashMap<>();
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			fileEntry);
-
-		Map<String, String> mediaQueriesMap = new HashMap<>();
 
 		for (MediaQuery mediaQuery : mediaQueries) {
 			List<Condition> conditions = mediaQuery.getConditions();
@@ -123,6 +117,12 @@ public class GetAvailableImageConfigurationsMVCResourceCommand
 
 			mediaQueriesMap.put(mediaQuery.getSrc(), sb.toString());
 		}
+
+		FileVersion fileVersion = fileEntry.getFileVersion();
+
+		List<AMImageEntry> amImageEntries =
+			_amImageEntryLocalService.getAMImageEntries(
+				fileVersion.getFileVersionId());
 
 		for (AMImageEntry amImageEntry : amImageEntries) {
 			JSONObject jsonObject = JSONUtil.put(
