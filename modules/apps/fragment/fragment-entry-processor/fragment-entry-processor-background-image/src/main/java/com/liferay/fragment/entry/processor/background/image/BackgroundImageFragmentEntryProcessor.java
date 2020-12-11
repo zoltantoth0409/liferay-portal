@@ -165,7 +165,7 @@ public class BackgroundImageFragmentEntryProcessor
 				sb.append("); background-size: cover;");
 
 				if (fileEntryId > 0) {
-					sb.append("--background-image-file-entry-id:");
+					sb.append(" --background-image-file-entry-id: ");
 					sb.append(fileEntryId);
 					sb.append(StringPool.SEMICOLON);
 				}
