@@ -1870,28 +1870,6 @@ public class LayoutStagedModelDataHandler
 			addGuestPermissions);
 	}
 
-	private boolean _isLayoutOutdated(Layout layout, Layout layoutPrototype) {
-		if ((layout == null) || (layoutPrototype == null)) {
-			return true;
-		}
-
-		Date layoutModifiedDate = layout.getModifiedDate();
-
-		long lastMergeTime = GetterUtil.getLong(
-			layout.getTypeSettingsProperty(Sites.LAST_MERGE_TIME));
-
-		Date layoutPrototypeModifiedDate = layoutPrototype.getModifiedDate();
-
-		if ((layoutModifiedDate == null) ||
-			(layoutPrototypeModifiedDate == null) ||
-			(layoutPrototypeModifiedDate.getTime() > lastMergeTime)) {
-
-			return true;
-		}
-
-		return false;
-	}
-
 	@Override
 	protected boolean isSkipImportReferenceStagedModels() {
 		return true;
@@ -2398,6 +2376,28 @@ public class LayoutStagedModelDataHandler
 		}
 
 		return layout.getLayoutPrototypeUuid();
+	}
+
+	private boolean _isLayoutOutdated(Layout layout, Layout layoutPrototype) {
+		if ((layout == null) || (layoutPrototype == null)) {
+			return true;
+		}
+
+		Date layoutModifiedDate = layout.getModifiedDate();
+
+		long lastMergeTime = GetterUtil.getLong(
+			layout.getTypeSettingsProperty(Sites.LAST_MERGE_TIME));
+
+		Date layoutPrototypeModifiedDate = layoutPrototype.getModifiedDate();
+
+		if ((layoutModifiedDate == null) ||
+			(layoutPrototypeModifiedDate == null) ||
+			(layoutPrototypeModifiedDate.getTime() > lastMergeTime)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private Layout _updateCollectionLayoutTypeSettings(
