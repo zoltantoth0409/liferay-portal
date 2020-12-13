@@ -370,15 +370,13 @@ public class AccountEntryLocalServiceTest {
 		List<AccountEntry> accountEntries = new ArrayList<>();
 		List<User> users = new ArrayList<>();
 
-		String accountBaseName = RandomTestUtil.randomString();
-
 		for (int i = 0; i < 4; i++) {
 			users.add(UserTestUtil.addUser());
 
 			accountEntries.add(
 				_addUserAccountEntry(
-					accountEntryOwner.getUserId(), accountBaseName + i, null,
-					null));
+					accountEntryOwner.getUserId(),
+					RandomTestUtil.randomString(), null, null));
 		}
 
 		User user1 = users.get(0);
