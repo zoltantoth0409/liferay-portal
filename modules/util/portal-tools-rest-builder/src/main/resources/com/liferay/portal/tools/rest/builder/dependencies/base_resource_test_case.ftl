@@ -1573,35 +1573,35 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put") && javaMethodSignature.returnType?ends_with("." + relatedSchemaName)>
 				@Test
 				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				${schemaName} post${schemaName} = testPut${schemaName}_add${schemaName}();
+					${schemaName} post${schemaName} = testPut${schemaName}_add${schemaName}();
 
-				test${javaMethodSignature.methodName?cap_first}_add${relatedSchemaName}(post${schemaName}.getId(), random${relatedSchemaName}());
+					test${javaMethodSignature.methodName?cap_first}_add${relatedSchemaName}(post${schemaName}.getId(), random${relatedSchemaName}());
 
-				${relatedSchemaName} random${relatedSchemaName} = random${relatedSchemaName}();
+					${relatedSchemaName} random${relatedSchemaName} = random${relatedSchemaName}();
 
-				${relatedSchemaName} put${relatedSchemaName} = ${schemaVarName}Resource.${javaMethodSignature.methodName}(
-				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-					<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation) && stringUtil.equals(javaMethodParameter.parameterName, schemaVarName + "Id")>
-						post${schemaName}.getId()
-					<#elseif stringUtil.equals(javaMethodParameter.parameterName, relatedSchemaVarName)>
-						random${relatedSchemaName}
-					<#else>
-						null
-					</#if>
-					<#sep>, </#sep>
-				</#list>
-				);
+					${relatedSchemaName} put${relatedSchemaName} = ${schemaVarName}Resource.${javaMethodSignature.methodName}(
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation) && stringUtil.equals(javaMethodParameter.parameterName, schemaVarName + "Id")>
+								post${schemaName}.getId()
+							<#elseif stringUtil.equals(javaMethodParameter.parameterName, relatedSchemaVarName)>
+								random${relatedSchemaName}
+							<#else>
+								null
+							</#if>
+							<#sep>, </#sep>
+						</#list>
+					);
 
-				assertEquals(random${relatedSchemaName}, put${relatedSchemaName});
-				assertValid(put${relatedSchemaName});
+					assertEquals(random${relatedSchemaName}, put${relatedSchemaName});
+					assertValid(put${relatedSchemaName});
 				}
 
 				protected ${relatedSchemaName} test${javaMethodSignature.methodName?cap_first}_add${relatedSchemaName}(long ${schemaVarName}Id, ${relatedSchemaName} ${relatedSchemaVarName}) throws Exception {
-				<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, javaMethodSignature.methodName?replace("put", "post"))>
-					return ${schemaVarName}Resource.${javaMethodSignature.methodName?replace("put", "post")}(${schemaVarName}Id, ${relatedSchemaVarName});
-				<#else>
-					throw new UnsupportedOperationException("This method needs to be implemented");
-				</#if>
+					<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, javaMethodSignature.methodName?replace("put", "post"))>
+						return ${schemaVarName}Resource.${javaMethodSignature.methodName?replace("put", "post")}(${schemaVarName}Id, ${relatedSchemaVarName});
+					<#else>
+						throw new UnsupportedOperationException("This method needs to be implemented");
+					</#if>
 				}
 			</#if>
 		</#list>
