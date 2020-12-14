@@ -88,23 +88,25 @@ public class AddDataDefinitionMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String dataDefinitionSring = ParamUtil.getString(
-			actionRequest, "dataDefinition");
-		String structureKey = ParamUtil.getString(
-			actionRequest, "structureKey");
-		String dataLayout = ParamUtil.getString(actionRequest, "dataLayout");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-
 		DataDefinitionResource dataDefinitionResource =
 			DataDefinitionResource.builder(
 			).user(
 				themeDisplay.getUser()
 			).build();
 
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+
+		String dataDefinitionSring = ParamUtil.getString(
+			actionRequest, "dataDefinition");
+
 		DataDefinition dataDefinition = DataDefinition.toDTO(
 			dataDefinitionSring);
+
+		String structureKey = ParamUtil.getString(
+			actionRequest, "structureKey");
+		String dataLayout = ParamUtil.getString(actionRequest, "dataLayout");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		dataDefinition.setDataDefinitionKey(structureKey);
 		dataDefinition.setDefaultDataLayout(DataLayout.toDTO(dataLayout));
