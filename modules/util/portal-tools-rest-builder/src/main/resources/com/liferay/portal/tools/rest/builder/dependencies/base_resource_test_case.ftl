@@ -995,12 +995,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 					_beanUtilsBean.copyProperties(expectedPatch${schemaName}, randomPatch${schemaName});
 
 					${schemaName} get${schemaName} = ${schemaVarName}Resource.get${javaMethodSignature.methodName?remove_beginning("patch")}(
-						<#if javaMethodSignature.javaMethodParameters?size != 0 &&
-								stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, "externalReferenceCode")>
+						<#if (javaMethodSignature.javaMethodParameters?size != 0) &&
+							 stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, "externalReferenceCode")>
+
 							patch${schemaName}.getExternalReferenceCode()
-						<#elseif javaMethodSignature.javaMethodParameters?size != 0 &&
-								(stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, "id") ||
-									stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, schemaVarName + "Id"))>
+						<#elseif (javaMethodSignature.javaMethodParameters?size != 0) &&
+								 (stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, "id") ||
+								 stringUtil.equals(javaMethodSignature.javaMethodParameters[0].parameterName, schemaVarName + "Id"))>
+
 							patch${schemaName}.getId()
 						<#else>
 							null
