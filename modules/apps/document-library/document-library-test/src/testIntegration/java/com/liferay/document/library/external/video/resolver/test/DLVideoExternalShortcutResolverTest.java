@@ -67,8 +67,8 @@ public class DLVideoExternalShortcutResolverTest {
 				"frameborder=\"0\" height=\"315\" ",
 				"src=\"https://www.facebook.com/plugins/video.php?height=315&",
 				"href=https://m.facebook.com/watch/?show_text=0&v=VIDEO_ID&",
-				"width=560\" scrolling=\"no\" style=\"border: ",
-				"none; overflow: hidden;\" width=\"560\"></iframe>"),
+				"width=560\" scrolling=\"no\" style=\"border: none; overflow: ",
+				"hidden;\" width=\"560\"></iframe>"),
 			_renderHTML("https://m.facebook.com/watch/?v=VIDEO_ID"));
 	}
 
