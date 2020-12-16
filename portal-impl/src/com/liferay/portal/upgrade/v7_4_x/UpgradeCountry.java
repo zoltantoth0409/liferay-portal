@@ -57,12 +57,12 @@ public class UpgradeCountry extends UpgradeProcess {
 			}
 		}
 
-		long defaultCompanyId = 0;
 		String defaultLanguageId = LocaleUtil.toLanguageId(LocaleUtil.US);
-		long defaultUserId = 0;
+		long companyId = 0;
+		long userId = 0;
 
 		String sql = StringBundler.concat(
-			"select User_.companyId, User_.languageId, User_.userId from ",
+			"select User_.companyId, User_.userId, User_.languageId from ",
 			"User_ join Company on User_.companyId = Company.companyId where ",
 			"User_.defaultUser = [$TRUE$] and Company.webId = ",
 			StringUtil.quote(PropsValues.COMPANY_DEFAULT_WEB_ID));
@@ -72,16 +72,10 @@ public class UpgradeCountry extends UpgradeProcess {
 			ResultSet rs = ps.executeQuery()) {
 
 			if (rs.next()) {
-				defaultCompanyId = rs.getLong(1);
-				defaultLanguageId = rs.getString(2);
-				defaultUserId = rs.getLong(3);
+				defaultLanguageId = rs.getString(3);
+				companyId = rs.getLong(1);
+				userId = rs.getLong(2);
 			}
-		}
-
-		if (defaultCompanyId > 0) {
-			runSQL(
-				"update Country set companyId = " + defaultCompanyId +
-					" where (companyId is null or companyId = 0)");
 		}
 
 		runSQL(
@@ -89,9 +83,15 @@ public class UpgradeCountry extends UpgradeProcess {
 				StringUtil.quote(defaultLanguageId) +
 					" where defaultLanguageId is null");
 
-		if (defaultUserId > 0) {
+		if (companyId > 0) {
 			runSQL(
-				"update Country set userId = " + defaultUserId +
+				"update Country set companyId = " + companyId +
+					" where (companyId is null or companyId = 0)");
+		}
+
+		if (userId > 0) {
+			runSQL(
+				"update Country set userId = " + userId +
 					" where (userId is null or userId = 0)");
 		}
 	}
