@@ -51,14 +51,14 @@ public class DefaultMapToDDMFormValuesConverterStrategy
 
 		for (Map.Entry<String, DDMFormField> entry : ddmFormFields.entrySet()) {
 			addDDFormFieldValues(
-				dataRecordValues, ddmForm.getDefaultLocale(), entry.getValue(),
-				ddmFormValues, locale);
+				dataRecordValues, entry.getValue(),
+				ddmFormValues, ddmForm.getDefaultLocale(), locale);
 		}
 	}
 
 	protected List<DDMFormFieldValue> addDDFormFieldValues(
-		Map<String, Object> dataRecordValues, Locale defaultLocale,
-		DDMFormField ddmFormField, DDMFormValues ddmFormValues, Locale locale) {
+		Map<String, Object> dataRecordValues,
+		DDMFormField ddmFormField, DDMFormValues ddmFormValues, Locale defaultLocale, Locale locale) {
 
 		List<DDMFormFieldValue> ddmFormFieldValues = new ArrayList<>();
 
