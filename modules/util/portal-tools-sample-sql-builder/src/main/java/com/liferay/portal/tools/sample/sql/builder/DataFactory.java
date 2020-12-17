@@ -2102,15 +2102,17 @@ public class DataFactory {
 		List<DDMFieldModel> ddmFieldModels = new ArrayList<>(
 			BenchmarksPropsValues.MAX_DDL_CUSTOM_FIELD_COUNT + 1);
 
-		long structureVersionId = ddmStorageLinkModel.getStructureVersionId();
-
 		DDMFieldModel ddmFieldModel = new DDMFieldModelImpl();
 
 		ddmFieldModel.setFieldId(_counter.get());
 		ddmFieldModel.setCompanyId(_companyId);
 		ddmFieldModel.setParentFieldId(0);
 		ddmFieldModel.setStorageId(ddmStorageLinkModel.getClassPK());
+
+		long structureVersionId = ddmStorageLinkModel.getStructureVersionId();
+
 		ddmFieldModel.setStructureVersionId(structureVersionId);
+
 		ddmFieldModel.setFieldName(StringPool.BLANK);
 		ddmFieldModel.setFieldType(StringPool.BLANK);
 		ddmFieldModel.setInstanceId(StringPool.BLANK);
