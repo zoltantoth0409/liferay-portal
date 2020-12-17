@@ -177,16 +177,12 @@ class Form extends Component {
 			);
 		}
 
-		const formsNavbarListItems = document.querySelector(
-			'.forms-navigation-bar li'
+		this._formNavClickEventHandler = delegate(
+			document.body,
+			'click',
+			'.forms-navigation-bar li',
+			this._handleFormNavClicked
 		);
-
-		if (formsNavbarListItems) {
-			formsNavbarListItems.addEventListener(
-				'click',
-				this._handleFormNavClicked
-			);
-		}
 
 		const previewButton = document.querySelector('.lfr-ddm-preview-button');
 
@@ -335,6 +331,7 @@ class Form extends Component {
 		Notifications.closeAlert();
 
 		this._backButtonClickEventHandler.dispose();
+		this._formNavClickEventHandler.dispose();
 
 		this._eventHandler.removeAllListeners();
 
@@ -344,17 +341,6 @@ class Form extends Component {
 			addFieldButton.removeEventListener(
 				'click',
 				this._handleAddFieldButtonClicked
-			);
-		}
-
-		const formsNavbarListItems = document.querySelector(
-			'.forms-navigation-bar li'
-		);
-
-		if (formsNavbarListItems) {
-			formsNavbarListItems.removeEventListener(
-				'click',
-				this._handleFormNavClicked
 			);
 		}
 
