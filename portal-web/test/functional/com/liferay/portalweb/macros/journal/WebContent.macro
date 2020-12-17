@@ -1583,7 +1583,7 @@ definition {
 	}
 
 	macro uploadAudio {
-		Click.pauseClickAt(locator1 = "CKEditor#TOOLBAR_AUDIO_BUTTON");
+		Click(locator1 = "CKEditor#TOOLBAR_AUDIO_BUTTON");
 
 		ItemSelector.addAudioFromURL(
 			audioSourceURL = "${dmDocumentURL}",
@@ -1599,7 +1599,7 @@ definition {
 	}
 
 	macro uploadVideo {
-		Click.pauseClickAt(locator1 = "WCEditWebContent#VIDEO_BUTTON");
+		Click(locator1 = "WCEditWebContent#VIDEO_BUTTON");
 
 		ItemSelector.addVideoFromURL(
 			navTab = "${navTab}",
