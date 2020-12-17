@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"before-filter=Auto Login Filter", "dispatcher=FORWARD",
 		"dispatcher=REQUEST", "servlet-context-name=",
-		"servlet-filter-name=Video Embed Filter", "url-pattern=/documents/*"
+		"servlet-filter-name=DL Video Embed Filter", "url-pattern=/documents/*"
 	},
 	service = Filter.class
 )
