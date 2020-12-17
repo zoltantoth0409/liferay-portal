@@ -148,10 +148,10 @@ else {
 
 								<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/document_library/upload_multiple_file_entries" var="viewFileEntryTypeURL">
 									<portlet:param name="redirect" value="<%= redirect %>" />
+									<portlet:param name="portletResource" value='<%= ParamUtil.getString(request, "portletResource") %>' />
 									<portlet:param name="repositoryId" value="<%= String.valueOf(repositoryId) %>" />
 									<portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" />
 									<portlet:param name="fileEntryTypeId" value="<%= String.valueOf(curFileEntryType.getFileEntryTypeId()) %>" />
-									<portlet:param name="portletResource" value='<%= ParamUtil.getString(request, "portletResource") %>' />
 								</liferay-portlet:resourceURL>
 
 								<liferay-ui:icon
