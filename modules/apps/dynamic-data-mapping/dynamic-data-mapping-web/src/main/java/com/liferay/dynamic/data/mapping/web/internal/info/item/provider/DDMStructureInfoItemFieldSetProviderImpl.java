@@ -99,9 +99,9 @@ public class DDMStructureInfoItemFieldSetProviderImpl
 		DDMFormFieldType.CHECKBOX, DDMFormFieldType.DATE,
 		DDMFormFieldType.DECIMAL, DDMFormFieldType.IMAGE,
 		DDMFormFieldType.INTEGER, DDMFormFieldType.NUMBER,
-		DDMFormFieldType.TEXT_HTML, "image", DDMFormFieldType.RADIO,
-		"rich_text", DDMFormFieldType.SELECT, DDMFormFieldType.TEXT,
-		DDMFormFieldType.TEXT_AREA
+		DDMFormFieldType.TEXT_HTML, DDMFormFieldType.RADIO,
+		DDMFormFieldType.SELECT, DDMFormFieldType.TEXT,
+		DDMFormFieldType.TEXT_AREA, "image", "rich_text"
 	};
 
 	@Reference
