@@ -59,7 +59,8 @@ public class CommerceMLSearchEngineHelper {
 				).put(
 					"settings",
 					JSONFactoryUtil.createJSONObject(
-						StringUtil.read(getClass(), _INDEX_SETTINGS_FILE_NAME))
+						StringUtil.read(
+							getClass(), "/META-INF/search/settings.json"))
 				).toString());
 		}
 		catch (JSONException jsonException) {
@@ -106,9 +107,6 @@ public class CommerceMLSearchEngineHelper {
 
 	@Reference
 	protected SearchEngineAdapter searchEngineAdapter;
-
-	private static final String _INDEX_SETTINGS_FILE_NAME =
-		"/META-INF/search/settings.json";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommerceMLSearchEngineHelper.class);
