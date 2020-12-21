@@ -108,7 +108,7 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		// Organizations
 
-		_updateOrganizationCountryIds(country.getCountryId());
+		_updateOrganizations(country.getCountryId());
 
 		// Regions
 
@@ -283,7 +283,7 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 		}
 	}
 
-	private void _updateOrganizationCountryIds(long countryId)
+	private void _updateOrganizations(long countryId)
 		throws PortalException {
 
 		ActionableDynamicQuery actionableDynamicQuery =

@@ -91,7 +91,7 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 
 		// Organizations
 
-		_updateOrganizationRegionIds(region.getRegionId());
+		_updateOrganizations(region.getRegionId());
 
 		return region;
 	}
@@ -193,7 +193,7 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 		}
 	}
 
-	private void _updateOrganizationRegionIds(long regionId)
+	private void _updateOrganizations(long regionId)
 		throws PortalException {
 
 		ActionableDynamicQuery actionableDynamicQuery =
