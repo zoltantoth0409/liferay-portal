@@ -843,10 +843,10 @@ public class FileEntryStagedModelDataHandler
 		serviceContext.setAttribute(
 			"fileEntryTypeId", existingDLFileEntryType.getFileEntryTypeId());
 
+		boolean updateFileEntry = false;
+
 		List<DDMStructure> ddmStructures =
 			existingDLFileEntryType.getDDMStructures();
-
-		boolean updateFileEntry = false;
 
 		for (DDMStructure ddmStructure : ddmStructures) {
 			Element structureFieldsElement =
