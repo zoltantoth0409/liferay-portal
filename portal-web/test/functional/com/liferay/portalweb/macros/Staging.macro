@@ -820,7 +820,7 @@ definition {
 	macro publishToLiveNowViaPortletCP {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Staging");
 
-		Pause(locator1 = "3000");
+		WaitForLiferayEvent.initializeLiferayEventLog();
 
 		SelectFrame(locator1 = "IFrame#CONFIGURATION_DIALOG");
 
