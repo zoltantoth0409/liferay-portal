@@ -92,21 +92,19 @@ public abstract class BaseSpiraTestResultValues
 
 				@Override
 				public List<SpiraCustomPropertyValue> call() throws Exception {
-					return Collections.singletonList(_getDurationValue());
+					return Collections.singletonList(_getDurationStringValue());
 				}
 
 			});
-
 		callables.add(
 			new Callable<List<SpiraCustomPropertyValue>>() {
 
 				@Override
 				public List<SpiraCustomPropertyValue> call() throws Exception {
-					return Collections.singletonList(_getDurationStringValue());
+					return Collections.singletonList(_getDurationValue());
 				}
 
 			});
-
 		callables.add(
 			new Callable<List<SpiraCustomPropertyValue>>() {
 
@@ -117,7 +115,6 @@ public abstract class BaseSpiraTestResultValues
 				}
 
 			});
-
 		callables.add(
 			new Callable<List<SpiraCustomPropertyValue>>() {
 
@@ -127,7 +124,6 @@ public abstract class BaseSpiraTestResultValues
 				}
 
 			});
-
 		callables.add(
 			new Callable<List<SpiraCustomPropertyValue>>() {
 
@@ -137,7 +133,6 @@ public abstract class BaseSpiraTestResultValues
 				}
 
 			});
-
 		callables.add(
 			new Callable<List<SpiraCustomPropertyValue>>() {
 
