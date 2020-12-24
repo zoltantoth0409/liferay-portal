@@ -260,7 +260,7 @@ function ClickGoalPicker({allowEdit = true, onSelectClickGoalTarget, target}) {
 							<ClayForm.FeedbackGroup>
 								<ClayForm.FeedbackItem>
 									<ClayForm.FeedbackIndicator symbol="exclamation-full" />
-									{Liferay.Language.get('id-not-found')}
+									{Liferay.Language.get('id-was-not-found')}
 								</ClayForm.FeedbackItem>
 							</ClayForm.FeedbackGroup>
 						)}
