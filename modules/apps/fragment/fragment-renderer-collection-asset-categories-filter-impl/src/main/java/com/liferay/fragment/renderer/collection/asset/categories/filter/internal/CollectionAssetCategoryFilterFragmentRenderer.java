@@ -219,13 +219,13 @@ public class CollectionAssetCategoryFilterFragmentRenderer
 					_assetVocabularyService.fetchVocabulary(
 						assetCategoryTreeNodeId);
 
-				long groupId = assetVocabulary.getGroupId();
-
 				assetCategories =
 					_assetCategoryService.getVocabularyRootCategories(
-						groupId, assetCategoryTreeNodeId, 0,
+						assetVocabulary.getGroupId(), assetCategoryTreeNodeId,
+						0,
 						_assetCategoryService.getVocabularyCategoriesCount(
-							groupId, assetCategoryTreeNodeId),
+							assetVocabulary.getGroupId(),
+							assetCategoryTreeNodeId),
 						null);
 
 				httpServletRequest.setAttribute(
