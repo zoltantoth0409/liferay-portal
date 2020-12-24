@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.util;
+package com.liferay.document.library.web.internal.icon.provider;
 
 import com.liferay.document.library.icon.provider.DLFileEntryTypeIconProvider;
 import com.liferay.document.library.kernel.model.DLFileEntryType;
