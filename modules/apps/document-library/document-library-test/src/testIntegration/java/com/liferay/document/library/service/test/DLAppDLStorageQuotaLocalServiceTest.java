@@ -113,8 +113,7 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 
 		_dlAppLocalService.deleteFileEntry(fileEntry.getFileEntryId());
 
-		Assert.assertEquals(
-			initialStorageSize + size, _getStorageSize());
+		Assert.assertEquals(initialStorageSize + size, _getStorageSize());
 	}
 
 	private long _getStorageSize() throws Exception {
