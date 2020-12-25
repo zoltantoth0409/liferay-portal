@@ -61,8 +61,8 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 	}
 
 	@Test
-	public void testAddFileEntryIncreasesQuota() throws Exception {
-		long initialStorageSize = _getCurrentStorageSize();
+	public void testAddFileEntryIncreasesStorageSize() throws Exception {
+		long initialStorageSize = _getStorageSize();
 
 		int size1 = RandomTestUtil.randomInt(1, 100);
 
@@ -85,12 +85,12 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		Assert.assertEquals(
-			initialStorageSize + size1 + size2, _getCurrentStorageSize());
+			initialStorageSize + size1 + size2, _getStorageSize());
 	}
 
 	@Test
-	public void testDeleteFileEntryDecreasesQuota() throws Exception {
-		long initialStorageSize = _getCurrentStorageSize();
+	public void testDeleteFileEntryDecreasesStorageSize() throws Exception {
+		long initialStorageSize = _getStorageSize();
 
 		int size = RandomTestUtil.randomInt(1, 100);
 
@@ -114,10 +114,10 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 		_dlAppLocalService.deleteFileEntry(fileEntry.getFileEntryId());
 
 		Assert.assertEquals(
-			initialStorageSize + size, _getCurrentStorageSize());
+			initialStorageSize + size, _getStorageSize());
 	}
 
-	private long _getCurrentStorageSize() throws Exception {
+	private long _getStorageSize() throws Exception {
 		try {
 			DLStorageQuota companyDLStorageQuota =
 				_dlStorageQuotaLocalService.getCompanyDLStorageQuota(
