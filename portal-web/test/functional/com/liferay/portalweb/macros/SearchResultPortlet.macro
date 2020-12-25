@@ -5,7 +5,7 @@ definition {
 
 		PageEditor.gotoTab(tabName = "Fragments and Widgets");
 
-		PageEditor.gotoSidebarPanelTab(navTab = "Widgets");
+		Navigator.gotoNavTab(navTab = "Widgets");
 
 		Type.sendKeysApplicationSearch(
 			locator1 = "PageEditor#WIDGETS_APPLICATION_SEARCH_FIELD",
