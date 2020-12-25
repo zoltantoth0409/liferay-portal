@@ -15,21 +15,10 @@
 package com.liferay.document.library.model.impl;
 
 /**
- * The extended model implementation for the DLStorageQuota service. Represents a row in the &quot;DLStorageQuota&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.document.library.model.DLStorageQuota</code> interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 public class DLStorageQuotaImpl extends DLStorageQuotaBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a dl storage quota model instance should use the {@link com.liferay.document.library.model.DLStorageQuota} interface instead.
-	 */
 	public DLStorageQuotaImpl() {
 	}
 
