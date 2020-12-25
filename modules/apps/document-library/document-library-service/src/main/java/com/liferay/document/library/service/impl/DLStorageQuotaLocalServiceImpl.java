@@ -75,7 +75,9 @@ public class DLStorageQuotaLocalServiceImpl
 		if ((currentStorageSize + increment) >
 				PropsValues.DATA_LIMIT_MAX_DL_STORAGE_SIZE) {
 
-			throw new PortalException("Exceed maximum alowed DL Storage Quota");
+			throw new PortalException(
+				"Unable to exceed maximum alowed document library storage " +
+					"size");
 		}
 	}
 
