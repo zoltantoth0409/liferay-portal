@@ -2777,7 +2777,28 @@ public class DataFactory {
 			layoutModels.add(
 				newLayoutModel(
 					groupId, "search", true, "1_2_columns_i",
-					_SEARCH_LAYOUT_COLUMNS));
+					new String[] {
+						StringBundler.concat(
+							SearchBarPortletKeys.SEARCH_BAR, StringPool.COMMA,
+							SuggestionsPortletKeys.SUGGESTIONS,
+							StringPool.COMMA),
+						StringBundler.concat(
+							SiteFacetPortletKeys.SITE_FACET, StringPool.COMMA,
+							TypeFacetPortletKeys.TYPE_FACET, StringPool.COMMA,
+							TagFacetPortletKeys.TAG_FACET, StringPool.COMMA,
+							CategoryFacetPortletKeys.CATEGORY_FACET,
+							StringPool.COMMA,
+							FolderFacetPortletKeys.FOLDER_FACET,
+							StringPool.COMMA, UserFacetPortletKeys.USER_FACET,
+							StringPool.COMMA,
+							ModifiedFacetPortletKeys.MODIFIED_FACET,
+							StringPool.COMMA),
+						StringBundler.concat(
+							SearchResultsPortletKeys.SEARCH_RESULTS,
+							StringPool.COMMA,
+							SearchOptionsPortletKeys.SEARCH_OPTIONS,
+							StringPool.COMMA)
+					}));
 		}
 
 		return layoutModels;
@@ -5228,23 +5249,6 @@ public class DataFactory {
 	private static final String _JOURNAL_STRUCTURE_KEY = "BASIC-WEB-CONTENT";
 
 	private static final String _SAMPLE_USER_NAME = "Sample";
-
-	private static final String[] _SEARCH_LAYOUT_COLUMNS = {
-		StringBundler.concat(
-			SearchBarPortletKeys.SEARCH_BAR, StringPool.COMMA,
-			SuggestionsPortletKeys.SUGGESTIONS, StringPool.COMMA),
-		StringBundler.concat(
-			SiteFacetPortletKeys.SITE_FACET, StringPool.COMMA,
-			TypeFacetPortletKeys.TYPE_FACET, StringPool.COMMA,
-			TagFacetPortletKeys.TAG_FACET, StringPool.COMMA,
-			CategoryFacetPortletKeys.CATEGORY_FACET, StringPool.COMMA,
-			FolderFacetPortletKeys.FOLDER_FACET, StringPool.COMMA,
-			UserFacetPortletKeys.USER_FACET, StringPool.COMMA,
-			ModifiedFacetPortletKeys.MODIFIED_FACET, StringPool.COMMA),
-		StringBundler.concat(
-			SearchResultsPortletKeys.SEARCH_RESULTS, StringPool.COMMA,
-			SearchOptionsPortletKeys.SEARCH_OPTIONS, StringPool.COMMA)
-	};
 
 	private static final PortletPreferencesFactory _portletPreferencesFactory =
 		new PortletPreferencesFactoryImpl();
