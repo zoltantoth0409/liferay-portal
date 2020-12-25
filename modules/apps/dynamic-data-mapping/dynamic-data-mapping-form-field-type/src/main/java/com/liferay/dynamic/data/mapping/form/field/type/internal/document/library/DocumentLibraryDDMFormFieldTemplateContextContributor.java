@@ -270,7 +270,8 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 
 		DDMUserPersonalFolderItemSelectorCriterion
 			ddmUserPersonalFolderItemSelectorCriterion =
-				new DDMUserPersonalFolderItemSelectorCriterion();
+				new DDMUserPersonalFolderItemSelectorCriterion(
+					folderId, groupId);
 
 		ddmUserPersonalFolderItemSelectorCriterion.
 			setDesiredItemSelectorReturnTypes(
