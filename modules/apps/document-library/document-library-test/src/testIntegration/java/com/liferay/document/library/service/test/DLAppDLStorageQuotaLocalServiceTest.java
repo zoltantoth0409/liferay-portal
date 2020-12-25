@@ -118,11 +118,11 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 
 	private long _getStorageSize() throws Exception {
 		try {
-			DLStorageQuota companyDLStorageQuota =
+			DLStorageQuota dlStorageQuota =
 				_dlStorageQuotaLocalService.getCompanyDLStorageQuota(
 					TestPropsValues.getCompanyId());
 
-			return companyDLStorageQuota.getStorageSize();
+			return dlStorageQuota.getStorageSize();
 		}
 		catch (NoSuchStorageQuotaException noSuchStorageQuotaException) {
 			return 0;
