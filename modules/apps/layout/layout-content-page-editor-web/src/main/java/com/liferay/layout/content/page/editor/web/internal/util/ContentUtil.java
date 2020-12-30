@@ -114,16 +114,14 @@ public class ContentUtil {
 
 		JSONArray mappedContentsJSONArray = JSONFactoryUtil.createJSONArray();
 
+		long fragmentEntryLinkClassNameId = PortalUtil.getClassNameId(
+			FragmentEntryLink.class);
+		LayoutStructure layoutStructure = null;
+		Set<String> uniqueLayoutClassedModelUsageKeys = new HashSet<>();
+
 		List<LayoutClassedModelUsage> layoutClassedModelUsages =
 			LayoutClassedModelUsageLocalServiceUtil.
 				getLayoutClassedModelUsagesByPlid(plid);
-
-		Set<String> uniqueLayoutClassedModelUsageKeys = new HashSet<>();
-
-		long fragmentEntryLinkClassNameId = PortalUtil.getClassNameId(
-			FragmentEntryLink.class);
-
-		LayoutStructure layoutStructure = null;
 
 		for (LayoutClassedModelUsage layoutClassedModelUsage :
 				layoutClassedModelUsages) {
