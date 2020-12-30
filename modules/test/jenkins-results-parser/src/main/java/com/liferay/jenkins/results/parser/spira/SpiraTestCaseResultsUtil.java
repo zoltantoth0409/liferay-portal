@@ -73,11 +73,11 @@ public class SpiraTestCaseResultsUtil {
 						branchName, comparisonUpstreamSuite)));
 		}
 
+		int inconsistentTestCount = 0;
+
 		Map<Integer, SpiraTestCaseRun> spiraTestCaseRuns =
 			_getSpiraTestCaseRunMapFromList(
 				_getLatestUpstreamSpiraTestCaseRuns(branchName, testSuite));
-
-		int inconsistentTestCount = 0;
 
 		for (Map.Entry<Integer, SpiraTestCaseRun> entry :
 				spiraTestCaseRuns.entrySet()) {
