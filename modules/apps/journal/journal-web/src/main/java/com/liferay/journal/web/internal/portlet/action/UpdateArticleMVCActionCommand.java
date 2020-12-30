@@ -146,12 +146,12 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 		JSONObject titleValueJSONObject = _jsonFactory.createJSONObject(
 			ParamUtil.getString(uploadPortletRequest, "titleValue"));
 
-		Set<String> keySet = titleValueJSONObject.keySet();
+		Set<String> languageIds = titleValueJSONObject.keySet();
 
-		keySet.forEach(
-			key -> titleMap.put(
-				LocaleUtil.fromLanguageId(key),
-				titleValueJSONObject.getString(key)));
+		languageIds.forEach(
+			languageId -> titleMap.put(
+				LocaleUtil.fromLanguageId(languageId),
+				titleValueJSONObject.getString(languageId)));
 
 		String ddmStructureKey = ParamUtil.getString(
 			uploadPortletRequest, "ddmStructureKey");
