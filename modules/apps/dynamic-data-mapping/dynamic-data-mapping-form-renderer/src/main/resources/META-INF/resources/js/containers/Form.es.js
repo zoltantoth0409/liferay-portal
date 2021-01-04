@@ -38,6 +38,7 @@ const Form = React.forwardRef(
 			dataRecordValues,
 			ddmStructureLayoutId,
 			defaultLanguageId,
+			defaultSiteLanguageId,
 			description,
 			editingLanguageId,
 			groupId,
@@ -151,6 +152,7 @@ const Form = React.forwardRef(
 				dispatch(
 					pageLanguageUpdate({
 						ddmStructureLayoutId,
+						defaultSiteLanguageId,
 						nextEditingLanguageId,
 						pages,
 						portletNamespace,
