@@ -34,7 +34,7 @@ const formatDataRecord = (languageId, pages, preserveValue) => {
 		value,
 		visible,
 	}) => {
-		if (type === 'fieldset') {
+		if (type === 'fieldset' || type === 'separator') {
 			return;
 		}
 
