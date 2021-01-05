@@ -69,7 +69,7 @@ public class JSBundleConfigTopHeadDynamicInclude extends BaseDynamicInclude {
 				URL url = jsConfig.getURL();
 
 				try (InputStream inputStream = url.openStream()) {
-					printWriter.println("try{");
+					printWriter.println("try {");
 
 					ServletContext servletContext =
 						jsConfig.getServletContext();
@@ -84,7 +84,7 @@ public class JSBundleConfigTopHeadDynamicInclude extends BaseDynamicInclude {
 							StringUtil.read(inputStream),
 							"//# sourceMappingURL=config.js.map"));
 
-					printWriter.print("}catch(error){console.error(error);}");
+					printWriter.print("} catch(error) {console.error(error);}");
 				}
 				catch (Exception exception) {
 					_log.error("Unable to open resource", exception);
