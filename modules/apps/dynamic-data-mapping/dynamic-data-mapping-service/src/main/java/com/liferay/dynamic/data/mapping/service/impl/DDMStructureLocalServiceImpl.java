@@ -374,13 +374,11 @@ public class DDMStructureLocalServiceImpl
 			Map<Locale, String> descriptionMap, ServiceContext serviceContext)
 		throws PortalException {
 
-		DDMStructure structure = ddmStructurePersistence.findByPrimaryKey(
-			structureId);
-
 		// Structure
 
 		User user = userLocalService.getUser(userId);
-
+		DDMStructure structure = ddmStructurePersistence.findByPrimaryKey(
+			structureId);
 		String structureKey = String.valueOf(counterLocalService.increment());
 
 		validate(

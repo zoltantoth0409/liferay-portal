@@ -1660,6 +1660,9 @@ public class DDMTemplateLocalServiceImpl
 			throw new TemplateCreationDisabledException();
 		}
 
+		User user = userLocalService.getUser(userId);
+		String templateKey = String.valueOf(counterLocalService.increment());
+
 		boolean smallImage = template.isSmallImage();
 
 		File smallImageFile = getSmallImageFile(template);
@@ -1683,15 +1686,11 @@ public class DDMTemplateLocalServiceImpl
 			}
 		}
 
-		String templateKey = String.valueOf(counterLocalService.increment());
-
 		validate(
 			template.getGroupId(), template.getClassNameId(), templateKey,
 			LocaleUtil.getSiteDefault(), nameMap, template.getScript(),
 			smallImage, template.getSmallImageURL(), smallImageFile,
 			smallImageBytes);
-
-		User user = userLocalService.getUser(userId);
 
 		DDMTemplate newTemplate = addTemplate(
 			user, template.getGroupId(), template.getClassNameId(), classPK,
