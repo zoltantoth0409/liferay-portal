@@ -160,7 +160,7 @@ public class TCKJunitBatchTestClassGroup extends BatchTestClassGroup {
 		}
 
 		if ((tckHome == null) || tckHome.isEmpty()) {
-			throw new RuntimeException("Could not find the tck.home");
+			throw new RuntimeException("Unable find the TCK home");
 		}
 
 		return new File(tckHome);
