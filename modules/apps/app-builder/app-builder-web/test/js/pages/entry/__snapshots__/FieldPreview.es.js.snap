@@ -46,7 +46,7 @@ exports[`EditEntry renders FieldPreview for DocumentLibrary 1`] = `
       School Register
     </label>
     <div
-      class="data-record-document-field btn-group"
+      class="data-record-document-field mb-2 btn-group"
       role="group"
     >
       <button
