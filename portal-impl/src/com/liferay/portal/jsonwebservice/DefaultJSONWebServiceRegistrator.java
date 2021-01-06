@@ -187,7 +187,7 @@ public class DefaultJSONWebServiceRegistrator
 						"Unable to handle proxy of type " + invocationHandler);
 				}
 
-				break;
+				return null;
 			}
 		}
 
