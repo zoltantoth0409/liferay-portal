@@ -103,13 +103,13 @@
 
 		<!-- Other fields -->
 
-		<column name="name" type="String"></column>
-		<column name="nickname" type="String"></column>
+		<column name="name" type="String" />
+		<column name="nickname" type="String" />
 
 		<!-- Finder methods -->
 
 		<finder name="Name_Nickname" return-type="Collection" where="nickname is not NULL">
-			<finder-column name="name"></finder-column>
+			<finder-column name="name" />
 		</finder>
 	</entity>
 	<entity local-service="true" name="LazyBlobEntry" remote-service="true" uuid="true">
