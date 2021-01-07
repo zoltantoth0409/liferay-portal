@@ -14,8 +14,6 @@
 
 package com.liferay.fragment.entry.processor.editable.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.fragment.constants.FragmentConstants;
@@ -80,6 +78,8 @@ import javax.portlet.Portlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.hamcrest.CoreMatchers;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -350,7 +350,7 @@ public class FragmentEntryProcessorEditableTest {
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink,
 				_getFragmentEntryProcessorContext(LocaleUtil.US)),
-			containsString("en_US-alt"));
+			CoreMatchers.containsString("en_US-alt"));
 
 		Locale currentLocale = LocaleThreadLocal.getThemeDisplayLocale();
 
@@ -362,7 +362,7 @@ public class FragmentEntryProcessorEditableTest {
 				fragmentEntryLink,
 				_getFragmentEntryProcessorContext(
 					LocaleUtil.fromLanguageId("es_ES"))),
-			containsString("es_ES-alt"));
+			CoreMatchers.containsString("es_ES-alt"));
 
 		LocaleThreadLocal.setThemeDisplayLocale(currentLocale);
 	}
