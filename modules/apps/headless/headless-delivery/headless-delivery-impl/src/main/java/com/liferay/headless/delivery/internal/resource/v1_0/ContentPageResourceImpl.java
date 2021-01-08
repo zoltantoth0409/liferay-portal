@@ -160,47 +160,6 @@ public class ContentPageResourceImpl extends BaseContentPageResourceImpl {
 		);
 	}
 
-	private String _toHTML(
-			String friendlyUrlPath, boolean privateLayout, Long groupId)
-		throws Exception {
-
-		Layout layout = _getLayout(groupId, privateLayout, friendlyUrlPath);
-
-		contextHttpServletRequest = DynamicServletRequest.addQueryString(
-			contextHttpServletRequest, "p_l_id=" + layout.getPlid(), false);
-
-		contextHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, _getThemeDisplay(layout));
-
-		layout.includeLayoutContent(
-			contextHttpServletRequest, contextHttpServletResponse);
-
-		StringBundler sb =
-			(StringBundler)contextHttpServletRequest.getAttribute(
-				WebKeys.LAYOUT_CONTENT);
-
-		LayoutSet layoutSet = layout.getLayoutSet();
-
-		ServletContext servletContext = ServletContextPool.get(
-			StringPool.BLANK);
-
-		if (contextHttpServletRequest.getAttribute(WebKeys.CTX) == null) {
-			contextHttpServletRequest.setAttribute(WebKeys.CTX, servletContext);
-		}
-
-		Document document = Jsoup.parse(
-			ThemeUtil.include(
-				servletContext, contextHttpServletRequest,
-				contextHttpServletResponse, "portal_normal.ftl",
-				layoutSet.getTheme(), false));
-
-		Element bodyElement = document.body();
-
-		bodyElement.html(sb.toString());
-
-		return document.html();
-	}
-
 	private ThemeDisplay _getThemeDisplay(Layout layout) throws Exception {
 		ServicePreAction servicePreAction = new ServicePreAction();
 
@@ -244,6 +203,47 @@ public class ContentPageResourceImpl extends BaseContentPageResourceImpl {
 				layout.getPlid(), contextAcceptLanguage.getPreferredLocale(),
 				contextUriInfo, contextUser),
 			layout);
+	}
+
+	private String _toHTML(
+			String friendlyUrlPath, boolean privateLayout, Long groupId)
+		throws Exception {
+
+		Layout layout = _getLayout(groupId, privateLayout, friendlyUrlPath);
+
+		contextHttpServletRequest = DynamicServletRequest.addQueryString(
+			contextHttpServletRequest, "p_l_id=" + layout.getPlid(), false);
+
+		contextHttpServletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay(layout));
+
+		layout.includeLayoutContent(
+			contextHttpServletRequest, contextHttpServletResponse);
+
+		StringBundler sb =
+			(StringBundler)contextHttpServletRequest.getAttribute(
+				WebKeys.LAYOUT_CONTENT);
+
+		LayoutSet layoutSet = layout.getLayoutSet();
+
+		ServletContext servletContext = ServletContextPool.get(
+			StringPool.BLANK);
+
+		if (contextHttpServletRequest.getAttribute(WebKeys.CTX) == null) {
+			contextHttpServletRequest.setAttribute(WebKeys.CTX, servletContext);
+		}
+
+		Document document = Jsoup.parse(
+			ThemeUtil.include(
+				servletContext, contextHttpServletRequest,
+				contextHttpServletResponse, "portal_normal.ftl",
+				layoutSet.getTheme(), false));
+
+		Element bodyElement = document.body();
+
+		bodyElement.html(sb.toString());
+
+		return document.html();
 	}
 
 	@Reference
