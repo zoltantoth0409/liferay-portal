@@ -902,7 +902,7 @@ public class JenkinsResultsParserUtil {
 					new StringReader(
 						toString(
 							getLocalURL(url), false, 0, null, null, 0,
-							_MILLIS_TIMEOUT_DEFAULT, null)));
+							_MILLIS_TIMEOUT_DEFAULT, null, true)));
 			}
 
 			_buildProperties.clear();
@@ -3010,7 +3010,7 @@ public class JenkinsResultsParserUtil {
 
 		String response = toString(
 			url, checkCache, maxRetries, null, postContent, retryPeriod,
-			timeout, httpAuthorization);
+			timeout, httpAuthorization, true);
 
 		if ((response == null) ||
 			response.endsWith("was truncated due to its size.")) {
@@ -3078,8 +3078,8 @@ public class JenkinsResultsParserUtil {
 		throws IOException {
 
 		String response = toString(
-			url, checkCache, maxRetries, null, postContent, retryPeriod,
-			timeout, httpAuthorization);
+			url, checkCache, maxRetries, method, postContent, retryPeriod,
+			timeout, httpAuthorization, true);
 
 		if ((response == null) ||
 			response.endsWith("was truncated due to its size.")) {
@@ -3158,7 +3158,8 @@ public class JenkinsResultsParserUtil {
 	public static String toString(String url) throws IOException {
 		return toString(
 			url, true, _RETRIES_SIZE_MAX_DEFAULT, null, null,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(String url, boolean checkCache)
@@ -3166,7 +3167,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, _RETRIES_SIZE_MAX_DEFAULT, null, null,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(
@@ -3175,7 +3177,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, _RETRIES_SIZE_MAX_DEFAULT, method, null,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(
@@ -3185,7 +3188,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, _RETRIES_SIZE_MAX_DEFAULT, method, postContent,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(String url, boolean checkCache, int timeout)
@@ -3193,13 +3197,14 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, _RETRIES_SIZE_MAX_DEFAULT, null, null,
-			_SECONDS_RETRY_PERIOD_DEFAULT, timeout, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, timeout, null, false);
 	}
 
 	public static String toString(
 			String url, boolean checkCache, int maxRetries,
 			HttpRequestMethod method, String postContent, int retryPeriod,
-			int timeout, HTTPAuthorization httpAuthorizationHeader)
+			int timeout, HTTPAuthorization httpAuthorizationHeader,
+			boolean expectResponse)
 		throws IOException {
 
 		for (int i = 0; i < 2; i++) {
@@ -3220,7 +3225,7 @@ public class JenkinsResultsParserUtil {
 
 				int bytes = sb.length();
 
-				if ((bytes == 0) && (i < 1)) {
+				if (expectResponse && (bytes == 0) && (i < 1)) {
 					continue;
 				}
 
@@ -3250,7 +3255,7 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, maxRetries, null, null, retryPeriodSeconds,
-			timeout, null);
+			timeout, null, false);
 	}
 
 	public static String toString(
@@ -3260,7 +3265,7 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, checkCache, maxRetries, null, postContent, retryPeriod,
-			timeout, null);
+			timeout, null, false);
 	}
 
 	public static String toString(String url, HttpRequestMethod method)
@@ -3268,7 +3273,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, true, _RETRIES_SIZE_MAX_DEFAULT, method, null,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(
@@ -3277,7 +3283,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, false, _RETRIES_SIZE_MAX_DEFAULT, method, postContent,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(String url, String postContent)
@@ -3285,7 +3292,8 @@ public class JenkinsResultsParserUtil {
 
 		return toString(
 			url, false, _RETRIES_SIZE_MAX_DEFAULT, null, postContent,
-			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null);
+			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT, null,
+			false);
 	}
 
 	public static String toString(
@@ -3295,7 +3303,7 @@ public class JenkinsResultsParserUtil {
 		return toString(
 			url, false, _RETRIES_SIZE_MAX_DEFAULT, null, postContent,
 			_SECONDS_RETRY_PERIOD_DEFAULT, _MILLIS_TIMEOUT_DEFAULT,
-			httpAuthorization);
+			httpAuthorization, false);
 	}
 
 	public static void updateBuildDescription(
