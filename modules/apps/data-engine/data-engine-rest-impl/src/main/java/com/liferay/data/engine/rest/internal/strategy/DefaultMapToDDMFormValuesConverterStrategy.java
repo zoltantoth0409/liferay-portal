@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -142,14 +143,13 @@ public class DefaultMapToDDMFormValuesConverterStrategy
 				Map<String, Object> localizedValues =
 					(Map<String, Object>)value;
 
-				Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
-
 				list = (List<Object>)localizedValues.get(
 					LanguageUtil.getLanguageId(
 						(Locale)GetterUtil.getObject(
-							locale, siteDefaultLocale)));
+							locale, LocaleUtil.getSiteDefault())));
 
-				if (!siteDefaultLocale.equals(defaultLocale) &&
+				if (!Objects.equals(
+						LocaleUtil.getSiteDefault(), defaultLocale) &&
 					ListUtil.isEmpty(list)) {
 
 					list = (List<Object>)localizedValues.get(
