@@ -252,7 +252,7 @@ public class SpiraResultImporter {
 			BuildDatabaseUtil.getBuildDatabase(_topLevelBuild);
 		}
 		catch (Exception exception) {
-			System.out.println("Could not find the build-database.json");
+			System.out.println("Unable to find build-database.json");
 		}
 
 		long end = System.currentTimeMillis();
