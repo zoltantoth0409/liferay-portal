@@ -85,7 +85,7 @@ public class ContentPageResourceImpl extends BaseContentPageResourceImpl {
 			Long siteId, String friendlyUrlPath)
 		throws Exception {
 
-		return _getRenderedLayout(friendlyUrlPath, true, siteId);
+		return _toHTML(friendlyUrlPath, true, siteId);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class ContentPageResourceImpl extends BaseContentPageResourceImpl {
 			Long siteId, String friendlyUrlPath)
 		throws Exception {
 
-		return _getRenderedLayout(friendlyUrlPath, false, siteId);
+		return _toHTML(friendlyUrlPath, false, siteId);
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class ContentPageResourceImpl extends BaseContentPageResourceImpl {
 		);
 	}
 
-	private String _getRenderedLayout(
+	private String _toHTML(
 			String friendlyUrlPath, boolean privateLayout, Long groupId)
 		throws Exception {
 
