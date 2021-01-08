@@ -1537,7 +1537,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public void remove(Build build) {
+	public void removeDownstreamBuild(Build build) {
 		downstreamBuilds.remove(build);
 	}
 
