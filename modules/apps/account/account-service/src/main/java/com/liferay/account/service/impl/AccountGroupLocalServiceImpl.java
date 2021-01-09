@@ -160,11 +160,11 @@ public class AccountGroupLocalServiceImpl
 
 			disjunction.add(
 				RestrictionsFactoryUtil.ilike(
-					"name", StringUtil.quote(keywords, StringPool.PERCENT)));
-			disjunction.add(
-				RestrictionsFactoryUtil.ilike(
 					"description",
 					StringUtil.quote(keywords, StringPool.PERCENT)));
+			disjunction.add(
+				RestrictionsFactoryUtil.ilike(
+					"name", StringUtil.quote(keywords, StringPool.PERCENT)));
 
 			dynamicQuery.add(disjunction);
 		}
