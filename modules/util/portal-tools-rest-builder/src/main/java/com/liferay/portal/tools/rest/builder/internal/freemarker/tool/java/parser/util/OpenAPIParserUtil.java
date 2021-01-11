@@ -157,6 +157,7 @@ public class OpenAPIParserUtil {
 			return Collections.emptyList();
 		}
 
+		Set<String> externalReferences = new HashSet<>();
 		Map<String, Schema> schemas = Optional.ofNullable(
 			openAPIYAML.getComponents()
 		).map(
@@ -164,8 +165,6 @@ public class OpenAPIParserUtil {
 		).orElse(
 			new HashMap<>()
 		);
-
-		Set<String> externalReferences = new HashSet<>();
 
 		for (Map.Entry<String, PathItem> entry1 : pathItems.entrySet()) {
 			List<Operation> operations = getOperations(entry1.getValue());
