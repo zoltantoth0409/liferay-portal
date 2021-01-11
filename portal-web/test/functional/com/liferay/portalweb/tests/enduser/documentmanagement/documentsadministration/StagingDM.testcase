@@ -387,6 +387,10 @@ definition {
 			dmDocumentFile = "Document_1.doc",
 			dmDocumentTitle = "DM Document Title");
 
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging DM Page",
+			siteName = "Site Name");
+
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		AssertClick(
