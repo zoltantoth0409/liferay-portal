@@ -116,6 +116,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 		<#if propertySchema.maximum??>
 			@DecimalMax("${propertySchema.maximum}")
 		</#if>
+
 		<#if propertySchema.minimum??>
 			@DecimalMin("${propertySchema.minimum}")
 		</#if>
@@ -124,14 +125,16 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 			<#if propertySchema.deprecated>
 				deprecated = ${propertySchema.deprecated?c}
 			</#if>
+
 			<#if propertySchema.description??>
 				<#if propertySchema.deprecated>
 					,
 				</#if>
 				description = "${propertySchema.description}"
 			</#if>
+
 			<#if propertySchema.example??>
-				<#if propertySchema.description?? || propertySchema.deprecated>
+				<#if propertySchema.deprecated || propertySchema.description??>
 					,
 				</#if>
 
