@@ -182,6 +182,8 @@ definition {
 	@description = "This ensures that an asset library with translation can be assigned to a user from the user profile."
 	@priority = "3"
 	test AssignALWithTranslationForUser {
+		property test.name.skip.portal.instance = "DepotMemberships#AssignALWithTranslationForUser";
+
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
