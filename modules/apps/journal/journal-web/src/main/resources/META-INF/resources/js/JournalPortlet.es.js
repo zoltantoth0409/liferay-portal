@@ -332,6 +332,7 @@ class JournalPortlet extends PortletBase {
 	 */
 	_showAlert(message) {
 		const alertContainer = document.createElement('div');
+
 		alertContainer.classList.add(ALERT_CONTAINER_CLASS);
 
 		const content = document.querySelector('.article-content-content');
