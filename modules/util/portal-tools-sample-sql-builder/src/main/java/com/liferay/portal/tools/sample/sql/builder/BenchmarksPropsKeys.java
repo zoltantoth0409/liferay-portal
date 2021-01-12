@@ -102,7 +102,7 @@ public interface BenchmarksPropsKeys {
 		"sample.sql.max.mb.thread.count";
 
 	public static final String MAX_SEGMENTS_ENTRIES_COUNT =
-		"sample.sql.max.segments.entries.count";
+		"sample.sql.max.segments.entry.count";
 
 	public static final String MAX_USER_COUNT = "sample.sql.max.user.count";
 
