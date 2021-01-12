@@ -40,7 +40,7 @@ export default (state, action) => {
 								if (localizedValue[editingLanguageId] != null) {
 									if (
 										!localizedValue[editingLanguageId]
-											.length &&
+											?.length &&
 										!localizedValueEdited?.[
 											editingLanguageId
 										]
