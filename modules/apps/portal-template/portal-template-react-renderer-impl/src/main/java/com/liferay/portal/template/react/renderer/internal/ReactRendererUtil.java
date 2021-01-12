@@ -132,7 +132,6 @@ public class ReactRendererUtil {
 		javascriptSB.append("Symbol.for('__LIFERAY_WEBPACK_GET_MODULE__')]('");
 		javascriptSB.append("portal-template-react-renderer-impl");
 		javascriptSB.append("').then(({render}) => {");
-
 		javascriptSB.append("render(renderFunction");
 		javascriptSB.append(placeholderId);
 		javascriptSB.append(".default, ");
