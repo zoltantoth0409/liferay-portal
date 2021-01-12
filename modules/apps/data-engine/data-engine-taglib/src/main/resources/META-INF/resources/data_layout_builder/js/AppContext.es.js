@@ -195,7 +195,7 @@ const setDataDefinitionFields = (
 	const visitor = new PagesVisitor(pages);
 
 	const newFields = [];
-	
+
 	visitor.mapFields((field) => {
 		const definitionField = dataLayoutBuilder.getDataDefinitionField(field);
 
