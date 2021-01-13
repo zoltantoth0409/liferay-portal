@@ -148,7 +148,7 @@ export default withRouter(
 						<div className="d-flex justify-content-center">
 							<h2 className="c-my-5 font-weight-light h3 text-secondary">
 								{Liferay.Language.get(
-									'no-related-questions-found'
+									'no-related-questions-were-found'
 								)}
 							</h2>
 						</div>
