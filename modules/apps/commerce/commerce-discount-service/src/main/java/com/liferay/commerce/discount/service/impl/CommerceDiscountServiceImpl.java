@@ -618,7 +618,8 @@ public class CommerceDiscountServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find discount with ID: " +
-							commerceDiscountId);
+							commerceDiscountId,
+						noSuchDiscountException);
 				}
 			}
 		}

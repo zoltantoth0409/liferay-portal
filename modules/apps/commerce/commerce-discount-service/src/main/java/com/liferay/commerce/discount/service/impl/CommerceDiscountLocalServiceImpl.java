@@ -1129,7 +1129,8 @@ public class CommerceDiscountLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find discount with ID: " +
-							commerceDiscountId);
+							commerceDiscountId,
+						noSuchDiscountException);
 				}
 			}
 		}
@@ -1202,7 +1203,8 @@ public class CommerceDiscountLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find discount with ID: " +
-							commerceDiscountId);
+							commerceDiscountId,
+						noSuchDiscountException);
 				}
 			}
 		}
