@@ -271,7 +271,7 @@ public interface ${schemaName}Resource {
 				httpInvoker.path(_builder._scheme + "://" + _builder._host + ":" + _builder._port + "/o${configYAML.application.baseURI}/${openAPIYAML.info.version}${javaMethodSignature.path}");
 
 				<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-					httpInvoker.pathParameter("${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName});
+					httpInvoker.path("${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName});
 				</#list>
 
 				httpInvoker.userNameAndPassword(_builder._login + ":" + _builder._password);

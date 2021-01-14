@@ -122,7 +122,7 @@ public class HttpInvoker {
 		return this;
 	}
 
-	public HttpInvoker pathParameter(String name, Object value) {
+	public HttpInvoker path(String name, Object value) {
 		_path = _path.replaceFirst("\\{" + name + "\\}", String.valueOf(value));
 
 		return this;
