@@ -315,15 +315,15 @@ public class ContentFieldUtil {
 						 ddmFormField.getType(),
 						 DDMFormFieldType.CHECKBOX_MULTIPLE)) {
 
-				List<String> options = JSONUtil.toStringList(
+				List<String> list = JSONUtil.toStringList(
 					JSONFactoryUtil.createJSONArray(valueString));
 
 				DDMFormFieldOptions ddmFormFieldOptions =
 					ddmFormField.getDDMFormFieldOptions();
 
-				Stream<String> optionsStream = options.stream();
+				Stream<String> stream = list.stream();
 
-				List<String> values = optionsStream.map(
+				List<String> values = stream.map(
 					ddmFormFieldOptions::getOptionLabels
 				).map(
 					localizedValue -> localizedValue.getString(locale)
@@ -331,7 +331,7 @@ public class ContentFieldUtil {
 					Collectors.toList()
 				);
 
-				String selectValue;
+				String selectValue = null;
 
 				if (!ddmFormField.isMultiple() && (values.size() == 1)) {
 					selectValue = values.get(0);

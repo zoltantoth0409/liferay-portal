@@ -490,13 +490,12 @@ public class DDMValueUtil {
 				Map<String, LocalizedValue> options =
 					ddmFormFieldOptions.getOptions();
 
-				Set<Map.Entry<String, LocalizedValue>> entrySet =
-					options.entrySet();
+				Set<Map.Entry<String, LocalizedValue>> set = options.entrySet();
 
-				Stream<Map.Entry<String, LocalizedValue>> entryStream =
-					entrySet.stream();
+				Stream<Map.Entry<String, LocalizedValue>> setStream =
+					set.stream();
 
-				return entryStream.filter(
+				return setStream.filter(
 					entry -> {
 						LocalizedValue localizedValue = entry.getValue();
 
