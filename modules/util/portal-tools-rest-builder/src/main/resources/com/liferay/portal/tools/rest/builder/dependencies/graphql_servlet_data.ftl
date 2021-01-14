@@ -46,6 +46,13 @@ public class ServletDataImpl implements ServletData {
 		</#list>
 	}
 
+	<#if configYAML.graphQLNamespace??>
+		@Override
+		public String getGraphQLNamespace() {
+			return "${configYAML.graphQLNamespace}";
+		}
+	</#if>
+
 	@Override
 	public Mutation getMutation() {
 		return new Mutation();
@@ -60,13 +67,6 @@ public class ServletDataImpl implements ServletData {
 	public Query getQuery() {
 		return new Query();
 	}
-
-	<#if configYAML.graphQLNamespace??>
-		@Override
-		public String getGraphQLNamespace() {
-			return "${configYAML.graphQLNamespace}";
-		}
-	</#if>
 
 	<#assign schemaNames = mutationSchemaNames />
 
