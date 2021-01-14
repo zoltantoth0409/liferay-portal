@@ -331,19 +331,19 @@ public class ContentFieldUtil {
 					Collectors.toList()
 				);
 
-				String selectValue = null;
-
-				if (!ddmFormField.isMultiple() && (values.size() == 1)) {
-					selectValue = values.get(0);
-				}
-				else {
-					selectValue = String.valueOf(
-						JSONFactoryUtil.createJSONArray(values));
-				}
-
 				return new ContentFieldValue() {
 					{
-						data = selectValue;
+						setData(
+							() -> {
+								if (!ddmFormField.isMultiple() &&
+									(values.size() == 1)) {
+
+									return values.get(0);
+								}
+
+								return String.valueOf(
+									JSONFactoryUtil.createJSONArray(values));
+							});
 					}
 				};
 			}
