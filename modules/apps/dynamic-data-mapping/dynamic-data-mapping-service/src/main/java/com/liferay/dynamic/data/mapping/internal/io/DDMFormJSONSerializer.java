@@ -53,20 +53,6 @@ public class DDMFormJSONSerializer implements DDMFormSerializer {
 
 		DDMForm ddmForm = ddmFormSerializerSerializeRequest.getDDMForm();
 
-		JSONObject jsonObject = _jsonFactory.createJSONObject();
-
-		addAvailableLanguageIds(jsonObject, ddmForm.getAvailableLocales());
-		addDefaultLanguageId(jsonObject, ddmForm.getDefaultLocale());
-		addRules(jsonObject, ddmForm.getDDMFormRules());
-		addSuccessPageSettings(
-			jsonObject, ddmForm.getDDMFormSuccessPageSettings());
-
-		if (Validator.isNotNull(ddmForm.getDefinitionSchemaVersion())) {
-			jsonObject.put(
-				"definitionSchemaVersion",
-				ddmForm.getDefinitionSchemaVersion());
-		}
-
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
@@ -87,6 +73,20 @@ public class DDMFormJSONSerializer implements DDMFormSerializer {
 						ddmForm.getAvailableLocales());
 				}
 			}
+		}
+
+		JSONObject jsonObject = _jsonFactory.createJSONObject();
+
+		addAvailableLanguageIds(jsonObject, ddmForm.getAvailableLocales());
+		addDefaultLanguageId(jsonObject, ddmForm.getDefaultLocale());
+		addRules(jsonObject, ddmForm.getDDMFormRules());
+		addSuccessPageSettings(
+			jsonObject, ddmForm.getDDMFormSuccessPageSettings());
+
+		if (Validator.isNotNull(ddmForm.getDefinitionSchemaVersion())) {
+			jsonObject.put(
+				"definitionSchemaVersion",
+				ddmForm.getDefinitionSchemaVersion());
 		}
 
 		DDMFormFieldSerializerUtil.serialize(
