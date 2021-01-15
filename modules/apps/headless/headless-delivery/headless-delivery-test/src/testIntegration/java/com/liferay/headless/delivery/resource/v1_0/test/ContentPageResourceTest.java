@@ -152,9 +152,6 @@ public class ContentPageResourceTest extends BaseContentPageResourceTestCase {
 
 				ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
-				String contentPageDefinitionJSON = _read(
-					"test-content-page-definition.json");
-
 				LayoutPageTemplateStructure layoutPageTemplateStructure =
 					_layoutPageTemplateStructureLocalService.
 						fetchLayoutPageTemplateStructure(
@@ -167,7 +164,7 @@ public class ContentPageResourceTest extends BaseContentPageResourceTestCase {
 
 				_layoutPageTemplatesImporter.importPageElement(
 					layout, layoutStructure, layoutStructure.getMainItemId(),
-					contentPageDefinitionJSON, 0);
+					_read("test-content-page-definition.json"), 0);
 			}
 			finally {
 				PrincipalThreadLocal.setName(name);
