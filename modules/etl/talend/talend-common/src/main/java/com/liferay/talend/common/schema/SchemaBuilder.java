@@ -161,7 +161,7 @@ public class SchemaBuilder {
 	private Schema _getSchema(String schemaName, JsonObject oasJsonObject) {
 		if (StringUtil.isEmpty(schemaName)) {
 			throw TalendRuntimeException.createUnexpectedException(
-				"Unable to determine the Schema for the selected endpoint");
+				"Unable to determine the schema for the selected endpoint");
 		}
 
 		if (_logger.isDebugEnabled()) {
