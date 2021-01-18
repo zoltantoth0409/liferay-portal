@@ -468,7 +468,7 @@ public class PoshiContext {
 	public static void readFiles(String[] includes, String... baseDirNames)
 		throws Exception {
 
-		System.out.println("Start reading poshi files.");
+		System.out.println("Start reading Poshi files.");
 
 		long start = System.currentTimeMillis();
 
@@ -519,7 +519,7 @@ public class PoshiContext {
 		long duration = System.currentTimeMillis() - start;
 
 		System.out.println(
-			"Completed reading poshi files in " + duration + "ms.");
+			"Completed reading Poshi files in " + duration + "ms.");
 	}
 
 	public static void setTestCaseNamespacedClassCommandName(
