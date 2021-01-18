@@ -161,8 +161,10 @@ public class MultiselectDisplayContext {
 			selectedMultiselectItemsWithCustomProperties;
 	}
 
-	public void setSourceMultiselectItems(List<MultiselectItem> sourceItems) {
-		_sourceMultiselectItems = sourceItems;
+	public void setSourceMultiselectItems(
+		List<MultiselectItem> sourceMultiselectItems) {
+
+		_sourceMultiselectItems = sourceMultiselectItems;
 	}
 
 	public void setSourceMultiselectItemsWithCustomProperties(
