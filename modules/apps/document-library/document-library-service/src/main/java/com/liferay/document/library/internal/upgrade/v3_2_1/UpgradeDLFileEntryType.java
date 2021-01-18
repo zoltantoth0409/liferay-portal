@@ -88,11 +88,9 @@ public class UpgradeDLFileEntryType
 			ps2.executeBatch();
 		}
 
-		String template = StringUtil.read(
-			UpgradeDLFileEntryType.class.getResourceAsStream(
-				"dependencies/update.sql"));
-
-		runSQLTemplateString(template, false);
+		runSQL(
+			"create unique index IX_B6F21286 on DLFileEntryType (groupId, " +
+				"dataDefinitionId, ctCollectionId);");
 	}
 
 	private long _addDDMStructure(
