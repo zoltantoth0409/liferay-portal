@@ -105,18 +105,18 @@ public class ViewDisplayContext {
 				_themeDisplay.getPermissionChecker(), translationEntry,
 				ActionKeys.DELETE),
 			dropdownItem -> {
+				dropdownItem.putData("action", "delete");
+
 				ActionURL deleteTranslationEntryURL =
 					_liferayPortletResponse.createActionURL();
 
 				deleteTranslationEntryURL.setParameter(
 					ActionRequest.ACTION_NAME,
 					"/translation/delete_translation_entry");
-
 				deleteTranslationEntryURL.setParameter(
 					"translationEntryId",
 					String.valueOf(translationEntry.getTranslationEntryId()));
 
-				dropdownItem.putData("action", "delete");
 				dropdownItem.putData(
 					"deleteURL", deleteTranslationEntryURL.toString());
 
