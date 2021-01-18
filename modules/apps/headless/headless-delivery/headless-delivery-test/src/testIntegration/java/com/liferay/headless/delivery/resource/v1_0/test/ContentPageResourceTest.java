@@ -64,11 +64,10 @@ public class ContentPageResourceTest extends BaseContentPageResourceTestCase {
 
 		Layout layout = _addLayout(testGroup.getGroupId(), true);
 
+		String friendlyURL = layout.getFriendlyURL();
 		SegmentsExperience segmentsExperience = _addSegmentsExperience(
 			layout,
 			ServiceContextTestUtil.getServiceContext(testGroup.getGroupId()));
-
-		String friendlyURL = layout.getFriendlyURL();
 
 		String siteContentPageExperienceExperienceKeyRenderedPage =
 			contentPageResource.
