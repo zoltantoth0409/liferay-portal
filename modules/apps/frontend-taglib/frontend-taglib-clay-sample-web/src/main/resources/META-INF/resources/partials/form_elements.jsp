@@ -144,7 +144,7 @@ for (int i = 0; i < 8; i++) {
 <h3>MULTISELECT</h3>
 
 <clay:multiselect
-	helpText="Some text to help you"
+	helpText="Help text is displayed here."
 	id="multiselect-1"
 	inputName="multiSelectInput1"
 	label="Multiselect 1"
@@ -154,10 +154,10 @@ for (int i = 0; i < 8; i++) {
 />
 
 <clay:multiselect
-	helpText="Help text displayed here"
+	helpText="Help text is displayed here."
 	id="multiselect-2"
 	inputName="multiSelectInput2"
-	label="Multiselect with custom menu renderer"
+	label="Multiselect with Custom Menu Renderer"
 	propsTransformer="js/ClaySampleMultiselectPropsTransformer"
 	selectedMultiselectItems="<%= multiselectDisplayContext.getSelectedMultiselectItems() %>"
 	sourceMultiselectItems="<%= multiselectDisplayContext.getSourceMultiselectItems() %>"
