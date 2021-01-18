@@ -36,9 +36,9 @@ public class UpgradeRegion extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		runSQLTemplate("update-7.3.0-7.4.0-region.sql", false);
 
-		String defaultLanguageId = LocaleUtil.toLanguageId(LocaleUtil.US);
 		long companyId = 0;
 		long userId = 0;
+		String languageId = LocaleUtil.toLanguageId(LocaleUtil.US);
 
 		String sql = StringBundler.concat(
 			"select User_.companyId, User_.userId, User_.languageId from ",
@@ -51,15 +51,15 @@ public class UpgradeRegion extends UpgradeProcess {
 			ResultSet rs = ps.executeQuery()) {
 
 			if (rs.next()) {
-				defaultLanguageId = rs.getString(3);
 				companyId = rs.getLong(1);
 				userId = rs.getLong(2);
+				languageId = rs.getString(3);
 			}
 		}
 
 		runSQL(
 			"update Region set defaultLanguageId = " +
-				StringUtil.quote(defaultLanguageId) +
+				StringUtil.quote(languageId) +
 					" where defaultLanguageId is null");
 
 		if (companyId > 0) {
