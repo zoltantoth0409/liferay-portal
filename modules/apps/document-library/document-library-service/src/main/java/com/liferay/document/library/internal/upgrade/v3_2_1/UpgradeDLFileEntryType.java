@@ -56,17 +56,16 @@ public class UpgradeDLFileEntryType
 			ResultSet rs = ps1.executeQuery()) {
 
 			while (rs.next()) {
-				long ddmStructureId = _insertDDMStructure(
+				long ddmStructureId = _addDDMStructure(
 					rs.getLong("groupId"), rs.getLong("companyId"),
 					rs.getLong("userId"), rs.getString("userName"),
 					rs.getString("name"));
-
-				long ddmStructureVersionId = _insertDDMStructureVersion(
+				long ddmStructureVersionId = _addDDMStructureVersion(
 					rs.getLong("userId"), rs.getString("userName"),
 					rs.getLong("companyId"), rs.getLong("groupId"),
 					ddmStructureId, rs.getString("name"));
 
-				_insertDDMStructureLayout(
+				_addDDMStructureLayout(
 					rs.getLong("userId"), rs.getString("userName"),
 					rs.getLong("groupId"), rs.getLong("companyId"),
 					ddmStructureId, rs.getString("name"),
@@ -81,7 +80,6 @@ public class UpgradeDLFileEntryType
 					ddmStructureId, false, false, false);
 
 				ps2.setLong(1, ddmStructureId);
-
 				ps2.setLong(2, rs.getLong("fileEntryTypeId"));
 
 				ps2.addBatch();
@@ -97,7 +95,7 @@ public class UpgradeDLFileEntryType
 		runSQLTemplateString(template, false);
 	}
 
-	private long _insertDDMStructure(
+	private long _addDDMStructure(
 			long groupId, long companyId, long userId, String userName,
 			String name)
 		throws Exception {
@@ -146,7 +144,7 @@ public class UpgradeDLFileEntryType
 		}
 	}
 
-	private void _insertDDMStructureLayout(
+	private void _addDDMStructureLayout(
 			long userId, String userName, long groupId, long companyId,
 			long ddmStructureId, String name, long ddmStructureVersionId)
 		throws Exception {
@@ -186,7 +184,7 @@ public class UpgradeDLFileEntryType
 		}
 	}
 
-	private long _insertDDMStructureVersion(
+	private long _addDDMStructureVersion(
 			long userId, String userName, long companyId, long groupId,
 			long ddmStructureId, String name)
 		throws Exception {
