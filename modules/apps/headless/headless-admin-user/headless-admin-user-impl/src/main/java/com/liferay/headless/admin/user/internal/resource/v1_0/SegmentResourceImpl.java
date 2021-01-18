@@ -128,7 +128,7 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 		return context;
 	}
 
-	private Segment _toSegment(SegmentsEntry segmentsEntry) throws Exception {
+	private Segment _toSegment(SegmentsEntry segmentsEntry) {
 		return _segmentDTOConverter.toDTO(segmentsEntry);
 	}
 

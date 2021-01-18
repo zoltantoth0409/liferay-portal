@@ -36,7 +36,7 @@ public class SegmentDTOConverter
 	}
 
 	@Override
-	public Segment toDTO(SegmentsEntry segmentsEntry) throws Exception {
+	public Segment toDTO(SegmentsEntry segmentsEntry) {
 		return new Segment() {
 			{
 				active = segmentsEntry.isActive();

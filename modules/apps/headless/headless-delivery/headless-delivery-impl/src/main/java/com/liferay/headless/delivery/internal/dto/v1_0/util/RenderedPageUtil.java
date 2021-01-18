@@ -111,14 +111,15 @@ public class RenderedPageUtil {
 			return null;
 		}
 
+		String methodName = "getSiteContentPageRenderedPage";
+
 		List<Object> arguments = new ArrayList<>();
 
-		String methodName = "getSiteContentPageRenderedPage";
+		arguments.add(layout.getGroupId());
 
 		String friendlyURL = layout.getFriendlyURL(
 			dtoConverterContext.getLocale());
 
-		arguments.add(layout.getGroupId());
 		arguments.add(friendlyURL.substring(1));
 
 		long segmentsExperienceId = GetterUtil.getLong(

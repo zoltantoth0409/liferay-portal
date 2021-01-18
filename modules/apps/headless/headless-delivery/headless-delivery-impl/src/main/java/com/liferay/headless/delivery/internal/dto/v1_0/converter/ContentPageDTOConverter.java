@@ -140,7 +140,6 @@ public class ContentPageDTOConverter
 						return _experienceDTOConverter.toDTO(
 							dtoConverterContext, segmentsExperience);
 					});
-
 				setPageDefinition(
 					() -> {
 						dtoConverterContext.setAttribute("layout", layout);
