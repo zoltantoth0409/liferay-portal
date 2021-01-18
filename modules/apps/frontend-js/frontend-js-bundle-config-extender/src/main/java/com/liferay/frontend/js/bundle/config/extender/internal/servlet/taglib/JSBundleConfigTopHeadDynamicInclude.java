@@ -62,10 +62,10 @@ public class JSBundleConfigTopHeadDynamicInclude extends BaseDynamicInclude {
 			return;
 		}
 
+		StringWriter stringWriter = new StringWriter();
+
 		Collection<JSBundleConfigTracker.JSConfig> jsConfigs =
 			_jsBundleConfigTracker.getJSConfigs();
-
-		StringWriter stringWriter = new StringWriter();
 
 		if (!jsConfigs.isEmpty()) {
 			stringWriter.write("<script data-senna-track=\"temporary\" ");

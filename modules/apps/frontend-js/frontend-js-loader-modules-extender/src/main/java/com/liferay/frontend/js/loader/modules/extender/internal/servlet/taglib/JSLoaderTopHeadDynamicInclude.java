@@ -62,54 +62,31 @@ public class JSLoaderTopHeadDynamicInclude extends BaseDynamicInclude {
 
 		printWriter.write("<script data-senna-track=\"temporary\" type=\"");
 		printWriter.write(ContentTypes.TEXT_JAVASCRIPT);
-		printWriter.write("\">window.__CONFIG__=");
-
-		printWriter.write("{");
-
-		printWriter.write("basePath:'',");
-
+		printWriter.write("\">window.__CONFIG__= {basePath: '',");
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		printWriter.write("combine:");
+		printWriter.write("combine: ");
 		printWriter.write(Boolean.toString(themeDisplay.isThemeJsFastLoad()));
-		printWriter.write(",");
-
-		printWriter.write("defaultURLParams:");
+		printWriter.write(", defaultURLParams: ");
 		printWriter.write(_getDefaultURLParams(themeDisplay));
-		printWriter.write(",");
-
-		printWriter.write("explainResolutions:");
+		printWriter.write(", explainResolutions: ");
 		printWriter.write(Boolean.toString(_details.explainResolutions()));
-		printWriter.write(",");
-
-		printWriter.write("exposeGlobal:");
+		printWriter.write(", exposeGlobal: ");
 		printWriter.write(Boolean.toString(_details.exposeGlobal()));
-		printWriter.write(",");
-
-		printWriter.write("logLevel:'");
+		printWriter.write(", logLevel: '");
 		printWriter.write(_details.logLevel());
-		printWriter.write("',");
-
-		printWriter.write("namespace:'Liferay',");
-
-		printWriter.write("reportMismatchedAnonymousModules:'warn',");
-
-		printWriter.write("resolvePath:'");
+		printWriter.write("', namespace:'Liferay', ");
+		printWriter.write(
+			"reportMismatchedAnonymousModules: 'warn', resolvePath: '");
 		printWriter.write(_getResolvePath(httpServletRequest));
-		printWriter.write("',");
-
-		printWriter.write("url:'");
+		printWriter.write("', url: '");
 		printWriter.write(_getURL(httpServletRequest, themeDisplay));
-		printWriter.write("',");
-
-		printWriter.write("waitTimeout:");
+		printWriter.write("', waitTimeout: ");
 		printWriter.write(String.valueOf(_details.waitTimeout() * 1000));
-
-		printWriter.write("};</script>");
-
-		printWriter.write("<script data-senna-track=\"permanent\" src=\"");
+		printWriter.write(
+			"};</script><script data-senna-track=\"permanent\" src=\"");
 		printWriter.write(_servletContext.getContextPath());
 		printWriter.write("/loader.js\" type=\"");
 		printWriter.write(ContentTypes.TEXT_JAVASCRIPT);
@@ -134,7 +111,7 @@ public class JSLoaderTopHeadDynamicInclude extends BaseDynamicInclude {
 			return "null";
 		}
 
-		return "{languageId:'" + themeDisplay.getLanguageId() + "'}";
+		return "{languageId: '" + themeDisplay.getLanguageId() + "'}";
 	}
 
 	private String _getResolvePath(HttpServletRequest httpServletRequest) {
