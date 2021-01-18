@@ -32,7 +32,7 @@ public class UpgradeAssetEntry extends UpgradeProcess {
 
 		for (String className : _CLASS_NAMES) {
 			long classNameId = _getClassNameId(
-				_CLASS_NAME_MBDISCUSSION + StringPool.UNDERLINE + className);
+				"com.liferay.message.boards.model.MBDiscussion_" + className);
 
 			if (classNameId != 0) {
 				sb.append(classNameId);
@@ -66,9 +66,6 @@ public class UpgradeAssetEntry extends UpgradeProcess {
 			}
 		}
 	}
-
-	private static final String _CLASS_NAME_MBDISCUSSION =
-		"com.liferay.message.boards.model.MBDiscussion";
 
 	private static final String[] _CLASS_NAMES = {
 		"com.liferay.blogs.model.BlogsEntry",
