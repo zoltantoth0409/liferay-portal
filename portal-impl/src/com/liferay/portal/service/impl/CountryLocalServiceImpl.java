@@ -116,7 +116,7 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 
 		addressLocalService.deleteCountryAddresses(country.getCountryId());
 
-		// Country Localizations
+		// Country localizations
 
 		countryLocalizationPersistence.removeByCountryId(
 			country.getCountryId());
