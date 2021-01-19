@@ -84,6 +84,9 @@ public class PortletPermissionsPortletConfigurationIcon
 			return sb.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
