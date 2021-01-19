@@ -150,10 +150,10 @@ public class CountryLocalServiceTest {
 
 	@Test
 	public void testSearchCountries() throws Exception {
-		String keywords = RandomTestUtil.randomString();
-
 		Country country = _addCountry(
 			"a1", "a11", true, RandomTestUtil.randomString());
+
+		String keywords = RandomTestUtil.randomString();
 
 		List<Country> expectedCountries = Arrays.asList(
 			_addCountry("a2", "a22", true, keywords),
@@ -170,7 +170,6 @@ public class CountryLocalServiceTest {
 
 		Assert.assertEquals(
 			expectedCountries.size(), baseModelSearchResult.getLength());
-
 		Assert.assertEquals(
 			expectedCountries, baseModelSearchResult.getBaseModels());
 
