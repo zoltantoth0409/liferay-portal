@@ -505,7 +505,4 @@ public class SegmentsExperienceUtil {
 		return layoutStructure.toJSONObject();
 	}
 
-	private SegmentsExperienceUtil() {
-	}
-
 }
