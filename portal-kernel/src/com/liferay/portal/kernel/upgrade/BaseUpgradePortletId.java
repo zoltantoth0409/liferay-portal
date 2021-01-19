@@ -259,7 +259,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					preferencesExpression, ", '#p_p_id_", oldRootPortletId,
 					"', '#p_p_id_", newRootPortletId, "') where portletId = '",
 					newRootPortletId, "'"));
-
 			runSQL(
 				StringBundler.concat(
 					"update PortletPreferences set preferences = replace(",
@@ -275,7 +274,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 						"_INSTANCE_', '#p_p_id_", newRootPortletId,
 						"_INSTANCE_') where portletId like '", newRootPortletId,
 						"_INSTANCE_%'"));
-
 				runSQL(
 					StringBundler.concat(
 						"update PortletPreferences set preferences = replace(",
@@ -292,7 +290,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					"_USER_', '#p_p_id_", newRootPortletId,
 					"_USER_') where portletId like '", newRootPortletId,
 					"_USER_%'"));
-
 			runSQL(
 				StringBundler.concat(
 					"update PortletPreferences set preferences = replace(",
