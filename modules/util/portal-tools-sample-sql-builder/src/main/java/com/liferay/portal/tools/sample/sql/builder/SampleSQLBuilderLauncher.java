@@ -51,7 +51,7 @@ public class SampleSQLBuilderLauncher {
 		File tempDir = FileUtil.createTempFolder();
 
 		ClassLoader classLoader = new URLClassLoader(
-			_getDependencies(contextClassLoader, tempDir.toPath()), null);
+			_getURLs(contextClassLoader, tempDir.toPath()), null);
 
 		currentThread.setContextClassLoader(classLoader);
 
@@ -66,8 +66,7 @@ public class SampleSQLBuilderLauncher {
 		}
 	}
 
-	private static URL[] _getDependencies(
-			ClassLoader classLoader, Path tempDirPath)
+	private static URL[] _getURLs(ClassLoader classLoader, Path tempDirPath)
 		throws Exception {
 
 		Set<URL> urls = SetUtil.fromArray(
