@@ -56,17 +56,17 @@ import java.util.Map;
 public class UpgradeDDMStructure extends UpgradeProcess {
 
 	public UpgradeDDMStructure(
+		DDMDataDefinitionConverter ddmDataDefinitionConverter,
 		DDMFormDeserializer ddmFormDeserializer,
 		DDMFormLayoutDeserializer ddmFormLayoutDeserializer,
 		DDMFormLayoutSerializer ddmFormLayoutSerializer,
-		DDMFormSerializer ddmFormSerializer,
-		DDMDataDefinitionConverter ddmDataDefinitionConverter) {
+		DDMFormSerializer ddmFormSerializer) {
 
+		_ddmDataDefinitionConverter = ddmDataDefinitionConverter;
 		_ddmFormDeserializer = ddmFormDeserializer;
 		_ddmFormLayoutDeserializer = ddmFormLayoutDeserializer;
 		_ddmFormLayoutSerializer = ddmFormLayoutSerializer;
 		_ddmFormSerializer = ddmFormSerializer;
-		_ddmDataDefinitionConverter = ddmDataDefinitionConverter;
 	}
 
 	@Override
