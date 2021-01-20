@@ -102,13 +102,14 @@ public class QAWebsitesGitRepositoryJob
 			buildProperties, "qa.websites.dir", getBranchName());
 
 		if (JenkinsResultsParserUtil.isNullOrEmpty(qaWebsitesDirPath)) {
-			throw new RuntimeException("Could not find QA Websites dir path");
+			throw new RuntimeException(
+				"Unable to find QA Websites directory path");
 		}
 
 		File qaWebsitesDir = new File(qaWebsitesDirPath);
 
 		if (!qaWebsitesDir.exists()) {
-			throw new RuntimeException("Could not find QA Websites dir");
+			throw new RuntimeException("Unable to find QA Websites directory");
 		}
 
 		return qaWebsitesDir;
