@@ -55,13 +55,12 @@ public class DMMDataDefinitionConverterTest {
 	@Test
 	public void testConvertAllFields() throws Exception {
 		String dataDefinition = _ddmDataDefinitionConverter.convert(
-			_getFileAsString(
-				"ddm-data-definition-json-converter-all-fields.json"),
+			_read("ddm-data-definition-json-converter-all-fields.json"),
 			LocaleUtil.US);
 
 		Assert.assertEquals(
 			_objectMapper.readTree(
-				_getFileAsString(
+				_read(
 					"ddm-data-definition-json-converter-all-fields-expected-" +
 						"result.json")),
 			_objectMapper.readTree(dataDefinition));
@@ -70,19 +69,18 @@ public class DMMDataDefinitionConverterTest {
 	@Test
 	public void testConvertCheckboxToCheckboxMultiple() throws Exception {
 		String dataDefinition = _ddmDataDefinitionConverter.convert(
-			_getFileAsString(
-				"ddm-data-definition-json-converter-checkbox.json"),
+			_read("ddm-data-definition-json-converter-checkbox.json"),
 			LocaleUtil.US);
 
 		Assert.assertEquals(
 			_objectMapper.readTree(
-				_getFileAsString(
+				_read(
 					"ddm-data-definition-json-converter-checkbox-expected-" +
 						"result.json")),
 			_objectMapper.readTree(dataDefinition));
 	}
 
-	private String _getFileAsString(String fileName) throws Exception {
+	private String _read(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		return StringUtil.read(
