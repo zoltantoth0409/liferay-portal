@@ -240,8 +240,8 @@ public class VerticalCardTag extends BaseCardTag {
 
 				return verticalCard.isStickerShown();
 			}
-			else if (Validator.isNotNull(getStickerImageSrc()) ||
-					 Validator.isNotNull(getStickerIcon())) {
+			else if (Validator.isNotNull(getStickerIcon()) ||
+					 Validator.isNotNull(getStickerImageSrc())) {
 
 				return true;
 			}
