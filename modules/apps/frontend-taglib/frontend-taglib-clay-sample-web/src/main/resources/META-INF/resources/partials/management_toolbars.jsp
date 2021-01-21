@@ -68,6 +68,6 @@ ClaySampleManagementToolbarsDisplayContext managementToolbarsDisplayContext = ne
 <h3>USING DISPLAY CONTEXT</h3>
 
 <clay:management-toolbar
-	managementToolbar="<%= managementToolbarsDisplayContext %>"
+	displayContext="<%= managementToolbarsDisplayContext %>"
 	propsTransformer="js/ClaySampleManagementToolbarPropsTransformer"
 />
