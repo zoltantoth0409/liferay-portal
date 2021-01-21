@@ -108,7 +108,6 @@ public class FragmentLayoutStructureItemImporter
 		if (definitionMap != null) {
 			Map<String, Object> fragmentConfigMap =
 				(Map<String, Object>)definitionMap.get("fragmentConfig");
-
 			Map<String, Object> fragmentStyleMap =
 				(Map<String, Object>)definitionMap.get("fragmentStyle");
 
