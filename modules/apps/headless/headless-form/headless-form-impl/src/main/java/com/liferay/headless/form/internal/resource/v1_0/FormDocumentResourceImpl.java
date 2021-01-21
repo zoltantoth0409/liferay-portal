@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.ServiceScope;
 /**
  * @author Javier Gamarra
  * @author Victor Oliveira
- *
  * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
  */
 @Component(
