@@ -144,13 +144,13 @@ definition {
 		// TODO LPS-98030 MapWebContentImageToContainer pending implementation
 	}
 
-	@description = "This is a test for LPS-98030. Can map the layout of a fragment to an existing image content in a content page template."
-	@ignore = "true"
-	@priority = "3"
-	test MapWebContentImageToBackgroundImageOfContainer {
-		property portal.upstream = "false";
+	// @description = "This is a test for LPS-98030. Can map the layout of a fragment to an existing image content in a content page template."
+	// @ignore = "true"
+	// @priority = "3"
+	// test MapWebContentImageToBackgroundImageOfContainer {
+	// 	property portal.upstream = "false";
 
-		// TODO LPS-98030 MapWebContentImageToContainer pending implementation
-	}
+	// 	// TODO LPS-98030 MapWebContentImageToContainer pending implementation
+	// }
 
 }
