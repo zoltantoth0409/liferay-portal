@@ -532,6 +532,8 @@ public class PoshiContext {
 
 		_initComponentCommandNamesMap();
 
+		_throwExceptions();
+
 		PoshiScriptParserException.throwExceptions();
 
 		long duration = System.currentTimeMillis() - start;
@@ -1367,6 +1369,31 @@ public class PoshiContext {
 			PropsValues.POSHI_FILE_READ_THREAD_POOL);
 	}
 
+	private static void _throwExceptions() throws Exception {
+		if (!_exceptions.isEmpty()) {
+			StringBuilder sb = new StringBuilder();
+
+			sb.append("\n\n");
+			sb.append(_exceptions.size());
+			sb.append(" errors in Poshi file reading\n\n");
+
+			for (Exception exception : _exceptions) {
+				sb.append(exception.getMessage());
+				sb.append("\n");
+
+				Throwable causeThrowable = exception.getCause();
+
+				sb.append(causeThrowable.getMessage());
+
+				sb.append("\n\n");
+			}
+
+			System.out.println(sb.toString());
+
+			throw new Exception();
+		}
+	}
+
 	private static void _writeTestCaseMethodNamesProperties() throws Exception {
 		StringBuilder sb = new StringBuilder();
 
@@ -1554,6 +1581,8 @@ public class PoshiContext {
 		Collections.synchronizedMap(new HashMap<>());
 	private static final Set<String> _duplicateLocatorMessages =
 		Collections.synchronizedSet(new HashSet<>());
+	private static final Set<Exception> _exceptions =
+		Collections.synchronizedSet(new HashSet<>());
 	private static final Map<String, String> _filePaths =
 		Collections.synchronizedMap(new HashMap<>());
 	private static final Set<String> _functionFileNames =
@@ -1642,10 +1671,10 @@ public class PoshiContext {
 				}
 			}
 			catch (Exception exception) {
-				System.out.println("Unable to read: " + filePath);
-
 				if (!(exception instanceof PoshiScriptParserException)) {
-					System.out.println(exception.getMessage());
+					_exceptions.add(
+						new Exception(
+							"Unable to read: " + filePath, exception));
 				}
 			}
 
