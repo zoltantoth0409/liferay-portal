@@ -59,7 +59,7 @@ public class SVG4EverybodyTopHeadDynamicInclude extends BaseDynamicInclude {
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to gather property from configuration",
+					"Unable to verify if CDN dynamic resources are enabled",
 					portalException);
 			}
 		}
@@ -73,9 +73,7 @@ public class SVG4EverybodyTopHeadDynamicInclude extends BaseDynamicInclude {
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to gather property from configuration",
-					portalException);
+				_log.warn("Unable to get CDN host", portalException);
 			}
 		}
 
