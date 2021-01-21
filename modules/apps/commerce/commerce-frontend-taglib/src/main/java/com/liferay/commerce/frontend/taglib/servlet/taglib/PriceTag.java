@@ -402,9 +402,9 @@ public class PriceTag extends IncludeTag {
 	}
 
 	protected void setProductInfo() throws Exception {
-		CommerceAccount commerceAccount = _commerceContext.getCommerceAccount();
-
 		long commerceAccountId = 0;
+
+		CommerceAccount commerceAccount = _commerceContext.getCommerceAccount();
 
 		if (commerceAccount != null) {
 			commerceAccountId = commerceAccount.getCommerceAccountId();
