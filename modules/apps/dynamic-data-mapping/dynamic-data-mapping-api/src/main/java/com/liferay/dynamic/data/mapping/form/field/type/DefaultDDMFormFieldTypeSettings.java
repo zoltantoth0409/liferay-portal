@@ -54,7 +54,8 @@ import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 							size = 12,
 							value = {
 								"dataType", "name", "showLabel", "repeatable",
-								"type", "validation", "visibilityExpression"
+								"type", "validation", "visibilityExpression",
+								"visualProperty"
 							}
 						)
 					}
@@ -143,5 +144,10 @@ public interface DefaultDDMFormFieldTypeSettings
 		visibilityExpression = "FALSE"
 	)
 	public String visibilityExpression();
+
+	@DDMFormField(visibilityExpression = "FALSE")
+	public default boolean visualProperty() {
+		return false;
+	}
 
 }
