@@ -756,6 +756,13 @@ public class DDMFormFieldTemplateContextFactory {
 			MapUtil.getBoolean(changedProperties, "visible", defaultValue));
 	}
 
+	protected void setDDMFormFieldTemplateContextVisualProperty(
+		Map<String, Object> ddmFormFieldTemplateContext,
+		boolean visualProperty) {
+
+		ddmFormFieldTemplateContext.put("visualProperty", visualProperty);
+	}
+
 	protected void setDDMFormFieldTypeServicesTracker(
 		DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker) {
 
@@ -785,6 +792,9 @@ public class DDMFormFieldTemplateContextFactory {
 		setDDMFormFieldTemplateContextVisibilityExpression(
 			ddmFormFieldTemplateContext,
 			ddmFormField.getVisibilityExpression());
+		setDDMFormFieldTemplateContextVisualProperty(
+			ddmFormFieldTemplateContext,
+			GetterUtil.getBoolean(ddmFormField.getProperty("visualProperty")));
 	}
 
 	protected void setPropertiesChangeableByRule(
