@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.tax.engine.remote.internal.servlet.taglib.ui;
+package com.liferay.commerce.tax.engine.remote.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.constants.CommerceTaxScreenNavigationConstants;
 import com.liferay.commerce.tax.engine.remote.internal.RemoteCommerceTaxEngine;
