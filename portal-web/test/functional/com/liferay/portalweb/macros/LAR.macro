@@ -560,6 +560,7 @@ definition {
 			importDeletions = "${importDeletions}",
 			importPermissions = "${importPermissions}",
 			importSchemaVersionMismatching = "${importSchemaVersionMismatching}",
+			importValidationMissingItem = "${importValidationMissingItem}",
 			larFileName = "${larFileName}",
 			mirrorWithOverwriting = "${mirrorWithOverwriting}",
 			portletName = "${portletName}",
