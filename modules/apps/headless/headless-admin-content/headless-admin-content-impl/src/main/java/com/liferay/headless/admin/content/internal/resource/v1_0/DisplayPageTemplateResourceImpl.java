@@ -117,11 +117,10 @@ public class DisplayPageTemplateResourceImpl
 		DynamicQuery dynamicQuery =
 			_layoutPageTemplateEntryLocalService.dynamicQuery();
 
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("groupId", groupId));
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"companyId", contextCompany.getCompanyId()));
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("groupId", groupId));
-
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"type",
