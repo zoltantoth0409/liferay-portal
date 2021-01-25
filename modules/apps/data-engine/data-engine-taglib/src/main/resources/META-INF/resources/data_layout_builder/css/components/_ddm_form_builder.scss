@@ -29,10 +29,12 @@
 				padding: 0;
 			}
 
-			.fields-group,
-			.fields-group.hovered {
-				margin-left: 12px;
-				width: calc(100% - 12px);
+			:not(.ddm-fieldset) {
+				&.fields-group,
+				&.fields-group.hovered {
+					margin-left: 12px;
+					width: calc(100% - 12px);
+				}
 			}
 		}
 	}
