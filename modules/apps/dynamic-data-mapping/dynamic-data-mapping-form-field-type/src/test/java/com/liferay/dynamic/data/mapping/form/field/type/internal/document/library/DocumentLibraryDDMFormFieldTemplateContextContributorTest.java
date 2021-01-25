@@ -122,8 +122,9 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributorTest
 			Boolean.TRUE
 		);
 
-		DocumentLibraryDDMFormFieldTemplateContextContributor spy = createSpy(
-			themeDisplay);
+		DocumentLibraryDDMFormFieldTemplateContextContributor
+			documentLibraryDDMFormFieldTemplateContextContributor = createSpy(
+				themeDisplay);
 
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext =
 			createDDMFormFieldRenderingContext();
@@ -131,9 +132,10 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributorTest
 		ddmFormFieldRenderingContext.setPortletNamespace(
 			_DDM_FORM_PORTLET_NAMESPACE);
 
-		Map<String, Object> parameters = spy.getParameters(
-			new DDMFormField("field", "document_library"),
-			ddmFormFieldRenderingContext);
+		Map<String, Object> parameters =
+			documentLibraryDDMFormFieldTemplateContextContributor.getParameters(
+				new DDMFormField("field", "document_library"),
+				ddmFormFieldRenderingContext);
 
 		Assert.assertTrue(parameters.containsKey("itemSelectorURL"));
 	}
