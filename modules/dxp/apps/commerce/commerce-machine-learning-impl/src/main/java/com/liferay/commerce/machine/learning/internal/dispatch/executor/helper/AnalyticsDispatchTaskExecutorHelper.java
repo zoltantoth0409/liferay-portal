@@ -114,7 +114,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 						resourceLastModifiedDate));
 			}
 			else {
-				runImportTask(
+				_import(
 					dispatchTrigger, dispatchLog, dispatchTaskExecutorOutput,
 					batchEngineTaskItemDelegateResourceMapper, resource);
 			}
@@ -137,7 +137,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 				batchEngineTaskItemDelegateResourceMapper :
 					batchEngineTaskItemDelegateResourceMappers) {
 
-			runExportTask(
+			_export(
 				dispatchTrigger, dispatchLog, dispatchTaskExecutorOutput,
 				batchEngineTaskItemDelegateResourceMapper);
 		}
@@ -170,7 +170,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		return dispatchTaskExecutorOutput;
 	}
 
-	protected DispatchTaskExecutorOutput runExportTask(
+	private DispatchTaskExecutorOutput _export(
 			DispatchTrigger dispatchTrigger, DispatchLog dispatchLog,
 			DispatchTaskExecutorOutput dispatchTaskExecutorOutput,
 			BatchEngineTaskItemDelegateResourceMapper
@@ -235,7 +235,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		return dispatchTaskExecutorOutput;
 	}
 
-	protected DispatchTaskExecutorOutput runImportTask(
+	private DispatchTaskExecutorOutput _import(
 			DispatchTrigger dispatchTrigger, DispatchLog dispatchLog,
 			DispatchTaskExecutorOutput dispatchTaskExecutorOutput,
 			BatchEngineTaskItemDelegateResourceMapper
