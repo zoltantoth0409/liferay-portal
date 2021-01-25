@@ -76,10 +76,10 @@ public class LayoutSEOLinkManagerPageTitleTest {
 
 		_layout.setGroupId(_group.getGroupId());
 
+		_mockHttpServletRequest = _getMockHttpServletRequest();
+
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), TestPropsValues.getUserId());
-
-		_mockHttpServletRequest = _getMockHttpServletRequest();
 
 		_serviceContext.setRequest(_mockHttpServletRequest);
 
