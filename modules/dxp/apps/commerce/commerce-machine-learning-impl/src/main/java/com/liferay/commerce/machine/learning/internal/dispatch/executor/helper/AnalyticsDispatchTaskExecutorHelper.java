@@ -143,32 +143,25 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		}
 	}
 
-	private DispatchTaskExecutorOutput _updateDispatchLog(
-			long dispatchLogId,
-			DispatchTaskExecutorOutput dispatchTaskExecutorOutput,
-			String message)
-		throws PortalException {
+	protected static final DateFormat dateFormat = new SimpleDateFormat(
+		"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-		StringBundler sb = new StringBundler(5);
+	@Reference
+	protected BatchEngineExportTaskExecutor batchEngineExportTaskExecutor;
 
-		if (dispatchTaskExecutorOutput.getOutput() != null) {
-			sb.append(dispatchTaskExecutorOutput.getOutput());
-		}
+	@Reference
+	protected BatchEngineExportTaskLocalService
+		batchEngineExportTaskLocalService;
 
-		sb.append(dateFormat.format(new Date()));
-		sb.append(StringPool.SPACE);
-		sb.append(message);
-		sb.append(StringPool.NEW_LINE);
+	@Reference
+	protected BatchEngineImportTaskExecutor batchEngineImportTaskExecutor;
 
-		dispatchTaskExecutorOutput.setOutput(sb.toString());
+	@Reference
+	protected BatchEngineImportTaskLocalService
+		batchEngineImportTaskLocalService;
 
-		dispatchLogLocalService.updateDispatchLog(
-			dispatchLogId, new Date(), dispatchTaskExecutorOutput.getError(),
-			dispatchTaskExecutorOutput.getOutput(),
-			DispatchTaskStatus.IN_PROGRESS);
-
-		return dispatchTaskExecutorOutput;
-	}
+	@Reference
+	protected DispatchLogLocalService dispatchLogLocalService;
 
 	private DispatchTaskExecutorOutput _export(
 			DispatchTrigger dispatchTrigger, DispatchLog dispatchLog,
@@ -294,25 +287,32 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		return dispatchTaskExecutorOutput;
 	}
 
-	protected static final DateFormat dateFormat = new SimpleDateFormat(
-		"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+	private DispatchTaskExecutorOutput _updateDispatchLog(
+			long dispatchLogId,
+			DispatchTaskExecutorOutput dispatchTaskExecutorOutput,
+			String message)
+		throws PortalException {
 
-	@Reference
-	protected BatchEngineExportTaskExecutor batchEngineExportTaskExecutor;
+		StringBundler sb = new StringBundler(5);
 
-	@Reference
-	protected BatchEngineExportTaskLocalService
-		batchEngineExportTaskLocalService;
+		if (dispatchTaskExecutorOutput.getOutput() != null) {
+			sb.append(dispatchTaskExecutorOutput.getOutput());
+		}
 
-	@Reference
-	protected BatchEngineImportTaskExecutor batchEngineImportTaskExecutor;
+		sb.append(dateFormat.format(new Date()));
+		sb.append(StringPool.SPACE);
+		sb.append(message);
+		sb.append(StringPool.NEW_LINE);
 
-	@Reference
-	protected BatchEngineImportTaskLocalService
-		batchEngineImportTaskLocalService;
+		dispatchTaskExecutorOutput.setOutput(sb.toString());
 
-	@Reference
-	protected DispatchLogLocalService dispatchLogLocalService;
+		dispatchLogLocalService.updateDispatchLog(
+			dispatchLogId, new Date(), dispatchTaskExecutorOutput.getError(),
+			dispatchTaskExecutorOutput.getOutput(),
+			DispatchTaskStatus.IN_PROGRESS);
+
+		return dispatchTaskExecutorOutput;
+	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AnalyticsDispatchTaskExecutorHelper.class);
