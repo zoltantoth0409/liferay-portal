@@ -65,7 +65,7 @@ public class DisplayPageTemplateResourceImpl
 				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) {
 
 			throw new NoSuchPageTemplateEntryException(
-				"No Display Page Template exists with key: " +
+				"No display page template exists with key: " +
 					displayPageTemplateKey);
 		}
 
