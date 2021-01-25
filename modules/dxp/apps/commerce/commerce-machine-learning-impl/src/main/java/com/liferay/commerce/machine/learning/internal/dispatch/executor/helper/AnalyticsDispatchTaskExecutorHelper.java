@@ -95,11 +95,11 @@ public class AnalyticsDispatchTaskExecutorHelper {
 					latestSuccessfulDispatchLog.getEndDate();
 			}
 
-			File resource = _analyticsBatchClient.downloadResource(
+			File resourceFile = _analyticsBatchClient.downloadResource(
 				dispatchTrigger.getCompanyId(), resourceLastModifiedDate,
 				batchEngineTaskItemDelegateResourceMapper.getResourceName());
 
-			if (resource == null) {
+			if (resourceFile == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						String.format(
@@ -116,7 +116,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 			else {
 				_import(
 					dispatchTrigger, dispatchLog, dispatchTaskExecutorOutput,
-					batchEngineTaskItemDelegateResourceMapper, resource);
+					batchEngineTaskItemDelegateResourceMapper, resourceFile);
 			}
 		}
 	}
