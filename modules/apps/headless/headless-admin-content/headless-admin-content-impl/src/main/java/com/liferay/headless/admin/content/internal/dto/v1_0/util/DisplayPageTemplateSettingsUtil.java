@@ -67,8 +67,7 @@ public class DisplayPageTemplateSettingsUtil {
 				contentSubtype = _getContentSubtype(
 					dtoConverterContext, infoItemServiceTracker,
 					layoutPageTemplateEntry);
-				contentType = _classNameToAssetType.getOrDefault(
-					className, className);
+				contentType = _contentTypes.getOrDefault(className, className);
 			}
 		};
 	}
@@ -140,7 +139,7 @@ public class DisplayPageTemplateSettingsUtil {
 		};
 	}
 
-	private static final Map<String, String> _classNameToAssetType =
+	private static final Map<String, String> _contentTypes =
 		HashMapBuilder.put(
 			"com.liferay.blogs.model.BlogsEntry", "BlogPosting"
 		).put(
