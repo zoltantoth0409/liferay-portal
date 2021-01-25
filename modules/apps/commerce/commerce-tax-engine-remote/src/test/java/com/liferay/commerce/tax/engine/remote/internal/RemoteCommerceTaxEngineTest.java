@@ -417,9 +417,10 @@ public class RemoteCommerceTaxEngineTest {
 	private void _startHttpServer() throws Exception {
 		_httpServer = HttpServer.create(new InetSocketAddress(_PORT), 0);
 
-		HttpContext context = _httpServer.createContext("/commerce/tax-value");
+		HttpContext httpContext = _httpServer.createContext(
+			"/commerce/tax-value");
 
-		context.setHandler(new TaxValueHttpHandler());
+		httpContext.setHandler(new TaxValueHttpHandler());
 
 		_httpServer.start();
 	}
