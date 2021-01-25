@@ -79,7 +79,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 				String.format(
-					"Checking updates for: %s",
+					"Checking updates for resource %s",
 					batchEngineTaskItemDelegateResourceMapper.
 						getResourceName()));
 
@@ -103,14 +103,14 @@ public class AnalyticsDispatchTaskExecutorHelper {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						String.format(
-							"No resource update since: %s",
+							"No resource was updated since: %s",
 							resourceLastModifiedDate));
 				}
 
 				_updateDispatchLog(
 					dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 					String.format(
-						"No resource update since: %s",
+						"No resource was updated since: %s",
 						resourceLastModifiedDate));
 			}
 			else {
@@ -172,7 +172,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 		_updateDispatchLog(
 			dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
-			"Start exporting: " +
+			"Start exporting resource " +
 				batchEngineTaskItemDelegateResourceMapper.getResourceName());
 
 		BatchEngineExportTask batchEngineExportTask =
@@ -200,13 +200,13 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"BatchEngineExportTask completed, uploading: " +
+					"Completed batch engine export task for " +
 						batchEngineExportTask.getClassName());
 			}
 
 			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
-				"Start uploading: " + resourceName);
+				"Uploading resource " + resourceName);
 
 			InputStream inputStream =
 				batchEngineExportTaskLocalService.openContentInputStream(
@@ -220,9 +220,14 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 			batchEngineExportTaskLocalService.deleteBatchEngineExportTask(
 				batchEngineExportTask);
+
+			_updateDispatchLog(
+				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
+				"Finished exporting resource " + resourceName);
 		}
 		else {
-			throw new PortalException("Error exporting: " + resourceName);
+			throw new PortalException(
+				"Unable to export resource " + resourceName);
 		}
 
 		return dispatchTaskExecutorOutput;
@@ -238,7 +243,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 		_updateDispatchLog(
 			dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
-			"Start import task: " +
+			"Start importing resource " +
 				batchEngineTaskItemDelegateResourceMapper.getResourceName());
 
 		BatchEngineImportTask batchEngineImportTask =
@@ -268,7 +273,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"BatchEngineImportTask completed for entity: " +
+					"Completed batch engine import task for " +
 						batchEngineImportTask.getClassName());
 			}
 
@@ -277,11 +282,11 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
-				"Completed import task: " + resourceName);
+				"Finished importing resource " + resourceName);
 		}
 		else {
 			throw new PortalException(
-				"Error importing resource: " + resourceName);
+				"Unable to import resource " + resourceName);
 		}
 
 		return dispatchTaskExecutorOutput;
