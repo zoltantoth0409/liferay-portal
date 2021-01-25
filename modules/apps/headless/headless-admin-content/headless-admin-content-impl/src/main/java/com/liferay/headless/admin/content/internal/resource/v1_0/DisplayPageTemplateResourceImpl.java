@@ -84,7 +84,7 @@ public class DisplayPageTemplateResourceImpl
 
 				fieldName = StringUtil.removeSubstring(fieldName, "_sortable");
 
-				fieldName = _sortFieldNames.getOrDefault(fieldName, fieldName);
+				fieldName = _fieldNames.getOrDefault(fieldName, fieldName);
 
 				if (sort.isReverse()) {
 					dynamicQuery.addOrder(OrderFactoryUtil.desc(fieldName));
@@ -146,7 +146,7 @@ public class DisplayPageTemplateResourceImpl
 			layoutPageTemplateEntry);
 	}
 
-	private static final Map<String, String> _sortFieldNames =
+	private static final Map<String, String> _fieldNames =
 		HashMapBuilder.put(
 			"dateCreated", "createDate"
 		).put(
