@@ -76,7 +76,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 				batchEngineTaskItemDelegateResourceMapper :
 					batchEngineTaskItemDelegateResourceMappers) {
 
-			appendToLogOutput(
+			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 				String.format(
 					"Checking updates for: %s",
@@ -107,7 +107,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 							resourceLastModifiedDate));
 				}
 
-				appendToLogOutput(
+				_updateDispatchLog(
 					dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 					String.format(
 						"No resource update since: %s",
@@ -143,7 +143,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		}
 	}
 
-	protected DispatchTaskExecutorOutput appendToLogOutput(
+	private DispatchTaskExecutorOutput _updateDispatchLog(
 			long dispatchLogId,
 			DispatchTaskExecutorOutput dispatchTaskExecutorOutput,
 			String message)
@@ -177,7 +177,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 				batchEngineTaskItemDelegateResourceMapper)
 		throws IOException, PortalException {
 
-		appendToLogOutput(
+		_updateDispatchLog(
 			dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 			"Start exporting: " +
 				batchEngineTaskItemDelegateResourceMapper.getResourceName());
@@ -211,7 +211,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 						batchEngineExportTask.getClassName());
 			}
 
-			appendToLogOutput(
+			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 				"Start uploading: " + resourceName);
 
@@ -243,7 +243,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 			File resourceFile)
 		throws IOException, PortalException {
 
-		appendToLogOutput(
+		_updateDispatchLog(
 			dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 			"Start import task: " +
 				batchEngineTaskItemDelegateResourceMapper.getResourceName());
@@ -282,7 +282,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 			batchEngineImportTaskLocalService.deleteBatchEngineImportTask(
 				batchEngineImportTask);
 
-			appendToLogOutput(
+			_updateDispatchLog(
 				dispatchLog.getDispatchLogId(), dispatchTaskExecutorOutput,
 				"Completed import task: " + resourceName);
 		}
