@@ -6476,11 +6476,11 @@ public class ServiceBuilder {
 		if (!StringUtil.equals(externalReferenceCode, "none")) {
 			Element finderElement = DocumentHelper.createElement("finder");
 
-			String scopeUpperCase = StringUtil.toUpperCase(
+			String externalReferenceCodeUpperCase = StringUtil.toUpperCase(
 				externalReferenceCode);
 
 			finderElement.addAttribute(
-				"name", scopeUpperCase.charAt(0) + "_ERC");
+				"name", externalReferenceCodeUpperCase.charAt(0) + "_ERC");
 
 			finderElement.addAttribute("return-type", entityName);
 
