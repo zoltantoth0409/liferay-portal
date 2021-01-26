@@ -163,11 +163,15 @@ access entity's UUID.
 >
 
 <!--
-The external-reference-code values specify if the service will generate a
-externalReferenceCode column for the service, scoped by company or group. The
-possible values are none, company and group. The default value is none. The
-values true and false are also allowed and mapped respectively to company and
-none.
+The external-reference-code value specifies if the service will generate an
+external reference code column for the service. The possible values are "none",
+"company", and "group". The default value is "none" and no external reference
+code column will be generated. The value "company" will generate an external
+reference code column scoped by company. The value "group" will generate an
+external reference code column scoped by group.
+
+The deprecated value "true" maps to "company" and the deprecated "false" maps to
+"none".
 -->
 <!ATTLIST entity
 	external-reference-code CDATA #IMPLIED
