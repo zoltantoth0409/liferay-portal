@@ -6479,9 +6479,8 @@ public class ServiceBuilder {
 			String scopeUpperCase = StringUtil.toUpperCase(
 				externalReferenceCode);
 
-			char scopeId = scopeUpperCase.charAt(0);
-
-			finderElement.addAttribute("name", scopeId + "_ERC");
+			finderElement.addAttribute(
+				"name", scopeUpperCase.charAt(0) + "_ERC");
 
 			finderElement.addAttribute("return-type", entityName);
 
