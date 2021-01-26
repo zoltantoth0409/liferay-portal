@@ -111,13 +111,13 @@
 
 		<column name="ercGroupEntryId" primary="true" type="long" />
 
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-
 		<!-- Group instance -->
 
 		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
 	</entity>
 	<entity local-service="true" name="FinderWhereClauseEntry" remote-service="false">
 
