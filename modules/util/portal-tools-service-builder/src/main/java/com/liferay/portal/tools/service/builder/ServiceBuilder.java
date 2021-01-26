@@ -5980,6 +5980,15 @@ public class ServiceBuilder {
 			entityElement.attributeValue("uuid"));
 		boolean uuidAccessor = GetterUtil.getBoolean(
 			entityElement.attributeValue("uuid-accessor"));
+
+		String externalReferenceCode = GetterUtil.getString(
+			entityElement.attributeValue("external-reference-code"), "none");
+
+		externalReferenceCode = StringUtil.replace(
+			externalReferenceCode, "false", "none");
+		externalReferenceCode = StringUtil.replace(
+			externalReferenceCode, "true", "company");
+
 		boolean localService = GetterUtil.getBoolean(
 			entityElement.attributeValue("local-service"));
 		boolean remoteService = GetterUtil.getBoolean(
@@ -5991,14 +6000,6 @@ public class ServiceBuilder {
 			StringBundler.concat(
 				_packagePath, ".service.persistence.impl.", entityName,
 				"PersistenceImpl"));
-
-		String externalReferenceCode = GetterUtil.getString(
-			entityElement.attributeValue("external-reference-code"), "none");
-
-		externalReferenceCode = StringUtil.replace(
-			externalReferenceCode, "false", "none");
-		externalReferenceCode = StringUtil.replace(
-			externalReferenceCode, "true", "company");
 
 		String finderClassName = "";
 
