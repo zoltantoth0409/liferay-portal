@@ -6124,12 +6124,6 @@ public class ServiceBuilder {
 
 		List<Element> derivedColumnElements = new ArrayList<>();
 
-		if (columnElements.contains(
-				new EntityColumn(this, "externalReferenceCode"))) {
-
-			externalReferenceCode = "none";
-		}
-
 		if (mvccEnabled && !columnElements.isEmpty()) {
 			Element columnElement = DocumentHelper.createElement("column");
 
@@ -6159,6 +6153,12 @@ public class ServiceBuilder {
 			columnElement.addAttribute("type", "String");
 
 			derivedColumnElements.add(columnElement);
+		}
+
+		if (columnElements.contains(
+				new EntityColumn(this, "externalReferenceCode"))) {
+
+			externalReferenceCode = "none";
 		}
 
 		if (!StringUtil.equals(externalReferenceCode, "none")) {
