@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.runner.Description;
 
@@ -173,8 +172,7 @@ public class SynchronousDestinationTestRule
 				pdfProcessorFilter, rawMetaDataProcessorFilter,
 				segmentsEntryReindexFilter, subscrpitionSenderFilter);
 
-			serviceDependencyManager.waitForDependencies(
-				TimeUnit.MINUTES.toMillis(10));
+			serviceDependencyManager.waitForDependencies();
 
 			_destinations = ReflectionTestUtil.getFieldValue(
 				MessageBusUtil.getMessageBus(), "_destinations");
