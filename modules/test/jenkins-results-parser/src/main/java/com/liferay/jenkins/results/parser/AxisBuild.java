@@ -493,9 +493,9 @@ public class AxisBuild extends BaseBuild {
 			}
 		}
 
-		String result = getResult();
-
 		JSONObject testReportJSONObject = null;
+
+		String result = getResult();
 
 		if (result.equals("SUCCESS") || result.equals("UNSTABLE")) {
 			testReportJSONObject = getTestReportJSONObject(true);
