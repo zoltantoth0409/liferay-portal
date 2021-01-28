@@ -207,7 +207,7 @@ public class UpgradeDDMStructure extends UpgradeProcess {
 		DDMFormLayoutPage ddmFormLayoutPage =
 			ddmFormLayout.getDDMFormLayoutPage(0);
 
-		List<DDMFormLayoutRow> ddmFormLayoutRowList =
+		List<DDMFormLayoutRow> ddmFormLayoutRows =
 			ddmFormLayoutPage.getDDMFormLayoutRows();
 
 		DDMFormLayoutRow ddmFormLayoutRow = new DDMFormLayoutRow();
@@ -218,9 +218,9 @@ public class UpgradeDDMStructure extends UpgradeProcess {
 			new DDMFormLayoutColumn(
 				DDMFormLayoutColumn.FULL, ddmFormField.getName()));
 
-		ddmFormLayoutRowList.add(0, ddmFormLayoutRow);
+		ddmFormLayoutRows.add(0, ddmFormLayoutRow);
 
-		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRowList);
+		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRows);
 
 		DDMFormLayoutSerializerSerializeResponse
 			ddmFormLayoutSerializerSerializeResponse =
@@ -245,7 +245,7 @@ public class UpgradeDDMStructure extends UpgradeProcess {
 		DDMFormLayoutPage ddmFormLayoutPage =
 			ddmFormLayout.getDDMFormLayoutPage(0);
 
-		List<DDMFormLayoutRow> ddmFormLayoutRowList = new ArrayList<>();
+		List<DDMFormLayoutRow> ddmFormLayoutRows = new ArrayList<>();
 
 		for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
 			DDMFormLayoutRow ddmFormLayoutRow = new DDMFormLayoutRow();
@@ -254,10 +254,10 @@ public class UpgradeDDMStructure extends UpgradeProcess {
 				new DDMFormLayoutColumn(
 					DDMFormLayoutColumn.FULL, ddmFormField.getName()));
 
-			ddmFormLayoutRowList.add(ddmFormLayoutRow);
+			ddmFormLayoutRows.add(ddmFormLayoutRow);
 		}
 
-		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRowList);
+		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRows);
 
 		DDMFormLayoutSerializerSerializeResponse
 			ddmFormLayoutSerializerSerializeResponse =
