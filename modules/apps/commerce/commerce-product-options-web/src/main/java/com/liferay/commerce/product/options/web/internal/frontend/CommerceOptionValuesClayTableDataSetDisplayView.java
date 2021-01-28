@@ -44,8 +44,8 @@ public class CommerceOptionValuesClayTableDataSetDisplayView
 		ClayTableSchemaField clayTableSchemaField =
 			clayTableSchemaBuilder.addClayTableSchemaField("name.LANG", "name");
 
-		clayTableSchemaField.setSortable(true);
 		clayTableSchemaField.setContentRenderer("actionLink");
+		clayTableSchemaField.setSortable(true);
 
 		clayTableSchemaBuilder.addClayTableSchemaField("key", "key");
 
