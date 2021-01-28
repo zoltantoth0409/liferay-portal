@@ -55,6 +55,7 @@ public class DDMDataDefinitionConverterImpl
 		ddmForm.setDefinitionSchemaVersion("2.0");
 
 		_upgradeFields(ddmForm.getDDMFormFields(), defaultLocale);
+
 		ddmForm = _upgradeNestedFields(ddmForm);
 
 		return DDMFormSerializeUtil.serialize(ddmForm, _ddmFormSerializer);
