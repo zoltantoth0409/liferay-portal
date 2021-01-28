@@ -41,11 +41,11 @@ public class CommerceOptionValuesClayTableDataSetDisplayView
 		ClayTableSchemaBuilder clayTableSchemaBuilder =
 			_clayTableSchemaBuilderFactory.create();
 
-		ClayTableSchemaField nameField =
+		ClayTableSchemaField clayTableSchemaField =
 			clayTableSchemaBuilder.addClayTableSchemaField("name.LANG", "name");
 
-		nameField.setSortable(true);
-		nameField.setContentRenderer("actionLink");
+		clayTableSchemaField.setSortable(true);
+		clayTableSchemaField.setContentRenderer("actionLink");
 
 		clayTableSchemaBuilder.addClayTableSchemaField("key", "key");
 
