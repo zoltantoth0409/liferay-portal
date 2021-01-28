@@ -382,7 +382,6 @@ public class ContentDashboardAdminPortletTest {
 		AssetCategory assetCategory1 = _assetCategoryLocalService.addCategory(
 			_user.getUserId(), _company.getGroupId(), "category-1",
 			assetVocabulary.getVocabularyId(), serviceContext);
-
 		AssetCategory assetCategory2 = _assetCategoryLocalService.addCategory(
 			_user.getUserId(), _company.getGroupId(), "category-2",
 			assetVocabulary.getVocabularyId(), serviceContext);
@@ -396,7 +395,6 @@ public class ContentDashboardAdminPortletTest {
 						assetCategory1.getCategoryId(),
 						assetCategory2.getCategoryId()
 					}));
-
 			JournalTestUtil.addArticle(
 				_group.getGroupId(), 0,
 				_getServiceContext(
@@ -467,7 +465,6 @@ public class ContentDashboardAdminPortletTest {
 			_assetCategoryLocalService.addCategory(
 				_user.getUserId(), _company.getGroupId(), "child-category-1",
 				childAssetVocabulary.getVocabularyId(), serviceContext);
-
 		AssetCategory childAssetCategory2 =
 			_assetCategoryLocalService.addCategory(
 				_user.getUserId(), _company.getGroupId(), "child-category-2",
@@ -483,7 +480,6 @@ public class ContentDashboardAdminPortletTest {
 						childAssetCategory1.getCategoryId(),
 						childAssetCategory2.getCategoryId()
 					}));
-
 			JournalTestUtil.addArticle(
 				_group.getGroupId(), 0,
 				_getServiceContext(
@@ -670,7 +666,6 @@ public class ContentDashboardAdminPortletTest {
 		AssetCategory assetCategory1 = _assetCategoryLocalService.addCategory(
 			_user.getUserId(), _company.getGroupId(), "A1",
 			assetVocabulary.getVocabularyId(), serviceContext);
-
 		AssetCategory assetCategory2 = _assetCategoryLocalService.addCategory(
 			_user.getUserId(), _company.getGroupId(), "A2",
 			assetVocabulary.getVocabularyId(), serviceContext);
