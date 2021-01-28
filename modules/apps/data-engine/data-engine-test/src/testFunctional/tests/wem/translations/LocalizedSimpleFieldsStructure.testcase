@@ -213,7 +213,6 @@ definition {
 	}
 
 	@description = "This is a test for LPS-122278. As Content Creator, I want to define reusable translations when creating WEM Structures without nested fields or fieldsets"
-	@ignore = "true"
 	@priority = "5"
 	test TranslationPersistsAfterEditingAnother {
 		property portal.acceptance = "false";
@@ -302,7 +301,6 @@ definition {
 	}
 
 	@description = "This is a test for LPS-122278. As Content Creator, I want to define reusable translations when creating WEM Structures without nested fields or fieldsets"
-	@ignore = "true"
 	@priority = "5"
 	test TranslationsRemainUponSavingStructure {
 		property portal.acceptance = "false";
