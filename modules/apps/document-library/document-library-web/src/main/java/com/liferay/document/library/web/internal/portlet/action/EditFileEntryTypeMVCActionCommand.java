@@ -155,7 +155,6 @@ public class EditFileEntryTypeMVCActionCommand
 
 		DataDefinition dataDefinition = DataDefinition.toDTO(
 			ParamUtil.getString(actionRequest, "dataDefinition"));
-
 		long[] ddmStructureIds = _getLongArray(
 			actionRequest, "ddmStructuresSearchContainerPrimaryKeys");
 
