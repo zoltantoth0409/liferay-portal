@@ -66,9 +66,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "view-form"));
 		</div>
 
 		<%
-		Map<String, Object> ddmFormContext = ddmFormAdminDisplayContext.getDDMFormContext(renderRequest, false);
-
 		String containerId = StringPool.BLANK;
+
+		Map<String, Object> ddmFormContext = ddmFormAdminDisplayContext.getDDMFormContext(renderRequest, false);
 
 		if (ddmFormContext.containsKey("containerId")) {
 			containerId = (String)ddmFormContext.get("containerId");
