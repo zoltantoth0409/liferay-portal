@@ -77,7 +77,6 @@ public class ImageEditableElementParser implements EditableElementParser {
 		if (fieldValue == null) {
 			alt = StringUtil.replace(
 				_TMPL_IMAGE_FIELD_ALT_TEMPLATE, "field_name", fieldName);
-
 			fileEntryId = StringUtil.replace(
 				_TMPL_IMAGE_FIELD_FILE_ENTRY_ID_TEMPLATE, "field_name",
 				fieldName);
