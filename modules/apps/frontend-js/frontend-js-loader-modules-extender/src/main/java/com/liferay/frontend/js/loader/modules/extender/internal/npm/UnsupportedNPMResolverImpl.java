@@ -29,6 +29,7 @@ import org.osgi.framework.Bundle;
  * webpack federation to load modules).
  *
  * @author Iván Zaera Avellón
+ * @review
  */
 public class UnsupportedNPMResolverImpl implements NPMResolver {
 
