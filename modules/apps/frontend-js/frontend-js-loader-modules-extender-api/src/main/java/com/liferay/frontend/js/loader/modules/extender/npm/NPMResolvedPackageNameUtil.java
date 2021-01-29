@@ -141,8 +141,7 @@ public class NPMResolvedPackageNameUtil {
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Unable to resolve NPM package name of " +
-					bundle.getSymbolicName(),
+				"Unable to resolve NPM package " + bundle.getSymbolicName(),
 				exception);
 		}
 
