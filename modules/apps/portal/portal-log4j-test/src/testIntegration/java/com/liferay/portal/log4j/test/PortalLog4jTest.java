@@ -360,22 +360,22 @@ public class PortalLog4jTest {
 			log4JLocationInfoLine.indexOf(StringPool.SPACE),
 			log4JLocationInfoLine.indexOf(StringPool.FORWARD_SLASH));
 
-		// log4j:locationInfo class
+		// log4j:locationInfo class name
 
-		String expectedLog4JLocationInfoClass = StringBundler.concat(
+		String expectedLog4JLocationInfoClassName = StringBundler.concat(
 			StringPool.SPACE, "class=", StringPool.QUOTE,
 			PortalLog4jTest.class.getName(), StringPool.QUOTE,
 			StringPool.SPACE);
 
 		Assert.assertEquals(
-			expectedLog4JLocationInfoClass,
+			expectedLog4JLocationInfoClassName,
 			log4JLocationInfo.substring(
-				0, expectedLog4JLocationInfoClass.length()));
+				0, expectedLog4JLocationInfoClassName.length()));
 
 		// log4j:locationInfo file
 
 		log4JLocationInfo = log4JLocationInfo.substring(
-			expectedLog4JLocationInfoClass.length());
+			expectedLog4JLocationInfoClassName.length());
 		log4JLocationInfo = log4JLocationInfo.substring(
 			log4JLocationInfo.indexOf("file"));
 
