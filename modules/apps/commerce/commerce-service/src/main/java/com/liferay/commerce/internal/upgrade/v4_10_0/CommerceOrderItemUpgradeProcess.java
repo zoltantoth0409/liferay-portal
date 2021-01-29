@@ -96,17 +96,16 @@ public class CommerceOrderItemUpgradeProcess
 			"width", "DOUBLE");
 
 		String updateCommerceOrderItemSQL = StringBundler.concat(
-			"UPDATE CommerceOrderItem SET shippable = ?, freeShipping = ?, ",
+			"update CommerceOrderItem SET shippable = ?, freeShipping = ?, ",
 			"shipSeparately = ?, shippingExtraPrice = ?, width = ?, height = ",
 			"?, depth = ?, weight = ?, subscriptionLength = ?, ",
 			"subscriptionType = ?, subscriptionTypeSettings = ?, ",
 			"maxSubscriptionCycles = ?, deliverySubscriptionLength = ?, ",
 			"deliverySubscriptionType = ?, deliverySubTypeSettings = ?, ",
-			"deliveryMaxSubscriptionCycles = ? WHERE CPInstanceId = ? AND ",
+			"deliveryMaxSubscriptionCycles = ? where CPInstanceId = ? and ",
 			"commerceOrderItemId = ?");
-
 		String getCPInstanceSQL = StringBundler.concat(
-			"SELECT  CPInstance.CPInstanceId, CPDefinition.shippable, ",
+			"select  CPInstance.CPInstanceId, CPDefinition.shippable, ",
 			"CPDefinition.freeShipping, CPDefinition.shipSeparately, ",
 			"CPDefinition.shippingExtraPrice, CPDefinition.width, ",
 			"CPDefinition.height, CPDefinition.depth, CPDefinition.weight, ",
@@ -126,12 +125,12 @@ public class CommerceOrderItemUpgradeProcess
 			"CPInstance.deliverySubscriptionType, ",
 			"CPInstance.deliverySubTypeSettings, ",
 			"CPInstance.deliveryMaxSubscriptionCycles, ",
-			"CommerceOrderItem.commerceOrderItemId FROM CPInstance JOIN ",
-			"CPDefinition ON CPInstance.CPDefinitionId = ",
-			"CPDefinition.CPDefinitionId JOIN CommerceOrderItem ON ",
-			"CPInstance.CPInstanceId = CommerceOrderItem.CPInstanceId JOIN ",
-			"CommerceOrder ON CommerceOrder.commerceOrderId = ",
-			"CommerceOrderItem.commerceOrderId AND CommerceOrder.orderStatus ",
+			"CommerceOrderItem.commerceOrderItemId from CPInstance join ",
+			"CPDefinition on CPInstance.CPDefinitionId = ",
+			"CPDefinition.CPDefinitionId join CommerceOrderItem on ",
+			"CPInstance.CPInstanceId = CommerceOrderItem.CPInstanceId join ",
+			"CommerceOrder on CommerceOrder.commerceOrderId = ",
+			"CommerceOrderItem.commerceOrderId and CommerceOrder.orderStatus ",
 			"= 2");
 
 		try (PreparedStatement ps1 =
