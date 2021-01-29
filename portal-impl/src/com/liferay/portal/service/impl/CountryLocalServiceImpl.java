@@ -231,23 +231,21 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 			OrderByComparator<Country> orderByComparator)
 		throws PortalException {
 
-		List<Country> countries = countryLocalService.dslQuery(
-			_getGroupByStep(
-				DSLQueryFactoryUtil.selectDistinct(CountryTable.INSTANCE),
-				companyId, active, keywords
-			).orderBy(
-				CountryTable.INSTANCE, orderByComparator
-			).limit(
-				start, end
-			));
-
-		Long count = countryLocalService.dslQuery(
-			_getGroupByStep(
-				DSLQueryFactoryUtil.countDistinct(
-					CountryTable.INSTANCE.countryId),
-				companyId, active, keywords));
-
-		return new BaseModelSearchResult<>(countries, count.intValue());
+		return new BaseModelSearchResult<>(
+			countryLocalService.dslQuery(
+				_getGroupByStep(
+					DSLQueryFactoryUtil.selectDistinct(CountryTable.INSTANCE),
+					companyId, active, keywords
+				).orderBy(
+					CountryTable.INSTANCE, orderByComparator
+				).limit(
+					start, end
+				)),
+			countryLocalService.dslQuery(
+				_getGroupByStep(
+					DSLQueryFactoryUtil.countDistinct(
+						CountryTable.INSTANCE.countryId),
+					companyId, active, keywords)));
 	}
 
 	@Override
