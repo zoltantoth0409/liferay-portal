@@ -43,22 +43,22 @@ public class JSModuleLauncherImpl implements JSModuleLauncher {
 	public void appendPortletScript(
 		HttpServletRequest httpServletRequest, String portletId,
 		Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode) {
+		String javaScriptCode) {
 
 		_appendScriptData(
 			httpServletRequest,
-			_getScriptBody(jsModuleDependencies, javascriptCode), portletId);
+			_getScriptBody(jsModuleDependencies, javaScriptCode), portletId);
 	}
 
 	@Override
 	public void appendScript(
 		HttpServletRequest httpServletRequest,
 		Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode) {
+		String javaScriptCode) {
 
 		_appendScriptData(
 			httpServletRequest,
-			_getScriptBody(jsModuleDependencies, javascriptCode), null);
+			_getScriptBody(jsModuleDependencies, javaScriptCode), null);
 	}
 
 	@Override
@@ -82,29 +82,29 @@ public class JSModuleLauncherImpl implements JSModuleLauncher {
 	public void writeModuleInvocation(
 		Writer writer, String javascriptModule, String... parameters) {
 
-		StringBundler javascriptCodeSB = new StringBundler(3);
+		StringBundler javaScriptCodeSB = new StringBundler(3);
 
-		javascriptCodeSB.append("(__module__.default || __module__)(");
-		javascriptCodeSB.append(
+		javaScriptCodeSB.append("(__module__.default || __module__)(");
+		javaScriptCodeSB.append(
 			StringUtil.merge(parameters, StringPool.COMMA_AND_SPACE));
-		javascriptCodeSB.append(");");
+		javaScriptCodeSB.append(");");
 
 		_writeScriptData(
 			writer,
 			_getScriptBody(
 				Arrays.asList(
 					new JSModuleDependency(javascriptModule, "__module__")),
-				javascriptCodeSB.toString()),
+				javaScriptCodeSB.toString()),
 			null);
 	}
 
 	@Override
 	public void writeScript(
 		Writer writer, Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode) {
+		String javaScriptCode) {
 
 		_writeScriptData(
-			writer, _getScriptBody(jsModuleDependencies, javascriptCode), null);
+			writer, _getScriptBody(jsModuleDependencies, javaScriptCode), null);
 	}
 
 	private void _appendScriptData(
@@ -127,7 +127,7 @@ public class JSModuleLauncherImpl implements JSModuleLauncher {
 
 	private String _getScriptBody(
 		Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode) {
+		String javaScriptCode) {
 
 		StringBundler javascriptSB = new StringBundler(10);
 
@@ -143,7 +143,7 @@ public class JSModuleLauncherImpl implements JSModuleLauncher {
 			javascriptSB.append(") => {");
 		}
 
-		javascriptSB.append(javascriptCode);
+		javascriptSB.append(javaScriptCode);
 
 		for (int i = 0; i < jsModuleDependencies.size(); i++) {
 			javascriptSB.append("});");

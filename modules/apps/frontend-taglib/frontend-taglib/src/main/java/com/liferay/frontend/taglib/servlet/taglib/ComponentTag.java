@@ -249,7 +249,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 
 		String variableName = _getVariableName(module);
 
-		String javascriptCode = _getRenderInvocation(variableName);
+		String javaScriptCode = _getRenderInvocation(variableName);
 
 		if (jsModuleLauncher.isValidModule(module)) {
 			List<JSModuleDependency> jsModuleDependencies = Arrays.asList(
@@ -257,12 +257,12 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 
 			if (isPositionInline()) {
 				jsModuleLauncher.writeScript(
-					pageContext.getOut(), jsModuleDependencies, javascriptCode);
+					pageContext.getOut(), jsModuleDependencies, javaScriptCode);
 			}
 			else {
 				jsModuleLauncher.appendPortletScript(
 					request, PortalUtil.getPortletId(request),
-					jsModuleDependencies, javascriptCode);
+					jsModuleDependencies, javaScriptCode);
 			}
 		}
 		else {
@@ -270,7 +270,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 				ScriptData scriptData = new ScriptData();
 
 				scriptData.append(
-					PortalUtil.getPortletId(request), javascriptCode,
+					PortalUtil.getPortletId(request), javaScriptCode,
 					module + " as " + variableName, ScriptData.ModulesType.ES6);
 
 				JspWriter jspWriter = pageContext.getOut();
@@ -290,7 +290,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 			}
 
 			scriptData.append(
-				PortalUtil.getPortletId(request), javascriptCode,
+				PortalUtil.getPortletId(request), javaScriptCode,
 				module + " as " + variableName, ScriptData.ModulesType.ES6);
 		}
 	}

@@ -185,7 +185,7 @@ public class ReactRendererUtil {
 				jsModuleDependencies, amdJSModuleDependencies);
 		}
 
-		String javascriptCode = _getRenderInvocation(
+		String javaScriptCode = _getRenderInvocation(
 			componentDescriptor, props, httpServletRequest, placeholderId,
 			portal);
 
@@ -222,20 +222,20 @@ public class ReactRendererUtil {
 			}
 
 			javascriptSB.append(") {\n");
-			javascriptSB.append(javascriptCode);
+			javascriptSB.append(javaScriptCode);
 			javascriptSB.append("});");
 
-			javascriptCode = javascriptSB.toString();
+			javaScriptCode = javascriptSB.toString();
 		}
 
 		if (componentDescriptor.isPositionInLine()) {
 			jsModuleLauncher.writeScript(
-				writer, jsModuleDependencies, javascriptCode);
+				writer, jsModuleDependencies, javaScriptCode);
 		}
 		else {
 			jsModuleLauncher.appendPortletScript(
 				httpServletRequest, portal.getPortletId(httpServletRequest),
-				jsModuleDependencies, javascriptCode);
+				jsModuleDependencies, javaScriptCode);
 		}
 	}
 

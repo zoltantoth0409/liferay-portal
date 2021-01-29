@@ -28,12 +28,12 @@ public interface JSModuleLauncher {
 	public void appendPortletScript(
 		HttpServletRequest httpServletRequest, String portletId,
 		Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode);
+		String javaScriptCode);
 
 	public void appendScript(
 		HttpServletRequest httpServletRequest,
 		Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode);
+		String javaScriptCode);
 
 	/**
 	 * Check if a JavaScript module identified by name must be loaded using
@@ -48,6 +48,6 @@ public interface JSModuleLauncher {
 
 	public void writeScript(
 		Writer writer, Collection<JSModuleDependency> jsModuleDependencies,
-		String javascriptCode);
+		String javaScriptCode);
 
 }
