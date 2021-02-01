@@ -17,17 +17,17 @@
 <%@ include file="/add_to_wish_list/init.jsp" %>
 
 <%
-String buttonClasses = "btn-outline-borderless btn btn-secondary";
+String buttonCssClasses = "btn-outline-borderless btn btn-secondary";
 
 if (GetterUtil.getBoolean(large)) {
-	buttonClasses = buttonClasses.concat(" btn-lg");
+	buttonCssClasses = buttonCssClasses.concat(" btn-lg");
 }
 else {
-	buttonClasses = buttonClasses.concat(" btn-sm");
+	buttonCssClasses = buttonCssClasses.concat(" btn-sm");
 }
 %>
 
-<button class="<%= buttonClasses %> skeleton" type="button">
+<button class="<%= buttonCssClasses %> skeleton" type="button">
 	<span class="text-truncate-inline">
 		<span class="font-weight-normal text-truncate">
 			<%= LanguageUtil.get(request, "add-to-list") %>

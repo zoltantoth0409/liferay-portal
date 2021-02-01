@@ -257,13 +257,13 @@ String myWorkflowTasksPortletNamespace = PortalUtil.getPortletNamespace(PortletK
 
 						<%
 						for (HeaderActionModel action : actions) {
-							String buttonClasses = "btn c-mb-1 c-mb-sm-0 ";
+							String buttonCssClasses = "btn c-mb-1 c-mb-sm-0 ";
 
 							if (Validator.isNotNull(action.getAdditionalClasses())) {
-								buttonClasses += action.getAdditionalClasses();
+								buttonCssClasses += action.getAdditionalClasses();
 							}
 							else {
-								buttonClasses += "btn-secondary";
+								buttonCssClasses += "btn-secondary";
 							}
 
 							boolean submitCheck = Validator.isNull(action.getId());
@@ -272,7 +272,7 @@ String myWorkflowTasksPortletNamespace = PortalUtil.getPortletNamespace(PortletK
 						%>
 
 							<clay:link
-								elementClasses="<%= buttonClasses %>"
+								elementClasses="<%= buttonCssClasses %>"
 								href="<%= Validator.isNotNull(action.getHref()) ? action.getHref() : StringPool.POUND %>"
 								id="<%= actionId %>"
 								label="<%= LanguageUtil.get(request, action.getLabel()) %>"

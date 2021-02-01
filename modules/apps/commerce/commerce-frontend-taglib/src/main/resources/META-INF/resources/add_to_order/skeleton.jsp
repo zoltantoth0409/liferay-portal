@@ -17,24 +17,24 @@
 <%@ include file="/add_to_order/init.jsp" %>
 
 <%
-String buttonClasses = "btn btn-add-to-cart";
-String selectorClasses = "form-control quantity-selector";
-String wrapperClasses = "add-to-cart-wrapper align-items-center d-flex";
+String buttonCssClasses = "btn btn-add-to-cart";
+String selectorCssClasses = "form-control quantity-selector";
+String wrapperCssClasses = "add-to-cart-wrapper align-items-center d-flex";
 
 if (GetterUtil.getBoolean(block)) {
-	buttonClasses = buttonClasses.concat(" btn-block");
-	wrapperClasses = wrapperClasses.concat(" flex-column");
+	buttonCssClasses = buttonCssClasses.concat(" btn-block");
+	wrapperCssClasses = wrapperCssClasses.concat(" flex-column");
 }
 else {
-	buttonClasses = buttonClasses.concat(" btn-lg");
-	selectorClasses = selectorClasses.concat(" form-control-lg");
+	buttonCssClasses = buttonCssClasses.concat(" btn-lg");
+	selectorCssClasses = selectorCssClasses.concat(" form-control-lg");
 }
 %>
 
-<div class="<%= wrapperClasses %>">
-	<div class="<%= selectorClasses %> skeleton"></div>
+<div class="<%= wrapperCssClasses %>">
+	<div class="<%= selectorCssClasses %> skeleton"></div>
 
-	<button class="<%= buttonClasses %> skeleton">
+	<button class="<%= buttonCssClasses %> skeleton">
 		<%= LanguageUtil.get(request, "add-to-cart") %>
 	</button>
 </div>

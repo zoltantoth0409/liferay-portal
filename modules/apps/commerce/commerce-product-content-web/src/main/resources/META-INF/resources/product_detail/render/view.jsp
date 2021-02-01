@@ -27,11 +27,11 @@ long cpDefinitionId = cpCatalogEntry.getCPDefinitionId();
 
 CPContentModel cpContentModel = (CPContentModel)request.getAttribute("cpContentModel");
 
-String hideClass = "hide";
+String hideCssClass = "hide";
 long skuId = 0;
 
 if (cpSku != null) {
-	hideClass = StringPool.BLANK;
+	hideCssClass = StringPool.BLANK;
 	skuId = cpSku.getCPInstanceId();
 }
 %>
@@ -53,7 +53,7 @@ if (cpSku != null) {
 						/>
 					</div>
 
-					<div class="col stock-quantity text-truncate-inline <%= hideClass %>">
+					<div class="col stock-quantity text-truncate-inline <%= hideCssClass %>">
 						<span class="text-truncate" data-text-cp-instance-stock-quantity>
 							<c:if test="<%= cpSku != null %>">
 								<%= LanguageUtil.format(request, "x-in-stock", cpContentHelper.getStockQuantity(request)) %>
@@ -62,7 +62,7 @@ if (cpSku != null) {
 					</div>
 				</div>
 
-				<p class="my-2 <%= hideClass %>" data-text-cp-instance-sku>
+				<p class="my-2 <%= hideCssClass %>" data-text-cp-instance-sku>
 					<span class="font-weight-semi-bold">
 						<%= LanguageUtil.get(request, "sku") %>
 					</span>
@@ -73,7 +73,7 @@ if (cpSku != null) {
 
 				<h2 class="product-header-title"><%= HtmlUtil.escape(cpCatalogEntry.getName()) %></h2>
 
-				<p class="my-2 <%= hideClass %>" data-text-cp-instance-manufacturer-part-number>
+				<p class="my-2 <%= hideCssClass %>" data-text-cp-instance-manufacturer-part-number>
 					<span class="font-weight-semi-bold">
 						<%= LanguageUtil.get(request, "mpn") %>
 					</span>
@@ -82,7 +82,7 @@ if (cpSku != null) {
 					</span>
 				</p>
 
-				<p class="my-2 <%= hideClass %>" data-text-cp-instance-gtin>
+				<p class="my-2 <%= hideCssClass %>" data-text-cp-instance-gtin>
 					<span class="font-weight-semi-bold">
 						<%= LanguageUtil.get(request, "gtin") %>
 					</span>
