@@ -55,8 +55,8 @@ public class DDMFormBuilderContextFactoryImpl
 			new DDMFormBuilderContextFactoryHelper(
 				ddmStructureOptional, ddmStructureVersionOptional,
 				_ddmFormFieldTypeServicesTracker,
-				_ffDDMFormSidebarConfigurationActivator,
 				_ddmFormTemplateContextFactory,
+				_ffDDMFormSidebarConfigurationActivator,
 				ddmFormBuilderContextRequest.getHttpServletRequest(),
 				ddmFormBuilderContextRequest.getHttpServletResponse(),
 				_jsonFactory, ddmFormBuilderContextRequest.getLocale(),

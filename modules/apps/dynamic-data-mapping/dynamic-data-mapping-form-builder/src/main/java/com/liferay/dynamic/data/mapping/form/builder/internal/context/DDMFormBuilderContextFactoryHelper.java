@@ -74,9 +74,9 @@ public class DDMFormBuilderContextFactoryHelper {
 		Optional<DDMStructure> ddmStructureOptional,
 		Optional<DDMStructureVersion> ddmStructureVersionOptional,
 		DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker,
+		DDMFormTemplateContextFactory ddmFormTemplateContextFactory,
 		FFDDMFormSidebarConfigurationActivator
 			ffDDMFormSidebarConfigurationActivator,
-		DDMFormTemplateContextFactory ddmFormTemplateContextFactory,
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse, JSONFactory jsonFactory,
 		Locale locale, NPMResolver npmResolver, String portletNamespace,
@@ -85,9 +85,9 @@ public class DDMFormBuilderContextFactoryHelper {
 		_ddmStructureOptional = ddmStructureOptional;
 		_ddmStructureVersionOptional = ddmStructureVersionOptional;
 		_ddmFormFieldTypeServicesTracker = ddmFormFieldTypeServicesTracker;
+		_ddmFormTemplateContextFactory = ddmFormTemplateContextFactory;
 		_ffDDMFormSidebarConfigurationActivator =
 			ffDDMFormSidebarConfigurationActivator;
-		_ddmFormTemplateContextFactory = ddmFormTemplateContextFactory;
 		_httpServletRequest = httpServletRequest;
 		_httpServletResponse = httpServletResponse;
 		_jsonFactory = jsonFactory;
