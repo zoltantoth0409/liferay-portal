@@ -394,7 +394,7 @@ definition {
 
 	@priority = "5"
 	test ContentCannotBeCreatedOnLive {
-		property portal.acceptance = "true";
+		property portal.acceptance = "quarantine";
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
