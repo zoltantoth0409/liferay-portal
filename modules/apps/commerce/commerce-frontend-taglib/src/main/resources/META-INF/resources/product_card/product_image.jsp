@@ -16,10 +16,7 @@
 
 <%@ include file="/product_card/init.jsp" %>
 
-<div
-	class="aspect-ratio-bg-cover aspect-ratio-item aspect-ratio-item-center-middle aspect-ratio-item-fluid card-type-asset-icon h-100 w-100"
-style="background-image: url('<%= cpContentListEntryModel.getProductImageURL() %>');"></div
->
+<div class="aspect-ratio-bg-cover aspect-ratio-item aspect-ratio-item-center-middle aspect-ratio-item-fluid card-type-asset-icon h-100 w-100" style="background-image: url('<%= cpContentListEntryModel.getProductImageURL() %>');"></div>
 
 <c:if test="<%= cpContentListEntryModel.getSkuId() != 0 %>">
 	<div class="aspect-ratio-item-bottom-left">
