@@ -55,17 +55,9 @@ if (cpSku != null) {
 
 					<div class="col stock-quantity text-truncate-inline <%= hideClass %>">
 						<span class="text-truncate" data-text-cp-instance-stock-quantity>
-
-							<%
-							if (cpSku != null) {
-							%>
-
+							<c:if test="<%= cpSku != null %>">
 								<%= LanguageUtil.format(request, "x-in-stock", cpContentHelper.getStockQuantity(request)) %>
-
-							<%
-							}
-							%>
-
+							</c:if>
 						</span>
 					</div>
 				</div>

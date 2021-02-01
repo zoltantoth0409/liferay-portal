@@ -38,10 +38,7 @@ if (GetterUtil.getInteger(stockQuantity) > 0) {
 	</span>
 </span>
 
-<%
-if (GetterUtil.getBoolean(willUpdate)) {
-%>
-
+<c:if test="<%= GetterUtil.getBoolean(willUpdate) %>">
 	<aui:script require="commerce-frontend-js/utilities/eventsDefinitions as Events">
 		function changeAvailability(event) {
 			const cpInstance = event.cpInstance;
@@ -67,7 +64,4 @@ if (GetterUtil.getBoolean(willUpdate)) {
 
 		Liferay.on(Events.CP_INSTANCE_CHANGED, changeAvailability);
 	</aui:script>
-
-<%
-}
-%>
+</c:if>
