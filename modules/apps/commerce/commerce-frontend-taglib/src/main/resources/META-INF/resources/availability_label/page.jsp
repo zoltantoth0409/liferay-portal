@@ -17,8 +17,8 @@
 <%@ include file="/availability_label/init.jsp" %>
 
 <%
-String availabilityLabel;
-String availabilityLabelType;
+String availabilityLabel = "out-of-stock";
+String availabilityLabelType = "danger";
 
 if (GetterUtil.getInteger(stockQuantity) > 0) {
 	if (GetterUtil.getBoolean(lowStock)) {
@@ -29,10 +29,6 @@ if (GetterUtil.getInteger(stockQuantity) > 0) {
 		availabilityLabel = "available";
 		availabilityLabelType = "success";
 	}
-}
-else {
-	availabilityLabel = "out-of-stock";
-	availabilityLabelType = "danger";
 }
 %>
 
